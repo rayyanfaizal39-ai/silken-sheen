@@ -1,6 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HeroSection } from "@/components/HeroSection";
+import { Hero } from "@/components/Hero";
+import { Features } from "@/components/Features";
+import { CtaBand, Footer } from "@/components/CtaBand";
 
 export const Route = createFileRoute("/")({
-  component: HeroSection,
+  component: Index,
 });
+
+function Index() {
+  return (
+    <>
+      <Hero />
+      <Features />
+      <CtaBand />
+      <Footer />
+    </>
+  );
+}
