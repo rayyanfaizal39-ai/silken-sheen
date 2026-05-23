@@ -121,9 +121,9 @@ function NotesPage() {
 }
 
 function highlight(text: string, keywords: string[]) {
-  const parts: (string | JSX.Element)[] = [text];
+  const parts: React.ReactNode[] = [text];
   keywords.forEach((kw, idx) => {
-    const next: (string | JSX.Element)[] = [];
+    const next: React.ReactNode[] = [];
     parts.forEach((p, i) => {
       if (typeof p !== "string") { next.push(p); return; }
       const pieces = p.split(new RegExp(`(${kw})`, "i"));
