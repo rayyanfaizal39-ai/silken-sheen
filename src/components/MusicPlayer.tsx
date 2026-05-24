@@ -27,6 +27,12 @@ const TRACKS: Track[] = [
     emoji: "🎹",
     url: "https://archive.org/download/jamendo-418019/01-1684726-DHDMusic-Ambient%20Soft%20Piano.mp3",
   },
+  {
+    id: "calm",
+    name: "Calm & Catchy",
+    emoji: "🎶",
+    url: "https://cdn.pixabay.com/audio/2024/02/28/audio_0bf2761340.mp3",
+  },
 ];
 
 const STORAGE_KEY = "academy-music-prefs";
@@ -285,7 +291,7 @@ export function MusicPlayer() {
         <button
           onClick={open ? () => setOpen(false) : openPanel}
           aria-label="Toggle music player"
-          className="relative w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-transform hover:scale-110"
+          className="relative h-14 w-14 rounded-full flex items-center justify-center text-white shadow-lg transition-transform hover:scale-110"
           style={{
             background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
             boxShadow: playing
@@ -303,7 +309,7 @@ export function MusicPlayer() {
               }}
             />
           )}
-          <Music className="w-5 h-5 relative" />
+          <Music className="h-7 w-7 relative" />
         </button>
       </div>
 
