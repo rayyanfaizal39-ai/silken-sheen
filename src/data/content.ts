@@ -48,6 +48,7 @@ export interface QuizQuestion {
   subjectId: string;
   form: Form;
   difficulty: Difficulty;
+  chapter?: string;
   question: string;
   options: string[];
   answerIndex: number;
@@ -55,14 +56,14 @@ export interface QuizQuestion {
 }
 
 export const quizzes: QuizQuestion[] = [
-  { id: "q1", subjectId: "math", form: "Form 1", difficulty: "Easy", question: "What is 3/4 + 1/4?", options: ["1", "1/2", "3/8", "2"], answerIndex: 0, explanation: "Same denominator: 3/4 + 1/4 = 4/4 = 1." },
-  { id: "q2", subjectId: "math", form: "Form 2", difficulty: "Medium", question: "Simplify: 2(x + 3) − x", options: ["x + 6", "3x + 3", "x + 3", "2x + 6"], answerIndex: 0, explanation: "2x + 6 − x = x + 6." },
-  { id: "q3", subjectId: "science", form: "Form 1", difficulty: "Easy", question: "Which organelle controls cell activities?", options: ["Mitochondria", "Nucleus", "Ribosome", "Vacuole"], answerIndex: 1 },
-  { id: "q4", subjectId: "science", form: "Form 3", difficulty: "Hard", question: "If V = 12V and R = 4Ω, find I.", options: ["2 A", "3 A", "4 A", "48 A"], answerIndex: 1, explanation: "I = V/R = 12/4 = 3 A." },
+  { id: "q1", subjectId: "math", form: "Form 1", chapter: "Chapter 1", difficulty: "Easy", question: "What is 3/4 + 1/4?", options: ["1", "1/2", "3/8", "2"], answerIndex: 0, explanation: "Same denominator: 3/4 + 1/4 = 4/4 = 1." },
+  { id: "q2", subjectId: "math", form: "Form 2", chapter: "Chapter 3", difficulty: "Medium", question: "Simplify: 2(x + 3) − x", options: ["x + 6", "3x + 3", "x + 3", "2x + 6"], answerIndex: 0, explanation: "2x + 6 − x = x + 6." },
+  { id: "q3", subjectId: "science", form: "Form 1", chapter: "Chapter 2", difficulty: "Easy", question: "Which organelle controls cell activities?", options: ["Mitochondria", "Nucleus", "Ribosome", "Vacuole"], answerIndex: 1 },
+  { id: "q4", subjectId: "science", form: "Form 3", chapter: "Chapter 5", difficulty: "Hard", question: "If V = 12V and R = 4Ω, find I.", options: ["2 A", "3 A", "4 A", "48 A"], answerIndex: 1, explanation: "I = V/R = 12/4 = 3 A." },
   
-  { id: "q6", subjectId: "geography", form: "Form 1", difficulty: "Easy", question: "Garis lintang 0° dikenali sebagai?", options: ["Tropic of Cancer", "Equator", "Prime Meridian", "Arctic Circle"], answerIndex: 1 },
-  { id: "q7", subjectId: "english", form: "Form 2", difficulty: "Medium", question: "Choose the correct sentence:", options: ["She have gone home.", "She has went home.", "She has gone home.", "She gone home."], answerIndex: 2 },
-  { id: "q8", subjectId: "bm", form: "Form 3", difficulty: "Easy", question: "Yang manakah kata adjektif?", options: ["Berlari", "Cantik", "Buku", "Mereka"], answerIndex: 1 },
+  { id: "q6", subjectId: "geography", form: "Form 1", chapter: "Chapter 1", difficulty: "Easy", question: "Garis lintang 0° dikenali sebagai?", options: ["Tropic of Cancer", "Equator", "Prime Meridian", "Arctic Circle"], answerIndex: 1 },
+  { id: "q7", subjectId: "english", form: "Form 2", chapter: "Unit 3", difficulty: "Medium", question: "Choose the correct sentence:", options: ["She have gone home.", "She has went home.", "She has gone home.", "She gone home."], answerIndex: 2 },
+  { id: "q8", subjectId: "bm", form: "Form 3", chapter: "Bab 2", difficulty: "Easy", question: "Yang manakah kata adjektif?", options: ["Berlari", "Cantik", "Buku", "Mereka"], answerIndex: 1 },
 
   { id: "sej-f1-c1-q1", subjectId: "sejarah", form: "Form 1", difficulty: "Medium", question: "Perkataan 'sejarah' berasal daripada perkataan Arab, 'syajaratun'. Apakah maksud perkataan tersebut?", options: ["Batu", "Hikayat", "Sungai", "Pokok"], answerIndex: 3, explanation: "Perkataan 'sejarah' berasal daripada bahasa Arab 'syajaratun' yang bermaksud pokok. Ini menggambarkan sejarah seperti pokok yang mempunyai akar, batang, dan cabang — melambangkan kesinambungan peristiwa dari masa lalu hingga kini." },
   { id: "sej-f1-c1-q2", subjectId: "sejarah", form: "Form 1", difficulty: "Medium", question: "Dalam bahasa Melayu, istilah 'tambo' digunakan untuk merujuk kepada sejarah. Apakah maksud 'tambo'?", options: ["Undang-undang bertulis", "Kajian saintifik", "Riwayat dahulu kala", "Ramalan masa depan"], answerIndex: 2, explanation: "'Tambo' dalam bahasa Melayu merujuk kepada riwayat atau kisah dahulu kala. Ia digunakan dalam masyarakat Melayu tradisional untuk menceritakan peristiwa lampau secara lisan atau bertulis." },
@@ -130,19 +131,20 @@ export interface Flashcard {
   id: string;
   subjectId: string;
   form: Form;
+  chapter?: string;
   front: string;
   back: string;
 }
 
 export const flashcards: Flashcard[] = [
-  { id: "f1", subjectId: "math", form: "Form 1", front: "What is a prime number?", back: "A number greater than 1 with only two factors: 1 and itself." },
-  { id: "f2", subjectId: "math", form: "Form 2", front: "Pythagoras' theorem?", back: "a² + b² = c² for a right-angled triangle." },
-  { id: "f3", subjectId: "science", form: "Form 1", front: "Photosynthesis equation?", back: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (with sunlight)." },
-  { id: "f4", subjectId: "science", form: "Form 3", front: "Ohm's Law?", back: "V = I × R" },
+  { id: "f1", subjectId: "math", form: "Form 1", chapter: "Chapter 1", front: "What is a prime number?", back: "A number greater than 1 with only two factors: 1 and itself." },
+  { id: "f2", subjectId: "math", form: "Form 2", chapter: "Chapter 5", front: "Pythagoras' theorem?", back: "a² + b² = c² for a right-angled triangle." },
+  { id: "f3", subjectId: "science", form: "Form 1", chapter: "Chapter 2", front: "Photosynthesis equation?", back: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (with sunlight)." },
+  { id: "f4", subjectId: "science", form: "Form 3", chapter: "Chapter 5", front: "Ohm's Law?", back: "V = I × R" },
   
-  { id: "f6", subjectId: "geography", form: "Form 1", front: "Garisan Khatulistiwa?", back: "Garisan lintang 0° yang membahagikan bumi kepada hemisfera utara dan selatan." },
-  { id: "f7", subjectId: "english", form: "Form 2", front: "Past participle of 'go'?", back: "gone" },
-  { id: "f8", subjectId: "bm", form: "Form 3", front: "Apakah kata hubung?", back: "Kata yang menghubungkan dua perkataan atau ayat. Contoh: dan, tetapi, atau." },
+  { id: "f6", subjectId: "geography", form: "Form 1", chapter: "Chapter 1", front: "Garisan Khatulistiwa?", back: "Garisan lintang 0° yang membahagikan bumi kepada hemisfera utara dan selatan." },
+  { id: "f7", subjectId: "english", form: "Form 2", chapter: "Unit 3", front: "Past participle of 'go'?", back: "gone" },
+  { id: "f8", subjectId: "bm", form: "Form 3", chapter: "Bab 2", front: "Apakah kata hubung?", back: "Kata yang menghubungkan dua perkataan atau ayat. Contoh: dan, tetapi, atau." },
 
   // Sejarah Form 1 Chapter 2 - Zaman Air Batu
   { id: "sej-f1-c2-fc1", subjectId: "sejarah", form: "Form 1", front: "Apakah maksud bidang Geologi?", back: "Bidang ilmu yang mengkaji pembentukan bumi." },
@@ -228,6 +230,46 @@ export const sejarahForm1Chapters: SejarahChapter[] = [
 export function sejarahChapterFromId(id: string): number | null {
   const m = id.match(/^sej-f1-c(\d+)-/);
   return m ? parseInt(m[1], 10) : null;
+}
+
+export interface ChapterItem {
+  key: string;
+  label: string;
+  available: boolean;
+}
+
+const otherSubjectChapters: Record<string, ChapterItem[]> = {
+  bm: [{ key: "Bab 2", label: "Bab 2: Kata Adjektif", available: true }],
+  english: [{ key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true }],
+  math: [
+    { key: "Chapter 1", label: "Chapter 1: Rational Numbers", available: true },
+    { key: "Chapter 3", label: "Chapter 3: Algebraic Expressions", available: true },
+    { key: "Chapter 5", label: "Chapter 5: Pythagoras' Theorem", available: true },
+  ],
+  science: [
+    { key: "Chapter 2", label: "Chapter 2: Cells & Living Things", available: true },
+    { key: "Chapter 5", label: "Chapter 5: Electricity", available: true },
+  ],
+  geography: [{ key: "Chapter 1", label: "Chapter 1: Map Reading", available: true }],
+};
+
+export function getSubjectChapters(subjectId: string): ChapterItem[] {
+  if (subjectId === "sejarah") {
+    return sejarahForm1Chapters.map((c) => ({
+      key: `Chapter ${c.num}`,
+      label: `Chapter ${c.num}: ${c.title}`,
+      available: c.available,
+    }));
+  }
+  return otherSubjectChapters[subjectId] ?? [];
+}
+
+export function getItemChapterKey(item: { id: string; subjectId: string; chapter?: string }): string | null {
+  if (item.subjectId === "sejarah") {
+    const n = sejarahChapterFromId(item.id);
+    return n ? `Chapter ${n}` : null;
+  }
+  return item.chapter ?? null;
 }
 
 export const badges = [

@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, flashcards, sejarahChapterFromId, sejarahForm1Chapters } from "@/data/content";
+import { subjects, forms, flashcards, getItemChapterKey, getSubjectChapters } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { Heart, ChevronLeft, ChevronRight, Shuffle } from "lucide-react";
 import {
-  SejarahChapterGrid,
-  SejarahChapterHeader,
-  SejarahComingSoon,
-} from "@/components/SejarahChapterPicker";
+  SubjectGrid,
+  ChapterGrid,
+  ContentHeader,
+  ComingSoonScreen,
+} from "@/components/ChapterPicker";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -23,32 +24,26 @@ export const Route = createFileRoute("/flashcards")({
 
 function FlashcardsPage() {
   const { progress, toggleFavorite } = useProgress();
-  const [subject, setSubject] = useState("all");
+  const [subject, setSubject] = useState<string | null>(null);
+  const [chapter, setChapter] = useState<string | null>(null);
   const [form, setForm] = useState("All");
   const [favOnly, setFavOnly] = useState(false);
-  const [sejChapter, setSejChapter] = useState<number | null>(null);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [order, setOrder] = useState<number[]>([]);
 
-  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
-  const selectedChapterMeta =
-    sejarahF1Mode && sejChapter !== null
-      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
-      : null;
+  const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
 
   const pool = useMemo(() => {
-    const base = flashcards.filter((f) => {
-      if (subject !== "all" && f.subjectId !== subject) return false;
+    if (!subject || !chapter) return [];
+    return flashcards.filter((f) => {
+      if (f.subjectId !== subject) return false;
+      if (getItemChapterKey(f) !== chapter) return false;
       if (form !== "All" && f.form !== form) return false;
       if (favOnly && !progress.favorites.includes(f.id)) return false;
-      if (sejarahF1Mode && sejChapter !== null) {
-        if (sejarahChapterFromId(f.id) !== sejChapter) return false;
-      }
       return true;
     });
-    return base;
-  }, [subject, form, favOnly, progress.favorites, sejarahF1Mode, sejChapter]);
+  }, [subject, chapter, form, favOnly, progress.favorites]);
 
   const current = pool[order[idx] ?? idx] ?? pool[0];
 
@@ -73,37 +68,38 @@ function FlashcardsPage() {
         <p className="mt-3 text-muted-foreground">Flip, swipe, and master concepts in seconds.</p>
       </div>
 
-      <div className="glass-strong rounded-2xl p-4 mb-8 flex flex-wrap gap-2 items-center justify-between">
-        <div className="flex flex-wrap gap-2">
-          <select value={subject} onChange={(e) => { setSubject(e.target.value); setIdx(0); setSejChapter(null); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
-            <option value="all">All subjects</option>
-            {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
-          </select>
-          <select value={form} onChange={(e) => { setForm(e.target.value); setIdx(0); setSejChapter(null); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
-            <option>All</option>
-            {forms.map((f) => <option key={f}>{f}</option>)}
-          </select>
-          <button
-            onClick={() => setFavOnly((v) => !v)}
-            className={`px-4 py-2 rounded-full text-sm font-medium ${favOnly ? "bg-rose-500/30 text-rose-200" : "bg-white/5 text-muted-foreground"}`}
-          >
-            ❤ Favorites
-          </button>
-        </div>
-        <button onClick={shuffle} className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10">
-          <Shuffle className="w-4 h-4" /> Shuffle
-        </button>
-      </div>
-
-      {sejarahF1Mode && sejChapter === null ? (
-        <SejarahChapterGrid onSelect={(n) => { setSejChapter(n); setIdx(0); setOrder([]); setFlipped(false); }} />
-      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
-        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => setSejChapter(null)} />
+      {!subject ? (
+        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setIdx(0); setOrder([]); setFlipped(false); }} />
+      ) : !chapter ? (
+        <ChapterGrid
+          subjectId={subject}
+          onSelect={(key) => { setChapter(key); setIdx(0); setOrder([]); setFlipped(false); }}
+          onBack={() => { setSubject(null); setChapter(null); }}
+        />
+      ) : chapterMeta && !chapterMeta.available ? (
+        <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
       ) : (
         <>
-          {sejarahF1Mode && sejChapter !== null && (
-            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => setSejChapter(null)} />
-          )}
+          <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+
+          <div className="glass-strong rounded-2xl p-4 mb-8 flex flex-wrap gap-2 items-center justify-between">
+            <div className="flex flex-wrap gap-2">
+              <select value={form} onChange={(e) => { setForm(e.target.value); setIdx(0); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+                <option>All</option>
+                {forms.map((f) => <option key={f}>{f}</option>)}
+              </select>
+              <button
+                onClick={() => setFavOnly((v) => !v)}
+                className={`px-4 py-2 rounded-full text-sm font-medium ${favOnly ? "bg-rose-500/30 text-rose-200" : "bg-white/5 text-muted-foreground"}`}
+              >
+                ❤ Favorites
+              </button>
+            </div>
+            <button onClick={shuffle} className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10">
+              <Shuffle className="w-4 h-4" /> Shuffle
+            </button>
+          </div>
+
           {pool.length === 0 || !current ? (
             <div className="text-center py-20 glass rounded-2xl">
               <p className="text-muted-foreground">No flashcards match your filters.</p>
