@@ -28,20 +28,30 @@ function QuizzesPage() {
   const [subject, setSubject] = useState("all");
   const [form, setForm] = useState<string>("All");
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
+  const [sejChapter, setSejChapter] = useState<number | null>(null);
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [streak, setStreak] = useState(0);
 
+  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
+  const selectedChapterMeta =
+    sejarahF1Mode && sejChapter !== null
+      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
+      : null;
+
   const pool = useMemo(() => {
     return quizzes.filter((q) => {
       if (subject !== "all" && q.subjectId !== subject) return false;
       if (form !== "All" && q.form !== form) return false;
       if (diff !== "All" && q.difficulty !== diff) return false;
+      if (sejarahF1Mode && sejChapter !== null) {
+        if (sejarahChapterFromId(q.id) !== sejChapter) return false;
+      }
       return true;
     });
-  }, [subject, form, diff]);
+  }, [subject, form, diff, sejarahF1Mode, sejChapter]);
 
   const current = pool[idx];
 
