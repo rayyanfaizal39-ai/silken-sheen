@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { subjects, forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
-import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer } from "lucide-react";
+import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX } from "lucide-react";
 import {
   SubjectGrid,
   ChapterGrid,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ChapterPicker";
 import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
+import { sfx, music } from "@/lib/sounds";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -40,8 +41,14 @@ function QuizzesPage() {
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [streak, setStreak] = useState(0);
+  const [combo, setCombo] = useState(0);
+  const [comboShow, setComboShow] = useState<number | null>(null);
+  const [screenShake, setScreenShake] = useState(false);
+  const [musicOn, setMusicOn] = useState(false);
+  const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
   const [timeLeft, setTimeLeft] = useState(QUESTION_SECONDS);
+  const comboTimer = useRef<number | null>(null);
 
   const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
 
@@ -66,9 +73,10 @@ function QuizzesPage() {
       setTimeLeft((t) => {
         if (t <= 1) {
           clearInterval(interval);
-          // Auto-mark as wrong via -1 placeholder
           setSelected(-1);
           setStreak(0);
+          setCombo(0);
+          triggerShake();
           setFeedback({ kind: "wrong", msg: "Masa tamat! ⏰" });
           return 0;
         }
@@ -78,6 +86,14 @@ function QuizzesPage() {
     return () => clearInterval(interval);
   }, [idx, current, done]);
 
+  // Stop music when leaving the page
+  useEffect(() => () => { music.stop(); }, []);
+
+  function triggerShake() {
+    setScreenShake(true);
+    window.setTimeout(() => setScreenShake(false), 600);
+  }
+
   function answer(i: number) {
     if (selected !== null || !current) return;
     setSelected(i);
@@ -86,10 +102,21 @@ function QuizzesPage() {
       const gain = current.difficulty === "Hard" ? 30 : current.difficulty === "Medium" ? 20 : 10;
       setScore((s) => s + 1);
       setStreak((s) => s + 1);
+      const newCombo = combo + 1;
+      setCombo(newCombo);
       addXp(gain, current.subjectId);
+      sfx.success();
+      if (newCombo >= 2) {
+        setComboShow(newCombo);
+        sfx.combo(newCombo);
+        if (comboTimer.current) window.clearTimeout(comboTimer.current);
+        comboTimer.current = window.setTimeout(() => setComboShow(null), 1100);
+      }
       setFeedback({ kind: "correct", msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)] });
     } else {
       setStreak(0);
+      setCombo(0);
+      triggerShake();
       setFeedback({ kind: "wrong", msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)] });
     }
   }
