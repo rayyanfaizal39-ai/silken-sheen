@@ -26,19 +26,29 @@ function FlashcardsPage() {
   const [subject, setSubject] = useState("all");
   const [form, setForm] = useState("All");
   const [favOnly, setFavOnly] = useState(false);
+  const [sejChapter, setSejChapter] = useState<number | null>(null);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [order, setOrder] = useState<number[]>([]);
+
+  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
+  const selectedChapterMeta =
+    sejarahF1Mode && sejChapter !== null
+      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
+      : null;
 
   const pool = useMemo(() => {
     const base = flashcards.filter((f) => {
       if (subject !== "all" && f.subjectId !== subject) return false;
       if (form !== "All" && f.form !== form) return false;
       if (favOnly && !progress.favorites.includes(f.id)) return false;
+      if (sejarahF1Mode && sejChapter !== null) {
+        if (sejarahChapterFromId(f.id) !== sejChapter) return false;
+      }
       return true;
     });
     return base;
-  }, [subject, form, favOnly, progress.favorites]);
+  }, [subject, form, favOnly, progress.favorites, sejarahF1Mode, sejChapter]);
 
   const current = pool[order[idx] ?? idx] ?? pool[0];
 
