@@ -6,15 +6,16 @@ export interface Subject {
   emoji: string;
   color: string; // tailwind gradient classes
   description: string;
+  tagline: string;
 }
 
 export const subjects: Subject[] = [
-  { id: "bm", name: "Bahasa Melayu", emoji: "📘", color: "from-rose-500 to-orange-500", description: "Tatabahasa, karangan, dan kefahaman." },
-  { id: "english", name: "English", emoji: "🇬🇧", color: "from-sky-500 to-blue-600", description: "Grammar, comprehension, and writing." },
-  { id: "math", name: "Mathematics", emoji: "📐", color: "from-indigo-500 to-purple-600", description: "Algebra, geometry, statistics, and more." },
-  { id: "science", name: "Science", emoji: "🔬", color: "from-emerald-500 to-teal-600", description: "Biology, chemistry, and physics basics." },
-  { id: "sejarah", name: "Sejarah", emoji: "🏛️", color: "from-amber-500 to-yellow-500", description: "Tamadun, kemerdekaan, dan warisan negara." },
-  { id: "geography", name: "Geography", emoji: "🌏", color: "from-cyan-500 to-emerald-500", description: "Physical & human geography of the world." },
+  { id: "bm", name: "Bahasa Melayu", emoji: "📘", color: "from-rose-500 to-orange-500", description: "Tatabahasa, karangan, dan kefahaman.", tagline: "Kuasai bahasa kebangsaan!" },
+  { id: "english", name: "English", emoji: "🇬🇧", color: "from-sky-500 to-blue-600", description: "Grammar, comprehension, and writing.", tagline: "Level up your English!" },
+  { id: "math", name: "Mathematics", emoji: "📐", color: "from-indigo-500 to-purple-600", description: "Algebra, geometry, statistics, and more.", tagline: "Solve it like a pro!" },
+  { id: "science", name: "Science", emoji: "🔬", color: "from-emerald-500 to-teal-600", description: "Biology, chemistry, and physics basics.", tagline: "Explore the universe!" },
+  { id: "sejarah", name: "Sejarah", emoji: "🏛️", color: "from-amber-500 to-yellow-500", description: "Tamadun, kemerdekaan, dan warisan negara.", tagline: "Jelajah masa lampau!" },
+  { id: "geography", name: "Geography", emoji: "🌏", color: "from-cyan-500 to-emerald-500", description: "Physical & human geography of the world.", tagline: "Discover the world!" },
 ];
 
 export const forms: Form[] = ["Form 1", "Form 2", "Form 3"];
@@ -214,11 +215,12 @@ export interface SejarahChapter {
   num: number;
   title: string;
   available: boolean;
+  isNew?: boolean;
 }
 
 export const sejarahForm1Chapters: SejarahChapter[] = [
   { num: 1, title: "Mengenali Sejarah", available: true },
-  { num: 2, title: "Zaman Air Batu", available: true },
+  { num: 2, title: "Zaman Air Batu", available: true, isNew: true },
   { num: 3, title: "Zaman Prasejarah", available: false },
   { num: 4, title: "Mengenali Tamadun", available: false },
   { num: 5, title: "Tamadun Awal Dunia", available: false },
@@ -259,6 +261,7 @@ export function getSubjectChapters(subjectId: string): ChapterItem[] {
       key: `Chapter ${c.num}`,
       label: `Chapter ${c.num}: ${c.title}`,
       available: c.available,
+      isNew: c.isNew,
     }));
   }
   return otherSubjectChapters[subjectId] ?? [];
