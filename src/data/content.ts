@@ -142,6 +142,26 @@ export const flashcards: Flashcard[] = [
   { id: "f6", subjectId: "geography", form: "Form 1", front: "Garisan Khatulistiwa?", back: "Garisan lintang 0° yang membahagikan bumi kepada hemisfera utara dan selatan." },
   { id: "f7", subjectId: "english", form: "Form 2", front: "Past participle of 'go'?", back: "gone" },
   { id: "f8", subjectId: "bm", form: "Form 3", front: "Apakah kata hubung?", back: "Kata yang menghubungkan dua perkataan atau ayat. Contoh: dan, tetapi, atau." },
+
+  // Sejarah Form 1 Chapter 2 - Zaman Air Batu
+  { id: "sej-f1-c2-fc1", subjectId: "sejarah", form: "Form 1", front: "Apakah maksud bidang Geologi?", back: "Bidang ilmu yang mengkaji pembentukan bumi." },
+  { id: "sej-f1-c2-fc2", subjectId: "sejarah", form: "Form 1", front: "Apakah peranan bidang Paleontologi?", back: "Mengkaji organisma atau hidupan purba yang pernah ada di bumi melalui bukti fosil atau sisa sejarah." },
+  { id: "sej-f1-c2-fc3", subjectId: "sejarah", form: "Form 1", front: "Berapakah anggaran usia bumi menurut kajian saintifik?", back: "Lebih kurang 4.6 bilion tahun." },
+  { id: "sej-f1-c2-fc4", subjectId: "sejarah", form: "Form 1", front: "Nyatakan empat tahap Zaman Air Batu mengikut urutan kronologi.", back: "Miosen, Pliosen, Pleistosen, dan Holosen (MPPH)." },
+  { id: "sej-f1-c2-fc5", subjectId: "sejarah", form: "Form 1", front: "Apakah ciri fizikal utama yang berlaku pada Zaman Miosen?", back: "Berlaku pembentukan gunung-ganang secara fizikal dan kewujudan mamalia di bumi." },
+  { id: "sej-f1-c2-fc6", subjectId: "sejarah", form: "Form 1", front: "Apakah kesan utama penyejukan global pada Zaman Pliosen?", back: "Menyebabkan penyebaran padang rumput dan savana serta penghijrahan haiwan ke habitat baharu." },
+  { id: "sej-f1-c2-fc7", subjectId: "sejarah", form: "Form 1", front: "Berapa kalikah proses pengglasieran utama berlaku pada Zaman Pleistosen?", back: "Sebanyak 11 kali." },
+  { id: "sej-f1-c2-fc8", subjectId: "sejarah", form: "Form 1", front: "Zaman manakah yang menyaksikan manusia mula bercucuk tanam dan mencipta tulisan?", back: "Zaman Holosen." },
+  { id: "sej-f1-c2-fc9", subjectId: "sejarah", form: "Form 1", front: "Namakan haiwan yang mempunyai bulu tebal untuk hidup di Zaman Air Batu.", back: "Mamot (Mammoth) dan harimau bertaring panjang." },
+  { id: "sej-f1-c2-fc10", subjectId: "sejarah", form: "Form 1", front: "Bagaimanakah cara hidup manusia pada Zaman Air Batu?", back: "Hidup secara nomad (berpindah-randah) dan memburu binatang di kawasan yang lebih panas." },
+  { id: "sej-f1-c2-fc11", subjectId: "sejarah", form: "Form 1", front: "Apakah jenis tumbuhan utama yang tumbuh pada Zaman Air Batu?", back: "Rumput dan tumbuhan renek yang menjalar." },
+  { id: "sej-f1-c2-fc12", subjectId: "sejarah", form: "Form 1", front: "Apakah maksud proses 'Pengglasieran'?", back: "Proses pencairan air batu akibat peningkatan suhu bumi." },
+  { id: "sej-f1-c2-fc13", subjectId: "sejarah", form: "Form 1", front: "Apakah kesan pencairan air batu terhadap paras laut dunia?", back: "Paras air laut meningkat sehingga 100 meter." },
+  { id: "sej-f1-c2-fc14", subjectId: "sejarah", form: "Form 1", front: "Apakah itu 'Pentas Sunda'?", back: "Kawasan daratan luas di Asia Tenggara yang menghubungkan Malaysia, Singapura, Indonesia, dan Borneo pada zaman dahulu." },
+  { id: "sej-f1-c2-fc15", subjectId: "sejarah", form: "Form 1", front: "Mengapakah haiwan seperti mamot mengalami kepupusan?", back: "Disebabkan oleh perubahan iklim yang menjadi terlalu panas pada akhir Zaman Pleistosen." },
+  { id: "sej-f1-c2-fc16", subjectId: "sejarah", form: "Form 1", front: "Apakah kesan kenaikan paras laut terhadap Pentas Sunda?", back: "Kawasan tanah rendah tenggelam, membentuk kepulauan, dan memisahkan daratan besar menjadi pulau-pulau." },
+  { id: "sej-f1-c2-fc17", subjectId: "sejarah", form: "Form 1", front: "Selain radiasi matahari, apakah faktor lain yang menyumbang kepada pemanasan bumi?", back: "Pembakaran hutan secara terbuka." },
+  { id: "sej-f1-c2-fc18", subjectId: "sejarah", form: "Form 1", front: "Mengapakah penduduk di Asia Tenggara mempunyai persamaan budaya dan fizikal?", back: "Kerana asalnya mereka tinggal di daratan yang sama (Pentas Sunda) sebelum dipisahkan oleh kenaikan paras laut." },
 ];
 
 export const badges = [
