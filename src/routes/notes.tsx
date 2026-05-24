@@ -73,7 +73,7 @@ function NotesPage() {
         </div>
         <select
           value={subject}
-          onChange={(e) => setSubject(e.target.value)}
+          onChange={(e) => { setSubject(e.target.value); setSejChapter(null); }}
           className="px-4 py-3 rounded-full bg-white/5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
         >
           <option value="all">All subjects</option>
@@ -85,7 +85,7 @@ function NotesPage() {
           {["All", ...forms].map((f) => (
             <button
               key={f}
-              onClick={() => setForm(f)}
+              onClick={() => { setForm(f); setSejChapter(null); }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 form === f
                   ? "bg-gradient-to-r from-primary to-accent text-white"
