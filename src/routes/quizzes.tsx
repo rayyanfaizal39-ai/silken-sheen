@@ -37,6 +37,7 @@ interface ShuffledQuestion {
   answerIndex: number;
   explanation?: string;
   difficulty: Difficulty;
+  subjectId: string;
 }
 
 function QuizzesPage() {
@@ -126,6 +127,7 @@ function QuizzesPage() {
         answerIndex: newAnswerIndex,
         explanation: q.explanation,
         difficulty: q.difficulty,
+        subjectId: q.subjectId,
       };
     });
   }
