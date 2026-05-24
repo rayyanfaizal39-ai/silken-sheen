@@ -23,8 +23,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            Master every KSSM subject with quizzes, flashcards, and AI-powered
-            notes. Built for Malaysian Form 1–3 students.
+            Kuasai setiap subjek KSSM dengan kuiz, kad imbasan, dan nota berkuasa AI.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -32,14 +31,14 @@ export function Hero() {
               to="/quizzes"
               className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold glow-blue hover:scale-105 transition-transform"
             >
-              Start Learning
+              Mula Belajar
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/subjects"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-strong text-foreground font-semibold hover:bg-white/10 transition-colors"
             >
-              Explore Subjects
+              Jelajah Subjek
             </Link>
           </div>
 
