@@ -238,6 +238,7 @@ export interface ChapterItem {
   key: string;
   label: string;
   available: boolean;
+  isNew?: boolean;
 }
 
 const otherSubjectChapters: Record<string, ChapterItem[]> = {
