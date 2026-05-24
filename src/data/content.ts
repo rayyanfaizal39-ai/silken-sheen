@@ -279,8 +279,8 @@ export interface SejarahChapter {
 
 export const sejarahForm1Chapters: SejarahChapter[] = [
   { num: 1, title: "Mengenali Sejarah", available: true },
-  { num: 2, title: "Zaman Air Batu", available: true, isNew: true },
-  { num: 3, title: "Zaman Prasejarah", available: false },
+  { num: 2, title: "Zaman Air Batu", available: true },
+  { num: 3, title: "Zaman Prasejarah", available: true, isNew: true },
   { num: 4, title: "Mengenali Tamadun", available: false },
   { num: 5, title: "Tamadun Awal Dunia", available: false },
   { num: 6, title: "Tamadun Yunani dan Tamadun Rom", available: false },
