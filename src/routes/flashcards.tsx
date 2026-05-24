@@ -95,60 +95,71 @@ function FlashcardsPage() {
         </button>
       </div>
 
-      {pool.length === 0 || !current ? (
-        <div className="text-center py-20 glass rounded-2xl">
-          <p className="text-muted-foreground">No flashcards match your filters.</p>
-        </div>
+      {sejarahF1Mode && sejChapter === null ? (
+        <SejarahChapterGrid onSelect={(n) => { setSejChapter(n); setIdx(0); setOrder([]); setFlipped(false); }} />
+      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
+        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => setSejChapter(null)} />
       ) : (
         <>
-          <div
-            onClick={() => setFlipped((f) => !f)}
-            className="relative cursor-pointer mx-auto"
-            style={{ perspective: "1500px", height: 360 }}
-          >
-            <div
-              className="relative w-full h-full transition-transform duration-700"
-              style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "none" }}
-            >
-              {/* front */}
-              <div className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col" style={{ backfaceVisibility: "hidden" }}>
-                <div className="flex justify-between items-start">
-                  <span className="text-xs font-semibold text-muted-foreground">
-                    {subj?.emoji} {subj?.name} • {current.form}
-                  </span>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); toggleFavorite(current.id); }}
-                    className={`p-2 rounded-full ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
-                  >
-                    <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
-                  </button>
-                </div>
-                <div className="flex-1 flex items-center justify-center text-center">
-                  <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">{current.front}</p>
-                </div>
-                <p className="text-center text-xs text-muted-foreground">Tap to flip</p>
-              </div>
-              {/* back */}
-              <div
-                className="absolute inset-0 glass-strong rounded-3xl p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20"
-                style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-              >
-                <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">{current.back}</p>
-              </div>
+          {sejarahF1Mode && sejChapter !== null && (
+            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => setSejChapter(null)} />
+          )}
+          {pool.length === 0 || !current ? (
+            <div className="text-center py-20 glass rounded-2xl">
+              <p className="text-muted-foreground">No flashcards match your filters.</p>
             </div>
-          </div>
+          ) : (
+            <>
+              <div
+                onClick={() => setFlipped((f) => !f)}
+                className="relative cursor-pointer mx-auto"
+                style={{ perspective: "1500px", height: 360 }}
+              >
+                <div
+                  className="relative w-full h-full transition-transform duration-700"
+                  style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "none" }}
+                >
+                  {/* front */}
+                  <div className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col" style={{ backfaceVisibility: "hidden" }}>
+                    <div className="flex justify-between items-start">
+                      <span className="text-xs font-semibold text-muted-foreground">
+                        {subj?.emoji} {subj?.name} • {current.form}
+                      </span>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); toggleFavorite(current.id); }}
+                        className={`p-2 rounded-full ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
+                      >
+                        <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
+                      </button>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center text-center">
+                      <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">{current.front}</p>
+                    </div>
+                    <p className="text-center text-xs text-muted-foreground">Tap to flip</p>
+                  </div>
+                  {/* back */}
+                  <div
+                    className="absolute inset-0 glass-strong rounded-3xl p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20"
+                    style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                  >
+                    <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">{current.back}</p>
+                  </div>
+                </div>
+              </div>
 
-          <div className="flex items-center justify-between mt-8">
-            <button onClick={() => go(-1)} className="p-3 rounded-full glass hover:bg-white/10">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <span className="text-sm text-muted-foreground">
-              {idx + 1} / {pool.length}
-            </span>
-            <button onClick={() => go(1)} className="p-3 rounded-full glass hover:bg-white/10">
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+              <div className="flex items-center justify-between mt-8">
+                <button onClick={() => go(-1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <span className="text-sm text-muted-foreground">
+                  {idx + 1} / {pool.length}
+                </span>
+                <button onClick={() => go(1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </>
+          )}
         </>
       )}
     </section>
