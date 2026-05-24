@@ -11,6 +11,8 @@ import {
 } from "@/components/ChapterPicker";
 import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
+import { MindMap } from "@/components/MindMap";
+import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
@@ -102,6 +104,21 @@ function NotesPage() {
       ) : (
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+
+          {subject === "sejarah" && chapter === "Chapter 2" && (
+            <div className="mb-8 animate-fade-up">
+              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h2 className="font-display text-2xl font-bold">
+                  Mind Map <span className="gradient-text">Zaman Air Batu</span>
+                </h2>
+                <span className="text-xs text-muted-foreground">
+                  Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                </span>
+              </div>
+              <MindMap data={zamanAirBatuMindMap} height={640} />
+            </div>
+          )}
+
 
           <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3 animate-fade-up">
             <div className="relative flex-1">
