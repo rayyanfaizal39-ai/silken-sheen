@@ -291,7 +291,7 @@ export function MusicPlayer() {
         <button
           onClick={open ? () => setOpen(false) : openPanel}
           aria-label="Toggle music player"
-          className="relative w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-transform hover:scale-110"
+          className="relative h-14 w-14 rounded-full flex items-center justify-center text-white shadow-lg transition-transform hover:scale-110"
           style={{
             background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
             boxShadow: playing
