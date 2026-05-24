@@ -35,7 +35,7 @@ export function Footer() {
     <footer className="border-t border-white/5 py-10 px-4 sm:px-8 mt-12">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
         <p>© {new Date().getFullYear()} AcadeMY. Made for Malaysian students.</p>
-        <p className="italic">"Study Smarter, Shine Brighter."</p>
+        <p className="italic">"Belajar Lebih Bijak, Bersinar Lebih Terang."</p>
       </div>
     </footer>
   );
