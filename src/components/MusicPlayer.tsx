@@ -31,7 +31,7 @@ const TRACKS: Track[] = [
     id: "calm",
     name: "Calm & Catchy",
     emoji: "🎶",
-    url: "https://cdn.pixabay.com/audio/2024/02/28/audio_0bf2761340.mp3",
+    url: "https://cdn.pixabay.com/audio/2023/10/09/audio_a1761e06f2.mp3",
   },
 ];
 
