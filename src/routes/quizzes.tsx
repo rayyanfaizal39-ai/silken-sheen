@@ -28,7 +28,8 @@ export const Route = createFileRoute("/quizzes")({
 const diffs: ("All" | Difficulty)[] = ["All", "Easy", "Medium", "Hard"];
 const CORRECT_MSGS = ["Hebat! 🔥", "Betul! ⚡", "Awesome! 🌟", "Bagus! 💫", "Power! 🚀"];
 const WRONG_MSGS = ["Cuba lagi! 💪", "Jangan give up! 🎯", "Hampir! 🤔", "Keep going! 🌱"];
-const QUESTION_SECONDS = 20;
+type TimerMode = "timer" | "none";
+type TimerPref = { mode: TimerMode; seconds: number } | null;
 
 function QuizzesPage() {
   const { progress, addXp, recordQuiz, awardBadge, markChapter } = useProgress();
