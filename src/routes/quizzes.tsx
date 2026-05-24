@@ -162,7 +162,7 @@ function QuizzesPage() {
     return () => clearInterval(i);
   }, [done]);
 
-  const timerPct = (timeLeft / QUESTION_SECONDS) * 100;
+  const timerPct = questionSeconds > 0 ? (timeLeft / questionSeconds) * 100 : 0;
   const timerColor =
     timeLeft <= 5 ? "bg-rose-500 shadow-[0_0_18px_oklch(0.62_0.24_27_/_0.7)]"
     : timeLeft <= 10 ? "bg-nova-yellow"
