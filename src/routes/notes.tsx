@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, notes, sejarahChapterFromId, sejarahForm1Chapters } from "@/data/content";
+import { subjects, forms, notes, getItemChapterKey, getSubjectChapters } from "@/data/content";
 import { Search } from "lucide-react";
 import { z } from "zod";
 import {
-  SejarahChapterGrid,
-  SejarahChapterHeader,
-  SejarahComingSoon,
-} from "@/components/SejarahChapterPicker";
+  SubjectGrid,
+  ChapterGrid,
+  ContentHeader,
+  ComingSoonScreen,
+} from "@/components/ChapterPicker";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
@@ -28,31 +29,27 @@ export const Route = createFileRoute("/notes")({
 
 function NotesPage() {
   const search = Route.useSearch();
-  const [subject, setSubject] = useState<string>(search.subject ?? "all");
+  const initialSubject = search.subject && subjects.some((s) => s.id === search.subject) ? search.subject : null;
+  const [subject, setSubject] = useState<string | null>(initialSubject ?? null);
+  const [chapter, setChapter] = useState<string | null>(null);
   const [form, setForm] = useState<string>("All");
   const [q, setQ] = useState("");
-  const [sejChapter, setSejChapter] = useState<number | null>(null);
 
-  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
-  const selectedChapterMeta =
-    sejarahF1Mode && sejChapter !== null
-      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
-      : null;
+  const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
 
   const filtered = useMemo(() => {
+    if (!subject || !chapter) return [];
     return notes.filter((n) => {
-      if (subject !== "all" && n.subjectId !== subject) return false;
+      if (n.subjectId !== subject) return false;
+      if (getItemChapterKey(n) !== chapter) return false;
       if (form !== "All" && n.form !== form) return false;
-      if (sejarahF1Mode && sejChapter !== null) {
-        if (sejarahChapterFromId(n.id) !== sejChapter) return false;
-      }
       if (q) {
         const hay = `${n.title} ${n.summary} ${n.chapter} ${n.keywords.join(" ")}`.toLowerCase();
         if (!hay.includes(q.toLowerCase())) return false;
       }
       return true;
     });
-  }, [subject, form, q, sejarahF1Mode, sejChapter]);
+  }, [subject, chapter, form, q]);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
@@ -61,52 +58,47 @@ function NotesPage() {
         <p className="mt-3 text-muted-foreground">Quick, focused notes that get you ready in minutes.</p>
       </div>
 
-      <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3">
-        <div className="relative flex-1">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Search chapters or keywords…"
-            className="w-full pl-11 pr-4 py-3 rounded-full bg-white/5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-          />
-        </div>
-        <select
-          value={subject}
-          onChange={(e) => { setSubject(e.target.value); setSejChapter(null); }}
-          className="px-4 py-3 rounded-full bg-white/5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-        >
-          <option value="all">All subjects</option>
-          {subjects.map((s) => (
-            <option key={s.id} value={s.id}>{s.name}</option>
-          ))}
-        </select>
-        <div className="flex gap-2">
-          {["All", ...forms].map((f) => (
-            <button
-              key={f}
-              onClick={() => { setForm(f); setSejChapter(null); }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                form === f
-                  ? "bg-gradient-to-r from-primary to-accent text-white"
-                  : "bg-white/5 text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {sejarahF1Mode && sejChapter === null ? (
-        <SejarahChapterGrid onSelect={(n) => setSejChapter(n)} />
-      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
-        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => setSejChapter(null)} />
+      {!subject ? (
+        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); }} />
+      ) : !chapter ? (
+        <ChapterGrid
+          subjectId={subject}
+          onSelect={(key) => setChapter(key)}
+          onBack={() => { setSubject(null); setChapter(null); }}
+        />
+      ) : chapterMeta && !chapterMeta.available ? (
+        <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
       ) : (
         <>
-          {sejarahF1Mode && sejChapter !== null && (
-            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => setSejChapter(null)} />
-          )}
+          <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+
+          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search chapters or keywords…"
+                className="w-full pl-11 pr-4 py-3 rounded-full bg-white/5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+              />
+            </div>
+            <div className="flex gap-2">
+              {["All", ...forms].map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setForm(f)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    form === f
+                      ? "bg-gradient-to-r from-primary to-accent text-white"
+                      : "bg-white/5 text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {filtered.length === 0 ? (
             <p className="text-center text-muted-foreground py-20">No notes match your filters.</p>
           ) : (

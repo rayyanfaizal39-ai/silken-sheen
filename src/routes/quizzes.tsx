@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, quizzes, sejarahChapterFromId, sejarahForm1Chapters, type Difficulty } from "@/data/content";
+import { forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { CheckCircle2, XCircle, Sparkles, RotateCcw } from "lucide-react";
 import {
-  SejarahChapterGrid,
-  SejarahChapterHeader,
-  SejarahComingSoon,
-} from "@/components/SejarahChapterPicker";
+  SubjectGrid,
+  ChapterGrid,
+  ContentHeader,
+  ComingSoonScreen,
+} from "@/components/ChapterPicker";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -25,33 +26,28 @@ const diffs: ("All" | Difficulty)[] = ["All", "Easy", "Medium", "Hard"];
 
 function QuizzesPage() {
   const { progress, addXp, recordQuiz, awardBadge } = useProgress();
-  const [subject, setSubject] = useState("all");
+  const [subject, setSubject] = useState<string | null>(null);
+  const [chapter, setChapter] = useState<string | null>(null);
   const [form, setForm] = useState<string>("All");
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
-  const [sejChapter, setSejChapter] = useState<number | null>(null);
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [streak, setStreak] = useState(0);
 
-  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
-  const selectedChapterMeta =
-    sejarahF1Mode && sejChapter !== null
-      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
-      : null;
+  const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
 
   const pool = useMemo(() => {
+    if (!subject || !chapter) return [];
     return quizzes.filter((q) => {
-      if (subject !== "all" && q.subjectId !== subject) return false;
+      if (q.subjectId !== subject) return false;
+      if (getItemChapterKey(q) !== chapter) return false;
       if (form !== "All" && q.form !== form) return false;
-      if (diff !== "All" && q.difficulty !== diff) return false;
-      if (sejarahF1Mode && sejChapter !== null) {
-        if (sejarahChapterFromId(q.id) !== sejChapter) return false;
-      }
+      if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
-  }, [subject, form, diff, sejarahF1Mode, sejChapter]);
+  }, [subject, chapter, form, diff]);
 
   const current = pool[idx];
 
@@ -93,64 +89,65 @@ function QuizzesPage() {
         <p className="mt-3 text-muted-foreground">Instant scoring. Earn XP. Beat your streak.</p>
       </div>
 
-      <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between">
-        <div className="flex flex-wrap gap-2 items-center">
-          <select value={subject} onChange={(e) => { setSubject(e.target.value); setDiff("All"); setForm("All"); setSejChapter(null); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
-            <option value="all">All subjects</option>
-            {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
-          </select>
-          {subject !== "sejarah" && (
-            <select value={form} onChange={(e) => { setForm(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
-              <option>All</option>
-              {forms.map((f) => <option key={f}>{f}</option>)}
-            </select>
-          )}
-          {subject === "sejarah" ? (
-            <div className="flex gap-1">
-              {(["All", "Form 1", "Form 2", "Form 3"] as const).map((f) => (
-                <button
-                  key={f}
-                  onClick={() => { setForm(f); setSejChapter(null); reset(); }}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                    form === f ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
-                  }`}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="flex gap-1">
-              {diffs.map((d) => (
-                <button
-                  key={d}
-                  onClick={() => { setDiff(d); reset(); }}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                    diff === d ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
-                  }`}
-                >
-                  {d}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="flex items-center gap-3 text-sm">
-          <span className="text-muted-foreground">XP</span>
-          <span className="font-bold text-nova-yellow">{progress.xp}</span>
-          <span className="text-muted-foreground">🔥 {streak}</span>
-        </div>
-      </div>
-
-      {sejarahF1Mode && sejChapter === null ? (
-        <SejarahChapterGrid onSelect={(n) => { setSejChapter(n); reset(); }} />
-      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
-        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => { setSejChapter(null); reset(); }} />
+      {!subject ? (
+        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setForm("All"); setDiff("All"); reset(); }} />
+      ) : !chapter ? (
+        <ChapterGrid
+          subjectId={subject}
+          onSelect={(key) => { setChapter(key); reset(); }}
+          onBack={() => { setSubject(null); setChapter(null); reset(); }}
+        />
+      ) : chapterMeta && !chapterMeta.available ? (
+        <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
       ) : (
         <>
-          {sejarahF1Mode && sejChapter !== null && (
-            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => { setSejChapter(null); reset(); }} />
-          )}
+          <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
+
+          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between">
+            <div className="flex flex-wrap gap-2 items-center">
+              {subject === "sejarah" ? (
+                <div className="flex gap-1">
+                  {(["All", "Form 1", "Form 2", "Form 3"] as const).map((f) => (
+                    <button
+                      key={f}
+                      onClick={() => { setForm(f); reset(); }}
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
+                        form === f ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
+                      }`}
+                    >
+                      {f}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <select value={form} onChange={(e) => { setForm(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+                    <option>All</option>
+                    {forms.map((f) => <option key={f}>{f}</option>)}
+                  </select>
+                  <div className="flex gap-1">
+                    {diffs.map((d) => (
+                      <button
+                        key={d}
+                        onClick={() => { setDiff(d); reset(); }}
+                        className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
+                          diff === d ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
+                        }`}
+                      >
+                        {d}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="flex items-center gap-3 text-sm">
+              <span className="text-muted-foreground">XP</span>
+              <span className="font-bold text-nova-yellow">{progress.xp}</span>
+              <span className="text-muted-foreground">🔥 {streak}</span>
+            </div>
+          </div>
+
           {pool.length === 0 ? (
             <div className="text-center py-20 glass rounded-2xl">
               <p className="text-muted-foreground">No questions match — try different filters.</p>
