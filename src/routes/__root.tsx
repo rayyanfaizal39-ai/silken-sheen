@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/Navbar";
 import { ParticleBg } from "@/components/ParticleBg";
+import { SoundFx } from "@/components/SoundFx";
 
 function NotFoundComponent() {
   return (
@@ -90,6 +91,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ParticleBg />
+      <SoundFx />
       <Navbar />
       <main className="min-h-screen">
         <Outlet />
