@@ -258,12 +258,26 @@ function QuizzesPage() {
             </div>
           ) : done ? (
             <>
-              <Confetti />
-              <div className="glass-strong rounded-3xl p-10 text-center animate-fade-up">
+              <Confetti count={pool.length > 0 && score === pool.length ? 160 : 70} />
+              {pool.length > 0 && score === pool.length && (
+                <Confetti count={120} />
+              )}
+              <div className="glass-strong rounded-3xl p-10 text-center animate-fade-up relative overflow-hidden">
+                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,oklch(0.63_0.22_295_/_0.35),transparent_70%)]" />
                 <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4 animate-pulse" />
-                <h2 className="font-display text-3xl font-bold">Quiz complete!</h2>
+                <h2 className="font-display text-3xl font-bold">
+                  {pool.length > 0 && score === pool.length ? "PERFECT SCORE! 🏆" : "Quiz complete!"}
+                </h2>
                 <p className="mt-2 text-muted-foreground">You scored</p>
-                <p className="font-display text-6xl font-bold gradient-text my-3">{score}/{pool.length}</p>
+                <p
+                  key={`score-${done}`}
+                  className="font-display text-7xl sm:text-8xl font-extrabold gradient-text my-4 animate-score-reveal drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.7)]"
+                >
+                  {animatedScore}<span className="text-muted-foreground/60">/{pool.length}</span>
+                </p>
+                {pool.length > 0 && score === pool.length && (
+                  <p className="text-emerald-300 font-semibold mb-3 animate-pulse">Flawless victory! ⚡</p>
+                )}
                 <button onClick={reset} className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform">
                   <RotateCcw className="w-4 h-4" /> Try again
                 </button>
@@ -272,7 +286,7 @@ function QuizzesPage() {
           ) : current && (
             <div
               key={idx}
-              className={`glass-strong rounded-3xl p-8 animate-fade-up ${
+              className={`glass-strong rounded-3xl p-8 animate-question-reveal ${
                 feedback?.kind === "wrong" ? "animate-shake" : feedback?.kind === "correct" ? "animate-correct-pulse" : ""
               }`}
             >
@@ -281,7 +295,9 @@ function QuizzesPage() {
                 <span className="text-xs font-semibold text-muted-foreground">
                   Question {idx + 1} of {pool.length} • {current.difficulty}
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-nova-yellow">
+                <span className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
+                  timeLeft <= 5 ? "text-rose-400 animate-pulse" : timeLeft <= 10 ? "text-nova-yellow" : "text-emerald-300"
+                }`}>
                   <Timer className="w-3.5 h-3.5" /> {timeLeft}s
                 </span>
               </div>
@@ -291,11 +307,11 @@ function QuizzesPage() {
                   style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
                 />
               </div>
-              {/* Timer bar */}
-              <div className="h-1 w-full rounded-full bg-white/5 overflow-hidden mb-6">
+              {/* Timer bar — green → yellow → red */}
+              <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
                 <div
-                  className={`h-full origin-left ${timeLeft <= 5 ? "bg-rose-500" : "bg-nova-yellow"} transition-all duration-1000 ease-linear`}
-                  style={{ width: `${(timeLeft / QUESTION_SECONDS) * 100}%` }}
+                  className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
+                  style={{ width: `${timerPct}%` }}
                 />
               </div>
 
