@@ -97,15 +97,32 @@ function NotesPage() {
       <div className="flex justify-center"><DailyQuote /></div>
 
       {!subject ? (
-        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); }} />
+        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
       ) : !chapter ? (
         <ChapterGrid
           subjectId={subject}
-          onSelect={(key) => setChapter(key)}
-          onBack={() => { setSubject(null); setChapter(null); }}
+          onSelect={(key) => { setChapter(key); setSubtopic(null); }}
+          onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
         />
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+      ) : hasSubtopics && !subtopic ? (
+        <SubtopicView
+          subjectId={subject}
+          chapterKey={chapter}
+          subtopics={subtopics}
+          onSelect={(s) => setSubtopic(s)}
+          onBack={() => setChapter(null)}
+        />
+      ) : hasSubtopics && subtopic ? (
+        <SubtopicDetail
+          subjectId={subject}
+          chapterKey={chapter}
+          subtopic={subtopic}
+          isRead={isRead}
+          onMarkRead={() => markChapter(subject, chapter, "read")}
+          onBack={() => setSubtopic(null)}
+        />
       ) : (
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
