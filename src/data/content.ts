@@ -207,6 +207,28 @@ export const flashcards: Flashcard[] = [
   { id: "sej-f1-c2-fc60", subjectId: "sejarah", form: "Form 1", front: "Mengapakah penting memahami pembentukan fizikal bumi?", back: "Untuk memahami evolusi alam sekitar dan kepentingan menjaga ekosistem dunia." },
 ];
 
+export interface SejarahChapter {
+  num: number;
+  title: string;
+  available: boolean;
+}
+
+export const sejarahForm1Chapters: SejarahChapter[] = [
+  { num: 1, title: "Mengenali Sejarah", available: true },
+  { num: 2, title: "Zaman Air Batu", available: true },
+  { num: 3, title: "Zaman Prasejarah", available: false },
+  { num: 4, title: "Mengenali Tamadun", available: false },
+  { num: 5, title: "Tamadun Awal Dunia", available: false },
+  { num: 6, title: "Tamadun Yunani dan Tamadun Rom", available: false },
+  { num: 7, title: "Tamadun India dan China", available: false },
+  { num: 8, title: "Tamadun Islam", available: false },
+];
+
+export function sejarahChapterFromId(id: string): number | null {
+  const m = id.match(/^sej-f1-c(\d+)-/);
+  return m ? parseInt(m[1], 10) : null;
+}
+
 export const badges = [
   { id: "starter", name: "First Steps", emoji: "🚀", desc: "Complete your first quiz" },
   { id: "streak3", name: "On Fire", emoji: "🔥", desc: "3-day streak" },

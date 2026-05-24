@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, notes } from "@/data/content";
+import { subjects, forms, notes, sejarahChapterFromId, sejarahForm1Chapters } from "@/data/content";
 import { Search } from "lucide-react";
 import { z } from "zod";
+import {
+  SejarahChapterGrid,
+  SejarahChapterHeader,
+  SejarahComingSoon,
+} from "@/components/SejarahChapterPicker";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
@@ -26,18 +31,28 @@ function NotesPage() {
   const [subject, setSubject] = useState<string>(search.subject ?? "all");
   const [form, setForm] = useState<string>("All");
   const [q, setQ] = useState("");
+  const [sejChapter, setSejChapter] = useState<number | null>(null);
+
+  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
+  const selectedChapterMeta =
+    sejarahF1Mode && sejChapter !== null
+      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
+      : null;
 
   const filtered = useMemo(() => {
     return notes.filter((n) => {
       if (subject !== "all" && n.subjectId !== subject) return false;
       if (form !== "All" && n.form !== form) return false;
+      if (sejarahF1Mode && sejChapter !== null) {
+        if (sejarahChapterFromId(n.id) !== sejChapter) return false;
+      }
       if (q) {
         const hay = `${n.title} ${n.summary} ${n.chapter} ${n.keywords.join(" ")}`.toLowerCase();
         if (!hay.includes(q.toLowerCase())) return false;
       }
       return true;
     });
-  }, [subject, form, q]);
+  }, [subject, form, q, sejarahF1Mode, sejChapter]);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
@@ -58,7 +73,7 @@ function NotesPage() {
         </div>
         <select
           value={subject}
-          onChange={(e) => setSubject(e.target.value)}
+          onChange={(e) => { setSubject(e.target.value); setSejChapter(null); }}
           className="px-4 py-3 rounded-full bg-white/5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
         >
           <option value="all">All subjects</option>
@@ -70,7 +85,7 @@ function NotesPage() {
           {["All", ...forms].map((f) => (
             <button
               key={f}
-              onClick={() => setForm(f)}
+              onClick={() => { setForm(f); setSejChapter(null); }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 form === f
                   ? "bg-gradient-to-r from-primary to-accent text-white"
@@ -83,38 +98,49 @@ function NotesPage() {
         </div>
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="text-center text-muted-foreground py-20">No notes match your filters.</p>
+      {sejarahF1Mode && sejChapter === null ? (
+        <SejarahChapterGrid onSelect={(n) => setSejChapter(n)} />
+      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
+        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => setSejChapter(null)} />
       ) : (
-        <div className="grid md:grid-cols-2 gap-5">
-          {filtered.map((n) => {
-            const subj = subjects.find((s) => s.id === n.subjectId)!;
-            return (
-              <article
-                key={n.id}
-                className="glass rounded-2xl p-6 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                    <span>{subj.emoji}</span>
-                    {subj.name} • {n.form} • {n.chapter}
-                  </span>
-                </div>
-                <h3 className="font-display text-2xl font-bold">{n.title}</h3>
-                <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
-                  {highlight(n.summary, n.keywords)}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {n.keywords.map((k) => (
-                    <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
-                      #{k}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+        <>
+          {sejarahF1Mode && sejChapter !== null && (
+            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => setSejChapter(null)} />
+          )}
+          {filtered.length === 0 ? (
+            <p className="text-center text-muted-foreground py-20">No notes match your filters.</p>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-5">
+              {filtered.map((n) => {
+                const subj = subjects.find((s) => s.id === n.subjectId)!;
+                return (
+                  <article
+                    key={n.id}
+                    className="glass rounded-2xl p-6 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+                        <span>{subj.emoji}</span>
+                        {subj.name} • {n.form} • {n.chapter}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-2xl font-bold">{n.title}</h3>
+                    <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
+                      {highlight(n.summary, n.keywords)}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {n.keywords.map((k) => (
+                        <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
+                          #{k}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
     </section>
   );

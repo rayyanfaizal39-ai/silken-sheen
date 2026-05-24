@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, flashcards } from "@/data/content";
+import { subjects, forms, flashcards, sejarahChapterFromId, sejarahForm1Chapters } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { Heart, ChevronLeft, ChevronRight, Shuffle } from "lucide-react";
+import {
+  SejarahChapterGrid,
+  SejarahChapterHeader,
+  SejarahComingSoon,
+} from "@/components/SejarahChapterPicker";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -21,19 +26,29 @@ function FlashcardsPage() {
   const [subject, setSubject] = useState("all");
   const [form, setForm] = useState("All");
   const [favOnly, setFavOnly] = useState(false);
+  const [sejChapter, setSejChapter] = useState<number | null>(null);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [order, setOrder] = useState<number[]>([]);
+
+  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
+  const selectedChapterMeta =
+    sejarahF1Mode && sejChapter !== null
+      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
+      : null;
 
   const pool = useMemo(() => {
     const base = flashcards.filter((f) => {
       if (subject !== "all" && f.subjectId !== subject) return false;
       if (form !== "All" && f.form !== form) return false;
       if (favOnly && !progress.favorites.includes(f.id)) return false;
+      if (sejarahF1Mode && sejChapter !== null) {
+        if (sejarahChapterFromId(f.id) !== sejChapter) return false;
+      }
       return true;
     });
     return base;
-  }, [subject, form, favOnly, progress.favorites]);
+  }, [subject, form, favOnly, progress.favorites, sejarahF1Mode, sejChapter]);
 
   const current = pool[order[idx] ?? idx] ?? pool[0];
 
@@ -60,11 +75,11 @@ function FlashcardsPage() {
 
       <div className="glass-strong rounded-2xl p-4 mb-8 flex flex-wrap gap-2 items-center justify-between">
         <div className="flex flex-wrap gap-2">
-          <select value={subject} onChange={(e) => { setSubject(e.target.value); setIdx(0); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+          <select value={subject} onChange={(e) => { setSubject(e.target.value); setIdx(0); setSejChapter(null); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
             <option value="all">All subjects</option>
             {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
-          <select value={form} onChange={(e) => { setForm(e.target.value); setIdx(0); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+          <select value={form} onChange={(e) => { setForm(e.target.value); setIdx(0); setSejChapter(null); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
             <option>All</option>
             {forms.map((f) => <option key={f}>{f}</option>)}
           </select>
@@ -80,60 +95,71 @@ function FlashcardsPage() {
         </button>
       </div>
 
-      {pool.length === 0 || !current ? (
-        <div className="text-center py-20 glass rounded-2xl">
-          <p className="text-muted-foreground">No flashcards match your filters.</p>
-        </div>
+      {sejarahF1Mode && sejChapter === null ? (
+        <SejarahChapterGrid onSelect={(n) => { setSejChapter(n); setIdx(0); setOrder([]); setFlipped(false); }} />
+      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
+        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => setSejChapter(null)} />
       ) : (
         <>
-          <div
-            onClick={() => setFlipped((f) => !f)}
-            className="relative cursor-pointer mx-auto"
-            style={{ perspective: "1500px", height: 360 }}
-          >
-            <div
-              className="relative w-full h-full transition-transform duration-700"
-              style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "none" }}
-            >
-              {/* front */}
-              <div className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col" style={{ backfaceVisibility: "hidden" }}>
-                <div className="flex justify-between items-start">
-                  <span className="text-xs font-semibold text-muted-foreground">
-                    {subj?.emoji} {subj?.name} • {current.form}
-                  </span>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); toggleFavorite(current.id); }}
-                    className={`p-2 rounded-full ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
-                  >
-                    <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
-                  </button>
-                </div>
-                <div className="flex-1 flex items-center justify-center text-center">
-                  <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">{current.front}</p>
-                </div>
-                <p className="text-center text-xs text-muted-foreground">Tap to flip</p>
-              </div>
-              {/* back */}
-              <div
-                className="absolute inset-0 glass-strong rounded-3xl p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20"
-                style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-              >
-                <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">{current.back}</p>
-              </div>
+          {sejarahF1Mode && sejChapter !== null && (
+            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => setSejChapter(null)} />
+          )}
+          {pool.length === 0 || !current ? (
+            <div className="text-center py-20 glass rounded-2xl">
+              <p className="text-muted-foreground">No flashcards match your filters.</p>
             </div>
-          </div>
+          ) : (
+            <>
+              <div
+                onClick={() => setFlipped((f) => !f)}
+                className="relative cursor-pointer mx-auto"
+                style={{ perspective: "1500px", height: 360 }}
+              >
+                <div
+                  className="relative w-full h-full transition-transform duration-700"
+                  style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "none" }}
+                >
+                  {/* front */}
+                  <div className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col" style={{ backfaceVisibility: "hidden" }}>
+                    <div className="flex justify-between items-start">
+                      <span className="text-xs font-semibold text-muted-foreground">
+                        {subj?.emoji} {subj?.name} • {current.form}
+                      </span>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); toggleFavorite(current.id); }}
+                        className={`p-2 rounded-full ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
+                      >
+                        <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
+                      </button>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center text-center">
+                      <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">{current.front}</p>
+                    </div>
+                    <p className="text-center text-xs text-muted-foreground">Tap to flip</p>
+                  </div>
+                  {/* back */}
+                  <div
+                    className="absolute inset-0 glass-strong rounded-3xl p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20"
+                    style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                  >
+                    <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">{current.back}</p>
+                  </div>
+                </div>
+              </div>
 
-          <div className="flex items-center justify-between mt-8">
-            <button onClick={() => go(-1)} className="p-3 rounded-full glass hover:bg-white/10">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <span className="text-sm text-muted-foreground">
-              {idx + 1} / {pool.length}
-            </span>
-            <button onClick={() => go(1)} className="p-3 rounded-full glass hover:bg-white/10">
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+              <div className="flex items-center justify-between mt-8">
+                <button onClick={() => go(-1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <span className="text-sm text-muted-foreground">
+                  {idx + 1} / {pool.length}
+                </span>
+                <button onClick={() => go(1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </>
+          )}
         </>
       )}
     </section>

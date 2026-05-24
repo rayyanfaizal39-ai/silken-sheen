@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, quizzes, type Difficulty } from "@/data/content";
+import { subjects, forms, quizzes, sejarahChapterFromId, sejarahForm1Chapters, type Difficulty } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { CheckCircle2, XCircle, Sparkles, RotateCcw } from "lucide-react";
+import {
+  SejarahChapterGrid,
+  SejarahChapterHeader,
+  SejarahComingSoon,
+} from "@/components/SejarahChapterPicker";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -23,20 +28,30 @@ function QuizzesPage() {
   const [subject, setSubject] = useState("all");
   const [form, setForm] = useState<string>("All");
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
+  const [sejChapter, setSejChapter] = useState<number | null>(null);
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [streak, setStreak] = useState(0);
 
+  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
+  const selectedChapterMeta =
+    sejarahF1Mode && sejChapter !== null
+      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
+      : null;
+
   const pool = useMemo(() => {
     return quizzes.filter((q) => {
       if (subject !== "all" && q.subjectId !== subject) return false;
       if (form !== "All" && q.form !== form) return false;
       if (diff !== "All" && q.difficulty !== diff) return false;
+      if (sejarahF1Mode && sejChapter !== null) {
+        if (sejarahChapterFromId(q.id) !== sejChapter) return false;
+      }
       return true;
     });
-  }, [subject, form, diff]);
+  }, [subject, form, diff, sejarahF1Mode, sejChapter]);
 
   const current = pool[idx];
 
@@ -80,7 +95,7 @@ function QuizzesPage() {
 
       <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between">
         <div className="flex flex-wrap gap-2 items-center">
-          <select value={subject} onChange={(e) => { setSubject(e.target.value); setDiff("All"); setForm("All"); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+          <select value={subject} onChange={(e) => { setSubject(e.target.value); setDiff("All"); setForm("All"); setSejChapter(null); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
             <option value="all">All subjects</option>
             {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
@@ -95,7 +110,7 @@ function QuizzesPage() {
               {(["All", "Form 1", "Form 2", "Form 3"] as const).map((f) => (
                 <button
                   key={f}
-                  onClick={() => { setForm(f); reset(); }}
+                  onClick={() => { setForm(f); setSejChapter(null); reset(); }}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
                     form === f ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
                   }`}
@@ -127,79 +142,90 @@ function QuizzesPage() {
         </div>
       </div>
 
-      {pool.length === 0 ? (
-        <div className="text-center py-20 glass rounded-2xl">
-          <p className="text-muted-foreground">No questions match — try different filters.</p>
-        </div>
-      ) : done ? (
-        <div className="glass-strong rounded-3xl p-10 text-center">
-          <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4" />
-          <h2 className="font-display text-3xl font-bold">Quiz complete!</h2>
-          <p className="mt-2 text-muted-foreground">You scored</p>
-          <p className="font-display text-6xl font-bold gradient-text my-3">{score}/{pool.length}</p>
-          <button onClick={reset} className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform">
-            <RotateCcw className="w-4 h-4" /> Try again
-          </button>
-        </div>
-      ) : current && (
-        <div className="glass-strong rounded-3xl p-8 animate-fade-up">
-          <div className="flex justify-between items-center mb-6">
-            <span className="text-xs font-semibold text-muted-foreground">
-              Q {idx + 1} of {pool.length} • {current.difficulty}
-            </span>
-            <div className="h-2 w-32 rounded-full bg-white/10 overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-primary to-accent transition-all"
-                style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
-              />
+      {sejarahF1Mode && sejChapter === null ? (
+        <SejarahChapterGrid onSelect={(n) => { setSejChapter(n); reset(); }} />
+      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
+        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => { setSejChapter(null); reset(); }} />
+      ) : (
+        <>
+          {sejarahF1Mode && sejChapter !== null && (
+            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => { setSejChapter(null); reset(); }} />
+          )}
+          {pool.length === 0 ? (
+            <div className="text-center py-20 glass rounded-2xl">
+              <p className="text-muted-foreground">No questions match — try different filters.</p>
             </div>
-          </div>
+          ) : done ? (
+            <div className="glass-strong rounded-3xl p-10 text-center">
+              <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4" />
+              <h2 className="font-display text-3xl font-bold">Quiz complete!</h2>
+              <p className="mt-2 text-muted-foreground">You scored</p>
+              <p className="font-display text-6xl font-bold gradient-text my-3">{score}/{pool.length}</p>
+              <button onClick={reset} className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform">
+                <RotateCcw className="w-4 h-4" /> Try again
+              </button>
+            </div>
+          ) : current && (
+            <div className="glass-strong rounded-3xl p-8 animate-fade-up">
+              <div className="flex justify-between items-center mb-6">
+                <span className="text-xs font-semibold text-muted-foreground">
+                  Q {idx + 1} of {pool.length} • {current.difficulty}
+                </span>
+                <div className="h-2 w-32 rounded-full bg-white/10 overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-primary to-accent transition-all"
+                    style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
+                  />
+                </div>
+              </div>
 
-          <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">{current.question}</h2>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">{current.question}</h2>
 
-          <div className="grid sm:grid-cols-2 gap-3">
-            {current.options.map((o, i) => {
-              const isAnswer = i === current.answerIndex;
-              const isPicked = i === selected;
-              const reveal = selected !== null;
-              return (
+              <div className="grid sm:grid-cols-2 gap-3">
+                {current.options.map((o, i) => {
+                  const isAnswer = i === current.answerIndex;
+                  const isPicked = i === selected;
+                  const reveal = selected !== null;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => answer(i)}
+                      disabled={reveal}
+                      className={`text-left p-4 rounded-2xl border transition-all ${
+                        reveal && isAnswer
+                          ? "bg-emerald-500/20 border-emerald-500/50"
+                          : reveal && isPicked && !isAnswer
+                          ? "bg-rose-500/20 border-rose-500/50"
+                          : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{o}</span>
+                        {reveal && isAnswer && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
+                        {reveal && isPicked && !isAnswer && <XCircle className="w-5 h-5 text-rose-400" />}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {selected !== null && current.explanation && (
+                <p className="mt-5 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
+                  💡 {current.explanation}
+                </p>
+              )}
+
+              {selected !== null && (
                 <button
-                  key={i}
-                  onClick={() => answer(i)}
-                  disabled={reveal}
-                  className={`text-left p-4 rounded-2xl border transition-all ${
-                    reveal && isAnswer
-                      ? "bg-emerald-500/20 border-emerald-500/50"
-                      : reveal && isPicked && !isAnswer
-                      ? "bg-rose-500/20 border-rose-500/50"
-                      : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50"
-                  }`}
+                  onClick={next}
+                  className="mt-6 w-full py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-[1.02] transition-transform"
                 >
-                  <div className="flex items-center justify-between">
-                    <span>{o}</span>
-                    {reveal && isAnswer && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
-                    {reveal && isPicked && !isAnswer && <XCircle className="w-5 h-5 text-rose-400" />}
-                  </div>
+                  {idx + 1 >= pool.length ? "Finish" : "Next question →"}
                 </button>
-              );
-            })}
-          </div>
-
-          {selected !== null && current.explanation && (
-            <p className="mt-5 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
-              💡 {current.explanation}
-            </p>
+              )}
+            </div>
           )}
-
-          {selected !== null && (
-            <button
-              onClick={next}
-              className="mt-6 w-full py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-[1.02] transition-transform"
-            >
-              {idx + 1 >= pool.length ? "Finish" : "Next question →"}
-            </button>
-          )}
-        </div>
+        </>
       )}
     </section>
   );
