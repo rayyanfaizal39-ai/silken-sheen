@@ -12,7 +12,7 @@ const quotes = [
   "Practice doesn't make perfect — it makes progress. 🌱",
   "Your only limit is you. 🦅",
   "Dream big, study smart. 💡",
-  "Belajar sambil seronok — that's the LearnNova way! 🎉",
+  "Belajar sambil seronok — that's the AcadeMY way! 🎉",
   "Small steps every day lead to big results. 👣",
   "Today's effort is tomorrow's achievement. 🏆",
 ];

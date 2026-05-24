@@ -6,9 +6,9 @@ import { Flame, Trophy, Zap, Target, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — LearnNova" },
+      { title: "Dashboard — AcadeMY" },
       { name: "description", content: "Track your XP, streaks, badges and study progress." },
-      { property: "og:title", content: "Dashboard — LearnNova" },
+      { property: "og:title", content: "Dashboard — AcadeMY" },
       { property: "og:description", content: "Your personal study stats and achievements." },
     ],
   }),

@@ -15,9 +15,9 @@ import { Confetti } from "@/components/Confetti";
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
     meta: [
-      { title: "Flashcards — LearnNova" },
+      { title: "Flashcards — AcadeMY" },
       { name: "description", content: "Swipeable, flippable flashcards for fast KSSM revision." },
-      { property: "og:title", content: "Flashcards — LearnNova" },
+      { property: "og:title", content: "Flashcards — AcadeMY" },
       { property: "og:description", content: "Smart revision with favorites and smooth flip animations." },
     ],
   }),

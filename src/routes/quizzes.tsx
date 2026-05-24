@@ -16,9 +16,9 @@ import { sfx, music } from "@/lib/sounds";
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
     meta: [
-      { title: "Quizzes — LearnNova" },
+      { title: "Quizzes — AcadeMY" },
       { name: "description", content: "Interactive KSSM quizzes with instant scoring. Easy, Medium, and Hard." },
-      { property: "og:title", content: "Quizzes — LearnNova" },
+      { property: "og:title", content: "Quizzes — AcadeMY" },
       { property: "og:description", content: "Test yourself with KSSM quizzes — instant feedback and XP rewards." },
     ],
   }),

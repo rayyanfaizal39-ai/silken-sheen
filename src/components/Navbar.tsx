@@ -25,7 +25,7 @@ export function Navbar() {
               </div>
             </div>
             <span className="font-display text-xl font-bold tracking-tight">
-              Learn<span className="gradient-text">Nova</span>
+              <span className="text-white">Acade</span><span className="text-nova-yellow" style={{ textShadow: "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)" }}>MY</span>
             </span>
           </Link>
 

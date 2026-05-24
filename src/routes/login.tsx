@@ -5,10 +5,10 @@ import { Sparkles } from "lucide-react";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign In — LearnNova" },
+      { title: "Sign In — AcadeMY" },
       { name: "description", content: "Sign in or sign up to track your KSSM study progress." },
-      { property: "og:title", content: "Sign In — LearnNova" },
-      { property: "og:description", content: "Create a free LearnNova account to save your XP and streaks." },
+      { property: "og:title", content: "Sign In — AcadeMY" },
+      { property: "og:description", content: "Create a free AcadeMY account to save your XP and streaks." },
     ],
   }),
   component: LoginPage,
@@ -28,7 +28,7 @@ function LoginPage() {
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="font-display text-xl font-bold">Learn<span className="gradient-text">Nova</span></span>
+            <span className="font-display text-xl font-bold"><span className="text-white">Acade</span><span className="text-nova-yellow" style={{ textShadow: "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)" }}>MY</span></span>
           </div>
 
           <h1 className="font-display text-3xl font-bold mt-4">

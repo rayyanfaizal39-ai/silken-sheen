@@ -22,9 +22,9 @@ export const Route = createFileRoute("/notes")({
   validateSearch: searchSchema,
   head: () => ({
     meta: [
-      { title: "Summary Notes — LearnNova" },
+      { title: "Summary Notes — AcadeMY" },
       { name: "description", content: "Bite-sized KSSM notes by subject, form, and chapter." },
-      { property: "og:title", content: "Summary Notes — LearnNova" },
+      { property: "og:title", content: "Summary Notes — AcadeMY" },
       { property: "og:description", content: "Clean, highlighted study notes for Form 1–3 students." },
     ],
   }),

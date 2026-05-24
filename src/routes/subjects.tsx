@@ -6,9 +6,9 @@ import { Search } from "lucide-react";
 export const Route = createFileRoute("/subjects")({
   head: () => ({
     meta: [
-      { title: "Subjects — LearnNova" },
+      { title: "Subjects — AcadeMY" },
       { name: "description", content: "All KSSM subjects for Form 1, 2, and 3 Malaysian secondary students." },
-      { property: "og:title", content: "Subjects — LearnNova" },
+      { property: "og:title", content: "Subjects — AcadeMY" },
       { property: "og:description", content: "Explore Bahasa Melayu, English, Math, Science, Sejarah and Geography." },
     ],
   }),
