@@ -68,10 +68,11 @@ function QuizzesPage() {
 
   const current = pool[idx];
 
-  // Countdown timer per question
+  // Countdown timer per question (only when timer mode enabled)
   useEffect(() => {
     if (!current || selected !== null || done) return;
-    setTimeLeft(QUESTION_SECONDS);
+    if (timerPref?.mode !== "timer") return;
+    setTimeLeft(questionSeconds);
     const interval = setInterval(() => {
       setTimeLeft((t) => {
         if (t <= 1) {
@@ -87,7 +88,7 @@ function QuizzesPage() {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [idx, current, done]);
+  }, [idx, current, done, timerPref, questionSeconds]);
 
   // Stop music when leaving the page
   useEffect(() => () => { music.stop(); }, []);
