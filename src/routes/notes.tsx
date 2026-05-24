@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, notes, getItemChapterKey, getSubjectChapters } from "@/data/content";
-import { Search, BookOpenCheck } from "lucide-react";
+import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
 import { z } from "zod";
 import {
   SubjectGrid,
@@ -13,6 +13,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { MindMap } from "@/components/MindMap";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
+import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
