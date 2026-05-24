@@ -49,8 +49,7 @@ export function AIAssistant() {
 
   const routerState = useRouterState();
   const pathname = routerState.location.pathname;
-  const search = routerState.location.searchStr || "";
-  const subject = detectSubject(pathname, search);
+  const subject = detectSubject(pathname, "");
   const suggestions = PAGE_SUGGESTIONS[subject];
 
   const chat = useServerFn(chatWithAssistant);
