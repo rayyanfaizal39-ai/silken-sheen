@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { subjects, forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty } from "@/data/content";
+import { subjects, forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty, type QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
-import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX, ArrowLeft, Play, TimerOff } from "lucide-react";
+import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX, ArrowLeft, Play, TimerOff, Shuffle } from "lucide-react";
 import {
   SubjectGrid,
   ChapterGrid,
@@ -31,6 +31,15 @@ const WRONG_MSGS = ["Cuba lagi! 💪", "Jangan give up! 🎯", "Hampir! 🤔", "
 type TimerMode = "timer" | "none";
 type TimerPref = { mode: TimerMode; seconds: number } | null;
 
+interface ShuffledQuestion {
+  question: string;
+  options: string[];
+  answerIndex: number;
+  explanation?: string;
+  difficulty: Difficulty;
+  subjectId: string;
+}
+
 function QuizzesPage() {
   const { progress, addXp, recordQuiz, awardBadge, markChapter } = useProgress();
   const [subject, setSubject] = useState<string | null>(null);
@@ -49,6 +58,7 @@ function QuizzesPage() {
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
   const [timerPref, setTimerPref] = useState<TimerPref>(null);
+  const [shuffledPool, setShuffledPool] = useState<ShuffledQuestion[] | null>(null);
   const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
   const [timeLeft, setTimeLeft] = useState(0);
   const comboTimer = useRef<number | null>(null);
@@ -66,7 +76,7 @@ function QuizzesPage() {
     });
   }, [subject, chapter, form, diff]);
 
-  const current = pool[idx];
+  const current = shuffledPool?.[idx] ?? null;
 
   // Countdown timer per question (only when timer mode enabled)
   useEffect(() => {
@@ -90,12 +100,51 @@ function QuizzesPage() {
     return () => clearInterval(interval);
   }, [idx, current, done, timerPref, questionSeconds]);
 
+  // Build shuffled questions when quiz starts
+  useEffect(() => {
+    if (timerPref && pool.length > 0) {
+      setShuffledPool(buildShuffledPool(pool));
+    }
+  }, [timerPref]);
+
   // Stop music when leaving the page
   useEffect(() => () => { music.stop(); }, []);
 
   function triggerShake() {
     setScreenShake(true);
     window.setTimeout(() => setScreenShake(false), 600);
+  }
+
+  function buildShuffledPool(rawPool: QuizQuestion[]): ShuffledQuestion[] {
+    const shuffled = [...rawPool].sort(() => Math.random() - 0.5);
+    return shuffled.map((q) => {
+      const correctOption = q.options[q.answerIndex];
+      const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+      const newAnswerIndex = shuffledOptions.indexOf(correctOption);
+      return {
+        question: q.question,
+        options: shuffledOptions,
+        answerIndex: newAnswerIndex,
+        explanation: q.explanation,
+        difficulty: q.difficulty,
+        subjectId: q.subjectId,
+      };
+    });
+  }
+
+  function reshuffle() {
+    if (pool.length > 0) {
+      setShuffledPool(buildShuffledPool(pool));
+    }
+    setIdx(0);
+    setSelected(null);
+    setScore(0);
+    setStreak(0);
+    setCombo(0);
+    setComboShow(null);
+    setFeedback(null);
+    setTimeLeft(questionSeconds);
+    setAnimatedScore(0);
   }
 
   function answer(i: number) {
@@ -126,11 +175,12 @@ function QuizzesPage() {
   }
 
   function next() {
-    if (idx + 1 >= pool.length) {
+    const total = shuffledPool?.length ?? pool.length;
+    if (idx + 1 >= total) {
       setDone(true);
       recordQuiz();
       if (subject && chapter) markChapter(subject, chapter, "quiz");
-      if (pool.length > 0 && score + (selected === current?.answerIndex ? 1 : 0) === pool.length && diff === "Hard") {
+      if (total > 0 && score + (selected === current?.answerIndex ? 1 : 0) === total && diff === "Hard") {
         awardBadge("master");
       }
       return;
@@ -144,13 +194,13 @@ function QuizzesPage() {
     setIdx(0); setSelected(null); setScore(0); setDone(false);
     setStreak(0); setCombo(0); setComboShow(null);
     setFeedback(null); setTimeLeft(questionSeconds); setAnimatedScore(0);
-    setTimerPref(null);
+    setTimerPref(null); setShuffledPool(null);
   }
 
   // Animated score count-up + perfect score celebration
   useEffect(() => {
     if (!done) return;
-    const total = pool.length;
+    const total = shuffledPool?.length ?? pool.length;
     const isPerfect = total > 0 && score === total;
     if (isPerfect) sfx.perfect();
     let n = 0;
@@ -249,6 +299,13 @@ function QuizzesPage() {
             </div>
             <div className="flex items-center gap-3 text-sm">
               <button
+                onClick={reshuffle}
+                title="Shuffle questions"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition bg-white/5 text-muted-foreground hover:bg-white/10"
+              >
+                <Shuffle className="w-3.5 h-3.5" /> Shuffle
+              </button>
+              <button
                 onClick={() => setMusicOn(music.toggle())}
                 title={musicOn ? "Mute music" : "Play music"}
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition ${
@@ -263,29 +320,32 @@ function QuizzesPage() {
               <span className="text-muted-foreground">🔥 {streak}</span>
             </div>
           </div>
+          <p className="text-center text-xs text-muted-foreground mb-6 animate-fade-up">
+            🔀 Questions are shuffled every session
+          </p>
 
-          {pool.length === 0 ? (
+          {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
             <div className="text-center py-20 glass rounded-2xl">
               <p className="text-muted-foreground">No questions match — try different filters.</p>
             </div>
           ) : done ? (
             <>
-              <Confetti count={pool.length > 0 && score === pool.length ? 160 : 70} />
-              {pool.length > 0 && score === pool.length && (
+              <Confetti count={shuffledPool && score === shuffledPool.length ? 160 : 70} />
+              {shuffledPool && score === shuffledPool.length && (
                 <Confetti count={120} />
               )}
               <div className="glass-strong rounded-3xl p-10 text-center animate-fade-up relative overflow-hidden">
                 <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,oklch(0.63_0.22_295_/_0.35),transparent_70%)]" />
                 <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4 animate-pulse" />
                 <h2 className="font-display text-3xl font-bold">
-                  {pool.length > 0 && score === pool.length ? "PERFECT SCORE! 🏆" : "Quiz complete!"}
+                  {shuffledPool && score === shuffledPool.length ? "PERFECT SCORE! 🏆" : "Quiz complete!"}
                 </h2>
                 <p className="mt-2 text-muted-foreground">You scored</p>
                 <p
                   key={`score-${done}`}
                   className="font-display text-7xl sm:text-8xl font-extrabold gradient-text my-4 animate-score-reveal drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.7)]"
                 >
-                  {animatedScore}<span className="text-muted-foreground/60">/{pool.length}</span>
+                  {animatedScore}<span className="text-muted-foreground/60">/{shuffledPool?.length ?? pool.length}</span>
                 </p>
                 {pool.length > 0 && score === pool.length && (
                   <p className="text-emerald-300 font-semibold mb-3 animate-pulse">Flawless victory! ⚡</p>
@@ -305,7 +365,7 @@ function QuizzesPage() {
               {/* Question progress bar */}
               <div className="flex justify-between items-center mb-3">
                 <span className="text-xs font-semibold text-muted-foreground">
-                  Question {idx + 1} of {pool.length} • {current.difficulty}
+                  Question {idx + 1} of {shuffledPool?.length ?? pool.length} • {current.difficulty}
                 </span>
                 {timerPref?.mode === "timer" && (
                   <span className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
@@ -318,7 +378,7 @@ function QuizzesPage() {
               <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-3">
                 <div
                   className="h-full bg-gradient-to-r from-primary to-accent transition-all"
-                  style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
+                  style={{ width: `${((idx + 1) / (shuffledPool?.length ?? pool.length)) * 100}%` }}
                 />
               </div>
               {/* Timer bar — green → yellow → red (only if timer mode) */}
