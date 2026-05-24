@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { subjects, forms, flashcards, getItemChapterKey, getSubjectChapters } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { Heart, ChevronLeft, ChevronRight, Shuffle, X, Check } from "lucide-react";
@@ -99,6 +99,14 @@ function FlashcardsPage() {
     setIdx(0); setFlipped(false); setStreak(0); setCompleted(false); setOrder([]); setSwipeOffset(0);
   }
 
+  // Auto-shuffle when entering a new chapter or after reset
+  useEffect(() => {
+    if (pool.length > 0 && order.length === 0 && !completed) {
+      const arr = pool.map((_, i) => i).sort(() => Math.random() - 0.5);
+      setOrder(arr);
+    }
+  }, [pool, order.length, completed]);
+
   const fav = current ? progress.favorites.includes(current.id) : false;
   const subj = current ? subjects.find((s) => s.id === current.subjectId) : null;
 
@@ -146,6 +154,9 @@ function FlashcardsPage() {
               <Shuffle className="w-4 h-4" /> Shuffle
             </button>
           </div>
+          <p className="text-center text-xs text-muted-foreground mb-4 animate-fade-up">
+            🔀 Cards are shuffled every session
+          </p>
 
           {pool.length === 0 || !current ? (
             <div className="text-center py-20 glass rounded-2xl">
