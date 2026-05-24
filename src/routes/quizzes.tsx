@@ -137,8 +137,32 @@ function QuizzesPage() {
   }
 
   function reset() {
-    setIdx(0); setSelected(null); setScore(0); setDone(false); setStreak(0); setFeedback(null); setTimeLeft(QUESTION_SECONDS);
+    setIdx(0); setSelected(null); setScore(0); setDone(false);
+    setStreak(0); setCombo(0); setComboShow(null);
+    setFeedback(null); setTimeLeft(QUESTION_SECONDS); setAnimatedScore(0);
   }
+
+  // Animated score count-up + perfect score celebration
+  useEffect(() => {
+    if (!done) return;
+    const total = pool.length;
+    const isPerfect = total > 0 && score === total;
+    if (isPerfect) sfx.perfect();
+    let n = 0;
+    const step = Math.max(1, Math.ceil(score / 28));
+    const i = setInterval(() => {
+      n = Math.min(score, n + step);
+      setAnimatedScore(n);
+      if (n >= score) clearInterval(i);
+    }, 45);
+    return () => clearInterval(i);
+  }, [done]);
+
+  const timerPct = (timeLeft / QUESTION_SECONDS) * 100;
+  const timerColor =
+    timeLeft <= 5 ? "bg-rose-500 shadow-[0_0_18px_oklch(0.62_0.24_27_/_0.7)]"
+    : timeLeft <= 10 ? "bg-nova-yellow"
+    : "bg-emerald-400";
 
   return (
     <section className="max-w-4xl mx-auto px-4 sm:px-8 py-16">
