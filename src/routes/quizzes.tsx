@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { subjects, forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
-import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX } from "lucide-react";
+import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX, ArrowLeft, Play, TimerOff } from "lucide-react";
 import {
   SubjectGrid,
   ChapterGrid,
@@ -28,7 +28,8 @@ export const Route = createFileRoute("/quizzes")({
 const diffs: ("All" | Difficulty)[] = ["All", "Easy", "Medium", "Hard"];
 const CORRECT_MSGS = ["Hebat! 🔥", "Betul! ⚡", "Awesome! 🌟", "Bagus! 💫", "Power! 🚀"];
 const WRONG_MSGS = ["Cuba lagi! 💪", "Jangan give up! 🎯", "Hampir! 🤔", "Keep going! 🌱"];
-const QUESTION_SECONDS = 20;
+type TimerMode = "timer" | "none";
+type TimerPref = { mode: TimerMode; seconds: number } | null;
 
 function QuizzesPage() {
   const { progress, addXp, recordQuiz, awardBadge, markChapter } = useProgress();
@@ -47,7 +48,9 @@ function QuizzesPage() {
   const [musicOn, setMusicOn] = useState(false);
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
-  const [timeLeft, setTimeLeft] = useState(QUESTION_SECONDS);
+  const [timerPref, setTimerPref] = useState<TimerPref>(null);
+  const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
+  const [timeLeft, setTimeLeft] = useState(0);
   const comboTimer = useRef<number | null>(null);
 
   const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
@@ -65,10 +68,11 @@ function QuizzesPage() {
 
   const current = pool[idx];
 
-  // Countdown timer per question
+  // Countdown timer per question (only when timer mode enabled)
   useEffect(() => {
     if (!current || selected !== null || done) return;
-    setTimeLeft(QUESTION_SECONDS);
+    if (timerPref?.mode !== "timer") return;
+    setTimeLeft(questionSeconds);
     const interval = setInterval(() => {
       setTimeLeft((t) => {
         if (t <= 1) {
@@ -84,7 +88,7 @@ function QuizzesPage() {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [idx, current, done]);
+  }, [idx, current, done, timerPref, questionSeconds]);
 
   // Stop music when leaving the page
   useEffect(() => () => { music.stop(); }, []);
@@ -139,7 +143,8 @@ function QuizzesPage() {
   function reset() {
     setIdx(0); setSelected(null); setScore(0); setDone(false);
     setStreak(0); setCombo(0); setComboShow(null);
-    setFeedback(null); setTimeLeft(QUESTION_SECONDS); setAnimatedScore(0);
+    setFeedback(null); setTimeLeft(questionSeconds); setAnimatedScore(0);
+    setTimerPref(null);
   }
 
   // Animated score count-up + perfect score celebration
@@ -158,7 +163,7 @@ function QuizzesPage() {
     return () => clearInterval(i);
   }, [done]);
 
-  const timerPct = (timeLeft / QUESTION_SECONDS) * 100;
+  const timerPct = questionSeconds > 0 ? (timeLeft / questionSeconds) * 100 : 0;
   const timerColor =
     timeLeft <= 5 ? "bg-rose-500 shadow-[0_0_18px_oklch(0.62_0.24_27_/_0.7)]"
     : timeLeft <= 10 ? "bg-nova-yellow"
@@ -193,6 +198,13 @@ function QuizzesPage() {
         />
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
+      ) : !timerPref ? (
+        <QuizSettingsScreen
+          subjectId={subject}
+          chapterKey={chapter}
+          onBack={() => { setChapter(null); reset(); }}
+          onStart={(pref) => setTimerPref(pref)}
+        />
       ) : (
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
@@ -295,11 +307,13 @@ function QuizzesPage() {
                 <span className="text-xs font-semibold text-muted-foreground">
                   Question {idx + 1} of {pool.length} • {current.difficulty}
                 </span>
-                <span className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
-                  timeLeft <= 5 ? "text-rose-400 animate-pulse" : timeLeft <= 10 ? "text-nova-yellow" : "text-emerald-300"
-                }`}>
-                  <Timer className="w-3.5 h-3.5" /> {timeLeft}s
-                </span>
+                {timerPref?.mode === "timer" && (
+                  <span className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
+                    timeLeft <= 5 ? "text-rose-400 animate-pulse" : timeLeft <= 10 ? "text-nova-yellow" : "text-emerald-300"
+                  }`}>
+                    <Timer className="w-3.5 h-3.5" /> {timeLeft}s
+                  </span>
+                )}
               </div>
               <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-3">
                 <div
@@ -307,13 +321,15 @@ function QuizzesPage() {
                   style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
                 />
               </div>
-              {/* Timer bar — green → yellow → red */}
-              <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
-                <div
-                  className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
-                  style={{ width: `${timerPct}%` }}
-                />
-              </div>
+              {/* Timer bar — green → yellow → red (only if timer mode) */}
+              {timerPref?.mode === "timer" && (
+                <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
+                  <div
+                    className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
+                    style={{ width: `${timerPct}%` }}
+                  />
+                </div>
+              )}
 
               <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">{current.question}</h2>
 
@@ -374,5 +390,124 @@ function QuizzesPage() {
         </>
       )}
     </section>
+  );
+}
+
+function QuizSettingsScreen({
+  subjectId,
+  chapterKey,
+  onBack,
+  onStart,
+}: {
+  subjectId: string;
+  chapterKey: string;
+  onBack: () => void;
+  onStart: (pref: { mode: TimerMode; seconds: number }) => void;
+}) {
+  const subj = subjects.find((s) => s.id === subjectId);
+  const chapter = getSubjectChapters(subjectId).find((c) => c.key === chapterKey);
+  const [mode, setMode] = useState<TimerMode | null>(null);
+  const [seconds, setSeconds] = useState<number>(30);
+
+  const ready = mode === "none" || (mode === "timer" && [15, 30, 60].includes(seconds));
+
+  return (
+    <div className="animate-fade-up">
+      <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to chapters
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {subj?.emoji} {subj?.name} • {chapter?.label ?? chapterKey}
+        </span>
+      </div>
+
+      <div className="glass-strong rounded-3xl p-8">
+        <div className="text-center mb-8">
+          <h2 className="font-display text-3xl font-bold">Quiz <span className="gradient-text">Settings</span></h2>
+          <p className="mt-2 text-sm text-muted-foreground">Pick how you want to play.</p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {/* With Timer */}
+          <button
+            onClick={() => setMode("timer")}
+            className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
+              mode === "timer"
+                ? "border-2 border-primary shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.55)] scale-[1.02]"
+                : "border border-white/10 hover:border-primary/40"
+            }`}
+          >
+            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-rose-500 to-nova-yellow opacity-20 blur-2xl" />
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-nova-yellow flex items-center justify-center text-3xl mb-3 shadow-lg animate-float-soft">
+              <span>⏱️</span>
+            </div>
+            <h3 className="font-display text-xl font-bold">With Timer</h3>
+            <p className="mt-1 text-sm font-semibold gradient-text">Race against the clock!</p>
+            <p className="mt-2 text-xs text-muted-foreground">Tick-tock — answer fast for the win.</p>
+
+            {mode === "timer" && (
+              <div className="mt-5 animate-fade-up">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
+                  Time per question
+                </p>
+                <div className="flex gap-2">
+                  {[15, 30, 60].map((s) => (
+                    <span
+                      key={s}
+                      role="button"
+                      tabIndex={0}
+                      onClick={(e) => { e.stopPropagation(); setSeconds(s); }}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); setSeconds(s); } }}
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer transition ${
+                        seconds === s
+                          ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                          : "bg-white/5 text-muted-foreground hover:bg-white/10"
+                      }`}
+                    >
+                      {s}s
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </button>
+
+          {/* No Timer */}
+          <button
+            onClick={() => setMode("none")}
+            className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
+              mode === "none"
+                ? "border-2 border-accent shadow-[0_0_30px_oklch(0.7_0.18_180_/_0.5)] scale-[1.02]"
+                : "border border-white/10 hover:border-accent/40"
+            }`}
+          >
+            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-emerald-400 to-sky-400 opacity-20 blur-2xl" />
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-400 flex items-center justify-center text-3xl mb-3 shadow-lg animate-float-soft">
+              <span>🧘</span>
+            </div>
+            <h3 className="font-display text-xl font-bold">No Timer</h3>
+            <p className="mt-1 text-sm font-semibold gradient-text">Answer at your own pace.</p>
+            <p className="mt-2 text-xs text-muted-foreground">No countdown, no pressure. Just learn.</p>
+          </button>
+        </div>
+
+        <button
+          disabled={!ready}
+          onClick={() => mode && onStart({ mode, seconds: mode === "timer" ? seconds : 0 })}
+          className={`mt-8 w-full py-3.5 rounded-full font-display font-bold text-lg inline-flex items-center justify-center gap-2 transition-all ${
+            ready
+              ? "bg-gradient-to-r from-primary to-accent text-white hover:scale-[1.02] shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.45)]"
+              : "bg-white/5 text-muted-foreground cursor-not-allowed"
+          }`}
+        >
+          {mode === "none" ? <TimerOff className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+          Start Quiz
+        </button>
+      </div>
+    </div>
   );
 }
