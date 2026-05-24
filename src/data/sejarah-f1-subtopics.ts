@@ -108,6 +108,56 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       keywords: ["perubahan iklim", "kelestarian", "alam sekitar", "evolusi", "pengajaran"],
     },
   ],
+  "Chapter 3": [
+    {
+      key: "c3-s1",
+      num: 1,
+      title: "Maksud Zaman Prasejarah",
+      summary:
+        "Zaman Prasejarah ialah zaman manusia belum mengenali tulisan. Ia dibahagikan kepada dua tahap utama:\n\n🪨 Zaman Batu — Penggunaan teknologi batu dalam kehidupan harian:\n- Paleolitik (Zaman Batu Lama)\n- Mesolitik (Zaman Batu Pertengahan)\n- Neolitik (Zaman Batu Baru)\n\n⚙️ Zaman Logam — Penggunaan teknologi gangsa dan besi.",
+      keywords: ["Zaman Prasejarah", "Zaman Batu", "Zaman Logam", "Paleolitik", "Mesolitik", "Neolitik", "tulisan"],
+    },
+    {
+      key: "c3-s2",
+      num: 2,
+      title: "Garis Masa Zaman Prasejarah",
+      summary:
+        "1️⃣ Zaman Paleolitik (2.5 juta SM – 8,000 SM): Manusia menggunakan peralatan batu yang ringkas dan kasar.\n\n2️⃣ Zaman Mesolitik (12,000 SM – 4,000 SM): Cara hidup semakin berkembang. Menggunakan alat batu yang lebih kecil (mikrolit). Mula tinggal di pinggir sungai dan laut.\n\n3️⃣ Zaman Neolitik (10,000 SM – 2,000 SM): Bermulanya kehidupan menetap. Aktiviti pertanian, penternakan, dan pembuatan tembikar.\n\n4️⃣ Zaman Logam (3,500 SM – 500 M): Manusia mula mencipta alatan daripada gangsa dan besi. Aktiviti pelayaran dan perdagangan mula berkembang.",
+      keywords: ["Paleolitik", "Mesolitik", "Neolitik", "Zaman Logam", "mikrolit", "pertanian", "pelayaran", "SM", "M"],
+    },
+    {
+      key: "c3-s3",
+      num: 3,
+      title: "Lokasi Zaman Prasejarah",
+      summary:
+        "🌍 Lokasi di Dunia:\n- Gua Chauvet (Perancis) — Lukisan gua yang membuktikan aktiviti memburu.\n- Altamira (Sepanyol) — Lukisan gua zaman Paleolitik.\n- Stonehenge (Britain) — Binaan batu besar (megalitik) berkaitan upacara ritual dan astronomi.\n- Catal Huyuk (Turki) — Petempatan Zaman Neolitik yang tersusun.\n- Zhoukoudian (China) — Penemuan rangka 'Peking Man'.\n\n🇲🇾 Lokasi di Malaysia:\n⛏️ Paleolitik:\n- Kota Tampan (Perak) — Bengkel membuat alat batu.\n- Gua Niah (Sarawak) — Penemuan manusia tertua di Asia Tenggara.\n\n⛏️ Mesolitik:\n- Gua Kecil (Pahang)\n- Kawasan di sepanjang Sungai Tembeling.\n\n⛏️ Neolitik:\n- Gua Cha (Kelantan) — Tapak pengebumian penting.\n- Bukit Tengkorak (Sabah) — Tapak pembuatan tembikar.\n\n⛏️ Zaman Logam:\n- Sungai Lang (Selangor) — Penemuan gendang gangsa.\n- Lembah Bernam (Selangor) — Penemuan alat besi bersoket.",
+      keywords: ["Gua Chauvet", "Altamira", "Stonehenge", "Catal Huyuk", "Zhoukoudian", "Kota Tampan", "Gua Niah", "Gua Kecil", "Gua Cha", "Bukit Tengkorak", "Sungai Lang", "Lembah Bernam", "megalitik"],
+    },
+    {
+      key: "c3-s4",
+      num: 4,
+      title: "Ciri-ciri Kehidupan Manusia Prasejarah",
+      summary:
+        "🏠 Tempat Tinggal:\n- Paleolitik & Mesolitik — Gua, lubang bawah tanah, tempat terbuka.\n- Neolitik — Menetap dalam rumah kayu/tanah di lembah sungai.\n- Zaman Logam — Menetap lebih lama, membina bandar dan kota.\n\n🪓 Peralatan:\n- Paleolitik & Mesolitik — Batu kasar dan ringkas.\n- Neolitik — Batu yang dicanai halus, tembikar.\n- Zaman Logam — Alatan daripada gangsa dan besi (kapak, sabit, mata lembing).\n\n💰 Ekonomi:\n- Paleolitik & Mesolitik — Memburu binatang, mengumpul hasil hutan.\n- Neolitik — Pertanian, penternakan, sistem barter.\n- Zaman Logam — Pertanian pesat, perdagangan antarabangsa melalui laut.\n\n👥 Organisasi Sosial:\n- Paleolitik & Mesolitik — Kumpulan kecil, nomad (berpindah-randah).\n- Neolitik — Hidup menetap, ada ketua, wujud pembahagian kerja.\n- Zaman Logam — Masyarakat kompleks, wujud ketua berwibawa dan undang-undang.\n\n🙏 Kepercayaan:\n- Paleolitik & Mesolitik — Animisme, menghormati si mati.\n- Neolitik — Ritual keagamaan lebih tersusun, percaya kehidupan selepas mati.\n- Zaman Logam — Membina tempat ibadat khusus, upacara pengebumian menggunakan kubur kepingan batu.\n\n🎨 Kesenian:\n- Paleolitik & Mesolitik — Lukisan gua (bersifat realisme).\n- Neolitik — Corak pada tembikar (geometrik).\n- Zaman Logam — Kesenian pada peralatan logam (gendang gangsa Dong Son).",
+      keywords: ["nomad", "animisme", "pertanian", "penternakan", "barter", "tembikar", "gendang gangsa", "Dong Son", "kubur kepingan batu", "kapak", "sabit"],
+    },
+    {
+      key: "c3-s5",
+      num: 5,
+      title: "Kesinambungan Sumbangan Zaman Prasejarah",
+      summary:
+        "Aktiviti manusia hari ini adalah evolusi daripada penemuan Zaman Prasejarah:\n\n🌾 Pertanian\n→ Bermula daripada menanam bijirin untuk sara diri kepada industri pertanian komersial masa kini.\n\n🐄 Penternakan\n→ Menjamin bekalan makanan yang berterusan.\n\n🔧 Peralatan\n→ Daripada batu kepada logam, membawa kepada penciptaan jentera moden.\n\n🏗️ Seni Bina\n→ Keupayaan membina tempat tinggal berkembang menjadi reka bentuk bangunan yang canggih.",
+      keywords: ["evolusi", "pertanian komersial", "jentera moden", "seni bina", "kesinambungan"],
+    },
+    {
+      key: "c3-s6",
+      num: 6,
+      title: "Penemuan Penting: Perak Man",
+      summary:
+        "📍 Lokasi: Gua Gunung Runtuh, Lenggong, Perak.\n\n🦴 Kepentingan:\n→ Merupakan rangka manusia Zaman Paleolitik yang paling lengkap ditemui di Malaysia.\n→ Membuktikan sistem kepercayaan awal melalui cara si mati dikebumikan bersama barangan tertentu.",
+      keywords: ["Perak Man", "Gua Gunung Runtuh", "Lenggong", "Paleolitik", "pengebumian"],
+    },
+  ],
 };
 
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
