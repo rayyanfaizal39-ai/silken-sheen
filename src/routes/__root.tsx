@@ -93,6 +93,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ParticleBg />
       <SoundFx />
+      <MusicPlayer />
       <Navbar />
       <main className="min-h-screen">
         <Outlet />
