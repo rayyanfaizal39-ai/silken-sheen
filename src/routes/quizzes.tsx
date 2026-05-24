@@ -144,6 +144,7 @@ function QuizzesPage() {
     setIdx(0); setSelected(null); setScore(0); setDone(false);
     setStreak(0); setCombo(0); setComboShow(null);
     setFeedback(null); setTimeLeft(questionSeconds); setAnimatedScore(0);
+    setTimerPref(null);
   }
 
   // Animated score count-up + perfect score celebration
