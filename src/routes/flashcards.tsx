@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, flashcards } from "@/data/content";
+import { subjects, forms, flashcards, sejarahChapterFromId, sejarahForm1Chapters } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { Heart, ChevronLeft, ChevronRight, Shuffle } from "lucide-react";
+import {
+  SejarahChapterGrid,
+  SejarahChapterHeader,
+  SejarahComingSoon,
+} from "@/components/SejarahChapterPicker";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
