@@ -80,27 +80,45 @@ function QuizzesPage() {
 
       <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between">
         <div className="flex flex-wrap gap-2 items-center">
-          <select value={subject} onChange={(e) => { setSubject(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+          <select value={subject} onChange={(e) => { setSubject(e.target.value); setDiff("All"); setForm("All"); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
             <option value="all">All subjects</option>
             {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
-          <select value={form} onChange={(e) => { setForm(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
-            <option>All</option>
-            {forms.map((f) => <option key={f}>{f}</option>)}
-          </select>
-          <div className="flex gap-1">
-            {diffs.map((d) => (
-              <button
-                key={d}
-                onClick={() => { setDiff(d); reset(); }}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                  diff === d ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
-                }`}
-              >
-                {d}
-              </button>
-            ))}
-          </div>
+          {subject !== "sejarah" && (
+            <select value={form} onChange={(e) => { setForm(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+              <option>All</option>
+              {forms.map((f) => <option key={f}>{f}</option>)}
+            </select>
+          )}
+          {subject === "sejarah" ? (
+            <div className="flex gap-1">
+              {(["All", "Form 1", "Form 2", "Form 3"] as const).map((f) => (
+                <button
+                  key={f}
+                  onClick={() => { setForm(f); reset(); }}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
+                    form === f ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="flex gap-1">
+              {diffs.map((d) => (
+                <button
+                  key={d}
+                  onClick={() => { setDiff(d); reset(); }}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
+                    diff === d ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-3 text-sm">
           <span className="text-muted-foreground">XP</span>
