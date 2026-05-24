@@ -5,10 +5,10 @@ import { Sparkles } from "lucide-react";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign In — LearnNova" },
+      { title: "Sign In — AcadeMY" },
       { name: "description", content: "Sign in or sign up to track your KSSM study progress." },
-      { property: "og:title", content: "Sign In — LearnNova" },
-      { property: "og:description", content: "Create a free LearnNova account to save your XP and streaks." },
+      { property: "og:title", content: "Sign In — AcadeMY" },
+      { property: "og:description", content: "Create a free AcadeMY account to save your XP and streaks." },
     ],
   }),
   component: LoginPage,
