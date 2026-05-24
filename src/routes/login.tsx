@@ -28,7 +28,7 @@ function LoginPage() {
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="font-display text-xl font-bold">Learn<span className="gradient-text">Nova</span></span>
+            <span className="font-display text-xl font-bold"><span className="text-white">Acade</span><span className="text-nova-yellow" style={{ textShadow: "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)" }}>MY</span></span>
           </div>
 
           <h1 className="font-display text-3xl font-bold mt-4">
