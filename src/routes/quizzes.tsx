@@ -80,7 +80,7 @@ function QuizzesPage() {
 
       <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between">
         <div className="flex flex-wrap gap-2 items-center">
-          <select value={subject} onChange={(e) => { setSubject(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+          <select value={subject} onChange={(e) => { setSubject(e.target.value); setDiff("All"); setForm("All"); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
             <option value="all">All subjects</option>
             {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
