@@ -7,56 +7,116 @@ export type MindNode = {
   children?: MindNode[];
 };
 
-type Pos = { x: number; y: number };
+type Pos = { x: number; y: number; w: number; h: number };
 type LayoutResult = {
   positions: Map<string, Pos>;
   height: number;
   edges: { from: string; to: string }[];
 };
 
-const NODE_W = 200;
-const NODE_H = 56;
-const H_GAP = 80; // horizontal gap between columns
+const H_GAP = 70; // horizontal gap between columns
 const V_GAP = 18; // vertical gap between siblings
+const PAD_X = 28; // horizontal padding inside a node
+const MIN_W = 120;
+const MAX_W = 320;
+const LINE_H = 18;
+const V_PAD = 18; // vertical padding inside a node (total)
 
-function collectVisibleLeaves(node: MindNode, expanded: Set<string>): number {
-  if (!node.children || node.children.length === 0 || !expanded.has(node.id)) return 1;
-  return node.children.reduce((sum, c) => sum + collectVisibleLeaves(c, expanded), 0);
+function fontForDepth(depth: number) {
+  const size = depth === 0 ? 15 : depth === 1 ? 13.5 : 12.5;
+  const weight = depth <= 1 ? 700 : 600;
+  return `${weight} ${size}px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`;
+}
+
+let _ctx: CanvasRenderingContext2D | null = null;
+function measureCtx(): CanvasRenderingContext2D | null {
+  if (typeof document === "undefined") return null;
+  if (_ctx) return _ctx;
+  const c = document.createElement("canvas");
+  _ctx = c.getContext("2d");
+  return _ctx;
+}
+
+function measureNode(label: string, depth: number): { w: number; h: number } {
+  const ctx = measureCtx();
+  const hasChildrenAffordance = 26; // space for the +/x circle
+  if (!ctx) {
+    // SSR fallback estimate
+    const approx = Math.min(MAX_W, Math.max(MIN_W, label.length * 7.5 + PAD_X * 2 + hasChildrenAffordance));
+    return { w: approx, h: 56 };
+  }
+  ctx.font = fontForDepth(depth);
+  const singleLine = ctx.measureText(label).width;
+  const desired = singleLine + PAD_X * 2 + hasChildrenAffordance;
+  if (desired <= MAX_W) {
+    return { w: Math.max(MIN_W, Math.ceil(desired)), h: Math.max(48, LINE_H + V_PAD * 2) };
+  }
+  // need to wrap: choose width = MAX_W, compute lines greedily
+  const maxTextW = MAX_W - PAD_X * 2 - hasChildrenAffordance;
+  const words = label.split(/\s+/);
+  let lines = 1;
+  let cur = "";
+  for (const w of words) {
+    const test = cur ? cur + " " + w : w;
+    if (ctx.measureText(test).width <= maxTextW) {
+      cur = test;
+    } else {
+      if (cur) {
+        lines++;
+        cur = w;
+      } else {
+        // single word longer than maxTextW: force break
+        cur = w;
+        lines++;
+      }
+    }
+  }
+  return { w: MAX_W, h: Math.max(48, lines * LINE_H + V_PAD * 2) };
+}
+
+function subtreeHeight(node: MindNode, expanded: Set<string>, sizes: Map<string, { w: number; h: number }>, depth: number): number {
+  const own = sizes.get(node.id)?.h ?? 48;
+  if (!node.children || node.children.length === 0 || !expanded.has(node.id)) return own;
+  const childrenTotal = node.children.reduce((sum, c, i) => sum + subtreeHeight(c, expanded, sizes, depth + 1) + (i > 0 ? V_GAP : 0), 0);
+  return Math.max(own, childrenTotal);
 }
 
 function layoutTree(
   node: MindNode,
   depth: number,
+  xStart: number,
   yStart: number,
   expanded: Set<string>,
+  sizes: Map<string, { w: number; h: number }>,
   out: LayoutResult,
 ): { centerY: number; height: number } {
-  const x = depth * (NODE_W + H_GAP);
-  const leaves = collectVisibleLeaves(node, expanded);
-  const fullHeight = leaves * NODE_H + (leaves - 1) * V_GAP;
+  const size = sizes.get(node.id) ?? { w: MIN_W, h: 48 };
+  const x = xStart;
 
   if (!node.children || node.children.length === 0 || !expanded.has(node.id)) {
-    const centerY = yStart + NODE_H / 2;
-    out.positions.set(node.id, { x, y: centerY });
-    return { centerY, height: NODE_H };
+    const centerY = yStart + size.h / 2;
+    out.positions.set(node.id, { x, y: centerY, w: size.w, h: size.h });
+    return { centerY, height: size.h };
   }
 
-  let cursor = yStart;
+  const childX = x + size.w + H_GAP;
+  // compute total children height
+  let total = 0;
+  const childHeights = node.children.map((c) => subtreeHeight(c, expanded, sizes, depth + 1));
+  total = childHeights.reduce((s, h, i) => s + h + (i > 0 ? V_GAP : 0), 0);
+  const ownH = size.h;
+  const blockH = Math.max(total, ownH);
+  let cursor = yStart + (blockH - total) / 2;
   const childCenters: number[] = [];
-  for (const child of node.children) {
-    const { centerY, height } = layoutTree(child, depth + 1, cursor, expanded, out);
+  node.children.forEach((child, i) => {
+    const { centerY } = layoutTree(child, depth + 1, childX, cursor, expanded, sizes, out);
     childCenters.push(centerY);
     out.edges.push({ from: node.id, to: child.id });
-    cursor += height + V_GAP;
-  }
+    cursor += childHeights[i] + V_GAP;
+  });
   const centerY = (childCenters[0] + childCenters[childCenters.length - 1]) / 2;
-  out.positions.set(node.id, { x, y: centerY });
-  return { centerY, height: Math.max(fullHeight, cursor - yStart - V_GAP) };
-}
-
-function collectAllIds(node: MindNode, out: Set<string>) {
-  out.add(node.id);
-  node.children?.forEach((c) => collectAllIds(c, out));
+  out.positions.set(node.id, { x, y: centerY, w: size.w, h: size.h });
+  return { centerY, height: blockH };
 }
 
 function collectExpandableIds(node: MindNode, out: Set<string>) {
@@ -66,6 +126,11 @@ function collectExpandableIds(node: MindNode, out: Set<string>) {
   }
 }
 
+function collectAllNodes(node: MindNode, depth: number, out: { node: MindNode; depth: number }[]) {
+  out.push({ node, depth });
+  node.children?.forEach((c) => collectAllNodes(c, depth + 1, out));
+}
+
 export function MindMap({ data, height = 620 }: { data: MindNode; height?: number }) {
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([data.id]));
   const [tx, setTx] = useState(40);
@@ -73,19 +138,26 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
   const [scale, setScale] = useState(0.9);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // pointer-based pan + pinch
   const pointers = useRef<Map<number, { x: number; y: number }>>(new Map());
   const pinchStart = useRef<{ dist: number; scale: number } | null>(null);
   const panStart = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null);
 
+  // Pre-measure every node once per data change
+  const sizes = useMemo(() => {
+    const s = new Map<string, { w: number; h: number }>();
+    const all: { node: MindNode; depth: number }[] = [];
+    collectAllNodes(data, 0, all);
+    for (const { node, depth } of all) s.set(node.id, measureNode(node.label, depth));
+    return s;
+  }, [data]);
+
   const layout = useMemo(() => {
     const out: LayoutResult = { positions: new Map(), height: 0, edges: [] };
-    const { height: h } = layoutTree(data, 0, 0, expanded, out);
+    const { height: h } = layoutTree(data, 0, 0, 0, expanded, sizes, out);
     out.height = h;
     return out;
-  }, [data, expanded]);
+  }, [data, expanded, sizes]);
 
-  // visible nodes (only those whose ancestors are all expanded)
   const visibleNodes = useMemo(() => {
     const result: { node: MindNode; depth: number }[] = [];
     function walk(n: MindNode, d: number) {
@@ -121,7 +193,6 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
     setTy(height / 2);
   }, [height]);
 
-  // Wheel zoom
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -203,17 +274,16 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
     };
   }
 
-  // SVG edge bounds
-  const minX = -50;
-  const maxX = (Math.max(...Array.from(layout.positions.values()).map((p) => p.x)) || 0) + NODE_W + 50;
-  const minY = Math.min(...Array.from(layout.positions.values()).map((p) => p.y)) - 50;
-  const maxY = Math.max(...Array.from(layout.positions.values()).map((p) => p.y)) + 50;
+  const allPos = Array.from(layout.positions.values());
+  const minX = (allPos.length ? Math.min(...allPos.map((p) => p.x)) : 0) - 50;
+  const maxX = (allPos.length ? Math.max(...allPos.map((p) => p.x + p.w)) : 0) + 50;
+  const minY = (allPos.length ? Math.min(...allPos.map((p) => p.y - p.h / 2)) : 0) - 50;
+  const maxY = (allPos.length ? Math.max(...allPos.map((p) => p.y + p.h / 2)) : 0) + 50;
   const svgW = maxX - minX;
   const svgH = maxY - minY;
 
   return (
     <div className="relative w-full glass-strong rounded-2xl border border-white/10 overflow-hidden" style={{ height }}>
-      {/* Controls */}
       <div className="absolute top-3 right-3 z-20 flex flex-wrap gap-2">
         <button onClick={expandAll} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition">
           <ChevronsUpDown className="w-3.5 h-3.5" /> Expand all
@@ -237,7 +307,6 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
         </button>
       </div>
 
-      {/* Stage */}
       <div
         ref={containerRef}
         className="absolute inset-0 cursor-grab active:cursor-grabbing select-none touch-none"
@@ -260,7 +329,6 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
             transition: "transform 0.05s linear",
           }}
         >
-          {/* edges */}
           <svg
             width={svgW}
             height={svgH}
@@ -270,7 +338,7 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
               const a = layout.positions.get(from);
               const b = layout.positions.get(to);
               if (!a || !b) return null;
-              const x1 = a.x + NODE_W - minX;
+              const x1 = a.x + a.w - minX;
               const y1 = a.y - minY;
               const x2 = b.x - minX;
               const y2 = b.y - minY;
@@ -300,7 +368,6 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
             </defs>
           </svg>
 
-          {/* nodes */}
           {visibleNodes.map(({ node, depth }) => {
             const p = layout.positions.get(node.id);
             if (!p) return null;
@@ -318,15 +385,15 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
                 className="absolute group"
                 style={{
                   left: p.x,
-                  top: p.y - NODE_H / 2,
-                  width: NODE_W,
-                  height: NODE_H,
+                  top: p.y - p.h / 2,
+                  width: p.w,
+                  minHeight: p.h,
                   background: s.bg,
                   color: s.text,
                   border: `1px solid ${s.border}`,
                   borderRadius: 14,
                   boxShadow: s.glow,
-                  padding: "0 14px",
+                  padding: `${V_PAD / 2}px ${PAD_X / 2 + 6}px`,
                   fontSize: depth === 0 ? 15 : depth === 1 ? 13.5 : 12.5,
                   fontWeight: depth <= 1 ? 700 : 600,
                   display: "flex",
@@ -335,9 +402,12 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
                   gap: 8,
                   cursor: hasChildren ? "pointer" : "default",
                   textAlign: "left",
-                  lineHeight: 1.15,
+                  lineHeight: `${LINE_H}px`,
                   transition: "transform 0.2s, box-shadow 0.2s, filter 0.2s",
                   animation: "mm-pop 0.35s ease-out both",
+                  whiteSpace: "normal",
+                  overflow: "visible",
+                  wordBreak: "break-word",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.filter = "brightness(1.15)";
@@ -348,7 +418,17 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
                   (e.currentTarget as HTMLElement).style.transform = "";
                 }}
               >
-                <span className="flex-1 truncate">{node.label}</span>
+                <span
+                  style={{
+                    flex: 1,
+                    whiteSpace: "normal",
+                    overflow: "visible",
+                    textOverflow: "clip",
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {node.label}
+                </span>
                 {hasChildren && (
                   <span
                     style={{
