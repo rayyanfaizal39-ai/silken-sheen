@@ -13,6 +13,7 @@ import { Navbar } from "@/components/Navbar";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
 import { MusicPlayer } from "@/components/MusicPlayer";
+import { AIAssistant } from "@/components/AIAssistant";
 
 function NotFoundComponent() {
   return (
@@ -98,6 +99,7 @@ function RootComponent() {
       <main className="min-h-screen">
         <Outlet />
       </main>
+      <AIAssistant />
     </QueryClientProvider>
   );
 }
