@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, quizzes, type Difficulty } from "@/data/content";
+import { subjects, forms, quizzes, sejarahChapterFromId, sejarahForm1Chapters, type Difficulty } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { CheckCircle2, XCircle, Sparkles, RotateCcw } from "lucide-react";
+import {
+  SejarahChapterGrid,
+  SejarahChapterHeader,
+  SejarahComingSoon,
+} from "@/components/SejarahChapterPicker";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
