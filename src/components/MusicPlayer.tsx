@@ -27,12 +27,6 @@ const TRACKS: Track[] = [
     emoji: "🎹",
     url: "https://archive.org/download/jamendo-418019/01-1684726-DHDMusic-Ambient%20Soft%20Piano.mp3",
   },
-  {
-    id: "calm",
-    name: "Calm & Catchy",
-    emoji: "🎶",
-    url: "https://cdn.pixabay.com/audio/2023/10/09/audio_a1761e06f2.mp3",
-  },
 ];
 
 const STORAGE_KEY = "academy-music-prefs";
