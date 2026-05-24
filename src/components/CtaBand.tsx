@@ -9,7 +9,7 @@ export function CtaBand() {
           Ready to <span className="gradient-text">shine brighter?</span>
         </h2>
         <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-          Join LearnNova and turn your study sessions into wins. Form 1, 2 or 3 — we've got you.
+          Join AcadeMY and turn your study sessions into wins. Form 1, 2 or 3 — we've got you.
         </p>
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
           <Link
@@ -34,7 +34,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/5 py-10 px-4 sm:px-8 mt-12">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} LearnNova. Made for Malaysian students.</p>
+        <p>© {new Date().getFullYear()} AcadeMY. Made for Malaysian students.</p>
         <p className="italic">"Study Smarter, Shine Brighter."</p>
       </div>
     </footer>

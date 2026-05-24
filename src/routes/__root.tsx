@@ -57,9 +57,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "LearnNova — Study Smarter, Shine Brighter" },
+      { title: "AcadeMY — Study Smarter, Shine Brighter" },
       { name: "description", content: "AI-powered KSSM study platform for Malaysian Form 1–3 students. Quizzes, flashcards, and smart notes." },
-      { property: "og:title", content: "LearnNova — Study Smarter, Shine Brighter" },
+      { property: "og:title", content: "AcadeMY — Study Smarter, Shine Brighter" },
       { property: "og:description", content: "AI-powered KSSM study platform for Malaysian Form 1–3 students." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
