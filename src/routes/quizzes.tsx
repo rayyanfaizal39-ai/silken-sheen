@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty } from "@/data/content";
+import { useEffect, useMemo, useState } from "react";
+import { subjects, forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
-import { CheckCircle2, XCircle, Sparkles, RotateCcw } from "lucide-react";
+import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer } from "lucide-react";
 import {
   SubjectGrid,
   ChapterGrid,
   ContentHeader,
   ComingSoonScreen,
 } from "@/components/ChapterPicker";
+import { DailyQuote } from "@/components/DailyQuote";
+import { Confetti } from "@/components/Confetti";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -23,9 +25,12 @@ export const Route = createFileRoute("/quizzes")({
 });
 
 const diffs: ("All" | Difficulty)[] = ["All", "Easy", "Medium", "Hard"];
+const CORRECT_MSGS = ["Hebat! 🔥", "Betul! ⚡", "Awesome! 🌟", "Bagus! 💫", "Power! 🚀"];
+const WRONG_MSGS = ["Cuba lagi! 💪", "Jangan give up! 🎯", "Hampir! 🤔", "Keep going! 🌱"];
+const QUESTION_SECONDS = 20;
 
 function QuizzesPage() {
-  const { progress, addXp, recordQuiz, awardBadge } = useProgress();
+  const { progress, addXp, recordQuiz, awardBadge, markChapter } = useProgress();
   const [subject, setSubject] = useState<string | null>(null);
   const [chapter, setChapter] = useState<string | null>(null);
   const [form, setForm] = useState<string>("All");
@@ -35,6 +40,8 @@ function QuizzesPage() {
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [streak, setStreak] = useState(0);
+  const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
+  const [timeLeft, setTimeLeft] = useState(QUESTION_SECONDS);
 
   const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
 
@@ -51,6 +58,26 @@ function QuizzesPage() {
 
   const current = pool[idx];
 
+  // Countdown timer per question
+  useEffect(() => {
+    if (!current || selected !== null || done) return;
+    setTimeLeft(QUESTION_SECONDS);
+    const interval = setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) {
+          clearInterval(interval);
+          // Auto-mark as wrong via -1 placeholder
+          setSelected(-1);
+          setStreak(0);
+          setFeedback({ kind: "wrong", msg: "Masa tamat! ⏰" });
+          return 0;
+        }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [idx, current, done]);
+
   function answer(i: number) {
     if (selected !== null || !current) return;
     setSelected(i);
@@ -60,8 +87,10 @@ function QuizzesPage() {
       setScore((s) => s + 1);
       setStreak((s) => s + 1);
       addXp(gain, current.subjectId);
+      setFeedback({ kind: "correct", msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)] });
     } else {
       setStreak(0);
+      setFeedback({ kind: "wrong", msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)] });
     }
   }
 
@@ -69,6 +98,7 @@ function QuizzesPage() {
     if (idx + 1 >= pool.length) {
       setDone(true);
       recordQuiz();
+      if (subject && chapter) markChapter(subject, chapter, "quiz");
       if (pool.length > 0 && score + (selected === current?.answerIndex ? 1 : 0) === pool.length && diff === "Hard") {
         awardBadge("master");
       }
@@ -76,18 +106,20 @@ function QuizzesPage() {
     }
     setIdx(idx + 1);
     setSelected(null);
+    setFeedback(null);
   }
 
   function reset() {
-    setIdx(0); setSelected(null); setScore(0); setDone(false); setStreak(0);
+    setIdx(0); setSelected(null); setScore(0); setDone(false); setStreak(0); setFeedback(null); setTimeLeft(QUESTION_SECONDS);
   }
 
   return (
     <section className="max-w-4xl mx-auto px-4 sm:px-8 py-16">
-      <div className="text-center mb-10">
+      <div className="text-center mb-6">
         <h1 className="font-display text-5xl font-bold">Take a <span className="gradient-text">Quiz</span></h1>
         <p className="mt-3 text-muted-foreground">Instant scoring. Earn XP. Beat your streak.</p>
       </div>
+      <div className="flex justify-center"><DailyQuote /></div>
 
       {!subject ? (
         <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setForm("All"); setDiff("All"); reset(); }} />
@@ -103,7 +135,7 @@ function QuizzesPage() {
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
 
-          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between">
+          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between animate-fade-up">
             <div className="flex flex-wrap gap-2 items-center">
               {subject === "sejarah" ? (
                 <div className="flex gap-1">
@@ -153,27 +185,46 @@ function QuizzesPage() {
               <p className="text-muted-foreground">No questions match — try different filters.</p>
             </div>
           ) : done ? (
-            <div className="glass-strong rounded-3xl p-10 text-center">
-              <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4" />
-              <h2 className="font-display text-3xl font-bold">Quiz complete!</h2>
-              <p className="mt-2 text-muted-foreground">You scored</p>
-              <p className="font-display text-6xl font-bold gradient-text my-3">{score}/{pool.length}</p>
-              <button onClick={reset} className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform">
-                <RotateCcw className="w-4 h-4" /> Try again
-              </button>
-            </div>
+            <>
+              <Confetti />
+              <div className="glass-strong rounded-3xl p-10 text-center animate-fade-up">
+                <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4 animate-pulse" />
+                <h2 className="font-display text-3xl font-bold">Quiz complete!</h2>
+                <p className="mt-2 text-muted-foreground">You scored</p>
+                <p className="font-display text-6xl font-bold gradient-text my-3">{score}/{pool.length}</p>
+                <button onClick={reset} className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform">
+                  <RotateCcw className="w-4 h-4" /> Try again
+                </button>
+              </div>
+            </>
           ) : current && (
-            <div className="glass-strong rounded-3xl p-8 animate-fade-up">
-              <div className="flex justify-between items-center mb-6">
+            <div
+              key={idx}
+              className={`glass-strong rounded-3xl p-8 animate-fade-up ${
+                feedback?.kind === "wrong" ? "animate-shake" : feedback?.kind === "correct" ? "animate-correct-pulse" : ""
+              }`}
+            >
+              {/* Question progress bar */}
+              <div className="flex justify-between items-center mb-3">
                 <span className="text-xs font-semibold text-muted-foreground">
-                  Q {idx + 1} of {pool.length} • {current.difficulty}
+                  Question {idx + 1} of {pool.length} • {current.difficulty}
                 </span>
-                <div className="h-2 w-32 rounded-full bg-white/10 overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-primary to-accent transition-all"
-                    style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
-                  />
-                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-nova-yellow">
+                  <Timer className="w-3.5 h-3.5" /> {timeLeft}s
+                </span>
+              </div>
+              <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-3">
+                <div
+                  className="h-full bg-gradient-to-r from-primary to-accent transition-all"
+                  style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
+                />
+              </div>
+              {/* Timer bar */}
+              <div className="h-1 w-full rounded-full bg-white/5 overflow-hidden mb-6">
+                <div
+                  className={`h-full origin-left ${timeLeft <= 5 ? "bg-rose-500" : "bg-nova-yellow"} transition-all duration-1000 ease-linear`}
+                  style={{ width: `${(timeLeft / QUESTION_SECONDS) * 100}%` }}
+                />
               </div>
 
               <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">{current.question}</h2>
@@ -206,8 +257,18 @@ function QuizzesPage() {
                 })}
               </div>
 
+              {feedback && (
+                <div
+                  className={`mt-5 text-center font-display text-2xl font-bold animate-fade-up ${
+                    feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
+                  }`}
+                >
+                  {feedback.msg}
+                </div>
+              )}
+
               {selected !== null && current.explanation && (
-                <p className="mt-5 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
+                <p className="mt-4 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
                   💡 {current.explanation}
                 </p>
               )}
