@@ -75,11 +75,11 @@ function FlashcardsPage() {
 
       <div className="glass-strong rounded-2xl p-4 mb-8 flex flex-wrap gap-2 items-center justify-between">
         <div className="flex flex-wrap gap-2">
-          <select value={subject} onChange={(e) => { setSubject(e.target.value); setIdx(0); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+          <select value={subject} onChange={(e) => { setSubject(e.target.value); setIdx(0); setSejChapter(null); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
             <option value="all">All subjects</option>
             {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
-          <select value={form} onChange={(e) => { setForm(e.target.value); setIdx(0); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+          <select value={form} onChange={(e) => { setForm(e.target.value); setIdx(0); setSejChapter(null); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
             <option>All</option>
             {forms.map((f) => <option key={f}>{f}</option>)}
           </select>
