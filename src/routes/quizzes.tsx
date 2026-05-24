@@ -198,6 +198,13 @@ function QuizzesPage() {
         />
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
+      ) : !timerPref ? (
+        <QuizSettingsScreen
+          subjectId={subject}
+          chapterKey={chapter}
+          onBack={() => { setChapter(null); reset(); }}
+          onStart={(pref) => setTimerPref(pref)}
+        />
       ) : (
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
