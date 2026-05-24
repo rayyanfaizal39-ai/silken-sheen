@@ -73,6 +73,17 @@ export const sfx = {
       setTimeout(() => tone(f, 0.18, "triangle", 0.06), i * 90),
     );
   },
+  combo(n: number) {
+    const base = 440 + Math.min(n, 8) * 80;
+    tone(base, 0.1, "square", 0.04);
+    setTimeout(() => tone(base * 1.5, 0.12, "triangle", 0.05), 70);
+  },
+  perfect() {
+    const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+    notes.forEach((f, i) =>
+      setTimeout(() => tone(f, 0.22, "triangle", 0.07), i * 80),
+    );
+  },
   setMuted(v: boolean) {
     muted = v;
   },
