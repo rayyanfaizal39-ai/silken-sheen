@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, notes, getItemChapterKey, getSubjectChapters } from "@/data/content";
-import { Search, BookOpenCheck } from "lucide-react";
+import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
 import { z } from "zod";
 import {
   SubjectGrid,
@@ -13,6 +13,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { MindMap } from "@/components/MindMap";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
+import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
@@ -36,10 +37,14 @@ function NotesPage() {
   const initialSubject = search.subject && subjects.some((s) => s.id === search.subject) ? search.subject : null;
   const [subject, setSubject] = useState<string | null>(initialSubject ?? null);
   const [chapter, setChapter] = useState<string | null>(null);
+  const [subtopic, setSubtopic] = useState<Subtopic | null>(null);
   const [form, setForm] = useState<string>("All");
   const [q, setQ] = useState("");
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter } = useProgress();
+
+  const hasSubtopics = subject === "sejarah" && !!chapter;
+  const subtopics = hasSubtopics ? getSejarahF1Subtopics(chapter!) : [];
 
   const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
   const isRead =
@@ -92,15 +97,32 @@ function NotesPage() {
       <div className="flex justify-center"><DailyQuote /></div>
 
       {!subject ? (
-        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); }} />
+        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
       ) : !chapter ? (
         <ChapterGrid
           subjectId={subject}
-          onSelect={(key) => setChapter(key)}
-          onBack={() => { setSubject(null); setChapter(null); }}
+          onSelect={(key) => { setChapter(key); setSubtopic(null); }}
+          onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
         />
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+      ) : hasSubtopics && !subtopic ? (
+        <SubtopicView
+          subjectId={subject}
+          chapterKey={chapter}
+          subtopics={subtopics}
+          onSelect={(s) => setSubtopic(s)}
+          onBack={() => setChapter(null)}
+        />
+      ) : hasSubtopics && subtopic ? (
+        <SubtopicDetail
+          subjectId={subject}
+          chapterKey={chapter}
+          subtopic={subtopic}
+          isRead={isRead}
+          onMarkRead={() => markChapter(subject, chapter, "read")}
+          onBack={() => setSubtopic(null)}
+        />
       ) : (
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
@@ -202,6 +224,156 @@ function NotesPage() {
         </>
       )}
     </section>
+  );
+}
+
+function SubtopicView({
+  subjectId,
+  chapterKey,
+  subtopics,
+  onSelect,
+  onBack,
+}: {
+  subjectId: string;
+  chapterKey: string;
+  subtopics: Subtopic[];
+  onSelect: (s: Subtopic) => void;
+  onBack: () => void;
+}) {
+  const subj = subjects.find((s) => s.id === subjectId);
+  const chapterLabel = getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
+  return (
+    <div className="animate-fade-up">
+      <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to chapters
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {subj?.emoji} {subj?.name} • {chapterLabel}
+        </span>
+      </div>
+
+      <div className="text-center mb-6">
+        <h2 className="font-display text-3xl font-bold">
+          Pilih <span className="gradient-text">Subtopik</span>
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Setiap subtopik dipecahkan untuk pembelajaran yang lebih fokus.
+        </p>
+      </div>
+
+      {chapterKey === "Chapter 2" && (
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <h3 className="font-display text-2xl font-bold">
+              Mind Map <span className="gradient-text">Zaman Air Batu</span>
+            </h3>
+            <span className="text-xs text-muted-foreground">
+              Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+            </span>
+          </div>
+          <MindMap data={zamanAirBatuMindMap} height={640} />
+        </div>
+      )}
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {subtopics.map((s, i) => (
+          <button
+            key={s.key}
+            onClick={() => onSelect(s)}
+            className="group relative text-left glass rounded-2xl p-6 card-glow-hover border border-transparent hover:border-primary/50 animate-slide-up overflow-hidden"
+            style={{ animationDelay: `${i * 60}ms` }}
+          >
+            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-2xl group-hover:opacity-40 transition-opacity" aria-hidden />
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-display text-lg font-bold mb-3 shadow-lg">
+              {s.num}
+            </div>
+            <h3 className="font-display text-lg font-bold leading-snug">{s.title}</h3>
+            <p className="mt-2 text-xs text-muted-foreground inline-flex items-center gap-1">
+              <BookMarked className="w-3 h-3" /> Subtopik {s.num}
+            </p>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SubtopicDetail({
+  subjectId,
+  chapterKey,
+  subtopic,
+  isRead,
+  onMarkRead,
+  onBack,
+}: {
+  subjectId: string;
+  chapterKey: string;
+  subtopic: Subtopic;
+  isRead: boolean;
+  onMarkRead: () => void;
+  onBack: () => void;
+}) {
+  const subj = subjects.find((s) => s.id === subjectId);
+  const chapterLabel = getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
+  return (
+    <div className="animate-fade-up">
+      <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to subtopics
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {subj?.emoji} {subj?.name} • {chapterLabel}
+        </span>
+      </div>
+
+      <article className="glass-strong rounded-3xl p-8 animate-slide-up">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-display text-lg font-bold shadow-lg">
+            {subtopic.num}
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              Subtopik {subtopic.num}
+            </p>
+            <h2 className="font-display text-3xl font-bold leading-tight">{subtopic.title}</h2>
+          </div>
+        </div>
+
+        <p className="mt-4 text-base text-foreground/90 leading-relaxed whitespace-pre-line">
+          {highlight(subtopic.summary, subtopic.keywords)}
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {subtopic.keywords.map((k) => (
+            <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
+              #{k}
+            </span>
+          ))}
+        </div>
+      </article>
+
+      <div className="mt-10 flex justify-center">
+        <button
+          onClick={onMarkRead}
+          disabled={isRead}
+          className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
+            isRead
+              ? "bg-emerald-500/20 text-emerald-200 cursor-default"
+              : "bg-gradient-to-r from-primary to-accent text-white hover:scale-105"
+          }`}
+        >
+          <BookOpenCheck className="w-4 h-4" />
+          {isRead ? "Marked as read ✓" : "Mark chapter as Read"}
+        </button>
+      </div>
+    </div>
   );
 }
 
