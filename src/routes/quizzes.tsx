@@ -48,7 +48,9 @@ function QuizzesPage() {
   const [musicOn, setMusicOn] = useState(false);
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
-  const [timeLeft, setTimeLeft] = useState(QUESTION_SECONDS);
+  const [timerPref, setTimerPref] = useState<TimerPref>(null);
+  const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
+  const [timeLeft, setTimeLeft] = useState(0);
   const comboTimer = useRef<number | null>(null);
 
   const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
