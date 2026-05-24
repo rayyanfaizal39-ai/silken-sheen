@@ -84,6 +84,28 @@ export const sfx = {
       setTimeout(() => tone(f, 0.22, "triangle", 0.07), i * 80),
     );
   },
+  whoosh() {
+    tone(720, 0.22, "sine", 0.045, 180);
+  },
+  ding() {
+    tone(880, 0.1, "triangle", 0.06);
+    setTimeout(() => tone(1318.5, 0.18, "triangle", 0.055), 70);
+  },
+  whomp() {
+    tone(220, 0.22, "sine", 0.05, 90);
+  },
+  fanfare() {
+    const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98];
+    notes.forEach((f, i) =>
+      setTimeout(() => tone(f, 0.26, "triangle", 0.07), i * 95),
+    );
+  },
+  streak(n: number) {
+    const base = 520 + Math.min(n, 12) * 60;
+    tone(base, 0.12, "triangle", 0.05);
+    setTimeout(() => tone(base * 1.5, 0.16, "triangle", 0.055), 90);
+    if (n >= 10) setTimeout(() => tone(base * 2, 0.18, "triangle", 0.06), 180);
+  },
   setMuted(v: boolean) {
     muted = v;
   },
