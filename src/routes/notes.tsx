@@ -98,38 +98,49 @@ function NotesPage() {
         </div>
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="text-center text-muted-foreground py-20">No notes match your filters.</p>
+      {sejarahF1Mode && sejChapter === null ? (
+        <SejarahChapterGrid onSelect={(n) => setSejChapter(n)} />
+      ) : sejarahF1Mode && selectedChapterMeta && !selectedChapterMeta.available ? (
+        <SejarahComingSoon chapterNum={sejChapter!} onBack={() => setSejChapter(null)} />
       ) : (
-        <div className="grid md:grid-cols-2 gap-5">
-          {filtered.map((n) => {
-            const subj = subjects.find((s) => s.id === n.subjectId)!;
-            return (
-              <article
-                key={n.id}
-                className="glass rounded-2xl p-6 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                    <span>{subj.emoji}</span>
-                    {subj.name} • {n.form} • {n.chapter}
-                  </span>
-                </div>
-                <h3 className="font-display text-2xl font-bold">{n.title}</h3>
-                <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
-                  {highlight(n.summary, n.keywords)}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {n.keywords.map((k) => (
-                    <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
-                      #{k}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+        <>
+          {sejarahF1Mode && sejChapter !== null && (
+            <SejarahChapterHeader chapterNum={sejChapter} onBack={() => setSejChapter(null)} />
+          )}
+          {filtered.length === 0 ? (
+            <p className="text-center text-muted-foreground py-20">No notes match your filters.</p>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-5">
+              {filtered.map((n) => {
+                const subj = subjects.find((s) => s.id === n.subjectId)!;
+                return (
+                  <article
+                    key={n.id}
+                    className="glass rounded-2xl p-6 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+                        <span>{subj.emoji}</span>
+                        {subj.name} • {n.form} • {n.chapter}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-2xl font-bold">{n.title}</h3>
+                    <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
+                      {highlight(n.summary, n.keywords)}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {n.keywords.map((k) => (
+                        <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
+                          #{k}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
     </section>
   );
