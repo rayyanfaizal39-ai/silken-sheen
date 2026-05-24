@@ -158,6 +158,32 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       keywords: ["Perak Man", "Gua Gunung Runtuh", "Lenggong", "Paleolitik", "pengebumian"],
     },
   ],
+  "Chapter 4": [
+    {
+      key: "c4-s1",
+      num: 1,
+      title: "Pengertian Tamadun",
+      summary:
+        "Tamadun bukan sekadar pembangunan bangunan tinggi tetapi merangkumi kemajuan menyeluruh dalam masyarakat.\n\n🌍 Mengikut Bahasa:\n- Bahasa Yunani (Civitas) — Merujuk kepada bandar atau kota. Masyarakat bertamadun telah mencapai kemajuan dalam sistem politik, ekonomi, dan sosial.\n- Bahasa Inggeris (Civilization) — Tahap kebudayaan yang kompleks diukur melalui pencapaian sains, teknologi, seni, dan undang-undang.\n- Bahasa Arab — Menggunakan istilah: Mudun, Madain, Madana (tinggi budi bahasa dan pembukaan bandar); Hadharah (kawasan, daerah, atau kota); Madaniyyah (taraf kehidupan yang maju).\n- Bahasa Melayu — Dikenali sebagai Peradaban, iaitu kemajuan lahiriah dan rohani masyarakat.",
+      keywords: ["Tamadun", "Civitas", "Civilization", "Peradaban", "Mudun", "Hadharah", "Madaniyyah"],
+    },
+    {
+      key: "c4-s2",
+      num: 2,
+      title: "Perbezaan Konsep Tamadun",
+      summary:
+        "☪️ Sudut Pandang Islam:\n- Tamadun adalah pembangunan SEIMBANG antara kebendaan (lahiriah) dan kerohanian (insaniah).\n- Tokoh: Syed Naquib al-Attas → Tamadun ialah keadaan kehidupan insan yang mencapai taraf kehalusan budi pekerti dan kebudayaan yang luhur bagi seluruh masyarakat.\n- Berteraskan nilai murni, akidah, dan syariat Islam.\n\n🌐 Sudut Pandang Barat:\n- Lebih menitikberatkan pembangunan LAHIRIAH (aspek fizikal sahaja).\n- Tokoh: Arnold J. Toynbee → Tamadun sebagai satu sistem masyarakat yang membantu manusia mempertingkatkan hasil kesenian, penulisan, undang-undang, dan sains.",
+      keywords: ["Syed Naquib al-Attas", "Arnold J. Toynbee", "Tamadun Islam", "Tamadun Barat", "lahiriah", "insaniah"],
+    },
+    {
+      key: "c4-s3",
+      num: 3,
+      title: "Sembilan Ciri Utama Tamadun Awal",
+      summary:
+        "1️⃣ Pertanian dan Perdagangan — Manusia mencipta sistem pengairan dan kincir air. Lebihan hasil pertanian membawa kepada perdagangan (barter → mata wang).\n\n2️⃣ Sistem Pemerintahan — Sistem beraja diwujudkan untuk menguruskan populasi yang besar. Undang-undang digubal untuk menjaga keamanan. Contoh: Kod Hammurabi.\n\n3️⃣ Pembentukan Bandar — Bandar berfungsi sebagai pusat pentadbiran, ekonomi (pasar), dan pusat ibadat. Dibina secara terancang dengan sistem saliran dan perparitan.\n\n4️⃣ Pengkhususan Pekerjaan — Wujud golongan pakar seperti artisan (pembuat tembikar dan alat logam), askar, dan pegawai kerajaan.\n\n5️⃣ Teknologi — Penemuan gangsa dan besi untuk alat pertanian yang lebih kuat. Penciptaan RODA membantu pengangkutan (kereta kuda) dan pembuatan tembikar.\n\n6️⃣ Organisasi Sosial — Susun lapis masyarakat berbentuk piramid: Atas (Raja dan Bangsawan), Tengah (Pendeta, pedagang, dan artisan), Bawah (Petani dan hamba).\n\n7️⃣ Agama dan Kepercayaan — Manusia awal mengamalkan politeisme (menyembah banyak tuhan). Membina monumen keagamaan besar seperti Ziggurat (Mesopotamia) dan Piramid (Mesir).\n\n8️⃣ Tulisan dan Penyimpanan Rekod — Penting untuk merekod cukai, perdagangan, dan undang-undang. Contoh tulisan: Kuneiform (Mesopotamia), Hieroglif (Mesir), Ideogram (China).\n\n9️⃣ Kesenian dan Kesusasteraan — Seniman menghasilkan patung tuhan atau raja daripada batu dan logam. Karya sastera menceritakan kehebatan wira dan sejarah raja-raja mereka.",
+      keywords: ["Pertanian", "Kod Hammurabi", "Bandar", "Artisan", "Roda", "Organisasi Sosial", "Politeisme", "Ziggurat", "Piramid", "Kuneiform", "Hieroglif", "Ideogram", "Kesenian"],
+    },
+  ],
 };
 
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
