@@ -105,6 +105,21 @@ function NotesPage() {
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
 
+          {subject === "sejarah" && chapter === "Chapter 2" && (
+            <div className="mb-8 animate-fade-up">
+              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h2 className="font-display text-2xl font-bold">
+                  Mind Map <span className="gradient-text">Zaman Air Batu</span>
+                </h2>
+                <span className="text-xs text-muted-foreground">
+                  Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                </span>
+              </div>
+              <MindMap data={zamanAirBatuMindMap} height={640} />
+            </div>
+          )}
+
+
           <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3 animate-fade-up">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
