@@ -37,10 +37,14 @@ function NotesPage() {
   const initialSubject = search.subject && subjects.some((s) => s.id === search.subject) ? search.subject : null;
   const [subject, setSubject] = useState<string | null>(initialSubject ?? null);
   const [chapter, setChapter] = useState<string | null>(null);
+  const [subtopic, setSubtopic] = useState<Subtopic | null>(null);
   const [form, setForm] = useState<string>("All");
   const [q, setQ] = useState("");
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter } = useProgress();
+
+  const hasSubtopics = subject === "sejarah" && !!chapter;
+  const subtopics = hasSubtopics ? getSejarahF1Subtopics(chapter!) : [];
 
   const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
   const isRead =
