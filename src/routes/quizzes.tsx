@@ -307,11 +307,13 @@ function QuizzesPage() {
                 <span className="text-xs font-semibold text-muted-foreground">
                   Question {idx + 1} of {pool.length} • {current.difficulty}
                 </span>
-                <span className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
-                  timeLeft <= 5 ? "text-rose-400 animate-pulse" : timeLeft <= 10 ? "text-nova-yellow" : "text-emerald-300"
-                }`}>
-                  <Timer className="w-3.5 h-3.5" /> {timeLeft}s
-                </span>
+                {timerPref?.mode === "timer" && (
+                  <span className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
+                    timeLeft <= 5 ? "text-rose-400 animate-pulse" : timeLeft <= 10 ? "text-nova-yellow" : "text-emerald-300"
+                  }`}>
+                    <Timer className="w-3.5 h-3.5" /> {timeLeft}s
+                  </span>
+                )}
               </div>
               <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-3">
                 <div
@@ -319,13 +321,15 @@ function QuizzesPage() {
                   style={{ width: `${((idx + 1) / pool.length) * 100}%` }}
                 />
               </div>
-              {/* Timer bar — green → yellow → red */}
-              <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
-                <div
-                  className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
-                  style={{ width: `${timerPct}%` }}
-                />
-              </div>
+              {/* Timer bar — green → yellow → red (only if timer mode) */}
+              {timerPref?.mode === "timer" && (
+                <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
+                  <div
+                    className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
+                    style={{ width: `${timerPct}%` }}
+                  />
+                </div>
+              )}
 
               <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">{current.question}</h2>
 
