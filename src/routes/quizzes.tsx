@@ -84,10 +84,12 @@ function QuizzesPage() {
             <option value="all">All subjects</option>
             {subjects.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
-          <select value={form} onChange={(e) => { setForm(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
-            <option>All</option>
-            {forms.map((f) => <option key={f}>{f}</option>)}
-          </select>
+          {subject !== "sejarah" && (
+            <select value={form} onChange={(e) => { setForm(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+              <option>All</option>
+              {forms.map((f) => <option key={f}>{f}</option>)}
+            </select>
+          )}
           {subject === "sejarah" ? (
             <div className="flex gap-1">
               {(["All", "Form 1", "Form 2", "Form 3"] as const).map((f) => (
