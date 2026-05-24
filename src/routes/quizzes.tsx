@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { subjects, forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
-import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX } from "lucide-react";
+import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX, ArrowLeft, Play, TimerOff } from "lucide-react";
 import {
   SubjectGrid,
   ChapterGrid,
