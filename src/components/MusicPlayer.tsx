@@ -309,7 +309,7 @@ export function MusicPlayer() {
               }}
             />
           )}
-          <Music className="w-5 h-5 relative" />
+          <Music className="h-7 w-7 relative" />
         </button>
       </div>
 
