@@ -11,6 +11,8 @@ import {
 } from "@/components/ChapterPicker";
 import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
+import { MindMap } from "@/components/MindMap";
+import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
