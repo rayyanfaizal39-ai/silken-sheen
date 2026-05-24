@@ -2,6 +2,8 @@ import { useEffect, useState, useCallback } from "react";
 
 const KEY = "learnnova-progress-v1";
 
+export type ChapterActivity = { read?: boolean; quiz?: boolean; cards?: boolean };
+
 export interface Progress {
   xp: number;
   streak: number;
@@ -10,6 +12,7 @@ export interface Progress {
   badges: string[];
   favorites: string[]; // flashcard ids
   subjectXp: Record<string, number>;
+  chapterActivity: Record<string, ChapterActivity>; // key: `${subjectId}:${chapterKey}`
 }
 
 const initial: Progress = {
@@ -20,6 +23,7 @@ const initial: Progress = {
   badges: [],
   favorites: [],
   subjectXp: {},
+  chapterActivity: {},
 };
 
 function today() {
@@ -35,6 +39,16 @@ function load(): Progress {
   } catch {
     return initial;
   }
+}
+
+export function chapterActivityKey(subjectId: string, chapterKey: string) {
+  return `${subjectId}:${chapterKey}`;
+}
+
+export function chapterProgressPct(activity?: ChapterActivity) {
+  if (!activity) return 0;
+  const done = (activity.read ? 1 : 0) + (activity.quiz ? 1 : 0) + (activity.cards ? 1 : 0);
+  return Math.round((done / 3) * 100);
 }
 
 export function useProgress() {
@@ -105,5 +119,22 @@ export function useProgress() {
     });
   }, []);
 
-  return { progress, addXp, recordQuiz, awardBadge, toggleFavorite, save };
+  const markChapter = useCallback(
+    (subjectId: string, chapterKey: string, kind: keyof ChapterActivity) => {
+      setProgress((prev) => {
+        const k = chapterActivityKey(subjectId, chapterKey);
+        const prior = prev.chapterActivity[k] ?? {};
+        if (prior[kind]) return prev;
+        const next: Progress = {
+          ...prev,
+          chapterActivity: { ...prev.chapterActivity, [k]: { ...prior, [kind]: true } },
+        };
+        try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+        return next;
+      });
+    },
+    []
+  );
+
+  return { progress, addXp, recordQuiz, awardBadge, toggleFavorite, save, markChapter };
 }

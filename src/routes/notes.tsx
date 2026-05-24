@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, notes, getItemChapterKey, getSubjectChapters } from "@/data/content";
-import { Search } from "lucide-react";
+import { Search, BookOpenCheck } from "lucide-react";
 import { z } from "zod";
 import {
   SubjectGrid,
@@ -9,6 +9,8 @@ import {
   ContentHeader,
   ComingSoonScreen,
 } from "@/components/ChapterPicker";
+import { DailyQuote } from "@/components/DailyQuote";
+import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
@@ -34,8 +36,26 @@ function NotesPage() {
   const [chapter, setChapter] = useState<string | null>(null);
   const [form, setForm] = useState<string>("All");
   const [q, setQ] = useState("");
+  const [scrollPct, setScrollPct] = useState(0);
+  const { progress, markChapter } = useProgress();
 
   const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
+  const isRead =
+    subject && chapter
+      ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read
+      : false;
+
+  // Reading progress bar
+  useEffect(() => {
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setScrollPct(max > 0 ? Math.min(100, (h.scrollTop / max) * 100) : 0);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const filtered = useMemo(() => {
     if (!subject || !chapter) return [];
@@ -53,10 +73,21 @@ function NotesPage() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
-      <div className="text-center mb-10">
+      {/* Reading progress bar */}
+      {subject && chapter && (
+        <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">
+          <div
+            className="h-full bg-gradient-to-r from-primary via-accent to-nova-yellow transition-all"
+            style={{ width: `${scrollPct}%` }}
+          />
+        </div>
+      )}
+
+      <div className="text-center mb-6">
         <h1 className="font-display text-5xl font-bold">Summary <span className="gradient-text">Notes</span></h1>
         <p className="mt-3 text-muted-foreground">Quick, focused notes that get you ready in minutes.</p>
       </div>
+      <div className="flex justify-center"><DailyQuote /></div>
 
       {!subject ? (
         <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); }} />
@@ -72,7 +103,7 @@ function NotesPage() {
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
 
-          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3">
+          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3 animate-fade-up">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
@@ -102,35 +133,54 @@ function NotesPage() {
           {filtered.length === 0 ? (
             <p className="text-center text-muted-foreground py-20">No notes match your filters.</p>
           ) : (
-            <div className="grid md:grid-cols-2 gap-5">
-              {filtered.map((n) => {
-                const subj = subjects.find((s) => s.id === n.subjectId)!;
-                return (
-                  <article
-                    key={n.id}
-                    className="glass rounded-2xl p-6 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                        <span>{subj.emoji}</span>
-                        {subj.name} • {n.form} • {n.chapter}
-                      </span>
-                    </div>
-                    <h3 className="font-display text-2xl font-bold">{n.title}</h3>
-                    <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
-                      {highlight(n.summary, n.keywords)}
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {n.keywords.map((k) => (
-                        <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
-                          #{k}
+            <>
+              <div className="grid md:grid-cols-2 gap-5">
+                {filtered.map((n, i) => {
+                  const subj = subjects.find((s) => s.id === n.subjectId)!;
+                  return (
+                    <article
+                      key={n.id}
+                      className="glass rounded-2xl p-6 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all animate-slide-up"
+                      style={{ animationDelay: `${i * 70}ms` }}
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+                          <span>{subj.emoji}</span>
+                          {subj.name} • {n.form} • {n.chapter}
                         </span>
-                      ))}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+                      </div>
+                      <h3 className="font-display text-2xl font-bold">{n.title}</h3>
+                      <p className="mt-3 text-sm text-foreground/85 leading-relaxed">
+                        {highlight(n.summary, n.keywords)}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {n.keywords.map((k) => (
+                          <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
+                            #{k}
+                          </span>
+                        ))}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              {/* Mark as Read */}
+              <div className="mt-10 flex justify-center animate-fade-up">
+                <button
+                  onClick={() => subject && chapter && markChapter(subject, chapter, "read")}
+                  disabled={isRead}
+                  className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
+                    isRead
+                      ? "bg-emerald-500/20 text-emerald-200 cursor-default"
+                      : "bg-gradient-to-r from-primary to-accent text-white hover:scale-105"
+                  }`}
+                >
+                  <BookOpenCheck className="w-4 h-4" />
+                  {isRead ? "Marked as read ✓" : "Mark as Read"}
+                </button>
+              </div>
+            </>
           )}
         </>
       )}
@@ -148,7 +198,14 @@ function highlight(text: string, keywords: string[]) {
       pieces.forEach((pc, j) => {
         if (pc.toLowerCase() === kw.toLowerCase()) {
           next.push(
-            <mark key={`${idx}-${i}-${j}`} className="bg-nova-yellow/20 text-nova-yellow rounded px-1 mx-0.5">
+            <mark
+              key={`${idx}-${i}-${j}`}
+              className="rounded px-1 mx-0.5 font-semibold text-white"
+              style={{
+                background: "linear-gradient(90deg, oklch(0.62 0.21 265 / 0.55), oklch(0.63 0.22 295 / 0.55))",
+                boxShadow: "0 0 12px -2px oklch(0.63 0.22 295 / 0.6)",
+              }}
+            >
               {pc}
             </mark>
           );
