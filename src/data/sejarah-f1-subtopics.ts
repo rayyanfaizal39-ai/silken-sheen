@@ -107,6 +107,7 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
         "Zaman Air Batu memberi pengajaran penting tentang hubungan manusia dengan alam sekitar. Perubahan iklim yang ekstrem boleh mengubah muka bumi, menyebabkan kepupusan spesies, dan memaksa manusia berhijrah serta menyesuaikan diri. Pembentukan Pentas Sunda dan kepulauan Asia Tenggara menunjukkan bagaimana geografi rantau kita terbentuk. Memahami zaman ini mendorong kita menjaga alam sekitar pada hari ini bagi mengelakkan perubahan iklim yang ekstrem dan memastikan kelestarian bumi untuk generasi akan datang.",
       keywords: ["perubahan iklim", "kelestarian", "alam sekitar", "evolusi", "pengajaran"],
     },
+  ],
   "Chapter 3": [
     {
       key: "c3-s1",
