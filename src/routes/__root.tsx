@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { Navbar } from "@/components/Navbar";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
+import { MusicPlayer } from "@/components/MusicPlayer";
 
 function NotFoundComponent() {
   return (
