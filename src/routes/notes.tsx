@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { subjects, forms, notes } from "@/data/content";
+import { subjects, forms, notes, sejarahChapterFromId, sejarahForm1Chapters } from "@/data/content";
 import { Search } from "lucide-react";
 import { z } from "zod";
+import {
+  SejarahChapterGrid,
+  SejarahChapterHeader,
+  SejarahComingSoon,
+} from "@/components/SejarahChapterPicker";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
@@ -26,18 +31,28 @@ function NotesPage() {
   const [subject, setSubject] = useState<string>(search.subject ?? "all");
   const [form, setForm] = useState<string>("All");
   const [q, setQ] = useState("");
+  const [sejChapter, setSejChapter] = useState<number | null>(null);
+
+  const sejarahF1Mode = subject === "sejarah" && form === "Form 1";
+  const selectedChapterMeta =
+    sejarahF1Mode && sejChapter !== null
+      ? sejarahForm1Chapters.find((c) => c.num === sejChapter)
+      : null;
 
   const filtered = useMemo(() => {
     return notes.filter((n) => {
       if (subject !== "all" && n.subjectId !== subject) return false;
       if (form !== "All" && n.form !== form) return false;
+      if (sejarahF1Mode && sejChapter !== null) {
+        if (sejarahChapterFromId(n.id) !== sejChapter) return false;
+      }
       if (q) {
         const hay = `${n.title} ${n.summary} ${n.chapter} ${n.keywords.join(" ")}`.toLowerCase();
         if (!hay.includes(q.toLowerCase())) return false;
       }
       return true;
     });
-  }, [subject, form, q]);
+  }, [subject, form, q, sejarahF1Mode, sejChapter]);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
