@@ -165,7 +165,18 @@ function QuizzesPage() {
     : "bg-emerald-400";
 
   return (
-    <section className="max-w-4xl mx-auto px-4 sm:px-8 py-16">
+    <section className={`max-w-4xl mx-auto px-4 sm:px-8 py-16 ${screenShake ? "animate-screen-shake" : ""}`}>
+      {/* Combo overlay */}
+      {comboShow !== null && (
+        <div
+          key={comboShow}
+          className="pointer-events-none fixed left-1/2 top-1/3 z-50 -translate-x-1/2 -translate-y-1/2 animate-combo-pop"
+        >
+          <div className="font-display text-7xl sm:text-8xl font-extrabold gradient-text drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.8)]">
+            COMBO x{comboShow}
+          </div>
+        </div>
+      )}
       <div className="text-center mb-6">
         <h1 className="font-display text-5xl font-bold">Take a <span className="gradient-text">Quiz</span></h1>
         <p className="mt-3 text-muted-foreground">Instant scoring. Earn XP. Beat your streak.</p>
@@ -225,6 +236,16 @@ function QuizzesPage() {
               )}
             </div>
             <div className="flex items-center gap-3 text-sm">
+              <button
+                onClick={() => setMusicOn(music.toggle())}
+                title={musicOn ? "Mute music" : "Play music"}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition ${
+                  musicOn ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg" : "bg-white/5 text-muted-foreground hover:bg-white/10"
+                }`}
+              >
+                {musicOn ? <Music2 className="w-3.5 h-3.5 animate-pulse" /> : <VolumeX className="w-3.5 h-3.5" />}
+                {musicOn ? "Music on" : "Music"}
+              </button>
               <span className="text-muted-foreground">XP</span>
               <span className="font-bold text-nova-yellow">{progress.xp}</span>
               <span className="text-muted-foreground">🔥 {streak}</span>
