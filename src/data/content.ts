@@ -303,7 +303,46 @@ export const notes: Note[] = [
       "Babylon",
     ],
   },
-];
+  {
+  id: "sej-f1-c6-note",
+  subjectId: "sejarah",
+  form: "Form 1",
+  chapter: "Chapter 6",
+  title: "Tamadun Yunani dan Tamadun Rom",
+  summary:
+    "Tamadun Yunani berkembang di Semenanjung Balkan dan pulau-pulau di Laut Aegean. Unit politik utamanya ialah Polis (negara kota) yang terdiri daripada Bandar Utama, Acropolis (kawasan tertinggi dengan kuil dan kubu), Agora (pusat ekonomi dan pertemuan), dan Kawasan Kampung. Tiga polis terkenal ialah Athens (pusat ilmu dan demokrasi), Sparta (pusat ketenteraan), dan Corinth. Athens melalui lima tahap pemerintahan: Monarki (pemerintahan beraja berkuasa mutlak), Oligarki (pemerintahan oleh sekelompok orang kaya), Aristokrasi (kuasa dipegang golongan bangsawan bertanah), Tirani (pemerintahan diktator), dan Demokrasi (pemerintahan oleh rakyat melalui wakil). Struktur demokrasi Athens terdiri daripada Dewan Perhimpunan (badan tertinggi menggubal undang-undang, terbuka kepada semua lelaki berumur 18 tahun ke atas), Majlis/Council of 500 (500 ahli dipilih melalui undian untuk urusan harian), Majistret (kakitangan awam melaksanakan dasar), dan Juri (201–501 orang, untuk mengelakkan rasuah). Sparta pula mengamalkan Diarqi (dua raja serentak), sistem pendidikan Agoge (latihan ketenteraan bermula usia 7 tahun), dan memberikan latihan fizikal kepada wanita. Tamadun Rom pula cemerlang dalam seni bina menggunakan Pozzolana (campuran kapur dan abu gunung berapi) untuk simen yang sangat kuat. Tujuh binaan ikonik Rom: Colosseum (amfiteater elips, 50,000 penonton, pertarungan gladiator), Pantheon (kuil berkubah konkrit terbesar dengan Oculus), Akueduk (saluran air dari pergunungan ke bandar melalui graviti), Amfiteater (tempat seni dan teater dengan reka bentuk akustik), Jalan Raya Rom (berlapis pasir, batu, dan simen untuk tentera dan perdagangan), Tembok Hadrian (117 km di Britain sebagai pertahanan), dan Pusat Mandi Awam (pusat sosial dengan bilik mandi panas/sejuk/suam, perpustakaan, dan gimnasium). Iktibar: Demokrasi Athens menjadi asas sistem politik moden, manakala kejuruteraan Rom membuktikan kehebatan sains dan kreativiti manusia purba.",
+  keywords: [
+    "Tamadun Yunani",
+    "Tamadun Rom",
+    "Polis",
+    "Acropolis",
+    "Agora",
+    "Athens",
+    "Sparta",
+    "Corinth",
+    "Monarki",
+    "Oligarki",
+    "Aristokrasi",
+    "Tirani",
+    "Demokrasi",
+    "Dewan Perhimpunan",
+    "Council of 500",
+    "Majistret",
+    "Juri",
+    "Diarqi",
+    "Agoge",
+    "Pozzolana",
+    "Colosseum",
+    "Pantheon",
+    "Oculus",
+    "Akueduk",
+    "Jalan Raya Rom",
+    "Tembok Hadrian",
+    "Pusat Mandi Awam",
+    "gladiator",
+    "demokrasi langsung",
+  ],
+};
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 export interface QuizQuestion {
