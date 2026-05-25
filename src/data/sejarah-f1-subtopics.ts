@@ -226,5 +226,5 @@ export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
  
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
-},
+}
  
