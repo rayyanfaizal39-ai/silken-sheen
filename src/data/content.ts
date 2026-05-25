@@ -3025,7 +3025,7 @@ export const flashcards: Flashcard[] = [
     front: "Mengapakah penting memahami pembentukan fizikal bumi?",
     back: "Untuk memahami evolusi alam sekitar dan kepentingan menjaga ekosistem dunia.",
   },
-  // Bahagian 1: Pengertian dan Istilah (fc1–fc15)
+  // Form 1 Chapter 4 - Tamadun Awal Dunia (cards 1-60)
   {
     id: "sej-f1-c4-fc1",
     subjectId: "sejarah",
@@ -3146,8 +3146,6 @@ export const flashcards: Flashcard[] = [
     front: "Mengapakah tamadun dikaitkan dengan 'pokok' dalam bahasa Arab (Syajaratun)?",
     back: "Kerana ia merujuk kepada asal usul dan pertumbuhan sesuatu bangsa.",
   },
-
-  // Bahagian 2: Konsep Barat dan Islam (fc16–fc25)
   {
     id: "sej-f1-c4-fc16",
     subjectId: "sejarah",
@@ -3228,8 +3226,6 @@ export const flashcards: Flashcard[] = [
     front: "Apakah maksud kemajuan 'lahiriah'?",
     back: "Kemajuan yang dapat dilihat secara fizikal seperti bangunan, teknologi, dan sistem ekonomi.",
   },
-
-  // Bahagian 3: Ciri-ciri Tamadun Awal — Ekonomi & Kerajaan (fc26–fc35)
   {
     id: "sej-f1-c4-fc26",
     subjectId: "sejarah",
@@ -3310,8 +3306,6 @@ export const flashcards: Flashcard[] = [
     front: "Bagaimanakah sistem perdagangan awal bermula?",
     back: "Melalui sistem barter (tukar barang) sebelum penggunaan mata wang.",
   },
-
-  // Bahagian 4: Bandar, Pekerjaan dan Teknologi (fc36–fc45)
   {
     id: "sej-f1-c4-fc36",
     subjectId: "sejarah",
@@ -3392,8 +3386,6 @@ export const flashcards: Flashcard[] = [
     front: "Bagaimanakah pembinaan bandar yang terancang membantu penduduk?",
     back: "Menyediakan sistem saliran dan perparitan yang lebih sistematik.",
   },
-
-  // Bahagian 5: Organisasi Sosial, Agama dan Budaya (fc46–fc60)
   {
     id: "sej-f1-c4-fc46",
     subjectId: "sejarah",
