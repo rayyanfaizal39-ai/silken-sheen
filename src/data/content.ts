@@ -5118,7 +5118,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc13",
     subjectId: "sejarah",
-    form: "Form 1" 
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah ciri Tirani?",
     back: "Pemerintahan oleh individu (diktator) yang merampas kuasa; sering melakukan pembaharuan untuk meraih sokongan rakyat.",
@@ -5143,7 +5143,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc16",
     subjectId: "sejarah",
-    form: "Form 1" 
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Siapakah yang layak menjadi ahli Dewan Perhimpunan Athens?",
     back: "Semua warganegara lelaki Athens berumur 18 tahun ke atas.",
