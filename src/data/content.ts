@@ -5018,6 +5018,7 @@ export const flashcards: Flashcard[] = [
 
   
 // Sejarah Form 1 Chapter 6 - Peningkatan Tamadun Yunani
+  
   {
     id: "sej-f1-c6-fc1",
     subjectId: "sejarah",
@@ -5082,7 +5083,6 @@ export const flashcards: Flashcard[] = [
     front: "Sparta terkenal sebagai pusat apa?",
     back: "Pusat ketenteraan.",
   },
-  // --- Lima Tahap Pemerintahan Athens ---
   {
     id: "sej-f1-c6-fc9",
     subjectId: "sejarah",
@@ -5204,7 +5204,6 @@ export const flashcards: Flashcard[] = [
     front: "Berapa kali sekurang-kurangnya Dewan Perhimpunan Athens bersidang dalam sebulan?",
     back: "Sekurang-kurangnya 3 kali sebulan.",
   },
-  // --- Sparta ---
   {
     id: "sej-f1-c6-fc24",
     subjectId: "sejarah",
@@ -5358,7 +5357,6 @@ export const flashcards: Flashcard[] = [
     front: "Namakan tujuh binaan ikonik Rom.",
     back: "Colosseum, Pantheon, Akueduk, Amfiteater, Jalan Raya Rom, Tembok Hadrian, Pusat Mandi Awam.",
   },
-  // --- Perbandingan & Iktibar ---
   {
     id: "sej-f1-c6-fc43",
     subjectId: "sejarah",
