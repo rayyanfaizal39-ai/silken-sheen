@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Music, Play, Pause, X, Repeat } from "lucide-react";
 
 type Track = {
@@ -32,26 +32,159 @@ const TRACKS: Track[] = [
 const STORAGE_KEY = "academy-music-prefs";
 const TOOLTIP_KEY = "academy-music-tooltip-seen";
 
-export function MusicPlayer() {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const panelRef = useRef<HTMLDivElement | null>(null);
-  const [open, setOpen] = useState(false);
-  const [trackId, setTrackId] = useState<string>("lofi");
-  const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [loop, setLoop] = useState(true);
-  const [showTooltip, setShowTooltip] = useState(false);
+// ---------------------------------------------------------------------------
+// Module-level singleton store. Lives outside React so the audio element and
+// playback state survive route changes, re-renders, and even component
+// unmount/remount. Only created in the browser.
+// ---------------------------------------------------------------------------
+type PlayerState = {
+  trackId: string;
+  playing: boolean;
+  volume: number;
+  loop: boolean;
+};
 
-  // Load saved prefs
-  useEffect(() => {
+type Store = {
+  audio: HTMLAudioElement | null;
+  state: PlayerState;
+  listeners: Set<() => void>;
+};
+
+const defaultState: PlayerState = {
+  trackId: "lofi",
+  playing: false,
+  volume: 0.5,
+  loop: true,
+};
+
+let store: Store | null = null;
+
+function getStore(): Store {
+  if (store) return store;
+  const initial: PlayerState = { ...defaultState };
+  if (typeof window !== "undefined") {
     try {
       const raw = sessionStorage.getItem(STORAGE_KEY);
       if (raw) {
         const p = JSON.parse(raw);
-        if (p.trackId) setTrackId(p.trackId);
-        if (typeof p.volume === "number") setVolume(p.volume);
-        if (typeof p.loop === "boolean") setLoop(p.loop);
+        if (p.trackId) initial.trackId = p.trackId;
+        if (typeof p.volume === "number") initial.volume = p.volume;
+        if (typeof p.loop === "boolean") initial.loop = p.loop;
       }
+    } catch {}
+  }
+
+  const audio =
+    typeof window !== "undefined" ? new Audio() : (null as any);
+  store = { audio, state: initial, listeners: new Set() };
+
+  if (audio) {
+    const current = TRACKS.find((t) => t.id === initial.trackId) ?? TRACKS[0];
+    audio.src = current.url;
+    audio.loop = initial.loop;
+    audio.volume = initial.volume;
+    audio.preload = "none";
+    audio.addEventListener("play", () => setState({ playing: true }));
+    audio.addEventListener("pause", () => setState({ playing: false }));
+    audio.addEventListener("ended", () => {
+      if (!store!.state.loop) setState({ playing: false });
+    });
+  }
+  return store;
+}
+
+function emit() {
+  store?.listeners.forEach((l) => l());
+}
+
+function setState(patch: Partial<PlayerState>) {
+  const s = getStore();
+  s.state = { ...s.state, ...patch };
+  try {
+    sessionStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        trackId: s.state.trackId,
+        volume: s.state.volume,
+        loop: s.state.loop,
+      }),
+    );
+  } catch {}
+  emit();
+}
+
+function subscribe(cb: () => void) {
+  const s = getStore();
+  s.listeners.add(cb);
+  return () => {
+    s.listeners.delete(cb);
+  };
+}
+
+function getSnapshot(): PlayerState {
+  return getStore().state;
+}
+
+function getServerSnapshot(): PlayerState {
+  return defaultState;
+}
+
+async function play() {
+  const s = getStore();
+  if (!s.audio) return;
+  try {
+    await s.audio.play();
+  } catch {
+    setState({ playing: false });
+  }
+}
+
+function pause() {
+  const s = getStore();
+  s.audio?.pause();
+}
+
+async function selectTrackId(id: string) {
+  const s = getStore();
+  if (!s.audio) return;
+  if (id === s.state.trackId) {
+    if (s.state.playing) pause();
+    else await play();
+    return;
+  }
+  const track = TRACKS.find((t) => t.id === id) ?? TRACKS[0];
+  s.audio.src = track.url;
+  setState({ trackId: id, playing: false });
+  await play();
+}
+
+function setVolume(v: number) {
+  const s = getStore();
+  if (s.audio) s.audio.volume = v;
+  setState({ volume: v });
+}
+
+function setLoop(l: boolean) {
+  const s = getStore();
+  if (s.audio) s.audio.loop = l;
+  setState({ loop: l });
+}
+
+// ---------------------------------------------------------------------------
+// Component (UI only — audio lives in the singleton store above).
+// ---------------------------------------------------------------------------
+export function MusicPlayer() {
+  const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const { trackId, playing, volume, loop } = state;
+
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const [open, setOpen] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  // Ensure store is initialized on the client
+  useEffect(() => {
+    getStore();
+    try {
       if (!sessionStorage.getItem(TOOLTIP_KEY)) {
         setShowTooltip(true);
         const t = setTimeout(() => {
@@ -62,24 +195,6 @@ export function MusicPlayer() {
       }
     } catch {}
   }, []);
-
-  // Persist prefs
-  useEffect(() => {
-    try {
-      sessionStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ trackId, volume, loop }),
-      );
-    } catch {}
-  }, [trackId, volume, loop]);
-
-  // Apply volume / loop to audio element
-  useEffect(() => {
-    if (audioRef.current) audioRef.current.volume = volume;
-  }, [volume]);
-  useEffect(() => {
-    if (audioRef.current) audioRef.current.loop = loop;
-  }, [loop]);
 
   // Click outside to close
   useEffect(() => {
@@ -96,59 +211,20 @@ export function MusicPlayer() {
   const current = TRACKS.find((t) => t.id === trackId) ?? TRACKS[0];
 
   async function togglePlay() {
-    const a = audioRef.current;
-    if (!a) return;
-    if (playing) {
-      a.pause();
-      setPlaying(false);
-    } else {
-      try {
-        await a.play();
-        setPlaying(true);
-      } catch {
-        setPlaying(false);
-      }
-    }
-  }
-
-  async function selectTrack(id: string) {
-    if (id === trackId) {
-      togglePlay();
-      return;
-    }
-    setTrackId(id);
-    setPlaying(false);
-    // wait next tick for src to update
-    requestAnimationFrame(async () => {
-      const a = audioRef.current;
-      if (!a) return;
-      try {
-        await a.play();
-        setPlaying(true);
-      } catch {
-        setPlaying(false);
-      }
-    });
+    if (playing) pause();
+    else await play();
   }
 
   function openPanel() {
     setOpen(true);
     setShowTooltip(false);
-    sessionStorage.setItem(TOOLTIP_KEY, "1");
+    try {
+      sessionStorage.setItem(TOOLTIP_KEY, "1");
+    } catch {}
   }
 
   return (
     <>
-      <audio
-        ref={audioRef}
-        src={current.url}
-        loop={loop}
-        preload="none"
-        onEnded={() => !loop && setPlaying(false)}
-        onPause={() => setPlaying(false)}
-        onPlay={() => setPlaying(true)}
-      />
-
       {/* Floating button */}
       <div className="fixed bottom-24 right-6 z-[70] flex flex-col items-end gap-3">
         {showTooltip && !open && (
@@ -233,7 +309,7 @@ export function MusicPlayer() {
                 )}
               </button>
               <button
-                onClick={() => setLoop((l) => !l)}
+                onClick={() => setLoop(!loop)}
                 title={loop ? "Loop on" : "Loop off"}
                 className={`p-2 rounded-xl border transition-colors ${
                   loop
@@ -266,7 +342,7 @@ export function MusicPlayer() {
                 return (
                   <button
                     key={t.id}
-                    onClick={() => selectTrack(t.id)}
+                    onClick={() => selectTrackId(t.id)}
                     className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-left transition-colors ${
                       active
                         ? "bg-[#8B5CF6]/15 text-foreground"
