@@ -184,11 +184,23 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       keywords: ["Pertanian", "Kod Hammurabi", "Bandar", "Artisan", "Roda", "Organisasi Sosial", "Politeisme", "Ziggurat", "Piramid", "Kuneiform", "Hieroglif", "Ideogram", "Kesenian"],
     },
   ],
-};
-
-export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
-  return sejarahF1Subtopics[chapterKey] ?? [];
-},
+"Chapter 5": [
+    {
+      key: "c5-s1",
+      num: 1,
+      title: "Faktor Geografi: Mengapa Lembah Sungai?",
+      summary:
+        "Keempat-empat tamadun awal dunia muncul di lembah sungai utama kerana faktor-faktor berikut:\n\n🌱 Tanah yang Subur — Banjir sungai membawa mendapan lumpur (lanar) yang sangat kaya dengan nutrien untuk pertanian.\n\n💧 Bekalan Air — Sumber utama untuk kegunaan harian manusia, minuman haiwan ternakan, dan pengairan tanaman.\n\n🚢 Pengangkutan & Perhubungan — Sungai berfungsi sebagai jalan raya semula jadi untuk perdagangan antara wilayah.\n\n🐟 Sumber Protein — Membekalkan ikan dan hidupan air sebagai tambahan sumber makanan penduduk.",
+      keywords: ["lembah sungai", "tanah subur", "lanar", "mendapan lumpur", "bekalan air", "pengangkutan", "perdagangan"],
+    },
+    {
+      key: "c5-s2",
+      num: 2,
+      title: "Tamadun Mesopotamia (3,500 SM – 539 SM)",
+      summary:
+        "Tamadun Mesopotamia terletak di wilayah yang dikenali sebagai Bulan Sabit Subur (Fertile Crescent).\n\n👑 Sistem Beraja & Kerajaan:\n- Setiap negara kota mempunyai pemerintah sendiri. Raja dianggap sebagai wakil tuhan di bumi.\n- Negara kota yang terkenal: Ur, Uruk, Lagash, dan Babylon.\n\n🔬 Sumbangan Sains & Teknologi:\n- Matematik: Memperkenalkan sistem perpuluhan, konsep bulatan 360 darjah, dan formula pengiraan luas.\n- Astronomi: Mencipta kalendar berdasarkan fasa bulan (12 bulan dalam setahun).\n- Seni Bina: Membina Ziggurat sebagai pusat ibadat, pusat penyimpanan khazanah, dan pusat pendidikan.\n\n⚖️ Kod Undang-undang Hammurabi:\n- Merupakan kod undang-undang bertulis tertua.\n- Mengandungi prinsip 'mata ganti mata' untuk memastikan keadilan sosial yang ketat.",
+      keywords: ["Mesopotamia", "Bulan Sabit Subur", "Fertile Crescent", "Ur", "Uruk", "Lagash", "Babylon", "Ziggurat", "Kod Hammurabi", "Kuneiform", "360 darjah", "kalendar bulan"],
+    },
     {
       key: "c5-s3",
       num: 3,
@@ -223,8 +235,6 @@ export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
     },
   ],
 };
- 
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
-}
- 
+},
