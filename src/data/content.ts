@@ -341,8 +341,8 @@ export const notes: Note[] = [
     "Pusat Mandi Awam",
     "gladiator",
     "demokrasi langsung",
-  ],
-};
+    };
+],
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 export interface QuizQuestion {
