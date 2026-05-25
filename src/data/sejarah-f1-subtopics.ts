@@ -415,208 +415,126 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       ],
     },
   ],
-"Chapter 8": [
-  {
-    key: "c8-s1",
-    num: 1,
-    title: "Masyarakat Arab Jahiliah",
-    summary:
-      "Zaman Jahiliah (300–610 M) merujuk kepada kejahilan dari segi moral dan akidah, bukan intelek. Masyarakat Arab hidup berpuak-puak mengikut sistem kabilah dan semangat asabiyah yang menyebabkan peperangan berpanjangan seperti Perang al-Basus. Dalam ekonomi pula, amalan riba dan penipuan timbangan menyebabkan ketidakadilan sosial dan penindasan terhadap golongan miskin.",
-    keywords: [
-      "Jahiliah",
-      "asabiyah",
-      "kabilah",
-      "Perang al-Basus",
-      "riba",
-      "penipuan timbangan",
-    ],
-  },
+  "Chapter 8": [
+    {
+      key: "c8-s1",
+      num: 1,
+      title: "Masyarakat Arab Jahiliah",
+      summary:
+        "Zaman Jahiliah (300–610 M) merujuk kepada kejahilan dari segi moral dan akidah, bukan intelek. Masyarakat Arab hidup berpuak-puak mengikut sistem kabilah dan semangat asabiyah yang menyebabkan peperangan berpanjangan seperti Perang al-Basus. Dalam ekonomi pula, amalan riba dan penipuan timbangan menyebabkan ketidakadilan sosial dan penindasan terhadap golongan miskin.",
+      keywords: ["Jahiliah", "asabiyah", "kabilah", "Perang al-Basus", "riba", "penipuan timbangan"],
+    },
 
-  {
-    key: "c8-s2",
-    num: 2,
-    title: "Kelahiran Islam dan Wahyu Pertama",
-    summary:
-      "Islam bermula dengan penurunan wahyu pertama kepada Nabi Muhammad SAW di Gua Hira melalui Surah al-Alaq yang dimulakan dengan perkataan 'Iqra' (Bacalah). Wahyu ini menekankan kepentingan ilmu pengetahuan dan mencetuskan revolusi intelek dalam masyarakat Arab. Dakwah secara terbuka di Bukit Safa ditentang oleh pembesar Quraisy kerana mereka bimbang kehilangan kuasa politik dan ekonomi daripada perniagaan berhala di Kaabah.",
-    keywords: [
-      "Iqra",
-      "Surah al-Alaq",
-      "Gua Hira",
-      "Bukit Safa",
-      "Quraisy",
-      "dakwah",
-      "Kaabah",
-    ],
-  },
+    {
+      key: "c8-s2",
+      num: 2,
+      title: "Kelahiran Islam dan Wahyu Pertama",
+      summary:
+        "Islam bermula dengan penurunan wahyu pertama kepada Nabi Muhammad SAW di Gua Hira melalui Surah al-Alaq yang dimulakan dengan perkataan 'Iqra' (Bacalah). Wahyu ini menekankan kepentingan ilmu pengetahuan dan mencetuskan revolusi intelek dalam masyarakat Arab. Dakwah secara terbuka di Bukit Safa ditentang oleh pembesar Quraisy kerana mereka bimbang kehilangan kuasa politik dan ekonomi daripada perniagaan berhala di Kaabah.",
+      keywords: ["Iqra", "Surah al-Alaq", "Gua Hira", "Bukit Safa", "Quraisy", "dakwah", "Kaabah"],
+    },
 
-  {
-    key: "c8-s3",
-    num: 3,
-    title: "Kepimpinan Nabi Muhammad SAW di Madinah",
-    summary:
-      "Nabi Muhammad SAW membina negara Islam Madinah berasaskan perpaduan dan keadilan. Piagam Madinah merupakan perlembagaan bertulis pertama yang menyatukan orang Islam, Yahudi, dan kaum lain di bawah konsep Ummah. Sistem syura pula menekankan perbincangan dan permuafakatan dalam pentadbiran negara bagi menjaga kepentingan masyarakat.",
-    keywords: [
-      "Piagam Madinah",
-      "Ummah",
-      "syura",
-      "Madinah",
-      "pluralisme",
-      "perlembagaan",
-    ],
-  },
+    {
+      key: "c8-s3",
+      num: 3,
+      title: "Kepimpinan Nabi Muhammad SAW di Madinah",
+      summary:
+        "Nabi Muhammad SAW membina negara Islam Madinah berasaskan perpaduan dan keadilan. Piagam Madinah merupakan perlembagaan bertulis pertama yang menyatukan orang Islam, Yahudi, dan kaum lain di bawah konsep Ummah. Sistem syura pula menekankan perbincangan dan permuafakatan dalam pentadbiran negara bagi menjaga kepentingan masyarakat.",
+      keywords: ["Piagam Madinah", "Ummah", "syura", "Madinah", "pluralisme", "perlembagaan"],
+    },
 
-  {
-    key: "c8-s4",
-    num: 4,
-    title: "Sumbangan Ekonomi dan Sosial Islam",
-    summary:
-      "Tamadun Islam memperkenalkan sistem ekonomi yang adil melalui institusi Baitulmal yang menguruskan zakat, kharaj, dan jizyah. Zakat membantu golongan miskin dan memastikan kekayaan diagihkan secara seimbang dalam masyarakat. Jizyah pula ialah cukai perlindungan yang dikenakan kepada bukan Islam sebagai balasan kepada jaminan keselamatan negara.",
-    keywords: [
-      "Baitulmal",
-      "zakat",
-      "kharaj",
-      "jizyah",
-      "ekonomi Islam",
-      "kebajikan",
-      "asnaf",
-    ],
-  },
+    {
+      key: "c8-s4",
+      num: 4,
+      title: "Sumbangan Ekonomi dan Sosial Islam",
+      summary:
+        "Tamadun Islam memperkenalkan sistem ekonomi yang adil melalui institusi Baitulmal yang menguruskan zakat, kharaj, dan jizyah. Zakat membantu golongan miskin dan memastikan kekayaan diagihkan secara seimbang dalam masyarakat. Jizyah pula ialah cukai perlindungan yang dikenakan kepada bukan Islam sebagai balasan kepada jaminan keselamatan negara.",
+      keywords: ["Baitulmal", "zakat", "kharaj", "jizyah", "ekonomi Islam", "kebajikan", "asnaf"],
+    },
 
-  {
-    key: "c8-s5",
-    num: 5,
-    title: "Seni Bina Islam",
-    summary:
-      "Seni bina Islam menekankan nilai kerohanian dan keindahan yang berasaskan tauhid. Corak geometri dan kaligrafi digunakan bagi mengelakkan unsur pemujaan terhadap makhluk hidup. Kubah masjid pula direka untuk memperbaiki akustik dan pengudaraan supaya suasana ibadat menjadi lebih selesa dan khusyuk.",
-    keywords: [
-      "seni bina Islam",
-      "kaligrafi",
-      "geometri",
-      "tauhid",
-      "kubah",
-      "akustik",
-      "arabes",
-    ],
-  },
-  
-  {
-    key: "c8-s6",
-    num: 6,
-    title: "Kesan dan Kepentingan Tamadun Islam",
-    summary:
-      "Tamadun Islam membawa perubahan besar dalam bidang ilmu, pentadbiran, ekonomi, dan sosial. Islam menekankan keadilan, ilmu pengetahuan, dan perpaduan masyarakat tanpa mengira kaum atau agama. Sumbangan tamadun Islam menjadi asas penting kepada perkembangan tamadun dunia moden termasuk sistem pendidikan, perlembagaan, dan kebajikan sosial.",
-    keywords: [
-      "tamadun Islam",
-      "ilmu",
-      "keadilan",
-      "perpaduan",
-      "pendidikan",
-      "kebajikan sosial",
-    ],
-  },
-],
-"Chapter 7": [
-  {
-    key: "c7-s1",
-    num: 1,
-    title: "Peningkatan Tamadun India",
-    summary:
-      "Tamadun India berkembang daripada petempatan kecil yang dikenali sebagai Janapada kepada kerajaan besar Mahajanapada. Perubahan ini menunjukkan peningkatan dalam sistem politik, ekonomi, dan sosial masyarakat India sehingga munculnya kerajaan yang lebih tersusun dan kuat.",
-    keywords: [
-      "Janapada",
-      "Mahajanapada",
-      "Tamadun India",
-      "politik",
-      "ekonomi",
-      "sosial",
-    ],
-  },
+    {
+      key: "c8-s5",
+      num: 5,
+      title: "Seni Bina Islam",
+      summary:
+        "Seni bina Islam menekankan nilai kerohanian dan keindahan yang berasaskan tauhid. Corak geometri dan kaligrafi digunakan bagi mengelakkan unsur pemujaan terhadap makhluk hidup. Kubah masjid pula direka untuk memperbaiki akustik dan pengudaraan supaya suasana ibadat menjadi lebih selesa dan khusyuk.",
+      keywords: ["seni bina Islam", "kaligrafi", "geometri", "tauhid", "kubah", "akustik", "arabes"],
+    },
 
-  {
-    key: "c7-s2",
-    num: 2,
-    title: "Keunggulan Kerajaan Magadha",
-    summary:
-      "Kerajaan Magadha muncul sebagai kuasa utama di India antara 540 SM hingga 320 SM. Kedudukannya di Lembah Ganges yang subur membantu perkembangan pertanian dan perdagangan. Selain itu, Magadha mempunyai sumber besi yang banyak untuk menghasilkan senjata serta gajah hutan yang digunakan dalam ketenteraan.",
-    keywords: [
-      "Magadha",
-      "Lembah Ganges",
-      "pertanian",
-      "perdagangan",
-      "besi",
-      "gajah",
-      "ketenteraan",
-    ],
-  },
+    {
+      key: "c8-s6",
+      num: 6,
+      title: "Kesan dan Kepentingan Tamadun Islam",
+      summary:
+        "Tamadun Islam membawa perubahan besar dalam bidang ilmu, pentadbiran, ekonomi, dan sosial. Islam menekankan keadilan, ilmu pengetahuan, dan perpaduan masyarakat tanpa mengira kaum atau agama. Sumbangan tamadun Islam menjadi asas penting kepada perkembangan tamadun dunia moden termasuk sistem pendidikan, perlembagaan, dan kebajikan sosial.",
+      keywords: ["tamadun Islam", "ilmu", "keadilan", "perpaduan", "pendidikan", "kebajikan sosial"],
+    },
+  ],
+  "Chapter 7": [
+    {
+      key: "c7-s1",
+      num: 1,
+      title: "Peningkatan Tamadun India",
+      summary:
+        "Tamadun India berkembang daripada petempatan kecil yang dikenali sebagai Janapada kepada kerajaan besar Mahajanapada. Perubahan ini menunjukkan peningkatan dalam sistem politik, ekonomi, dan sosial masyarakat India sehingga munculnya kerajaan yang lebih tersusun dan kuat.",
+      keywords: ["Janapada", "Mahajanapada", "Tamadun India", "politik", "ekonomi", "sosial"],
+    },
 
-  {
-    key: "c7-s3",
-    num: 3,
-    title: "Perluasan Kuasa Dinasti Maurya",
-    summary:
-      "Dinasti Maurya mencapai kegemilangan semasa pemerintahan Chandragupta Maurya dan Bindusara. Chandragupta Maurya dengan bantuan Chanakya membina angkatan tentera yang besar untuk menyatukan India Utara. Bindusara pula meneruskan usaha perluasan kuasa ke India Selatan sehingga ke Mysore.",
-    keywords: [
-      "Dinasti Maurya",
-      "Chandragupta Maurya",
-      "Bindusara",
-      "Chanakya",
-      "tentera",
-      "Mysore",
-      "India Utara",
-    ],
-  },
+    {
+      key: "c7-s2",
+      num: 2,
+      title: "Keunggulan Kerajaan Magadha",
+      summary:
+        "Kerajaan Magadha muncul sebagai kuasa utama di India antara 540 SM hingga 320 SM. Kedudukannya di Lembah Ganges yang subur membantu perkembangan pertanian dan perdagangan. Selain itu, Magadha mempunyai sumber besi yang banyak untuk menghasilkan senjata serta gajah hutan yang digunakan dalam ketenteraan.",
+      keywords: ["Magadha", "Lembah Ganges", "pertanian", "perdagangan", "besi", "gajah", "ketenteraan"],
+    },
 
-  {
-    key: "c7-s4",
-    num: 4,
-    title: "Raja Asoka dan Dasar Dharma",
-    summary:
-      "Selepas Perang Kalinga pada tahun 261 SM, Raja Asoka berasa kesal terhadap kematian dan penderitaan yang berlaku. Beliau memeluk agama Buddha dan memperkenalkan Dasar Dharma yang menekankan kasih sayang, keadilan, toleransi agama, dan kebajikan rakyat. Titah perintah Asoka diukir pada Tiang Asoka untuk dijadikan panduan masyarakat.",
-    keywords: [
-      "Asoka",
-      "Perang Kalinga",
-      "Dharma",
-      "Buddha",
-      "Tiang Asoka",
-      "keadilan",
-      "toleransi agama",
-    ],
-  },
+    {
+      key: "c7-s3",
+      num: 3,
+      title: "Perluasan Kuasa Dinasti Maurya",
+      summary:
+        "Dinasti Maurya mencapai kegemilangan semasa pemerintahan Chandragupta Maurya dan Bindusara. Chandragupta Maurya dengan bantuan Chanakya membina angkatan tentera yang besar untuk menyatukan India Utara. Bindusara pula meneruskan usaha perluasan kuasa ke India Selatan sehingga ke Mysore.",
+      keywords: ["Dinasti Maurya", "Chandragupta Maurya", "Bindusara", "Chanakya", "tentera", "Mysore", "India Utara"],
+    },
 
-  {
-    key: "c7-s5",
-    num: 5,
-    title: "Peningkatan Tamadun China",
-    summary:
-      "Peningkatan Tamadun China berasaskan sistem pendidikan dan meritokrasi. Pendidikan bertujuan melahirkan pegawai kerajaan yang berkualiti, mengekalkan ajaran Konfusianisme, dan meningkatkan status sosial masyarakat. Sistem ini membantu melahirkan pentadbiran yang cekap dan stabil.",
-    keywords: [
-      "Tamadun China",
-      "meritokrasi",
-      "Konfusianisme",
-      "pendidikan",
-      "pegawai kerajaan",
-      "status sosial",
-    ],
-  },
+    {
+      key: "c7-s4",
+      num: 4,
+      title: "Raja Asoka dan Dasar Dharma",
+      summary:
+        "Selepas Perang Kalinga pada tahun 261 SM, Raja Asoka berasa kesal terhadap kematian dan penderitaan yang berlaku. Beliau memeluk agama Buddha dan memperkenalkan Dasar Dharma yang menekankan kasih sayang, keadilan, toleransi agama, dan kebajikan rakyat. Titah perintah Asoka diukir pada Tiang Asoka untuk dijadikan panduan masyarakat.",
+      keywords: ["Asoka", "Perang Kalinga", "Dharma", "Buddha", "Tiang Asoka", "keadilan", "toleransi agama"],
+    },
 
-  {
-    key: "c7-s6",
-    num: 6,
-    title: "Sistem Pendidikan dan Peperiksaan Awam China",
-    summary:
-      "Sistem pendidikan China dibahagikan kepada pendidikan rendah, menengah, dan tinggi. Pelajar mempelajari tulisan, sastera, falsafah Konfusius, etika, dan kepimpinan. Sistem peperiksaan awam dimulakan oleh Maharaja Wu semasa Dinasti Han. Peperiksaan terdiri daripada tiga tahap: Xiucai, Juren, dan Jinshi. Sistem ini sangat ketat dan bertujuan memilih pegawai kerajaan berdasarkan kebolehan serta ilmu pengetahuan.",
-    keywords: [
-      "Maharaja Wu",
-      "Dinasti Han",
-      "Xiucai",
-      "Juren",
-      "Jinshi",
-      "Konfusius",
-      "peperiksaan awam",
-      "meritokrasi",
-    ],
-  },
-];
+    {
+      key: "c7-s5",
+      num: 5,
+      title: "Peningkatan Tamadun China",
+      summary:
+        "Peningkatan Tamadun China berasaskan sistem pendidikan dan meritokrasi. Pendidikan bertujuan melahirkan pegawai kerajaan yang berkualiti, mengekalkan ajaran Konfusianisme, dan meningkatkan status sosial masyarakat. Sistem ini membantu melahirkan pentadbiran yang cekap dan stabil.",
+      keywords: ["Tamadun China", "meritokrasi", "Konfusianisme", "pendidikan", "pegawai kerajaan", "status sosial"],
+    },
+
+    {
+      key: "c7-s6",
+      num: 6,
+      title: "Sistem Pendidikan dan Peperiksaan Awam China",
+      summary:
+        "Sistem pendidikan China dibahagikan kepada pendidikan rendah, menengah, dan tinggi. Pelajar mempelajari tulisan, sastera, falsafah Konfusius, etika, dan kepimpinan. Sistem peperiksaan awam dimulakan oleh Maharaja Wu semasa Dinasti Han. Peperiksaan terdiri daripada tiga tahap: Xiucai, Juren, dan Jinshi. Sistem ini sangat ketat dan bertujuan memilih pegawai kerajaan berdasarkan kebolehan serta ilmu pengetahuan.",
+      keywords: [
+        "Maharaja Wu",
+        "Dinasti Han",
+        "Xiucai",
+        "Juren",
+        "Jinshi",
+        "Konfusius",
+        "peperiksaan awam",
+        "meritokrasi",
+      ],
+    },
+  ],
+};
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
 }
