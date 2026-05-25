@@ -514,8 +514,109 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       "kebajikan sosial",
     ],
   },
+],
+"Chapter 7": [
+  {
+    key: "c7-s1",
+    num: 1,
+    title: "Peningkatan Tamadun India",
+    summary:
+      "Tamadun India berkembang daripada petempatan kecil yang dikenali sebagai Janapada kepada kerajaan besar Mahajanapada. Perubahan ini menunjukkan peningkatan dalam sistem politik, ekonomi, dan sosial masyarakat India sehingga munculnya kerajaan yang lebih tersusun dan kuat.",
+    keywords: [
+      "Janapada",
+      "Mahajanapada",
+      "Tamadun India",
+      "politik",
+      "ekonomi",
+      "sosial",
+    ],
+  },
+
+  {
+    key: "c7-s2",
+    num: 2,
+    title: "Keunggulan Kerajaan Magadha",
+    summary:
+      "Kerajaan Magadha muncul sebagai kuasa utama di India antara 540 SM hingga 320 SM. Kedudukannya di Lembah Ganges yang subur membantu perkembangan pertanian dan perdagangan. Selain itu, Magadha mempunyai sumber besi yang banyak untuk menghasilkan senjata serta gajah hutan yang digunakan dalam ketenteraan.",
+    keywords: [
+      "Magadha",
+      "Lembah Ganges",
+      "pertanian",
+      "perdagangan",
+      "besi",
+      "gajah",
+      "ketenteraan",
+    ],
+  },
+
+  {
+    key: "c7-s3",
+    num: 3,
+    title: "Perluasan Kuasa Dinasti Maurya",
+    summary:
+      "Dinasti Maurya mencapai kegemilangan semasa pemerintahan Chandragupta Maurya dan Bindusara. Chandragupta Maurya dengan bantuan Chanakya membina angkatan tentera yang besar untuk menyatukan India Utara. Bindusara pula meneruskan usaha perluasan kuasa ke India Selatan sehingga ke Mysore.",
+    keywords: [
+      "Dinasti Maurya",
+      "Chandragupta Maurya",
+      "Bindusara",
+      "Chanakya",
+      "tentera",
+      "Mysore",
+      "India Utara",
+    ],
+  },
+
+  {
+    key: "c7-s4",
+    num: 4,
+    title: "Raja Asoka dan Dasar Dharma",
+    summary:
+      "Selepas Perang Kalinga pada tahun 261 SM, Raja Asoka berasa kesal terhadap kematian dan penderitaan yang berlaku. Beliau memeluk agama Buddha dan memperkenalkan Dasar Dharma yang menekankan kasih sayang, keadilan, toleransi agama, dan kebajikan rakyat. Titah perintah Asoka diukir pada Tiang Asoka untuk dijadikan panduan masyarakat.",
+    keywords: [
+      "Asoka",
+      "Perang Kalinga",
+      "Dharma",
+      "Buddha",
+      "Tiang Asoka",
+      "keadilan",
+      "toleransi agama",
+    ],
+  },
+
+  {
+    key: "c7-s5",
+    num: 5,
+    title: "Peningkatan Tamadun China",
+    summary:
+      "Peningkatan Tamadun China berasaskan sistem pendidikan dan meritokrasi. Pendidikan bertujuan melahirkan pegawai kerajaan yang berkualiti, mengekalkan ajaran Konfusianisme, dan meningkatkan status sosial masyarakat. Sistem ini membantu melahirkan pentadbiran yang cekap dan stabil.",
+    keywords: [
+      "Tamadun China",
+      "meritokrasi",
+      "Konfusianisme",
+      "pendidikan",
+      "pegawai kerajaan",
+      "status sosial",
+    ],
+  },
+
+  {
+    key: "c7-s6",
+    num: 6,
+    title: "Sistem Pendidikan dan Peperiksaan Awam China",
+    summary:
+      "Sistem pendidikan China dibahagikan kepada pendidikan rendah, menengah, dan tinggi. Pelajar mempelajari tulisan, sastera, falsafah Konfusius, etika, dan kepimpinan. Sistem peperiksaan awam dimulakan oleh Maharaja Wu semasa Dinasti Han. Peperiksaan terdiri daripada tiga tahap: Xiucai, Juren, dan Jinshi. Sistem ini sangat ketat dan bertujuan memilih pegawai kerajaan berdasarkan kebolehan serta ilmu pengetahuan.",
+    keywords: [
+      "Maharaja Wu",
+      "Dinasti Han",
+      "Xiucai",
+      "Juren",
+      "Jinshi",
+      "Konfusius",
+      "peperiksaan awam",
+      "meritokrasi",
+    ],
+  },
 ];
-};
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
 }
