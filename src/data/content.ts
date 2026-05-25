@@ -4004,7 +4004,8 @@ export const flashcards: Flashcard[] = [
     front: "Mengapakah kita perlu menghargai sumbangan Zaman Prasejarah?",
     back: "Kerana mereka merupakan asas kepada tamadun dan kemajuan manusia hari ini.",
   },
-//  Sejarah Form 1 – Chapter 5: Tamadun Awal Dunia (60 flashcards) { id: "sej-f1-c5-fc1",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Namakan empat tamadun awal dunia yang dipelajari dalam Bab 5.", back: "Mesopotamia, Mesir Purba, Indus, dan Huang He." },
+//  Sejarah Form 1 – Chapter 5: Tamadun Awal Dunia (60 flashcards) 
+  { id: "sej-f1-c5-fc1",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Namakan empat tamadun awal dunia yang dipelajari dalam Bab 5.", back: "Mesopotamia, Mesir Purba, Indus, dan Huang He." },
   { id: "sej-f1-c5-fc2",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Mengapakah tamadun awal dunia berkembang di tepi sungai?", back: "Sungai membekalkan air untuk pertanian, tanah yang subur, sumber makanan, dan jalan perhubungan." },
  
   // --- Tamadun Mesopotamia ---
