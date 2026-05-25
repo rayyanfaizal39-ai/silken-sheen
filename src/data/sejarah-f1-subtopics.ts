@@ -184,8 +184,12 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       keywords: ["Pertanian", "Kod Hammurabi", "Bandar", "Artisan", "Roda", "Organisasi Sosial", "Politeisme", "Ziggurat", "Piramid", "Kuneiform", "Hieroglif", "Ideogram", "Kesenian"],
     },
   ],
-   "Chapter 5": [
-     {
+};
+
+export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
+  return sejarahF1Subtopics[chapterKey] ?? [];
+},
+    {
       key: "c5-s3",
       num: 3,
       title: "Tamadun Mesir Purba (3,100 SM – 332 SM)",
