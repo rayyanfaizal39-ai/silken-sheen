@@ -131,7 +131,21 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Lokasi Zaman Prasejarah",
       summary:
         "🌍 Lokasi di Dunia:\n- Gua Chauvet (Perancis) — Lukisan gua yang membuktikan aktiviti memburu.\n- Altamira (Sepanyol) — Lukisan gua zaman Paleolitik.\n- Stonehenge (Britain) — Binaan batu besar (megalitik) berkaitan upacara ritual dan astronomi.\n- Catal Huyuk (Turki) — Petempatan Zaman Neolitik yang tersusun.\n- Zhoukoudian (China) — Penemuan rangka 'Peking Man'.\n\n🇲🇾 Lokasi di Malaysia:\n⛏️ Paleolitik:\n- Kota Tampan (Perak) — Bengkel membuat alat batu.\n- Gua Niah (Sarawak) — Penemuan manusia tertua di Asia Tenggara.\n\n⛏️ Mesolitik:\n- Gua Kecil (Pahang)\n- Kawasan di sepanjang Sungai Tembeling.\n\n⛏️ Neolitik:\n- Gua Cha (Kelantan) — Tapak pengebumian penting.\n- Bukit Tengkorak (Sabah) — Tapak pembuatan tembikar.\n\n⛏️ Zaman Logam:\n- Sungai Lang (Selangor) — Penemuan gendang gangsa.\n- Lembah Bernam (Selangor) — Penemuan alat besi bersoket.",
-      keywords: ["Gua Chauvet", "Altamira", "Stonehenge", "Catal Huyuk", "Zhoukoudian", "Kota Tampan", "Gua Niah", "Gua Kecil", "Gua Cha", "Bukit Tengkorak", "Sungai Lang", "Lembah Bernam", "megalitik"],
+      keywords: [
+        "Gua Chauvet",
+        "Altamira",
+        "Stonehenge",
+        "Catal Huyuk",
+        "Zhoukoudian",
+        "Kota Tampan",
+        "Gua Niah",
+        "Gua Kecil",
+        "Gua Cha",
+        "Bukit Tengkorak",
+        "Sungai Lang",
+        "Lembah Bernam",
+        "megalitik",
+      ],
     },
     {
       key: "c3-s4",
@@ -139,7 +153,19 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Ciri-ciri Kehidupan Manusia Prasejarah",
       summary:
         "🏠 Tempat Tinggal:\n- Paleolitik & Mesolitik — Gua, lubang bawah tanah, tempat terbuka.\n- Neolitik — Menetap dalam rumah kayu/tanah di lembah sungai.\n- Zaman Logam — Menetap lebih lama, membina bandar dan kota.\n\n🪓 Peralatan:\n- Paleolitik & Mesolitik — Batu kasar dan ringkas.\n- Neolitik — Batu yang dicanai halus, tembikar.\n- Zaman Logam — Alatan daripada gangsa dan besi (kapak, sabit, mata lembing).\n\n💰 Ekonomi:\n- Paleolitik & Mesolitik — Memburu binatang, mengumpul hasil hutan.\n- Neolitik — Pertanian, penternakan, sistem barter.\n- Zaman Logam — Pertanian pesat, perdagangan antarabangsa melalui laut.\n\n👥 Organisasi Sosial:\n- Paleolitik & Mesolitik — Kumpulan kecil, nomad (berpindah-randah).\n- Neolitik — Hidup menetap, ada ketua, wujud pembahagian kerja.\n- Zaman Logam — Masyarakat kompleks, wujud ketua berwibawa dan undang-undang.\n\n🙏 Kepercayaan:\n- Paleolitik & Mesolitik — Animisme, menghormati si mati.\n- Neolitik — Ritual keagamaan lebih tersusun, percaya kehidupan selepas mati.\n- Zaman Logam — Membina tempat ibadat khusus, upacara pengebumian menggunakan kubur kepingan batu.\n\n🎨 Kesenian:\n- Paleolitik & Mesolitik — Lukisan gua (bersifat realisme).\n- Neolitik — Corak pada tembikar (geometrik).\n- Zaman Logam — Kesenian pada peralatan logam (gendang gangsa Dong Son).",
-      keywords: ["nomad", "animisme", "pertanian", "penternakan", "barter", "tembikar", "gendang gangsa", "Dong Son", "kubur kepingan batu", "kapak", "sabit"],
+      keywords: [
+        "nomad",
+        "animisme",
+        "pertanian",
+        "penternakan",
+        "barter",
+        "tembikar",
+        "gendang gangsa",
+        "Dong Son",
+        "kubur kepingan batu",
+        "kapak",
+        "sabit",
+      ],
     },
     {
       key: "c3-s5",
@@ -181,17 +207,39 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Sembilan Ciri Utama Tamadun Awal",
       summary:
         "1️⃣ Pertanian dan Perdagangan — Manusia mencipta sistem pengairan dan kincir air. Lebihan hasil pertanian membawa kepada perdagangan (barter → mata wang).\n\n2️⃣ Sistem Pemerintahan — Sistem beraja diwujudkan untuk menguruskan populasi yang besar. Undang-undang digubal untuk menjaga keamanan. Contoh: Kod Hammurabi.\n\n3️⃣ Pembentukan Bandar — Bandar berfungsi sebagai pusat pentadbiran, ekonomi (pasar), dan pusat ibadat. Dibina secara terancang dengan sistem saliran dan perparitan.\n\n4️⃣ Pengkhususan Pekerjaan — Wujud golongan pakar seperti artisan (pembuat tembikar dan alat logam), askar, dan pegawai kerajaan.\n\n5️⃣ Teknologi — Penemuan gangsa dan besi untuk alat pertanian yang lebih kuat. Penciptaan RODA membantu pengangkutan (kereta kuda) dan pembuatan tembikar.\n\n6️⃣ Organisasi Sosial — Susun lapis masyarakat berbentuk piramid: Atas (Raja dan Bangsawan), Tengah (Pendeta, pedagang, dan artisan), Bawah (Petani dan hamba).\n\n7️⃣ Agama dan Kepercayaan — Manusia awal mengamalkan politeisme (menyembah banyak tuhan). Membina monumen keagamaan besar seperti Ziggurat (Mesopotamia) dan Piramid (Mesir).\n\n8️⃣ Tulisan dan Penyimpanan Rekod — Penting untuk merekod cukai, perdagangan, dan undang-undang. Contoh tulisan: Kuneiform (Mesopotamia), Hieroglif (Mesir), Ideogram (China).\n\n9️⃣ Kesenian dan Kesusasteraan — Seniman menghasilkan patung tuhan atau raja daripada batu dan logam. Karya sastera menceritakan kehebatan wira dan sejarah raja-raja mereka.",
-      keywords: ["Pertanian", "Kod Hammurabi", "Bandar", "Artisan", "Roda", "Organisasi Sosial", "Politeisme", "Ziggurat", "Piramid", "Kuneiform", "Hieroglif", "Ideogram", "Kesenian"],
+      keywords: [
+        "Pertanian",
+        "Kod Hammurabi",
+        "Bandar",
+        "Artisan",
+        "Roda",
+        "Organisasi Sosial",
+        "Politeisme",
+        "Ziggurat",
+        "Piramid",
+        "Kuneiform",
+        "Hieroglif",
+        "Ideogram",
+        "Kesenian",
+      ],
     },
   ],
-"Chapter 5": [
+  "Chapter 5": [
     {
       key: "c5-s1",
       num: 1,
       title: "Faktor Geografi: Mengapa Lembah Sungai?",
       summary:
         "Keempat-empat tamadun awal dunia muncul di lembah sungai utama kerana faktor-faktor berikut:\n\n🌱 Tanah yang Subur — Banjir sungai membawa mendapan lumpur (lanar) yang sangat kaya dengan nutrien untuk pertanian.\n\n💧 Bekalan Air — Sumber utama untuk kegunaan harian manusia, minuman haiwan ternakan, dan pengairan tanaman.\n\n🚢 Pengangkutan & Perhubungan — Sungai berfungsi sebagai jalan raya semula jadi untuk perdagangan antara wilayah.\n\n🐟 Sumber Protein — Membekalkan ikan dan hidupan air sebagai tambahan sumber makanan penduduk.",
-      keywords: ["lembah sungai", "tanah subur", "lanar", "mendapan lumpur", "bekalan air", "pengangkutan", "perdagangan"],
+      keywords: [
+        "lembah sungai",
+        "tanah subur",
+        "lanar",
+        "mendapan lumpur",
+        "bekalan air",
+        "pengangkutan",
+        "perdagangan",
+      ],
     },
     {
       key: "c5-s2",
@@ -199,7 +247,20 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Tamadun Mesopotamia (3,500 SM – 539 SM)",
       summary:
         "Tamadun Mesopotamia terletak di wilayah yang dikenali sebagai Bulan Sabit Subur (Fertile Crescent).\n\n👑 Sistem Beraja & Kerajaan:\n- Setiap negara kota mempunyai pemerintah sendiri. Raja dianggap sebagai wakil tuhan di bumi.\n- Negara kota yang terkenal: Ur, Uruk, Lagash, dan Babylon.\n\n🔬 Sumbangan Sains & Teknologi:\n- Matematik: Memperkenalkan sistem perpuluhan, konsep bulatan 360 darjah, dan formula pengiraan luas.\n- Astronomi: Mencipta kalendar berdasarkan fasa bulan (12 bulan dalam setahun).\n- Seni Bina: Membina Ziggurat sebagai pusat ibadat, pusat penyimpanan khazanah, dan pusat pendidikan.\n\n⚖️ Kod Undang-undang Hammurabi:\n- Merupakan kod undang-undang bertulis tertua.\n- Mengandungi prinsip 'mata ganti mata' untuk memastikan keadilan sosial yang ketat.",
-      keywords: ["Mesopotamia", "Bulan Sabit Subur", "Fertile Crescent", "Ur", "Uruk", "Lagash", "Babylon", "Ziggurat", "Kod Hammurabi", "Kuneiform", "360 darjah", "kalendar bulan"],
+      keywords: [
+        "Mesopotamia",
+        "Bulan Sabit Subur",
+        "Fertile Crescent",
+        "Ur",
+        "Uruk",
+        "Lagash",
+        "Babylon",
+        "Ziggurat",
+        "Kod Hammurabi",
+        "Kuneiform",
+        "360 darjah",
+        "kalendar bulan",
+      ],
     },
     {
       key: "c5-s3",
@@ -207,7 +268,21 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Tamadun Mesir Purba (3,100 SM – 332 SM)",
       summary:
         "Tamadun Mesir Purba dibahagikan kepada tiga zaman utama: Kerajaan Purba, Kerajaan Pertengahan, dan Kerajaan Baru.\n\n👑 Organisasi Sosial & Pentadbiran:\n- Firaun: Mempunyai kuasa mutlak dalam pentadbiran, agama, dan ketenteraan.\n- Wazir: Pegawai tertinggi yang membantu Firaun dalam urusan kutipan cukai dan keadilan.\n- Jurutulis (Scribes): Golongan elit yang pakar dalam tulisan Hieroglif untuk menyimpan rekod kerajaan.\n\n🔬 Sumbangan Intelektual & Sains:\n- Perubatan: Kepakaran dalam Mumia (pengawetan mayat) membawa kepada pemahaman anatomi manusia dan pembedahan.\n- Kertas Papirus: Menggunakan serat pokok papirus untuk dijadikan kertas bagi tujuan penulisan dan lukisan.\n- Matematik: Memperkenalkan konsep geometri bagi menguruskan banjir dan pembinaan piramid.",
-      keywords: ["Mesir Purba", "Firaun", "Wazir", "Jurutulis", "Scribes", "Hieroglif", "Mumia", "Papirus", "geometri", "Piramid", "Kerajaan Purba", "Kerajaan Pertengahan", "Kerajaan Baru"],
+      keywords: [
+        "Mesir Purba",
+        "Firaun",
+        "Wazir",
+        "Jurutulis",
+        "Scribes",
+        "Hieroglif",
+        "Mumia",
+        "Papirus",
+        "geometri",
+        "Piramid",
+        "Kerajaan Purba",
+        "Kerajaan Pertengahan",
+        "Kerajaan Baru",
+      ],
     },
     {
       key: "c5-s4",
@@ -215,7 +290,18 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Tamadun Indus (2,500 SM – 1,750 SM)",
       summary:
         "Tamadun Indus dikenali sebagai tamadun yang mempunyai kemahiran kejuruteraan bangunan yang paling maju pada zamannya.\n\n🏙️ Perancangan Bandar Sistematik:\n- Bandar dibina mengikut pelan grid yang teratur (segi empat tepat).\n- Sistem Perparitan: Longkang di bawah jalan raya adalah tertutup dan mempunyai lubang pemeriksaan untuk memudahkan pembersihan.\n- Pusat Awam: Adanya The Great Bath (kolam mandi awam) yang digunakan untuk upacara keagamaan dan kebersihan.\n\n💼 Ekonomi & Perdagangan:\n- Mencipta Meterai (Seals) yang mempunyai ukiran haiwan dan tulisan sebagai simbol pengenalan pedagang dalam urusan perdagangan antarabangsa dengan Mesopotamia.",
-      keywords: ["Tamadun Indus", "pelan grid", "sistem perparitan", "The Great Bath", "Meterai", "Seals", "Piktograf", "perdagangan antarabangsa", "Mohenjo-daro", "Harappa"],
+      keywords: [
+        "Tamadun Indus",
+        "pelan grid",
+        "sistem perparitan",
+        "The Great Bath",
+        "Meterai",
+        "Seals",
+        "Piktograf",
+        "perdagangan antarabangsa",
+        "Mohenjo-daro",
+        "Harappa",
+      ],
     },
     {
       key: "c5-s5",
@@ -223,7 +309,18 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Tamadun Huang He (1,766 SM – 256 SM)",
       summary:
         "Tamadun Huang He bermula di Lembah Sungai Huang He yang juga dikenali sebagai Sungai Kuning.\n\n🏛️ Sistem Politik:\n- Konsep Mandat dari Syurga: Pemerintah dipercayai mendapat restu tuhan. Jika berlaku bencana alam, ia dianggap petanda bahawa mandat raja telah ditarik balik.\n\n🌾 Kemajuan Pertanian & Ekonomi:\n- Peralatan Besi: Penggunaan cangkul dan sabit daripada besi meningkatkan produktiviti makanan.\n- Sistem Pengairan: Terusan dibina untuk mengalirkan air ke kawasan pertanian dan mengawal banjir.\n\n🖋️ Budaya & Tulisan:\n- Ideogram: Tulisan yang berkembang daripada simbol-simbol pada tulang sula (oracle bones).\n- Sutera: Masyarakat Huang He merupakan yang pertama menenun sutera untuk pakaian.",
-      keywords: ["Huang He", "Sungai Kuning", "Mandat dari Syurga", "oracle bones", "Ideogram", "sutera", "cangkul", "sabit", "terusan", "pengairan"],
+      keywords: [
+        "Huang He",
+        "Sungai Kuning",
+        "Mandat dari Syurga",
+        "oracle bones",
+        "Ideogram",
+        "sutera",
+        "cangkul",
+        "sabit",
+        "terusan",
+        "pengairan",
+      ],
     },
     {
       key: "c5-s6",
@@ -231,10 +328,26 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       title: "Perbandingan Antara Tamadun Awal",
       summary:
         "Jadual perbandingan ringkas antara keempat-empat tamadun awal dunia:\n\n🏛️ Mesopotamia\n- Lokasi Sungai: Tigris & Euphrates\n- Sistem Tulisan: Kuneiform\n- Monumen Terkenal: Ziggurat\n\n🏛️ Mesir Purba\n- Lokasi Sungai: Sungai Nil\n- Sistem Tulisan: Hieroglif\n- Monumen Terkenal: Piramid\n\n🏛️ Indus\n- Lokasi Sungai: Sungai Indus\n- Sistem Tulisan: Piktograf (Indus script)\n- Monumen Terkenal: The Great Bath\n\n🏛️ Huang He\n- Lokasi Sungai: Sungai Huang He\n- Sistem Tulisan: Ideogram\n- Monumen Terkenal: Tembok Besar (Zaman kemudian)",
-      keywords: ["Mesopotamia", "Mesir Purba", "Indus", "Huang He", "Tigris", "Euphrates", "Nil", "Kuneiform", "Hieroglif", "Piktograf", "Ideogram", "Ziggurat", "Piramid", "The Great Bath", "Tembok Besar"],
+      keywords: [
+        "Mesopotamia",
+        "Mesir Purba",
+        "Indus",
+        "Huang He",
+        "Tigris",
+        "Euphrates",
+        "Nil",
+        "Kuneiform",
+        "Hieroglif",
+        "Piktograf",
+        "Ideogram",
+        "Ziggurat",
+        "Piramid",
+        "The Great Bath",
+        "Tembok Besar",
+      ],
     },
   ],
 };
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
-},
+}
