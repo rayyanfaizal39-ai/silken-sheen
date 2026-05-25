@@ -347,6 +347,74 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       ],
     },
   ],
+  "Chapter 6": [
+    {
+      key: "c6-s1",
+      num: 1,
+      title: "Pengenalan Tamadun Yunani",
+      summary:
+        "Tamadun Yunani berkembang di Semenanjung Balkan dan pulau-pulau di Laut Aegean. Peningkatannya yang paling ketara adalah dalam aspek pemerintahan dan pentadbiran.\n\n🏛️ Sistem Negara Kota (Polis):\nPolis bukan sekadar bandar, tetapi unit politik yang bebas dan merdeka. Komponen utama polis ialah:\n- Bandar Utama: Pusat tumpuan penduduk.\n- Acropolis: Kawasan tertinggi yang menempatkan bangunan kerajaan, kuil, dan kubu pertahanan.\n- Agora: Kawasan lapang yang berfungsi sebagai pusat ekonomi (pasar) dan tempat pertemuan warganegara.\n- Kawasan Kampung: Kawasan di luar bandar yang membekalkan sumber pertanian.\n\n🌟 Tiga Polis Terkenal: Athens (pusat ilmu dan demokrasi), Sparta (pusat ketenteraan), dan Corinth.",
+      keywords: ["Polis", "Acropolis", "Agora", "Athens", "Sparta", "Corinth", "Semenanjung Balkan", "Laut Aegean"],
+    },
+    {
+      key: "c6-s2",
+      num: 2,
+      title: "Evolusi Pemerintahan Athens (5 Tahap)",
+      summary:
+        "Athens melalui perubahan sistem pemerintahan yang kompleks sebelum mencapai demokrasi:\n\n1️⃣ Monarki — Pemerintahan beraja. Raja mempunyai kuasa mutlak dan dibantu oleh Majlis golongan bangsawan.\n\n2️⃣ Oligarki — Pemerintahan oleh sekelompok kecil orang kaya yang memegang kuasa politik dan ekonomi.\n\n3️⃣ Aristokrasi — Kuasa dipegang oleh golongan bangsawan yang memiliki tanah dan mempunyai pengaruh besar.\n\n4️⃣ Tirani — Pemerintahan oleh individu (diktator) yang merampas kuasa. Walaupun berkuasa mutlak, mereka sering melakukan pembaharuan untuk meraih sokongan rakyat.\n\n5️⃣ Demokrasi — Pemerintahan oleh rakyat melalui wakil. Athens merupakan pelopor sistem demokrasi langsung di dunia.",
+      keywords: ["Monarki", "Oligarki", "Aristokrasi", "Tirani", "Demokrasi", "Athens", "demokrasi langsung"],
+    },
+    {
+      key: "c6-s3",
+      num: 3,
+      title: "Struktur Demokrasi Athens",
+      summary:
+        "Sistem demokrasi Athens mempunyai empat badan utama:\n\n🏛️ Dewan Perhimpunan:\n- Fungsi: Badan tertinggi yang menggubal undang-undang, mengawal kewangan, membincangkan dasar luar, dan bertindak sebagai mahkamah rayuan.\n- Keahlian: Semua warganegara lelaki Athens berumur 18 tahun ke atas. Bersidang sekurang-kurangnya 3 kali sebulan.\n\n📋 Majlis (Council of 500):\n- Fungsi: Menguruskan hal ehwal harian kerajaan dan menyediakan agenda mesyuarat Dewan Perhimpunan.\n- Keahlian: 500 orang dipilih melalui undian untuk tempoh satu tahun.\n\n⚖️ Majistret:\n- Fungsi: Kakitangan awam yang melaksanakan dasar-dasar kerajaan.\n\n👨‍⚖️ Juri:\n- Fungsi: Memutuskan kes mahkamah. Bilangan juri sangat besar (201–501 orang) untuk mengelakkan rasuah.",
+      keywords: ["Dewan Perhimpunan", "Majlis", "Council of 500", "Majistret", "Juri", "demokrasi langsung", "undian"],
+    },
+    {
+      key: "c6-s4",
+      num: 4,
+      title: "Keunikan Sparta: Kerajaan Ketenteraan",
+      summary:
+        "Sparta dikenali sebagai negara kota yang mengutamakan kekuatan ketenteraan:\n\n⚔️ Sistem Diarqi:\n- Diperintah oleh DUA orang raja serentak untuk memastikan tiada seorang pun yang memegang kuasa mutlak.\n\n🏋️ Agoge (Sistem Pendidikan):\n- Anak lelaki Sparta diambil dari keluarga seawal usia 7 tahun untuk menjalani latihan ketenteraan yang sangat keras.\n- Matlamatnya: melahirkan tentera yang setia dan perkasa.\n\n👩 Peranan Wanita:\n- Wanita Sparta diberikan latihan fizikal supaya dapat melahirkan anak yang kuat dan sihat untuk menjadi tentera.",
+      keywords: ["Sparta", "Diarqi", "Agoge", "sistem pendidikan", "latihan ketenteraan", "wanita Sparta"],
+    },
+    {
+      key: "c6-s5",
+      num: 5,
+      title: "Tamadun Rom: Seni Bina Ikonik",
+      summary:
+        "Peningkatan Tamadun Rom yang paling menonjol adalah dalam bidang seni bina yang menggabungkan kepakaran kejuruteraan dengan estetika.\n\n🧱 Bahan Binaan: Pozzolana (campuran kapur dan abu gunung berapi) menghasilkan simen yang sangat kuat dan tahan air.\n\n🏟️ Tujuh Hasil Seni Bina Ikonik:\n1. Colosseum — Amfiteater berbentuk elips, memuatkan 50,000 penonton. Digunakan untuk pertarungan gladiator.\n2. Pantheon — Kuil untuk tuhan-tuhan Rom. Mempunyai kubah konkrit terbesar tanpa tulang sokongan. Di atasnya terdapat Oculus (lubang cahaya).\n3. Akueduk — Sistem saluran air membawa air bersih dari pergunungan ke bandar melalui graviti.\n4. Amfiteater — Tempat persembahan terbuka untuk seni dan teater; direka bentuk dengan aspek akustik.\n5. Jalan Raya Rom — Dibina berlapis (pasir, batu, simen) untuk pergerakan tentera dan perdagangan.\n6. Tembok Hadrian — Tembok pertahanan sepanjang 117 km di Britain untuk melindungi wilayah Rom.\n7. Pusat Mandi Awam — Pusat sosial dilengkapi bilik mandi panas/sejuk/suam, perpustakaan, dan gimnasium.",
+      keywords: [
+        "Pozzolana",
+        "Colosseum",
+        "Pantheon",
+        "Oculus",
+        "Akueduk",
+        "Jalan Raya Rom",
+        "Tembok Hadrian",
+        "Pusat Mandi Awam",
+        "gladiator",
+      ],
+    },
+    {
+      key: "c6-s6",
+      num: 6,
+      title: "Kesimpulan dan Iktibar",
+      summary:
+        "Tamadun Yunani dan Rom meninggalkan warisan yang sangat besar kepada dunia moden:\n\n🗳️ Inovasi Politik:\n- Idea demokrasi Athens menjadi asas kepada sistem politik moden kebanyakan negara hari ini. Konsep parlimen, mahkamah bebas, dan undian adalah warisan terus dari Athens.\n\n🏗️ Inovasi Teknologi:\n- Kepakaran seni bina Rom dalam menggunakan simen (Pozzolana) dan struktur arca membuktikan kehebatan sains dan kreativiti manusia purba. Banyak binaan Rom masih tegak berdiri sehingga kini.\n\n📖 Iktibar:\n- Tamadun boleh tegak melalui kemajuan pemikiran (Yunani) dan kemajuan teknologi (Rom). Kita perlu menggabungkan kedua-dua aspek ini untuk membina masyarakat yang bertamadun.",
+      keywords: [
+        "demokrasi moden",
+        "parlimen",
+        "warisan Yunani",
+        "warisan Rom",
+        "Pozzolana",
+        "seni bina moden",
+        "iktibar",
+      ],
+    },
+  ],
 };
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
