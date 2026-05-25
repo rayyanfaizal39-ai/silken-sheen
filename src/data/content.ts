@@ -3515,7 +3515,6 @@ export const flashcards: Flashcard[] = [
     back: "Menceritakan sejarah kepahlawanan dan nilai murni masyarakat mereka.",
   },
 ];
-
 export interface SejarahChapter {
   num: number;
   title: string;
