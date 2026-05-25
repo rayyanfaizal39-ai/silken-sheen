@@ -6814,7 +6814,7 @@ export const sejarahForm1Chapters: SejarahChapter[] = [
   { num: 5, title: "Tamadun Awal Dunia", available: true },
   { num: 6, title: "Tamadun Yunani dan Tamadun Rom", available: true },
   { num: 7, title: "Tamadun India dan China", available: true },
-  { num: 8, title: "Tamadun Islam", available: false },
+  { num: 8, title: "Tamadun Islam", available: true },
 ];
 
 export function sejarahChapterFromId(id: string): number | null {

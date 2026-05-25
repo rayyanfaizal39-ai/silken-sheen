@@ -415,7 +415,106 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       ],
     },
   ],
-};
+"Chapter 8": [
+  {
+    key: "c8-s1",
+    num: 1,
+    title: "Masyarakat Arab Jahiliah",
+    summary:
+      "Zaman Jahiliah (300–610 M) merujuk kepada kejahilan dari segi moral dan akidah, bukan intelek. Masyarakat Arab hidup berpuak-puak mengikut sistem kabilah dan semangat asabiyah yang menyebabkan peperangan berpanjangan seperti Perang al-Basus. Dalam ekonomi pula, amalan riba dan penipuan timbangan menyebabkan ketidakadilan sosial dan penindasan terhadap golongan miskin.",
+    keywords: [
+      "Jahiliah",
+      "asabiyah",
+      "kabilah",
+      "Perang al-Basus",
+      "riba",
+      "penipuan timbangan",
+    ],
+  },
+
+  {
+    key: "c8-s2",
+    num: 2,
+    title: "Kelahiran Islam dan Wahyu Pertama",
+    summary:
+      "Islam bermula dengan penurunan wahyu pertama kepada Nabi Muhammad SAW di Gua Hira melalui Surah al-Alaq yang dimulakan dengan perkataan 'Iqra' (Bacalah). Wahyu ini menekankan kepentingan ilmu pengetahuan dan mencetuskan revolusi intelek dalam masyarakat Arab. Dakwah secara terbuka di Bukit Safa ditentang oleh pembesar Quraisy kerana mereka bimbang kehilangan kuasa politik dan ekonomi daripada perniagaan berhala di Kaabah.",
+    keywords: [
+      "Iqra",
+      "Surah al-Alaq",
+      "Gua Hira",
+      "Bukit Safa",
+      "Quraisy",
+      "dakwah",
+      "Kaabah",
+    ],
+  },
+
+  {
+    key: "c8-s3",
+    num: 3,
+    title: "Kepimpinan Nabi Muhammad SAW di Madinah",
+    summary:
+      "Nabi Muhammad SAW membina negara Islam Madinah berasaskan perpaduan dan keadilan. Piagam Madinah merupakan perlembagaan bertulis pertama yang menyatukan orang Islam, Yahudi, dan kaum lain di bawah konsep Ummah. Sistem syura pula menekankan perbincangan dan permuafakatan dalam pentadbiran negara bagi menjaga kepentingan masyarakat.",
+    keywords: [
+      "Piagam Madinah",
+      "Ummah",
+      "syura",
+      "Madinah",
+      "pluralisme",
+      "perlembagaan",
+    ],
+  },
+
+  {
+    key: "c8-s4",
+    num: 4,
+    title: "Sumbangan Ekonomi dan Sosial Islam",
+    summary:
+      "Tamadun Islam memperkenalkan sistem ekonomi yang adil melalui institusi Baitulmal yang menguruskan zakat, kharaj, dan jizyah. Zakat membantu golongan miskin dan memastikan kekayaan diagihkan secara seimbang dalam masyarakat. Jizyah pula ialah cukai perlindungan yang dikenakan kepada bukan Islam sebagai balasan kepada jaminan keselamatan negara.",
+    keywords: [
+      "Baitulmal",
+      "zakat",
+      "kharaj",
+      "jizyah",
+      "ekonomi Islam",
+      "kebajikan",
+      "asnaf",
+    ],
+  },
+
+  {
+    key: "c8-s5",
+    num: 5,
+    title: "Seni Bina Islam",
+    summary:
+      "Seni bina Islam menekankan nilai kerohanian dan keindahan yang berasaskan tauhid. Corak geometri dan kaligrafi digunakan bagi mengelakkan unsur pemujaan terhadap makhluk hidup. Kubah masjid pula direka untuk memperbaiki akustik dan pengudaraan supaya suasana ibadat menjadi lebih selesa dan khusyuk.",
+    keywords: [
+      "seni bina Islam",
+      "kaligrafi",
+      "geometri",
+      "tauhid",
+      "kubah",
+      "akustik",
+      "arabes",
+    ],
+  },
+  
+  {
+    key: "c8-s6",
+    num: 6,
+    title: "Kesan dan Kepentingan Tamadun Islam",
+    summary:
+      "Tamadun Islam membawa perubahan besar dalam bidang ilmu, pentadbiran, ekonomi, dan sosial. Islam menekankan keadilan, ilmu pengetahuan, dan perpaduan masyarakat tanpa mengira kaum atau agama. Sumbangan tamadun Islam menjadi asas penting kepada perkembangan tamadun dunia moden termasuk sistem pendidikan, perlembagaan, dan kebajikan sosial.",
+    keywords: [
+      "tamadun Islam",
+      "ilmu",
+      "keadilan",
+      "perpaduan",
+      "pendidikan",
+      "kebajikan sosial",
+    ],
+  },
+];
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
 }
