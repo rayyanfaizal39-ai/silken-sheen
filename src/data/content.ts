@@ -4004,10 +4004,9 @@ export const flashcards: Flashcard[] = [
     front: "Mengapakah kita perlu menghargai sumbangan Zaman Prasejarah?",
     back: "Kerana mereka merupakan asas kepada tamadun dan kemajuan manusia hari ini.",
   },
-//  Sejarah Form 1 – Chapter 5: Tamadun Awal Dunia (60 flashcards) { id: "sej-f1-c5-fc1",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Namakan empat tamadun awal dunia yang dipelajari dalam Bab 5.", back: "Mesopotamia, Mesir Purba, Indus, dan Huang He." },
+//  Sejarah Form 1 – Chapter 5: Tamadun Awal Dunia (60 flashcards) 
+  { id: "sej-f1-c5-fc1",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Namakan empat tamadun awal dunia yang dipelajari dalam Bab 5.", back: "Mesopotamia, Mesir Purba, Indus, dan Huang He." },
   { id: "sej-f1-c5-fc2",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Mengapakah tamadun awal dunia berkembang di tepi sungai?", back: "Sungai membekalkan air untuk pertanian, tanah yang subur, sumber makanan, dan jalan perhubungan." },
- 
-  // --- Tamadun Mesopotamia ---
   { id: "sej-f1-c5-fc3",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Di manakah Tamadun Mesopotamia berkembang?", back: "Di antara Sungai Tigris dan Sungai Euphrates." },
   { id: "sej-f1-c5-fc4",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah gelaran bagi kawasan subur di antara Sungai Tigris dan Euphrates?", back: "Bulan Sabit Subur (Fertile Crescent)." },
   { id: "sej-f1-c5-fc5",  subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Namakan tiga negara kota utama di Tamadun Mesopotamia.", back: "Ur, Uruk, dan Babylon." },
@@ -4020,8 +4019,6 @@ export const flashcards: Flashcard[] = [
   { id: "sej-f1-c5-fc12", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah sistem tulisan yang digunakan di Mesopotamia?", back: "Tulisan Kuneiform." },
   { id: "sej-f1-c5-fc13", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah Epik Gilgamesh?", back: "Karya sastera tertua di dunia yang ditulis dalam tulisan Kuneiform, menceritakan falsafah hidup dan kepahlawanan." },
   { id: "sej-f1-c5-fc14", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah yang menjadi asas kepada ukuran masa seperti 60 saat dan 60 minit?", back: "Sistem 60 ciptaan Tamadun Mesopotamia." },
- 
-  // --- Tamadun Mesir Purba ---
   { id: "sej-f1-c5-fc15", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Di manakah Tamadun Mesir Purba berkembang?", back: "Di Lembah Sungai Nil." },
   { id: "sej-f1-c5-fc16", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Siapakah Herodotus dan apakah gelaran yang diberikannya kepada Mesir?", back: "Herodotus ialah sejarawan Greek yang menggelar Mesir sebagai 'Hadiah Sungai Nil'." },
   { id: "sej-f1-c5-fc17", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Mengapakah Mesir disebut 'Hadiah Sungai Nil'?", back: "Kerana banjir tahunan Sungai Nil meninggalkan lanar (lumpur) yang menyuburkan tanah pertanian." },
@@ -4032,8 +4029,6 @@ export const flashcards: Flashcard[] = [
   { id: "sej-f1-c5-fc22", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Bagaimanakah matematik digunakan dalam Tamadun Mesir Purba?", back: "Untuk mengira keluasan tanah selepas banjir dan membina piramid dengan ketepatan sudut yang tinggi." },
   { id: "sej-f1-c5-fc23", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah sistem tulisan Tamadun Mesir Purba?", back: "Hieroglif." },
   { id: "sej-f1-c5-fc24", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Mengapakah masyarakat Mesir sangat mementingkan persediaan untuk mati?", back: "Kerana mereka percaya kepada kehidupan selepas mati yang memerlukan tubuh badan yang utuh." },
- 
-  // --- Tamadun Indus ---
   { id: "sej-f1-c5-fc25", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Di manakah Tamadun Indus berkembang?", back: "Di Lembah Sungai Indus." },
   { id: "sej-f1-c5-fc26", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Namakan dua bandar utama Tamadun Indus.", back: "Mohenjo-Daro dan Harappa." },
   { id: "sej-f1-c5-fc27", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah yang dimaksudkan dengan 'Perancangan Bandar Grid'?", back: "Bandar dibina dengan jalan raya bersilang secara tepat seperti kotak-kotak grid." },
@@ -4042,8 +4037,6 @@ export const flashcards: Flashcard[] = [
   { id: "sej-f1-c5-fc30", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah The Great Bath dalam Tamadun Indus?", back: "Kolam mandi awam yang besar digunakan untuk upacara pembersihan diri." },
   { id: "sej-f1-c5-fc31", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah Meterai Indus dan apakah kepentingannya?", back: "Cap dagangan Tamadun Indus; penemuannya di Mesopotamia membuktikan wujudnya perdagangan jarak jauh." },
   { id: "sej-f1-c5-fc32", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah fokus utama Tamadun Indus berbanding tamadun lain?", back: "Kesejahteraan penduduk dan perancangan bandar, bukannya monumen keagamaan yang besar." },
- 
-  // --- Tamadun Huang He ---
   { id: "sej-f1-c5-fc33", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Di manakah Tamadun Huang He berkembang?", back: "Di Lembah Sungai Huang He, di utara China." },
   { id: "sej-f1-c5-fc34", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah maksud 'Mandat dari Syurga'?", back: "Kepercayaan bahawa raja memerintah atas izin tuhan; jika gagal atau berlaku bencana, mandat boleh ditarik balik dan dinasti baru menggantikannya." },
   { id: "sej-f1-c5-fc35", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah Tulang Sula (Oracle Bones)?", back: "Tulang yang diukir dengan soalan dan dibakar; retakan ditafsir sebagai jawapan daripada tuhan untuk meramal masa depan." },
@@ -4051,8 +4044,6 @@ export const flashcards: Flashcard[] = [
   { id: "sej-f1-c5-fc37", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah sistem tulisan Tamadun Huang He?", back: "Tulisan Ideogram (berasaskan simbol atau gambar)." },
   { id: "sej-f1-c5-fc38", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Bagaimanakah penggunaan peralatan besi membantu Tamadun Huang He?", back: "Membolehkan penerokaan tanah baru dan pembinaan sistem terusan untuk mengawal banjir." },
   { id: "sej-f1-c5-fc39", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah ciptaan terkenal Tamadun Huang He yang bernilai tinggi dalam perdagangan dunia?", back: "Sutera." },
- 
-  // --- Perbandingan ---
   { id: "sej-f1-c5-fc40", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah fokus utama Tamadun Mesopotamia?", back: "Undang-undang (Kod Hammurabi) dan matematik (Sistem 60)." },
   { id: "sej-f1-c5-fc41", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah fokus utama Tamadun Mesir Purba?", back: "Seni bina (Piramid) dan sains perubatan (Mumia)." },
   { id: "sej-f1-c5-fc42", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah fokus utama Tamadun Indus?", back: "Perancangan bandar dan kebersihan awam (sistem sanitasi)." },
@@ -4074,7 +4065,7 @@ export const flashcards: Flashcard[] = [
   { id: "sej-f1-c5-fc58", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah kaitan antara lebihan makanan dengan perkembangan tamadun?", back: "Lebihan makanan membebaskan sebahagian penduduk daripada bertani, membolehkan pengkhususan pekerjaan dan pembangunan bandar." },
   { id: "sej-f1-c5-fc59", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Mengapakah kita perlu mempelajari tamadun awal dunia?", back: "Untuk memahami asal usul perkembangan manusia, mengambil iktibar, dan menghargai sumbangan tamadun terdahulu." },
   { id: "sej-f1-c5-fc60", subjectId: "sejarah", form: "Form 1", chapter: "Chapter 5", front: "Apakah sumbangan tamadun awal yang masih dirasai dalam kehidupan moden?", back: "Sistem undang-undang, tulisan, matematik, seni bina, pertanian, dan perdagangan adalah asas kepada kehidupan moden hari ini." },
- ;
+ ];
 export interface SejarahChapter {
   num: number;
   title: string;
