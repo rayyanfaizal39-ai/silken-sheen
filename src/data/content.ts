@@ -304,45 +304,47 @@ export const notes: Note[] = [
     ],
   },
   {
-  id: "sej-f1-c6-note",
-  subjectId: "sejarah",
-  form: "Form 1",
-  chapter: "Chapter 6",
-  title: "Tamadun Yunani dan Tamadun Rom",
-  summary:
-    "Tamadun Yunani berkembang di Semenanjung Balkan dan pulau-pulau di Laut Aegean. Unit politik utamanya ialah Polis (negara kota) yang terdiri daripada Bandar Utama, Acropolis (kawasan tertinggi dengan kuil dan kubu), Agora (pusat ekonomi dan pertemuan), dan Kawasan Kampung. Tiga polis terkenal ialah Athens (pusat ilmu dan demokrasi), Sparta (pusat ketenteraan), dan Corinth. Athens melalui lima tahap pemerintahan: Monarki (pemerintahan beraja berkuasa mutlak), Oligarki (pemerintahan oleh sekelompok orang kaya), Aristokrasi (kuasa dipegang golongan bangsawan bertanah), Tirani (pemerintahan diktator), dan Demokrasi (pemerintahan oleh rakyat melalui wakil). Struktur demokrasi Athens terdiri daripada Dewan Perhimpunan (badan tertinggi menggubal undang-undang, terbuka kepada semua lelaki berumur 18 tahun ke atas), Majlis/Council of 500 (500 ahli dipilih melalui undian untuk urusan harian), Majistret (kakitangan awam melaksanakan dasar), dan Juri (201–501 orang, untuk mengelakkan rasuah). Sparta pula mengamalkan Diarqi (dua raja serentak), sistem pendidikan Agoge (latihan ketenteraan bermula usia 7 tahun), dan memberikan latihan fizikal kepada wanita. Tamadun Rom pula cemerlang dalam seni bina menggunakan Pozzolana (campuran kapur dan abu gunung berapi) untuk simen yang sangat kuat. Tujuh binaan ikonik Rom: Colosseum (amfiteater elips, 50,000 penonton, pertarungan gladiator), Pantheon (kuil berkubah konkrit terbesar dengan Oculus), Akueduk (saluran air dari pergunungan ke bandar melalui graviti), Amfiteater (tempat seni dan teater dengan reka bentuk akustik), Jalan Raya Rom (berlapis pasir, batu, dan simen untuk tentera dan perdagangan), Tembok Hadrian (117 km di Britain sebagai pertahanan), dan Pusat Mandi Awam (pusat sosial dengan bilik mandi panas/sejuk/suam, perpustakaan, dan gimnasium). Iktibar: Demokrasi Athens menjadi asas sistem politik moden, manakala kejuruteraan Rom membuktikan kehebatan sains dan kreativiti manusia purba.",
-  keywords: [
-    "Tamadun Yunani",
-    "Tamadun Rom",
-    "Polis",
-    "Acropolis",
-    "Agora",
-    "Athens",
-    "Sparta",
-    "Corinth",
-    "Monarki",
-    "Oligarki",
-    "Aristokrasi",
-    "Tirani",
-    "Demokrasi",
-    "Dewan Perhimpunan",
-    "Council of 500",
-    "Majistret",
-    "Juri",
-    "Diarqi",
-    "Agoge",
-    "Pozzolana",
-    "Colosseum",
-    "Pantheon",
-    "Oculus",
-    "Akueduk",
-    "Jalan Raya Rom",
-    "Tembok Hadrian",
-    "Pusat Mandi Awam",
-    "gladiator",
-    "demokrasi langsung",
-    };
-],
+    id: "sej-f1-c6-note",
+    subjectId: "sejarah",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    title: "Tamadun Yunani dan Tamadun Rom",
+    summary:
+      "Tamadun Yunani berkembang di Semenanjung Balkan dan pulau-pulau di Laut Aegean. Unit politik utamanya ialah Polis (negara kota) yang terdiri daripada Bandar Utama, Acropolis (kawasan tertinggi dengan kuil dan kubu), Agora (pusat ekonomi dan pertemuan), dan Kawasan Kampung. Tiga polis terkenal ialah Athens (pusat ilmu dan demokrasi), Sparta (pusat ketenteraan), dan Corinth. Athens melalui lima tahap pemerintahan: Monarki (pemerintahan beraja berkuasa mutlak), Oligarki (pemerintahan oleh sekelompok orang kaya), Aristokrasi (kuasa dipegang golongan bangsawan bertanah), Tirani (pemerintahan diktator), dan Demokrasi (pemerintahan oleh rakyat melalui wakil). Struktur demokrasi Athens terdiri daripada Dewan Perhimpunan (badan tertinggi menggubal undang-undang, terbuka kepada semua lelaki berumur 18 tahun ke atas), Majlis/Council of 500 (500 ahli dipilih melalui undian untuk urusan harian), Majistret (kakitangan awam melaksanakan dasar), dan Juri (201–501 orang, untuk mengelakkan rasuah). Sparta pula mengamalkan Diarqi (dua raja serentak), sistem pendidikan Agoge (latihan ketenteraan bermula usia 7 tahun), dan memberikan latihan fizikal kepada wanita. Tamadun Rom pula cemerlang dalam seni bina menggunakan Pozzolana (campuran kapur dan abu gunung berapi) untuk simen yang sangat kuat. Tujuh binaan ikonik Rom: Colosseum (amfiteater elips, 50,000 penonton, pertarungan gladiator), Pantheon (kuil berkubah konkrit terbesar dengan Oculus), Akueduk (saluran air dari pergunungan ke bandar melalui graviti), Amfiteater (tempat seni dan teater dengan reka bentuk akustik), Jalan Raya Rom (berlapis pasir, batu, dan simen untuk tentera dan perdagangan), Tembok Hadrian (117 km di Britain sebagai pertahanan), dan Pusat Mandi Awam (pusat sosial dengan bilik mandi panas/sejuk/suam, perpustakaan, dan gimnasium). Iktibar: Demokrasi Athens menjadi asas sistem politik moden, manakala kejuruteraan Rom membuktikan kehebatan sains dan kreativiti manusia purba.",
+    keywords: [
+      "Tamadun Yunani",
+      "Tamadun Rom",
+      "Polis",
+      "Acropolis",
+      "Agora",
+      "Athens",
+      "Sparta",
+      "Corinth",
+      "Monarki",
+      "Oligarki",
+      "Aristokrasi",
+      "Tirani",
+      "Demokrasi",
+      "Dewan Perhimpunan",
+      "Council of 500",
+      "Majistret",
+      "Juri",
+      "Diarqi",
+      "Agoge",
+      "Pozzolana",
+      "Colosseum",
+      "Pantheon",
+      "Oculus",
+      "Akueduk",
+      "Jalan Raya Rom",
+      "Tembok Hadrian",
+      "Pusat Mandi Awam",
+      "gladiator",
+      "demokrasi langsung",
+    ],
+  },
+];
+
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 export interface QuizQuestion {
@@ -5014,11 +5016,10 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 5",
     front: "Apakah sumbangan tamadun awal yang masih dirasai dalam kehidupan moden?",
     back: "Sistem undang-undang, tulisan, matematik, seni bina, pertanian, dan perdagangan adalah asas kepada kehidupan moden hari ini.",
-  }, 
+  },
 
-  
-// Sejarah Form 1 Chapter 6 - Peningkatan Tamadun Yunani
-  
+  // Sejarah Form 1 Chapter 6 - Peningkatan Tamadun Yunani
+
   {
     id: "sej-f1-c6-fc1",
     subjectId: "sejarah",
@@ -5118,7 +5119,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc13",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah ciri Tirani?",
     back: "Pemerintahan oleh individu (diktator) yang merampas kuasa; sering melakukan pembaharuan untuk meraih sokongan rakyat.",
@@ -5126,7 +5127,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc14",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah ciri Demokrasi Athens?",
     back: "Pemerintahan oleh rakyat melalui wakil; Athens adalah pelopor demokrasi langsung di dunia.",
@@ -5135,7 +5136,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc15",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah empat badan utama dalam sistem demokrasi Athens?",
     back: "Dewan Perhimpunan, Majlis (Council of 500), Majistret, dan Juri.",
@@ -5143,7 +5144,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc16",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Siapakah yang layak menjadi ahli Dewan Perhimpunan Athens?",
     back: "Semua warganegara lelaki Athens berumur 18 tahun ke atas.",
@@ -5151,7 +5152,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc17",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah fungsi Dewan Perhimpunan?",
     back: "Menggubal undang-undang, mengawal kewangan, membincangkan dasar luar, dan bertindak sebagai mahkamah rayuan.",
@@ -5159,7 +5160,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc18",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Berapakah bilangan ahli Majlis Athens dan bagaimana mereka dipilih?",
     back: "500 orang dipilih melalui undian untuk tempoh satu tahun.",
@@ -5175,7 +5176,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc20",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah fungsi Majistret?",
     back: "Kakitangan awam yang melaksanakan dasar-dasar kerajaan.",
@@ -5183,7 +5184,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc21",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Berapakah bilangan juri dalam mahkamah Athens?",
     back: "Antara 201 hingga 501 orang.",
@@ -5191,7 +5192,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc22",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Mengapakah bilangan juri Athens sangat besar?",
     back: "Untuk mengelakkan rasuah dan pengaruh pihak tertentu dalam keputusan mahkamah.",
@@ -5199,7 +5200,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc23",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Berapa kali sekurang-kurangnya Dewan Perhimpunan Athens bersidang dalam sebulan?",
     back: "Sekurang-kurangnya 3 kali sebulan.",
@@ -5207,7 +5208,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc24",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah maksud sistem 'Diarqi' di Sparta?",
     back: "Pemerintahan oleh dua orang raja serentak untuk mengimbangi kuasa.",
@@ -5215,7 +5216,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc25",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Mengapakah Sparta mengamalkan Diarqi?",
     back: "Untuk memastikan tiada seorang pun raja yang memegang kuasa mutlak.",
@@ -5223,7 +5224,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc26",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah sistem 'Agoge'?",
     back: "Sistem pendidikan dan latihan ketenteraan Sparta yang bermula pada usia 7 tahun.",
@@ -5231,7 +5232,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc27",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah matlamat sistem Agoge?",
     back: "Melahirkan tentera yang setia, kuat, dan perkasa untuk negara Sparta.",
@@ -5239,7 +5240,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc28",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah peranan wanita dalam masyarakat Sparta?",
     back: "Diberikan latihan fizikal supaya dapat melahirkan anak yang kuat dan sihat untuk menjadi tentera.",
@@ -5247,7 +5248,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc29",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Berbanding Athens, apakah keutamaan Sparta?",
     back: "Kekuatan ketenteraan dan latihan fizikal berbanding ilmu dan demokrasi.",
@@ -5256,7 +5257,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc30",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah itu Pozzolana?",
     back: "Campuran kapur dan abu gunung berapi yang menghasilkan simen sangat kuat dan tahan air.",
@@ -5264,7 +5265,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc31",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah inovasi seni bina utama Rom?",
     back: "Penggunaan Pozzolana (simen kuat) dan pembinaan arca serta kubah besar tanpa banyak tiang sokongan.",
@@ -5272,7 +5273,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc32",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah itu Colosseum?",
     back: "Amfiteater berbentuk elips yang mampu memuatkan 50,000 penonton; digunakan untuk pertarungan gladiator.",
@@ -5280,7 +5281,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc33",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah itu Pantheon?",
     back: "Kuil Rom untuk menyembah dewa-dewi; terkenal dengan kubah konkrit terbesar tanpa tulang sokongan.",
@@ -5288,7 +5289,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc34",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah itu Oculus?",
     back: "Lubang cahaya bulat di puncak kubah Pantheon yang menjadi sumber cahaya semula jadi.",
@@ -5296,7 +5297,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc35",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah itu Akueduk?",
     back: "Sistem saluran air yang membawa air bersih dari kawasan pergunungan ke bandar melalui graviti.",
@@ -5304,7 +5305,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc36",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah fungsi Amfiteater dalam Tamadun Rom?",
     back: "Tempat persembahan terbuka untuk seni, teater, dan muzik; direka dengan reka bentuk akustik yang baik.",
@@ -5312,7 +5313,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc37",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Bagaimanakah Jalan Raya Rom dibina?",
     back: "Secara berlapis dengan pasir, batu, dan simen untuk memastikan kekuatan dan ketahanan.",
@@ -5320,7 +5321,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc38",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah dua tujuan utama pembinaan Jalan Raya Rom?",
     back: "Memudahkan pergerakan tentera dan perdagangan ke seluruh empayar.",
@@ -5328,7 +5329,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc39",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah itu Tembok Hadrian?",
     back: "Tembok pertahanan sepanjang 117 km di Britain untuk melindungi wilayah Rom daripada serangan puak dari utara.",
@@ -5336,7 +5337,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc40",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Berapakah panjang Tembok Hadrian?",
     back: "117 km.",
@@ -5344,7 +5345,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc41",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah itu Pusat Mandi Awam Rom (Thermae)?",
     back: "Pusat aktiviti sosial yang dilengkapi bilik mandi air panas, sejuk, dan suam, serta perpustakaan dan gimnasium.",
@@ -5352,7 +5353,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc42",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Namakan tujuh binaan ikonik Rom.",
     back: "Colosseum, Pantheon, Akueduk, Amfiteater, Jalan Raya Rom, Tembok Hadrian, Pusat Mandi Awam.",
@@ -5360,7 +5361,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc43",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah warisan terpenting Tamadun Yunani?",
     back: "Sistem demokrasi yang menjadi asas kepada sistem politik moden kebanyakan negara.",
@@ -5368,7 +5369,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc44",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah warisan terpenting Tamadun Rom?",
     back: "Kepakaran seni bina dan kejuruteraan menggunakan simen dan struktur kubah.",
@@ -5376,7 +5377,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc45",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah persamaan antara Tamadun Yunani dan Tamadun Rom?",
     back: "Kedua-duanya mempunyai sistem pemerintahan yang tersusun, seni bina yang maju, dan meninggalkan warisan besar kepada dunia.",
@@ -5384,7 +5385,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc46",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Mengapakah demokrasi Athens dianggap 'langsung'?",
     back: "Kerana rakyat sendiri (bukan wakil sahaja) mengundi terus dalam Dewan Perhimpunan untuk membuat keputusan.",
@@ -5392,7 +5393,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc47",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Adakah wanita dan hamba layak mengundi dalam demokrasi Athens?",
     back: "Tidak; hak mengundi hanya untuk warganegara lelaki dewasa.",
@@ -5400,7 +5401,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc48",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah tujuan Rom membina Akueduk?",
     back: "Untuk membekalkan air bersih kepada penduduk bandar dari sumber di pergunungan.",
@@ -5408,7 +5409,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc49",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah kaitan antara Colosseum dengan kehidupan sosial masyarakat Rom?",
     back: "Colosseum menjadi pusat hiburan awam di mana rakyat berkumpul menonton pertarungan gladiator dan acara sukan.",
@@ -5416,7 +5417,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc50",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Bagaimanakah Pusat Mandi Awam memainkan peranan sosial dalam masyarakat Rom?",
     back: "Ia menjadi tempat warga berbual, bersosial, membaca, dan bersenam — bukan sekadar tempat mandi.",
@@ -5424,7 +5425,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc51",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Mengapakah seni bina Rom masih relevan hari ini?",
     back: "Banyak teknik dan konsep seni bina Rom seperti kubah, lengkok, dan simen menjadi asas kejuruteraan dan seni bina moden.",
@@ -5432,7 +5433,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc52",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah iktibar daripada sistem Diarqi Sparta?",
     back: "Kepentingan pengimbangan kuasa untuk mengelakkan penyalahgunaan kuasa oleh satu pihak.",
@@ -5440,7 +5441,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc53",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah yang boleh kita pelajari daripada sistem undian dalam Majlis Athens?",
     back: "Sistem undian memastikan penyertaan rakyat yang lebih adil dan mengurangkan pengaruh golongan kaya semata-mata.",
@@ -5448,7 +5449,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc54",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Bagaimanakah Tamadun Yunani mempengaruhi sistem parlimen moden?",
     back: "Konsep perbahasan awam, undian, dan badan perundangan berakar dari demokrasi Athens.",
@@ -5456,7 +5457,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc55",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah kepentingan mempelajari Tamadun Yunani dan Rom kepada pelajar Malaysia?",
     back: "Untuk memahami asal usul sistem demokrasi dan teknologi moden, serta mengambil iktibar dalam membina negara yang bertamadun.",
@@ -5464,7 +5465,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc56",
     subjectId: "sejarah",
-    form: "Form 1" ,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah perbezaan antara Amfiteater dan Colosseum?",
     back: "Amfiteater adalah tempat seni dan teater; Colosseum khusus untuk pertarungan gladiator dan acara sukan.",
@@ -5472,7 +5473,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc57",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Mengapakah Athens dianggap pelopor demokrasi dunia?",
     back: "Kerana Athens adalah tamadun pertama yang mengamalkan sistem di mana rakyat terlibat langsung dalam pembuatan keputusan kerajaan.",
@@ -5480,7 +5481,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc58",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah nilai murni yang boleh dipelajari daripada sistem juri Athens?",
     back: "Keadilan harus bebas daripada pengaruh dan rasuah; bilangan juri yang besar mencerminkan komitmen terhadap keadilan.",
@@ -5488,7 +5489,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc59",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah hubungan antara Kawasan Kampung dan Polis Yunani?",
     back: "Kawasan Kampung di luar bandar membekalkan hasil pertanian yang menampung keperluan makanan penduduk polis.",
@@ -5496,7 +5497,7 @@ export const flashcards: Flashcard[] = [
   {
     id: "sej-f1-c6-fc60",
     subjectId: "sejarah",
-    form: "Form 1", 
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah iktibar utama daripada Tamadun Yunani dan Rom untuk generasi muda Malaysia?",
     back: "Kemajuan tulen memerlukan gabungan pemikiran kritis (seperti Athens) dan keupayaan teknikal (seperti Rom), disertai nilai murni.",
