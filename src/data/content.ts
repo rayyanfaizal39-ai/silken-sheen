@@ -3138,7 +3138,6 @@ export const quizzes: QuizQuestion[] = [
   },
   // Sejarah Form 1 Chapter 7 - Peningkatan Tamadun India Dan China
 
-  // --- Tamadun India: Asas & Magadha ---
   {
     id: "sej-f1-c7-fc1",
     subjectId: "sejarah",
@@ -3179,8 +3178,6 @@ export const quizzes: QuizQuestion[] = [
     front: "Apakah dua sumber alam utama yang menguatkan Magadha?",
     back: "Bekalan besi yang banyak untuk senjata dan alat pertanian, serta gajah hutan untuk angkatan tentera.",
   },
-
-  // --- Dinasti Maurya: Chandragupta & Bindusara ---
   {
     id: "sej-f1-c7-fc6",
     subjectId: "sejarah",
@@ -3221,8 +3218,6 @@ export const quizzes: QuizQuestion[] = [
     front: "Apakah sumbangan Bindusara kepada Dinasti Maurya?",
     back: "Meneruskan dasar ayahnya dengan meluaskan empayar ke bahagian selatan India sehingga ke kawasan Mysore.",
   },
-
-  // --- Raja Asoka & Dharma ---
   {
     id: "sej-f1-c7-fc11",
     subjectId: "sejarah",
@@ -3263,8 +3258,6 @@ export const quizzes: QuizQuestion[] = [
     front: "Apakah dua pendekatan perluasan kuasa dalam Tamadun India?",
     back: "Kekuatan Fizikal (Ketenteraan) seperti dilakukan Chandragupta, dan Kemanusiaan/Keagamaan (Dharma) seperti diamalkan Asoka.",
   },
-
-  // --- Tamadun China: Matlamat Pendidikan ---
   {
     id: "sej-f1-c7-fc16",
     subjectId: "sejarah",
@@ -3289,8 +3282,6 @@ export const quizzes: QuizQuestion[] = [
     front: "Apakah sistem utama yang membezakan Tamadun China dalam melahirkan pemimpin?",
     back: "Sistem meritokrasi melalui pendidikan dan peperiksaan awam yang terbuka, bukan semata-mata warisan keturunan.",
   },
-
-  // --- Tiga Tahap Pendidikan China ---
   {
     id: "sej-f1-c7-fc19",
     subjectId: "sejarah",
@@ -3315,8 +3306,6 @@ export const quizzes: QuizQuestion[] = [
     front: "Apakah yang dipelajari pada peringkat Pendidikan Tinggi dalam Tamadun China?",
     back: "Menterjemah dan menghuraikan buku suci, mempelajari etika, undang-undang, serta kemahiran kepimpinan untuk peperiksaan tahap tertinggi.",
   },
-
-  // --- Sistem Peperiksaan Awam ---
   {
     id: "sej-f1-c7-fc22",
     subjectId: "sejarah",
@@ -3389,8 +3378,6 @@ export const quizzes: QuizQuestion[] = [
     front: "Apakah persamaan antara Tamadun India dan China dari segi sistem pemerintahan?",
     back: "Kedua-duanya mempunyai sistem pemerintahan berpusat yang kuat, dan menggunakan pentadbir yang dilantik (bukan warisan semata-mata) untuk menguruskan wilayah.",
   },
-
-  // --- Perbandingan & Nilai Murni ---
   {
     id: "sej-f1-c7-fc31",
     subjectId: "sejarah",
