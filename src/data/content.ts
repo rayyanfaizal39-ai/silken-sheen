@@ -3025,7 +3025,7 @@ export const flashcards: Flashcard[] = [
     front: "Mengapakah penting memahami pembentukan fizikal bumi?",
     back: "Untuk memahami evolusi alam sekitar dan kepentingan menjaga ekosistem dunia.",
   },
-  // Form 1 Chapter 4 - Tamadun Awal Dunia (cards 1-60)
+  // Form 1 Chapter 4 - Mengenali Tamadun (cards 1-60)
   {
     id: "sej-f1-c4-fc1",
     subjectId: "sejarah",
