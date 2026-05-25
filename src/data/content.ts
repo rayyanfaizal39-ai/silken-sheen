@@ -5014,18 +5014,14 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 5",
     front: "Apakah sumbangan tamadun awal yang masih dirasai dalam kehidupan moden?",
     back: "Sistem undang-undang, tulisan, matematik, seni bina, pertanian, dan perdagangan adalah asas kepada kehidupan moden hari ini.",
-  },
-]; 
+  }, 
 
+  
 // Sejarah Form 1 Chapter 6 - Peningkatan Tamadun Yunani
-
- 
-const chapter6Flashcards = [
-  // --- Pengenalan Yunani & Polis ---
   {
     id: "sej-f1-c6-fc1",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Di manakah Tamadun Yunani berkembang?",
     back: "Di Semenanjung Balkan dan pulau-pulau di Laut Aegean.",
@@ -5033,7 +5029,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc2",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah maksud 'Polis'?",
     back: "Unit politik yang bebas dan merdeka dalam Tamadun Yunani (negara kota).",
@@ -5041,7 +5037,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc3",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Namakan empat komponen utama sebuah Polis.",
     back: "Bandar Utama, Acropolis, Agora, dan Kawasan Kampung.",
@@ -5049,7 +5045,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc4",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah fungsi Acropolis?",
     back: "Kawasan tertinggi dalam polis yang menempatkan bangunan kerajaan, kuil, dan kubu pertahanan.",
@@ -5057,7 +5053,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc5",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah fungsi Agora?",
     back: "Kawasan lapang yang berfungsi sebagai pusat ekonomi (pasar) dan tempat pertemuan warganegara.",
@@ -5065,7 +5061,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc6",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Namakan tiga polis terkenal dalam Tamadun Yunani.",
     back: "Athens, Sparta, dan Corinth.",
@@ -5073,7 +5069,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc7",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Athens terkenal sebagai pusat apa?",
     back: "Pusat ilmu pengetahuan dan demokrasi.",
@@ -5081,7 +5077,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc8",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Sparta terkenal sebagai pusat apa?",
     back: "Pusat ketenteraan.",
@@ -5090,7 +5086,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc9",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Nyatakan lima tahap pemerintahan Athens mengikut urutan.",
     back: "Monarki → Oligarki → Aristokrasi → Tirani → Demokrasi.",
@@ -5098,7 +5094,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc10",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah ciri Monarki dalam Tamadun Yunani?",
     back: "Pemerintahan beraja dengan kuasa mutlak, dibantu oleh Majlis bangsawan.",
@@ -5106,7 +5102,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc11",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah ciri Oligarki?",
     back: "Pemerintahan oleh sekelompok kecil orang kaya yang memegang kuasa politik dan ekonomi.",
@@ -5114,7 +5110,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc12",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah ciri Aristokrasi?",
     back: "Kuasa dipegang oleh golongan bangsawan yang memiliki tanah dan mempunyai pengaruh besar.",
@@ -5122,7 +5118,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc13",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" 
     chapter: "Chapter 6",
     front: "Apakah ciri Tirani?",
     back: "Pemerintahan oleh individu (diktator) yang merampas kuasa; sering melakukan pembaharuan untuk meraih sokongan rakyat.",
@@ -5130,7 +5126,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc14",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah ciri Demokrasi Athens?",
     back: "Pemerintahan oleh rakyat melalui wakil; Athens adalah pelopor demokrasi langsung di dunia.",
@@ -5139,7 +5135,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc15",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah empat badan utama dalam sistem demokrasi Athens?",
     back: "Dewan Perhimpunan, Majlis (Council of 500), Majistret, dan Juri.",
@@ -5147,7 +5143,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc16",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" 
     chapter: "Chapter 6",
     front: "Siapakah yang layak menjadi ahli Dewan Perhimpunan Athens?",
     back: "Semua warganegara lelaki Athens berumur 18 tahun ke atas.",
@@ -5155,7 +5151,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc17",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah fungsi Dewan Perhimpunan?",
     back: "Menggubal undang-undang, mengawal kewangan, membincangkan dasar luar, dan bertindak sebagai mahkamah rayuan.",
@@ -5163,7 +5159,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc18",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Berapakah bilangan ahli Majlis Athens dan bagaimana mereka dipilih?",
     back: "500 orang dipilih melalui undian untuk tempoh satu tahun.",
@@ -5171,7 +5167,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc19",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1",
     chapter: "Chapter 6",
     front: "Apakah fungsi Majlis (Council of 500)?",
     back: "Menguruskan hal ehwal harian kerajaan dan menyediakan agenda mesyuarat Dewan Perhimpunan.",
@@ -5179,7 +5175,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc20",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah fungsi Majistret?",
     back: "Kakitangan awam yang melaksanakan dasar-dasar kerajaan.",
@@ -5187,7 +5183,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc21",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Berapakah bilangan juri dalam mahkamah Athens?",
     back: "Antara 201 hingga 501 orang.",
@@ -5195,7 +5191,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc22",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Mengapakah bilangan juri Athens sangat besar?",
     back: "Untuk mengelakkan rasuah dan pengaruh pihak tertentu dalam keputusan mahkamah.",
@@ -5203,7 +5199,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc23",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Berapa kali sekurang-kurangnya Dewan Perhimpunan Athens bersidang dalam sebulan?",
     back: "Sekurang-kurangnya 3 kali sebulan.",
@@ -5212,7 +5208,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc24",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah maksud sistem 'Diarqi' di Sparta?",
     back: "Pemerintahan oleh dua orang raja serentak untuk mengimbangi kuasa.",
@@ -5220,7 +5216,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc25",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Mengapakah Sparta mengamalkan Diarqi?",
     back: "Untuk memastikan tiada seorang pun raja yang memegang kuasa mutlak.",
@@ -5228,7 +5224,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc26",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah sistem 'Agoge'?",
     back: "Sistem pendidikan dan latihan ketenteraan Sparta yang bermula pada usia 7 tahun.",
@@ -5236,7 +5232,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc27",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah matlamat sistem Agoge?",
     back: "Melahirkan tentera yang setia, kuat, dan perkasa untuk negara Sparta.",
@@ -5244,7 +5240,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc28",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah peranan wanita dalam masyarakat Sparta?",
     back: "Diberikan latihan fizikal supaya dapat melahirkan anak yang kuat dan sihat untuk menjadi tentera.",
@@ -5252,7 +5248,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc29",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Berbanding Athens, apakah keutamaan Sparta?",
     back: "Kekuatan ketenteraan dan latihan fizikal berbanding ilmu dan demokrasi.",
@@ -5261,7 +5257,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc30",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah itu Pozzolana?",
     back: "Campuran kapur dan abu gunung berapi yang menghasilkan simen sangat kuat dan tahan air.",
@@ -5269,7 +5265,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc31",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah inovasi seni bina utama Rom?",
     back: "Penggunaan Pozzolana (simen kuat) dan pembinaan arca serta kubah besar tanpa banyak tiang sokongan.",
@@ -5277,7 +5273,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc32",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah itu Colosseum?",
     back: "Amfiteater berbentuk elips yang mampu memuatkan 50,000 penonton; digunakan untuk pertarungan gladiator.",
@@ -5285,7 +5281,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc33",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah itu Pantheon?",
     back: "Kuil Rom untuk menyembah dewa-dewi; terkenal dengan kubah konkrit terbesar tanpa tulang sokongan.",
@@ -5293,7 +5289,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc34",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah itu Oculus?",
     back: "Lubang cahaya bulat di puncak kubah Pantheon yang menjadi sumber cahaya semula jadi.",
@@ -5301,7 +5297,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc35",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah itu Akueduk?",
     back: "Sistem saluran air yang membawa air bersih dari kawasan pergunungan ke bandar melalui graviti.",
@@ -5309,7 +5305,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc36",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah fungsi Amfiteater dalam Tamadun Rom?",
     back: "Tempat persembahan terbuka untuk seni, teater, dan muzik; direka dengan reka bentuk akustik yang baik.",
@@ -5317,7 +5313,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc37",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Bagaimanakah Jalan Raya Rom dibina?",
     back: "Secara berlapis dengan pasir, batu, dan simen untuk memastikan kekuatan dan ketahanan.",
@@ -5325,7 +5321,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc38",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah dua tujuan utama pembinaan Jalan Raya Rom?",
     back: "Memudahkan pergerakan tentera dan perdagangan ke seluruh empayar.",
@@ -5333,7 +5329,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc39",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah itu Tembok Hadrian?",
     back: "Tembok pertahanan sepanjang 117 km di Britain untuk melindungi wilayah Rom daripada serangan puak dari utara.",
@@ -5341,7 +5337,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc40",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Berapakah panjang Tembok Hadrian?",
     back: "117 km.",
@@ -5349,7 +5345,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc41",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah itu Pusat Mandi Awam Rom (Thermae)?",
     back: "Pusat aktiviti sosial yang dilengkapi bilik mandi air panas, sejuk, dan suam, serta perpustakaan dan gimnasium.",
@@ -5357,7 +5353,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc42",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Namakan tujuh binaan ikonik Rom.",
     back: "Colosseum, Pantheon, Akueduk, Amfiteater, Jalan Raya Rom, Tembok Hadrian, Pusat Mandi Awam.",
@@ -5366,7 +5362,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc43",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah warisan terpenting Tamadun Yunani?",
     back: "Sistem demokrasi yang menjadi asas kepada sistem politik moden kebanyakan negara.",
@@ -5374,7 +5370,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc44",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah warisan terpenting Tamadun Rom?",
     back: "Kepakaran seni bina dan kejuruteraan menggunakan simen dan struktur kubah.",
@@ -5382,7 +5378,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc45",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah persamaan antara Tamadun Yunani dan Tamadun Rom?",
     back: "Kedua-duanya mempunyai sistem pemerintahan yang tersusun, seni bina yang maju, dan meninggalkan warisan besar kepada dunia.",
@@ -5390,7 +5386,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc46",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Mengapakah demokrasi Athens dianggap 'langsung'?",
     back: "Kerana rakyat sendiri (bukan wakil sahaja) mengundi terus dalam Dewan Perhimpunan untuk membuat keputusan.",
@@ -5398,7 +5394,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc47",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Adakah wanita dan hamba layak mengundi dalam demokrasi Athens?",
     back: "Tidak; hak mengundi hanya untuk warganegara lelaki dewasa.",
@@ -5406,7 +5402,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc48",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah tujuan Rom membina Akueduk?",
     back: "Untuk membekalkan air bersih kepada penduduk bandar dari sumber di pergunungan.",
@@ -5414,7 +5410,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc49",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah kaitan antara Colosseum dengan kehidupan sosial masyarakat Rom?",
     back: "Colosseum menjadi pusat hiburan awam di mana rakyat berkumpul menonton pertarungan gladiator dan acara sukan.",
@@ -5422,7 +5418,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc50",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Bagaimanakah Pusat Mandi Awam memainkan peranan sosial dalam masyarakat Rom?",
     back: "Ia menjadi tempat warga berbual, bersosial, membaca, dan bersenam — bukan sekadar tempat mandi.",
@@ -5430,7 +5426,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc51",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Mengapakah seni bina Rom masih relevan hari ini?",
     back: "Banyak teknik dan konsep seni bina Rom seperti kubah, lengkok, dan simen menjadi asas kejuruteraan dan seni bina moden.",
@@ -5438,7 +5434,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc52",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah iktibar daripada sistem Diarqi Sparta?",
     back: "Kepentingan pengimbangan kuasa untuk mengelakkan penyalahgunaan kuasa oleh satu pihak.",
@@ -5446,7 +5442,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc53",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah yang boleh kita pelajari daripada sistem undian dalam Majlis Athens?",
     back: "Sistem undian memastikan penyertaan rakyat yang lebih adil dan mengurangkan pengaruh golongan kaya semata-mata.",
@@ -5454,7 +5450,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc54",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Bagaimanakah Tamadun Yunani mempengaruhi sistem parlimen moden?",
     back: "Konsep perbahasan awam, undian, dan badan perundangan berakar dari demokrasi Athens.",
@@ -5462,7 +5458,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc55",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah kepentingan mempelajari Tamadun Yunani dan Rom kepada pelajar Malaysia?",
     back: "Untuk memahami asal usul sistem demokrasi dan teknologi moden, serta mengambil iktibar dalam membina negara yang bertamadun.",
@@ -5470,7 +5466,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc56",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1" ,
     chapter: "Chapter 6",
     front: "Apakah perbezaan antara Amfiteater dan Colosseum?",
     back: "Amfiteater adalah tempat seni dan teater; Colosseum khusus untuk pertarungan gladiator dan acara sukan.",
@@ -5478,7 +5474,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc57",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Mengapakah Athens dianggap pelopor demokrasi dunia?",
     back: "Kerana Athens adalah tamadun pertama yang mengamalkan sistem di mana rakyat terlibat langsung dalam pembuatan keputusan kerajaan.",
@@ -5486,7 +5482,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc58",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah nilai murni yang boleh dipelajari daripada sistem juri Athens?",
     back: "Keadilan harus bebas daripada pengaruh dan rasuah; bilangan juri yang besar mencerminkan komitmen terhadap keadilan.",
@@ -5494,7 +5490,7 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc59",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah hubungan antara Kawasan Kampung dan Polis Yunani?",
     back: "Kawasan Kampung di luar bandar membekalkan hasil pertanian yang menampung keperluan makanan penduduk polis.",
@@ -5502,19 +5498,12 @@ const chapter6Flashcards = [
   {
     id: "sej-f1-c6-fc60",
     subjectId: "sejarah",
-    form: "Form 1" as const,
+    form: "Form 1", 
     chapter: "Chapter 6",
     front: "Apakah iktibar utama daripada Tamadun Yunani dan Rom untuk generasi muda Malaysia?",
     back: "Kemajuan tulen memerlukan gabungan pemikiran kritis (seperti Athens) dan keupayaan teknikal (seperti Rom), disertai nilai murni.",
   },
 ];
-export {
-  chapter6Subtopics,
-  chapter6Note,
-  chapter6Quizzes,
-  chapter6Flashcards,
-};
- ;
 export interface SejarahChapter {
   num: number;
   title: string;
@@ -5527,7 +5516,7 @@ export const sejarahForm1Chapters: SejarahChapter[] = [
   { num: 2, title: "Zaman Air Batu", available: true },
   { num: 3, title: "Zaman Prasejarah", available: true },
   { num: 4, title: "Mengenali Tamadun", available: true, available: true },
-  { num: 5, title: "Tamadun Awal Dunia", available: true, available: true },
+  { num: 5, title: "Tamadun Awal Dunia", available: true },
   { num: 6, title: "Tamadun Yunani dan Tamadun Rom", available: true },
   { num: 7, title: "Tamadun India dan China", available: false },
   { num: 8, title: "Tamadun Islam", available: false },
