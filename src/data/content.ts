@@ -4001,7 +4001,7 @@ export const sejarahForm1Chapters: SejarahChapter[] = [
   { num: 2, title: "Zaman Air Batu", available: true },
   { num: 3, title: "Zaman Prasejarah", available: true },
   { num: 4, title: "Mengenali Tamadun", available: true, isNew: true },
-  { num: 5, title: "Tamadun Awal Dunia", available: false },
+  { num: 5, title: "Tamadun Awal Dunia", available: true },
   { num: 6, title: "Tamadun Yunani dan Tamadun Rom", available: false },
   { num: 7, title: "Tamadun India dan China", available: false },
   { num: 8, title: "Tamadun Islam", available: false },
