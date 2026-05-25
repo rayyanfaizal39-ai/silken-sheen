@@ -4035,7 +4035,6 @@ export const flashcards: Flashcard[] = [
   },
   // Sejarah Form 1 – Chapter 3: Zaman Prasejarah  (60 flashcards)
 
-  // --- Umum / Pengenalan ---
   {
     id: "sej-f1-c5-fc1",
     subjectId: "sejarah",
@@ -4150,8 +4149,6 @@ export const flashcards: Flashcard[] = [
     front: "Apakah yang menjadi asas kepada ukuran masa seperti 60 saat dan 60 minit?",
     back: "Sistem 60 ciptaan Tamadun Mesopotamia.",
   },
-
-  // --- Tamadun Mesir Purba ---
   {
     id: "sej-f1-c5-fc15",
     subjectId: "sejarah",
@@ -4232,8 +4229,6 @@ export const flashcards: Flashcard[] = [
     front: "Mengapakah masyarakat Mesir sangat mementingkan persediaan untuk mati?",
     back: "Kerana mereka percaya kepada kehidupan selepas mati yang memerlukan tubuh badan yang utuh.",
   },
-
-  // --- Tamadun Indus ---
   {
     id: "sej-f1-c5-fc25",
     subjectId: "sejarah",
@@ -4298,8 +4293,6 @@ export const flashcards: Flashcard[] = [
     front: "Apakah fokus utama Tamadun Indus berbanding tamadun lain?",
     back: "Kesejahteraan penduduk dan perancangan bandar, bukannya monumen keagamaan yang besar.",
   },
-
-  // --- Tamadun Huang He ---
   {
     id: "sej-f1-c5-fc33",
     subjectId: "sejarah",
@@ -4356,8 +4349,6 @@ export const flashcards: Flashcard[] = [
     front: "Apakah ciptaan terkenal Tamadun Huang He yang bernilai tinggi dalam perdagangan dunia?",
     back: "Sutera.",
   },
-
-  // --- Perbandingan ---
   {
     id: "sej-f1-c5-fc40",
     subjectId: "sejarah",

@@ -188,4 +188,43 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
 
 export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
   return sejarahF1Subtopics[chapterKey] ?? [];
+},
+    {
+      key: "c5-s3",
+      num: 3,
+      title: "Tamadun Mesir Purba (3,100 SM – 332 SM)",
+      summary:
+        "Tamadun Mesir Purba dibahagikan kepada tiga zaman utama: Kerajaan Purba, Kerajaan Pertengahan, dan Kerajaan Baru.\n\n👑 Organisasi Sosial & Pentadbiran:\n- Firaun: Mempunyai kuasa mutlak dalam pentadbiran, agama, dan ketenteraan.\n- Wazir: Pegawai tertinggi yang membantu Firaun dalam urusan kutipan cukai dan keadilan.\n- Jurutulis (Scribes): Golongan elit yang pakar dalam tulisan Hieroglif untuk menyimpan rekod kerajaan.\n\n🔬 Sumbangan Intelektual & Sains:\n- Perubatan: Kepakaran dalam Mumia (pengawetan mayat) membawa kepada pemahaman anatomi manusia dan pembedahan.\n- Kertas Papirus: Menggunakan serat pokok papirus untuk dijadikan kertas bagi tujuan penulisan dan lukisan.\n- Matematik: Memperkenalkan konsep geometri bagi menguruskan banjir dan pembinaan piramid.",
+      keywords: ["Mesir Purba", "Firaun", "Wazir", "Jurutulis", "Scribes", "Hieroglif", "Mumia", "Papirus", "geometri", "Piramid", "Kerajaan Purba", "Kerajaan Pertengahan", "Kerajaan Baru"],
+    },
+    {
+      key: "c5-s4",
+      num: 4,
+      title: "Tamadun Indus (2,500 SM – 1,750 SM)",
+      summary:
+        "Tamadun Indus dikenali sebagai tamadun yang mempunyai kemahiran kejuruteraan bangunan yang paling maju pada zamannya.\n\n🏙️ Perancangan Bandar Sistematik:\n- Bandar dibina mengikut pelan grid yang teratur (segi empat tepat).\n- Sistem Perparitan: Longkang di bawah jalan raya adalah tertutup dan mempunyai lubang pemeriksaan untuk memudahkan pembersihan.\n- Pusat Awam: Adanya The Great Bath (kolam mandi awam) yang digunakan untuk upacara keagamaan dan kebersihan.\n\n💼 Ekonomi & Perdagangan:\n- Mencipta Meterai (Seals) yang mempunyai ukiran haiwan dan tulisan sebagai simbol pengenalan pedagang dalam urusan perdagangan antarabangsa dengan Mesopotamia.",
+      keywords: ["Tamadun Indus", "pelan grid", "sistem perparitan", "The Great Bath", "Meterai", "Seals", "Piktograf", "perdagangan antarabangsa", "Mohenjo-daro", "Harappa"],
+    },
+    {
+      key: "c5-s5",
+      num: 5,
+      title: "Tamadun Huang He (1,766 SM – 256 SM)",
+      summary:
+        "Tamadun Huang He bermula di Lembah Sungai Huang He yang juga dikenali sebagai Sungai Kuning.\n\n🏛️ Sistem Politik:\n- Konsep Mandat dari Syurga: Pemerintah dipercayai mendapat restu tuhan. Jika berlaku bencana alam, ia dianggap petanda bahawa mandat raja telah ditarik balik.\n\n🌾 Kemajuan Pertanian & Ekonomi:\n- Peralatan Besi: Penggunaan cangkul dan sabit daripada besi meningkatkan produktiviti makanan.\n- Sistem Pengairan: Terusan dibina untuk mengalirkan air ke kawasan pertanian dan mengawal banjir.\n\n🖋️ Budaya & Tulisan:\n- Ideogram: Tulisan yang berkembang daripada simbol-simbol pada tulang sula (oracle bones).\n- Sutera: Masyarakat Huang He merupakan yang pertama menenun sutera untuk pakaian.",
+      keywords: ["Huang He", "Sungai Kuning", "Mandat dari Syurga", "oracle bones", "Ideogram", "sutera", "cangkul", "sabit", "terusan", "pengairan"],
+    },
+    {
+      key: "c5-s6",
+      num: 6,
+      title: "Perbandingan Antara Tamadun Awal",
+      summary:
+        "Jadual perbandingan ringkas antara keempat-empat tamadun awal dunia:\n\n🏛️ Mesopotamia\n- Lokasi Sungai: Tigris & Euphrates\n- Sistem Tulisan: Kuneiform\n- Monumen Terkenal: Ziggurat\n\n🏛️ Mesir Purba\n- Lokasi Sungai: Sungai Nil\n- Sistem Tulisan: Hieroglif\n- Monumen Terkenal: Piramid\n\n🏛️ Indus\n- Lokasi Sungai: Sungai Indus\n- Sistem Tulisan: Piktograf (Indus script)\n- Monumen Terkenal: The Great Bath\n\n🏛️ Huang He\n- Lokasi Sungai: Sungai Huang He\n- Sistem Tulisan: Ideogram\n- Monumen Terkenal: Tembok Besar (Zaman kemudian)",
+      keywords: ["Mesopotamia", "Mesir Purba", "Indus", "Huang He", "Tigris", "Euphrates", "Nil", "Kuneiform", "Hieroglif", "Piktograf", "Ideogram", "Ziggurat", "Piramid", "The Great Bath", "Tembok Besar"],
+    },
+  ],
+};
+ 
+export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
+  return sejarahF1Subtopics[chapterKey] ?? [];
 }
+ 
