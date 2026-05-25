@@ -343,6 +343,43 @@ export const notes: Note[] = [
       "demokrasi langsung",
     ],
   },
+  {
+    id: "sej-f1-c7-note",
+    subjectId: "sejarah",
+    form: "Form 1",
+    chapter: "Chapter 7",
+    title: "Peningkatan Tamadun India dan China",
+    summary:
+      "Tamadun India berkembang daripada petempatan kecil yang dikenali sebagai Janapada kepada kerajaan besar bernama Mahajanapada. Kerajaan Magadha (540 SM–320 SM) muncul sebagai kuasa utama berkat kedudukan strategiknya di Lembah Ganges yang subur serta akses kepada bekalan besi dan gajah untuk tentera. Dinasti Maurya mempelopori perluasan kuasa melalui dua pendekatan: Kekuatan Fizikal (Ketenteraan) dan Kemanusiaan (Dharma). Chandragupta Maurya, dibantu penasihat Chanakya, membina angkatan tentera besar (600,000 infantri, 30,000 kavalri, 9,000 gajah) untuk menyatukan utara India. Anaknya Bindusara meneruskan perluasan ke selatan. Peralihan besar berlaku apabila Raja Asoka menyaksikan kehancuran Perang Kalinga (261 SM) yang mengorbankan lebih 100,000 nyawa. Asoka memeluk agama Buddha dan memperkenalkan dasar Dharma yang menekankan kasih sayang, keadilan, dan kebajikan. Titah perintah diraja Asoka diukir pada Tiang Asoka (Edicts of Asoka) yang diletakkan di kawasan awam sebagai panduan etika dan toleransi agama. Tamadun China pula dibina berasaskan sistem meritokrasi melalui pendidikan dan peperiksaan awam. Matlamat pendidikan ialah menyediakan individu untuk perkhidmatan awam, mengekalkan ajaran Konfusianisme, dan mencapai status sosial lebih tinggi. Tiga tahap pendidikan wujud: Rendah (menghafal tulisan dan buku suci), Menengah (karangan, sastera, falsafah Konfusius), dan Tinggi (menterjemah buku suci, etika, undang-undang, kepimpinan). Sistem Peperiksaan Awam dimulakan oleh Maharaja Wu (Dinasti Han). Hanya lelaki boleh menduduki peperiksaan. Tiga tahap peperiksaan ialah: Xiucai (peringkat daerah, setiap dua tahun, calon lulus jadi pegawai rendah), Juren (ibu kota wilayah, setiap tiga tahun, hanya calon Xiucai layak), dan Jinshi (istana di hadapan Maharaja, calon lulus jadi pegawai tinggi istana). Calon dikurung dalam bilik kecil selama tiga hari tiga malam untuk peperiksaan tahap tinggi, dan sesiapa yang meniru dikenakan hukuman mati.",
+    keywords: [
+      "Janapada",
+      "Mahajanapada",
+      "Magadha",
+      "Dinasti Maurya",
+      "Chandragupta Maurya",
+      "Chanakya",
+      "Bindusara",
+      "Raja Asoka",
+      "Perang Kalinga",
+      "Dharma",
+      "Tiang Asoka",
+      "Edicts of Asoka",
+      "Konfusianisme",
+      "Maharaja Wu",
+      "Dinasti Han",
+      "Peperiksaan Awam",
+      "Xiucai",
+      "Juren",
+      "Jinshi",
+      "Meritokrasi",
+      "Pendidikan Rendah",
+      "Pendidikan Menengah",
+      "Pendidikan Tinggi",
+      "Tamadun India",
+      "Tamadun China",
+      "Lembah Ganges",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
@@ -5973,7 +6010,7 @@ export const sejarahForm1Chapters: SejarahChapter[] = [
   { num: 4, title: "Mengenali Tamadun", available: true },
   { num: 5, title: "Tamadun Awal Dunia", available: true },
   { num: 6, title: "Tamadun Yunani dan Tamadun Rom", available: true },
-  { num: 7, title: "Tamadun India dan China", available: false },
+  { num: 7, title: "Tamadun India dan China", available: true },
   { num: 8, title: "Tamadun Islam", available: false },
 ];
 
