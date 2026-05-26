@@ -467,6 +467,31 @@ export const notes: Note[] = [
       "Kemahiran Geografi",
     ],
   },
+  {
+    id: "geo-f1-c3-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 3",
+    title: "Peta Lakar",
+    summary:
+      "Peta lakar ialah gambaran permukaan bumi yang dilukis dari pandangan atas bagi mewakili sesuatu kawasan yang luas dengan menggunakan simbol geografi bagi menggantikan lukisan objek rumit supaya maklumat lebih mudah dibaca dan difahami. Sebuah peta lakar yang lengkap dan berkualiti wajib mempunyai lima elemen utama, iaitu Tajuk yang ditulis dengan huruf besar di bahagian atas dan digariskan untuk menyatakan isi kandungan peta; Bingkai berupa garisan luar yang melingkari peta untuk menandakan had kawasan; Arah Mata Angin yang menunjukkan orientasi peta (biasanya arah Utara); Simbol untuk mewakili ciri geografi bagi menjimatkan ruang; serta Petunjuk untuk menjelaskan makna di sebalik setiap simbol yang digunakan. Jenis-jenis simbol dalam peta lakar dibahagikan kepada empat kategori utama, iaitu Simbol Titik untuk kedudukan spesifik seperti masjid, kuil, gereja, tanda aras, atau stesen trigonometri; Simbol Garisan untuk ciri memanjang seperti jalan raya, sungai, jalan kereta api, dan sempadan; Simbol Kawasan untuk ruang yang luas seperti sawah padi, hutan, kelapa sawit, dan getah; serta Simbol Bergambar yang berbentuk lukisan ringkas menyerupai objek asal seperti gambar pokok kelapa. Penggunaan singkatan seperti B.P. (Balai Polis), Sek. (Sekolah), Hosp. (Hospital), P.P. / Pej. Pos (Pejabat Pos), Kg. (Kampung), dan Pt. (Parit) turut diaplikasikan bagi menjimatkan ruang petempatan bangunan awam. Seterusnya, kandungan peta lakar diklasifikasikan kepada dua ciri pandang darat utama, iaitu Ciri Pandang Darat Fizikal (semula jadi) yang merangkumi bentuk muka bumi (tanah tinggi, tanah pamah, bukit, lembah), saliran (sungai, tasik, paya bakau, paya air tawar), dan tumbuhan semula jadi (hutan rimba, belukar) tanpa campur tangan manusia. Manakala Ciri Pandang Darat Budaya (buatan manusia) merujuk kepada hasil aktiviti manusia seperti petempatan (rumah, bandar), sistem pengangkutan (jalan raya, jalan kereta api, jambatan, jeti), kegiatan ekonomi (sawah padi, ladang kelapa sawit, kilang, lombong), serta kemudahan sosial. Terdapat hubung kait yang rapat antara kedua-dua ciri ini kerana manusia membina ciri budaya berdasarkan potensi ciri fizikal sedia ada, seperti memilih kawasan tanah pamah yang subur untuk penanaman padi, petempatan, dan jalan raya; kawasan pinggir laut untuk aktiviti perikanan dan jeti; serta kawasan tanah tinggi untuk pelancongan dan penanaman teh. Akhir sekali, langkah-langkah melukis peta lakar yang sistematik bermula dengan memilih tajuk kawasan, melukis bingkai peta, menentukan simbol yang sesuai, memplotkan ciri-ciri geografi mengikut kedudukan yang betul dengan mendahulukan ciri fizikal sebelum ciri budaya, serta melengkapkan petunjuk dan arah mata angin.",
+    keywords: [
+      "Peta Lakar",
+      "Ciri Pandang Darat Fizikal",
+      "Ciri Pandang Darat Budaya",
+      "Simbol Titik",
+      "Simbol Garisan",
+      "Simbol Kawasan",
+      "Simbol Bergambar",
+      "Singkatan Peta",
+      "Petunjuk Peta",
+      "Bingkai Peta",
+      "Tanah Pamah",
+      "Saliran",
+      "Titik Rujukan",
+      "Kemahiran Geografi",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
