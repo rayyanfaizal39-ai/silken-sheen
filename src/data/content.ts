@@ -589,6 +589,29 @@ export const notes: Note[] = [
       "Terusan Pengairan",
     ],
   },
+  {
+    id: "geo-f1-c8-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 8",
+    title: "Penduduk di Malaysia",
+    summary:
+      "Taburan penduduk di Malaysia adalah tidak sekata dan dibahagikan kepada tiga jenis utama berdasarkan bilangan orang per kilometer persegi. Kawasan penduduk padat (melebihi 200 orang/km²) tertumpu di bandar-bandar besar dan dataran subur seperti KL, Shah Alam, George Town, Johor Bahru, dan Kota Kinabalu. Kawasan penduduk sederhana (50 hingga 200 orang/km²) melibatkan kawasan pertanian, pesisir pantai, dan bandar kecil seperti utara Perak, Kedah, dan pesisir pantai Sarawak. Kawasan penduduk jarang (kurang 50 orang/km²) pula berada di kawasan pedalaman Borneo, banjaran gunung seperti Banjaran Titiwangsa, serta hutan rimba. Taburan ini dipengaruhi oleh empat faktor kritikal: Faktor Fizikal (tanah pamah yang rata menjadi tumpuan padat, manakala tanah tinggi bercerun dan hutan tebal berpenduduk jarang kecuali pusat pelancongan sejuk); Faktor Ekonomi (peluang pekerjaan dalam sektor pertanian aluvium di Dataran Kedah-Perlis, perindustrian di Lembah Klang dan Bayan Lepas, serta perlombongan petroleum di Kerteh dan Bintulu); Faktor Sosial (ketersediaan infrastruktur pengangkutan yang maju, kemudahan hospital pakar, serta pusat pendidikan tinggi seperti Bangi dan Skudai); dan Faktor Dasar Kerajaan/Governan (pembukaan tanah rancangan FELDA untuk menyeimbangkan penduduk luar bandar, pewartaan bandar baru, serta pembangunan Putrajaya sebagai pusat pentadbiran negara).",
+    keywords: [
+      "Taburan Penduduk",
+      "Penduduk Padat",
+      "Penduduk Sederhana",
+      "Penduduk Jarang",
+      "Tanah Pamah",
+      "Tanah Aluvium",
+      "Lembah Klang",
+      "Bayan Lepas",
+      "Infrastruktur Sosial",
+      "Dasar Kerajaan",
+      "FELDA",
+      "Putrajaya",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
