@@ -516,6 +516,31 @@ export const notes: Note[] = [
       "Kemahiran Geografi",
     ],
   },
+  {
+    id: "geo-f1-c5-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 5",
+    title: "Bumi",
+    summary:
+      "Bumi ialah planet dinamik unik yang mempunyai sistem fizikal yang saling berinteraksi untuk menyokong hidupan, terdiri daripada empat komponen utama iaitu Atmosfera (lapisan udara mengandungi 78% Nitrogen, 21% Oksigen, argon, karbon dioksida, debu, dan wap air yang berfungsi melindungi bumi daripada sinaran ultraungu), Hidrosfera (meliputi 71% permukaan bumi yang dilitupi air termasuk lautan, sungai, tasik, air bawah tanah, dan wap air), Litosfera (lapisan luar bumi yang pejal merangkumi kerak bumi dan bahagian atas mantel yang kaya dengan batuan serta mineral sebagai habitat hidupan), dan Biosfera (kawasan didiami manusia, haiwan, dan tumbuhan hasil interaksi tiga sistem fizikal tadi). Struktur dalaman bumi terbahagi kepada tiga lapisan utama iaitu Kerak Bumi yang paling luar, nipis, dan pejal—terbahagi kepada lapisan Sial (Silika & Aluminium) di bahagian benua dan Sima (Silika & Magnesium) di dasar lautan; Mantel iaitu lapisan paling tebal (80% isi padu bumi) yang sebahagiannya bersifat separa cecair atau magma panas; serta Teras Bumi di bahagian paling dalam yang sangat panas dan bertekanan tinggi—terbahagi kepada Teras Luar (cecair) dan Teras Dalam (pepejal). Permukaan bumi terdiri daripada 29% daratan yang membentuk 7 benua utama, iaitu Asia (terbesar), Afrika, Amerika Utara, Amerika Selatan, Antartika (paling sejuk), Eropah, dan Oceania/Australia (terkecil); serta 71% perairan yang membentuk 5 lautan utama, iaitu Lautan Pasifik (terbesar dan terdalam), Atlantik, Hindi, Selatan, dan Artik (terkecil). Di sekitar Malaysia, terdapat perairan penting seperti Laut China Selatan, Selat Melaka (selat terpanjang di dunia), Selat Tebrau, dan Laut Sulu. Akhir sekali, pergerakan kerak bumi yang digerakkan oleh arus perolakan magma dalam mantel mengakibatkan fenomena hanyutan benua, pembentukan gunung lipat, letusan gunung berapi (vulkanisme), gempa bumi, serta kejadian tsunami di dasar laut.",
+    keywords: [
+      "Sistem Fizikal Bumi",
+      "Atmosfera",
+      "Hidrosfera",
+      "Litosfera",
+      "Biosfera",
+      "Struktur Bumi",
+      "Kerak Bumi",
+      "Sial Sima",
+      "Mantel Magma",
+      "Teras Bumi",
+      "Benua dan Lautan",
+      "Selat Melaka",
+      "Pergerakan Kerak Bumi",
+      "Gunung Lipat",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
