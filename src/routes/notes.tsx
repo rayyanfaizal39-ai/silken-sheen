@@ -13,6 +13,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { MindMap } from "@/components/MindMap";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
+import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
