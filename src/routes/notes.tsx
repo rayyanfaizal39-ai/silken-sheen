@@ -280,6 +280,20 @@ function SubtopicView({
         </p>
       </div>
 
+      {chapterKey === "Chapter 1" && (
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <h3 className="font-display text-2xl font-bold">
+              Mind Map <span className="gradient-text">Mengenali Sejarah</span>
+            </h3>
+            <span className="text-xs text-muted-foreground">
+              Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+            </span>
+          </div>
+          <MindMap data={mengenaliSejarahMindMap} height={640} />
+        </div>
+      )}
+
       {chapterKey === "Chapter 2" && (
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
