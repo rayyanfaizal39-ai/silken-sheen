@@ -7877,19 +7877,6 @@ export function getSubjectChapters(subjectId: string): ChapterItem[] {
   }
   return otherSubjectChapters[subjectId] ?? [];
 }
-
-export function getItemChapterKey(item: { id: string; subjectId: string; chapter?: string }): string | null {
-  if (item.subjectId === "sejarah") {
-    const n = sejarahChapterFromId(item.id);
-    return n ? `Chapter ${n}` : null;
-  }
-  if (item.subjectId === "geography") {
-    const n = geographyChapterFromId(item.id);
-    return n ? `Chapter ${n}` : null;
-  }
-  return item.chapter ?? null;
-}
-
 export const badges = [
   { id: "starter", name: "First Steps", emoji: "🚀", desc: "Complete your first quiz" },
   { id: "streak3", name: "On Fire", emoji: "🔥", desc: "3-day streak" },
