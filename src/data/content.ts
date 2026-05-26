@@ -7841,7 +7841,7 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
     { key: "Chapter 2", label: "Chapter 2: Cells & Living Things", available: true },
     { key: "Chapter 5", label: "Chapter 5: Electricity", available: true },
   ],
-  geography: 
+  geography: [
     { key: "Chapter 1", label: "Chapter 1: Arah", available: true },
     { key: "Chapter 2", label: "Chapter 2: Kedudukan", available: true },
     { key: "Chapter 3", label: "Chapter 3: Peta Lakar", available: true },
