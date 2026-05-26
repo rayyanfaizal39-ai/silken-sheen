@@ -7841,7 +7841,21 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
     { key: "Chapter 2", label: "Chapter 2: Cells & Living Things", available: true },
     { key: "Chapter 5", label: "Chapter 5: Electricity", available: true },
   ],
-  geography: [{ key: "Chapter 1", label: "Chapter 1: Map Reading", available: true }],
+  geography: 
+    { key: "Chapter 1", label: "Chapter 1: Arah", available: true },
+    { key: "Chapter 2", label: "Chapter 2: Kedudukan", available: true },
+    { key: "Chapter 3", label: "Chapter 3: Peta Lakar", available: true },
+    { key: "Chapter 4", label: "Chapter 4: Lakaran Peta Malaysia", available: true },
+    { key: "Chapter 5", label: "Chapter 5: Bumi", available: true },
+    { key: "Chapter 6", label: "Chapter 6: Bentuk Muka Bumi", available: true },
+    { key: "Chapter 7", label: "Chapter 7: Saliran", available: true },
+    { key: "Chapter 8", label: "Chapter 8: Penduduk Di Malaysia", available: true },
+    { key: "Chapter 9", label: "Chapter 9: Petempatan Di Malaysia", available: true },
+    { key: "Chapter 10", label: "Chapter 10: Bentuk Muka Bumi dan Saliran di Asia Tenggara", available: true },
+    { key: "Chapter 11", label: "Chapter 11: Penduduk dan Petempatan di Asia Tenggara", available: true },
+    { key: "Chapter 12", label: "Chapter 12: Sumber Air", available: true },
+    { key: "Chapter 13", label: "Chapter 13: Sisa Domestik", available: true },
+  ],
 };
 
 export function getSubjectChapters(subjectId: string): ChapterItem[] {
