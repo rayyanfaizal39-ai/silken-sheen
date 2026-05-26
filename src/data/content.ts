@@ -7876,6 +7876,11 @@ export function getItemChapterKey(item: { id: string; subjectId: string; chapter
     return n ? `Chapter ${n}` : null;
   }
   return item.chapter ?? null;
+  if (item.subjectId === "geography") {
+    const n = geographyChapterFromId(item.id);
+    return n ? `Chapter ${n}` : null;
+  }
+  return item.chapter ?? null;
 }
 
 export const badges = [
