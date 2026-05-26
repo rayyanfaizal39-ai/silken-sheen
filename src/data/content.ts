@@ -7822,6 +7822,10 @@ export function sejarahChapterFromId(id: string): number | null {
   return m ? parseInt(m[1], 10) : null;
 }
 
+export function geographyChapterFromId(id: string): number | null {
+  const m = id.match(/^geo-f1-c(\d+)-/);
+  return m ? parseInt(m[1], 10) : null;
+}
 export interface ChapterItem {
   key: string;
   label: string;
@@ -7867,15 +7871,18 @@ export function getSubjectChapters(subjectId: string): ChapterItem[] {
       isNew: c.isNew,
     }));
   }
-  if (subjectId === "geography") {
-    return geographyForm1Chapters.map((c) => ({
-      key: `Chapter ${c.num}`,
-      label: `Chapter ${c.num}: ${c.title}`,
-      available: c.available,
-      isNew: c.isNew,
-    }));
-  }
   return otherSubjectChapters[subjectId] ?? [];
+}
+export function getItemChapterKey(item: { id: string; subjectId: string; chapter?: string }): string | null {
+  if (item.subjectId === "sejarah") {
+    const n = sejarahChapterFromId(item.id);
+    return n ? `Chapter ${n}` : null;
+  }
+  if (item.subjectId === "geography") {
+    const n = geographyChapterFromId(item.id);
+    return n ? `Chapter ${n}` : null;
+  }
+  return item.chapter ?? null;
 }
 export const badges = [
   { id: "starter", name: "First Steps", emoji: "🚀", desc: "Complete your first quiz" },
