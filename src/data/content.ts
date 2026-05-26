@@ -541,6 +541,30 @@ export const notes: Note[] = [
       "Gunung Lipat",
     ],
   },
+  {
+    id: "geo-f1-c6-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    title: "Bentuk Muka Bumi di Malaysia",
+    summary:
+      "Malaysia mempunyai kepelbagaian bentuk muka bumi unik yang dibahagikan kepada empat kategori utama, iaitu Tanah Tinggi, Tanah Pamah, Pinggir Laut, dan Saliran. Kawasan Tanah Tinggi merujuk kepada kawasan berketinggian melebihi 180 meter dari aras laut yang terbentuk daripada proses lipatan kerak bumi; contohnya Banjaran Titiwangsa sebagai 'tulang belakang' Semenanjung Malaysia dan Banjaran Crocker di Sabah yang menempatkan Gunung Kinabalu (4,095 meter). Kepentingannya merangkumi pusat pelancongan (suhu sejuk turun kira-kira 6.5°C bagi setiap kenaikan 1,000 meter), pertanian hawa sederhana (teh, strawberi, sayur-sayuran), dan penjanaan kuasa hidroelektrik menggunakan tenaga kinetik aliran sungai deras (contohnya Empangan Bakun). Kawasan Tanah Pamah pula beralun atau rata dengan ketinggian kurang daripada 180 meter dari aras laut yang biasanya terbentuk di lembah sungai melalui pemendapan aluvium seperti Dataran Kedah-Perlis dan Dataran Kelantan. Kepentingannya adalah sebagai kawasan pertanian padi (memudahkan sistem pengairan dan jentera berat), pusat petempatan serta perindustrian utama (kos pembinaan bangunan lebih murah), dan pembangunan jaringan pengangkutan (jalan raya dan landasan kereta api lebih efisien dan kurang terowong). Seterusnya, Pinggir Laut Malaysia kaya dengan ciri fizikal seperti tanjung, pulau, dan teluk terlindung berair tenang. Kepentingannya termasuklah kawasan pelabuhan semula jadi yang selamat daripada ombak besar (contohnya Pelabuhan Klang), pusat perikanan komersial (kawasan pentas benua cetek kaya plankton makanan ikan), dan destinasi pelancongan (Pulau Redang dan Pulau Sipadan yang terkenal dengan terumbu karang). Akhir sekali, komponen Saliran merangkumi sistem sungai dan tasik; di mana Sungai Rajang merupakan sungai terpanjang di Malaysia, manakala Tasik Bera ialah tasik semula jadi dan Tasik Kenyir ialah tasik buatan. Saliran berfungsi penting sebagai sumber bekalan air domestik dan industri, jalan perhubungan serta pengangkutan utama di pedalaman Sabah dan Sarawak, serta bertindak sebagai sempadan semula jadi geopolitik seperti Sungai Golok yang memisahkan Malaysia dengan Thailand.",
+    keywords: [
+      "Bentuk Muka Bumi",
+      "Tanah Tinggi",
+      "Banjaran Titiwangsa",
+      "Gunung Kinabalu",
+      "Tanah Pamah",
+      "Aluvium",
+      "Dataran Kedah-Perlis",
+      "Pinggir Laut",
+      "Pentas Benua",
+      "Saliran",
+      "Sungai Rajang",
+      "Kuasa Hidroelektrik",
+      "Sempadan Semula Jadi",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
