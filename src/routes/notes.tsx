@@ -13,6 +13,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { MindMap } from "@/components/MindMap";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
+import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
@@ -126,6 +127,20 @@ function NotesPage() {
       ) : (
         <>
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+
+          {subject === "sejarah" && chapter === "Chapter 1" && (
+            <div className="mb-8 animate-fade-up">
+              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h2 className="font-display text-2xl font-bold">
+                  Mind Map <span className="gradient-text">Mengenali Sejarah</span>
+                </h2>
+                <span className="text-xs text-muted-foreground">
+                  Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                </span>
+              </div>
+              <MindMap data={mengenaliSejarahMindMap} height={640} />
+            </div>
+          )}
 
           {subject === "sejarah" && chapter === "Chapter 2" && (
             <div className="mb-8 animate-fade-up">
@@ -264,6 +279,20 @@ function SubtopicView({
           Setiap subtopik dipecahkan untuk pembelajaran yang lebih fokus.
         </p>
       </div>
+
+      {chapterKey === "Chapter 1" && (
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <h3 className="font-display text-2xl font-bold">
+              Mind Map <span className="gradient-text">Mengenali Sejarah</span>
+            </h3>
+            <span className="text-xs text-muted-foreground">
+              Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+            </span>
+          </div>
+          <MindMap data={mengenaliSejarahMindMap} height={640} />
+        </div>
+      )}
 
       {chapterKey === "Chapter 2" && (
         <div className="mb-8">
