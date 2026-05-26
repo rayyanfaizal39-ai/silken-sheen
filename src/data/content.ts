@@ -492,6 +492,30 @@ export const notes: Note[] = [
       "Kemahiran Geografi",
     ],
   },
+  {
+    id: "geo-f1-c4-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Lakaran Peta Malaysia",
+    summary:
+      "Malaysia merupakan sebuah negara di Asia Tenggara yang terbahagi kepada dua bahagian utama dipisahkan oleh Laut China Selatan, iaitu Semenanjung Malaysia dan Malaysia Timur (Sabah dan Sarawak). Negara ini terdiri daripada 13 buah negeri dan 3 buah Wilayah Persekutuan yang ditadbir terus oleh Kerajaan Persekutuan, iaitu Kuala Lumpur (ibu negara dan pusat kewangan), Putrajaya (pusat pentadbiran kerajaan persekutuan), dan Labuan (pusat kewangan luar pesisir antarabangsa). Di Semenanjung Malaysia terdapat 11 buah negeri, iaitu Perlis (negeri terkecil di paling utara, ibu negeri Kangar), Kedah (Jelapang Padi Malaysia, ibu negeri Alor Setar), Pulau Pinang (pulau dan tanah besar Seberang Perai, ibu negeri George Town), Perak (terkenal dengan bijih timah, ibu negeri Ipoh), Selangor (paling maju dan padat, ibu negeri Shah Alam), Negeri Sembilan (terkenal dengan adat perpatih, ibu negeri Seremban), Melaka (negeri bersejarah, ibu negeri Bandaraya Melaka), Johor (paling selatan, ibu negeri Johor Bahru), Pahang (terbesar di Semenanjung, ibu negeri Kuantan), Terengganu (pantai timur, ibu negeri Kuala Terengganu), dan Kelantan (utara Terengganu bersempadan Thailand, ibu negeri Kota Bharu). Di Malaysia Timur pula terdapat 2 buah negeri terbesar di Pulau Borneo, iaitu Sarawak (negeri terbesar di Malaysia, ibu negeri Kuching) dan Sabah (negeri kedua terbesar yang terkenal dengan Gunung Kinabalu, ibu negeri Kota Kinabalu). Setiap ibu negeri berfungsi penting sebagai pusat pentadbiran kerajaan negeri, pusat ekonomi, dan pusat perkhidmatan utama. Seterusnya, prosedur melakar Peta Malaysia secara sistematik merangkumi lima langkah utama, iaitu Langkah 1: Menentukan Bingkai Peta dengan melukis kotak sempadan luar ruang; Langkah 2: Melakar Bentuk Kasar Semenanjung Malaysia di sebelah kiri serta Sabah dan Sarawak di sebelah kanan secara seimbang; Langkah 3: Melukis Sempadan Negeri secara relatif dari utara ke selatan serta sempadan negara jiran seperti Brunei dan Indonesia; Langkah 4: Melabel Nama Negeri dan Wilayah Persekutuan menggunakan huruf besar untuk kejelasan; serta Langkah 5: Melengkapkan Ciri Peta wajib seperti tajuk 'Peta Malaysia', simbol arah mata angin Utara, dan petunjuk peta. Kemahiran melakar peta ini sangat penting bagi mengenali identiti keluasan negara, memudahkan navigasi arah, serta membantu urusan pendidikan dan perancangan analisis taburan penduduk serta pembangunan ekonomi.",
+    keywords: [
+      "Lakaran Peta Malaysia",
+      "Ibu Negeri",
+      "Wilayah Persekutuan",
+      "Semenanjung Malaysia",
+      "Malaysia Timur",
+      "Borneo",
+      "Sempadan Negeri",
+      "Bingkai Peta",
+      "Kuala Lumpur",
+      "Putrajaya",
+      "Labuan",
+      "Landskap Budaya",
+      "Kemahiran Geografi",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
