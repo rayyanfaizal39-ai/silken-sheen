@@ -445,6 +445,28 @@ export const notes: Note[] = [
       "Atlas",
     ],
   },
+  {
+    id: "geo-f1-c1-note2",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    title: "Bearing Sudutan",
+    summary:
+      "Bearing ialah arah sesuatu objek atau tempat dari satu titik rujukan yang diukur dalam unit darjah (°). Bearing sudutan, atau dikenali sebagai bearing azimuth, diukur bermula dari arah Utara (0°) mengikut arah pusingan jam dengan menggunakan jangka sudut sebagai alat pengukuran utama. Langkah-langkah untuk mengukur bearing sudutan bagi sesuatu titik (contohnya Titik W dari Titik X) dimulakan dengan melukis satu garisan lurus menggunakan pembaris bagi menyambungkan kedua-dua titik tersebut. Seterusnya, tentukan titik rujukan dengan mencari kata kunci 'dari' dalam soalan, di mana titik yang disebut selepas perkataan tersebut merupakan titik rujukan (Titik X). Bina simbol arah mata angin pada titik rujukan dengan memastikan arah Utara (U) menghadap tepat ke bahagian atas. Seterusnya, letakkan pusat jangka sudut tepat di atas titik rujukan dan pastikan garisan 0° atau Utara jangka sudut selari dengan arah Utara mata angin. Baca nilai darjah pada skala luar jangka sudut kerana ia mengikut arah pusingan jam bermula dari Utara sehingga menyentuh garisan lurus yang menyambungkan kedua-dua titik tadi, dengan menggunakan pensil tajam untuk ketepatan optimum. Sekiranya kedudukan objek berada di hemisfera bawah atau melebihi separuh bulatan (melebihi arah Selatan/180°), kaedah pengiraan tambahan diperlukan. Oleh sebab jangka sudut biasa hanya berskala 180° (separuh bulatan), anda perlu mengukur nilai sudut baki yang melebihi garisan Selatan tersebut menggunakan jangka sudut pada skala luar, kemudian tambahkan nilai 180° dengan nilai sudut baharu yang diukur itu. Sebagai contoh, jika sudut baki yang diukur dari arah Selatan ialah 121°, maka pengiraannya ialah 180° + 121° yang menghasilkan bearing sudutan bernilai 301°. Syarat penting penambahan 180° ini hanya dilakukan jika bearing objek terbukti melebihi separuh bulatan, dan semasa membaca jangka sudut, pengguna diingatkan supaya tidak membaca skala bahagian dalam kerana skala tersebut mengikut arah lawan jam.",
+    keywords: [
+      "Bearing Sudutan",
+      "Bearing Azimuth",
+      "Jangka Sudut",
+      "Titik Rujukan",
+      "Arah Pusingan Jam",
+      "Skala Luar",
+      "Mengukur Bearing",
+      "Melebihi 180 Darjah",
+      "Sudut Baki",
+      "Unit Darjah",
+      "Kemahiran Geografi",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
