@@ -128,7 +128,9 @@ export const zamanAirBatuMindMap: MindNode = {
       ],
     },
   ],
-  export const mengenaliSejarahMindMap: MindNode = {
+};
+
+export const mengenaliSejarahMindMap: MindNode = {
   id: "root",
   label: "Mengenali Sejarah",
   children: [
