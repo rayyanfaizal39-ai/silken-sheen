@@ -14286,6 +14286,7 @@ export const flashcards: Flashcard[] = [
     back: "Saliran membekalkan air sebagai nadi paling fundamental untuk hidrasi kehidupan, pengangkutan, serta sumber makanan.",
   },
 ];
+
 export interface SejarahChapter {
   num: number;
   title: string;
