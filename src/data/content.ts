@@ -6872,11 +6872,10 @@ export const quizzes: QuizQuestion[] = [
       "Kedekatan dengan Kutub Utara",
       "Iklim Khatulistiwa yang membawa hujan lebat sepanjang tahun",
       "Bentuk muka bumi yang keseluruhannya tanah tinggi",
-      "Tiupan Angin Monsun Barat Daya yang kering",
+      "Tiupan Angin Monsun Barat Daya yang kering"
     ],
     answerIndex: 1,
-    explanation:
-      "Malaysia menerima hujan lebat tahunan yang tinggi (melebihi 2,500 mm) disebabkan oleh Iklim Khatulistiwa, sekali gus membentuk rangkaian sungai dan tasik yang padat.",
+    explanation: "Malaysia menerima hujan lebat tahunan yang tinggi (melebihi 2,500 mm) disebabkan oleh Iklim Khatulistiwa, sekali gus membentuk rangkaian sungai dan tasik yang padat."
   },
   {
     id: "geo-f1-c7-q2",
@@ -6889,11 +6888,10 @@ export const quizzes: QuizQuestion[] = [
       "Perlahan di hulu dan deras di hilir",
       "Deras di hulu dan perlahan serta berliku-liku di hilir",
       "Sentiasa perlahan di sepanjang aliran sungai",
-      "Mempunyai kedalaman yang sama dari bukit ke laut",
+      "Mempunyai kedalaman yang sama dari bukit ke laut"
     ],
     answerIndex: 1,
-    explanation:
-      "Di kawasan hulu (tanah tinggi), sungai mengalir deras kerana cerun yang curam, manakala di kawasan hilir (tanah pamah), alirannya menjadi perlahan dan membentuk likuan sungai.",
+    explanation: "Di kawasan hulu (tanah tinggi), sungai mengalir deras kerana cerun yang curam, manakala di kawasan hilir (tanah pamah), alirannya menjadi perlahan dan membentuk likuan sungai."
   },
   {
     id: "geo-f1-c7-q3",
@@ -6904,7 +6902,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama sungai yang paling panjang di wilayah Semenanjung Malaysia?",
     options: ["Sungai Perak", "Sungai Kelantan", "Sungai Pahang", "Sungai Bernam"],
     answerIndex: 2,
-    explanation: "Sungai Pahang memegang rekod sebagai sungai yang paling panjang di Semenanjung Malaysia.",
+    explanation: "Sungai Pahang memegang rekod sebagai sungai yang paling panjang di Semenanjung Malaysia."
   },
   {
     id: "geo-f1-c7-q4",
@@ -6917,11 +6915,10 @@ export const quizzes: QuizQuestion[] = [
       "Sungai Jelai dan Sungai Tembeling",
       "Sungai Galas dan Sungai Lebir",
       "Sungai Muar dan Sungai Segamat",
-      "Sungai Kinabatangan dan Sungai Rajang",
+      "Sungai Kinabatangan dan Sungai Rajang"
     ],
     answerIndex: 0,
-    explanation:
-      "Pertemuan antara Sungai Jelai dan Sungai Tembeling di Kuala Tembeling secara rasminya membentuk aliran awal Sungai Pahang.",
+    explanation: "Pertemuan antara Sungai Jelai dan Sungai Tembeling di Kuala Tembeling secara rasminya membentuk aliran awal Sungai Pahang."
   },
   {
     id: "geo-f1-c7-q5",
@@ -6929,12 +6926,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 7",
-    question:
-      "Sungai manakah di Semenanjung Malaysia yang terkenal sebagai nadi utama bagi rangkaian stesen janakuasa hidroelektrik?",
+    question: "Sungai manakah di Semenanjung Malaysia yang terkenal sebagai nadi utama bagi rangkaian stesen janakuasa hidroelektrik?",
     options: ["Sungai Endau", "Sungai Perak", "Sungai Kelantan", "Sungai Selangor"],
     answerIndex: 1,
-    explanation:
-      "Sungai Perak mempunyai beberapa empangan hidroelektrik utama sepanjang alirannya seperti Empangan Temenggor, Bersia, dan Kenering.",
+    explanation: "Sungai Perak mempunyai beberapa empangan hidroelektrik utama sepanjang alirannya seperti Empangan Temenggor, Bersia, dan Kenering."
   },
   {
     id: "geo-f1-c7-q6",
@@ -6942,17 +6937,15 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question:
-      "Mengapakah Lembah Sungai Kelantan sangat subur dan terkenal sebagai pusat penanaman padi di Pantai Timur?",
+    question: "Mengapakah Lembah Sungai Kelantan sangat subur dan terkenal sebagai pusat penanaman padi di Pantai Timur?",
     options: [
       "Kerana suhunya sentiasa dingin.",
       "Kerana pemendapan tanih aluvium yang subur semasa kejadian banjir semula jadi.",
       "Kerana kandungan air sungai tersebut berasid tinggi.",
-      "Kerana dasar sungainya dipenuhi oleh pasir pantai.",
+      "Kerana dasar sungainya dipenuhi oleh pasir pantai."
     ],
     answerIndex: 1,
-    explanation:
-      "Lembah Sungai Kelantan kerap menerima limpahan nutrient mineral tanah aluvium yang kaya dan subur, menjadikannya sesuai untuk pertanian padi sawah.",
+    explanation: "Lembah Sungai Kelantan kerap menerima limpahan nutrient mineral tanah aluvium yang kaya dan subur, menjadikannya sesuai untuk pertanian padi sawah."
   },
   {
     id: "geo-f1-c7-q7",
@@ -6961,15 +6954,9 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 7",
     question: "Apakah nama sungai yang terpanjang di seluruh Malaysia dan berapakah panjangnya?",
-    options: [
-      "Sungai Pahang (459 km)",
-      "Sungai Rajang (563 km)",
-      "Sungai Kinabatangan (560 km)",
-      "Sungai Baram (400 km)",
-    ],
+    options: ["Sungai Pahang (459 km)", "Sungai Rajang (563 km)", "Sungai Kinabatangan (560 km)", "Sungai Baram (400 km)"],
     answerIndex: 1,
-    explanation:
-      "Sungai Rajang yang terletak di negeri Sarawak ialah sungai terpanjang di Malaysia dengan jarak aliran sejauh 563 km.",
+    explanation: "Sungai Rajang yang terletak di negeri Sarawak ialah sungai terpanjang di Malaysia dengan jarak aliran sejauh 563 km."
   },
   {
     id: "geo-f1-c7-q8",
@@ -6980,8 +6967,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Dari manakah punca aliran utama bagi Sungai Rajang bermula?",
     options: ["Banjaran Titiwangsa", "Banjaran Crocker", "Banjaran Iran", "Banjaran Tama Abu"],
     answerIndex: 2,
-    explanation:
-      "Sungai Rajang mula mengalir dari kawasan tanah tinggi di Banjaran Iran menuju ke hilir sehinggalah bermuara di Laut China Selatan.",
+    explanation: "Sungai Rajang mula mengalir dari kawasan tanah tinggi di Banjaran Iran menuju ke hilir sehinggalah bermuara di Laut China Selatan."
   },
   {
     id: "geo-f1-c7-q9",
@@ -6992,7 +6978,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama sungai yang memegang gelaran sebagai sungai terpanjang di negeri Sabah?",
     options: ["Sungai Segama", "Sungai Padas", "Sungai Kinabatangan", "Sungai Labuk"],
     answerIndex: 2,
-    explanation: "Sungai Kinabatangan merupakan sungai yang paling panjang di negeri Sabah.",
+    explanation: "Sungai Kinabatangan merupakan sungai yang paling panjang di negeri Sabah."
   },
   {
     id: "geo-f1-c7-q10",
@@ -7005,11 +6991,10 @@ export const quizzes: QuizQuestion[] = [
       "Menjadi zon tapak pelupusan sisa kilang nasional.",
       "Menjadi habitat hidupan liar yang jarang ditemui seperti Gajah Pygmy dan Monyet Belanda.",
       "Merupakan satu-satunya kawasan yang bebas daripada hujan.",
-      "Menjadi pusat perlumbaan bot laju bertaraf Olimpik.",
+      "Menjadi pusat perlumbaan bot laju bertaraf Olimpik."
     ],
     answerIndex: 1,
-    explanation:
-      "Hutan dataran banjir Sungai Kinabatangan kaya dengan biodiversiti dan menjadi syurga ekopelancongan hidupan liar terlindung seperti Gajah Pygmy.",
+    explanation: "Hutan dataran banjir Sungai Kinabatangan kaya dengan biodiversiti dan menjadi syurga ekopelancongan hidupan liar terlindung seperti Gajah Pygmy."
   },
   {
     id: "geo-f1-c7-q11",
@@ -7022,11 +7007,10 @@ export const quizzes: QuizQuestion[] = [
       "Laluan pengangkutan utama untuk menghanyutkan kayu balak dari pedalaman.",
       "Sempadan rasmi antarabangsa antara Malaysia dan Brunei.",
       "Satu-satunya punca bekalan garam negara.",
-      "Zon penuaian rumpai laut masin.",
+      "Zon penuaian rumpai laut masin."
     ],
     answerIndex: 0,
-    explanation:
-      "Sungai Baram merupakan arteri saliran kritikal yang digunakan oleh industri perhutanan untuk mengangkut kayu balak ke hilir.",
+    explanation: "Sungai Baram merupakan arteri saliran kritikal yang digunakan oleh industri perhutanan untuk mengangkut kayu balak ke hilir."
   },
   {
     id: "geo-f1-c7-q12",
@@ -7037,7 +7021,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama tasik semula jadi yang paling besar di Malaysia?",
     options: ["Tasik Chini", "Tasik Bera", "Tasik Kenyir", "Tasik Temenggor"],
     answerIndex: 1,
-    explanation: "Tasik Bera yang terletak di negeri Pahang ialah tasik semula jadi terbesar di Malaysia.",
+    explanation: "Tasik Bera yang terletak di negeri Pahang ialah tasik semula jadi terbesar di Malaysia."
   },
   {
     id: "geo-f1-c7-q13",
@@ -7045,17 +7029,15 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 7",
-    question:
-      "Tasik Bera telah diisytiharkan sebagai tapak perlindungan di bawah Konvensyen RAMSAR. Apakah fungsi utama konvensyen ini?",
+    question: "Tasik Bera telah diisytiharkan sebagai tapak perlindungan di bawah Konvensyen RAMSAR. Apakah fungsi utama konvensyen ini?",
     options: [
       "Melindungi kawasan tanah tinggi daripada tanah runtuh.",
       "Memelihara dan memulihara kawasan tanah lembap (wetlands) serta ekosistemnya.",
       "Mengawal pencemaran udara bandar.",
-      "Menetapkan sempadan maritim antarabangsa.",
+      "Menetapkan sempadan maritim antarabangsa."
     ],
     answerIndex: 1,
-    explanation:
-      "Konvensyen RAMSAR ialah perjanjian antarabangsa yang memfokuskan kepada perlindungan ekosistem tanah lembap (wetlands) global yang penting.",
+    explanation: "Konvensyen RAMSAR ialah perjanjian antarabangsa yang memfokuskan kepada perlindungan ekosistem tanah lembap (wetlands) global yang penting."
   },
   {
     id: "geo-f1-c7-q14",
@@ -7063,17 +7045,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 7",
-    question:
-      "Tasik Chini yang terletak di Pahang terkenal dalam kalangan masyarakat kerana mempunyai nilai pelancongan budaya bagi...?",
-    options: [
-      "Komuniti kaum nelayan laut",
-      "Masyarakat Orang Asli setempat",
-      "Sektor perindustrian automotif",
-      "Peneroka kelapa sawit",
-    ],
+    question: "Tasik Chini yang terletak di Pahang terkenal dalam kalangan masyarakat kerana mempunyai nilai pelancongan budaya bagi...?",
+    options: ["Komuniti kaum nelayan laut", "Masyarakat Orang Asli setempat", "Sektor perindustrian automotif", "Peneroka kelapa sawit"],
     answerIndex: 1,
-    explanation:
-      "Tasik Chini mempunyai hubungan warisan, legenda naga, dan budaya tradisional yang sangat rapat dengan komuniti Orang Asli Jakun yang menetap di situ.",
+    explanation: "Tasik Chini mempunyai hubungan warisan, legenda naga, dan budaya tradisional yang sangat rapat dengan komuniti Orang Asli Jakun yang menetap di situ."
   },
   {
     id: "geo-f1-c7-q15",
@@ -7084,8 +7059,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Tasik buatan manusia terbesar di Malaysia dan Asia Tenggara ialah...?",
     options: ["Tasik Bakun", "Tasik Kenyir", "Tasik Chenderoh", "Tasik Putrajaya"],
     answerIndex: 1,
-    explanation:
-      "Tasik Kenyir di Terengganu merupakan tasik buatan manusia yang terhasil daripada pembinaan empangan hidroelektrik dan merupakan yang terbesar di rantau ini.",
+    explanation: "Tasik Kenyir di Terengganu merupakan tasik buatan manusia yang terhasil daripada pembinaan empangan hidroelektrik dan merupakan yang terbesar di rantau ini."
   },
   {
     id: "geo-f1-c7-q16",
@@ -7093,12 +7067,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question:
-      "Berapakah anggaran peratusan bekalan air tawar domestik di Malaysia yang bergantung sepenuhnya kepada sumber air sungai?",
+    question: "Berapakah anggaran peratusan bekalan air tawar domestik di Malaysia yang bergantung sepenuhnya kepada sumber air sungai?",
     options: ["Kira-kira 10%", "Kira-kira 50%", "Kira-kira 75%", "Hampir 90%"],
     answerIndex: 3,
-    explanation:
-      "Hampir 90% daripada keseluruhan keperluan air mentah domestik dan industri di Malaysia disalurkan daripada ekosistem saliran sungai.",
+    explanation: "Hampir 90% daripada keseluruhan keperluan air mentah domestik dan industri di Malaysia disalurkan daripada ekosistem saliran sungai."
   },
   {
     id: "geo-f1-c7-q17",
@@ -7111,11 +7083,10 @@ export const quizzes: QuizQuestion[] = [
       "Kerana ia tidak menggunakan air.",
       "Kerana ia tidak membebas atau menghasilkan gas rumah hijau berbanding bahan api fosil.",
       "Kerana kos pembinaannya adalah percuma.",
-      "Kerana ia menyejukkan suhu air sungai secara mendadak.",
+      "Kerana ia menyejukkan suhu air sungai secara mendadak."
     ],
     answerIndex: 1,
-    explanation:
-      "Tenaga hidroelektrik mengguna pakai kitaran air semula jadi dan tidak memerlukan pembakaran arang batu atau gas asli, sekali gus mengurangkan kesan rumah hijau.",
+    explanation: "Tenaga hidroelektrik mengguna pakai kitaran air semula jadi dan tidak memerlukan pembakaran arang batu atau gas asli, sekali gus mengurangkan kesan rumah hijau."
   },
   {
     id: "geo-f1-c7-q18",
@@ -7126,8 +7097,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama sungai yang bertindak sebagai sempadan antarabangsa di utara Semenanjung Malaysia?",
     options: ["Sungai Bernam", "Sungai Golok", "Sungai Muar", "Sungai Perak"],
     answerIndex: 1,
-    explanation:
-      "Sungai Golok bertindak sebagai garisan pemisah fizikal atau sempadan semula jadi rasmi antarabangsa antara Malaysia (Kelantan) dan negara Thailand.",
+    explanation: "Sungai Golok bertindak sebagai garisan pemisah fizikal atau sempadan semula jadi rasmi antarabangsa antara Malaysia (Kelantan) dan negara Thailand."
   },
   {
     id: "geo-f1-c7-q19",
@@ -7138,8 +7108,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Sungai Bernam berfungsi sebagai sempadan semula jadi negeri yang memisahkan antara...?",
     options: ["Kedah dan Pulau Pinang", "Selangor dan Perak", "Johor dan Melaka", "Pahang dan Terengganu"],
     answerIndex: 1,
-    explanation:
-      "Sungai Bernam merupakan garisan sempadan semula jadi bagi pentadbiran negeri Selangor dan negeri Perak.",
+    explanation: "Sungai Bernam merupakan garisan sempadan semula jadi bagi pentadbiran negeri Selangor dan negeri Perak."
   },
   {
     id: "geo-f1-c7-q20",
@@ -7147,17 +7116,15 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question:
-      "Mengapakah bot ekspres dan bot panjang menjadi kenderaan yang sangat vital di pedalaman Sabah dan Sarawak?",
+    question: "Mengapakah bot ekspres dan bot panjang menjadi kenderaan yang sangat vital di pedalaman Sabah dan Sarawak?",
     options: [
       "Kerana penduduk di sana tidak menyukai jalan darat.",
       "Kerana bentuk muka bumi yang bergunung-ganang menyukarkan pembinaan jaringan jalan raya darat yang lengkap.",
       "Kerana tambang bot adalah percuma.",
-      "Kerana bot bergerak lebih pantas daripada kapal terbang.",
+      "Kerana bot bergerak lebih pantas daripada kapal terbang."
     ],
     answerIndex: 1,
-    explanation:
-      "Faktor topografi berbukit-bukit dan hutan tebal mengehadkan pembangunan jalan raya darat, menjadikan sungai sebagai 'lebuh raya' perhubungan utama.",
+    explanation: "Faktor topografi berbukit-bukit dan hutan tebal mengehadkan pembangunan jalan raya darat, menjadikan sungai sebagai 'lebuh raya' perhubungan utama."
   },
   {
     id: "geo-f1-c7-q21",
@@ -7165,17 +7132,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question:
-      "Manakah antara berikut spesies ikan air tawar bernilai pasaran tinggi yang banyak diperoleh oleh nelayan darat di sungai dan tasik?",
-    options: [
-      "Ikan Kembung dan Bawal",
-      "Ikan Patin, Kelah, dan Udang Galah",
-      "Ikan Paus dan lumba-lumba",
-      "Ikan Salmon dan Kod",
-    ],
+    question: "Manakah antara berikut spesies ikan air tawar bernilai pasaran tinggi yang banyak diperoleh oleh nelayan darat di sungai dan tasik?",
+    options: ["Ikan Kembung dan Bawal", "Ikan Patin, Kelah, dan Udang Galah", "Ikan Paus dan lumba-lumba", "Ikan Salmon dan Kod"],
     answerIndex: 1,
-    explanation:
-      "Patin, Kelah, dan Udang Galah merupakan tangkapan akuakultur dan sungai air tawar yang mempunyai nilai ekonomi tinggi di pasaran domestik.",
+    explanation: "Patin, Kelah, dan Udang Galah merupakan tangkapan akuakultur dan sungai air tawar yang mempunyai nilai ekonomi tinggi di pasaran domestik."
   },
   {
     id: "geo-f1-c7-q22",
@@ -7188,11 +7148,10 @@ export const quizzes: QuizQuestion[] = [
       "Dengan membekalkan baja kimia melalui air sungai.",
       "Melalui pembinaan rangkaian terusan (tali air) yang mengalirkan air sungai secara konsisten ke bendang padi.",
       "Dengan menenggelamkan keseluruhan kampung petani.",
-      "Dengan mengurangkan kadar pancaran cahaya matahari.",
+      "Dengan mengurangkan kadar pancaran cahaya matahari."
     ],
     answerIndex: 1,
-    explanation:
-      "Sistem pengairan (tali air) tiruan mengalirkan bekalan air dari takungan empangan sungai bagi memastikan sawah mendapat air yang cukup tanpa bergantung sepenuhnya kepada air hujan.",
+    explanation: "Sistem pengairan (tali air) tiruan mengalirkan bekalan air dari takungan empangan sungai bagi memastikan sawah mendapat air yang cukup tanpa bergantung sepenuhnya kepada air hujan."
   },
   {
     id: "geo-f1-c7-q23",
@@ -7203,8 +7162,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama stesen janakuasa hidroelektrik terbesar di Malaysia yang terletak di negeri Sarawak?",
     options: ["Empangan Temenggor", "Empangan Bakun", "Empangan Chenderoh", "Empangan Kenyir"],
     answerIndex: 1,
-    explanation:
-      "Empangan Bakun yang terletak di hulu Sungai Rajang, Sarawak merupakan projek jana kuasa hidroelektrik yang terbesar di Malaysia.",
+    explanation: "Empangan Bakun yang terletak di hulu Sungai Rajang, Sarawak merupakan projek jana kuasa hidroelektrik yang terbesar di Malaysia."
   },
   {
     id: "geo-f1-c7-q24",
@@ -7217,103 +7175,17 @@ export const quizzes: QuizQuestion[] = [
       "Bertindak seperti span semula jadi yang menyerap dan menampung air limpahan banjir.",
       "Menyebabkan air tasik bertukar menjadi air masin.",
       "Mempercepatkan aliran air terus ke laut tanpa halangan.",
-      "Mengeringkan air bawah tanah di sekitarnya.",
+      "Mengeringkan air bawah tanah di sekitarnya."
     ],
     answerIndex: 0,
-    explanation:
-      "Sebagai tanah lembap perlindungan, vegetasi dan ekosistem Tasik Bera berfungsi memperlahankan aliran air dan menyerap air banjir bagi mengurangkan bencana hilir.",
+    explanation: "Sebagai tanah lembap perlindungan, vegetasi dan ekosistem Tasik Bera berfungsi memperlahankan aliran air dan menyerap air banjir bagi mengurangkan bencana hilir."
   },
   {
     id: "geo-f1-c7-q25",
     subjectId: "geography",
     form: "Form 1",
     difficulty: "Easy",
-    chapter: "Chapter 7",
-    question: "Aktiviti pelancongan rumah bot (houseboat) dan memancing sangat popular dijalankan di tasik buatan...?",
-    options: ["Tasik Bera", "Tasik Kenyir", "Tasik Chini", "Tasik Dayang Bunting"],
-    answerIndex: 1,
-    explanation:
-      "Tasik Kenyir telah dimajukan secara intensif sebagai hub ekopelancongan berasaskan rekreasi air seperti memancing dan penginapan rumah bot.",
-  },
-  {
-    id: "geo-f1-c7-q26",
-    subjectId: "geography",
-    form: "Form 1",
-    difficulty: "Medium",
-    chapter: "Chapter 7",
-    question:
-      "Apakah kesan buruk yang berlaku kepada sistem pembekalan air jika loji rawatan air (LRA) menerima air sungai yang tercemar?",
-    options: [
-      "Loji akan menghasilkan lebih banyak air bersih.",
-      "Operasi LRA terpaksa dihentikan serta-merta, mengakibatkan gangguan krisis bekalan air kepada pengguna.",
-      "Kos rawatan air menjadi percuma.",
-      "Ikan-ikan di sungai akan bermigrasi ke dalam loji.",
-    ],
-    answerIndex: 1,
-    explanation:
-      "Pencemaran sisa kimia atau domestik di sungai memaksa LRA ditutup untuk mengelakkan risiko keracunan air kepada sistem paip pengguna.",
-  },
-  {
-    id: "geo-f1-c7-q27",
-    subjectId: "geography",
-    form: "Form 1",
-    difficulty: "Easy",
-    chapter: "Chapter 7",
-    question: "Apakah jenis kegiatan ekonomi yang merujuk kepada ternakan ikan dalam sangkar di kawasan tasik buatan?",
-    options: ["Akuakultur", "Vulkanisme", "Meteorologi", "Hidrologi"],
-    answerIndex: 0,
-    explanation:
-      "Akuakultur merujuk kepada aktiviti penternakan spesies akuatik seperti ikan air tawar atau udang secara komersial dalam sangkar atau kolam.",
-  },
-  {
-    id: "geo-f1-c7-q28",
-    subjectId: "geography",
-    form: "Form 1",
-    difficulty: "Medium",
-    chapter: "Chapter 7",
-    question: "Banjaran yang menjadi punca hulu bagi kebanyakan sungai utama di Semenanjung Malaysia ialah...?",
-    options: ["Banjaran Crocker", "Banjaran Titiwangsa", "Banjaran Bintang", "Banjaran Iran"],
-    answerIndex: 1,
-    explanation:
-      "Banjaran Titiwangsa yang merupakan tulang belakang Semenanjung bertindak sebagai kawasan tadahan hujan dan punca bagi hulu sungai-sungai besar.",
-  },
-  {
-    id: "geo-f1-c7-q29",
-    subjectId: "geography",
-    form: "Form 1",
-    difficulty: "Hard",
-    chapter: "Chapter 7",
-    question:
-      "Mengapakah pemeliharaan kawasan hutan tadahan hujan di hulu sungai sangat kritikal untuk kelestarian saliran?",
-    options: [
-      "Untuk memastikan aktiviti pembalakan haram berjalan lancar.",
-      "Untuk mengekalkan kualiti kebersihan air mentah dan menapis air secara semula jadi sebelum mengalir ke sistem sungai.",
-      "Untuk meningkatkan kelajuan angin monsun.",
-      "Untuk mengurangkan jumlah kandungan nitrogen dalam air.",
-    ],
-    answerIndex: 1,
-    explanation:
-      "Akar pokok hutan bertindak menapis sedimen lumpur; jika hutan hulu ditebang, sungai akan menjadi keruh, berselut, dan menyebabkan banjir kilat.",
-  },
-  {
-    id: "geo-f1-c7-q30",
-    subjectId: "geography",
-    form: "Form 1",
-    difficulty: "Easy",
-    chapter: "Chapter 7",
-    question:
-      "Apakah peranan kita sebagai warganegara yang prihatin bagi memastikan sistem saliran di Malaysia sentiasa terpelihara?",
-    options: [
-      "Membuang sampah domestik ke dalam parit.",
-      "Tidak membuang sisa minyak atau sampah ke dalam sistem sungai serta melaporkan aktiviti pencemaran.",
-      "Menyokong penebangan hutan tadahan hujan.",
-      "Menimbus tasik semula jadi untuk dijadikan tapak bangunan.",
-    ],
-    answerIndex: 1,
-    explanation:
-      "Menjaga kebersihan dengan tidak membuang sampah ke saliran adalah tanggungjawab sivik utama bagi memelihara kualiti air negara.",
-  },
-];
+    chapter: "Chapter 7",;
 export interface Flashcard {
   id: string;
   subjectId: string;
