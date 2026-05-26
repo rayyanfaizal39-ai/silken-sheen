@@ -612,6 +612,27 @@ export const notes: Note[] = [
       "Putrajaya",
     ],
   },
+  {
+    id: "geo-f1-c9-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 9",
+    title: "Petempatan di Malaysia",
+    summary:
+      "Petempatan di Malaysia dibahagikan kepada dua jenis utama: Petempatan Bandar (penduduk melebihi 10,000 orang, kepadatan tinggi, bangunan rapat/pencakar langit, serta ekonomi berasaskan perindustrian dan perkhidmatan seperti KL dan Kuching) dan Petempatan Luar Bandar (penduduk kurang 10,000 orang, kepadatan rendah, persekitaran semula jadi, serta ekonomi primer seperti pertanian dan perikanan di kampung tradisional atau FELDA). Susun atur bangunan digolongkan kepada empat Pola Petempatan: Pola Berselerak (rumah berjauhan di kawasan kebun kecil), Pola Berjajar (rumah sebaris selari di sepanjang jalan raya, tebing sungai, atau pesisir pantai), Pola Berkelompok (rumah rapat dalam kumpulan tersusun seperti tanah rancangan FELDA), dan Pola Terpusat (bangunan padat mengelilingi titik tumpuan seperti simpang jalan atau stesen kereta api di bandar). Fungsi petempatan bandar merangkumi pusat pentadbiran (Putrajaya), pusat perniagaan/kewangan (Kuala Lumpur), pusat perindustrian (Shah Alam), dan pusat pendidikan (Bangi). Sebaliknya, fungsi petempatan luar bandar memfokuskan kepada fungsi ekonomi primer (pertanian/perikanan), industri desa (IKS), fungsi sosial asas (klinik desa/balai raya), serta fungsi governan tempatan menerusi pejabat penghulu atau ketua kampung.",
+    keywords: [
+      "Petempatan Bandar",
+      "Petempatan Luar Bandar",
+      "Pola Berselerak",
+      "Pola Berjajar",
+      "Pola Berkelompok",
+      "Pola Terpusat",
+      "Fungsi Bandar",
+      "Fungsi Luar Bandar",
+      "Pusat Pentadbiran",
+      "Industri Kecil Sederhana",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
