@@ -565,6 +565,30 @@ export const notes: Note[] = [
       "Sempadan Semula Jadi",
     ],
   },
+  {
+    id: "geo-f1-c7-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 7",
+    title: "Saliran di Malaysia",
+    summary:
+      "Sistem saliran di Malaysia merujuk kepada aliran air di permukaan bumi yang merangkumi rangkaian sungai dan tasik yang padat disebabkan faktor Iklim Khatulistiwa yang membawa hujan lebat tahunan melebihi 2,500 mm. Sungai di Malaysia mempunyai ciri aliran deras di hulu tanah tinggi dan perlahan serta berliku-liku di hilir tanah pamah. Di Semenanjung Malaysia, terdapat Sungai Pahang (sungai terpanjang di Semenanjung hasil pertemuan Sungai Jelai dan Sungai Tembeling), Sungai Perak (nadi kuasa hidroelektrik melalui Empangan Temenggor dan Bersia), dan Sungai Kelantan (lembah subur tanih aluvium untuk penanaman padi). Di Borneo pula, terdapat Sungai Rajang di Sarawak (sungai terpanjang di Malaysia, 563 km, yang merentasi jeram deras hulu untuk jana kuasa Empangan Bakun), Sungai Kinabatangan di Sabah (sungai terpanjang di Sabah yang menjadi habitat Gajah Pygmy dan Monyet Belanda bagi ekopelancongan), serta Sungai Baram di Sarawak (laluan pengangkutan kayu balak). Sistem tasik pula terbahagi kepada tasik semula jadi seperti Tasik Bera (tasik terbesar, kawasan lembap perlindungan RAMSAR) dan Tasik Chini; serta tasik buatan (empangan) seperti Tasik Kenyir di Terengganu dan Tasik Bakun di Sarawak. Sistem saliran ini memegang kepentingan kritikal sebagai pembekal 90% bekalan air tawar domestik, penjanaan kuasa hidroelektrik yang mesra alam, penanda sempadan semula jadi geopolitik (seperti Sungai Golok antara Malaysia-Thailand dan Sungai Bernam antara Selangor-Perak), jalan perhubungan utama bagi bot di pedalaman Sabah dan Sarawak, sumber protein ekonomi nelayan darat serta aktiviti akuakultur sangkar, dan pembekal sistem pengairan pertanian padi sawah melalui terusan bagi menjamin keselamatan makanan negara.",
+    keywords: [
+      "Sistem Saliran",
+      "Iklim Khatulistiwa",
+      "Sungai Pahang",
+      "Sungai Perak",
+      "Sungai Rajang",
+      "Sungai Kinabatangan",
+      "Tasik Bera",
+      "RAMSAR",
+      "Tasik Kenyir",
+      "Hidroelektrik",
+      "Sempadan Semula Jadi",
+      "Akuakultur",
+      "Terusan Pengairan",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
