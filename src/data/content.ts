@@ -413,6 +413,38 @@ export const notes: Note[] = [
       "Kemahiran Geografi",
     ],
   },
+  {
+    id: "geo-f1-c2-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    title: "Kedudukan",
+    summary:
+      "Kedudukan didefinisikan sebagai tempat letaknya sesuatu objek dalam sesuatu kawasan yang membolehkan kita menyatakan dengan tepat di mana sesuatu tempat atau objek itu berada. Kedudukan terbahagi kepada dua jenis utama, iaitu kedudukan relatif dan kedudukan mutlak (koordinat). Kedudukan relatif ialah cara menentukan lokasi sesuatu objek dengan merujuk kepada satu titik rujukan yang bertindak sebagai pusat atau petunjuk di sekelilingnya menggunakan istilah seperti hadapan, belakang, sebelah kanan, dan sebelah kiri. Sebagai contoh di dalam kelas, jika Siti dijadikan titik rujukan, murid di arah muka Siti berada di hadapan manakala di arah punggung Siti berada di belakang, sementara kedudukan kiri atau kanan ditentukan berdasarkan tangan kiri dan tangan kanan Siti. Di lapangan pula, kedudukan bangunan ditentukan dengan mengenal pasti pintu depan bangunan rujukan tersebut untuk menetapkan arah hadapan, belakang, serta sisi kanan dan kiri. Seterusnya, kedudukan mutlak ditentukan secara saintifik mengikut koordinat hasil persilangan garisan imaginasi pada glob atau peta atlas yang dikenali sebagai latitud dan longitud. Latitud ialah garisan imaginasi yang dilukis secara melintang atau mendata pada glob. Garisan latitud utama ialah Garisan Khatulistiwa (0°) yang membahagikan bumi kepada Hemisfera Utara dan Hemisfera Selatan. Terdapat lima garisan latitud utama bumi, iaitu Garisan Artik (66 ½° U), Garisan Sartan (23 ½° U), Garisan Khatulistiwa (0°), Garisan Jadi (23 ½° S), dan Garisan Antartik (66 ½° S), dengan nilai maksimum dari 0° hingga 90° U di Kutub Utara dan 90° S di Kutub Selatan. Longitud pula ialah garisan imaginasi yang dilukis secara menegak dari Kutub Utara ke Kutub Selatan. Garisan longitud utama ialah Garisan Meridian Pangkal (GMP) (0°) yang merentasi bandar Greenwich di London dan membahagikan bumi kepada bahagian Timur dan Barat. Di sebelah pertentangan GMP terletak Garisan Tarikh Antarabangsa (GTA) (180° T/B) yang berfungsi memisahkan tarikh dan waktu di bumi. GTA dilukis secara bengkang-bengkok untuk mengelakkan kawasan daratan atau kumpulan pulau yang sama daripada mempunyai dua tarikh atau waktu yang berbeza. Untuk menentukan kedudukan atau koordinat sesuatu tempat, peraturan penulisan menetapkan nilai latitud (Utara/Selatan) mesti ditulis dahulu, kemudian diikuti oleh nilai longitud (Timur/Barat). Langkah menentukan koordinat dilakukan dengan mengenal pasti nilai latitud yang melintasi titik tersebut, diikuti nilai longitud, lalu ditulis dalam format koordinat seperti 30° U, 40° T. Jika sesuatu lokasi terletak di antara garisan grid utama pada atlas, ruang tersebut perlu dibahagikan kepada unit kecil yang sekata bagi mendapatkan nilai persilangan latitud dan longitud yang tepat.",
+    keywords: [
+      "Kedudukan",
+      "Kedudukan Relatif",
+      "Titik Rujukan",
+      "Koordinat",
+      "Latitud",
+      "Longitud",
+      "Garisan Khatulistiwa",
+      "Garisan Artik",
+      "Garisan Sartan",
+      "Garisan Jadi",
+      "Garisan Antartik",
+      "Hemisfera Utara",
+      "Hemisfera Selatan",
+      "Garisan Meridian Pangkal",
+      "Greenwich",
+      "Garisan Tarikh Antarabangsa",
+      "GTA",
+      "Kutub Utara",
+      "Kutub Selatan",
+      "Persilangan Grid",
+      "Atlas",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
