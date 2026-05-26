@@ -633,6 +633,27 @@ export const notes: Note[] = [
       "Industri Kecil Sederhana",
     ],
   },
+  {
+    id: "geo-f1-c10-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 10",
+    title: "Bentuk Muka Bumi dan Saliran di Asia Tenggara",
+    summary:
+      "Asia Tenggara terdiri daripada 11 buah negara yang dibahagikan kepada Tanah Besar (Semenanjung Malaysia, Thailand, Myanmar, Laos, Kemboja, Vietnam) dan Kepulauan (Sabah, Sarawak, Singapura, Indonesia, Brunei, Filipina, Timor-Leste), dengan Laos sebagai satu-satunya negara tanpa pinggir laut (landlocked). Ciri fizikal utama merangkumi Tanah Tinggi (Sistem Banjaran Himalaya/Gunung Lipat Muda), kawasan Gunung Berapi aktif di Indonesia dan Filipina yang terletak dalam Lingkaran Api Pasifik, puncak tertinggi Hkakabo Razi (5,881 meter) di Myanmar, serta Tanah Pamah (lembah dan delta sungai) yang kaya dengan tanih aluvium subur untuk pertanian padi sawah, petempatan padat, dan pengangkutan. Sistem saliran utamanya merangkumi Sungai Mekong (sungai terpanjang, mengalir melalui 6 negara dan delta produktif di Vietnam); Sungai Irrawaddy (nadi perhubungan dan 'mangkuk nasi' Myanmar); Menam Chao Phraya (jalan air komersial utama Bangkok dan Dataran Tengah Thailand); serta Tonle Sap di Kemboja (tasik air tawar terbesar yang mengawal banjir Mekong dan membekalkan protein ikan). Bentuk muka bumi dan saliran ini penting untuk sektor Pertanian padi sawah berskala besar, Perikanan air tawar/laut, Penjanaan Kuasa Hidroelektrik di kawasan sungai deras (seperti Laos yang digelar 'Bateri Asia'), serta sektor Pelancongan global seperti Teluk Ha Long (Vietnam) dan Pulau Bali (Indonesia).",
+    keywords: [
+      "Asia Tenggara",
+      "Tanah Besar",
+      "Kepulauan",
+      "Landlocked Country",
+      "Lingkaran Api Pasifik",
+      "Tanih Aluvium",
+      "Sungai Mekong",
+      "Menam Chao Phraya",
+      "Tonle Sap",
+      "Hidroelektrik",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
