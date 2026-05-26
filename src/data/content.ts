@@ -7336,6 +7336,512 @@ export const quizzes: QuizQuestion[] = [
     explanation:
       "Menjaga kebersihan dengan tidak membuang sampah ke saliran adalah tanggungjawab sivik utama bagi memelihara kualiti air negara.",
   },
+
+  // Geografi Form 1 Chapter 8 - Penduduk di Malaysia
+
+  {
+    id: "geo-f1-c8-q1",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Apakah yang dimaksudkan dengan istilah 'taburan penduduk' dalam Geografi?",
+    options: [
+      "Kadar pertumbuhan bayi dalam setahun",
+      "Sebaran atau agihan penduduk di sesuatu kawasan atau negara",
+      "Perpindahan penduduk dari kampung ke bandar sahaja",
+      "Jumlah kaum atau etnik yang terdapat di dalam negara",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Taburan penduduk merujuk kepada bagaimana masyarakat tersebar atau diagihkan di atas ruang geografi sesuatu kawasan atau negara.",
+  },
+  {
+    id: "geo-f1-c8-q2",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Secara umumnya, taburan penduduk di Malaysia dikategorikan sebagai...?",
+    options: ["Sangat sekata", "Tidak sekata", "Tertumpu di kawasan tanah tinggi sahaja", "Sama rata antara negeri"],
+    answerIndex: 1,
+    explanation:
+      "Taburan penduduk di Malaysia adalah tidak sekata kerana terdapat kawasan yang sangat padat dengan manusia dan ada kawasan yang sangat jarang.",
+  },
+  {
+    id: "geo-f1-c8-q3",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Kawasan penduduk padat merujuk kepada kawasan yang mempunyai bilangan penduduk sebanyak...?",
+    options: [
+      "Kurang daripada 50 orang per kilometer persegi",
+      "Antara 50 hingga 100 orang per kilometer persegi",
+      "Antara 100 hingga 150 orang per kilometer persegi",
+      "Melebihi 200 orang per kilometer persegi",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Kawasan berpenduduk padat diklasifikasikan apabila kepadatan populasinya mencatatkan angka melebihi 200 orang bagi setiap satu kilometer persegi.",
+  },
+  {
+    id: "geo-f1-c8-q4",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Manakah antara berikut merupakan contoh lokasi berpenduduk padat di Malaysia?",
+    options: [
+      "Kawasan pedalaman Sarawak",
+      "Wilayah Persekutuan Kuala Lumpur dan Shah Alam",
+      "Kawasan pergunungan Banjaran Titiwangsa",
+      "Kawasan hutan rimba hulu Kelantan",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Kuala Lumpur dan Shah Alam merupakan pusat perbandaran, industri, dan pentadbiran utama yang menarik tumpuan penduduk yang sangat padat.",
+  },
+  {
+    id: "geo-f1-c8-q5",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Apakah takrifan bagi kawasan yang mempunyai taburan penduduk yang 'sederhana'?",
+    options: [
+      "Mempunyai penduduk antara 50 hingga 200 orang per kilometer persegi",
+      "Mempunyai penduduk tepat 10 orang sahaja",
+      "Kawasan yang tiada penduduk langsung",
+      "Kawasan berpenduduk melebihi 1,000 orang per kilometer persegi",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kawasan penduduk sederhana menampung populasi pertengahan iaitu di antara 50 hingga 200 orang se-kilometer persegi.",
+  },
+  {
+    id: "geo-f1-c8-q6",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Kawasan penduduk sederhana di Malaysia biasanya melibatkan kawasan...?",
+    options: [
+      "Pusat bandar raya mega",
+      "Kawasan pertanian, pesisir pantai, dan bandar-bandar kecil",
+      "Puncak gunung yang dilitupi salji",
+      "Kawasan zon kuarantin sisa toksik",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Kawasan pertanian sawah padi, getah, kelapa sawit, serta pekan-pekan kecil menawarkan pekerjaan yang stabil tetapi tidak sepadat pusat bandar utama.",
+  },
+  {
+    id: "geo-f1-c8-q7",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Kawasan penduduk jarang diklasifikasikan apabila mempunyai jumlah penduduk sebanyak...?",
+    options: [
+      "Kurang daripada 50 orang per kilometer persegi",
+      "Tepat 150 orang per kilometer persegi",
+      "Antara 200 hingga 500 orang per kilometer persegi",
+      "Melebihi 1,000 orang per kilometer persegi",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kawasan berpenduduk jarang mempunyai kepadatan yang rendah, iaitu kurang daripada 50 orang bagi setiap satu kilometer persegi.",
+  },
+  {
+    id: "geo-f1-c8-q8",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Manakah antara berikut merupakan lokasi berpenduduk jarang disebabkan rintangan semula jadi?",
+    options: [
+      "Bayan Lepas (Pulau Pinang)",
+      "Johor Bahru (Johor)",
+      "Kawasan pedalaman Sabah dan Sarawak",
+      "Shah Alam (Selangor)",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Kawasan pedalaman Borneo mempunyai rupa bumi berbukit-bukit dan dilitupi hutan tebal yang menyukarkan perhubungan, menjadikannya berpenduduk jarang.",
+  },
+  {
+    id: "geo-f1-c8-q9",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Mengapakah kawasan tanah pamah sentiasa menjadi tumpuan utama penduduk padat?",
+    options: [
+      "Kerana suhunya sangat sejuk di waktu siang",
+      "Kerana kawasan rata memudahkan pembinaan infrastruktur rumah, kilang, dan pengangkutan",
+      "Kerana ia merupakan kawasan lubuk emas hitam",
+      "Kerana kawasan tersebut bebas daripada graviti",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Topografi tanah pamah mengurangkan kos pembinaan bangunan dan jaringan jalan raya, sekali gus menarik penempatan manusia berskala besar.",
+  },
+  {
+    id: "geo-f1-c8-q10",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 8",
+    question:
+      "Walaupun kawasan tanah tinggi umumnya berpenduduk jarang, mengapakah Cameron Highlands mempunyai penduduk yang sederhana?",
+    options: [
+      "Kerana terdapat aktiviti perlombongan bijih timah raksasa",
+      "Kerana terdapat faktor tarikan pelancongan suhu sejuk dan pertanian hawa sederhana",
+      "Kerana ia merupakan pusat pelabuhan kapal antarabangsa",
+      "Kerana tanahnya terdiri daripada tanih aluvium banjir",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Suhu yang sejuk menarik sektor ekopelancongan dan membolehkan penanaman sayur-sayuran serta teh hawa sederhana berkembang, mewujudkan peluang pekerjaan.",
+  },
+  {
+    id: "geo-f1-c8-q11",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Apakah kepentingan faktor saliran (sungai) terhadap taburan penduduk pada zaman dahulu?",
+    options: [
+      "Sebagai tempat pembuangan sisa utama",
+      "Sebagai pusat petempatan awal kerana membekalkan air tawar dan sumber protein",
+      "Untuk mengelakkan gangguan haiwan liar tanah tinggi",
+      "Untuk tujuan sempadan ketat zon bebas cukai",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Sungai membekalkan air domestik untuk minum dan pertanian kuno serta pengangkutan, menjadikannya tapak asal tamadun dan petempatan awal.",
+  },
+  {
+    id: "geo-f1-c8-q12",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question:
+      "Manakah kawasan pertanian di Malaysia yang berpenduduk sederhana disebabkan faktor kesuburan tanih aluvium?",
+    options: ["Dataran Kedah-Perlis", "Puncak Gunung Kinabalu", "Genting Highlands", "Pedalaman Lembah Danum"],
+    answerIndex: 0,
+    explanation:
+      "Dataran Kedah-Perlis kaya dengan tanih aluvium yang sangat subur untuk penanaman padi sawah, menarik kepadatan penduduk sederhana yang bekerja sebagai petani.",
+  },
+  {
+    id: "geo-f1-c8-q13",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question:
+      "Kawasan Kerteh (Terengganu) dan Bintulu (Sarawak) menjadi padat penduduknya dipengaruhi oleh aktiviti ekonomi...?",
+    options: [
+      "Perikanan laut dalam",
+      "Perlombongan petroleum dan gas asli",
+      "Pembalakan kayu jati",
+      "Pertanian lada hitam",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Penemuan dan pemprosesan hidrokarbon (petroleum/gas) membina ekosistem industri hiliran yang menawarkan gaji lumayan dan menarik tenaga kerja yang ramai.",
+  },
+  {
+    id: "geo-f1-c8-q14",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Kawasan perindustrian Bayan Lepas (Pulau Pinang) menarik migrasi penduduk yang ramai kerana...?",
+    options: [
+      "Menawarkan banyak peluang pekerjaan dalam sektor pembuatan dan kilang",
+      "Mempunyai kawasan sawah yang paling luas",
+      "Suhunya mencecah di bawah takat beku",
+      "Merupakan pusat pentadbiran diraja",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Zon Perindustrian Bebas Bayan Lepas dipenuhi kilang elektronik bertaraf global yang memerlukan rantaian tenaga kerja yang besar, menjadikannya padat.",
+  },
+  {
+    id: "geo-f1-c8-q15",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question:
+      "Bagaimanakah faktor sosial seperti kewujudan pusat pendidikan tinggi menjejaskan taburan penduduk setempat?",
+    options: [
+      "Ia menukarkan kawasan tersebut menjadi jarang penduduk",
+      "Ia menarik kehadiran pelajar, pensyarah, dan peniaga, menjadikan kawasan tersebut padat",
+      "Ia mengurangkan kos pembinaan lebuh raya darat",
+      "Ia menjejaskan ekosistem pengairan sawah padi",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Hab pendidikan (seperti Bangi atau Skudai) merangsang pertumbuhan ekonomi tempatan (sewa rumah, kedai makan) yang secara langsung meningkatkan kepadatan penduduk.",
+  },
+  {
+    id: "geo-f1-c8-q16",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question:
+      "Antara berikut, manakah faktor sosial yang melancarkan pergerakan logistik dan meningkatkan tumpuan penduduk?",
+    options: [
+      "Jaringan sistem pengangkutan dan infrastruktur jalan raya yang baik",
+      "Kewujudan kawasan paya bakau",
+      "Ketiadaan liputan internet",
+      "Bentuk cerun yang curam",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kemudahan sistem pengangkutan yang lengkap (lebuh raya, stesen kereta api) memudahkan mobiliti harian penduduk untuk bekerja dan tinggal di kawasan tersebut.",
+  },
+  {
+    id: "geo-f1-c8-q17",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Apakah tujuan utama kerajaan membuka tanah rancangan melalui agensi FELDA?",
+    options: [
+      "Untuk membina litar perlumbaan Formula 1",
+      "Untuk mengurangkan keluasan hutan simpan semata-mata",
+      "Untuk membuka wilayah baru bagi menyeimbangkan taburan penduduk dari bandar ke luar bandar",
+      "Untuk mengumpul sisa galian bijih timah lampau",
+    ],
+    answerIndex: 2,
+    explanation:
+      "FELDA memindahkan penduduk luar bandar atau miskin ke kawasan penempatan tersusun berasaskan komoditi pertanian bagi menyebarkan kepadatan populasi.",
+  },
+  {
+    id: "geo-f1-c8-q18",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Pembangunan Putrajaya sebagai Pusat Pentadbiran Kerajaan Persekutuan merupakan contoh faktor...?",
+    options: [
+      "Faktor Fizikal",
+      "Faktor Dasar Kerajaan (Governan)",
+      "Faktor Sejarah Purba",
+      "Faktor Saliran Semula Jadi",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Putrajaya sengaja direka dan dibangunkan menerusi dasar keputusan kerajaan untuk memindahkan pusat pentadbiran dari Kuala Lumpur.",
+  },
+  {
+    id: "geo-f1-c8-q19",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Mengapakah bandar baharu yang diwartakan oleh kerajaan mengalami lonjakan penduduk secara mendadak?",
+    options: [
+      "Kerana cuaca di bandar baru berubah menjadi sangat dingin",
+      "Kerana penyediaan kemudahan perumahan, pekerjaan, dan infrastruktur moden bersepadu",
+      "Kerana tiada undang-undang dikenakan di sana",
+      "Kerana tanahnya tidak boleh runtuh",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Pewartaan bandar baharu disusuli dengan pembangunan insentif industri, institusi komersial, dan kediaman moden yang menarik migrasi komuniti.",
+  },
+  {
+    id: "geo-f1-c8-q20",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 8",
+    question:
+      "Faktor manakah yang mengelompokkan pedalaman Banjaran Iran di Sarawak sebagai kawasan berpenduduk jarang?",
+    options: [
+      "Faktor Dasar Kerajaan",
+      "Faktor Fizikal rupa bumi bergunung-ganang dan sukar diakses",
+      "Faktor Perindustrian berat",
+      "Faktor Pendidikan tinggi",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Banjaran Iran mempunyai topografi yang sangat tinggi, cerun curam, dan litupan hutan hujan tebal yang membatasi aktiviti pembangunan petempatan manusia.",
+  },
+  {
+    id: "geo-f1-c8-q21",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question:
+      "Kawasan pesisir pantai seperti Jeti Tok Bali di Kelantan mempunyai taburan penduduk sederhana kerana dipengaruhi oleh pekerjaan sektor...?",
+    options: [
+      "Perkilangan automotif",
+      "Perikanan dan aktiviti pelabuhan kecil",
+      "Perlombongan arang batu",
+      "Pelancongan tanah tinggi",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Pesisir pantai menyediakan prasarana untuk nelayan mendaratkan tangkapan serta perdagangan maritim berskala kecil hingga sederhana.",
+  },
+  {
+    id: "geo-f1-c8-q22",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question:
+      "Antara bandar berikut, yang manakah mengalami kepadatan penduduk tinggi kerana fungsinya sebagai ibu negeri Sabah?",
+    options: ["Sandakan", "Tawau", "Kota Kinabalu", "Lahad Datu"],
+    answerIndex: 2,
+    explanation:
+      "Kota Kinabalu merupakan ibu negeri bagi Sabah yang berfungsi sebagai pusat ekonomi, politik, dan sosial terbesar di negeri tersebut.",
+  },
+  {
+    id: "geo-f1-c8-q23",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Apakah kesan penubuhan institusi kesihatan seperti hospital pakar besar terhadap bandar sekelilingnya?",
+    options: [
+      "Menurunkan harga rumah secara mendadak",
+      "Meningkatkan daya tarikan petempatan penduduk kerana akses rawatan perubatan yang mudah",
+      "Menyebabkan penduduk berpindah ke kawasan hutan",
+      "Menyekat pembinaan jalan raya utama",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Kemudahan kesihatan yang lengkap merupakan salah satu indikator kualiti hidup tinggi yang dicari oleh penduduk semasa memilih lokasi kediaman kekal.",
+  },
+  {
+    id: "geo-f1-c8-q24",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question:
+      "Lembah Klang memegang status sebagai metropolitan yang paling padat di Malaysia disebabkan oleh gabungan faktor...?",
+    options: [
+      "Tanah tinggi dan kawasan perlombongan emas purba",
+      "Dasar kerajaan, perindustrian maju, kemudahan sosial lengkap, dan bentuk muka bumi tanah pamah",
+      "Kawasan hutan simpan kekal yang luas",
+      "Zon pertanian padi huma terbesar",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Lembah Klang mendapat manfaat daripada pelbagai faktor penarik bersilang: infrastruktur mega, industri pembuatan/perkhidmatan, pasaran domestik besar, dan bentuk muka bumi yang rata.",
+  },
+  {
+    id: "geo-f1-c8-q25",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question: "Mengapakah kawasan hutan simpan seperti Taman Negara Pahang mempunyai penduduk yang jarang?",
+    options: [
+      "Kerana dilindungi oleh undang-undang bagi tujuan pemuliharaan alam sekitar dan bukan untuk petempatan",
+      "Kerana suhunya terlalu panas melebihi 50 darjah Celcius",
+      "Kerana kawasannya dipenuhi oleh kilang pembuatan kereta",
+      "Kerana tiada bekalan oksigen",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kawasan hutan simpan atau taman negara diwartakan sebagai zon dilindungi untuk biodiversiti, maka sebarang pembangunan petempatan komersial adalah dilarang.",
+  },
+  {
+    id: "geo-f1-c8-q26",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question: "Antara bandar berikut, yang manakah terkenal sebagai bandar universiti (hab pendidikan) di Johor?",
+    options: ["Muar", "Skudai", "Segamat", "Pontian"],
+    answerIndex: 1,
+    explanation:
+      "Skudai merupakan lokasi terletaknya Universiti Teknologi Malaysia (UTM) yang menarik ribuan mahasiswa dan kakitangan akademik menetap di sana.",
+  },
+  {
+    id: "geo-f1-c8-q27",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 8",
+    question:
+      "Bagaimanakah corak taburan penduduk di sepanjang rangkaian pesisir sungai di pedalaman Sarawak pada umumnya?",
+    options: [
+      "Sangat padat mengalahkan Kuala Lumpur",
+      "Bertaburan secara linear (bergaris) dengan kepadatan jarang hingga sederhana mengikut pangkalan petempatan",
+      "Sama sekali kosong tanpa penghuni",
+      "Tertumpu di kawasan air terjun sahaja",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Penduduk pedalaman membina rumah panjang atau perkampungan di sepanjang tebing sungai untuk kemudahan bot, membentuk corak taburan linear berpola jarang-sederhana.",
+  },
+  {
+    id: "geo-f1-c8-q28",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question:
+      "Kawasan yang mempunyai kepadatan penduduk kurang daripada 50 orang sekilometer persegi dipanggil sebagai...?",
+    options: [
+      "Kawasan Penduduk Padat",
+      "Kawasan Penduduk Sederhana",
+      "Kawasan Penduduk Jarang",
+      "Kawasan Penduduk Sendat",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Kepadatan di bawah nilai 50 orang per km² didefinisikan secara rasmi sebagai kawasan penduduk jarang.",
+  },
+  {
+    id: "geo-f1-c8-q29",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 8",
+    question:
+      "Apakah peranan bandar George Town (Pulau Pinang) dalam mempengaruhi taburan penduduk padat di utara Semenanjung?",
+    options: [
+      "Sebagai pusat penanaman kelapa sawit utama",
+      "Sebagai hub perdagangan, pelancongan warisan, ekonomi, dan perkhidmatan utama",
+      "Sebagai kawasan tadahan hujan empangan air",
+      "Sebagai tapak ujian peluru berpandu antarabangsa",
+    ],
+    answerIndex: 1,
+    explanation:
+      "George Town merupakan bandar raya bersejarah dan pusat komersial metropolitan utara yang menawarkan aktiviti ekonomi bernilai tinggi, menjadikannya padat.",
+  },
+  {
+    id: "geo-f1-c8-q30",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 8",
+    question:
+      "Secara kesimpulannya, apakah faktor tarikan paling dominan yang mendorong manusia berkumpul di kawasan berpenduduk padat di Malaysia pada era moden ini?",
+    options: [
+      "Ketersediaan peluang pekerjaan dan kemudahan infrastruktur moden yang lengkap",
+      "Kedekatan dengan kawasan gua batu kapur",
+      "Kawasan yang mempunyai banyak kejadian banjir",
+      "Kawasan yang terasing daripada sistem perhubungan internet",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Manusia cenderung bermigrasi dan menetap di lokasi yang menawarkan kemudahan utiliti lengkap, kestabilan ekonomi, dan peluang kerjaya yang luas.",
+  },
 ];
 export interface Flashcard {
   id: string;
