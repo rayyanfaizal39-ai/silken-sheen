@@ -7867,6 +7867,15 @@ export function getSubjectChapters(subjectId: string): ChapterItem[] {
       isNew: c.isNew,
     }));
   }
+
+  if (subjectId === "geography") {
+    return geographyForm1Chapters.map((c) => ({
+      key: `Chapter ${c.num}`,
+      label: `Chapter ${c.num}: ${c.title}`,
+      available: c.available,
+      isNew: c.isNew,
+    }));
+  }
   return otherSubjectChapters[subjectId] ?? [];
 }
 
