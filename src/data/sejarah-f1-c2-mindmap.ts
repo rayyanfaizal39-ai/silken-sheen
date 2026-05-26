@@ -129,5 +129,3 @@ export const zamanAirBatuMindMap: MindNode = {
     },
   ],
 };
-export { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
-
