@@ -129,8 +129,6 @@ export const zamanAirBatuMindMap: MindNode = {
     },
   ],
 };
-import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
-
 export const mengenaliSejarahMindMap: MindNode = {
   id: "root",
   label: "Mengenali Sejarah",
