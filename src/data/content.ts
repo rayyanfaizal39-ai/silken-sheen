@@ -12849,6 +12849,486 @@ export const flashcards: Flashcard[] = [
     front: "Mengapakah Malaysia terselamat daripada lingkaran gunung berapi aktif?",
     back: "Kerana Malaysia terletak di luar kawasan 'Lingkaran Api Pasifik' (plat tektonik yang aktif).",
   },
+]{
+    id: "geo-f1-c6-fc1",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah empat kategori utama bentuk muka bumi di Malaysia?",
+    back: "Tanah Tinggi, Tanah Pamah, Pinggir Laut, dan Saliran."
+  },
+  {
+    id: "geo-f1-c6-fc2",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Berapakah ukuran ketinggian minimum bagi kawasan Tanah Tinggi?",
+    back: "Melebihi 180 meter dari aras laut."
+  },
+  {
+    id: "geo-f1-c6-fc3",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Bagaimanakah sebahagian besar banjaran gunung di Malaysia terbentuk?",
+    back: "Terbentuk melalui proses lipatan kerak bumi akibat kuasa mampatan plat."
+  },
+  {
+    id: "geo-f1-c6-fc4",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah banjaran gunung terpanjang di Semenanjung Malaysia?",
+    back: "Banjaran Titiwangsa."
+  },
+  {
+    id: "geo-f1-c6-fc5",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah Banjaran Titiwangsa digelar 'tulang belakang' Semenanjung Malaysia?",
+    back: "Kerana ia merentasi bahagian tengah Semenanjung dan membahagikannya kepada Pantai Barat dan Pantai Timur."
+  },
+  {
+    id: "geo-f1-c6-fc6",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Di manakah letaknya lokasi Banjaran Crocker?",
+    back: "Terletak di negeri Sabah."
+  },
+  {
+    id: "geo-f1-c6-fc7",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah puncak tertinggi di Malaysia dan berapakah ketinggiannya?",
+    back: "Gunung Kinabalu; berketinggian 4,095 meter."
+  },
+  {
+    id: "geo-f1-c6-fc8",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Nyatakan tiga contoh pusat pelancongan tanah tinggi terkemuka di Malaysia.",
+    back: "Cameron Highlands, Genting Highlands, dan Bukit Tinggi."
+  },
+  {
+    id: "geo-f1-c6-fc9",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah suhu di kawasan tanah tinggi lebih rendah (sejuk) daripada tanah pamah?",
+    back: "Kerana setiap kenaikan ketinggian 1,000 meter, suhu atmosfera akan menurun kira-kira 6.5°C."
+  },
+  {
+    id: "geo-f1-c6-fc10",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah jenis pertanian komersial yang sesuai diusahakan di kawasan tanah tinggi?",
+    back: "Pertanian tanaman hawa sederhana seperti teh, strawberi, bunga-bungaan, dan sayur-sayuran segar."
+  },
+  {
+    id: "geo-f1-c6-fc11",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah aliran sungai di tanah tinggi sesuai untuk penjanaan kuasa hidroelektrik?",
+    back: "Kerana sungai mengalir deras di lereng curam, menghasilkan tenaga kinetik tinggi untuk memusingkan turbin empangan."
+  },
+  {
+    id: "geo-f1-c6-fc12",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Berikan satu contoh stesen janakuasa hidroelektrik terkenal di Malaysia.",
+    back: "Empangan Bakun di Sarawak atau Empangan Kenyir di Terengganu."
+  },
+  {
+    id: "geo-f1-c6-fc13",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Berapakah takrifan ketinggian bagi kawasan Tanah Pamah?",
+    back: "Kawasan rata atau beralun dengan ketinggian kurang daripada 180 meter dari aras laut."
+  },
+  {
+    id: "geo-f1-c6-fc14",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Di manakah kawasan tanah pamah biasanya terbentuk?",
+    back: "Di kawasan lembah sungai besar dan dataran banjir pinggir laut."
+  },
+  {
+    id: "geo-f1-c6-fc15",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah jenis tanaman utama yang paling sesuai ditanam di tanah pamah rata ber tanih aluvium?",
+    back: "Padi sawah."
+  },
+  {
+    id: "geo-f1-c6-fc16",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Berikan dua contoh dataran tanah pamah yang terkenal dengan penanaman padi.",
+    back: "Dataran Kedah-Perlis dan Dataran Kelantan."
+  },
+  {
+    id: "geo-f1-c6-fc17",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah jentera berat mudah digunakan di kawasan tanah pamah padi?",
+    back: "Kerana bentuk muka buminya yang rata dan luas memudahkan pergerakan traktor dan mesin penuai."
+  },
+  {
+    id: "geo-f1-c6-fc18",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah bandar-bandar besar dan zon perindustrian dibina di tanah pamah?",
+    back: "Kos pembinaan infrastruktur (bangunan/jalan raya) jauh lebih murah dan mudah berbanding kawasan berbukit."
+  },
+  {
+    id: "geo-f1-c6-fc19",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Berikan contoh bandar raya utama negara yang terletak di kawasan tanah pamah.",
+    back: "Kuala Lumpur, Shah Alam, dan Alor Setar."
+  },
+  {
+    id: "geo-f1-c6-fc20",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah pembinaan jaringan jalan raya dan lebuh raya lebih efisien di tanah pamah?",
+    back: "Kerana tidak memerlukan pembinaan jambatan tinggi atau penebukan terowong bukit yang memakan kos besar."
+  },
+  {
+    id: "geo-f1-c6-fc21",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah tiga lautan/laut utama yang mengelilingi sempadan perairan Malaysia?",
+    back: "Laut China Selatan, Laut Sulu, dan Selat Melaka."
+  },
+  {
+    id: "geo-f1-c6-fc22",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah takrifan bagi ciri pinggir laut 'Tanjung'?",
+    back: "Formasi batuan keras daratan yang menonjol dan menghadap terus ke laut."
+  },
+  {
+    id: "geo-f1-c6-fc23",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah takrifan bagi ciri pinggir laut 'Teluk'?",
+    back: "Bahagian perairan laut yang melengkung masuk ke arah daratan."
+  },
+  {
+    id: "geo-f1-c6-fc24",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah kawasan teluk terlindung sesuai dijadikan tapak pembinaan pelabuhan?",
+    back: "Kerana bentuk teluk menghalang tiupan angin kencang dan ombak besar, menjamin keselamatan kapal berlabuh."
+  },
+  {
+    id: "geo-f1-c6-fc25",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah nama laut cetek sekitar pinggir pantai yang kaya dengan rantaian makanan ikan?",
+    back: "Pentas Benua."
+  },
+  {
+    id: "geo-f1-c6-fc26",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah pentas benua mempunyai populasi hidupan ikan yang padat?",
+    back: "Kedalaman air yang cetek membolehkan cahaya matahari masuk untuk pertumbuhan plankton (makanan ikan)."
+  },
+  {
+    id: "geo-f1-c6-fc27",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Nyatakan dua pulau rekreasi pelancongan di Malaysia yang kaya dengan khazanah terumbu karang.",
+    back: "Pulau Redang (Terengganu) dan Pulau Sipadan (Sabah)."
+  },
+  {
+    id: "geo-f1-c6-fc28",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah elemen yang merangkumi komponen 'Saliran' di Malaysia?",
+    back: "Sistem aliran sungai-sungai dan kawasan takungan tasik."
+  },
+  {
+    id: "geo-f1-c6-fc29",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah sungai yang terpanjang di Malaysia dan di manakah lokasinya?",
+    back: "Sungai Rajang; terletak di negeri Sarawak."
+  },
+  {
+    id: "geo-f1-c6-fc30",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah sungai terpanjang di semenanjung Malaysia?",
+    back: "Sungai Pahang."
+  },
+  {
+    id: "geo-f1-c6-fc31",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah perbezaan utama antara Tasik Bera dan Tasik Kenyir?",
+    back: "Tasik Bera ialah tasik semula jadi, manakala Tasik Kenyir ialah tasik buatan manusia."
+  },
+  {
+    id: "geo-f1-c6-fc32",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah kegunaan utama sungai bagi sektor domestik penduduk Malaysia?",
+    back: "Sebagai pembekal sumber air mentah utama untuk kegunaan harian dan industri."
+  },
+  {
+    id: "geo-f1-c6-fc33",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah sungai dianggap sebagai 'lebuh raya utama' di pedalaman Sarawak?",
+    back: "Kerana ketiadaan rangkaian jalan raya darat yang lengkap menyebabkan bot sungai menjadi satu-satunya mod pengangkutan."
+  },
+  {
+    id: "geo-f1-c6-fc34",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Berikan contoh sungai yang berfungsi sebagai sempadan semula jadi antarabangsa negara.",
+    back: "Sungai Golok (memisahkan Kelantan, Malaysia dengan Thailand)."
+  },
+  {
+    id: "geo-f1-c6-fc35",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah fungsi ekonomi hiliran bagi sungai di kawasan pembalakan Sarawak?",
+    back: "Digunakan sebagai medium untuk menghanyutkan kayu balak dari kawasan hutan pedalaman ke kilang pemprosesan."
+  },
+  {
+    id: "geo-f1-c6-fc36",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah banjaran gunung yang membentuk sempadan semula jadi antara Sarawak dengan Kalimantan, Indonesia?",
+    back: "Banjaran Iran atau Banjaran Kapuas Hulu."
+  },
+  {
+    id: "geo-f1-c6-fc37",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah jenis padi yang ditanam di kawasan cerun bukit tanah tinggi Sarawak?",
+    back: "Padi huma (padi bukit)."
+  },
+  {
+    id: "geo-f1-c6-fc38",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah kawasan Pantai Barat Semenanjung Malaysia lebih sesuai dibina petempatan padat?",
+    back: "Mempunyai kawasan tanah pamah yang luas, subur, rata, dan terlindung daripada tiupan angin kencang."
+  },
+  {
+    id: "geo-f1-c6-fc39",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah nama dataran tanah pamah yang terletak di selatan Semenanjung Malaysia?",
+    back: "Dataran Johor."
+  },
+  {
+    id: "geo-f1-c6-fc40",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah aktiviti riadah berasaskan pinggir pantai berpasir yang popular bagi pelancong?",
+    back: "Aktiviti mandi-manda, berjemur, snorkeling, dan berkelah."
+  },
+  {
+    id: "geo-f1-c6-fc41",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah nama empangan hidroelektrik terawal di negeri Perak?",
+    back: "Empangan Chenderoh."
+  },
+  {
+    id: "geo-f1-c6-fc42",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Nyatakan kepentingan tasik buatan dari sudut perikanan air tawar.",
+    back: "Sesuai digunakan sebagai lokasi ternakan ikan dalam sangkar (cth: ikan tilapia)."
+  },
+  {
+    id: "geo-f1-c6-fc43",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah bentuk muka bumi yang dominan di kawasan Lembah Klang?",
+    back: "Tanah Pamah."
+  },
+  {
+    id: "geo-f1-c6-fc44",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Banjaran gunung di Sabah dan Sarawak dikategorikan sebagai gunung lipat muda atau gunung lipat tua?",
+    back: "Gunung lipat muda (lebih tinggi dan bercerun lebih curam)."
+  },
+  {
+    id: "geo-f1-c6-fc45",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah sungai terpanjang di negeri Sabah?",
+    back: "Sungai Kinabatangan."
+  },
+  {
+    id: "geo-f1-c6-fc46",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah bandar di Sabah yang berkembang pesat di kawasan tanah pamah pinggir laut?",
+    back: "Kota Kinabalu atau Sandakan."
+  },
+  {
+    id: "geo-f1-c6-fc47",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah kesan hakisan ombak berterusan terhadap formasi batu kapur di pinggir laut?",
+    back: "Boleh membentuk ciri fizikal gerbang laut, gua laut, dan batu tunggul."
+  },
+  {
+    id: "geo-f1-c6-fc48",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah bandar pelancongan tanah tinggi yang terkenal dengan taman tema hiburan?",
+    back: "Genting Highlands."
+  },
+  {
+    id: "geo-f1-c6-fc49",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah kegiatan pembinaan lebuh raya di Banjaran Titiwangsa mencabar fizikalnya?",
+    back: "Kerana perlu memotong cerun bukit tinggi yang berisiko tanah runtuh dan memerlukan kos kejuruteraan yang ekstrem."
+  },
+  {
+    id: "geo-f1-c6-fc50",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah nama tasik buatan di negeri Perak yang terkenal dengan nilai sejarah perlombongan timah?",
+    back: "Tasik Taiping (Taman Tasik Taiping)."
+  },
+  {
+    id: "geo-f1-c6-fc51",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah mineral komersial bernilai tinggi yang banyak diekstraksi di dasar pentas benua Laut China Selatan?",
+    back: "Petroleum dan gas asli."
+  },
+  {
+    id: "geo-f1-c6-fc52",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah jenis hutan semula jadi yang tumbuh subur di kawasan pinggir laut berlumpur?",
+    back: "Hutan Paya Bakau (paya air masin)."
+  },
+  {
+    id: "geo-f1-c6-fc53",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah sistem saliran yang baik penting untuk penanaman pokok getah?",
+    back: "Kerana akar pokok getah mudah reput jika terendam di dalam takungan air banjir tersumbat."
+  },
+  {
+    id: "geo-f1-c6-fc54",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah bandar diraja di Perak yang dibuka berhampiran aliran Sungai Perak?",
+    back: "Kuala Kangsar."
+  },
+  {
+    id: "geo-f1-c6-fc55",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah nama banjaran gunung yang memisahkan negeri Perak dan Kelantan?",
+    back: "Banjaran Titiwangsa."
+  },
+  {
+    id: "geo-f1-c6-fc56",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah kepentingan bentuk muka bumi tanjung dari segi rekreasi?",
+    back: "Sering dijadikan lokasi pembinaan rumah api bagi panduan pelayaran malam kapal laut."
+  },
+  {
+    id: "geo-f1-c6-fc57",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Apakah kepentingan tasik semula jadi kepada komuniti orang asli setempat?",
+    back: "Menjadi lubuk sumber makanan ikan air tawar serta sara hidup tradisional."
+  },
+  {
+    id: "geo-f1-c6-fc58",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Mengapakah tebing sungai aluvium sesuai dijadikan kawasan penanaman tanaman jangka pendek?",
+    back: "Kerana menerima bekalan nutrient mineral baru setiap kali mendapan banjir berlaku."
+  },
+  {
+    id: "geo-f1-c6-fc59",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Nyatakan kepentingan pemeliharaan bentuk muka bumi pinggir laut daripada hakisan.",
+    back: "Untuk mengekalkan keindahan ekosistem pantai serta mengelakkan kemusnahan infrastruktur pelancongan."
+  },
+  {
+    id: "geo-f1-c6-fc60",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    front: "Bagaimanakah corak bentuk muka bumi mempengaruhi sosioekonomi masyarakat Malaysia?",
+    back: "Ia membentuk kepelbagaian corak pekerjaan seperti petani di tanah pamah, nelayan di pinggir laut, dan pengurus hotel di tanah tinggi."
+  }
 ];
 export interface SejarahChapter {
   num: number;
