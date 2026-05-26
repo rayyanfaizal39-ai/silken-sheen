@@ -16992,7 +16992,6 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 10",
   },
 ];
-
 export interface SejarahChapter {
   num: number;
   title: string;
