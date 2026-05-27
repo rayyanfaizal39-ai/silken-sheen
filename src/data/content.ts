@@ -654,6 +654,26 @@ export const notes: Note[] = [
       "Hidroelektrik",
     ],
   },
+  {
+    id: "geo-f1-c11-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 11",
+    title: "Penduduk dan Petempatan di Asia Tenggara",
+    summary:
+      "Taburan penduduk di Asia Tenggara adalah tidak sekata, terbahagi kepada kawasan Padat (Pulau Jawa, Bangkok, Manila, Delta Sungai Red, Lembah Klang) yang bertumpu di delta subur dan metropolitan; kawasan Sederhana (kawasan pesisir pantai dan pinggir bandar); serta kawasan Jarang (pedalaman Borneo, pergunungan utara Myanmar, paya Sumatera) akibat rintangan semula jadi. Faktor yang mempengaruhi taburan ini merangkumi Faktor Fizikal (tanah pamah aluvium yang rata untuk pertanian padi), Faktor Ekonomi (peluang pekerjaan di kawasan industri/perdagangan), Faktor Sosial (kemudahan pendidikan dan infrastruktur moden seperti MRT/LRT), serta Faktor Dasar Kerajaan (pembinaan ibu kota baharu seperti Putrajaya dan Naypyidaw, atau program transmigrasi). Bandar-bandar utama mempunyai fungsi dinamik tersendiri: Kuala Lumpur (pusat kewangan dan komersial), Bangkok (pusat pelancongan antarabangsa dan pentadbiran), Jakarta (metropolitan terbesar dan pusat politik), Manila (hab perdagangan Pasifik yang sangat padat), dan Singapura (pusat kewangan dan pelabuhan antarabangsa tersibuk). Petempatan di rantau ini dikategorikan kepada Petempatan Bandar yang bercorak terpusat serta Petempatan Luar Bandar yang bercorak berjajar di sepanjang saliran/pantai atau berselerak di kawasan pertanian.",
+    keywords: [
+      "Taburan Penduduk",
+      "Kawasan Padat",
+      "Kawasan Jarang",
+      "Faktor Fizikal",
+      "Dasar Kerajaan",
+      "Transmigrasi",
+      "Bandar Utama",
+      "Petempatan Bandar",
+      "Petempatan Luar Bandar",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
