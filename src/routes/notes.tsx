@@ -130,17 +130,39 @@ function NotesPage() {
           <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
 
           {subject === "sejarah" && chapter === "Chapter 1" && (
-            <div className="mb-8 animate-fade-up">
-              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-                <h2 className="font-display text-2xl font-bold">
-                  Mind Map <span className="gradient-text">Mengenali Sejarah</span>
+            <>
+              <div className="mb-8 animate-fade-up">
+                <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
+                  <span className="gradient-text">Video Pembelajaran</span> 🎬
                 </h2>
-                <span className="text-xs text-muted-foreground">
-                  Click nodes to expand • Scroll or pinch to zoom • Drag to pan
-                </span>
+                <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
+                  <div className="relative aspect-video">
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/dZuhYNHdQ7U?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
+                      title="Mengenali Sejarah"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground text-center">
+                  Hidupkan sari kata untuk pemahaman lebih baik! 💡
+                </p>
               </div>
-              <MindMap data={mengenaliSejarahMindMap} height={640} />
-            </div>
+
+              <div className="mb-8 animate-fade-up">
+                <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                  <h2 className="font-display text-2xl font-bold">
+                    Mind Map <span className="gradient-text">Mengenali Sejarah</span>
+                  </h2>
+                  <span className="text-xs text-muted-foreground">
+                    Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                  </span>
+                </div>
+                <MindMap data={mengenaliSejarahMindMap} height={640} />
+              </div>
+            </>
           )}
 
           {subject === "sejarah" && chapter === "Chapter 2" && (
@@ -296,17 +318,39 @@ function SubtopicView({
       </div>
 
       {chapterKey === "Chapter 1" && (
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-            <h3 className="font-display text-2xl font-bold">
-              Mind Map <span className="gradient-text">Mengenali Sejarah</span>
+        <>
+          <div className="mb-8 animate-fade-up">
+            <h3 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
+              <span className="gradient-text">Video Pembelajaran</span> 🎬
             </h3>
-            <span className="text-xs text-muted-foreground">
-              Click nodes to expand • Scroll or pinch to zoom • Drag to pan
-            </span>
+            <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
+              <div className="relative aspect-video">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/dZuhYNHdQ7U?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
+                  title="Mengenali Sejarah"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground text-center">
+              Hidupkan sari kata untuk pemahaman lebih baik! 💡
+            </p>
           </div>
-          <MindMap data={mengenaliSejarahMindMap} height={640} />
-        </div>
+
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+              <h3 className="font-display text-2xl font-bold">
+                Mind Map <span className="gradient-text">Mengenali Sejarah</span>
+              </h3>
+              <span className="text-xs text-muted-foreground">
+                Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+              </span>
+            </div>
+            <MindMap data={mengenaliSejarahMindMap} height={640} />
+          </div>
+        </>
       )}
 
       {chapterKey === "Chapter 2" && (
