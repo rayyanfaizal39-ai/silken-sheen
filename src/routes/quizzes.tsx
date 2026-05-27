@@ -65,7 +65,10 @@ function QuizzesPage() {
   const [timeLeft, setTimeLeft] = useState(0);
   const comboTimer = useRef<number | null>(null);
 
-  const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
+  const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
+  const needsScienceLang = subject === "science" && !scienceLang;
+
+  const chapterMeta = subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
 
   const pool = useMemo(() => {
     if (!subject || !chapter) return [];
