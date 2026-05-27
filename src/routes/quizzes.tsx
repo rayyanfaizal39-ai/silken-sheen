@@ -9,6 +9,8 @@ import {
   ContentHeader,
   ComingSoonScreen,
 } from "@/components/ChapterPicker";
+import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
+import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
