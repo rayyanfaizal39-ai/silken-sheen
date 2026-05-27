@@ -311,12 +311,23 @@ function FlashcardsPage() {
 
       {!subject ? (
         <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); resetSession(); }} />
-      ) : !chapter ? (
-        <ChapterGrid
-          subjectId={subject}
-          onSelect={(key) => { setChapter(key); resetSession(); }}
-          onBack={() => { setSubject(null); setChapter(null); }}
+      ) : needsScienceLang ? (
+        <ScienceLanguagePicker
+          onSelect={(l) => setScienceLang(l)}
+          onBack={() => { setSubject(null); setChapter(null); resetSession(); }}
         />
+      ) : !chapter ? (
+        <>
+          {subject === "science" && scienceLang && (
+            <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
+          )}
+          <ChapterGrid
+            subjectId={subject}
+            scienceLang={scienceLang ?? undefined}
+            onSelect={(key) => { setChapter(key); resetSession(); }}
+            onBack={() => { setSubject(null); setChapter(null); }}
+          />
+        </>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
       ) : (
