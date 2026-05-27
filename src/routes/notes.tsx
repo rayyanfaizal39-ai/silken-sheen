@@ -104,12 +104,25 @@ function NotesPage() {
 
       {!subject ? (
         <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
-      ) : !chapter ? (
-        <ChapterGrid
-          subjectId={subject}
-          onSelect={(key) => { setChapter(key); setSubtopic(null); }}
+      {!subject ? (
+        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
+      ) : needsScienceLang ? (
+        <ScienceLanguagePicker
+          onSelect={(l) => setScienceLang(l)}
           onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
         />
+      ) : !chapter ? (
+        <>
+          {subject === "science" && scienceLang && (
+            <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
+          )}
+          <ChapterGrid
+            subjectId={subject}
+            scienceLang={scienceLang ?? undefined}
+            onSelect={(key) => { setChapter(key); setSubtopic(null); }}
+            onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
+          />
+        </>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
       ) : hasSubtopics && !subtopic ? (
