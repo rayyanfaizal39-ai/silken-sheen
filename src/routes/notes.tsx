@@ -9,6 +9,8 @@ import {
   ContentHeader,
   ComingSoonScreen,
 } from "@/components/ChapterPicker";
+import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
+import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { MindMap } from "@/components/MindMap";
@@ -44,11 +46,13 @@ function NotesPage() {
   const [q, setQ] = useState("");
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter } = useProgress();
+  const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
+  const needsScienceLang = subject === "science" && !scienceLang;
 
   const hasSubtopics = subject === "sejarah" && !!chapter;
   const subtopics = hasSubtopics ? getSejarahF1Subtopics(chapter!) : [];
 
-  const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
+  const chapterMeta = subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
   const isRead =
     subject && chapter
       ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read
@@ -100,12 +104,23 @@ function NotesPage() {
 
       {!subject ? (
         <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
-      ) : !chapter ? (
-        <ChapterGrid
-          subjectId={subject}
-          onSelect={(key) => { setChapter(key); setSubtopic(null); }}
+      ) : needsScienceLang ? (
+        <ScienceLanguagePicker
+          onSelect={(l) => setScienceLang(l)}
           onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
         />
+      ) : !chapter ? (
+        <>
+          {subject === "science" && scienceLang && (
+            <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
+          )}
+          <ChapterGrid
+            subjectId={subject}
+            scienceLang={scienceLang ?? undefined}
+            onSelect={(key) => { setChapter(key); setSubtopic(null); }}
+            onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
+          />
+        </>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
       ) : hasSubtopics && !subtopic ? (

@@ -9,6 +9,8 @@ import {
   ContentHeader,
   ComingSoonScreen,
 } from "@/components/ChapterPicker";
+import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
+import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
@@ -63,7 +65,10 @@ function QuizzesPage() {
   const [timeLeft, setTimeLeft] = useState(0);
   const comboTimer = useRef<number | null>(null);
 
-  const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
+  const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
+  const needsScienceLang = subject === "science" && !scienceLang;
+
+  const chapterMeta = subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
 
   const pool = useMemo(() => {
     if (!subject || !chapter) return [];
@@ -240,12 +245,23 @@ function QuizzesPage() {
 
       {!subject ? (
         <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setForm("All"); setDiff("All"); reset(); }} />
-      ) : !chapter ? (
-        <ChapterGrid
-          subjectId={subject}
-          onSelect={(key) => { setChapter(key); reset(); }}
+      ) : needsScienceLang ? (
+        <ScienceLanguagePicker
+          onSelect={(l) => setScienceLang(l)}
           onBack={() => { setSubject(null); setChapter(null); reset(); }}
         />
+      ) : !chapter ? (
+        <>
+          {subject === "science" && scienceLang && (
+            <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
+          )}
+          <ChapterGrid
+            subjectId={subject}
+            scienceLang={scienceLang ?? undefined}
+            onSelect={(key) => { setChapter(key); reset(); }}
+            onBack={() => { setSubject(null); setChapter(null); reset(); }}
+          />
+        </>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
       ) : !timerPref ? (
