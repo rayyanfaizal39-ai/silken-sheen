@@ -9844,6 +9844,499 @@ export const quizzes: QuizQuestion[] = [
     explanation:
       "Walau secanggih mana pun sistem teknologi pengurusan sampah, kunci utama kejayaan kelestarian alam sekitar terletak pada disiplin dan kesedaran sivik setiap individu.",
   },
+  {
+    id: "geo-f1-c12-q1",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Apakah sumber bekalan air utama yang menyumbang kira-kira 97% daripada jumlah keseluruhan bekalan air di Malaysia?",
+    options: ["Air bawah tanah", "Air permukaan", "Air hujan tadahan peribadi", "Air laut yang dinyahgaram"],
+    answerIndex: 1,
+    explanation:
+      "Air permukaan seperti sungai dan tasik merupakan sumber air mentah utama yang diekstrak dan dirawat untuk kegunaan majoriti penduduk Malaysia.",
+  },
+  {
+    id: "geo-f1-c12-q2",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question: "Antara berikut, yang manakah merupakan contoh bagi air permukaan?",
+    options: ["Akuifer batuan", "Sungai dan tasik", "Air liang tanah", "Mata air bawah gua"],
+    answerIndex: 1,
+    explanation:
+      "Air permukaan ialah air yang berada di atas permukaan daratan bumi seperti sungai, tasik, paya, dan empangan.",
+  },
+  {
+    id: "geo-f1-c12-q3",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question:
+      "Apakah istilah geografi bagi lapisan batuan atau tanah di bawah permukaan bumi yang menyimpan air tanah?",
+    options: ["Biosfera", "Akuifer", "Litosfera", "Zon Magna"],
+    answerIndex: 1,
+    explanation:
+      "Akuifer ialah lapisan geologi bawah tanah yang terdiri daripada batuan telus air atau pasir yang mampu menyimpan dan mengalirkan air tanah.",
+  },
+  {
+    id: "geo-f1-c12-q4",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Berapakah peratusan anggaran penggunaan air tanah sebagai sumber bekalan air di Malaysia pada masa kini?",
+    options: ["Sekitar 3%", "Sekitar 50%", "Sekitar 75%", "Hampir 100%"],
+    answerIndex: 0,
+    explanation:
+      "Penggunaan air tanah di Malaysia masih rendah, iaitu sekitar 3%, dan lazimnya diaplikasikan di kawasan luar bandar (seperti Kelantan) atau sektor industri tertentu.",
+  },
+  {
+    id: "geo-f1-c12-q5",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question: "Mengapakah aktiviti pembalakan atau penebangan hutan di kawasan tadahan hujan boleh memicu krisis air?",
+    options: [
+      "Kerana pokok yang ditebang melepaskan sisa asid ke air",
+      "Kerana ketiadaan akar pokok sebagai span semula jadi untuk menyerap, menapis, dan menakung air hujan",
+      "Kerana jentera pembalakan menggunakan terlalu banyak air",
+      "Kerana pembalakan menghentikan tiupan angin monsun",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Hutan bertindak sebagai span semula jadi. Apabila ia musnah, air larian permukaan meningkat menyebabkan hakisan tanah, kekeruhan sungai, dan ketiadaan simpanan air mantap semasa kemarau.",
+  },
+  {
+    id: "geo-f1-c12-q6",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question:
+      "Apakah kesan langsung kepada operasi Loji Rawatan Air (LRA) sekiranya berlaku pembuangan sisa toksik ke dalam sungai?",
+    options: [
+      "LRA akan meningkatkan pengeluaran air bersih secara drastik",
+      "LRA terpaksa dihentikan operasinya serta-merta, menyebabkan gangguan bekalan air bersih penduduk",
+      "Kos rawatan air menjadi semakin murah",
+      "Air sungai akan bertukar menjadi air mineral semula jadi",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Pencemaran kimia yang ekstrem memaksa LRA ditutup bagi mengelakkan air tercemar diproses dan diedarkan kepada pengguna, sekali gus mencetuskan krisis air setempat.",
+  },
+  {
+    id: "geo-f1-c12-q7",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Kawasan manakah di Malaysia yang mengalami tekanan permintaan air bersih tertinggi akibat pertambahan penduduk yang pesat?",
+    options: ["Pedalaman Sarawak", "Lembah Klang", "Zon pantai hulu Terengganu", "Kawasan hutan simpan Belum"],
+    answerIndex: 1,
+    explanation:
+      "Lembah Klang merupakan hub urbanisasi utama dengan populasi padat, menyebabkan kadar domestik bagi permintaan air bersih melonjak tinggi melampaui kapasiti normal rizab air.",
+  },
+  {
+    id: "geo-f1-c12-q8",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Apakah fenomena cuaca panas melampau yang boleh menyebabkan paras air di empangan-empangan utama menyusut ke tahap kritikal?",
+    options: ["Fenomena La Nina", "Fenomena El Nino", "Tsunami Selat Melaka", "Ribon Taufan Monsun"],
+    answerIndex: 1,
+    explanation:
+      "El Nino membawa keadaan cuaca kering dan kemarau panjang yang mengurangkan taburan hujan secara drastik, mengecilkan aliran sungai, dan mengeringkan takungan empangan.",
+  },
+  {
+    id: "geo-f1-c12-q9",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question: "Manakah antara berikut merupakan contoh amalan pembaziran air oleh pengguna?",
+    options: [
+      "Mematikan paip air semasa sedang memberus gigi",
+      "Membiarkan paip air terus terbuka lama ketika mencuci kenderaan",
+      "Menggunakan air tadahan hujan untuk menyiram pokok",
+      "Melaporkan segera kebocoran paip utama kepada pihak berkuasa",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Menggunakan air paip secara berlebihan tanpa kawalan menyumbang kepada penyusutan rizab bekalan air terawat negara secara tidak berhemah.",
+  },
+  {
+    id: "geo-f1-c12-q10",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question: "Apabila berlaku kekurangan bekalan air yang serius, pihak berkuasa terpaksa melaksanakan langkah...",
+    options: [
+      "Pemberian air percuma setiap hari",
+      "Catuan bekalan air secara berjadual",
+      "Penutupan sistem perparitan bandar",
+      "Pemindahan penduduk ke luar negara",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Catuan air dilakukan bagi mengimbangi baki simpanan air terawat yang kritikal agar semua kawasan mendapat agihan air secara bergilir-gilir.",
+  },
+  {
+    id: "geo-f1-c12-q11",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 12",
+    question: "Mengapakah pencemaran sungai atau kekeringan air boleh mengakibatkan kepupusan hidupan akuatik?",
+    options: [
+      "Kerana hidupan akuatik berpindah ke daratan",
+      "Kerana kehilangan habitat kekal, kekurangan bekalan oksigen terlarut, dan keracunan toksik",
+      "Kerana air sungai bertukar menjadi terlalu sejuk bersalji",
+      "Kerana pembiakan ikan bertambah terlalu cepat",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Bahan pencemar mengurangkan kadar oksigen terlarut dalam air (BOD tinggi) dan toksik merosakkan organ dalaman ikan, membawa kepada kematian massal haiwan akuatik.",
+  },
+  {
+    id: "geo-f1-c12-q12",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question:
+      "Apakah risiko kesihatan awam yang dihadapi penduduk jika terpaksa menggunakan sumber air mentah yang tidak dirawat semasa krisis air?",
+    options: [
+      "Jangkitan penyakit bawaan air seperti kolera, tifoid, dan cirit-birit",
+      "Penyakit darah tinggi kronik",
+      "Penyakit rabun warna malam",
+      "Kekurangan sel darah putih",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Air yang tidak dirawat mengandungi bakteria patogen seperti *Vibrio cholerae* atau *Salmonella typhi* yang memicu penularan penyakit cirit-birit berbahaya.",
+  },
+  {
+    id: "geo-f1-c12-q13",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Apakah tindakan undang-undang yang boleh diambil untuk memelihara kawasan tadahan hujan daripada dimusnahkan?",
+    options: [
+      "Menjual kawasan tersebut kepada pemaju swasta",
+      "Wartakan kawasan hutan simpan kekal sebagai zon larangan pembangunan",
+      "Memotong semua pokok besar di kawasan tersebut",
+      "Menjadikan kawasan tersebut sebagai pusat kuari batu",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Pewartaan undang-undang mengekalkan struktur ekosistem hutan sebagai kawasan tadahan air bagi menjamin kestabilan kitaran hidrologi hidrik.",
+  },
+  {
+    id: "geo-f1-c12-q14",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 12",
+    question:
+      "Akta manakah yang digunakan di Malaysia untuk mengenakan hukuman berat atau denda terhadap kilang yang mencemarkan sumber air sungai?",
+    options: [
+      "Akta Kualiti Alam Sekeliling 1974",
+      "Akta Keselamatan Dalam Negeri 1960",
+      "Akta Pengangkutan Jalan 1987",
+      "Akta Pendidikan 1996",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Akta Kualiti Alam Sekeliling 1974 merupakan instrumen perundangan utama untuk mengawal selia, menghalang pencemaran, and mendakwa pesalah alam sekitar.",
+  },
+  {
+    id: "geo-f1-c12-q15",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Apakah nama kempen kesedaran awam yang dianjurkan oleh kerajaan untuk memupuk rasa tanggungjawab masyarakat terhadap kebersihan sungai?",
+    options: [
+      "Kempen Cintai Sungai Kita",
+      "Kempen Ke Hijau Malaysia",
+      "Kempen Sifar Beg Plastik",
+      "Kempen Utamakan Barangan Tempatan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kempen 'Cintai Sungai Kita' diwujudkan untuk mendidik komuniti agar tidak membuang sisa domestik ke dalam sistem sungai negara.",
+  },
+  {
+    id: "geo-f1-c12-q16",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question:
+      "Bagaimanakah amalan proses kitar semula atau rawatan air kumbahan dapat membantu mengurangkan beban pada krisis air bersih?",
+    options: [
+      "Air kumbahan yang dirawat boleh digunakan semula bagi sektor industri, penyejukan mesin kilang, dan landskap",
+      "Air kumbahan diproses menjadi air mineral botol gred tinggi",
+      "Air kumbahan dibiarkan mengalir langsung ke bendang padi",
+      "Ia mempercepatkan proses sejatan awan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Menggunakan air sisa terawat (reclaimed water) untuk industri atau penyiraman landskap mengurangkan kebergantungan industri terhadap bekalan air bersih gred domestik.",
+  },
+  {
+    id: "geo-f1-c12-q17",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question: "Apakah maksud singkatan bagi teknologi SPAHL dalam konteks pengurusan air alternatif?",
+    options: [
+      "Sistem Penuaian Air Hujan",
+      "Sistem Penapisan Air Hidro",
+      "Sistem Pengurusan Air Hutan Lestari",
+      "Stesen Pam Air Hujan Laju",
+    ],
+    answerIndex: 0,
+    explanation:
+      "SPAHL (Sistem Penuaian Air Hujan) ialah mekanisasi mengumpul dan menyimpan air hujan dari bumbung untuk kegunaan bukan domestik seperti mencuci tangki tandas dan menyiram laman.",
+  },
+  {
+    id: "geo-f1-c13-q18",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Apakah contoh tasik buatan di Malaysia yang juga berfungsi sebagai kawasan takungan air dan jana kuasa hidroelektrik?",
+    options: ["Tasik Chini", "Tasik Kenyir", "Tasik Bera", "Tasik Loagan Bunut"],
+    answerIndex: 1,
+    explanation:
+      "Tasik Kenyir merupakan tasik buatan manusia terbesar di Malaysia yang bertindak sebagai empangan hidroelektrik and tadbir urus bekalan air.",
+  },
+  {
+    id: "geo-f1-c12-q19",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 12",
+    question: "Apakah kesan pencemaran sisa baja kimia pertanian terhadap kualiti air tasik atau sungai?",
+    options: [
+      "Menyebabkan fenomena eutrofikasi yang mempercepatkan pertumbuhan rumpai air alga sehingga menjejaskan oksigen air",
+      "Menjadikan air tasik bertukar menjadi jernih kristal",
+      "Membantu ikan membiak dengan lebih sihat",
+      "Meningkatkan kadar aliran air permukaan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Eutrofikasi akibat limpahan nutrien fosfat/nitrat baja mencetuskan 'algal bloom'. Alga tebal menghalang cahaya matahari dan menggunakan oksigen, menyebabkan organisma air mati.",
+  },
+  {
+    id: "geo-f1-c12-q20",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Mengapakah kaedah menutup paip air semasa sabun badan atau syampu rambut disarankan dalam amalan harian?",
+    options: [
+      "Untuk mempercepatkan waktu mandi",
+      "Sebagai langkah mengurangkan pembaziran sisa air bersih di peringkat domestik",
+      "Supaya sabun bertindak lebih wangi",
+      "Kerana diwajibkan oleh pihak berkuasa sekolah",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Langkah mudah ini menjimatkan penggunaan liter air terawat yang bersih daripada terbuang begitu sahaja ke saluran sisa kumbahan.",
+  },
+  {
+    id: "geo-f1-c12-q21",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question:
+      "Sektor manakah yang menggunakan peratusan air permukaan terbesar selain daripada kegunaan domestik di Malaysia?",
+    options: [
+      "Sektor pelancongan hotel",
+      "Sektor pertanian (seperti pengairan sawah padi)",
+      "Sektor perlombongan batu arang",
+      "Sektor pengangkutan udara",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Sektor pertanian memerlukan bekalan air permukaan yang sangat besar secara berterusan bagi sistem pengairan jelapang padi.",
+  },
+  {
+    id: "geo-f1-c12-q22",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question: "Apakah kelemahan geografi utama bagi sistem bekalan air permukaan berbanding air tanah?",
+    options: [
+      "Ia lebih mudah terdedah kepada ancaman pencemaran terbuka dan kekeringan akibat cuaca",
+      "Ia mempunyai kandungan mineral garam yang terlalu tinggi",
+      "Ia tidak boleh dialirkan menggunakan paip besi",
+      "Kos mengekstraknya jauh lebih mahal daripada air bawah tanah",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kerana lokasinya terbuka di permukaan bumi, sungai dan tasik berisiko tinggi tercemar akibat aktiviti manusia atau kering akibat penyejatan suhu tinggi.",
+  },
+  {
+    id: "geo-f1-c12-q23",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 12",
+    question:
+      "Bagaimanakah keghairahan industri membina kawasan perumahan berturap konkrit menjejaskan pengisian semula air tanah?",
+    options: [
+      "Ia meningkatkan kadar penyerapan air tanah",
+      "Ia menghalang proses telus air hujan ke dalam tanah, mengurangkan kadar luapan pengisian akuifer",
+      "Ia memusnahkan kandungan batuan nikel bawah tanah",
+      "Ia menyebabkan air tanah bertukar menjadi berasid",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Permukaan kalis air (tar/konkrit) menghalang air hujan merembes ke bawah tanah (infiltrasi), menyebabkan sebahagian besar air mengalir sebagai air larian permukaan.",
+  },
+  {
+    id: "geo-f1-c12-q24",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question: "Apakah peranan agensi kerajaan seperti Jabatan Alam Sekitar (JAS) dalam menjaga sumber air?",
+    options: [
+      "Membina bangunan loji rawatan baharu",
+      "Memantau kualiti air sungai, menjalankan penguatkuasaan, and mendakwa pengotor sungai",
+      "Menetapkan tarif harga bil air bulanan",
+      "Menggali telaga tiub air tanah di luar bandar",
+    ],
+    answerIndex: 1,
+    explanation:
+      "JAS bertanggungjawab memantau pematuhan standard kualiti alam sekitar berdasarkan peruntukan undang-undang bagi mengelakkan pencemaran ekosistem air.",
+  },
+  {
+    id: "geo-f1-c12-q25",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question:
+      "Apakah implikasi negatif berlakunya kebocoran paip utama bawah tanah yang lama (Non-Revenue Water) terhadap agensi bekalan air?",
+    options: [
+      "Meningkatkan keuntungan agensi bekalan air",
+      "Menyebabkan kerugian air bersih terawat yang besar sebelum sempat sampai kepada pengguna",
+      "Menjadikan kualiti air mentah bertambah bersih",
+      "Menghapuskan keperluan pembinaan empangan baharu",
+    ],
+    answerIndex: 1,
+    explanation:
+      "NRW (Air Tanpa Hasil) akibat paip pecah atau usang merugikan dana pengurusan kerana air bersih terawat terbuang ke dalam tanah tanpa dibilkan.",
+  },
+  {
+    id: "geo-f1-c12-q26",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Hard",
+    chapter: "Chapter 12",
+    question:
+      "Apakah kepentingan utama penanaman semula pokok (reforestasi) di kawasan bekas pembalakan terhadap kelestarian sumber air?",
+    options: [
+      "Untuk mencantikkan landskap hutan pelancongan",
+      "Membina semula sistem akar untuk memulihkan fungsi hutan sebagai kawasan tadahan air efektif",
+      "Membantu meningkatkan kelajuan aliran air sungai",
+      "Mengurangkan kadar penyerapan nitrogen tanah",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Penanaman semula mengembalikan litupan hijau yang menstabilkan struktur tanah, mengurangkan hakisan lumpur ke sungai, and memulihkan kitaran storan air.",
+  },
+  {
+    id: "geo-f1-c12-q27",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question:
+      "Antara berikut, aktiviti manakah yang paling sesuai mengaplikasikan penggunaan air tanah atau air SPAHL di rumah?",
+    options: [
+      "Memasak sup makanan harian",
+      "Membasuh lantai garaj kereta and menyiram tanaman hiasan",
+      "Sebagai bekalan air minuman utama keluarga",
+      "Membasuh luka kecederaan fizikal",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Air SPAHL dan air tanah tidak dirawat gred minuman, tetapi sangat sesuai untuk kegunaan sekunder seperti mencuci luar rumah and landskap bagi menjimatkan air terawat.",
+  },
+  {
+    id: "geo-f1-c12-q28",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question: "Bagaimanakah institusi sekolah boleh memainkan peranan mendidik murid mengenai isu krisis air?",
+    options: [
+      "Dengan memotong bekalan air sekolah sepanjang minggu",
+      "Mengintegrasikan pendidikan pemeliharaan air dalam subjek Geografi and menganjurkan minggu jimat air",
+      "Melarang murid daripada membawa air botol dari rumah",
+      "Menyuruh murid mandi di sungai sahaja",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Pendidikan akademik secara teori and praktikal di sekolah membina kesedaran kelestarian (sustainability) sumber semula jadi sejak usia muda.",
+  },
+  {
+    id: "geo-f1-c12-q29",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Medium",
+    chapter: "Chapter 12",
+    question: "Apakah kesan sekiranya sisa domestik sampah sarap terus dibuang ke dalam sistem parit bandar?",
+    options: [
+      "Aliran parit menjadi semakin laju",
+      "Parit tersumbat, air tercemar, and mencetuskan risiko banjir kilat serta bau busuk",
+      "Kandungan air permukaan bertambah jernih",
+      "Mengurangkan kos operasi Pihak Berkuasa Tempatan",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Sampah sarap menyekat aliran hidraulik air, menjejaskan kualiti biologi parit, and membawa implikasi rantaian krisis air and bencana banjir.",
+  },
+  {
+    id: "geo-f1-c12-q30",
+    subjectId: "geography",
+    form: "Form 1",
+    difficulty: "Easy",
+    chapter: "Chapter 12",
+    question: "Apakah rumusan pengajaran terpenting daripada pembelajaran Bab 12 Sumber Air?",
+    options: [
+      "Air ialah khazanah berharga terhad yang wajib dipelihara bersama demi menjamin kelangsungan generasi masa depan",
+      "Malaysia tidak perlu risau kerana hujan sentiasa lebat sepanjang tahun",
+      "Air tanah harus diekstrak sepenuhnya untuk menggantikan air sungai",
+      "Undang-undang alam sekitar tidak penting jika kita mempunyai LRA canggih",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kesedaran bahawa air bersih adalah sumber yang terdedah kepada kemusnahan menuntut komitmen kolektif bagi pemeliharaan and pemuliharaan berterusan.",
+  },
 ];
 export interface Flashcard {
   id: string;
