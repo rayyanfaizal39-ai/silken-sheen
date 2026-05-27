@@ -674,6 +674,26 @@ export const notes: Note[] = [
       "Petempatan Luar Bandar",
     ],
   },
+  {
+    id: "geo-f1-c13-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 13",
+    title: "Sisa Domestik",
+    summary:
+      "Sisa domestik merujuk kepada bahan buangan pepejal dan cecair dari kawasan perumahan atau institusi. Ia dikategorikan kepada Sisa Organik yang boleh diurai secara semula jadi (sisa makanan, sisa kebun, kertas) dan boleh dijadikan baja kompos, serta Sisa Bukan Organik yang sukar diurai (plastik, kaca, logam, sisa elektronik). Di Malaysia, ia wujud sebagai sisa pepejal mahupun sisa cecair (air kumbahan dan greywater). Pembuangan sisa yang tidak teratur membawa impak buruk seperti pencemaran alam sekitar (air, udara, bau), penularan wabak penyakit (demam denggi, kolera, kencing tikus), peningkatan kos penyelenggaraan oleh kerajaan, dan kejadian banjir kilat akibat saluran longkang tersumbat. Langkah mengurangkan kesan ini merangkumi amalan 3R (Reduce, Reuse, Recycle), penguatkuasaan undang-undang yang ketat oleh PBT di bawah Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007, pelaksanaan pendidikan serta kempen kesedaran pengasingan sisa di punca, dan inovasi teknologi seperti penghasilan baja kompos daripada sisa dapur.",
+    keywords: [
+      "Sisa Domestik",
+      "Sisa Organik",
+      "Sisa Bukan Organik",
+      "Sisa Cecair",
+      "Amalan 3R",
+      "Wabak Penyakit",
+      "Banjir Kilat",
+      "Baja Kompos",
+      "Pengasingan Sisa",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
