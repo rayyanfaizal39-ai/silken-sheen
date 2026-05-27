@@ -18274,13 +18274,33 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
   ],
 };
 
-export function getSubjectChapters(subjectId: string): ChapterItem[] {
+export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp: string }> = [
+  { num: 1, bm: "Pengenalan kepada Penyiasatan Saintifik", dlp: "Introduction to Scientific Investigation" },
+  { num: 2, bm: "Sel sebagai Unit Asas Kehidupan", dlp: "Cell as the Basic Unit of Life" },
+  { num: 3, bm: "Koordinasi dan Tindak Balas", dlp: "Coordination and Response" },
+  { num: 4, bm: "Respirasi", dlp: "Respiration" },
+  { num: 5, bm: "Jirim", dlp: "Matter" },
+  { num: 6, bm: "Jadual Berkala", dlp: "Periodic Table" },
+  { num: 7, bm: "Udara", dlp: "Air" },
+  { num: 8, bm: "Cahaya dan Optik", dlp: "Light and Optics" },
+  { num: 9, bm: "Bumi", dlp: "Earth" },
+];
+
+export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"): ChapterItem[] {
   if (subjectId === "sejarah") {
     return sejarahForm1Chapters.map((c) => ({
       key: `Chapter ${c.num}`,
       label: `Chapter ${c.num}: ${c.title}`,
       available: c.available,
       isNew: c.isNew,
+    }));
+  }
+  if (subjectId === "science" && scienceLang) {
+    const prefix = scienceLang === "bm" ? "Bab" : "Chapter";
+    return scienceForm1ChaptersBilingual.map((c) => ({
+      key: `Chapter ${c.num}`,
+      label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
+      available: false,
     }));
   }
   return otherSubjectChapters[subjectId] ?? [];
