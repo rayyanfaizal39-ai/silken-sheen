@@ -8847,7 +8847,6 @@ export const quizzes: QuizQuestion[] = [
     explanation:
       "Geografi fizikal yang dikongsi bersama (dataran sungai subur) menyokong cara hidup, rantaian makanan, dan kebudayaan agraria (padi) yang hampir serupa di seluruh rantau.",
   },
-  // ... kekalkan kuiz sedia ada (Bab 1 - Bab 10) di sini
   {
     id: "geo-f1-c11-q1",
     subjectId: "geography",
@@ -8892,7 +8891,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Faktor rintangan semula jadi seperti bentuk muka bumi berbukit-bukau dan hutan tebal menyukarkan pembinaan jaringan pengangkutan dan petempatan padat.",
+      "Faktor rintangan semula jadi seperti bentuk muka bumi berbukit-bukau dan hutan tebal menyukarkan pembinaan jaringan pengangkutan petempatan padat.",
   },
   {
     id: "geo-f1-c11-q4",
@@ -8921,7 +8920,7 @@ export const quizzes: QuizQuestion[] = [
   {
     id: "geo-f1-c11-q6",
     subjectId: "geography",
-    form: " Sigmund Freud ",
+    form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
     question: "Faktor ekonomi yang manakah menyebabkan bandar Singapura menjadi tumpuan penduduk yang padat?",
@@ -9081,7 +9080,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Faktor sosial yang manakah mampu menarik peningkatan kepadatan penduduk di bandar-bandar besar?",
     options: [
       "Kewujudan kawasan paya yang luas",
-      "Adanya institusi pendidikan tinggi (universiti) dan kemudahan kesihatan yang lengkap",
+      "Adanya institusi pendidikan tinggi (universiti) and kemudahan kesihatan yang lengkap",
       "Kadar pencemaran udara yang tinggi",
       "Bentuk muka bumi yang curam dan berbatu",
     ],
@@ -9145,7 +9144,7 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Bergantung sepenuhnya kepada hasil hutan",
       "Gaya hidup moden dengan kepelbagaian sektor pekerjaan ekonomi sekunder/tertier",
-      "Menggunakan sistem barter barter komoditi sahaja",
+      "Menggunakan sistem barter komoditi sahaja",
       "Tinggal secara berserak dan berjauhan antara rumah",
     ],
     answerIndex: 1,
@@ -9241,7 +9240,7 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Apakah fungsi sistem saliran Sungai Chao Phraya terhadap mobiliti penduduk luar bandar dan bandar di Thailand?",
     options: [
-      "Sebagai tempat pembuangan kenderaan lama",
+      "Como tempat pembuangan kenderaan lama",
       "Sebagai rangkaian sistem lebuh raya air untuk logistik pengangkutan komuter harian",
       "Sebagai muzium geologi tertutup",
       "Sebagai sempadan zon larangan memancing",
@@ -9291,7 +9290,7 @@ export const quizzes: QuizQuestion[] = [
       "Apakah kesan negatif yang mungkin timbul jika kepadatan penduduk di sesebuah kota metropolitan adalah terlalu ekstrem?",
     options: [
       "Kawasan bandar bertukar menjadi hutan belantara",
-      "Kesesakan lalu lintas, pencemaran, kewujudan kawasan setinggan, dan tekanan kos sara hidup",
+      "Kessesakan lalu lintas, pencemaran, kewujudan kawasan setinggan, dan tekanan kos sara hidup",
       "Semua harga barang bertukar menjadi percuma",
       "Jumlah sekolah berkurangan sehingga sifar",
     ],
