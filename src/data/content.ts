@@ -694,6 +694,26 @@ export const notes: Note[] = [
       "Pengasingan Sisa",
     ],
   },
+  {
+    id: "geo-f1-c12-note",
+    subjectId: "geography",
+    form: "Form 1",
+    chapter: "Chapter 12",
+    title: "Sumber Air",
+    summary:
+      "Sumber air di Malaysia terbahagi kepada Air Permukaan (menyumbang sekitar 97% bekalan, meliputi sungai, tasik, dan paya) serta Air Tanah (sekitar 3%, disimpan dalam akuifer bawah tanah). Krisis air berlaku apabila permintaan melebihi bekalan bersih, yang berpunca daripada penebangan hutan di kawasan tadahan hujan, pencemaran sungai oleh sisa kilang dan domestik, pertambahan penduduk, pembaziran air oleh pengguna, serta fenomena cuaca kemarau seperti El Nino. Impak krisis air termasuklah kekurangan bekalan air bersih (catuan air), kepupusan hidupan akuatik, dan ancaman penyakit bawaan air (kolera, tifoid). Langkah mitigasi merangkumi pemeliharaan kawasan tadahan hujan, penguatkuasaan Akta Kuality Alam Sekeliling 1974, kempen kesedaran, rawatan air kumbahan untuk industri, serta penerokaan sumber alternatif seperti Sistem Penuaian Air Hujan (SPAHL) dan air tanah.",
+    keywords: [
+      "Sumber Air",
+      "Air Permukaan",
+      "Air Tanah",
+      "Akuifer",
+      "Krisis Air",
+      "Kawasan Tadahan Hujan",
+      "Penyakit Bawaan Air",
+      "Akta Kualiti Alam Sekeliling 1974",
+      "SPAHL",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
