@@ -35,13 +35,15 @@ export function ChapterGrid({
   subjectId,
   onSelect,
   onBack,
+  scienceLang,
 }: {
   subjectId: string;
   onSelect: (key: string, available: boolean) => void;
   onBack: () => void;
+  scienceLang?: "bm" | "dlp";
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapters = getSubjectChapters(subjectId);
+  const chapters = getSubjectChapters(subjectId, scienceLang);
   const { progress } = useProgress();
 
   return (
