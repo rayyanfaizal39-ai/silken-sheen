@@ -130,7 +130,10 @@ function FlashcardsPage() {
     sfx.setMuted(!soundOn);
   }, [soundOn]);
 
-  const chapterMeta = subject && chapter ? getSubjectChapters(subject).find((c) => c.key === chapter) : null;
+  const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
+  const needsScienceLang = subject === "science" && !scienceLang;
+
+  const chapterMeta = subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
 
   const pool = useMemo(() => {
     if (!subject || !chapter) return [];
