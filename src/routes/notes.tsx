@@ -104,8 +104,6 @@ function NotesPage() {
 
       {!subject ? (
         <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
-      {!subject ? (
-        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
