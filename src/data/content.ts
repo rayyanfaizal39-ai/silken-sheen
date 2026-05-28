@@ -20283,9 +20283,11 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
     return scienceForm1ChaptersBilingual.map((c) => ({
       key: `Chapter ${c.num}`,
       label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
-      available: false,
+      available: c.num === 1,
+      isNew: c.num === 1,
     }));
   }
+
   return otherSubjectChapters[subjectId] ?? [];
 }
 export function getItemChapterKey(item: { id: string; subjectId: string; chapter?: string }): string | null {
