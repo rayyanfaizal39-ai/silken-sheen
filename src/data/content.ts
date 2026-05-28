@@ -73,7 +73,6 @@ export interface Note {
   lang?: "bm" | "dlp";
 }
 
-
 export const notes: Note[] = [
   {
     id: "n1",
@@ -726,7 +725,17 @@ export const notes: Note[] = [
     title: "1.1 Science Is Part of Daily Life",
     summary:
       "Science is a discipline that involves systematic observations and experiments on natural phenomena. Its main branches include Biology (study of living things — e.g. Zoology, Microbiology, Physiology), Physics (study of energy, force and their influence on matter — e.g. Engineering, Astronomy), Chemistry (study of matter, its composition and reactions — e.g. Pharmacology, Forensics), Geology (rocks, minerals and Earth's structure), Astronomy (celestial bodies such as stars and planets) and Meteorology (weather and climate changes). Science is important in daily life — it helps solve crimes through forensic DNA, increases crop yields through hydroponics and hybrid seeds, and enables medical breakthroughs such as robotic surgery and nanotechnology.",
-    keywords: ["Biology", "Physics", "Chemistry", "Geology", "Astronomy", "Meteorology", "Forensic DNA", "Hydroponics", "Nanotechnology"],
+    keywords: [
+      "Biology",
+      "Physics",
+      "Chemistry",
+      "Geology",
+      "Astronomy",
+      "Meteorology",
+      "Forensic DNA",
+      "Hydroponics",
+      "Nanotechnology",
+    ],
   },
   {
     id: "sci-f1-c1-dlp-2",
@@ -737,7 +746,18 @@ export const notes: Note[] = [
     title: "1.2 Your Science Laboratory",
     summary:
       "Hazard symbols warn about dangerous substances: EXPLOSIVE — chemicals that react violently to heat or shock (e.g. Hydrogen, Butane); FLAMMABLE — catches fire easily, keep away from fire and heat (e.g. Ethanol, Acetone); OXIDISING — releases oxygen that helps other materials burn (e.g. Potassium manganate(VII)); CORROSIVE — burns skin and dissolves materials, avoid contact (e.g. concentrated acid); TOXIC — lethal if swallowed or inhaled (e.g. Mercury, Cyanide); IRRITANT — causes itching and redness (e.g. Ammonia, Chloroform). Key apparatus include the Burette and Pipette (measure liquid volume with very high accuracy — 0.1 cm³), the Gas Jar (collect and contain gases) and the Bell Jar (create a vacuum or isolate an experiment from outside air).",
-    keywords: ["Explosive", "Flammable", "Oxidising", "Corrosive", "Toxic", "Irritant", "Burette", "Pipette", "Gas Jar", "Bell Jar"],
+    keywords: [
+      "Explosive",
+      "Flammable",
+      "Oxidising",
+      "Corrosive",
+      "Toxic",
+      "Irritant",
+      "Burette",
+      "Pipette",
+      "Gas Jar",
+      "Bell Jar",
+    ],
   },
   {
     id: "sci-f1-c1-dlp-3",
@@ -794,7 +814,17 @@ export const notes: Note[] = [
     title: "1.2 Makmal Sains Anda",
     summary:
       "Simbol amaran memberi peringatan tentang bahan merbahaya: MUDAH MELETUP — meletup jika terdedah kepada haba atau tekanan (contoh: gas Hidrogen); MUDAH TERBAKAR — cecair yang mudah meruap dan terbakar (contoh: Alkohol, Aseton); PENGOKSIDAAN — membebaskan oksigen yang membantu pembakaran (contoh: Kalium manganat(VII)); MENGAKIS — boleh menghakis kulit dan logam, elakkan sentuhan (contoh: asid pekat); BERACUN/TOKSIK — boleh membawa maut jika masuk ke badan (contoh: Merkuri, Sianida); MERENGSA — boleh menyebabkan kegatalan kulit (contoh: Kloroform, Ammonia). Alat radas penting termasuk Pipet dan Buret (menyukat cecair dengan kejituan tinggi — 0.1 cm³), Kelalang Dasar Rata (menyimpan atau memanaskan cecair secara sekata), dan Mangkuk Penyejat (menguapkan pelarut daripada larutan).",
-    keywords: ["Mudah Meletup", "Mudah Terbakar", "Pengoksidaan", "Mengakis", "Toksik", "Merengsa", "Pipet", "Buret", "Mangkuk Penyejat"],
+    keywords: [
+      "Mudah Meletup",
+      "Mudah Terbakar",
+      "Pengoksidaan",
+      "Mengakis",
+      "Toksik",
+      "Merengsa",
+      "Pipet",
+      "Buret",
+      "Mangkuk Penyejat",
+    ],
   },
   {
     id: "sci-f1-c1-bm-3",
@@ -838,10 +868,15 @@ export const notes: Note[] = [
     title: "1.6 Langkah Penyiasatan Saintifik",
     summary:
       "Langkah-langkah penyiasatan saintifik: (1) Mengenal pasti masalah; (2) Membina hipotesis — pernyataan awal yang boleh diuji; (3) Mengawal pemboleh ubah — DIMANIPULASI (perkara yang diubah), BERGERAK BALAS (hasil yang diperhatikan), DIMALARKAN (perkara yang tetap/sama); (4) Menganalisis data; (5) Membuat kesimpulan. Langkah-langkah ini memastikan eksperimen dijalankan secara sistematik dan keputusan yang diperoleh adalah sah serta boleh dipercayai.",
-    keywords: ["Hipotesis", "Pemboleh Ubah Dimanipulasi", "Pemboleh Ubah Bergerak Balas", "Pemboleh Ubah Dimalarkan", "Kesimpulan"],
+    keywords: [
+      "Hipotesis",
+      "Pemboleh Ubah Dimanipulasi",
+      "Pemboleh Ubah Bergerak Balas",
+      "Pemboleh Ubah Dimalarkan",
+      "Kesimpulan",
+    ],
   },
 ];
-
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
@@ -20394,6 +20429,13 @@ export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp
   { num: 9, bm: "Bumi", dlp: "Earth" },
 ];
 
+export const englishCategories = [
+  { id: 1, name: "Grammar" },
+  { id: 2, name: "Vocabulary" },
+  { id: 3, name: "Reading" },
+  { id: 4, name: "Writing" },
+];
+
 export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"): ChapterItem[] {
   if (subjectId === "sejarah") {
     return sejarahForm1Chapters.map((c) => ({
@@ -20401,6 +20443,14 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
       label: `Chapter ${c.num}: ${c.title}`,
       available: c.available,
       isNew: c.isNew,
+    }));
+  }
+  if (subjectId === "english") {
+    return englishCategories.map((c) => ({
+      key: `Chapter ${c.id}`,
+      label: c.name,
+      available: true,
+      isNew: false,
     }));
   }
   if (subjectId === "science" && scienceLang) {
