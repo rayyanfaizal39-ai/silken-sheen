@@ -876,57 +876,6 @@ export const notes: Note[] = [
       "Kesimpulan",
     ],
   },
-  // ==========================================
-  // CHAPTER 1: GRAMMAR
-  // ==========================================
-  {
-    id: "eng-f1-note-c1",
-    subjectId: "english",
-    form: "Form 1",
-    chapter: "Chapter 1",
-    title: "Chapter 1: Grammar",
-    content:
-      "Grammar is the set of rules used to form correct sentences in English. Good grammar helps students communicate clearly in speaking and writing. Nouns are naming words used for people, places, animals, things, or ideas. Common Nouns refer to general names like boy, school, or city. Proper Nouns refer to specific names that must be capitalized like Ali, Malaysia, or Monday. Collective Nouns are names for groups like team, class, or family. Abstract Nouns are things we cannot physically touch like bravery, kindness, or happiness. Pronouns replace nouns to avoid repetitive sentences, for example, Ali is my friend and He is kind. Verbs are action words or state of being words. Action Verbs include words like run, jump, eat, and study. State Verbs include words like is, are, seem, and become. Adjectives describe or modify nouns like beautiful flower or tall building. Adverbs describe verbs, adjectives, or other adverbs, and many adverbs end with the letters ly like He runs quickly or She sings beautifully. Tenses show the specific time an action occurs. Simple Present Tense is used for routines, habits, and universal facts. Simple Past Tense is used for actions that already happened and concluded. Simple Future Tense is used for planned future actions. Prepositions show place, direction, or time relationships like The cat is under the table. Conjunctions join words, phrases, or clauses together like I like tea and coffee. A complete basic sentence usually has a Subject, Verb, and Object format, for example, Ali as Subject kicks as Verb the ball as Object.",
-  },
-
-  // ==========================================
-  // CHAPTER 2: VOCABULARY
-  // ==========================================
-  {
-    id: "eng-f1-note-c2",
-    subjectId: "english",
-    form: "Form 1",
-    chapter: "Chapter 2",
-    title: "Chapter 2: Vocabulary",
-    content:
-      "Vocabulary refers to the repository of words we know and use in active speaking, reading, and writing. Having a strong vocabulary helps students understand passages and write better essays. Synonyms are words with similar or identical meanings, such as Big meaning Large, Happy meaning Joyful, and Smart meaning Intelligent. Antonyms are words with directly opposite meanings, such as Hot being the opposite of Cold, Fast being the opposite of Slow, and Strong being the opposite of Weak. Idioms are traditional phrases with figurative meanings different from the literal interpretation of the words, for example, piece of cake means very easy, break a leg means good luck, and under the weather means feeling sick or unwell. Phrasal verbs combine a base verb with a preposition or adverb to form a new meaning, for example, please turn on the fan, or she looks after her younger brother. Students are encouraged to learn descriptive KSSM words to use in comprehension questions and narrative essays such as generous, confident, careful, brave, and peaceful.",
-  },
-
-  // ==========================================
-  // CHAPTER 3: READING
-  // ==========================================
-  {
-    id: "eng-f1-note-c3",
-    subjectId: "english",
-    form: "Form 1",
-    chapter: "Chapter 3",
-    title: "Chapter 3: Reading",
-    content:
-      "Reading comprehension is the cognitive ability to process text, understand its core meaning, and explain information logically. The Main Idea is the central or most important point in a passage. Supporting Details give extra proof or information about the main idea via facts, statistics, or examples. Inference means drawing logical conclusions using subtle hints and clues provided within the text, which is also known as reading between the lines. Context Clues involve looking at surrounding words and sentences to guess the definition of unfamiliar or difficult vocabulary. Skimming means reading a text very quickly to capture the general idea or identify the overarching topic. Scanning means moving your eyes down a page rapidly to look for specific details like dates, names, or numerical figures. A Fact is a statement that is completely true and can be verified objectively, for example, Malaysia has thirteen states. An Opinion is a subjective personal belief, view, or feeling that cannot be proven, for example, football is the best sport.",
-  },
-
-  // ==========================================
-  // CHAPTER 4: WRITING
-  // ==========================================
-  {
-    id: "eng-f1-note-c4",
-    subjectId: "english",
-    form: "Form 1",
-    chapter: "Chapter 4",
-    title: "Chapter 4: Writing",
-    content:
-      "Writing is the progressive process of expressing structural thoughts and ideas using correct sentences and paragraphs. Emails are modern communication tools where the general structure must include a greeting like Hi Ali or Dear Teacher, the main content showing the purpose of the message, and a closing like Thank you or Regards. Essays help students develop arguments cleanly through an Introduction that introduces the core topic, Body Paragraphs that contain clear topic sentences, explanations, and concrete examples, and a Conclusion that summarizes the entire essay output. Informal Letters are sent to close friends or family members using a friendly tone, simple contractions, and casual stories. Formal Letters are used strictly for official business matters using polite vocabulary, specific standard formatting, and a professional tone. Punctuation separates logical divisions to prevent ambiguity. A full stop ends regular declarative sentences, a comma separates items in a list, a question mark finishes an interrogative statement, and an exclamation mark emphasizes strong raw emotion or commands. A coherent paragraph should ideally follow a Topic sentence, followed by Supporting sentences, and close with a structured Closing sentence to tie the idea together.",
-  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
