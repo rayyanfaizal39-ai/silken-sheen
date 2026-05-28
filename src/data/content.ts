@@ -70,7 +70,9 @@ export interface Note {
   title: string;
   summary: string;
   keywords: string[];
+  lang?: "bm" | "dlp";
 }
+
 
 export const notes: Note[] = [
   {
