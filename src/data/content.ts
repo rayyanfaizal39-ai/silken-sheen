@@ -876,6 +876,140 @@ export const notes: Note[] = [
       "Kesimpulan",
     ],
   },
+  {
+    id: "eng-f1-note-c1",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    title: "Grammar Summary Notes",
+    content: `### What is Grammar?
+Grammar is the set of rules used to form correct sentences in English. Good grammar helps students communicate clearly in speaking and writing.
+
+### Nouns
+Nouns are naming words used for people, places, animals, things, or ideas (e.g., *Teacher, Kuala Lumpur, Cat, Pencil, Happiness*).
+
+#### Types of Nouns:
+1. **Common Nouns**: General names (e.g., *boy, school, city*).
+2. **Proper Nouns**: Specific names (e.g., *Ali, Malaysia, Monday*).
+3. **Collective Nouns**: Names for groups (e.g., *team, class, family*).
+4. **Abstract Nouns**: Things we cannot touch (e.g., *bravery, kindness, happiness*).
+
+### Pronouns
+Pronouns replace nouns to avoid repetition.
+* *Ali is my friend. **He** is kind.*
+* *Sara likes music. **She** sings well.*
+
+### Verbs
+Verbs are action words or state-of-being words.
+* **Action Verbs**: *run, jump, eat, study* (e.g., *The boy runs quickly.*).
+* **State Verbs**: *is, are, seem, become* (e.g., *She is happy.*).
+
+### Adjectives & Adverbs
+* **Adjectives**: Describe nouns (e.g., *beautiful* flower, *tall* building). Can denote Size (*big*), Colour (*blue*), Shape (*round*), or Feeling (*happy*).
+* **Adverbs**: Describe verbs, adjectives, or other adverbs (e.g., *He runs quickly.*, *She sings beautifully.*). Many adverbs end with "-ly".
+
+### Tenses
+1. **Simple Present Tense**: Used for routines, habits, and facts (e.g., *She walks to school every day.*).
+2. **Simple Past Tense**: Used for actions that already happened (e.g., *They visited the zoo yesterday.*).
+3. **Simple Future Tense**: Used for future actions (e.g., *I will study tonight.*).
+
+### Prepositions & Conjunctions
+* **Prepositions**: Show place, direction, or time (e.g., *The cat is **under** the table.*).
+* **Conjunctions**: Join words or sentences (e.g., *I like tea **and** coffee.*, *She stayed home **because** she was sick.*).
+
+### Sentence Structure
+A complete sentence usually has a **Subject + Verb + Object** layout (e.g., *Ali [Subject] kicks [Verb] the ball [Object].*).`,
+  },
+  // CATEGORY 2: VOCABULARY
+  {
+    id: "eng-f1-note-c2",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    title: "Vocabulary Summary Notes",
+    content: `### What is Vocabulary?
+Vocabulary refers to the words we know and use in speaking, reading, and writing. Strong vocabulary helps students understand passages better and write better essays.
+
+### Synonyms & Antonyms
+* **Synonyms**: Words with similar meanings.
+  * *Big = Large* | *Happy = Joyful* | *Smart = Intelligent*
+* **Antonyms**: Words with opposite meanings.
+  * *Hot ≠ Cold* | *Fast ≠ Slow* | *Strong ≠ Weak*
+
+### Idioms
+Idioms are phrases with meanings different from the actual words.
+* **Piece of cake** → Very easy
+* **Break a leg** → Good luck
+* **Under the weather** → Feeling sick
+
+### Phrasal Verbs
+Phrasal verbs combine a verb with another word (e.g., *Wake up, Sit down, Turn on, Look after, Give up*).
+* *Please **turn on** the fan.*
+* *She **looks after** her younger brother.*
+
+### Common KSSM Vocabulary
+Learning descriptive words daily improves writing structure (e.g., *generous, confident, careful, brave, peaceful*).`,
+  },
+  // CATEGORY 3: READING
+  {
+    id: "eng-f1-note-c3",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 3",
+    title: "Reading Summary Notes",
+    content: `### What is Reading Comprehension?
+Reading comprehension is the ability to understand, analyze, and explain a text.
+
+### Core Reading Concepts
+* **Main Idea**: The most important point in a passage. (e.g., If a text discusses sorting waste, the main idea is: *"Recycling helps protect the environment."*)
+* **Supporting Details**: Give extra information about the main idea via facts, examples, or explanations.
+* **Inference**: Making logical conclusions using subtle clues from the text.
+* **Context Clues**: Words around difficult vocabulary that help a reader guess unfamiliar words.
+
+### Reading Strategies
+* **Skimming**: Reading quickly to get the general idea or search for the overall topic.
+* **Scanning**: Looking for specific information quickly like dates, names, or numbers.
+
+### Facts vs. Opinions
+* **Fact**: Something completely true that can be proven (e.g., *Malaysia has 13 states.*).
+* **Opinion**: A personal belief or feeling (e.g., *Football is the best sport.*).`,
+  },
+  // CATEGORY 4: WRITING
+  {
+    id: "eng-f1-note-c4",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Writing Summary Notes",
+    content: `### What is Writing?
+Writing is the process of expressing ideas clearly using structured sentences and paragraphs. Good writing should be clear, organized, and grammatically correct.
+
+### Format Types
+#### 1. Email Writing
+Used for quick correspondence. Includes a **Greeting**, **Main Content**, and **Closing** (e.g., *Hi Ali / Regards*).
+
+#### 2. Essay Writing
+Helps explain complex arguments. Structured into:
+1. **Introduction**: Introduces the main topic.
+2. **Body Paragraphs**: Contain clear explanations and examples.
+3. **Conclusion**: Summarizes the overarching points.
+
+#### 3. Informal Letters
+Written to friends or family using a friendly tone, simple language, and personal stories.
+
+#### 4. Formal Letters
+Used for official matters using polite language, a strict proper format, and a professional tone.
+
+### Paragraph Mechanics
+A focused paragraph contains a **Topic sentence**, **Supporting sentences**, and a **Closing sentence**. 
+
+### Punctuation Basics
+Punctuation keeps messages precise:
+* **Full stop (.)** — Ends statements
+* **Comma (,)** — Separates clauses/lists
+* **Question mark (?)** — Ends queries
+* **Exclamation mark (!)** — Shows strong emotion`,
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
