@@ -20381,6 +20381,11 @@ export function geographyChapterFromId(id: string): number | null {
   const m = id.match(/^geo-f1-c(\d+)-/);
   return m ? parseInt(m[1], 10) : null;
 }
+
+  export function englishChapterFromId(id: string): number | null {
+  const m = id.match(/^eng-f1-(?:note-)?c(\d+)-/);
+  return m ? parseInt(m[1], 10) : null;
+} 
 export interface ChapterItem {
   key: string;
   label: string;
@@ -20390,8 +20395,11 @@ export interface ChapterItem {
 
 const otherSubjectChapters: Record<string, ChapterItem[]> = {
   bm: [{ key: "Bab 2", label: "Bab 2: Kata Adjektif", available: true }],
-  english: [{ key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true }],
-  math: [
+  english: [ 
+    { id: 1, name: "Grammar" },
+    { id: 2, name: "Vocabulary" },
+    { id: 3, name: "Reading" },
+    { id: 4, name: "Writing" },  math: [
     { key: "Chapter 1", label: "Chapter 1: Rational Numbers", available: true },
     { key: "Chapter 3", label: "Chapter 3: Algebraic Expressions", available: true },
     { key: "Chapter 5", label: "Chapter 5: Pythagoras' Theorem", available: true },
@@ -20429,13 +20437,6 @@ export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp
   { num: 9, bm: "Bumi", dlp: "Earth" },
 ];
 
-export const englishCategories = [
-  { id: 1, name: "Grammar" },
-  { id: 2, name: "Vocabulary" },
-  { id: 3, name: "Reading" },
-  { id: 4, name: "Writing" },
-];
-
 export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"): ChapterItem[] {
   if (subjectId === "sejarah") {
     return sejarahForm1Chapters.map((c) => ({
@@ -20445,14 +20446,7 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
       isNew: c.isNew,
     }));
   }
-  if (subjectId === "english") {
-    return englishCategories.map((c) => ({
-      key: `Chapter ${c.id}`,
-      label: c.name,
-      available: true,
-      isNew: false,
-    }));
-  }
+  
   if (subjectId === "science" && scienceLang) {
     const prefix = scienceLang === "bm" ? "Bab" : "Chapter";
     return scienceForm1ChaptersBilingual.map((c) => ({
