@@ -76,13 +76,15 @@ function NotesPage() {
       if (n.subjectId !== subject) return false;
       if (getItemChapterKey(n) !== chapter) return false;
       if (form !== "All" && n.form !== form) return false;
+      if (subject === "science" && n.lang && scienceLang && n.lang !== scienceLang) return false;
       if (q) {
         const hay = `${n.title} ${n.summary} ${n.chapter} ${n.keywords.join(" ")}`.toLowerCase();
         if (!hay.includes(q.toLowerCase())) return false;
       }
       return true;
     });
-  }, [subject, chapter, form, q]);
+  }, [subject, chapter, form, q, scienceLang]);
+
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">

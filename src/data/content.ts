@@ -70,7 +70,9 @@ export interface Note {
   title: string;
   summary: string;
   keywords: string[];
+  lang?: "bm" | "dlp";
 }
+
 
 export const notes: Note[] = [
   {
@@ -714,7 +716,132 @@ export const notes: Note[] = [
       "SPAHL",
     ],
   },
+  // ===== Science Form 1 — Chapter 1: Introduction to Scientific Investigation (DLP) =====
+  {
+    id: "sci-f1-c1-dlp-1",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "dlp",
+    title: "1.1 Science Is Part of Daily Life",
+    summary:
+      "Science is a discipline that involves systematic observations and experiments on natural phenomena. Its main branches include Biology (study of living things — e.g. Zoology, Microbiology, Physiology), Physics (study of energy, force and their influence on matter — e.g. Engineering, Astronomy), Chemistry (study of matter, its composition and reactions — e.g. Pharmacology, Forensics), Geology (rocks, minerals and Earth's structure), Astronomy (celestial bodies such as stars and planets) and Meteorology (weather and climate changes). Science is important in daily life — it helps solve crimes through forensic DNA, increases crop yields through hydroponics and hybrid seeds, and enables medical breakthroughs such as robotic surgery and nanotechnology.",
+    keywords: ["Biology", "Physics", "Chemistry", "Geology", "Astronomy", "Meteorology", "Forensic DNA", "Hydroponics", "Nanotechnology"],
+  },
+  {
+    id: "sci-f1-c1-dlp-2",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "dlp",
+    title: "1.2 Your Science Laboratory",
+    summary:
+      "Hazard symbols warn about dangerous substances: EXPLOSIVE — chemicals that react violently to heat or shock (e.g. Hydrogen, Butane); FLAMMABLE — catches fire easily, keep away from fire and heat (e.g. Ethanol, Acetone); OXIDISING — releases oxygen that helps other materials burn (e.g. Potassium manganate(VII)); CORROSIVE — burns skin and dissolves materials, avoid contact (e.g. concentrated acid); TOXIC — lethal if swallowed or inhaled (e.g. Mercury, Cyanide); IRRITANT — causes itching and redness (e.g. Ammonia, Chloroform). Key apparatus include the Burette and Pipette (measure liquid volume with very high accuracy — 0.1 cm³), the Gas Jar (collect and contain gases) and the Bell Jar (create a vacuum or isolate an experiment from outside air).",
+    keywords: ["Explosive", "Flammable", "Oxidising", "Corrosive", "Toxic", "Irritant", "Burette", "Pipette", "Gas Jar", "Bell Jar"],
+  },
+  {
+    id: "sci-f1-c1-dlp-3",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "dlp",
+    title: "1.3 Physical Quantities and Their Units",
+    summary:
+      "Base quantities and their SI units: Length — Meter (m), Mass — Kilogram (kg), Time — Second (s), Temperature — Kelvin (K), Electric Current — Ampere (A). Common prefixes: Mega (M) = 1,000,000 (10⁶), Kilo (k) = 1,000 (10³), Centi (c) = 0.01 (10⁻²), Milli (m) = 0.001 (10⁻³), Micro (µ) = 0.000001 (10⁻⁶). These prefixes scale base units so very large or very small measurements can be expressed compactly.",
+    keywords: ["SI Units", "Length", "Mass", "Time", "Temperature", "Ampere", "Mega", "Kilo", "Milli", "Micro"],
+  },
+  {
+    id: "sci-f1-c1-dlp-4",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "dlp",
+    title: "1.4 Measurement and Accuracy",
+    summary:
+      "ACCURACY is how close a measurement is to the true value, while PRECISION is the consistency and closeness between repeated measurements of the same quantity. ZERO ERROR is a systematic error where the instrument does not start at zero — correct it using: Actual Reading = Scale Reading − Zero Error. PARALLAX ERROR is a random error caused when the eye is not perpendicular to the scale; avoid it by aligning your eye level directly with the meniscus (for liquids, read the bottom of the curve).",
+    keywords: ["Accuracy", "Precision", "Zero Error", "Parallax Error", "Meniscus", "Systematic Error", "Random Error"],
+  },
+  {
+    id: "sci-f1-c1-dlp-5",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "dlp",
+    title: "1.5 Density",
+    summary:
+      "Density is mass per unit volume: Density = Mass ÷ Volume, measured in g/cm³ or kg/m³. The Water Displacement Method is used to find the volume of an irregular solid (such as a stone) — measure how much water it pushes up in a displacement can or measuring cylinder. The Law of Flotation states that objects with density LESS than 1.0 g/cm³ FLOAT, while objects with density MORE than 1.0 g/cm³ SINK (e.g. wood floats, iron sinks).",
+    keywords: ["Density", "Mass", "Volume", "Water Displacement", "Law of Flotation", "Float", "Sink"],
+  },
+
+  // ===== Sains Tingkatan 1 — Bab 1: Pengenalan kepada Penyiasatan Saintifik (BM) =====
+  {
+    id: "sci-f1-c1-bm-1",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "bm",
+    title: "1.1 Sains Sebahagian Daripada Kehidupan Harian",
+    summary:
+      "Sains ialah disiplin ilmu yang melibatkan pemerhatian dan eksperimen yang sistematik terhadap fenomena alam semula jadi. Bidang-bidang utama Sains termasuk Biologi (kajian tentang benda hidup — contoh: Zoologi, Mikrobiologi), Fizik (kajian tentang tenaga, daya, dan jirim — contoh: Kejuruteraan, Astronomi), Kimia (kajian tentang komposisi dan tindak balas jirim — contoh: Farmakologi, Forensik), Geologi (kajian tentang batuan, mineral, dan struktur Bumi), Astronomi (kajian tentang objek di angkasa lepas), dan Meteorologi (kajian tentang cuaca dan iklim). Antara kerjaya dalam bidang Sains ialah doktor, jurutera, pakar nutrisi, ahli geologi, dan ahli farmasi.",
+    keywords: ["Biologi", "Fizik", "Kimia", "Geologi", "Astronomi", "Meteorologi", "Kerjaya Sains"],
+  },
+  {
+    id: "sci-f1-c1-bm-2",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "bm",
+    title: "1.2 Makmal Sains Anda",
+    summary:
+      "Simbol amaran memberi peringatan tentang bahan merbahaya: MUDAH MELETUP — meletup jika terdedah kepada haba atau tekanan (contoh: gas Hidrogen); MUDAH TERBAKAR — cecair yang mudah meruap dan terbakar (contoh: Alkohol, Aseton); PENGOKSIDAAN — membebaskan oksigen yang membantu pembakaran (contoh: Kalium manganat(VII)); MENGAKIS — boleh menghakis kulit dan logam, elakkan sentuhan (contoh: asid pekat); BERACUN/TOKSIK — boleh membawa maut jika masuk ke badan (contoh: Merkuri, Sianida); MERENGSA — boleh menyebabkan kegatalan kulit (contoh: Kloroform, Ammonia). Alat radas penting termasuk Pipet dan Buret (menyukat cecair dengan kejituan tinggi — 0.1 cm³), Kelalang Dasar Rata (menyimpan atau memanaskan cecair secara sekata), dan Mangkuk Penyejat (menguapkan pelarut daripada larutan).",
+    keywords: ["Mudah Meletup", "Mudah Terbakar", "Pengoksidaan", "Mengakis", "Toksik", "Merengsa", "Pipet", "Buret", "Mangkuk Penyejat"],
+  },
+  {
+    id: "sci-f1-c1-bm-3",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "bm",
+    title: "1.3 Kuantiti Fizik dan Unitnya",
+    summary:
+      "Kuantiti asas dan unit SI: Panjang — meter (m), Jisim — kilogram (kg), Masa — saat (s), Suhu — Kelvin (K), Arus Elektrik — Ampere (A). Simbol imbuhan yang biasa digunakan: Mega (M) = 1,000,000, Kilo (k) = 1,000, Senti (c) = 0.01, Mili (m) = 0.001, Mikro (µ) = 0.000001. Imbuhan ini menyenangkan kita menyatakan nilai yang sangat besar atau sangat kecil dengan ringkas.",
+    keywords: ["Unit SI", "Panjang", "Jisim", "Masa", "Suhu", "Ampere", "Mega", "Kilo", "Mili", "Mikro"],
+  },
+  {
+    id: "sci-f1-c1-bm-4",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "bm",
+    title: "1.4 Penggunaan Alat Pengukur",
+    summary:
+      "KETEPATAN ialah sejauh mana bacaan mendekati nilai sebenar, manakala KEPERSISAN ialah konsistensi bacaan apabila ukuran diulang. RALAT SIFAR berlaku apabila penanda alat tidak pada sifar — betulkan dengan menolak ralat sifar daripada bacaan alat. RALAT PARALAKS pula berlaku jika mata tidak tegak lurus dengan skala; elakkan dengan memastikan mata searah dengan meniskus cecair (baca bahagian paling bawah lengkungan air).",
+    keywords: ["Ketepatan", "Kepersisan", "Ralat Sifar", "Ralat Paralaks", "Meniskus"],
+  },
+  {
+    id: "sci-f1-c1-bm-5",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "bm",
+    title: "1.5 Ketumpatan",
+    summary:
+      "Ketumpatan ialah jisim per unit isi padu: Ketumpatan = Jisim ÷ Isi Padu, dalam unit g/cm³ atau kg/m³. Kaedah Sesaran Air digunakan untuk mencari isi padu objek yang tidak sekata — guna tin Eureka atau silinder penyukat dan ukur jumlah air yang teranjak. Aplikasi ketumpatan: belon udara panas boleh terbang kerana udara panas kurang tumpat daripada udara sejuk; kapal laut terapung kerana mempunyai ruang udara yang menjadikannya kurang tumpat daripada air laut.",
+    keywords: ["Ketumpatan", "Jisim", "Isi Padu", "Sesaran Air", "Tin Eureka", "Belon Udara Panas"],
+  },
+  {
+    id: "sci-f1-c1-bm-6",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    lang: "bm",
+    title: "1.6 Langkah Penyiasatan Saintifik",
+    summary:
+      "Langkah-langkah penyiasatan saintifik: (1) Mengenal pasti masalah; (2) Membina hipotesis — pernyataan awal yang boleh diuji; (3) Mengawal pemboleh ubah — DIMANIPULASI (perkara yang diubah), BERGERAK BALAS (hasil yang diperhatikan), DIMALARKAN (perkara yang tetap/sama); (4) Menganalisis data; (5) Membuat kesimpulan. Langkah-langkah ini memastikan eksperimen dijalankan secara sistematik dan keputusan yang diperoleh adalah sah serta boleh dipercayai.",
+    keywords: ["Hipotesis", "Pemboleh Ubah Dimanipulasi", "Pemboleh Ubah Bergerak Balas", "Pemboleh Ubah Dimalarkan", "Kesimpulan"],
+  },
 ];
+
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
@@ -20281,9 +20408,11 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
     return scienceForm1ChaptersBilingual.map((c) => ({
       key: `Chapter ${c.num}`,
       label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
-      available: false,
+      available: c.num === 1,
+      isNew: c.num === 1,
     }));
   }
+
   return otherSubjectChapters[subjectId] ?? [];
 }
 export function getItemChapterKey(item: { id: string; subjectId: string; chapter?: string }): string | null {
