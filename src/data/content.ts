@@ -876,6 +876,154 @@ export const notes: Note[] = [
       "Kesimpulan",
     ],
   },
+
+  // CHAPTER 1: GRAMMAR
+
+  {
+    id: "eng-f1-note-c1",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    title: "Chapter 1: Grammar",
+    content: `### 1.1 What is Grammar?
+Grammar is the set of rules used to form correct sentences in English. Good grammar helps students communicate clearly in speaking and writing.
+
+### 1.2 Nouns
+Nouns are naming words used for people, places, animals, things, or ideas.
+* **Common Nouns:** General names (e.g., *boy, school, city*).
+* **Proper Nouns:** Specific names that must be capitalized (e.g., *Ali, Malaysia, Monday*).
+* **Collective Nouns:** Names for groups (e.g., *team, class, family*).
+* **Abstract Nouns:** Things we cannot physically touch (e.g., *bravery, kindness, happiness*).
+
+### 1.3 Pronouns
+Pronouns replace nouns to avoid repetitive sentences.
+* *Ali is my friend. **He** is kind.*
+* *Sara likes music. **She** sings well.*
+
+### 1.4 Verbs
+Verbs are action words or state-of-being words.
+* **Action Verbs:** *run, jump, eat, study* (e.g., *The boy runs quickly.*).
+* **State Verbs:** *is, are, seem, become* (e.g., *She is happy.*).
+
+### 1.5 Adjectives & Adverbs
+* **Adjectives:** Describe or modify nouns (e.g., *beautiful* flower, *tall* building). They cover Size (*big*), Colour (*blue*), Shape (*round*), or Feeling (*happy*).
+* **Adverbs:** Describe verbs, adjectives, or other adverbs. Many adverbs end with "-ly" (e.g., *He runs quickly.*, *She sings beautifully.*).
+
+### 1.6 Tenses
+Tenses show the specific time an action occurs in English:
+1. **Simple Present Tense:** Used for routines, habits, and universal facts (e.g., *She walks to school every day.*).
+2. **Simple Past Tense:** Used for actions that already happened and concluded (e.g., *They visited the zoo yesterday.*).
+3. **Simple Future Tense:** Used for planned future actions (e.g., *I will study tonight.*).
+
+### 1.7 Prepositions & Conjunctions
+* **Prepositions:** Show place, direction, or time relationship (e.g., *The cat is **under** the table.*).
+* **Conjunctions:** Join words, phrases, or clauses together (e.g., *I like tea **and** coffee.*, *She stayed home **because** she was sick.*).
+
+### 1.8 Sentence Structure
+A complete basic sentence usually has a **Subject + Verb + Object** format:
+* *Ali [Subject] kicks [Verb] the ball [Object].*`,
+  },
+
+  // ==========================================
+  // CHAPTER 2: VOCABULARY
+  // ==========================================
+  {
+    id: "eng-f1-note-c2",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    title: "Chapter 2: Vocabulary",
+    content: `### 2.1 What is Vocabulary?
+Vocabulary refers to the repository of words we know and use in active speaking, reading, and writing. Having a strong vocabulary helps students understand passages and write better essays.
+
+### 2.2 Synonyms and Antonyms
+* **Synonyms:** Words with similar or identical meanings.
+  * *Big = Large* | *Happy = Joyful* | *Smart = Intelligent*
+* **Antonyms:** Words with directly opposite meanings.
+  * *Hot ≠ Cold* | *Fast ≠ Slow* | *Strong ≠ Weak*
+
+### 2.3 Idioms
+Idioms are traditional phrases with figurative meanings different from the literal interpretation of the words.
+* **Piece of cake** → Very easy.
+* **Break a leg** → Good luck.
+* **Under the weather** → Feeling sick or unwell.
+
+### 2.4 Phrasal Verbs
+Phrasal verbs combine a base verb with a preposition or adverb to form a new meaning (e.g., *Wake up, Sit down, Turn on, Look after, Give up*).
+* *Please **turn on** the fan.*
+* *She **looks after** her younger brother.*
+
+### 2.5 Common KSSM Vocabulary
+Students are encouraged to learn descriptive words to use in comprehension questions and narrative essays:
+* *Generous, confident, careful, brave, peaceful.*`,
+  },
+
+  // ==========================================
+  // CHAPTER 3: READING
+  // ==========================================
+  {
+    id: "eng-f1-note-c3",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 3",
+    title: "Chapter 3: Reading",
+    content: `### 3.1 What is Reading Comprehension?
+Reading comprehension is the cognitive ability to process text, understand its core meaning, and explain information logically.
+
+### 3.2 Main Idea and Supporting Details
+* **Main Idea:** The central or most important point in a passage. (e.g., If a text discusses sorting bottles, the main idea is: *"Recycling helps protect the environment."*)
+* **Supporting Details:** Give extra proof or information about the main idea via facts, statistics, or examples.
+
+### 3.3 Inference and Context Clues
+* **Inference:** Drawing logical conclusions using subtle hints and clues provided within the text, reading between the lines.
+* **Context Clues:** Looking at surrounding words and sentences to guess the definition of unfamiliar, difficult vocabulary.
+
+### 3.4 Skimming and Scanning
+* **Skimming:** Reading a text very quickly to capture the general idea or identify the overarching topic.
+* **Scanning:** Moving your eyes down a page rapidly to look for specific details like dates, names, or numerical figures.
+
+### 3.5 Facts vs. Opinions
+* **Fact:** Statement that is completely true and can be verified objectively (e.g., *Malaysia has 13 states.*).
+* **Opinion:** A subjective personal belief, view, or feeling that cannot be proven (e.g., *Football is the best sport.*).`,
+  },
+
+  // ==========================================
+  // CHAPTER 4: WRITING
+  // ==========================================
+  {
+    id: "eng-f1-note-c4",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Chapter 4: Writing",
+    content: `### 4.1 What is Writing?
+Writing is the progressive process of expressing structural thoughts and ideas using correct sentences and paragraphs.
+
+### 4.2 Email Writing
+Emails are modern communication tools. The general structure must include:
+1. **Greeting:** *Hi Ali,* or *Dear Teacher,*
+2. **Main Content:** The purpose of the message.
+3. **Closing:** *Thank you.* or *Regards,*
+
+### 4.3 Essay Structure
+Essays help students develop arguments cleanly:
+1. **Introduction:** Introduces the core topic.
+2. **Body Paragraphs:** Contain clear topic sentences, explanations, and concrete examples.
+3. **Conclusion:** Summarizes the entire essay output.
+
+### 4.4 Letters: Informal vs. Formal
+* **Informal Letters:** Sent to close friends or family members using a friendly tone, simple contractions, and casual stories.
+* **Formal Letters:** Used strictly for official business matters using polite vocabulary, specific standard formatting, and a professional tone.
+
+### 4.5 Punctuation & Paragraph Mechanics
+Punctuation separates logical divisions to prevent ambiguity:
+* **Full stop (.)** — Ends regular declarative sentences.
+* **Comma (,)** — Separates items in a list or independent clauses.
+* **Question mark (?)** — Finishes an interrogative statement.
+* **Exclamation mark (!)** — Emphasizes strong raw emotion or commands.
+
+A coherent paragraph should ideally follow a **Topic sentence**, followed by **Supporting sentences**, and close with a structured **Closing sentence** to tie the idea together.`,
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
