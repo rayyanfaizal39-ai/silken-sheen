@@ -874,7 +874,8 @@ export const notes: Note[] = [
       "Pemboleh Ubah Bergerak Balas",
       "Pemboleh Ubah Dimalarkan",
       "Kesimpulan",
-   }
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
