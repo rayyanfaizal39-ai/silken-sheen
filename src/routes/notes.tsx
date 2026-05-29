@@ -3,12 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, notes, getItemChapterKey, getSubjectChapters } from "@/data/content";
 import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
 import { z } from "zod";
-import {
-  SubjectGrid,
-  ChapterGrid,
-  ContentHeader,
-  ComingSoonScreen,
-} from "@/components/ChapterPicker";
+import { SubjectGrid, ChapterGrid, ContentHeader, ComingSoonScreen } from "@/components/ChapterPicker";
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
@@ -52,11 +47,9 @@ function NotesPage() {
   const hasSubtopics = subject === "sejarah" && !!chapter;
   const subtopics = hasSubtopics ? getSejarahF1Subtopics(chapter!) : [];
 
-  const chapterMeta = subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
-  const isRead =
-    subject && chapter
-      ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read
-      : false;
+  const chapterMeta =
+    subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
+  const isRead = subject && chapter ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read : false;
 
   // Reading progress bar
   useEffect(() => {
@@ -85,7 +78,6 @@ function NotesPage() {
     });
   }, [subject, chapter, form, q, scienceLang]);
 
-
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
       {/* Reading progress bar */}
@@ -99,17 +91,31 @@ function NotesPage() {
       )}
 
       <div className="text-center mb-6">
-        <h1 className="font-display text-5xl font-bold">Summary <span className="gradient-text">Notes</span></h1>
+        <h1 className="font-display text-5xl font-bold">
+          Summary <span className="gradient-text">Notes</span>
+        </h1>
         <p className="mt-3 text-muted-foreground">Quick, focused notes that get you ready in minutes.</p>
       </div>
-      <div className="flex justify-center"><DailyQuote /></div>
+      <div className="flex justify-center">
+        <DailyQuote />
+      </div>
 
       {!subject ? (
-        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setSubtopic(null); }} />
+        <SubjectGrid
+          onSelect={(id) => {
+            setSubject(id);
+            setChapter(null);
+            setSubtopic(null);
+          }}
+        />
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
-          onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
+          onBack={() => {
+            setSubject(null);
+            setChapter(null);
+            setSubtopic(null);
+          }}
         />
       ) : !chapter ? (
         <>
@@ -119,8 +125,15 @@ function NotesPage() {
           <ChapterGrid
             subjectId={subject}
             scienceLang={scienceLang ?? undefined}
-            onSelect={(key) => { setChapter(key); setSubtopic(null); }}
-            onBack={() => { setSubject(null); setChapter(null); setSubtopic(null); }}
+            onSelect={(key) => {
+              setChapter(key);
+              setSubtopic(null);
+            }}
+            onBack={() => {
+              setSubject(null);
+              setChapter(null);
+              setSubtopic(null);
+            }}
           />
         </>
       ) : chapterMeta && !chapterMeta.available ? (
@@ -228,7 +241,7 @@ function NotesPage() {
                   <div className="relative aspect-video">
                     <iframe
                       className="absolute inset-0 w-full h-full"
-                      src="https://www.youtube.com/embed/LAAafdFO3Zo?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
+                      src="https://www.youtube.com/embed/3Hx4FX1avMU?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
                       title="Sejarah Tingkatan 1 Bab 3 - Zaman Prasejarah"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -364,7 +377,6 @@ function NotesPage() {
             </div>
           )}
 
-
           <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3 animate-fade-up">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -417,7 +429,10 @@ function NotesPage() {
                       </p>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {n.keywords.map((k) => (
-                          <span key={k} className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30">
+                          <span
+                            key={k}
+                            className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30"
+                          >
                             #{k}
                           </span>
                         ))}
@@ -714,7 +729,10 @@ function SubtopicView({
             className="group relative text-left glass rounded-2xl p-6 card-glow-hover border border-transparent hover:border-primary/50 animate-slide-up overflow-hidden"
             style={{ animationDelay: `${i * 60}ms` }}
           >
-            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-2xl group-hover:opacity-40 transition-opacity" aria-hidden />
+            <div
+              className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-2xl group-hover:opacity-40 transition-opacity"
+              aria-hidden
+            />
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-display text-lg font-bold mb-3 shadow-lg">
               {s.num}
             </div>
@@ -809,7 +827,10 @@ function highlight(text: string, keywords: string[]) {
   keywords.forEach((kw, idx) => {
     const next: React.ReactNode[] = [];
     parts.forEach((p, i) => {
-      if (typeof p !== "string") { next.push(p); return; }
+      if (typeof p !== "string") {
+        next.push(p);
+        return;
+      }
       const pieces = p.split(new RegExp(`(${kw})`, "i"));
       pieces.forEach((pc, j) => {
         if (pc.toLowerCase() === kw.toLowerCase()) {
@@ -823,7 +844,7 @@ function highlight(text: string, keywords: string[]) {
               }}
             >
               {pc}
-            </mark>
+            </mark>,
           );
         } else next.push(pc);
       });
