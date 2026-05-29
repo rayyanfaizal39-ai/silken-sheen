@@ -1,4 +1,4 @@
-gitexport type Form = "Form 1" | "Form 2" | "Form 3";
+export type Form = "Form 1" | "Form 2" | "Form 3";
 
 export interface Subject {
   id: string;
