@@ -1,4 +1,4 @@
-git push origin mainexport type Form = "Form 1" | "Form 2" | "Form 3";
+gitexport type Form = "Form 1" | "Form 2" | "Form 3";
 
 export interface Subject {
   id: string;
