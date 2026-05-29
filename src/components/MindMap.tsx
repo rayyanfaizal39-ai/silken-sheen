@@ -131,10 +131,10 @@ function collectAllNodes(node: MindNode, depth: number, out: { node: MindNode; d
   node.children?.forEach((c) => collectAllNodes(c, depth + 1, out));
 }
 
-export function MindMap({ data, height = 620 }: { data: MindNode; height?: number }) {
+export function MindMap({ data, height = "85vh" }: { data: MindNode; height?: number | string }) {
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([data.id]));
   const [tx, setTx] = useState(40);
-  const [ty, setTy] = useState(height / 2);
+  const [ty, setTy] = useState(400);
   const [scale, setScale] = useState(0.9);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -291,8 +291,32 @@ function nodeStyle(node: MindNode, depth: number, hasChildren: boolean, isExpand
   const svgW = maxX - minX;
   const svgH = maxY - minY;
 
+  // center the map in the container after layout computed
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const cw = el.clientWidth || el.offsetWidth || 1000;
+    const ch = el.clientHeight || el.offsetHeight || 600;
+    const centerX = (minX + maxX) / 2;
+    const centerY = (minY + maxY) / 2;
+    setTx(cw / 2 - centerX * scale);
+    setTy(ch / 2 - centerY * scale);
+    // run whenever layout changes
+  }, [minX, maxX, minY, maxY, svgW, svgH, scale]);
+
   return (
-    <div className="relative w-full glass-strong rounded-2xl border border-white/10 overflow-hidden" style={{ height }}>
+    <div
+      className="relative w-full glass-strong rounded-2xl border border-white/10"
+      style={{
+        width: "100%",
+        height: typeof height === "number" ? `${height}px` : height,
+        minHeight: 700,
+        display: "block",
+        position: "relative",
+        overflow: "visible",
+        zIndex: 10,
+      }}
+    >
       <div className="absolute top-3 right-3 z-20 flex flex-wrap gap-2">
         <button onClick={expandAll} className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition">
           <ChevronsUpDown className="w-3.5 h-3.5" /> Expand all

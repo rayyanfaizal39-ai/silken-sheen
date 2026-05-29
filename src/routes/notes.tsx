@@ -14,6 +14,7 @@ import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { zamanPrasejarahMindMap } from "@/data/zamanPrasejarahMindMap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
+import { mengenaliTamadunMindMap } from "@/data/sejarah-f1-c4-mindmap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
@@ -81,7 +82,7 @@ function NotesPage() {
   }, [subject, chapter, form, q, scienceLang]);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
+    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16 overflow-visible">
       {/* Reading progress bar */}
       {subject && chapter && (
         <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">
@@ -270,25 +271,39 @@ function NotesPage() {
           )}
 
           {subject === "sejarah" && chapter === "Chapter 4" && (
-            <div className="mb-8 animate-fade-up">
-              <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
-                <span className="gradient-text">Video Pembelajaran</span> 🎬
-              </h2>
-              <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
-                <div className="relative aspect-video">
-                  <iframe
-                    className="absolute inset-0 w-full h-full"
-                    src="https://www.youtube.com/embed/fdU9wX5oGAI?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
-                    title="Sejarah Tingkatan 1 Bab 4 - Mengenali Tamadun"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+            <>
+              <div className="mb-8 animate-fade-up">
+                <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                  <h2 className="font-display text-2xl font-bold">
+                    Mind Map <span className="gradient-text">Bab 4: Mengenali Tamadun</span>
+                  </h2>
+                  <span className="text-xs text-muted-foreground">
+                    Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                  </span>
                 </div>
+                <MindMap data={mengenaliTamadunMindMap} height={720} />
               </div>
-              <p className="mt-3 text-sm text-muted-foreground text-center">
-                Hidupkan sari kata untuk pemahaman lebih baik! 💡
-              </p>
-            </div>
+
+              <div className="mb-8 animate-fade-up">
+                <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
+                  <span className="gradient-text">Video Pembelajaran</span> 🎬
+                </h2>
+                <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
+                  <div className="relative aspect-video">
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/fdU9wX5oGAI?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
+                      title="Sejarah Tingkatan 1 Bab 4 - Mengenali Tamadun"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground text-center">
+                  Hidupkan sari kata untuk pemahaman lebih baik! 💡
+                </p>
+              </div>
+            </>
           )}
 
           {subject === "sejarah" && chapter === "Chapter 5" && (
