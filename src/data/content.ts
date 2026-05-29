@@ -876,6 +876,82 @@ export const notes: Note[] = [
       "Kesimpulan",
     ],
   },
+  {
+    id: "eng-f1-c1-note",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    title: "Grammar — KSSM English Form 1",
+    summary:
+      "Grammar is the set of rules used to form correct sentences in English. Good grammar helps students communicate clearly in speaking and writing. NOUNS are naming words for people, places, animals, things, or ideas (teacher, Kuala Lumpur, cat, pencil, happiness). Types: Common Nouns — general names (boy, school, city); Proper Nouns — specific names (Ali, Malaysia, Monday); Collective Nouns — names for groups (team, class, family); Abstract Nouns — things we cannot touch (bravery, kindness, happiness). PRONOUNS replace nouns to avoid repetition (I, You, He, She, They, We). Example: Ali is my friend. He is kind. Sara likes music. She sings well. VERBS are action words or state-of-being words. Action Verbs: run, jump, eat, study. State Verbs: is, are, seem, become. Examples: The boy runs quickly. She is happy. ADJECTIVES describe nouns (beautiful flower, tall building, clever student). Types: Size (big, small); Colour (blue, red); Shape (round, square); Feeling (happy, sad). ADVERBS describe verbs, adjectives, or other adverbs (quickly, softly, happily, carefully). Many adverbs end with '-ly'. Examples: He runs quickly. She sings beautifully. TENSES: Simple Present Tense — routines, habits, facts (She walks to school every day. The sun rises in the east.); Simple Past Tense — actions that already happened (They visited the zoo yesterday. I played football last night.); Simple Future Tense — future actions (I will study tonight. We will travel tomorrow.). PREPOSITIONS show place, direction, or time (in, on, under, behind, beside). Examples: The cat is under the table. The bag is beside the chair. CONJUNCTIONS join words or sentences (and, but, because, or). Examples: I like tea and coffee. She stayed home because she was sick. SENTENCE STRUCTURE: A complete sentence has Subject + Verb + Object. Example: Ali kicks the ball. Subject: Ali; Verb: kicks; Object: the ball.",
+    keywords: [
+      "Grammar",
+      "Nouns",
+      "Pronouns",
+      "Verbs",
+      "Adjectives",
+      "Adverbs",
+      "Tenses",
+      "Prepositions",
+      "Conjunctions",
+      "Sentence Structure",
+    ],
+  },
+  {
+    id: "eng-f1-c2-note",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    title: "Vocabulary — KSSM English Form 1",
+    summary:
+      "Vocabulary refers to the words we know and use in speaking, reading, and writing. Strong vocabulary helps students understand passages better, write better essays, and communicate confidently. SYNONYMS are words with similar meanings: Big = Large, Happy = Joyful, Smart = Intelligent, Fast = Quick. Using synonyms makes writing more interesting. ANTONYMS are words with opposite meanings: Hot ≠ Cold, Fast ≠ Slow, Strong ≠ Weak, Happy ≠ Sad. IDIOMS are phrases with meanings different from the actual words: 'Piece of cake' → very easy; 'Break a leg' → good luck; 'Under the weather' → feeling sick. Idioms are commonly used in conversations. PHRASAL VERBS combine a verb with another word: wake up, sit down, turn on, look after, give up. Examples: Please turn on the fan. She looks after her younger brother. COMMON KSSM VOCABULARY — important words for comprehension and essays: generous, confident, careful, brave, peaceful.",
+    keywords: [
+      "Vocabulary",
+      "Synonyms",
+      "Antonyms",
+      "Idioms",
+      "Phrasal Verbs",
+      "KSSM Vocabulary",
+    ],
+  },
+  {
+    id: "eng-f1-c3-note",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 3",
+    title: "Reading — KSSM English Form 1",
+    summary:
+      "Reading comprehension is the ability to understand and explain a text. Students must identify important information, understand meanings, and answer questions correctly. The MAIN IDEA is the most important point in a passage — e.g. if a passage talks about recycling, the main idea may be 'Recycling helps protect the environment.' SUPPORTING DETAILS are extra information about the main idea (facts, examples, explanations). INFERENCE means making conclusions using clues from the text — readers must think carefully to understand hidden meanings. CONTEXT CLUES are words around difficult vocabulary that help explain meaning; use surrounding sentences to guess unfamiliar words. SKIMMING is reading quickly to get the general idea, useful for long passages or searching for the topic. SCANNING is looking for specific information quickly (dates, names, numbers). FACTS AND OPINIONS: a FACT is something true and can be proven (Malaysia has 13 states); an OPINION is a personal belief or feeling (Football is the best sport).",
+    keywords: [
+      "Reading Comprehension",
+      "Main Idea",
+      "Supporting Details",
+      "Inference",
+      "Context Clues",
+      "Skimming",
+      "Scanning",
+      "Facts",
+      "Opinions",
+    ],
+  },
+  {
+    id: "eng-f1-c4-note",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Writing — KSSM English Form 1",
+    summary:
+      "Writing is the process of expressing ideas using sentences and paragraphs. Good writing should be clear, organised, and grammatically correct. EMAIL WRITING structure: (1) Greeting, (2) Main content, (3) Closing. Example greetings: 'Hi Ali,' 'Dear Teacher,'. Example closings: 'Thank you.' 'Regards,'. ESSAY WRITING structure: (1) Introduction — introduces the topic; (2) Body Paragraphs — explanations and examples; (3) Conclusion — summarises the essay. INFORMAL LETTERS are written to friends or family with a friendly tone, simple language, and personal stories. FORMAL LETTERS are used for official matters with polite language, proper format, and a professional tone. PUNCTUATION makes writing clear: full stop (.), comma (,), question mark (?), exclamation mark (!). PARAGRAPH WRITING: a paragraph contains a topic sentence, supporting sentences, and a closing sentence. Good paragraphs focus on one main idea.",
+    keywords: [
+      "Writing",
+      "Email",
+      "Essay",
+      "Informal Letter",
+      "Formal Letter",
+      "Punctuation",
+      "Paragraph",
+    ],
+  },
 ];
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
