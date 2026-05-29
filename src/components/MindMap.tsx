@@ -18,7 +18,7 @@ const H_GAP = 70; // horizontal gap between columns
 const V_GAP = 18; // vertical gap between siblings
 const PAD_X = 28; // horizontal padding inside a node
 const MIN_W = 120;
-const MAX_W = 320;
+const MAX_W = 9999;
 const LINE_H = 18;
 const V_PAD = 18; // vertical padding inside a node (total)
 
@@ -247,7 +247,7 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
     if (pointers.current.size === 0) panStart.current = null;
   }
 
-  function nodeStyle(depth: number, hasChildren: boolean, isExpanded: boolean) {
+function nodeStyle(node: MindNode, depth: number, hasChildren: boolean, isExpanded: boolean) {
     if (depth === 0)
       return {
         bg: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
@@ -255,15 +255,24 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
         border: "rgba(139,92,246,0.6)",
         glow: "0 0 28px rgba(139,92,246,0.55)",
       };
-    if (depth === 1)
+    if (depth === 1) {
+      if (node.id === "c7-b") {
+        return {
+          bg: "linear-gradient(135deg, #FACC15 0%, #EAB308 100%)",
+          text: "#081F3F",
+          border: "rgba(250,204,21,0.7)",
+          glow: "0 0 22px rgba(250,204,21,0.35)",
+        };
+      }
       return {
         bg: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
         text: "#ffffff",
         border: "rgba(59,130,246,0.6)",
         glow: "0 0 22px rgba(59,130,246,0.5)",
       };
+    }
     return {
-      bg: "#1E293B",
+      bg: "#0F172A",
       text: "#86efac",
       border: hasChildren
         ? isExpanded
@@ -373,7 +382,7 @@ export function MindMap({ data, height = 620 }: { data: MindNode; height?: numbe
             if (!p) return null;
             const hasChildren = !!node.children?.length;
             const isExpanded = expanded.has(node.id);
-            const s = nodeStyle(depth, hasChildren, isExpanded);
+            const s = nodeStyle(node, depth, hasChildren, isExpanded);
             return (
               <button
                 key={node.id}

@@ -12,6 +12,8 @@ import { MindMap } from "@/components/MindMap";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { zamanPrasejarahMindMap } from "@/data/zamanPrasejarahMindMap";
+import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
+import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
@@ -334,47 +336,75 @@ function NotesPage() {
           )}
 
           {subject === "sejarah" && chapter === "Chapter 7" && (
-            <div className="mb-8 animate-fade-up">
-              <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
-                <span className="gradient-text">Video Pembelajaran</span> 🎬
-              </h2>
-              <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
-                <div className="relative aspect-video">
-                  <iframe
-                    className="absolute inset-0 w-full h-full"
-                    src="https://www.youtube.com/embed/aeLoGzzm85o?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
-                    title="Sejarah Tingkatan 1 Bab 7 - India & China Purba"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+            <>
+              <div className="mb-8 animate-fade-up">
+                <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
+                  <span className="gradient-text">Video Pembelajaran</span> 🎬
+                </h2>
+                <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
+                  <div className="relative aspect-video">
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/aeLoGzzm85o?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
+                      title="Sejarah Tingkatan 1 Bab 7 - India & China Purba"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
+                <p className="mt-3 text-sm text-muted-foreground text-center">
+                  Hidupkan sari kata untuk pemahaman lebih baik! 💡
+                </p>
               </div>
-              <p className="mt-3 text-sm text-muted-foreground text-center">
-                Hidupkan sari kata untuk pemahaman lebih baik! 💡
-              </p>
-            </div>
+
+              <div className="mb-8 animate-fade-up">
+                <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                  <h2 className="font-display text-2xl font-bold">
+                    Mind Map <span className="gradient-text">Tamadun India dan China</span>
+                  </h2>
+                  <span className="text-xs text-muted-foreground">
+                    Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                  </span>
+                </div>
+                <MindMap data={tamadunIndiaChinaMindMap} height={720} />
+              </div>
+            </>
           )}
 
           {subject === "sejarah" && chapter === "Chapter 8" && (
-            <div className="mb-8 animate-fade-up">
-              <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
-                <span className="gradient-text">Video Pembelajaran</span> 🎬
-              </h2>
-              <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
-                <div className="relative aspect-video">
-                  <iframe
-                    className="absolute inset-0 w-full h-full"
-                    src="https://www.youtube.com/embed/RIDZG6LTY5Y?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
-                    title="Sejarah Tingkatan 1 Bab 8 - Tamadun Islam"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+            <>
+              <div className="mb-8 animate-fade-up">
+                <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                  <h2 className="font-display text-2xl font-bold">
+                    Mind Map <span className="gradient-text">Tamadun Islam dan Sumbangannya</span>
+                  </h2>
+                  <span className="text-xs text-muted-foreground">
+                    Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                  </span>
                 </div>
+                <MindMap data={tamadunIslamSumbanganMindMap} height={720} />
               </div>
-              <p className="mt-3 text-sm text-muted-foreground text-center">
-                Hidupkan sari kata untuk pemahaman lebih baik! 💡
-              </p>
-            </div>
+
+              <div className="mb-8 animate-fade-up">
+                <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
+                  <span className="gradient-text">Video Pembelajaran</span> 🎬
+                </h2>
+                <div className="rounded-2xl overflow-hidden border-2 border-[#8B5CF6]/40 shadow-[0_0_24px_rgba(139,92,246,0.25)] glass-strong">
+                  <div className="relative aspect-video">
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/RIDZG6LTY5Y?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1"
+                      title="Sejarah Tingkatan 1 Bab 8 - Tamadun Islam"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground text-center">
+                  Hidupkan sari kata untuk pemahaman lebih baik! 💡
+                </p>
+              </div>
+            </>
           )}
 
           <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3 animate-fade-up">
