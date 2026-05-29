@@ -18,6 +18,10 @@ type MindMapPalette = {
   root?: string;
   branchYunani?: string;
   branchRom?: string;
+  branchMesopotamia?: string;
+  branchMesir?: string;
+  branchIndus?: string;
+  branchHuangHe?: string;
   leafBg?: string;
   leafText?: string;
   edgeStart?: string;
@@ -190,6 +194,10 @@ export function MindMap({
     root: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
     branchYunani: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
     branchRom: "linear-gradient(135deg, #FACC15 0%, #EAB308 100%)",
+    branchMesopotamia: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
+    branchMesir: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
+    branchIndus: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+    branchHuangHe: "linear-gradient(135deg, #FACC15 0%, #EAB308 100%)",
     leafBg: "#0F172A",
     leafText: "#86efac",
     edgeStart: "#8B5CF6",
@@ -291,12 +299,47 @@ function nodeStyle(
       glow: "0 0 28px rgba(139,92,246,0.55)",
     };
   if (depth === 1) {
-    const isRom = node.label.toLowerCase().includes("rom");
+    const label = node.label.toLowerCase();
+    const isMesopotamia = label.includes("mesopotamia");
+    const isMesir = label.includes("mesir");
+    const isIndus = label.includes("indus");
+    const isHuangHe = label.includes("huang he");
+    const isRom = label.includes("rom");
+    const bg = isMesopotamia
+      ? palette.branchMesopotamia
+      : isMesir
+      ? palette.branchMesir
+      : isIndus
+      ? palette.branchIndus
+      : isHuangHe
+      ? palette.branchHuangHe
+      : isRom
+      ? palette.branchRom
+      : palette.branchYunani;
+    const text = isMesir ? "#081F3F" : isRom ? "#081F3F" : "#ffffff";
+    const border = isMesir
+      ? "rgba(16,185,129,0.7)"
+      : isIndus
+      ? "rgba(249,115,22,0.7)"
+      : isHuangHe
+      ? "rgba(250,204,21,0.7)"
+      : isRom
+      ? "rgba(250,204,21,0.7)"
+      : "rgba(59,130,246,0.6)";
+    const glow = isMesir
+      ? "0 0 22px rgba(16,185,129,0.35)"
+      : isIndus
+      ? "0 0 22px rgba(249,115,22,0.35)"
+      : isHuangHe
+      ? "0 0 22px rgba(250,204,21,0.35)"
+      : isRom
+      ? "0 0 22px rgba(250,204,21,0.35)"
+      : "0 0 22px rgba(59,130,246,0.5)";
     return {
-      bg: isRom ? palette.branchRom : palette.branchYunani,
-      text: isRom ? "#081F3F" : "#ffffff",
-      border: isRom ? "rgba(250,204,21,0.7)" : "rgba(59,130,246,0.6)",
-      glow: isRom ? "0 0 22px rgba(250,204,21,0.35)" : "0 0 22px rgba(59,130,246,0.5)",
+      bg,
+      text,
+      border,
+      glow,
     };
   }
   return {
