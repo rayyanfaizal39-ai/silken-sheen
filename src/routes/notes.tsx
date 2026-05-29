@@ -15,6 +15,7 @@ import { zamanPrasejarahMindMap } from "@/data/zamanPrasejarahMindMap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
 import { mengenaliTamadunMindMap } from "@/data/sejarah-f1-c4-mindmap";
+import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
@@ -325,6 +326,32 @@ function NotesPage() {
               <p className="mt-3 text-sm text-muted-foreground text-center">
                 Hidupkan sari kata untuk pemahaman lebih baik! 💡
               </p>
+            </div>
+          )}
+
+          {subject === "sejarah" && chapter === "Chapter 6" && (
+            <div className="mb-8 animate-fade-up">
+              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h2 className="font-display text-2xl font-bold">
+                  Mind Map <span className="gradient-text">Peningkatan Tamadun Yunani dan Rom</span>
+                </h2>
+                <span className="text-xs text-muted-foreground">
+                  Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+                </span>
+              </div>
+              <MindMap
+                data={peningkatanTamadunYunaniRomMindMap}
+                height={760}
+                palette={{
+                  root: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
+                  branchYunani: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
+                  branchRom: "linear-gradient(135deg, #FACC15 0%, #EAB308 100%)",
+                  leafBg: "#0F172A",
+                  leafText: "#86efac",
+                  edgeStart: "#8B5CF6",
+                  edgeEnd: "#3B82F6",
+                }}
+              />
             </div>
           )}
 

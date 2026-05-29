@@ -14,6 +14,16 @@ type LayoutResult = {
   edges: { from: string; to: string }[];
 };
 
+type MindMapPalette = {
+  root?: string;
+  branchYunani?: string;
+  branchRom?: string;
+  leafBg?: string;
+  leafText?: string;
+  edgeStart?: string;
+  edgeEnd?: string;
+};
+
 const H_GAP = 70; // horizontal gap between columns
 const V_GAP = 18; // vertical gap between siblings
 const PAD_X = 28; // horizontal padding inside a node
@@ -131,7 +141,15 @@ function collectAllNodes(node: MindNode, depth: number, out: { node: MindNode; d
   node.children?.forEach((c) => collectAllNodes(c, depth + 1, out));
 }
 
-export function MindMap({ data, height = "85vh" }: { data: MindNode; height?: number | string }) {
+export function MindMap({
+  data,
+  height = "85vh",
+  palette,
+}: {
+  data: MindNode;
+  height?: number | string;
+  palette?: MindMapPalette;
+}) {
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([data.id]));
   const [tx, setTx] = useState(40);
   const [ty, setTy] = useState(400);
@@ -167,6 +185,17 @@ export function MindMap({ data, height = "85vh" }: { data: MindNode; height?: nu
     walk(data, 0);
     return result;
   }, [data, expanded]);
+
+  const resolvedPalette = useMemo<MindMapPalette>(() => ({
+    root: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
+    branchYunani: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
+    branchRom: "linear-gradient(135deg, #FACC15 0%, #EAB308 100%)",
+    leafBg: "#0F172A",
+    leafText: "#86efac",
+    edgeStart: "#8B5CF6",
+    edgeEnd: "#3B82F6",
+    ...palette,
+  }), [palette]);
 
   const toggle = useCallback((id: string) => {
     setExpanded((prev) => {
@@ -247,41 +276,40 @@ export function MindMap({ data, height = "85vh" }: { data: MindNode; height?: nu
     if (pointers.current.size === 0) panStart.current = null;
   }
 
-function nodeStyle(node: MindNode, depth: number, hasChildren: boolean, isExpanded: boolean) {
-    if (depth === 0)
-      return {
-        bg: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
-        text: "#ffffff",
-        border: "rgba(139,92,246,0.6)",
-        glow: "0 0 28px rgba(139,92,246,0.55)",
-      };
-    if (depth === 1) {
-      if (node.id === "c7-b") {
-        return {
-          bg: "linear-gradient(135deg, #FACC15 0%, #EAB308 100%)",
-          text: "#081F3F",
-          border: "rgba(250,204,21,0.7)",
-          glow: "0 0 22px rgba(250,204,21,0.35)",
-        };
-      }
-      return {
-        bg: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
-        text: "#ffffff",
-        border: "rgba(59,130,246,0.6)",
-        glow: "0 0 22px rgba(59,130,246,0.5)",
-      };
-    }
+function nodeStyle(
+  node: MindNode,
+  depth: number,
+  hasChildren: boolean,
+  isExpanded: boolean,
+  palette: MindMapPalette,
+) {
+  if (depth === 0)
     return {
-      bg: "#0F172A",
-      text: "#86efac",
-      border: hasChildren
-        ? isExpanded
-          ? "rgba(134,239,172,0.55)"
-          : "rgba(134,239,172,0.3)"
-        : "rgba(148,163,184,0.25)",
-      glow: hasChildren ? "0 0 14px rgba(134,239,172,0.25)" : "none",
+      bg: palette.root,
+      text: "#ffffff",
+      border: "rgba(139,92,246,0.6)",
+      glow: "0 0 28px rgba(139,92,246,0.55)",
+    };
+  if (depth === 1) {
+    const isRom = node.label.toLowerCase().includes("rom");
+    return {
+      bg: isRom ? palette.branchRom : palette.branchYunani,
+      text: isRom ? "#081F3F" : "#ffffff",
+      border: isRom ? "rgba(250,204,21,0.7)" : "rgba(59,130,246,0.6)",
+      glow: isRom ? "0 0 22px rgba(250,204,21,0.35)" : "0 0 22px rgba(59,130,246,0.5)",
     };
   }
+  return {
+    bg: palette.leafBg ?? "#0F172A",
+    text: palette.leafText ?? "#86efac",
+    border: hasChildren
+      ? isExpanded
+        ? "rgba(134,239,172,0.55)"
+        : "rgba(134,239,172,0.3)"
+      : "rgba(148,163,184,0.25)",
+    glow: hasChildren ? "0 0 14px rgba(134,239,172,0.25)" : "none",
+  };
+}
 
   const allPos = Array.from(layout.positions.values());
   const minX = (allPos.length ? Math.min(...allPos.map((p) => p.x)) : 0) - 50;
@@ -395,8 +423,8 @@ function nodeStyle(node: MindNode, depth: number, hasChildren: boolean, isExpand
             })}
             <defs>
               <linearGradient id="mm-edge" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.7" />
+                <stop offset="0%" stopColor={resolvedPalette.edgeStart} stopOpacity="0.9" />
+                <stop offset="100%" stopColor={resolvedPalette.edgeEnd} stopOpacity="0.7" />
               </linearGradient>
             </defs>
           </svg>
@@ -406,7 +434,7 @@ function nodeStyle(node: MindNode, depth: number, hasChildren: boolean, isExpand
             if (!p) return null;
             const hasChildren = !!node.children?.length;
             const isExpanded = expanded.has(node.id);
-            const s = nodeStyle(node, depth, hasChildren, isExpanded);
+            const s = nodeStyle(node, depth, hasChildren, isExpanded, resolvedPalette);
             return (
               <button
                 key={node.id}
