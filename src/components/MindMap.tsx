@@ -227,7 +227,7 @@ export function MindMap({
   const resetView = useCallback(() => {
     setScale(0.9);
     setTx(40);
-    setTy(height / 2);
+    setTy(typeof height === "number" ? height / 2 : 300);
   }, [height]);
 
   useEffect(() => {
