@@ -94,47 +94,75 @@ export interface ScienceChapter2Notes {
   quickRevision: string[];
   sections: ScienceNotesSection[];
   keyExamFacts: string[];
+  keyTerms?: string[];
+  chapterSummary?: string;
 }
 
 export const scienceF1C2NotesBM: ScienceChapter2Notes = {
   quickRevision: [
     "Sel ialah unit asas semua benda hidup.",
-    "Cells melakukan pertumbuhan, respirasi, pembiakan dan perkumuhan.",
-    "Sel membentuk tisu, organ, sistem dan organisma.",
-    "Fotosintesis dan respirasi ialah proses kehidupan yang penting.",
+    "Fungsi sel termasuk pertumbuhan, respirasi, pembiakan, dan perkumuhan.",
+    "Pembahagian sel menghasilkan sel baru untuk pertumbuhan dan menggantikan sel yang rosak.",
+    "Mikroskop digunakan untuk membesarkan objek yang sangat kecil.",
+    "Respirasi sel berlaku dalam mitokondria untuk membebaskan tenaga.",
+    "Fotosintesis berlaku dalam kloroplas untuk menghasilkan makanan bagi tumbuhan.",
   ],
   sections: [
     {
       title: "1. Pengenalan kepada Sel",
       subsections: [
         {
-          content:
-            "Sel ialah unit asas semua benda hidup. Sel menjalankan proses pertumbuhan, respirasi, pembiakan dan perkumuhan. Sel membahagi untuk menghasilkan sel baharu. Sel kanser terbentuk apabila pembahagian sel berlaku tanpa kawalan.",
+          title: "Apakah itu Sel?",
+          content: "Sel ialah unit asas bagi semua organisma hidup.",
+        },
+        {
+          title: "Fungsi Sel",
+          bulletPoints: ["Pertumbuhan", "Respirasi", "Pembiakan", "Perkumuhan"],
+        },
+        {
+          title: "Pembahagian Sel",
+          bulletPoints: [
+            "Menghasilkan sel baru untuk pertumbuhan.",
+            "Menggantikan sel yang rosak atau mati.",
+            "Satu sel membahagi menjadi dua sel secara berulang.",
+          ],
+        },
+        {
+          title: "Sel Kanser",
+          bulletPoints: [
+            "Terbentuk apabila sel membahagi secara berterusan dan tanpa kawalan.",
+            "Boleh menghasilkan tumor (jisim sel yang tidak normal).",
+          ],
         },
       ],
     },
     {
-      title: "2. Penggunaan Mikroskop",
+      title: "2. Mikroskop",
       subsections: [
+        {
+          title: "Definisi",
+          content: "Mikroskop ialah instrumen yang digunakan untuk membesarkan objek yang sangat kecil.",
+        },
         {
           title: "Bahagian dan Fungsi",
           table: {
             headers: ["Bahagian", "Fungsi"],
             rows: [
-              ["Kanta Mata", "Membesarkan imej spesimen."],
-              ["Kanta Objektif", "Membesarkan spesimen."],
-              ["Tombol Fokus Kasar", "Fokus awal."],
-              ["Tombol Fokus Halus", "Fokus tajam."],
-              ["Diafragma", "Mengawal cahaya."],
-              ["Cermin", "Memantulkan cahaya."],
+              ["Kanta Mata", "Membesarkan spesimen (biasanya 10×)"],
+              ["Kanta Objektif", "Membesarkan spesimen (4×, 10×, 40×)"],
+              ["Tombol Fokus Kasar", "Pemfokusan awal di bawah kuasa rendah"],
+              ["Tombol Fokus Halus", "Pemfokusan tajam"],
+              ["Diafragma", "Mengawal jumlah cahaya"],
+              ["Cermin", "Memantulkan cahaya ke atas spesimen"],
             ],
           },
         },
         {
-          title: "Pengendalian",
+          title: "Pengendalian yang Betul",
           bulletPoints: [
-            "Bawa mikroskop menggunakan dua tangan.",
-            "Mulakan dengan kanta objektif kuasa rendah.",
+            "Bawa menggunakan kedua-dua belah tangan.",
+            "Mulakan pemfokusan dengan kanta objektif kuasa rendah.",
+            "Kendalikan dengan berhati-hati untuk mengelakkan kerosakan.",
           ],
         },
       ],
@@ -143,18 +171,31 @@ export const scienceF1C2NotesBM: ScienceChapter2Notes = {
       title: "3. Struktur dan Fungsi Sel",
       subsections: [
         {
+          title: "Protoplasma",
+          content: "Terdiri daripada:",
+          bulletPoints: ["Nukleus", "Sitoplasma"],
+        },
+        {
+          title: "Struktur Sel",
           table: {
             headers: ["Struktur", "Fungsi"],
             rows: [
-              ["Nukleus", "Mengawal aktiviti sel dan menyimpan maklumat genetik"],
-              ["Sitoplasma", "Tempat tindak balas kimia berlaku"],
-              ["Membran Sel", "Mengawal pergerakan bahan"],
+              ["Nukleus", "Mengawal semua aktiviti sel dan menyimpan maklumat genetik"],
+              ["Sitoplasma", "Tapak tindak balas kimia"],
+              ["Membran Sel", "Mengawal pergerakan bahan masuk dan keluar"],
               ["Mitokondria", "Menghasilkan tenaga"],
-              ["Dinding Sel", "Memberi sokongan dan bentuk"],
-              ["Vakuol", "Menyimpan air dan nutrien"],
-              ["Kloroplas", "Tapak fotosintesis"],
+              ["Dinding Sel", "Memberi sokongan dan perlindungan (sel tumbuhan sahaja)"],
+              ["Kloroplas", "Mengandungi klorofil untuk fotosintesis (sel tumbuhan sahaja)"],
+              ["Vakuol", "Menyimpan sap sel dan bahan buangan (sel tumbuhan sahaja)"],
             ],
           },
+        },
+        {
+          title: "Sel Tumbuhan vs Sel Haiwan",
+          bulletPoints: [
+            "Sel Tumbuhan: Bentuk tetap, mempunyai dinding sel, mempunyai kloroplas, vakuol besar.",
+            "Sel Haiwan: Bentuk tidak tetap, tiada dinding sel, tiada kloroplas, vakuol kecil.",
+          ],
         },
       ],
     },
@@ -162,63 +203,102 @@ export const scienceF1C2NotesBM: ScienceChapter2Notes = {
       title: "4. Organisma Unisel dan Multisel",
       subsections: [
         {
-          title: "Unisel",
-          bulletPoints: ["Amoeba", "Paramecium", "Euglena", "Chlamydomonas"],
+          title: "Organisma Unisel",
+          content: "Terdiri daripada satu sel sahaja.",
+          bulletPoints: ["Amoeba", "Paramecium", "Euglena", "Chlamydomonas", "Yis"],
         },
         {
-          title: "Multisel",
-          bulletPoints: ["Manusia", "Burung", "Ikan", "Hydra", "Mucor"],
+          title: "Organisma Multisel",
+          content: "Terdiri daripada banyak sel yang bekerjasama.",
+          bulletPoints: ["Manusia", "Burung", "Ikan", "Hydra", "Spirogyra", "Mucor"],
         },
       ],
     },
     {
-      title: "5. Organisasi Sel",
+      title: "5. Organisasi Sel dalam Manusia",
       subsections: [
         {
+          title: "Tahap Organisasi",
           content: "Sel → Tisu → Organ → Sistem → Organisma",
         },
         {
           title: "Jenis Sel Manusia",
           bulletPoints: [
-            "Sel Saraf",
-            "Sel Darah Merah",
-            "Sel Darah Putih",
-            "Sel Pembiakan",
-            "Sel Epitelium",
-            "Sel Otot",
-          ],
-        },
-        {
-          title: "Sistem Badan",
-          bulletPoints: [
-            "Sistem Pencernaan",
-            "Sistem Respirasi",
-            "Sistem Peredaran Darah",
-            "Sistem Rangka",
-            "Sistem Saraf",
+            "Sel Epitelium: Melindungi permukaan badan, menghasilkan mukus.",
+            "Sel Otot: Membolehkan pergerakan, mengecut dan mengendur.",
+            "Sel Saraf: Membawa impuls elektrik, menyelaraskan gerak balas badan.",
+            "Sel Darah Merah: Mengangkut oksigen, tiada nukleus, bentuk dwicekung.",
+            "Sel Darah Putih: Mempertahankan badan daripada patogen, menyokong imuniti.",
+            "Sel Pembiakan: Sperma dan ovum, terlibat dalam persenyawaan.",
           ],
         },
       ],
     },
     {
-      title: "6. Respirasi Sel dan Fotosintesis",
+      title: "6. Sistem Badan Utama",
+      subsections: [
+        {
+          title: "Sistem Pencernaan",
+          content: "Memproses makanan melalui pencernaan dan penyerapan.",
+        },
+        {
+          title: "Sistem Respirasi",
+          content: "Membekalkan oksigen dan menyingkirkan karbon dioksida.",
+        },
+        {
+          title: "Sistem Peredaran Darah",
+          content: "Mengangkut nutrien, oksigen, dan hormon.",
+        },
+        {
+          title: "Sistem Rangka",
+          content: "Memberi sokongan dan perlindungan.",
+        },
+        {
+          title: "Sistem Saraf",
+          content: "Menyelaraskan gerak balas terhadap rangsangan.",
+        },
+        {
+          title: "Sistem Perkumuhan",
+          content: "Menyingkirkan bahan buangan daripada badan.",
+        },
+        {
+          title: "Sistem Limfatik",
+          content: "Membantu mempertahankan badan daripada jangkitan.",
+        },
+      ],
+    },
+    {
+      title: "7. Respirasi Sel dan Fotosintesis",
       subsections: [
         {
           title: "Respirasi Sel",
+          content: "Berlaku dalam mitokondria.",
           formula: "Glukosa + Oksigen → Karbon Dioksida + Air + Tenaga",
+          bulletPoints: [
+            "Membebaskan tenaga",
+            "Berlaku dalam semua sel hidup",
+            "Berlaku secara berterusan",
+          ],
         },
         {
           title: "Fotosintesis",
-          formula: "Karbon Dioksida + Air + Cahaya Matahari → Glukosa + Oksigen",
+          content: "Berlaku dalam kloroplas.",
+          formula: "Karbon Dioksida + Air + Tenaga Cahaya → Glukosa + Oksigen",
+          bulletPoints: [
+            "Menghasilkan makanan untuk tumbuhan",
+            "Memerlukan cahaya matahari",
+            "Menyimpan tenaga sebagai glukosa",
+          ],
         },
         {
-          title: "Perbezaan",
+          title: "Perbandingan",
           table: {
-            headers: ["Respirasi", "Fotosintesis"],
+            headers: ["Respirasi Sel", "Fotosintesis"],
             rows: [
-              ["Membebaskan tenaga", "Menyerap tenaga cahaya"],
-              ["Berlaku pada semua organisma", "Berlaku pada tumbuhan"],
-              ["Menggunakan oksigen", "Menggunakan karbon dioksida"],
+              ["Membebaskan tenaga", "Menyimpan tenaga"],
+              ["Berlaku dalam semua sel hidup", "Berlaku dalam tumbuhan hijau"],
+              ["Berlaku sepanjang masa", "Memerlukan cahaya"],
+              ["Menggunakan oksigen", "Menghasilkan oksigen"],
             ],
           },
         },
@@ -226,7 +306,7 @@ export const scienceF1C2NotesBM: ScienceChapter2Notes = {
     },
   ],
   keyExamFacts: [
-    "Sel = Unit asas kehidupan",
+    "Sel = Unit asas hidupan",
     "Nukleus mengawal aktiviti sel",
     "Mitokondria menghasilkan tenaga",
     "Kloroplas menjalankan fotosintesis",
@@ -234,22 +314,56 @@ export const scienceF1C2NotesBM: ScienceChapter2Notes = {
     "Fotosintesis berlaku di kloroplas",
     "Respirasi berlaku di mitokondria",
   ],
+  keyTerms: [
+    "Sel",
+    "Nukleus",
+    "Sitoplasma",
+    "Membran Sel",
+    "Mitokondria",
+    "Kloroplas",
+    "Vakuol",
+    "Mikroskop",
+    "Fotosintesis",
+    "Respirasi",
+  ],
+  chapterSummary: "Bab 2 meneroka sel sebagai unit asas hidupan, merangkumi strukturnya, penggunaan mikroskop, organisma unisel dan multisel, organisasi berhierarki sistem badan manusia, serta proses penting respirasi dan fotosintesis.",
 };
 
 export const scienceF1C2NotesDLP: ScienceChapter2Notes = {
   quickRevision: [
-    "Cells are the basic unit of life.",
-    "Cells carry out growth, respiration, reproduction and excretion.",
-    "Cells form tissues, organs, systems and organisms.",
-    "Photosynthesis and respiration are essential life processes.",
+    "A cell is the basic unit of all living organisms.",
+    "Functions of cells include growth, respiration, reproduction, and excretion.",
+    "Cell division produces new cells for growth and replaces damaged cells.",
+    "Microscopes are used to magnify very small objects.",
+    "Cell respiration occurs in mitochondria to release energy.",
+    "Photosynthesis occurs in chloroplasts to produce food for plants.",
   ],
   sections: [
     {
       title: "1. Introduction to Cells",
       subsections: [
         {
-          content:
-            "Cells are the basic unit of life. Cells carry out growth, respiration, reproduction and excretion. Cells divide to produce new cells. Cancer cells are formed when cell division becomes uncontrolled.",
+          title: "What is a Cell?",
+          content: "A cell is the basic unit of all living organisms.",
+        },
+        {
+          title: "Functions of Cells",
+          bulletPoints: ["Growth", "Respiration", "Reproduction", "Excretion"],
+        },
+        {
+          title: "Cell Division",
+          bulletPoints: [
+            "Produces new cells for growth.",
+            "Replaces damaged or dead cells.",
+            "One cell divides into two cells repeatedly.",
+          ],
+        },
+        {
+          title: "Cancer Cells",
+          bulletPoints: [
+            "Form when cells divide continuously and uncontrollably.",
+            "Can produce a tumour (abnormal mass of cells).",
+          ],
         },
       ],
     },
@@ -257,44 +371,62 @@ export const scienceF1C2NotesDLP: ScienceChapter2Notes = {
       title: "2. The Microscope",
       subsections: [
         {
+          title: "Definition",
+          content: "A microscope is an instrument used to magnify very small objects.",
+        },
+        {
           title: "Parts and Functions",
           table: {
             headers: ["Part", "Function"],
             rows: [
-              ["Eyepiece", "Magnifies image."],
-              ["Objective Lens", "Magnifies specimen."],
-              ["Rough Focus Knob", "Initial focus."],
-              ["Fine Focus Knob", "Sharp focus."],
-              ["Diaphragm", "Controls light."],
-              ["Mirror", "Reflects light."],
+              ["Eyepiece", "Magnifies specimen (usually 10×)"],
+              ["Objective Lens", "Magnifies specimen (4×, 10×, 40×)"],
+              ["Rough Focus Knob", "Initial focusing under low power"],
+              ["Fine Focus Knob", "Sharp focusing"],
+              ["Diaphragm", "Controls amount of light"],
+              ["Mirror", "Reflects light onto specimen"],
             ],
           },
         },
         {
-          title: "Handling",
+          title: "Proper Handling",
           bulletPoints: [
-            "Carry with both hands.",
-            "Start with low power objective lens.",
+            "Carry using both hands.",
+            "Start focusing with low-power objective lens.",
+            "Handle carefully to avoid damage.",
           ],
         },
       ],
     },
     {
-      title: "3. Cell Structure and Function",
+      title: "3. Cell Structure and Functions",
       subsections: [
         {
+          title: "Protoplasm",
+          content: "Consists of:",
+          bulletPoints: ["Nucleus", "Cytoplasm"],
+        },
+        {
+          title: "Cell Structures",
           table: {
             headers: ["Structure", "Function"],
             rows: [
-              ["Nucleus", "Controls cell activities and stores DNA"],
+              ["Nucleus", "Controls all cell activities and stores genetic information"],
               ["Cytoplasm", "Site of chemical reactions"],
-              ["Cell Membrane", "Controls movement of substances"],
+              ["Cell Membrane", "Controls movement of substances in and out"],
               ["Mitochondria", "Produces energy"],
-              ["Cell Wall", "Provides support and shape"],
-              ["Vacuole", "Stores water and nutrients"],
-              ["Chloroplast", "Site of photosynthesis"],
+              ["Cell Wall", "Provides support and protection (plant cells only)"],
+              ["Chloroplast", "Contains chlorophyll for photosynthesis (plant cells only)"],
+              ["Vacuole", "Stores cell sap and waste materials (plant cells only)"],
             ],
           },
+        },
+        {
+          title: "Plant Cell vs Animal Cell",
+          bulletPoints: [
+            "Plant Cell: Regular shape, cell wall present, chloroplast present, large vacuole.",
+            "Animal Cell: Irregular shape, no cell wall, no chloroplast, small vacuoles.",
+          ],
         },
       ],
     },
@@ -302,63 +434,102 @@ export const scienceF1C2NotesDLP: ScienceChapter2Notes = {
       title: "4. Unicellular and Multicellular Organisms",
       subsections: [
         {
-          title: "Unicellular",
-          bulletPoints: ["Amoeba", "Paramecium", "Euglena", "Chlamydomonas"],
+          title: "Unicellular Organisms",
+          content: "Made up of one cell only.",
+          bulletPoints: ["Amoeba", "Paramecium", "Euglena", "Chlamydomonas", "Yeast"],
         },
         {
-          title: "Multicellular",
-          bulletPoints: ["Humans", "Birds", "Fish", "Hydra", "Mucor"],
+          title: "Multicellular Organisms",
+          content: "Made up of many cells working together.",
+          bulletPoints: ["Humans", "Birds", "Fish", "Hydra", "Spirogyra", "Mucor"],
         },
       ],
     },
     {
-      title: "5. Cell Organisation",
+      title: "5. Cell Organisation in Humans",
       subsections: [
         {
+          title: "Levels of Organisation",
           content: "Cell → Tissue → Organ → System → Organism",
         },
         {
-          title: "Human Cell Types",
+          title: "Types of Human Cells",
           bulletPoints: [
-            "Nerve Cell",
-            "Red Blood Cell",
-            "White Blood Cell",
-            "Reproductive Cell",
-            "Epithelial Cell",
-            "Muscle Cell",
-          ],
-        },
-        {
-          title: "Body Systems",
-          bulletPoints: [
-            "Digestive System",
-            "Respiratory System",
-            "Circulatory System",
-            "Skeletal System",
-            "Nervous System",
+            "Epithelial Cell: Protects body surfaces, produces mucus.",
+            "Muscle Cell: Enables movement, contracts and relaxes.",
+            "Nerve Cell: Carries electrical impulses, coordinates body responses.",
+            "Red Blood Cell: Transports oxygen, no nucleus, biconcave shape.",
+            "White Blood Cell: Defends against pathogens, supports immunity.",
+            "Reproductive Cells: Sperm and ovum, involved in fertilisation.",
           ],
         },
       ],
     },
     {
-      title: "6. Cell Respiration and Photosynthesis",
+      title: "6. Main Body Systems",
+      subsections: [
+        {
+          title: "Digestive System",
+          content: "Processes food through digestion and absorption.",
+        },
+        {
+          title: "Respiratory System",
+          content: "Supplies oxygen and removes carbon dioxide.",
+        },
+        {
+          title: "Circulatory System",
+          content: "Transports nutrients, oxygen, and hormones.",
+        },
+        {
+          title: "Skeletal System",
+          content: "Provides support and protection.",
+        },
+        {
+          title: "Nervous System",
+          content: "Coordinates responses to stimuli.",
+        },
+        {
+          title: "Excretory System",
+          content: "Removes waste products from the body.",
+        },
+        {
+          title: "Lymphatic System",
+          content: "Helps defend against infections.",
+        },
+      ],
+    },
+    {
+      title: "7. Cell Respiration and Photosynthesis",
       subsections: [
         {
           title: "Cell Respiration",
+          content: "Occurs in mitochondria.",
           formula: "Glucose + Oxygen → Carbon Dioxide + Water + Energy",
+          bulletPoints: [
+            "Releases energy",
+            "Occurs in all living cells",
+            "Happens continuously",
+          ],
         },
         {
           title: "Photosynthesis",
-          formula: "Carbon Dioxide + Water + Sunlight → Glucose + Oxygen",
+          content: "Occurs in chloroplasts.",
+          formula: "Carbon Dioxide + Water + Light Energy → Glucose + Oxygen",
+          bulletPoints: [
+            "Produces food for plants",
+            "Requires sunlight",
+            "Stores energy as glucose",
+          ],
         },
         {
-          title: "Differences",
+          title: "Comparison",
           table: {
             headers: ["Cell Respiration", "Photosynthesis"],
             rows: [
-              ["Releases energy", "Absorbs light energy"],
-              ["Occurs in all organisms", "Occurs in plants"],
-              ["Uses oxygen", "Uses carbon dioxide"],
+              ["Releases energy", "Stores energy"],
+              ["Occurs in all living cells", "Occurs in green plants"],
+              ["Happens all the time", "Requires light"],
+              ["Uses oxygen", "Produces oxygen"],
             ],
           },
         },
@@ -374,6 +545,19 @@ export const scienceF1C2NotesDLP: ScienceChapter2Notes = {
     "Photosynthesis occurs in chloroplasts",
     "Respiration occurs in mitochondria",
   ],
+  keyTerms: [
+    "Cell",
+    "Nucleus",
+    "Cytoplasm",
+    "Cell Membrane",
+    "Mitochondria",
+    "Chloroplast",
+    "Vacuole",
+    "Microscope",
+    "Photosynthesis",
+    "Respiration",
+  ],
+  chapterSummary: "Chapter 2 explores the cell as the fundamental unit of life, covering its structure, the use of microscopes, unicellular and multicellular organisms, the hierarchical organization of human body systems, and the vital processes of respiration and photosynthesis.",
 };
 
 export const notes: Note[] = [
@@ -23954,8 +24138,8 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
     return scienceForm1ChaptersBilingual.map((c) => ({
       key: `Chapter ${c.num}`,
       label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
-      available: c.num === 1,
-      isNew: c.num === 1,
+      available: c.num <= 2,
+      isNew: c.num === 2,
     }));
   }
 
