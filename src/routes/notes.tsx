@@ -160,16 +160,38 @@ function NotesPage() {
           </Accordion>
         )}
 
+        {notesData.keyTerms && notesData.keyTerms.length > 0 && (
+          <div className="rounded-3xl border border-blue-500/15 bg-blue-500/10 p-6 text-slate-100">
+            <h3 className="text-xl font-semibold text-white">Key Terms</h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {notesData.keyTerms.map((term) => (
+                <span key={term} className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2 text-sm text-slate-200 font-medium">
+                  {term}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="rounded-3xl border border-emerald-500/15 bg-emerald-500/10 p-6 text-slate-100">
           <h3 className="text-xl font-semibold text-white">Key Exam Facts</h3>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {notesData.keyExamFacts.map((fact) => (
+            {notesData.keyExamFacts?.map((fact) => (
               <div key={fact} className="rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-200">
                 {fact}
               </div>
             ))}
           </div>
         </div>
+
+        {notesData.chapterSummary && (
+          <div className="rounded-3xl border border-primary/20 bg-primary/10 p-8 text-slate-100 shadow-[0_0_24px_rgba(var(--primary),0.1)]">
+            <h3 className="font-display text-2xl font-bold text-white mb-4">Chapter Summary</h3>
+            <p className="text-base leading-relaxed text-slate-200 italic">
+              "{notesData.chapterSummary}"
+            </p>
+          </div>
+        )}
       </div>
     );
   }
