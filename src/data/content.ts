@@ -73,6 +73,309 @@ export interface Note {
   lang?: "bm" | "dlp";
 }
 
+export interface ScienceNotesSubsection {
+  title?: string;
+  content?: string;
+  bulletPoints?: string[];
+  table?: {
+    headers: string[];
+    rows: string[][];
+  };
+  formula?: string;
+}
+
+export interface ScienceNotesSection {
+  title: string;
+  subsections?: ScienceNotesSubsection[];
+  content?: string;
+}
+
+export interface ScienceChapter2Notes {
+  quickRevision: string[];
+  sections: ScienceNotesSection[];
+  keyExamFacts: string[];
+}
+
+export const scienceF1C2NotesBM: ScienceChapter2Notes = {
+  quickRevision: [
+    "Sel ialah unit asas semua benda hidup.",
+    "Cells melakukan pertumbuhan, respirasi, pembiakan dan perkumuhan.",
+    "Sel membentuk tisu, organ, sistem dan organisma.",
+    "Fotosintesis dan respirasi ialah proses kehidupan yang penting.",
+  ],
+  sections: [
+    {
+      title: "1. Pengenalan kepada Sel",
+      subsections: [
+        {
+          content:
+            "Sel ialah unit asas semua benda hidup. Sel menjalankan proses pertumbuhan, respirasi, pembiakan dan perkumuhan. Sel membahagi untuk menghasilkan sel baharu. Sel kanser terbentuk apabila pembahagian sel berlaku tanpa kawalan.",
+        },
+      ],
+    },
+    {
+      title: "2. Penggunaan Mikroskop",
+      subsections: [
+        {
+          title: "Bahagian dan Fungsi",
+          table: {
+            headers: ["Bahagian", "Fungsi"],
+            rows: [
+              ["Kanta Mata", "Membesarkan imej spesimen."],
+              ["Kanta Objektif", "Membesarkan spesimen."],
+              ["Tombol Fokus Kasar", "Fokus awal."],
+              ["Tombol Fokus Halus", "Fokus tajam."],
+              ["Diafragma", "Mengawal cahaya."],
+              ["Cermin", "Memantulkan cahaya."],
+            ],
+          },
+        },
+        {
+          title: "Pengendalian",
+          bulletPoints: [
+            "Bawa mikroskop menggunakan dua tangan.",
+            "Mulakan dengan kanta objektif kuasa rendah.",
+          ],
+        },
+      ],
+    },
+    {
+      title: "3. Struktur dan Fungsi Sel",
+      subsections: [
+        {
+          table: {
+            headers: ["Struktur", "Fungsi"],
+            rows: [
+              ["Nukleus", "Mengawal aktiviti sel dan menyimpan maklumat genetik"],
+              ["Sitoplasma", "Tempat tindak balas kimia berlaku"],
+              ["Membran Sel", "Mengawal pergerakan bahan"],
+              ["Mitokondria", "Menghasilkan tenaga"],
+              ["Dinding Sel", "Memberi sokongan dan bentuk"],
+              ["Vakuol", "Menyimpan air dan nutrien"],
+              ["Kloroplas", "Tapak fotosintesis"],
+            ],
+          },
+        },
+      ],
+    },
+    {
+      title: "4. Organisma Unisel dan Multisel",
+      subsections: [
+        {
+          title: "Unisel",
+          bulletPoints: ["Amoeba", "Paramecium", "Euglena", "Chlamydomonas"],
+        },
+        {
+          title: "Multisel",
+          bulletPoints: ["Manusia", "Burung", "Ikan", "Hydra", "Mucor"],
+        },
+      ],
+    },
+    {
+      title: "5. Organisasi Sel",
+      subsections: [
+        {
+          content: "Sel → Tisu → Organ → Sistem → Organisma",
+        },
+        {
+          title: "Jenis Sel Manusia",
+          bulletPoints: [
+            "Sel Saraf",
+            "Sel Darah Merah",
+            "Sel Darah Putih",
+            "Sel Pembiakan",
+            "Sel Epitelium",
+            "Sel Otot",
+          ],
+        },
+        {
+          title: "Sistem Badan",
+          bulletPoints: [
+            "Sistem Pencernaan",
+            "Sistem Respirasi",
+            "Sistem Peredaran Darah",
+            "Sistem Rangka",
+            "Sistem Saraf",
+          ],
+        },
+      ],
+    },
+    {
+      title: "6. Respirasi Sel dan Fotosintesis",
+      subsections: [
+        {
+          title: "Respirasi Sel",
+          formula: "Glukosa + Oksigen → Karbon Dioksida + Air + Tenaga",
+        },
+        {
+          title: "Fotosintesis",
+          formula: "Karbon Dioksida + Air + Cahaya Matahari → Glukosa + Oksigen",
+        },
+        {
+          title: "Perbezaan",
+          table: {
+            headers: ["Respirasi", "Fotosintesis"],
+            rows: [
+              ["Membebaskan tenaga", "Menyerap tenaga cahaya"],
+              ["Berlaku pada semua organisma", "Berlaku pada tumbuhan"],
+              ["Menggunakan oksigen", "Menggunakan karbon dioksida"],
+            ],
+          },
+        },
+      ],
+    },
+  ],
+  keyExamFacts: [
+    "Sel = Unit asas kehidupan",
+    "Nukleus mengawal aktiviti sel",
+    "Mitokondria menghasilkan tenaga",
+    "Kloroplas menjalankan fotosintesis",
+    "Sel → Tisu → Organ → Sistem → Organisma",
+    "Fotosintesis berlaku di kloroplas",
+    "Respirasi berlaku di mitokondria",
+  ],
+};
+
+export const scienceF1C2NotesDLP: ScienceChapter2Notes = {
+  quickRevision: [
+    "Cells are the basic unit of life.",
+    "Cells carry out growth, respiration, reproduction and excretion.",
+    "Cells form tissues, organs, systems and organisms.",
+    "Photosynthesis and respiration are essential life processes.",
+  ],
+  sections: [
+    {
+      title: "1. Introduction to Cells",
+      subsections: [
+        {
+          content:
+            "Cells are the basic unit of life. Cells carry out growth, respiration, reproduction and excretion. Cells divide to produce new cells. Cancer cells are formed when cell division becomes uncontrolled.",
+        },
+      ],
+    },
+    {
+      title: "2. The Microscope",
+      subsections: [
+        {
+          title: "Parts and Functions",
+          table: {
+            headers: ["Part", "Function"],
+            rows: [
+              ["Eyepiece", "Magnifies image."],
+              ["Objective Lens", "Magnifies specimen."],
+              ["Rough Focus Knob", "Initial focus."],
+              ["Fine Focus Knob", "Sharp focus."],
+              ["Diaphragm", "Controls light."],
+              ["Mirror", "Reflects light."],
+            ],
+          },
+        },
+        {
+          title: "Handling",
+          bulletPoints: [
+            "Carry with both hands.",
+            "Start with low power objective lens.",
+          ],
+        },
+      ],
+    },
+    {
+      title: "3. Cell Structure and Function",
+      subsections: [
+        {
+          table: {
+            headers: ["Structure", "Function"],
+            rows: [
+              ["Nucleus", "Controls cell activities and stores DNA"],
+              ["Cytoplasm", "Site of chemical reactions"],
+              ["Cell Membrane", "Controls movement of substances"],
+              ["Mitochondria", "Produces energy"],
+              ["Cell Wall", "Provides support and shape"],
+              ["Vacuole", "Stores water and nutrients"],
+              ["Chloroplast", "Site of photosynthesis"],
+            ],
+          },
+        },
+      ],
+    },
+    {
+      title: "4. Unicellular and Multicellular Organisms",
+      subsections: [
+        {
+          title: "Unicellular",
+          bulletPoints: ["Amoeba", "Paramecium", "Euglena", "Chlamydomonas"],
+        },
+        {
+          title: "Multicellular",
+          bulletPoints: ["Humans", "Birds", "Fish", "Hydra", "Mucor"],
+        },
+      ],
+    },
+    {
+      title: "5. Cell Organisation",
+      subsections: [
+        {
+          content: "Cell → Tissue → Organ → System → Organism",
+        },
+        {
+          title: "Human Cell Types",
+          bulletPoints: [
+            "Nerve Cell",
+            "Red Blood Cell",
+            "White Blood Cell",
+            "Reproductive Cell",
+            "Epithelial Cell",
+            "Muscle Cell",
+          ],
+        },
+        {
+          title: "Body Systems",
+          bulletPoints: [
+            "Digestive System",
+            "Respiratory System",
+            "Circulatory System",
+            "Skeletal System",
+            "Nervous System",
+          ],
+        },
+      ],
+    },
+    {
+      title: "6. Cell Respiration and Photosynthesis",
+      subsections: [
+        {
+          title: "Cell Respiration",
+          formula: "Glucose + Oxygen → Carbon Dioxide + Water + Energy",
+        },
+        {
+          title: "Photosynthesis",
+          formula: "Carbon Dioxide + Water + Sunlight → Glucose + Oxygen",
+        },
+        {
+          title: "Differences",
+          table: {
+            headers: ["Cell Respiration", "Photosynthesis"],
+            rows: [
+              ["Releases energy", "Absorbs light energy"],
+              ["Occurs in all organisms", "Occurs in plants"],
+              ["Uses oxygen", "Uses carbon dioxide"],
+            ],
+          },
+        },
+      ],
+    },
+  ],
+  keyExamFacts: [
+    "Cell = Basic unit of life",
+    "Nucleus controls cell activities",
+    "Mitochondria produce energy",
+    "Chloroplast carries out photosynthesis",
+    "Cell → Tissue → Organ → System → Organism",
+    "Photosynthesis occurs in chloroplasts",
+    "Respiration occurs in mitochondria",
+  ],
+};
+
 export const notes: Note[] = [
   {
     id: "n1",
@@ -103,6 +406,28 @@ export const notes: Note[] = [
     summary:
       "All living organisms are made of cells. Animal cells lack cell walls and chloroplasts found in plant cells.",
     keywords: ["cell", "nucleus", "membrane"],
+  },
+  {
+    id: "sci-f1-c2-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    title: "Bab 2: Sel sebagai Unit Asas Hidupan",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 2 dalam Bahasa Melayu: sel, mikroskop, struktur sel, organisasi sel, respirasi dan fotosintesis.",
+    keywords: ["sel", "mikroskop", "respirasi", "fotosintesis", "mitokondria", "kloroplas"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c2-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    title: "Chapter 2: Cell as the Basic Unit of Life",
+    summary:
+      "Form 1 Science Chapter 2 summary in English: cells, microscope, cell structure, organisation, respiration and photosynthesis.",
+    keywords: ["cell", "microscope", "respiration", "photosynthesis", "mitochondria", "chloroplast"],
+    lang: "dlp",
   },
   {
     id: "n4",
