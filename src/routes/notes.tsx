@@ -16,6 +16,7 @@ import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
 import { mengenaliTamadunMindMap } from "@/data/sejarah-f1-c4-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
+import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 
 const searchSchema = z.object({
