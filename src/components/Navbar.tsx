@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const links = [
   { to: "/", label: "Home" },
@@ -12,6 +13,9 @@ const links = [
 
 export function Navbar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -29,6 +33,7 @@ export function Navbar() {
             </span>
           </Link>
 
+          {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-1">
             {links.map((l) => {
               const active = pathname === l.to;
@@ -49,13 +54,54 @@ export function Navbar() {
             })}
           </ul>
 
-          <Link
-            to="/login"
-            className="px-5 py-2 rounded-full bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold hover:scale-105 transition-transform glow-blue"
-          >
-            Sign In
-          </Link>
+          <div className="flex items-center gap-3">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 hover:bg-white/5 rounded-lg transition-colors"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-foreground" />
+              ) : (
+                <Menu className="w-5 h-5 text-foreground" />
+              )}
+            </button>
+
+            {/* Sign In Button */}
+            <Link
+              to="/login"
+              className="px-5 py-2 rounded-full bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold hover:scale-105 transition-transform glow-blue"
+            >
+              Sign In
+            </Link>
+          </div>
         </nav>
+
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-white/5 bg-black/20 backdrop-blur-sm">
+            <ul className="flex flex-col gap-1 px-4 sm:px-8 py-4">
+              {links.map((l) => {
+                const active = pathname === l.to;
+                return (
+                  <li key={l.to}>
+                    <Link
+                      to={l.to}
+                      onClick={closeMobileMenu}
+                      className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                        active
+                          ? "bg-white/10 text-foreground"
+                          : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
