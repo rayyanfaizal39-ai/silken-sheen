@@ -13341,6 +13341,1086 @@ export interface Flashcard {
 
 export const flashcards: Flashcard[] = [
   {
+    "id": "sci-f1-c2-dlp-fc1",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is a cell?",
+    "back": "The basic unit of life."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc2",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What are the main life processes performed by cells?",
+    "back": "Growth, respiration, reproduction and excretion."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc3",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is cell division?",
+    "back": "The process where one cell divides to form new cells."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc4",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Why does cell division occur?",
+    "back": "For growth and replacement of damaged or dead cells."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc5",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What causes cancer cells?",
+    "back": "Uncontrolled cell division."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc6",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is a tumour?",
+    "back": "A mass of abnormal cells."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc7",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is a microscope?",
+    "back": "An instrument used to magnify tiny objects."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc8",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the eyepiece?",
+    "back": "Magnifies the specimen, usually 10×."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc9",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the objective lens?",
+    "back": "Magnifies the specimen."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc10",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the rough focus knob?",
+    "back": "Initial focusing."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc11",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the fine focus knob?",
+    "back": "Sharp focusing."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc12",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the diaphragm?",
+    "back": "Controls the amount of light entering the microscope."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc13",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the mirror?",
+    "back": "Reflects light towards the specimen."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc14",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "How should a microscope be carried?",
+    "back": "Using both hands."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc15",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Which objective lens should be used first?",
+    "back": "Low-power objective lens."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc16",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is protoplasm?",
+    "back": "The living content of a cell."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc17",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What are the components of protoplasm?",
+    "back": "Nucleus and cytoplasm."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc18",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the nucleus?",
+    "back": "Controls all cell activities."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc19",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What does the nucleus contain?",
+    "back": "Genetic information (DNA)."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc20",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of cytoplasm?",
+    "back": "Site of chemical reactions."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc21",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the cell membrane?",
+    "back": "Controls movement of substances into and out of the cell."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc22",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of mitochondria?",
+    "back": "Produces energy."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc23",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the cell wall?",
+    "back": "Provides support and protection."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc24",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Which cells have a cell wall?",
+    "back": "Plant cells."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc25",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of chloroplasts?",
+    "back": "Carry out photosynthesis."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc26",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What pigment is found in chloroplasts?",
+    "back": "Chlorophyll."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc27",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of a vacuole?",
+    "back": "Stores cell sap and waste materials."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc28",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Which cell has a regular shape?",
+    "back": "Plant cell."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc29",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Which cell has an irregular shape?",
+    "back": "Animal cell."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc30",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is a unicellular organism?",
+    "back": "An organism made of one cell."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc31",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Give an example of a unicellular organism.",
+    "back": "Amoeba."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc32",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is Euglena?",
+    "back": "A unicellular organism."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc33",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is Paramecium?",
+    "back": "A unicellular organism."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc34",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is a multicellular organism?",
+    "back": "An organism made of many cells."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc35",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Give an example of a multicellular organism.",
+    "back": "Human."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc36",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is Hydra?",
+    "back": "A multicellular organism."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc37",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is Spirogyra?",
+    "back": "A multicellular organism."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc38",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is a tissue?",
+    "back": "A group of similar cells performing the same function."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc39",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is an organ?",
+    "back": "A group of tissues working together."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc40",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is a system?",
+    "back": "A group of organs working together."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc41",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is an organism?",
+    "back": "A complete living thing."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc42",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "State the organisation sequence.",
+    "back": "Cell → Tissue → Organ → System → Organism."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc43",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of epithelial cells?",
+    "back": "Protection."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc44",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of muscle cells?",
+    "back": "Movement."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc45",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of nerve cells?",
+    "back": "Carry electrical impulses."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc46",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of red blood cells?",
+    "back": "Transport oxygen."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc47",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of white blood cells?",
+    "back": "Fight infections."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc48",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of reproductive cells?",
+    "back": "Fertilisation."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc49",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the digestive system?",
+    "back": "Digests and absorbs food."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc50",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the respiratory system?",
+    "back": "Gas exchange."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc51",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the circulatory system?",
+    "back": "Transport substances around the body."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc52",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the skeletal system?",
+    "back": "Support and protection."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc53",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the nervous system?",
+    "back": "Coordinates body responses."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc54",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the excretory system?",
+    "back": "Removes waste products."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc55",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is the function of the lymphatic system?",
+    "back": "Defends the body against infection."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc56",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is cell respiration?",
+    "back": "Process that releases energy from food."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc57",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Where does cell respiration occur?",
+    "back": "In the mitochondria."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc58",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "What is photosynthesis?",
+    "back": "Process that produces food in plants."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc59",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Where does photosynthesis occur?",
+    "back": "In the chloroplast."
+  },
+  {
+    "id": "sci-f1-c2-dlp-fc60",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "dlp",
+    "front": "Which process releases energy?",
+    "back": "Cell respiration."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc1",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah sel?",
+    "back": "Unit asas kehidupan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc2",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah proses hidup utama yang dijalankan oleh sel?",
+    "back": "Pertumbuhan, respirasi, pembiakan dan perkumuhan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc3",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah pembahagian sel?",
+    "back": "Proses sel membahagi membentuk sel baharu."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc4",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Mengapakah pembahagian sel berlaku?",
+    "back": "Untuk pertumbuhan dan menggantikan sel rosak atau mati."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc5",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah punca sel kanser?",
+    "back": "Pembahagian sel yang tidak terkawal."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc6",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah tumor?",
+    "back": "Jisim sel abnormal."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc7",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah mikroskop?",
+    "back": "Alat untuk membesarkan objek yang sangat kecil."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc8",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi kanta mata?",
+    "back": "Membesarkan spesimen, biasanya 10×."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc9",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi kanta objektif?",
+    "back": "Membesarkan spesimen."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc10",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi tombol fokus kasar?",
+    "back": "Fokus awal."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc11",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi tombol fokus halus?",
+    "back": "Menajamkan imej."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc12",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi diafragma?",
+    "back": "Mengawal jumlah cahaya."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc13",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi cermin?",
+    "back": "Memantulkan cahaya ke spesimen."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc14",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Bagaimanakah mikroskop dibawa?",
+    "back": "Menggunakan dua tangan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc15",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Kanta objektif manakah digunakan dahulu?",
+    "back": "Kanta kuasa rendah."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc16",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah protoplasma?",
+    "back": "Kandungan hidup dalam sel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc17",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah komponen protoplasma?",
+    "back": "Nukleus dan sitoplasma."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc18",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi nukleus?",
+    "back": "Mengawal semua aktiviti sel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc19",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah yang terdapat dalam nukleus?",
+    "back": "Maklumat genetik (DNA)."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc20",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sitoplasma?",
+    "back": "Tapak tindak balas kimia."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc21",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi membran sel?",
+    "back": "Mengawal pergerakan bahan masuk dan keluar."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc22",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi mitokondria?",
+    "back": "Menghasilkan tenaga."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc23",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi dinding sel?",
+    "back": "Memberi sokongan dan perlindungan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc24",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Sel manakah mempunyai dinding sel?",
+    "back": "Sel tumbuhan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc25",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi kloroplas?",
+    "back": "Menjalankan fotosintesis."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc26",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah pigmen dalam kloroplas?",
+    "back": "Klorofil."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc27",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi vakuol?",
+    "back": "Menyimpan sap sel dan bahan buangan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc28",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Sel manakah mempunyai bentuk tetap?",
+    "back": "Sel tumbuhan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc29",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Sel manakah mempunyai bentuk tidak tetap?",
+    "back": "Sel haiwan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc30",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah organisma unisel?",
+    "back": "Organisma yang terdiri daripada satu sel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc31",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Berikan contoh organisma unisel.",
+    "back": "Amoeba."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc32",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah Euglena?",
+    "back": "Organisma unisel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc33",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah Paramecium?",
+    "back": "Organisma unisel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc34",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah organisma multisel?",
+    "back": "Organisma yang terdiri daripada banyak sel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc35",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Berikan contoh organisma multisel.",
+    "back": "Manusia."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc36",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah Hydra?",
+    "back": "Organisma multisel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc37",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah Spirogyra?",
+    "back": "Organisma multisel."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc38",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah tisu?",
+    "back": "Sekumpulan sel yang sama fungsi."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc39",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah organ?",
+    "back": "Sekumpulan tisu yang bekerjasama."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc40",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah sistem?",
+    "back": "Sekumpulan organ yang bekerjasama."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc41",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah organisma?",
+    "back": "Hidupan lengkap."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc42",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Nyatakan urutan organisasi.",
+    "back": "Sel → Tisu → Organ → Sistem → Organisma."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc43",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sel epitelium?",
+    "back": "Perlindungan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc44",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sel otot?",
+    "back": "Pergerakan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc45",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sel saraf?",
+    "back": "Menghantar impuls elektrik."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc46",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sel darah merah?",
+    "back": "Mengangkut oksigen."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc47",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sel darah putih?",
+    "back": "Melawan jangkitan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc48",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sel pembiakan?",
+    "back": "Persenyawaan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc49",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sistem pencernaan?",
+    "back": "Mencerna dan menyerap makanan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc50",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sistem respirasi?",
+    "back": "Pertukaran gas."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc51",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sistem peredaran darah?",
+    "back": "Mengangkut bahan ke seluruh badan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc52",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sistem rangka?",
+    "back": "Sokongan dan perlindungan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc53",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sistem saraf?",
+    "back": "Menyelaras tindak balas badan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc54",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sistem perkumuhan?",
+    "back": "Menyingkirkan bahan buangan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc55",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fungsi sistem limfa?",
+    "back": "Melindungi badan daripada jangkitan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc56",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah respirasi sel?",
+    "back": "Proses membebaskan tenaga daripada makanan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc57",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Di manakah respirasi sel berlaku?",
+    "back": "Dalam mitokondria."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc58",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Apakah fotosintesis?",
+    "back": "Proses menghasilkan makanan oleh tumbuhan."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc59",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Di manakah fotosintesis berlaku?",
+    "back": "Dalam kloroplas."
+  },
+  {
+    "id": "sci-f1-c2-bm-fc60",
+    "subjectId": "science",
+    "form": "Form 1",
+    "chapter": "Chapter 2",
+    "lang": "bm",
+    "front": "Proses manakah membebaskan tenaga?",
+    "back": "Respirasi sel."
+  },
+  {
     id: "f1",
     subjectId: "math",
     form: "Form 1",
@@ -13355,14 +14435,6 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 5",
     front: "Pythagoras' theorem?",
     back: "a² + b² = c² for a right-angled triangle.",
-  },
-  {
-    id: "f3",
-    subjectId: "science",
-    form: "Form 1",
-    chapter: "Chapter 2",
-    front: "Photosynthesis equation?",
-    back: "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (with sunlight).",
   },
   {
     id: "sci-f1-c1-dlp-f1",
@@ -24787,7 +25859,7 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
     { key: "Chapter 5", label: "Chapter 5: Pythagoras' Theorem", available: true },
   ],
   science: [
-    { key: "Chapter 2", label: "Chapter 2: Cells & Living Things", available: true },
+    { key: "Chapter 2", label: "Chapter 2: Cell as the Basic Unit of Life", available: true },
     { key: "Chapter 5", label: "Chapter 5: Electricity", available: true },
   ],
   geography: [
