@@ -75,6 +75,7 @@ function QuizzesPage() {
     return quizzes.filter((q) => {
       if (q.subjectId !== subject) return false;
       if (getItemChapterKey(q) !== chapter) return false;
+      if (subject === "science" && scienceLang && q.lang && q.lang !== scienceLang) return false;
       if (form !== "All" && q.form !== form) return false;
       if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;

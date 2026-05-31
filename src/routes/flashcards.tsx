@@ -140,6 +140,7 @@ function FlashcardsPage() {
     return flashcards.filter((f) => {
       if (f.subjectId !== subject) return false;
       if (getItemChapterKey(f) !== chapter) return false;
+      if (subject === "science" && scienceLang && f.lang && f.lang !== scienceLang) return false;
       if (form !== "All" && f.form !== form) return false;
       if (favOnly && !progress.favorites.includes(f.id)) return false;
       return true;
