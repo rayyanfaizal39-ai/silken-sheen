@@ -1036,7 +1036,7 @@ function SubtopicView({
                 Click nodes to expand • Scroll or pinch to zoom • Drag to pan
               </span>
             </div>
-            <MindMap data={tamadunIslamSumbanganMindMap} height={720} />
+            <MindMap data={tamadunIslamSumbanganMindMap} height={640} />
           </div>
         </>
       )}
