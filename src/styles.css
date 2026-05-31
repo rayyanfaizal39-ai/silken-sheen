@@ -43,44 +43,68 @@
 :root {
   --radius: 1rem;
   /* AcadeMY dark theme — Deep Navy base */
-  --background: oklch(0.21 0.04 265);
+  --background: #0d1117;
+  --background: oklch(0.18 0.04 265);
+  --foreground: #f8fafc;
   --foreground: oklch(0.98 0.005 250);
 
-  --card: oklch(0.27 0.04 260);
+  --card: #161b22;
+  --card: oklch(0.23 0.04 260);
+  --card-foreground: #f8fafc;
   --card-foreground: oklch(0.98 0.005 250);
 
-  --popover: oklch(0.27 0.04 260);
+  --popover: #161b22;
+  --popover: oklch(0.23 0.04 260);
+  --popover-foreground: #f8fafc;
   --popover-foreground: oklch(0.98 0.005 250);
 
-  --primary: oklch(0.62 0.21 265);          /* Electric Blue #3B82F6 */
-  --primary-foreground: oklch(0.98 0.005 250);
+  --primary: #3b82f6;
+  --primary: oklch(0.65 0.24 265);          /* Electric Blue */
+  --primary-foreground: #ffffff;
+  --primary-foreground: oklch(1 0 0);
 
+  --secondary: #1e293b;
   --secondary: oklch(0.32 0.05 265);
+  --secondary-foreground: #f8fafc;
   --secondary-foreground: oklch(0.98 0.005 250);
 
+  --muted: #1e293b;
   --muted: oklch(0.32 0.04 265);
+  --muted-foreground: #94a3b8;
   --muted-foreground: oklch(0.74 0.03 260);
 
-  --accent: oklch(0.63 0.22 295);           /* Neon Purple #8B5CF6 */
-  --accent-foreground: oklch(0.98 0.005 250);
+  --accent: #8b5cf6;
+  --accent: oklch(0.65 0.26 295);           /* Neon Purple */
+  --accent-foreground: #ffffff;
+  --accent-foreground: oklch(1 0 0);
 
+  --destructive: #ef4444;
   --destructive: oklch(0.62 0.24 27);
-  --destructive-foreground: oklch(0.98 0.005 250);
+  --destructive-foreground: #ffffff;
+  --destructive-foreground: oklch(1 0 0);
 
+  --border: rgba(148, 163, 184, 0.2);
   --border: oklch(0.4 0.04 265 / 40%);
+  --input: #1e293b;
   --input: oklch(0.32 0.04 265);
-  --ring: oklch(0.62 0.21 265);
+  --ring: #3b82f6;
+  --ring: oklch(0.65 0.24 265);
 
-  --nova-navy: oklch(0.21 0.04 265);
-  --nova-slate: oklch(0.27 0.04 260);
-  --nova-blue: oklch(0.62 0.21 265);
-  --nova-purple: oklch(0.63 0.22 295);
-  --nova-yellow: oklch(0.88 0.17 92);
+  --nova-navy: #0d1117;
+  --nova-navy: oklch(0.18 0.04 265);
+  --nova-slate: #161b22;
+  --nova-slate: oklch(0.23 0.04 260);
+  --nova-blue: #3b82f6;
+  --nova-blue: oklch(0.65 0.24 265);
+  --nova-purple: #8b5cf6;
+  --nova-purple: oklch(0.65 0.26 295);
+  --nova-yellow: #facc15;
+  --nova-yellow: oklch(0.88 0.2 95);
 
-  --gradient-hero: linear-gradient(135deg, oklch(0.62 0.21 265) 0%, oklch(0.63 0.22 295) 100%);
-  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.63 0.22 295 / 0.35), transparent 60%);
-  --shadow-glow: 0 0 60px -10px oklch(0.62 0.21 265 / 0.6);
-  --shadow-purple: 0 0 60px -10px oklch(0.63 0.22 295 / 0.6);
+  --gradient-hero: linear-gradient(135deg, oklch(0.65 0.24 265) 0%, oklch(0.65 0.26 295) 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.65 0.26 295 / 0.35), transparent 60%);
+  --shadow-glow: 0 0 60px -10px oklch(0.65 0.24 265 / 0.6);
+  --shadow-purple: 0 0 60px -10px oklch(0.65 0.26 295 / 0.6);
   --shadow-card: 0 10px 40px -10px oklch(0.1 0.02 265 / 0.5);
 }
 
@@ -244,20 +268,25 @@
 }
 
 .glass {
-  background: oklch(0.27 0.04 260 / 0.5);
+  background: rgba(22, 27, 34, 0.5);
+  background: oklch(0.23 0.04 260 / 0.5);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border: 1px solid oklch(1 0 0 / 0.08);
 }
 .glass-strong {
-  background: oklch(0.27 0.04 260 / 0.75);
+  background: rgba(22, 27, 34, 0.75);
+  background: oklch(0.23 0.04 260 / 0.75);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border: 1px solid oklch(1 0 0 / 0.1);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, oklch(0.7 0.2 265), oklch(0.7 0.22 295), oklch(0.88 0.17 92));
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #facc15);
+  background: linear-gradient(135deg, oklch(0.7 0.24 265), oklch(0.7 0.26 295), oklch(0.88 0.2 95));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -273,8 +302,8 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     background-image:
-      radial-gradient(ellipse at top, oklch(0.63 0.22 295 / 0.15), transparent 50%),
-      radial-gradient(ellipse at bottom right, oklch(0.62 0.21 265 / 0.12), transparent 50%);
+      radial-gradient(ellipse at top, oklch(0.65 0.26 295 / 0.18), transparent 50%),
+      radial-gradient(ellipse at bottom right, oklch(0.65 0.24 265 / 0.15), transparent 50%);
     background-attachment: fixed;
     min-height: 100vh;
   }

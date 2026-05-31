@@ -226,7 +226,7 @@ export function MusicPlayer() {
   return (
     <>
       {/* Floating button */}
-      <div className="fixed bottom-24 right-6 z-[70] flex flex-col items-end gap-3">
+      <div className="fixed bottom-36 md:bottom-24 right-6 z-[70] flex flex-col items-end gap-3">
         {showTooltip && !open && (
           <div className="glass-strong rounded-xl px-3 py-2 text-xs text-foreground shadow-lg animate-fade-in">
             🎵 Need study music? Click here!
