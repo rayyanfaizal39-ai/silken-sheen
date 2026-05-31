@@ -1000,7 +1000,7 @@ function SubtopicView({
                 Click nodes to expand • Scroll or pinch to zoom • Drag to pan
               </span>
             </div>
-            <MindMap data={tamadunIndiaChinaMindMap} height={720} />
+            <MindMap data={tamadunIndiaChinaMindMap} height={640} />
           </div>
         </>
       )}
