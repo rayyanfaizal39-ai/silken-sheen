@@ -586,7 +586,7 @@ function NotesPage() {
                     Click nodes to expand • Scroll or pinch to zoom • Drag to pan
                   </span>
                 </div>
-                <MindMap data={tamadunIndiaChinaMindMap} height={720} />
+                <MindMap data={tamadunIndiaChinaMindMap} height={640} />
               </div>
             </>
           )}
@@ -964,7 +964,7 @@ function SubtopicView({
                 Click nodes to expand • Scroll or pinch to zoom • Drag to pan
               </span>
             </div>
-            <MindMap data={peningkatanTamadunYunaniRomMindMap} height={760} />
+            <MindMap data={peningkatanTamadunYunaniRomMindMap} height={640} />
           </div>
         </>
       )}
@@ -1000,7 +1000,7 @@ function SubtopicView({
                 Click nodes to expand • Scroll or pinch to zoom • Drag to pan
               </span>
             </div>
-            <MindMap data={tamadunIndiaChinaMindMap} height={720} />
+            <MindMap data={tamadunIndiaChinaMindMap} height={640} />
           </div>
         </>
       )}
@@ -1036,7 +1036,7 @@ function SubtopicView({
                 Click nodes to expand • Scroll or pinch to zoom • Drag to pan
               </span>
             </div>
-            <MindMap data={tamadunIslamSumbanganMindMap} height={720} />
+            <MindMap data={tamadunIslamSumbanganMindMap} height={640} />
           </div>
         </>
       )}
