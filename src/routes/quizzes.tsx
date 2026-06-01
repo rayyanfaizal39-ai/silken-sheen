@@ -75,12 +75,14 @@ function QuizzesPage() {
     return quizzes.filter((q) => {
       if (q.subjectId !== subject) return false;
       if (getItemChapterKey(q) !== chapter) return false;
-      if (subject === "science" && scienceLang && q.lang && q.lang !== scienceLang) return false;
+      if (subject === "science" && scienceLang) {
+        if (q.lang && q.lang !== scienceLang) return false;
+      }
       if (form !== "All" && q.form !== form) return false;
       if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
-  }, [subject, chapter, form, diff]);
+  }, [subject, chapter, form, diff, scienceLang]);
 
   const current = shuffledPool?.[idx] ?? null;
 
@@ -111,7 +113,7 @@ function QuizzesPage() {
     if (timerPref && pool.length > 0) {
       setShuffledPool(buildShuffledPool(pool));
     }
-  }, [timerPref]);
+  }, [timerPref, pool]);
 
   // Stop music when leaving the page
   useEffect(() => () => { music.stop(); }, []);
