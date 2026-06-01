@@ -1,3 +1,8 @@
+import { form1Notes } from "./notes-form1";
+import { form1Quizzes } from "./quizzes-form1";
+import { form1Flashcards } from "./flashcards-form1";
+import { form1Videos } from "./videos-form1";
+
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
 export interface Subject {
@@ -560,7 +565,7 @@ export const scienceF1C2NotesDLP: ScienceChapter2Notes = {
   chapterSummary: "Chapter 2 explores the cell as the fundamental unit of life, covering its structure, the use of microscopes, unicellular and multicellular organisms, the hierarchical organization of human body systems, and the vital processes of respiration and photosynthesis.",
 };
 
-export const notes: Note[] = [
+const notesBase: Note[] = [
   {
     id: "n1",
     subjectId: "math",
@@ -1463,6 +1468,8 @@ export const notes: Note[] = [
   },
 ];
 
+export const notes: Note[] = [...notesBase, ...form1Notes];
+
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 export interface QuizQuestion {
@@ -1478,7 +1485,7 @@ export interface QuizQuestion {
   explanation?: string;
 }
 
-export const quizzes: QuizQuestion[] = [
+const quizzesBase: QuizQuestion[] = [
   {
     id: "q1",
     subjectId: "math",
@@ -13329,6 +13336,9 @@ export const quizzes: QuizQuestion[] = [
     explanation: 'Polite means having good manners and being respectful to others.',
   },
 ];
+
+export const quizzes: QuizQuestion[] = [...quizzesBase, ...form1Quizzes];
+
 export interface Flashcard {
   id: string;
   subjectId: string;
@@ -13339,7 +13349,7 @@ export interface Flashcard {
   back: string;
 }
 
-export const flashcards: Flashcard[] = [
+const flashcardsBase: Flashcard[] = [
   {
     "id": "sci-f1-c2-dlp-fc1",
     "subjectId": "science",
@@ -25816,6 +25826,9 @@ export const flashcards: Flashcard[] = [
     back: 'A topic sentence, supporting sentences, and a closing sentence all focused on one main idea.',
   },
 ];
+
+export const flashcards: Flashcard[] = [...flashcardsBase, ...form1Flashcards];
+
 export interface SejarahChapter {
   num: number;
   title: string;
@@ -25944,3 +25957,19 @@ export const badges = [
   { id: "scholar", name: "Scholar", emoji: "🎓", desc: "Earn 500 XP" },
   { id: "master", name: "Quiz Master", emoji: "🏆", desc: "Score 100% on a Hard quiz" },
 ];
+
+export interface VideoResource {
+  id: string;
+  subjectId: string;
+  form: Form;
+  title: string;
+  chapter: string;
+  youtubeId?: string;
+  duration: number;
+  description: string;
+}
+
+export const videos: VideoResource[] = form1Videos;
+
+// Form 1 Content Data
+export { form1Notes, form1Quizzes, form1Flashcards, form1Videos };
