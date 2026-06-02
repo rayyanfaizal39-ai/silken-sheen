@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { subjects, forms, notes, getItemChapterKey, getSubjectChapters, scienceF1C2NotesBM, scienceF1C2NotesDLP, type ScienceChapter2Notes, type ScienceNotesSection } from "@/data/content";
+import { subjects, forms, notes, getItemChapterKey, getSubjectChapters, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM, type ScienceChapter2Notes, type ScienceNotesSection } from "@/data/content";
 import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
 import { z } from "zod";
 import { SubjectGrid, ChapterGrid, ContentHeader, ComingSoonScreen } from "@/components/ChapterPicker";
@@ -60,7 +60,13 @@ function NotesPage() {
     subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
   const isRead = subject && chapter ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read : false;
   const isScienceChapter2 = subject === "science" && chapter === "Chapter 2";
-  const chapterNotes = notesTab === "dlp" ? scienceF1C2NotesDLP : scienceF1C2NotesBM;
+  const isScienceChapter3 = subject === "science" && chapter === "Chapter 3";
+  const isScienceStructuredNotes = isScienceChapter2 || isScienceChapter3;
+  const chapterNotes: ScienceChapter2Notes = isScienceChapter3
+    ? scienceF1C3NotesBM
+    : notesTab === "dlp"
+      ? scienceF1C2NotesDLP
+      : scienceF1C2NotesBM;
 
   const filteredChapterSections = useMemo(() => {
     if (!notesSearch.trim()) return chapterNotes.sections;
@@ -209,11 +215,11 @@ function NotesPage() {
   }, []);
 
   useEffect(() => {
-    if (isScienceChapter2) {
-      setNotesTab(scienceLang ?? "bm");
+    if (isScienceStructuredNotes) {
+      setNotesTab(isScienceChapter3 ? "bm" : (scienceLang ?? "bm"));
     }
     setNotesSearch("");
-  }, [isScienceChapter2, scienceLang]);
+  }, [isScienceStructuredNotes, isScienceChapter3, scienceLang]);
 
   const filtered = useMemo(() => {
     if (!subject || !chapter) return [];
@@ -383,18 +389,22 @@ function NotesPage() {
             </>
           )}
 
-          {isScienceChapter2 && (
+          {isScienceStructuredNotes && (
             <div className="glass-strong rounded-[2rem] border border-white/10 p-6 mb-8 animate-fade-up">
               <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div className="space-y-3">
                   <p className="text-xs uppercase tracking-[0.3em] text-accent font-semibold">
-                    Science Form 1 • Chapter 2
+                    Science Form 1 • {isScienceChapter3 ? "Chapter 3" : "Chapter 2"}
                   </p>
                   <h2 className="font-display text-3xl font-bold">
-                    Cell as the Basic Unit of Life
+                    {isScienceChapter3
+                      ? "Koordinasi dan Gerak Balas (Homeostasis)"
+                      : "Cell as the Basic Unit of Life"}
                   </h2>
                   <p className="max-w-2xl text-muted-foreground">
-                    Study the same Chapter 2 content in Bahasa Melayu or DLP English with structured notes, quick revision and exam facts.
+                    {isScienceChapter3
+                      ? "Nota berstruktur Bab 3 dalam Bahasa Melayu: homeostasis, kawalan air dan suhu, serta contoh pada haiwan dan tumbuhan."
+                      : "Study the same Chapter 2 content in Bahasa Melayu or DLP English with structured notes, quick revision and exam facts."}
                   </p>
                 </div>
 
@@ -408,7 +418,11 @@ function NotesPage() {
                       id="chapter-notes-search"
                       value={notesSearch}
                       onChange={(e) => setNotesSearch(e.target.value)}
-                      placeholder="Search within Chapter 2 notes…"
+                      placeholder={
+                        isScienceChapter3
+                          ? "Search within Chapter 3 notes…"
+                          : "Search within Chapter 2 notes…"
+                      }
                       className="w-full rounded-full border border-white/10 bg-slate-950/80 py-3 pl-11 pr-4 text-sm text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
@@ -416,19 +430,23 @@ function NotesPage() {
               </div>
 
               <div className="mt-6">
-                <Tabs value={notesTab} onValueChange={(value) => setNotesTab(value as "bm" | "dlp")}>
-                  <TabsList>
-                    <TabsTrigger value="bm">Bahasa Melayu</TabsTrigger>
-                    <TabsTrigger value="dlp">DLP (English)</TabsTrigger>
-                  </TabsList>
+                {isScienceChapter3 ? (
+                  renderChapterNotes(scienceF1C3NotesBM, filteredChapterSections)
+                ) : (
+                  <Tabs value={notesTab} onValueChange={(value) => setNotesTab(value as "bm" | "dlp")}>
+                    <TabsList>
+                      <TabsTrigger value="bm">Bahasa Melayu</TabsTrigger>
+                      <TabsTrigger value="dlp">DLP (English)</TabsTrigger>
+                    </TabsList>
 
-                  <TabsContent value="bm">
-                    {renderChapterNotes(scienceF1C2NotesBM, filteredChapterSections)}
-                  </TabsContent>
-                  <TabsContent value="dlp">
-                    {renderChapterNotes(scienceF1C2NotesDLP, filteredChapterSections)}
-                  </TabsContent>
-                </Tabs>
+                    <TabsContent value="bm">
+                      {renderChapterNotes(scienceF1C2NotesBM, filteredChapterSections)}
+                    </TabsContent>
+                    <TabsContent value="dlp">
+                      {renderChapterNotes(scienceF1C2NotesDLP, filteredChapterSections)}
+                    </TabsContent>
+                  </Tabs>
+                )}
               </div>
             </div>
           )}

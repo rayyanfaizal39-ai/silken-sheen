@@ -560,3 +560,5 @@ export const scienceF1C2NotesDLP: ScienceChapter2Notes = {
   ],
   chapterSummary: "Chapter 2 explores the cell as the fundamental unit of life, covering its structure, the use of microscopes, unicellular and multicellular organisms, the hierarchical organization of human body systems, and the vital processes of respiration and photosynthesis.",
 };
+
+export { scienceF1C3NotesBM } from "./science-f1-c3-notes-bm";

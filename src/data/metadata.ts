@@ -1,5 +1,5 @@
 import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
-import { subjects, scienceF1C2NotesBM, scienceF1C2NotesDLP } from "./subjects";
+import { subjects, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM } from "./subjects";
 
 export const sejarahForm1Chapters: SejarahChapter[] = [
   {
@@ -109,7 +109,7 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
 export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp: string }> = [
   { num: 1, bm: "Pengenalan kepada Penyiasatan Saintifik", dlp: "Introduction to Scientific Investigation" },
   { num: 2, bm: "Sel sebagai Unit Asas Kehidupan", dlp: "Cell as the Basic Unit of Life" },
-  { num: 3, bm: "Koordinasi dan Tindak Balas", dlp: "Coordination and Response" },
+  { num: 3, bm: "Koordinasi dan Gerak Balas (Homeostasis)", dlp: "Coordination and Response (Homeostasis)" },
   { num: 4, bm: "Respirasi", dlp: "Respiration" },
   { num: 5, bm: "Jirim", dlp: "Matter" },
   { num: 6, bm: "Jadual Berkala", dlp: "Periodic Table" },
@@ -153,15 +153,17 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
     return scienceForm1ChaptersBilingual.map((c) => ({
       key: `Chapter ${c.num}`,
       label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
-      available: c.num <= 2 || c.num === 5,
-      isNew: false,
+      available: c.num <= 3 || c.num === 5,
+      isNew: c.num === 3,
       structuredNotes:
         c.num === 2
           ? {
               bm: scienceF1C2NotesBM,
               dlp: scienceF1C2NotesDLP,
             }
-          : undefined,
+          : c.num === 3
+            ? { bm: scienceF1C3NotesBM }
+            : undefined,
     }));
   }
 

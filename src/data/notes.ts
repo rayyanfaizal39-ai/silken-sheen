@@ -900,4 +900,15 @@ export const notes: Note[] = [
       "Paragraph",
     ],
   },
+  {
+    id: "sci-f1-c3-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 3",
+    title: "Bab 3: Koordinasi dan Gerak Balas (Homeostasis)",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 3: homeostasis, kawalan kandungan air dan suhu badan manusia, contoh pada haiwan dan tumbuhan, serta kepentingan kestabilan persekitaran dalaman.",
+    keywords: ["homeostasis", "ginjal", "transpirasi", "stoma", "peluh", "metabolisme", "sel pengawal"],
+    lang: "bm",
+  },
 ];
