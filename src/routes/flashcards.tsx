@@ -461,6 +461,7 @@ function FlashcardsPage() {
                   }}
                 >
                   <div
+                    key={current.id}
                     className="relative w-full h-full transition-transform duration-700"
                     style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "none" }}
                   >
