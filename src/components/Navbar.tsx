@@ -24,20 +24,17 @@ export function Navbar() {
                 <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
+              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-white" />
               </div>
-              <span className="font-display text-xl font-bold tracking-tight">
-                <span className="text-white">Acade</span>
-                <span
-                  className="text-nova-yellow"
-                  style={{
-                    textShadow: "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)",
-                  }}
-                >
-                  MY
-                </span>
-              </span>
-            </Link>
-          </div>
+            </div>
+            <span className="font-display text-xl font-bold tracking-tight">
+              <span className="text-white">Acade</span><span className="text-nova-yellow" style={{ textShadow: "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)" }}>MY</span>
+            </span>
+          </Link>
 
           <ul className="hidden md:flex items-center gap-1">
             {links.map((l) => {
