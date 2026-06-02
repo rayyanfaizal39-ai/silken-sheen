@@ -80,7 +80,7 @@ function QuizzesPage() {
       if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
-  }, [subject, chapter, form, diff]);
+  }, [subject, chapter, form, diff, scienceLang]);
 
   const current = shuffledPool?.[idx] ?? null;
 

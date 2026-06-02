@@ -145,7 +145,7 @@ function FlashcardsPage() {
       if (favOnly && !progress.favorites.includes(f.id)) return false;
       return true;
     });
-  }, [subject, chapter, form, favOnly, progress.favorites]);
+  }, [subject, chapter, form, favOnly, progress.favorites, scienceLang]);
 
   const currentPoolIdx = queue[idx];
   const current = currentPoolIdx !== undefined ? pool[currentPoolIdx] : pool[0];
@@ -461,6 +461,7 @@ function FlashcardsPage() {
                   }}
                 >
                   <div
+                    key={current.id}
                     className="relative w-full h-full transition-transform duration-700"
                     style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "none" }}
                   >
