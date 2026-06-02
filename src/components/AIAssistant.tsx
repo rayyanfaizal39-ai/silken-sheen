@@ -133,7 +133,7 @@ export function AIAssistant() {
     <>
       {/* Floating button */}
       {!open && (
-        <div className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-2">
+        <div className="fixed bottom-20 md:bottom-6 right-6 z-[60] flex flex-col items-end gap-2">
           {showTip && (
             <div className="glass-strong rounded-2xl px-4 py-2.5 text-sm font-medium shadow-2xl animate-fade-up max-w-[240px]">
               Ada soalan? Tanya AcadeMY AI! 💡
@@ -157,7 +157,7 @@ export function AIAssistant() {
 
       {/* Chat panel */}
       {open && (
-        <div className="fixed bottom-6 right-6 z-[60] w-[min(420px,calc(100vw-2rem))] h-[min(620px,calc(100vh-6rem))] glass-strong rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-white/10 animate-slide-up resize overflow-auto"
+        <div className="fixed bottom-20 md:bottom-6 right-6 z-[60] w-[min(420px,calc(100vw-2rem))] h-[min(620px,calc(100vh-6rem))] glass-strong rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-white/10 animate-slide-up resize overflow-auto"
              style={{ minWidth: 320, minHeight: 400, maxWidth: "calc(100vw - 2rem)", maxHeight: "calc(100vh - 4rem)" }}>
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-gradient-to-r from-accent/20 to-primary/20">

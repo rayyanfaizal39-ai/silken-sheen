@@ -10,6 +10,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/Navbar";
+import { MobileNav } from "@/components/MobileNav";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
 import { MusicPlayer } from "@/components/MusicPlayer";
@@ -100,9 +101,10 @@ function RootComponent() {
       <SoundFx />
       <MusicPlayer />
       <Navbar />
-      <main className="min-h-screen">
+      <main className="min-h-screen pb-20 md:pb-0">
         <Outlet />
       </main>
+      <MobileNav />
       <AIAssistant />
     </QueryClientProvider>
   );
