@@ -8,6 +8,8 @@ import {
   scienceF1C3NotesDLP,
   scienceF1C4NotesBM,
   scienceF1C4NotesDLP,
+  scienceF1C5NotesBM,
+  scienceF1C5NotesDLP,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
@@ -119,6 +121,24 @@ export const chapters: ChapterContent[] = [
     title: "Reproduction",
     lang: "dlp",
     notes: scienceF1C4NotesDLP,
+  },
+  {
+    id: "science-f1-c5-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 5",
+    title: "Jirim",
+    lang: "bm",
+    notes: scienceF1C5NotesBM,
+  },
+  {
+    id: "science-f1-c5-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 5",
+    title: "Matter",
+    lang: "dlp",
+    notes: scienceF1C5NotesDLP,
   },
 ];
 

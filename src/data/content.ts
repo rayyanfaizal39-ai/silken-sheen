@@ -10,11 +10,15 @@ import { scienceF1C3NotesBM as _scienceF1C3NotesBM } from "./science-f1-c3-notes
 import { scienceF1C3NotesDLP as _scienceF1C3NotesDLP } from "./science-f1-c3-notes-dlp";
 import { scienceF1C4NotesBM as _scienceF1C4NotesBM } from "./science-f1-c4-notes-bm";
 import { scienceF1C4NotesDLP as _scienceF1C4NotesDLP } from "./science-f1-c4-notes-dlp";
+import { scienceF1C5NotesBM as _scienceF1C5NotesBM } from "./science-f1-c5-notes-bm";
+import { scienceF1C5NotesDLP as _scienceF1C5NotesDLP } from "./science-f1-c5-notes-dlp";
 
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
 export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
 export const scienceF1C4NotesDLP = _scienceF1C4NotesDLP;
+export const scienceF1C5NotesBM = _scienceF1C5NotesBM;
+export const scienceF1C5NotesDLP = _scienceF1C5NotesDLP;
 
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
@@ -469,6 +473,28 @@ export const notes: Note[] = [
     summary:
       "Form 1 Science Chapter 4 summary: sexual and asexual reproduction, human reproductive systems, menstrual cycle, fertilisation, pregnancy, prenatal care, sterility, contraception and reproduction in flowering plants.",
     keywords: ["reproduction", "gamete", "fertilisation", "zygote", "menstrual cycle", "placenta", "pollination", "germination"],
+    lang: "dlp",
+  },
+  {
+    id: "sci-f1-c5-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 5",
+    title: "Bab 5: Jirim",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 5: jirim, bukan jirim, sifat fizik dan kimia, tiga keadaan jirim, teori kinetik, resapan, perubahan keadaan jirim, ketumpatan, apungan dan sesaran air.",
+    keywords: ["jirim", "jisim", "isi padu", "pepejal", "cecair", "gas", "resapan", "ketumpatan", "apungan", "sesaran air"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c5-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 5",
+    title: "Chapter 5: Matter",
+    summary:
+      "Form 1 Science Chapter 5 summary: matter, non-matter, physical and chemical properties, three states of matter, kinetic theory, diffusion, changes of state, density, buoyancy and water displacement.",
+    keywords: ["matter", "mass", "volume", "solid", "liquid", "gas", "diffusion", "density", "buoyancy", "water displacement"],
     lang: "dlp",
   },
   {
@@ -23944,7 +23970,7 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
   ],
   science: [
     { key: "Chapter 2", label: "Chapter 2: Cells & Living Things", available: true },
-    { key: "Chapter 5", label: "Chapter 5: Electricity", available: true },
+    { key: "Chapter 5", label: "Chapter 5: Matter", available: true },
   ],
   geography: [
     { key: "Chapter 1", label: "Chapter 1: Arah", available: true },

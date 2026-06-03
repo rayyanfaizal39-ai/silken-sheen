@@ -53,6 +53,28 @@ export const notes: Note[] = [
     lang: "dlp",
   },
   {
+    id: "sci-f1-c5-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 5",
+    title: "Bab 5: Jirim",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 5: jirim, bukan jirim, sifat fizik dan kimia, tiga keadaan jirim, teori kinetik, resapan, perubahan keadaan jirim, ketumpatan, apungan dan sesaran air.",
+    keywords: ["jirim", "jisim", "isi padu", "pepejal", "cecair", "gas", "resapan", "ketumpatan", "apungan", "sesaran air"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c5-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 5",
+    title: "Chapter 5: Matter",
+    summary:
+      "Form 1 Science Chapter 5 summary: matter, non-matter, physical and chemical properties, three states of matter, kinetic theory, diffusion, changes of state, density, buoyancy and water displacement.",
+    keywords: ["matter", "mass", "volume", "solid", "liquid", "gas", "diffusion", "density", "buoyancy", "water displacement"],
+    lang: "dlp",
+  },
+  {
     id: "n4",
     subjectId: "science",
     form: "Form 3",

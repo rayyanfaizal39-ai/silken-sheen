@@ -1,5 +1,5 @@
 import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
-import { subjects, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM, scienceF1C3NotesDLP, scienceF1C4NotesBM, scienceF1C4NotesDLP } from "./subjects";
+import { subjects, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM, scienceF1C3NotesDLP, scienceF1C4NotesBM, scienceF1C4NotesDLP, scienceF1C5NotesBM, scienceF1C5NotesDLP } from "./subjects";
 
 export const sejarahForm1Chapters: SejarahChapter[] = [
   {
@@ -87,7 +87,7 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
   science: [
     { key: "Chapter 1", label: "Chapter 1: Introduction to Scientific Investigation", available: true },
     { key: "Chapter 2", label: "Chapter 2: Cell as the Basic Unit of Life", available: true },
-    { key: "Chapter 5", label: "Chapter 5: Electricity", available: true },
+    { key: "Chapter 5", label: "Chapter 5: Matter", available: true },
   ],
   geography: [
     { key: "Chapter 1", label: "Chapter 1: Arah", available: true },
@@ -171,6 +171,11 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
                   bm: scienceF1C4NotesBM,
                   dlp: scienceF1C4NotesDLP,
                 }
+              : c.num === 5
+                ? {
+                    bm: scienceF1C5NotesBM,
+                    dlp: scienceF1C5NotesDLP,
+                  }
             : undefined,
     }));
   }

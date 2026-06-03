@@ -315,7 +315,12 @@ function NotesPage() {
           />
         </>
       ) : chapterMeta && !chapterMeta.available ? (
-        <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+        <ComingSoonScreen
+          subjectId={subject}
+          chapterKey={chapter}
+          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+          onBack={() => setChapter(null)}
+        />
       ) : hasSubtopics && !subtopic ? (
         <SubtopicView
           subjectId={subject}
@@ -336,7 +341,12 @@ function NotesPage() {
         />
       ) : (
         <>
-          <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+          <ContentHeader
+            subjectId={subject}
+            chapterKey={chapter}
+            scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+            onBack={() => setChapter(null)}
+          />
 
           <ChapterFeatureBar features={features} onJump={jumpTo} />
 
