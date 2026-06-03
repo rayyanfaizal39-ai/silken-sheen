@@ -94,6 +94,8 @@ export interface ScienceChapter2Notes {
   quickRevision: string[];
   sections: ScienceNotesSection[];
   keyExamFacts: string[];
+  keyTerms?: string[];
+  chapterSummary?: string;
 }
 
 export const scienceF1C2NotesBM: ScienceChapter2Notes = {
