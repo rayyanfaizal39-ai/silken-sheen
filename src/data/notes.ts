@@ -141,6 +141,28 @@ export const notes: Note[] = [
     lang: "dlp",
   },
   {
+    id: "sci-f1-c9-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 9",
+    title: "Bab 9: Bumi",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 9: sistem Bumi, lapisan atmosfera dan lautan, struktur dalaman Bumi, batuan, mineral, proses Bumi, geobencana, usia Bumi dan sumber Bumi.",
+    keywords: ["bumi", "atmosfera", "biosfera", "hidrosfera", "geosfera", "batuan", "mineral", "fosil", "geobencana", "gempa bumi", "tsunami", "geoterma"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c9-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 9",
+    title: "Chapter 9: Earth",
+    summary:
+      "Form 1 Science Chapter 9 summary: Earth systems, atmospheric and ocean layers, internal Earth structure, rocks, minerals, Earth processes, geohazards, Earth's age and Earth resources.",
+    keywords: ["earth", "atmosphere", "biosphere", "hydrosphere", "geosphere", "rocks", "minerals", "fossils", "geohazards", "earthquakes", "tsunamis", "geothermal"],
+    lang: "dlp",
+  },
+  {
     id: "n4",
     subjectId: "science",
     form: "Form 3",

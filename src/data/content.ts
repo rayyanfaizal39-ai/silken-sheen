@@ -34,6 +34,8 @@ import { scienceF1C7NotesBM as _scienceF1C7NotesBM } from "./science-f1-c7-notes
 import { scienceF1C7NotesDLP as _scienceF1C7NotesDLP } from "./science-f1-c7-notes-dlp";
 import { scienceF1C8NotesBM as _scienceF1C8NotesBM } from "./science-f1-c8-notes-bm";
 import { scienceF1C8NotesDLP as _scienceF1C8NotesDLP } from "./science-f1-c8-notes-dlp";
+import { scienceF1C9NotesBM as _scienceF1C9NotesBM } from "./science-f1-c9-notes-bm";
+import { scienceF1C9NotesDLP as _scienceF1C9NotesDLP } from "./science-f1-c9-notes-dlp";
 
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
@@ -47,6 +49,8 @@ export const scienceF1C7NotesBM = _scienceF1C7NotesBM;
 export const scienceF1C7NotesDLP = _scienceF1C7NotesDLP;
 export const scienceF1C8NotesBM = _scienceF1C8NotesBM;
 export const scienceF1C8NotesDLP = _scienceF1C8NotesDLP;
+export const scienceF1C9NotesBM = _scienceF1C9NotesBM;
+export const scienceF1C9NotesDLP = _scienceF1C9NotesDLP;
 
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
@@ -589,6 +593,28 @@ export const notes: Note[] = [
     summary:
       "Form 1 Science Chapter 8 summary: properties of light, shadows, mirrors and images, reflection, refraction, dispersion, scattering, light colours, colour filters and optical instruments.",
     keywords: ["light", "optics", "shadow", "mirror", "image", "reflection", "refraction", "dispersion", "scattering", "colour", "periscope"],
+    lang: "dlp",
+  },
+  {
+    id: "sci-f1-c9-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 9",
+    title: "Bab 9: Bumi",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 9: sistem Bumi, lapisan atmosfera dan lautan, struktur dalaman Bumi, batuan, mineral, proses Bumi, geobencana, usia Bumi dan sumber Bumi.",
+    keywords: ["bumi", "atmosfera", "biosfera", "hidrosfera", "geosfera", "batuan", "mineral", "fosil", "geobencana", "gempa bumi", "tsunami", "geoterma"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c9-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 9",
+    title: "Chapter 9: Earth",
+    summary:
+      "Form 1 Science Chapter 9 summary: Earth systems, atmospheric and ocean layers, internal Earth structure, rocks, minerals, Earth processes, geohazards, Earth's age and Earth resources.",
+    keywords: ["earth", "atmosphere", "biosphere", "hydrosphere", "geosphere", "rocks", "minerals", "fossils", "geohazards", "earthquakes", "tsunamis", "geothermal"],
     lang: "dlp",
   },
   {

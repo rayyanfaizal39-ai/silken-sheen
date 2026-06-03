@@ -16,6 +16,8 @@ import {
   scienceF1C7NotesDLP,
   scienceF1C8NotesBM,
   scienceF1C8NotesDLP,
+  scienceF1C9NotesBM,
+  scienceF1C9NotesDLP,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
@@ -199,6 +201,24 @@ export const chapters: ChapterContent[] = [
     title: "Light and Optics",
     lang: "dlp",
     notes: scienceF1C8NotesDLP,
+  },
+  {
+    id: "science-f1-c9-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 9",
+    title: "Bumi",
+    lang: "bm",
+    notes: scienceF1C9NotesBM,
+  },
+  {
+    id: "science-f1-c9-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 9",
+    title: "Earth",
+    lang: "dlp",
+    notes: scienceF1C9NotesDLP,
   },
 ];
 
