@@ -75,6 +75,28 @@ export const notes: Note[] = [
     lang: "dlp",
   },
   {
+    id: "sci-f1-c6-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    title: "Bab 6: Jadual Berkala",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 6: atom, zarah subatom, molekul, unsur, sebatian, Jadual Berkala, logam, bukan logam, campuran dan kaedah pengasingan.",
+    keywords: ["jadual berkala", "atom", "proton", "neutron", "elektron", "unsur", "sebatian", "campuran", "logam", "bukan logam"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c6-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    title: "Chapter 6: Periodic Table",
+    summary:
+      "Form 1 Science Chapter 6 summary: atoms, subatomic particles, molecules, elements, compounds, the Periodic Table, metals, non-metals, mixtures and separation methods.",
+    keywords: ["periodic table", "atom", "proton", "neutron", "electron", "element", "compound", "mixture", "metal", "non-metal"],
+    lang: "dlp",
+  },
+  {
     id: "n4",
     subjectId: "science",
     form: "Form 3",

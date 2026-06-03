@@ -16,6 +16,8 @@ import { scienceF1C4NotesBM as _scienceF1C4NotesBM } from "./science-f1-c4-notes
 import { scienceF1C4NotesDLP as _scienceF1C4NotesDLP } from "./science-f1-c4-notes-dlp";
 import { scienceF1C5NotesBM as _scienceF1C5NotesBM } from "./science-f1-c5-notes-bm";
 import { scienceF1C5NotesDLP as _scienceF1C5NotesDLP } from "./science-f1-c5-notes-dlp";
+import { scienceF1C6NotesBM as _scienceF1C6NotesBM } from "./science-f1-c6-notes-bm";
+import { scienceF1C6NotesDLP as _scienceF1C6NotesDLP } from "./science-f1-c6-notes-dlp";
 
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
@@ -23,6 +25,8 @@ export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
 export const scienceF1C4NotesDLP = _scienceF1C4NotesDLP;
 export const scienceF1C5NotesBM = _scienceF1C5NotesBM;
 export const scienceF1C5NotesDLP = _scienceF1C5NotesDLP;
+export const scienceF1C6NotesBM = _scienceF1C6NotesBM;
+export const scienceF1C6NotesDLP = _scienceF1C6NotesDLP;
 
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
@@ -499,6 +503,28 @@ export const notes: Note[] = [
     summary:
       "Form 1 Science Chapter 5 summary: matter, non-matter, physical and chemical properties, three states of matter, kinetic theory, diffusion, changes of state, density, buoyancy and water displacement.",
     keywords: ["matter", "mass", "volume", "solid", "liquid", "gas", "diffusion", "density", "buoyancy", "water displacement"],
+    lang: "dlp",
+  },
+  {
+    id: "sci-f1-c6-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    title: "Bab 6: Jadual Berkala",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 6: atom, zarah subatom, molekul, unsur, sebatian, Jadual Berkala, logam, bukan logam, campuran dan kaedah pengasingan.",
+    keywords: ["jadual berkala", "atom", "proton", "neutron", "elektron", "unsur", "sebatian", "campuran", "logam", "bukan logam"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c6-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 6",
+    title: "Chapter 6: Periodic Table",
+    summary:
+      "Form 1 Science Chapter 6 summary: atoms, subatomic particles, molecules, elements, compounds, the Periodic Table, metals, non-metals, mixtures and separation methods.",
+    keywords: ["periodic table", "atom", "proton", "neutron", "electron", "element", "compound", "mixture", "metal", "non-metal"],
     lang: "dlp",
   },
   {

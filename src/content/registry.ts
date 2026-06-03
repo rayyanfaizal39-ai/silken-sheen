@@ -10,6 +10,8 @@ import {
   scienceF1C4NotesDLP,
   scienceF1C5NotesBM,
   scienceF1C5NotesDLP,
+  scienceF1C6NotesBM,
+  scienceF1C6NotesDLP,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
@@ -139,6 +141,24 @@ export const chapters: ChapterContent[] = [
     title: "Matter",
     lang: "dlp",
     notes: scienceF1C5NotesDLP,
+  },
+  {
+    id: "science-f1-c6-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 6",
+    title: "Jadual Berkala",
+    lang: "bm",
+    notes: scienceF1C6NotesBM,
+  },
+  {
+    id: "science-f1-c6-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 6",
+    title: "Periodic Table",
+    lang: "dlp",
+    notes: scienceF1C6NotesDLP,
   },
 ];
 
