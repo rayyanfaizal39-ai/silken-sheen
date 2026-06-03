@@ -1,3 +1,9 @@
+import { scienceF1C3HomeostasisQuizzesBM } from "./science-f1-c3-homeostasis-quizzes";
+import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
+import { scienceF1C3NotesBM as _scienceF1C3NotesBM } from "./science-f1-c3-notes-bm";
+
+export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
+
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
 export interface Subject {
