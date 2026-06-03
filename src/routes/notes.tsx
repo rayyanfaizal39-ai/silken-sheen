@@ -229,10 +229,10 @@ function NotesPage() {
 
   useEffect(() => {
     if (isScienceStructuredNotes) {
-      setNotesTab(isScienceChapter3 ? "bm" : (scienceLang ?? "bm"));
+      setNotesTab(scienceLang ?? "bm");
     }
     setNotesSearch("");
-  }, [isScienceStructuredNotes, isScienceChapter3, scienceLang]);
+  }, [isScienceStructuredNotes, scienceLang]);
 
   const filtered = useMemo(() => {
     if (!subject || !chapter) return [];
