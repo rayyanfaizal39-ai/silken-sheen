@@ -12442,6 +12442,7 @@ export const quizzes: QuizQuestion[] = [
     answerIndex: 1,
     explanation: 'Polite means having good manners and being respectful to others.',
   },
+  ...scienceF1C3HomeostasisQuizzesBM,
 ];
 export interface Flashcard {
   id: string;
