@@ -17,13 +17,6 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full">
       <div className="glass-strong border-b border-white/5">
         <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-8 py-4">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
-                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
-                </div>
           <Link to="/" className="flex items-center gap-2 group">
             <div className="relative">
               <div className="absolute inset-0 bg-primary blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />

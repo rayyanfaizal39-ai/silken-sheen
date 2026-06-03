@@ -1,13 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import {
-  subjects,
-  forms,
-  notes,
-  getItemChapterKey,
-  getSubjectChapters,
-} from "@/data/content";
-import { subjects, forms, notes, getItemChapterKey, getSubjectChapters, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM, type ScienceChapter2Notes, type ScienceNotesSection } from "@/data/content";
+import { subjects, forms, notes, getItemChapterKey, getSubjectChapters, scienceF1C2NotesBM, scienceF1C2NotesDLP, type ScienceChapter2Notes, type ScienceNotesSection } from "@/data/content";
 import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
 import { z } from "zod";
 import {
@@ -81,14 +74,12 @@ function NotesPage() {
   const chapterMeta =
     subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
   const isRead = subject && chapter ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read : false;
+  const activeChapter = subject && chapter ? getChapter(subject, chapter, scienceLang ?? undefined) ?? undefined : undefined;
+  const features = getChapterFeatures(activeChapter);
   const isScienceChapter2 = subject === "science" && chapter === "Chapter 2";
-  const isScienceChapter3 = subject === "science" && chapter === "Chapter 3";
-  const isScienceStructuredNotes = isScienceChapter2 || isScienceChapter3;
-  const chapterNotes: ScienceChapter2Notes = isScienceChapter3
-    ? scienceF1C3NotesBM
-    : notesTab === "dlp"
-      ? scienceF1C2NotesDLP
-      : scienceF1C2NotesBM;
+  const isScienceStructuredNotes = isScienceChapter2;
+  const chapterNotes: ScienceChapter2Notes =
+    notesTab === "dlp" ? scienceF1C2NotesDLP : scienceF1C2NotesBM;
 
   const filteredChapterSections = useMemo(() => {
     if (!notesSearch.trim()) return chapterNotes.sections;
@@ -238,10 +229,10 @@ function NotesPage() {
 
   useEffect(() => {
     if (isScienceStructuredNotes) {
-      setNotesTab(isScienceChapter3 ? "bm" : (scienceLang ?? "bm"));
+      setNotesTab(scienceLang ?? "bm");
     }
     setNotesSearch("");
-  }, [isScienceStructuredNotes, isScienceChapter3, scienceLang]);
+  }, [isScienceStructuredNotes, scienceLang]);
 
   const filtered = useMemo(() => {
     if (!subject || !chapter) return [];
