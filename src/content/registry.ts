@@ -4,6 +4,7 @@ import {
   quizzes as allQuizzes,
   scienceF1C2NotesBM,
   scienceF1C2NotesDLP,
+  scienceF1C3NotesBM,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
