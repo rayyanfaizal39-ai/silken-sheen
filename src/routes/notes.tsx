@@ -614,7 +614,7 @@ function highlight(text: string, keywords: string[]) {
   const re = new RegExp(`\\b(${escaped.join("|")})\\b`, "gi");
   const parts = text.split(re);
   return parts.map((part, i) =>
-    re.test(part) ? (
+    keywords.some((keyword) => part.toLowerCase() === keyword.toLowerCase()) ? (
       <mark
         key={i}
         className="bg-accent/30 text-foreground rounded px-1 py-0.5 not-italic"
