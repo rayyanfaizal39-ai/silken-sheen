@@ -7,6 +7,8 @@ import { scienceF1C5QuizzesBM } from "./science-f1-c5-quizzes-bm";
 import { scienceF1C5QuizzesDLP } from "./science-f1-c5-quizzes-dlp";
 import { scienceF1C6QuizzesBM } from "./science-f1-c6-quizzes-bm";
 import { scienceF1C6QuizzesDLP } from "./science-f1-c6-quizzes-dlp";
+import { scienceF1C7QuizzesBM } from "./science-f1-c7-quizzes-bm";
+import { scienceF1C7QuizzesDLP } from "./science-f1-c7-quizzes-dlp";
 
 export const quizzes: QuizQuestion[] = [
   {
@@ -1272,6 +1274,8 @@ export const quizzes: QuizQuestion[] = [
   ...scienceF1C5QuizzesDLP,
   ...scienceF1C6QuizzesBM,
   ...scienceF1C6QuizzesDLP,
+  ...scienceF1C7QuizzesBM,
+  ...scienceF1C7QuizzesDLP,
   {
     id: "sci-f1-c2-dlp-q1",
     subjectId: "science",
