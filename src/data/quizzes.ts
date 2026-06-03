@@ -1,8 +1,5 @@
 import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
-import {
-  scienceF1C3HomeostasisQuizzesBM,
-  scienceF1C3HomeostasisQuizzesDLP,
-} from "./science-f1-c3-homeostasis-quizzes";
+import { scienceF1C3QuizzesBM } from "./science-f1-c3-quizzes-bm";
 
 export const quizzes: QuizQuestion[] = [
   {
@@ -1260,8 +1257,7 @@ export const quizzes: QuizQuestion[] = [
     answerIndex: 1,
     explanation: "Organisasi bermula daripada sel (unit terkecil) hingga ke organisma (paling kompleks).",
   },
-  ...scienceF1C3HomeostasisQuizzesBM,
-  ...scienceF1C3HomeostasisQuizzesDLP,
+  ...scienceF1C3QuizzesBM,
   {
     id: "sci-f1-c2-dlp-q1",
     subjectId: "science",
