@@ -126,13 +126,15 @@ export function ContentHeader({
   subjectId,
   chapterKey,
   onBack,
+  scienceLang,
 }: {
   subjectId: string;
   chapterKey: string;
   onBack: () => void;
+  scienceLang?: "bm" | "dlp";
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId).find((c) => c.key === chapterKey);
+  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
   return (
     <div className="flex items-center justify-between mb-5 flex-wrap gap-3 animate-fade-up">
       <button
@@ -152,12 +154,14 @@ export function ComingSoonScreen({
   subjectId,
   chapterKey,
   onBack,
+  scienceLang,
 }: {
   subjectId: string;
   chapterKey: string;
   onBack: () => void;
+  scienceLang?: "bm" | "dlp";
 }) {
-  const chapter = getSubjectChapters(subjectId).find((c) => c.key === chapterKey);
+  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
   return (
     <div className="text-center py-20 glass-strong rounded-3xl animate-fade-up">
       <div className="text-5xl mb-4 animate-float-soft">🚧</div>

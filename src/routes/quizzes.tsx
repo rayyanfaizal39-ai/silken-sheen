@@ -264,17 +264,28 @@ function QuizzesPage() {
           />
         </>
       ) : chapterMeta && !chapterMeta.available ? (
-        <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
+        <ComingSoonScreen
+          subjectId={subject}
+          chapterKey={chapter}
+          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+          onBack={() => { setChapter(null); reset(); }}
+        />
       ) : !timerPref ? (
         <QuizSettingsScreen
           subjectId={subject}
           chapterKey={chapter}
+          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
           onBack={() => { setChapter(null); reset(); }}
           onStart={(pref) => setTimerPref(pref)}
         />
       ) : (
         <>
-          <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => { setChapter(null); reset(); }} />
+          <ContentHeader
+            subjectId={subject}
+            chapterKey={chapter}
+            scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+            onBack={() => { setChapter(null); reset(); }}
+          />
 
           <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between animate-fade-up">
             <div className="flex flex-wrap gap-2 items-center">
@@ -473,16 +484,18 @@ function QuizzesPage() {
 function QuizSettingsScreen({
   subjectId,
   chapterKey,
+  scienceLang,
   onBack,
   onStart,
 }: {
   subjectId: string;
   chapterKey: string;
+  scienceLang?: "bm" | "dlp";
   onBack: () => void;
   onStart: (pref: { mode: TimerMode; seconds: number }) => void;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId).find((c) => c.key === chapterKey);
+  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
   const [mode, setMode] = useState<TimerMode | null>(null);
   const [seconds, setSeconds] = useState<number>(30);
 

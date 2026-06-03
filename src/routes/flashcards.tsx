@@ -330,10 +330,20 @@ function FlashcardsPage() {
           />
         </>
       ) : chapterMeta && !chapterMeta.available ? (
-        <ComingSoonScreen subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+        <ComingSoonScreen
+          subjectId={subject}
+          chapterKey={chapter}
+          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+          onBack={() => setChapter(null)}
+        />
       ) : (
         <>
-          <ContentHeader subjectId={subject} chapterKey={chapter} onBack={() => setChapter(null)} />
+          <ContentHeader
+            subjectId={subject}
+            chapterKey={chapter}
+            scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+            onBack={() => setChapter(null)}
+          />
 
           {/* Settings row */}
           <div className="flex justify-end gap-2 mb-3">
