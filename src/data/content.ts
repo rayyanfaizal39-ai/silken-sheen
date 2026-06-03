@@ -1,3 +1,9 @@
+import { scienceF1C3HomeostasisQuizzesBM } from "./science-f1-c3-homeostasis-quizzes";
+import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
+import { scienceF1C3NotesBM as _scienceF1C3NotesBM } from "./science-f1-c3-notes-bm";
+
+export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
+
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
 export interface Subject {
@@ -12436,6 +12442,7 @@ export const quizzes: QuizQuestion[] = [
     answerIndex: 1,
     explanation: 'Polite means having good manners and being respectful to others.',
   },
+  ...scienceF1C3HomeostasisQuizzesBM,
 ];
 export interface Flashcard {
   id: string;
@@ -23851,6 +23858,7 @@ export const flashcards: Flashcard[] = [
     front: 'What are the features of a good paragraph?',
     back: 'A topic sentence, supporting sentences, and a closing sentence all focused on one main idea.',
   },
+  ...scienceF1C3FlashcardsBM,
 ];
 export interface SejarahChapter {
   num: number;

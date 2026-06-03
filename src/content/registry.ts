@@ -4,6 +4,7 @@ import {
   quizzes as allQuizzes,
   scienceF1C2NotesBM,
   scienceF1C2NotesDLP,
+  scienceF1C3NotesBM,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
@@ -79,6 +80,15 @@ export const chapters: ChapterContent[] = [
     title: "Cell as the Basic Unit of Life",
     lang: "dlp",
     notes: scienceF1C2NotesDLP,
+  },
+  {
+    id: "science-f1-c3-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 3",
+    title: "Koordinasi dan Tindak Balas",
+    lang: "bm",
+    notes: scienceF1C3NotesBM,
   },
 ];
 
