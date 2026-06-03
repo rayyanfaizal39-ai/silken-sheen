@@ -1,6 +1,8 @@
 import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
 import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
 import { scienceF1C3FlashcardsDLP } from "./science-f1-c3-flashcards-dlp";
+import { scienceF1C4FlashcardsBM } from "./science-f1-c4-flashcards-bm";
+import { scienceF1C4FlashcardsDLP } from "./science-f1-c4-flashcards-dlp";
 
 export const flashcards: Flashcard[] = [
   {
@@ -1085,6 +1087,8 @@ export const flashcards: Flashcard[] = [
   },
   ...scienceF1C3FlashcardsBM,
   ...scienceF1C3FlashcardsDLP,
+  ...scienceF1C4FlashcardsBM,
+  ...scienceF1C4FlashcardsDLP,
   {
     id: "f1",
     subjectId: "math",

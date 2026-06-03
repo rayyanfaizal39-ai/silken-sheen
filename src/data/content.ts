@@ -4,6 +4,8 @@ import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
 import { scienceF1C4QuizzesBM } from "./science-f1-c4-quizzes-bm";
 import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
 import { scienceF1C3FlashcardsDLP } from "./science-f1-c3-flashcards-dlp";
+import { scienceF1C4FlashcardsBM } from "./science-f1-c4-flashcards-bm";
+import { scienceF1C4FlashcardsDLP } from "./science-f1-c4-flashcards-dlp";
 import { scienceF1C3NotesBM as _scienceF1C3NotesBM } from "./science-f1-c3-notes-bm";
 import { scienceF1C3NotesDLP as _scienceF1C3NotesDLP } from "./science-f1-c3-notes-dlp";
 import { scienceF1C4NotesBM as _scienceF1C4NotesBM } from "./science-f1-c4-notes-bm";
@@ -23895,6 +23897,8 @@ export const flashcards: Flashcard[] = [
   },
   ...scienceF1C3FlashcardsBM,
   ...scienceF1C3FlashcardsDLP,
+  ...scienceF1C4FlashcardsBM,
+  ...scienceF1C4FlashcardsDLP,
 ];
 export interface SejarahChapter {
   num: number;
