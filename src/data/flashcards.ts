@@ -11,6 +11,8 @@ import { scienceF1C7FlashcardsBM } from "./science-f1-c7-flashcards-bm";
 import { scienceF1C7FlashcardsDLP } from "./science-f1-c7-flashcards-dlp";
 import { scienceF1C8FlashcardsBM } from "./science-f1-c8-flashcards-bm";
 import { scienceF1C8FlashcardsDLP } from "./science-f1-c8-flashcards-dlp";
+import { scienceF1C9FlashcardsBM } from "./science-f1-c9-flashcards-bm";
+import { scienceF1C9FlashcardsDLP } from "./science-f1-c9-flashcards-dlp";
 
 export const flashcards: Flashcard[] = [
   {
@@ -1105,6 +1107,8 @@ export const flashcards: Flashcard[] = [
   ...scienceF1C7FlashcardsDLP,
   ...scienceF1C8FlashcardsBM,
   ...scienceF1C8FlashcardsDLP,
+  ...scienceF1C9FlashcardsBM,
+  ...scienceF1C9FlashcardsDLP,
   {
     id: "f1",
     subjectId: "math",
