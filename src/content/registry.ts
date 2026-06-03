@@ -6,6 +6,7 @@ import {
   scienceF1C2NotesDLP,
   sejarahChapterFromId,
 } from "@/data/content";
+import { scienceF1C3NotesBM } from "@/data/subjects";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 
 // Mind maps
@@ -26,6 +27,18 @@ function sejarahFlashcardsFor(chapterNum: number) {
 function sejarahQuizzesFor(chapterNum: number) {
   return allQuizzes.filter(
     (q) => q.subjectId === "sejarah" && sejarahChapterFromId(q.id) === chapterNum,
+  );
+}
+
+function scienceFlashcardsFor(chapterKey: string, lang: "bm" | "dlp") {
+  return allFlashcards.filter(
+    (f) => f.subjectId === "science" && f.chapter === chapterKey && f.lang === lang,
+  );
+}
+
+function scienceQuizzesFor(chapterKey: string, lang: "bm" | "dlp") {
+  return allQuizzes.filter(
+    (q) => q.subjectId === "science" && q.chapter === chapterKey && q.lang === lang,
   );
 }
 
@@ -79,6 +92,26 @@ export const chapters: ChapterContent[] = [
     title: "Cell as the Basic Unit of Life",
     lang: "dlp",
     notes: scienceF1C2NotesDLP,
+  },
+  {
+    id: "science-f1-c3-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 3",
+    title: "Koordinasi dan Gerak Balas (Homeostasis)",
+    lang: "bm",
+    notes: scienceF1C3NotesBM,
+    flashcards: scienceFlashcardsFor("Chapter 3", "bm"),
+    quiz: scienceQuizzesFor("Chapter 3", "bm"),
+  },
+  {
+    id: "science-f1-c3-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 3",
+    title: "Coordination and Response (Homeostasis)",
+    lang: "dlp",
+    quiz: scienceQuizzesFor("Chapter 3", "dlp"),
   },
 ];
 

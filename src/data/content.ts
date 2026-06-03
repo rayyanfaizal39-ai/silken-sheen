@@ -1,3 +1,8 @@
+import {
+  scienceF1C3QuizzesBM,
+  scienceF1C3QuizzesDLP,
+} from "./science-f1-c3-quizzes-bm";
+
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
 export interface Subject {
@@ -1329,6 +1334,8 @@ export const quizzes: QuizQuestion[] = [
     options: ["Mitochondria", "Nucleus", "Ribosome", "Vacuole"],
     answerIndex: 1,
   },
+  ...scienceF1C3QuizzesBM,
+  ...scienceF1C3QuizzesDLP,
   {
     id: "sci-f1-c1-dlp-q1",
     subjectId: "science",
