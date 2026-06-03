@@ -1,5 +1,6 @@
 import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
 import { scienceF1C3QuizzesBM } from "./science-f1-c3-quizzes-bm";
+import { scienceF1C3QuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 
 export const quizzes: QuizQuestion[] = [
   {
@@ -1258,6 +1259,7 @@ export const quizzes: QuizQuestion[] = [
     explanation: "Organisasi bermula daripada sel (unit terkecil) hingga ke organisma (paling kompleks).",
   },
   ...scienceF1C3QuizzesBM,
+  ...scienceF1C3QuizzesDLP,
   {
     id: "sci-f1-c2-dlp-q1",
     subjectId: "science",
