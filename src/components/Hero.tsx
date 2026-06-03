@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import type { CSSProperties, ReactNode } from "react";
 import { Sparkles, Brain, Zap, Trophy, ArrowRight, BookOpen, Target, Flame } from "lucide-react";
 import { subjects } from "@/data/content";
 
@@ -144,7 +145,7 @@ export function Hero() {
   );
 }
 
-function Stat({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) {
+function Stat({ icon, value, label }: { icon: ReactNode; value: string; label: string }) {
   return (
     <div className="flex items-center gap-2">
       {icon}
@@ -159,9 +160,9 @@ function FloatingCard({
   className = "",
   style,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }) {
   return (
     <div className={`glass-strong rounded-2xl p-5 shadow-2xl ${className}`} style={style}>
