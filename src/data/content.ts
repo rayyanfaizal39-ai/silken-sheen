@@ -2,6 +2,8 @@ import { scienceF1C3QuizzesBM as scienceF1C3HomeostasisQuizzesBM } from "./scien
 import { scienceF1C3QuizzesDLP as scienceF1C3HomeostasisQuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
 import { scienceF1C4QuizzesBM } from "./science-f1-c4-quizzes-bm";
+import { scienceF1C5QuizzesBM } from "./science-f1-c5-quizzes-bm";
+import { scienceF1C5QuizzesDLP } from "./science-f1-c5-quizzes-dlp";
 import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
 import { scienceF1C3FlashcardsDLP } from "./science-f1-c3-flashcards-dlp";
 import { scienceF1C4FlashcardsBM } from "./science-f1-c4-flashcards-bm";
@@ -2268,18 +2270,6 @@ export const quizzes: QuizQuestion[] = [
     explanation:
       "Isipadu batu = Paras air akhir - Paras air awal = 65 - 50 = 15 cm3. Ini adalah Kaedah Sesaran Air.",
   },
-  {
-    id: "q4",
-    subjectId: "science",
-    form: "Form 3",
-    chapter: "Chapter 5",
-    difficulty: "Hard",
-    question: "If V = 12V and R = 4Ω, find I.",
-    options: ["2 A", "3 A", "4 A", "48 A"],
-    answerIndex: 1,
-    explanation: "I = V/R = 12/4 = 3 A.",
-  },
-
   {
     id: "q6",
     subjectId: "geography",
@@ -12506,6 +12496,8 @@ export const quizzes: QuizQuestion[] = [
   ...scienceF1C3HomeostasisQuizzesDLP,
   ...scienceF1C4QuizzesDLP,
   ...scienceF1C4QuizzesBM,
+  ...scienceF1C5QuizzesBM,
+  ...scienceF1C5QuizzesDLP,
 ];
 export interface Flashcard {
   id: string;

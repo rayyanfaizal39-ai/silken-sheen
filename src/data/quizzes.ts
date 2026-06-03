@@ -3,6 +3,8 @@ import { scienceF1C3QuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
 import { scienceF1C4QuizzesBM } from "./science-f1-c4-quizzes-bm";
+import { scienceF1C5QuizzesBM } from "./science-f1-c5-quizzes-bm";
+import { scienceF1C5QuizzesDLP } from "./science-f1-c5-quizzes-dlp";
 
 export const quizzes: QuizQuestion[] = [
   {
@@ -1264,6 +1266,8 @@ export const quizzes: QuizQuestion[] = [
   ...scienceF1C3QuizzesDLP,
   ...scienceF1C4QuizzesDLP,
   ...scienceF1C4QuizzesBM,
+  ...scienceF1C5QuizzesBM,
+  ...scienceF1C5QuizzesDLP,
   {
     id: "sci-f1-c2-dlp-q1",
     subjectId: "science",
@@ -1624,18 +1628,6 @@ export const quizzes: QuizQuestion[] = [
     answerIndex: 1,
     explanation: "Cells form tissues, tissues form organs, organs form systems and systems form an organism.",
   },
-  {
-    id: "q4",
-    subjectId: "science",
-    form: "Form 3",
-    chapter: "Chapter 5",
-    difficulty: "Hard",
-    question: "If V = 12V and R = 4Ω, find I.",
-    options: ["2 A", "3 A", "4 A", "48 A"],
-    answerIndex: 1,
-    explanation: "I = V/R = 12/4 = 3 A.",
-  },
-
   {
     id: "q6",
     subjectId: "geography",
