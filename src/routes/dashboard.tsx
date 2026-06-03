@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import { useProgress } from "@/hooks/use-progress";
 import { subjects, badges } from "@/data/content";
 import { Flame, Trophy, Zap, Target, Sparkles } from "lucide-react";
@@ -152,7 +153,7 @@ function DashboardPage() {
   );
 }
 
-function StatCard({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: number; color: string }) {
+function StatCard({ icon, label, value, color }: { icon: ReactNode; label: string; value: number; color: string }) {
   return (
     <div className="glass-strong rounded-2xl p-5">
       <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white mb-3`}>
