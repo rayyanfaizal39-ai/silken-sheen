@@ -3,8 +3,14 @@ import { scienceF1C3QuizzesDLP as scienceF1C3HomeostasisQuizzesDLP } from "./sci
 import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
 import { scienceF1C3FlashcardsDLP } from "./science-f1-c3-flashcards-dlp";
 import { scienceF1C3NotesBM as _scienceF1C3NotesBM } from "./science-f1-c3-notes-bm";
+import { scienceF1C3NotesDLP as _scienceF1C3NotesDLP } from "./science-f1-c3-notes-dlp";
+import { scienceF1C4NotesBM as _scienceF1C4NotesBM } from "./science-f1-c4-notes-bm";
+import { scienceF1C4NotesDLP as _scienceF1C4NotesDLP } from "./science-f1-c4-notes-dlp";
 
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
+export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
+export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
+export const scienceF1C4NotesDLP = _scienceF1C4NotesDLP;
 
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
@@ -437,6 +443,28 @@ export const notes: Note[] = [
     summary:
       "Form 1 Science Chapter 2 summary in English: cells, microscope, cell structure, organisation, respiration and photosynthesis.",
     keywords: ["cell", "microscope", "respiration", "photosynthesis", "mitochondria", "chloroplast"],
+    lang: "dlp",
+  },
+  {
+    id: "sci-f1-c4-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Bab 4: Pembiakan",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 4: pembiakan seks dan aseks, sistem pembiakan manusia, kitar haid, persenyawaan, kehamilan, penjagaan prenatal, kemandulan, pencegahan kehamilan dan pembiakan tumbuhan.",
+    keywords: ["pembiakan", "gamet", "persenyawaan", "zigot", "kitar haid", "plasenta", "pendebungaan", "percambahan"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c4-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Chapter 4: Reproduction",
+    summary:
+      "Form 1 Science Chapter 4 summary: sexual and asexual reproduction, human reproductive systems, menstrual cycle, fertilisation, pregnancy, prenatal care, sterility, contraception and reproduction in flowering plants.",
+    keywords: ["reproduction", "gamete", "fertilisation", "zygote", "menstrual cycle", "placenta", "pollination", "germination"],
     lang: "dlp",
   },
   {
@@ -23931,7 +23959,7 @@ export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp
   { num: 1, bm: "Pengenalan kepada Penyiasatan Saintifik", dlp: "Introduction to Scientific Investigation" },
   { num: 2, bm: "Sel sebagai Unit Asas Kehidupan", dlp: "Cell as the Basic Unit of Life" },
   { num: 3, bm: "Koordinasi dan Tindak Balas", dlp: "Coordination and Response" },
-  { num: 4, bm: "Respirasi", dlp: "Respiration" },
+  { num: 4, bm: "Pembiakan", dlp: "Reproduction" },
   { num: 5, bm: "Jirim", dlp: "Matter" },
   { num: 6, bm: "Jadual Berkala", dlp: "Periodic Table" },
   { num: 7, bm: "Udara", dlp: "Air" },

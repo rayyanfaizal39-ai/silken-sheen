@@ -1,5 +1,5 @@
 import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
-import { subjects, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM } from "./subjects";
+import { subjects, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM, scienceF1C3NotesDLP, scienceF1C4NotesBM, scienceF1C4NotesDLP } from "./subjects";
 
 export const sejarahForm1Chapters: SejarahChapter[] = [
   {
@@ -110,7 +110,7 @@ export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp
   { num: 1, bm: "Pengenalan kepada Penyiasatan Saintifik", dlp: "Introduction to Scientific Investigation" },
   { num: 2, bm: "Sel sebagai Unit Asas Kehidupan", dlp: "Cell as the Basic Unit of Life" },
   { num: 3, bm: "Koordinasi dan Gerak Balas (Homeostasis)", dlp: "Coordination and Response (Homeostasis)" },
-  { num: 4, bm: "Respirasi", dlp: "Respiration" },
+  { num: 4, bm: "Pembiakan", dlp: "Reproduction" },
   { num: 5, bm: "Jirim", dlp: "Matter" },
   { num: 6, bm: "Jadual Berkala", dlp: "Periodic Table" },
   { num: 7, bm: "Udara", dlp: "Air" },
@@ -153,8 +153,8 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
     return scienceForm1ChaptersBilingual.map((c) => ({
       key: `Chapter ${c.num}`,
       label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
-      available: c.num <= 3 || c.num === 5,
-      isNew: c.num === 3,
+      available: c.num <= 4 || c.num === 5,
+      isNew: c.num === 4,
       structuredNotes:
         c.num === 2
           ? {
@@ -162,7 +162,15 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
               dlp: scienceF1C2NotesDLP,
             }
           : c.num === 3
-            ? { bm: scienceF1C3NotesBM }
+            ? {
+                bm: scienceF1C3NotesBM,
+                dlp: scienceF1C3NotesDLP,
+              }
+            : c.num === 4
+              ? {
+                  bm: scienceF1C4NotesBM,
+                  dlp: scienceF1C4NotesDLP,
+                }
             : undefined,
     }));
   }

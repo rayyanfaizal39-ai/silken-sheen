@@ -911,4 +911,26 @@ export const notes: Note[] = [
     keywords: ["homeostasis", "ginjal", "transpirasi", "stoma", "peluh", "metabolisme", "sel pengawal"],
     lang: "bm",
   },
+  {
+    id: "sci-f1-c4-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Bab 4: Pembiakan",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 4: pembiakan seks dan aseks, sistem pembiakan manusia, kitar haid, persenyawaan, kehamilan, penjagaan prenatal, kemandulan, pencegahan kehamilan dan pembiakan tumbuhan.",
+    keywords: ["pembiakan", "gamet", "persenyawaan", "zigot", "kitar haid", "plasenta", "pendebungaan", "percambahan"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c4-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 4",
+    title: "Chapter 4: Reproduction",
+    summary:
+      "Form 1 Science Chapter 4 summary: sexual and asexual reproduction, human reproductive systems, menstrual cycle, fertilisation, pregnancy, prenatal care, sterility, contraception and reproduction in flowering plants.",
+    keywords: ["reproduction", "gamete", "fertilisation", "zygote", "menstrual cycle", "placenta", "pollination", "germination"],
+    lang: "dlp",
+  },
 ];
