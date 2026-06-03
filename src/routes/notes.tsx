@@ -75,13 +75,9 @@ function NotesPage() {
     subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
   const isRead = subject && chapter ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read : false;
   const isScienceChapter2 = subject === "science" && chapter === "Chapter 2";
-  const isScienceChapter3 = subject === "science" && chapter === "Chapter 3";
-  const isScienceStructuredNotes = isScienceChapter2 || isScienceChapter3;
-  const chapterNotes: ScienceChapter2Notes = isScienceChapter3
-    ? scienceF1C3NotesBM
-    : notesTab === "dlp"
-      ? scienceF1C2NotesDLP
-      : scienceF1C2NotesBM;
+  const isScienceStructuredNotes = isScienceChapter2;
+  const chapterNotes: ScienceChapter2Notes =
+    notesTab === "dlp" ? scienceF1C2NotesDLP : scienceF1C2NotesBM;
 
   const filteredChapterSections = useMemo(() => {
     if (!notesSearch.trim()) return chapterNotes.sections;
