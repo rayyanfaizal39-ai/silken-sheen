@@ -28,6 +28,8 @@ import { scienceF1C6NotesBM as _scienceF1C6NotesBM } from "./science-f1-c6-notes
 import { scienceF1C6NotesDLP as _scienceF1C6NotesDLP } from "./science-f1-c6-notes-dlp";
 import { scienceF1C7NotesBM as _scienceF1C7NotesBM } from "./science-f1-c7-notes-bm";
 import { scienceF1C7NotesDLP as _scienceF1C7NotesDLP } from "./science-f1-c7-notes-dlp";
+import { scienceF1C8NotesBM as _scienceF1C8NotesBM } from "./science-f1-c8-notes-bm";
+import { scienceF1C8NotesDLP as _scienceF1C8NotesDLP } from "./science-f1-c8-notes-dlp";
 
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
@@ -39,6 +41,8 @@ export const scienceF1C6NotesBM = _scienceF1C6NotesBM;
 export const scienceF1C6NotesDLP = _scienceF1C6NotesDLP;
 export const scienceF1C7NotesBM = _scienceF1C7NotesBM;
 export const scienceF1C7NotesDLP = _scienceF1C7NotesDLP;
+export const scienceF1C8NotesBM = _scienceF1C8NotesBM;
+export const scienceF1C8NotesDLP = _scienceF1C8NotesDLP;
 
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
@@ -559,6 +563,28 @@ export const notes: Note[] = [
     summary:
       "Form 1 Science Chapter 7 summary: composition of air, importance of gases, carbon and oxygen cycles, combustion, fire safety, air pollution and pollution control.",
     keywords: ["air", "atmosphere", "nitrogen", "oxygen", "carbon dioxide", "noble gases", "combustion", "air pollution", "acid rain", "global warming"],
+    lang: "dlp",
+  },
+  {
+    id: "sci-f1-c8-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 8",
+    title: "Bab 8: Cahaya dan Optik",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 8: sifat cahaya, bayang-bayang, cermin dan imej, pantulan, pembiasan, penyebaran, penyerakan, warna cahaya, penapis warna dan alat optik.",
+    keywords: ["cahaya", "optik", "bayang-bayang", "cermin", "imej", "pantulan", "pembiasan", "penyebaran", "penyerakan", "warna", "periskop"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c8-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 8",
+    title: "Chapter 8: Light and Optics",
+    summary:
+      "Form 1 Science Chapter 8 summary: properties of light, shadows, mirrors and images, reflection, refraction, dispersion, scattering, light colours, colour filters and optical instruments.",
+    keywords: ["light", "optics", "shadow", "mirror", "image", "reflection", "refraction", "dispersion", "scattering", "colour", "periscope"],
     lang: "dlp",
   },
   {

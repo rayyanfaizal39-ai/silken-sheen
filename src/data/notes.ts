@@ -119,6 +119,28 @@ export const notes: Note[] = [
     lang: "dlp",
   },
   {
+    id: "sci-f1-c8-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 8",
+    title: "Bab 8: Cahaya dan Optik",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 8: sifat cahaya, bayang-bayang, cermin dan imej, pantulan, pembiasan, penyebaran, penyerakan, warna cahaya, penapis warna dan alat optik.",
+    keywords: ["cahaya", "optik", "bayang-bayang", "cermin", "imej", "pantulan", "pembiasan", "penyebaran", "penyerakan", "warna", "periskop"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c8-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 8",
+    title: "Chapter 8: Light and Optics",
+    summary:
+      "Form 1 Science Chapter 8 summary: properties of light, shadows, mirrors and images, reflection, refraction, dispersion, scattering, light colours, colour filters and optical instruments.",
+    keywords: ["light", "optics", "shadow", "mirror", "image", "reflection", "refraction", "dispersion", "scattering", "colour", "periscope"],
+    lang: "dlp",
+  },
+  {
     id: "n4",
     subjectId: "science",
     form: "Form 3",

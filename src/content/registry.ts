@@ -14,6 +14,8 @@ import {
   scienceF1C6NotesDLP,
   scienceF1C7NotesBM,
   scienceF1C7NotesDLP,
+  scienceF1C8NotesBM,
+  scienceF1C8NotesDLP,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
@@ -179,6 +181,24 @@ export const chapters: ChapterContent[] = [
     title: "Air",
     lang: "dlp",
     notes: scienceF1C7NotesDLP,
+  },
+  {
+    id: "science-f1-c8-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 8",
+    title: "Cahaya dan Optik",
+    lang: "bm",
+    notes: scienceF1C8NotesBM,
+  },
+  {
+    id: "science-f1-c8-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 8",
+    title: "Light and Optics",
+    lang: "dlp",
+    notes: scienceF1C8NotesDLP,
   },
 ];
 
