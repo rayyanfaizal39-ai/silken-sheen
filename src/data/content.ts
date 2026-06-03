@@ -1,6 +1,7 @@
 import { scienceF1C3QuizzesBM as scienceF1C3HomeostasisQuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP as scienceF1C3HomeostasisQuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
+import { scienceF1C3FlashcardsDLP } from "./science-f1-c3-flashcards-dlp";
 import { scienceF1C3NotesBM as _scienceF1C3NotesBM } from "./science-f1-c3-notes-bm";
 
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
@@ -23861,6 +23862,7 @@ export const flashcards: Flashcard[] = [
     back: 'A topic sentence, supporting sentences, and a closing sentence all focused on one main idea.',
   },
   ...scienceF1C3FlashcardsBM,
+  ...scienceF1C3FlashcardsDLP,
 ];
 export interface SejarahChapter {
   num: number;
