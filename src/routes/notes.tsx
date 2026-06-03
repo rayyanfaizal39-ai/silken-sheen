@@ -1,13 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import {
-  subjects,
-  forms,
-  notes,
-  getItemChapterKey,
-  getSubjectChapters,
-} from "@/data/content";
-import { subjects, forms, notes, getItemChapterKey, getSubjectChapters, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM, type ScienceChapter2Notes, type ScienceNotesSection } from "@/data/content";
+import { subjects, forms, notes, getItemChapterKey, getSubjectChapters, scienceF1C2NotesBM, scienceF1C2NotesDLP, type ScienceChapter2Notes, type ScienceNotesSection } from "@/data/content";
 import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
 import { z } from "zod";
 import {
