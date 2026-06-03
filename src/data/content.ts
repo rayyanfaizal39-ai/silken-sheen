@@ -23858,6 +23858,7 @@ export const flashcards: Flashcard[] = [
     front: 'What are the features of a good paragraph?',
     back: 'A topic sentence, supporting sentences, and a closing sentence all focused on one main idea.',
   },
+  ...scienceF1C3FlashcardsBM,
 ];
 export interface SejarahChapter {
   num: number;
