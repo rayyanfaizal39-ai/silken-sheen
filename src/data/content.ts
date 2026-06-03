@@ -1,5 +1,7 @@
 import { scienceF1C3QuizzesBM as scienceF1C3HomeostasisQuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP as scienceF1C3HomeostasisQuizzesDLP } from "./science-f1-c3-quizzes-dlp";
+import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
+import { scienceF1C4QuizzesBM } from "./science-f1-c4-quizzes-bm";
 import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
 import { scienceF1C3FlashcardsDLP } from "./science-f1-c3-flashcards-dlp";
 import { scienceF1C3NotesBM as _scienceF1C3NotesBM } from "./science-f1-c3-notes-bm";
@@ -12474,6 +12476,8 @@ export const quizzes: QuizQuestion[] = [
   },
   ...scienceF1C3HomeostasisQuizzesBM,
   ...scienceF1C3HomeostasisQuizzesDLP,
+  ...scienceF1C4QuizzesDLP,
+  ...scienceF1C4QuizzesBM,
 ];
 export interface Flashcard {
   id: string;

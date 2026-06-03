@@ -1,6 +1,8 @@
 import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
 import { scienceF1C3QuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP } from "./science-f1-c3-quizzes-dlp";
+import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
+import { scienceF1C4QuizzesBM } from "./science-f1-c4-quizzes-bm";
 
 export const quizzes: QuizQuestion[] = [
   {
@@ -1260,6 +1262,8 @@ export const quizzes: QuizQuestion[] = [
   },
   ...scienceF1C3QuizzesBM,
   ...scienceF1C3QuizzesDLP,
+  ...scienceF1C4QuizzesDLP,
+  ...scienceF1C4QuizzesBM,
   {
     id: "sci-f1-c2-dlp-q1",
     subjectId: "science",
