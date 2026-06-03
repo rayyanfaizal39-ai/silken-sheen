@@ -74,6 +74,8 @@ function NotesPage() {
   const chapterMeta =
     subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
   const isRead = subject && chapter ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read : false;
+  const activeChapter = subject && chapter ? getChapter(subject, chapter, scienceLang ?? undefined) : null;
+  const features = activeChapter ? getChapterFeatures(activeChapter) : [];
   const isScienceChapter2 = subject === "science" && chapter === "Chapter 2";
   const isScienceStructuredNotes = isScienceChapter2;
   const chapterNotes: ScienceChapter2Notes =
