@@ -568,3 +568,5 @@ export { scienceF1C5NotesBM } from "./science-f1-c5-notes-bm";
 export { scienceF1C5NotesDLP } from "./science-f1-c5-notes-dlp";
 export { scienceF1C6NotesBM } from "./science-f1-c6-notes-bm";
 export { scienceF1C6NotesDLP } from "./science-f1-c6-notes-dlp";
+export { scienceF1C7NotesBM } from "./science-f1-c7-notes-bm";
+export { scienceF1C7NotesDLP } from "./science-f1-c7-notes-dlp";

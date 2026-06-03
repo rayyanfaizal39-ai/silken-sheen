@@ -24,6 +24,8 @@ import { scienceF1C5NotesBM as _scienceF1C5NotesBM } from "./science-f1-c5-notes
 import { scienceF1C5NotesDLP as _scienceF1C5NotesDLP } from "./science-f1-c5-notes-dlp";
 import { scienceF1C6NotesBM as _scienceF1C6NotesBM } from "./science-f1-c6-notes-bm";
 import { scienceF1C6NotesDLP as _scienceF1C6NotesDLP } from "./science-f1-c6-notes-dlp";
+import { scienceF1C7NotesBM as _scienceF1C7NotesBM } from "./science-f1-c7-notes-bm";
+import { scienceF1C7NotesDLP as _scienceF1C7NotesDLP } from "./science-f1-c7-notes-dlp";
 
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
@@ -33,6 +35,8 @@ export const scienceF1C5NotesBM = _scienceF1C5NotesBM;
 export const scienceF1C5NotesDLP = _scienceF1C5NotesDLP;
 export const scienceF1C6NotesBM = _scienceF1C6NotesBM;
 export const scienceF1C6NotesDLP = _scienceF1C6NotesDLP;
+export const scienceF1C7NotesBM = _scienceF1C7NotesBM;
+export const scienceF1C7NotesDLP = _scienceF1C7NotesDLP;
 
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
@@ -531,6 +535,28 @@ export const notes: Note[] = [
     summary:
       "Form 1 Science Chapter 6 summary: atoms, subatomic particles, molecules, elements, compounds, the Periodic Table, metals, non-metals, mixtures and separation methods.",
     keywords: ["periodic table", "atom", "proton", "neutron", "electron", "element", "compound", "mixture", "metal", "non-metal"],
+    lang: "dlp",
+  },
+  {
+    id: "sci-f1-c7-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 7",
+    title: "Bab 7: Udara",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 7: komposisi udara, kepentingan gas, kitar karbon dan oksigen, pembakaran, keselamatan kebakaran, pencemaran udara dan kawalan pencemaran.",
+    keywords: ["udara", "atmosfera", "nitrogen", "oksigen", "karbon dioksida", "gas nadir", "pembakaran", "pencemaran udara", "hujan asid", "pemanasan global"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c7-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 7",
+    title: "Chapter 7: Air",
+    summary:
+      "Form 1 Science Chapter 7 summary: composition of air, importance of gases, carbon and oxygen cycles, combustion, fire safety, air pollution and pollution control.",
+    keywords: ["air", "atmosphere", "nitrogen", "oxygen", "carbon dioxide", "noble gases", "combustion", "air pollution", "acid rain", "global warming"],
     lang: "dlp",
   },
   {

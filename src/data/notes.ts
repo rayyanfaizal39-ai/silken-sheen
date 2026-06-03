@@ -97,6 +97,28 @@ export const notes: Note[] = [
     lang: "dlp",
   },
   {
+    id: "sci-f1-c7-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 7",
+    title: "Bab 7: Udara",
+    summary:
+      "Ringkasan Sains Tingkatan 1 Bab 7: komposisi udara, kepentingan gas, kitar karbon dan oksigen, pembakaran, keselamatan kebakaran, pencemaran udara dan kawalan pencemaran.",
+    keywords: ["udara", "atmosfera", "nitrogen", "oksigen", "karbon dioksida", "gas nadir", "pembakaran", "pencemaran udara", "hujan asid", "pemanasan global"],
+    lang: "bm",
+  },
+  {
+    id: "sci-f1-c7-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapter: "Chapter 7",
+    title: "Chapter 7: Air",
+    summary:
+      "Form 1 Science Chapter 7 summary: composition of air, importance of gases, carbon and oxygen cycles, combustion, fire safety, air pollution and pollution control.",
+    keywords: ["air", "atmosphere", "nitrogen", "oxygen", "carbon dioxide", "noble gases", "combustion", "air pollution", "acid rain", "global warming"],
+    lang: "dlp",
+  },
+  {
     id: "n4",
     subjectId: "science",
     form: "Form 3",

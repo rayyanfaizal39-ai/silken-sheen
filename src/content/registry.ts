@@ -12,6 +12,8 @@ import {
   scienceF1C5NotesDLP,
   scienceF1C6NotesBM,
   scienceF1C6NotesDLP,
+  scienceF1C7NotesBM,
+  scienceF1C7NotesDLP,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
@@ -159,6 +161,24 @@ export const chapters: ChapterContent[] = [
     title: "Periodic Table",
     lang: "dlp",
     notes: scienceF1C6NotesDLP,
+  },
+  {
+    id: "science-f1-c7-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 7",
+    title: "Udara",
+    lang: "bm",
+    notes: scienceF1C7NotesBM,
+  },
+  {
+    id: "science-f1-c7-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 7",
+    title: "Air",
+    lang: "dlp",
+    notes: scienceF1C7NotesDLP,
   },
 ];
 
