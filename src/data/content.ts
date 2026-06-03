@@ -4,6 +4,8 @@ import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
 import { scienceF1C4QuizzesBM } from "./science-f1-c4-quizzes-bm";
 import { scienceF1C5QuizzesBM } from "./science-f1-c5-quizzes-bm";
 import { scienceF1C5QuizzesDLP } from "./science-f1-c5-quizzes-dlp";
+import { scienceF1C6QuizzesBM } from "./science-f1-c6-quizzes-bm";
+import { scienceF1C6QuizzesDLP } from "./science-f1-c6-quizzes-dlp";
 import { scienceF1C3FlashcardsBM } from "./science-f1-c3-flashcards-bm";
 import { scienceF1C3FlashcardsDLP } from "./science-f1-c3-flashcards-dlp";
 import { scienceF1C4FlashcardsBM } from "./science-f1-c4-flashcards-bm";
@@ -12526,6 +12528,8 @@ export const quizzes: QuizQuestion[] = [
   ...scienceF1C4QuizzesBM,
   ...scienceF1C5QuizzesBM,
   ...scienceF1C5QuizzesDLP,
+  ...scienceF1C6QuizzesBM,
+  ...scienceF1C6QuizzesDLP,
 ];
 export interface Flashcard {
   id: string;
