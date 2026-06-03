@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
 import { subjects, forms, flashcards, getItemChapterKey, getSubjectChapters } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { Heart, ChevronLeft, ChevronRight, Shuffle, X, Check, Volume2, VolumeX, Vibrate } from "lucide-react";
@@ -253,8 +253,8 @@ function FlashcardsPage() {
   }
 
   // Touch swipe
-  function onTouchStart(e: React.TouchEvent) { touchStart.current = e.touches[0].clientX; }
-  function onTouchMove(e: React.TouchEvent) {
+  function onTouchStart(e: TouchEvent) { touchStart.current = e.touches[0].clientX; }
+  function onTouchMove(e: TouchEvent) {
     if (touchStart.current === null) return;
     setSwipeOffset(e.touches[0].clientX - touchStart.current);
   }
