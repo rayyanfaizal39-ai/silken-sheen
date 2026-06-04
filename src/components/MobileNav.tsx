@@ -13,8 +13,8 @@ export function MobileNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <nav className="mobile-nav-shell md:hidden fixed bottom-3 left-3 right-3 z-50 rounded-2xl px-2 pb-safe-offset-1 pt-2">
-      <div className="max-w-md mx-auto flex items-center justify-between">
+    <nav className="mobile-nav-shell md:hidden fixed left-3 right-3 z-[80] rounded-2xl px-2">
+      <div className="max-w-md mx-auto flex h-full items-center justify-between">
         {mobileLinks.map((link) => {
           const active = pathname === link.to;
           const Icon = link.icon;

@@ -149,7 +149,7 @@ function collectAllNodes(node: MindNode, depth: number, out: { node: MindNode; d
 
 export function MindMap({
   data,
-  height = "85vh",
+  height = "85dvh",
   palette,
 }: {
   data: MindNode;
@@ -600,4 +600,3 @@ function nodeStyle(
 
   return canvasContent;
 }
-

@@ -14,7 +14,7 @@ export function Navbar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <header className="sticky top-0 z-50 w-full">
+    <header className="site-header sticky top-0 z-50 w-full">
       <div className="glass-strong border-b border-white/5">
         <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-8 py-4">
           <Link to="/" className="flex items-center gap-2 group">

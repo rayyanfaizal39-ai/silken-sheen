@@ -237,7 +237,7 @@ function QuizzesPage() {
     : "bg-emerald-400";
 
   return (
-    <section className={`max-w-4xl mx-auto px-4 sm:px-8 py-16 ${screenShake ? "animate-screen-shake" : ""}`}>
+    <section className={`max-w-4xl mx-auto px-4 sm:px-8 py-10 md:py-16 ${screenShake ? "animate-screen-shake" : ""}`}>
       {/* Combo overlay */}
       {comboShow !== null && (
         <div

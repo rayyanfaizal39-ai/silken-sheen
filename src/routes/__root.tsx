@@ -19,7 +19,7 @@ import { AIAssistant } from "@/components/AIAssistant";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="flex min-h-svh items-center justify-center px-4">
       <div className="max-w-md text-center glass-strong rounded-3xl p-10">
         <h1 className="font-display text-7xl font-bold gradient-text">404</h1>
         <h2 className="mt-4 text-xl font-semibold">Page not found</h2>
@@ -41,7 +41,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="flex min-h-svh items-center justify-center px-4">
       <div className="max-w-md text-center glass-strong rounded-3xl p-10">
         <h1 className="font-display text-xl font-semibold">Something glitched</h1>
         <p className="mt-2 text-sm text-muted-foreground">Try again — we'll get this fixed.</p>
@@ -60,7 +60,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
       { name: "description", content: "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar." },
       { property: "og:title", content: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
@@ -107,7 +107,7 @@ function RootComponent() {
       <SoundFx />
       <MusicPlayer />
       <Navbar />
-      <main className="min-h-screen pb-20 md:pb-0">
+      <main className="app-main min-h-svh">
         <Outlet />
       </main>
       <MobileNav />

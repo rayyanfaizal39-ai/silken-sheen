@@ -18,7 +18,7 @@ function LoginPage() {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
 
   return (
-    <section className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 py-16">
+    <section className="min-h-[calc(100svh-80px)] flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md glass-strong rounded-3xl p-8 relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-60 h-60 bg-accent/30 blur-3xl rounded-full" />
         <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-primary/30 blur-3xl rounded-full" />

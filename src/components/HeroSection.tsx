@@ -43,7 +43,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-white font-body">
+    <div className="relative min-h-svh w-full overflow-hidden bg-white font-body">
       {/* Video Background */}
       <div
         className="absolute z-0"

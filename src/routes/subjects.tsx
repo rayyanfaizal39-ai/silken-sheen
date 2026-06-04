@@ -24,9 +24,9 @@ function SubjectsPage() {
   );
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
+    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-10 md:py-16">
       <div className="text-center mb-12">
-        <h1 className="font-display text-5xl font-bold">Explore <span className="gradient-text">Subjects</span></h1>
+        <h1 className="font-display text-4xl sm:text-5xl font-bold">Explore <span className="gradient-text">Subjects</span></h1>
         <p className="mt-3 text-muted-foreground">Pick a subject and start your journey.</p>
       </div>
 

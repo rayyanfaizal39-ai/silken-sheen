@@ -314,7 +314,7 @@ function FlashcardsPage() {
   const remaining = queue.length - idx;
 
   return (
-    <section className="max-w-3xl mx-auto px-4 sm:px-8 py-16">
+    <section className="max-w-3xl mx-auto px-4 sm:px-8 py-10 md:py-16">
       <div className="text-center mb-6">
         <h1 className="font-display text-5xl font-bold"><span className="gradient-text">Flashcards</span></h1>
         <p className="mt-3 text-muted-foreground">Flip, swipe, and master concepts in seconds.</p>
@@ -558,7 +558,7 @@ function FlashcardsPage() {
               </div>
 
               {showTip && (
-                <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 glass-strong rounded-full px-4 py-2 text-sm animate-fade-up shadow-xl">
+                <div className="mobile-bottom-toast fixed left-1/2 -translate-x-1/2 z-50 glass-strong rounded-full px-4 py-2 text-sm animate-fade-up shadow-xl">
                   💡 Tap card to flip · swipe ➜ to know · ⬅ to skip
                 </div>
               )}

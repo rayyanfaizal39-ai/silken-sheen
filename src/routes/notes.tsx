@@ -258,7 +258,7 @@ function NotesPage() {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16 overflow-visible">
+    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-10 md:py-16 overflow-visible">
       {/* Reading progress bar */}
       {subject && chapter && (
         <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">
@@ -270,7 +270,7 @@ function NotesPage() {
       )}
 
       <div className="text-center mb-6">
-        <h1 className="font-display text-5xl font-bold">
+        <h1 className="font-display text-4xl sm:text-5xl font-bold">
           Summary <span className="gradient-text">Notes</span>
         </h1>
         <p className="mt-3 text-muted-foreground">

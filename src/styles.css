@@ -42,6 +42,11 @@
 
 :root {
   --radius: 1rem;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --mobile-nav-height: 72px;
+  --mobile-content-bottom: calc(90px + var(--safe-area-bottom));
+  --mobile-fab-bottom: calc(95px + var(--safe-area-bottom));
   /* AcadeMY dark theme — Deep Navy base */
   --background: #0d1117;
   --background: oklch(0.18 0.04 265);
@@ -1774,7 +1779,11 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { font-family: var(--font-body); }
+  html {
+    font-family: var(--font-body);
+    min-height: 100%;
+    overflow-x: clip;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -1782,9 +1791,20 @@
       radial-gradient(ellipse at top, oklch(0.65 0.26 295 / 0.18), transparent 50%),
       radial-gradient(ellipse at bottom right, oklch(0.65 0.24 265 / 0.15), transparent 50%);
     background-attachment: fixed;
-    min-height: 100vh;
+    min-height: 100svh;
+    overflow-x: clip;
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+.app-main {
+  padding-bottom: var(--mobile-content-bottom);
+}
+
+@media (min-width: 768px) {
+  .app-main {
+    padding-bottom: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1859,7 +1879,7 @@
 }
 .mm-tree-body {
   padding: 14px 12px 18px;
-  max-height: 70vh;
+  max-height: 70dvh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -1940,6 +1960,8 @@
 
 /* Mobile bottom-nav floating shell */
 .mobile-nav-shell {
+  bottom: max(8px, var(--safe-area-bottom));
+  height: var(--mobile-nav-height);
   background: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(15,23,42,0.78));
   border: 1px solid rgba(148,163,184,0.18);
   backdrop-filter: blur(18px) saturate(140%);
@@ -1948,9 +1970,10 @@
     0 2px 8px rgba(0,0,0,0.4);
 }
 .mobile-nav-item {
-  min-width: 52px;
-  min-height: 52px;
-  padding: 6px 10px;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 48px;
+  padding: 6px 4px;
 }
 .mobile-nav-item-active {
   color: #ffffff;
@@ -1989,21 +2012,53 @@
       radial-gradient(1200px 600px at 80% -10%, rgba(168,85,247,0.18), transparent 60%),
       radial-gradient(900px 500px at -10% 30%, rgba(0,212,255,0.14), transparent 65%),
       linear-gradient(180deg, #0a0d1f 0%, #07091a 100%);
-    background-attachment: fixed;
+    background-attachment: scroll;
+  }
+
+  .site-header {
+    padding-top: var(--safe-area-top);
+  }
+
+  .mobile-ai-control {
+    right: 18px;
+    bottom: var(--mobile-fab-bottom);
+  }
+
+  .mobile-music-control {
+    right: 18px;
+    bottom: calc(var(--mobile-fab-bottom) + 60px);
+  }
+
+  .mobile-bottom-toast {
+    bottom: var(--mobile-fab-bottom);
+    max-width: calc(100vw - 2rem);
+    white-space: nowrap;
+  }
+
+  .ai-chat-panel {
+    right: 1rem;
+    bottom: var(--mobile-fab-bottom);
+    height: min(620px, calc(100dvh - var(--mobile-fab-bottom) - var(--safe-area-top) - 1rem));
+    max-height: calc(100dvh - var(--mobile-fab-bottom) - var(--safe-area-top) - 1rem) !important;
+    min-height: min(400px, calc(100dvh - var(--mobile-fab-bottom) - var(--safe-area-top) - 1rem)) !important;
   }
 
   /* Tighten hero vertical rhythm by ~40% */
   .subject-orbit-hero {
-    padding-top: 5.5rem !important;
-    padding-bottom: 4rem !important;
+    padding-top: 3.75rem !important;
+    padding-bottom: 2.5rem !important;
   }
+  .study-hero-copy > p:first-child { margin-bottom: 0.75rem !important; }
   .study-hero-copy h1 {
+    max-width: 100%;
     font-size: clamp(2.25rem, 9vw, 3rem) !important;
     line-height: 1.05 !important;
     letter-spacing: -0.01em;
     text-shadow: 0 8px 28px rgba(108,99,255,0.4);
   }
-  .study-hero-copy p { font-size: 0.92rem !important; margin-top: 0.85rem !important; }
+  .study-hero-copy p { font-size: 0.92rem !important; margin-top: 0.75rem !important; }
+  .study-hero-copy > div { margin-top: 1.25rem !important; }
+  .subject-orbit-hero .animate-study-rise { margin-top: 2.5rem !important; }
 
   /* Sun glow */
   .simple-academy-core {
@@ -2096,5 +2151,4 @@
   }
 
   /* Reading progress bar polish (already in route) */
-  body { padding-bottom: 5rem; }
 }
