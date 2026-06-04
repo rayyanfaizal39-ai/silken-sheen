@@ -1,6 +1,14 @@
 import { subjects, getSubjectChapters } from "@/data/content";
-import { Lock, ArrowLeft, Sparkles } from "lucide-react";
+import { Lock, ArrowLeft, Sparkles, Clock, Gauge, NotebookPen, Brain, Layers } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
+import { getChapter } from "@/content/registry";
+import { getChapterFeatures } from "@/content/types";
+
+function difficultyFor(index: number): { label: string; tone: string } {
+  if (index <= 1) return { label: "Easy", tone: "text-emerald-300 border-emerald-300/30 bg-emerald-300/10" };
+  if (index <= 4) return { label: "Medium", tone: "text-cyan-300 border-cyan-300/30 bg-cyan-300/10" };
+  return { label: "Advanced", tone: "text-fuchsia-300 border-fuchsia-300/30 bg-fuchsia-300/10" };
+}
 
 export function SubjectGrid({ onSelect }: { onSelect: (subjectId: string) => void }) {
   return (
