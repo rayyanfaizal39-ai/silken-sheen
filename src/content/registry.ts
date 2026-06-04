@@ -31,6 +31,8 @@ import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
+import { scienceF1C4MindMapBM } from "@/data/science-f1-c4-mindmap-bm";
+import { scienceF1C4MindMapDLP } from "@/data/science-f1-c4-mindmap-dlp";
 import { scienceF1C5MindMapBM } from "@/data/science-f1-c5-mindmap-bm";
 import { scienceF1C5MindMapDLP } from "@/data/science-f1-c5-mindmap-dlp";
 import { scienceF1C7MindMapBM } from "@/data/science-f1-c7-mindmap-bm";
@@ -127,6 +129,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Pembiakan",
     lang: "bm",
+    mindMap: { data: scienceF1C4MindMapBM, title: "Pembiakan" },
     notes: scienceF1C4NotesBM,
   },
   {
@@ -136,6 +139,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Reproduction",
     lang: "dlp",
+    mindMap: { data: scienceF1C4MindMapDLP, title: "Reproduction" },
     notes: scienceF1C4NotesDLP,
   },
   {
