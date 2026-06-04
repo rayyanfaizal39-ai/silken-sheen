@@ -1,17 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import {
-  subjects,
-  forms,
-  notes,
-  getItemChapterKey,
-  getSubjectChapters,
-  scienceF1C2NotesBM,
-  scienceF1C2NotesDLP,
-  type ScienceChapter2Notes,
-  type ScienceNotesSection,
-} from "@/data/content";
-import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
+import { subjects, notes, getItemChapterKey, getSubjectChapters } from "@/data/content";
+import { BookOpenCheck, ArrowLeft } from "lucide-react";
 import { z } from "zod";
 import {
   SubjectGrid,
@@ -24,13 +14,6 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { MindMap } from "@/components/MindMap";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { zamanPrasejarahMindMap } from "@/data/zamanPrasejarahMindMap";
@@ -45,7 +28,7 @@ import { getChapterFeatures } from "@/content/types";
 import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
-import { NotesBlock } from "@/components/notes/NotesBlock";
+import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 
 const searchSchema = z.object({
@@ -78,11 +61,7 @@ function NotesPage() {
       : null;
   const [subject, setSubject] = useState<string | null>(initialSubject ?? null);
   const [chapter, setChapter] = useState<string | null>(null);
-  const [subtopic, setSubtopic] = useState<Subtopic | null>(null);
-  const [form, setForm] = useState<string>(normalizeFormParam(search.form));
-  const [q, setQ] = useState("");
-  const [notesTab, setNotesTab] = useState<"bm" | "dlp">("bm");
-  const [notesSearch, setNotesSearch] = useState("");
+  const [form] = useState<string>(normalizeFormParam(search.form));
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter } = useProgress();
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
@@ -103,171 +82,6 @@ function NotesPage() {
   const activeChapter =
     subject && chapter ? (getChapter(subject, chapter, activeScienceLang) ?? undefined) : undefined;
   const features = getChapterFeatures(activeChapter);
-  const isScienceChapter2 = subject === "science" && chapter === "Chapter 2";
-  const isScienceStructuredNotes = isScienceChapter2;
-  const chapterNotes: ScienceChapter2Notes =
-    notesTab === "dlp" ? scienceF1C2NotesDLP : scienceF1C2NotesBM;
-
-  const filteredChapterSections = useMemo(() => {
-    if (!notesSearch.trim()) return chapterNotes.sections;
-    const query = notesSearch.trim().toLowerCase();
-    return chapterNotes.sections
-      .map((section) => {
-        const sectionMatches = section.title.toLowerCase().includes(query);
-        const filteredSubsections =
-          section.subsections?.filter((sub) => {
-            const textMatches = [sub.title, sub.content, sub.formula]
-              .filter(Boolean)
-              .some((text) => text!.toLowerCase().includes(query));
-            const bulletsMatch = sub.bulletPoints?.some((point) =>
-              point.toLowerCase().includes(query),
-            );
-            const tableMatch =
-              sub.table?.headers.some((header) => header.toLowerCase().includes(query)) ||
-              sub.table?.rows.some((row) => row.some((cell) => cell.toLowerCase().includes(query)));
-            return sectionMatches || textMatches || bulletsMatch || tableMatch;
-          }) ?? [];
-
-        if (sectionMatches) return section;
-        if (filteredSubsections.length > 0) return { ...section, subsections: filteredSubsections };
-        return null;
-      })
-      .filter(Boolean) as ScienceNotesSection[];
-  }, [chapterNotes, notesSearch]);
-
-  function renderChapterNotes(notesData: ScienceChapter2Notes, sections: ScienceNotesSection[]) {
-    return (
-      <div className="space-y-6">
-        <div className="grid gap-4 sm:grid-cols-2">
-          {notesData.quickRevision.map((item) => (
-            <div
-              key={item}
-              className="rounded-3xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-100 shadow-sm"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-
-        {sections.length === 0 ? (
-          <div className="rounded-3xl border border-rose-500/20 bg-rose-500/10 p-6 text-sm text-rose-100">
-            No matching notes found. Try a different keyword.
-          </div>
-        ) : (
-          <Accordion type="single" collapsible className="space-y-4">
-            {sections.map((section) => (
-              <AccordionItem
-                key={section.title}
-                value={section.title}
-                className="rounded-3xl border border-white/10 bg-slate-950/80 p-4"
-              >
-                <AccordionTrigger>{section.title}</AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-6 pt-2">
-                    {section.subsections?.map((sub, index) => (
-                      <div key={`${section.title}-${index}`} className="space-y-4">
-                        {sub.title && <h3 className="text-xl font-semibold">{sub.title}</h3>}
-                        {sub.content && (
-                          <p className="text-sm leading-7 text-slate-300">{sub.content}</p>
-                        )}
-                        {sub.bulletPoints && (
-                          <ul className="list-disc list-inside space-y-2 text-sm leading-7 text-slate-300">
-                            {sub.bulletPoints.map((point) => (
-                              <li key={point}>{point}</li>
-                            ))}
-                          </ul>
-                        )}
-                        {sub.formula && (
-                          <div className="rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-cyan-100">
-                            <span className="font-medium text-cyan-200">Formula:</span>
-                            <div className="mt-2 font-mono text-sm leading-6">{sub.formula}</div>
-                          </div>
-                        )}
-                        {sub.table && (
-                          <div className="overflow-x-auto rounded-3xl border border-white/10 bg-slate-950/70 p-2">
-                            <table className="min-w-full text-left text-sm">
-                              <thead>
-                                <tr className="text-slate-300">
-                                  {sub.table.headers.map((header) => (
-                                    <th
-                                      key={header}
-                                      className="border-b border-white/10 px-3 py-2 font-semibold text-slate-200"
-                                    >
-                                      {header}
-                                    </th>
-                                  ))}
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {sub.table.rows.map((row, rowIndex) => (
-                                  <tr
-                                    key={`${rowIndex}-${row[0]}`}
-                                    className={rowIndex % 2 === 0 ? "bg-white/5" : "bg-transparent"}
-                                  >
-                                    {row.map((cell, cellIndex) => (
-                                      <td
-                                        key={cellIndex}
-                                        className="border-b border-white/10 px-3 py-2 text-slate-300"
-                                      >
-                                        {cell}
-                                      </td>
-                                    ))}
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        )}
-
-        {notesData.keyTerms && notesData.keyTerms.length > 0 && (
-          <div className="rounded-3xl border border-blue-500/15 bg-blue-500/10 p-6 text-slate-100">
-            <h3 className="text-xl font-semibold text-white">Key Terms</h3>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {notesData.keyTerms.map((term) => (
-                <span
-                  key={term}
-                  className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2 text-sm text-slate-200 font-medium"
-                >
-                  {term}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="rounded-3xl border border-emerald-500/15 bg-emerald-500/10 p-6 text-slate-100">
-          <h3 className="text-xl font-semibold text-white">Key Exam Facts</h3>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {notesData.keyExamFacts?.map((fact) => (
-              <div
-                key={fact}
-                className="rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-200"
-              >
-                {fact}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {notesData.chapterSummary && (
-          <div className="rounded-3xl border border-primary/20 bg-primary/10 p-8 text-slate-100 shadow-[0_0_24px_rgba(var(--primary),0.1)]">
-            <h3 className="font-display text-2xl font-bold text-white mb-4">Chapter Summary</h3>
-            <p className="text-base leading-relaxed text-slate-200 italic">
-              "{notesData.chapterSummary}"
-            </p>
-          </div>
-        )}
-      </div>
-    );
-  }
 
   // Reading progress bar
   useEffect(() => {
@@ -281,13 +95,6 @@ function NotesPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    if (isScienceStructuredNotes) {
-      setNotesTab(scienceLang ?? "bm");
-    }
-    setNotesSearch("");
-  }, [isScienceStructuredNotes, scienceLang]);
-
   const filtered = useMemo(() => {
     if (!subject || !chapter) return [];
     return notes.filter((n) => {
@@ -295,13 +102,24 @@ function NotesPage() {
       if (getItemChapterKey(n) !== chapter) return false;
       if (form !== "All" && n.form !== form) return false;
       if (subject === "science" && n.lang && scienceLang && n.lang !== scienceLang) return false;
-      if (q) {
-        const hay = `${n.title} ${n.summary} ${n.chapter} ${n.keywords.join(" ")}`.toLowerCase();
-        if (!hay.includes(q.toLowerCase())) return false;
-      }
       return true;
     });
-  }, [subject, chapter, form, q, scienceLang]);
+  }, [subject, chapter, form, scienceLang]);
+
+  const legacyNoteSections = useMemo<NotesAccordionSection[]>(
+    () =>
+      filtered.map((note, index) => ({
+        id: note.id,
+        title: `${index + 1}. ${note.title}`,
+        content: note.summary,
+        keywords: note.keywords,
+      })),
+    [filtered],
+  );
+  const visibleFeatures = {
+    ...features,
+    notes: features.notes || legacyNoteSections.length > 0,
+  };
 
   function jumpTo(key: string) {
     const el = document.getElementById(key);
@@ -337,7 +155,6 @@ function NotesPage() {
           onSelect={(id) => {
             setSubject(id);
             setChapter(null);
-            setSubtopic(null);
           }}
         />
       ) : needsScienceLang ? (
@@ -346,7 +163,6 @@ function NotesPage() {
           onBack={() => {
             setSubject(null);
             setChapter(null);
-            setSubtopic(null);
           }}
         />
       ) : !chapter ? (
@@ -359,12 +175,10 @@ function NotesPage() {
             scienceLang={activeScienceLang}
             onSelect={(key) => {
               setChapter(key);
-              setSubtopic(null);
             }}
             onBack={() => {
               setSubject(null);
               setChapter(null);
-              setSubtopic(null);
             }}
           />
         </>
@@ -375,23 +189,15 @@ function NotesPage() {
           scienceLang={subject === "science" ? (scienceLang ?? undefined) : undefined}
           onBack={() => setChapter(null)}
         />
-      ) : hasSubtopics && !subtopic ? (
+      ) : hasSubtopics ? (
         <SubtopicView
           subjectId={subject}
           chapterKey={chapter}
           subtopics={subtopics}
           chapterContent={activeChapter}
-          onSelect={(s) => setSubtopic(s)}
-          onBack={() => setChapter(null)}
-        />
-      ) : hasSubtopics && subtopic ? (
-        <SubtopicDetail
-          subjectId={subject}
-          chapterKey={chapter}
-          subtopic={subtopic}
           isRead={isRead}
           onMarkRead={() => markChapter(subject, chapter, "read")}
-          onBack={() => setSubtopic(null)}
+          onBack={() => setChapter(null)}
         />
       ) : (
         <>
@@ -402,7 +208,7 @@ function NotesPage() {
             onBack={() => setChapter(null)}
           />
 
-          <ChapterFeatureBar features={features} onJump={jumpTo} />
+          <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
           {activeChapter?.mindMap && (
@@ -414,34 +220,6 @@ function NotesPage() {
           )}
           {activeChapter?.notes && <NotesBlock id="notes" notes={activeChapter.notes} />}
 
-          {/* Legacy summary cards (kept for subjects without a registry entry yet) */}
-          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-col lg:flex-row gap-3 animate-fade-up">
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Search chapters or keywords…"
-                className="w-full pl-11 pr-4 py-3 rounded-full bg-white/5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-            </div>
-            <div className="flex gap-2">
-              {["All", ...forms].map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setForm(f)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    form === f
-                      ? "bg-gradient-to-r from-primary to-accent text-white"
-                      : "bg-white/5 text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          </div>
-
           {filtered.length === 0 ? (
             !activeChapter?.notes &&
             !activeChapter?.mindMap &&
@@ -452,39 +230,7 @@ function NotesPage() {
             )
           ) : (
             <>
-              <div className="grid md:grid-cols-2 gap-5">
-                {filtered.map((n, i) => {
-                  const subj = subjects.find((s) => s.id === n.subjectId)!;
-                  return (
-                    <article
-                      key={n.id}
-                      className="glass rounded-2xl p-6 hover:bg-white/[0.07] hover:-translate-y-0.5 transition-all animate-slide-up"
-                      style={{ animationDelay: `${i * 70}ms` }}
-                    >
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                          <span>{subj.emoji}</span>
-                          {subj.name} • {n.form} • {n.chapter}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-2xl font-bold">{n.title}</h3>
-                      <p className="mt-3 text-sm text-foreground/85 leading-relaxed">
-                        {highlight(n.summary, n.keywords)}
-                      </p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {n.keywords.map((k) => (
-                          <span
-                            key={k}
-                            className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30"
-                          >
-                            #{k}
-                          </span>
-                        ))}
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
+              {!activeChapter?.notes && <NotesBlock id="notes" sections={legacyNoteSections} />}
 
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button
@@ -513,20 +259,32 @@ function SubtopicView({
   chapterKey,
   subtopics,
   chapterContent,
-  onSelect,
+  isRead,
+  onMarkRead,
   onBack,
 }: {
   subjectId: string;
   chapterKey: string;
   subtopics: Subtopic[];
   chapterContent: ReturnType<typeof getChapter>;
-  onSelect: (s: Subtopic) => void;
+  isRead: boolean;
+  onMarkRead: () => void;
   onBack: () => void;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const chapterLabel =
     getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
   const features = getChapterFeatures(chapterContent);
+  const subtopicSections = useMemo<NotesAccordionSection[]>(
+    () =>
+      subtopics.map((subtopic) => ({
+        id: subtopic.key,
+        title: `${subtopic.num}. ${subtopic.title}`,
+        content: subtopic.summary,
+        keywords: subtopic.keywords,
+      })),
+    [subtopics],
+  );
 
   function jumpTo(key: string) {
     const el = document.getElementById(key);
@@ -547,15 +305,6 @@ function SubtopicView({
         </span>
       </div>
 
-      <div className="text-center mb-6">
-        <h2 className="font-display text-3xl font-bold">
-          Pilih <span className="gradient-text">Subtopik</span>
-        </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Setiap subtopik dipecahkan untuk pembelajaran yang lebih fokus.
-        </p>
-      </div>
-
       <ChapterFeatureBar features={features} onJump={jumpTo} />
 
       {chapterContent?.video && <VideoBlock id="video" video={chapterContent.video} />}
@@ -567,92 +316,7 @@ function SubtopicView({
         />
       )}
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {subtopics.map((s, i) => (
-          <button
-            key={s.key}
-            onClick={() => onSelect(s)}
-            className="group relative text-left glass rounded-2xl p-6 card-glow-hover border border-transparent hover:border-primary/50 animate-slide-up overflow-hidden"
-            style={{ animationDelay: `${i * 60}ms` }}
-          >
-            <div
-              className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-2xl group-hover:opacity-40 transition-opacity"
-              aria-hidden
-            />
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-display text-lg font-bold mb-3 shadow-lg">
-              {s.num}
-            </div>
-            <h3 className="font-display text-lg font-bold leading-snug">{s.title}</h3>
-            <p className="mt-2 text-xs text-muted-foreground inline-flex items-center gap-1">
-              <BookMarked className="w-3 h-3" /> Subtopik {s.num}
-            </p>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function SubtopicDetail({
-  subjectId,
-  chapterKey,
-  subtopic,
-  isRead,
-  onMarkRead,
-  onBack,
-}: {
-  subjectId: string;
-  chapterKey: string;
-  subtopic: Subtopic;
-  isRead: boolean;
-  onMarkRead: () => void;
-  onBack: () => void;
-}) {
-  const subj = subjects.find((s) => s.id === subjectId);
-  const chapterLabel =
-    getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
-  return (
-    <div className="animate-fade-up">
-      <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
-        >
-          <ArrowLeft className="w-4 h-4" /> Back to subtopics
-        </button>
-        <span className="text-sm font-semibold text-muted-foreground">
-          {subj?.emoji} {subj?.name} • {chapterLabel}
-        </span>
-      </div>
-
-      <article className="glass-strong rounded-3xl p-8 animate-slide-up">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-display text-lg font-bold shadow-lg">
-            {subtopic.num}
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-              Subtopik {subtopic.num}
-            </p>
-            <h2 className="font-display text-3xl font-bold leading-tight">{subtopic.title}</h2>
-          </div>
-        </div>
-
-        <p className="mt-4 text-base text-foreground/90 leading-relaxed whitespace-pre-line">
-          {highlight(subtopic.summary, subtopic.keywords)}
-        </p>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          {subtopic.keywords.map((k) => (
-            <span
-              key={k}
-              className="px-2.5 py-1 rounded-full text-xs bg-accent/20 text-accent border border-accent/30"
-            >
-              #{k}
-            </span>
-          ))}
-        </div>
-      </article>
+      <NotesBlock id="notes" sections={subtopicSections} />
 
       <div className="mt-10 flex justify-center">
         <button
@@ -669,21 +333,5 @@ function SubtopicDetail({
         </button>
       </div>
     </div>
-  );
-}
-
-function highlight(text: string, keywords: string[]) {
-  if (!keywords.length) return text;
-  const escaped = keywords.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-  const re = new RegExp(`\\b(${escaped.join("|")})\\b`, "gi");
-  const parts = text.split(re);
-  return parts.map((part, i) =>
-    keywords.some((keyword) => part.toLowerCase() === keyword.toLowerCase()) ? (
-      <mark key={i} className="bg-accent/30 text-foreground rounded px-1 py-0.5 not-italic">
-        {part}
-      </mark>
-    ) : (
-      <span key={i}>{part}</span>
-    ),
   );
 }
