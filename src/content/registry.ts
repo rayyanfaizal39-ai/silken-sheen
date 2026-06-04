@@ -35,6 +35,8 @@ import { scienceF1C5MindMapBM } from "@/data/science-f1-c5-mindmap-bm";
 import { scienceF1C5MindMapDLP } from "@/data/science-f1-c5-mindmap-dlp";
 import { scienceF1C7MindMapBM } from "@/data/science-f1-c7-mindmap-bm";
 import { scienceF1C7MindMapDLP } from "@/data/science-f1-c7-mindmap-dlp";
+import { scienceF1C8MindMapBM } from "@/data/science-f1-c8-mindmap-bm";
+import { scienceF1C8MindMapDLP } from "@/data/science-f1-c8-mindmap-dlp";
 import { scienceF1C9MindMapBM } from "@/data/science-f1-c9-mindmap-bm";
 import { scienceF1C9MindMapDLP } from "@/data/science-f1-c9-mindmap-dlp";
 
@@ -201,6 +203,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Cahaya dan Optik",
     lang: "bm",
+    mindMap: { data: scienceF1C8MindMapBM, title: "Sains Tingkatan 1 : Bab 8 Cahaya dan Optik" },
     notes: scienceF1C8NotesBM,
   },
   {
@@ -210,6 +213,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Light and Optics",
     lang: "dlp",
+    mindMap: { data: scienceF1C8MindMapDLP, title: "Light and Optics" },
     notes: scienceF1C8NotesDLP,
   },
   {
