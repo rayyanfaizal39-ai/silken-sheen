@@ -160,6 +160,8 @@ export function MindMap({
   const [tx, setTx] = useState(40);
   const [ty, setTy] = useState(400);
   const [scale, setScale] = useState(0.9);
+  const [mobileFullscreen, setMobileFullscreen] = useState(false);
+  const isMobile = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const pointers = useRef<Map<number, { x: number; y: number }>>(new Map());
