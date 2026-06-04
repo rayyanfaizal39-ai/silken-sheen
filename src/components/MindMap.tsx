@@ -379,13 +379,23 @@ function nodeStyle(
     // run whenever layout changes
   }, [minX, maxX, minY, maxY, svgW, svgH, scale]);
 
-  return (
+  // Mobile default: vertical tap-to-expand tree. Canvas is opt-in via "Interactive".
+  if (isMobile && !mobileFullscreen) {
+    return (
+      <MindMapMobileTree
+        data={data}
+        onOpenInteractive={() => setMobileFullscreen(true)}
+      />
+    );
+  }
+
+  const canvasContent = (
     <div
       className="relative w-full glass-strong rounded-2xl border border-white/10"
       style={{
         width: "100%",
-        height: typeof height === "number" ? `${height}px` : height,
-        minHeight: 700,
+        height: mobileFullscreen ? "100%" : typeof height === "number" ? `${height}px` : height,
+        minHeight: mobileFullscreen ? "100%" : 700,
         display: "block",
         position: "relative",
         overflow: "visible",
