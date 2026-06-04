@@ -31,6 +31,8 @@ import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
+import { scienceF1C9MindMapBM } from "@/data/science-f1-c9-mindmap-bm";
+import { scienceF1C9MindMapDLP } from "@/data/science-f1-c9-mindmap-dlp";
 
 function sejarahFlashcardsFor(chapterNum: number) {
   return allFlashcards.filter(
@@ -209,6 +211,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Bumi",
     lang: "bm",
+    mindMap: { data: scienceF1C9MindMapBM, title: "Bumi (Earth)" },
     notes: scienceF1C9NotesBM,
   },
   {
@@ -218,6 +221,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Earth",
     lang: "dlp",
+    mindMap: { data: scienceF1C9MindMapDLP, title: "Chapter 9: Earth" },
     notes: scienceF1C9NotesDLP,
   },
 ];
