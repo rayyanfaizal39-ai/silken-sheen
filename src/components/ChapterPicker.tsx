@@ -1,6 +1,14 @@
 import { subjects, getSubjectChapters } from "@/data/content";
-import { Lock, ArrowLeft, Sparkles } from "lucide-react";
+import { Lock, ArrowLeft, Sparkles, Clock, Gauge, NotebookPen, Brain, Layers } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
+import { getChapter } from "@/content/registry";
+import { getChapterFeatures } from "@/content/types";
+
+function difficultyFor(index: number): { label: string; tone: string } {
+  if (index <= 1) return { label: "Easy", tone: "text-emerald-300 border-emerald-300/30 bg-emerald-300/10" };
+  if (index <= 4) return { label: "Medium", tone: "text-cyan-300 border-cyan-300/30 bg-cyan-300/10" };
+  return { label: "Advanced", tone: "text-fuchsia-300 border-fuchsia-300/30 bg-fuchsia-300/10" };
+}
 
 export function SubjectGrid({ onSelect }: { onSelect: (subjectId: string) => void }) {
   return (
@@ -68,11 +76,18 @@ export function ChapterGrid({
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {chapters.map((c, i) => {
             const pct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
+            const chapterContent = getChapter(subjectId, c.key, scienceLang);
+            const feats = getChapterFeatures(chapterContent);
+            const notesCount = chapterContent?.notes?.sections?.length ?? 0;
+            const cardCount = chapterContent?.flashcards?.length ?? 0;
+            const quizCount = chapterContent?.quiz?.length ?? 0;
+            const readMins = Math.max(3, Math.round(notesCount * 2 + (chapterContent?.notes?.quickRevision?.length ?? 0)));
+            const diff = difficultyFor(i);
             return (
               <button
                 key={c.key}
                 onClick={() => onSelect(c.key, c.available)}
-                className={`relative text-left glass rounded-2xl p-6 animate-slide-up overflow-hidden transition-all ${
+                className={`chapter-card relative text-left glass rounded-2xl p-5 animate-slide-up overflow-hidden transition-all ${
                   c.available
                     ? "card-glow-hover border border-transparent hover:border-primary/50"
                     : "opacity-70 hover:bg-white/[0.05]"
@@ -85,20 +100,44 @@ export function ChapterGrid({
                   </span>
                 )}
                 <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                    <span>{subj?.emoji}</span>
+                  <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    <span className="chapter-card-num">{String(i + 1).padStart(2, "0")}</span>
                     {subj?.name}
                   </span>
                   {!c.available && <Lock className="w-4 h-4 text-muted-foreground" />}
                 </div>
-                <h3 className="font-display text-xl font-bold">{c.label}</h3>
-                <p className="mt-2 text-xs font-semibold">
-                  {c.available ? (
-                    <span className="text-emerald-300">Available</span>
-                  ) : (
-                    <span className="text-amber-300">Coming Soon</span>
-                  )}
-                </p>
+                <h3 className="font-display text-lg font-bold leading-snug">{c.label}</h3>
+
+                {c.available && (
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    <span className="chapter-chip">
+                      <Clock className="w-3 h-3" /> {readMins} min
+                    </span>
+                    <span className={`chapter-chip border ${diff.tone}`}>
+                      <Gauge className="w-3 h-3" /> {diff.label}
+                    </span>
+                    {notesCount > 0 && (
+                      <span className="chapter-chip">
+                        <NotebookPen className="w-3 h-3" /> {notesCount}
+                      </span>
+                    )}
+                    {cardCount > 0 && (
+                      <span className="chapter-chip">
+                        <Layers className="w-3 h-3" /> {cardCount}
+                      </span>
+                    )}
+                    {quizCount > 0 && (
+                      <span className="chapter-chip">
+                        <Brain className="w-3 h-3" /> {quizCount}
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {!c.available && (
+                  <p className="mt-2 text-xs font-semibold text-amber-300">Coming Soon</p>
+                )}
+
                 {c.available && (
                   <div className="mt-4">
                     <div className="flex justify-between text-[10px] font-semibold text-muted-foreground mb-1.5">

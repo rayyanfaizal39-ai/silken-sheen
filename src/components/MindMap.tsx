@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { Plus, Minus, Maximize2, ChevronsDownUp, ChevronsUpDown, RotateCcw } from "lucide-react";
+import { Plus, Minus, Maximize2, ChevronsDownUp, ChevronsUpDown, RotateCcw, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { MindMapMobileTree } from "./MindMapMobileTree";
 
 export type MindNode = {
   id: string;
@@ -158,6 +160,8 @@ export function MindMap({
   const [tx, setTx] = useState(40);
   const [ty, setTy] = useState(400);
   const [scale, setScale] = useState(0.9);
+  const [mobileFullscreen, setMobileFullscreen] = useState(false);
+  const isMobile = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const pointers = useRef<Map<number, { x: number; y: number }>>(new Map());
@@ -375,13 +379,23 @@ function nodeStyle(
     // run whenever layout changes
   }, [minX, maxX, minY, maxY, svgW, svgH, scale]);
 
-  return (
+  // Mobile default: vertical tap-to-expand tree. Canvas is opt-in via "Interactive".
+  if (isMobile && !mobileFullscreen) {
+    return (
+      <MindMapMobileTree
+        data={data}
+        onOpenInteractive={() => setMobileFullscreen(true)}
+      />
+    );
+  }
+
+  const canvasContent = (
     <div
       className="relative w-full glass-strong rounded-2xl border border-white/10"
       style={{
         width: "100%",
-        height: typeof height === "number" ? `${height}px` : height,
-        minHeight: 700,
+        height: mobileFullscreen ? "100%" : typeof height === "number" ? `${height}px` : height,
+        minHeight: mobileFullscreen ? "100%" : 700,
         display: "block",
         position: "relative",
         overflow: "visible",
@@ -564,4 +578,26 @@ function nodeStyle(
       `}</style>
     </div>
   );
+
+  if (mobileFullscreen) {
+    return (
+      <div className="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-md flex flex-col">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+          <span className="text-sm font-semibold text-white">Interactive Mindmap</span>
+          <button
+            type="button"
+            onClick={() => setMobileFullscreen(false)}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 inline-flex items-center justify-center text-white"
+            aria-label="Close interactive mindmap"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <div className="flex-1 min-h-0 p-2">{canvasContent}</div>
+      </div>
+    );
+  }
+
+  return canvasContent;
 }
+
