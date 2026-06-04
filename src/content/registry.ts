@@ -31,6 +31,10 @@ import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
+import { scienceF1C2MindMapBM } from "@/data/science-f1-c2-mindmap-bm";
+import { scienceF1C2MindMapDLP } from "@/data/science-f1-c2-mindmap-dlp";
+import { scienceF1C3MindMapBM } from "@/data/science-f1-c3-mindmap-bm";
+import { scienceF1C3MindMapDLP } from "@/data/science-f1-c3-mindmap-dlp";
 import { scienceF1C4MindMapBM } from "@/data/science-f1-c4-mindmap-bm";
 import { scienceF1C4MindMapDLP } from "@/data/science-f1-c4-mindmap-dlp";
 import { scienceF1C5MindMapBM } from "@/data/science-f1-c5-mindmap-bm";
@@ -93,6 +97,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Sel sebagai Unit Asas Kehidupan",
     lang: "bm",
+    mindMap: { data: scienceF1C2MindMapBM, title: "Sel sebagai Unit Asas Hidupan" },
     notes: scienceF1C2NotesBM,
   },
   {
@@ -102,6 +107,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Cell as the Basic Unit of Life",
     lang: "dlp",
+    mindMap: { data: scienceF1C2MindMapDLP, title: "Cells as the Basic Unit of Life" },
     notes: scienceF1C2NotesDLP,
   },
   {
@@ -111,6 +117,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Koordinasi dan Tindak Balas",
     lang: "bm",
+    mindMap: { data: scienceF1C3MindMapBM, title: "Homeostasis dalam Benda Hidup" },
     notes: scienceF1C3NotesBM,
   },
   {
@@ -120,6 +127,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Coordination and Response",
     lang: "dlp",
+    mindMap: { data: scienceF1C3MindMapDLP, title: "Homeostasis" },
     notes: scienceF1C3NotesDLP,
   },
   {
