@@ -14,6 +14,7 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
+import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -42,11 +43,21 @@ interface ShuffledQuestion {
   subjectId: string;
 }
 
+function readStudySearch() {
+  if (typeof window === "undefined") return { subject: null, form: "All" };
+  const params = new URLSearchParams(window.location.search);
+  return {
+    subject: normalizeSubjectParam(params.get("subject")),
+    form: normalizeFormParam(params.get("form")),
+  };
+}
+
 function QuizzesPage() {
   const { progress, addXp, recordQuiz, awardBadge, markChapter } = useProgress();
-  const [subject, setSubject] = useState<string | null>(null);
+  const initialSearch = useMemo(readStudySearch, []);
+  const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(null);
-  const [form, setForm] = useState<string>("All");
+  const [form, setForm] = useState<string>(initialSearch.form);
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);

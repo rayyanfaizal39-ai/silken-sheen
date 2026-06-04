@@ -133,24 +133,23 @@ export function AIAssistant() {
     <>
       {/* Floating button */}
       {!open && (
-        <div className="fixed bottom-20 md:bottom-6 right-6 z-[60] flex flex-col items-end gap-2">
+        <div className="fixed bottom-24 right-4 z-[60] flex flex-col items-end gap-2 md:bottom-7 md:right-6">
           {showTip && (
-            <div className="glass-strong rounded-2xl px-4 py-2.5 text-sm font-medium shadow-2xl animate-fade-up max-w-[240px]">
+            <div className="glass-strong max-w-[220px] rounded-2xl px-4 py-2.5 text-sm font-medium shadow-2xl animate-fade-up">
               Ada soalan? Tanya AcadeMY AI! 💡
             </div>
           )}
           <button
             onClick={openChat}
             aria-label="Open AcadeMY AI Assistant"
-            className="relative group h-14 w-14 rounded-full bg-gradient-to-br from-accent to-primary text-white shadow-2xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
-            style={{ boxShadow: "0 0 24px 4px color-mix(in oklab, var(--accent) 55%, transparent)" }}
+            className="group relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-cyan-400 to-primary text-white shadow-2xl transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 active:scale-95 md:h-14 md:w-14 md:rounded-3xl"
+            style={{ boxShadow: "0 16px 40px -20px color-mix(in oklab, var(--accent) 75%, transparent)" }}
           >
             <span
-              className="absolute inset-0 rounded-full animate-ping"
-              style={{ background: "color-mix(in oklab, var(--accent) 40%, transparent)" }}
+              className="absolute inset-0 rounded-2xl opacity-0 transition-opacity group-hover:opacity-100 md:rounded-3xl"
+              style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.22), transparent)" }}
             />
-            <Bot className="relative h-7 w-7" />
-            <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-red-500 ring-2 ring-background animate-pulse" />
+            <Bot className="relative h-6 w-6 md:h-7 md:w-7" />
           </button>
         </div>
       )}

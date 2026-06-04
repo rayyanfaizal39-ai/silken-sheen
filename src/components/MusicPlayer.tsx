@@ -226,10 +226,10 @@ export function MusicPlayer() {
   return (
     <>
       {/* Floating button */}
-      <div className="fixed bottom-36 md:bottom-24 right-6 z-[70] flex flex-col items-end gap-3">
+      <div className="fixed bottom-40 right-4 z-[70] flex flex-col items-end gap-3 md:bottom-24 md:right-6">
         {showTooltip && !open && (
-          <div className="glass-strong rounded-xl px-3 py-2 text-xs text-foreground shadow-lg animate-fade-in">
-            🎵 Need study music? Click here!
+          <div className="glass-strong max-w-[210px] rounded-2xl px-3 py-2 text-xs font-medium text-foreground shadow-lg animate-fade-in">
+            Study music for focus
           </div>
         )}
 
@@ -361,25 +361,25 @@ export function MusicPlayer() {
         <button
           onClick={open ? () => setOpen(false) : openPanel}
           aria-label="Toggle music player"
-          className="relative h-14 w-14 rounded-full flex items-center justify-center text-white shadow-lg transition-transform hover:scale-110"
+          className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 md:h-14 md:w-14 md:rounded-3xl"
           style={{
-            background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+            background: "linear-gradient(135deg, #8B5CF6 0%, #2563EB 100%)",
             boxShadow: playing
-              ? "0 0 20px rgba(139,92,246,0.6), 0 0 40px rgba(139,92,246,0.3)"
-              : "0 4px 14px rgba(0,0,0,0.3)",
+              ? "0 16px 42px -20px rgba(139,92,246,0.9), 0 0 22px rgba(139,92,246,0.35)"
+              : "0 16px 38px -24px rgba(0,0,0,0.75)",
           }}
         >
           {playing && (
             <span
-              className="absolute inset-0 rounded-full"
+              className="absolute inset-0 rounded-2xl md:rounded-3xl"
               style={{
                 animation: "musicPulse 1.6s ease-out infinite",
                 background: "#8B5CF6",
-                opacity: 0.5,
+                opacity: 0.32,
               }}
             />
           )}
-          <Music className="h-7 w-7 relative" />
+          <Music className="relative h-6 w-6 md:h-7 md:w-7" />
         </button>
       </div>
 

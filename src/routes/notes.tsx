@@ -34,9 +34,11 @@ import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { NotesBlock } from "@/components/notes/NotesBlock";
+import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 
 const searchSchema = z.object({
   subject: z.string().optional(),
+  form: z.string().optional(),
 });
 
 export const Route = createFileRoute("/notes")({
@@ -54,12 +56,13 @@ export const Route = createFileRoute("/notes")({
 
 function NotesPage() {
   const search = Route.useSearch();
+  const normalizedSubject = normalizeSubjectParam(search.subject);
   const initialSubject =
-    search.subject && subjects.some((s) => s.id === search.subject) ? search.subject : null;
+    normalizedSubject && subjects.some((s) => s.id === normalizedSubject) ? normalizedSubject : null;
   const [subject, setSubject] = useState<string | null>(initialSubject ?? null);
   const [chapter, setChapter] = useState<string | null>(null);
   const [subtopic, setSubtopic] = useState<Subtopic | null>(null);
-  const [form, setForm] = useState<string>("All");
+  const [form, setForm] = useState<string>(normalizeFormParam(search.form));
   const [q, setQ] = useState("");
   const [notesTab, setNotesTab] = useState<"bm" | "dlp">("bm");
   const [notesSearch, setNotesSearch] = useState("");

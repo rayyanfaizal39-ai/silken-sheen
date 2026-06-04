@@ -14,6 +14,7 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
+import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -42,6 +43,15 @@ function progressColor(pct: number) {
   if (pct <= 50) return "from-orange-500 to-amber-500";
   if (pct <= 75) return "from-yellow-400 to-yellow-500";
   return "from-emerald-500 to-green-500";
+}
+
+function readStudySearch() {
+  if (typeof window === "undefined") return { subject: null, form: "All" };
+  const params = new URLSearchParams(window.location.search);
+  return {
+    subject: normalizeSubjectParam(params.get("subject")),
+    form: normalizeFormParam(params.get("form")),
+  };
 }
 
 function FireBadge({ streak }: { streak: number }) {
@@ -91,9 +101,10 @@ function MiniConfetti({ color }: { color: string }) {
 
 function FlashcardsPage() {
   const { progress, toggleFavorite, markChapter, addXp } = useProgress();
-  const [subject, setSubject] = useState<string | null>(null);
+  const initialSearch = useMemo(readStudySearch, []);
+  const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(null);
-  const [form, setForm] = useState("All");
+  const [form, setForm] = useState(initialSearch.form);
   const [favOnly, setFavOnly] = useState(false);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
