@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { Plus, Minus, Maximize2, ChevronsDownUp, ChevronsUpDown, RotateCcw } from "lucide-react";
+import { Plus, Minus, Maximize2, ChevronsDownUp, ChevronsUpDown, RotateCcw, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { MindMapMobileTree } from "./MindMapMobileTree";
 
 export type MindNode = {
   id: string;
