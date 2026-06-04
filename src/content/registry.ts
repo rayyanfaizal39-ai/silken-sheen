@@ -31,6 +31,8 @@ import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
+import { scienceF1C1MindMapBM } from "@/data/science-f1-c1-mindmap-bm";
+import { scienceF1C1MindMapDLP } from "@/data/science-f1-c1-mindmap-dlp";
 import { scienceF1C2MindMapBM } from "@/data/science-f1-c2-mindmap-bm";
 import { scienceF1C2MindMapDLP } from "@/data/science-f1-c2-mindmap-dlp";
 import { scienceF1C3MindMapBM } from "@/data/science-f1-c3-mindmap-bm";
@@ -39,6 +41,8 @@ import { scienceF1C4MindMapBM } from "@/data/science-f1-c4-mindmap-bm";
 import { scienceF1C4MindMapDLP } from "@/data/science-f1-c4-mindmap-dlp";
 import { scienceF1C5MindMapBM } from "@/data/science-f1-c5-mindmap-bm";
 import { scienceF1C5MindMapDLP } from "@/data/science-f1-c5-mindmap-dlp";
+import { scienceF1C6MindMapBM } from "@/data/science-f1-c6-mindmap-bm";
+import { scienceF1C6MindMapDLP } from "@/data/science-f1-c6-mindmap-dlp";
 import { scienceF1C7MindMapBM } from "@/data/science-f1-c7-mindmap-bm";
 import { scienceF1C7MindMapDLP } from "@/data/science-f1-c7-mindmap-dlp";
 import { scienceF1C8MindMapBM } from "@/data/science-f1-c8-mindmap-bm";
@@ -89,7 +93,25 @@ export const chapters: ChapterContent[] = [
   sejarah(7, "Tamadun India dan China", "aeLoGzzm85o", tamadunIndiaChinaMindMap, "Tamadun India dan China"),
   sejarah(8, "Tamadun Islam", "RIDZG6LTY5Y", tamadunIslamSumbanganMindMap, "Tamadun Islam dan Sumbangannya"),
 
-  // Science Form 1 Chapter 2 (bilingual)
+  // Science Form 1 (bilingual)
+  {
+    id: "science-f1-c1-bm",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 1",
+    title: "Pengenalan kepada Penyiasatan Saintifik",
+    lang: "bm",
+    mindMap: { data: scienceF1C1MindMapBM, title: "Pengenalan kepada Penyiasatan Saintifik" },
+  },
+  {
+    id: "science-f1-c1-dlp",
+    subjectId: "science",
+    form: "Form 1",
+    chapterKey: "Chapter 1",
+    title: "Introduction to Scientific Investigation",
+    lang: "dlp",
+    mindMap: { data: scienceF1C1MindMapDLP, title: "Introduction to Scientific Investigation" },
+  },
   {
     id: "science-f1-c2-bm",
     subjectId: "science",
@@ -177,6 +199,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Jadual Berkala",
     lang: "bm",
+    mindMap: { data: scienceF1C6MindMapBM, title: "Bab 6: Jadual Berkala" },
     notes: scienceF1C6NotesBM,
   },
   {
@@ -186,6 +209,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Periodic Table",
     lang: "dlp",
+    mindMap: { data: scienceF1C6MindMapDLP, title: "Periodic Table" },
     notes: scienceF1C6NotesDLP,
   },
   {
