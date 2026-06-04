@@ -31,6 +31,8 @@ import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
+import { scienceF1C7MindMapBM } from "@/data/science-f1-c7-mindmap-bm";
+import { scienceF1C7MindMapDLP } from "@/data/science-f1-c7-mindmap-dlp";
 import { scienceF1C9MindMapBM } from "@/data/science-f1-c9-mindmap-bm";
 import { scienceF1C9MindMapDLP } from "@/data/science-f1-c9-mindmap-dlp";
 
@@ -175,6 +177,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Udara",
     lang: "bm",
+    mindMap: { data: scienceF1C7MindMapBM, title: "Bab 7: Udara" },
     notes: scienceF1C7NotesBM,
   },
   {
@@ -184,6 +187,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Air",
     lang: "dlp",
+    mindMap: { data: scienceF1C7MindMapDLP, title: "Air (Chapter 7)" },
     notes: scienceF1C7NotesDLP,
   },
   {
