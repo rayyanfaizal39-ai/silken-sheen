@@ -13,7 +13,7 @@ export function MobileNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-strong border-t border-white/10 px-4 pb-safe-offset-2 pt-2">
+    <nav className="mobile-nav-shell md:hidden fixed bottom-3 left-3 right-3 z-50 rounded-2xl px-2 pb-safe-offset-1 pt-2">
       <div className="max-w-md mx-auto flex items-center justify-between">
         {mobileLinks.map((link) => {
           const active = pathname === link.to;
@@ -23,17 +23,13 @@ export function MobileNav() {
             <Link
               key={link.to}
               to={link.to}
-              className={`flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-all ${
-                active
-                  ? "text-primary scale-110"
-                  : "text-muted-foreground hover:text-foreground"
+              className={`mobile-nav-item relative flex flex-col items-center justify-center gap-0.5 rounded-xl transition-all ${
+                active ? "mobile-nav-item-active" : "text-slate-400 hover:text-white"
               }`}
+              aria-current={active ? "page" : undefined}
             >
-              <Icon className={`w-5 h-5 ${active ? "animate-pulse-glow" : ""}`} />
-              <span className="text-[10px] font-medium leading-none">{link.label}</span>
-              {active && (
-                <div className="absolute -top-1 w-1 h-1 rounded-full bg-primary glow-blue" />
-              )}
+              <Icon className="w-5 h-5" />
+              <span className="text-[10px] font-semibold leading-none">{link.label}</span>
             </Link>
           );
         })}
