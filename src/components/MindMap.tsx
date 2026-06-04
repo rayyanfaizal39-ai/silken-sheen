@@ -578,4 +578,26 @@ function nodeStyle(
       `}</style>
     </div>
   );
+
+  if (mobileFullscreen) {
+    return (
+      <div className="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-md flex flex-col">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+          <span className="text-sm font-semibold text-white">Interactive Mindmap</span>
+          <button
+            type="button"
+            onClick={() => setMobileFullscreen(false)}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 inline-flex items-center justify-center text-white"
+            aria-label="Close interactive mindmap"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <div className="flex-1 min-h-0 p-2">{canvasContent}</div>
+      </div>
+    );
+  }
+
+  return canvasContent;
 }
+
