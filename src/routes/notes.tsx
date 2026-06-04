@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { subjects, forms, notes, getItemChapterKey, getSubjectChapters, scienceF1C2NotesBM, scienceF1C2NotesDLP, type ScienceChapter2Notes, type ScienceNotesSection } from "@/data/content";
+import {
+  subjects,
+  forms,
+  notes,
+  getItemChapterKey,
+  getSubjectChapters,
+  scienceF1C2NotesBM,
+  scienceF1C2NotesDLP,
+  type ScienceChapter2Notes,
+  type ScienceNotesSection,
+} from "@/data/content";
 import { Search, BookOpenCheck, ArrowLeft, BookMarked } from "lucide-react";
 import { z } from "zod";
 import {
@@ -9,16 +19,18 @@ import {
   ContentHeader,
   ComingSoonScreen,
 } from "@/components/ChapterPicker";
-import {
-  ScienceLanguagePicker,
-  ScienceLangBar,
-} from "@/components/ScienceLanguagePicker";
+import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { MindMap } from "@/components/MindMap";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { zamanPrasejarahMindMap } from "@/data/zamanPrasejarahMindMap";
@@ -48,7 +60,10 @@ export const Route = createFileRoute("/notes")({
       { title: "Summary Notes — AcadeMY" },
       { name: "description", content: "Bite-sized KSSM notes by subject, form, and chapter." },
       { property: "og:title", content: "Summary Notes — AcadeMY" },
-      { property: "og:description", content: "Clean, highlighted study notes for Form 1–3 students." },
+      {
+        property: "og:description",
+        content: "Clean, highlighted study notes for Form 1–3 students.",
+      },
     ],
   }),
   component: NotesPage,
@@ -58,7 +73,9 @@ function NotesPage() {
   const search = Route.useSearch();
   const normalizedSubject = normalizeSubjectParam(search.subject);
   const initialSubject =
-    normalizedSubject && subjects.some((s) => s.id === normalizedSubject) ? normalizedSubject : null;
+    normalizedSubject && subjects.some((s) => s.id === normalizedSubject)
+      ? normalizedSubject
+      : null;
   const [subject, setSubject] = useState<string | null>(initialSubject ?? null);
   const [chapter, setChapter] = useState<string | null>(null);
   const [subtopic, setSubtopic] = useState<Subtopic | null>(null);
@@ -73,11 +90,18 @@ function NotesPage() {
 
   const hasSubtopics = subject === "sejarah" && !!chapter;
   const subtopics = hasSubtopics ? getSejarahF1Subtopics(chapter!) : [];
+  const activeScienceLang = subject === "science" ? (scienceLang ?? undefined) : undefined;
 
   const chapterMeta =
-    subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
-  const isRead = subject && chapter ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read : false;
-  const activeChapter = subject && chapter ? getChapter(subject, chapter, scienceLang ?? undefined) ?? undefined : undefined;
+    subject && chapter
+      ? getSubjectChapters(subject, activeScienceLang).find((c) => c.key === chapter)
+      : null;
+  const isRead =
+    subject && chapter
+      ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read
+      : false;
+  const activeChapter =
+    subject && chapter ? (getChapter(subject, chapter, activeScienceLang) ?? undefined) : undefined;
   const features = getChapterFeatures(activeChapter);
   const isScienceChapter2 = subject === "science" && chapter === "Chapter 2";
   const isScienceStructuredNotes = isScienceChapter2;
@@ -90,16 +114,19 @@ function NotesPage() {
     return chapterNotes.sections
       .map((section) => {
         const sectionMatches = section.title.toLowerCase().includes(query);
-        const filteredSubsections = section.subsections?.filter((sub) => {
-          const textMatches = [sub.title, sub.content, sub.formula]
-            .filter(Boolean)
-            .some((text) => text!.toLowerCase().includes(query));
-          const bulletsMatch = sub.bulletPoints?.some((point) => point.toLowerCase().includes(query));
-          const tableMatch =
-            sub.table?.headers.some((header) => header.toLowerCase().includes(query)) ||
-            sub.table?.rows.some((row) => row.some((cell) => cell.toLowerCase().includes(query)));
-          return sectionMatches || textMatches || bulletsMatch || tableMatch;
-        }) ?? [];
+        const filteredSubsections =
+          section.subsections?.filter((sub) => {
+            const textMatches = [sub.title, sub.content, sub.formula]
+              .filter(Boolean)
+              .some((text) => text!.toLowerCase().includes(query));
+            const bulletsMatch = sub.bulletPoints?.some((point) =>
+              point.toLowerCase().includes(query),
+            );
+            const tableMatch =
+              sub.table?.headers.some((header) => header.toLowerCase().includes(query)) ||
+              sub.table?.rows.some((row) => row.some((cell) => cell.toLowerCase().includes(query)));
+            return sectionMatches || textMatches || bulletsMatch || tableMatch;
+          }) ?? [];
 
         if (sectionMatches) return section;
         if (filteredSubsections.length > 0) return { ...section, subsections: filteredSubsections };
@@ -113,7 +140,10 @@ function NotesPage() {
       <div className="space-y-6">
         <div className="grid gap-4 sm:grid-cols-2">
           {notesData.quickRevision.map((item) => (
-            <div key={item} className="rounded-3xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-100 shadow-sm">
+            <div
+              key={item}
+              className="rounded-3xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-100 shadow-sm"
+            >
               {item}
             </div>
           ))}
@@ -126,14 +156,20 @@ function NotesPage() {
         ) : (
           <Accordion type="single" collapsible className="space-y-4">
             {sections.map((section) => (
-              <AccordionItem key={section.title} value={section.title} className="rounded-3xl border border-white/10 bg-slate-950/80 p-4">
+              <AccordionItem
+                key={section.title}
+                value={section.title}
+                className="rounded-3xl border border-white/10 bg-slate-950/80 p-4"
+              >
                 <AccordionTrigger>{section.title}</AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-6 pt-2">
                     {section.subsections?.map((sub, index) => (
                       <div key={`${section.title}-${index}`} className="space-y-4">
                         {sub.title && <h3 className="text-xl font-semibold">{sub.title}</h3>}
-                        {sub.content && <p className="text-sm leading-7 text-slate-300">{sub.content}</p>}
+                        {sub.content && (
+                          <p className="text-sm leading-7 text-slate-300">{sub.content}</p>
+                        )}
                         {sub.bulletPoints && (
                           <ul className="list-disc list-inside space-y-2 text-sm leading-7 text-slate-300">
                             {sub.bulletPoints.map((point) => (
@@ -153,7 +189,10 @@ function NotesPage() {
                               <thead>
                                 <tr className="text-slate-300">
                                   {sub.table.headers.map((header) => (
-                                    <th key={header} className="border-b border-white/10 px-3 py-2 font-semibold text-slate-200">
+                                    <th
+                                      key={header}
+                                      className="border-b border-white/10 px-3 py-2 font-semibold text-slate-200"
+                                    >
                                       {header}
                                     </th>
                                   ))}
@@ -161,9 +200,15 @@ function NotesPage() {
                               </thead>
                               <tbody>
                                 {sub.table.rows.map((row, rowIndex) => (
-                                  <tr key={`${rowIndex}-${row[0]}`} className={rowIndex % 2 === 0 ? "bg-white/5" : "bg-transparent"}>
+                                  <tr
+                                    key={`${rowIndex}-${row[0]}`}
+                                    className={rowIndex % 2 === 0 ? "bg-white/5" : "bg-transparent"}
+                                  >
                                     {row.map((cell, cellIndex) => (
-                                      <td key={cellIndex} className="border-b border-white/10 px-3 py-2 text-slate-300">
+                                      <td
+                                        key={cellIndex}
+                                        className="border-b border-white/10 px-3 py-2 text-slate-300"
+                                      >
                                         {cell}
                                       </td>
                                     ))}
@@ -187,7 +232,10 @@ function NotesPage() {
             <h3 className="text-xl font-semibold text-white">Key Terms</h3>
             <div className="mt-4 flex flex-wrap gap-2">
               {notesData.keyTerms.map((term) => (
-                <span key={term} className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2 text-sm text-slate-200 font-medium">
+                <span
+                  key={term}
+                  className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2 text-sm text-slate-200 font-medium"
+                >
                   {term}
                 </span>
               ))}
@@ -199,7 +247,10 @@ function NotesPage() {
           <h3 className="text-xl font-semibold text-white">Key Exam Facts</h3>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {notesData.keyExamFacts?.map((fact) => (
-              <div key={fact} className="rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-200">
+              <div
+                key={fact}
+                className="rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-200"
+              >
                 {fact}
               </div>
             ))}
@@ -305,7 +356,7 @@ function NotesPage() {
           )}
           <ChapterGrid
             subjectId={subject}
-            scienceLang={scienceLang ?? undefined}
+            scienceLang={activeScienceLang}
             onSelect={(key) => {
               setChapter(key);
               setSubtopic(null);
@@ -321,7 +372,7 @@ function NotesPage() {
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={chapter}
-          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+          scienceLang={subject === "science" ? (scienceLang ?? undefined) : undefined}
           onBack={() => setChapter(null)}
         />
       ) : hasSubtopics && !subtopic ? (
@@ -347,7 +398,7 @@ function NotesPage() {
           <ContentHeader
             subjectId={subject}
             chapterKey={chapter}
-            scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+            scienceLang={subject === "science" ? (scienceLang ?? undefined) : undefined}
             onBack={() => setChapter(null)}
           />
 
@@ -628,10 +679,7 @@ function highlight(text: string, keywords: string[]) {
   const parts = text.split(re);
   return parts.map((part, i) =>
     keywords.some((keyword) => part.toLowerCase() === keyword.toLowerCase()) ? (
-      <mark
-        key={i}
-        className="bg-accent/30 text-foreground rounded px-1 py-0.5 not-italic"
-      >
+      <mark key={i} className="bg-accent/30 text-foreground rounded px-1 py-0.5 not-italic">
         {part}
       </mark>
     ) : (
