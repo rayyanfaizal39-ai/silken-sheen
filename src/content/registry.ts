@@ -31,6 +31,8 @@ import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
 import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
+import { scienceF1C5MindMapBM } from "@/data/science-f1-c5-mindmap-bm";
+import { scienceF1C5MindMapDLP } from "@/data/science-f1-c5-mindmap-dlp";
 import { scienceF1C7MindMapBM } from "@/data/science-f1-c7-mindmap-bm";
 import { scienceF1C7MindMapDLP } from "@/data/science-f1-c7-mindmap-dlp";
 import { scienceF1C9MindMapBM } from "@/data/science-f1-c9-mindmap-bm";
@@ -141,6 +143,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Jirim",
     lang: "bm",
+    mindMap: { data: scienceF1C5MindMapBM, title: "Jirim" },
     notes: scienceF1C5NotesBM,
   },
   {
@@ -150,6 +153,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Matter",
     lang: "dlp",
+    mindMap: { data: scienceF1C5MindMapDLP, title: "Matter" },
     notes: scienceF1C5NotesDLP,
   },
   {
