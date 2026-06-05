@@ -1593,6 +1593,748 @@ const MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP: ShuffledQuestion[] = [
   },
 ];
 
+function mq(
+  question: string,
+  options: string[],
+  answerIndex: number,
+  explanation: string,
+  difficulty: Difficulty,
+): ShuffledQuestion {
+  return { question, options, answerIndex, explanation, difficulty, subjectId: "math" };
+}
+
+const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS: ShuffledQuestion[] = [
+  mq(
+    "Apakah faktor?",
+    [
+      "Nombor yang membahagi tepat tanpa baki",
+      "Hasil darab nombor",
+      "Nombor perpuluhan",
+      "Nombor negatif sahaja",
+    ],
+    0,
+    "Faktor membahagi suatu nombor dengan tepat tanpa baki.",
+    "Easy",
+  ),
+  mq(
+    "Apakah faktor bagi 12?",
+    ["5", "7", "3", "8"],
+    2,
+    "12 ÷ 3 = 4 tanpa baki, jadi 3 ialah faktor bagi 12.",
+    "Easy",
+  ),
+  mq(
+    "Manakah senarai faktor bagi 12?",
+    ["1, 2, 3, 4, 6, 12", "2, 4, 8, 12", "3, 6, 9, 12", "1, 5, 10, 12"],
+    0,
+    "Faktor 12 ialah 1, 2, 3, 4, 6 dan 12.",
+    "Easy",
+  ),
+  mq(
+    "Apakah nombor perdana?",
+    [
+      "Nombor yang ada banyak faktor",
+      "Nombor yang ada tepat dua faktor",
+      "Nombor genap sahaja",
+      "Nombor gandaan 10",
+    ],
+    1,
+    "Nombor perdana mempunyai tepat dua faktor: 1 dan nombor itu sendiri.",
+    "Easy",
+  ),
+  mq(
+    "Manakah nombor perdana?",
+    ["1", "4", "9", "11"],
+    3,
+    "11 hanya mempunyai faktor 1 dan 11.",
+    "Easy",
+  ),
+  mq(
+    "Adakah 1 nombor perdana?",
+    ["Ya", "Tidak", "Hanya jika ganjil", "Hanya jika genap"],
+    1,
+    "1 bukan nombor perdana kerana hanya mempunyai satu faktor.",
+    "Easy",
+  ),
+  mq(
+    "Apakah faktor perdana?",
+    [
+      "Faktor yang merupakan nombor perdana",
+      "Gandaan paling kecil",
+      "Faktor paling besar sahaja",
+      "Nombor yang bukan faktor",
+    ],
+    0,
+    "Faktor perdana ialah faktor yang juga nombor perdana.",
+    "Easy",
+  ),
+  mq(
+    "Apakah pemfaktoran perdana bagi 12?",
+    ["2 x 2 x 3", "2 x 6", "3 x 4", "1 x 12"],
+    0,
+    "12 = 2 x 2 x 3 dalam faktor perdana.",
+    "Easy",
+  ),
+  mq(
+    "Apakah faktor sepunya?",
+    [
+      "Faktor yang sama bagi dua atau lebih nombor",
+      "Gandaan yang sama",
+      "Nombor terbesar",
+      "Nombor terkecil",
+    ],
+    0,
+    "Faktor sepunya ialah faktor yang sama bagi dua atau lebih nombor.",
+    "Easy",
+  ),
+  mq(
+    "Apakah FSTB?",
+    [
+      "Faktor sepunya paling besar",
+      "Gandaan sepunya paling kecil",
+      "Faktor pertama",
+      "Gandaan pertama",
+    ],
+    0,
+    "FSTB bermaksud Faktor Sepunya Terbesar.",
+    "Easy",
+  ),
+  mq(
+    "FSTB bagi 12 dan 18 ialah:",
+    ["3", "6", "9", "12"],
+    1,
+    "Faktor sepunya 12 dan 18 ialah 1, 2, 3, 6. Yang terbesar ialah 6.",
+    "Easy",
+  ),
+  mq(
+    "Apakah gandaan?",
+    [
+      "Hasil darab nombor dengan nombor bulat positif",
+      "Nombor yang membahagi tepat",
+      "Faktor perdana",
+      "Baki pembahagian",
+    ],
+    0,
+    "Gandaan diperoleh dengan mendarab nombor dengan nombor bulat positif.",
+    "Easy",
+  ),
+  mq(
+    "Manakah gandaan bagi 4?",
+    ["6", "10", "12", "14"],
+    2,
+    "12 = 4 x 3, jadi 12 ialah gandaan bagi 4.",
+    "Easy",
+  ),
+  mq(
+    "Apakah gandaan sepunya?",
+    [
+      "Gandaan yang sama bagi dua atau lebih nombor",
+      "Faktor paling besar",
+      "Nombor perdana sahaja",
+      "Baki yang sama",
+    ],
+    0,
+    "Gandaan sepunya ialah gandaan yang sama bagi dua atau lebih nombor.",
+    "Easy",
+  ),
+  mq(
+    "Apakah GSTK?",
+    [
+      "Faktor sepunya paling besar",
+      "Gandaan sepunya paling kecil",
+      "Nombor perdana",
+      "Faktor pertama",
+    ],
+    1,
+    "GSTK bermaksud Gandaan Sepunya Terkecil.",
+    "Easy",
+  ),
+  mq(
+    "GSTK bagi 4 dan 6 ialah:",
+    ["6", "10", "12", "24"],
+    2,
+    "Gandaan sepunya 4 dan 6 termasuk 12 dan 24. Yang terkecil ialah 12.",
+    "Easy",
+  ),
+  mq(
+    "FSTB sesuai digunakan untuk:",
+    [
+      "Membahagi kepada kumpulan sama",
+      "Mencari masa berulang",
+      "Menukar perpuluhan",
+      "Membina graf",
+    ],
+    0,
+    "FSTB sesuai untuk pembahagian kepada kumpulan sama banyak.",
+    "Easy",
+  ),
+  mq(
+    "GSTK sesuai digunakan untuk:",
+    [
+      "Mencari kumpulan terbesar",
+      "Mencari kejadian berulang bersama",
+      "Membahagi baki",
+      "Mencari faktor",
+    ],
+    1,
+    "GSTK sesuai untuk kejadian yang berulang bersama.",
+    "Easy",
+  ),
+  mq(
+    "Kata kunci FSTB ialah:",
+    ["Terkecil", "Pertama kali bersama", "Terbesar", "Berulang"],
+    2,
+    "FSTB berkaitan nilai terbesar atau maksimum.",
+    "Easy",
+  ),
+  mq(
+    "Kata kunci GSTK ialah:",
+    ["Maksimum", "Kumpulan sama", "Terbesar", "Pertama kali bersama"],
+    3,
+    "GSTK kerap digunakan apabila mencari masa pertama berlaku bersama.",
+    "Easy",
+  ),
+  mq("Faktor bagi 18 termasuk:", ["4", "5", "6", "8"], 2, "18 ÷ 6 = 3 tanpa baki.", "Easy"),
+  mq("Faktor bagi 20 termasuk:", ["6", "8", "10", "12"], 2, "20 ÷ 10 = 2 tanpa baki.", "Easy"),
+  mq(
+    "Manakah bukan faktor bagi 12?",
+    ["1", "3", "5", "6"],
+    2,
+    "12 tidak boleh dibahagi 5 tepat tanpa baki.",
+    "Easy",
+  ),
+  mq(
+    "Manakah bukan gandaan bagi 6?",
+    ["6", "12", "18", "20"],
+    3,
+    "20 bukan hasil darab 6 dengan nombor bulat.",
+    "Easy",
+  ),
+  mq(
+    "Nombor perdana yang genap ialah:",
+    ["2", "4", "6", "8"],
+    0,
+    "2 ialah satu-satunya nombor perdana genap dalam senarai ini.",
+    "Easy",
+  ),
+  mq(
+    "Faktor sepunya bagi 4 dan 6 termasuk:",
+    ["1", "5", "8", "12"],
+    0,
+    "1 membahagi semua nombor bulat.",
+    "Easy",
+  ),
+  mq(
+    "Gandaan sepunya bagi 4 dan 6 termasuk:",
+    ["8", "10", "12", "14"],
+    2,
+    "12 ialah gandaan bagi 4 dan juga 6.",
+    "Easy",
+  ),
+  mq(
+    "Pemfaktoran perdana menggunakan nombor:",
+    ["Perdana", "Perpuluhan", "Negatif sahaja", "Pecahan sahaja"],
+    0,
+    "Pemfaktoran perdana menggunakan faktor nombor perdana.",
+    "Easy",
+  ),
+  mq(
+    "Dalam kaedah FSTB, pilih faktor sepunya yang:",
+    ["Terkecil", "Paling besar", "Paling ganjil", "Paling akhir"],
+    1,
+    "FSTB ialah faktor sepunya terbesar.",
+    "Easy",
+  ),
+  mq(
+    "Dalam kaedah GSTK, pilih gandaan sepunya yang:",
+    ["Paling kecil", "Paling besar", "Paling ganjil", "Bukan gandaan"],
+    0,
+    "GSTK ialah gandaan sepunya terkecil.",
+    "Easy",
+  ),
+];
+
+const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS: ShuffledQuestion[] = [
+  mq(
+    "Cari semua faktor bagi 16.",
+    ["1, 2, 4, 8, 16", "1, 3, 5, 16", "2, 4, 6, 16", "1, 2, 8"],
+    0,
+    "16 boleh dibahagi tepat oleh 1, 2, 4, 8 dan 16.",
+    "Medium",
+  ),
+  mq(
+    "Cari semua faktor bagi 24.",
+    ["1, 2, 3, 4, 6, 8, 12, 24", "1, 2, 4, 12", "2, 3, 6, 24", "1, 5, 10, 24"],
+    0,
+    "Senarai lengkap faktor 24 ialah 1, 2, 3, 4, 6, 8, 12 dan 24.",
+    "Medium",
+  ),
+  mq(
+    "Pemfaktoran perdana bagi 30 ialah:",
+    ["2 x 3 x 5", "3 x 10", "2 x 15", "5 x 6"],
+    0,
+    "30 = 2 x 3 x 5.",
+    "Medium",
+  ),
+  mq(
+    "Pemfaktoran perdana bagi 36 ialah:",
+    ["2 x 2 x 3 x 3", "4 x 9", "6 x 6", "2 x 18"],
+    0,
+    "36 = 2² x 3² = 2 x 2 x 3 x 3.",
+    "Medium",
+  ),
+  mq(
+    "FSTB bagi 16 dan 24 ialah:",
+    ["4", "6", "8", "12"],
+    2,
+    "Faktor sepunya terbesar bagi 16 dan 24 ialah 8.",
+    "Medium",
+  ),
+  mq(
+    "FSTB bagi 20 dan 30 ialah:",
+    ["5", "10", "15", "20"],
+    1,
+    "Faktor sepunya terbesar bagi 20 dan 30 ialah 10.",
+    "Medium",
+  ),
+  mq(
+    "FSTB bagi 18 dan 24 ialah:",
+    ["3", "6", "9", "12"],
+    1,
+    "18 = 2 x 3 x 3 dan 24 = 2 x 2 x 2 x 3, FSTB = 2 x 3 = 6.",
+    "Medium",
+  ),
+  mq(
+    "FSTB bagi 12, 18 dan 30 ialah:",
+    ["3", "6", "9", "12"],
+    1,
+    "6 ialah faktor terbesar yang membahagi 12, 18 dan 30.",
+    "Medium",
+  ),
+  mq(
+    "GSTK bagi 5 dan 8 ialah:",
+    ["10", "20", "40", "80"],
+    2,
+    "5 dan 8 tiada faktor sepunya selain 1, jadi GSTK = 5 x 8 = 40.",
+    "Medium",
+  ),
+  mq(
+    "GSTK bagi 6 dan 8 ialah:",
+    ["12", "18", "24", "48"],
+    2,
+    "Gandaan sepunya terkecil bagi 6 dan 8 ialah 24.",
+    "Medium",
+  ),
+  mq(
+    "GSTK bagi 9 dan 12 ialah:",
+    ["18", "24", "36", "48"],
+    2,
+    "9 = 3² dan 12 = 2² x 3, GSTK = 2² x 3² = 36.",
+    "Medium",
+  ),
+  mq(
+    "GSTK bagi 10 dan 15 ialah:",
+    ["15", "20", "30", "45"],
+    2,
+    "Gandaan sepunya terkecil bagi 10 dan 15 ialah 30.",
+    "Medium",
+  ),
+  mq(
+    "Apakah faktor perdana sepunya bagi 12 dan 18?",
+    ["2 dan 3", "2 sahaja", "3 sahaja", "5"],
+    0,
+    "12 = 2 x 2 x 3 dan 18 = 2 x 3 x 3, faktor perdana sepunya ialah 2 dan 3.",
+    "Medium",
+  ),
+  mq(
+    "Untuk FSTB, faktor perdana sepunya diambil dengan:",
+    ["Kuasa terkecil", "Kuasa terbesar", "Jumlah kuasa", "Tiada kuasa"],
+    0,
+    "FSTB mengambil faktor perdana sepunya dengan kuasa terkecil.",
+    "Medium",
+  ),
+  mq(
+    "Untuk GSTK, semua faktor perdana diambil dengan:",
+    ["Kuasa terkecil", "Kuasa terbesar", "Hanya kuasa satu", "Kuasa sifar"],
+    1,
+    "GSTK mengambil semua faktor perdana dengan kuasa terbesar.",
+    "Medium",
+  ),
+  mq(
+    "Jika 2 x 2 x 3 ialah pemfaktoran perdana, nombornya ialah:",
+    ["7", "12", "18", "24"],
+    1,
+    "2 x 2 x 3 = 12.",
+    "Medium",
+  ),
+  mq(
+    "Jika 2 x 3 x 3 ialah pemfaktoran perdana, nombornya ialah:",
+    ["12", "15", "18", "27"],
+    2,
+    "2 x 3 x 3 = 18.",
+    "Medium",
+  ),
+  mq(
+    "Antara berikut, yang manakah gandaan bagi 9?",
+    ["18", "20", "25", "32"],
+    0,
+    "18 = 9 x 2.",
+    "Medium",
+  ),
+  mq(
+    "Antara berikut, yang manakah faktor bagi 36?",
+    ["5", "7", "9", "11"],
+    2,
+    "36 ÷ 9 = 4 tanpa baki.",
+    "Medium",
+  ),
+  mq(
+    "Manakah pasangan mempunyai FSTB 5?",
+    ["10 dan 15", "12 dan 18", "8 dan 12", "6 dan 14"],
+    0,
+    "FSTB bagi 10 dan 15 ialah 5.",
+    "Medium",
+  ),
+  mq(
+    "Manakah pasangan mempunyai GSTK 18?",
+    ["6 dan 9", "4 dan 8", "5 dan 10", "8 dan 12"],
+    0,
+    "Gandaan sepunya terkecil bagi 6 dan 9 ialah 18.",
+    "Medium",
+  ),
+  mq(
+    "Cari FSTB bagi 28 dan 42.",
+    ["7", "14", "21", "28"],
+    1,
+    "28 = 2 x 2 x 7 dan 42 = 2 x 3 x 7, FSTB = 2 x 7 = 14.",
+    "Medium",
+  ),
+  mq(
+    "Cari GSTK bagi 3, 4 dan 6.",
+    ["6", "12", "18", "24"],
+    1,
+    "12 ialah gandaan terkecil yang boleh dibahagi 3, 4 dan 6.",
+    "Medium",
+  ),
+  mq(
+    "Cari FSTB bagi 8 dan 20.",
+    ["2", "4", "8", "10"],
+    1,
+    "Faktor sepunya 8 dan 20 ialah 1, 2, 4. FSTB = 4.",
+    "Medium",
+  ),
+  mq(
+    "Cari GSTK bagi 8 dan 20.",
+    ["20", "32", "40", "80"],
+    2,
+    "8 = 2³ dan 20 = 2² x 5, GSTK = 2³ x 5 = 40.",
+    "Medium",
+  ),
+  mq(
+    "Jika dua nombor ialah 4 dan 6, gandaan sepunya pertama ialah:",
+    ["4", "6", "10", "12"],
+    3,
+    "Gandaan sepunya pertama bagi 4 dan 6 ialah 12.",
+    "Medium",
+  ),
+  mq(
+    "Jika faktor sepunya 12 dan 18 ialah 1, 2, 3, 6, FSTB ialah:",
+    ["1", "2", "3", "6"],
+    3,
+    "FSTB ialah faktor sepunya terbesar, iaitu 6.",
+    "Medium",
+  ),
+  mq(
+    "Jika gandaan sepunya 4 dan 6 ialah 12, 24, 36, GSTK ialah:",
+    ["12", "24", "36", "48"],
+    0,
+    "GSTK ialah gandaan sepunya terkecil, iaitu 12.",
+    "Medium",
+  ),
+  mq(
+    "Nombor yang boleh dibahagi tepat oleh 2 dan 5 ialah:",
+    ["10", "11", "13", "17"],
+    0,
+    "10 boleh dibahagi tepat oleh 2 dan 5.",
+    "Medium",
+  ),
+  mq(
+    "Apakah faktor perdana bagi 45?",
+    ["3 dan 5", "2 dan 5", "3 dan 7", "5 sahaja"],
+    0,
+    "45 = 3 x 3 x 5, faktor perdana ialah 3 dan 5.",
+    "Medium",
+  ),
+];
+
+const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS: ShuffledQuestion[] = [
+  mq(
+    "Ali mempunyai 24 pensel dan 36 pen. Dia mahu membahagi sama banyak ke dalam beberapa kotak. Bilangan kotak maksimum ialah:",
+    ["6", "8", "12", "24"],
+    2,
+    "Gunakan FSTB. FSTB bagi 24 dan 36 ialah 12.",
+    "Hard",
+  ),
+  mq(
+    "Loceng A berbunyi setiap 6 minit dan loceng B setiap 8 minit. Kedua-duanya berbunyi bersama setiap:",
+    ["12 minit", "24 minit", "36 minit", "48 minit"],
+    1,
+    "Gunakan GSTK. GSTK bagi 6 dan 8 ialah 24.",
+    "Hard",
+  ),
+  mq(
+    "12 epal dan 18 oren dibahagi sama banyak ke dalam beg. Bilangan beg paling banyak ialah:",
+    ["3", "6", "9", "12"],
+    1,
+    "Gunakan FSTB. FSTB bagi 12 dan 18 ialah 6.",
+    "Hard",
+  ),
+  mq(
+    "Bas A tiba setiap 10 minit dan Bas B setiap 15 minit. Kedua-duanya tiba bersama setiap:",
+    ["15 minit", "20 minit", "30 minit", "60 minit"],
+    2,
+    "Gunakan GSTK. GSTK bagi 10 dan 15 ialah 30.",
+    "Hard",
+  ),
+  mq(
+    "Seorang guru mempunyai 20 buku dan 30 pen. Setiap murid menerima bilangan sama. Murid maksimum ialah:",
+    ["5", "10", "15", "20"],
+    1,
+    "Gunakan FSTB. FSTB bagi 20 dan 30 ialah 10.",
+    "Hard",
+  ),
+  mq(
+    "Lampu merah berkelip setiap 9 saat dan lampu biru setiap 12 saat. Kedua-duanya berkelip bersama setiap:",
+    ["18 saat", "24 saat", "36 saat", "48 saat"],
+    2,
+    "Gunakan GSTK. GSTK bagi 9 dan 12 ialah 36.",
+    "Hard",
+  ),
+  mq(
+    "FSTB bagi 48 dan 60 ialah:",
+    ["6", "8", "12", "24"],
+    2,
+    "48 = 2⁴ x 3, 60 = 2² x 3 x 5, FSTB = 2² x 3 = 12.",
+    "Hard",
+  ),
+  mq(
+    "GSTK bagi 48 dan 60 ialah:",
+    ["120", "180", "240", "360"],
+    2,
+    "GSTK = 2⁴ x 3 x 5 = 240.",
+    "Hard",
+  ),
+  mq(
+    "Tiga loceng berbunyi setiap 4, 6 dan 10 minit. Semuanya berbunyi bersama setiap:",
+    ["20 minit", "30 minit", "60 minit", "120 minit"],
+    2,
+    "GSTK bagi 4, 6 dan 10 ialah 60.",
+    "Hard",
+  ),
+  mq(
+    "36 gula-gula dan 48 coklat dibungkus sama banyak. Bilangan bungkusan maksimum ialah:",
+    ["6", "9", "12", "18"],
+    2,
+    "Gunakan FSTB. FSTB bagi 36 dan 48 ialah 12.",
+    "Hard",
+  ),
+  mq(
+    "Jika FSTB bagi dua nombor ialah 1, dua nombor itu:",
+    ["Mesti sama", "Tiada faktor sepunya selain 1", "Mesti genap", "Mesti perdana"],
+    1,
+    "FSTB 1 bermaksud faktor sepunya terbesarnya hanya 1.",
+    "Hard",
+  ),
+  mq(
+    "Jika satu nombor ialah faktor bagi nombor lain, GSTK bagi kedua-duanya ialah:",
+    ["Nombor kecil", "Nombor besar", "FSTB", "1"],
+    1,
+    "Contoh 4 dan 12: GSTK ialah 12, iaitu nombor yang lebih besar.",
+    "Hard",
+  ),
+  mq(
+    "Jika satu nombor ialah faktor bagi nombor lain, FSTB bagi kedua-duanya ialah:",
+    ["Nombor kecil", "Nombor besar", "GSTK", "Hasil darab"],
+    0,
+    "Contoh 4 dan 12: FSTB ialah 4, iaitu nombor yang lebih kecil.",
+    "Hard",
+  ),
+  mq(
+    "Dua nombor 14 dan 21. FSTB dan GSTK masing-masing ialah:",
+    ["7 dan 42", "7 dan 21", "14 dan 42", "3 dan 42"],
+    0,
+    "FSTB = 7 dan GSTK = 42.",
+    "Hard",
+  ),
+  mq(
+    "Dua nombor 8 dan 12. FSTB x GSTK ialah:",
+    ["24", "48", "96", "120"],
+    2,
+    "FSTB = 4, GSTK = 24, maka 4 x 24 = 96.",
+    "Hard",
+  ),
+  mq(
+    "Kotak hadiah memerlukan 16 reben merah dan 24 reben biru dibahagi sama. Setiap kumpulan terbesar mengandungi:",
+    ["2 merah dan 3 biru", "4 merah dan 6 biru", "8 merah dan 12 biru", "16 merah dan 24 biru"],
+    0,
+    "Bilangan kumpulan maksimum ialah FSTB 16 dan 24 = 8, jadi setiap kumpulan ada 2 merah dan 3 biru.",
+    "Hard",
+  ),
+  mq(
+    "Mesin A berhenti setiap 8 jam dan Mesin B setiap 12 jam. Jika berhenti bersama sekarang, bersama lagi selepas:",
+    ["16 jam", "20 jam", "24 jam", "48 jam"],
+    2,
+    "Gunakan GSTK. GSTK bagi 8 dan 12 ialah 24.",
+    "Hard",
+  ),
+  mq(
+    "FSTB bagi 27, 36 dan 45 ialah:",
+    ["3", "6", "9", "12"],
+    2,
+    "9 membahagi 27, 36 dan 45; tiada faktor sepunya lebih besar.",
+    "Hard",
+  ),
+  mq(
+    "GSTK bagi 5, 6 dan 9 ialah:",
+    ["45", "60", "90", "180"],
+    2,
+    "5 = 5, 6 = 2 x 3, 9 = 3², GSTK = 2 x 3² x 5 = 90.",
+    "Hard",
+  ),
+  mq(
+    "Jika 2² x 3 ialah 12 dan 2 x 3² ialah 18, FSTB ialah:",
+    ["2", "3", "6", "36"],
+    2,
+    "Ambil faktor sepunya dengan kuasa terkecil: 2 x 3 = 6.",
+    "Hard",
+  ),
+  mq(
+    "Jika 2² x 3 ialah 12 dan 2 x 3² ialah 18, GSTK ialah:",
+    ["18", "24", "36", "72"],
+    2,
+    "Ambil semua faktor dengan kuasa terbesar: 2² x 3² = 36.",
+    "Hard",
+  ),
+  mq(
+    "Seorang jurulatih membahagi 28 lelaki dan 35 perempuan kepada kumpulan sama. Bilangan kumpulan maksimum ialah:",
+    ["5", "7", "14", "35"],
+    1,
+    "FSTB bagi 28 dan 35 ialah 7.",
+    "Hard",
+  ),
+  mq(
+    "Dua acara berlaku setiap 7 hari dan 14 hari. Acara berlaku bersama setiap:",
+    ["7 hari", "14 hari", "21 hari", "28 hari"],
+    1,
+    "GSTK bagi 7 dan 14 ialah 14.",
+    "Hard",
+  ),
+  mq(
+    "Manakah situasi memerlukan FSTB?",
+    [
+      "Menentukan jadual berulang",
+      "Membahagi barang sama banyak",
+      "Mencari masa pertama bersama",
+      "Mencari gandaan",
+    ],
+    1,
+    "Pembahagian sama banyak menggunakan FSTB.",
+    "Hard",
+  ),
+  mq(
+    "Manakah situasi memerlukan GSTK?",
+    [
+      "Mencari kumpulan terbesar",
+      "Membahagi gula-gula sama banyak",
+      "Menentukan dua loceng berbunyi bersama",
+      "Mencari faktor sepunya",
+    ],
+    2,
+    "Kejadian berulang bersama menggunakan GSTK.",
+    "Hard",
+  ),
+  mq(
+    "Jika FSTB = 6 untuk 18 dan 24, setiap kumpulan maksimum bagi 18 dan 24 ialah:",
+    ["3", "4", "6", "12"],
+    2,
+    "FSTB menunjukkan bilangan kumpulan sama maksimum, iaitu 6.",
+    "Hard",
+  ),
+  mq(
+    "Jika GSTK = 36 untuk 9 dan 12, maksudnya:",
+    [
+      "36 ialah faktor terbesar",
+      "36 ialah gandaan sepunya terkecil",
+      "36 ialah nombor perdana",
+      "36 ialah baki",
+    ],
+    1,
+    "GSTK ialah gandaan sepunya terkecil.",
+    "Hard",
+  ),
+  mq(
+    "Cari nombor terkecil yang boleh dibahagi tepat oleh 4, 5 dan 10.",
+    ["10", "20", "40", "50"],
+    1,
+    "Soalan meminta gandaan sepunya terkecil. GSTK = 20.",
+    "Hard",
+  ),
+  mq(
+    "Cari nombor terbesar yang boleh membahagi 30 dan 45 tepat.",
+    ["5", "10", "15", "30"],
+    2,
+    "Soalan meminta faktor sepunya terbesar. FSTB = 15.",
+    "Hard",
+  ),
+  mq(
+    "Jika 18 bunga dan 24 daun disusun sama banyak dalam jambangan, jambangan maksimum ialah:",
+    ["3", "6", "9", "12"],
+    1,
+    "Gunakan FSTB. FSTB bagi 18 dan 24 ialah 6.",
+    "Hard",
+  ),
+];
+
+const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP: ShuffledQuestion[] =
+  MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS;
+const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP: ShuffledQuestion[] =
+  MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS;
+const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP: ShuffledQuestion[] =
+  MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS;
+
+const MATH_QUIZ_BANKS: Partial<
+  Record<string, Record<MathObjectiveId, Record<MathQuizLang, ShuffledQuestion[]>>>
+> = {
+  "Chapter 1": {
+    "objective-1": {
+      bm: MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS,
+      dlp: MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+    },
+    "objective-2": {
+      bm: MATH_OBJECTIVE_2_PRACTICE_QUESTIONS,
+      dlp: MATH_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+    },
+    "objective-3": {
+      bm: MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS,
+      dlp: MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+    },
+  },
+  "Chapter 2": {
+    "objective-1": {
+      bm: MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS,
+      dlp: MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+    },
+    "objective-2": {
+      bm: MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS,
+      dlp: MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+    },
+    "objective-3": {
+      bm: MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS,
+      dlp: MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+    },
+  },
+};
+
 interface ShuffledQuestion {
   question: string;
   options: string[];
@@ -1668,24 +2410,9 @@ function QuizzesPage() {
     [mathObjectiveId],
   );
   const mathObjectiveQuestions = useMemo(() => {
-    if (chapter !== "Chapter 1") return [];
     const lang = mathQuizLang ?? "bm";
-    if (mathObjectiveId === "objective-1") {
-      return lang === "dlp"
-        ? MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP
-        : MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS;
-    }
-    if (mathObjectiveId === "objective-2") {
-      return lang === "dlp"
-        ? MATH_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP
-        : MATH_OBJECTIVE_2_PRACTICE_QUESTIONS;
-    }
-    if (mathObjectiveId === "objective-3") {
-      return lang === "dlp"
-        ? MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP
-        : MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS;
-    }
-    return [];
+    if (!chapter || !mathObjectiveId) return [];
+    return MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? [];
   }, [chapter, mathObjectiveId, mathQuizLang]);
   const currentMathQuestion = mathShuffledQuestions?.[idx] ?? null;
 
@@ -2086,6 +2813,7 @@ function QuizzesPage() {
               score={score}
               total={mathShuffledQuestions?.length || mathObjectiveQuestions.length || 30}
               quizLang={mathQuizLang}
+              chapterKey={chapter}
               onBack={() => {
                 setMathObjectiveId(null);
                 setMathObjectivePhase("select");
@@ -2669,7 +3397,8 @@ function MathObjectiveSelectionScreen({
             Choose Your <span className="gradient-text">Objective</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Choose Foundation, Practice, or Challenge to revise Bab 1 at the right level.
+            Choose Foundation, Practice, or Challenge to revise {chapter?.label ?? chapterKey} at
+            the right level.
           </p>
           <p className="mt-2 text-xs font-semibold text-accent">
             {quizLang === "dlp" ? "🇬🇧 DLP (English)" : "🇲🇾 Bahasa Melayu"}
@@ -2734,19 +3463,29 @@ function MathObjectiveIntroScreen({
   const isPractice = objective.id === "objective-2";
   const isChallenge = objective.id === "objective-3";
   const isDlp = quizLang === "dlp";
+  const isChapter2 = chapterKey === "Chapter 2";
+  const chapterTitle = isDlp
+    ? isChapter2
+      ? "Chapter 2: Factors and Multiples"
+      : "Chapter 1: Rational Numbers"
+    : isChapter2
+      ? "Bab 2: Faktor dan Gandaan"
+      : "Bab 1: Nombor Nisbah";
   const introTitle = isFoundation
     ? "🎯 Objective 1 – Foundation"
     : isPractice || isChallenge
-      ? isDlp
-        ? "Chapter 1: Rational Numbers"
-        : "Bab 1: Nombor Nisbah"
+      ? chapterTitle
       : isDlp
         ? "📝 Get Ready For The Quiz!"
         : "📝 Bersedia Untuk Quiz!";
   const introDescription = isChallenge
     ? isDlp
-      ? "This quiz is designed to test your full mastery of Chapter 1."
-      : "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 1."
+      ? isChapter2
+        ? "This quiz contains exam-style and problem-solving questions."
+        : "This quiz is designed to test your full mastery of Chapter 1."
+      : isChapter2
+        ? "Quiz ini mengandungi soalan berbentuk peperiksaan dan penyelesaian masalah."
+        : "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 1."
     : isPractice
       ? isDlp
         ? "This quiz tests your intermediate understanding of:"
@@ -2792,62 +3531,132 @@ function MathObjectiveIntroScreen({
   const instructions = isChallenge
     ? isDlp
       ? [
-          "Integers",
-          "Integer operations",
-          "Positive and negative fractions",
-          "Positive and negative decimals",
-          "Rational numbers",
-          "Order of operations",
-          "Combined calculations",
-          "Problem solving",
-          "Exam-style questions",
+          ...(isChapter2
+            ? [
+                "Factors",
+                "Prime factors",
+                "HCF",
+                "Multiples",
+                "LCM",
+                "Problem solving",
+                "Exam-style questions",
+              ]
+            : [
+                "Integers",
+                "Integer operations",
+                "Positive and negative fractions",
+                "Positive and negative decimals",
+                "Rational numbers",
+                "Order of operations",
+                "Combined calculations",
+                "Problem solving",
+                "Exam-style questions",
+              ]),
         ]
       : [
-          "Integer",
-          "Operasi integer",
-          "Pecahan positif dan negatif",
-          "Perpuluhan positif dan negatif",
-          "Nombor nisbah",
-          "Tertib operasi",
-          "Pengiraan gabungan",
-          "Penyelesaian masalah",
-          "Soalan berbentuk peperiksaan",
+          ...(isChapter2
+            ? [
+                "Faktor",
+                "Faktor perdana",
+                "FSTB",
+                "Gandaan",
+                "GSTK",
+                "Penyelesaian masalah",
+                "Soalan berbentuk peperiksaan",
+              ]
+            : [
+                "Integer",
+                "Operasi integer",
+                "Pecahan positif dan negatif",
+                "Perpuluhan positif dan negatif",
+                "Nombor nisbah",
+                "Tertib operasi",
+                "Pengiraan gabungan",
+                "Penyelesaian masalah",
+                "Soalan berbentuk peperiksaan",
+              ]),
         ]
     : isPractice
       ? isDlp
         ? [
-            "Integer operations",
-            "Addition and subtraction of integers",
-            "Multiplication and division of integers",
-            "Order of operations",
-            "Positive and negative fractions",
-            "Positive and negative decimals",
-            "Rational numbers",
-            "Mixed calculations",
+            ...(isChapter2
+              ? [
+                  "Factors",
+                  "Prime factorisation",
+                  "HCF calculations",
+                  "Multiples",
+                  "LCM calculations",
+                  "Mixed practice",
+                ]
+              : [
+                  "Integer operations",
+                  "Addition and subtraction of integers",
+                  "Multiplication and division of integers",
+                  "Order of operations",
+                  "Positive and negative fractions",
+                  "Positive and negative decimals",
+                  "Rational numbers",
+                  "Mixed calculations",
+                ]),
           ]
         : [
-            "Operasi integer",
-            "Penambahan dan penolakan integer",
-            "Pendaraban dan pembahagian integer",
-            "Tertib operasi",
-            "Pecahan positif dan negatif",
-            "Perpuluhan positif dan negatif",
-            "Nombor nisbah",
-            "Pengiraan campuran",
+            ...(isChapter2
+              ? [
+                  "Faktor",
+                  "Pemfaktoran perdana",
+                  "Pengiraan FSTB",
+                  "Gandaan",
+                  "Pengiraan GSTK",
+                  "Latihan campuran",
+                ]
+              : [
+                  "Operasi integer",
+                  "Penambahan dan penolakan integer",
+                  "Pendaraban dan pembahagian integer",
+                  "Tertib operasi",
+                  "Pecahan positif dan negatif",
+                  "Perpuluhan positif dan negatif",
+                  "Nombor nisbah",
+                  "Pengiraan campuran",
+                ]),
           ]
       : isFoundation
         ? isDlp
           ? [
-              "Basic chapter concepts",
-              "Important definitions",
-              "Fundamental calculation skills",
-              "Initial topic understanding",
+              ...(isChapter2
+                ? [
+                    "Factors",
+                    "Prime factors",
+                    "Common factors",
+                    "HCF",
+                    "Multiples",
+                    "Common multiples",
+                    "LCM",
+                  ]
+                : [
+                    "Basic chapter concepts",
+                    "Important definitions",
+                    "Fundamental calculation skills",
+                    "Initial topic understanding",
+                  ]),
             ]
           : [
-              "Konsep-konsep asas bab",
-              "Definisi penting",
-              "Kemahiran asas pengiraan",
-              "Kefahaman awal topik",
+              ...(isChapter2
+                ? [
+                    "Faktor",
+                    "Faktor perdana",
+                    "Faktor sepunya",
+                    "FSTB",
+                    "Gandaan",
+                    "Gandaan sepunya",
+                    "GSTK",
+                  ]
+                : [
+                    "Konsep-konsep asas bab",
+                    "Definisi penting",
+                    "Kemahiran asas pengiraan",
+                    "Kefahaman awal topik",
+                  ]),
             ]
         : [
             isDlp
@@ -2882,8 +3691,12 @@ function MathObjectiveIntroScreen({
         : [];
   const introSupportText = isFoundation
     ? isDlp
-      ? "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
-      : "Quiz ini direka untuk membantu anda memahami konsep asas bagi bab ini sebelum meneruskan ke tahap yang lebih mencabar."
+      ? isChapter2
+        ? "This quiz is designed to help you understand the basic concepts of Chapter 2: Factors and Multiples."
+        : "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
+      : isChapter2
+        ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 2: Faktor dan Gandaan."
+        : "Quiz ini direka untuk membantu anda memahami konsep asas bagi bab ini sebelum meneruskan ke tahap yang lebih mencabar."
     : null;
 
   return (
@@ -3275,6 +4088,7 @@ function MathObjectiveResultsScreen({
   score,
   total,
   quizLang,
+  chapterKey,
   onBack,
   onRetry,
 }: {
@@ -3282,6 +4096,7 @@ function MathObjectiveResultsScreen({
   score: number;
   total: number;
   quizLang: MathQuizLang;
+  chapterKey: string;
   onBack: () => void;
   onRetry: () => void;
 }) {
@@ -3290,20 +4105,28 @@ function MathObjectiveResultsScreen({
   const isPractice = objective?.id === "objective-2";
   const isChallenge = objective?.id === "objective-3";
   const isDlp = quizLang === "dlp";
+  const isChapter2 = chapterKey === "Chapter 2";
+  const chapterName = isDlp
+    ? isChapter2
+      ? "Chapter 2: Factors and Multiples"
+      : "Chapter 1: Rational Numbers"
+    : isChapter2
+      ? "Bab 2: Faktor dan Gandaan"
+      : "Bab 1: Nombor Nisbah";
   const rating =
     score >= 27
       ? {
           title: isDlp ? "⭐ Excellent" : "⭐ Cemerlang",
           message: isDlp
             ? isChallenge
-              ? "You show very strong mastery of Chapter 1: Rational Numbers."
+              ? `You show very strong mastery of ${chapterName}.`
               : isPractice
-                ? "You have very good mastery of Chapter 1."
+                ? `You have very good mastery of ${chapterName}.`
                 : "You have mastered this topic very well."
             : isChallenge
-              ? "Anda menunjukkan penguasaan yang sangat tinggi terhadap Bab 1: Nombor Nisbah."
+              ? `Anda menunjukkan penguasaan yang sangat tinggi terhadap ${chapterName}.`
               : isPractice
-                ? "Anda mempunyai penguasaan yang sangat baik terhadap Bab 1."
+                ? `Anda mempunyai penguasaan yang sangat baik terhadap ${chapterName}.`
                 : "Anda menguasai topik ini dengan sangat baik.",
           color: "text-nova-yellow",
         }
@@ -3337,14 +4160,14 @@ function MathObjectiveResultsScreen({
               title: isDlp ? "🔄 Needs Improvement" : "🔄 Perlu Penambahbaikan",
               message: isDlp
                 ? isChallenge
-                  ? "Revise Chapter 1 notes and try Objective 1 and Objective 2 again."
+                  ? `Revise ${chapterName} notes and try Objective 1 and Objective 2 again.`
                   : isPractice
-                    ? "Revise Chapter 1 notes and try Objective 1 again."
+                    ? `Revise ${chapterName} notes and try Objective 1 again.`
                     : "Revise the notes and try again."
                 : isChallenge
-                  ? "Disyorkan untuk mengulang kaji Nota Bab 1 dan mencuba semula Objective 1 dan Objective 2."
+                  ? `Disyorkan untuk mengulang kaji Nota ${chapterName} dan mencuba semula Objective 1 dan Objective 2.`
                   : isPractice
-                    ? "Disyorkan untuk mengulang kaji Nota Bab 1 dan mencuba semula Objective 1."
+                    ? `Disyorkan untuk mengulang kaji Nota ${chapterName} dan mencuba semula Objective 1.`
                     : "Ulang kaji nota dan cuba semula.",
               color: "text-rose-300",
             };

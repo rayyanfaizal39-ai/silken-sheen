@@ -24,6 +24,8 @@ import {
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { mathF1C1NotesBM } from "@/data/math-f1-c1-notes-bm";
 import { mathF1C1NotesDLP } from "@/data/math-f1-c1-notes-dlp";
+import { mathF1C2NotesBM } from "@/data/math-f1-c2-notes-bm";
+import { mathF1C2NotesDLP } from "@/data/math-f1-c2-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -138,6 +140,24 @@ export const chapters: ChapterContent[] = [
     title: "Rational Numbers",
     lang: "dlp",
     notes: mathF1C1NotesDLP,
+  },
+  {
+    id: "math-f1-c2-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 2",
+    title: "Faktor dan Gandaan",
+    lang: "bm",
+    notes: mathF1C2NotesBM,
+  },
+  {
+    id: "math-f1-c2-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 2",
+    title: "Factors and Multiples",
+    lang: "dlp",
+    notes: mathF1C2NotesDLP,
   },
 
   // Science Form 1 (bilingual)

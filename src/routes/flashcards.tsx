@@ -574,14 +574,369 @@ const MATH_F1_C1_FLASHCARD_PAIRS: Record<
   ],
 };
 
-function getMathF1C1Flashcards(lang: MathFlashcardLang, category: MathFlashcardCategoryId) {
-  return MATH_F1_C1_FLASHCARD_PAIRS[category].map((card, index) => {
+const mathCard = (
+  bmFront: string,
+  bmBack: string,
+  dlpFront: string,
+  dlpBack: string,
+): { bm: [string, string]; dlp: [string, string] } => ({
+  bm: [bmFront, bmBack],
+  dlp: [dlpFront, dlpBack],
+});
+
+const MATH_F1_C2_FLASHCARD_PAIRS: Record<
+  MathFlashcardCategoryId,
+  Array<{ bm: [string, string]; dlp: [string, string] }>
+> = {
+  concepts: [
+    mathCard(
+      "Apakah faktor?",
+      "Faktor ialah nombor yang membahagi nombor lain tepat tanpa baki.",
+      "What is a factor?",
+      "A factor is a number that divides another number exactly without a remainder.",
+    ),
+    mathCard(
+      "Adakah 3 faktor bagi 12?",
+      "Ya, kerana 12 ÷ 3 = 4 tanpa baki.",
+      "Is 3 a factor of 12?",
+      "Yes, because 12 ÷ 3 = 4 with no remainder.",
+    ),
+    mathCard(
+      "Apakah faktor bagi 12?",
+      "1, 2, 3, 4, 6 dan 12.",
+      "What are the factors of 12?",
+      "1, 2, 3, 4, 6 and 12.",
+    ),
+    mathCard(
+      "Apakah faktor bagi 18?",
+      "1, 2, 3, 6, 9 dan 18.",
+      "What are the factors of 18?",
+      "1, 2, 3, 6, 9 and 18.",
+    ),
+    mathCard(
+      "Apakah faktor bagi 20?",
+      "1, 2, 4, 5, 10 dan 20.",
+      "What are the factors of 20?",
+      "1, 2, 4, 5, 10 and 20.",
+    ),
+    mathCard(
+      "Apakah nombor perdana?",
+      "Nombor perdana mempunyai tepat dua faktor, iaitu 1 dan nombor itu sendiri.",
+      "What is a prime number?",
+      "A prime number has exactly two factors: 1 and the number itself.",
+    ),
+    mathCard(
+      "Berikan contoh nombor perdana.",
+      "Contohnya 2, 3, 5, 7, 11 dan 13.",
+      "Give examples of prime numbers.",
+      "Examples include 2, 3, 5, 7, 11 and 13.",
+    ),
+    mathCard(
+      "Adakah 1 nombor perdana?",
+      "Tidak. 1 bukan nombor perdana.",
+      "Is 1 a prime number?",
+      "No. 1 is not a prime number.",
+    ),
+    mathCard(
+      "Apakah faktor perdana?",
+      "Faktor perdana ialah faktor bagi suatu nombor yang juga merupakan nombor perdana.",
+      "What is a prime factor?",
+      "A prime factor is a factor of a number that is also a prime number.",
+    ),
+    mathCard(
+      "Apakah pemfaktoran perdana?",
+      "Pemfaktoran perdana ialah menulis nombor sebagai hasil darab faktor perdana.",
+      "What is prime factorisation?",
+      "Prime factorisation is writing a number as a product of prime factors.",
+    ),
+    mathCard(
+      "Apakah faktor perdana bagi 12?",
+      "2 dan 3.",
+      "What are the prime factors of 12?",
+      "2 and 3.",
+    ),
+    mathCard(
+      "Apakah faktor perdana bagi 18?",
+      "2 dan 3.",
+      "What are the prime factors of 18?",
+      "2 and 3.",
+    ),
+    mathCard(
+      "Apakah faktor perdana bagi 24?",
+      "2 dan 3.",
+      "What are the prime factors of 24?",
+      "2 and 3.",
+    ),
+    mathCard(
+      "Apakah faktor sepunya?",
+      "Faktor sepunya ialah faktor yang sama bagi dua atau lebih nombor.",
+      "What are common factors?",
+      "Common factors are factors shared by two or more numbers.",
+    ),
+    mathCard(
+      "Apakah faktor sepunya bagi 12 dan 18?",
+      "1, 2, 3 dan 6.",
+      "What are the common factors of 12 and 18?",
+      "1, 2, 3 and 6.",
+    ),
+    mathCard(
+      "Apakah maksud FSTB?",
+      "FSTB ialah Faktor Sepunya Terbesar.",
+      "What does HCF mean?",
+      "HCF means Highest Common Factor.",
+    ),
+    mathCard(
+      "Apakah FSTB?",
+      "FSTB ialah faktor sepunya yang paling besar.",
+      "What is HCF?",
+      "HCF is the greatest common factor.",
+    ),
+    mathCard("Apakah FSTB bagi 12 dan 18?", "6.", "What is the HCF of 12 and 18?", "6."),
+    mathCard(
+      "Apakah gandaan?",
+      "Gandaan ialah hasil darab suatu nombor dengan nombor bulat positif.",
+      "What is a multiple?",
+      "A multiple is the product of a number and a positive whole number.",
+    ),
+    mathCard(
+      "Apakah gandaan bagi 4?",
+      "4, 8, 12, 16, 20, 24 dan seterusnya.",
+      "What are multiples of 4?",
+      "4, 8, 12, 16, 20, 24 and so on.",
+    ),
+    mathCard(
+      "Apakah gandaan bagi 6?",
+      "6, 12, 18, 24, 30, 36 dan seterusnya.",
+      "What are multiples of 6?",
+      "6, 12, 18, 24, 30, 36 and so on.",
+    ),
+    mathCard(
+      "Apakah gandaan sepunya?",
+      "Gandaan sepunya ialah gandaan yang sama bagi dua atau lebih nombor.",
+      "What are common multiples?",
+      "Common multiples are multiples shared by two or more numbers.",
+    ),
+    mathCard(
+      "Apakah gandaan sepunya bagi 4 dan 6?",
+      "12, 24, 36 dan seterusnya.",
+      "What are common multiples of 4 and 6?",
+      "12, 24, 36 and so on.",
+    ),
+    mathCard(
+      "Apakah maksud GSTK?",
+      "GSTK ialah Gandaan Sepunya Terkecil.",
+      "What does LCM mean?",
+      "LCM means Lowest Common Multiple.",
+    ),
+    mathCard(
+      "Apakah GSTK?",
+      "GSTK ialah gandaan sepunya yang paling kecil.",
+      "What is LCM?",
+      "LCM is the smallest common multiple.",
+    ),
+    mathCard("Apakah GSTK bagi 4 dan 6?", "12.", "What is the LCM of 4 and 6?", "12."),
+    mathCard(
+      "Bila FSTB digunakan?",
+      "FSTB digunakan untuk pembahagian kepada kumpulan sama banyak.",
+      "When is HCF used?",
+      "HCF is used for dividing into equal groups.",
+    ),
+    mathCard(
+      "Bila GSTK digunakan?",
+      "GSTK digunakan untuk kejadian berulang bersama.",
+      "When is LCM used?",
+      "LCM is used for repeated events happening together.",
+    ),
+    mathCard(
+      "Apakah kata kunci FSTB?",
+      "Terbesar, maksimum dan kumpulan sama.",
+      "What are HCF keywords?",
+      "Greatest, maximum and equal groups.",
+    ),
+    mathCard(
+      "Apakah kata kunci GSTK?",
+      "Terkecil, pertama kali bersama dan berulang.",
+      "What are LCM keywords?",
+      "Smallest, first time together and repeats.",
+    ),
+  ],
+  operations: [
+    mathCard(
+      "Bagaimana mencari faktor?",
+      "Bahagi nombor dengan nombor bulat dan semak sama ada bakinya sifar.",
+      "How do you find factors?",
+      "Divide the number by whole numbers and check whether the remainder is zero.",
+    ),
+    mathCard(
+      "Bagaimana mengenal pasti faktor perdana?",
+      "Cari faktor nombor itu, kemudian pilih faktor yang merupakan nombor perdana.",
+      "How do you identify prime factors?",
+      "Find the factors, then choose the factors that are prime numbers.",
+    ),
+    mathCard(
+      "Bagaimana melakukan pemfaktoran perdana?",
+      "Bahagi berulang dengan nombor perdana hingga semua faktor menjadi nombor perdana.",
+      "How do you perform prime factorisation?",
+      "Divide repeatedly by prime numbers until all factors are prime numbers.",
+    ),
+    mathCard(
+      "Apakah pemfaktoran perdana bagi 12?",
+      "12 = 2 x 2 x 3.",
+      "What is the prime factorisation of 12?",
+      "12 = 2 x 2 x 3.",
+    ),
+    mathCard(
+      "Apakah pemfaktoran perdana bagi 18?",
+      "18 = 2 x 3 x 3.",
+      "What is the prime factorisation of 18?",
+      "18 = 2 x 3 x 3.",
+    ),
+    mathCard(
+      "Apakah pemfaktoran perdana bagi 24?",
+      "24 = 2 x 2 x 2 x 3.",
+      "What is the prime factorisation of 24?",
+      "24 = 2 x 2 x 2 x 3.",
+    ),
+    mathCard(
+      "Bagaimana mencari FSTB dengan faktor?",
+      "Senaraikan faktor setiap nombor, cari faktor sepunya, kemudian pilih yang terbesar.",
+      "How do you find HCF using factors?",
+      "List the factors of each number, find the common factors, then choose the greatest.",
+    ),
+    mathCard(
+      "Bagaimana mencari FSTB dengan pemfaktoran perdana?",
+      "Ambil faktor perdana sepunya dengan kuasa terkecil.",
+      "How do you find HCF using prime factorisation?",
+      "Take the common prime factors with the smallest powers.",
+    ),
+    mathCard(
+      "FSTB bagi 12 dan 18 menggunakan pemfaktoran perdana ialah?",
+      "2 x 3 = 6.",
+      "What is the HCF of 12 and 18 using prime factorisation?",
+      "2 x 3 = 6.",
+    ),
+    mathCard(
+      "Bagaimana mencari gandaan?",
+      "Darab nombor dengan nombor bulat positif seperti 1, 2, 3, 4 dan seterusnya.",
+      "How do you find multiples?",
+      "Multiply the number by positive whole numbers such as 1, 2, 3, 4 and so on.",
+    ),
+    mathCard(
+      "Bagaimana mencari GSTK dengan gandaan?",
+      "Senaraikan gandaan setiap nombor, cari gandaan sepunya, kemudian pilih yang terkecil.",
+      "How do you find LCM using multiples?",
+      "List the multiples of each number, find the common multiples, then choose the smallest.",
+    ),
+    mathCard(
+      "Bagaimana mencari GSTK dengan pemfaktoran perdana?",
+      "Ambil semua faktor perdana dengan kuasa terbesar.",
+      "How do you find LCM using prime factorisation?",
+      "Take all prime factors with the greatest powers.",
+    ),
+    mathCard(
+      "GSTK bagi 12 dan 18 menggunakan pemfaktoran perdana ialah?",
+      "2 x 2 x 3 x 3 = 36.",
+      "What is the LCM of 12 and 18 using prime factorisation?",
+      "2 x 2 x 3 x 3 = 36.",
+    ),
+    mathCard(
+      "Apakah kaedah lain selain pembahagian berulang?",
+      "Pokok faktor.",
+      "What is another method besides repeated division?",
+      "A factor tree.",
+    ),
+    mathCard(
+      "Bagaimana memilih antara FSTB dan GSTK?",
+      "Gunakan FSTB untuk kumpulan sama; gunakan GSTK untuk pengulangan bersama.",
+      "How do you choose between HCF and LCM?",
+      "Use HCF for equal groups; use LCM for repeated events together.",
+    ),
+  ],
+  facts: [
+    mathCard("FSTB bagi 12 dan 18 ialah?", "6.", "The HCF of 12 and 18 is?", "6."),
+    mathCard("GSTK bagi 4 dan 6 ialah?", "12.", "The LCM of 4 and 6 is?", "12."),
+    mathCard("GSTK bagi 12 dan 18 ialah?", "36.", "The LCM of 12 and 18 is?", "36."),
+    mathCard(
+      "FSTB bermaksud apa?",
+      "Faktor Sepunya Terbesar.",
+      "What does HCF stand for?",
+      "Highest Common Factor.",
+    ),
+    mathCard(
+      "GSTK bermaksud apa?",
+      "Gandaan Sepunya Terkecil.",
+      "What does LCM stand for?",
+      "Lowest Common Multiple.",
+    ),
+    mathCard(
+      "FSTB mencari nilai jenis apa?",
+      "Faktor sepunya paling besar.",
+      "What type of value does HCF find?",
+      "The greatest common factor.",
+    ),
+    mathCard(
+      "GSTK mencari nilai jenis apa?",
+      "Gandaan sepunya paling kecil.",
+      "What type of value does LCM find?",
+      "The smallest common multiple.",
+    ),
+    mathCard(
+      "Nombor 2 ialah nombor perdana atau bukan?",
+      "Nombor perdana.",
+      "Is 2 a prime number?",
+      "Yes, it is a prime number.",
+    ),
+    mathCard(
+      "Nombor 1 ialah nombor perdana atau bukan?",
+      "Bukan nombor perdana.",
+      "Is 1 a prime number?",
+      "No, it is not a prime number.",
+    ),
+    mathCard(
+      "Jika soalan menyebut 'pertama kali bersama', gunakan apa?",
+      "GSTK.",
+      "If a question says 'first time together', what should you use?",
+      "LCM.",
+    ),
+  ],
+  practice: [
+    mathCard("Adakah 5 faktor bagi 20?", "Ya.", "Is 5 a factor of 20?", "Yes."),
+    mathCard("Adakah 7 faktor bagi 20?", "Tidak.", "Is 7 a factor of 20?", "No."),
+    mathCard("Cari FSTB bagi 12 dan 18.", "6.", "Find the HCF of 12 and 18.", "6."),
+    mathCard("Cari GSTK bagi 4 dan 6.", "12.", "Find the LCM of 4 and 6.", "12."),
+    mathCard(
+      "Loceng berbunyi setiap 4 dan 6 minit. Bila berbunyi bersama?",
+      "Setiap 12 minit.",
+      "Bells ring every 4 and 6 minutes. When do they ring together?",
+      "Every 12 minutes.",
+    ),
+  ],
+};
+
+const MATH_FLASHCARD_BANKS: Partial<
+  Record<
+    string,
+    Record<MathFlashcardCategoryId, Array<{ bm: [string, string]; dlp: [string, string] }>>
+  >
+> = {
+  "Chapter 1": MATH_F1_C1_FLASHCARD_PAIRS,
+  "Chapter 2": MATH_F1_C2_FLASHCARD_PAIRS,
+};
+
+function getMathFlashcards(
+  chapter: string,
+  lang: MathFlashcardLang,
+  category: MathFlashcardCategoryId,
+) {
+  const bank = MATH_FLASHCARD_BANKS[chapter];
+  if (!bank) return [];
+  return bank[category].map((card, index) => {
     const [front, back] = card[lang];
     return {
-      id: `math-f1-c1-${lang}-${category}-${index + 1}`,
+      id: `math-f1-c${chapter.replace("Chapter ", "")}-${lang}-${category}-${index + 1}`,
       subjectId: "math",
       form: "Form 1" as const,
-      chapter: "Chapter 1",
+      chapter,
       lang,
       front,
       back,
@@ -647,12 +1002,20 @@ function MiniConfetti({ color }: { color: string }) {
 }
 
 function MathFlashcardLanguagePicker({
+  chapterKey,
   onBack,
   onSelect,
 }: {
+  chapterKey: string;
   onBack: () => void;
   onSelect: (lang: MathFlashcardLang) => void;
 }) {
+  const chapterNumber = chapterKey.replace("Chapter ", "");
+  const isChapter2 = chapterKey === "Chapter 2";
+  const bmTotal = Object.values(MATH_FLASHCARD_BANKS[chapterKey] ?? {}).reduce(
+    (sum, cards) => sum + cards.length,
+    0,
+  );
   return (
     <div className="animate-fade-up">
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
@@ -663,7 +1026,8 @@ function MathFlashcardLanguagePicker({
           <ChevronLeft className="w-4 h-4" /> Back to chapters
         </button>
         <span className="text-sm font-semibold text-muted-foreground">
-          📐 Mathematics • Chapter 1: Rational Numbers
+          📐 Mathematics •{" "}
+          {isChapter2 ? "Chapter 2: Factors and Multiples" : "Chapter 1: Rational Numbers"}
         </span>
       </div>
 
@@ -676,7 +1040,7 @@ function MathFlashcardLanguagePicker({
             🌐 Pilih Bahasa / <span className="gradient-text">Choose Language</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Choose a language before opening the Chapter 1 revision categories.
+            Choose a language before opening the Chapter {chapterNumber} revision categories.
           </p>
         </div>
 
@@ -689,7 +1053,7 @@ function MathFlashcardLanguagePicker({
             <div className="relative mb-4 text-5xl">🇲🇾</div>
             <h3 className="relative font-display text-2xl font-bold">Bahasa Melayu</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
-              68 kad ulang kaji Bab 1 dalam Bahasa Melayu.
+              {bmTotal} kad ulang kaji Bab {chapterNumber} dalam Bahasa Melayu.
             </p>
           </button>
 
@@ -701,7 +1065,7 @@ function MathFlashcardLanguagePicker({
             <div className="relative mb-4 text-5xl">🇬🇧</div>
             <h3 className="relative font-display text-2xl font-bold">DLP (English)</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
-              68 translated Chapter 1 revision cards in English.
+              {bmTotal} translated Chapter {chapterNumber} revision cards in English.
             </p>
           </button>
         </div>
@@ -711,18 +1075,25 @@ function MathFlashcardLanguagePicker({
 }
 
 function MathFlashcardCategoryPicker({
+  chapterKey,
   lang,
   onBack,
   onSelect,
 }: {
+  chapterKey: string;
   lang: MathFlashcardLang;
   onBack: () => void;
   onSelect: (category: MathFlashcardCategoryId) => void;
 }) {
   const isDlp = lang === "dlp";
+  const isChapter2 = chapterKey === "Chapter 2";
   const title = isDlp
-    ? "🧠 Chapter 1 Flashcards: Rational Numbers"
-    : "🧠 Flashcards Bab 1: Nombor Nisbah";
+    ? isChapter2
+      ? "🧠 Chapter 2 Flashcards: Factors and Multiples"
+      : "🧠 Chapter 1 Flashcards: Rational Numbers"
+    : isChapter2
+      ? "🧠 Flashcards Bab 2: Faktor dan Gandaan"
+      : "🧠 Flashcards Bab 1: Nombor Nisbah";
 
   return (
     <div className="animate-fade-up">
@@ -770,7 +1141,7 @@ function MathFlashcardCategoryPicker({
                   {copy.purpose}
                 </p>
                 <div className="relative mt-5 inline-flex rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-xs font-bold text-amber-200">
-                  {copy.target}
+                  {MATH_FLASHCARD_BANKS[chapterKey]?.[category.id]?.length ?? 0} Flashcards
                 </div>
               </button>
             );
@@ -828,6 +1199,7 @@ function FlashcardsPage() {
 
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
+  const hasMathFlashcards = !!(subject === "math" && chapter && MATH_FLASHCARD_BANKS[chapter]);
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const chapterMeta =
@@ -838,11 +1210,12 @@ function FlashcardsPage() {
   const pool = useMemo(() => {
     if (
       subject === "math" &&
-      chapter === "Chapter 1" &&
+      chapter &&
+      MATH_FLASHCARD_BANKS[chapter] &&
       mathFlashcardLang &&
       mathFlashcardCategory
     ) {
-      const mathCards = getMathF1C1Flashcards(mathFlashcardLang, mathFlashcardCategory);
+      const mathCards = getMathFlashcards(chapter, mathFlashcardLang, mathFlashcardCategory);
       return favOnly ? mathCards.filter((f) => progress.favorites.includes(f.id)) : mathCards;
     }
     if (!subject || !chapter) return [];
@@ -1011,11 +1384,11 @@ function FlashcardsPage() {
   function selectMathCategory(category: MathFlashcardCategoryId) {
     setMathFlashcardCategory(category);
     resetSession();
-    if (typeof window === "undefined" || !mathFlashcardLang) return;
+    if (typeof window === "undefined" || !mathFlashcardLang || !chapter) return;
     try {
       localStorage.setItem(
-        "academy-math-f1-c1-flashcards-last",
-        JSON.stringify({ lang: mathFlashcardLang, category }),
+        `academy-math-${chapter.toLowerCase().replaceAll(" ", "-")}-flashcards-last`,
+        JSON.stringify({ lang: mathFlashcardLang, category, chapter }),
       );
     } catch {
       return;
@@ -1053,7 +1426,8 @@ function FlashcardsPage() {
   useEffect(() => {
     if (
       subject !== "math" ||
-      chapter !== "Chapter 1" ||
+      !chapter ||
+      !MATH_FLASHCARD_BANKS[chapter] ||
       !mathFlashcardLang ||
       !mathFlashcardCategory ||
       !current
@@ -1062,10 +1436,11 @@ function FlashcardsPage() {
     }
     try {
       localStorage.setItem(
-        "academy-math-f1-c1-flashcards-last-card",
+        `academy-math-${chapter.toLowerCase().replaceAll(" ", "-")}-flashcards-last-card`,
         JSON.stringify({
           lang: mathFlashcardLang,
           category: mathFlashcardCategory,
+          chapter,
           cardId: current.id,
           viewedAt: new Date().toISOString(),
         }),
@@ -1158,8 +1533,9 @@ function FlashcardsPage() {
             setMathFlashcardCategory(null);
           }}
         />
-      ) : subject === "math" && chapter === "Chapter 1" && !mathFlashcardLang ? (
+      ) : hasMathFlashcards && !mathFlashcardLang ? (
         <MathFlashcardLanguagePicker
+          chapterKey={chapter}
           onBack={() => {
             setChapter(null);
             resetMathFlashcardFlow();
@@ -1170,11 +1546,9 @@ function FlashcardsPage() {
             resetSession();
           }}
         />
-      ) : subject === "math" &&
-        chapter === "Chapter 1" &&
-        mathFlashcardLang &&
-        !mathFlashcardCategory ? (
+      ) : hasMathFlashcards && mathFlashcardLang && !mathFlashcardCategory ? (
         <MathFlashcardCategoryPicker
+          chapterKey={chapter}
           lang={mathFlashcardLang}
           onBack={() => {
             setMathFlashcardLang(null);
@@ -1190,7 +1564,7 @@ function FlashcardsPage() {
             chapterKey={chapter}
             scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
             onBack={() => {
-              if (subject === "math" && chapter === "Chapter 1") {
+              if (hasMathFlashcards) {
                 setMathFlashcardCategory(null);
                 resetSession();
                 return;
@@ -1224,7 +1598,8 @@ function FlashcardsPage() {
           </div>
 
           {subject === "math" &&
-            chapter === "Chapter 1" &&
+            chapter &&
+            MATH_FLASHCARD_BANKS[chapter] &&
             mathFlashcardLang &&
             mathFlashcardCategory && (
               <div className="glass-strong rounded-2xl p-3 mb-3 flex flex-wrap gap-2 items-center justify-between animate-fade-up">

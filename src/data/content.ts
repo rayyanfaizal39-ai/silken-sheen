@@ -24814,23 +24814,23 @@ export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp
 ];
 
 export const mathForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp: string }> = [
-  { num: 1, bm: "Nombor Nisbah", dlp: "Nombor Nisbah" },
-  { num: 2, bm: "Faktor dan Gandaan", dlp: "Faktor dan Gandaan" },
+  { num: 1, bm: "Nombor Nisbah", dlp: "Rational Numbers" },
+  { num: 2, bm: "Faktor dan Gandaan", dlp: "Factors and Multiples" },
   {
     num: 3,
     bm: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
-    dlp: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
+    dlp: "Squares, Square Roots, Cubes and Cube Roots",
   },
-  { num: 4, bm: "Nisbah, Kadar dan Kadaran", dlp: "Nisbah, Kadar dan Kadaran" },
-  { num: 5, bm: "Ungkapan Algebra", dlp: "Ungkapan Algebra" },
-  { num: 6, bm: "Persamaan Linear", dlp: "Persamaan Linear" },
-  { num: 7, bm: "Ketaksamaan Linear", dlp: "Ketaksamaan Linear" },
-  { num: 8, bm: "Garis dan Sudut", dlp: "Garis dan Sudut" },
-  { num: 9, bm: "Poligon Asas", dlp: "Poligon Asas" },
-  { num: 10, bm: "Perimeter dan Luas", dlp: "Perimeter dan Luas" },
-  { num: 11, bm: "Pengenalan Set", dlp: "Pengenalan Set" },
-  { num: 12, bm: "Pengendalian Data", dlp: "Pengendalian Data" },
-  { num: 13, bm: "Teorem Pythagoras", dlp: "Teorem Pythagoras" },
+  { num: 4, bm: "Nisbah, Kadar dan Kadaran", dlp: "Ratio, Rate and Proportion" },
+  { num: 5, bm: "Ungkapan Algebra", dlp: "Algebraic Expressions" },
+  { num: 6, bm: "Persamaan Linear", dlp: "Linear Equations" },
+  { num: 7, bm: "Ketaksamaan Linear", dlp: "Linear Inequalities" },
+  { num: 8, bm: "Garis dan Sudut", dlp: "Lines and Angles" },
+  { num: 9, bm: "Poligon Asas", dlp: "Basic Polygons" },
+  { num: 10, bm: "Perimeter dan Luas", dlp: "Perimeter and Area" },
+  { num: 11, bm: "Pengenalan Set", dlp: "Introduction to Sets" },
+  { num: 12, bm: "Pengendalian Data", dlp: "Data Handling" },
+  { num: 13, bm: "Teorem Pythagoras", dlp: "Pythagoras' Theorem" },
 ];
 
 export const englishCategories = [
