@@ -22,6 +22,8 @@ import {
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
+import { mathF1C1NotesBM } from "@/data/math-f1-c1-notes-bm";
+import { mathF1C1NotesDLP } from "@/data/math-f1-c1-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -117,6 +119,27 @@ export const chapters: ChapterContent[] = [
     tamadunIslamSumbanganMindMap,
     "Tamadun Islam dan Sumbangannya",
   ),
+
+  // Mathematics Form 1
+  {
+    id: "math-f1-c1-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 1",
+    title: "Nombor Nisbah",
+    lang: "bm",
+    notes: mathF1C1NotesBM,
+  },
+  {
+    id: "math-f1-c1-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 1",
+    title: "Rational Numbers",
+    lang: "dlp",
+    notes: mathF1C1NotesDLP,
+  },
+
   // Science Form 1 (bilingual)
   {
     id: "science-f1-c1-bm",
