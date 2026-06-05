@@ -69,8 +69,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
       { name: "twitter:description", content: "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/349ce62b-56cb-4624-97a3-90b874d02968" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/349ce62b-56cb-4624-97a3-90b874d02968" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
