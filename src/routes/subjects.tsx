@@ -7,9 +7,15 @@ export const Route = createFileRoute("/subjects")({
   head: () => ({
     meta: [
       { title: "Subjects — AcadeMY" },
-      { name: "description", content: "All KSSM subjects for Form 1, 2, and 3 Malaysian secondary students." },
+      {
+        name: "description",
+        content: "All KSSM subjects for Form 1, 2, and 3 Malaysian secondary students.",
+      },
       { property: "og:title", content: "Subjects — AcadeMY" },
-      { property: "og:description", content: "Explore Bahasa Melayu, English, Math, Science, Sejarah and Geography." },
+      {
+        property: "og:description",
+        content: "Explore Bahasa Melayu, English, Math, Science, Sejarah and Geography.",
+      },
     ],
   }),
   component: SubjectsPage,
@@ -19,14 +25,14 @@ function SubjectsPage() {
   const [q, setQ] = useState("");
   const [form, setForm] = useState<string>("All");
 
-  const filtered = subjects.filter((s) =>
-    s.name.toLowerCase().includes(q.toLowerCase())
-  );
+  const filtered = subjects.filter((s) => s.name.toLowerCase().includes(q.toLowerCase()));
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-10 md:py-16">
       <div className="text-center mb-12">
-        <h1 className="font-display text-4xl sm:text-5xl font-bold">Explore <span className="gradient-text">Subjects</span></h1>
+        <h1 className="font-display text-4xl sm:text-5xl font-bold">
+          Explore <span className="gradient-text">Subjects</span>
+        </h1>
         <p className="mt-3 text-muted-foreground">Pick a subject and start your journey.</p>
       </div>
 
@@ -62,10 +68,12 @@ function SubjectsPage() {
           <Link
             key={s.id}
             to="/notes"
-            search={{ subject: s.id }}
+            search={{ subject: s.id, form: Number(form.match(/\d/)?.[0]) || undefined }}
             className="group relative overflow-hidden glass-strong rounded-2xl p-6 hover:-translate-y-1 transition-all"
           >
-            <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-br ${s.color} opacity-30 blur-2xl group-hover:opacity-50 transition-opacity`} />
+            <div
+              className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-br ${s.color} opacity-30 blur-2xl group-hover:opacity-50 transition-opacity`}
+            />
             <div className="relative">
               <div className="text-5xl mb-4">{s.emoji}</div>
               <h3 className="font-display text-2xl font-bold">{s.name}</h3>

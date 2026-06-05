@@ -19,20 +19,29 @@ export const subjectIdToSlug: Record<string, string> = {
   english: "english",
 };
 
-export function normalizeSubjectParam(value: string | null | undefined) {
+export function normalizeSubjectParam(value: unknown) {
   if (!value) return null;
-  return subjectSlugToId[value.toLowerCase()] ?? null;
+  const subject = String(value).toLowerCase();
+  return subjectSlugToId[subject] ?? null;
 }
 
-export function normalizeFormParam(value: string | null | undefined) {
-  if (!value) return "All";
-  const cleaned = value.toLowerCase().replace(/^form\s*/, "");
+export function normalizeFormParam(value: unknown) {
+  if (!value) return "Form 1";
+  const cleaned = String(value)
+    .toLowerCase()
+    .replaceAll('"', "")
+    .replace(/^form\s*/, "");
   if (cleaned === "1" || cleaned === "2" || cleaned === "3") return `Form ${cleaned}`;
-  return "All";
+  return "Form 1";
 }
 
-export function studyHref(kind: "notes" | "quizzes" | "flashcards", subjectId: string, form?: string) {
+export function studyHref(
+  kind: "notes" | "quizzes" | "flashcards",
+  subjectId: string,
+  form?: string,
+) {
   const subject = subjectIdToSlug[subjectId] ?? subjectId;
-  const formParam = form ? `&form=${form}` : "";
+  const formNumber = form?.match(/\d/)?.[0];
+  const formParam = formNumber ? `&form=${formNumber}` : "";
   return `/${kind}?subject=${subject}${formParam}`;
 }

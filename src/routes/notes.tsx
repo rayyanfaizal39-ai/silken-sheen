@@ -32,8 +32,15 @@ import { NotesBlock, type NotesAccordionSection } from "@/components/notes/Notes
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 
 const searchSchema = z.object({
-  subject: z.string().optional(),
-  form: z.string().optional(),
+  subject: z.preprocess(
+    (value) => (value == null ? undefined : String(value)),
+    z.string().optional(),
+  ),
+  form: z.preprocess((value) => {
+    if (value == null || value === "") return undefined;
+    const formNumber = Number(String(value).replaceAll('"', ""));
+    return formNumber === 1 || formNumber === 2 || formNumber === 3 ? formNumber : undefined;
+  }, z.number().optional()),
 });
 
 export const Route = createFileRoute("/notes")({
@@ -54,33 +61,38 @@ export const Route = createFileRoute("/notes")({
 
 function NotesPage() {
   const search = Route.useSearch();
+  const navigate = Route.useNavigate();
   const normalizedSubject = normalizeSubjectParam(search.subject);
-  const initialSubject =
+  const subject =
     normalizedSubject && subjects.some((s) => s.id === normalizedSubject)
       ? normalizedSubject
       : null;
-  const [subject, setSubject] = useState<string | null>(initialSubject ?? null);
   const [chapter, setChapter] = useState<string | null>(null);
-  const [form] = useState<string>(normalizeFormParam(search.form));
+  const form = normalizeFormParam(search.form);
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter } = useProgress();
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const needsScienceLang = subject === "science" && !scienceLang;
 
-  const hasSubtopics = subject === "sejarah" && !!chapter;
-  const subtopics = hasSubtopics ? getSejarahF1Subtopics(chapter!) : [];
   const activeScienceLang = subject === "science" ? (scienceLang ?? undefined) : undefined;
+  const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang) : [];
+  const activeChapterKey =
+    chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
+  const hasSubtopics = subject === "sejarah" && !!activeChapterKey;
+  const subtopics = hasSubtopics ? getSejarahF1Subtopics(activeChapterKey!) : [];
 
   const chapterMeta =
-    subject && chapter
-      ? getSubjectChapters(subject, activeScienceLang).find((c) => c.key === chapter)
+    subject && activeChapterKey
+      ? subjectChapters.find((candidate) => candidate.key === activeChapterKey)
       : null;
   const isRead =
-    subject && chapter
-      ? !!progress.chapterActivity[chapterActivityKey(subject, chapter)]?.read
+    subject && activeChapterKey
+      ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
       : false;
   const activeChapter =
-    subject && chapter ? (getChapter(subject, chapter, activeScienceLang) ?? undefined) : undefined;
+    subject && activeChapterKey
+      ? (getChapter(subject, activeChapterKey, activeScienceLang) ?? undefined)
+      : undefined;
   const features = getChapterFeatures(activeChapter);
 
   // Reading progress bar
@@ -95,16 +107,21 @@ function NotesPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    setChapter(null);
+    setScrollPct(0);
+  }, [subject, form]);
+
   const filtered = useMemo(() => {
-    if (!subject || !chapter) return [];
+    if (!subject || !activeChapterKey) return [];
     return notes.filter((n) => {
       if (n.subjectId !== subject) return false;
-      if (getItemChapterKey(n) !== chapter) return false;
+      if (getItemChapterKey(n) !== activeChapterKey) return false;
       if (form !== "All" && n.form !== form) return false;
       if (subject === "science" && n.lang && scienceLang && n.lang !== scienceLang) return false;
       return true;
     });
-  }, [subject, chapter, form, scienceLang]);
+  }, [subject, activeChapterKey, form, scienceLang]);
 
   const legacyNoteSections = useMemo<NotesAccordionSection[]>(
     () =>
@@ -129,7 +146,7 @@ function NotesPage() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-8 py-10 md:py-16 overflow-visible">
       {/* Reading progress bar */}
-      {subject && chapter && (
+      {subject && activeChapterKey && (
         <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">
           <div
             className="h-full bg-gradient-to-r from-primary via-accent to-nova-yellow transition-all"
@@ -153,19 +170,29 @@ function NotesPage() {
       {!subject ? (
         <SubjectGrid
           onSelect={(id) => {
-            setSubject(id);
             setChapter(null);
+            void navigate({
+              search: (previous) => ({
+                ...previous,
+                subject: id,
+              }),
+            });
           }}
         />
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
           onBack={() => {
-            setSubject(null);
             setChapter(null);
+            void navigate({
+              search: (previous) => ({
+                ...previous,
+                subject: undefined,
+              }),
+            });
           }}
         />
-      ) : !chapter ? (
+      ) : !activeChapterKey ? (
         <>
           {subject === "science" && scienceLang && (
             <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
@@ -177,33 +204,38 @@ function NotesPage() {
               setChapter(key);
             }}
             onBack={() => {
-              setSubject(null);
               setChapter(null);
+              void navigate({
+                search: (previous) => ({
+                  ...previous,
+                  subject: undefined,
+                }),
+              });
             }}
           />
         </>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen
           subjectId={subject}
-          chapterKey={chapter}
+          chapterKey={activeChapterKey}
           scienceLang={subject === "science" ? (scienceLang ?? undefined) : undefined}
           onBack={() => setChapter(null)}
         />
       ) : hasSubtopics ? (
         <SubtopicView
           subjectId={subject}
-          chapterKey={chapter}
+          chapterKey={activeChapterKey}
           subtopics={subtopics}
           chapterContent={activeChapter}
           isRead={isRead}
-          onMarkRead={() => markChapter(subject, chapter, "read")}
+          onMarkRead={() => markChapter(subject, activeChapterKey, "read")}
           onBack={() => setChapter(null)}
         />
       ) : (
         <>
           <ContentHeader
             subjectId={subject}
-            chapterKey={chapter}
+            chapterKey={activeChapterKey}
             scienceLang={subject === "science" ? (scienceLang ?? undefined) : undefined}
             onBack={() => setChapter(null)}
           />
@@ -234,7 +266,9 @@ function NotesPage() {
 
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button
-                  onClick={() => subject && chapter && markChapter(subject, chapter, "read")}
+                  onClick={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                   disabled={isRead}
                   className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
                     isRead
