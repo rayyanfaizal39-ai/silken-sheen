@@ -179,7 +179,7 @@ function NotesPage() {
           onSelect={(id) => {
             setChapter(null);
             void navigate({
-              search: (previous) => ({
+              search: (previous: Record<string, unknown>) => ({
                 ...previous,
                 subject: id,
               }),
@@ -205,7 +205,7 @@ function NotesPage() {
           onBack={() => {
             setChapter(null);
             void navigate({
-              search: (previous) => ({
+              search: (previous: Record<string, unknown>) => ({
                 ...previous,
                 subject: undefined,
               }),
@@ -226,7 +226,7 @@ function NotesPage() {
             onBack={() => {
               setChapter(null);
               void navigate({
-                search: (previous) => ({
+                search: (previous: Record<string, unknown>) => ({
                   ...previous,
                   subject: undefined,
                 }),
