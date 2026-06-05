@@ -2,12 +2,12 @@ import type { StructuredNotes } from "./types";
 
 export const mathF1C1NotesBM: StructuredNotes = {
   chapterSummary:
-    "Bab 1 Nombor Nisbah membantu murid memahami integer, pecahan positif dan negatif, perpuluhan positif dan negatif, serta nombor yang boleh ditulis dalam bentuk p/q.",
+    "Bab 1 Nombor Nisbah membantu murid memahami integer, pecahan positif dan negatif, perpuluhan positif dan negatif, serta nombor yang boleh ditulis dalam bentuk a/b.",
   quickRevision: [
     "Integer terdiri daripada nombor bulat positif, nombor bulat negatif dan sifar.",
     "Nombor di sebelah kanan sifar lebih besar, manakala nombor di sebelah kiri sifar lebih kecil.",
     "Untuk pecahan, samakan penyebut sebelum membandingkan nilai.",
-    "Nombor nisbah boleh ditulis dalam bentuk p/q, dengan p dan q ialah integer dan q tidak sama dengan 0.",
+    "Nombor nisbah boleh ditulis dalam bentuk a/b, dengan a dan b ialah integer dan b tidak sama dengan 0.",
   ],
   sections: [
     {
@@ -185,13 +185,13 @@ export const mathF1C1NotesBM: StructuredNotes = {
       subsections: [
         {
           title: "Definisi",
-          content: "Nombor nisbah ialah nombor yang boleh ditulis dalam bentuk p/q.",
-          formula: "p/q\ndi mana p dan q ialah integer, dan q != 0",
+          content: "Nombor nisbah ialah nombor yang boleh ditulis dalam bentuk a/b.",
+          formula: "a/b\ndi mana a dan b ialah integer, dan b != 0",
         },
         {
           title: "Contoh Nombor Nisbah",
           table: {
-            headers: ["Jenis", "Contoh", "Bentuk p/q"],
+            headers: ["Jenis", "Contoh", "Bentuk a/b"],
             rows: [
               ["Integer", "-9", "-9/1"],
               ["Pecahan", "3/4", "3/4"],
@@ -228,7 +228,7 @@ export const mathF1C1NotesBM: StructuredNotes = {
     "Pada garis nombor, nilai semakin besar ke kanan dan semakin kecil ke kiri.",
     "Samakan penyebut sebelum membandingkan pecahan.",
     "Pembahagian pecahan boleh ditukar kepada pendaraban dengan salingan.",
-    "Nombor nisbah boleh ditulis sebagai p/q dengan q tidak sama dengan 0.",
+    "Nombor nisbah boleh ditulis sebagai a/b dengan b tidak sama dengan 0.",
   ],
   keyTerms: [
     "Integer",

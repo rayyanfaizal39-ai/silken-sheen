@@ -26,6 +26,9 @@ import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 
+type MathFlashcardLang = "bm" | "dlp";
+type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
+
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
     meta: [
@@ -63,6 +66,527 @@ function progressColor(pct: number) {
   if (pct <= 50) return "from-orange-500 to-amber-500";
   if (pct <= 75) return "from-yellow-400 to-yellow-500";
   return "from-emerald-500 to-green-500";
+}
+
+const MATH_FLASHCARD_CATEGORIES: Array<{
+  id: MathFlashcardCategoryId;
+  icon: string;
+  bm: { title: string; purpose: string; target: string };
+  dlp: { title: string; purpose: string; target: string };
+}> = [
+  {
+    id: "concepts",
+    icon: "📖",
+    bm: {
+      title: "Konsep",
+      purpose: "Definisi, kefahaman konsep, dan jenis nombor",
+      target: "33 Flashcards",
+    },
+    dlp: {
+      title: "Concepts",
+      purpose: "Definitions, concept understanding, and number types",
+      target: "33 Flashcards",
+    },
+  },
+  {
+    id: "operations",
+    icon: "📐",
+    bm: {
+      title: "Peraturan & Operasi",
+      purpose: "Operasi integer, pecahan, hukum aritmetik, dan tertib operasi",
+      target: "18 Flashcards",
+    },
+    dlp: {
+      title: "Rules & Operations",
+      purpose: "Integer operations, fractions, arithmetic laws, and order of operations",
+      target: "18 Flashcards",
+    },
+  },
+  {
+    id: "facts",
+    icon: "📋",
+    bm: {
+      title: "Formula & Fakta",
+      purpose: "Fakta matematik, bentuk nombor nisbah, salingan, dan ulang kaji pantas",
+      target: "9 Flashcards",
+    },
+    dlp: {
+      title: "Formulas & Facts",
+      purpose: "Mathematical facts, rational number forms, reciprocals, and quick revision",
+      target: "9 Flashcards",
+    },
+  },
+  {
+    id: "practice",
+    icon: "⚡",
+    bm: {
+      title: "Latihan Pantas",
+      purpose: "Pengiraan cepat dan ulang kaji segera",
+      target: "8 Flashcards",
+    },
+    dlp: {
+      title: "Quick Practice",
+      purpose: "Quick calculations and fast revision",
+      target: "8 Flashcards",
+    },
+  },
+];
+
+const MATH_F1_C1_FLASHCARD_PAIRS: Record<
+  MathFlashcardCategoryId,
+  Array<{ bm: [string, string]; dlp: [string, string] }>
+> = {
+  concepts: [
+    {
+      bm: [
+        "Apakah integer?",
+        "Integer ialah kumpulan nombor yang terdiri daripada nombor bulat positif dan nombor bulat negatif termasuk sifar.",
+      ],
+      dlp: [
+        "What are integers?",
+        "Integers are a set of numbers consisting of positive whole numbers and negative whole numbers, including zero.",
+      ],
+    },
+    {
+      bm: [
+        "Apakah integer positif?",
+        "Integer positif ialah nombor bulat yang lebih besar daripada sifar.",
+      ],
+      dlp: [
+        "What are positive integers?",
+        "Positive integers are whole numbers greater than zero.",
+      ],
+    },
+    {
+      bm: [
+        "Apakah integer negatif?",
+        "Integer negatif ialah nombor bulat yang lebih kecil daripada sifar.",
+      ],
+      dlp: ["What are negative integers?", "Negative integers are whole numbers less than zero."],
+    },
+    {
+      bm: ["Berikan contoh integer positif.", "Contohnya 1, 2, 3 atau 100."],
+      dlp: ["Give examples of positive integers.", "Examples include 1, 2, 3 or 100."],
+    },
+    {
+      bm: ["Berikan contoh integer negatif.", "Contohnya -1, -10 atau -239."],
+      dlp: ["Give examples of negative integers.", "Examples include -1, -10 or -239."],
+    },
+    {
+      bm: ["Apakah bukan integer?", "Bukan integer ialah nombor yang bukan nombor bulat."],
+      dlp: ["What are non-integers?", "Non-integers are numbers that are not whole numbers."],
+    },
+    {
+      bm: ["Berikan contoh bukan integer.", "Contohnya 1/2, 0.88 atau -3.4."],
+      dlp: ["Give examples of non-integers.", "Examples include 1/2, 0.88 or -3.4."],
+    },
+    {
+      bm: [
+        "Apakah fungsi garis nombor?",
+        "Garis nombor membantu murid melihat kedudukan integer dengan jelas.",
+      ],
+      dlp: [
+        "What is the function of a number line?",
+        "A number line helps students see the position of integers clearly.",
+      ],
+    },
+    {
+      bm: ["Di manakah integer positif pada garis nombor?", "Di sebelah kanan sifar."],
+      dlp: ["Where are positive integers on a number line?", "To the right of zero."],
+    },
+    {
+      bm: ["Di manakah integer negatif pada garis nombor?", "Di sebelah kiri sifar."],
+      dlp: ["Where are negative integers on a number line?", "To the left of zero."],
+    },
+    {
+      bm: [
+        "Bagaimanakah nilai berubah apabila bergerak ke kanan?",
+        "Nilai nombor semakin besar apabila bergerak ke kanan pada garis nombor.",
+      ],
+      dlp: [
+        "How do values change when moving right?",
+        "Number values increase when moving right on a number line.",
+      ],
+    },
+    {
+      bm: [
+        "Bagaimanakah nilai berubah apabila bergerak ke kiri?",
+        "Nilai nombor semakin kecil apabila bergerak ke kiri pada garis nombor.",
+      ],
+      dlp: [
+        "How do values change when moving left?",
+        "Number values decrease when moving left on a number line.",
+      ],
+    },
+    {
+      bm: ["Pada garis nombor, yang manakah lebih kecil: -5 atau 5?", "-5 lebih kecil."],
+      dlp: ["On a number line, which is smaller: -5 or 5?", "-5 is smaller."],
+    },
+    {
+      bm: [
+        "Apakah tertib menaik?",
+        "Tertib menaik ialah susunan daripada nilai terkecil kepada nilai terbesar.",
+      ],
+      dlp: [
+        "What is ascending order?",
+        "Ascending order arranges values from smallest to largest.",
+      ],
+    },
+    {
+      bm: [
+        "Apakah tertib menurun?",
+        "Tertib menurun ialah susunan daripada nilai terbesar kepada nilai terkecil.",
+      ],
+      dlp: [
+        "What is descending order?",
+        "Descending order arranges values from largest to smallest.",
+      ],
+    },
+    {
+      bm: ["Susun secara menaik: -5, 3, -2, 8, 0.", "-5, -2, 0, 3, 8."],
+      dlp: ["Arrange in ascending order: -5, 3, -2, 8, 0.", "-5, -2, 0, 3, 8."],
+    },
+    {
+      bm: ["Susun secara menurun: -5, 3, -2, 8, 0.", "8, 3, 0, -2, -5."],
+      dlp: ["Arrange in descending order: -5, 3, -2, 8, 0.", "8, 3, 0, -2, -5."],
+    },
+    {
+      bm: ["Di manakah pecahan positif berada?", "Pecahan positif berada di sebelah kanan sifar."],
+      dlp: [
+        "Where are positive fractions located?",
+        "Positive fractions are located to the right of zero.",
+      ],
+    },
+    {
+      bm: ["Di manakah pecahan negatif berada?", "Pecahan negatif berada di sebelah kiri sifar."],
+      dlp: [
+        "Where are negative fractions located?",
+        "Negative fractions are located to the left of zero.",
+      ],
+    },
+    {
+      bm: [
+        "Apakah perpuluhan positif?",
+        "Perpuluhan positif ialah perpuluhan yang lebih besar daripada sifar.",
+      ],
+      dlp: ["What is a positive decimal?", "A positive decimal is a decimal greater than zero."],
+    },
+    {
+      bm: [
+        "Apakah perpuluhan negatif?",
+        "Perpuluhan negatif ialah perpuluhan yang kurang daripada sifar.",
+      ],
+      dlp: ["What is a negative decimal?", "A negative decimal is a decimal less than zero."],
+    },
+    {
+      bm: ["Apakah tanda untuk situasi untung?", "Untung menggunakan tanda positif (+)."],
+      dlp: ["What sign is used for profit?", "Profit uses the positive sign (+)."],
+    },
+    {
+      bm: [
+        "Apakah maksud untung dalam jadual Situasi Harian?",
+        "Untung bermaksud nilai bertambah.",
+      ],
+      dlp: ["What does profit mean in the Real-Life Situations table?", "Value increases."],
+    },
+    {
+      bm: ["Apakah tanda untuk situasi rugi?", "Rugi menggunakan tanda negatif (-)."],
+      dlp: ["What sign is used for loss?", "Loss uses the negative sign (-)."],
+    },
+    {
+      bm: ["Apakah maksud rugi dalam jadual Situasi Harian?", "Rugi bermaksud nilai berkurang."],
+      dlp: ["What does loss mean in the Real-Life Situations table?", "Value decreases."],
+    },
+    {
+      bm: [
+        "Apakah nombor nisbah?",
+        "Nombor nisbah ialah nombor yang boleh ditulis dalam bentuk a/b.",
+      ],
+      dlp: [
+        "What are rational numbers?",
+        "Rational numbers are numbers that can be written in the form a/b.",
+      ],
+    },
+    {
+      bm: [
+        "Apakah syarat a dan b dalam nombor nisbah?",
+        "a dan b ialah integer, dan b tidak sama dengan 0.",
+      ],
+      dlp: [
+        "What is the condition for a and b in a rational number?",
+        "a and b are integers, and b is not equal to 0.",
+      ],
+    },
+    {
+      bm: [
+        "Bagaimanakah integer -9 ditulis sebagai nombor nisbah?",
+        "-9 dalam bentuk a/b ialah -9/1.",
+      ],
+      dlp: ["How is the integer -9 written as a rational number?", "-9 in a/b form is -9/1."],
+    },
+    {
+      bm: ["Adakah 3/4 nombor nisbah?", "Ya, 3/4 ialah nombor nisbah."],
+      dlp: ["Is 3/4 a rational number?", "Yes, 3/4 is a rational number."],
+    },
+    {
+      bm: [
+        "Bagaimanakah perpuluhan 3.5 ditulis sebagai nombor nisbah?",
+        "3.5 dalam bentuk a/b ialah 7/2.",
+      ],
+      dlp: ["How is the decimal 3.5 written as a rational number?", "3.5 in a/b form is 7/2."],
+    },
+    {
+      bm: ["Berikan tiga contoh integer positif.", "1, 2 dan 3."],
+      dlp: ["Give three examples of positive integers.", "1, 2 and 3."],
+    },
+    {
+      bm: ["Berikan tiga contoh integer negatif.", "-1, -2 dan -3."],
+      dlp: ["Give three examples of negative integers.", "-1, -2 and -3."],
+    },
+    {
+      bm: ["Berikan dua contoh perpuluhan positif.", "0.5 dan 4.3."],
+      dlp: ["Give two examples of positive decimals.", "0.5 and 4.3."],
+    },
+  ],
+  operations: [
+    {
+      bm: [
+        "Tambah integer positif bermaksud apa?",
+        "Tambah integer positif bermaksud bergerak ke kanan pada garis nombor.",
+      ],
+      dlp: [
+        "What does adding a positive integer mean?",
+        "Adding a positive integer means moving right on the number line.",
+      ],
+    },
+    {
+      bm: [
+        "Tambah integer negatif bermaksud apa?",
+        "Tambah integer negatif bermaksud bergerak ke kiri pada garis nombor.",
+      ],
+      dlp: [
+        "What does adding a negative integer mean?",
+        "Adding a negative integer means moving left on the number line.",
+      ],
+    },
+    {
+      bm: [
+        "Tolak integer positif bermaksud apa?",
+        "Tolak integer positif bermaksud bergerak ke kiri pada garis nombor.",
+      ],
+      dlp: [
+        "What does subtracting a positive integer mean?",
+        "Subtracting a positive integer means moving left on the number line.",
+      ],
+    },
+    {
+      bm: [
+        "Tolak integer negatif bermaksud apa?",
+        "Tolak integer negatif bermaksud bergerak ke kanan pada garis nombor.",
+      ],
+      dlp: [
+        "What does subtracting a negative integer mean?",
+        "Subtracting a negative integer means moving right on the number line.",
+      ],
+    },
+    {
+      bm: ["Apakah hasil (+) x (+)?", "Positif."],
+      dlp: ["What is the result of (+) x (+)?", "Positive."],
+    },
+    {
+      bm: ["Apakah hasil (-) x (-)?", "Positif."],
+      dlp: ["What is the result of (-) x (-)?", "Positive."],
+    },
+    {
+      bm: ["Apakah hasil (+) x (-)?", "Negatif."],
+      dlp: ["What is the result of (+) x (-)?", "Negative."],
+    },
+    {
+      bm: ["Apakah hasil (-) x (+)?", "Negatif."],
+      dlp: ["What is the result of (-) x (+)?", "Negative."],
+    },
+    {
+      bm: [
+        "Apakah tertib operasi?",
+        "Tertib operasi ialah kurungan dahulu, kemudian darab/bahagi, kemudian tambah/tolak.",
+      ],
+      dlp: [
+        "What is the order of operations?",
+        "The order of operations is brackets first, then multiply/divide, then add/subtract.",
+      ],
+    },
+    {
+      bm: ["Apakah langkah pertama dalam tertib operasi?", "Kurungan ( )."],
+      dlp: ["What is the first step in the order of operations?", "Parentheses ( )."],
+    },
+    {
+      bm: ["Apakah langkah kedua dalam tertib operasi?", "Darab / Bahagi."],
+      dlp: ["What is the second step in the order of operations?", "Multiply / Divide."],
+    },
+    {
+      bm: ["Apakah langkah ketiga dalam tertib operasi?", "Tambah / Tolak."],
+      dlp: ["What is the third step in the order of operations?", "Add / Subtract."],
+    },
+    {
+      bm: [
+        "Apakah hukum kalis tukar tertib?",
+        "Hukum kalis tukar tertib menyatakan a + b = b + a dan a x b = b x a.",
+      ],
+      dlp: [
+        "What is the commutative law?",
+        "The commutative law states that a + b = b + a and a x b = b x a.",
+      ],
+    },
+    {
+      bm: [
+        "Apakah hukum kalis sekutuan?",
+        "Hukum kalis sekutuan menyatakan (a + b) + c = a + (b + c) dan (a x b) x c = a x (b x c).",
+      ],
+      dlp: [
+        "What is the associative law?",
+        "The associative law states that (a + b) + c = a + (b + c) and (a x b) x c = a x (b x c).",
+      ],
+    },
+    {
+      bm: [
+        "Apakah hukum kalis agihan?",
+        "Hukum kalis agihan menyatakan a x (b + c) = (a x b) + (a x c).",
+      ],
+      dlp: [
+        "What is the distributive law?",
+        "The distributive law states that a x (b + c) = (a x b) + (a x c).",
+      ],
+    },
+    {
+      bm: ["Apakah langkah awal membanding pecahan?", "Penyebut mesti disamakan terlebih dahulu."],
+      dlp: [
+        "What is the first step when comparing fractions?",
+        "The denominators must be made the same first.",
+      ],
+    },
+    {
+      bm: ["Selepas penyebut pecahan sama, apakah yang dibandingkan?", "Bandingkan pengangka."],
+      dlp: [
+        "After fraction denominators are the same, what should be compared?",
+        "Compare the numerators.",
+      ],
+    },
+    {
+      bm: [
+        "Bagaimana membahagi pecahan?",
+        "Tukar bahagi kepada darab dengan salingan pecahan kedua.",
+      ],
+      dlp: [
+        "How do you divide fractions?",
+        "Change division into multiplication by the reciprocal of the second fraction.",
+      ],
+    },
+  ],
+  facts: [
+    {
+      bm: ["Apakah bentuk umum nombor nisbah?", "Bentuk umum nombor nisbah ialah a/b."],
+      dlp: [
+        "What is the general form of a rational number?",
+        "The general form of a rational number is a/b.",
+      ],
+    },
+    {
+      bm: ["Apakah syarat bagi b dalam a/b?", "b mestilah bukan sifar, iaitu b != 0."],
+      dlp: ["What is the condition for b in a/b?", "b must not be zero, that is b != 0."],
+    },
+    {
+      bm: [
+        "Bagaimana menulis integer sebagai pecahan?",
+        "Tulis integer sebagai nombor itu per 1, contohnya -9 = -9/1.",
+      ],
+      dlp: [
+        "How do you write an integer as a fraction?",
+        "Write the integer over 1, for example -9 = -9/1.",
+      ],
+    },
+    {
+      bm: [
+        "Apakah maksud menggunakan salingan dalam operasi pecahan?",
+        "Apabila membahagi pecahan, tukar bahagi kepada darab menggunakan salingan.",
+      ],
+      dlp: [
+        "What does using the reciprocal mean in fraction operations?",
+        "When dividing fractions, convert division into multiplication using the reciprocal.",
+      ],
+    },
+    {
+      bm: ["Tukar 1/2 ÷ 1/4 kepada bentuk darab.", "1/2 x 4/1."],
+      dlp: ["Convert 1/2 ÷ 1/4 into multiplication form.", "1/2 x 4/1."],
+    },
+    {
+      bm: ["Apakah bentuk a/b bagi 3.5?", "7/2."],
+      dlp: ["What is the a/b form of 3.5?", "7/2."],
+    },
+    {
+      bm: ["Apakah identiti penambahan?", "Identiti penambahan ialah 0 kerana a + 0 = a."],
+      dlp: ["What is the additive identity?", "The additive identity is 0 because a + 0 = a."],
+    },
+    {
+      bm: ["Apakah identiti pendaraban?", "Identiti pendaraban ialah 1 kerana a x 1 = a."],
+      dlp: [
+        "What is the multiplicative identity?",
+        "The multiplicative identity is 1 because a x 1 = a.",
+      ],
+    },
+    {
+      bm: ["Apakah satu lagi formula dalam Hukum Identiti?", "a + (-a) = 0."],
+      dlp: ["What is another formula in the Identity Law?", "a + (-a) = 0."],
+    },
+  ],
+  practice: [
+    {
+      bm: ["Tulis -9 dalam bentuk a/b.", "-9/1."],
+      dlp: ["Write -9 in a/b form.", "-9/1."],
+    },
+    {
+      bm: ["Tulis 3.5 dalam bentuk a/b.", "7/2."],
+      dlp: ["Write 3.5 in a/b form.", "7/2."],
+    },
+    {
+      bm: ["5 + (-2) = ?", "3."],
+      dlp: ["5 + (-2) = ?", "3."],
+    },
+    {
+      bm: ["(-3) x 4 = ?", "-12."],
+      dlp: ["(-3) x 4 = ?", "-12."],
+    },
+    {
+      bm: ["1/2 + 1/2 = ?", "1."],
+      dlp: ["1/2 + 1/2 = ?", "1."],
+    },
+    {
+      bm: ["Susun menaik: -5, -2, 0, 3, 8.", "-5, -2, 0, 3, 8."],
+      dlp: ["Arrange in ascending order: -5, -2, 0, 3, 8.", "-5, -2, 0, 3, 8."],
+    },
+    {
+      bm: ["Susun menurun: 8, 3, 0, -2, -5.", "8, 3, 0, -2, -5."],
+      dlp: ["Arrange in descending order: 8, 3, 0, -2, -5.", "8, 3, 0, -2, -5."],
+    },
+    {
+      bm: ["Tukar 1/2 ÷ 1/4 kepada darab menggunakan salingan.", "1/2 x 4/1."],
+      dlp: ["Convert 1/2 ÷ 1/4 into multiplication using the reciprocal.", "1/2 x 4/1."],
+    },
+  ],
+};
+
+function getMathF1C1Flashcards(lang: MathFlashcardLang, category: MathFlashcardCategoryId) {
+  return MATH_F1_C1_FLASHCARD_PAIRS[category].map((card, index) => {
+    const [front, back] = card[lang];
+    return {
+      id: `math-f1-c1-${lang}-${category}-${index + 1}`,
+      subjectId: "math",
+      form: "Form 1" as const,
+      chapter: "Chapter 1",
+      lang,
+      front,
+      back,
+    };
+  });
 }
 
 function readStudySearch() {
@@ -122,12 +646,150 @@ function MiniConfetti({ color }: { color: string }) {
   );
 }
 
+function MathFlashcardLanguagePicker({
+  onBack,
+  onSelect,
+}: {
+  onBack: () => void;
+  onSelect: (lang: MathFlashcardLang) => void;
+}) {
+  return (
+    <div className="animate-fade-up">
+      <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
+        >
+          <ChevronLeft className="w-4 h-4" /> Back to chapters
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          📐 Mathematics • Chapter 1: Rational Numbers
+        </span>
+      </div>
+
+      <div className="glass-strong rounded-3xl p-6 sm:p-8">
+        <div className="text-center mb-8">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
+            Flashcard Language
+          </p>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">
+            🌐 Pilih Bahasa / <span className="gradient-text">Choose Language</span>
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Choose a language before opening the Chapter 1 revision categories.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <button
+            onClick={() => onSelect("bm")}
+            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)]"
+          >
+            <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
+            <div className="relative mb-4 text-5xl">🇲🇾</div>
+            <h3 className="relative font-display text-2xl font-bold">Bahasa Melayu</h3>
+            <p className="relative mt-2 text-sm text-muted-foreground">
+              68 kad ulang kaji Bab 1 dalam Bahasa Melayu.
+            </p>
+          </button>
+
+          <button
+            onClick={() => onSelect("dlp")}
+            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_0_32px_oklch(0.7_0.18_180_/_0.35)]"
+          >
+            <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
+            <div className="relative mb-4 text-5xl">🇬🇧</div>
+            <h3 className="relative font-display text-2xl font-bold">DLP (English)</h3>
+            <p className="relative mt-2 text-sm text-muted-foreground">
+              68 translated Chapter 1 revision cards in English.
+            </p>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MathFlashcardCategoryPicker({
+  lang,
+  onBack,
+  onSelect,
+}: {
+  lang: MathFlashcardLang;
+  onBack: () => void;
+  onSelect: (category: MathFlashcardCategoryId) => void;
+}) {
+  const isDlp = lang === "dlp";
+  const title = isDlp
+    ? "🧠 Chapter 1 Flashcards: Rational Numbers"
+    : "🧠 Flashcards Bab 1: Nombor Nisbah";
+
+  return (
+    <div className="animate-fade-up">
+      <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
+        >
+          <ChevronLeft className="w-4 h-4" /> {isDlp ? "Back to language" : "Kembali ke bahasa"}
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {isDlp ? "🇬🇧 DLP (English)" : "🇲🇾 Bahasa Melayu"}
+        </span>
+      </div>
+
+      <div className="glass-strong rounded-3xl p-6 sm:p-8">
+        <div className="text-center mb-8">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
+            {isDlp ? "Revision Categories" : "Kategori Ulang Kaji"}
+          </p>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">{title}</h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            {isDlp
+              ? "Choose a category. Each card keeps the same Science-style flip and swipe experience."
+              : "Pilih kategori. Setiap kad menggunakan pengalaman flip dan swipe yang sama seperti Science."}
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {MATH_FLASHCARD_CATEGORIES.map((category, index) => {
+            const copy = category[lang];
+            return (
+              <button
+                key={category.id}
+                onClick={() => onSelect(category.id)}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
+                style={{ animationDelay: `${index * 70}ms` }}
+              >
+                <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
+                <div className="relative mb-4 text-4xl">{category.icon}</div>
+                <h3 className="relative font-display text-xl font-bold">
+                  {category.icon} {copy.title}
+                </h3>
+                <p className="relative mt-2 text-sm leading-6 text-muted-foreground">
+                  {copy.purpose}
+                </p>
+                <div className="relative mt-5 inline-flex rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-xs font-bold text-amber-200">
+                  {copy.target}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function FlashcardsPage() {
   const { progress, toggleFavorite, markChapter, addXp } = useProgress();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(null);
   const [form, setForm] = useState(initialSearch.form);
+  const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
+  const [mathFlashcardCategory, setMathFlashcardCategory] =
+    useState<MathFlashcardCategoryId | null>(null);
   const [favOnly, setFavOnly] = useState(false);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -174,6 +836,15 @@ function FlashcardsPage() {
       : null;
 
   const pool = useMemo(() => {
+    if (
+      subject === "math" &&
+      chapter === "Chapter 1" &&
+      mathFlashcardLang &&
+      mathFlashcardCategory
+    ) {
+      const mathCards = getMathF1C1Flashcards(mathFlashcardLang, mathFlashcardCategory);
+      return favOnly ? mathCards.filter((f) => progress.favorites.includes(f.id)) : mathCards;
+    }
     if (!subject || !chapter) return [];
     return flashcards.filter((f) => {
       if (f.subjectId !== subject) return false;
@@ -183,7 +854,17 @@ function FlashcardsPage() {
       if (favOnly && !progress.favorites.includes(f.id)) return false;
       return true;
     });
-  }, [subject, chapter, form, favOnly, progress.favorites, scienceLang, isBilingualSubject]);
+  }, [
+    subject,
+    chapter,
+    form,
+    favOnly,
+    progress.favorites,
+    scienceLang,
+    isBilingualSubject,
+    mathFlashcardLang,
+    mathFlashcardCategory,
+  ]);
 
   const currentPoolIdx = queue[idx];
   const current = currentPoolIdx !== undefined ? pool[currentPoolIdx] : pool[0];
@@ -321,6 +1002,26 @@ function FlashcardsPage() {
     setTotalCards(0);
   }
 
+  function resetMathFlashcardFlow() {
+    setMathFlashcardLang(null);
+    setMathFlashcardCategory(null);
+    resetSession();
+  }
+
+  function selectMathCategory(category: MathFlashcardCategoryId) {
+    setMathFlashcardCategory(category);
+    resetSession();
+    if (typeof window === "undefined" || !mathFlashcardLang) return;
+    try {
+      localStorage.setItem(
+        "academy-math-f1-c1-flashcards-last",
+        JSON.stringify({ lang: mathFlashcardLang, category }),
+      );
+    } catch {
+      return;
+    }
+  }
+
   // Auto-shuffle & deal on chapter entry
   useEffect(() => {
     if (pool.length > 0 && queue.length === 0 && !completed) {
@@ -349,6 +1050,31 @@ function FlashcardsPage() {
     }
   }, []);
 
+  useEffect(() => {
+    if (
+      subject !== "math" ||
+      chapter !== "Chapter 1" ||
+      !mathFlashcardLang ||
+      !mathFlashcardCategory ||
+      !current
+    ) {
+      return;
+    }
+    try {
+      localStorage.setItem(
+        "academy-math-f1-c1-flashcards-last-card",
+        JSON.stringify({
+          lang: mathFlashcardLang,
+          category: mathFlashcardCategory,
+          cardId: current.id,
+          viewedAt: new Date().toISOString(),
+        }),
+      );
+    } catch {
+      return;
+    }
+  }, [subject, chapter, mathFlashcardLang, mathFlashcardCategory, current]);
+
   const fav = current ? progress.favorites.includes(current.id) : false;
   const subj = current ? subjects.find((s) => s.id === current.subjectId) : null;
   const remaining = queue.length - idx;
@@ -370,6 +1096,8 @@ function FlashcardsPage() {
           onSelect={(id) => {
             setSubject(id);
             setChapter(null);
+            setMathFlashcardLang(null);
+            setMathFlashcardCategory(null);
             resetSession();
           }}
         />
@@ -392,6 +1120,8 @@ function FlashcardsPage() {
           onBack={() => {
             setSubject(null);
             setChapter(null);
+            setMathFlashcardLang(null);
+            setMathFlashcardCategory(null);
             resetSession();
           }}
         />
@@ -405,11 +1135,15 @@ function FlashcardsPage() {
             scienceLang={scienceLang ?? undefined}
             onSelect={(key) => {
               setChapter(key);
+              setMathFlashcardLang(null);
+              setMathFlashcardCategory(null);
               resetSession();
             }}
             onBack={() => {
               setSubject(null);
               setChapter(null);
+              setMathFlashcardLang(null);
+              setMathFlashcardCategory(null);
             }}
           />
         </>
@@ -418,7 +1152,36 @@ function FlashcardsPage() {
           subjectId={subject}
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-          onBack={() => setChapter(null)}
+          onBack={() => {
+            setChapter(null);
+            setMathFlashcardLang(null);
+            setMathFlashcardCategory(null);
+          }}
+        />
+      ) : subject === "math" && chapter === "Chapter 1" && !mathFlashcardLang ? (
+        <MathFlashcardLanguagePicker
+          onBack={() => {
+            setChapter(null);
+            resetMathFlashcardFlow();
+          }}
+          onSelect={(lang) => {
+            setMathFlashcardLang(lang);
+            setMathFlashcardCategory(null);
+            resetSession();
+          }}
+        />
+      ) : subject === "math" &&
+        chapter === "Chapter 1" &&
+        mathFlashcardLang &&
+        !mathFlashcardCategory ? (
+        <MathFlashcardCategoryPicker
+          lang={mathFlashcardLang}
+          onBack={() => {
+            setMathFlashcardLang(null);
+            setMathFlashcardCategory(null);
+            resetSession();
+          }}
+          onSelect={selectMathCategory}
         />
       ) : (
         <>
@@ -426,7 +1189,14 @@ function FlashcardsPage() {
             subjectId={subject}
             chapterKey={chapter}
             scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-            onBack={() => setChapter(null)}
+            onBack={() => {
+              if (subject === "math" && chapter === "Chapter 1") {
+                setMathFlashcardCategory(null);
+                resetSession();
+                return;
+              }
+              setChapter(null);
+            }}
           />
 
           {/* Settings row */}
@@ -452,6 +1222,32 @@ function FlashcardsPage() {
               <Vibrate className="w-4 h-4" />
             </button>
           </div>
+
+          {subject === "math" &&
+            chapter === "Chapter 1" &&
+            mathFlashcardLang &&
+            mathFlashcardCategory && (
+              <div className="glass-strong rounded-2xl p-3 mb-3 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
+                  {mathFlashcardLang === "dlp" ? "Categories" : "Kategori"}
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {MATH_FLASHCARD_CATEGORIES.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => selectMathCategory(category.id)}
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
+                        mathFlashcardCategory === category.id
+                          ? "bg-gradient-to-r from-primary to-accent text-white"
+                          : "bg-white/5 text-muted-foreground hover:bg-white/10"
+                      }`}
+                    >
+                      {category.icon} {category[mathFlashcardLang].title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
           <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
             <div className="flex flex-wrap gap-2 items-center">

@@ -2,12 +2,12 @@ import type { StructuredNotes } from "./types";
 
 export const mathF1C1NotesDLP: StructuredNotes = {
   chapterSummary:
-    "Chapter 1 Rational Numbers helps students understand integers, positive and negative fractions, positive and negative decimals, and numbers that can be written in the form p/q.",
+    "Chapter 1 Rational Numbers helps students understand integers, positive and negative fractions, positive and negative decimals, and numbers that can be written in the form a/b.",
   quickRevision: [
     "Integers consist of positive whole numbers, negative whole numbers and zero.",
     "Numbers to the right of zero are greater, while numbers to the left of zero are smaller.",
     "For fractions, make the denominators the same before comparing values.",
-    "Rational numbers can be written in the form p/q, where p and q are integers and q is not equal to 0.",
+    "Rational numbers can be written in the form a/b, where a and b are integers and b is not equal to 0.",
   ],
   sections: [
     {
@@ -186,13 +186,13 @@ export const mathF1C1NotesDLP: StructuredNotes = {
       subsections: [
         {
           title: "Definition",
-          content: "Rational numbers are numbers that can be written in the form p/q.",
-          formula: "p/q\nwhere p and q are integers, and q != 0",
+          content: "Rational numbers are numbers that can be written in the form a/b.",
+          formula: "a/b\nwhere a and b are integers, and b != 0",
         },
         {
           title: "Examples of Rational Numbers",
           table: {
-            headers: ["Type", "Example", "Form p/q"],
+            headers: ["Type", "Example", "Form a/b"],
             rows: [
               ["Integer", "-9", "-9/1"],
               ["Fraction", "3/4", "3/4"],
@@ -229,7 +229,7 @@ export const mathF1C1NotesDLP: StructuredNotes = {
     "On a number line, values increase to the right and decrease to the left.",
     "Make denominators the same before comparing fractions.",
     "Fraction division can be changed to multiplication by using the reciprocal.",
-    "Rational numbers can be written as p/q where q is not equal to 0.",
+    "Rational numbers can be written as a/b where b is not equal to 0.",
   ],
   keyTerms: [
     "Integer",

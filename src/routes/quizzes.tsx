@@ -558,7 +558,7 @@ const MATH_OBJECTIVE_2_PRACTICE_QUESTIONS: ShuffledQuestion[] = [
     options: ["-6", "0.75", "2/9", "√2"],
     answerIndex: 3,
     explanation:
-      "√2 tidak boleh ditulis sebagai p/q dengan p dan q integer, jadi bukan nombor nisbah.",
+      "√2 tidak boleh ditulis sebagai a/b dengan a dan b integer serta b != 0, jadi bukan nombor nisbah.",
     difficulty: "Hard",
     subjectId: "math",
   },
@@ -717,7 +717,8 @@ const MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS: ShuffledQuestion[] = [
     question: "Antara berikut, yang manakah bukan nombor nisbah?",
     options: ["-4/7", "0.125", "π", "-3"],
     answerIndex: 2,
-    explanation: "π tidak boleh ditulis tepat dalam bentuk p/q, maka π bukan nombor nisbah.",
+    explanation:
+      "π tidak boleh ditulis tepat dalam bentuk a/b dengan b != 0, maka π bukan nombor nisbah.",
     difficulty: "Hard",
     subjectId: "math",
   },
@@ -1306,7 +1307,7 @@ const MATH_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP: ShuffledQuestion[] = [
     options: ["-6", "0.75", "2/9", "√2"],
     answerIndex: 3,
     explanation:
-      "√2 cannot be written as p/q where p and q are integers, so it is not a rational number.",
+      "√2 cannot be written as a/b where a and b are integers and b != 0, so it is not a rational number.",
     difficulty: "Hard",
     subjectId: "math",
   },
@@ -1465,7 +1466,8 @@ const MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP: ShuffledQuestion[] = [
     question: "Which of the following is not a rational number?",
     options: ["-4/7", "0.125", "π", "-3"],
     answerIndex: 2,
-    explanation: "π cannot be written exactly in the form p/q, so π is not a rational number.",
+    explanation:
+      "π cannot be written exactly in the form a/b with b != 0, so π is not a rational number.",
     difficulty: "Hard",
     subjectId: "math",
   },
@@ -2728,11 +2730,13 @@ function MathObjectiveIntroScreen({
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const isFoundation = objective.id === "objective-1";
   const isPractice = objective.id === "objective-2";
   const isChallenge = objective.id === "objective-3";
   const isDlp = quizLang === "dlp";
-  const introTitle =
-    isPractice || isChallenge
+  const introTitle = isFoundation
+    ? "🎯 Objective 1 – Foundation"
+    : isPractice || isChallenge
       ? isDlp
         ? "Chapter 1: Rational Numbers"
         : "Bab 1: Nombor Nisbah"
@@ -2747,9 +2751,13 @@ function MathObjectiveIntroScreen({
       ? isDlp
         ? "This quiz tests your intermediate understanding of:"
         : "Quiz ini menguji kefahaman pertengahan anda tentang:"
-      : isDlp
-        ? 'Press "Start Quiz" when you are ready.'
-        : 'Tekan "Mula Quiz" apabila bersedia.';
+      : isFoundation
+        ? isDlp
+          ? "Welcome to Objective 1!"
+          : "Selamat datang ke Objective 1!"
+        : isDlp
+          ? 'Press "Start Quiz" when you are ready.'
+          : 'Tekan "Mula Quiz" apabila bersedia.';
   const prepItems = isChallenge
     ? isDlp
       ? ["Pen or pencil", "Blank paper for working steps", "Calculator if needed"]
@@ -2758,17 +2766,29 @@ function MathObjectiveIntroScreen({
       ? isDlp
         ? ["Pen or pencil", "Blank paper for calculations", "Calculator if needed"]
         : ["Pen atau pensel", "Kertas kosong untuk membuat pengiraan", "Kalkulator jika diperlukan"]
-      : [
-          isDlp ? "Take a pen or pencil" : "Ambil pen atau pensel",
-          isDlp
-            ? "Prepare blank paper for calculations"
-            : "Sediakan kertas kosong untuk membuat pengiraan",
-          isDlp ? "Calculator is allowed if needed" : "Kalkulator dibenarkan jika diperlukan",
-          isDlp
-            ? "Try to answer on your own before viewing the answer"
-            : "Cuba jawab sendiri sebelum melihat jawapan",
-          isDlp ? "Show all working steps on paper" : "Tunjukkan semua langkah kerja pada kertas",
-        ];
+      : isFoundation
+        ? [
+            isDlp
+              ? "📱 Objective 1 is designed to be completed directly on your phone or tablet."
+              : "📱 Objective 1 direka untuk dijawab terus menggunakan telefon atau tablet.",
+            isDlp
+              ? "No paper, pen, or calculator is required."
+              : "Tidak perlu menyediakan kertas, pen atau kalkulator.",
+            isDlp
+              ? "Try to answer all questions before viewing the explanations."
+              : "Cuba jawab semua soalan terlebih dahulu sebelum melihat penjelasan.",
+          ]
+        : [
+            isDlp ? "Take a pen or pencil" : "Ambil pen atau pensel",
+            isDlp
+              ? "Prepare blank paper for calculations"
+              : "Sediakan kertas kosong untuk membuat pengiraan",
+            isDlp ? "Calculator is allowed if needed" : "Kalkulator dibenarkan jika diperlukan",
+            isDlp
+              ? "Try to answer on your own before viewing the answer"
+              : "Cuba jawab sendiri sebelum melihat jawapan",
+            isDlp ? "Show all working steps on paper" : "Tunjukkan semua langkah kerja pada kertas",
+          ];
   const instructions = isChallenge
     ? isDlp
       ? [
@@ -2815,15 +2835,29 @@ function MathObjectiveIntroScreen({
             "Nombor nisbah",
             "Pengiraan campuran",
           ]
-      : [
-          isDlp
-            ? "Each quiz contains 30 objective questions."
-            : "Setiap quiz mengandungi 30 soalan objektif.",
-          isDlp ? "Each question is worth 1 mark." : "Setiap soalan bernilai 1 markah.",
-          isDlp ? "Choose the most accurate answer." : "Pilih jawapan yang paling tepat.",
-          isDlp ? "Use paper for calculations." : "Gunakan kertas untuk membuat pengiraan.",
-          isDlp ? "Full marks: 30 marks." : "Markah penuh: 30 markah.",
-        ];
+      : isFoundation
+        ? isDlp
+          ? [
+              "Basic chapter concepts",
+              "Important definitions",
+              "Fundamental calculation skills",
+              "Initial topic understanding",
+            ]
+          : [
+              "Konsep-konsep asas bab",
+              "Definisi penting",
+              "Kemahiran asas pengiraan",
+              "Kefahaman awal topik",
+            ]
+        : [
+            isDlp
+              ? "Each quiz contains 30 objective questions."
+              : "Setiap quiz mengandungi 30 soalan objektif.",
+            isDlp ? "Each question is worth 1 mark." : "Setiap soalan bernilai 1 markah.",
+            isDlp ? "Choose the most accurate answer." : "Pilih jawapan yang paling tepat.",
+            isDlp ? "Use paper for calculations." : "Gunakan kertas untuk membuat pengiraan.",
+            isDlp ? "Full marks: 30 marks." : "Markah penuh: 30 markah.",
+          ];
   const summaryItems = isChallenge
     ? [
         [
@@ -2839,7 +2873,18 @@ function MathObjectiveIntroScreen({
           [isDlp ? "Number of Questions" : "Bilangan Soalan", "30"],
           [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "15–20 minutes" : "15–20 minit"],
         ]
-      : [];
+      : isFoundation
+        ? [
+            [isDlp ? "Difficulty Level" : "Tahap Kesukaran", isDlp ? "Easy" : "Mudah"],
+            [isDlp ? "Number of Questions" : "Bilangan Soalan", "30"],
+            [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "10–15 minutes" : "10–15 minit"],
+          ]
+        : [];
+  const introSupportText = isFoundation
+    ? isDlp
+      ? "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
+      : "Quiz ini direka untuk membantu anda memahami konsep asas bagi bab ini sebelum meneruskan ke tahap yang lebih mencabar."
+    : null;
 
   return (
     <div className="animate-fade-up">
@@ -2873,18 +2918,27 @@ function MathObjectiveIntroScreen({
         <div className="relative grid gap-5 lg:grid-cols-2">
           <div className="rounded-3xl border border-white/10 bg-slate-950/80 p-5">
             <h3 className="font-display text-xl font-bold">
-              {isPractice || isChallenge
+              {isFoundation
                 ? isDlp
-                  ? "Preparation"
-                  : "Persediaan"
-                : isDlp
-                  ? "Before starting the quiz"
-                  : "Sebelum memulakan quiz"}
+                  ? "Quick Revision"
+                  : "Ulang Kaji Pantas"
+                : isPractice || isChallenge
+                  ? isDlp
+                    ? "Preparation"
+                    : "Persediaan"
+                  : isDlp
+                    ? "Before starting the quiz"
+                    : "Sebelum memulakan quiz"}
             </h3>
+            {introSupportText && (
+              <p className="mt-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-6 text-muted-foreground">
+                {introSupportText}
+              </p>
+            )}
             <div className="mt-4 space-y-3">
               {prepItems.map((item) => (
                 <div key={item} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">
-                  ✅ {item}
+                  {isFoundation ? item : `✅ ${item}`}
                 </div>
               ))}
             </div>
@@ -2911,11 +2965,15 @@ function MathObjectiveIntroScreen({
                   ? isDlp
                     ? "Quiz Focus"
                     : "Fokus Quiz"
-                  : isDlp
-                    ? "Instructions"
-                    : "Arahan"}
+                  : isFoundation
+                    ? isDlp
+                      ? "You will be tested on"
+                      : "Anda akan diuji mengenai"
+                    : isDlp
+                      ? "Instructions"
+                      : "Arahan"}
             </h3>
-            {isPractice || isChallenge ? (
+            {isPractice || isChallenge || isFoundation ? (
               <div className="mt-4 space-y-3">
                 {instructions.map((item) => (
                   <div
@@ -2944,9 +3002,14 @@ function MathObjectiveIntroScreen({
               </div>
             )}
             <div className="mt-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-cyan-100">
-              {isDlp ? "Full marks" : "Markah penuh"}:{" "}
+              {isDlp ? "Full Marks" : "Markah Penuh"}:{" "}
               <span className="font-bold text-cyan-200">{isDlp ? "30 marks" : "30 markah"}</span>
             </div>
+            {isFoundation && (
+              <p className="mt-4 text-sm text-muted-foreground">
+                {isDlp ? 'Press "Start Quiz" when ready.' : 'Tekan "Mula Quiz" apabila bersedia.'}
+              </p>
+            )}
           </div>
         </div>
 
