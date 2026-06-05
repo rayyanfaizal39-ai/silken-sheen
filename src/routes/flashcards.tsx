@@ -21,10 +21,10 @@ import {
 } from "@/components/ChapterPicker";
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
-import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { AcademyPageShell } from "@/components/AcademyPage";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -1728,19 +1728,37 @@ function FlashcardsPage() {
   const remaining = queue.length - idx;
 
   return (
-    <section className="max-w-3xl mx-auto px-4 sm:px-8 py-10 md:py-16">
-      <div className="text-center mb-6">
-        <h1 className="font-display text-5xl font-bold">
-          <span className="gradient-text">Flashcards</span>
-        </h1>
-        <p className="mt-3 text-muted-foreground">Flip, swipe, and master concepts in seconds.</p>
-      </div>
-      <div className="flex justify-center">
-        <DailyQuote />
+    <AcademyPageShell>
+      <div className="mb-5 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/52 px-5 py-5 shadow-[0_18px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl sm:px-6">
+        <p className="mb-2 inline-flex rounded-full border border-white/[0.08] bg-white/[0.06] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+          SMART LEARNING
+        </p>
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <h1 className="font-display text-4xl font-bold sm:text-5xl">
+              <span className="bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent">
+                Flashcards
+              </span>
+            </h1>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#94A3B8] sm:text-base">
+              Master concepts through active recall. Choose a subject, pick a chapter deck, and
+              start studying.
+            </p>
+          </div>
+          {(subject || chapter) && (
+            <div className="flex gap-2 text-xs font-bold text-[#94A3B8]">
+              <span className="rounded-2xl bg-white/[0.05] px-3 py-2">{idx} completed</span>
+              <span className="rounded-2xl bg-white/[0.05] px-3 py-2">
+                {Math.max(0, remaining)} left
+              </span>
+            </div>
+          )}
+        </div>
       </div>
 
       {!subject ? (
         <SubjectGrid
+          mode="flashcards"
           onSelect={(id) => {
             setSubject(id);
             setChapter(null);
@@ -2157,6 +2175,6 @@ function FlashcardsPage() {
           )}
         </>
       )}
-    </section>
+    </AcademyPageShell>
   );
 }

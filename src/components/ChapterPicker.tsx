@@ -1,41 +1,82 @@
-import { subjects, getSubjectChapters } from "@/data/content";
+import { subjects, getSubjectChapters, flashcards, quizzes } from "@/data/content";
 import { Lock, ArrowLeft, Sparkles, Clock, Gauge, NotebookPen, Brain, Layers } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import { getChapter } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
+import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
+
+function chapterCountFor(subjectId: string) {
+  if (subjectId === "science" || subjectId === "math") {
+    return getSubjectChapters(subjectId, "bm").length;
+  }
+  return getSubjectChapters(subjectId).length;
+}
+
+function subjectCounts(subjectId: string) {
+  return {
+    chapters: chapterCountFor(subjectId),
+    flashcards: flashcards.filter((card) => card.subjectId === subjectId).length,
+    quizzes: quizzes.filter((quiz) => quiz.subjectId === subjectId).length,
+  };
+}
 
 function difficultyFor(index: number): { label: string; tone: string } {
-  if (index <= 1) return { label: "Easy", tone: "text-emerald-300 border-emerald-300/30 bg-emerald-300/10" };
-  if (index <= 4) return { label: "Medium", tone: "text-cyan-300 border-cyan-300/30 bg-cyan-300/10" };
+  if (index <= 1)
+    return { label: "Easy", tone: "text-emerald-300 border-emerald-300/30 bg-emerald-300/10" };
+  if (index <= 4)
+    return { label: "Medium", tone: "text-cyan-300 border-cyan-300/30 bg-cyan-300/10" };
   return { label: "Advanced", tone: "text-fuchsia-300 border-fuchsia-300/30 bg-fuchsia-300/10" };
 }
 
-export function SubjectGrid({ onSelect }: { onSelect: (subjectId: string) => void }) {
+const flashcardSubjectOrder = ["science", "math", "english", "geography", "sejarah", "bm"];
+
+export function SubjectGrid({
+  onSelect,
+  mode = "default",
+}: {
+  onSelect: (subjectId: string) => void;
+  mode?: "default" | "flashcards";
+}) {
+  const orderedSubjects =
+    mode === "flashcards"
+      ? flashcardSubjectOrder
+          .map((id) => subjects.find((subject) => subject.id === id))
+          .filter((subject): subject is (typeof subjects)[number] => Boolean(subject))
+      : subjects;
+
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {subjects.map((s, i) => (
-        <button
-          key={s.id}
-          onClick={() => onSelect(s.id)}
-          className="group relative text-left glass rounded-2xl p-6 card-glow-hover border border-transparent hover:border-primary/50 animate-slide-up overflow-hidden"
-          style={{ animationDelay: `${i * 60}ms` }}
-        >
-          <div
-            className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${s.color} opacity-20 blur-2xl group-hover:opacity-40 transition-opacity`}
-            aria-hidden
-          />
-          <div
-            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-3xl mb-3 shadow-lg animate-float-soft`}
-            style={{ animationDelay: `${i * 0.3}s` }}
-          >
-            <span>{s.emoji}</span>
+    <AcademyPanel className={mode === "flashcards" ? "p-4 sm:p-5" : ""}>
+      <AcademySectionHeader
+        eyebrow="Subject Cards"
+        title="Choose a Subject"
+        description={
+          mode === "flashcards"
+            ? "Start with a subject, then pick a chapter deck."
+            : "Pick a subject and continue your learning path."
+        }
+      />
+      <div
+        className={
+          mode === "flashcards"
+            ? "grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+            : "grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+        }
+      >
+        {orderedSubjects.map((s, i) => (
+          <div key={s.id} className="animate-slide-up" style={{ animationDelay: `${i * 60}ms` }}>
+            <SubjectPlanetButton
+              subjectId={s.id}
+              title={s.name}
+              subtitle={s.id === "bm" ? "BM" : s.id === "math" ? "Matematik" : undefined}
+              counts={subjectCounts(s.id)}
+              ctaLabel={mode === "flashcards" ? "Start Learning" : "Open Subject"}
+              emphasis={mode === "flashcards" ? "learning" : "default"}
+              onClick={() => onSelect(s.id)}
+            />
           </div>
-          <h3 className="font-display text-xl font-bold">{s.name}</h3>
-          <p className="mt-1 text-sm font-semibold gradient-text">{s.tagline}</p>
-          <p className="mt-2 text-xs text-muted-foreground">{s.description}</p>
-        </button>
-      ))}
-    </div>
+        ))}
+      </div>
+    </AcademyPanel>
   );
 }
 
@@ -55,11 +96,12 @@ export function ChapterGrid({
   const { progress } = useProgress();
 
   return (
-    <div>
+    <AcademyPanel>
       <div className="flex items-center justify-between mb-5">
         <button
+          type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
         >
           <ArrowLeft className="w-4 h-4" /> All subjects
         </button>
@@ -68,28 +110,41 @@ export function ChapterGrid({
         </span>
       </div>
 
+      <AcademySectionHeader
+        eyebrow="Chapter Cards"
+        title={subj ? `${subj.name} Chapters` : "Chapters"}
+        description="Choose a chapter to open the learning content."
+      />
+
       {chapters.length === 0 ? (
-        <div className="text-center py-20 glass rounded-2xl">
+        <div className="text-center py-20 glass rounded-[2rem]">
           <p className="text-muted-foreground">No chapters available yet for this subject.</p>
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {chapters.map((c, i) => {
-            const pct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
+            const pct = chapterProgressPct(
+              progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
+            );
             const chapterContent = getChapter(subjectId, c.key, scienceLang);
             const feats = getChapterFeatures(chapterContent);
             const notesCount = chapterContent?.notes?.sections?.length ?? 0;
             const cardCount = chapterContent?.flashcards?.length ?? 0;
             const quizCount = chapterContent?.quiz?.length ?? 0;
-            const readMins = Math.max(3, Math.round(notesCount * 2 + (chapterContent?.notes?.quickRevision?.length ?? 0)));
+            const readMins = Math.max(
+              3,
+              Math.round(notesCount * 2 + (chapterContent?.notes?.quickRevision?.length ?? 0)),
+            );
             const diff = difficultyFor(i);
+            const status = pct >= 100 ? "Complete" : pct > 0 ? "In progress" : "Not started";
             return (
               <button
+                type="button"
                 key={c.key}
                 onClick={() => onSelect(c.key, c.available)}
-                className={`chapter-card relative text-left glass rounded-2xl p-5 animate-slide-up overflow-hidden transition-all ${
+                className={`chapter-card relative text-left border border-white/[0.08] bg-[#101827]/72 rounded-3xl p-5 animate-slide-up overflow-hidden transition-all backdrop-blur-2xl ${
                   c.available
-                    ? "card-glow-hover border border-transparent hover:border-primary/50"
+                    ? "hover:-translate-y-1 hover:border-[#6366F1]/45 hover:shadow-[0_20px_60px_rgba(99,102,241,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                     : "opacity-70 hover:bg-white/[0.05]"
                 }`}
                 style={{ animationDelay: `${i * 60}ms` }}
@@ -150,6 +205,9 @@ export function ChapterGrid({
                         style={{ width: `${pct}%` }}
                       />
                     </div>
+                    <p className="mt-2 text-[11px] font-bold uppercase tracking-wide text-[#94A3B8]">
+                      {status}
+                    </p>
                   </div>
                 )}
               </button>
@@ -157,7 +215,7 @@ export function ChapterGrid({
           })}
         </div>
       )}
-    </div>
+    </AcademyPanel>
   );
 }
 
@@ -175,16 +233,24 @@ export function ContentHeader({
   const subj = subjects.find((s) => s.id === subjectId);
   const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
   return (
-    <div className="flex items-center justify-between mb-5 flex-wrap gap-3 animate-fade-up">
-      <button
-        onClick={onBack}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
-      >
-        <ArrowLeft className="w-4 h-4" /> Back to chapters
-      </button>
-      <span className="text-sm font-semibold text-muted-foreground">
-        {subj?.emoji} {subj?.name} • {chapter?.label ?? chapterKey}
-      </span>
+    <div className="mb-5 animate-fade-up">
+      <div className="mb-5 flex items-center justify-between flex-wrap gap-3">
+        <button
+          type="button"
+          onClick={onBack}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to chapters
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {subj?.emoji} {subj?.name} • {chapter?.label ?? chapterKey}
+        </span>
+      </div>
+      <AcademySectionHeader
+        eyebrow="Content Area"
+        title={chapter?.label ?? chapterKey}
+        description="Review the available notes, videos, maps, flashcards, and quizzes."
+      />
     </div>
   );
 }
@@ -207,8 +273,9 @@ export function ComingSoonScreen({
       <h2 className="font-display text-3xl font-bold">{chapter?.label ?? chapterKey}</h2>
       <p className="mt-3 text-muted-foreground">Coming Soon</p>
       <button
+        type="button"
         onClick={onBack}
-        className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
+        className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
       >
         <ArrowLeft className="w-4 h-4" /> Back to chapters
       </button>

@@ -94,7 +94,7 @@ export function NotesBlock({
   return (
     <div
       id={id}
-      className="glass-strong mx-auto mb-8 w-full max-w-5xl scroll-mt-24 rounded-[2rem] border border-white/10 p-4 animate-fade-up sm:p-6"
+      className="mx-auto mb-8 w-full max-w-5xl scroll-mt-24 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl animate-fade-up sm:p-6"
     >
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <h2 className="font-display text-2xl font-bold">Notes</h2>
@@ -109,7 +109,7 @@ export function NotesBlock({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search within these notes…"
-              className="w-full rounded-full border border-white/10 bg-slate-950/80 py-3 pl-11 pr-4 text-sm text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+              className="w-full rounded-full border border-white/[0.10] bg-[#050816]/80 py-3 pl-11 pr-4 text-sm text-white placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]"
             />
           </div>
         </div>
@@ -121,7 +121,7 @@ export function NotesBlock({
             {notes.quickRevision.map((item) => (
               <div
                 key={item}
-                className="rounded-3xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-100 shadow-sm"
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.05] p-4 text-sm leading-7 text-slate-100 shadow-sm"
               >
                 {item}
               </div>
@@ -135,7 +135,7 @@ export function NotesBlock({
           </div>
         ) : (
           <div className="grid gap-5 lg:grid-cols-[260px_minmax(0,1fr)]">
-            <nav className="h-fit rounded-3xl border border-white/10 bg-slate-950/80 p-3 lg:sticky lg:top-24">
+            <nav className="h-fit rounded-3xl border border-white/[0.08] bg-[#050816]/70 p-3 lg:sticky lg:top-24">
               <p className="px-3 pb-2 text-xs font-bold uppercase tracking-[0.22em] text-accent">
                 Subtopics
               </p>
@@ -148,7 +148,7 @@ export function NotesBlock({
                       key={value}
                       type="button"
                       onClick={() => jumpToSection(value)}
-                      className={`w-full rounded-2xl px-3 py-2.5 text-left text-xs font-semibold leading-5 transition-all ${
+                      className={`w-full rounded-2xl px-3 py-2.5 text-left text-xs font-semibold leading-5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] ${
                         active
                           ? "bg-gradient-to-r from-primary/25 to-accent/25 text-white border border-primary/30"
                           : "text-slate-300 hover:bg-white/5"
@@ -175,7 +175,7 @@ export function NotesBlock({
                     id={`notes-section-${value}`}
                     key={value}
                     value={value}
-                    className="scroll-mt-28 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 px-4 sm:px-5"
+                    className="scroll-mt-28 overflow-hidden rounded-3xl border border-white/[0.08] bg-[#050816]/70 px-4 sm:px-5"
                   >
                     <AccordionTrigger className="py-5 text-left text-base font-bold hover:no-underline sm:text-lg">
                       {section.title}
@@ -198,7 +198,7 @@ export function NotesBlock({
                               />
                             )}
                             {sub.bulletPoints && (
-                              <ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300 marker:text-accent">
+                              <ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-200 marker:text-accent">
                                 {sub.bulletPoints.map((p) => (
                                   <li key={p}>{p}</li>
                                 ))}

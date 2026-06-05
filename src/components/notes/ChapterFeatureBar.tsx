@@ -1,10 +1,7 @@
 import { BookOpen, Layers, HelpCircle, Network, Video } from "lucide-react";
 import type { ChapterFeatureKey } from "@/content/types";
 
-const FEATURE_META: Record<
-  ChapterFeatureKey,
-  { label: string; Icon: typeof BookOpen }
-> = {
+const FEATURE_META: Record<ChapterFeatureKey, { label: string; Icon: typeof BookOpen }> = {
   notes: { label: "Notes", Icon: BookOpen },
   flashcards: { label: "Flashcards", Icon: Layers },
   quiz: { label: "Quiz", Icon: HelpCircle },
@@ -22,12 +19,12 @@ export function ChapterFeatureBar({
   onJump?: (key: ChapterFeatureKey) => void;
 }) {
   return (
-    <div className="glass rounded-2xl p-3 mb-6 flex flex-wrap gap-2 animate-fade-up">
+    <div className="mb-6 flex flex-wrap gap-2 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-3 shadow-[0_18px_70px_rgba(0,0,0,0.18)] backdrop-blur-2xl animate-fade-up">
       {ORDER.map((key) => {
         const { label, Icon } = FEATURE_META[key];
         const available = features[key];
         const className = available
-          ? "bg-gradient-to-r from-primary/15 to-accent/15 text-foreground border-primary/30 hover:from-primary/25 hover:to-accent/25"
+          ? "bg-gradient-to-r from-[#6366F1]/20 to-[#8B5CF6]/20 text-foreground border-[#6366F1]/30 hover:from-[#6366F1]/30 hover:to-[#8B5CF6]/30"
           : "bg-white/5 text-muted-foreground border-white/10 cursor-not-allowed opacity-60";
         return (
           <button

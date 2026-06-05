@@ -31,6 +31,7 @@ import { VideoBlock } from "@/components/notes/VideoBlock";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -150,7 +151,7 @@ function NotesPage() {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-10 md:py-16 overflow-visible">
+    <AcademyPageShell>
       {/* Reading progress bar */}
       {subject && activeChapterKey && (
         <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">
@@ -161,15 +162,25 @@ function NotesPage() {
         </div>
       )}
 
-      <div className="text-center mb-6">
-        <h1 className="font-display text-4xl sm:text-5xl font-bold">
-          Summary <span className="gradient-text">Notes</span>
-        </h1>
-        <p className="mt-3 text-muted-foreground">
-          Quick, focused notes that get you ready in minutes.
-        </p>
-      </div>
-      <div className="flex justify-center">
+      <AcademyHero
+        eyebrow="Smart revision"
+        title="Summary"
+        gradientTitle="Notes"
+        description="Quick, focused notes that get you ready in minutes."
+        stats={[
+          {
+            label: "Reading Progress",
+            value: subject && activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
+          },
+          {
+            label: "Chapters Completed",
+            value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
+              .length,
+          },
+          { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
+        ]}
+      />
+      <div className="mb-7 flex justify-center">
         <DailyQuote />
       </div>
 
@@ -305,7 +316,7 @@ function NotesPage() {
           )}
         </>
       )}
-    </section>
+    </AcademyPageShell>
   );
 }
 

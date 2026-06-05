@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { useProgress } from "@/hooks/use-progress";
 import { subjects, badges } from "@/data/content";
 import { Flame, Trophy, Zap, Target, Sparkles } from "lucide-react";
+import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -31,27 +32,53 @@ function DashboardPage() {
   const level = Math.floor(progress.xp / 100) + 1;
   const intoLevel = progress.xp % 100;
 
-  const board = [...leaderboardSeed, { name: "You", xp: progress.xp }]
-    .sort((a, b) => b.xp - a.xp);
+  const board = [...leaderboardSeed, { name: "You", xp: progress.xp }].sort((a, b) => b.xp - a.xp);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
-      <div className="mb-10">
-        <h1 className="font-display text-5xl font-bold">Your <span className="gradient-text">Dashboard</span></h1>
-        <p className="mt-3 text-muted-foreground">Stay consistent. Watch yourself level up.</p>
-      </div>
+    <AcademyPageShell>
+      <AcademyHero
+        eyebrow="Progress command center"
+        title="Your"
+        gradientTitle="Dashboard"
+        description="Stay consistent, track mastery, and watch your AcadeMy progress level up."
+        stats={[
+          { label: "Current Level", value: level },
+          { label: "Total XP", value: progress.xp, tone: "text-[#60A5FA]" },
+          { label: "Day Streak", value: progress.streak, tone: "text-[#F97316]" },
+        ]}
+      />
 
       {/* top stats */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard icon={<Zap className="w-5 h-5" />} label="Total XP" value={progress.xp} color="from-blue-500 to-indigo-500" />
-        <StatCard icon={<Flame className="w-5 h-5" />} label="Day Streak" value={progress.streak} color="from-orange-500 to-rose-500" />
-        <StatCard icon={<Target className="w-5 h-5" />} label="Quizzes Done" value={progress.quizzesTaken} color="from-emerald-500 to-teal-500" />
-        <StatCard icon={<Trophy className="w-5 h-5" />} label="Badges" value={progress.badges.length} color="from-amber-500 to-yellow-500" />
+        <StatCard
+          icon={<Zap className="w-5 h-5" />}
+          label="Total XP"
+          value={progress.xp}
+          color="from-blue-500 to-indigo-500"
+        />
+        <StatCard
+          icon={<Flame className="w-5 h-5" />}
+          label="Day Streak"
+          value={progress.streak}
+          color="from-orange-500 to-rose-500"
+        />
+        <StatCard
+          icon={<Target className="w-5 h-5" />}
+          label="Quizzes Done"
+          value={progress.quizzesTaken}
+          color="from-emerald-500 to-teal-500"
+        />
+        <StatCard
+          icon={<Trophy className="w-5 h-5" />}
+          label="Badges"
+          value={progress.badges.length}
+          color="from-amber-500 to-yellow-500"
+        />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Level card */}
-        <div className="lg:col-span-2 glass-strong rounded-2xl p-6">
+        <div className="lg:col-span-2 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_28px_90px_rgba(0,0,0,0.32)] backdrop-blur-2xl">
           <div className="flex justify-between items-center mb-4">
             <div>
               <p className="text-xs text-muted-foreground font-semibold">CURRENT LEVEL</p>
@@ -65,7 +92,9 @@ function DashboardPage() {
               style={{ width: `${intoLevel}%` }}
             />
           </div>
-          <p className="text-xs text-muted-foreground mt-2">{intoLevel}/100 XP to Level {level + 1}</p>
+          <p className="text-xs text-muted-foreground mt-2">
+            {intoLevel}/100 XP to Level {level + 1}
+          </p>
 
           {/* subject progress */}
           <div className="mt-8 space-y-3">
@@ -76,11 +105,16 @@ function DashboardPage() {
               return (
                 <div key={s.id}>
                   <div className="flex justify-between text-sm mb-1">
-                    <span>{s.emoji} {s.name}</span>
+                    <span>
+                      {s.emoji} {s.name}
+                    </span>
                     <span className="text-muted-foreground">{xp} XP</span>
                   </div>
                   <div className="h-2 rounded-full bg-white/10 overflow-hidden">
-                    <div className={`h-full bg-gradient-to-r ${s.color}`} style={{ width: `${pct}%` }} />
+                    <div
+                      className={`h-full bg-gradient-to-r ${s.color}`}
+                      style={{ width: `${pct}%` }}
+                    />
                   </div>
                 </div>
               );
@@ -91,18 +125,21 @@ function DashboardPage() {
         {/* Right column */}
         <div className="space-y-6">
           {/* Daily challenge */}
-          <div className="glass-strong rounded-2xl p-6 relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-nova-yellow/20 blur-3xl rounded-full" />
             <p className="text-xs text-muted-foreground font-semibold">DAILY CHALLENGE</p>
             <h3 className="font-display text-xl font-bold mt-1">Answer 5 quizzes today</h3>
             <p className="text-sm text-muted-foreground mt-2">Reward: +50 XP & streak boost</p>
             <div className="mt-4 h-2 rounded-full bg-white/10 overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-nova-yellow to-orange-500" style={{ width: `${Math.min(100, (progress.quizzesTaken % 5) * 20)}%` }} />
+              <div
+                className="h-full bg-gradient-to-r from-nova-yellow to-orange-500"
+                style={{ width: `${Math.min(100, (progress.quizzesTaken % 5) * 20)}%` }}
+              />
             </div>
           </div>
 
           {/* Badges */}
-          <div className="glass-strong rounded-2xl p-6">
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
             <p className="text-xs text-muted-foreground font-semibold mb-4">ACHIEVEMENTS</p>
             <div className="grid grid-cols-2 gap-3">
               {badges.map((b) => {
@@ -128,20 +165,32 @@ function DashboardPage() {
       </div>
 
       {/* Leaderboard */}
-      <div className="mt-8 glass-strong rounded-2xl p-6">
+      <div className="mt-8 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
         <p className="text-xs text-muted-foreground font-semibold mb-4">🏆 LEADERBOARD</p>
         <ul className="space-y-2">
           {board.map((u, i) => (
             <li
               key={u.name}
               className={`flex items-center justify-between p-3 rounded-xl ${
-                u.name === "You" ? "bg-gradient-to-r from-primary/20 to-accent/20 border border-accent/30" : "bg-white/5"
+                u.name === "You"
+                  ? "bg-gradient-to-r from-primary/20 to-accent/20 border border-accent/30"
+                  : "bg-white/5"
               }`}
             >
               <div className="flex items-center gap-3">
-                <span className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold ${
-                  i === 0 ? "bg-yellow-400 text-black" : i === 1 ? "bg-gray-300 text-black" : i === 2 ? "bg-orange-400 text-black" : "bg-white/10"
-                }`}>{i + 1}</span>
+                <span
+                  className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold ${
+                    i === 0
+                      ? "bg-yellow-400 text-black"
+                      : i === 1
+                        ? "bg-gray-300 text-black"
+                        : i === 2
+                          ? "bg-orange-400 text-black"
+                          : "bg-white/10"
+                  }`}
+                >
+                  {i + 1}
+                </span>
                 <span className="font-medium">{u.name}</span>
               </div>
               <span className="font-bold text-nova-yellow">{u.xp} XP</span>
@@ -149,18 +198,30 @@ function DashboardPage() {
           ))}
         </ul>
       </div>
-    </section>
+    </AcademyPageShell>
   );
 }
 
-function StatCard({ icon, label, value, color }: { icon: ReactNode; label: string; value: number; color: string }) {
+function StatCard({
+  icon,
+  label,
+  value,
+  color,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: number;
+  color: string;
+}) {
   return (
-    <div className="glass-strong rounded-2xl p-5">
-      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white mb-3`}>
+    <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-all hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(99,102,241,0.20)]">
+      <div
+        className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white mb-3`}
+      >
         {icon}
       </div>
       <p className="text-xs text-muted-foreground font-semibold">{label.toUpperCase()}</p>
-      <p className="font-display text-3xl font-bold mt-1">{value}</p>
+      <p className="font-display text-4xl font-bold mt-1">{value}</p>
     </div>
   );
 }

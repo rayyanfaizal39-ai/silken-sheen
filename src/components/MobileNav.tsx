@@ -12,6 +12,8 @@ const mobileLinks = [
 export function MobileNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
+  if (pathname === "/") return null;
+
   return (
     <nav className="mobile-nav-shell md:hidden fixed left-3 right-3 z-[80] rounded-2xl px-2">
       <div className="max-w-md mx-auto flex h-full items-center justify-between">
@@ -23,7 +25,7 @@ export function MobileNav() {
             <Link
               key={link.to}
               to={link.to}
-              className={`mobile-nav-item relative flex flex-col items-center justify-center gap-0.5 rounded-xl transition-all ${
+              className={`mobile-nav-item relative flex flex-col items-center justify-center gap-0.5 rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816] ${
                 active ? "mobile-nav-item-active" : "text-slate-400 hover:text-white"
               }`}
               aria-current={active ? "page" : undefined}

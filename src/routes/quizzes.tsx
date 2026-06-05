@@ -35,6 +35,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -4285,9 +4286,7 @@ function QuizzesPage() {
         : "bg-emerald-400";
 
   return (
-    <section
-      className={`max-w-4xl mx-auto px-4 sm:px-8 py-10 md:py-16 ${screenShake ? "animate-screen-shake" : ""}`}
-    >
+    <AcademyPageShell className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}>
       {/* Combo overlay */}
       {comboShow !== null && (
         <div
@@ -4299,13 +4298,25 @@ function QuizzesPage() {
           </div>
         </div>
       )}
-      <div className="text-center mb-6">
-        <h1 className="font-display text-5xl font-bold">
-          Take a <span className="gradient-text">Quiz</span>
-        </h1>
-        <p className="mt-3 text-muted-foreground">Instant scoring. Earn XP. Beat your streak.</p>
-      </div>
-      <div className="flex justify-center">
+      <AcademyHero
+        eyebrow="Quiz arena"
+        title="Take a"
+        gradientTitle="Quiz"
+        description="Instant scoring, focused practice, and XP momentum for every KSSM subject."
+        stats={[
+          {
+            label: "Quiz Progress",
+            value: activeQuiz.length > 0 ? `${idx + 1}/${activeQuiz.length}` : "Ready",
+          },
+          { label: "Questions Completed", value: progress.quizzesTaken },
+          {
+            label: "Average Score",
+            value:
+              activeQuiz.length > 0 ? `${Math.round((score / activeQuiz.length) * 100)}%` : "Start",
+          },
+        ]}
+      />
+      <div className="mb-7 flex justify-center">
         <DailyQuote />
       </div>
 
@@ -4737,7 +4748,7 @@ function QuizzesPage() {
           )}
         </>
       )}
-    </section>
+    </AcademyPageShell>
   );
 }
 
