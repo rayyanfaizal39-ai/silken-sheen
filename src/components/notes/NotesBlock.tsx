@@ -32,18 +32,20 @@ export function NotesBlock({
 }) {
   const [query, setQuery] = useState("");
   const [openValue, setOpenValue] = useState<string | undefined>(undefined);
-  const displaySections = useMemo<DisplaySection[]>(
-    () =>
-      notes?.sections ??
-      sections?.map((section) => ({
-        id: section.id,
-        title: section.title,
-        content: section.content,
-        keywords: section.keywords,
-      })) ??
-      [],
-    [notes, sections],
-  );
+  const quickRevision = Array.isArray(notes?.quickRevision) ? notes.quickRevision : [];
+  const keyTerms = Array.isArray(notes?.keyTerms) ? notes.keyTerms : [];
+  const keyExamFacts = Array.isArray(notes?.keyExamFacts) ? notes.keyExamFacts : [];
+  const displaySections = useMemo<DisplaySection[]>(() => {
+    const structuredSections = Array.isArray(notes?.sections) ? notes.sections : undefined;
+    if (structuredSections) return structuredSections;
+    if (!Array.isArray(sections)) return [];
+    return sections.map((section) => ({
+      id: section.id,
+      title: section.title,
+      content: section.content,
+      keywords: section.keywords,
+    }));
+  }, [notes, sections]);
 
   const filteredSections = useMemo(() => {
     if (!query.trim()) return displaySections;
@@ -116,9 +118,9 @@ export function NotesBlock({
       </div>
 
       <div className="mt-6 space-y-6">
-        {!!notes?.quickRevision.length && (
+        {quickRevision.length > 0 && (
           <div className="grid gap-4 sm:grid-cols-2">
-            {notes.quickRevision.map((item) => (
+            {quickRevision.map((item) => (
               <div
                 key={item}
                 className="rounded-3xl border border-white/[0.08] bg-white/[0.05] p-4 text-sm leading-7 text-slate-100 shadow-sm"
@@ -270,11 +272,11 @@ export function NotesBlock({
           </div>
         )}
 
-        {!!notes?.keyTerms?.length && (
+        {keyTerms.length > 0 && (
           <div className="rounded-3xl border border-blue-500/15 bg-blue-500/10 p-6 text-slate-100">
             <h3 className="text-xl font-semibold text-white">Key Terms</h3>
             <div className="mt-4 flex flex-wrap gap-2">
-              {notes.keyTerms.map((term) => (
+              {keyTerms.map((term) => (
                 <span
                   key={term}
                   className="rounded-full border border-white/10 bg-slate-950/80 px-4 py-2 text-sm font-medium text-slate-200"
@@ -286,11 +288,11 @@ export function NotesBlock({
           </div>
         )}
 
-        {!!notes?.keyExamFacts.length && (
+        {keyExamFacts.length > 0 && (
           <div className="rounded-3xl border border-emerald-500/15 bg-emerald-500/10 p-6 text-slate-100">
             <h3 className="text-xl font-semibold text-white">Key Exam Facts</h3>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {notes.keyExamFacts.map((fact) => (
+              {keyExamFacts.map((fact) => (
                 <div
                   key={fact}
                   className="rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm text-slate-200"
