@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import {
   Accordion,
@@ -31,6 +31,7 @@ export function NotesBlock({
   id?: string;
 }) {
   const [query, setQuery] = useState("");
+  const [openValue, setOpenValue] = useState<string | undefined>(undefined);
   const displaySections = useMemo<DisplaySection[]>(
     () =>
       notes?.sections ??
@@ -69,6 +70,26 @@ export function NotesBlock({
       })
       .filter(Boolean) as DisplaySection[];
   }, [displaySections, query]);
+
+  useEffect(() => {
+    const first = filteredSections[0];
+    if (!first) {
+      setOpenValue(undefined);
+      return;
+    }
+    const values = filteredSections.map((section) => section.id ?? section.title);
+    setOpenValue((current) => (current && values.includes(current) ? current : values[0]));
+  }, [filteredSections]);
+
+  function jumpToSection(value: string) {
+    setOpenValue(value);
+    window.requestAnimationFrame(() => {
+      document.getElementById(`notes-section-${value}`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }
 
   return (
     <div
@@ -113,94 +134,140 @@ export function NotesBlock({
             No matching notes found. Try a different keyword.
           </div>
         ) : (
-          <Accordion type="single" collapsible className="space-y-4">
-            {filteredSections.map((section) => (
-              <AccordionItem
-                key={section.id ?? section.title}
-                value={section.id ?? section.title}
-                className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 px-4 sm:px-5"
-              >
-                <AccordionTrigger className="py-5 text-left text-base font-bold hover:no-underline sm:text-lg">
-                  {section.title}
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-6 border-t border-white/10 pb-5 pt-5">
-                    {section.content && (
-                      <ReadableContent text={section.content} keywords={section.keywords ?? []} />
-                    )}
-                    {section.subsections?.map((sub, index) => (
-                      <div key={`${section.title}-${index}`} className="space-y-4">
-                        {sub.title && <h3 className="text-xl font-semibold">{sub.title}</h3>}
-                        {sub.content && (
-                          <ReadableContent text={sub.content} keywords={section.keywords ?? []} />
+          <div className="grid gap-5 lg:grid-cols-[260px_minmax(0,1fr)]">
+            <nav className="h-fit rounded-3xl border border-white/10 bg-slate-950/80 p-3 lg:sticky lg:top-24">
+              <p className="px-3 pb-2 text-xs font-bold uppercase tracking-[0.22em] text-accent">
+                Subtopics
+              </p>
+              <div className="space-y-1">
+                {filteredSections.map((section) => {
+                  const value = section.id ?? section.title;
+                  const active = openValue === value;
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => jumpToSection(value)}
+                      className={`w-full rounded-2xl px-3 py-2.5 text-left text-xs font-semibold leading-5 transition-all ${
+                        active
+                          ? "bg-gradient-to-r from-primary/25 to-accent/25 text-white border border-primary/30"
+                          : "text-slate-300 hover:bg-white/5"
+                      }`}
+                    >
+                      {section.title}
+                    </button>
+                  );
+                })}
+              </div>
+            </nav>
+
+            <Accordion
+              type="single"
+              collapsible
+              value={openValue}
+              onValueChange={setOpenValue}
+              className="min-w-0 space-y-4"
+            >
+              {filteredSections.map((section) => {
+                const value = section.id ?? section.title;
+                return (
+                  <AccordionItem
+                    id={`notes-section-${value}`}
+                    key={value}
+                    value={value}
+                    className="scroll-mt-28 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 px-4 sm:px-5"
+                  >
+                    <AccordionTrigger className="py-5 text-left text-base font-bold hover:no-underline sm:text-lg">
+                      {section.title}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-6 border-t border-white/10 pb-5 pt-5">
+                        {section.content && (
+                          <ReadableContent
+                            text={section.content}
+                            keywords={section.keywords ?? []}
+                          />
                         )}
-                        {sub.bulletPoints && (
-                          <ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300 marker:text-accent">
-                            {sub.bulletPoints.map((p) => (
-                              <li key={p}>{p}</li>
-                            ))}
-                          </ul>
-                        )}
-                        {sub.formula && (
-                          <div className="rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-cyan-100">
-                            <span className="font-medium text-cyan-200">Formula:</span>
-                            <div className="mt-2 font-mono text-sm leading-6">{sub.formula}</div>
-                          </div>
-                        )}
-                        {sub.table && (
-                          <div className="overflow-x-auto rounded-3xl border border-white/10 bg-slate-950/70 p-2">
-                            <table className="min-w-full text-left text-sm">
-                              <thead>
-                                <tr className="text-slate-300">
-                                  {sub.table.headers.map((h) => (
-                                    <th
-                                      key={h}
-                                      className="border-b border-white/10 px-3 py-2 font-semibold text-slate-200"
-                                    >
-                                      {h}
-                                    </th>
-                                  ))}
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {sub.table.rows.map((row, ri) => (
-                                  <tr
-                                    key={`${ri}-${row[0]}`}
-                                    className={ri % 2 === 0 ? "bg-white/5" : "bg-transparent"}
-                                  >
-                                    {row.map((cell, ci) => (
-                                      <td
-                                        key={ci}
-                                        className="border-b border-white/10 px-3 py-2 text-slate-300"
-                                      >
-                                        {cell}
-                                      </td>
-                                    ))}
-                                  </tr>
+                        {section.subsections?.map((sub, index) => (
+                          <div key={`${section.title}-${index}`} className="space-y-4">
+                            {sub.title && <h3 className="text-xl font-semibold">{sub.title}</h3>}
+                            {sub.content && (
+                              <ReadableContent
+                                text={sub.content}
+                                keywords={section.keywords ?? []}
+                              />
+                            )}
+                            {sub.bulletPoints && (
+                              <ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300 marker:text-accent">
+                                {sub.bulletPoints.map((p) => (
+                                  <li key={p}>{p}</li>
                                 ))}
-                              </tbody>
-                            </table>
+                              </ul>
+                            )}
+                            {sub.formula && (
+                              <div className="rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-cyan-100">
+                                <span className="font-medium text-cyan-200">Formula:</span>
+                                <div className="mt-2 font-mono text-sm leading-6">
+                                  {sub.formula}
+                                </div>
+                              </div>
+                            )}
+                            {sub.table && (
+                              <div className="overflow-x-auto rounded-3xl border border-white/10 bg-slate-950/70 p-2">
+                                <table className="min-w-full text-left text-sm">
+                                  <thead>
+                                    <tr className="text-slate-300">
+                                      {sub.table.headers.map((h) => (
+                                        <th
+                                          key={h}
+                                          className="border-b border-white/10 px-3 py-2 font-semibold text-slate-200"
+                                        >
+                                          {h}
+                                        </th>
+                                      ))}
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {sub.table.rows.map((row, ri) => (
+                                      <tr
+                                        key={`${ri}-${row[0]}`}
+                                        className={ri % 2 === 0 ? "bg-white/5" : "bg-transparent"}
+                                      >
+                                        {row.map((cell, ci) => (
+                                          <td
+                                            key={ci}
+                                            className="border-b border-white/10 px-3 py-2 text-slate-300"
+                                          >
+                                            {cell}
+                                          </td>
+                                        ))}
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                        {!!section.keywords?.length && (
+                          <div className="flex flex-wrap gap-2 border-t border-white/10 pt-5">
+                            {section.keywords.map((keyword) => (
+                              <span
+                                key={keyword}
+                                className="max-w-full break-words rounded-full border border-accent/30 bg-accent/20 px-3 py-1.5 text-xs text-accent"
+                              >
+                                #{keyword}
+                              </span>
+                            ))}
                           </div>
                         )}
                       </div>
-                    ))}
-                    {!!section.keywords?.length && (
-                      <div className="flex flex-wrap gap-2 border-t border-white/10 pt-5">
-                        {section.keywords.map((keyword) => (
-                          <span
-                            key={keyword}
-                            className="max-w-full break-words rounded-full border border-accent/30 bg-accent/20 px-3 py-1.5 text-xs text-accent"
-                          >
-                            #{keyword}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                    </AccordionContent>
+                  </AccordionItem>
+                );
+              })}
+            </Accordion>
+          </div>
         )}
 
         {!!notes?.keyTerms?.length && (
