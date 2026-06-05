@@ -1,8 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { subjects, forms, quizzes, getItemChapterKey, getSubjectChapters, type Difficulty, type QuizQuestion } from "@/data/content";
+import {
+  subjects,
+  forms,
+  quizzes,
+  getItemChapterKey,
+  getSubjectChapters,
+  type Difficulty,
+  type QuizQuestion,
+} from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
-import { CheckCircle2, XCircle, Sparkles, RotateCcw, Timer, Music2, VolumeX, ArrowLeft, Play, TimerOff, Shuffle } from "lucide-react";
+import {
+  CheckCircle2,
+  XCircle,
+  Sparkles,
+  RotateCcw,
+  Timer,
+  Music2,
+  VolumeX,
+  ArrowLeft,
+  Play,
+  TimerOff,
+  Shuffle,
+} from "lucide-react";
 import {
   SubjectGrid,
   ChapterGrid,
@@ -20,9 +40,15 @@ export const Route = createFileRoute("/quizzes")({
   head: () => ({
     meta: [
       { title: "Quizzes — AcadeMY" },
-      { name: "description", content: "Interactive KSSM quizzes with instant scoring. Easy, Medium, and Hard." },
+      {
+        name: "description",
+        content: "Interactive KSSM quizzes with instant scoring. Easy, Medium, and Hard.",
+      },
       { property: "og:title", content: "Quizzes — AcadeMY" },
-      { property: "og:description", content: "Test yourself with KSSM quizzes — instant feedback and XP rewards." },
+      {
+        property: "og:description",
+        content: "Test yourself with KSSM quizzes — instant feedback and XP rewards.",
+      },
     ],
   }),
   component: QuizzesPage,
@@ -77,21 +103,25 @@ function QuizzesPage() {
   const comboTimer = useRef<number | null>(null);
 
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
-  const needsScienceLang = subject === "science" && !scienceLang;
+  const isBilingualSubject = subject === "science" || subject === "math";
+  const needsScienceLang = isBilingualSubject && !scienceLang;
 
-  const chapterMeta = subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
+  const chapterMeta =
+    subject && chapter
+      ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
+      : null;
 
   const pool = useMemo(() => {
     if (!subject || !chapter) return [];
     return quizzes.filter((q) => {
       if (q.subjectId !== subject) return false;
       if (getItemChapterKey(q) !== chapter) return false;
-      if (subject === "science" && scienceLang && q.lang && q.lang !== scienceLang) return false;
+      if (isBilingualSubject && scienceLang && q.lang && q.lang !== scienceLang) return false;
       if (form !== "All" && q.form !== form) return false;
       if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
-  }, [subject, chapter, form, diff, scienceLang]);
+  }, [subject, chapter, form, diff, scienceLang, isBilingualSubject]);
 
   const current = shuffledPool?.[idx] ?? null;
 
@@ -125,7 +155,12 @@ function QuizzesPage() {
   }, [timerPref, pool]);
 
   // Stop music when leaving the page
-  useEffect(() => () => { music.stop(); }, []);
+  useEffect(
+    () => () => {
+      music.stop();
+    },
+    [],
+  );
 
   function triggerShake() {
     setScreenShake(true);
@@ -182,12 +217,18 @@ function QuizzesPage() {
         if (comboTimer.current) window.clearTimeout(comboTimer.current);
         comboTimer.current = window.setTimeout(() => setComboShow(null), 1100);
       }
-      setFeedback({ kind: "correct", msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)] });
+      setFeedback({
+        kind: "correct",
+        msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+      });
     } else {
       setStreak(0);
       setCombo(0);
       triggerShake();
-      setFeedback({ kind: "wrong", msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)] });
+      setFeedback({
+        kind: "wrong",
+        msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+      });
     }
   }
 
@@ -197,7 +238,11 @@ function QuizzesPage() {
       setDone(true);
       recordQuiz();
       if (subject && chapter) markChapter(subject, chapter, "quiz");
-      if (total > 0 && score + (selected === current?.answerIndex ? 1 : 0) === total && diff === "Hard") {
+      if (
+        total > 0 &&
+        score + (selected === current?.answerIndex ? 1 : 0) === total &&
+        diff === "Hard"
+      ) {
         awardBadge("master");
       }
       return;
@@ -208,10 +253,18 @@ function QuizzesPage() {
   }
 
   function reset() {
-    setIdx(0); setSelected(null); setScore(0); setDone(false);
-    setStreak(0); setCombo(0); setComboShow(null);
-    setFeedback(null); setTimeLeft(questionSeconds); setAnimatedScore(0);
-    setTimerPref(null); setShuffledPool(null);
+    setIdx(0);
+    setSelected(null);
+    setScore(0);
+    setDone(false);
+    setStreak(0);
+    setCombo(0);
+    setComboShow(null);
+    setFeedback(null);
+    setTimeLeft(questionSeconds);
+    setAnimatedScore(0);
+    setTimerPref(null);
+    setShuffledPool(null);
   }
 
   // Animated score count-up + perfect score celebration
@@ -232,12 +285,16 @@ function QuizzesPage() {
 
   const timerPct = questionSeconds > 0 ? (timeLeft / questionSeconds) * 100 : 0;
   const timerColor =
-    timeLeft <= 5 ? "bg-rose-500 shadow-[0_0_18px_oklch(0.62_0.24_27_/_0.7)]"
-    : timeLeft <= 10 ? "bg-nova-yellow"
-    : "bg-emerald-400";
+    timeLeft <= 5
+      ? "bg-rose-500 shadow-[0_0_18px_oklch(0.62_0.24_27_/_0.7)]"
+      : timeLeft <= 10
+        ? "bg-nova-yellow"
+        : "bg-emerald-400";
 
   return (
-    <section className={`max-w-4xl mx-auto px-4 sm:px-8 py-10 md:py-16 ${screenShake ? "animate-screen-shake" : ""}`}>
+    <section
+      className={`max-w-4xl mx-auto px-4 sm:px-8 py-10 md:py-16 ${screenShake ? "animate-screen-shake" : ""}`}
+    >
       {/* Combo overlay */}
       {comboShow !== null && (
         <div
@@ -250,43 +307,85 @@ function QuizzesPage() {
         </div>
       )}
       <div className="text-center mb-6">
-        <h1 className="font-display text-5xl font-bold">Take a <span className="gradient-text">Quiz</span></h1>
+        <h1 className="font-display text-5xl font-bold">
+          Take a <span className="gradient-text">Quiz</span>
+        </h1>
         <p className="mt-3 text-muted-foreground">Instant scoring. Earn XP. Beat your streak.</p>
       </div>
-      <div className="flex justify-center"><DailyQuote /></div>
+      <div className="flex justify-center">
+        <DailyQuote />
+      </div>
 
       {!subject ? (
-        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); setForm("All"); setDiff("All"); reset(); }} />
+        <SubjectGrid
+          onSelect={(id) => {
+            setSubject(id);
+            setChapter(null);
+            setForm("All");
+            setDiff("All");
+            reset();
+          }}
+        />
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
-          onBack={() => { setSubject(null); setChapter(null); reset(); }}
+          subjectName={subject === "math" ? "Mathematics" : "Science"}
+          subjectNameBm={subject === "math" ? "Matematik" : "Sains"}
+          subjectEmoji={subject === "math" ? "📐" : "🔬"}
+          bmDescription={
+            subject === "math"
+              ? "Belajar Matematik dalam Bahasa Malaysia"
+              : "Belajar Sains dalam Bahasa Malaysia"
+          }
+          dlpDescription={
+            subject === "math"
+              ? "Learn Mathematics in English (DLP)"
+              : "Learn Science in English (DLP)"
+          }
+          onBack={() => {
+            setSubject(null);
+            setChapter(null);
+            reset();
+          }}
         />
       ) : !chapter ? (
         <>
-          {subject === "science" && scienceLang && (
+          {isBilingualSubject && scienceLang && (
             <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
           )}
           <ChapterGrid
             subjectId={subject}
             scienceLang={scienceLang ?? undefined}
-            onSelect={(key) => { setChapter(key); reset(); }}
-            onBack={() => { setSubject(null); setChapter(null); reset(); }}
+            onSelect={(key) => {
+              setChapter(key);
+              reset();
+            }}
+            onBack={() => {
+              setSubject(null);
+              setChapter(null);
+              reset();
+            }}
           />
         </>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={chapter}
-          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
-          onBack={() => { setChapter(null); reset(); }}
+          scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+          onBack={() => {
+            setChapter(null);
+            reset();
+          }}
         />
       ) : !timerPref ? (
         <QuizSettingsScreen
           subjectId={subject}
           chapterKey={chapter}
-          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
-          onBack={() => { setChapter(null); reset(); }}
+          scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+          onBack={() => {
+            setChapter(null);
+            reset();
+          }}
           onStart={(pref) => setTimerPref(pref)}
         />
       ) : (
@@ -294,8 +393,11 @@ function QuizzesPage() {
           <ContentHeader
             subjectId={subject}
             chapterKey={chapter}
-            scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
-            onBack={() => { setChapter(null); reset(); }}
+            scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+            onBack={() => {
+              setChapter(null);
+              reset();
+            }}
           />
 
           <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between animate-fade-up">
@@ -305,9 +407,14 @@ function QuizzesPage() {
                   {(["All", "Form 1", "Form 2", "Form 3"] as const).map((f) => (
                     <button
                       key={f}
-                      onClick={() => { setForm(f); reset(); }}
+                      onClick={() => {
+                        setForm(f);
+                        reset();
+                      }}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                        form === f ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
+                        form === f
+                          ? "bg-gradient-to-r from-primary to-accent text-white"
+                          : "bg-white/5 text-muted-foreground"
                       }`}
                     >
                       {f}
@@ -316,17 +423,31 @@ function QuizzesPage() {
                 </div>
               ) : (
                 <>
-                  <select value={form} onChange={(e) => { setForm(e.target.value); reset(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+                  <select
+                    value={form}
+                    onChange={(e) => {
+                      setForm(e.target.value);
+                      reset();
+                    }}
+                    className="px-4 py-2 rounded-full bg-white/5 text-sm"
+                  >
                     <option>All</option>
-                    {forms.map((f) => <option key={f}>{f}</option>)}
+                    {forms.map((f) => (
+                      <option key={f}>{f}</option>
+                    ))}
                   </select>
                   <div className="flex gap-1">
                     {diffs.map((d) => (
                       <button
                         key={d}
-                        onClick={() => { setDiff(d); reset(); }}
+                        onClick={() => {
+                          setDiff(d);
+                          reset();
+                        }}
                         className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                          diff === d ? "bg-gradient-to-r from-primary to-accent text-white" : "bg-white/5 text-muted-foreground"
+                          diff === d
+                            ? "bg-gradient-to-r from-primary to-accent text-white"
+                            : "bg-white/5 text-muted-foreground"
                         }`}
                       >
                         {d}
@@ -348,10 +469,16 @@ function QuizzesPage() {
                 onClick={() => setMusicOn(music.toggle())}
                 title={musicOn ? "Mute music" : "Play music"}
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                  musicOn ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg" : "bg-white/5 text-muted-foreground hover:bg-white/10"
+                  musicOn
+                    ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                    : "bg-white/5 text-muted-foreground hover:bg-white/10"
                 }`}
               >
-                {musicOn ? <Music2 className="w-3.5 h-3.5 animate-pulse" /> : <VolumeX className="w-3.5 h-3.5" />}
+                {musicOn ? (
+                  <Music2 className="w-3.5 h-3.5 animate-pulse" />
+                ) : (
+                  <VolumeX className="w-3.5 h-3.5" />
+                )}
                 {musicOn ? "Music on" : "Music"}
               </button>
               <span className="text-muted-foreground">XP</span>
@@ -365,126 +492,159 @@ function QuizzesPage() {
 
           {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
             <div className="text-center py-20 glass rounded-2xl">
-              <p className="text-muted-foreground">No questions match — try different filters.</p>
+              <p className="text-muted-foreground">
+                {subject === "math"
+                  ? "Quizzes Coming Soon"
+                  : "No questions match — try different filters."}
+              </p>
             </div>
           ) : done ? (
             <>
               <Confetti count={shuffledPool && score === shuffledPool.length ? 160 : 70} />
-              {shuffledPool && score === shuffledPool.length && (
-                <Confetti count={120} />
-              )}
+              {shuffledPool && score === shuffledPool.length && <Confetti count={120} />}
               <div className="glass-strong rounded-3xl p-10 text-center animate-fade-up relative overflow-hidden">
                 <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,oklch(0.63_0.22_295_/_0.35),transparent_70%)]" />
                 <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4 animate-pulse" />
                 <h2 className="font-display text-3xl font-bold">
-                  {shuffledPool && score === shuffledPool.length ? "PERFECT SCORE! 🏆" : "Quiz complete!"}
+                  {shuffledPool && score === shuffledPool.length
+                    ? "PERFECT SCORE! 🏆"
+                    : "Quiz complete!"}
                 </h2>
                 <p className="mt-2 text-muted-foreground">You scored</p>
                 <p
                   key={`score-${done}`}
                   className="font-display text-7xl sm:text-8xl font-extrabold gradient-text my-4 animate-score-reveal drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.7)]"
                 >
-                  {animatedScore}<span className="text-muted-foreground/60">/{shuffledPool?.length ?? pool.length}</span>
+                  {animatedScore}
+                  <span className="text-muted-foreground/60">
+                    /{shuffledPool?.length ?? pool.length}
+                  </span>
                 </p>
                 {pool.length > 0 && score === pool.length && (
-                  <p className="text-emerald-300 font-semibold mb-3 animate-pulse">Flawless victory! ⚡</p>
+                  <p className="text-emerald-300 font-semibold mb-3 animate-pulse">
+                    Flawless victory! ⚡
+                  </p>
                 )}
-                <button onClick={reset} className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform">
+                <button
+                  onClick={reset}
+                  className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
+                >
                   <RotateCcw className="w-4 h-4" /> Try again
                 </button>
               </div>
             </>
-          ) : current && (
-            <div
-              key={idx}
-              className={`glass-strong rounded-3xl p-8 animate-question-reveal ${
-                feedback?.kind === "wrong" ? "animate-shake" : feedback?.kind === "correct" ? "animate-correct-pulse" : ""
-              }`}
-            >
-              {/* Question progress bar */}
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-xs font-semibold text-muted-foreground">
-                  Question {idx + 1} of {shuffledPool?.length ?? pool.length} • {current.difficulty}
-                </span>
-                {timerPref?.mode === "timer" && (
-                  <span className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
-                    timeLeft <= 5 ? "text-rose-400 animate-pulse" : timeLeft <= 10 ? "text-nova-yellow" : "text-emerald-300"
-                  }`}>
-                    <Timer className="w-3.5 h-3.5" /> {timeLeft}s
+          ) : (
+            current && (
+              <div
+                key={idx}
+                className={`glass-strong rounded-3xl p-8 animate-question-reveal ${
+                  feedback?.kind === "wrong"
+                    ? "animate-shake"
+                    : feedback?.kind === "correct"
+                      ? "animate-correct-pulse"
+                      : ""
+                }`}
+              >
+                {/* Question progress bar */}
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-xs font-semibold text-muted-foreground">
+                    Question {idx + 1} of {shuffledPool?.length ?? pool.length} •{" "}
+                    {current.difficulty}
                   </span>
-                )}
-              </div>
-              <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-3">
-                <div
-                  className="h-full bg-gradient-to-r from-primary to-accent transition-all"
-                  style={{ width: `${((idx + 1) / (shuffledPool?.length ?? pool.length)) * 100}%` }}
-                />
-              </div>
-              {/* Timer bar — green → yellow → red (only if timer mode) */}
-              {timerPref?.mode === "timer" && (
-                <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
-                  <div
-                    className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
-                    style={{ width: `${timerPct}%` }}
-                  />
-                </div>
-              )}
-
-              <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">{current.question}</h2>
-
-              <div className="grid sm:grid-cols-2 gap-3">
-                {current.options.map((o, i) => {
-                  const isAnswer = i === current.answerIndex;
-                  const isPicked = i === selected;
-                  const reveal = selected !== null;
-                  return (
-                    <button
-                      key={i}
-                      onClick={() => answer(i)}
-                      disabled={reveal}
-                      className={`text-left p-4 rounded-2xl border transition-all ${
-                        reveal && isAnswer
-                          ? "bg-emerald-500/20 border-emerald-500/50"
-                          : reveal && isPicked && !isAnswer
-                          ? "bg-rose-500/20 border-rose-500/50"
-                          : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50"
+                  {timerPref?.mode === "timer" && (
+                    <span
+                      className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
+                        timeLeft <= 5
+                          ? "text-rose-400 animate-pulse"
+                          : timeLeft <= 10
+                            ? "text-nova-yellow"
+                            : "text-emerald-300"
                       }`}
                     >
-                      <div className="flex items-center justify-between">
-                        <span>{o}</span>
-                        {reveal && isAnswer && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
-                        {reveal && isPicked && !isAnswer && <XCircle className="w-5 h-5 text-rose-400" />}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {feedback && (
-                <div
-                  className={`mt-5 text-center font-display text-2xl font-bold animate-fade-up ${
-                    feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
-                  }`}
-                >
-                  {feedback.msg}
+                      <Timer className="w-3.5 h-3.5" /> {timeLeft}s
+                    </span>
+                  )}
                 </div>
-              )}
+                <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-3">
+                  <div
+                    className="h-full bg-gradient-to-r from-primary to-accent transition-all"
+                    style={{
+                      width: `${((idx + 1) / (shuffledPool?.length ?? pool.length)) * 100}%`,
+                    }}
+                  />
+                </div>
+                {/* Timer bar — green → yellow → red (only if timer mode) */}
+                {timerPref?.mode === "timer" && (
+                  <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
+                    <div
+                      className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
+                      style={{ width: `${timerPct}%` }}
+                    />
+                  </div>
+                )}
 
-              {selected !== null && current.explanation && (
-                <p className="mt-4 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
-                  💡 {current.explanation}
-                </p>
-              )}
+                <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">
+                  {current.question}
+                </h2>
 
-              {selected !== null && (
-                <button
-                  onClick={next}
-                  className="mt-6 w-full py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-[1.02] transition-transform"
-                >
-                  {idx + 1 >= pool.length ? "Finish" : "Next question →"}
-                </button>
-              )}
-            </div>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {current.options.map((o, i) => {
+                    const isAnswer = i === current.answerIndex;
+                    const isPicked = i === selected;
+                    const reveal = selected !== null;
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => answer(i)}
+                        disabled={reveal}
+                        className={`text-left p-4 rounded-2xl border transition-all ${
+                          reveal && isAnswer
+                            ? "bg-emerald-500/20 border-emerald-500/50"
+                            : reveal && isPicked && !isAnswer
+                              ? "bg-rose-500/20 border-rose-500/50"
+                              : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span>{o}</span>
+                          {reveal && isAnswer && (
+                            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                          )}
+                          {reveal && isPicked && !isAnswer && (
+                            <XCircle className="w-5 h-5 text-rose-400" />
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {feedback && (
+                  <div
+                    className={`mt-5 text-center font-display text-2xl font-bold animate-fade-up ${
+                      feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
+                    }`}
+                  >
+                    {feedback.msg}
+                  </div>
+                )}
+
+                {selected !== null && current.explanation && (
+                  <p className="mt-4 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
+                    💡 {current.explanation}
+                  </p>
+                )}
+
+                {selected !== null && (
+                  <button
+                    onClick={next}
+                    className="mt-6 w-full py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-[1.02] transition-transform"
+                  >
+                    {idx + 1 >= pool.length ? "Finish" : "Next question →"}
+                  </button>
+                )}
+              </div>
+            )
           )}
         </>
       )}
@@ -528,7 +688,9 @@ function QuizSettingsScreen({
 
       <div className="glass-strong rounded-3xl p-8">
         <div className="text-center mb-8">
-          <h2 className="font-display text-3xl font-bold">Quiz <span className="gradient-text">Settings</span></h2>
+          <h2 className="font-display text-3xl font-bold">
+            Quiz <span className="gradient-text">Settings</span>
+          </h2>
           <p className="mt-2 text-sm text-muted-foreground">Pick how you want to play.</p>
         </div>
 
@@ -548,7 +710,9 @@ function QuizSettingsScreen({
             </div>
             <h3 className="font-display text-xl font-bold">With Timer</h3>
             <p className="mt-1 text-sm font-semibold gradient-text">Race against the clock!</p>
-            <p className="mt-2 text-xs text-muted-foreground">Tick-tock — answer fast for the win.</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Tick-tock — answer fast for the win.
+            </p>
 
             {mode === "timer" && (
               <div className="mt-5 animate-fade-up">
@@ -561,8 +725,17 @@ function QuizSettingsScreen({
                       key={s}
                       role="button"
                       tabIndex={0}
-                      onClick={(e) => { e.stopPropagation(); setSeconds(s); }}
-                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); setSeconds(s); } }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSeconds(s);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setSeconds(s);
+                        }
+                      }}
                       className={`px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer transition ${
                         seconds === s
                           ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
@@ -592,7 +765,9 @@ function QuizSettingsScreen({
             </div>
             <h3 className="font-display text-xl font-bold">No Timer</h3>
             <p className="mt-1 text-sm font-semibold gradient-text">Answer at your own pace.</p>
-            <p className="mt-2 text-xs text-muted-foreground">No countdown, no pressure. Just learn.</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              No countdown, no pressure. Just learn.
+            </p>
           </button>
         </div>
 

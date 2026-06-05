@@ -4,9 +4,19 @@ import type { ScienceLang } from "@/hooks/use-science-lang";
 export function ScienceLanguagePicker({
   onSelect,
   onBack,
+  subjectName = "Science",
+  subjectNameBm = "Sains",
+  subjectEmoji = "🔬",
+  bmDescription = "Belajar Sains dalam Bahasa Malaysia",
+  dlpDescription = "Learn Science in English (DLP)",
 }: {
   onSelect: (lang: ScienceLang) => void;
   onBack: () => void;
+  subjectName?: string;
+  subjectNameBm?: string;
+  subjectEmoji?: string;
+  bmDescription?: string;
+  dlpDescription?: string;
 }) {
   return (
     <div className="animate-fade-up">
@@ -17,7 +27,9 @@ export function ScienceLanguagePicker({
         >
           <ArrowLeft className="w-4 h-4" /> All subjects
         </button>
-        <span className="text-sm font-semibold text-muted-foreground">🔬 Science</span>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {subjectEmoji} {subjectName}
+        </span>
       </div>
 
       <div className="text-center mb-10">
@@ -48,10 +60,8 @@ export function ScienceLanguagePicker({
                 BM
               </span>
             </div>
-            <h3 className="font-display text-2xl font-bold">Sains</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Belajar Sains dalam Bahasa Malaysia
-            </p>
+            <h3 className="font-display text-2xl font-bold">{subjectNameBm}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{bmDescription}</p>
             <div
               className="mt-5 inline-flex items-center gap-2 text-sm font-semibold group-hover:translate-x-1 transition-transform"
               style={{ color: "#8B5CF6" }}
@@ -81,10 +91,8 @@ export function ScienceLanguagePicker({
                 DLP
               </span>
             </div>
-            <h3 className="font-display text-2xl font-bold">Science</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Learn Science in English (DLP)
-            </p>
+            <h3 className="font-display text-2xl font-bold">{subjectName}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{dlpDescription}</p>
             <div
               className="mt-5 inline-flex items-center gap-2 text-sm font-semibold group-hover:translate-x-1 transition-transform"
               style={{ color: "#3B82F6" }}
@@ -98,13 +106,7 @@ export function ScienceLanguagePicker({
   );
 }
 
-export function ScienceLangBar({
-  lang,
-  onChange,
-}: {
-  lang: "bm" | "dlp";
-  onChange: () => void;
-}) {
+export function ScienceLangBar({ lang, onChange }: { lang: "bm" | "dlp"; onChange: () => void }) {
   const color = lang === "bm" ? "#8B5CF6" : "#3B82F6";
   return (
     <div className="flex items-center justify-end gap-2 mb-4">

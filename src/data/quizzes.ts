@@ -1,4 +1,16 @@
-import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
+import type {
+  Form,
+  Subject,
+  Note,
+  ScienceNotesSubsection,
+  ScienceNotesSection,
+  StructuredNotes,
+  Difficulty,
+  QuizQuestion,
+  Flashcard,
+  SejarahChapter,
+  ChapterItem,
+} from "./types";
 import { scienceF1C3QuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
@@ -15,28 +27,6 @@ import { scienceF1C9QuizzesBM } from "./science-f1-c9-quizzes-bm";
 import { scienceF1C9QuizzesDLP } from "./science-f1-c9-quizzes-dlp";
 
 export const quizzes: QuizQuestion[] = [
-  {
-    id: "q1",
-    subjectId: "math",
-    form: "Form 1",
-    chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "What is 3/4 + 1/4?",
-    options: ["1", "1/2", "3/8", "2"],
-    answerIndex: 0,
-    explanation: "Same denominator: 3/4 + 1/4 = 4/4 = 1.",
-  },
-  {
-    id: "q2",
-    subjectId: "math",
-    form: "Form 2",
-    chapter: "Chapter 3",
-    difficulty: "Medium",
-    question: "Simplify: 2(x + 3) − x",
-    options: ["x + 6", "3x + 3", "x + 3", "2x + 6"],
-    answerIndex: 0,
-    explanation: "2x + 6 − x = x + 6.",
-  },
   {
     id: "sci-f1-c1-dlp-q1",
     subjectId: "science",
@@ -89,7 +79,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What does Chemistry study?",
-    options: ["Rocks and minerals", "Weather and climate", "Matter, its composition, and reactions", "Celestial bodies"],
+    options: [
+      "Rocks and minerals",
+      "Weather and climate",
+      "Matter, its composition, and reactions",
+      "Celestial bodies",
+    ],
     answerIndex: 2,
     explanation:
       "Chemistry studies matter, its composition, properties, and reactions. Applications include Pharmacology and Forensics.",
@@ -114,8 +109,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Which hazard symbol warns about chemicals that react violently to heat or shock?",
+    question: "Which hazard symbol warns about chemicals that react violently to heat or shock?",
     options: ["Flammable", "Toxic", "Explosive", "Corrosive"],
     answerIndex: 2,
     explanation:
@@ -128,8 +122,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Ethanol and Acetone are examples of which type of hazardous chemical?",
+    question: "Ethanol and Acetone are examples of which type of hazardous chemical?",
     options: ["Toxic", "Corrosive", "Oxidising", "Flammable"],
     answerIndex: 3,
     explanation:
@@ -156,8 +149,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Concentrated Acid is an example of which type of hazardous chemical?",
+    question: "Concentrated Acid is an example of which type of hazardous chemical?",
     options: ["Toxic", "Irritant", "Corrosive", "Flammable"],
     answerIndex: 2,
     explanation:
@@ -170,8 +162,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Mercury and Cyanide are examples of which type of hazardous chemical?",
+    question: "Mercury and Cyanide are examples of which type of hazardous chemical?",
     options: ["Irritant", "Toxic", "Oxidising", "Explosive"],
     answerIndex: 1,
     explanation:
@@ -199,7 +190,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the purpose of a Bell Jar in a laboratory?",
-    options: ["To measure liquid volume", "To collect gases", "To create a vacuum or isolate an experiment", "To heat chemicals"],
+    options: [
+      "To measure liquid volume",
+      "To collect gases",
+      "To create a vacuum or isolate an experiment",
+      "To heat chemicals",
+    ],
     answerIndex: 2,
     explanation:
       "A Bell Jar is used to create a vacuum or isolate an experiment from outside air conditions.",
@@ -238,8 +234,7 @@ export const quizzes: QuizQuestion[] = [
     question: "What is the SI unit for Temperature?",
     options: ["Celsius (C)", "Fahrenheit (F)", "Ampere (A)", "Kelvin (K)"],
     answerIndex: 3,
-    explanation:
-      "The SI base unit for Temperature is Kelvin (K), not Celsius or Fahrenheit.",
+    explanation: "The SI base unit for Temperature is Kelvin (K), not Celsius or Fahrenheit.",
   },
   {
     id: "sci-f1-c1-dlp-q16",
@@ -276,8 +271,7 @@ export const quizzes: QuizQuestion[] = [
     question: "What does the prefix Mega (M) represent?",
     options: ["1,000", "0.001", "1,000,000", "0.000001"],
     answerIndex: 2,
-    explanation:
-      "The prefix Mega (M) represents 1,000,000 or 10 to the power of 6.",
+    explanation: "The prefix Mega (M) represents 1,000,000 or 10 to the power of 6.",
   },
   {
     id: "sci-f1-c1-dlp-q19",
@@ -289,8 +283,7 @@ export const quizzes: QuizQuestion[] = [
     question: "What does the prefix Milli (m) represent?",
     options: ["0.001", "0.01", "1,000", "0.000001"],
     answerIndex: 0,
-    explanation:
-      "The prefix Milli (m) represents 0.001 or 10 to the power of -3.",
+    explanation: "The prefix Milli (m) represents 0.001 or 10 to the power of -3.",
   },
   {
     id: "sci-f1-c1-dlp-q20",
@@ -302,8 +295,7 @@ export const quizzes: QuizQuestion[] = [
     question: "What does the prefix Micro (u) represent?",
     options: ["0.01", "0.001", "1,000,000", "0.000001"],
     answerIndex: 3,
-    explanation:
-      "The prefix Micro (u) represents 0.000001 or 10 to the power of -6.",
+    explanation: "The prefix Micro (u) represents 0.000001 or 10 to the power of -6.",
   },
   {
     id: "sci-f1-c1-dlp-q21",
@@ -331,7 +323,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is a Zero Error?",
-    options: ["When the measurement is exactly zero", "When the instrument reads zero correctly", "A systematic error where the instrument does not start at zero", "An error caused by wrong eye position"],
+    options: [
+      "When the measurement is exactly zero",
+      "When the instrument reads zero correctly",
+      "A systematic error where the instrument does not start at zero",
+      "An error caused by wrong eye position",
+    ],
     answerIndex: 2,
     explanation:
       "Zero Error is a systematic error where the instrument does not read zero when it should. Formula: Actual Reading = Scale Reading - Zero Error.",
@@ -379,8 +376,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "How do you avoid Parallax Error when reading a liquid in a measuring cylinder?",
+    question: "How do you avoid Parallax Error when reading a liquid in a measuring cylinder?",
     options: [
       "Read the top of the liquid curve",
       "Read from any angle",
@@ -399,7 +395,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the definition of Density?",
-    options: ["Volume per unit mass", "Mass per unit area", "Weight per unit volume", "Mass per unit volume"],
+    options: [
+      "Volume per unit mass",
+      "Mass per unit area",
+      "Weight per unit volume",
+      "Mass per unit volume",
+    ],
     answerIndex: 3,
     explanation:
       "Density is defined as Mass per unit Volume. Formula: Density = Mass divided by Volume. Unit: g/cm3 or kg/m3.",
@@ -411,8 +412,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "What is the Water Displacement Method used for?",
+    question: "What is the Water Displacement Method used for?",
     options: [
       "To measure the mass of an object",
       "To find the volume of an irregular solid",
@@ -430,9 +430,13 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "According to the Law of Flotation, an object will float if its density is:",
-    options: ["Equal to 1.0 g/cm3", "Greater than 1.0 g/cm3", "Less than 1.0 g/cm3", "Greater than 2.0 g/cm3"],
+    question: "According to the Law of Flotation, an object will float if its density is:",
+    options: [
+      "Equal to 1.0 g/cm3",
+      "Greater than 1.0 g/cm3",
+      "Less than 1.0 g/cm3",
+      "Greater than 2.0 g/cm3",
+    ],
     answerIndex: 2,
     explanation:
       "Objects with density LESS than 1.0 g/cm3 will float. Objects with higher density will sink.",
@@ -444,8 +448,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Which of the following is a correct application of Science in daily life?",
+    question: "Which of the following is a correct application of Science in daily life?",
     options: [
       "Writing stories and poems",
       "Solving crimes through forensic DNA",
@@ -522,7 +525,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah yang dikaji dalam Kimia?",
-    options: ["Batuan dan mineral", "Cuaca dan iklim", "Jirim, komposisi, dan tindak balasnya", "Jasad-jasad angkasa"],
+    options: [
+      "Batuan dan mineral",
+      "Cuaca dan iklim",
+      "Jirim, komposisi, dan tindak balasnya",
+      "Jasad-jasad angkasa",
+    ],
     answerIndex: 2,
     explanation:
       "Kimia mengkaji jirim, komposisi, sifat, dan tindak balasnya. Aplikasinya termasuk Farmakologi dan Forensik.",
@@ -601,8 +609,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Merkuri dan Sianida adalah contoh bahan kimia jenis apakah?",
+    question: "Merkuri dan Sianida adalah contoh bahan kimia jenis apakah?",
     options: ["Merengsa", "Toksik", "Pengoksidaan", "Mudah Meletup"],
     answerIndex: 1,
     explanation:
@@ -630,7 +637,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah kegunaan Balang Loceng dalam makmal?",
-    options: ["Mengukur isipadu cecair", "Mengumpul gas", "Mewujudkan vakum atau mengasingkan eksperimen daripada udara luar", "Memanaskan bahan kimia"],
+    options: [
+      "Mengukur isipadu cecair",
+      "Mengumpul gas",
+      "Mewujudkan vakum atau mengasingkan eksperimen daripada udara luar",
+      "Memanaskan bahan kimia",
+    ],
     answerIndex: 2,
     explanation:
       "Balang Loceng digunakan untuk mewujudkan vakum atau mengasingkan eksperimen daripada keadaan udara luar.",
@@ -669,8 +681,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah unit SI untuk Suhu?",
     options: ["Celsius (C)", "Fahrenheit (F)", "Ampere (A)", "Kelvin (K)"],
     answerIndex: 3,
-    explanation:
-      "Unit asas SI untuk Suhu ialah Kelvin (K), bukan Celsius atau Fahrenheit.",
+    explanation: "Unit asas SI untuk Suhu ialah Kelvin (K), bukan Celsius atau Fahrenheit.",
   },
   {
     id: "sci-f1-c1-bm-q16",
@@ -707,8 +718,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah yang diwakili oleh imbuhan Mega (M)?",
     options: ["1,000", "0.001", "1,000,000", "0.000001"],
     answerIndex: 2,
-    explanation:
-      "Imbuhan Mega (M) mewakili 1,000,000 atau 10 kuasa 6.",
+    explanation: "Imbuhan Mega (M) mewakili 1,000,000 atau 10 kuasa 6.",
   },
   {
     id: "sci-f1-c1-bm-q19",
@@ -720,8 +730,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah yang diwakili oleh imbuhan Mili (m)?",
     options: ["0.001", "0.01", "1,000", "0.000001"],
     answerIndex: 0,
-    explanation:
-      "Imbuhan Mili (m) mewakili 0.001 atau 10 kuasa -3.",
+    explanation: "Imbuhan Mili (m) mewakili 0.001 atau 10 kuasa -3.",
   },
   {
     id: "sci-f1-c1-bm-q20",
@@ -733,8 +742,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah yang diwakili oleh imbuhan Mikro (u)?",
     options: ["0.01", "0.001", "1,000,000", "0.000001"],
     answerIndex: 3,
-    explanation:
-      "Imbuhan Mikro (u) mewakili 0.000001 atau 10 kuasa -6.",
+    explanation: "Imbuhan Mikro (u) mewakili 0.000001 atau 10 kuasa -6.",
   },
   {
     id: "sci-f1-c1-bm-q21",
@@ -870,9 +878,13 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Menurut Hukum Apungan, objek akan terapung jika ketumpatannya:",
-    options: ["Sama dengan 1.0 g/cm3", "Lebih besar daripada 1.0 g/cm3", "Kurang daripada 1.0 g/cm3", "Lebih besar daripada 2.0 g/cm3"],
+    question: "Menurut Hukum Apungan, objek akan terapung jika ketumpatannya:",
+    options: [
+      "Sama dengan 1.0 g/cm3",
+      "Lebih besar daripada 1.0 g/cm3",
+      "Kurang daripada 1.0 g/cm3",
+      "Lebih besar daripada 2.0 g/cm3",
+    ],
     answerIndex: 2,
     explanation:
       "Objek dengan ketumpatan KURANG daripada 1.0 g/cm3 akan terapung. Objek dengan ketumpatan lebih tinggi akan tenggelam.",
@@ -884,8 +896,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Manakah antara berikut merupakan aplikasi Sains yang betul dalam kehidupan harian?",
+    question: "Manakah antara berikut merupakan aplikasi Sains yang betul dalam kehidupan harian?",
     options: [
       "Menulis cerita dan puisi",
       "Menyelesaikan jenayah melalui DNA forensik",
@@ -954,7 +965,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Mengapakah pembahagian sel berlaku?",
-    options: ["Untuk pertumbuhan", "Untuk menggantikan sel rosak", "Untuk pembiakan", "Semua di atas"],
+    options: [
+      "Untuk pertumbuhan",
+      "Untuk menggantikan sel rosak",
+      "Untuk pembiakan",
+      "Semua di atas",
+    ],
     answerIndex: 3,
     explanation: "Pembahagian sel penting untuk pertumbuhan, pembaikan dan pembiakan.",
   },
@@ -966,7 +982,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah yang menyebabkan sel kanser terbentuk?",
-    options: ["Sel berhenti membahagi", "Pembahagian sel tidak terkawal", "Sel kehilangan air", "Fotosintesis"],
+    options: [
+      "Sel berhenti membahagi",
+      "Pembahagian sel tidak terkawal",
+      "Sel kehilangan air",
+      "Fotosintesis",
+    ],
     answerIndex: 1,
     explanation: "Sel kanser terbentuk akibat pembahagian sel yang berterusan dan tidak terkawal.",
   },
@@ -980,7 +1001,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah tumor?",
     options: ["Organ", "Kumpulan sel normal", "Jisim sel abnormal", "Tisu otot"],
     answerIndex: 2,
-    explanation: "Tumor ialah jisim sel abnormal yang terbentuk akibat pembahagian sel tidak terkawal.",
+    explanation:
+      "Tumor ialah jisim sel abnormal yang terbentuk akibat pembahagian sel tidak terkawal.",
   },
   {
     id: "sci-f1-c2-bm-q7",
@@ -992,7 +1014,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah fungsi mikroskop?",
     options: ["Menimbang objek", "Membesarkan objek kecil", "Mengukur suhu", "Menghasilkan cahaya"],
     answerIndex: 1,
-    explanation: "Mikroskop digunakan untuk melihat objek yang terlalu kecil untuk dilihat dengan mata kasar.",
+    explanation:
+      "Mikroskop digunakan untuk melihat objek yang terlalu kecil untuk dilihat dengan mata kasar.",
   },
   {
     id: "sci-f1-c2-bm-q8",
@@ -1074,7 +1097,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Bagaimanakah mikroskop perlu dibawa?",
-    options: ["Dengan satu tangan", "Dengan dua tangan", "Dengan menarik pentas", "Dengan memegang kanta"],
+    options: [
+      "Dengan satu tangan",
+      "Dengan dua tangan",
+      "Dengan menarik pentas",
+      "Dengan memegang kanta",
+    ],
     answerIndex: 1,
     explanation: "Mikroskop mesti dibawa menggunakan dua tangan untuk keselamatan.",
   },
@@ -1098,7 +1126,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah komponen protoplasma?",
-    options: ["Nukleus dan sitoplasma", "Dinding sel dan vakuol", "Kloroplas dan vakuol", "Membran sel dan dinding sel"],
+    options: [
+      "Nukleus dan sitoplasma",
+      "Dinding sel dan vakuol",
+      "Kloroplas dan vakuol",
+      "Membran sel dan dinding sel",
+    ],
     answerIndex: 0,
     explanation: "Protoplasma terdiri daripada nukleus dan sitoplasma.",
   },
@@ -1110,7 +1143,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah fungsi nukleus?",
-    options: ["Mengawal aktiviti sel", "Menghasilkan tenaga", "Menyimpan air", "Menjalankan fotosintesis"],
+    options: [
+      "Mengawal aktiviti sel",
+      "Menghasilkan tenaga",
+      "Menyimpan air",
+      "Menjalankan fotosintesis",
+    ],
     answerIndex: 0,
     explanation: "Nukleus ialah pusat kawalan sel.",
   },
@@ -1122,7 +1160,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah fungsi sitoplasma?",
-    options: ["Tapak tindak balas kimia", "Mengawal aktiviti sel", "Menyimpan klorofil", "Menyokong sel"],
+    options: [
+      "Tapak tindak balas kimia",
+      "Mengawal aktiviti sel",
+      "Menyimpan klorofil",
+      "Menyokong sel",
+    ],
     answerIndex: 0,
     explanation: "Kebanyakan tindak balas kimia berlaku dalam sitoplasma.",
   },
@@ -1134,7 +1177,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah fungsi membran sel?",
-    options: ["Mengawal pergerakan bahan masuk dan keluar", "Menghasilkan tenaga", "Menyimpan makanan", "Menjalankan fotosintesis"],
+    options: [
+      "Mengawal pergerakan bahan masuk dan keluar",
+      "Menghasilkan tenaga",
+      "Menyimpan makanan",
+      "Menjalankan fotosintesis",
+    ],
     answerIndex: 0,
     explanation: "Membran sel bertindak sebagai pengawal keluar masuk bahan.",
   },
@@ -1146,7 +1194,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah fungsi mitokondria?",
-    options: ["Menyimpan air", "Menghasilkan tenaga", "Menjalankan fotosintesis", "Mengawal aktiviti sel"],
+    options: [
+      "Menyimpan air",
+      "Menghasilkan tenaga",
+      "Menjalankan fotosintesis",
+      "Mengawal aktiviti sel",
+    ],
     answerIndex: 1,
     explanation: "Mitokondria ialah tapak respirasi sel.",
   },
@@ -1158,9 +1211,15 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah fungsi dinding sel dalam sel tumbuhan?",
-    options: ["Menghasilkan tenaga", "Mengawal aktiviti sel", "Memberi sokongan dan perlindungan", "Tapak tindak balas kimia"],
+    options: [
+      "Menghasilkan tenaga",
+      "Mengawal aktiviti sel",
+      "Memberi sokongan dan perlindungan",
+      "Tapak tindak balas kimia",
+    ],
     answerIndex: 2,
-    explanation: "Dinding sel memberikan sokongan, perlindungan dan bentuk yang tetap kepada sel tumbuhan.",
+    explanation:
+      "Dinding sel memberikan sokongan, perlindungan dan bentuk yang tetap kepada sel tumbuhan.",
   },
   {
     id: "sci-f1-c2-bm-q22",
@@ -1172,7 +1231,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Komponen sel manakah yang mengandungi klorofil untuk fotosintesis?",
     options: ["Vakuol", "Kloroplas", "Mitokondria", "Nukleus"],
     answerIndex: 1,
-    explanation: "Kloroplas mengandungi klorofil yang menyerap tenaga cahaya untuk menjalankan fotosintesis.",
+    explanation:
+      "Kloroplas mengandungi klorofil yang menyerap tenaga cahaya untuk menjalankan fotosintesis.",
   },
   {
     id: "sci-f1-c2-bm-q23",
@@ -1182,7 +1242,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah fungsi vakuol dalam sel tumbuhan?",
-    options: ["Menyimpan air dan bahan buangan", "Menghasilkan tenaga", "Mengawal pergerakan bahan", "Tapak respirasi"],
+    options: [
+      "Menyimpan air dan bahan buangan",
+      "Menghasilkan tenaga",
+      "Mengawal pergerakan bahan",
+      "Tapak respirasi",
+    ],
     answerIndex: 0,
     explanation: "Vakuol menyimpan sap sel yang mengandungi air, nutrien dan bahan buangan.",
   },
@@ -1196,7 +1261,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Antara berikut, yang manakah hanya terdapat dalam sel tumbuhan?",
     options: ["Membran sel", "Mitokondria", "Dinding sel", "Nukleus"],
     answerIndex: 2,
-    explanation: "Dinding sel dan kloroplas hanya terdapat dalam sel tumbuhan, manakala sel haiwan tiada.",
+    explanation:
+      "Dinding sel dan kloroplas hanya terdapat dalam sel tumbuhan, manakala sel haiwan tiada.",
   },
   {
     id: "sci-f1-c2-bm-q25",
@@ -1206,7 +1272,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah yang dimaksudkan dengan organisma unisel?",
-    options: ["Organisma yang mempunyai banyak sel", "Organisma yang terdiri daripada satu sel sahaja", "Organisma yang tidak mempunyai sel", "Organisma yang sangat besar"],
+    options: [
+      "Organisma yang mempunyai banyak sel",
+      "Organisma yang terdiri daripada satu sel sahaja",
+      "Organisma yang tidak mempunyai sel",
+      "Organisma yang sangat besar",
+    ],
     answerIndex: 1,
     explanation: "Organisma unisel ialah organisma ringkas yang terdiri daripada hanya satu sel.",
   },
@@ -1220,7 +1291,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Antara berikut, yang manakah contoh organisma multisel?",
     options: ["Amoeba", "Paramecium", "Hidra", "Bakteria"],
     answerIndex: 2,
-    explanation: "Hidra, manusia dan haiwan lain adalah organisma multisel kerana mempunyai banyak sel.",
+    explanation:
+      "Hidra, manusia dan haiwan lain adalah organisma multisel kerana mempunyai banyak sel.",
   },
   {
     id: "sci-f1-c2-bm-q27",
@@ -1232,7 +1304,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Kumpulan sel yang mempunyai fungsi yang sama dikenali sebagai...",
     options: ["Organ", "Tisu", "Sistem", "Organisma"],
     answerIndex: 1,
-    explanation: "Tisu terbentuk daripada sekumpulan sel yang bekerjasama untuk menjalankan fungsi yang sama.",
+    explanation:
+      "Tisu terbentuk daripada sekumpulan sel yang bekerjasama untuk menjalankan fungsi yang sama.",
   },
   {
     id: "sci-f1-c2-bm-q28",
@@ -1241,10 +1314,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "bm",
     difficulty: "Easy",
-    question: "Gabungan beberapa jenis tisu yang bekerjasama untuk menjalankan fungsi tertentu dipanggil...",
+    question:
+      "Gabungan beberapa jenis tisu yang bekerjasama untuk menjalankan fungsi tertentu dipanggil...",
     options: ["Organ", "Sistem", "Sel", "Tisu"],
     answerIndex: 0,
-    explanation: "Organ (seperti jantung atau perut) terdiri daripada pelbagai tisu yang bekerjasama.",
+    explanation:
+      "Organ (seperti jantung atau perut) terdiri daripada pelbagai tisu yang bekerjasama.",
   },
   {
     id: "sci-f1-c2-bm-q29",
@@ -1253,10 +1328,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "bm",
     difficulty: "Easy",
-    question: "Kumpulan beberapa organ yang bekerjasama untuk menjalankan satu fungsi utama dipanggil...",
+    question:
+      "Kumpulan beberapa organ yang bekerjasama untuk menjalankan satu fungsi utama dipanggil...",
     options: ["Tisu", "Sistem", "Organisma", "Sel"],
     answerIndex: 1,
-    explanation: "Sistem (seperti sistem pencernaan) terdiri daripada beberapa organ yang bekerjasama.",
+    explanation:
+      "Sistem (seperti sistem pencernaan) terdiri daripada beberapa organ yang bekerjasama.",
   },
   {
     id: "sci-f1-c2-bm-q30",
@@ -1266,9 +1343,15 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Pilih urutan organisasi sel yang betul dalam manusia.",
-    options: ["Tisu → Sel → Organ → Sistem → Organisma", "Sel → Tisu → Organ → Sistem → Organisma", "Organisma → Sistem → Organ → Tisu → Sel", "Sel → Organ → Tisu → Sistem → Organisma"],
+    options: [
+      "Tisu → Sel → Organ → Sistem → Organisma",
+      "Sel → Tisu → Organ → Sistem → Organisma",
+      "Organisma → Sistem → Organ → Tisu → Sel",
+      "Sel → Organ → Tisu → Sistem → Organisma",
+    ],
     answerIndex: 1,
-    explanation: "Organisasi bermula daripada sel (unit terkecil) hingga ke organisma (paling kompleks).",
+    explanation:
+      "Organisasi bermula daripada sel (unit terkecil) hingga ke organisma (paling kompleks).",
   },
   ...scienceF1C3QuizzesBM,
   ...scienceF1C3QuizzesDLP,
@@ -1306,7 +1389,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Which of the following life processes are performed by cells?",
     options: ["Respiration", "Reproduction", "Excretion", "All of the above"],
     answerIndex: 3,
-    explanation: "Cells perform important life processes including respiration, reproduction and excretion.",
+    explanation:
+      "Cells perform important life processes including respiration, reproduction and excretion.",
   },
   {
     id: "sci-f1-c2-dlp-q3",
@@ -1316,7 +1400,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is cell division?",
-    options: ["Cell death", "Cell growth", "A process where a cell divides into new cells", "Cell movement"],
+    options: [
+      "Cell death",
+      "Cell growth",
+      "A process where a cell divides into new cells",
+      "Cell movement",
+    ],
     answerIndex: 2,
     explanation: "Cell division produces new cells for growth and repair.",
   },
@@ -1340,7 +1429,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "How are cancer cells formed?",
-    options: ["Controlled cell division", "Lack of oxygen", "Uncontrolled cell division", "Photosynthesis"],
+    options: [
+      "Controlled cell division",
+      "Lack of oxygen",
+      "Uncontrolled cell division",
+      "Photosynthesis",
+    ],
     answerIndex: 2,
     explanation: "Cancer cells form when cells divide continuously without control.",
   },
@@ -1352,7 +1446,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is a tumour?",
-    options: ["A normal organ", "A group of tissues", "A mass of abnormal cells", "A type of cell membrane"],
+    options: [
+      "A normal organ",
+      "A group of tissues",
+      "A mass of abnormal cells",
+      "A type of cell membrane",
+    ],
     answerIndex: 2,
     explanation: "Tumours are formed by uncontrolled growth of abnormal cells.",
   },
@@ -1364,9 +1463,15 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the function of a microscope?",
-    options: ["To weigh objects", "To magnify small objects", "To measure temperature", "To produce light"],
+    options: [
+      "To weigh objects",
+      "To magnify small objects",
+      "To measure temperature",
+      "To produce light",
+    ],
     answerIndex: 1,
-    explanation: "Microscopes are used to observe tiny objects that cannot be seen clearly with the naked eye.",
+    explanation:
+      "Microscopes are used to observe tiny objects that cannot be seen clearly with the naked eye.",
   },
   {
     id: "sci-f1-c2-dlp-q8",
@@ -1388,7 +1493,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the function of the objective lens?",
-    options: ["To magnify the specimen", "To control light", "To hold the slide", "To reflect light"],
+    options: [
+      "To magnify the specimen",
+      "To control light",
+      "To hold the slide",
+      "To reflect light",
+    ],
     answerIndex: 0,
     explanation: "Objective lenses provide different levels of magnification.",
   },
@@ -1484,7 +1594,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which structures make up protoplasm?",
-    options: ["Cell wall and membrane", "Nucleus and cytoplasm", "Vacuole and chloroplast", "Cell wall and vacuole"],
+    options: [
+      "Cell wall and membrane",
+      "Nucleus and cytoplasm",
+      "Vacuole and chloroplast",
+      "Cell wall and vacuole",
+    ],
     answerIndex: 1,
     explanation: "Protoplasm consists of the nucleus and cytoplasm.",
   },
@@ -1496,7 +1611,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the function of the nucleus?",
-    options: ["Controls cell activities", "Produces energy", "Stores water", "Carries out photosynthesis"],
+    options: [
+      "Controls cell activities",
+      "Produces energy",
+      "Stores water",
+      "Carries out photosynthesis",
+    ],
     answerIndex: 0,
     explanation: "The nucleus acts as the control centre of the cell.",
   },
@@ -1520,7 +1640,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the function of the cell membrane?",
-    options: ["Controls movement of substances", "Produces energy", "Stores food", "Provides support"],
+    options: [
+      "Controls movement of substances",
+      "Produces energy",
+      "Stores food",
+      "Provides support",
+    ],
     answerIndex: 0,
     explanation: "The cell membrane regulates what enters and leaves the cell.",
   },
@@ -1616,7 +1741,12 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is a unicellular organism?",
-    options: ["Organism with one cell", "Organism with many cells", "Organism without cells", "Organism with tissues only"],
+    options: [
+      "Organism with one cell",
+      "Organism with many cells",
+      "Organism without cells",
+      "Organism with tissues only",
+    ],
     answerIndex: 0,
     explanation: "A unicellular organism consists of only one cell.",
   },
@@ -1640,9 +1770,15 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the correct sequence of organisation in living things?",
-    options: ["Organ → Tissue → Cell → System → Organism", "Cell → Tissue → Organ → System → Organism", "Tissue → Cell → Organ → Organism → System", "Cell → Organ → Tissue → System → Organism"],
+    options: [
+      "Organ → Tissue → Cell → System → Organism",
+      "Cell → Tissue → Organ → System → Organism",
+      "Tissue → Cell → Organ → Organism → System",
+      "Cell → Organ → Tissue → System → Organism",
+    ],
     answerIndex: 1,
-    explanation: "Cells form tissues, tissues form organs, organs form systems and systems form an organism.",
+    explanation:
+      "Cells form tissues, tissues form organs, organs form systems and systems form an organism.",
   },
   {
     id: "q6",
@@ -1680,7 +1816,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Perkataan 'sejarah' berasal daripada perkataan Arab, 'syajaratun'. Apakah maksud perkataan tersebut?",
+    question:
+      "Perkataan 'sejarah' berasal daripada perkataan Arab, 'syajaratun'. Apakah maksud perkataan tersebut?",
     options: ["Batu", "Hikayat", "Sungai", "Pokok"],
     answerIndex: 3,
     explanation:
@@ -1691,8 +1828,14 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Dalam bahasa Melayu, istilah 'tambo' digunakan untuk merujuk kepada sejarah. Apakah maksud 'tambo'?",
-    options: ["Undang-undang bertulis", "Kajian saintifik", "Riwayat dahulu kala", "Ramalan masa depan"],
+    question:
+      "Dalam bahasa Melayu, istilah 'tambo' digunakan untuk merujuk kepada sejarah. Apakah maksud 'tambo'?",
+    options: [
+      "Undang-undang bertulis",
+      "Kajian saintifik",
+      "Riwayat dahulu kala",
+      "Ramalan masa depan",
+    ],
     answerIndex: 2,
     explanation:
       "'Tambo' dalam bahasa Melayu merujuk kepada riwayat atau kisah dahulu kala. Ia digunakan dalam masyarakat Melayu tradisional untuk menceritakan peristiwa lampau secara lisan atau bertulis.",
@@ -1726,7 +1869,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Menurut E.H. Carr, sejarah ialah suatu proses interaksi berterusan antara ahli sejarah dengan apakah?",
+    question:
+      "Menurut E.H. Carr, sejarah ialah suatu proses interaksi berterusan antara ahli sejarah dengan apakah?",
     options: ["Cerita rakyat", "Fakta-fakta sejarah", "Masyarakat masa kini", "Masa hadapan"],
     answerIndex: 1,
     explanation:
@@ -1891,8 +2035,14 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Dalam kaedah lisan, apakah risiko yang mungkin berlaku terhadap maklumat yang diberikan oleh tokoh?",
-    options: ["Tokoh enggan bercakap", "Rakaman audio rosak", "Wujud unsur tokok tambah", "Maklumat terlalu banyak"],
+    question:
+      "Dalam kaedah lisan, apakah risiko yang mungkin berlaku terhadap maklumat yang diberikan oleh tokoh?",
+    options: [
+      "Tokoh enggan bercakap",
+      "Rakaman audio rosak",
+      "Wujud unsur tokok tambah",
+      "Maklumat terlalu banyak",
+    ],
     answerIndex: 2,
     explanation:
       "Risiko utama kaedah lisan ialah wujudnya unsur tokok tambah, iaitu maklumat yang dilebih-lebihkan atau ditambah atas sebab ingatan yang lemah atau keinginan untuk menonjolkan diri. Ini boleh menjejaskan ketepatan fakta sejarah.",
@@ -1902,7 +2052,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Kaedah arkeologi merupakan kaedah mendapatkan maklumat daripada bahan tinggalan sejarah secara...",
+    question:
+      "Kaedah arkeologi merupakan kaedah mendapatkan maklumat daripada bahan tinggalan sejarah secara...",
     options: ["Tradisional", "Spontan", "Saintifik", "Sastera"],
     answerIndex: 2,
     explanation:
@@ -1940,7 +2091,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Mengapakah wujud perbezaan tafsiran dalam kalangan ahli sejarah terhadap sesuatu peristiwa yang sama?",
+    question:
+      "Mengapakah wujud perbezaan tafsiran dalam kalangan ahli sejarah terhadap sesuatu peristiwa yang sama?",
     options: [
       "Kekurangan bahan rujukan",
       "Perbezaan pandangan dan ideologi",
@@ -1984,7 +2136,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Mempelajari sejarah dapat memupuk semangat patriotisme. Apakah yang dimaksudkan dengan patriotisme?",
+    question:
+      "Mempelajari sejarah dapat memupuk semangat patriotisme. Apakah yang dimaksudkan dengan patriotisme?",
     options: [
       "Semangat cinta akan negara",
       "Keinginan untuk berhijrah ke luar negara",
@@ -2040,7 +2193,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question: "Apakah yang dimaksudkan dengan 'tambo' dalam kamus sejarah?",
-    options: ["Tempat menyimpan buku", "Kisah riwayat dahulu kala", "Satu kaedah gali cari", "Alat muzik tradisional"],
+    options: [
+      "Tempat menyimpan buku",
+      "Kisah riwayat dahulu kala",
+      "Satu kaedah gali cari",
+      "Alat muzik tradisional",
+    ],
     answerIndex: 1,
     explanation:
       "'Tambo' merujuk kepada kisah atau riwayat dahulu kala dalam tradisi Melayu. Ia merupakan salah satu cara masyarakat Melayu tradisional merakam dan menyampaikan sejarah mereka secara lisan atau bertulis.",
@@ -2050,8 +2208,14 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Sejarah membolehkan kita mengenal asal-usul. Siapakah yang perlu kita kenali melalui sejarah?",
-    options: ["Hanya pemimpin dunia", "Pelancong asing", "Keluarga, bangsa dan negara", "Hanya musuh negara"],
+    question:
+      "Sejarah membolehkan kita mengenal asal-usul. Siapakah yang perlu kita kenali melalui sejarah?",
+    options: [
+      "Hanya pemimpin dunia",
+      "Pelancong asing",
+      "Keluarga, bangsa dan negara",
+      "Hanya musuh negara",
+    ],
     answerIndex: 2,
     explanation:
       "Melalui sejarah, kita dapat mengenal asal-usul keluarga, bangsa, dan negara kita. Pengetahuan ini penting untuk membina identiti diri dan rasa kebanggaan terhadap warisan budaya kita.",
@@ -2161,7 +2325,8 @@ export const quizzes: QuizQuestion[] = [
       "11,700 tahun dahulu hingga kini",
     ],
     answerIndex: 1,
-    explanation: "Zaman ini penting kerana berlaku penyejukan global yang lebih ketara berbanding zaman sebelumnya.",
+    explanation:
+      "Zaman ini penting kerana berlaku penyejukan global yang lebih ketara berbanding zaman sebelumnya.",
   },
   {
     id: "sej-f1-c2-q7",
@@ -2176,7 +2341,8 @@ export const quizzes: QuizQuestion[] = [
       "Kenaikan paras air laut secara mendadak",
     ],
     answerIndex: 2,
-    explanation: "Suhu yang sejuk menyebabkan perubahan habitat yang memaksa haiwan berhijrah ke kawasan baharu.",
+    explanation:
+      "Suhu yang sejuk menyebabkan perubahan habitat yang memaksa haiwan berhijrah ke kawasan baharu.",
   },
   {
     id: "sej-f1-c2-q8",
@@ -2245,7 +2411,8 @@ export const quizzes: QuizQuestion[] = [
       "Beruang Kutub dan Anjing Laut",
     ],
     answerIndex: 1,
-    explanation: "Haiwan-haiwan ini merupakan hidupan utama yang mendominasi kawasan beriklim sejuk pada waktu itu.",
+    explanation:
+      "Haiwan-haiwan ini merupakan hidupan utama yang mendominasi kawasan beriklim sejuk pada waktu itu.",
   },
   {
     id: "sej-f1-c2-q13",
@@ -2260,7 +2427,8 @@ export const quizzes: QuizQuestion[] = [
       "Bercucuk tanam dan membina tamadun",
     ],
     answerIndex: 2,
-    explanation: "Manusia berpindah-randah untuk mencari kawasan yang lebih panas serta sumber makanan yang mencukupi.",
+    explanation:
+      "Manusia berpindah-randah untuk mencari kawasan yang lebih panas serta sumber makanan yang mencukupi.",
   },
   {
     id: "sej-f1-c2-q14",
@@ -2323,7 +2491,8 @@ export const quizzes: QuizQuestion[] = [
       "Proses pembentukan tasik dan sungai",
     ],
     answerIndex: 2,
-    explanation: "Peningkatan suhu dunia menyebabkan glasier cair dan mengalir ke laut, meningkatkan paras air laut.",
+    explanation:
+      "Peningkatan suhu dunia menyebabkan glasier cair dan mengalir ke laut, meningkatkan paras air laut.",
   },
   {
     id: "sej-f1-c2-q18",
@@ -2354,7 +2523,8 @@ export const quizzes: QuizQuestion[] = [
       "Melalui gempa bumi yang membentuk lembah",
     ],
     answerIndex: 1,
-    explanation: "Aliran air batu yang mencair memenuhi kawasan lembah dan membentuk tasik air tawar yang besar.",
+    explanation:
+      "Aliran air batu yang mencair memenuhi kawasan lembah dan membentuk tasik air tawar yang besar.",
   },
   {
     id: "sej-f1-c2-q20",
@@ -2516,7 +2686,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Mengapakah penting bagi kita untuk menjaga alam sekitar berdasarkan topik Zaman Air Batu?",
+    question:
+      "Mengapakah penting bagi kita untuk menjaga alam sekitar berdasarkan topik Zaman Air Batu?",
     options: [
       "Supaya dapat menemui lebih banyak fosil purba",
       "Untuk mengelakkan kesan negatif perubahan iklim yang ekstrem",
@@ -2575,7 +2746,8 @@ export const quizzes: QuizQuestion[] = [
       "Peralatan tembikar yang cantik",
     ],
     answerIndex: 2,
-    explanation: "Manusia pada waktu ini belum mempunyai kemahiran untuk mencanang atau menghaluskan alat batu mereka.",
+    explanation:
+      "Manusia pada waktu ini belum mempunyai kemahiran untuk mencanang atau menghaluskan alat batu mereka.",
   },
   {
     id: "sej-f1-c3-q4",
@@ -2584,7 +2756,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Medium",
     question: "Di manakah lokasi penemuan 'Peking Man'?",
-    options: ["Gua Niah, Sarawak", "Gua Chauvet, Perancis", "Stonehenge, Britain", "Gua Zhoukoudian, China"],
+    options: [
+      "Gua Niah, Sarawak",
+      "Gua Chauvet, Perancis",
+      "Stonehenge, Britain",
+      "Gua Zhoukoudian, China",
+    ],
     answerIndex: 3,
     explanation:
       "Ini merupakan salah satu lokasi prasejarah dunia yang membuktikan kewujudan manusia purba di benua Asia.",
@@ -2671,9 +2848,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Medium",
     question: "Di manakah lokasi Zaman Neolitik di Sabah yang terkenal dengan pembuatan tembikar?",
-    options: ["Gua Cha, Kelantan", "Kota Tampan, Perak", "Gua Niah, Sarawak", "Bukit Tengkorak, Semporna"],
+    options: [
+      "Gua Cha, Kelantan",
+      "Kota Tampan, Perak",
+      "Gua Niah, Sarawak",
+      "Bukit Tengkorak, Semporna",
+    ],
     answerIndex: 3,
-    explanation: "Tapak ini merupakan salah satu tapak pembuatan tembikar prasejarah yang terbesar di Asia Tenggara.",
+    explanation:
+      "Tapak ini merupakan salah satu tapak pembuatan tembikar prasejarah yang terbesar di Asia Tenggara.",
   },
   {
     id: "sej-f1-c3-q11",
@@ -2730,7 +2913,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana kawasan pertanian semakin luas",
     ],
     answerIndex: 2,
-    explanation: "Kehidupan yang menetap dalam tempoh lama membawa kepada pembentukan petempatan besar yang tersusun.",
+    explanation:
+      "Kehidupan yang menetap dalam tempoh lama membawa kepada pembentukan petempatan besar yang tersusun.",
   },
   {
     id: "sej-f1-c3-q15",
@@ -2792,7 +2976,8 @@ export const quizzes: QuizQuestion[] = [
       "Membuat tembikar yang cantik",
     ],
     answerIndex: 2,
-    explanation: "Upacara pengebumian yang tersusun menunjukkan mereka percaya kepada kehidupan selepas mati.",
+    explanation:
+      "Upacara pengebumian yang tersusun menunjukkan mereka percaya kepada kehidupan selepas mati.",
   },
   {
     id: "sej-f1-c3-q19",
@@ -2820,7 +3005,8 @@ export const quizzes: QuizQuestion[] = [
       "Membuktikan kewujudan sistem tulisan awal",
     ],
     answerIndex: 1,
-    explanation: "Alat besi bersoket digunakan untuk aktiviti pertanian dan pertukangan yang lebih efisien.",
+    explanation:
+      "Alat besi bersoket digunakan untuk aktiviti pertanian dan pertukangan yang lebih efisien.",
   },
   {
     id: "sej-f1-c3-q21",
@@ -2853,7 +3039,8 @@ export const quizzes: QuizQuestion[] = [
       "Alat muzik tradisional",
     ],
     answerIndex: 1,
-    explanation: "Alat ini biasanya dilekatkan pada kayu atau tulang untuk dijadikan anak panah atau harpun.",
+    explanation:
+      "Alat ini biasanya dilekatkan pada kayu atau tulang untuk dijadikan anak panah atau harpun.",
   },
   {
     id: "sej-f1-c3-q23",
@@ -2926,7 +3113,8 @@ export const quizzes: QuizQuestion[] = [
       "Penggunaan baja kimia",
     ],
     answerIndex: 1,
-    explanation: "Asas pertanian yang kita ada hari ini bermula daripada eksperimen manusia Zaman Neolitik.",
+    explanation:
+      "Asas pertanian yang kita ada hari ini bermula daripada eksperimen manusia Zaman Neolitik.",
   },
   {
     id: "sej-f1-c3-q28",
@@ -2970,7 +3158,8 @@ export const quizzes: QuizQuestion[] = [
       "Untuk membuktikan Malaysia lebih maju daripada negara lain",
     ],
     answerIndex: 2,
-    explanation: "Tapak arkeologi adalah khazanah negara yang tidak boleh diganti jika dimusnahkan.",
+    explanation:
+      "Tapak arkeologi adalah khazanah negara yang tidak boleh diganti jika dimusnahkan.",
   },
 
   // Sejarah Form 1 Chapter 4 - Mengenali Tamadun
@@ -2982,9 +3171,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Medium",
     question: "Apakah maksud perkataan 'Civitas' dalam bahasa Yunani?",
-    options: ["Kampung atau desa", "Bandar atau kota", "Kerajaan atau empayar", "Sungai atau tasik"],
+    options: [
+      "Kampung atau desa",
+      "Bandar atau kota",
+      "Kerajaan atau empayar",
+      "Sungai atau tasik",
+    ],
     answerIndex: 1,
-    explanation: "Tamadun awal sangat berkait rapat dengan pembentukan bandar sebagai pusat kemajuan masyarakat.",
+    explanation:
+      "Tamadun awal sangat berkait rapat dengan pembentukan bandar sebagai pusat kemajuan masyarakat.",
   },
   {
     id: "sej-f1-c4-q2",
@@ -2995,7 +3190,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah istilah Inggeris bagi tamadun?",
     options: ["Culture", "Society", "Civilization", "Development"],
     answerIndex: 2,
-    explanation: "Barat sering mengukur tamadun melalui pencapaian fizikal seperti sains dan teknologi.",
+    explanation:
+      "Barat sering mengukur tamadun melalui pencapaian fizikal seperti sains dan teknologi.",
   },
   {
     id: "sej-f1-c4-q3",
@@ -3011,7 +3207,8 @@ export const quizzes: QuizQuestion[] = [
       "Madain, Ummah, dan Madana",
     ],
     answerIndex: 0,
-    explanation: "Ketiga-tiga perkataan ini membawa maksud tinggi budi bahasa dan pembukaan bandar.",
+    explanation:
+      "Ketiga-tiga perkataan ini membawa maksud tinggi budi bahasa dan pembukaan bandar.",
   },
   {
     id: "sej-f1-c4-q4",
@@ -3027,7 +3224,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan peperangan",
     ],
     answerIndex: 1,
-    explanation: "Ini menunjukkan tamadun melibatkan pembangunan tempat tinggal dan sahsiah manusia.",
+    explanation:
+      "Ini menunjukkan tamadun melibatkan pembangunan tempat tinggal dan sahsiah manusia.",
   },
   {
     id: "sej-f1-c4-q5",
@@ -3059,7 +3257,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembinaan bandar yang besar",
     ],
     answerIndex: 2,
-    explanation: "Islam menekankan bahawa kemajuan fizikal tidak bermakna tanpa nilai murni dan syariat.",
+    explanation:
+      "Islam menekankan bahawa kemajuan fizikal tidak bermakna tanpa nilai murni dan syariat.",
   },
   {
     id: "sej-f1-c4-q7",
@@ -3070,7 +3269,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Siapakah tokoh Islam yang menekankan kehalusan budi pekerti dalam tamadun?",
     options: ["Ibn Khaldun", "Syed Naquib al-Attas", "Arnold J. Toynbee", "Herodotus"],
     answerIndex: 1,
-    explanation: "Beliau berpendapat tamadun adalah pencapaian tahap tatasusila yang tinggi dan kebudayaan yang luhur.",
+    explanation:
+      "Beliau berpendapat tamadun adalah pencapaian tahap tatasusila yang tinggi dan kebudayaan yang luhur.",
   },
   {
     id: "sej-f1-c4-q8",
@@ -3151,7 +3351,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerja yang hanya dilakukan oleh golongan bangsawan",
     ],
     answerIndex: 1,
-    explanation: "Ini berlaku apabila tidak semua orang perlu bertani kerana bekalan makanan sudah mencukupi.",
+    explanation:
+      "Ini berlaku apabila tidak semua orang perlu bertani kerana bekalan makanan sudah mencukupi.",
   },
   {
     id: "sej-f1-c4-q13",
@@ -3162,7 +3363,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Namakan satu contoh teknologi pengangkutan pada zaman tamadun awal.",
     options: ["Kapal wap", "Kereta api", "Penciptaan roda dan kereta kuda", "Kapal terbang"],
     answerIndex: 2,
-    explanation: "Roda memudahkan pergerakan barang dagangan dan tentera dari satu tempat ke tempat lain.",
+    explanation:
+      "Roda memudahkan pergerakan barang dagangan dan tentera dari satu tempat ke tempat lain.",
   },
   {
     id: "sej-f1-c4-q14",
@@ -3171,9 +3373,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Medium",
     question: "Bagaimanakah susun lapis masyarakat tamadun awal biasanya digambarkan?",
-    options: ["Berbentuk bulatan", "Berbentuk segi empat", "Berbentuk piramid sosial", "Berbentuk garis lurus"],
+    options: [
+      "Berbentuk bulatan",
+      "Berbentuk segi empat",
+      "Berbentuk piramid sosial",
+      "Berbentuk garis lurus",
+    ],
     answerIndex: 2,
-    explanation: "Lapisan atas dihuni oleh pemerintah, manakala lapisan bawah terdiri daripada rakyat biasa dan hamba.",
+    explanation:
+      "Lapisan atas dihuni oleh pemerintah, manakala lapisan bawah terdiri daripada rakyat biasa dan hamba.",
   },
   {
     id: "sej-f1-c4-q15",
@@ -3184,7 +3392,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah golongan yang menduduki lapisan paling bawah dalam organisasi sosial?",
     options: ["Pendeta", "Pedagang", "Artisan", "Hamba"],
     answerIndex: 3,
-    explanation: "Hamba biasanya terdiri daripada tawanan perang atau mereka yang gagal membayar hutang.",
+    explanation:
+      "Hamba biasanya terdiri daripada tawanan perang atau mereka yang gagal membayar hutang.",
   },
   {
     id: "sej-f1-c4-q16",
@@ -3217,7 +3426,8 @@ export const quizzes: QuizQuestion[] = [
       "Sistem pengairan di Tamadun India",
     ],
     answerIndex: 2,
-    explanation: "Ia melambangkan kepentingan agama dalam kehidupan seharian dan kehebatan seni bina mereka.",
+    explanation:
+      "Ia melambangkan kepentingan agama dalam kehidupan seharian dan kehebatan seni bina mereka.",
   },
   {
     id: "sej-f1-c4-q18",
@@ -3277,7 +3487,8 @@ export const quizzes: QuizQuestion[] = [
       "Membantu dalam sistem pengairan",
     ],
     answerIndex: 2,
-    explanation: "Contohnya, epik sastera sering menceritakan tentang kepahlawanan raja-raja mereka.",
+    explanation:
+      "Contohnya, epik sastera sering menceritakan tentang kepahlawanan raja-raja mereka.",
   },
   {
     id: "sej-f1-c4-q22",
@@ -3357,7 +3568,8 @@ export const quizzes: QuizQuestion[] = [
       "Tulisan abjad oleh Tamadun Greek",
     ],
     answerIndex: 1,
-    explanation: "Ia merupakan salah satu sistem tulisan tertua di dunia yang diukir pada kepingan tanah liat.",
+    explanation:
+      "Ia merupakan salah satu sistem tulisan tertua di dunia yang diukir pada kepingan tanah liat.",
   },
   {
     id: "sej-f1-c4-q27",
@@ -3421,7 +3633,8 @@ export const quizzes: QuizQuestion[] = [
       "Perdagangan adalah asas utama tamadun",
     ],
     answerIndex: 2,
-    explanation: "Kekuatan moral sama pentingnya dengan kekuatan teknologi bagi kelangsungan sesebuah tamadun.",
+    explanation:
+      "Kekuatan moral sama pentingnya dengan kekuatan teknologi bagi kelangsungan sesebuah tamadun.",
   },
   //  Sejarah Form 1 Chapter 5 - Tamadun Awal Dunia
   {
@@ -3599,7 +3812,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Namakan dua bandar utama Tamadun Indus.",
-    options: ["Ur dan Uruk", "Babylon dan Nineveh", "Mohenjo-Daro dan Harappa", "Thebes dan Memphis"],
+    options: [
+      "Ur dan Uruk",
+      "Babylon dan Nineveh",
+      "Mohenjo-Daro dan Harappa",
+      "Thebes dan Memphis",
+    ],
     answerIndex: 2,
     explanation:
       "Mohenjo-Daro dan Harappa adalah bandar-bandar besar Tamadun Indus yang menunjukkan perancangan bandar yang sangat maju.",
@@ -3686,7 +3904,8 @@ export const quizzes: QuizQuestion[] = [
       "Tengah China di Dataran Tinggi Tibet",
     ],
     answerIndex: 1,
-    explanation: "Sungai Huang He (Sungai Kuning) mengalir di utara China dan menjadi tapak kelahiran tamadun China.",
+    explanation:
+      "Sungai Huang He (Sungai Kuning) mengalir di utara China dan menjadi tapak kelahiran tamadun China.",
   },
   {
     id: "sej-f1-c5-q18",
@@ -3745,7 +3964,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah ciptaan Tamadun Huang He yang menjadi barangan mewah dalam perdagangan dunia?",
+    question:
+      "Apakah ciptaan Tamadun Huang He yang menjadi barangan mewah dalam perdagangan dunia?",
     options: ["Sutera", "Gangsa", "Tembikar", "Kaca"],
     answerIndex: 0,
     explanation:
@@ -3757,7 +3977,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Tamadun manakah yang terkenal dengan perancangan bandar dan sistem kebersihan yang paling maju?",
+    question:
+      "Tamadun manakah yang terkenal dengan perancangan bandar dan sistem kebersihan yang paling maju?",
     options: ["Mesopotamia", "Mesir Purba", "Tamadun Indus", "Huang He"],
     answerIndex: 2,
     explanation:
@@ -3810,7 +4031,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Sumbangan tamadun Mesopotamia manakah yang masih digunakan dalam kehidupan harian kita?",
+    question:
+      "Sumbangan tamadun Mesopotamia manakah yang masih digunakan dalam kehidupan harian kita?",
     options: [
       "Sistem tulisan Hieroglif",
       "Teknik pembinaan Piramid",
@@ -3818,7 +4040,8 @@ export const quizzes: QuizQuestion[] = [
       "Teknik pembuatan sutera",
     ],
     answerIndex: 2,
-    explanation: "Setiap kali kita melihat jam, kita menggunakan warisan Tamadun Mesopotamia melalui Sistem 60 mereka.",
+    explanation:
+      "Setiap kali kita melihat jam, kita menggunakan warisan Tamadun Mesopotamia melalui Sistem 60 mereka.",
   },
   {
     id: "sej-f1-c5-q27",
@@ -3877,8 +4100,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Golongan manakah yang menduduki lapisan tertinggi dalam struktur sosial tamadun awal?",
-    options: ["Pedagang dan artisan", "Petani dan nelayan", "Raja, bangsawan, dan pendeta", "Hamba dan buruh"],
+    question:
+      "Golongan manakah yang menduduki lapisan tertinggi dalam struktur sosial tamadun awal?",
+    options: [
+      "Pedagang dan artisan",
+      "Petani dan nelayan",
+      "Raja, bangsawan, dan pendeta",
+      "Hamba dan buruh",
+    ],
     answerIndex: 2,
     explanation:
       "Raja, bangsawan, dan pendeta menduduki lapisan teratas piramid sosial kerana mereka memegang kuasa politik, ekonomi, dan agama.",
@@ -3988,7 +4217,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Siapakah yang TIDAK dibenarkan menjadi ahli Dewan Perhimpunan Athens?",
-    options: ["Petani lelaki", "Pedagang lelaki", "Wanita, orang asing, dan hamba", "Artisan lelaki"],
+    options: [
+      "Petani lelaki",
+      "Pedagang lelaki",
+      "Wanita, orang asing, dan hamba",
+      "Artisan lelaki",
+    ],
     answerIndex: 2,
     explanation:
       "Walaupun Athens mempelopori demokrasi, sistem ini tidak inklusif. Wanita, orang asing (metic), dan hamba dikecualikan daripada hak politik.",
@@ -4012,7 +4246,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Apakah sistem pemerintahan unik Sparta yang berbeza daripada Athens?",
-    options: ["Monarki tunggal", "Diarqi — dua raja memerintah serentak", "Demokrasi penuh", "Oligarki tiga orang"],
+    options: [
+      "Monarki tunggal",
+      "Diarqi — dua raja memerintah serentak",
+      "Demokrasi penuh",
+      "Oligarki tiga orang",
+    ],
     answerIndex: 1,
     explanation:
       "Diarqi bermaksud dua orang raja memerintah secara serentak. Sistem ini direka untuk menghalang mana-mana pihak daripada menyalahgunakan kuasa mutlak.",
@@ -4082,7 +4321,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Apakah dua inovasi struktur utama dalam seni bina Tamadun Rom?",
-    options: ["Piramid dan Obelisk", "Arca (Arch) dan Kubah (Dome)", "Kolum dan Pelantar", "Tembok dan Parit"],
+    options: [
+      "Piramid dan Obelisk",
+      "Arca (Arch) dan Kubah (Dome)",
+      "Kolum dan Pelantar",
+      "Tembok dan Parit",
+    ],
     answerIndex: 1,
     explanation:
       "Arca dan Kubah membolehkan bangunan yang sangat besar dibina tanpa memerlukan banyak tiang sokongan, merevolusikan seni bina dunia.",
@@ -4214,7 +4458,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Mengapakah bilangan juri dalam sistem kehakiman Athens sangat banyak (201-501 orang)?",
+    question:
+      "Mengapakah bilangan juri dalam sistem kehakiman Athens sangat banyak (201-501 orang)?",
     options: [
       "Kerana tiada hakim yang berkelayakan",
       "Untuk mengelakkan rasuah dan pengaruh luar dalam penghakiman",
@@ -4452,7 +4697,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Medium",
     question: "Berapakah anggaran nyawa yang terkorban dalam Perang Kalinga?",
-    options: ["Lebih 10,000 nyawa", "Lebih 50,000 nyawa", "Lebih 100,000 nyawa", "Lebih 500,000 nyawa"],
+    options: [
+      "Lebih 10,000 nyawa",
+      "Lebih 50,000 nyawa",
+      "Lebih 100,000 nyawa",
+      "Lebih 500,000 nyawa",
+    ],
     answerIndex: 2,
     explanation:
       "Rekod sejarah menunjukkan lebih 100,000 nyawa terkorban dalam Perang Kalinga, angka yang mengejutkan Asoka dan mengubah pandangan hidupnya.",
@@ -4665,7 +4915,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Medium",
     question: "Berapa lamakah calon dikurung semasa menduduki peperiksaan tahap tinggi China?",
-    options: ["Satu hari satu malam", "Dua hari dua malam", "Tiga hari tiga malam", "Tujuh hari tujuh malam"],
+    options: [
+      "Satu hari satu malam",
+      "Dua hari dua malam",
+      "Tiga hari tiga malam",
+      "Tujuh hari tujuh malam",
+    ],
     answerIndex: 2,
     explanation:
       "Bagi mengelakkan penipuan dan memastikan keadilan, calon dikurung dalam bilik kecil selama tiga hari tiga malam semasa menduduki peperiksaan tahap tinggi.",
@@ -4676,7 +4931,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah perbezaan utama antara pendekatan Chandragupta Maurya dan Raja Asoka dalam mentadbir empayar?",
+    question:
+      "Apakah perbezaan utama antara pendekatan Chandragupta Maurya dan Raja Asoka dalam mentadbir empayar?",
     options: [
       "Chandragupta menggunakan Dharma; Asoka menggunakan ketenteraan",
       "Chandragupta menggunakan ketenteraan (fizikal); Asoka menggunakan Dharma (kemanusiaan)",
@@ -5048,7 +5304,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah Islam menggunakan corak geometri dalam seni bina, bukannya patung atau gambar manusia?",
+    question:
+      "Mengapakah Islam menggunakan corak geometri dalam seni bina, bukannya patung atau gambar manusia?",
     options: [
       "Kerana teknik membuat patung belum diketahui",
       "Untuk mengelakkan unsur pemujaan (syirik) terhadap gambar atau patung",
@@ -5269,7 +5526,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah suasana yang diciptakan oleh geometri dan kaligrafi dalam masjid penting?",
+    question:
+      "Mengapakah suasana yang diciptakan oleh geometri dan kaligrafi dalam masjid penting?",
     options: [
       "Untuk menakutkan musuh yang masuk",
       "Untuk mewujudkan suasana tenang dan khusyuk yang diperlukan dalam tempat ibadat",
@@ -5286,7 +5544,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah pengajaran utama daripada sistem ekonomi Islam (Baitulmal dan Zakat) untuk dunia moden?",
+    question:
+      "Apakah pengajaran utama daripada sistem ekonomi Islam (Baitulmal dan Zakat) untuk dunia moden?",
     options: [
       "Cukai tinggi adalah cara terbaik mengurangkan kemiskinan",
       "Sistem agihan kekayaan yang adil dan beretika dapat mewujudkan kestabilan sosial dan mengurangkan jurang antara kaya dan miskin",
@@ -5329,7 +5588,8 @@ export const quizzes: QuizQuestion[] = [
       "Ketinggian sesuatu kawasan dari aras laut.",
     ],
     answerIndex: 1,
-    explanation: "Arah bermaksud hala tuju sesuatu tempat dari satu titik rujukan atau tempat yang lain.",
+    explanation:
+      "Arah bermaksud hala tuju sesuatu tempat dari satu titik rujukan atau tempat yang lain.",
   },
   {
     id: "geo-f1-c1-q2",
@@ -5340,7 +5600,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah jumlah keseluruhan arah mata angin yang dipelajari?",
     options: ["4", "6", "8", "10"],
     answerIndex: 2,
-    explanation: "Terdapat 8 arah mata angin secara keseluruhan: 4 arah utama dan 4 arah perantaraan.",
+    explanation:
+      "Terdapat 8 arah mata angin secara keseluruhan: 4 arah utama dan 4 arah perantaraan.",
   },
   {
     id: "geo-f1-c1-q3",
@@ -5362,7 +5623,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Dalam rajah arah mata angin, arah Utara sentiasa terletak di bahagian...?",
     options: ["Atas", "Bawah", "Kanan", "Kiri"],
     answerIndex: 0,
-    explanation: "Secara standard dalam geografi dan pemetaan, arah Utara (U) sentiasa digambarkan menunjuk ke atas.",
+    explanation:
+      "Secara standard dalam geografi dan pemetaan, arah Utara (U) sentiasa digambarkan menunjuk ke atas.",
   },
   {
     id: "geo-f1-c1-q5",
@@ -5373,7 +5635,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Matahari terbit di sebelah...?",
     options: ["Utara", "Selatan", "Timur", "Barat"],
     answerIndex: 2,
-    explanation: "Bumi berputar dari barat ke timur, menyebabkan matahari kelihatan terbit di sebelah Timur.",
+    explanation:
+      "Bumi berputar dari barat ke timur, menyebabkan matahari kelihatan terbit di sebelah Timur.",
   },
   {
     id: "geo-f1-c1-q6",
@@ -5400,7 +5663,8 @@ export const quizzes: QuizQuestion[] = [
       "Arah yang menunjukkan kedudukan matahari pada waktu tengah hari.",
     ],
     answerIndex: 0,
-    explanation: "Arah mata angin perantaraan ialah arah yang wujud di tengah-tengah antara dua arah utama.",
+    explanation:
+      "Arah mata angin perantaraan ialah arah yang wujud di tengah-tengah antara dua arah utama.",
   },
   {
     id: "geo-f1-c1-q8",
@@ -5453,7 +5717,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Cara manakah yang boleh digunakan untuk menentukan arah pada waktu malam?",
-    options: ["Menggunakan matahari", "Menggunakan Buruj", "Melihat arah aliran sungai", "Melihat lumut pada pokok"],
+    options: [
+      "Menggunakan matahari",
+      "Menggunakan Buruj",
+      "Melihat arah aliran sungai",
+      "Melihat lumut pada pokok",
+    ],
     answerIndex: 1,
     explanation:
       "Buruj (gugusan bintang) seperti Buruj Biduk dan Buruj Pari digunakan sejak zaman dahulu untuk menentukan arah pada waktu malam.",
@@ -5467,7 +5736,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Buruj Biduk digunakan untuk menentukan arah...?",
     options: ["Utara", "Selatan", "Timur", "Barat"],
     answerIndex: 0,
-    explanation: "Dua bintang di hujung mangkuk Buruj Biduk sentiasa menunjuk tepat ke arah Bintang Utara.",
+    explanation:
+      "Dua bintang di hujung mangkuk Buruj Biduk sentiasa menunjuk tepat ke arah Bintang Utara.",
   },
   {
     id: "geo-f1-c1-q14",
@@ -5476,7 +5746,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Langkah pertama menentukan arah menggunakan matahari ialah berdiri menghadap...?",
-    options: ["Arah matahari terbenam", "Arah matahari terbit", "Arah tiupan angin", "Arah rumah sendiri"],
+    options: [
+      "Arah matahari terbenam",
+      "Arah matahari terbit",
+      "Arah tiupan angin",
+      "Arah rumah sendiri",
+    ],
     answerIndex: 1,
     explanation:
       "Untuk panduan asas menentukan arah secara semula jadi pada siang hari, kita mulakan dengan menghadap ke arah matahari terbit (Timur).",
@@ -5502,7 +5777,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Semasa menghadap matahari terbit, tangan kiri anda menunjukkan arah...?",
     options: ["Utara", "Selatan", "Timur", "Barat"],
     answerIndex: 0,
-    explanation: "Apabila berdiri menghadap Timur dengan tangan didepakan, tangan kiri akan menunjuk ke arah Utara.",
+    explanation:
+      "Apabila berdiri menghadap Timur dengan tangan didepakan, tangan kiri akan menunjuk ke arah Utara.",
   },
   {
     id: "geo-f1-c1-q17",
@@ -5513,7 +5789,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Semasa menghadap matahari terbit, tangan kanan anda menunjukkan arah...?",
     options: ["Utara", "Selatan", "Timur", "Barat"],
     answerIndex: 1,
-    explanation: "Apabila berdiri menghadap Timur dengan tangan didepakan, tangan kanan akan menunjuk ke arah Selatan.",
+    explanation:
+      "Apabila berdiri menghadap Timur dengan tangan didepakan, tangan kanan akan menunjuk ke arah Selatan.",
   },
   {
     id: "geo-f1-c1-q18",
@@ -5733,7 +6010,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     question: "Kedudukan relatif ditentukan dengan merujuk kepada...?",
-    options: ["Titik rujukan.", "Garisan Khatulistiwa.", "Garisan Meridian Pangkal.", "Matahari terbit."],
+    options: [
+      "Titik rujukan.",
+      "Garisan Khatulistiwa.",
+      "Garisan Meridian Pangkal.",
+      "Matahari terbit.",
+    ],
     answerIndex: 0,
     explanation:
       "Titik rujukan ialah suatu tempat atau objek yang dijadikan panduan atau petunjuk utama untuk mengenal pasti kedudukan objek lain di sekelilingnya.",
@@ -5744,8 +6026,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 2",
-    question: "Manakah antara berikut merupakan istilah yang digunakan untuk menyatakan kedudukan relatif?",
-    options: ["Utara dan Selatan.", "Hadapan dan belakang.", "Timur dan Barat.", "Latitud dan Longitud."],
+    question:
+      "Manakah antara berikut merupakan istilah yang digunakan untuk menyatakan kedudukan relatif?",
+    options: [
+      "Utara dan Selatan.",
+      "Hadapan dan belakang.",
+      "Timur dan Barat.",
+      "Latitud dan Longitud.",
+    ],
     answerIndex: 1,
     explanation:
       "Kedudukan relatif menggunakan istilah kedudukan harian seperti hadapan, belakang, sebelah kanan, dan sebelah kiri berasaskan titik rujukan.",
@@ -5769,7 +6057,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 2",
-    question: "Apakah panduan utama untuk menentukan arah 'hadapan' bagi sebuah bangunan seperti masjid?",
+    question:
+      "Apakah panduan utama untuk menentukan arah 'hadapan' bagi sebuah bangunan seperti masjid?",
     options: ["Pintu depan masjid.", "Menara masjid.", "Tempat letak kereta.", "Arah kiblat."],
     answerIndex: 0,
     explanation:
@@ -5905,9 +6194,15 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     question: "Apakah nama garisan longitud yang mempunyai nilai 0°?",
-    options: ["Garisan Tarikh Antarabangsa.", "Garisan Meridian Pangkal.", "Garisan Khatulistiwa.", "Garisan Jadi."],
+    options: [
+      "Garisan Tarikh Antarabangsa.",
+      "Garisan Meridian Pangkal.",
+      "Garisan Khatulistiwa.",
+      "Garisan Jadi.",
+    ],
     answerIndex: 1,
-    explanation: "Garisan longitud 0° dinamakan Garisan Meridian Pangkal (GMP) yang menjadi rujukan waktu dunia.",
+    explanation:
+      "Garisan longitud 0° dinamakan Garisan Meridian Pangkal (GMP) yang menjadi rujukan waktu dunia.",
   },
   {
     id: "geo-f1-c2-q16",
@@ -5935,7 +6230,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Garisan Meridian Pangkal (GMP) memisahkan bumi kepada bahagian...?",
     options: ["Utara dan Selatan.", "Timur dan Barat.", "Atas dan Bawah.", "Darat dan Laut."],
     answerIndex: 1,
-    explanation: "GMP memisahkan sempadan bumi kepada bahagian Hemisfera Timur dan Hemisfera Barat.",
+    explanation:
+      "GMP memisahkan sempadan bumi kepada bahagian Hemisfera Timur dan Hemisfera Barat.",
   },
   {
     id: "geo-f1-c2-q18",
@@ -5963,7 +6259,8 @@ export const quizzes: QuizQuestion[] = [
       "Menentukan ketinggian gunung.",
     ],
     answerIndex: 1,
-    explanation: "Fungsi utama GTA adalah sebagai garisan pemisah pertukaran tarikh dan waktu sistem kalendar di bumi.",
+    explanation:
+      "Fungsi utama GTA adalah sebagai garisan pemisah pertukaran tarikh dan waktu sistem kalendar di bumi.",
   },
   {
     id: "geo-f1-c2-q20",
@@ -6022,7 +6319,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 2",
-    question: "Apakah 'tips' mudah untuk mengingati bahawa nilai latitud (U/S) perlu ditulis di hadapan?",
+    question:
+      "Apakah 'tips' mudah untuk mengingati bahawa nilai latitud (U/S) perlu ditulis di hadapan?",
     options: [
       "Abjad 'L' datang sebelum 'N'.",
       "Mengingat watak 'Superhero' (Utara/Selatan) sentiasa berada di depan.",
@@ -6103,7 +6401,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 2",
-    question: "Antara alat berikut, yang manakah merupakan model bumi yang menunjukkan rangkaian latitud dan longitud?",
+    question:
+      "Antara alat berikut, yang manakah merupakan model bumi yang menunjukkan rangkaian latitud dan longitud?",
     options: ["Peta minda.", "Glob.", "Kompas.", "Teodolit."],
     answerIndex: 1,
     explanation:
@@ -6243,7 +6542,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 3",
-    question: "Simbol yang mewakili ciri yang meliputi ruang yang luas seperti sawah padi atau hutan ialah...?",
+    question:
+      "Simbol yang mewakili ciri yang meliputi ruang yang luas seperti sawah padi atau hutan ialah...?",
     options: ["Simbol Titik", "Simbol Garisan", "Simbol Kawasan", "Simbol Singkatan"],
     answerIndex: 2,
     explanation:
@@ -6349,7 +6649,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 3",
-    question: "Mengapakah 'Sawah Padi' dianggap sebagai ciri pandang darat budaya walaupun ia tumbuhan?",
+    question:
+      "Mengapakah 'Sawah Padi' dianggap sebagai ciri pandang darat budaya walaupun ia tumbuhan?",
     options: [
       "Kerana ia tumbuh di dalam air.",
       "Kerana ia dihasilkan melalui aktiviti pertanian oleh manusia.",
@@ -6384,7 +6685,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 3",
     question: "Ciri fizikal pinggir laut biasanya mempunyai hubung kait dengan aktiviti budaya...?",
-    options: ["Pembalakan", "Perikanan dan jeti", "Perlombongan arang batu", "Penanaman kelapa sawit"],
+    options: [
+      "Pembalakan",
+      "Perikanan dan jeti",
+      "Perlombongan arang batu",
+      "Penanaman kelapa sawit",
+    ],
     answerIndex: 1,
     explanation:
       "Faktor lokasi berhampiran pinggir laut mendorong aktiviti ekonomi manusia ke arah penangkapan ikan (perikanan) dan pembinaan jeti pendaratan bot.",
@@ -6458,7 +6764,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 3",
     question: "Simbol 'Batang Padi' dalam peta menunjukkan kawasan tersebut digunakan untuk...?",
-    options: ["Kawasan rekreasi.", "Kegiatan penanaman padi sawah.", "Kawasan hutan simpan.", "Tapak perlombongan."],
+    options: [
+      "Kawasan rekreasi.",
+      "Kegiatan penanaman padi sawah.",
+      "Kawasan hutan simpan.",
+      "Tapak perlombongan.",
+    ],
     answerIndex: 1,
     explanation:
       "Lukisan grafik berbentuk batang padi dikategorikan sebagai simbol kawasan bagi mewakili tapak pertanian sawah padi.",
@@ -6506,7 +6817,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Singkatan 'Pej. Pos' merujuk kepada...?",
     options: ["Pejabat Polis", "Pejabat Pos", "Pejabat Perikanan", "Pejabat Perhutanan"],
     answerIndex: 1,
-    explanation: "Singkatan 'Pej. Pos' atau 'P.P.' digunakan untuk melabel kemudahan utiliti awam iaitu Pejabat Pos.",
+    explanation:
+      "Singkatan 'Pej. Pos' atau 'P.P.' digunakan untuk melabel kemudahan utiliti awam iaitu Pejabat Pos.",
   },
   {
     id: "geo-f1-c3-q26",
@@ -6561,7 +6873,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 3",
     question: "Simbol 'Segitiga dengan titik' (Stesen Trigonometri) mewakili...?",
-    options: ["Sekolah rendah.", "Titik ketinggian di puncak gunung atau bukit.", "Kawasan perkuburan.", "Stesen bas."],
+    options: [
+      "Sekolah rendah.",
+      "Titik ketinggian di puncak gunung atau bukit.",
+      "Kawasan perkuburan.",
+      "Stesen bas.",
+    ],
     answerIndex: 1,
     explanation:
       "Simbol titik berbentuk segi tiga berserta titik tengah dikenali sebagai Stesen Trigonometri yang menandakan stesen ukuran ketinggian puncak geografi.",
@@ -6600,7 +6917,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 4",
-    question: "Apakah nama bentuk muka bumi air yang memisahkan Semenanjung Malaysia dengan Malaysia Timur?",
+    question:
+      "Apakah nama bentuk muka bumi air yang memisahkan Semenanjung Malaysia dengan Malaysia Timur?",
     options: ["Selat Melaka", "Laut China Selatan", "Laut Sulu", "Selat Tebrau"],
     answerIndex: 1,
     explanation:
@@ -6612,7 +6930,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 4",
-    question: "Berapakah jumlah keseluruhan negeri dan Wilayah Persekutuan yang membentuk Malaysia?",
+    question:
+      "Berapakah jumlah keseluruhan negeri dan Wilayah Persekutuan yang membentuk Malaysia?",
     options: [
       "11 Negeri dan 2 Wilayah Persekutuan",
       "13 Negeri dan 3 Wilayah Persekutuan",
@@ -6653,7 +6972,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 4",
-    question: "Negeri Pulau Pinang secara geografi fizikalnya terbahagi kepada dua bahagian utama, iaitu...?",
+    question:
+      "Negeri Pulau Pinang secara geografi fizikalnya terbahagi kepada dua bahagian utama, iaitu...?",
     options: [
       "Bahagian pulau dan tanah besar (Seberang Perai).",
       "Bahagian pulau dan kawasan pergunungan.",
@@ -6683,7 +7003,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 4",
-    question: "Apakah negeri yang paling maju serta merekodkan kepadatan penduduk paling tinggi di Semenanjung?",
+    question:
+      "Apakah negeri yang paling maju serta merekodkan kepadatan penduduk paling tinggi di Semenanjung?",
     options: ["Johor", "Pahang", "Selangor", "Terengganu"],
     answerIndex: 2,
     explanation:
@@ -6695,10 +7016,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 4",
-    question: "Negeri Sembilan sangat terkenal di Malaysia dengan struktur kebudayaan masyarakat tempatan iaitu...?",
+    question:
+      "Negeri Sembilan sangat terkenal di Malaysia dengan struktur kebudayaan masyarakat tempatan iaitu...?",
     options: ["Adat Temenggung", "Adat Perpatih", "Adat Melayu Lama", "Adat Maritim"],
     answerIndex: 1,
-    explanation: "Negeri Sembilan mengekalkan keunikan warisan struktur sosial yang mengikut sistem Adat Perpatih.",
+    explanation:
+      "Negeri Sembilan mengekalkan keunikan warisan struktur sosial yang mengikut sistem Adat Perpatih.",
   },
   {
     id: "geo-f1-c4-q10",
@@ -6718,7 +7041,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 4",
-    question: "Apakah nama negeri yang mempunyai keluasan wilayah terbesar di Semenanjung Malaysia?",
+    question:
+      "Apakah nama negeri yang mempunyai keluasan wilayah terbesar di Semenanjung Malaysia?",
     options: ["Perak", "Johor", "Pahang", "Sarawak"],
     answerIndex: 2,
     explanation:
@@ -6730,8 +7054,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 4",
-    question: "Dua negeri yang terletak di pantai timur Semenanjung dan menghadap Laut China Selatan ialah...?",
-    options: ["Kelantan dan Perak", "Terengganu dan Kelantan", "Kedah dan Perlis", "Selangor dan Negeri Sembilan"],
+    question:
+      "Dua negeri yang terletak di pantai timur Semenanjung dan menghadap Laut China Selatan ialah...?",
+    options: [
+      "Kelantan dan Perak",
+      "Terengganu dan Kelantan",
+      "Kedah dan Perlis",
+      "Selangor dan Negeri Sembilan",
+    ],
     answerIndex: 1,
     explanation:
       "Terengganu dan Kelantan menduduki kawasan pesisir pantai timur Semenanjung Malaysia yang menghadap terus ke perairan Laut China Selatan.",
@@ -6745,7 +7075,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama negeri yang memegang rekod wilayah saiz terbesar di seluruh Malaysia?",
     options: ["Sabah", "Pahang", "Sarawak", "Perak"],
     answerIndex: 2,
-    explanation: "Sarawak yang terletak di Pulau Borneo ialah negeri yang paling besar di Malaysia.",
+    explanation:
+      "Sarawak yang terletak di Pulau Borneo ialah negeri yang paling besar di Malaysia.",
   },
   {
     id: "geo-f1-c4-q14",
@@ -6766,7 +7097,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 4",
-    question: "Manakah antara berikut bertindak sebagai pusat pentadbiran rasmi bagi Kerajaan Persekutuan Malaysia?",
+    question:
+      "Manakah antara berikut bertindak sebagai pusat pentadbiran rasmi bagi Kerajaan Persekutuan Malaysia?",
     options: [
       "Wilayah Persekutuan Kuala Lumpur",
       "Wilayah Persekutuan Putrajaya",
@@ -6783,7 +7115,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 4",
-    question: "Apakah fungsi utama penubuhan Wilayah Persekutuan Labuan di luar pesisir pantai Sabah?",
+    question:
+      "Apakah fungsi utama penubuhan Wilayah Persekutuan Labuan di luar pesisir pantai Sabah?",
     options: [
       "Pusat pertanian padi huma negara.",
       "Pusat kewangan luar pesisir antarabangsa.",
@@ -6801,7 +7134,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 4",
     question: "Apakah nama ibu negeri bagi Kedah dan Perlis?",
-    options: ["Alor Setar dan Kangar", "George Town dan Ipoh", "Kota Bharu dan Kuantan", "Seremban dan Melaka"],
+    options: [
+      "Alor Setar dan Kangar",
+      "George Town dan Ipoh",
+      "Kota Bharu dan Kuantan",
+      "Seremban dan Melaka",
+    ],
     answerIndex: 0,
     explanation: "Ibu negeri Kedah ialah Alor Setar, manakala ibu negeri bagi Perlis ialah Kangar.",
   },
@@ -6812,9 +7150,15 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 4",
     question: "Ipoh dan Shah Alam merupakan pusat pentadbiran utama (ibu negeri) bagi negeri...?",
-    options: ["Pulau Pinang dan Melaka", "Perak dan Selangor", "Johor dan Pahang", "Kelantan dan Terengganu"],
+    options: [
+      "Pulau Pinang dan Melaka",
+      "Perak dan Selangor",
+      "Johor dan Pahang",
+      "Kelantan dan Terengganu",
+    ],
     answerIndex: 1,
-    explanation: "Ipoh ialah ibu negeri bagi Perak, manakala Shah Alam ialah ibu negeri bagi Selangor.",
+    explanation:
+      "Ipoh ialah ibu negeri bagi Perak, manakala Shah Alam ialah ibu negeri bagi Selangor.",
   },
   {
     id: "geo-f1-c4-q19",
@@ -6822,7 +7166,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 4",
-    question: "Apakah nama ibu negeri bagi Pahang, Terengganu, dan Kelantan mengikut susunan yang betul?",
+    question:
+      "Apakah nama ibu negeri bagi Pahang, Terengganu, dan Kelantan mengikut susunan yang betul?",
     options: [
       "Kuantan, Kuala Terengganu, dan Kota Bharu",
       "Kangar, Alor Setar, dan George Town",
@@ -6842,7 +7187,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Kuching dan Kota Kinabalu merupakan ibu negeri bagi...?",
     options: ["Sabah dan Sarawak", "Sarawak dan Sabah", "Labuan dan Brunei", "Pahang dan Johor"],
     answerIndex: 1,
-    explanation: "Kuching ialah ibu negeri bagi Sarawak, manakala Kota Kinabalu ialah ibu negeri bagi Sabah.",
+    explanation:
+      "Kuching ialah ibu negeri bagi Sarawak, manakala Kota Kinabalu ialah ibu negeri bagi Sabah.",
   },
   {
     id: "geo-f1-c4-q21",
@@ -6886,7 +7232,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     question:
       "Semasa melakar bentuk kasar (Langkah 2), di manakah kedudukan Semenanjung Malaysia diletakkan di dalam bingkai?",
-    options: ["Di sebelah kanan", "Di sebelah kiri", "Tepat di tengah-tengah", "Di penjuru bawah sekali"],
+    options: [
+      "Di sebelah kanan",
+      "Di sebelah kiri",
+      "Tepat di tengah-tengah",
+      "Di penjuru bawah sekali",
+    ],
     answerIndex: 1,
     explanation:
       "Dalam susunan orientasi peta Malaysia, Semenanjung Malaysia dilukis di sebelah kiri manakala Sabah dan Sarawak di sebelah kanan.",
@@ -6897,7 +7248,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 4",
-    question: "Apakah kaedah terbaik semasa memulakan lukisan garisan sempadan negeri di Semenanjung Malaysia?",
+    question:
+      "Apakah kaedah terbaik semasa memulakan lukisan garisan sempadan negeri di Semenanjung Malaysia?",
     options: [
       "Dilukis secara rawak mengikut kreativiti.",
       "Bermula dari arah utara membawa ke selatan.",
@@ -6914,7 +7266,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 4",
-    question: "Apakah format fon atau huruf yang digalakkan semasa melabel nama-nama negeri pada peta lakar?",
+    question:
+      "Apakah format fon atau huruf yang digalakkan semasa melabel nama-nama negeri pada peta lakar?",
     options: [
       "Huruf kecil bercampur angka",
       "Huruf besar seluruhnya",
@@ -6966,7 +7319,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 4",
-    question: "Sarawak bersempadan darat secara langsung dengan dua entiti geografi politik luar, iaitu...?",
+    question:
+      "Sarawak bersempadan darat secara langsung dengan dua entiti geografi politik luar, iaitu...?",
     options: [
       "Thailand dan Filipina",
       "Brunei Darussalam dan Kalimantan (Indonesia)",
@@ -7038,7 +7392,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 5",
-    question: "Berapakah peratusan kandungan gas Nitrogen dan Oksigen yang terdapat dalam atmosfera bumi?",
+    question:
+      "Berapakah peratusan kandungan gas Nitrogen dan Oksigen yang terdapat dalam atmosfera bumi?",
     options: [
       "78% Nitrogen dan 21% Oksigen",
       "50% Nitrogen dan 50% Oksigen",
@@ -7143,8 +7498,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 5",
-    question: "Lapisan 'Sima' pada kerak bumi dinamakan berdasarkan kandungan mineral utamanya, iaitu...?",
-    options: ["Silika dan Aluminium", "Silika dan Magnesium", "Sulfur dan Magnesium", "Sakarosa dan Aluminium"],
+    question:
+      "Lapisan 'Sima' pada kerak bumi dinamakan berdasarkan kandungan mineral utamanya, iaitu...?",
+    options: [
+      "Silika dan Aluminium",
+      "Silika dan Magnesium",
+      "Sulfur dan Magnesium",
+      "Sakarosa dan Aluminium",
+    ],
     answerIndex: 1,
     explanation:
       "Sima ialah singkatan bagi mineral Silika (Si) dan Magnesium (Ma), yang terletak di bawah lapisan Sial dan membentuk dasar lautan.",
@@ -7167,7 +7528,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 5",
-    question: "Sebahagian daripada lapisan mantel bersifat separa cecair yang sangat panas yang dikenali sebagai...?",
+    question:
+      "Sebahagian daripada lapisan mantel bersifat separa cecair yang sangat panas yang dikenali sebagai...?",
     options: ["Lava", "Petroleum", "Magma", "Teras Luar"],
     answerIndex: 2,
     explanation:
@@ -7210,7 +7572,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah benua yang terbesar di dunia?",
     options: ["Afrika", "Asia", "Eropah", "Amerika Utara"],
     answerIndex: 1,
-    explanation: "Asia merupakan benua terbesar di dunia dari segi keluasan wilayah dan jumlah kepadatan penduduk.",
+    explanation:
+      "Asia merupakan benua terbesar di dunia dari segi keluasan wilayah dan jumlah kepadatan penduduk.",
   },
   {
     id: "geo-f1-c5-q16",
@@ -7221,7 +7584,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Benua manakah yang terkecil di dunia?",
     options: ["Eropah", "Antartika", "Oceania (Australia)", "Amerika Selatan"],
     answerIndex: 2,
-    explanation: "Benua Oceania atau Australia merupakan benua yang paling kecil saiz keluasannya di dunia.",
+    explanation:
+      "Benua Oceania atau Australia merupakan benua yang paling kecil saiz keluasannya di dunia.",
   },
   {
     id: "geo-f1-c5-q17",
@@ -7232,7 +7596,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama benua yang terletak di Kutub Selatan dan mempunyai iklim paling sejuk?",
     options: ["Artik", "Antartika", "Eropah", "Amerika Utara"],
     answerIndex: 1,
-    explanation: "Antartika ialah benua yang dilitupi ais tebal sepanjang tahun, terletak di Kutub Selatan bumi.",
+    explanation:
+      "Antartika ialah benua yang dilitupi ais tebal sepanjang tahun, terletak di Kutub Selatan bumi.",
   },
   {
     id: "geo-f1-c5-q18",
@@ -7243,7 +7608,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah jumlah lautan utama yang ada di dunia?",
     options: ["3 Lautan", "4 Lautan", "5 Lautan", "6 Lautan"],
     answerIndex: 2,
-    explanation: "Terdapat 5 lautan utama dunia iaitu Pasifik, Atlantik, Hindi, Selatan, dan Artik.",
+    explanation:
+      "Terdapat 5 lautan utama dunia iaitu Pasifik, Atlantik, Hindi, Selatan, dan Artik.",
   },
   {
     id: "geo-f1-c5-q19",
@@ -7266,7 +7632,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Lautan manakah yang paling kecil saiznya dan terletak di kawasan Kutub Utara?",
     options: ["Lautan Selatan", "Lautan Hindi", "Lautan Artik", "Lautan Pasifik"],
     answerIndex: 2,
-    explanation: "Lautan Artik ialah lautan terkecil di dunia dan kedudukannya berpusat di bahagian Kutub Utara bumi.",
+    explanation:
+      "Lautan Artik ialah lautan terkecil di dunia dan kedudukannya berpusat di bahagian Kutub Utara bumi.",
   },
   {
     id: "geo-f1-c5-q21",
@@ -7320,7 +7687,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 5",
-    question: "Apakah faktor utama yang menyebabkan kerak bumi (plat) sentiasa bergerak secara dinamik?",
+    question:
+      "Apakah faktor utama yang menyebabkan kerak bumi (plat) sentiasa bergerak secara dinamik?",
     options: [
       "Tiupan angin monsun yang kuat.",
       "Arus perolakan magma di dalam lapisan mantel.",
@@ -7363,7 +7731,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 5",
-    question: "Apakah nama fenomena geografi yang berlaku apabila magma keluar menembusi rekahan kerak bumi?",
+    question:
+      "Apakah nama fenomena geografi yang berlaku apabila magma keluar menembusi rekahan kerak bumi?",
     options: ["Tsunami", "Gunung Berapi (Vulkanisme)", "Hanyutan Benua", "Gempa Tektonik"],
     answerIndex: 1,
     explanation:
@@ -7388,7 +7757,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 5",
-    question: "Apakah nama ombak besar merusuh yang terhasil akibat kejadian gempa bumi yang berpusat di dasar laut?",
+    question:
+      "Apakah nama ombak besar merusuh yang terhasil akibat kejadian gempa bumi yang berpusat di dasar laut?",
     options: ["Arus Pasang Surut", "Tsunami", "Arus Perolakan", "El Nino"],
     answerIndex: 1,
     explanation:
@@ -7418,7 +7788,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Bentuk muka bumi di Malaysia secara umumnya dibahagikan kepada berapa kategori utama?",
+    question:
+      "Bentuk muka bumi di Malaysia secara umumnya dibahagikan kepada berapa kategori utama?",
     options: ["Dua kategori", "Tiga kategori", "Empat kategori", "Lima kategori"],
     answerIndex: 2,
     explanation:
@@ -7430,7 +7801,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Kawasan tanah tinggi di Malaysia merujuk kepada kawasan yang mempunyai ketinggian melebihi...?",
+    question:
+      "Kawasan tanah tinggi di Malaysia merujuk kepada kawasan yang mempunyai ketinggian melebihi...?",
     options: [
       "50 meter dari aras laut",
       "100 meter dari aras laut",
@@ -7447,7 +7819,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question: "Apakah nama banjaran gunung yang digelar sebagai 'tulang belakang' Semenanjung Malaysia?",
+    question:
+      "Apakah nama banjaran gunung yang digelar sebagai 'tulang belakang' Semenanjung Malaysia?",
     options: ["Banjaran Crocker", "Banjaran Titiwangsa", "Banjaran Bintang", "Banjaran Tama Abu"],
     answerIndex: 1,
     explanation:
@@ -7459,10 +7832,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Di manakah terletaknya Banjaran Crocker yang menempatkan puncak tertinggi di Malaysia?",
+    question:
+      "Di manakah terletaknya Banjaran Crocker yang menempatkan puncak tertinggi di Malaysia?",
     options: ["Sarawak", "Pahang", "Sabah", "Perak"],
     answerIndex: 2,
-    explanation: "Banjaran Crocker terletak di negeri Sabah dan menempatkan Gunung Kinabalu (4,095 meter).",
+    explanation:
+      "Banjaran Crocker terletak di negeri Sabah dan menempatkan Gunung Kinabalu (4,095 meter).",
   },
   {
     id: "geo-f1-c6-q5",
@@ -7509,7 +7884,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Kawasan tanah pamah didefinisikan sebagai kawasan rata atau beralun yang mempunyai ketinggian...?",
+    question:
+      "Kawasan tanah pamah didefinisikan sebagai kawasan rata atau beralun yang mempunyai ketinggian...?",
     options: [
       "Kurang daripada 180 meter dari aras laut",
       "Lebih daripada 180 meter dari aras laut",
@@ -7517,7 +7893,8 @@ export const quizzes: QuizQuestion[] = [
       "Antara 200 hingga 500 meter dari aras laut",
     ],
     answerIndex: 0,
-    explanation: "Kawasan tanah pamah mempunyai ketinggian fizikal kurang daripada 180 meter dari aras laut.",
+    explanation:
+      "Kawasan tanah pamah mempunyai ketinggian fizikal kurang daripada 180 meter dari aras laut.",
   },
   {
     id: "geo-f1-c6-q9",
@@ -7525,7 +7902,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question: "Apakah jenis tanah tanih subur yang dimendapkan oleh aliran sungai di kawasan dataran tanah pamah?",
+    question:
+      "Apakah jenis tanah tanih subur yang dimendapkan oleh aliran sungai di kawasan dataran tanah pamah?",
     options: ["Tanih Laterit", "Tanih Pasir", "Tanih Aluvium", "Tanih Podzol"],
     answerIndex: 2,
     explanation:
@@ -7568,7 +7946,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question: "Pembinaan jalan raya dan landasan kereta api di kawasan tanah pamah adalah lebih efisien kerana...?",
+    question:
+      "Pembinaan jalan raya dan landasan kereta api di kawasan tanah pamah adalah lebih efisien kerana...?",
     options: [
       "Tidak memerlukan bahan simen.",
       "Kurang memerlukan pembinaan jambatan besar atau penebukan terowong bukit.",
@@ -7585,7 +7964,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Apakah nama ciri fizikal pinggir laut berupa daratan yang menonjol keluar ke arah laut?",
+    question:
+      "Apakah nama ciri fizikal pinggir laut berupa daratan yang menonjol keluar ke arah laut?",
     options: ["Teluk", "Tanjung", "Pulau", "Pentas Benua"],
     answerIndex: 1,
     explanation:
@@ -7645,7 +8025,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Pulau Sipadan dan Pulau Redang sangat terkenal di peringkat antarabangsa sebagai pusat...?",
+    question:
+      "Pulau Sipadan dan Pulau Redang sangat terkenal di peringkat antarabangsa sebagai pusat...?",
     options: [
       "Perlombongan petroleum",
       "Pelancongan dan aktiviti menyelam skuba",
@@ -7662,10 +8043,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Apakah nama sungai yang memegang rekod sebagai sungai terpanjang di seluruh Malaysia?",
+    question:
+      "Apakah nama sungai yang memegang rekod sebagai sungai terpanjang di seluruh Malaysia?",
     options: ["Sungai Pahang", "Sungai Kinabatangan", "Sungai Rajang", "Sungai Perak"],
     answerIndex: 2,
-    explanation: "Sungai Rajang yang terletak di negeri Sarawak ialah sungai yang paling panjang di Malaysia.",
+    explanation:
+      "Sungai Rajang yang terletak di negeri Sarawak ialah sungai yang paling panjang di Malaysia.",
   },
   {
     id: "geo-f1-c6-q19",
@@ -7684,7 +8067,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question: "Manakah antara berikut merupakan contoh tasik semula jadi terbesar yang ada di Malaysia?",
+    question:
+      "Manakah antara berikut merupakan contoh tasik semula jadi terbesar yang ada di Malaysia?",
     options: ["Tasik Kenyir", "Tasik Bera", "Tasik Temenggor", "Tasik Titiwangsa"],
     answerIndex: 1,
     explanation:
@@ -7697,7 +8081,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 6",
     question: "Tasik Kenyir di Terengganu dikategorikan sebagai jenis tasik...?",
-    options: ["Tasik semula jadi", "Tasik buatan manusia (empangan)", "Tasik kawah gunung berapi", "Tasik air masin"],
+    options: [
+      "Tasik semula jadi",
+      "Tasik buatan manusia (empangan)",
+      "Tasik kawah gunung berapi",
+      "Tasik air masin",
+    ],
     answerIndex: 1,
     explanation:
       "Tasik Kenyir terbentuk akibat pembinaan empangan hidroelektrik, menjadikannya tasik buatan manusia terbesar di Asia Tenggara.",
@@ -7708,7 +8097,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question: "Di kawasan pedalaman Sabah dan Sarawak, peranan utama sistem saliran sungai adalah sebagai...?",
+    question:
+      "Di kawasan pedalaman Sabah dan Sarawak, peranan utama sistem saliran sungai adalah sebagai...?",
     options: [
       "Sempadan antarabangsa",
       "Jalan perhubungan dan pengangkutan utama (lebuh raya sungai)",
@@ -7843,7 +8233,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Apakah kepentingan bentuk muka bumi yang pelbagai di Malaysia terhadap pembangunan negara?",
+    question:
+      "Apakah kepentingan bentuk muka bumi yang pelbagai di Malaysia terhadap pembangunan negara?",
     options: [
       "Menyebabkan negara sukar ditadbir.",
       "Membekalkan pelbagai sumber ekonomi, pelancongan, dan menyokong aktiviti harian penduduk.",
@@ -7861,7 +8252,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 7",
-    question: "Apakah faktor utama yang menyebabkan Malaysia mempunyai sistem saliran yang sangat padat?",
+    question:
+      "Apakah faktor utama yang menyebabkan Malaysia mempunyai sistem saliran yang sangat padat?",
     options: [
       "Kedekatan dengan Kutub Utara",
       "Iklim Khatulistiwa yang membawa hujan lebat sepanjang tahun",
@@ -7898,7 +8290,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama sungai yang paling panjang di wilayah Semenanjung Malaysia?",
     options: ["Sungai Perak", "Sungai Kelantan", "Sungai Pahang", "Sungai Bernam"],
     answerIndex: 2,
-    explanation: "Sungai Pahang memegang rekod sebagai sungai yang paling panjang di Semenanjung Malaysia.",
+    explanation:
+      "Sungai Pahang memegang rekod sebagai sungai yang paling panjang di Semenanjung Malaysia.",
   },
   {
     id: "geo-f1-c7-q4",
@@ -7906,7 +8299,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question: "Sungai Pahang terbentuk daripada pertemuan dua batang sungai utama di Kuala Tembeling, iaitu...?",
+    question:
+      "Sungai Pahang terbentuk daripada pertemuan dua batang sungai utama di Kuala Tembeling, iaitu...?",
     options: [
       "Sungai Jelai dan Sungai Tembeling",
       "Sungai Galas dan Sungai Lebir",
@@ -7994,7 +8388,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question: "Apakah keunikan kawasan sekitar Sungai Kinabatangan dari sudut pemeliharaan alam sekitar?",
+    question:
+      "Apakah keunikan kawasan sekitar Sungai Kinabatangan dari sudut pemeliharaan alam sekitar?",
     options: [
       "Menjadi zon tapak pelupusan sisa kilang nasional.",
       "Menjadi habitat hidupan liar yang jarang ditemui seperti Gajah Pygmy dan Monyet Belanda.",
@@ -8011,7 +8406,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question: "Sungai Baram di Sarawak memegang peranan sosioekonomi yang penting sejak dahulu sebagai...?",
+    question:
+      "Sungai Baram di Sarawak memegang peranan sosioekonomi yang penting sejak dahulu sebagai...?",
     options: [
       "Laluan pengangkutan utama untuk menghanyutkan kayu balak dari pedalaman.",
       "Sempadan rasmi antarabangsa antara Malaysia dan Brunei.",
@@ -8031,7 +8427,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama tasik semula jadi yang paling besar di Malaysia?",
     options: ["Tasik Chini", "Tasik Bera", "Tasik Kenyir", "Tasik Temenggor"],
     answerIndex: 1,
-    explanation: "Tasik Bera yang terletak di negeri Pahang ialah tasik semula jadi terbesar di Malaysia.",
+    explanation:
+      "Tasik Bera yang terletak di negeri Pahang ialah tasik semula jadi terbesar di Malaysia.",
   },
   {
     id: "geo-f1-c7-q13",
@@ -8100,7 +8497,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question: "Mengapakah penjanaan kuasa hidroelektrik dianggap sebagai sumber tenaga yang mesra alam?",
+    question:
+      "Mengapakah penjanaan kuasa hidroelektrik dianggap sebagai sumber tenaga yang mesra alam?",
     options: [
       "Kerana ia tidak menggunakan air.",
       "Kerana ia tidak membebas atau menghasilkan gas rumah hijau berbanding bahan api fosil.",
@@ -8117,7 +8515,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 7",
-    question: "Apakah nama sungai yang bertindak sebagai sempadan antarabangsa di utara Semenanjung Malaysia?",
+    question:
+      "Apakah nama sungai yang bertindak sebagai sempadan antarabangsa di utara Semenanjung Malaysia?",
     options: ["Sungai Bernam", "Sungai Golok", "Sungai Muar", "Sungai Perak"],
     answerIndex: 1,
     explanation:
@@ -8129,8 +8528,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question: "Sungai Bernam berfungsi sebagai sempadan semula jadi negeri yang memisahkan antara...?",
-    options: ["Kedah dan Pulau Pinang", "Selangor dan Perak", "Johor dan Melaka", "Pahang dan Terengganu"],
+    question:
+      "Sungai Bernam berfungsi sebagai sempadan semula jadi negeri yang memisahkan antara...?",
+    options: [
+      "Kedah dan Pulau Pinang",
+      "Selangor dan Perak",
+      "Johor dan Melaka",
+      "Pahang dan Terengganu",
+    ],
     answerIndex: 1,
     explanation:
       "Sungai Bernam merupakan garisan sempadan semula jadi bagi pentadbiran negeri Selangor dan negeri Perak.",
@@ -8177,7 +8582,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 7",
-    question: "Bagaimanakah sistem saliran menyokong pengeluaran padi dua kali setahun di kawasan Lembah Kedah (MADA)?",
+    question:
+      "Bagaimanakah sistem saliran menyokong pengeluaran padi dua kali setahun di kawasan Lembah Kedah (MADA)?",
     options: [
       "Dengan membekalkan baja kimia melalui air sungai.",
       "Melalui pembinaan rangkaian terusan (tali air) yang mengalirkan air sungai secara konsisten ke bendang padi.",
@@ -8194,7 +8600,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 7",
-    question: "Apakah nama stesen janakuasa hidroelektrik terbesar di Malaysia yang terletak di negeri Sarawak?",
+    question:
+      "Apakah nama stesen janakuasa hidroelektrik terbesar di Malaysia yang terletak di negeri Sarawak?",
     options: ["Empangan Temenggor", "Empangan Bakun", "Empangan Chenderoh", "Empangan Kenyir"],
     answerIndex: 1,
     explanation:
@@ -8206,7 +8613,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question: "Apakah fungsi fizikal utama Tasik Bera sebagai sebuah kawasan tanah lembap semasa musim tengkujuh?",
+    question:
+      "Apakah fungsi fizikal utama Tasik Bera sebagai sebuah kawasan tanah lembap semasa musim tengkujuh?",
     options: [
       "Bertindak seperti span semula jadi yang menyerap dan menampung air limpahan banjir.",
       "Menyebabkan air tasik bertukar menjadi air masin.",
@@ -8223,7 +8631,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 7",
-    question: "Aktiviti pelancongan rumah bot (houseboat) dan memancing sangat popular dijalankan di tasik buatan...?",
+    question:
+      "Aktiviti pelancongan rumah bot (houseboat) dan memancing sangat popular dijalankan di tasik buatan...?",
     options: ["Tasik Bera", "Tasik Kenyir", "Tasik Chini", "Tasik Dayang Bunting"],
     answerIndex: 1,
     explanation:
@@ -8253,7 +8662,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 7",
-    question: "Apakah jenis kegiatan ekonomi yang merujuk kepada ternakan ikan dalam sangkar di kawasan tasik buatan?",
+    question:
+      "Apakah jenis kegiatan ekonomi yang merujuk kepada ternakan ikan dalam sangkar di kawasan tasik buatan?",
     options: ["Akuakultur", "Vulkanisme", "Meteorologi", "Hidrologi"],
     answerIndex: 0,
     explanation:
@@ -8265,7 +8675,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 7",
-    question: "Banjaran yang menjadi punca hulu bagi kebanyakan sungai utama di Semenanjung Malaysia ialah...?",
+    question:
+      "Banjaran yang menjadi punca hulu bagi kebanyakan sungai utama di Semenanjung Malaysia ialah...?",
     options: ["Banjaran Crocker", "Banjaran Titiwangsa", "Banjaran Bintang", "Banjaran Iran"],
     answerIndex: 1,
     explanation:
@@ -8334,7 +8745,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 8",
     question: "Secara umumnya, taburan penduduk di Malaysia dikategorikan sebagai...?",
-    options: ["Sangat sekata", "Tidak sekata", "Tertumpu di kawasan tanah tinggi sahaja", "Sama rata antara negeri"],
+    options: [
+      "Sangat sekata",
+      "Tidak sekata",
+      "Tertumpu di kawasan tanah tinggi sahaja",
+      "Sama rata antara negeri",
+    ],
     answerIndex: 1,
     explanation:
       "Taburan penduduk di Malaysia adalah tidak sekata kerana terdapat kawasan yang sangat padat dengan manusia dan ada kawasan yang sangat jarang.",
@@ -8345,7 +8761,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 8",
-    question: "Kawasan penduduk padat merujuk kepada kawasan yang mempunyai bilangan penduduk sebanyak...?",
+    question:
+      "Kawasan penduduk padat merujuk kepada kawasan yang mempunyai bilangan penduduk sebanyak...?",
     options: [
       "Kurang daripada 50 orang per kilometer persegi",
       "Antara 50 hingga 100 orang per kilometer persegi",
@@ -8413,7 +8830,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 8",
-    question: "Kawasan penduduk jarang diklasifikasikan apabila mempunyai jumlah penduduk sebanyak...?",
+    question:
+      "Kawasan penduduk jarang diklasifikasikan apabila mempunyai jumlah penduduk sebanyak...?",
     options: [
       "Kurang daripada 50 orang per kilometer persegi",
       "Tepat 150 orang per kilometer persegi",
@@ -8430,7 +8848,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 8",
-    question: "Manakah antara berikut merupakan lokasi berpenduduk jarang disebabkan rintangan semula jadi?",
+    question:
+      "Manakah antara berikut merupakan lokasi berpenduduk jarang disebabkan rintangan semula jadi?",
     options: [
       "Bayan Lepas (Pulau Pinang)",
       "Johor Bahru (Johor)",
@@ -8482,7 +8901,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 8",
-    question: "Apakah kepentingan faktor saliran (sungai) terhadap taburan penduduk pada zaman dahulu?",
+    question:
+      "Apakah kepentingan faktor saliran (sungai) terhadap taburan penduduk pada zaman dahulu?",
     options: [
       "Sebagai tempat pembuangan sisa utama",
       "Sebagai pusat petempatan awal kerana membekalkan air tawar dan sumber protein",
@@ -8501,7 +8921,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     question:
       "Manakah kawasan pertanian di Malaysia yang berpenduduk sederhana disebabkan faktor kesuburan tanih aluvium?",
-    options: ["Dataran Kedah-Perlis", "Puncak Gunung Kinabalu", "Genting Highlands", "Pedalaman Lembah Danum"],
+    options: [
+      "Dataran Kedah-Perlis",
+      "Puncak Gunung Kinabalu",
+      "Genting Highlands",
+      "Pedalaman Lembah Danum",
+    ],
     answerIndex: 0,
     explanation:
       "Dataran Kedah-Perlis kaya dengan tanih aluvium yang sangat subur untuk penanaman padi sawah, menarik kepadatan penduduk sederhana yang bekerja sebagai petani.",
@@ -8530,7 +8955,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 8",
-    question: "Kawasan perindustrian Bayan Lepas (Pulau Pinang) menarik migrasi penduduk yang ramai kerana...?",
+    question:
+      "Kawasan perindustrian Bayan Lepas (Pulau Pinang) menarik migrasi penduduk yang ramai kerana...?",
     options: [
       "Menawarkan banyak peluang pekerjaan dalam sektor pembuatan dan kilang",
       "Mempunyai kawasan sawah yang paling luas",
@@ -8600,7 +9026,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 8",
-    question: "Pembangunan Putrajaya sebagai Pusat Pentadbiran Kerajaan Persekutuan merupakan contoh faktor...?",
+    question:
+      "Pembangunan Putrajaya sebagai Pusat Pentadbiran Kerajaan Persekutuan merupakan contoh faktor...?",
     options: [
       "Faktor Fizikal",
       "Faktor Dasar Kerajaan (Governan)",
@@ -8617,7 +9044,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 8",
-    question: "Mengapakah bandar baharu yang diwartakan oleh kerajaan mengalami lonjakan penduduk secara mendadak?",
+    question:
+      "Mengapakah bandar baharu yang diwartakan oleh kerajaan mengalami lonjakan penduduk secara mendadak?",
     options: [
       "Kerana cuaca di bandar baru berubah menjadi sangat dingin",
       "Kerana penyediaan kemudahan perumahan, pekerjaan, dan infrastruktur moden bersepadu",
@@ -8683,7 +9111,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 8",
-    question: "Apakah kesan penubuhan institusi kesihatan seperti hospital pakar besar terhadap bandar sekelilingnya?",
+    question:
+      "Apakah kesan penubuhan institusi kesihatan seperti hospital pakar besar terhadap bandar sekelilingnya?",
     options: [
       "Menurunkan harga rumah secara mendadak",
       "Meningkatkan daya tarikan petempatan penduduk kerana akses rawatan perubatan yang mudah",
@@ -8718,7 +9147,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 8",
-    question: "Mengapakah kawasan hutan simpan seperti Taman Negara Pahang mempunyai penduduk yang jarang?",
+    question:
+      "Mengapakah kawasan hutan simpan seperti Taman Negara Pahang mempunyai penduduk yang jarang?",
     options: [
       "Kerana dilindungi oleh undang-undang bagi tujuan pemuliharaan alam sekitar dan bukan untuk petempatan",
       "Kerana suhunya terlalu panas melebihi 50 darjah Celcius",
@@ -8735,7 +9165,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 8",
-    question: "Antara bandar berikut, yang manakah terkenal sebagai bandar universiti (hab pendidikan) di Johor?",
+    question:
+      "Antara bandar berikut, yang manakah terkenal sebagai bandar universiti (hab pendidikan) di Johor?",
     options: ["Muar", "Skudai", "Segamat", "Pontian"],
     answerIndex: 1,
     explanation:
@@ -8854,8 +9285,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 9",
-    question: "Berapakah jumlah penduduk minimum untuk sesebuah kawasan diklasifikasikan sebagai petempatan bandar?",
-    options: ["Melebihi 1,000 orang", "Melebihi 5,000 orang", "Melebihi 10,000 orang", "Melebihi 50,000 orang"],
+    question:
+      "Berapakah jumlah penduduk minimum untuk sesebuah kawasan diklasifikasikan sebagai petempatan bandar?",
+    options: [
+      "Melebihi 1,000 orang",
+      "Melebihi 5,000 orang",
+      "Melebihi 10,000 orang",
+      "Melebihi 50,000 orang",
+    ],
     answerIndex: 2,
     explanation:
       "Di Malaysia, sesuatu petempatan diwartakan sebagai bandar apabila saiz populasinya mencecah dan melebihi 10,000 orang.",
@@ -8883,7 +9320,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 9",
-    question: "Petempatan luar bandar merujuk kepada kawasan yang mempunyai jumlah penduduk sebanyak...?",
+    question:
+      "Petempatan luar bandar merujuk kepada kawasan yang mempunyai jumlah penduduk sebanyak...?",
     options: [
       "Kurang daripada 10,000 orang",
       "Tepat 20,000 orang",
@@ -8891,7 +9329,8 @@ export const quizzes: QuizQuestion[] = [
       "Melebihi 100,000 orang",
     ],
     answerIndex: 0,
-    explanation: "Zon luar bandar mempunyai kepadatan rendah dengan ambang bilangan penduduk di bawah 10,000 orang.",
+    explanation:
+      "Zon luar bandar mempunyai kepadatan rendah dengan ambang bilangan penduduk di bawah 10,000 orang.",
   },
   {
     id: "geo-f1-c9-q6",
@@ -9091,7 +9530,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 9",
-    question: "Kawasan Shah Alam (Selangor) amat terkenal sebagai petempatan bandar yang berfungsi sebagai...?",
+    question:
+      "Kawasan Shah Alam (Selangor) amat terkenal sebagai petempatan bandar yang berfungsi sebagai...?",
     options: [
       "Pusat pertanian herba",
       "Pusat perindustrian dan pembuatan",
@@ -9108,7 +9548,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 9",
-    question: "Apakah peranan utama petempatan luar bandar terhadap rantaian jaminan makanan negara?",
+    question:
+      "Apakah peranan utama petempatan luar bandar terhadap rantaian jaminan makanan negara?",
     options: [
       "Menyediakan sistem perbankan islam",
       "Membekalkan sumber pertanian makanan utama seperti padi dan sayur-sayuran",
@@ -9125,7 +9566,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 9",
-    question: "Apakah yang dimaksudkan dengan 'Industri Kecil dan Sederhana (IKS)' atau Industri Desa di luar bandar?",
+    question:
+      "Apakah yang dimaksudkan dengan 'Industri Kecil dan Sederhana (IKS)' atau Industri Desa di luar bandar?",
     options: [
       "Aktiviti memproses hasil pertanian secara kecil-kecilan seperti keropok, kerepek atau kraftangan",
       "Pemasangan satelit komunikasi komersial",
@@ -9161,7 +9603,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 9",
     question:
       "Siapakah yang bertindak sebagai jentera pentadbiran governan paling asas di peringkat petempatan luar bandar?",
-    options: ["Gabenor Bank Negara", "Ketua Kampung atau Penghulu", "Menteri Kewangan", "Datuk Bandar Dewan Bandaraya"],
+    options: [
+      "Gabenor Bank Negara",
+      "Ketua Kampung atau Penghulu",
+      "Menteri Kewangan",
+      "Datuk Bandar Dewan Bandaraya",
+    ],
     answerIndex: 1,
     explanation:
       "Penghulu dan Ketua Kampung merupakan jambatan kepimpinan rasmi kerajaan yang mengurus tadbir hal ehwal kebajikan penduduk luar bandar.",
@@ -9208,7 +9655,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 9",
-    question: "Apakah contoh bandar di Sarawak yang mempunyai status petempatan bandar dengan kepadatan tinggi?",
+    question:
+      "Apakah contoh bandar di Sarawak yang mempunyai status petempatan bandar dengan kepadatan tinggi?",
     options: ["Kapit", "Belaga", "Kuching", "Marudi"],
     answerIndex: 2,
     explanation:
@@ -9238,7 +9686,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 9",
-    question: "Mengapakah susun atur rumah pola berselerak mempunyai jarak petempatan yang sangat longgar?",
+    question:
+      "Mengapakah susun atur rumah pola berselerak mempunyai jarak petempatan yang sangat longgar?",
     options: [
       "Kerana penduduk dilarang bercakap antara satu sama lain",
       "Kerana kekangan bentuk muka bumi beralun serta saiz pemilikan lot tanah pertanian individu yang luas",
@@ -9268,7 +9717,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 9",
-    question: "Apakah perbezaan ketara ketersediaan jaringan pengangkutan antara bandar dan luar bandar?",
+    question:
+      "Apakah perbezaan ketara ketersediaan jaringan pengangkutan antara bandar dan luar bandar?",
     options: [
       "Bandar mempunyai rangkaian pengangkutan kompleks (lebuh raya/kereta api), manakala luar bandar mempunyai jaringan sistem pengangkutan yang lebih asas",
       "Luar bandar mempunyai sistem LRT bertingkat lebih banyak daripada bandar",
@@ -9285,7 +9735,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 9",
-    question: "Hubungan timbal balik yang paling tepat antara petempatan bandar dan luar bandar di Malaysia ialah...?",
+    question:
+      "Hubungan timbal balik yang paling tepat antara petempatan bandar dan luar bandar di Malaysia ialah...?",
     options: [
       "Kedua-dua kawasan saling bersaing untuk bermusuhan",
       "Luar bandar membekalkan bahan mentah/makanan manakala bandar menyediakan barangan siap dan perkhidmatan kepakaran",
@@ -9316,7 +9767,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 10",
-    question: "Manakah antara berikut merupakan kumpulan negara di bahagian Tanah Besar Asia Tenggara?",
+    question:
+      "Manakah antara berikut merupakan kumpulan negara di bahagian Tanah Besar Asia Tenggara?",
     options: [
       "Malaysia (Sabah & Sarawak), Singapura, Brunei",
       "Malaysia (Semenanjung), Thailand, Myanmar, Laos, Kemboja, Vietnam",
@@ -9350,7 +9802,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 10",
-    question: "Banjaran gunung di Asia Tenggara merupakan sebahagian daripada kesinambungan sistem...?",
+    question:
+      "Banjaran gunung di Asia Tenggara merupakan sebahagian daripada kesinambungan sistem...?",
     options: ["Banjaran Alps", "Banjaran Andes", "Sistem Banjaran Himalaya", "Banjaran Rocky"],
     answerIndex: 2,
     explanation:
@@ -9379,7 +9832,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 10",
-    question: "Apakah nama puncak gunung tertinggi di seluruh rantau Asia Tenggara dan di manakah lokasinya?",
+    question:
+      "Apakah nama puncak gunung tertinggi di seluruh rantau Asia Tenggara dan di manakah lokasinya?",
     options: [
       "Gunung Kinabalu (Malaysia)",
       "Gunung Kerinci (Indonesia)",
@@ -9396,7 +9850,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 10",
-    question: "Kawasan tanah pamah di lembah dan delta sungai Asia Tenggara sangat subur disebabkan oleh mendapan...?",
+    question:
+      "Kawasan tanah pamah di lembah dan delta sungai Asia Tenggara sangat subur disebabkan oleh mendapan...?",
     options: [
       "Tanih laterit beralun",
       "Tanih gambut berasid",
@@ -9413,7 +9868,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 10",
-    question: "Apakah fungsi utama kawasan tanah pamah di Asia Tenggara selain daripada aktiviti pertanian?",
+    question:
+      "Apakah fungsi utama kawasan tanah pamah di Asia Tenggara selain daripada aktiviti pertanian?",
     options: [
       "Zon pembinaan stesen angkasa",
       "Tumpuan penduduk padat, petempatan, dan jaringan pengangkutan",
@@ -9454,7 +9910,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 10",
-    question: "Delta Sungai Mekong yang terletak di negara Vietnam sangat produktif untuk aktiviti...?",
+    question:
+      "Delta Sungai Mekong yang terletak di negara Vietnam sangat produktif untuk aktiviti...?",
     options: [
       "Perlombongan petroleum",
       "Penanaman padi sawah berskala besar",
@@ -9471,10 +9928,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 10",
-    question: "Apakah nama sungai terpenting di Myanmar yang mengalir dari utara ke selatan menuju ke Laut Andaman?",
+    question:
+      "Apakah nama sungai terpenting di Myanmar yang mengalir dari utara ke selatan menuju ke Laut Andaman?",
     options: ["Sungai Mekong", "Sungai Irrawaddy", "Menam Chao Phraya", "Sungai Musi"],
     answerIndex: 1,
-    explanation: "Sungai Irrawaddy merupakan jalan air dan nadi komersial paling utama di negara Myanmar.",
+    explanation:
+      "Sungai Irrawaddy merupakan jalan air dan nadi komersial paling utama di negara Myanmar.",
   },
   {
     id: "geo-f1-c10-q13",
@@ -9512,7 +9971,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     question: "Apakah tasik air tawar semula jadi yang terbesar di rantau Asia Tenggara?",
-    options: ["Tasik Toba (Indonesia)", "Tonle Sap (Kemboja)", "Tasik Kenyir (Malaysia)", "Tasik Songkhla (Thailand)"],
+    options: [
+      "Tasik Toba (Indonesia)",
+      "Tonle Sap (Kemboja)",
+      "Tasik Kenyir (Malaysia)",
+      "Tasik Songkhla (Thailand)",
+    ],
     answerIndex: 1,
     explanation:
       "Tonle Sap yang terletak di Kemboja memegang status sebagai tasik air tawar semula jadi terbesar di Asia Tenggara.",
@@ -9540,7 +10004,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 10",
-    question: "Bagi masyarakat Kemboja, tasik Tonle Sap merupakan aset sosial yang sangat penting sebagai...?",
+    question:
+      "Bagi masyarakat Kemboja, tasik Tonle Sap merupakan aset sosial yang sangat penting sebagai...?",
     options: [
       "Sumber protein (ikan air tawar) dan pengairan pertanian",
       "Tapak perlumbaan bot laju antarabangsa",
@@ -9623,7 +10088,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 10",
-    question: "Apakah nama gunung berapi aktif di Indonesia yang terletak di Pulau Jawa dan sering meletus?",
+    question:
+      "Apakah nama gunung berapi aktif di Indonesia yang terletak di Pulau Jawa dan sering meletus?",
     options: ["Gunung Kinabalu", "Gunung Merapi", "Gunung Mayon", "Gunung Fuji"],
     answerIndex: 1,
     explanation:
@@ -9745,7 +10211,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 10",
-    question: "Apakah rumusan utama kaitan bentuk muka bumi dengan corak sosioekonomi di Asia Tenggara?",
+    question:
+      "Apakah rumusan utama kaitan bentuk muka bumi dengan corak sosioekonomi di Asia Tenggara?",
     options: [
       "Persamaan rupa bumi dan sistem saliran sungai besar membentuk aktiviti ekonomi utama yang seragam seperti pertanian padi dan perikanan",
       "Ciri fizikal memaksa semua penduduk berpindah ke Eropah",
@@ -9780,7 +10247,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 11",
     question: "Antara lokasi berikut, yang manakah dikategorikan sebagai kawasan penduduk padat?",
-    options: ["Pedalaman Sarawak", "Pulau Jawa (Indonesia)", "Banjaran utara Myanmar", "Kawasan paya Sumatera"],
+    options: [
+      "Pedalaman Sarawak",
+      "Pulau Jawa (Indonesia)",
+      "Banjaran utara Myanmar",
+      "Kawasan paya Sumatera",
+    ],
     answerIndex: 1,
     explanation:
       "Pulau Jawa mempunyai kepadatan penduduk yang sangat tinggi kerana kesuburan tanah vulkaniknya yang menyokong aktiviti pertanian intensif dan urbanisasi.",
@@ -9791,7 +10263,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 11",
-    question: "Mengapakah kawasan pedalaman Borneo (Sabah dan Sarawak) mempunyai taburan penduduk yang jarang?",
+    question:
+      "Mengapakah kawasan pedalaman Borneo (Sabah dan Sarawak) mempunyai taburan penduduk yang jarang?",
     options: [
       "Kerana ketiadaan sumber air hujan",
       "Kerana bentuk muka bumi yang bergunung-ganang dan berhutan rimba tebal",
@@ -9808,7 +10281,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
-    question: "Apakah jenis tanih di delta sungai yang menarik tumpuan penduduk yang padat untuk sektor agraris?",
+    question:
+      "Apakah jenis tanih di delta sungai yang menarik tumpuan penduduk yang padat untuk sektor agraris?",
     options: ["Tanih laterit", "Tanih gambut", "Tanih aluvium", "Tanih berpasir"],
     answerIndex: 2,
     explanation:
@@ -9821,7 +10295,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 11",
     question: "Kawasan manakah di Malaysia yang dikategorikan sebagai kawasan berpenduduk padat?",
-    options: ["Lembah Klang", "Pedalaman Pahang", "Kawasan berpaya pantai timur Sabah", "Banjaran Titiwangsa"],
+    options: [
+      "Lembah Klang",
+      "Pedalaman Pahang",
+      "Kawasan berpaya pantai timur Sabah",
+      "Banjaran Titiwangsa",
+    ],
     answerIndex: 0,
     explanation:
       "Lembah Klang ialah pusat ekonomi, perindustrian, dan urbanisasi utama negara Malaysia, menjadikannya tumpuan penduduk terbesar.",
@@ -9832,7 +10311,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
-    question: "Faktor ekonomi yang manakah menyebabkan bandar Singapura menjadi tumpuan penduduk yang padat?",
+    question:
+      "Faktor ekonomi yang manakah menyebabkan bandar Singapura menjadi tumpuan penduduk yang padat?",
     options: [
       "Kawasan pertanian padi yang luas",
       "Pusat perlombongan arang batu terbesar",
@@ -9851,7 +10331,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 11",
     question:
       "Apakah nama program dasar kerajaan Indonesia yang bertujuan memindahkan penduduk dari kawasan padat (seperti Pulau Jawa) ke pulau yang lebih jarang?",
-    options: ["Urbanisasi Terancang", "Program Transmigrasi", "Program Kolonisasi Hijau", "Gerakan Koridor Ekonomi"],
+    options: [
+      "Urbanisasi Terancang",
+      "Program Transmigrasi",
+      "Program Kolonisasi Hijau",
+      "Gerakan Koridor Ekonomi",
+    ],
     answerIndex: 1,
     explanation:
       "Program Transmigrasi ialah dasar governan Indonesia bagi mengurangkan kesesakan penduduk di Pulau Jawa dengan memindahkan keluarga ke pulau lain seperti Sumatera, Kalimantan, dan Sulawesi.",
@@ -9944,7 +10429,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
-    question: "Apakah corak petempatan yang biasanya ditemui di kawasan bandar utama Asia Tenggara?",
+    question:
+      "Apakah corak petempatan yang biasanya ditemui di kawasan bandar utama Asia Tenggara?",
     options: ["Corak berselerak", "Corak terpusat", "Corak berjajar", "Corak linear"],
     answerIndex: 1,
     explanation:
@@ -9956,8 +10442,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
-    question: "Petempatan luar bandar di sepanjang tebing sungai atau garisan pantai biasanya mempunyai corak...?",
-    options: ["Corak terpusat", "Corak berjajar", "Corak rawak berkelompok", "Corak berpusat tinggi"],
+    question:
+      "Petempatan luar bandar di sepanjang tebing sungai atau garisan pantai biasanya mempunyai corak...?",
+    options: [
+      "Corak terpusat",
+      "Corak berjajar",
+      "Corak rawak berkelompok",
+      "Corak berpusat tinggi",
+    ],
     answerIndex: 1,
     explanation:
       "Corak berjajar (linear) terbentuk apabila rumah-rumah dibina sebaris mengikut kelurusan struktur fizikal seperti sungai, jalan raya, atau pantai.",
@@ -9986,7 +10478,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 11",
-    question: "Faktor sosial yang manakah mampu menarik peningkatan kepadatan penduduk di bandar-bandar besar?",
+    question:
+      "Faktor sosial yang manakah mampu menarik peningkatan kepadatan penduduk di bandar-bandar besar?",
     options: [
       "Kewujudan kawasan paya yang luas",
       "Adanya institusi pendidikan tinggi (universiti) and kemudahan kesihatan yang lengkap",
@@ -10003,7 +10496,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
-    question: "Manakah antara berikut dikelaskan sebagai kawasan berpenduduk sederhana di Asia Tenggara?",
+    question:
+      "Manakah antara berikut dikelaskan sebagai kawasan berpenduduk sederhana di Asia Tenggara?",
     options: [
       "Pusat bandar raya metropolitan Bangkok",
       "Kawasan pesisir pantai timur Semenanjung Malaysia dan kawasan pertanian bukan pusat utama",
@@ -10020,7 +10514,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 11",
-    question: "Apakah infrastruktur pengangkutan moden yang menyokong kepadatan petempatan bandar di Kuala Lumpur?",
+    question:
+      "Apakah infrastruktur pengangkutan moden yang menyokong kepadatan petempatan bandar di Kuala Lumpur?",
     options: [
       "Sistem kereta kuda",
       "Jaringan pengangkutan rel bandar seperti LRT dan MRT",
@@ -10037,7 +10532,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
-    question: "Delta Sungai Red (Sungai Merah) merupakan salah satu kawasan penduduk padat yang terletak di negara...?",
+    question:
+      "Delta Sungai Red (Sungai Merah) merupakan salah satu kawasan penduduk padat yang terletak di negara...?",
     options: ["Thailand", "Kemboja", "Vietnam", "Laos"],
     answerIndex: 2,
     explanation:
@@ -10083,7 +10579,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 11",
-    question: "Mengapakah kawasan paya di Sumatera, Indonesia dikategorikan sebagai kawasan berpenduduk jarang?",
+    question:
+      "Mengapakah kawasan paya di Sumatera, Indonesia dikategorikan sebagai kawasan berpenduduk jarang?",
     options: [
       "Kerana dilarang melawat kawasan tersebut",
       "Sukar dibina infrastruktur, berisiko banjir, dan mempunyai kekangan fizikal tanah organik yang lembut",
@@ -10100,7 +10597,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 11",
-    question: "Apakah sektor ekonomi yang menjadi pendorong utama petempatan luar bandar di rantau Asia Tenggara?",
+    question:
+      "Apakah sektor ekonomi yang menjadi pendorong utama petempatan luar bandar di rantau Asia Tenggara?",
     options: [
       "Sektor pasaran saham",
       "Sektor pertanian, perikanan, dan kraftangan tradisional",
@@ -10117,7 +10615,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 11",
-    question: "Manakah antara berikut merupakan ciri fizikal petempatan luar bandar bercorak berselerak?",
+    question:
+      "Manakah antara berikut merupakan ciri fizikal petempatan luar bandar bercorak berselerak?",
     options: [
       "Rumah-rumah dibina tinggi rapat-rapat pencakar langit",
       "Rumah-rumah dibina berjauhan antara satu sama lain dan dikelilingi kebun atau bendang",
@@ -10134,7 +10633,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 11",
-    question: "Lautan manakah yang menghubungkan hab perdagangan maritim pelabuhan Manila di Filipina?",
+    question:
+      "Lautan manakah yang menghubungkan hab perdagangan maritim pelabuhan Manila di Filipina?",
     options: ["Lautan Atlantik", "Lautan Pasifik", "Lautan Artik", "Lautan Hindi"],
     answerIndex: 1,
     explanation:
@@ -10363,7 +10863,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 13",
-    question: "Bagaimanakah pembuangan sisa domestik yang tidak teratur boleh menyebabkan berlakunya banjir kilat?",
+    question:
+      "Bagaimanakah pembuangan sisa domestik yang tidak teratur boleh menyebabkan berlakunya banjir kilat?",
     options: [
       "Sampah bertindak mencairkan ais di kawasan pergunungan",
       "Sampah sarap menyumbat saluran parit, parit, dan longkang, menyekat aliran air hujan",
@@ -10380,7 +10881,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 13",
-    question: "Mengapakah pengurusan sisa domestik yang lemah memberikan kesan negatif kepada ekonomi negara?",
+    question:
+      "Mengapakah pengurusan sisa domestik yang lemah memberikan kesan negatif kepada ekonomi negara?",
     options: [
       "Kerana jumlah kedai runcit akan berkurangan",
       "Kerana kerajaan terpaksa meningkatkan kos penyelenggaraan dan peruntukan pembersihan sampah",
@@ -10496,8 +10998,14 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 13",
-    question: "Manakah antara berikut dikelaskan sebagai contoh sisa domestik bukan organik jenis pepejal?",
-    options: ["Minyak masak terpakai", "Tin susu aluminium", "Daun-daun kering", "Air sabun basuhan"],
+    question:
+      "Manakah antara berikut dikelaskan sebagai contoh sisa domestik bukan organik jenis pepejal?",
+    options: [
+      "Minyak masak terpakai",
+      "Tin susu aluminium",
+      "Daun-daun kering",
+      "Air sabun basuhan",
+    ],
     answerIndex: 1,
     explanation:
       "Tin susu aluminium ialah komponen pepejal bukan organik kerana struktur logamnya tegar dan tidak boleh diurai secara biologi.",
@@ -10539,7 +11047,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 13",
-    question: "Bagaimanakah sekolah boleh membantu menyebarkan amalan pengurusan sisa domestik yang baik?",
+    question:
+      "Bagaimanakah sekolah boleh membantu menyebarkan amalan pengurusan sisa domestik yang baik?",
     options: [
       "Dengan melarang murid membuang sisa makanan",
       "Melalui pendidikan formal dalam subjek Geografi/Sains dan penganjuran kempen kitar semula",
@@ -10592,7 +11101,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 13",
-    question: "Apakah tindakan yang betul dilakukan terhadap sisa minyak masak terpakai dari dapur?",
+    question:
+      "Apakah tindakan yang betul dilakukan terhadap sisa minyak masak terpakai dari dapur?",
     options: [
       "Menuangnya ke dalam longkang hadapan rumah",
       "Mengumpulnya di dalam bekas khas untuk dijual bagi dijadikan bahan biodiesel",
@@ -10609,7 +11119,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 13",
-    question: "Apakah kesan sekiranya sisa domestik bukan organik terus meningkat tanpa kawalan kitar semula?",
+    question:
+      "Apakah kesan sekiranya sisa domestik bukan organik terus meningkat tanpa kawalan kitar semula?",
     options: [
       "Kawasan tapak pelupusan sampah akan cepat penuh dan memerlukan lebih banyak ruang tanah",
       "Udara persekitaran akan menjadi lebih segar",
@@ -10626,7 +11137,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 13",
-    question: "Apakah ejen pembawa (vektor) utama bagi penularan wabak demam denggi di kawasan penempatan manusia?",
+    question:
+      "Apakah ejen pembawa (vektor) utama bagi penularan wabak demam denggi di kawasan penempatan manusia?",
     options: ["Tikus", "Nyamuk Aedes", "Lalat", "Lipas"],
     answerIndex: 1,
     explanation:
@@ -10672,7 +11184,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 13",
-    question: "Menggunakan beg kain atau bakul sendiri semasa membeli-belah di pasar raya merupakan contoh amalan...",
+    question:
+      "Menggunakan beg kain atau bakul sendiri semasa membeli-belah di pasar raya merupakan contoh amalan...",
     options: ["Reduce", "Reuse", "Recycle", "Replace"],
     answerIndex: 0,
     explanation:
@@ -10702,7 +11215,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 13",
-    question: "Apakah komponen paling utama dalam menjayakan pengurusan sisa domestik yang berkesan?",
+    question:
+      "Apakah komponen paling utama dalam menjayakan pengurusan sisa domestik yang berkesan?",
     options: [
       "Perubahan sikap dan kesedaran individu itu sendiri",
       "Pembelian tong sampah yang mahal",
@@ -10721,7 +11235,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 12",
     question:
       "Apakah sumber bekalan air utama yang menyumbang kira-kira 97% daripada jumlah keseluruhan bekalan air di Malaysia?",
-    options: ["Air bawah tanah", "Air permukaan", "Air hujan tadahan peribadi", "Air laut yang dinyahgaram"],
+    options: [
+      "Air bawah tanah",
+      "Air permukaan",
+      "Air hujan tadahan peribadi",
+      "Air laut yang dinyahgaram",
+    ],
     answerIndex: 1,
     explanation:
       "Air permukaan seperti sungai dan tasik merupakan sumber air mentah utama yang diekstrak dan dirawat untuk kegunaan majoriti penduduk Malaysia.",
@@ -10770,7 +11289,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 12",
-    question: "Mengapakah aktiviti pembalakan atau penebangan hutan di kawasan tadahan hujan boleh memicu krisis air?",
+    question:
+      "Mengapakah aktiviti pembalakan atau penebangan hutan di kawasan tadahan hujan boleh memicu krisis air?",
     options: [
       "Kerana pokok yang ditebang melepaskan sisa asid ke air",
       "Kerana ketiadaan akar pokok sebagai span semula jadi untuk menyerap, menapis, dan menakung air hujan",
@@ -10807,7 +11327,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 12",
     question:
       "Kawasan manakah di Malaysia yang mengalami tekanan permintaan air bersih tertinggi akibat pertambahan penduduk yang pesat?",
-    options: ["Pedalaman Sarawak", "Lembah Klang", "Zon pantai hulu Terengganu", "Kawasan hutan simpan Belum"],
+    options: [
+      "Pedalaman Sarawak",
+      "Lembah Klang",
+      "Zon pantai hulu Terengganu",
+      "Kawasan hutan simpan Belum",
+    ],
     answerIndex: 1,
     explanation:
       "Lembah Klang merupakan hub urbanisasi utama dengan populasi padat, menyebabkan kadar domestik bagi permintaan air bersih melonjak tinggi melampaui kapasiti normal rizab air.",
@@ -10820,7 +11345,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 12",
     question:
       "Apakah fenomena cuaca panas melampau yang boleh menyebabkan paras air di empangan-empangan utama menyusut ke tahap kritikal?",
-    options: ["Fenomena La Nina", "Fenomena El Nino", "Tsunami Selat Melaka", "Ribon Taufan Monsun"],
+    options: [
+      "Fenomena La Nina",
+      "Fenomena El Nino",
+      "Tsunami Selat Melaka",
+      "Ribon Taufan Monsun",
+    ],
     answerIndex: 1,
     explanation:
       "El Nino membawa keadaan cuaca kering dan kemarau panjang yang mengurangkan taburan hujan secara drastik, mengecilkan aliran sungai, dan mengeringkan takungan empangan.",
@@ -10848,7 +11378,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 12",
-    question: "Apabila berlaku kekurangan bekalan air yang serius, pihak berkuasa terpaksa melaksanakan langkah...",
+    question:
+      "Apabila berlaku kekurangan bekalan air yang serius, pihak berkuasa terpaksa melaksanakan langkah...",
     options: [
       "Pemberian air percuma setiap hari",
       "Catuan bekalan air secara berjadual",
@@ -10865,7 +11396,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 12",
-    question: "Mengapakah pencemaran sungai atau kekeringan air boleh mengakibatkan kepupusan hidupan akuatik?",
+    question:
+      "Mengapakah pencemaran sungai atau kekeringan air boleh mengakibatkan kepupusan hidupan akuatik?",
     options: [
       "Kerana hidupan akuatik berpindah ke daratan",
       "Kerana kehilangan habitat kekal, kekurangan bekalan oksigen terlarut, dan keracunan toksik",
@@ -10972,7 +11504,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 12",
-    question: "Apakah maksud singkatan bagi teknologi SPAHL dalam konteks pengurusan air alternatif?",
+    question:
+      "Apakah maksud singkatan bagi teknologi SPAHL dalam konteks pengurusan air alternatif?",
     options: [
       "Sistem Penuaian Air Hujan",
       "Sistem Penapisan Air Hidro",
@@ -11002,7 +11535,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 12",
-    question: "Apakah kesan pencemaran sisa baja kimia pertanian terhadap kualiti air tasik atau sungai?",
+    question:
+      "Apakah kesan pencemaran sisa baja kimia pertanian terhadap kualiti air tasik atau sungai?",
     options: [
       "Menyebabkan fenomena eutrofikasi yang mempercepatkan pertumbuhan rumpai air alga sehingga menjejaskan oksigen air",
       "Menjadikan air tasik bertukar menjadi jernih kristal",
@@ -11055,7 +11589,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 12",
-    question: "Apakah kelemahan geografi utama bagi sistem bekalan air permukaan berbanding air tanah?",
+    question:
+      "Apakah kelemahan geografi utama bagi sistem bekalan air permukaan berbanding air tanah?",
     options: [
       "Ia lebih mudah terdedah kepada ancaman pencemaran terbuka dan kekeringan akibat cuaca",
       "Ia mempunyai kandungan mineral garam yang terlalu tinggi",
@@ -11090,7 +11625,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 12",
-    question: "Apakah peranan agensi kerajaan seperti Jabatan Alam Sekitar (JAS) dalam menjaga sumber air?",
+    question:
+      "Apakah peranan agensi kerajaan seperti Jabatan Alam Sekitar (JAS) dalam menjaga sumber air?",
     options: [
       "Membina bangunan loji rawatan baharu",
       "Memantau kualiti air sungai, menjalankan penguatkuasaan, and mendakwa pengotor sungai",
@@ -11161,7 +11697,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 12",
-    question: "Bagaimanakah institusi sekolah boleh memainkan peranan mendidik murid mengenai isu krisis air?",
+    question:
+      "Bagaimanakah institusi sekolah boleh memainkan peranan mendidik murid mengenai isu krisis air?",
     options: [
       "Dengan memotong bekalan air sekolah sepanjang minggu",
       "Mengintegrasikan pendidikan pemeliharaan air dalam subjek Geografi and menganjurkan minggu jimat air",
@@ -11178,7 +11715,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 12",
-    question: "Apakah kesan sekiranya sisa domestik sampah sarap terus dibuang ke dalam sistem parit bandar?",
+    question:
+      "Apakah kesan sekiranya sisa domestik sampah sarap terus dibuang ke dalam sistem parit bandar?",
     options: [
       "Aliran parit menjadi semakin laju",
       "Parit tersumbat, air tercemar, and mencetuskan risiko banjir kilat serta bau busuk",
@@ -11207,663 +11745,688 @@ export const quizzes: QuizQuestion[] = [
       "Kesedaran bahawa air bersih adalah sumber yang terdedah kepada kemusnahan menuntut komitmen kolektif bagi pemeliharaan and pemuliharaan berterusan.",
   },
   {
-    id: 'eng-f1-c1-q1',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is a noun?',
-    options: ['Quickly', 'School', 'Beautiful', 'Run'],
+    id: "eng-f1-c1-q1",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is a noun?",
+    options: ["Quickly", "School", "Beautiful", "Run"],
     answerIndex: 1,
-    explanation: 'School is a naming word and therefore a noun.',
+    explanation: "School is a naming word and therefore a noun.",
   },
   {
-    id: 'eng-f1-c1-q2',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence uses a pronoun?',
-    options: ['Ali is tall.', 'She is kind.', 'The cat sleeps.', 'Books are useful.'],
+    id: "eng-f1-c1-q2",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence uses a pronoun?",
+    options: ["Ali is tall.", "She is kind.", "The cat sleeps.", "Books are useful."],
     answerIndex: 1,
-    explanation: 'She is a pronoun that replaces a noun.',
+    explanation: "She is a pronoun that replaces a noun.",
   },
   {
-    id: 'eng-f1-c1-q3',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is a verb?',
-    options: ['Blue', 'Chair', 'Jump', 'Slowly'],
+    id: "eng-f1-c1-q3",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is a verb?",
+    options: ["Blue", "Chair", "Jump", "Slowly"],
     answerIndex: 2,
-    explanation: 'Jump is an action word and therefore a verb.',
+    explanation: "Jump is an action word and therefore a verb.",
   },
   {
-    id: 'eng-f1-c1-q4',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is an adjective?',
-    options: ['Quickly', 'Happy', 'Eat', 'Table'],
+    id: "eng-f1-c1-q4",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is an adjective?",
+    options: ["Quickly", "Happy", "Eat", "Table"],
     answerIndex: 1,
-    explanation: 'Happy describes a noun and therefore is an adjective.',
+    explanation: "Happy describes a noun and therefore is an adjective.",
   },
   {
-    id: 'eng-f1-c1-q5',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Choose the correct conjunction.',
-    options: ['And', 'Under', 'Quickly', 'Tall'],
+    id: "eng-f1-c1-q5",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Choose the correct conjunction.",
+    options: ["And", "Under", "Quickly", "Tall"],
     answerIndex: 0,
-    explanation: 'And is a conjunction that joins words or sentences.',
+    explanation: "And is a conjunction that joins words or sentences.",
   },
   {
-    id: 'eng-f1-c1-q6',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence is in simple present tense?',
-    options: ['She walked home.', 'She walks home.', 'She will walk home.', 'She walking home.'],
+    id: "eng-f1-c1-q6",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence is in simple present tense?",
+    options: ["She walked home.", "She walks home.", "She will walk home.", "She walking home."],
     answerIndex: 1,
-    explanation: 'Simple present tense shows routine or habitual actions.',
+    explanation: "Simple present tense shows routine or habitual actions.",
   },
   {
-    id: 'eng-f1-c1-q7',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which preposition is correct? The cat is ___ the table.',
-    options: ['On', 'Quickly', 'Happy', 'And'],
+    id: "eng-f1-c1-q7",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which preposition is correct? The cat is ___ the table.",
+    options: ["On", "Quickly", "Happy", "And"],
     answerIndex: 0,
-    explanation: 'On is a preposition that shows position.',
+    explanation: "On is a preposition that shows position.",
   },
   {
-    id: 'eng-f1-c1-q8',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is an adverb?',
-    options: ['Slowly', 'Green', 'School', 'Jump'],
+    id: "eng-f1-c1-q8",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is an adverb?",
+    options: ["Slowly", "Green", "School", "Jump"],
     answerIndex: 0,
-    explanation: 'Slowly describes an action and therefore is an adverb.',
+    explanation: "Slowly describes an action and therefore is an adverb.",
   },
   {
-    id: 'eng-f1-c1-q9',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Choose the correct past tense of \'go\'.',
-    options: ['Go', 'Goes', 'Went', 'Going'],
+    id: "eng-f1-c1-q9",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Choose the correct past tense of 'go'.",
+    options: ["Go", "Goes", "Went", "Going"],
     answerIndex: 2,
-    explanation: 'Went is the past tense of the verb go.',
+    explanation: "Went is the past tense of the verb go.",
   },
   {
-    id: 'eng-f1-c1-q10',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence is correct?',
-    options: ['He eat rice.', 'He eats rice.', 'He eating rice.', 'He eaten rice.'],
+    id: "eng-f1-c1-q10",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence is correct?",
+    options: ["He eat rice.", "He eats rice.", "He eating rice.", "He eaten rice."],
     answerIndex: 1,
-    explanation: 'Singular subjects use eats in simple present tense.',
+    explanation: "Singular subjects use eats in simple present tense.",
   },
   {
-    id: 'eng-f1-c1-q11',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which is a proper noun?',
-    options: ['City', 'School', 'Malaysia', 'River'],
+    id: "eng-f1-c1-q11",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which is a proper noun?",
+    options: ["City", "School", "Malaysia", "River"],
     answerIndex: 2,
-    explanation: 'Malaysia is a specific name and therefore a proper noun.',
+    explanation: "Malaysia is a specific name and therefore a proper noun.",
   },
   {
-    id: 'eng-f1-c1-q12',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is a collective noun?',
-    options: ['Team', 'Apple', 'Run', 'Quickly'],
+    id: "eng-f1-c1-q12",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is a collective noun?",
+    options: ["Team", "Apple", "Run", "Quickly"],
     answerIndex: 0,
-    explanation: 'Team refers to a group of people and is a collective noun.',
+    explanation: "Team refers to a group of people and is a collective noun.",
   },
   {
-    id: 'eng-f1-c1-q13',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence uses future tense?',
-    options: ['I play football.', 'I played football.', 'I will play football.', 'I playing football.'],
+    id: "eng-f1-c1-q13",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence uses future tense?",
+    options: [
+      "I play football.",
+      "I played football.",
+      "I will play football.",
+      "I playing football.",
+    ],
     answerIndex: 2,
-    explanation: 'Will shows a future action.',
+    explanation: "Will shows a future action.",
   },
   {
-    id: 'eng-f1-c1-q14',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Choose the adjective.',
-    options: ['Beautiful', 'Run', 'Slowly', 'Under'],
+    id: "eng-f1-c1-q14",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Choose the adjective.",
+    options: ["Beautiful", "Run", "Slowly", "Under"],
     answerIndex: 0,
-    explanation: 'Beautiful describes something and is an adjective.',
+    explanation: "Beautiful describes something and is an adjective.",
   },
   {
-    id: 'eng-f1-c1-q15',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which is an antonym of \'hot\'?',
-    options: ['Warm', 'Cold', 'Bright', 'Fast'],
+    id: "eng-f1-c1-q15",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which is an antonym of 'hot'?",
+    options: ["Warm", "Cold", "Bright", "Fast"],
     answerIndex: 1,
-    explanation: 'Cold is the opposite of hot.',
+    explanation: "Cold is the opposite of hot.",
   },
   {
-    id: 'eng-f1-c1-q16',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is a synonym of \'big\'?',
-    options: ['Small', 'Tiny', 'Large', 'Thin'],
+    id: "eng-f1-c1-q16",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is a synonym of 'big'?",
+    options: ["Small", "Tiny", "Large", "Thin"],
     answerIndex: 2,
-    explanation: 'Large means the same as big.',
+    explanation: "Large means the same as big.",
   },
   {
-    id: 'eng-f1-c1-q17',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence uses correct punctuation?',
-    options: ['where are you', 'Where are you?', 'where are you?', 'Where are you'],
+    id: "eng-f1-c1-q17",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence uses correct punctuation?",
+    options: ["where are you", "Where are you?", "where are you?", "Where are you"],
     answerIndex: 1,
-    explanation: 'Questions must start with a capital letter and end with a question mark.',
+    explanation: "Questions must start with a capital letter and end with a question mark.",
   },
   {
-    id: 'eng-f1-c1-q18',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Choose the correct pronoun.',
-    options: ['Him', 'She', 'Table', 'Run'],
+    id: "eng-f1-c1-q18",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Choose the correct pronoun.",
+    options: ["Him", "She", "Table", "Run"],
     answerIndex: 1,
-    explanation: 'She is a subject pronoun.',
+    explanation: "She is a subject pronoun.",
   },
   {
-    id: 'eng-f1-c1-q19',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is an abstract noun?',
-    options: ['Chair', 'Happiness', 'Cat', 'Teacher'],
+    id: "eng-f1-c1-q19",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is an abstract noun?",
+    options: ["Chair", "Happiness", "Cat", "Teacher"],
     answerIndex: 1,
-    explanation: 'Happiness cannot be touched and is an abstract noun.',
+    explanation: "Happiness cannot be touched and is an abstract noun.",
   },
   {
-    id: 'eng-f1-c1-q20',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence is correct?',
-    options: ['They was happy.', 'They were happy.', 'They is happy.', 'They am happy.'],
+    id: "eng-f1-c1-q20",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence is correct?",
+    options: ["They was happy.", "They were happy.", "They is happy.", "They am happy."],
     answerIndex: 1,
-    explanation: 'They always uses were in past tense.',
+    explanation: "They always uses were in past tense.",
   },
   {
-    id: 'eng-f1-c1-q21',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Choose the correct conjunction.',
-    options: ['But', 'Green', 'Softly', 'School'],
+    id: "eng-f1-c1-q21",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Choose the correct conjunction.",
+    options: ["But", "Green", "Softly", "School"],
     answerIndex: 0,
-    explanation: 'But is a conjunction that joins contrasting ideas.',
+    explanation: "But is a conjunction that joins contrasting ideas.",
   },
   {
-    id: 'eng-f1-c1-q22',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which is a verb?',
-    options: ['Sing', 'Blue', 'Table', 'Slowly'],
+    id: "eng-f1-c1-q22",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which is a verb?",
+    options: ["Sing", "Blue", "Table", "Slowly"],
     answerIndex: 0,
-    explanation: 'Sing is an action word and therefore a verb.',
+    explanation: "Sing is an action word and therefore a verb.",
   },
   {
-    id: 'eng-f1-c1-q23',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence uses an adverb?',
-    options: ['She sings beautifully.', 'She beautiful sings.', 'She singing beautiful.', 'She beautiful.'],
+    id: "eng-f1-c1-q23",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence uses an adverb?",
+    options: [
+      "She sings beautifully.",
+      "She beautiful sings.",
+      "She singing beautiful.",
+      "She beautiful.",
+    ],
     answerIndex: 0,
-    explanation: 'Beautifully is an adverb that describes how she sings.',
+    explanation: "Beautifully is an adverb that describes how she sings.",
   },
   {
-    id: 'eng-f1-c1-q24',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is a preposition?',
-    options: ['Under', 'Happy', 'Eat', 'Quickly'],
+    id: "eng-f1-c1-q24",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is a preposition?",
+    options: ["Under", "Happy", "Eat", "Quickly"],
     answerIndex: 0,
-    explanation: 'Under shows location and is a preposition.',
+    explanation: "Under shows location and is a preposition.",
   },
   {
-    id: 'eng-f1-c1-q25',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Choose the simple past tense sentence.',
-    options: ['I eat breakfast.', 'I ate breakfast.', 'I eating breakfast.', 'I will eat breakfast.'],
+    id: "eng-f1-c1-q25",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Choose the simple past tense sentence.",
+    options: [
+      "I eat breakfast.",
+      "I ate breakfast.",
+      "I eating breakfast.",
+      "I will eat breakfast.",
+    ],
     answerIndex: 1,
-    explanation: 'Ate is the past tense of the verb eat.',
+    explanation: "Ate is the past tense of the verb eat.",
   },
   {
-    id: 'eng-f1-c1-q26',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which word is a noun?',
-    options: ['Quickly', 'Run', 'Pencil', 'Softly'],
+    id: "eng-f1-c1-q26",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which word is a noun?",
+    options: ["Quickly", "Run", "Pencil", "Softly"],
     answerIndex: 2,
-    explanation: 'Pencil is a thing and therefore a noun.',
+    explanation: "Pencil is a thing and therefore a noun.",
   },
   {
-    id: 'eng-f1-c1-q27',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence is in future tense?',
-    options: ['She cooks dinner.', 'She cooked dinner.', 'She will cook dinner.', 'She cooking dinner.'],
+    id: "eng-f1-c1-q27",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence is in future tense?",
+    options: [
+      "She cooks dinner.",
+      "She cooked dinner.",
+      "She will cook dinner.",
+      "She cooking dinner.",
+    ],
     answerIndex: 2,
-    explanation: 'Will cook shows a future action.',
+    explanation: "Will cook shows a future action.",
   },
   {
-    id: 'eng-f1-c1-q28',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which is a synonym for \'happy\'?',
-    options: ['Sad', 'Angry', 'Joyful', 'Tired'],
+    id: "eng-f1-c1-q28",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which is a synonym for 'happy'?",
+    options: ["Sad", "Angry", "Joyful", "Tired"],
     answerIndex: 2,
-    explanation: 'Joyful means the same as happy.',
+    explanation: "Joyful means the same as happy.",
   },
   {
-    id: 'eng-f1-c1-q29',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which is an antonym for \'fast\'?',
-    options: ['Quick', 'Speedy', 'Slow', 'Bright'],
+    id: "eng-f1-c1-q29",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which is an antonym for 'fast'?",
+    options: ["Quick", "Speedy", "Slow", "Bright"],
     answerIndex: 2,
-    explanation: 'Slow is the opposite of fast.',
+    explanation: "Slow is the opposite of fast.",
   },
   {
-    id: 'eng-f1-c1-q30',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 1',
-    difficulty: 'Easy',
-    question: 'Which sentence is correct?',
-    options: ['We goes to school.', 'We go to school.', 'We going to school.', 'We gone to school.'],
+    id: "eng-f1-c1-q30",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Which sentence is correct?",
+    options: [
+      "We goes to school.",
+      "We go to school.",
+      "We going to school.",
+      "We gone to school.",
+    ],
     answerIndex: 1,
-    explanation: 'We always uses go in simple present tense.',
+    explanation: "We always uses go in simple present tense.",
   },
   {
-    id: 'eng-f1-c2-q1',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'small\'?',
-    options: ['Tiny', 'Huge', 'Tall', 'Long'],
+    id: "eng-f1-c2-q1",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'small'?",
+    options: ["Tiny", "Huge", "Tall", "Long"],
     answerIndex: 0,
-    explanation: 'Tiny means small.',
+    explanation: "Tiny means small.",
   },
   {
-    id: 'eng-f1-c2-q2',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'happy\'?',
-    options: ['Joyful', 'Sad', 'Bright', 'Loud'],
+    id: "eng-f1-c2-q2",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'happy'?",
+    options: ["Joyful", "Sad", "Bright", "Loud"],
     answerIndex: 1,
-    explanation: 'Sad is the opposite of happy.',
+    explanation: "Sad is the opposite of happy.",
   },
   {
-    id: 'eng-f1-c2-q3',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the idiom \'piece of cake\' mean?',
-    options: ['Difficult', 'Easy', 'Expensive', 'Sweet'],
+    id: "eng-f1-c2-q3",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the idiom 'piece of cake' mean?",
+    options: ["Difficult", "Easy", "Expensive", "Sweet"],
     answerIndex: 1,
-    explanation: 'Piece of cake means something that is very easy to do.',
+    explanation: "Piece of cake means something that is very easy to do.",
   },
   {
-    id: 'eng-f1-c2-q4',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the phrasal verb \'wake up\' mean?',
-    options: ['Sleep', 'Rise from sleep', 'Eat', 'Sit'],
+    id: "eng-f1-c2-q4",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the phrasal verb 'wake up' mean?",
+    options: ["Sleep", "Rise from sleep", "Eat", "Sit"],
     answerIndex: 1,
-    explanation: 'Wake up means to stop sleeping and get up.',
+    explanation: "Wake up means to stop sleeping and get up.",
   },
   {
-    id: 'eng-f1-c2-q5',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'quick\'?',
-    options: ['Slow', 'Fast', 'Weak', 'Quiet'],
+    id: "eng-f1-c2-q5",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'quick'?",
+    options: ["Slow", "Fast", "Weak", "Quiet"],
     answerIndex: 1,
-    explanation: 'Fast means the same as quick.',
+    explanation: "Fast means the same as quick.",
   },
   {
-    id: 'eng-f1-c2-q6',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'strong\'?',
-    options: ['Powerful', 'Weak', 'Tall', 'Bright'],
+    id: "eng-f1-c2-q6",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'strong'?",
+    options: ["Powerful", "Weak", "Tall", "Bright"],
     answerIndex: 1,
-    explanation: 'Weak is the opposite of strong.',
+    explanation: "Weak is the opposite of strong.",
   },
   {
-    id: 'eng-f1-c2-q7',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the idiom \'break a leg\' mean?',
-    options: ['Be careful', 'Good luck', 'Run fast', 'Sit down'],
+    id: "eng-f1-c2-q7",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the idiom 'break a leg' mean?",
+    options: ["Be careful", "Good luck", "Run fast", "Sit down"],
     answerIndex: 1,
-    explanation: 'Break a leg is an idiom meaning good luck.',
+    explanation: "Break a leg is an idiom meaning good luck.",
   },
   {
-    id: 'eng-f1-c2-q8',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the phrasal verb \'look after\' mean?',
-    options: ['Ignore', 'Take care of', 'Walk away', 'Run quickly'],
+    id: "eng-f1-c2-q8",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the phrasal verb 'look after' mean?",
+    options: ["Ignore", "Take care of", "Walk away", "Run quickly"],
     answerIndex: 1,
-    explanation: 'Look after means to take care of someone or something.',
+    explanation: "Look after means to take care of someone or something.",
   },
   {
-    id: 'eng-f1-c2-q9',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'beautiful\'?',
-    options: ['Ugly', 'Pretty', 'Weak', 'Loud'],
+    id: "eng-f1-c2-q9",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'beautiful'?",
+    options: ["Ugly", "Pretty", "Weak", "Loud"],
     answerIndex: 1,
-    explanation: 'Pretty means the same as beautiful.',
+    explanation: "Pretty means the same as beautiful.",
   },
   {
-    id: 'eng-f1-c2-q10',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'clean\'?',
-    options: ['Dirty', 'Fresh', 'Smooth', 'Bright'],
+    id: "eng-f1-c2-q10",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'clean'?",
+    options: ["Dirty", "Fresh", "Smooth", "Bright"],
     answerIndex: 0,
-    explanation: 'Dirty is the opposite of clean.',
+    explanation: "Dirty is the opposite of clean.",
   },
   {
-    id: 'eng-f1-c2-q11',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the idiom \'under the weather\' mean?',
-    options: ['Standing in rain', 'Feeling sick', 'Very happy', 'Running fast'],
+    id: "eng-f1-c2-q11",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the idiom 'under the weather' mean?",
+    options: ["Standing in rain", "Feeling sick", "Very happy", "Running fast"],
     answerIndex: 1,
-    explanation: 'Under the weather means feeling unwell or sick.',
+    explanation: "Under the weather means feeling unwell or sick.",
   },
   {
-    id: 'eng-f1-c2-q12',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the phrasal verb \'turn on\' mean?',
-    options: ['Turn around', 'Switch off', 'Activate something', 'Walk away'],
+    id: "eng-f1-c2-q12",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the phrasal verb 'turn on' mean?",
+    options: ["Turn around", "Switch off", "Activate something", "Walk away"],
     answerIndex: 2,
-    explanation: 'Turn on means to activate or switch something on.',
+    explanation: "Turn on means to activate or switch something on.",
   },
   {
-    id: 'eng-f1-c2-q13',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'smart\'?',
-    options: ['Dull', 'Slow', 'Intelligent', 'Quiet'],
+    id: "eng-f1-c2-q13",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'smart'?",
+    options: ["Dull", "Slow", "Intelligent", "Quiet"],
     answerIndex: 2,
-    explanation: 'Intelligent means the same as smart.',
+    explanation: "Intelligent means the same as smart.",
   },
   {
-    id: 'eng-f1-c2-q14',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'brave\'?',
-    options: ['Strong', 'Cowardly', 'Calm', 'Proud'],
+    id: "eng-f1-c2-q14",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'brave'?",
+    options: ["Strong", "Cowardly", "Calm", "Proud"],
     answerIndex: 1,
-    explanation: 'Cowardly is the opposite of brave.',
+    explanation: "Cowardly is the opposite of brave.",
   },
   {
-    id: 'eng-f1-c2-q15',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does \'generous\' mean?',
-    options: ['Selfish', 'Willing to share', 'Angry', 'Tired'],
+    id: "eng-f1-c2-q15",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does 'generous' mean?",
+    options: ["Selfish", "Willing to share", "Angry", "Tired"],
     answerIndex: 1,
-    explanation: 'Generous means willing to give and share with others.',
+    explanation: "Generous means willing to give and share with others.",
   },
   {
-    id: 'eng-f1-c2-q16',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the phrasal verb \'give up\' mean?',
-    options: ['Try harder', 'Stop trying', 'Stand up', 'Run away'],
+    id: "eng-f1-c2-q16",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the phrasal verb 'give up' mean?",
+    options: ["Try harder", "Stop trying", "Stand up", "Run away"],
     answerIndex: 1,
-    explanation: 'Give up means to stop trying or quit.',
+    explanation: "Give up means to stop trying or quit.",
   },
   {
-    id: 'eng-f1-c2-q17',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'angry\'?',
-    options: ['Happy', 'Calm', 'Furious', 'Quiet'],
+    id: "eng-f1-c2-q17",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'angry'?",
+    options: ["Happy", "Calm", "Furious", "Quiet"],
     answerIndex: 2,
-    explanation: 'Furious means the same as very angry.',
+    explanation: "Furious means the same as very angry.",
   },
   {
-    id: 'eng-f1-c2-q18',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'loud\'?',
-    options: ['Noisy', 'Quiet', 'Fast', 'Bright'],
+    id: "eng-f1-c2-q18",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'loud'?",
+    options: ["Noisy", "Quiet", "Fast", "Bright"],
     answerIndex: 1,
-    explanation: 'Quiet is the opposite of loud.',
+    explanation: "Quiet is the opposite of loud.",
   },
   {
-    id: 'eng-f1-c2-q19',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does \'confident\' mean?',
-    options: ['Afraid', 'Sure of yourself', 'Confused', 'Sad'],
+    id: "eng-f1-c2-q19",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does 'confident' mean?",
+    options: ["Afraid", "Sure of yourself", "Confused", "Sad"],
     answerIndex: 1,
-    explanation: 'Confident means feeling sure and positive about yourself.',
+    explanation: "Confident means feeling sure and positive about yourself.",
   },
   {
-    id: 'eng-f1-c2-q20',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the phrasal verb \'sit down\' mean?',
-    options: ['Stand up', 'Take a seat', 'Walk away', 'Jump up'],
+    id: "eng-f1-c2-q20",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the phrasal verb 'sit down' mean?",
+    options: ["Stand up", "Take a seat", "Walk away", "Jump up"],
     answerIndex: 1,
-    explanation: 'Sit down means to lower yourself into a sitting position.',
+    explanation: "Sit down means to lower yourself into a sitting position.",
   },
   {
-    id: 'eng-f1-c2-q21',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'peaceful\'?',
-    options: ['Noisy', 'Calm', 'Angry', 'Fast'],
+    id: "eng-f1-c2-q21",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'peaceful'?",
+    options: ["Noisy", "Calm", "Angry", "Fast"],
     answerIndex: 1,
-    explanation: 'Calm means the same as peaceful.',
+    explanation: "Calm means the same as peaceful.",
   },
   {
-    id: 'eng-f1-c2-q22',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'tall\'?',
-    options: ['Big', 'Short', 'Wide', 'Long'],
+    id: "eng-f1-c2-q22",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'tall'?",
+    options: ["Big", "Short", "Wide", "Long"],
     answerIndex: 1,
-    explanation: 'Short is the opposite of tall.',
+    explanation: "Short is the opposite of tall.",
   },
   {
-    id: 'eng-f1-c2-q23',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does \'brave\' mean?',
-    options: ['Afraid', 'Courageous', 'Weak', 'Tired'],
+    id: "eng-f1-c2-q23",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does 'brave' mean?",
+    options: ["Afraid", "Courageous", "Weak", "Tired"],
     answerIndex: 1,
-    explanation: 'Brave means having courage and not being afraid.',
+    explanation: "Brave means having courage and not being afraid.",
   },
   {
-    id: 'eng-f1-c2-q24',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'tired\'?',
-    options: ['Energetic', 'Exhausted', 'Happy', 'Loud'],
+    id: "eng-f1-c2-q24",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'tired'?",
+    options: ["Energetic", "Exhausted", "Happy", "Loud"],
     answerIndex: 1,
-    explanation: 'Exhausted means the same as very tired.',
+    explanation: "Exhausted means the same as very tired.",
   },
   {
-    id: 'eng-f1-c2-q25',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'old\'?',
-    options: ['Ancient', 'Young', 'Tall', 'Quiet'],
+    id: "eng-f1-c2-q25",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'old'?",
+    options: ["Ancient", "Young", "Tall", "Quiet"],
     answerIndex: 1,
-    explanation: 'Young is the opposite of old.',
+    explanation: "Young is the opposite of old.",
   },
   {
-    id: 'eng-f1-c2-q26',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does \'careful\' mean?',
-    options: ['Careless', 'Paying attention to avoid mistakes', 'Running fast', 'Being loud'],
+    id: "eng-f1-c2-q26",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does 'careful' mean?",
+    options: ["Careless", "Paying attention to avoid mistakes", "Running fast", "Being loud"],
     answerIndex: 1,
-    explanation: 'Careful means paying attention to avoid mistakes or danger.',
+    explanation: "Careful means paying attention to avoid mistakes or danger.",
   },
   {
-    id: 'eng-f1-c2-q27',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does the phrasal verb \'put on\' mean?',
-    options: ['Remove clothing', 'Wear clothing', 'Walk away', 'Look at'],
+    id: "eng-f1-c2-q27",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does the phrasal verb 'put on' mean?",
+    options: ["Remove clothing", "Wear clothing", "Walk away", "Look at"],
     answerIndex: 1,
-    explanation: 'Put on means to wear or place something on yourself.',
+    explanation: "Put on means to wear or place something on yourself.",
   },
   {
-    id: 'eng-f1-c2-q28',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is a synonym of \'sad\'?',
-    options: ['Happy', 'Joyful', 'Miserable', 'Excited'],
+    id: "eng-f1-c2-q28",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is a synonym of 'sad'?",
+    options: ["Happy", "Joyful", "Miserable", "Excited"],
     answerIndex: 2,
-    explanation: 'Miserable means the same as very sad.',
+    explanation: "Miserable means the same as very sad.",
   },
   {
-    id: 'eng-f1-c2-q29',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What is an antonym of \'bright\'?',
-    options: ['Shiny', 'Dim', 'Loud', 'Fast'],
+    id: "eng-f1-c2-q29",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What is an antonym of 'bright'?",
+    options: ["Shiny", "Dim", "Loud", "Fast"],
     answerIndex: 1,
-    explanation: 'Dim is the opposite of bright.',
+    explanation: "Dim is the opposite of bright.",
   },
   {
-    id: 'eng-f1-c2-q30',
-    subjectId: 'english',
-    form: 'Form 1',
-    chapter: 'Chapter 2',
-    difficulty: 'Easy',
-    question: 'What does \'polite\' mean?',
-    options: ['Rude', 'Having good manners', 'Angry', 'Lazy'],
+    id: "eng-f1-c2-q30",
+    subjectId: "english",
+    form: "Form 1",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question: "What does 'polite' mean?",
+    options: ["Rude", "Having good manners", "Angry", "Lazy"],
     answerIndex: 1,
-    explanation: 'Polite means having good manners and being respectful to others.',
+    explanation: "Polite means having good manners and being respectful to others.",
   },
 ];

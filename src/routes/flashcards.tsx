@@ -2,7 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
 import { subjects, forms, flashcards, getItemChapterKey, getSubjectChapters } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
-import { Heart, ChevronLeft, ChevronRight, Shuffle, X, Check, Volume2, VolumeX, Vibrate } from "lucide-react";
+import {
+  Heart,
+  ChevronLeft,
+  ChevronRight,
+  Shuffle,
+  X,
+  Check,
+  Volume2,
+  VolumeX,
+  Vibrate,
+} from "lucide-react";
 import {
   SubjectGrid,
   ChapterGrid,
@@ -22,20 +32,30 @@ export const Route = createFileRoute("/flashcards")({
       { title: "Flashcards — AcadeMY" },
       { name: "description", content: "Swipeable, flippable flashcards for fast KSSM revision." },
       { property: "og:title", content: "Flashcards — AcadeMY" },
-      { property: "og:description", content: "Smart revision with favorites and smooth flip animations." },
+      {
+        property: "og:description",
+        content: "Smart revision with favorites and smooth flip animations.",
+      },
     ],
   }),
   component: FlashcardsPage,
 });
 
 const ENCOURAGE = ["Hebat! 🔥", "Pandai! ⚡", "Betul! 🌟", "Bagus! 💪", "Keep it up! 🎯"];
-const GENTLE = ["Cuba lagi! 💫", "Jangan give up! 🌈", "Hampir! Keep going! 🎮", "Ulang semula! 📚"];
+const GENTLE = [
+  "Cuba lagi! 💫",
+  "Jangan give up! 🌈",
+  "Hampir! Keep going! 🎮",
+  "Ulang semula! 📚",
+];
 
 function vibrate(pattern: number | number[], enabled: boolean) {
   if (!enabled) return;
   try {
     if (typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate(pattern);
-  } catch {}
+  } catch {
+    return;
+  }
 }
 
 function progressColor(pct: number) {
@@ -57,10 +77,13 @@ function readStudySearch() {
 function FireBadge({ streak }: { streak: number }) {
   if (streak < 3) return null;
   const size = streak >= 10 ? "text-3xl" : streak >= 5 ? "text-2xl" : "text-xl";
-  const label = streak >= 10 ? "MEGA FIRE 🔥🔥🔥" : streak >= 5 ? "ON FIRE! 🔥🔥" : "Heating up! 🔥";
+  const label =
+    streak >= 10 ? "MEGA FIRE 🔥🔥🔥" : streak >= 5 ? "ON FIRE! 🔥🔥" : "Heating up! 🔥";
   return (
     <div className="fixed top-24 left-1/2 -translate-x-1/2 z-40 pointer-events-none animate-combo-pop">
-      <div className={`glass-strong rounded-full px-5 py-2 flex items-center gap-2 font-display font-bold ${size}`}>
+      <div
+        className={`glass-strong rounded-full px-5 py-2 flex items-center gap-2 font-display font-bold ${size}`}
+      >
         <span className="animate-fire-flicker inline-block">🔥</span>
         <span className="gradient-text">{label}</span>
       </div>
@@ -78,7 +101,7 @@ function MiniConfetti({ color }: { color: string }) {
         delay: Math.random() * 0.1,
         dur: 0.8 + Math.random() * 0.6,
       })),
-    []
+    [],
   );
   return (
     <div className="pointer-events-none absolute inset-0 overflow-visible z-30">
@@ -142,21 +165,25 @@ function FlashcardsPage() {
   }, [soundOn]);
 
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
-  const needsScienceLang = subject === "science" && !scienceLang;
+  const isBilingualSubject = subject === "science" || subject === "math";
+  const needsScienceLang = isBilingualSubject && !scienceLang;
 
-  const chapterMeta = subject && chapter ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter) : null;
+  const chapterMeta =
+    subject && chapter
+      ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
+      : null;
 
   const pool = useMemo(() => {
     if (!subject || !chapter) return [];
     return flashcards.filter((f) => {
       if (f.subjectId !== subject) return false;
       if (getItemChapterKey(f) !== chapter) return false;
-      if (subject === "science" && scienceLang && f.lang && f.lang !== scienceLang) return false;
+      if (isBilingualSubject && scienceLang && f.lang && f.lang !== scienceLang) return false;
       if (form !== "All" && f.form !== form) return false;
       if (favOnly && !progress.favorites.includes(f.id)) return false;
       return true;
     });
-  }, [subject, chapter, form, favOnly, progress.favorites, scienceLang]);
+  }, [subject, chapter, form, favOnly, progress.favorites, scienceLang, isBilingualSubject]);
 
   const currentPoolIdx = queue[idx];
   const current = currentPoolIdx !== undefined ? pool[currentPoolIdx] : pool[0];
@@ -264,7 +291,9 @@ function FlashcardsPage() {
   }
 
   // Touch swipe
-  function onTouchStart(e: TouchEvent) { touchStart.current = e.touches[0].clientX; }
+  function onTouchStart(e: TouchEvent) {
+    touchStart.current = e.touches[0].clientX;
+  }
   function onTouchMove(e: TouchEvent) {
     if (touchStart.current === null) return;
     setSwipeOffset(e.touches[0].clientX - touchStart.current);
@@ -279,8 +308,17 @@ function FlashcardsPage() {
   }
 
   function resetSession() {
-    setIdx(0); setFlipped(false); setStreak(0); setLongestStreak(0); setCompleted(false);
-    setQueue([]); setSwipeOffset(0); setKnownCount(0); setUnknownCount(0); setXpEarned(0); setTotalCards(0);
+    setIdx(0);
+    setFlipped(false);
+    setStreak(0);
+    setLongestStreak(0);
+    setCompleted(false);
+    setQueue([]);
+    setSwipeOffset(0);
+    setKnownCount(0);
+    setUnknownCount(0);
+    setXpEarned(0);
+    setTotalCards(0);
   }
 
   // Auto-shuffle & deal on chapter entry
@@ -306,7 +344,9 @@ function FlashcardsPage() {
           localStorage.setItem("academy-fc-tip", "1");
         }, 4000);
       }
-    } catch {}
+    } catch {
+      setShowTip(false);
+    }
   }, []);
 
   const fav = current ? progress.favorites.includes(current.id) : false;
@@ -316,35 +356,68 @@ function FlashcardsPage() {
   return (
     <section className="max-w-3xl mx-auto px-4 sm:px-8 py-10 md:py-16">
       <div className="text-center mb-6">
-        <h1 className="font-display text-5xl font-bold"><span className="gradient-text">Flashcards</span></h1>
+        <h1 className="font-display text-5xl font-bold">
+          <span className="gradient-text">Flashcards</span>
+        </h1>
         <p className="mt-3 text-muted-foreground">Flip, swipe, and master concepts in seconds.</p>
       </div>
-      <div className="flex justify-center"><DailyQuote /></div>
+      <div className="flex justify-center">
+        <DailyQuote />
+      </div>
 
       {!subject ? (
-        <SubjectGrid onSelect={(id) => { setSubject(id); setChapter(null); resetSession(); }} />
+        <SubjectGrid
+          onSelect={(id) => {
+            setSubject(id);
+            setChapter(null);
+            resetSession();
+          }}
+        />
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
-          onBack={() => { setSubject(null); setChapter(null); resetSession(); }}
+          subjectName={subject === "math" ? "Mathematics" : "Science"}
+          subjectNameBm={subject === "math" ? "Matematik" : "Sains"}
+          subjectEmoji={subject === "math" ? "📐" : "🔬"}
+          bmDescription={
+            subject === "math"
+              ? "Belajar Matematik dalam Bahasa Malaysia"
+              : "Belajar Sains dalam Bahasa Malaysia"
+          }
+          dlpDescription={
+            subject === "math"
+              ? "Learn Mathematics in English (DLP)"
+              : "Learn Science in English (DLP)"
+          }
+          onBack={() => {
+            setSubject(null);
+            setChapter(null);
+            resetSession();
+          }}
         />
       ) : !chapter ? (
         <>
-          {subject === "science" && scienceLang && (
+          {isBilingualSubject && scienceLang && (
             <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
           )}
           <ChapterGrid
             subjectId={subject}
             scienceLang={scienceLang ?? undefined}
-            onSelect={(key) => { setChapter(key); resetSession(); }}
-            onBack={() => { setSubject(null); setChapter(null); }}
+            onSelect={(key) => {
+              setChapter(key);
+              resetSession();
+            }}
+            onBack={() => {
+              setSubject(null);
+              setChapter(null);
+            }}
           />
         </>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={chapter}
-          scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+          scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           onBack={() => setChapter(null)}
         />
       ) : (
@@ -352,7 +425,7 @@ function FlashcardsPage() {
           <ContentHeader
             subjectId={subject}
             chapterKey={chapter}
-            scienceLang={subject === "science" ? scienceLang ?? undefined : undefined}
+            scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
             onBack={() => setChapter(null)}
           />
 
@@ -364,7 +437,11 @@ function FlashcardsPage() {
               className="p-2 rounded-full glass hover:bg-white/10 transition"
               title={soundOn ? "Sound on" : "Sound off"}
             >
-              {soundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4 text-muted-foreground" />}
+              {soundOn ? (
+                <Volume2 className="w-4 h-4" />
+              ) : (
+                <VolumeX className="w-4 h-4 text-muted-foreground" />
+              )}
             </button>
             <button
               onClick={() => setVibrateOn((v) => !v)}
@@ -378,9 +455,18 @@ function FlashcardsPage() {
 
           <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
             <div className="flex flex-wrap gap-2 items-center">
-              <select value={form} onChange={(e) => { setForm(e.target.value); resetSession(); }} className="px-4 py-2 rounded-full bg-white/5 text-sm">
+              <select
+                value={form}
+                onChange={(e) => {
+                  setForm(e.target.value);
+                  resetSession();
+                }}
+                className="px-4 py-2 rounded-full bg-white/5 text-sm"
+              >
                 <option>All</option>
-                {forms.map((f) => <option key={f}>{f}</option>)}
+                {forms.map((f) => (
+                  <option key={f}>{f}</option>
+                ))}
               </select>
               <button
                 onClick={() => setFavOnly((v) => !v)}
@@ -394,7 +480,10 @@ function FlashcardsPage() {
                 <span className="text-muted-foreground">streak</span>
               </span>
             </div>
-            <button onClick={shuffle} className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10">
+            <button
+              onClick={shuffle}
+              className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10"
+            >
               <Shuffle className="w-4 h-4" /> Shuffle
             </button>
           </div>
@@ -404,7 +493,11 @@ function FlashcardsPage() {
 
           {pool.length === 0 || !current ? (
             <div className="text-center py-20 glass rounded-2xl">
-              <p className="text-muted-foreground">No flashcards match your filters.</p>
+              <p className="text-muted-foreground">
+                {subject === "math"
+                  ? "Flashcards Coming Soon"
+                  : "No flashcards match your filters."}
+              </p>
             </div>
           ) : completed ? (
             <>
@@ -414,17 +507,42 @@ function FlashcardsPage() {
                 <h2 className="font-display text-3xl font-bold">All done!</h2>
                 <p className="mt-2 text-muted-foreground">Magnificent revision session.</p>
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3 text-sm">
-                  <div className="glass rounded-2xl p-3"><div className="text-2xl font-bold">{totalCards}</div><div className="text-xs text-muted-foreground">Total</div></div>
-                  <div className="glass rounded-2xl p-3"><div className="text-2xl font-bold text-emerald-300">{knownCount} ✅</div><div className="text-xs text-muted-foreground">Known</div></div>
-                  <div className="glass rounded-2xl p-3"><div className="text-2xl font-bold text-rose-300">{unknownCount} ❌</div><div className="text-xs text-muted-foreground">To review</div></div>
-                  <div className="glass rounded-2xl p-3"><div className="text-2xl font-bold">{longestStreak} 🔥</div><div className="text-xs text-muted-foreground">Best streak</div></div>
-                  <div className="glass rounded-2xl p-3"><div className="text-2xl font-bold text-nova-yellow">+{xpEarned}</div><div className="text-xs text-muted-foreground">XP earned</div></div>
+                  <div className="glass rounded-2xl p-3">
+                    <div className="text-2xl font-bold">{totalCards}</div>
+                    <div className="text-xs text-muted-foreground">Total</div>
+                  </div>
+                  <div className="glass rounded-2xl p-3">
+                    <div className="text-2xl font-bold text-emerald-300">{knownCount} ✅</div>
+                    <div className="text-xs text-muted-foreground">Known</div>
+                  </div>
+                  <div className="glass rounded-2xl p-3">
+                    <div className="text-2xl font-bold text-rose-300">{unknownCount} ❌</div>
+                    <div className="text-xs text-muted-foreground">To review</div>
+                  </div>
+                  <div className="glass rounded-2xl p-3">
+                    <div className="text-2xl font-bold">{longestStreak} 🔥</div>
+                    <div className="text-xs text-muted-foreground">Best streak</div>
+                  </div>
+                  <div className="glass rounded-2xl p-3">
+                    <div className="text-2xl font-bold text-nova-yellow">+{xpEarned}</div>
+                    <div className="text-xs text-muted-foreground">XP earned</div>
+                  </div>
                 </div>
                 <div className="mt-7 flex flex-wrap gap-3 justify-center">
-                  <button onClick={shuffle} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform">
+                  <button
+                    onClick={shuffle}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
+                  >
                     Ulang Semula 🔄
                   </button>
-                  <button onClick={() => { setSubject(null); setChapter(null); resetSession(); }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-strong font-semibold hover:scale-105 transition-transform">
+                  <button
+                    onClick={() => {
+                      setSubject(null);
+                      setChapter(null);
+                      resetSession();
+                    }}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-strong font-semibold hover:scale-105 transition-transform"
+                  >
                     Subjek Lain 📚
                   </button>
                 </div>
@@ -434,12 +552,14 @@ function FlashcardsPage() {
             <>
               {/* Progress */}
               <div className="mb-3 flex justify-between items-center text-xs text-muted-foreground">
-                <span>Card {done + 1} of {total}</span>
+                <span>
+                  Card {done + 1} of {total}
+                </span>
                 <span>{pct}%</span>
               </div>
               <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-6">
                 <div
-                  className={`h-full bg-gradient-to-r ${progressColor(pct)} transition-all duration-700 ${pct >= 25 && pct < 30 || pct >= 50 && pct < 55 || pct >= 75 && pct < 80 || pct === 100 ? "animate-pulse" : ""}`}
+                  className={`h-full bg-gradient-to-r ${progressColor(pct)} transition-all duration-700 ${(pct >= 25 && pct < 30) || (pct >= 50 && pct < 55) || (pct >= 75 && pct < 80) || pct === 100 ? "animate-pulse" : ""}`}
                   style={{ width: `${pct}%` }}
                 />
               </div>
@@ -477,33 +597,48 @@ function FlashcardsPage() {
                   style={{
                     perspective: "1500px",
                     height: 360,
-                    transform: slideOut ? undefined : `translateX(${swipeOffset}px) rotate(${swipeOffset / 30}deg)`,
+                    transform: slideOut
+                      ? undefined
+                      : `translateX(${swipeOffset}px) rotate(${swipeOffset / 30}deg)`,
                     transition: swipeOffset === 0 ? "transform 0.3s ease" : "none",
                   }}
                 >
                   <div
                     key={current.id}
                     className="relative w-full h-full transition-transform duration-700"
-                    style={{ transformStyle: "preserve-3d", transform: flipped ? "rotateY(180deg)" : "none" }}
+                    style={{
+                      transformStyle: "preserve-3d",
+                      transform: flipped ? "rotateY(180deg)" : "none",
+                    }}
                   >
                     {/* front */}
-                    <div className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col overflow-hidden" style={{ backfaceVisibility: "hidden" }}>
+                    <div
+                      className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col overflow-hidden"
+                      style={{ backfaceVisibility: "hidden" }}
+                    >
                       {shimmer && <div className="card-shimmer-overlay" />}
                       <div className="flex justify-between items-start">
                         <span className="text-xs font-semibold text-muted-foreground">
                           {subj?.emoji} {subj?.name} • {current.form}
                         </span>
                         <button
-                          onClick={(e) => { e.stopPropagation(); toggleFavorite(current.id); }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleFavorite(current.id);
+                          }}
                           className={`p-2 rounded-full ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
                         >
                           <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
                         </button>
                       </div>
                       <div className="flex-1 flex items-center justify-center text-center">
-                        <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">{current.front}</p>
+                        <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">
+                          {current.front}
+                        </p>
                       </div>
-                      <p className="text-center text-xs text-muted-foreground">Tap to flip · Swipe → know · Swipe ← don't know</p>
+                      <p className="text-center text-xs text-muted-foreground">
+                        Tap to flip · Swipe → know · Swipe ← don't know
+                      </p>
                     </div>
                     {/* back */}
                     <div
@@ -511,7 +646,9 @@ function FlashcardsPage() {
                       style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                     >
                       {shimmer && <div className="card-shimmer-overlay" />}
-                      <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">{current.back}</p>
+                      <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">
+                        {current.back}
+                      </p>
                     </div>
                   </div>
 
@@ -524,7 +661,9 @@ function FlashcardsPage() {
                   {/* Toast message */}
                   {toast && (
                     <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-12 z-40 animate-combo-pop font-display font-bold text-xl">
-                      <span className={flash === "green" ? "text-emerald-300" : "text-rose-300"}>{toast}</span>
+                      <span className={flash === "green" ? "text-emerald-300" : "text-rose-300"}>
+                        {toast}
+                      </span>
                     </div>
                   )}
                   {/* Confetti burst */}
@@ -541,11 +680,19 @@ function FlashcardsPage() {
                   <X className="w-4 h-4" /> Don't know
                 </button>
                 <div className="flex items-center justify-between">
-                  <button onClick={() => go(-1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <button
+                    onClick={() => go(-1)}
+                    className="p-3 rounded-full glass hover:bg-white/10"
+                  >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <span className="text-sm text-muted-foreground">{done + 1} / {total}</span>
-                  <button onClick={() => go(1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <span className="text-sm text-muted-foreground">
+                    {done + 1} / {total}
+                  </span>
+                  <button
+                    onClick={() => go(1)}
+                    className="p-3 rounded-full glass hover:bg-white/10"
+                  >
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>

@@ -1,61 +1,99 @@
-import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
-import { subjects, scienceF1C2NotesBM, scienceF1C2NotesDLP, scienceF1C3NotesBM, scienceF1C3NotesDLP, scienceF1C4NotesBM, scienceF1C4NotesDLP, scienceF1C5NotesBM, scienceF1C5NotesDLP, scienceF1C6NotesBM, scienceF1C6NotesDLP, scienceF1C7NotesBM, scienceF1C7NotesDLP, scienceF1C8NotesBM, scienceF1C8NotesDLP, scienceF1C9NotesBM, scienceF1C9NotesDLP } from "./subjects";
+import type {
+  Form,
+  Subject,
+  Note,
+  ScienceNotesSubsection,
+  ScienceNotesSection,
+  StructuredNotes,
+  Difficulty,
+  QuizQuestion,
+  Flashcard,
+  SejarahChapter,
+  ChapterItem,
+} from "./types";
+import {
+  subjects,
+  scienceF1C2NotesBM,
+  scienceF1C2NotesDLP,
+  scienceF1C3NotesBM,
+  scienceF1C3NotesDLP,
+  scienceF1C4NotesBM,
+  scienceF1C4NotesDLP,
+  scienceF1C5NotesBM,
+  scienceF1C5NotesDLP,
+  scienceF1C6NotesBM,
+  scienceF1C6NotesDLP,
+  scienceF1C7NotesBM,
+  scienceF1C7NotesDLP,
+  scienceF1C8NotesBM,
+  scienceF1C8NotesDLP,
+  scienceF1C9NotesBM,
+  scienceF1C9NotesDLP,
+} from "./subjects";
 
 export const sejarahForm1Chapters: SejarahChapter[] = [
   {
     num: 1,
     title: "Mengenali Sejarah",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/dZuhYNHdQ7U?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/dZuhYNHdQ7U?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "mengenaliSejarah",
   },
   {
     num: 2,
     title: "Zaman Air Batu",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/cLgCMnVoJ5g?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/cLgCMnVoJ5g?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "zamanAirBatu",
   },
   {
     num: 3,
     title: "Zaman Prasejarah",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/3Hx4FX1avMU?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/3Hx4FX1avMU?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "zamanPrasejarah",
   },
   {
     num: 4,
     title: "Mengenali Tamadun",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/fdU9wX5oGAI?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/fdU9wX5oGAI?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "mengenaliTamadun",
   },
   {
     num: 5,
     title: "Tamadun Awal Dunia",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/UXeM03mYPO4?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/UXeM03mYPO4?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "tamadunAwalDunia",
   },
   {
     num: 6,
     title: "Tamadun Yunani dan Tamadun Rom",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/gSXFJYisA6w?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/gSXFJYisA6w?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "peningkatanTamadunYunaniRom",
   },
   {
     num: 7,
     title: "Tamadun India dan China",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/aeLoGzzm85o?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/aeLoGzzm85o?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "tamadunIndiaChina",
   },
   {
     num: 8,
     title: "Tamadun Islam",
     available: true,
-    videoUrl: "https://www.youtube.com/embed/RIDZG6LTY5Y?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
+    videoUrl:
+      "https://www.youtube.com/embed/RIDZG6LTY5Y?cc_load_policy=1&cc_lang_pref=ms&rel=0&modestbranding=1",
     mindMapId: "tamadunIslamSumbangan",
   },
 ];
@@ -79,13 +117,12 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
     { key: "Chapter 4", label: "Chapter 4: Writing", available: true },
     { key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true },
   ],
-  math: [
-    { key: "Chapter 1", label: "Chapter 1: Rational Numbers", available: true },
-    { key: "Chapter 3", label: "Chapter 3: Algebraic Expressions", available: true },
-    { key: "Chapter 5", label: "Chapter 5: Pythagoras' Theorem", available: true },
-  ],
   science: [
-    { key: "Chapter 1", label: "Chapter 1: Introduction to Scientific Investigation", available: true },
+    {
+      key: "Chapter 1",
+      label: "Chapter 1: Introduction to Scientific Investigation",
+      available: true,
+    },
     { key: "Chapter 2", label: "Chapter 2: Cell as the Basic Unit of Life", available: true },
     { key: "Chapter 5", label: "Chapter 5: Matter", available: true },
   ],
@@ -99,17 +136,33 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
     { key: "Chapter 7", label: "Chapter 7: Saliran", available: true },
     { key: "Chapter 8", label: "Chapter 8: Penduduk Di Malaysia", available: true },
     { key: "Chapter 9", label: "Chapter 9: Petempatan Di Malaysia", available: true },
-    { key: "Chapter 10", label: "Chapter 10: Bentuk Muka Bumi dan Saliran di Asia Tenggara", available: true },
-    { key: "Chapter 11", label: "Chapter 11: Penduduk dan Petempatan di Asia Tenggara", available: true },
+    {
+      key: "Chapter 10",
+      label: "Chapter 10: Bentuk Muka Bumi dan Saliran di Asia Tenggara",
+      available: true,
+    },
+    {
+      key: "Chapter 11",
+      label: "Chapter 11: Penduduk dan Petempatan di Asia Tenggara",
+      available: true,
+    },
     { key: "Chapter 12", label: "Chapter 12: Sumber Air", available: true },
     { key: "Chapter 13", label: "Chapter 13: Sisa Domestik", available: true },
   ],
 };
 
 export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp: string }> = [
-  { num: 1, bm: "Pengenalan kepada Penyiasatan Saintifik", dlp: "Introduction to Scientific Investigation" },
+  {
+    num: 1,
+    bm: "Pengenalan kepada Penyiasatan Saintifik",
+    dlp: "Introduction to Scientific Investigation",
+  },
   { num: 2, bm: "Sel sebagai Unit Asas Kehidupan", dlp: "Cell as the Basic Unit of Life" },
-  { num: 3, bm: "Koordinasi dan Gerak Balas (Homeostasis)", dlp: "Coordination and Response (Homeostasis)" },
+  {
+    num: 3,
+    bm: "Koordinasi dan Gerak Balas (Homeostasis)",
+    dlp: "Coordination and Response (Homeostasis)",
+  },
   { num: 4, bm: "Pembiakan", dlp: "Reproduction" },
   { num: 5, bm: "Jirim", dlp: "Matter" },
   { num: 6, bm: "Jadual Berkala", dlp: "Periodic Table" },
@@ -143,10 +196,7 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
       available: true,
       isNew: false,
     }));
-    return [
-      ...cats,
-      { key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true }
-    ];
+    return [...cats, { key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true }];
   }
   if (subjectId === "science" && scienceLang) {
     const prefix = scienceLang === "bm" ? "Bab" : "Chapter";
@@ -176,34 +226,37 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
                     bm: scienceF1C5NotesBM,
                     dlp: scienceF1C5NotesDLP,
                   }
-              : c.num === 6
-                ? {
-                    bm: scienceF1C6NotesBM,
-                    dlp: scienceF1C6NotesDLP,
-                  }
-                : c.num === 7
+                : c.num === 6
                   ? {
-                      bm: scienceF1C7NotesBM,
-                      dlp: scienceF1C7NotesDLP,
+                      bm: scienceF1C6NotesBM,
+                      dlp: scienceF1C6NotesDLP,
                     }
-                  : c.num === 8
+                  : c.num === 7
                     ? {
-                        bm: scienceF1C8NotesBM,
-                        dlp: scienceF1C8NotesDLP,
+                        bm: scienceF1C7NotesBM,
+                        dlp: scienceF1C7NotesDLP,
                       }
-                    : c.num === 9
+                    : c.num === 8
                       ? {
-                          bm: scienceF1C9NotesBM,
-                          dlp: scienceF1C9NotesDLP,
+                          bm: scienceF1C8NotesBM,
+                          dlp: scienceF1C8NotesDLP,
                         }
-            : undefined,
+                      : c.num === 9
+                        ? {
+                            bm: scienceF1C9NotesBM,
+                            dlp: scienceF1C9NotesDLP,
+                          }
+                        : undefined,
     }));
   }
-
   return otherSubjectChapters[subjectId] ?? [];
 }
 
-export function getItemChapterKey(item: { id: string; subjectId: string; chapter?: string }): string | null {
+export function getItemChapterKey(item: {
+  id: string;
+  subjectId: string;
+  chapter?: string;
+}): string | null {
   if (item.subjectId === "sejarah") {
     const n = sejarahChapterFromId(item.id);
     return n ? `Chapter ${n}` : null;

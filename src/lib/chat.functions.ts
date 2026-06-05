@@ -41,18 +41,18 @@ FORMATTING RULES:
 
 EXAMPLE OF HOW TO ANSWER:
 
-Student asks: What is Pythagoras theorem?
+Student asks: What is photosynthesis?
 
 Wrong way (too long): 
-Teorem Pythagoras ialah salah satu topik yang sangat penting dalam Matematik KSSM...
+Fotosintesis ialah proses biologi yang sangat penting dan melibatkan banyak langkah kompleks...
 
 Correct way (short and simple):
 
-Teorem Pythagoras = a² + b² = c² 📐
-c = sisi paling panjang (hipotenus)
-a dan b = dua sisi pendek
-Contoh: 3² + 4² = 9 + 16 = 25 → c = 5cm ✅
-Ingat: Hanya untuk segi tiga sudut tegak je! 💪
+Fotosintesis = tumbuhan buat makanan sendiri 🌱
+Perlu cahaya matahari, air dan karbon dioksida
+Hasil: glukosa dan oksigen
+Contoh: Daun hijau buat makanan waktu siang ✅
+Ingat: Berlaku dalam kloroplas! 💪
 
 SUBJECTS YOU COVER:
 
@@ -90,14 +90,26 @@ export const chatWithAssistant = createServerFn({ method: "POST" })
     });
 
     if (!res.ok) {
-      if (res.status === 429) return { reply: "Maaf, terlalu banyak soalan sekarang. Cuba lagi sekejap ya! ⏳", error: "rate_limited" as const };
-      if (res.status === 402) return { reply: "AI credits habis. Sila tambah credits di Settings → Workspace → Usage. 💳", error: "payment_required" as const };
+      if (res.status === 429)
+        return {
+          reply: "Maaf, terlalu banyak soalan sekarang. Cuba lagi sekejap ya! ⏳",
+          error: "rate_limited" as const,
+        };
+      if (res.status === 402)
+        return {
+          reply: "AI credits habis. Sila tambah credits di Settings → Workspace → Usage. 💳",
+          error: "payment_required" as const,
+        };
       const t = await res.text();
       console.error("AI gateway error:", res.status, t);
-      return { reply: "Maaf, ada masalah teknikal. Cuba lagi sekejap ya! 🙏", error: "server_error" as const };
+      return {
+        reply: "Maaf, ada masalah teknikal. Cuba lagi sekejap ya! 🙏",
+        error: "server_error" as const,
+      };
     }
 
     const json = await res.json();
-    const reply: string = json?.choices?.[0]?.message?.content ?? "Hmm, saya tak pasti. Boleh tanya lain? 🤔";
+    const reply: string =
+      json?.choices?.[0]?.message?.content ?? "Hmm, saya tak pasti. Boleh tanya lain? 🤔";
     return { reply, error: null };
   });

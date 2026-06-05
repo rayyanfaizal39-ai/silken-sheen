@@ -1,25 +1,17 @@
-import type { Form, Subject, Note, ScienceNotesSubsection, ScienceNotesSection, StructuredNotes, Difficulty, QuizQuestion, Flashcard, SejarahChapter, ChapterItem } from "./types";
+import type {
+  Form,
+  Subject,
+  Note,
+  ScienceNotesSubsection,
+  ScienceNotesSection,
+  StructuredNotes,
+  Difficulty,
+  QuizQuestion,
+  Flashcard,
+  SejarahChapter,
+  ChapterItem,
+} from "./types";
 export const notes: Note[] = [
-  {
-    id: "n1",
-    subjectId: "math",
-    form: "Form 1",
-    chapter: "Chapter 1",
-    title: "Rational Numbers",
-    summary:
-      "Rational numbers include integers, fractions, and decimals that can be expressed as a/b where b ≠ 0. Operations follow standard rules of arithmetic.",
-    keywords: ["integer", "fraction", "decimal"],
-  },
-  {
-    id: "n2",
-    subjectId: "math",
-    form: "Form 2",
-    chapter: "Chapter 3",
-    title: "Algebraic Expressions",
-    summary:
-      "Algebraic expressions use variables to represent numbers. Combine like terms and apply distributive law to simplify.",
-    keywords: ["variable", "like terms", "distributive"],
-  },
   {
     id: "n3",
     subjectId: "science",
@@ -49,7 +41,14 @@ export const notes: Note[] = [
     title: "Chapter 2: Cell as the Basic Unit of Life",
     summary:
       "Form 1 Science Chapter 2 summary in English: cells, microscope, cell structure, organisation, respiration and photosynthesis.",
-    keywords: ["cell", "microscope", "respiration", "photosynthesis", "mitochondria", "chloroplast"],
+    keywords: [
+      "cell",
+      "microscope",
+      "respiration",
+      "photosynthesis",
+      "mitochondria",
+      "chloroplast",
+    ],
     lang: "dlp",
   },
   {
@@ -60,7 +59,18 @@ export const notes: Note[] = [
     title: "Bab 5: Jirim",
     summary:
       "Ringkasan Sains Tingkatan 1 Bab 5: jirim, bukan jirim, sifat fizik dan kimia, tiga keadaan jirim, teori kinetik, resapan, perubahan keadaan jirim, ketumpatan, apungan dan sesaran air.",
-    keywords: ["jirim", "jisim", "isi padu", "pepejal", "cecair", "gas", "resapan", "ketumpatan", "apungan", "sesaran air"],
+    keywords: [
+      "jirim",
+      "jisim",
+      "isi padu",
+      "pepejal",
+      "cecair",
+      "gas",
+      "resapan",
+      "ketumpatan",
+      "apungan",
+      "sesaran air",
+    ],
     lang: "bm",
   },
   {
@@ -71,7 +81,18 @@ export const notes: Note[] = [
     title: "Chapter 5: Matter",
     summary:
       "Form 1 Science Chapter 5 summary: matter, non-matter, physical and chemical properties, three states of matter, kinetic theory, diffusion, changes of state, density, buoyancy and water displacement.",
-    keywords: ["matter", "mass", "volume", "solid", "liquid", "gas", "diffusion", "density", "buoyancy", "water displacement"],
+    keywords: [
+      "matter",
+      "mass",
+      "volume",
+      "solid",
+      "liquid",
+      "gas",
+      "diffusion",
+      "density",
+      "buoyancy",
+      "water displacement",
+    ],
     lang: "dlp",
   },
   {
@@ -82,7 +103,18 @@ export const notes: Note[] = [
     title: "Bab 6: Jadual Berkala",
     summary:
       "Ringkasan Sains Tingkatan 1 Bab 6: atom, zarah subatom, molekul, unsur, sebatian, Jadual Berkala, logam, bukan logam, campuran dan kaedah pengasingan.",
-    keywords: ["jadual berkala", "atom", "proton", "neutron", "elektron", "unsur", "sebatian", "campuran", "logam", "bukan logam"],
+    keywords: [
+      "jadual berkala",
+      "atom",
+      "proton",
+      "neutron",
+      "elektron",
+      "unsur",
+      "sebatian",
+      "campuran",
+      "logam",
+      "bukan logam",
+    ],
     lang: "bm",
   },
   {
@@ -93,7 +125,18 @@ export const notes: Note[] = [
     title: "Chapter 6: Periodic Table",
     summary:
       "Form 1 Science Chapter 6 summary: atoms, subatomic particles, molecules, elements, compounds, the Periodic Table, metals, non-metals, mixtures and separation methods.",
-    keywords: ["periodic table", "atom", "proton", "neutron", "electron", "element", "compound", "mixture", "metal", "non-metal"],
+    keywords: [
+      "periodic table",
+      "atom",
+      "proton",
+      "neutron",
+      "electron",
+      "element",
+      "compound",
+      "mixture",
+      "metal",
+      "non-metal",
+    ],
     lang: "dlp",
   },
   {
@@ -104,7 +147,18 @@ export const notes: Note[] = [
     title: "Bab 7: Udara",
     summary:
       "Ringkasan Sains Tingkatan 1 Bab 7: komposisi udara, kepentingan gas, kitar karbon dan oksigen, pembakaran, keselamatan kebakaran, pencemaran udara dan kawalan pencemaran.",
-    keywords: ["udara", "atmosfera", "nitrogen", "oksigen", "karbon dioksida", "gas nadir", "pembakaran", "pencemaran udara", "hujan asid", "pemanasan global"],
+    keywords: [
+      "udara",
+      "atmosfera",
+      "nitrogen",
+      "oksigen",
+      "karbon dioksida",
+      "gas nadir",
+      "pembakaran",
+      "pencemaran udara",
+      "hujan asid",
+      "pemanasan global",
+    ],
     lang: "bm",
   },
   {
@@ -115,7 +169,18 @@ export const notes: Note[] = [
     title: "Chapter 7: Air",
     summary:
       "Form 1 Science Chapter 7 summary: composition of air, importance of gases, carbon and oxygen cycles, combustion, fire safety, air pollution and pollution control.",
-    keywords: ["air", "atmosphere", "nitrogen", "oxygen", "carbon dioxide", "noble gases", "combustion", "air pollution", "acid rain", "global warming"],
+    keywords: [
+      "air",
+      "atmosphere",
+      "nitrogen",
+      "oxygen",
+      "carbon dioxide",
+      "noble gases",
+      "combustion",
+      "air pollution",
+      "acid rain",
+      "global warming",
+    ],
     lang: "dlp",
   },
   {
@@ -126,7 +191,19 @@ export const notes: Note[] = [
     title: "Bab 8: Cahaya dan Optik",
     summary:
       "Ringkasan Sains Tingkatan 1 Bab 8: sifat cahaya, bayang-bayang, cermin dan imej, pantulan, pembiasan, penyebaran, penyerakan, warna cahaya, penapis warna dan alat optik.",
-    keywords: ["cahaya", "optik", "bayang-bayang", "cermin", "imej", "pantulan", "pembiasan", "penyebaran", "penyerakan", "warna", "periskop"],
+    keywords: [
+      "cahaya",
+      "optik",
+      "bayang-bayang",
+      "cermin",
+      "imej",
+      "pantulan",
+      "pembiasan",
+      "penyebaran",
+      "penyerakan",
+      "warna",
+      "periskop",
+    ],
     lang: "bm",
   },
   {
@@ -137,7 +214,19 @@ export const notes: Note[] = [
     title: "Chapter 8: Light and Optics",
     summary:
       "Form 1 Science Chapter 8 summary: properties of light, shadows, mirrors and images, reflection, refraction, dispersion, scattering, light colours, colour filters and optical instruments.",
-    keywords: ["light", "optics", "shadow", "mirror", "image", "reflection", "refraction", "dispersion", "scattering", "colour", "periscope"],
+    keywords: [
+      "light",
+      "optics",
+      "shadow",
+      "mirror",
+      "image",
+      "reflection",
+      "refraction",
+      "dispersion",
+      "scattering",
+      "colour",
+      "periscope",
+    ],
     lang: "dlp",
   },
   {
@@ -148,7 +237,20 @@ export const notes: Note[] = [
     title: "Bab 9: Bumi",
     summary:
       "Ringkasan Sains Tingkatan 1 Bab 9: sistem Bumi, lapisan atmosfera dan lautan, struktur dalaman Bumi, batuan, mineral, proses Bumi, geobencana, usia Bumi dan sumber Bumi.",
-    keywords: ["bumi", "atmosfera", "biosfera", "hidrosfera", "geosfera", "batuan", "mineral", "fosil", "geobencana", "gempa bumi", "tsunami", "geoterma"],
+    keywords: [
+      "bumi",
+      "atmosfera",
+      "biosfera",
+      "hidrosfera",
+      "geosfera",
+      "batuan",
+      "mineral",
+      "fosil",
+      "geobencana",
+      "gempa bumi",
+      "tsunami",
+      "geoterma",
+    ],
     lang: "bm",
   },
   {
@@ -159,7 +261,20 @@ export const notes: Note[] = [
     title: "Chapter 9: Earth",
     summary:
       "Form 1 Science Chapter 9 summary: Earth systems, atmospheric and ocean layers, internal Earth structure, rocks, minerals, Earth processes, geohazards, Earth's age and Earth resources.",
-    keywords: ["earth", "atmosphere", "biosphere", "hydrosphere", "geosphere", "rocks", "minerals", "fossils", "geohazards", "earthquakes", "tsunamis", "geothermal"],
+    keywords: [
+      "earth",
+      "atmosphere",
+      "biosphere",
+      "hydrosphere",
+      "geosphere",
+      "rocks",
+      "minerals",
+      "fossils",
+      "geohazards",
+      "earthquakes",
+      "tsunamis",
+      "geothermal",
+    ],
     lang: "dlp",
   },
   {
@@ -168,7 +283,8 @@ export const notes: Note[] = [
     form: "Form 3",
     chapter: "Chapter 5",
     title: "Electricity",
-    summary: "Current flows from positive to negative terminals. Voltage = Current × Resistance (Ohm's Law).",
+    summary:
+      "Current flows from positive to negative terminals. Voltage = Current × Resistance (Ohm's Law).",
     keywords: ["current", "voltage", "Ohm's Law"],
   },
 
@@ -198,7 +314,8 @@ export const notes: Note[] = [
     form: "Form 3",
     chapter: "Bab 2",
     title: "Kata Adjektif",
-    summary: "Kata adjektif menerangkan sifat, keadaan atau warna sesuatu kata nama. Contoh: cantik, tinggi, merah.",
+    summary:
+      "Kata adjektif menerangkan sifat, keadaan atau warna sesuatu kata nama. Contoh: cantik, tinggi, merah.",
     keywords: ["sifat", "kata nama", "penerangan"],
   },
   {
@@ -826,7 +943,18 @@ export const notes: Note[] = [
     title: "1.3 Physical Quantities and Their Units",
     summary:
       "Base quantities and their SI units: Length — Meter (m), Mass — Kilogram (kg), Time — Second (s), Temperature — Kelvin (K), Electric Current — Ampere (A). Common prefixes: Mega (M) = 1,000,000 (10⁶), Kilo (k) = 1,000 (10³), Centi (c) = 0.01 (10⁻²), Milli (m) = 0.001 (10⁻³), Micro (µ) = 0.000001 (10⁻⁶). These prefixes scale base units so very large or very small measurements can be expressed compactly.",
-    keywords: ["SI Units", "Length", "Mass", "Time", "Temperature", "Ampere", "Mega", "Kilo", "Milli", "Micro"],
+    keywords: [
+      "SI Units",
+      "Length",
+      "Mass",
+      "Time",
+      "Temperature",
+      "Ampere",
+      "Mega",
+      "Kilo",
+      "Milli",
+      "Micro",
+    ],
   },
   {
     id: "sci-f1-c1-dlp-4",
@@ -837,7 +965,15 @@ export const notes: Note[] = [
     title: "1.4 Measurement and Accuracy",
     summary:
       "ACCURACY is how close a measurement is to the true value, while PRECISION is the consistency and closeness between repeated measurements of the same quantity. ZERO ERROR is a systematic error where the instrument does not start at zero — correct it using: Actual Reading = Scale Reading − Zero Error. PARALLAX ERROR is a random error caused when the eye is not perpendicular to the scale; avoid it by aligning your eye level directly with the meniscus (for liquids, read the bottom of the curve).",
-    keywords: ["Accuracy", "Precision", "Zero Error", "Parallax Error", "Meniscus", "Systematic Error", "Random Error"],
+    keywords: [
+      "Accuracy",
+      "Precision",
+      "Zero Error",
+      "Parallax Error",
+      "Meniscus",
+      "Systematic Error",
+      "Random Error",
+    ],
   },
   {
     id: "sci-f1-c1-dlp-5",
@@ -848,7 +984,15 @@ export const notes: Note[] = [
     title: "1.5 Density",
     summary:
       "Density is mass per unit volume: Density = Mass ÷ Volume, measured in g/cm³ or kg/m³. The Water Displacement Method is used to find the volume of an irregular solid (such as a stone) — measure how much water it pushes up in a displacement can or measuring cylinder. The Law of Flotation states that objects with density LESS than 1.0 g/cm³ FLOAT, while objects with density MORE than 1.0 g/cm³ SINK (e.g. wood floats, iron sinks).",
-    keywords: ["Density", "Mass", "Volume", "Water Displacement", "Law of Flotation", "Float", "Sink"],
+    keywords: [
+      "Density",
+      "Mass",
+      "Volume",
+      "Water Displacement",
+      "Law of Flotation",
+      "Float",
+      "Sink",
+    ],
   },
 
   // ===== Sains Tingkatan 1 — Bab 1: Pengenalan kepada Penyiasatan Saintifik (BM) =====
@@ -893,7 +1037,18 @@ export const notes: Note[] = [
     title: "1.3 Kuantiti Fizik dan Unitnya",
     summary:
       "Kuantiti asas dan unit SI: Panjang — meter (m), Jisim — kilogram (kg), Masa — saat (s), Suhu — Kelvin (K), Arus Elektrik — Ampere (A). Simbol imbuhan yang biasa digunakan: Mega (M) = 1,000,000, Kilo (k) = 1,000, Senti (c) = 0.01, Mili (m) = 0.001, Mikro (µ) = 0.000001. Imbuhan ini menyenangkan kita menyatakan nilai yang sangat besar atau sangat kecil dengan ringkas.",
-    keywords: ["Unit SI", "Panjang", "Jisim", "Masa", "Suhu", "Ampere", "Mega", "Kilo", "Mili", "Mikro"],
+    keywords: [
+      "Unit SI",
+      "Panjang",
+      "Jisim",
+      "Masa",
+      "Suhu",
+      "Ampere",
+      "Mega",
+      "Kilo",
+      "Mili",
+      "Mikro",
+    ],
   },
   {
     id: "sci-f1-c1-bm-4",
@@ -963,14 +1118,7 @@ export const notes: Note[] = [
     title: "Vocabulary — KSSM English Form 1",
     summary:
       "Vocabulary refers to the words we know and use in speaking, reading, and writing. Strong vocabulary helps students understand passages better, write better essays, and communicate confidently. SYNONYMS are words with similar meanings: Big = Large, Happy = Joyful, Smart = Intelligent, Fast = Quick. Using synonyms makes writing more interesting. ANTONYMS are words with opposite meanings: Hot ≠ Cold, Fast ≠ Slow, Strong ≠ Weak, Happy ≠ Sad. IDIOMS are phrases with meanings different from the actual words: 'Piece of cake' → very easy; 'Break a leg' → good luck; 'Under the weather' → feeling sick. Idioms are commonly used in conversations. PHRASAL VERBS combine a verb with another word: wake up, sit down, turn on, look after, give up. Examples: Please turn on the fan. She looks after her younger brother. COMMON KSSM VOCABULARY — important words for comprehension and essays: generous, confident, careful, brave, peaceful.",
-    keywords: [
-      "Vocabulary",
-      "Synonyms",
-      "Antonyms",
-      "Idioms",
-      "Phrasal Verbs",
-      "KSSM Vocabulary",
-    ],
+    keywords: ["Vocabulary", "Synonyms", "Antonyms", "Idioms", "Phrasal Verbs", "KSSM Vocabulary"],
   },
   {
     id: "eng-f1-c3-note",
@@ -1018,7 +1166,15 @@ export const notes: Note[] = [
     title: "Bab 3: Koordinasi dan Gerak Balas (Homeostasis)",
     summary:
       "Ringkasan Sains Tingkatan 1 Bab 3: homeostasis, kawalan kandungan air dan suhu badan manusia, contoh pada haiwan dan tumbuhan, serta kepentingan kestabilan persekitaran dalaman.",
-    keywords: ["homeostasis", "ginjal", "transpirasi", "stoma", "peluh", "metabolisme", "sel pengawal"],
+    keywords: [
+      "homeostasis",
+      "ginjal",
+      "transpirasi",
+      "stoma",
+      "peluh",
+      "metabolisme",
+      "sel pengawal",
+    ],
     lang: "bm",
   },
   {
@@ -1029,7 +1185,16 @@ export const notes: Note[] = [
     title: "Bab 4: Pembiakan",
     summary:
       "Ringkasan Sains Tingkatan 1 Bab 4: pembiakan seks dan aseks, sistem pembiakan manusia, kitar haid, persenyawaan, kehamilan, penjagaan prenatal, kemandulan, pencegahan kehamilan dan pembiakan tumbuhan.",
-    keywords: ["pembiakan", "gamet", "persenyawaan", "zigot", "kitar haid", "plasenta", "pendebungaan", "percambahan"],
+    keywords: [
+      "pembiakan",
+      "gamet",
+      "persenyawaan",
+      "zigot",
+      "kitar haid",
+      "plasenta",
+      "pendebungaan",
+      "percambahan",
+    ],
     lang: "bm",
   },
   {
@@ -1040,7 +1205,16 @@ export const notes: Note[] = [
     title: "Chapter 4: Reproduction",
     summary:
       "Form 1 Science Chapter 4 summary: sexual and asexual reproduction, human reproductive systems, menstrual cycle, fertilisation, pregnancy, prenatal care, sterility, contraception and reproduction in flowering plants.",
-    keywords: ["reproduction", "gamete", "fertilisation", "zygote", "menstrual cycle", "placenta", "pollination", "germination"],
+    keywords: [
+      "reproduction",
+      "gamete",
+      "fertilisation",
+      "zygote",
+      "menstrual cycle",
+      "placenta",
+      "pollination",
+      "germination",
+    ],
     lang: "dlp",
   },
 ];

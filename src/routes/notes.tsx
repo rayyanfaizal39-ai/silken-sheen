@@ -72,9 +72,10 @@ function NotesPage() {
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter } = useProgress();
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
-  const needsScienceLang = subject === "science" && !scienceLang;
+  const isBilingualSubject = subject === "science" || subject === "math";
+  const needsScienceLang = isBilingualSubject && !scienceLang;
 
-  const activeScienceLang = subject === "science" ? (scienceLang ?? undefined) : undefined;
+  const activeScienceLang = isBilingualSubject ? (scienceLang ?? undefined) : undefined;
   const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang) : [];
   const activeChapterKey =
     chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
@@ -118,10 +119,10 @@ function NotesPage() {
       if (n.subjectId !== subject) return false;
       if (getItemChapterKey(n) !== activeChapterKey) return false;
       if (form !== "All" && n.form !== form) return false;
-      if (subject === "science" && n.lang && scienceLang && n.lang !== scienceLang) return false;
+      if (isBilingualSubject && n.lang && scienceLang && n.lang !== scienceLang) return false;
       return true;
     });
-  }, [subject, activeChapterKey, form, scienceLang]);
+  }, [subject, activeChapterKey, form, scienceLang, isBilingualSubject]);
 
   const legacyNoteSections = useMemo<NotesAccordionSection[]>(
     () =>
@@ -182,6 +183,19 @@ function NotesPage() {
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
+          subjectName={subject === "math" ? "Mathematics" : "Science"}
+          subjectNameBm={subject === "math" ? "Matematik" : "Sains"}
+          subjectEmoji={subject === "math" ? "📐" : "🔬"}
+          bmDescription={
+            subject === "math"
+              ? "Belajar Matematik dalam Bahasa Malaysia"
+              : "Belajar Sains dalam Bahasa Malaysia"
+          }
+          dlpDescription={
+            subject === "math"
+              ? "Learn Mathematics in English (DLP)"
+              : "Learn Science in English (DLP)"
+          }
           onBack={() => {
             setChapter(null);
             void navigate({
@@ -194,7 +208,7 @@ function NotesPage() {
         />
       ) : !activeChapterKey ? (
         <>
-          {subject === "science" && scienceLang && (
+          {isBilingualSubject && scienceLang && (
             <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
           )}
           <ChapterGrid
@@ -218,7 +232,7 @@ function NotesPage() {
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={activeChapterKey}
-          scienceLang={subject === "science" ? (scienceLang ?? undefined) : undefined}
+          scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           onBack={() => setChapter(null)}
         />
       ) : hasSubtopics ? (
@@ -236,7 +250,7 @@ function NotesPage() {
           <ContentHeader
             subjectId={subject}
             chapterKey={activeChapterKey}
-            scienceLang={subject === "science" ? (scienceLang ?? undefined) : undefined}
+            scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
             onBack={() => setChapter(null)}
           />
 
@@ -257,7 +271,9 @@ function NotesPage() {
             !activeChapter?.mindMap &&
             !activeChapter?.video && (
               <p className="text-center text-muted-foreground py-20">
-                More content for this chapter is coming soon.
+                {subject === "math"
+                  ? "Content Coming Soon"
+                  : "More content for this chapter is coming soon."}
               </p>
             )
           ) : (

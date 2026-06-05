@@ -1,4 +1,5 @@
 import type { ChapterContent } from "./types";
+import type { MindNode } from "@/components/MindMap";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,
@@ -61,7 +62,13 @@ function sejarahQuizzesFor(chapterNum: number) {
   );
 }
 
-function sejarah(num: number, title: string, youtubeId: string, mindMapData: any, mindMapTitle: string): ChapterContent {
+function sejarah(
+  num: number,
+  title: string,
+  youtubeId: string,
+  mindMapData: MindNode,
+  mindMapTitle: string,
+): ChapterContent {
   const chapterKey = `Chapter ${num}`;
   return {
     id: `sejarah-f1-c${num}`,
@@ -89,10 +96,27 @@ export const chapters: ChapterContent[] = [
   sejarah(3, "Zaman Prasejarah", "LAAafdFO3Zo", zamanPrasejarahMindMap, "Zaman Prasejarah"),
   sejarah(4, "Mengenali Tamadun", "fdU9wX5oGAI", mengenaliTamadunMindMap, "Mengenali Tamadun"),
   sejarah(5, "Tamadun Awal Dunia", "UXeM03mYPO4", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"),
-  sejarah(6, "Tamadun Yunani dan Rom", "gSXFJYisA6w", peningkatanTamadunYunaniRomMindMap, "Peningkatan Tamadun Yunani dan Rom"),
-  sejarah(7, "Tamadun India dan China", "aeLoGzzm85o", tamadunIndiaChinaMindMap, "Tamadun India dan China"),
-  sejarah(8, "Tamadun Islam", "RIDZG6LTY5Y", tamadunIslamSumbanganMindMap, "Tamadun Islam dan Sumbangannya"),
-
+  sejarah(
+    6,
+    "Tamadun Yunani dan Rom",
+    "gSXFJYisA6w",
+    peningkatanTamadunYunaniRomMindMap,
+    "Peningkatan Tamadun Yunani dan Rom",
+  ),
+  sejarah(
+    7,
+    "Tamadun India dan China",
+    "aeLoGzzm85o",
+    tamadunIndiaChinaMindMap,
+    "Tamadun India dan China",
+  ),
+  sejarah(
+    8,
+    "Tamadun Islam",
+    "RIDZG6LTY5Y",
+    tamadunIslamSumbanganMindMap,
+    "Tamadun Islam dan Sumbangannya",
+  ),
   // Science Form 1 (bilingual)
   {
     id: "science-f1-c1-bm",
