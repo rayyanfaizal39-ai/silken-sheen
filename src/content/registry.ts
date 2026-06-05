@@ -2,7 +2,6 @@ import type { ChapterContent } from "./types";
 import type { MindNode } from "@/components/MindMap";
 import {
   flashcards as allFlashcards,
-  notes as allNotes,
   quizzes as allQuizzes,
   scienceF1C2NotesBM,
   scienceF1C2NotesDLP,
@@ -23,6 +22,7 @@ import {
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
+import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { mathF1C1NotesBM } from "@/data/math-f1-c1-notes-bm";
 import { mathF1C1NotesDLP } from "@/data/math-f1-c1-notes-dlp";
 import { mathF1C2NotesBM } from "@/data/math-f1-c2-notes-bm";
@@ -94,112 +94,21 @@ function sejarah(
   };
 }
 
-const GEOGRAPHY_F1_SUBTOPICS: Record<number, { title: string; subtopics: string[] }> = {
-  1: {
-    title: "Arah",
-    subtopics: [
-      "1.1 Arah Mata Angin",
-      "1.2 Cara Menentukan Arah Mata Angin Menggunakan Matahari",
-      "1.3 Cara Menentukan Arah Mata Angin Menggunakan Kompas",
-      "1.4 Bearing Sudutan",
-    ],
-  },
-  2: {
-    title: "Kedudukan",
-    subtopics: ["2.1 Kedudukan Relatif", "2.2 Latitud dan Longitud"],
-  },
-  3: {
-    title: "Peta Lakar",
-    subtopics: [
-      "3.1 Ciri-ciri Peta Lakar",
-      "3.2 Simbol-simbol dalam Peta Lakar",
-      "3.3 Pandang Darat Fizikal dan Pandang Darat Budaya",
-      "3.4 Langkah-langkah Melukis Peta Lakar",
-    ],
-  },
-  4: {
-    title: "Lakaran Peta Malaysia",
-    subtopics: [
-      "4.1 Kedudukan Negeri-negeri di Malaysia",
-      "4.2 Kedudukan Ibu Negeri, Ibu Negara dan Pusat Pentadbiran Kerajaan Persekutuan",
-    ],
-  },
-  5: {
-    title: "Bumi",
-    subtopics: [
-      "5.1 Sistem Fizikal Bumi",
-      "5.2 Struktur Bumi",
-      "5.3 Benua, Lautan, Laut Utama dan Selat",
-      "5.4 Kesan Pergerakan Kerak Bumi",
-    ],
-  },
-  6: {
-    title: "Bentuk Muka Bumi",
-    subtopics: [
-      "6.1 Bentuk Muka Bumi di Malaysia",
-      "6.2 Kepelbagaian Bentuk Muka Bumi di Malaysia",
-      "6.3 Kepentingan Pelbagai Bentuk Muka Bumi di Malaysia",
-    ],
-  },
-  7: {
-    title: "Saliran",
-    subtopics: [
-      "7.1 Pandang Darat Fizikal Peringkat Aliran Sungai",
-      "7.2 Sungai dan Tasik Utama di Malaysia",
-      "7.3 Kepentingan Sungai dan Tasik di Malaysia",
-    ],
-  },
-  8: {
-    title: "Penduduk di Malaysia",
-    subtopics: [
-      "8.1 Taburan Penduduk di Malaysia",
-      "8.2 Faktor-faktor yang Mempengaruhi Taburan Penduduk di Malaysia",
-    ],
-  },
-  9: {
-    title: "Petempatan di Malaysia",
-    subtopics: [
-      "9.1 Jenis-jenis Petempatan di Malaysia",
-      "9.2 Pola Petempatan di Malaysia",
-      "9.3 Fungsi Petempatan Bandar dan Luar Bandar",
-    ],
-  },
-  10: {
-    title: "Bentuk Muka Bumi dan Saliran di Asia Tenggara",
-    subtopics: [
-      "10.1 Negara-negara di Asia Tenggara",
-      "10.2 Bentuk Muka Bumi di Asia Tenggara",
-      "10.3 Sungai dan Tasik Utama di Asia Tenggara",
-    ],
-  },
-  11: {
-    title: "Penduduk dan Petempatan di Asia Tenggara",
-    subtopics: [
-      "11.1 Taburan Penduduk Asia Tenggara",
-      "11.2 Fungsi-fungsi Petempatan Bandar Utama di Asia Tenggara",
-    ],
-  },
-  12: {
-    title: "Sumber Air",
-    subtopics: [
-      "12.1 Jenis-jenis Sumber Air",
-      "12.2 Punca Krisis Air di Malaysia",
-      "12.3 Kesan Krisis Air di Malaysia",
-      "12.4 Langkah Mengurangkan Kesan Krisis Air",
-    ],
-  },
-  13: {
-    title: "Sisa Domestik",
-    subtopics: [
-      "13.1 Jenis-jenis Sisa Domestik",
-      "13.2 Sisa-sisa Domestik di Malaysia",
-      "13.3 Kesan-kesan Pembuangan Sisa Domestik",
-      "13.4 Langkah-langkah Mengurangkan Kesan Pembuangan Sisa Domestik",
-    ],
-  },
+const GEOGRAPHY_F1_CHAPTER_TITLES: Record<number, string> = {
+  1: "Arah",
+  2: "Kedudukan",
+  3: "Peta Lakar",
+  4: "Lakaran Peta Malaysia",
+  5: "Bumi",
+  6: "Bentuk Muka Bumi",
+  7: "Saliran",
+  8: "Penduduk di Malaysia",
+  9: "Petempatan di Malaysia",
+  10: "Bentuk Muka Bumi dan Saliran di Asia Tenggara",
+  11: "Penduduk dan Petempatan di Asia Tenggara",
+  12: "Sumber Air",
+  13: "Sisa Domestik",
 };
-
-type LegacyNote = (typeof allNotes)[number];
 
 function geographyFlashcardsFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
@@ -211,75 +120,19 @@ function geographyQuizzesFor(chapterNum: number) {
   return allQuizzes.filter((q) => q.subjectId === "geography" && q.chapter === chapterKey);
 }
 
-function geographyChapterNotes(chapterNum: number) {
-  const spec = GEOGRAPHY_F1_SUBTOPICS[chapterNum];
-  const chapterKey = `Chapter ${chapterNum}`;
-  const sourceNotes = allNotes.filter(
-    (note) => note.subjectId === "geography" && note.chapter === chapterKey,
-  );
-  const chapterSummary =
-    sourceNotes.map((note) => note.summary).join(" ") ||
-    `${spec.title} merangkumi kemahiran dan konsep utama Geografi Tingkatan 1.`;
-  const keywords = Array.from(
-    new Set(sourceNotes.flatMap((note) => note.keywords ?? []).filter(Boolean)),
-  );
-  const leadSentences = splitSentences(chapterSummary).slice(0, 4);
-
-  return {
-    quickRevision: leadSentences,
-    sections: spec.subtopics.map((subtopic, index) => ({
-      id: `geo-f1-c${chapterNum}-s${index + 1}`,
-      title: subtopic,
-      content: extractGeographySubtopicContent(subtopic, sourceNotes, chapterSummary),
-      keywords,
-    })),
-    keyExamFacts: leadSentences,
-    keyTerms: keywords.slice(0, 16),
-    chapterSummary,
-  };
-}
-
 function geography(chapterNum: number): ChapterContent {
-  const spec = GEOGRAPHY_F1_SUBTOPICS[chapterNum];
+  const chapterKey = `Chapter ${chapterNum}`;
   return {
     id: `geography-f1-c${chapterNum}`,
     subjectId: "geography",
     form: "Form 1",
-    chapterKey: `Chapter ${chapterNum}`,
-    title: spec.title,
-    notes: geographyChapterNotes(chapterNum),
+    chapterKey,
+    title: GEOGRAPHY_F1_CHAPTER_TITLES[chapterNum],
     flashcards: geographyFlashcardsFor(chapterNum),
     quiz: geographyQuizzesFor(chapterNum),
+    subtopics: getGeographyF1Subtopics(chapterKey),
   };
 }
-
-function extractGeographySubtopicContent(
-  subtopic: string,
-  sourceNotes: LegacyNote[],
-  fallback: string,
-) {
-  const source = sourceNotes.map((note) => note.summary).join(" ");
-  const title = subtopic.replace(/^\d+\.\d+\s+/, "");
-  const keywords = title
-    .toLowerCase()
-    .split(/\s+/)
-    .map((word) => word.replace(/[^a-z0-9\u00c0-\u024f]/gi, ""))
-    .filter((word) => word.length > 3);
-  const sentences = splitSentences(source);
-  const matches = sentences.filter((sentence) => {
-    const lower = sentence.toLowerCase();
-    return keywords.some((keyword) => lower.includes(keyword));
-  });
-  return (matches.length ? matches : sentences).slice(0, 4).join(" ") || fallback;
-}
-
-function splitSentences(text: string) {
-  return text
-    .split(/(?<=[.!?])\s+/)
-    .map((sentence) => sentence.trim())
-    .filter(Boolean);
-}
-
 export const chapters: ChapterContent[] = [
   // Sejarah Form 1
   sejarah(1, "Mengenali Sejarah", "dZuhYNHdQ7U", mengenaliSejarahMindMap, "Mengenali Sejarah"),
