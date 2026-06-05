@@ -27,6 +27,8 @@ import { mathF1C1NotesBM } from "@/data/math-f1-c1-notes-bm";
 import { mathF1C1NotesDLP } from "@/data/math-f1-c1-notes-dlp";
 import { mathF1C2NotesBM } from "@/data/math-f1-c2-notes-bm";
 import { mathF1C2NotesDLP } from "@/data/math-f1-c2-notes-dlp";
+import { mathF1C3NotesBM } from "@/data/math-f1-c3-notes-bm";
+import { mathF1C3NotesDLP } from "@/data/math-f1-c3-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -201,6 +203,24 @@ export const chapters: ChapterContent[] = [
     title: "Factors and Multiples",
     lang: "dlp",
     notes: mathF1C2NotesDLP,
+  },
+  {
+    id: "math-f1-c3-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 3",
+    title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
+    lang: "bm",
+    notes: mathF1C3NotesBM,
+  },
+  {
+    id: "math-f1-c3-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 3",
+    title: "Squares, Square Roots, Cubes and Cube Roots",
+    lang: "dlp",
+    notes: mathF1C3NotesDLP,
   },
 
   // Science Form 1 (bilingual)

@@ -2295,12 +2295,1592 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS: ShuffledQuestion[] = [
   ),
 ];
 
-const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP: ShuffledQuestion[] =
-  MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS;
-const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP: ShuffledQuestion[] =
-  MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS;
-const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP: ShuffledQuestion[] =
-  MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS;
+const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
+  [
+    "What is a factor?",
+    [
+      "A number that divides exactly without a remainder",
+      "The product of numbers",
+      "A decimal number",
+      "Negative numbers only",
+    ],
+    0,
+    "A factor divides a number exactly without a remainder.",
+    "Easy",
+  ],
+  [
+    "What is a factor of 12?",
+    ["5", "7", "3", "8"],
+    2,
+    "12 ÷ 3 = 4 with no remainder, so 3 is a factor of 12.",
+    "Easy",
+  ],
+  [
+    "Which list shows the factors of 12?",
+    ["1, 2, 3, 4, 6, 12", "2, 4, 8, 12", "3, 6, 9, 12", "1, 5, 10, 12"],
+    0,
+    "The factors of 12 are 1, 2, 3, 4, 6 and 12.",
+    "Easy",
+  ],
+  [
+    "What is a prime number?",
+    [
+      "A number with many factors",
+      "A number with exactly two factors",
+      "Even numbers only",
+      "A multiple of 10",
+    ],
+    1,
+    "A prime number has exactly two factors: 1 and the number itself.",
+    "Easy",
+  ],
+  ["Which is a prime number?", ["1", "4", "9", "11"], 3, "11 only has factors 1 and 11.", "Easy"],
+  [
+    "Is 1 a prime number?",
+    ["Yes", "No", "Only if it is odd", "Only if it is even"],
+    1,
+    "1 is not a prime number because it has only one factor.",
+    "Easy",
+  ],
+  [
+    "What is a prime factor?",
+    [
+      "A factor that is also a prime number",
+      "The smallest multiple",
+      "Only the greatest factor",
+      "A number that is not a factor",
+    ],
+    0,
+    "A prime factor is a factor that is also a prime number.",
+    "Easy",
+  ],
+  [
+    "What is the prime factorisation of 12?",
+    ["2 x 2 x 3", "2 x 6", "3 x 4", "1 x 12"],
+    0,
+    "12 = 2 x 2 x 3 in prime factors.",
+    "Easy",
+  ],
+  [
+    "What are common factors?",
+    [
+      "Factors shared by two or more numbers",
+      "Multiples that are the same",
+      "The greatest number",
+      "The smallest number",
+    ],
+    0,
+    "Common factors are factors shared by two or more numbers.",
+    "Easy",
+  ],
+  [
+    "What is the Highest Common Factor (HCF)?",
+    [
+      "The greatest common factor",
+      "The lowest common multiple",
+      "The first factor",
+      "The first multiple",
+    ],
+    0,
+    "HCF means Highest Common Factor.",
+    "Easy",
+  ],
+  [
+    "The HCF of 12 and 18 is:",
+    ["3", "6", "9", "12"],
+    1,
+    "The common factors of 12 and 18 are 1, 2, 3 and 6. The greatest is 6.",
+    "Easy",
+  ],
+  [
+    "What is a multiple?",
+    [
+      "The product of a number and a positive whole number",
+      "A number that divides exactly",
+      "A prime factor",
+      "A division remainder",
+    ],
+    0,
+    "Multiples are obtained by multiplying a number by positive whole numbers.",
+    "Easy",
+  ],
+  [
+    "Which is a multiple of 4?",
+    ["6", "10", "12", "14"],
+    2,
+    "12 = 4 x 3, so 12 is a multiple of 4.",
+    "Easy",
+  ],
+  [
+    "What are common multiples?",
+    [
+      "Multiples shared by two or more numbers",
+      "The greatest factor",
+      "Prime numbers only",
+      "The same remainder",
+    ],
+    0,
+    "Common multiples are multiples shared by two or more numbers.",
+    "Easy",
+  ],
+  [
+    "What is the Lowest Common Multiple (LCM)?",
+    [
+      "The greatest common factor",
+      "The lowest common multiple",
+      "A prime number",
+      "The first factor",
+    ],
+    1,
+    "LCM means Lowest Common Multiple.",
+    "Easy",
+  ],
+  [
+    "The LCM of 4 and 6 is:",
+    ["6", "10", "12", "24"],
+    2,
+    "Common multiples of 4 and 6 include 12 and 24. The lowest is 12.",
+    "Easy",
+  ],
+  [
+    "HCF is suitable for:",
+    [
+      "Dividing into equal groups",
+      "Finding repeated times",
+      "Converting decimals",
+      "Drawing graphs",
+    ],
+    0,
+    "HCF is suitable for dividing into equal groups.",
+    "Easy",
+  ],
+  [
+    "LCM is suitable for:",
+    [
+      "Finding the greatest group",
+      "Finding repeated events happening together",
+      "Dividing remainders",
+      "Finding factors",
+    ],
+    1,
+    "LCM is suitable for events that repeat together.",
+    "Easy",
+  ],
+  [
+    "A keyword for HCF is:",
+    ["Lowest", "First time together", "Greatest", "Repeated"],
+    2,
+    "HCF is related to the greatest or maximum value.",
+    "Easy",
+  ],
+  [
+    "A keyword for LCM is:",
+    ["Maximum", "Equal groups", "Greatest", "First time together"],
+    3,
+    "LCM is often used when finding the first time events happen together.",
+    "Easy",
+  ],
+  ["A factor of 18 includes:", ["4", "5", "6", "8"], 2, "18 ÷ 6 = 3 with no remainder.", "Easy"],
+  ["A factor of 20 includes:", ["6", "8", "10", "12"], 2, "20 ÷ 10 = 2 with no remainder.", "Easy"],
+  [
+    "Which is not a factor of 12?",
+    ["1", "3", "5", "6"],
+    2,
+    "12 cannot be divided exactly by 5.",
+    "Easy",
+  ],
+  [
+    "Which is not a multiple of 6?",
+    ["6", "12", "18", "20"],
+    3,
+    "20 is not the product of 6 and a whole number.",
+    "Easy",
+  ],
+  [
+    "The even prime number is:",
+    ["2", "4", "6", "8"],
+    0,
+    "2 is the only even prime number in this list.",
+    "Easy",
+  ],
+  [
+    "A common factor of 4 and 6 includes:",
+    ["1", "5", "8", "12"],
+    0,
+    "1 divides all whole numbers.",
+    "Easy",
+  ],
+  [
+    "A common multiple of 4 and 6 includes:",
+    ["8", "10", "12", "14"],
+    2,
+    "12 is a multiple of both 4 and 6.",
+    "Easy",
+  ],
+  [
+    "Prime factorisation uses:",
+    ["Prime numbers", "Decimal numbers", "Negative numbers only", "Fractions only"],
+    0,
+    "Prime factorisation uses prime number factors.",
+    "Easy",
+  ],
+  [
+    "In the HCF method, choose the common factor that is:",
+    ["Smallest", "Greatest", "Most odd", "Last"],
+    1,
+    "HCF is the greatest common factor.",
+    "Easy",
+  ],
+  [
+    "In the LCM method, choose the common multiple that is:",
+    ["Smallest", "Greatest", "Most odd", "Not a multiple"],
+    0,
+    "LCM is the lowest common multiple.",
+    "Easy",
+  ],
+]);
+
+const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
+  [
+    "Find all factors of 16.",
+    ["1, 2, 4, 8, 16", "1, 3, 5, 16", "2, 4, 6, 16", "1, 2, 8"],
+    0,
+    "16 can be divided exactly by 1, 2, 4, 8 and 16.",
+    "Medium",
+  ],
+  [
+    "Find all factors of 24.",
+    ["1, 2, 3, 4, 6, 8, 12, 24", "1, 2, 4, 12", "2, 3, 6, 24", "1, 5, 10, 24"],
+    0,
+    "The complete list of factors of 24 is 1, 2, 3, 4, 6, 8, 12 and 24.",
+    "Medium",
+  ],
+  [
+    "The prime factorisation of 30 is:",
+    ["2 x 3 x 5", "3 x 10", "2 x 15", "5 x 6"],
+    0,
+    "30 = 2 x 3 x 5.",
+    "Medium",
+  ],
+  [
+    "The prime factorisation of 36 is:",
+    ["2 x 2 x 3 x 3", "4 x 9", "6 x 6", "2 x 18"],
+    0,
+    "36 = 2² x 3² = 2 x 2 x 3 x 3.",
+    "Medium",
+  ],
+  [
+    "The HCF of 16 and 24 is:",
+    ["4", "6", "8", "12"],
+    2,
+    "The highest common factor of 16 and 24 is 8.",
+    "Medium",
+  ],
+  [
+    "The HCF of 20 and 30 is:",
+    ["5", "10", "15", "20"],
+    1,
+    "The highest common factor of 20 and 30 is 10.",
+    "Medium",
+  ],
+  [
+    "The HCF of 18 and 24 is:",
+    ["3", "6", "9", "12"],
+    1,
+    "18 = 2 x 3 x 3 and 24 = 2 x 2 x 2 x 3, so HCF = 2 x 3 = 6.",
+    "Medium",
+  ],
+  [
+    "The HCF of 12, 18 and 30 is:",
+    ["3", "6", "9", "12"],
+    1,
+    "6 is the greatest factor that divides 12, 18 and 30.",
+    "Medium",
+  ],
+  [
+    "The LCM of 5 and 8 is:",
+    ["10", "20", "40", "80"],
+    2,
+    "5 and 8 have no common factor except 1, so LCM = 5 x 8 = 40.",
+    "Medium",
+  ],
+  [
+    "The LCM of 6 and 8 is:",
+    ["12", "18", "24", "48"],
+    2,
+    "The lowest common multiple of 6 and 8 is 24.",
+    "Medium",
+  ],
+  [
+    "The LCM of 9 and 12 is:",
+    ["18", "24", "36", "48"],
+    2,
+    "9 = 3² and 12 = 2² x 3, so LCM = 2² x 3² = 36.",
+    "Medium",
+  ],
+  [
+    "The LCM of 10 and 15 is:",
+    ["15", "20", "30", "45"],
+    2,
+    "The lowest common multiple of 10 and 15 is 30.",
+    "Medium",
+  ],
+  [
+    "What are the common prime factors of 12 and 18?",
+    ["2 and 3", "2 only", "3 only", "5"],
+    0,
+    "12 = 2 x 2 x 3 and 18 = 2 x 3 x 3, so the common prime factors are 2 and 3.",
+    "Medium",
+  ],
+  [
+    "For HCF, common prime factors are taken with:",
+    ["The smallest powers", "The greatest powers", "The sum of powers", "No powers"],
+    0,
+    "HCF takes common prime factors with the smallest powers.",
+    "Medium",
+  ],
+  [
+    "For LCM, all prime factors are taken with:",
+    ["The smallest powers", "The greatest powers", "Power of one only", "Power of zero"],
+    1,
+    "LCM takes all prime factors with the greatest powers.",
+    "Medium",
+  ],
+  [
+    "If 2 x 2 x 3 is the prime factorisation, the number is:",
+    ["7", "12", "18", "24"],
+    1,
+    "2 x 2 x 3 = 12.",
+    "Medium",
+  ],
+  [
+    "If 2 x 3 x 3 is the prime factorisation, the number is:",
+    ["12", "15", "18", "27"],
+    2,
+    "2 x 3 x 3 = 18.",
+    "Medium",
+  ],
+  [
+    "Which of the following is a multiple of 9?",
+    ["18", "20", "25", "32"],
+    0,
+    "18 = 9 x 2.",
+    "Medium",
+  ],
+  [
+    "Which of the following is a factor of 36?",
+    ["5", "7", "9", "11"],
+    2,
+    "36 ÷ 9 = 4 with no remainder.",
+    "Medium",
+  ],
+  [
+    "Which pair has HCF 5?",
+    ["10 and 15", "12 and 18", "8 and 12", "6 and 14"],
+    0,
+    "The HCF of 10 and 15 is 5.",
+    "Medium",
+  ],
+  [
+    "Which pair has LCM 18?",
+    ["6 and 9", "4 and 8", "5 and 10", "8 and 12"],
+    0,
+    "The lowest common multiple of 6 and 9 is 18.",
+    "Medium",
+  ],
+  [
+    "Find the HCF of 28 and 42.",
+    ["7", "14", "21", "28"],
+    1,
+    "28 = 2 x 2 x 7 and 42 = 2 x 3 x 7, so HCF = 2 x 7 = 14.",
+    "Medium",
+  ],
+  [
+    "Find the LCM of 3, 4 and 6.",
+    ["6", "12", "18", "24"],
+    1,
+    "12 is the lowest multiple that can be divided by 3, 4 and 6.",
+    "Medium",
+  ],
+  [
+    "Find the HCF of 8 and 20.",
+    ["2", "4", "8", "10"],
+    1,
+    "The common factors of 8 and 20 are 1, 2 and 4. HCF = 4.",
+    "Medium",
+  ],
+  [
+    "Find the LCM of 8 and 20.",
+    ["20", "32", "40", "80"],
+    2,
+    "8 = 2³ and 20 = 2² x 5, so LCM = 2³ x 5 = 40.",
+    "Medium",
+  ],
+  [
+    "If two numbers are 4 and 6, their first common multiple is:",
+    ["4", "6", "10", "12"],
+    3,
+    "The first common multiple of 4 and 6 is 12.",
+    "Medium",
+  ],
+  [
+    "If the common factors of 12 and 18 are 1, 2, 3 and 6, the HCF is:",
+    ["1", "2", "3", "6"],
+    3,
+    "The HCF is the greatest common factor, which is 6.",
+    "Medium",
+  ],
+  [
+    "If the common multiples of 4 and 6 are 12, 24 and 36, the LCM is:",
+    ["12", "24", "36", "48"],
+    0,
+    "The LCM is the lowest common multiple, which is 12.",
+    "Medium",
+  ],
+  [
+    "A number that can be divided exactly by 2 and 5 is:",
+    ["10", "11", "13", "17"],
+    0,
+    "10 can be divided exactly by 2 and 5.",
+    "Medium",
+  ],
+  [
+    "What are the prime factors of 45?",
+    ["3 and 5", "2 and 5", "3 and 7", "5 only"],
+    0,
+    "45 = 3 x 3 x 5, so the prime factors are 3 and 5.",
+    "Medium",
+  ],
+]);
+
+const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
+  [
+    "Ali has 24 pencils and 36 pens. He wants to divide them equally into boxes. The maximum number of boxes is:",
+    ["6", "8", "12", "24"],
+    2,
+    "Use HCF. The HCF of 24 and 36 is 12.",
+    "Hard",
+  ],
+  [
+    "Bell A rings every 6 minutes and Bell B rings every 8 minutes. They ring together every:",
+    ["12 minutes", "24 minutes", "36 minutes", "48 minutes"],
+    1,
+    "Use LCM. The LCM of 6 and 8 is 24.",
+    "Hard",
+  ],
+  [
+    "12 apples and 18 oranges are divided equally into bags. The greatest number of bags is:",
+    ["3", "6", "9", "12"],
+    1,
+    "Use HCF. The HCF of 12 and 18 is 6.",
+    "Hard",
+  ],
+  [
+    "Bus A arrives every 10 minutes and Bus B arrives every 15 minutes. They arrive together every:",
+    ["15 minutes", "20 minutes", "30 minutes", "60 minutes"],
+    2,
+    "Use LCM. The LCM of 10 and 15 is 30.",
+    "Hard",
+  ],
+  [
+    "A teacher has 20 books and 30 pens. Each student receives the same number of items. The maximum number of students is:",
+    ["5", "10", "15", "20"],
+    1,
+    "Use HCF. The HCF of 20 and 30 is 10.",
+    "Hard",
+  ],
+  [
+    "A red light flashes every 9 seconds and a blue light every 12 seconds. They flash together every:",
+    ["18 seconds", "24 seconds", "36 seconds", "48 seconds"],
+    2,
+    "Use LCM. The LCM of 9 and 12 is 36.",
+    "Hard",
+  ],
+  [
+    "The HCF of 48 and 60 is:",
+    ["6", "8", "12", "24"],
+    2,
+    "48 = 2⁴ x 3 and 60 = 2² x 3 x 5, so HCF = 2² x 3 = 12.",
+    "Hard",
+  ],
+  ["The LCM of 48 and 60 is:", ["120", "180", "240", "360"], 2, "LCM = 2⁴ x 3 x 5 = 240.", "Hard"],
+  [
+    "Three bells ring every 4, 6 and 10 minutes. All of them ring together every:",
+    ["20 minutes", "30 minutes", "60 minutes", "120 minutes"],
+    2,
+    "The LCM of 4, 6 and 10 is 60.",
+    "Hard",
+  ],
+  [
+    "36 sweets and 48 chocolates are packed equally. The maximum number of packs is:",
+    ["6", "9", "12", "18"],
+    2,
+    "Use HCF. The HCF of 36 and 48 is 12.",
+    "Hard",
+  ],
+  [
+    "If the HCF of two numbers is 1, the two numbers:",
+    ["Must be the same", "Have no common factor except 1", "Must be even", "Must be prime"],
+    1,
+    "HCF 1 means the only greatest common factor is 1.",
+    "Hard",
+  ],
+  [
+    "If one number is a factor of another number, the LCM of both numbers is:",
+    ["The smaller number", "The larger number", "The HCF", "1"],
+    1,
+    "Example: for 4 and 12, the LCM is 12, the larger number.",
+    "Hard",
+  ],
+  [
+    "If one number is a factor of another number, the HCF of both numbers is:",
+    ["The smaller number", "The larger number", "The LCM", "The product"],
+    0,
+    "Example: for 4 and 12, the HCF is 4, the smaller number.",
+    "Hard",
+  ],
+  [
+    "For the numbers 14 and 21, the HCF and LCM respectively are:",
+    ["7 and 42", "7 and 21", "14 and 42", "3 and 42"],
+    0,
+    "HCF = 7 and LCM = 42.",
+    "Hard",
+  ],
+  [
+    "For the numbers 8 and 12, HCF x LCM is:",
+    ["24", "48", "96", "120"],
+    2,
+    "HCF = 4 and LCM = 24, so 4 x 24 = 96.",
+    "Hard",
+  ],
+  [
+    "Gift boxes require 16 red ribbons and 24 blue ribbons divided equally. Each largest group contains:",
+    ["2 red and 3 blue", "4 red and 6 blue", "8 red and 12 blue", "16 red and 24 blue"],
+    0,
+    "The maximum number of groups is HCF of 16 and 24 = 8, so each group has 2 red and 3 blue.",
+    "Hard",
+  ],
+  [
+    "Machine A stops every 8 hours and Machine B every 12 hours. If they stop together now, they will stop together again after:",
+    ["16 hours", "20 hours", "24 hours", "48 hours"],
+    2,
+    "Use LCM. The LCM of 8 and 12 is 24.",
+    "Hard",
+  ],
+  [
+    "The HCF of 27, 36 and 45 is:",
+    ["3", "6", "9", "12"],
+    2,
+    "9 divides 27, 36 and 45, and there is no greater common factor.",
+    "Hard",
+  ],
+  [
+    "The LCM of 5, 6 and 9 is:",
+    ["45", "60", "90", "180"],
+    2,
+    "5 = 5, 6 = 2 x 3 and 9 = 3², so LCM = 2 x 3² x 5 = 90.",
+    "Hard",
+  ],
+  [
+    "If 2² x 3 is 12 and 2 x 3² is 18, the HCF is:",
+    ["2", "3", "6", "36"],
+    2,
+    "Take the common factors with the smallest powers: 2 x 3 = 6.",
+    "Hard",
+  ],
+  [
+    "If 2² x 3 is 12 and 2 x 3² is 18, the LCM is:",
+    ["18", "24", "36", "72"],
+    2,
+    "Take all factors with the greatest powers: 2² x 3² = 36.",
+    "Hard",
+  ],
+  [
+    "A coach divides 28 boys and 35 girls into equal groups. The maximum number of groups is:",
+    ["5", "7", "14", "35"],
+    1,
+    "The HCF of 28 and 35 is 7.",
+    "Hard",
+  ],
+  [
+    "Two events happen every 7 days and 14 days. The events happen together every:",
+    ["7 days", "14 days", "21 days", "28 days"],
+    1,
+    "The LCM of 7 and 14 is 14.",
+    "Hard",
+  ],
+  [
+    "Which situation requires HCF?",
+    [
+      "Determining a repeated schedule",
+      "Dividing items equally",
+      "Finding the first time together",
+      "Finding multiples",
+    ],
+    1,
+    "Equal division uses HCF.",
+    "Hard",
+  ],
+  [
+    "Which situation requires LCM?",
+    [
+      "Finding the greatest group",
+      "Dividing sweets equally",
+      "Determining when two bells ring together",
+      "Finding common factors",
+    ],
+    2,
+    "Repeated events happening together use LCM.",
+    "Hard",
+  ],
+  [
+    "If HCF = 6 for 18 and 24, the maximum number of equal groups for 18 and 24 is:",
+    ["3", "4", "6", "12"],
+    2,
+    "HCF shows the maximum number of equal groups, which is 6.",
+    "Hard",
+  ],
+  [
+    "If LCM = 36 for 9 and 12, it means:",
+    [
+      "36 is the greatest factor",
+      "36 is the lowest common multiple",
+      "36 is a prime number",
+      "36 is a remainder",
+    ],
+    1,
+    "LCM is the lowest common multiple.",
+    "Hard",
+  ],
+  [
+    "Find the smallest number that can be divided exactly by 4, 5 and 10.",
+    ["10", "20", "40", "50"],
+    1,
+    "The question asks for the lowest common multiple. LCM = 20.",
+    "Hard",
+  ],
+  [
+    "Find the greatest number that can divide 30 and 45 exactly.",
+    ["5", "10", "15", "30"],
+    2,
+    "The question asks for the highest common factor. HCF = 15.",
+    "Hard",
+  ],
+  [
+    "If 18 flowers and 24 leaves are arranged equally in bouquets, the maximum number of bouquets is:",
+    ["3", "6", "9", "12"],
+    1,
+    "Use HCF. The HCF of 18 and 24 is 6.",
+    "Hard",
+  ],
+]);
+
+type MathQuestionSeed = [string, string[], number, string, Difficulty];
+
+function mathQuestions(items: MathQuestionSeed[]): ShuffledQuestion[] {
+  return items.map(([question, options, answerIndex, explanation, difficulty]) =>
+    mq(question, options, answerIndex, explanation, difficulty),
+  );
+}
+
+const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
+  [
+    "Apakah maksud kuasa dua?",
+    [
+      "Mendarab nombor dengan dirinya sendiri",
+      "Mendarab nombor dengan 2",
+      "Menambah nombor dua kali",
+      "Membahagi nombor dengan 2",
+    ],
+    0,
+    "Kuasa dua bermaksud mendarab nombor dengan dirinya sendiri.",
+    "Easy",
+  ],
+  ["Apakah maksud a²?", ["a + a", "a x a", "a ÷ a", "2 x a"], 1, "a² bermaksud a x a.", "Easy"],
+  ["Berapakah 4²?", ["8", "12", "16", "24"], 2, "4² = 4 x 4 = 16.", "Easy"],
+  [
+    "Kuasa dua boleh dikaitkan dengan:",
+    ["Luas segi empat sama", "Isipadu kubus", "Lilitan bulatan", "Panjang garis sahaja"],
+    0,
+    "Jika sisi segi empat sama ialah s, luasnya ialah s².",
+    "Easy",
+  ],
+  [
+    "Apakah kuasa dua sempurna?",
+    [
+      "Nombor hasil kuasa dua nombor bulat",
+      "Nombor perpuluhan",
+      "Nombor negatif sahaja",
+      "Nombor yang dibahagi 3",
+    ],
+    0,
+    "Kuasa dua sempurna terhasil daripada kuasa dua nombor bulat.",
+    "Easy",
+  ],
+  [
+    "Manakah kuasa dua sempurna?",
+    ["12", "16", "18", "20"],
+    1,
+    "16 = 4², jadi 16 ialah kuasa dua sempurna.",
+    "Easy",
+  ],
+  [
+    "Dalam pemfaktoran perdana, kuasa dua sempurna boleh dikumpulkan dalam:",
+    [
+      "Satu kumpulan",
+      "Dua kumpulan yang sama",
+      "Tiga kumpulan yang sama",
+      "Empat kumpulan berbeza",
+    ],
+    1,
+    "Kuasa dua sempurna mempunyai faktor perdana yang boleh dipasangkan.",
+    "Easy",
+  ],
+  [
+    "Punca kuasa dua ialah songsangan kepada:",
+    ["Kuasa dua", "Kuasa tiga", "Tambah", "Tolak"],
+    0,
+    "Punca kuasa dua membalikkan proses kuasa dua.",
+    "Easy",
+  ],
+  ["Jika 6² = 36, maka √36 ialah:", ["5", "6", "7", "8"], 1, "√36 = 6 kerana 6² = 36.", "Easy"],
+  [
+    "Punca kuasa dua bagi luas segi empat sama memberi:",
+    ["Panjang sisi", "Isipadu", "Sudut", "Jisim"],
+    0,
+    "Panjang sisi diperoleh dengan mencari punca kuasa dua luas.",
+    "Easy",
+  ],
+  [
+    "Berapakah √(49/81)?",
+    ["7/9", "49/9", "7/81", "9/7"],
+    0,
+    "√49 = 7 dan √81 = 9, jadi √(49/81) = 7/9.",
+    "Easy",
+  ],
+  [
+    "Sebelum mencari punca kuasa dua nombor bercampur, nombor itu perlu ditukar kepada:",
+    ["Pecahan tak wajar", "Perpuluhan negatif", "Nombor perdana", "Kuasa tiga"],
+    0,
+    "Nombor bercampur ditukar kepada pecahan tak wajar dahulu.",
+    "Easy",
+  ],
+  ["Apakah nilai √a x √a?", ["a", "2a", "√2a", "a²"], 0, "√a x √a = a.", "Easy"],
+  ["Apakah nilai √a x √b?", ["√ab", "a + b", "ab²", "√a + √b"], 0, "√a x √b = √ab.", "Easy"],
+  [
+    "Apakah maksud kuasa tiga?",
+    [
+      "Mendarab nombor dengan dirinya sendiri tiga kali",
+      "Mendarab nombor dengan 3 sahaja",
+      "Menambah nombor tiga kali",
+      "Membahagi nombor dengan 3",
+    ],
+    0,
+    "Kuasa tiga bermaksud a x a x a.",
+    "Easy",
+  ],
+  [
+    "Apakah maksud a³?",
+    ["a + a + a", "a x 3", "a x a x a", "a ÷ 3"],
+    2,
+    "a³ bermaksud a x a x a.",
+    "Easy",
+  ],
+  ["Berapakah 2³?", ["5", "6", "8", "9"], 2, "2³ = 2 x 2 x 2 = 8.", "Easy"],
+  [
+    "2³ bukan bermaksud:",
+    ["2 x 2 x 2", "8", "2 x 3", "Kuasa tiga bagi 2"],
+    2,
+    "Kesilapan biasa ialah menganggap 2³ sebagai 2 x 3.",
+    "Easy",
+  ],
+  [
+    "Kuasa tiga boleh dikaitkan dengan:",
+    ["Isipadu kubus", "Luas segi empat sama", "Panjang garis", "Jisim objek"],
+    0,
+    "Jika sisi kubus ialah s, isipadunya ialah s³.",
+    "Easy",
+  ],
+  [
+    "Manakah kuasa tiga sempurna?",
+    ["16", "27", "50", "81"],
+    1,
+    "27 = 3³, jadi 27 ialah kuasa tiga sempurna.",
+    "Easy",
+  ],
+  [
+    "Dalam pemfaktoran perdana, kuasa tiga sempurna boleh dikumpulkan dalam:",
+    ["Dua kumpulan yang sama", "Tiga kumpulan yang sama", "Lima kumpulan", "Kumpulan tidak sama"],
+    1,
+    "Kuasa tiga sempurna mempunyai faktor perdana dalam kumpulan tiga.",
+    "Easy",
+  ],
+  [
+    "Kuasa tiga bagi nombor positif menghasilkan:",
+    ["Positif", "Negatif", "Sifar sahaja", "Pecahan sahaja"],
+    0,
+    "Nombor positif yang dikuasakan tiga kekal positif.",
+    "Easy",
+  ],
+  [
+    "Kuasa tiga bagi nombor negatif menghasilkan:",
+    ["Positif", "Negatif", "Sentiasa sifar", "Tiada jawapan"],
+    1,
+    "Nombor negatif yang dikuasakan tiga menghasilkan nilai negatif.",
+    "Easy",
+  ],
+  [
+    "Berapakah (-5)³?",
+    ["125", "-125", "15", "-15"],
+    1,
+    "(-5)³ = (-5) x (-5) x (-5) = -125.",
+    "Easy",
+  ],
+  [
+    "Punca kuasa tiga ialah songsangan kepada:",
+    ["Kuasa tiga", "Kuasa dua", "Pendaraban dua nombor", "Penolakan"],
+    0,
+    "Punca kuasa tiga membalikkan proses kuasa tiga.",
+    "Easy",
+  ],
+  ["Berapakah ∛8?", ["2", "3", "4", "8"], 0, "∛8 = 2 kerana 2³ = 8.", "Easy"],
+  ["Berapakah ∛(-8)?", ["2", "-2", "4", "-4"], 1, "∛(-8) = -2 kerana (-2)³ = -8.", "Easy"],
+  [
+    "Punca kuasa tiga bagi isipadu kubus memberi:",
+    ["Panjang sisi kubus", "Luas permukaan", "Jisim kubus", "Sudut kubus"],
+    0,
+    "Panjang sisi kubus diperoleh dengan mencari punca kuasa tiga isipadu.",
+    "Easy",
+  ],
+  [
+    "√54 terletak antara:",
+    ["5 dan 6", "6 dan 7", "7 dan 8", "8 dan 9"],
+    2,
+    "49 < 54 < 64, jadi √54 terletak antara 7 dan 8.",
+    "Easy",
+  ],
+  [
+    "Dalam tertib operasi, langkah pertama ialah:",
+    ["Kurungan", "Tambah", "Tolak", "Darab dari kanan"],
+    0,
+    "Kurungan diselesaikan dahulu sebelum operasi lain.",
+    "Easy",
+  ],
+]);
+
+const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
+  [
+    "What does square mean?",
+    [
+      "Multiplying a number by itself",
+      "Multiplying a number by 2",
+      "Adding a number twice",
+      "Dividing a number by 2",
+    ],
+    0,
+    "Square means multiplying a number by itself.",
+    "Easy",
+  ],
+  ["What does a² mean?", ["a + a", "a x a", "a ÷ a", "2 x a"], 1, "a² means a x a.", "Easy"],
+  ["What is 4²?", ["8", "12", "16", "24"], 2, "4² = 4 x 4 = 16.", "Easy"],
+  [
+    "A square can be related to:",
+    ["Area of a square", "Volume of a cube", "Circumference of a circle", "Length of a line only"],
+    0,
+    "If the side of a square is s, its area is s².",
+    "Easy",
+  ],
+  [
+    "What is a perfect square?",
+    [
+      "A number produced by squaring a whole number",
+      "A decimal number",
+      "A negative number only",
+      "A number divided by 3",
+    ],
+    0,
+    "A perfect square is produced by squaring a whole number.",
+    "Easy",
+  ],
+  [
+    "Which is a perfect square?",
+    ["12", "16", "18", "20"],
+    1,
+    "16 = 4², so 16 is a perfect square.",
+    "Easy",
+  ],
+  [
+    "In prime factorisation, a perfect square can be grouped into:",
+    ["One group", "Two identical groups", "Three identical groups", "Four different groups"],
+    1,
+    "A perfect square has prime factors that can be paired.",
+    "Easy",
+  ],
+  [
+    "Square root is the inverse of:",
+    ["Squaring", "Cubing", "Addition", "Subtraction"],
+    0,
+    "Square root reverses the squaring process.",
+    "Easy",
+  ],
+  ["If 6² = 36, then √36 is:", ["5", "6", "7", "8"], 1, "√36 = 6 because 6² = 36.", "Easy"],
+  [
+    "The square root of a square's area gives:",
+    ["Side length", "Volume", "Angle", "Mass"],
+    0,
+    "Side length is found by taking the square root of the area.",
+    "Easy",
+  ],
+  [
+    "What is √(49/81)?",
+    ["7/9", "49/9", "7/81", "9/7"],
+    0,
+    "√49 = 7 and √81 = 9, so √(49/81) = 7/9.",
+    "Easy",
+  ],
+  [
+    "Before finding the square root of a mixed number, it should be converted to:",
+    ["An improper fraction", "A negative decimal", "A prime number", "A cube"],
+    0,
+    "A mixed number is converted to an improper fraction first.",
+    "Easy",
+  ],
+  ["What is the value of √a x √a?", ["a", "2a", "√2a", "a²"], 0, "√a x √a = a.", "Easy"],
+  [
+    "What is the value of √a x √b?",
+    ["√ab", "a + b", "ab²", "√a + √b"],
+    0,
+    "√a x √b = √ab.",
+    "Easy",
+  ],
+  [
+    "What does cube mean?",
+    [
+      "Multiplying a number by itself three times",
+      "Multiplying a number by 3 only",
+      "Adding a number three times",
+      "Dividing a number by 3",
+    ],
+    0,
+    "Cube means a x a x a.",
+    "Easy",
+  ],
+  [
+    "What does a³ mean?",
+    ["a + a + a", "a x 3", "a x a x a", "a ÷ 3"],
+    2,
+    "a³ means a x a x a.",
+    "Easy",
+  ],
+  ["What is 2³?", ["5", "6", "8", "9"], 2, "2³ = 2 x 2 x 2 = 8.", "Easy"],
+  [
+    "2³ does not mean:",
+    ["2 x 2 x 2", "8", "2 x 3", "The cube of 2"],
+    2,
+    "A common mistake is thinking 2³ means 2 x 3.",
+    "Easy",
+  ],
+  [
+    "A cube can be related to:",
+    ["Volume of a cube", "Area of a square", "Length of a line", "Mass of an object"],
+    0,
+    "If the edge of a cube is s, its volume is s³.",
+    "Easy",
+  ],
+  [
+    "Which is a perfect cube?",
+    ["16", "27", "50", "81"],
+    1,
+    "27 = 3³, so 27 is a perfect cube.",
+    "Easy",
+  ],
+  [
+    "In prime factorisation, a perfect cube can be grouped into:",
+    ["Two identical groups", "Three identical groups", "Five groups", "Unequal groups"],
+    1,
+    "A perfect cube has prime factors in groups of three.",
+    "Easy",
+  ],
+  [
+    "The cube of a positive number produces:",
+    ["Positive", "Negative", "Zero only", "Fractions only"],
+    0,
+    "A positive number cubed remains positive.",
+    "Easy",
+  ],
+  [
+    "The cube of a negative number produces:",
+    ["Positive", "Negative", "Always zero", "No answer"],
+    1,
+    "A negative number cubed produces a negative value.",
+    "Easy",
+  ],
+  ["What is (-5)³?", ["125", "-125", "15", "-15"], 1, "(-5)³ = (-5) x (-5) x (-5) = -125.", "Easy"],
+  [
+    "Cube root is the inverse of:",
+    ["Cubing", "Squaring", "Multiplying two numbers", "Subtraction"],
+    0,
+    "Cube root reverses the cubing process.",
+    "Easy",
+  ],
+  ["What is ∛8?", ["2", "3", "4", "8"], 0, "∛8 = 2 because 2³ = 8.", "Easy"],
+  ["What is ∛(-8)?", ["2", "-2", "4", "-4"], 1, "∛(-8) = -2 because (-2)³ = -8.", "Easy"],
+  [
+    "The cube root of a cube's volume gives:",
+    ["Edge length of the cube", "Surface area", "Mass of the cube", "Angle of the cube"],
+    0,
+    "The edge length of a cube is found by taking the cube root of the volume.",
+    "Easy",
+  ],
+  [
+    "√54 lies between:",
+    ["5 and 6", "6 and 7", "7 and 8", "8 and 9"],
+    2,
+    "49 < 54 < 64, so √54 lies between 7 and 8.",
+    "Easy",
+  ],
+  [
+    "In order of operations, the first step is:",
+    ["Brackets", "Addition", "Subtraction", "Multiplication from the right"],
+    0,
+    "Brackets are solved before other operations.",
+    "Easy",
+  ],
+]);
+
+const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
+  ["Berapakah 9²?", ["18", "72", "81", "90"], 2, "9² = 9 x 9 = 81.", "Medium"],
+  ["Berapakah 12²?", ["124", "144", "154", "164"], 1, "12² = 12 x 12 = 144.", "Medium"],
+  ["Berapakah √121?", ["9", "10", "11", "12"], 2, "11² = 121, jadi √121 = 11.", "Medium"],
+  [
+    "Berapakah √(16/25)?",
+    ["2/5", "4/5", "8/25", "16/5"],
+    1,
+    "√16 = 4 dan √25 = 5, jadi √(16/25) = 4/5.",
+    "Medium",
+  ],
+  ["Berapakah √64 x √64?", ["8", "16", "64", "128"], 2, "√64 x √64 = 64.", "Medium"],
+  [
+    "Berapakah √9 x √16?",
+    ["7", "12", "25", "144"],
+    1,
+    "√9 = 3 dan √16 = 4, maka 3 x 4 = 12.",
+    "Medium",
+  ],
+  ["Berapakah 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 x 3 x 3 = 27.", "Medium"],
+  ["Berapakah 6³?", ["36", "126", "216", "236"], 2, "6³ = 216.", "Medium"],
+  ["Berapakah (-4)³?", ["64", "-64", "12", "-12"], 1, "(-4)³ = -64.", "Medium"],
+  ["Berapakah ∛27?", ["2", "3", "4", "9"], 1, "∛27 = 3 kerana 3³ = 27.", "Medium"],
+  ["Berapakah ∛125?", ["3", "4", "5", "25"], 2, "∛125 = 5 kerana 5³ = 125.", "Medium"],
+  ["Berapakah ∛(-64)?", ["-4", "4", "-8", "8"], 0, "∛(-64) = -4 kerana (-4)³ = -64.", "Medium"],
+  [
+    "Luas segi empat sama ialah 49 cm². Panjang sisinya ialah:",
+    ["6 cm", "7 cm", "8 cm", "9 cm"],
+    1,
+    "Panjang sisi = √49 = 7 cm.",
+    "Medium",
+  ],
+  [
+    "Isipadu kubus ialah 216 cm³. Panjang sisinya ialah:",
+    ["4 cm", "5 cm", "6 cm", "7 cm"],
+    2,
+    "Panjang sisi = ∛216 = 6 cm.",
+    "Medium",
+  ],
+  [
+    "√80 terletak antara:",
+    ["7 dan 8", "8 dan 9", "9 dan 10", "10 dan 11"],
+    1,
+    "64 < 80 < 81, jadi √80 terletak antara 8 dan 9.",
+    "Medium",
+  ],
+  [
+    "5.1³ terletak antara:",
+    ["4³ dan 5³", "5³ dan 6³", "6³ dan 7³", "7³ dan 8³"],
+    1,
+    "5.1 berada antara 5 dan 6, jadi 5.1³ berada antara 5³ dan 6³.",
+    "Medium",
+  ],
+  ["Hitung: 2² + 3²", ["10", "12", "13", "18"], 2, "2² + 3² = 4 + 9 = 13.", "Medium"],
+  ["Hitung: 4³ - 5²", ["29", "39", "49", "89"], 1, "4³ - 5² = 64 - 25 = 39.", "Medium"],
+  ["Hitung: √36 + ∛8", ["6", "8", "10", "14"], 1, "√36 = 6 dan ∛8 = 2, jumlah = 8.", "Medium"],
+  ["Hitung: (√49)²", ["7", "14", "49", "98"], 2, "√49 = 7, maka 7² = 49.", "Medium"],
+  ["Hitung: ∛(2³)", ["2", "4", "6", "8"], 0, "2³ = 8 dan ∛8 = 2.", "Medium"],
+  ["Hitung: 7² x 2", ["49", "56", "98", "108"], 2, "7² = 49 dan 49 x 2 = 98.", "Medium"],
+  ["Hitung: 100 - 4³", ["26", "36", "64", "96"], 1, "4³ = 64, jadi 100 - 64 = 36.", "Medium"],
+  ["Hitung: √81 ÷ 3", ["2", "3", "6", "9"], 1, "√81 = 9 dan 9 ÷ 3 = 3.", "Medium"],
+  ["Hitung: ∛1000 + 5", ["10", "15", "20", "105"], 1, "∛1000 = 10, jadi 10 + 5 = 15.", "Medium"],
+  ["Hitung: 3² + ∛27", ["9", "12", "18", "36"], 1, "3² = 9 dan ∛27 = 3, jumlah = 12.", "Medium"],
+  [
+    "Berapakah √(25/36)?",
+    ["5/6", "25/6", "5/36", "6/5"],
+    0,
+    "√25 = 5 dan √36 = 6, jadi √(25/36) = 5/6.",
+    "Medium",
+  ],
+  ["Hitung: 2³ + 2²", ["8", "10", "12", "16"], 2, "2³ = 8 dan 2² = 4, jumlah = 12.", "Medium"],
+  ["Hitung: √64 + √16", ["8", "10", "12", "16"], 2, "√64 = 8 dan √16 = 4, jumlah = 12.", "Medium"],
+  ["Hitung: ∛(-27) + 10", ["3", "7", "13", "37"], 1, "∛(-27) = -3, jadi -3 + 10 = 7.", "Medium"],
+]);
+
+const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
+  ["What is 9²?", ["18", "72", "81", "90"], 2, "9² = 9 x 9 = 81.", "Medium"],
+  ["What is 12²?", ["124", "144", "154", "164"], 1, "12² = 12 x 12 = 144.", "Medium"],
+  ["What is √121?", ["9", "10", "11", "12"], 2, "11² = 121, so √121 = 11.", "Medium"],
+  [
+    "What is √(16/25)?",
+    ["2/5", "4/5", "8/25", "16/5"],
+    1,
+    "√16 = 4 and √25 = 5, so √(16/25) = 4/5.",
+    "Medium",
+  ],
+  ["What is √64 x √64?", ["8", "16", "64", "128"], 2, "√64 x √64 = 64.", "Medium"],
+  [
+    "What is √9 x √16?",
+    ["7", "12", "25", "144"],
+    1,
+    "√9 = 3 and √16 = 4, so 3 x 4 = 12.",
+    "Medium",
+  ],
+  ["What is 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 x 3 x 3 = 27.", "Medium"],
+  ["What is 6³?", ["36", "126", "216", "236"], 2, "6³ = 216.", "Medium"],
+  ["What is (-4)³?", ["64", "-64", "12", "-12"], 1, "(-4)³ = -64.", "Medium"],
+  ["What is ∛27?", ["2", "3", "4", "9"], 1, "∛27 = 3 because 3³ = 27.", "Medium"],
+  ["What is ∛125?", ["3", "4", "5", "25"], 2, "∛125 = 5 because 5³ = 125.", "Medium"],
+  ["What is ∛(-64)?", ["-4", "4", "-8", "8"], 0, "∛(-64) = -4 because (-4)³ = -64.", "Medium"],
+  [
+    "The area of a square is 49 cm². Its side length is:",
+    ["6 cm", "7 cm", "8 cm", "9 cm"],
+    1,
+    "Side length = √49 = 7 cm.",
+    "Medium",
+  ],
+  [
+    "The volume of a cube is 216 cm³. Its edge length is:",
+    ["4 cm", "5 cm", "6 cm", "7 cm"],
+    2,
+    "Edge length = ∛216 = 6 cm.",
+    "Medium",
+  ],
+  [
+    "√80 lies between:",
+    ["7 and 8", "8 and 9", "9 and 10", "10 and 11"],
+    1,
+    "64 < 80 < 81, so √80 lies between 8 and 9.",
+    "Medium",
+  ],
+  [
+    "5.1³ lies between:",
+    ["4³ and 5³", "5³ and 6³", "6³ and 7³", "7³ and 8³"],
+    1,
+    "5.1 is between 5 and 6, so 5.1³ is between 5³ and 6³.",
+    "Medium",
+  ],
+  ["Calculate: 2² + 3²", ["10", "12", "13", "18"], 2, "2² + 3² = 4 + 9 = 13.", "Medium"],
+  ["Calculate: 4³ - 5²", ["29", "39", "49", "89"], 1, "4³ - 5² = 64 - 25 = 39.", "Medium"],
+  ["Calculate: √36 + ∛8", ["6", "8", "10", "14"], 1, "√36 = 6 and ∛8 = 2, total = 8.", "Medium"],
+  ["Calculate: (√49)²", ["7", "14", "49", "98"], 2, "√49 = 7, so 7² = 49.", "Medium"],
+  ["Calculate: ∛(2³)", ["2", "4", "6", "8"], 0, "2³ = 8 and ∛8 = 2.", "Medium"],
+  ["Calculate: 7² x 2", ["49", "56", "98", "108"], 2, "7² = 49 and 49 x 2 = 98.", "Medium"],
+  ["Calculate: 100 - 4³", ["26", "36", "64", "96"], 1, "4³ = 64, so 100 - 64 = 36.", "Medium"],
+  ["Calculate: √81 ÷ 3", ["2", "3", "6", "9"], 1, "√81 = 9 and 9 ÷ 3 = 3.", "Medium"],
+  ["Calculate: ∛1000 + 5", ["10", "15", "20", "105"], 1, "∛1000 = 10, so 10 + 5 = 15.", "Medium"],
+  ["Calculate: 3² + ∛27", ["9", "12", "18", "36"], 1, "3² = 9 and ∛27 = 3, total = 12.", "Medium"],
+  [
+    "What is √(25/36)?",
+    ["5/6", "25/6", "5/36", "6/5"],
+    0,
+    "√25 = 5 and √36 = 6, so √(25/36) = 5/6.",
+    "Medium",
+  ],
+  ["Calculate: 2³ + 2²", ["8", "10", "12", "16"], 2, "2³ = 8 and 2² = 4, total = 12.", "Medium"],
+  [
+    "Calculate: √64 + √16",
+    ["8", "10", "12", "16"],
+    2,
+    "√64 = 8 and √16 = 4, total = 12.",
+    "Medium",
+  ],
+  ["Calculate: ∛(-27) + 10", ["3", "7", "13", "37"], 1, "∛(-27) = -3, so -3 + 10 = 7.", "Medium"],
+]);
+
+const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
+  [
+    "Luas segi empat sama ialah 144 cm². Panjang sisinya ialah:",
+    ["10 cm", "11 cm", "12 cm", "14 cm"],
+    2,
+    "Panjang sisi = √144 = 12 cm.",
+    "Hard",
+  ],
+  [
+    "Isipadu kubus ialah 512 cm³. Panjang sisinya ialah:",
+    ["6 cm", "7 cm", "8 cm", "9 cm"],
+    2,
+    "Panjang sisi = ∛512 = 8 cm.",
+    "Hard",
+  ],
+  [
+    "Segi empat sama mempunyai sisi 9 cm. Luasnya ialah:",
+    ["18 cm²", "45 cm²", "81 cm²", "90 cm²"],
+    2,
+    "Luas = 9² = 81 cm².",
+    "Hard",
+  ],
+  [
+    "Kubus mempunyai sisi 6 cm. Isipadunya ialah:",
+    ["36 cm³", "72 cm³", "216 cm³", "236 cm³"],
+    2,
+    "Isipadu = 6³ = 216 cm³.",
+    "Hard",
+  ],
+  [
+    "Luas taman berbentuk segi empat sama ialah 169 m². Panjang sisinya ialah:",
+    ["11 m", "12 m", "13 m", "14 m"],
+    2,
+    "Panjang sisi = √169 = 13 m.",
+    "Hard",
+  ],
+  [
+    "Isipadu kotak berbentuk kubus ialah 343 cm³. Panjang sisinya ialah:",
+    ["6 cm", "7 cm", "8 cm", "9 cm"],
+    1,
+    "Panjang sisi = ∛343 = 7 cm.",
+    "Hard",
+  ],
+  [
+    "Anggaran terbaik: √54 berada antara:",
+    ["6 dan 7", "7 dan 8", "8 dan 9", "9 dan 10"],
+    1,
+    "49 < 54 < 64, maka √54 berada antara 7 dan 8.",
+    "Hard",
+  ],
+  [
+    "4.2³ berada antara:",
+    ["3³ dan 4³", "4³ dan 5³", "5³ dan 6³", "6³ dan 7³"],
+    1,
+    "4.2 berada antara 4 dan 5, jadi 4.2³ antara 4³ dan 5³.",
+    "Hard",
+  ],
+  [
+    "Hitung: 3² + √64 x 2",
+    ["17", "20", "25", "34"],
+    2,
+    "√64 = 8. Darab dahulu: 8 x 2 = 16. Kemudian 9 + 16 = 25.",
+    "Hard",
+  ],
+  [
+    "Hitung: (∛27 + √16)²",
+    ["25", "36", "49", "64"],
+    2,
+    "∛27 = 3 dan √16 = 4. (3 + 4)² = 7² = 49.",
+    "Hard",
+  ],
+  [
+    "Hitung: √(81/100) + ∛8",
+    ["2.3", "2.7", "2.9", "3.1"],
+    2,
+    "√(81/100) = 9/10 = 0.9 dan ∛8 = 2, jumlah = 2.9.",
+    "Hard",
+  ],
+  [
+    "Hitung: (-3)³ + √49",
+    ["-34", "-20", "20", "34"],
+    1,
+    "(-3)³ = -27 dan √49 = 7, jadi -27 + 7 = -20.",
+    "Hard",
+  ],
+  [
+    "Hitung: ∛(-125) x 2²",
+    ["-20", "-10", "10", "20"],
+    0,
+    "∛(-125) = -5 dan 2² = 4, maka -5 x 4 = -20.",
+    "Hard",
+  ],
+  [
+    "Hitung: (√36 + ∛64) x 2",
+    ["10", "16", "20", "24"],
+    2,
+    "√36 = 6 dan ∛64 = 4. (6 + 4) x 2 = 20.",
+    "Hard",
+  ],
+  ["Hitung: √(16 + 9)", ["4", "5", "7", "25"], 1, "16 + 9 = 25 dan √25 = 5.", "Hard"],
+  [
+    "Jika isipadu kubus ialah 1000 cm³, panjang sisinya ialah:",
+    ["10 cm", "20 cm", "100 cm", "500 cm"],
+    0,
+    "∛1000 = 10.",
+    "Hard",
+  ],
+  [
+    "Jika luas segi empat sama ialah 225 cm², panjang sisinya ialah:",
+    ["12 cm", "13 cm", "14 cm", "15 cm"],
+    3,
+    "√225 = 15.",
+    "Hard",
+  ],
+  [
+    "Sisi segi empat sama berubah daripada 5 cm kepada 10 cm. Luas baharu ialah:",
+    ["25 cm²", "50 cm²", "100 cm²", "125 cm²"],
+    2,
+    "Luas baharu = 10² = 100 cm².",
+    "Hard",
+  ],
+  [
+    "Dua kubus bersisi 3 cm dan 4 cm. Jumlah isipadu ialah:",
+    ["37 cm³", "64 cm³", "91 cm³", "100 cm³"],
+    2,
+    "3³ + 4³ = 27 + 64 = 91 cm³.",
+    "Hard",
+  ],
+  [
+    "Beza antara 8² dan 4³ ialah:",
+    ["0", "8", "16", "32"],
+    0,
+    "8² = 64 dan 4³ = 64, jadi bezanya 0.",
+    "Hard",
+  ],
+  [
+    "Hitung: ∛216 + √144",
+    ["12", "18", "24", "30"],
+    1,
+    "∛216 = 6 dan √144 = 12, jumlah = 18.",
+    "Hard",
+  ],
+  [
+    "Hitung: √196 - ∛27",
+    ["9", "10", "11", "17"],
+    2,
+    "√196 = 14 dan ∛27 = 3, jadi 14 - 3 = 11.",
+    "Hard",
+  ],
+  [
+    "√150 terletak antara:",
+    ["10 dan 11", "11 dan 12", "12 dan 13", "13 dan 14"],
+    2,
+    "144 < 150 < 169, jadi √150 terletak antara 12 dan 13.",
+    "Hard",
+  ],
+  [
+    "6.8³ terletak antara:",
+    ["5³ dan 6³", "6³ dan 7³", "7³ dan 8³", "8³ dan 9³"],
+    1,
+    "6.8 berada antara 6 dan 7, jadi 6.8³ antara 6³ dan 7³.",
+    "Hard",
+  ],
+  [
+    "Jika panjang sisi kubus ialah 5 cm, isipadunya ialah:",
+    ["25 cm³", "75 cm³", "100 cm³", "125 cm³"],
+    3,
+    "Isipadu = 5³ = 125 cm³.",
+    "Hard",
+  ],
+  [
+    "Jika isipadu kubus ialah 27 cm³, panjang sisinya ialah:",
+    ["2 cm", "3 cm", "6 cm", "9 cm"],
+    1,
+    "Panjang sisi = ∛27 = 3 cm.",
+    "Hard",
+  ],
+  [
+    "Jika √a x √a = 49, nilai a ialah:",
+    ["7", "14", "49", "98"],
+    2,
+    "√a x √a = a, jadi a = 49.",
+    "Hard",
+  ],
+  ["Jika a³ = -8, nilai a ialah:", ["-2", "2", "-4", "4"], 0, "(-2)³ = -8, jadi a = -2.", "Hard"],
+  ["Hitung: (√25)³", ["15", "25", "100", "125"], 3, "√25 = 5 dan 5³ = 125.", "Hard"],
+  ["Hitung: ∛(10³)", ["10", "30", "100", "1000"], 0, "10³ = 1000 dan ∛1000 = 10.", "Hard"],
+]);
+
+const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
+  [
+    "The area of a square is 144 cm². Its side length is:",
+    ["10 cm", "11 cm", "12 cm", "14 cm"],
+    2,
+    "Side length = √144 = 12 cm.",
+    "Hard",
+  ],
+  [
+    "The volume of a cube is 512 cm³. Its edge length is:",
+    ["6 cm", "7 cm", "8 cm", "9 cm"],
+    2,
+    "Edge length = ∛512 = 8 cm.",
+    "Hard",
+  ],
+  [
+    "A square has a side length of 9 cm. Its area is:",
+    ["18 cm²", "45 cm²", "81 cm²", "90 cm²"],
+    2,
+    "Area = 9² = 81 cm².",
+    "Hard",
+  ],
+  [
+    "A cube has an edge length of 6 cm. Its volume is:",
+    ["36 cm³", "72 cm³", "216 cm³", "236 cm³"],
+    2,
+    "Volume = 6³ = 216 cm³.",
+    "Hard",
+  ],
+  [
+    "A square garden has an area of 169 m². Its side length is:",
+    ["11 m", "12 m", "13 m", "14 m"],
+    2,
+    "Side length = √169 = 13 m.",
+    "Hard",
+  ],
+  [
+    "A cube-shaped box has a volume of 343 cm³. Its edge length is:",
+    ["6 cm", "7 cm", "8 cm", "9 cm"],
+    1,
+    "Edge length = ∛343 = 7 cm.",
+    "Hard",
+  ],
+  [
+    "Best estimate: √54 lies between:",
+    ["6 and 7", "7 and 8", "8 and 9", "9 and 10"],
+    1,
+    "49 < 54 < 64, so √54 lies between 7 and 8.",
+    "Hard",
+  ],
+  [
+    "4.2³ lies between:",
+    ["3³ and 4³", "4³ and 5³", "5³ and 6³", "6³ and 7³"],
+    1,
+    "4.2 is between 4 and 5, so 4.2³ is between 4³ and 5³.",
+    "Hard",
+  ],
+  [
+    "Calculate: 3² + √64 x 2",
+    ["17", "20", "25", "34"],
+    2,
+    "√64 = 8. Multiply first: 8 x 2 = 16. Then 9 + 16 = 25.",
+    "Hard",
+  ],
+  [
+    "Calculate: (∛27 + √16)²",
+    ["25", "36", "49", "64"],
+    2,
+    "∛27 = 3 and √16 = 4. (3 + 4)² = 7² = 49.",
+    "Hard",
+  ],
+  [
+    "Calculate: √(81/100) + ∛8",
+    ["2.3", "2.7", "2.9", "3.1"],
+    2,
+    "√(81/100) = 9/10 = 0.9 and ∛8 = 2, total = 2.9.",
+    "Hard",
+  ],
+  [
+    "Calculate: (-3)³ + √49",
+    ["-34", "-20", "20", "34"],
+    1,
+    "(-3)³ = -27 and √49 = 7, so -27 + 7 = -20.",
+    "Hard",
+  ],
+  [
+    "Calculate: ∛(-125) x 2²",
+    ["-20", "-10", "10", "20"],
+    0,
+    "∛(-125) = -5 and 2² = 4, so -5 x 4 = -20.",
+    "Hard",
+  ],
+  [
+    "Calculate: (√36 + ∛64) x 2",
+    ["10", "16", "20", "24"],
+    2,
+    "√36 = 6 and ∛64 = 4. (6 + 4) x 2 = 20.",
+    "Hard",
+  ],
+  ["Calculate: √(16 + 9)", ["4", "5", "7", "25"], 1, "16 + 9 = 25 and √25 = 5.", "Hard"],
+  [
+    "If the volume of a cube is 1000 cm³, its edge length is:",
+    ["10 cm", "20 cm", "100 cm", "500 cm"],
+    0,
+    "∛1000 = 10.",
+    "Hard",
+  ],
+  [
+    "If the area of a square is 225 cm², its side length is:",
+    ["12 cm", "13 cm", "14 cm", "15 cm"],
+    3,
+    "√225 = 15.",
+    "Hard",
+  ],
+  [
+    "The side length of a square changes from 5 cm to 10 cm. The new area is:",
+    ["25 cm²", "50 cm²", "100 cm²", "125 cm²"],
+    2,
+    "New area = 10² = 100 cm².",
+    "Hard",
+  ],
+  [
+    "Two cubes have edge lengths of 3 cm and 4 cm. Their total volume is:",
+    ["37 cm³", "64 cm³", "91 cm³", "100 cm³"],
+    2,
+    "3³ + 4³ = 27 + 64 = 91 cm³.",
+    "Hard",
+  ],
+  [
+    "The difference between 8² and 4³ is:",
+    ["0", "8", "16", "32"],
+    0,
+    "8² = 64 and 4³ = 64, so the difference is 0.",
+    "Hard",
+  ],
+  [
+    "Calculate: ∛216 + √144",
+    ["12", "18", "24", "30"],
+    1,
+    "∛216 = 6 and √144 = 12, total = 18.",
+    "Hard",
+  ],
+  [
+    "Calculate: √196 - ∛27",
+    ["9", "10", "11", "17"],
+    2,
+    "√196 = 14 and ∛27 = 3, so 14 - 3 = 11.",
+    "Hard",
+  ],
+  [
+    "√150 lies between:",
+    ["10 and 11", "11 and 12", "12 and 13", "13 and 14"],
+    2,
+    "144 < 150 < 169, so √150 lies between 12 and 13.",
+    "Hard",
+  ],
+  [
+    "6.8³ lies between:",
+    ["5³ and 6³", "6³ and 7³", "7³ and 8³", "8³ and 9³"],
+    1,
+    "6.8 is between 6 and 7, so 6.8³ is between 6³ and 7³.",
+    "Hard",
+  ],
+  [
+    "If the edge length of a cube is 5 cm, its volume is:",
+    ["25 cm³", "75 cm³", "100 cm³", "125 cm³"],
+    3,
+    "Volume = 5³ = 125 cm³.",
+    "Hard",
+  ],
+  [
+    "If the volume of a cube is 27 cm³, its edge length is:",
+    ["2 cm", "3 cm", "6 cm", "9 cm"],
+    1,
+    "Edge length = ∛27 = 3 cm.",
+    "Hard",
+  ],
+  [
+    "If √a x √a = 49, the value of a is:",
+    ["7", "14", "49", "98"],
+    2,
+    "√a x √a = a, so a = 49.",
+    "Hard",
+  ],
+  ["If a³ = -8, the value of a is:", ["-2", "2", "-4", "4"], 0, "(-2)³ = -8, so a = -2.", "Hard"],
+  ["Calculate: (√25)³", ["15", "25", "100", "125"], 3, "√25 = 5 and 5³ = 125.", "Hard"],
+  ["Calculate: ∛(10³)", ["10", "30", "100", "1000"], 0, "10³ = 1000 and ∛1000 = 10.", "Hard"],
+]);
 
 const MATH_QUIZ_BANKS: Partial<
   Record<string, Record<MathObjectiveId, Record<MathQuizLang, ShuffledQuestion[]>>>
@@ -2331,6 +3911,20 @@ const MATH_QUIZ_BANKS: Partial<
     "objective-3": {
       bm: MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS,
       dlp: MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+    },
+  },
+  "Chapter 3": {
+    "objective-1": {
+      bm: MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS,
+      dlp: MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+    },
+    "objective-2": {
+      bm: MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS,
+      dlp: MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+    },
+    "objective-3": {
+      bm: MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS,
+      dlp: MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
     },
   },
 };
@@ -3464,13 +5058,18 @@ function MathObjectiveIntroScreen({
   const isChallenge = objective.id === "objective-3";
   const isDlp = quizLang === "dlp";
   const isChapter2 = chapterKey === "Chapter 2";
+  const isChapter3 = chapterKey === "Chapter 3";
   const chapterTitle = isDlp
-    ? isChapter2
-      ? "Chapter 2: Factors and Multiples"
-      : "Chapter 1: Rational Numbers"
-    : isChapter2
-      ? "Bab 2: Faktor dan Gandaan"
-      : "Bab 1: Nombor Nisbah";
+    ? isChapter3
+      ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
+      : isChapter2
+        ? "Chapter 2: Factors and Multiples"
+        : "Chapter 1: Rational Numbers"
+    : isChapter3
+      ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
+      : isChapter2
+        ? "Bab 2: Faktor dan Gandaan"
+        : "Bab 1: Nombor Nisbah";
   const introTitle = isFoundation
     ? "🎯 Objective 1 – Foundation"
     : isPractice || isChallenge
@@ -3482,41 +5081,57 @@ function MathObjectiveIntroScreen({
     ? isDlp
       ? isChapter2
         ? "This quiz contains exam-style and problem-solving questions."
-        : "This quiz is designed to test your full mastery of Chapter 1."
+        : isChapter3
+          ? "This quiz is designed to test your full mastery of Chapter 3."
+          : "This quiz is designed to test your full mastery of Chapter 1."
       : isChapter2
         ? "Quiz ini mengandungi soalan berbentuk peperiksaan dan penyelesaian masalah."
-        : "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 1."
+        : isChapter3
+          ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 3."
+          : "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 1."
     : isPractice
       ? isDlp
         ? "This quiz tests your intermediate understanding of:"
         : "Quiz ini menguji kefahaman pertengahan anda tentang:"
       : isFoundation
         ? isDlp
-          ? "Welcome to Objective 1!"
+          ? isChapter2
+            ? "Chapter 2: Factors and Multiples"
+            : "Welcome to Objective 1!"
           : "Selamat datang ke Objective 1!"
         : isDlp
           ? 'Press "Start Quiz" when you are ready.'
           : 'Tekan "Mula Quiz" apabila bersedia.';
   const prepItems = isChallenge
     ? isDlp
-      ? ["Pen or pencil", "Blank paper for working steps", "Calculator if needed"]
+      ? [
+          "Pen or pencil",
+          isChapter2 ? "Blank paper for workings" : "Blank paper for working steps",
+          isChapter2 ? "Calculator if necessary" : "Calculator if needed",
+        ]
       : ["Pen atau pensel", "Kertas kosong untuk membuat jalan kerja", "Kalkulator jika diperlukan"]
     : isPractice
       ? isDlp
-        ? ["Pen or pencil", "Blank paper for calculations", "Calculator if needed"]
+        ? [
+            "Pen or pencil",
+            "Blank paper for calculations",
+            isChapter2 ? "Calculator if necessary" : "Calculator if needed",
+          ]
         : ["Pen atau pensel", "Kertas kosong untuk membuat pengiraan", "Kalkulator jika diperlukan"]
       : isFoundation
-        ? [
-            isDlp
-              ? "📱 Objective 1 is designed to be completed directly on your phone or tablet."
-              : "📱 Objective 1 direka untuk dijawab terus menggunakan telefon atau tablet.",
-            isDlp
-              ? "No paper, pen, or calculator is required."
-              : "Tidak perlu menyediakan kertas, pen atau kalkulator.",
-            isDlp
-              ? "Try to answer all questions before viewing the explanations."
-              : "Cuba jawab semua soalan terlebih dahulu sebelum melihat penjelasan.",
-          ]
+        ? isDlp && isChapter2
+          ? ["📱 No paper, pen, or calculator required."]
+          : [
+              isDlp
+                ? "📱 Objective 1 is designed to be completed directly on your phone or tablet."
+                : "📱 Objective 1 direka untuk dijawab terus menggunakan telefon atau tablet.",
+              isDlp
+                ? "No paper, pen, or calculator is required."
+                : "Tidak perlu menyediakan kertas, pen atau kalkulator.",
+              isDlp
+                ? "Try to answer all questions before viewing the explanations."
+                : "Cuba jawab semua soalan terlebih dahulu sebelum melihat penjelasan.",
+            ]
         : [
             isDlp ? "Take a pen or pencil" : "Ambil pen atau pensel",
             isDlp
@@ -3541,17 +5156,27 @@ function MathObjectiveIntroScreen({
                 "Problem solving",
                 "Exam-style questions",
               ]
-            : [
-                "Integers",
-                "Integer operations",
-                "Positive and negative fractions",
-                "Positive and negative decimals",
-                "Rational numbers",
-                "Order of operations",
-                "Combined calculations",
-                "Problem solving",
-                "Exam-style questions",
-              ]),
+            : isChapter3
+              ? [
+                  "Squares",
+                  "Square roots",
+                  "Cubes",
+                  "Cube roots",
+                  "Combined operations",
+                  "Problem solving",
+                  "Exam-style questions",
+                ]
+              : [
+                  "Integers",
+                  "Integer operations",
+                  "Positive and negative fractions",
+                  "Positive and negative decimals",
+                  "Rational numbers",
+                  "Order of operations",
+                  "Combined calculations",
+                  "Problem solving",
+                  "Exam-style questions",
+                ]),
         ]
       : [
           ...(isChapter2
@@ -3564,17 +5189,27 @@ function MathObjectiveIntroScreen({
                 "Penyelesaian masalah",
                 "Soalan berbentuk peperiksaan",
               ]
-            : [
-                "Integer",
-                "Operasi integer",
-                "Pecahan positif dan negatif",
-                "Perpuluhan positif dan negatif",
-                "Nombor nisbah",
-                "Tertib operasi",
-                "Pengiraan gabungan",
-                "Penyelesaian masalah",
-                "Soalan berbentuk peperiksaan",
-              ]),
+            : isChapter3
+              ? [
+                  "Kuasa dua",
+                  "Punca kuasa dua",
+                  "Kuasa tiga",
+                  "Punca kuasa tiga",
+                  "Operasi bergabung",
+                  "Penyelesaian masalah",
+                  "Soalan berbentuk peperiksaan",
+                ]
+              : [
+                  "Integer",
+                  "Operasi integer",
+                  "Pecahan positif dan negatif",
+                  "Perpuluhan positif dan negatif",
+                  "Nombor nisbah",
+                  "Tertib operasi",
+                  "Pengiraan gabungan",
+                  "Penyelesaian masalah",
+                  "Soalan berbentuk peperiksaan",
+                ]),
         ]
     : isPractice
       ? isDlp
@@ -3588,16 +5223,25 @@ function MathObjectiveIntroScreen({
                   "LCM calculations",
                   "Mixed practice",
                 ]
-              : [
-                  "Integer operations",
-                  "Addition and subtraction of integers",
-                  "Multiplication and division of integers",
-                  "Order of operations",
-                  "Positive and negative fractions",
-                  "Positive and negative decimals",
-                  "Rational numbers",
-                  "Mixed calculations",
-                ]),
+              : isChapter3
+                ? [
+                    "Square calculations",
+                    "Square root calculations",
+                    "Cube calculations",
+                    "Cube root calculations",
+                    "Estimation",
+                    "Combined operations",
+                  ]
+                : [
+                    "Integer operations",
+                    "Addition and subtraction of integers",
+                    "Multiplication and division of integers",
+                    "Order of operations",
+                    "Positive and negative fractions",
+                    "Positive and negative decimals",
+                    "Rational numbers",
+                    "Mixed calculations",
+                  ]),
           ]
         : [
             ...(isChapter2
@@ -3609,16 +5253,25 @@ function MathObjectiveIntroScreen({
                   "Pengiraan GSTK",
                   "Latihan campuran",
                 ]
-              : [
-                  "Operasi integer",
-                  "Penambahan dan penolakan integer",
-                  "Pendaraban dan pembahagian integer",
-                  "Tertib operasi",
-                  "Pecahan positif dan negatif",
-                  "Perpuluhan positif dan negatif",
-                  "Nombor nisbah",
-                  "Pengiraan campuran",
-                ]),
+              : isChapter3
+                ? [
+                    "Pengiraan kuasa dua",
+                    "Pengiraan punca kuasa dua",
+                    "Pengiraan kuasa tiga",
+                    "Pengiraan punca kuasa tiga",
+                    "Anggaran",
+                    "Operasi bergabung",
+                  ]
+                : [
+                    "Operasi integer",
+                    "Penambahan dan penolakan integer",
+                    "Pendaraban dan pembahagian integer",
+                    "Tertib operasi",
+                    "Pecahan positif dan negatif",
+                    "Perpuluhan positif dan negatif",
+                    "Nombor nisbah",
+                    "Pengiraan campuran",
+                  ]),
           ]
       : isFoundation
         ? isDlp
@@ -3633,12 +5286,22 @@ function MathObjectiveIntroScreen({
                     "Common multiples",
                     "LCM",
                   ]
-                : [
-                    "Basic chapter concepts",
-                    "Important definitions",
-                    "Fundamental calculation skills",
-                    "Initial topic understanding",
-                  ]),
+                : isChapter3
+                  ? [
+                      "Squares",
+                      "Perfect squares",
+                      "Square roots",
+                      "Cubes",
+                      "Perfect cubes",
+                      "Cube roots",
+                      "Basic estimation",
+                    ]
+                  : [
+                      "Basic chapter concepts",
+                      "Important definitions",
+                      "Fundamental calculation skills",
+                      "Initial topic understanding",
+                    ]),
             ]
           : [
               ...(isChapter2
@@ -3651,12 +5314,22 @@ function MathObjectiveIntroScreen({
                     "Gandaan sepunya",
                     "GSTK",
                   ]
-                : [
-                    "Konsep-konsep asas bab",
-                    "Definisi penting",
-                    "Kemahiran asas pengiraan",
-                    "Kefahaman awal topik",
-                  ]),
+                : isChapter3
+                  ? [
+                      "Kuasa dua",
+                      "Kuasa dua sempurna",
+                      "Punca kuasa dua",
+                      "Kuasa tiga",
+                      "Kuasa tiga sempurna",
+                      "Punca kuasa tiga",
+                      "Anggaran asas",
+                    ]
+                  : [
+                      "Konsep-konsep asas bab",
+                      "Definisi penting",
+                      "Kemahiran asas pengiraan",
+                      "Kefahaman awal topik",
+                    ]),
             ]
         : [
             isDlp
@@ -3671,7 +5344,7 @@ function MathObjectiveIntroScreen({
     ? [
         [
           isDlp ? "Difficulty Level" : "Tahap Kesukaran",
-          isDlp ? "Medium → Hard" : "Sederhana → Sukar",
+          isDlp ? (isChapter2 ? "Medium to Hard" : "Medium → Hard") : "Sederhana → Sukar",
         ],
         [isDlp ? "Number of Questions" : "Bilangan Soalan", "30"],
         [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "20–25 minutes" : "20–25 minit"],
@@ -3692,11 +5365,15 @@ function MathObjectiveIntroScreen({
   const introSupportText = isFoundation
     ? isDlp
       ? isChapter2
-        ? "This quiz is designed to help you understand the basic concepts of Chapter 2: Factors and Multiples."
-        : "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
+        ? "This quiz tests your understanding of:"
+        : isChapter3
+          ? "This quiz is designed to help you understand the basic concepts of Chapter 3: Squares, Square Roots, Cubes and Cube Roots."
+          : "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
       : isChapter2
         ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 2: Faktor dan Gandaan."
-        : "Quiz ini direka untuk membantu anda memahami konsep asas bagi bab ini sebelum meneruskan ke tahap yang lebih mencabar."
+        : isChapter3
+          ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga."
+          : "Quiz ini direka untuk membantu anda memahami konsep asas bagi bab ini sebelum meneruskan ke tahap yang lebih mencabar."
     : null;
 
   return (
@@ -4118,11 +5795,13 @@ function MathObjectiveResultsScreen({
       ? {
           title: isDlp ? "⭐ Excellent" : "⭐ Cemerlang",
           message: isDlp
-            ? isChallenge
-              ? `You show very strong mastery of ${chapterName}.`
-              : isPractice
-                ? `You have very good mastery of ${chapterName}.`
-                : "You have mastered this topic very well."
+            ? isChapter2
+              ? "You have mastered this chapter."
+              : isChallenge
+                ? `You show very strong mastery of ${chapterName}.`
+                : isPractice
+                  ? `You have very good mastery of ${chapterName}.`
+                  : "You have mastered this topic very well."
             : isChallenge
               ? `Anda menunjukkan penguasaan yang sangat tinggi terhadap ${chapterName}.`
               : isPractice
@@ -4134,11 +5813,13 @@ function MathObjectiveResultsScreen({
         ? {
             title: isDlp ? "👍 Good" : "👍 Baik",
             message: isDlp
-              ? isChallenge
-                ? "You understand most concepts well."
-                : isPractice
-                  ? "Keep practising to reach an excellent level."
-                  : "Keep practising to improve your performance."
+              ? isChapter2
+                ? "Keep practising to achieve excellence."
+                : isChallenge
+                  ? "You understand most concepts well."
+                  : isPractice
+                    ? "Keep practising to reach an excellent level."
+                    : "Keep practising to improve your performance."
               : isChallenge
                 ? "Anda memahami kebanyakan konsep dengan baik."
                 : isPractice
@@ -4150,7 +5831,9 @@ function MathObjectiveResultsScreen({
           ? {
               title: isDlp ? "📚 Satisfactory" : "📚 Memuaskan",
               message: isDlp
-                ? "There are still some concepts that need strengthening."
+                ? isChapter2
+                  ? "There are still some concepts to improve."
+                  : "There are still some concepts that need strengthening."
                 : isPractice || isChallenge
                   ? "Masih terdapat beberapa konsep yang perlu diperkukuhkan."
                   : "Masih ada ruang untuk penambahbaikan.",
@@ -4159,11 +5842,13 @@ function MathObjectiveResultsScreen({
           : {
               title: isDlp ? "🔄 Needs Improvement" : "🔄 Perlu Penambahbaikan",
               message: isDlp
-                ? isChallenge
-                  ? `Revise ${chapterName} notes and try Objective 1 and Objective 2 again.`
-                  : isPractice
-                    ? `Revise ${chapterName} notes and try Objective 1 again.`
-                    : "Revise the notes and try again."
+                ? isChapter2
+                  ? "Review the chapter notes and try again."
+                  : isChallenge
+                    ? `Revise ${chapterName} notes and try Objective 1 and Objective 2 again.`
+                    : isPractice
+                      ? `Revise ${chapterName} notes and try Objective 1 again.`
+                      : "Revise the notes and try again."
                 : isChallenge
                   ? `Disyorkan untuk mengulang kaji Nota ${chapterName} dan mencuba semula Objective 1 dan Objective 2.`
                   : isPractice

@@ -913,6 +913,250 @@ const MATH_F1_C2_FLASHCARD_PAIRS: Record<
   ],
 };
 
+const MATH_F1_C3_FLASHCARD_PAIRS: Record<
+  MathFlashcardCategoryId,
+  Array<{ bm: [string, string]; dlp: [string, string] }>
+> = {
+  concepts: [
+    mathCard(
+      "Apakah maksud kuasa dua?",
+      "Kuasa dua bermaksud mendarab sesuatu nombor dengan dirinya sendiri.",
+      "What does square mean?",
+      "Square means multiplying a number by itself.",
+    ),
+    mathCard("Apakah maksud 4²?", "4² bermaksud 4 x 4.", "What does 4² mean?", "4² means 4 x 4."),
+    mathCard(
+      "Apakah kaitan kuasa dua dengan segi empat sama?",
+      "Jika sisi segi empat sama ialah s, luasnya ialah s².",
+      "How is square related to a square shape?",
+      "If the side of a square is s, its area is s².",
+    ),
+    mathCard(
+      "Apakah kuasa dua sempurna?",
+      "Kuasa dua sempurna ialah nombor yang terhasil daripada kuasa dua nombor bulat.",
+      "What is a perfect square?",
+      "A perfect square is a number produced by squaring a whole number.",
+    ),
+    mathCard(
+      "Berikan contoh kuasa dua sempurna.",
+      "Contohnya 1, 4, 9, 16, 25 dan 36.",
+      "Give examples of perfect squares.",
+      "Examples include 1, 4, 9, 16, 25 and 36.",
+    ),
+    mathCard(
+      "Bagaimana mengenal pasti kuasa dua sempurna melalui pemfaktoran perdana?",
+      "Faktor perdana boleh dikumpulkan dalam dua kumpulan yang sama.",
+      "How can you identify a perfect square using prime factorisation?",
+      "Its prime factors can be grouped into two identical groups.",
+    ),
+    mathCard(
+      "Adakah 36 kuasa dua sempurna?",
+      "Ya, kerana 36 = 6².",
+      "Is 36 a perfect square?",
+      "Yes, because 36 = 6².",
+    ),
+    mathCard("Adakah 20 kuasa dua sempurna?", "Tidak.", "Is 20 a perfect square?", "No."),
+    mathCard(
+      "Apakah maksud punca kuasa dua?",
+      "Punca kuasa dua ialah nombor yang didarab dengan dirinya sendiri untuk mendapat nombor asal.",
+      "What does square root mean?",
+      "A square root is a number that is multiplied by itself to get the original number.",
+    ),
+    mathCard("Jika 6² = 36, apakah √36?", "√36 = 6.", "If 6² = 36, what is √36?", "√36 = 6."),
+    mathCard(
+      "Punca kuasa dua bagi luas segi empat sama memberi nilai apa?",
+      "Panjang sisi segi empat sama.",
+      "The square root of a square's area gives what value?",
+      "The side length of the square.",
+    ),
+    mathCard(
+      "Mengapa kuasa dua 1 hingga 20 penting?",
+      "Ia membantu mengira dan mengenal pasti kuasa dua sempurna dengan cepat.",
+      "Why are squares from 1 to 20 important?",
+      "They help calculate and identify perfect squares quickly.",
+    ),
+    mathCard("Apakah √(49/81)?", "7/9.", "What is √(49/81)?", "7/9."),
+    mathCard(
+      "Apakah langkah sebelum mencari punca kuasa dua nombor bercampur?",
+      "Tukarkan nombor bercampur kepada pecahan tak wajar dahulu.",
+      "What should you do before finding the square root of a mixed number?",
+      "Convert the mixed number into an improper fraction first.",
+    ),
+    mathCard("Apakah nilai √a x √a?", "a.", "What is the value of √a x √a?", "a."),
+    mathCard("Apakah nilai √a x √b?", "√ab.", "What is the value of √a x √b?", "√ab."),
+    mathCard(
+      "Apakah maksud kuasa tiga?",
+      "Kuasa tiga bermaksud mendarab sesuatu nombor dengan dirinya sendiri sebanyak tiga kali.",
+      "What does cube mean?",
+      "Cube means multiplying a number by itself three times.",
+    ),
+    mathCard(
+      "Apakah maksud a³?",
+      "a³ bermaksud a x a x a.",
+      "What does a³ mean?",
+      "a³ means a x a x a.",
+    ),
+    mathCard(
+      "Apakah kesilapan biasa bagi 2³?",
+      "2³ bukan 2 x 3; 2³ = 2 x 2 x 2.",
+      "What is a common mistake for 2³?",
+      "2³ is not 2 x 3; 2³ = 2 x 2 x 2.",
+    ),
+    mathCard(
+      "Apakah kaitan kuasa tiga dengan kubus?",
+      "Jika sisi kubus ialah s, isipadunya ialah s³.",
+      "How is cube related to a cube shape?",
+      "If the edge of a cube is s, its volume is s³.",
+    ),
+    mathCard(
+      "Berikan contoh kuasa tiga sempurna.",
+      "Contohnya 1, 8, 27, 64, 125 dan 1000.",
+      "Give examples of perfect cubes.",
+      "Examples include 1, 8, 27, 64, 125 and 1000.",
+    ),
+    mathCard(
+      "Bagaimana mengenal pasti kuasa tiga sempurna melalui pemfaktoran perdana?",
+      "Faktor perdana boleh dikumpulkan dalam tiga kumpulan yang sama.",
+      "How can you identify a perfect cube using prime factorisation?",
+      "Its prime factors can be grouped into three identical groups.",
+    ),
+    mathCard(
+      "Apakah tanda kuasa tiga bagi nombor positif?",
+      "Hasilnya positif.",
+      "What is the sign of the cube of a positive number?",
+      "The result is positive.",
+    ),
+    mathCard(
+      "Apakah tanda kuasa tiga bagi nombor negatif?",
+      "Hasilnya negatif.",
+      "What is the sign of the cube of a negative number?",
+      "The result is negative.",
+    ),
+    mathCard("Berapakah (-5)³?", "-125.", "What is (-5)³?", "-125."),
+    mathCard(
+      "Apakah maksud punca kuasa tiga?",
+      "Punca kuasa tiga ialah nombor yang dikuasakan tiga untuk mendapat nombor asal.",
+      "What does cube root mean?",
+      "A cube root is a number that is cubed to get the original number.",
+    ),
+    mathCard("Jika 2³ = 8, apakah ∛8?", "∛8 = 2.", "If 2³ = 8, what is ∛8?", "∛8 = 2."),
+    mathCard(
+      "Bolehkah punca kuasa tiga bernilai negatif?",
+      "Ya. Contohnya ∛(-8) = -2.",
+      "Can a cube root be negative?",
+      "Yes. For example, ∛(-8) = -2.",
+    ),
+    mathCard("Apakah ∛(-8)?", "-2.", "What is ∛(-8)?", "-2."),
+    mathCard(
+      "Punca kuasa tiga bagi isipadu kubus memberi nilai apa?",
+      "Panjang sisi kubus.",
+      "The cube root of a cube's volume gives what value?",
+      "The edge length of the cube.",
+    ),
+  ],
+  operations: [
+    mathCard(
+      "Apakah formula kuasa dua?",
+      "a² = a x a.",
+      "What is the square formula?",
+      "a² = a x a.",
+    ),
+    mathCard(
+      "Apakah formula kuasa tiga?",
+      "a³ = a x a x a.",
+      "What is the cube formula?",
+      "a³ = a x a x a.",
+    ),
+    mathCard(
+      "Bagaimana menguji kuasa dua sempurna dengan faktor perdana?",
+      "Kumpulkan faktor perdana secara berpasangan.",
+      "How do you test a perfect square using prime factors?",
+      "Group the prime factors in pairs.",
+    ),
+    mathCard(
+      "Bagaimana menguji kuasa tiga sempurna dengan faktor perdana?",
+      "Kumpulkan faktor perdana dalam kumpulan tiga.",
+      "How do you test a perfect cube using prime factors?",
+      "Group the prime factors in threes.",
+    ),
+    mathCard(
+      "Anggarkan √54.",
+      "√54 terletak antara 7 dan 8.",
+      "Estimate √54.",
+      "√54 lies between 7 and 8.",
+    ),
+    mathCard(
+      "Anggarkan 4.2³.",
+      "4.2³ terletak antara 4³ dan 5³.",
+      "Estimate 4.2³.",
+      "4.2³ lies between 4³ and 5³.",
+    ),
+    mathCard(
+      "Apakah langkah pertama dalam tertib operasi?",
+      "Selesaikan kurungan dahulu.",
+      "What is the first step in order of operations?",
+      "Solve brackets first.",
+    ),
+    mathCard(
+      "Selepas kurungan, apakah operasi yang perlu diselesaikan?",
+      "Kuasa, punca kuasa dua dan punca kuasa tiga.",
+      "After brackets, which operations should be solved?",
+      "Powers, square roots and cube roots.",
+    ),
+    mathCard(
+      "Selepas kuasa dan punca, apakah operasi seterusnya?",
+      "Darab dan bahagi dari kiri ke kanan.",
+      "After powers and roots, what operations come next?",
+      "Multiply and divide from left to right.",
+    ),
+    mathCard(
+      "Apakah operasi terakhir dalam tertib operasi?",
+      "Tambah dan tolak dari kiri ke kanan.",
+      "What are the final operations in order of operations?",
+      "Add and subtract from left to right.",
+    ),
+    mathCard(
+      "Jika diberi luas segi empat sama, operasi apa mencari sisi?",
+      "Gunakan punca kuasa dua.",
+      "If the area of a square is given, which operation finds the side?",
+      "Use square root.",
+    ),
+    mathCard(
+      "Jika diberi isipadu kubus, operasi apa mencari sisi?",
+      "Gunakan punca kuasa tiga.",
+      "If the volume of a cube is given, which operation finds the edge?",
+      "Use cube root.",
+    ),
+    mathCard("Berapakah √49?", "7.", "What is √49?", "7."),
+    mathCard("Berapakah ∛64?", "4.", "What is ∛64?", "4."),
+    mathCard("Berapakah ∛(-27)?", "-3.", "What is ∛(-27)?", "-3."),
+  ],
+  facts: [
+    mathCard("1² = ?", "1.", "1² = ?", "1."),
+    mathCard("2² = ?", "4.", "2² = ?", "4."),
+    mathCard("5² = ?", "25.", "5² = ?", "25."),
+    mathCard("6² = ?", "36.", "6² = ?", "36."),
+    mathCard("2³ = ?", "8.", "2³ = ?", "8."),
+    mathCard("3³ = ?", "27.", "3³ = ?", "27."),
+    mathCard("4³ = ?", "64.", "4³ = ?", "64."),
+    mathCard("5³ = ?", "125.", "5³ = ?", "125."),
+    mathCard("10³ = ?", "1000.", "10³ = ?", "1000."),
+    mathCard("√(49/81) = ?", "7/9.", "√(49/81) = ?", "7/9."),
+  ],
+  practice: [
+    mathCard("4² = ?", "16.", "4² = ?", "16."),
+    mathCard("√36 = ?", "6.", "√36 = ?", "6."),
+    mathCard("2³ = ?", "8.", "2³ = ?", "8."),
+    mathCard("∛8 = ?", "2.", "∛8 = ?", "2."),
+    mathCard(
+      "Jika luas segi empat sama ialah 81 cm², panjang sisinya ialah?",
+      "9 cm.",
+      "If the area of a square is 81 cm², what is its side length?",
+      "9 cm.",
+    ),
+  ],
+};
+
 const MATH_FLASHCARD_BANKS: Partial<
   Record<
     string,
@@ -921,7 +1165,45 @@ const MATH_FLASHCARD_BANKS: Partial<
 > = {
   "Chapter 1": MATH_F1_C1_FLASHCARD_PAIRS,
   "Chapter 2": MATH_F1_C2_FLASHCARD_PAIRS,
+  "Chapter 3": MATH_F1_C3_FLASHCARD_PAIRS,
 };
+
+const MATH_FLASHCARD_CHAPTER_TITLES: Record<
+  string,
+  { bm: string; dlp: string; headerBm: string; headerDlp: string }
+> = {
+  "Chapter 1": {
+    bm: "🧠 Flashcards Bab 1: Nombor Nisbah",
+    dlp: "🧠 Chapter 1 Flashcards: Rational Numbers",
+    headerBm: "Bab 1: Nombor Nisbah",
+    headerDlp: "Chapter 1: Rational Numbers",
+  },
+  "Chapter 2": {
+    bm: "🧠 Flashcards Bab 2: Faktor dan Gandaan",
+    dlp: "🧠 Chapter 2 Flashcards: Factors and Multiples",
+    headerBm: "Bab 2: Faktor dan Gandaan",
+    headerDlp: "Chapter 2: Factors and Multiples",
+  },
+  "Chapter 3": {
+    bm: "🧠 Flashcards Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
+    dlp: "🧠 Chapter 3 Flashcards: Squares, Square Roots, Cubes and Cube Roots",
+    headerBm: "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
+    headerDlp: "Chapter 3: Squares, Square Roots, Cubes and Cube Roots",
+  },
+};
+
+function getMathFlashcardChapterTitle(chapterKey: string, lang: MathFlashcardLang) {
+  const title = MATH_FLASHCARD_CHAPTER_TITLES[chapterKey];
+  if (title) return title[lang];
+  return lang === "dlp"
+    ? `🧠 ${chapterKey} Flashcards`
+    : `🧠 Flashcards Bab ${chapterKey.replace("Chapter ", "")}`;
+}
+
+function getMathFlashcardHeaderTitle(chapterKey: string) {
+  const title = MATH_FLASHCARD_CHAPTER_TITLES[chapterKey];
+  return title?.headerDlp ?? chapterKey;
+}
 
 function getMathFlashcards(
   chapter: string,
@@ -1011,7 +1293,6 @@ function MathFlashcardLanguagePicker({
   onSelect: (lang: MathFlashcardLang) => void;
 }) {
   const chapterNumber = chapterKey.replace("Chapter ", "");
-  const isChapter2 = chapterKey === "Chapter 2";
   const bmTotal = Object.values(MATH_FLASHCARD_BANKS[chapterKey] ?? {}).reduce(
     (sum, cards) => sum + cards.length,
     0,
@@ -1026,8 +1307,7 @@ function MathFlashcardLanguagePicker({
           <ChevronLeft className="w-4 h-4" /> Back to chapters
         </button>
         <span className="text-sm font-semibold text-muted-foreground">
-          📐 Mathematics •{" "}
-          {isChapter2 ? "Chapter 2: Factors and Multiples" : "Chapter 1: Rational Numbers"}
+          📐 Mathematics • {getMathFlashcardHeaderTitle(chapterKey)}
         </span>
       </div>
 
@@ -1086,14 +1366,7 @@ function MathFlashcardCategoryPicker({
   onSelect: (category: MathFlashcardCategoryId) => void;
 }) {
   const isDlp = lang === "dlp";
-  const isChapter2 = chapterKey === "Chapter 2";
-  const title = isDlp
-    ? isChapter2
-      ? "🧠 Chapter 2 Flashcards: Factors and Multiples"
-      : "🧠 Chapter 1 Flashcards: Rational Numbers"
-    : isChapter2
-      ? "🧠 Flashcards Bab 2: Faktor dan Gandaan"
-      : "🧠 Flashcards Bab 1: Nombor Nisbah";
+  const title = getMathFlashcardChapterTitle(chapterKey, lang);
 
   return (
     <div className="animate-fade-up">
