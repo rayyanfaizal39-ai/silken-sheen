@@ -23,6 +23,7 @@ import { mengenaliTamadunMindMap } from "@/data/sejarah-f1-c4-mindmap";
 import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
 import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
+import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { getChapter } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
@@ -79,8 +80,13 @@ function NotesPage() {
   const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang) : [];
   const activeChapterKey =
     chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
-  const hasSubtopics = subject === "sejarah" && !!activeChapterKey;
-  const subtopics = hasSubtopics ? getSejarahF1Subtopics(activeChapterKey!) : [];
+  const hasSubtopics =
+    (subject === "sejarah" || subject === "geography") && !!activeChapterKey;
+  const subtopics: Subtopic[] = hasSubtopics
+    ? subject === "sejarah"
+      ? getSejarahF1Subtopics(activeChapterKey!)
+      : getGeographyF1Subtopics(activeChapterKey!)
+    : [];
 
   const chapterMeta =
     subject && activeChapterKey
@@ -173,7 +179,7 @@ function NotesPage() {
           onSelect={(id) => {
             setChapter(null);
             void navigate({
-              search: (previous) => ({
+              search: (previous: Record<string, unknown>) => ({
                 ...previous,
                 subject: id,
               }),
@@ -199,7 +205,7 @@ function NotesPage() {
           onBack={() => {
             setChapter(null);
             void navigate({
-              search: (previous) => ({
+              search: (previous: Record<string, unknown>) => ({
                 ...previous,
                 subject: undefined,
               }),
@@ -220,7 +226,7 @@ function NotesPage() {
             onBack={() => {
               setChapter(null);
               void navigate({
-                search: (previous) => ({
+                search: (previous: Record<string, unknown>) => ({
                   ...previous,
                   subject: undefined,
                 }),
