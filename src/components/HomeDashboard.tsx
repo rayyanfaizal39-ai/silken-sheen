@@ -13,7 +13,7 @@ import {
   Sparkles,
   Trophy,
 } from "lucide-react";
-import astronautRocket from "@/assets/premium-astronaut-rocket.png";
+import { AstronautScene } from "@/components/AstronautScene";
 import { SubjectPlanetLink } from "@/components/AcademyPage";
 
 const continueCards = [
