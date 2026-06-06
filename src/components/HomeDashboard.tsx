@@ -132,14 +132,8 @@ export function HomeDashboard() {
                 </Link>
               </div>
             </div>
-            <div className="relative min-h-[320px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#050816]/55">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,rgba(99,102,241,0.22),transparent_38%),radial-gradient(circle_at_30%_72%,rgba(59,130,246,0.16),transparent_36%)]" />
-              <img
-                src={astronautRocket}
-                alt="Premium 3D astronaut riding a rocket through a purple blue nebula"
-                className="absolute inset-0 h-full w-full object-cover object-center"
-              />
-            </div>
+            <AstronautScene />
+
           </section>
 
           <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
