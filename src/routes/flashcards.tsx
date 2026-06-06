@@ -12,6 +12,7 @@ import {
   Volume2,
   VolumeX,
   Vibrate,
+  ArrowLeft,
 } from "lucide-react";
 import {
   SubjectGrid,
