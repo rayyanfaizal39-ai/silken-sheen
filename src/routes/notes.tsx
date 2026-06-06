@@ -84,14 +84,15 @@ function NotesPage() {
   const hasSubtopics = (subject === "sejarah" || subject === "geography") && !!activeChapterKey;
   const subtopics: Subtopic[] = hasSubtopics
     ? subject === "sejarah"
-      ? getSejarahF1Subtopics(activeChapterKey!)
-      : getGeographyF1Subtopics(activeChapterKey!)
+      ? getSejarahF1Subtopics(activeChapterKey ?? "")
+      : getGeographyF1Subtopics(activeChapterKey ?? "")
     : [];
 
   const chapterMeta =
     subject && activeChapterKey
       ? subjectChapters.find((candidate) => candidate.key === activeChapterKey)
       : null;
+  const missingChapter = !!(subject && chapter && !activeChapterKey);
   const isRead =
     subject && activeChapterKey
       ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
@@ -185,17 +186,67 @@ function NotesPage() {
       </div>
 
       {!subject ? (
-        <SubjectGrid
-          onSelect={(id) => {
-            setChapter(null);
-            void navigate({
-              search: (previous: Record<string, unknown>) => ({
-                ...previous,
-                subject: id,
-              }),
-            });
-          }}
-        />
+        <div className="space-y-6">
+          <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                Continue Reading
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
+              <p className="mt-1 text-sm text-[#94A3B8]">Bab 7: Udara</p>
+              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6]" />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  void navigate({
+                    search: (previous: Record<string, unknown>) => ({
+                      ...previous,
+                      subject: "science",
+                    }),
+                  });
+                  setScienceLang("bm");
+                  setChapter("Chapter 7");
+                }}
+                className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+              >
+                Continue Reading
+              </button>
+            </div>
+            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                Notes Preview
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-bold">
+                Key points, definitions, exam tips
+              </h2>
+              <div className="mt-5 grid gap-3">
+                {["Quick revision bullets", "Highlighted definitions", "Exam-ready facts"].map(
+                  (item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-sm font-semibold"
+                    >
+                      {item}
+                    </div>
+                  ),
+                )}
+              </div>
+            </div>
+          </div>
+          <SubjectGrid
+            onSelect={(id) => {
+              setChapter(null);
+              void navigate({
+                search: (previous: Record<string, unknown>) => ({
+                  ...previous,
+                  subject: id,
+                }),
+              });
+            }}
+          />
+        </div>
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
@@ -222,6 +273,17 @@ function NotesPage() {
             });
           }}
         />
+      ) : missingChapter ? (
+        <div className="text-center py-20 glass rounded-2xl">
+          <p className="text-muted-foreground">Chapter not found. Please choose another chapter.</p>
+          <button
+            type="button"
+            onClick={() => setChapter(null)}
+            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to chapters
+          </button>
+        </div>
       ) : !activeChapterKey ? (
         <>
           {isBilingualSubject && scienceLang && (
@@ -343,7 +405,7 @@ function SubtopicView({
   const features = getChapterFeatures(chapterContent);
   const subtopicSections = useMemo<NotesAccordionSection[]>(
     () =>
-      subtopics.map((subtopic) => ({
+      (Array.isArray(subtopics) ? subtopics : []).map((subtopic) => ({
         id: subtopic.key,
         title: `${subtopic.num}. ${subtopic.title}`,
         content: subtopic.summary,

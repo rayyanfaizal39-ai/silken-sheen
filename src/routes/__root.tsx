@@ -10,8 +10,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { Navbar } from "@/components/Navbar";
-import { MobileNav } from "@/components/MobileNav";
+import { AppShell } from "@/components/AppShell";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
 import { MusicPlayer } from "@/components/MusicPlayer";
@@ -46,7 +45,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <h1 className="font-display text-xl font-semibold">Something glitched</h1>
         <p className="mt-2 text-sm text-muted-foreground">Try again — we'll get this fixed.</p>
         <button
-          onClick={() => { router.invalidate(); reset(); }}
+          onClick={() => {
+            router.invalidate();
+            reset();
+          }}
           className="mt-6 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold"
         >
           Retry
@@ -62,20 +64,43 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
-      { name: "description", content: "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar." },
+      {
+        name: "description",
+        content:
+          "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar.",
+      },
       { property: "og:title", content: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
-      { property: "og:description", content: "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar." },
+      {
+        property: "og:description",
+        content:
+          "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
-      { name: "twitter:description", content: "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png" },
+      {
+        name: "twitter:description",
+        content:
+          "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap",
+      },
       { rel: "stylesheet", href: appCss },
     ],
   }),
@@ -106,11 +131,9 @@ function RootComponent() {
       <ParticleBg />
       <SoundFx />
       <MusicPlayer />
-      <Navbar />
-      <main className="app-main min-h-svh">
+      <AppShell>
         <Outlet />
-      </main>
-      <MobileNav />
+      </AppShell>
       <AIAssistant />
     </QueryClientProvider>
   );

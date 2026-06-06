@@ -3986,6 +3986,7 @@ function QuizzesPage() {
     subject && chapter
       ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
       : null;
+  const missingChapter = !!(subject && chapter && !chapterMeta);
 
   const pool = useMemo(() => {
     if (!subject || !chapter) return [];
@@ -3999,6 +4000,7 @@ function QuizzesPage() {
     });
   }, [subject, chapter, form, diff, scienceLang, isBilingualSubject]);
 
+  const activeQuiz = shuffledPool ?? pool;
   const current = shuffledPool?.[idx] ?? null;
   const selectedMathObjective = useMemo(
     () => MATH_OBJECTIVES.find((objective) => objective.id === mathObjectiveId) ?? null,
@@ -4321,15 +4323,76 @@ function QuizzesPage() {
       </div>
 
       {!subject ? (
-        <SubjectGrid
-          onSelect={(id) => {
-            setSubject(id);
-            setChapter(null);
-            setForm("All");
-            setDiff("All");
-            reset();
-          }}
-        />
+        <div className="space-y-6">
+          <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                Continue Quiz
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
+              <p className="mt-1 text-sm text-[#94A3B8]">Bab 7: Udara • Best score 86%</p>
+              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-[54%] rounded-full bg-gradient-to-r from-[#F59E0B] to-[#8B5CF6]" />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubject("science");
+                  setScienceLang("bm");
+                  setChapter("Chapter 7");
+                  reset();
+                }}
+                className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+              >
+                Resume Quiz
+              </button>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              {[
+                ["Daily Challenge", "10 mixed questions", "Start"],
+                ["Quick Practice", "5-minute warm up", "Practice"],
+                ["Exam Mode", "Timed score run", "Enter"],
+              ].map(([title, description, cta]) => (
+                <div
+                  key={title}
+                  className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.05] p-4"
+                >
+                  <h3 className="font-display text-xl font-bold">{title}</h3>
+                  <p className="mt-1 text-sm text-[#94A3B8]">{description}</p>
+                  <span className="mt-3 inline-flex rounded-xl bg-white px-3 py-2 text-xs font-bold text-[#050816]">
+                    {cta}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5">
+            <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Quiz Preview</p>
+            <h3 className="mt-3 font-display text-2xl font-bold">
+              Which process helps plants make food?
+            </h3>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {["Photosynthesis", "Evaporation", "Condensation", "Melting"].map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-left text-sm font-bold"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </div>
+          <SubjectGrid
+            onSelect={(id) => {
+              setSubject(id);
+              setChapter(null);
+              setForm("All");
+              setDiff("All");
+              reset();
+            }}
+          />
+        </div>
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
@@ -4371,6 +4434,20 @@ function QuizzesPage() {
             }}
           />
         </>
+      ) : missingChapter ? (
+        <div className="text-center py-20 glass rounded-2xl">
+          <p className="text-muted-foreground">Chapter not found. Please choose another chapter.</p>
+          <button
+            type="button"
+            onClick={() => {
+              setChapter(null);
+              reset();
+            }}
+            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to chapters
+          </button>
+        </div>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen
           subjectId={subject}

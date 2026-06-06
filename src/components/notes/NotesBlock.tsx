@@ -199,7 +199,7 @@ export function NotesBlock({
                                 keywords={section.keywords ?? []}
                               />
                             )}
-                            {sub.bulletPoints && (
+                            {Array.isArray(sub.bulletPoints) && (
                               <ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-200 marker:text-accent">
                                 {sub.bulletPoints.map((p) => (
                                   <li key={p}>{p}</li>
@@ -214,41 +214,43 @@ export function NotesBlock({
                                 </div>
                               </div>
                             )}
-                            {sub.table && (
-                              <div className="overflow-x-auto rounded-3xl border border-white/10 bg-slate-950/70 p-2">
-                                <table className="min-w-full text-left text-sm">
-                                  <thead>
-                                    <tr className="text-slate-300">
-                                      {sub.table.headers.map((h) => (
-                                        <th
-                                          key={h}
-                                          className="border-b border-white/10 px-3 py-2 font-semibold text-slate-200"
-                                        >
-                                          {h}
-                                        </th>
-                                      ))}
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    {sub.table.rows.map((row, ri) => (
-                                      <tr
-                                        key={`${ri}-${row[0]}`}
-                                        className={ri % 2 === 0 ? "bg-white/5" : "bg-transparent"}
-                                      >
-                                        {row.map((cell, ci) => (
-                                          <td
-                                            key={ci}
-                                            className="border-b border-white/10 px-3 py-2 text-slate-300"
+                            {sub.table &&
+                              Array.isArray(sub.table.headers) &&
+                              Array.isArray(sub.table.rows) && (
+                                <div className="overflow-x-auto rounded-3xl border border-white/10 bg-slate-950/70 p-2">
+                                  <table className="min-w-full text-left text-sm">
+                                    <thead>
+                                      <tr className="text-slate-300">
+                                        {sub.table.headers.map((h) => (
+                                          <th
+                                            key={h}
+                                            className="border-b border-white/10 px-3 py-2 font-semibold text-slate-200"
                                           >
-                                            {cell}
-                                          </td>
+                                            {h}
+                                          </th>
                                         ))}
                                       </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
-                              </div>
-                            )}
+                                    </thead>
+                                    <tbody>
+                                      {sub.table.rows.map((row, ri) => (
+                                        <tr
+                                          key={`${ri}-${row[0]}`}
+                                          className={ri % 2 === 0 ? "bg-white/5" : "bg-transparent"}
+                                        >
+                                          {(Array.isArray(row) ? row : []).map((cell, ci) => (
+                                            <td
+                                              key={ci}
+                                              className="border-b border-white/10 px-3 py-2 text-slate-300"
+                                            >
+                                              {cell}
+                                            </td>
+                                          ))}
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                              )}
                           </div>
                         ))}
                         {!!section.keywords?.length && (

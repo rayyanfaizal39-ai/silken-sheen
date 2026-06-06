@@ -24,7 +24,7 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { AcademyPageShell } from "@/components/AcademyPage";
+import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -1212,7 +1212,8 @@ function getMathFlashcards(
 ) {
   const bank = MATH_FLASHCARD_BANKS[chapter];
   if (!bank) return [];
-  return bank[category].map((card, index) => {
+  const cards = bank[category] ?? [];
+  return cards.map((card, index) => {
     const [front, back] = card[lang];
     return {
       id: `math-f1-c${chapter.replace("Chapter ", "")}-${lang}-${category}-${index + 1}`,
@@ -1479,6 +1480,7 @@ function FlashcardsPage() {
     subject && chapter
       ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
       : null;
+  const missingChapter = !!(subject && chapter && !chapterMeta);
 
   const pool = useMemo(() => {
     if (
@@ -1729,44 +1731,96 @@ function FlashcardsPage() {
 
   return (
     <AcademyPageShell>
-      <div className="mb-5 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/52 px-5 py-5 shadow-[0_18px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl sm:px-6">
-        <p className="mb-2 inline-flex rounded-full border border-white/[0.08] bg-white/[0.06] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-          SMART LEARNING
-        </p>
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <h1 className="font-display text-4xl font-bold sm:text-5xl">
-              <span className="bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent">
-                Flashcards
-              </span>
-            </h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#94A3B8] sm:text-base">
-              Master concepts through active recall. Choose a subject, pick a chapter deck, and
-              start studying.
-            </p>
-          </div>
-          {(subject || chapter) && (
-            <div className="flex gap-2 text-xs font-bold text-[#94A3B8]">
-              <span className="rounded-2xl bg-white/[0.05] px-3 py-2">{idx} completed</span>
-              <span className="rounded-2xl bg-white/[0.05] px-3 py-2">
-                {Math.max(0, remaining)} left
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+      <AcademyHero
+        eyebrow="Active recall"
+        title=""
+        gradientTitle="Flashcards"
+        description="Master concepts through active recall."
+        stats={[
+          { label: "Completed", value: subject || chapter ? idx : "Ready" },
+          { label: "Cards Left", value: subject || chapter ? Math.max(0, remaining) : "Choose" },
+          { label: "Mode", value: "Study Deck" },
+        ]}
+      />
 
       {!subject ? (
-        <SubjectGrid
-          mode="flashcards"
-          onSelect={(id) => {
-            setSubject(id);
-            setChapter(null);
-            setMathFlashcardLang(null);
-            setMathFlashcardCategory(null);
-            resetSession();
-          }}
-        />
+        <div className="space-y-6">
+          <div className="grid gap-4 xl:grid-cols-[1.1fr_1fr]">
+            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                Continue Studying
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
+              <p className="mt-1 text-sm text-[#94A3B8]">Bab 7: Udara</p>
+              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6]" />
+              </div>
+              <p className="mt-3 text-sm font-semibold text-[#94A3B8]">18 cards remaining</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubject("science");
+                  setScienceLang("bm");
+                  setChapter("Chapter 7");
+                  resetSession();
+                }}
+                className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+              >
+                Continue Studying
+              </button>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
+              {[
+                ["Recommended", "Science", "Bab 7: Udara", "64 cards"],
+                ["Recently Studied", "Mathematics", "Bab 3", "42 cards"],
+                ["Popular Deck", "Sejarah", "Bab 2", "30 cards"],
+              ].map(([badge, deckSubject, deckChapter, count]) => (
+                <div
+                  key={badge}
+                  className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.05] p-4"
+                >
+                  <p className="text-xs font-bold uppercase tracking-wide text-accent">{badge}</p>
+                  <h3 className="mt-2 font-display text-xl font-bold">{deckSubject}</h3>
+                  <p className="text-sm text-[#94A3B8]">
+                    {deckChapter} • {count}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5">
+            <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+              Flashcard Player Preview
+            </p>
+            <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#6366F1]/20 to-[#8B5CF6]/20 p-6">
+                <p className="text-sm text-[#94A3B8]">Question side</p>
+                <h3 className="mt-3 font-display text-2xl font-bold">What is active recall?</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Flip", "Easy", "Hard", "Don’t Know"].map((label) => (
+                  <button
+                    key={label}
+                    type="button"
+                    className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          <SubjectGrid
+            mode="flashcards"
+            onSelect={(id) => {
+              setSubject(id);
+              setChapter(null);
+              setMathFlashcardLang(null);
+              setMathFlashcardCategory(null);
+              resetSession();
+            }}
+          />
+        </div>
       ) : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
@@ -1813,6 +1867,22 @@ function FlashcardsPage() {
             }}
           />
         </>
+      ) : missingChapter ? (
+        <div className="text-center py-20 glass rounded-2xl">
+          <p className="text-muted-foreground">Chapter not found. Please choose another chapter.</p>
+          <button
+            type="button"
+            onClick={() => {
+              setChapter(null);
+              setMathFlashcardLang(null);
+              setMathFlashcardCategory(null);
+              resetSession();
+            }}
+            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to chapters
+          </button>
+        </div>
       ) : chapterMeta && !chapterMeta.available ? (
         <ComingSoonScreen
           subjectId={subject}

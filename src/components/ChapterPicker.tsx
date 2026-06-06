@@ -59,7 +59,7 @@ export function SubjectGrid({
         className={
           mode === "flashcards"
             ? "grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
-            : "grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+            : "grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
         }
       >
         {orderedSubjects.map((s, i) => (

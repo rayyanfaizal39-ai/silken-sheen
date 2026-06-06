@@ -8,9 +8,9 @@ import {
   FlaskConical,
   GraduationCap,
   Languages,
-  Rocket,
   Target,
 } from "lucide-react";
+import astronautRocket from "@/assets/premium-astronaut-rocket.png";
 
 const subjectPlanetStyles = {
   science: {
@@ -131,23 +131,15 @@ export function AcademyHero({
 
 function LearningHeroIllustration() {
   return (
-    <div className="relative hidden min-h-[220px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#050816]/50 lg:block">
+    <div className="relative hidden min-h-[240px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#050816]/50 lg:block">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_32%,rgba(99,102,241,0.28),transparent_32%),radial-gradient(circle_at_20%_78%,rgba(59,130,246,0.16),transparent_34%)]" />
       <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle,rgba(255,255,255,0.85)_1px,transparent_1px)] [background-size:34px_34px]" />
-      <div className="absolute left-8 top-8 h-11 w-11 rounded-full bg-[radial-gradient(circle_at_34%_27%,#FED7AA_0%,#F97316_42%,#7C2D12_100%)] shadow-[0_0_28px_rgba(249,115,22,0.38)]" />
-      <div className="absolute right-8 top-7 h-16 w-16 rounded-full bg-[radial-gradient(circle_at_31%_24%,#E0F2FE_0%,#8B5CF6_38%,#1E1B4B_100%)] opacity-85 shadow-[0_0_40px_rgba(139,92,246,0.4)]">
-        <span className="absolute left-[-15%] top-1/2 h-[22%] w-[130%] -translate-y-1/2 rotate-[-18deg] rounded-full border border-[#BAE6FD]/35" />
-      </div>
-      <div className="absolute bottom-8 left-10 h-12 w-12 rounded-full bg-[radial-gradient(circle_at_35%_26%,#D1FAE5_0%,#10B981_42%,#064E3B_100%)] opacity-75 shadow-[0_0_32px_rgba(16,185,129,0.34)]" />
-      <div className="absolute bottom-9 left-8 h-16 w-[72%] -rotate-[20deg] rounded-full bg-[#8B5CF6]/18 blur-2xl" />
-      <div className="animate-float absolute right-10 top-12 h-36 w-36 rotate-[-18deg] rounded-[2.5rem] border border-white/[0.10] bg-gradient-to-br from-white via-[#CBD5E1] to-[#64748B] shadow-[0_24px_60px_rgba(0,0,0,0.38)]">
-        <div className="absolute left-7 top-5 h-16 w-16 rounded-full bg-gradient-to-br from-white to-[#94A3B8] p-2 shadow-[0_12px_28px_rgba(0,0,0,0.28)]">
-          <div className="h-full w-full rounded-full bg-[radial-gradient(circle_at_34%_22%,#F8FBFF_0%,#60A5FA_34%,#020617_100%)]" />
-        </div>
-        <div className="absolute bottom-7 left-8 h-10 w-16 rounded-2xl bg-[#CBD5E1]" />
-        <div className="absolute -bottom-6 left-2 h-8 w-28 rounded-full bg-gradient-to-r from-[#8B5CF6]/0 via-[#8B5CF6]/80 to-[#60A5FA]/90 blur-sm" />
-        <Rocket className="absolute bottom-3 right-3 h-12 w-12 rotate-[28deg] text-[#1E1B4B]" />
-      </div>
+      <img
+        src={astronautRocket}
+        alt="Premium 3D astronaut riding a rocket through a purple blue nebula"
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
+      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050816]/80 to-transparent" />
     </div>
   );
 }
@@ -209,43 +201,51 @@ export function SubjectPlanetButton({
 }) {
   const planet = subjectPlanetStyles[subjectId as SubjectPlanetId] ?? subjectPlanetStyles.science;
   const Icon = planet.icon;
-  const learning = emphasis === "learning";
+  const contentTotal = (counts?.flashcards ?? 0) + (counts?.quizzes ?? 0);
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`group rounded-3xl border border-white/[0.08] bg-[#101827]/58 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-[#101827]/86 hover:shadow-[0_20px_60px_rgba(99,102,241,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816] ${
-        learning ? "min-w-[260px] p-6 text-left" : "min-w-[180px] p-5"
-      }`}
+      className="group relative min-h-[245px] overflow-hidden rounded-3xl border border-white/[0.08] bg-[#101827]/72 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:bg-[#101827]/92 hover:shadow-[0_22px_70px_rgba(99,102,241,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
     >
       <div
-        className={`relative flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
-          learning ? "h-24 w-24" : "mx-auto h-24 w-24"
-        }`}
+        className="absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-2xl transition-opacity group-hover:opacity-45"
+        style={{ background: planet.color }}
+      />
+      <span
+        className="absolute right-5 top-5 h-28 w-12 rotate-[-58deg] rounded-full border border-white/20"
+        style={{ boxShadow: `0 0 34px ${planet.glow}` }}
+      />
+      <div
+        className="relative flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105"
         style={{
-          background: `radial-gradient(circle at 32% 25%, rgba(255,255,255,0.78), ${planet.color} 35%, #101827 78%)`,
-          boxShadow: `0 0 38px ${planet.glow}`,
+          background: `linear-gradient(135deg, ${planet.color}33, rgba(255,255,255,0.08))`,
+          color: planet.color,
+          boxShadow: `0 0 32px ${planet.glow}`,
         }}
       >
-        <span className="absolute h-[112px] w-[40px] rotate-[-58deg] rounded-full border border-white/35 transition-transform group-hover:rotate-[-45deg]" />
-        <Icon className="relative z-10 h-9 w-9 text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]" />
+        <Icon className="relative z-10 h-9 w-9 drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]" />
       </div>
-      <p className={`${learning ? "mt-6 text-xl" : "mt-4 text-sm"} font-bold`}>
+      <p className="relative mt-5 font-display text-2xl font-bold leading-tight">
         {title ?? planet.name}
       </p>
-      <p className="text-xs font-semibold text-[#94A3B8]">{subtitle ?? planet.label}</p>
+      <p className="relative mt-1 text-sm font-semibold text-[#94A3B8]">
+        {subtitle ?? planet.label}
+      </p>
       {counts && (
-        <div
-          className={`mt-4 grid gap-1.5 text-center ${learning ? "grid-cols-2" : "grid-cols-3"}`}
-        >
+        <div className="relative mt-5 grid grid-cols-2 gap-2">
           {[
-            ["Ch", counts.chapters],
-            ["Cards", counts.flashcards],
-            ...(learning ? [] : ([["Quiz", counts.quizzes]] as Array<[string, number]>)),
+            ["Chapters", counts.chapters],
+            ["Cards / Questions", contentTotal],
           ].map(([label, value]) => (
-            <span key={label} className="rounded-2xl bg-white/[0.05] px-2 py-2">
-              <span className="block text-sm font-bold text-white">{value}</span>
-              <span className="block text-[10px] font-semibold text-[#94A3B8]">{label}</span>
+            <span
+              key={label}
+              className="rounded-2xl border border-white/[0.07] bg-white/[0.05] px-3 py-2"
+            >
+              <span className="block text-lg font-bold text-white">{value}</span>
+              <span className="block text-[10px] font-semibold uppercase tracking-wide text-[#94A3B8]">
+                {label}
+              </span>
             </span>
           ))}
         </div>
@@ -268,24 +268,59 @@ export function SubjectPlanetLink({
 }) {
   const planet = subjectPlanetStyles[subjectId];
   const Icon = planet.icon;
+  const chapterCount =
+    subjectId === "math" || subjectId === "geography"
+      ? 13
+      : subjectId === "science"
+        ? 9
+        : subjectId === "sejarah"
+          ? 8
+          : subjectId === "english"
+            ? 4
+            : 1;
   return (
     <Link
       to={to}
       search={{ subject: subjectId, form: 1 }}
-      className="group min-w-[128px] text-center"
+      className="group relative block min-h-[245px] overflow-hidden rounded-3xl border border-white/[0.08] bg-[#101827]/72 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:bg-[#101827]/92 hover:shadow-[0_22px_70px_rgba(99,102,241,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
     >
       <div
-        className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
+        className="absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-2xl transition-opacity group-hover:opacity-45"
+        style={{ background: planet.color }}
+      />
+      <span
+        className="absolute right-5 top-5 h-28 w-12 rotate-[-58deg] rounded-full border border-white/20"
+        style={{ boxShadow: `0 0 34px ${planet.glow}` }}
+      />
+      <div
+        className="relative flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105"
         style={{
-          background: `radial-gradient(circle at 32% 25%, rgba(255,255,255,0.78), ${planet.color} 35%, #101827 78%)`,
-          boxShadow: `0 0 38px ${planet.glow}`,
+          background: `linear-gradient(135deg, ${planet.color}33, rgba(255,255,255,0.08))`,
+          color: planet.color,
+          boxShadow: `0 0 32px ${planet.glow}`,
         }}
       >
-        <span className="absolute h-[112px] w-[40px] rotate-[-58deg] rounded-full border border-white/35 transition-transform group-hover:rotate-[-45deg]" />
-        <Icon className="relative z-10 h-9 w-9 text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]" />
+        <Icon className="h-9 w-9 drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]" />
       </div>
-      <p className="mt-4 text-sm font-bold">{planet.name}</p>
-      <p className="text-xs font-semibold text-[#94A3B8]">{planet.label}</p>
+      <p className="relative mt-5 font-display text-2xl font-bold leading-tight">{planet.name}</p>
+      <p className="relative mt-1 text-sm font-semibold text-[#94A3B8]">{planet.label}</p>
+      <div className="relative mt-5 grid grid-cols-2 gap-2">
+        <span className="rounded-2xl border border-white/[0.07] bg-white/[0.05] px-3 py-2">
+          <span className="block text-lg font-bold text-white">{chapterCount}</span>
+          <span className="block text-[10px] font-semibold uppercase tracking-wide text-[#94A3B8]">
+            Chapters
+          </span>
+        </span>
+        <span className="rounded-2xl border border-white/[0.07] bg-white/[0.05] px-3 py-2">
+          <span className="block text-lg font-bold text-white">Ready</span>
+          <span className="block text-[10px] font-semibold uppercase tracking-wide text-[#94A3B8]">
+            Content
+          </span>
+        </span>
+      </div>
+      <span className="relative mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-4 py-3 text-sm font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.30)] transition-transform group-hover:scale-[1.02]">
+        Start Learning
+      </span>
     </Link>
   );
 }

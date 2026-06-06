@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { subjects, forms } from "@/data/content";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { SubjectPlanetLink, type SubjectPlanetId } from "@/components/AcademyPage";
 
 export const Route = createFileRoute("/subjects")({
   head: () => ({
@@ -63,26 +64,9 @@ function SubjectsPage() {
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {filtered.map((s) => (
-          <Link
-            key={s.id}
-            to="/notes"
-            search={{ subject: s.id, form: Number(form.match(/\d/)?.[0]) || undefined }}
-            className="group relative overflow-hidden glass-strong rounded-2xl p-6 hover:-translate-y-1 transition-all"
-          >
-            <div
-              className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-br ${s.color} opacity-30 blur-2xl group-hover:opacity-50 transition-opacity`}
-            />
-            <div className="relative">
-              <div className="text-5xl mb-4">{s.emoji}</div>
-              <h3 className="font-display text-2xl font-bold">{s.name}</h3>
-              <p className="text-sm text-muted-foreground mt-2">{s.description}</p>
-              <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary group-hover:translate-x-1 transition-transform">
-                Start learning →
-              </div>
-            </div>
-          </Link>
+          <SubjectPlanetLink key={s.id} subjectId={s.id as SubjectPlanetId} to="/notes" />
         ))}
       </div>
     </section>
