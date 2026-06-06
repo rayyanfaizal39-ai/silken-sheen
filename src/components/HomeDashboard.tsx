@@ -132,7 +132,10 @@ export function HomeDashboard() {
                 </Link>
               </div>
             </div>
-            <AstronautScene />
+            <div className="relative min-h-[320px]">
+              <AstronautScene />
+            </div>
+
 
           </section>
 
