@@ -4127,6 +4127,20 @@ const MATH_QUIZ_BANKS: Partial<
       dlp: MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
     },
   },
+  "Chapter 4": {
+    "objective-1": {
+      bm: MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS,
+      dlp: MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+    },
+    "objective-2": {
+      bm: MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS,
+      dlp: MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+    },
+    "objective-3": {
+      bm: MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS,
+      dlp: MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+    },
+  },
 };
 
 interface ShuffledQuestion {
