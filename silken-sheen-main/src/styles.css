@@ -2154,20 +2154,21 @@
 }
 
 /* ============================================================
-   Astronaut Hero Scene
+   Home Hero — Unified Astronaut Composition
+   One shared cosmic scene: the backdrop, the headline, and the
+   astronaut figure all read as a single illustration. The
+   astronaut is masked so its rectangular frame dissolves into
+   the surrounding nebula, and it overlaps the headline corner
+   instead of sitting beside it in its own boxed card.
    ============================================================ */
-.astronaut-scene { isolation: isolate; }
+.home-hero-scene { isolation: isolate; }
 
 @keyframes astronaut-float {
   0%, 100% { transform: translate3d(0, 0, 0); }
   50%      { transform: translate3d(0, -6px, 0); }
 }
-.astronaut-float {
-  animation: astronaut-float 6s ease-in-out infinite;
-  will-change: transform;
-}
 
-/* Visor light sweep — diagonal soft highlight across upper portion */
+/* Visor light sweep — diagonal soft highlight across the astronaut */
 .astronaut-visor {
   position: absolute;
   inset: 0;
@@ -2192,69 +2193,9 @@
   100% { background-position: -30% 0; }
 }
 
-/* Rocket trail — soft purple/blue plume below the rocket */
-.astronaut-trail {
-  position: absolute;
-  left: 50%;
-  bottom: -12%;
-  width: 55%;
-  height: 60%;
-  transform: translateX(-50%);
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(139, 92, 246, 0.32), transparent 60%),
-    radial-gradient(ellipse at 50% 55%, rgba(59, 130, 246, 0.22), transparent 65%);
-  filter: blur(18px);
-  animation: astronaut-trail-pulse 3.6s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes astronaut-trail-pulse {
-  0%, 100% { opacity: 0.55; transform: translateX(-50%) scale(1); }
-  50%      { opacity: 0.85; transform: translateX(-50%) scale(1.06); }
-}
-
-/* Fading particles trailing the rocket */
-.astronaut-particle {
-  position: absolute;
-  left: 50%;
-  bottom: 8%;
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background: radial-gradient(circle, rgba(196, 181, 253, 0.9), rgba(99, 102, 241, 0) 70%);
-  filter: blur(1px);
-  opacity: 0;
-  pointer-events: none;
-}
-.astronaut-particle--1 { animation: astronaut-particle 4.2s ease-in 0s infinite; }
-.astronaut-particle--2 { animation: astronaut-particle 5.0s ease-in 1.3s infinite; margin-left: -22px; }
-.astronaut-particle--3 { animation: astronaut-particle 4.6s ease-in 2.4s infinite; margin-left: 24px; }
-@keyframes astronaut-particle {
-  0%   { opacity: 0; transform: translate(-50%, 0) scale(0.6); }
-  20%  { opacity: 0.8; }
-  100% { opacity: 0; transform: translate(-50%, 60px) scale(0.2); }
-}
-
-/* Drifting planets */
-.astronaut-planet {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(0.4px);
-  opacity: 0.55;
-  pointer-events: none;
-}
-.astronaut-planet--a {
-  width: 70px; height: 70px;
-  top: 14%; left: 8%;
-  background: radial-gradient(circle at 32% 30%, #a78bfa, #4c1d95 70%, #1e1b4b);
-  box-shadow: 0 0 32px rgba(139, 92, 246, 0.35);
-  animation: astronaut-drift-a 22s ease-in-out infinite;
-}
-.astronaut-planet--b {
-  width: 44px; height: 44px;
-  top: 70%; left: 78%;
-  background: radial-gradient(circle at 30% 30%, #93c5fd, #1d4ed8 70%, #0c1a3a);
-  box-shadow: 0 0 24px rgba(59, 130, 246, 0.35);
-  animation: astronaut-drift-b 28s ease-in-out infinite;
+@keyframes astronaut-twinkle {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 0.5; }
 }
 @keyframes astronaut-drift-a {
   0%, 100% { transform: translate(0, 0); }
@@ -2264,44 +2205,106 @@
   0%, 100% { transform: translate(0, 0); }
   50%      { transform: translate(-12px, 6px); }
 }
-
-/* Twinkling stars (CSS-only star field via layered radial gradients) */
-.astronaut-stars {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.9), transparent 60%),
-    radial-gradient(1px 1px at 28% 64%, rgba(255,255,255,0.7), transparent 60%),
-    radial-gradient(1.2px 1.2px at 44% 18%, rgba(255,255,255,0.85), transparent 60%),
-    radial-gradient(1px 1px at 60% 78%, rgba(255,255,255,0.6), transparent 60%),
-    radial-gradient(1px 1px at 72% 36%, rgba(255,255,255,0.8), transparent 60%),
-    radial-gradient(1.2px 1.2px at 86% 58%, rgba(255,255,255,0.9), transparent 60%),
-    radial-gradient(1px 1px at 18% 86%, rgba(255,255,255,0.65), transparent 60%),
-    radial-gradient(1px 1px at 92% 12%, rgba(255,255,255,0.75), transparent 60%);
-  animation: astronaut-twinkle 5.5s ease-in-out infinite;
-}
-@keyframes astronaut-twinkle {
-  0%, 100% { opacity: 0.85; }
-  50%      { opacity: 0.5; }
-}
-
-.astronaut-nebula {
-  background:
-    radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.12), transparent 55%),
-    radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.10), transparent 55%);
-  animation: astronaut-nebula 14s ease-in-out infinite;
-}
 @keyframes astronaut-nebula {
   0%, 100% { opacity: 0.85; transform: scale(1); }
   50%      { opacity: 1; transform: scale(1.04); }
 }
+@keyframes astronaut-trail-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.06); }
+}
+
+/* Shared backdrop — spans the whole hero so the astronaut's cosmos and
+   the headline's cosmos are visibly the same continuous scene */
+.home-hero-nebula {
+  background:
+    radial-gradient(ellipse at 18% 26%, rgba(99, 102, 241, 0.22), transparent 48%),
+    radial-gradient(ellipse at 84% 60%, rgba(139, 92, 246, 0.18), transparent 50%),
+    radial-gradient(ellipse at 52% 96%, rgba(59, 130, 246, 0.14), transparent 46%);
+  animation: astronaut-nebula 16s ease-in-out infinite;
+}
+.home-hero-stars {
+  background-image:
+    radial-gradient(1px 1px at 8% 18%, rgba(255,255,255,0.85), transparent 60%),
+    radial-gradient(1px 1px at 22% 62%, rgba(255,255,255,0.65), transparent 60%),
+    radial-gradient(1.2px 1.2px at 38% 14%, rgba(255,255,255,0.8), transparent 60%),
+    radial-gradient(1px 1px at 52% 74%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(1px 1px at 68% 32%, rgba(255,255,255,0.75), transparent 60%),
+    radial-gradient(1.2px 1.2px at 81% 58%, rgba(255,255,255,0.85), transparent 60%),
+    radial-gradient(1px 1px at 91% 22%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(1px 1px at 14% 86%, rgba(255,255,255,0.6), transparent 60%);
+  animation: astronaut-twinkle 6s ease-in-out infinite;
+}
+
+/* Soft glowing planets that share depth with the astronaut and headline —
+   one large and blurred behind everything, one smaller near the trail */
+.home-hero-planet {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.home-hero-planet--back {
+  width: 240px;
+  height: 240px;
+  right: 4%;
+  top: -10%;
+  background: radial-gradient(circle at 35% 32%, rgba(167, 139, 250, 0.28), rgba(76, 29, 149, 0.06) 60%, transparent 75%);
+  filter: blur(2px);
+  animation: astronaut-drift-a 26s ease-in-out infinite;
+}
+.home-hero-planet--mid {
+  width: 56px;
+  height: 56px;
+  right: 22%;
+  bottom: 12%;
+  background: radial-gradient(circle at 30% 30%, #93c5fd, #1d4ed8 70%, #0c1a3a);
+  box-shadow: 0 0 26px rgba(59, 130, 246, 0.4);
+  opacity: 0.65;
+  animation: astronaut-drift-b 24s ease-in-out infinite;
+}
+
+/* The astronaut figure itself — no card, no border. A soft radial mask
+   dissolves its rectangular frame into the shared nebula so it reads
+   as part of the same illustration as the headline. */
+.home-hero-astronaut {
+  animation: astronaut-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+.home-hero-astronaut-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: radial-gradient(ellipse 56% 56% at 50% 48%, #000 36%, transparent 72%);
+  mask-image: radial-gradient(ellipse 56% 56% at 50% 48%, #000 36%, transparent 72%);
+  filter: drop-shadow(0 18px 50px rgba(99, 102, 241, 0.35));
+}
+
+/* Faint orbit ring around the astronaut — suggests it is travelling
+   along a path that loops toward the headline, tying figure to text */
+.home-hero-orbit {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+/* Glow trail behind the astronaut, reaching toward the headline —
+   the visual thread that fuses the figure to the title */
+.home-hero-trail {
+  border-radius: 9999px;
+  background:
+    radial-gradient(ellipse at 46% 50%, rgba(139, 92, 246, 0.34), transparent 60%),
+    radial-gradient(ellipse at 60% 64%, rgba(59, 130, 246, 0.20), transparent 65%);
+  filter: blur(22px);
+  animation: astronaut-trail-pulse 4.2s ease-in-out infinite;
+  pointer-events: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .astronaut-float,
   .astronaut-visor,
-  .astronaut-trail,
-  .astronaut-particle,
-  .astronaut-planet,
-  .astronaut-stars,
-  .astronaut-nebula { animation: none !important; }
+  .home-hero-nebula,
+  .home-hero-stars,
+  .home-hero-planet,
+  .home-hero-astronaut,
+  .home-hero-trail { animation: none !important; }
 }

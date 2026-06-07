@@ -2,14 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
 
 /**
- * Premium animated hero scene:
- * - Floating astronaut (slow 6s ease-in-out)
- * - Visor light sweep
- * - Rocket trail glow + pulsing particles
- * - Mouse parallax (foreground / midground / background)
- * - Drifting planets, twinkling stars, nebula
+ * Astronaut figure for the home hero — a portable, decorative illustration
+ * meant to overlap the headline rather than sit beside it in its own card.
+ * The image is masked with a soft radial fade so its rectangular edges
+ * dissolve into the hero's shared nebula, and it carries a faint orbit
+ * ring + glow trail so it visually belongs to the same scene as the title.
  */
-export function AstronautScene() {
+export function AstronautScene({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
@@ -49,61 +48,16 @@ export function AstronautScene() {
     };
   }, []);
 
-  const layer = (depth: number) => ({
-    transform: `translate3d(${tilt.x * depth}px, ${tilt.y * depth}px, 0)`,
-  });
-
   return (
-    <div
-      ref={ref}
-      className="astronaut-scene absolute inset-0 overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#050816]/55"
-    >
-      {/* Background — nebula */}
+    <div ref={ref} className={`home-hero-astronaut ${className}`} aria-hidden="true">
+      <span className="home-hero-orbit absolute" style={{ inset: "-26%" }} />
+      <div className="home-hero-trail absolute inset-0" />
       <div
         className="absolute inset-0 will-change-transform"
-        style={layer(-8)}
+        style={{ transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)` }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,rgba(99,102,241,0.22),transparent_42%),radial-gradient(circle_at_30%_72%,rgba(59,130,246,0.16),transparent_38%),radial-gradient(circle_at_78%_28%,rgba(139,92,246,0.18),transparent_36%)]" />
-        <div className="astronaut-nebula absolute inset-0" />
-      </div>
-
-      {/* Background — stars */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-14)}>
-        <div className="astronaut-stars" />
-      </div>
-
-      {/* Background — drifting planets */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-20)}>
-        <span className="astronaut-planet astronaut-planet--a" />
-        <span className="astronaut-planet astronaut-planet--b" />
-      </div>
-
-      {/* Midground — rocket trail glow */}
-      <div
-        className="absolute inset-0 will-change-transform"
-        style={layer(12)}
-        aria-hidden
-      >
-        <div className="astronaut-trail" />
-        <span className="astronaut-particle astronaut-particle--1" />
-        <span className="astronaut-particle astronaut-particle--2" />
-        <span className="astronaut-particle astronaut-particle--3" />
-      </div>
-
-      {/* Foreground — astronaut + visor sweep */}
-      <div
-        className="absolute inset-0 will-change-transform"
-        style={layer(22)}
-      >
-        <div className="astronaut-float absolute inset-0">
-          <img
-            src={astronautRocket}
-            alt="Premium 3D astronaut riding a rocket through a purple blue nebula"
-            className="absolute inset-0 h-full w-full object-cover object-center select-none"
-            draggable={false}
-          />
-          <div className="astronaut-visor" aria-hidden />
-        </div>
+        <img src={astronautRocket} alt="" className="home-hero-astronaut-img" draggable={false} />
+        <div className="astronaut-visor absolute inset-0" aria-hidden />
       </div>
     </div>
   );

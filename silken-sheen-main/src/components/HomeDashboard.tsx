@@ -100,18 +100,26 @@ export function HomeDashboard() {
     <section className="px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div className="min-w-0 space-y-6">
-          <section className="grid min-h-[420px] gap-7 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:grid-cols-[1fr_0.92fr] md:p-9">
-            <div className="relative z-10 flex flex-col justify-center">
+          <section className="home-hero-scene relative isolate grid min-h-[480px] overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#050816] p-7 shadow-[0_28px_90px_rgba(0,0,0,0.42)] sm:p-10 lg:min-h-[560px] lg:p-14">
+            <div className="home-hero-nebula absolute inset-0" aria-hidden="true" />
+            <div className="home-hero-stars absolute inset-0" aria-hidden="true" />
+            <span className="home-hero-planet home-hero-planet--back" aria-hidden="true" />
+            <span className="home-hero-planet home-hero-planet--mid" aria-hidden="true" />
+
+            <div className="relative z-10 flex max-w-2xl flex-col justify-center">
               <p className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-xs font-bold uppercase text-[#94A3B8]">
                 <Sparkles className="h-3.5 w-3.5 text-[#8B5CF6]" />
                 Premium KSSM Learning
               </p>
-              <h1 className="font-display text-5xl font-bold leading-[0.95] sm:text-6xl xl:text-7xl">
-                <span className="block">Work Smarter.</span>
-                <span className="mt-2 block bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent">
-                  Achieve More.
-                </span>
-              </h1>
+              <div className="relative">
+                <AstronautScene className="absolute -right-2 -top-10 h-[150px] w-[150px] sm:-right-6 sm:-top-12 sm:h-[200px] sm:w-[200px] lg:-right-8 lg:-top-16 lg:h-[240px] lg:w-[240px]" />
+                <h1 className="relative font-display text-5xl font-bold leading-[0.95] sm:text-6xl xl:text-7xl">
+                  <span className="block">Work Smarter.</span>
+                  <span className="mt-2 block bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent">
+                    Achieve More.
+                  </span>
+                </h1>
+              </div>
               <p className="mt-6 max-w-xl text-base leading-8 text-[#94A3B8]">
                 AcadeMy helps Malaysian students master KSSM subjects with smart notes, mind maps,
                 quizzes, videos and AI-powered learning.
@@ -125,11 +133,6 @@ export function HomeDashboard() {
                 </AcademyButton>
               </div>
             </div>
-            <div className="relative min-h-[320px]">
-              <AstronautScene />
-            </div>
-
-
           </section>
 
           <section className={academyPanelClassName}>
