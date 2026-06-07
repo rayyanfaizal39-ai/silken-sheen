@@ -5360,17 +5360,22 @@ function MathObjectiveIntroScreen({
   const isDlp = quizLang === "dlp";
   const isChapter2 = chapterKey === "Chapter 2";
   const isChapter3 = chapterKey === "Chapter 3";
+  const isChapter4 = chapterKey === "Chapter 4";
   const chapterTitle = isDlp
-    ? isChapter3
-      ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
-      : isChapter2
-        ? "Chapter 2: Factors and Multiples"
-        : "Chapter 1: Rational Numbers"
-    : isChapter3
-      ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
-      : isChapter2
-        ? "Bab 2: Faktor dan Gandaan"
-        : "Bab 1: Nombor Nisbah";
+    ? isChapter4
+      ? "Chapter 4: Ratios, Rates and Proportions"
+      : isChapter3
+        ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
+        : isChapter2
+          ? "Chapter 2: Factors and Multiples"
+          : "Chapter 1: Rational Numbers"
+    : isChapter4
+      ? "Bab 4: Nisbah, Kadar dan Kadaran"
+      : isChapter3
+        ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
+        : isChapter2
+          ? "Bab 2: Faktor dan Gandaan"
+          : "Bab 1: Nombor Nisbah";
   const introTitle = isFoundation
     ? "🎯 Objective 1 – Foundation"
     : isPractice || isChallenge
