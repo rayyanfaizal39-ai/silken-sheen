@@ -29,6 +29,8 @@ import { mathF1C2NotesBM } from "@/data/math-f1-c2-notes-bm";
 import { mathF1C2NotesDLP } from "@/data/math-f1-c2-notes-dlp";
 import { mathF1C3NotesBM } from "@/data/math-f1-c3-notes-bm";
 import { mathF1C3NotesDLP } from "@/data/math-f1-c3-notes-dlp";
+import { mathF1C4NotesBM } from "@/data/math-f1-c4-notes-bm";
+import { mathF1C4NotesDLP } from "@/data/math-f1-c4-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -221,6 +223,24 @@ export const chapters: ChapterContent[] = [
     title: "Squares, Square Roots, Cubes and Cube Roots",
     lang: "dlp",
     notes: mathF1C3NotesDLP,
+  },
+  {
+    id: "math-f1-c4-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 4",
+    title: "Nisbah, Kadar dan Kadaran",
+    lang: "bm",
+    notes: mathF1C4NotesBM,
+  },
+  {
+    id: "math-f1-c4-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 4",
+    title: "Ratio, Rate and Proportion",
+    lang: "dlp",
+    notes: mathF1C4NotesDLP,
   },
 
   // Science Form 1 (bilingual)
