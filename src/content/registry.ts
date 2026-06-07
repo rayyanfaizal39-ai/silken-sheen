@@ -29,6 +29,8 @@ import { mathF1C2NotesBM } from "@/data/math-f1-c2-notes-bm";
 import { mathF1C2NotesDLP } from "@/data/math-f1-c2-notes-dlp";
 import { mathF1C3NotesBM } from "@/data/math-f1-c3-notes-bm";
 import { mathF1C3NotesDLP } from "@/data/math-f1-c3-notes-dlp";
+import { mathF1C4NotesBM } from "@/data/math-f1-c4-notes-bm";
+import { mathF1C4NotesDLP } from "@/data/math-f1-c4-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
