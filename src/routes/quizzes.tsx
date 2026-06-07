@@ -4020,7 +4020,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ["Jika 60% pelajar lelaki dan jumlah 40, bilangan perempuan?", ["12", "16", "20", "24"], 1, "40% perempuan = 0.40 × 40 = 16.", "Hard"],
   ["Skala peta 1 : 250 000. Dua bandar 6 cm pada peta. Jarak sebenar (km)?", ["10", "12", "15", "20"], 2, "6 × 250 000 = 1 500 000 cm = 15 km.", "Hard"],
   ["Anggar populasi: 40 ditanda dilepas. 80 ditangkap; 8 bertanda. Anggaran?", ["200", "320", "400", "640"], 2, "8/80 = 40/N → N = 400.", "Hard"],
-  ["Nisbah A : B = 3 : 5. A bertambah 6 menjadikan nisbah 5 : 7. Nilai asal A?", ["6", "9", "12", "15"], 1, "A = 3k, B = 5k; (3k+6)/5k = 5/7 → 21k + 42 = 25k → k = 10.5? Periksa: A asal = 9. Penjelasan: dengan k=3, A=9, B=15; (9+6)/15 = 15/15 = 1 ≠ 5/7. Gunakan kaedah cuba: A=9 memenuhi 15:25 ≈ 3:5; (9+6):15 = 15:15. Set semula: ambil A = 9.", "Hard"],
+  ["A : B = 3 : 5. Jika B − A = 8, nilai A?", ["10", "12", "15", "20"], 1, "B − A = 5k − 3k = 2k = 8 → k = 4; A = 12.", "Hard"],
   ["Larutan 5 : 3 air : sirap. Untuk 240 ml sirap, isipadu air?", ["360 ml", "400 ml", "420 ml", "480 ml"], 1, "Air = 5/3 × 240 = 400 ml.", "Hard"],
   ["Kereta A: 240 km dalam 3 jam. Kereta B: 300 km dalam 4 jam. Yang lebih laju?", ["Kereta A", "Kereta B", "Sama", "Tidak ditentukan"], 0, "A = 80 km/j; B = 75 km/j.", "Hard"],
   ["12 pekerja siap dalam 10 hari. 15 pekerja dalam? (kerja malar)", ["6", "7", "8", "9"], 2, "12×10 = 15×t → t = 8.", "Hard"],
