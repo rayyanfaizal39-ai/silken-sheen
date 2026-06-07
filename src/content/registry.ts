@@ -224,6 +224,24 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     notes: mathF1C3NotesDLP,
   },
+  {
+    id: "math-f1-c4-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 4",
+    title: "Nisbah, Kadar dan Kadaran",
+    lang: "bm",
+    notes: mathF1C4NotesBM,
+  },
+  {
+    id: "math-f1-c4-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 4",
+    title: "Ratio, Rate and Proportion",
+    lang: "dlp",
+    notes: mathF1C4NotesDLP,
+  },
 
   // Science Form 1 (bilingual)
   {
