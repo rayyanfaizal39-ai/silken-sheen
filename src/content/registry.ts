@@ -31,6 +31,8 @@ import { mathF1C3NotesBM } from "@/data/math-f1-c3-notes-bm";
 import { mathF1C3NotesDLP } from "@/data/math-f1-c3-notes-dlp";
 import { mathF1C4NotesBM } from "@/data/math-f1-c4-notes-bm";
 import { mathF1C4NotesDLP } from "@/data/math-f1-c4-notes-dlp";
+import { mathF1C5NotesBM } from "@/data/math-f1-c5-notes-bm";
+import { mathF1C5NotesDLP } from "@/data/math-f1-c5-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -241,6 +243,24 @@ export const chapters: ChapterContent[] = [
     title: "Ratio, Rate and Proportion",
     lang: "dlp",
     notes: mathF1C4NotesDLP,
+  },
+  {
+    id: "math-f1-c5-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 5",
+    title: "Ungkapan Algebra",
+    lang: "bm",
+    notes: mathF1C5NotesBM,
+  },
+  {
+    id: "math-f1-c5-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 5",
+    title: "Algebraic Expressions",
+    lang: "dlp",
+    notes: mathF1C5NotesDLP,
   },
 
   // Science Form 1 (bilingual)

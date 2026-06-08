@@ -4082,6 +4082,204 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
 ]);
 
 
+const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
+  ["Apakah pemboleh ubah?", ["Nombor tetap", "Huruf atau simbol yang mewakili nilai yang tidak diketahui", "Tanda operasi", "Unit ukuran"], 1, "Pemboleh ubah ialah huruf atau simbol yang mewakili nilai yang tidak diketahui.", "Easy"],
+  ["Manakah antara berikut ialah pemboleh ubah?", ["5", "+", "x", "="], 2, "x ialah huruf yang digunakan untuk mewakili nilai yang tidak diketahui; nombor dan simbol operasi bukan pemboleh ubah.", "Easy"],
+  ["Daripada manakah perkataan 'algebra' berasal?", ["Bahasa Yunani", "Perkataan Arab 'al-jabr'", "Bahasa Latin", "Bahasa Sanskrit"], 1, "Perkataan 'algebra' berasal daripada perkataan Arab 'al-jabr'.", "Easy"],
+  ["Apakah ungkapan algebra bagi 'n biji gula-gula tambah 6'?", ["n − 6", "n + 6", "6n", "n ÷ 6"], 1, "Menambah 6 biji gula-gula kepada n biji gula-gula memberikan ungkapan n + 6.", "Easy"],
+  ["Apakah ungkapan algebra bagi 'n biji gula-gula tolak 1'?", ["n + 1", "1 − n", "n − 1", "n × 1"], 2, "Memakan 1 biji gula-gula daripada n biji gula-gula memberikan ungkapan n − 1.", "Easy"],
+  ["Apakah ungkapan bagi 'tiga balang, setiap satu mengandungi n biji gula-gula'?", ["n + 3", "n − 3", "n/3", "3n"], 3, "Tiga balang yang setiap satu mengandungi n biji gula-gula memberi 3 × n = 3n.", "Easy"],
+  ["Apakah sebutan algebra?", ["Hanya nombor sahaja", "Hanya pemboleh ubah sahaja", "Nombor, pemboleh ubah, atau hasil darab antara kedua-duanya", "Hanya tanda operasi sahaja"], 2, "Sebutan algebra ialah nombor, pemboleh ubah, atau hasil darab antara nombor dengan pemboleh ubah.", "Easy"],
+  ["Berapakah bilangan sebutan dalam ungkapan 3ab + 5x − 2y + 7?", ["2", "3", "4", "5"], 2, "Ungkapan 3ab + 5x − 2y + 7 mempunyai empat sebutan: 3ab, 5x, −2y dan 7.", "Easy"],
+  ["Apakah pekali bagi sebutan 3x?", ["x", "3", "3x", "1"], 1, "Pekali ialah faktor nombor yang mendarab pemboleh ubah; pekali bagi 3x ialah 3.", "Easy"],
+  ["Apakah pekali bagi sebutan −7ab?", ["7", "ab", "−7", "−1"], 2, "Pekali bagi −7ab ialah −7 kerana tanda negatif adalah sebahagian daripada pekali.", "Easy"],
+  ["Apakah pekali bagi sebutan y?", ["0", "y", "1", "tiada"], 2, "y bermaksud 1y, jadi pekalinya ialah 1.", "Easy"],
+  ["Apakah pekali bagi sebutan −n?", ["1", "−1", "n", "0"], 1, "−n bermaksud −1n, jadi pekalinya ialah −1.", "Easy"],
+  ["Manakah pasangan berikut ialah sebutan serupa?", ["3x dan 8x", "x dan x²", "2a dan 2b", "ab dan abc"], 0, "3x dan 8x mempunyai pemboleh ubah x dengan kuasa yang sama, jadi ia ialah sebutan serupa.", "Easy"],
+  ["Manakah pasangan berikut ialah sebutan serupa?", ["xy dan yx", "x dan y", "a dan a²", "m dan mn"], 0, "xy dan yx mewakili hasil darab pemboleh ubah yang sama (x × y = y × x), jadi ia ialah sebutan serupa.", "Easy"],
+  ["Manakah pasangan berikut ialah sebutan tidak serupa?", ["3x dan 8x", "2ab dan −5ab", "x dan x²", "xy dan yx"], 2, "x dan x² mempunyai kuasa yang berbeza (kuasa 1 berbanding kuasa 2), jadi ia ialah sebutan tidak serupa.", "Easy"],
+  ["Mengapakah x dan x² ialah sebutan tidak serupa?", ["Pemboleh ubah berbeza", "Kuasa berbeza", "Pekali berbeza", "Tanda berbeza"], 1, "x mempunyai kuasa 1 manakala x² mempunyai kuasa 2, maka kuasanya berbeza.", "Easy"],
+  ["Mengapakah 2a dan 2b ialah sebutan tidak serupa?", ["Pekali berbeza", "Kuasa berbeza", "Pemboleh ubah berbeza", "Operasi berbeza"], 2, "2a dan 2b mempunyai pemboleh ubah yang berbeza, iaitu a dan b.", "Easy"],
+  ["Apakah ciri utama sebutan serupa?", ["Pekali yang sama", "Pemboleh ubah dan kuasa yang sama", "Tanda yang sama", "Bilangan sebutan yang sama"], 1, "Sebutan serupa mesti mempunyai pemboleh ubah yang sama dan kuasa yang sama bagi setiap pemboleh ubah.", "Easy"],
+  ["Manakah antara berikut ialah sebutan tunggal?", ["3x + 5", "7", "x − y", "2a + 3b"], 1, "Sebutan tunggal ialah satu sebutan sahaja seperti nombor 7, tanpa digabungkan dengan sebutan lain.", "Easy"],
+  ["Apakah maksud 'nilai berubah'?", ["Nilai yang sentiasa tetap", "Nilai yang berubah-ubah mengikut keadaan", "Nilai yang sentiasa sifar", "Nilai yang tidak boleh diukur"], 1, "Nilai berubah ialah kuantiti yang nilainya boleh berubah-ubah mengikut keadaan.", "Easy"],
+  ["Berikan contoh nilai tetap.", ["Masa perjalanan ke sekolah", "Bilangan pelajar yang hadir", "Kadar faedah tahunan", "Suhu udara harian"], 2, "Kadar faedah tahunan ditetapkan dan kekal sama, jadi ia ialah nilai tetap.", "Easy"],
+  ["Berikan contoh nilai berubah.", ["Kadar faedah tahunan", "Bilangan hari dalam seminggu", "Masa perjalanan ke sekolah setiap hari", "Takat didih air pada paras laut"], 2, "Masa perjalanan ke sekolah berbeza setiap hari mengikut keadaan, jadi ia ialah nilai berubah.", "Easy"],
+  ["Apakah ungkapan algebra?", ["Hanya satu nombor sahaja", "Gabungan sebutan yang dipisahkan oleh + atau −", "Hanya satu pemboleh ubah sahaja", "Persamaan dengan tanda sama dengan"], 1, "Ungkapan algebra terdiri daripada satu atau lebih sebutan yang dipisahkan oleh + atau −.", "Easy"],
+  ["Apakah yang biasanya diwakili oleh pemboleh ubah n?", ["Bilangan atau kuantiti sesuatu", "Hanya warna", "Hanya unit jisim", "Tanda operasi"], 0, "Pemboleh ubah n biasanya mewakili bilangan atau kuantiti sesuatu benda.", "Easy"],
+  ["Manakah ungkapan yang mempunyai tepat dua sebutan?", ["5", "3x + 2y", "x", "4ab − 2x + y"], 1, "Ungkapan 3x + 2y mempunyai dua sebutan iaitu 3x dan 2y.", "Easy"],
+  ["Apakah pekali bagi sebutan 5x dalam ungkapan 5x − 2y?", ["5", "x", "−2", "1"], 0, "Pekali bagi sebutan 5x ialah 5.", "Easy"],
+  ["Apakah pekali bagi sebutan −2y dalam ungkapan 5x − 2y?", ["2", "y", "−2", "−y"], 2, "Pekali bagi sebutan −2y ialah −2 kerana tanda negatif termasuk dalam pekali.", "Easy"],
+  ["Manakah pasangan sebutan serupa?", ["4m dan 4n", "2xy dan 7xy", "3a dan 3a²", "p dan pq"], 1, "2xy dan 7xy mempunyai pemboleh ubah x dan y dengan kuasa yang sama, jadi ia sebutan serupa.", "Easy"],
+  ["Berapakah bilangan pemboleh ubah dalam sebutan abc?", ["1", "2", "3", "0"], 2, "Sebutan abc mengandungi tiga pemboleh ubah, iaitu a, b dan c.", "Easy"],
+  ["Apakah maksud 'al-jabr' dalam bahasa Arab?", ["Membahagi", "Menyatukan semula bahagian yang terpisah", "Mendarab", "Menolak"], 1, "'Al-jabr' bermaksud 'menyusun semula' atau 'menggabungkan bahagian yang terpisah'.", "Easy"],
+]);
+
+const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
+  ["What is a variable?", ["A fixed number", "A letter or symbol that represents an unknown value", "An operation sign", "A unit of measurement"], 1, "A variable is a letter or symbol that represents an unknown value.", "Easy"],
+  ["Which of the following is a variable?", ["5", "+", "x", "="], 2, "x is a letter used to represent an unknown value; numbers and operation signs are not variables.", "Easy"],
+  ["Where does the word 'algebra' come from?", ["Greek", "The Arabic word 'al-jabr'", "Latin", "Sanskrit"], 1, "The word 'algebra' comes from the Arabic word 'al-jabr'.", "Easy"],
+  ["What is the algebraic expression for 'n sweets plus 6'?", ["n − 6", "n + 6", "6n", "n ÷ 6"], 1, "Adding 6 sweets to n sweets gives the expression n + 6.", "Easy"],
+  ["What is the algebraic expression for 'n sweets minus 1'?", ["n + 1", "1 − n", "n − 1", "n × 1"], 2, "Eating 1 sweet from n sweets gives the expression n − 1.", "Easy"],
+  ["What is the expression for 'three jars, each containing n sweets'?", ["n + 3", "n − 3", "n/3", "3n"], 3, "Three jars, each containing n sweets, gives 3 × n = 3n.", "Easy"],
+  ["What is an algebraic term?", ["Only a number", "Only a variable", "A number, a variable, or the product of both", "Only an operation sign"], 2, "An algebraic term is a number, a variable, or the product of a number and a variable.", "Easy"],
+  ["How many terms are in the expression 3ab + 5x − 2y + 7?", ["2", "3", "4", "5"], 2, "The expression 3ab + 5x − 2y + 7 has four terms: 3ab, 5x, −2y and 7.", "Easy"],
+  ["What is the coefficient of the term 3x?", ["x", "3", "3x", "1"], 1, "A coefficient is the numerical factor that multiplies a variable; the coefficient of 3x is 3.", "Easy"],
+  ["What is the coefficient of the term −7ab?", ["7", "ab", "−7", "−1"], 2, "The coefficient of −7ab is −7 because the negative sign is part of the coefficient.", "Easy"],
+  ["What is the coefficient of the term y?", ["0", "y", "1", "none"], 2, "y means 1y, so its coefficient is 1.", "Easy"],
+  ["What is the coefficient of the term −n?", ["1", "−1", "n", "0"], 1, "−n means −1n, so its coefficient is −1.", "Easy"],
+  ["Which pair are like terms?", ["3x and 8x", "x and x²", "2a and 2b", "ab and abc"], 0, "3x and 8x have the same variable x with the same power, so they are like terms.", "Easy"],
+  ["Which pair are like terms?", ["xy and yx", "x and y", "a and a²", "m and mn"], 0, "xy and yx represent the product of the same variables (x × y = y × x), so they are like terms.", "Easy"],
+  ["Which pair are unlike terms?", ["3x and 8x", "2ab and −5ab", "x and x²", "xy and yx"], 2, "x and x² have different powers (power 1 versus power 2), so they are unlike terms.", "Easy"],
+  ["Why are x and x² unlike terms?", ["Different variables", "Different powers", "Different coefficients", "Different signs"], 1, "x has power 1 while x² has power 2, so their powers are different.", "Easy"],
+  ["Why are 2a and 2b unlike terms?", ["Different coefficients", "Different powers", "Different variables", "Different operations"], 2, "2a and 2b have different variables, namely a and b.", "Easy"],
+  ["What is the main feature of like terms?", ["Same coefficient", "Same variables and same powers", "Same sign", "Same number of terms"], 1, "Like terms must have the same variables and the same power for each variable.", "Easy"],
+  ["Which of the following is a single term?", ["3x + 5", "7", "x − y", "2a + 3b"], 1, "A single term is just one term on its own, like the number 7, not combined with other terms.", "Easy"],
+  ["What does 'varied value' mean?", ["A value that is always fixed", "A value that changes depending on circumstances", "A value that is always zero", "A value that cannot be measured"], 1, "A varied value is a quantity whose value can change depending on circumstances.", "Easy"],
+  ["Give an example of a fixed value.", ["Travel time to school", "Number of students present", "Annual interest rate", "Daily air temperature"], 2, "The annual interest rate is fixed and stays the same, so it is a fixed value.", "Easy"],
+  ["Give an example of a varied value.", ["Annual interest rate", "Number of days in a week", "Daily travel time to school", "Boiling point of water at sea level"], 2, "Travel time to school differs each day depending on circumstances, so it is a varied value.", "Easy"],
+  ["What is an algebraic expression?", ["Only a single number", "A combination of terms separated by + or −", "Only a single variable", "An equation with an equals sign"], 1, "An algebraic expression consists of one or more terms separated by + or −.", "Easy"],
+  ["What does the variable n usually represent?", ["A number or quantity", "Only a colour", "Only a unit of mass", "An operation sign"], 0, "The variable n usually represents the number or quantity of something.", "Easy"],
+  ["Which expression contains exactly two terms?", ["5", "3x + 2y", "x", "4ab − 2x + y"], 1, "The expression 3x + 2y has two terms: 3x and 2y.", "Easy"],
+  ["What is the coefficient of the term 5x in the expression 5x − 2y?", ["5", "x", "−2", "1"], 0, "The coefficient of the term 5x is 5.", "Easy"],
+  ["What is the coefficient of the term −2y in the expression 5x − 2y?", ["2", "y", "−2", "−y"], 2, "The coefficient of the term −2y is −2 because the negative sign is part of the coefficient.", "Easy"],
+  ["Which of these is a pair of like terms?", ["4m and 4n", "2xy and 7xy", "3a and 3a²", "p and pq"], 1, "2xy and 7xy have the same variables x and y with the same powers, so they are like terms.", "Easy"],
+  ["How many variables are in the term abc?", ["1", "2", "3", "0"], 2, "The term abc contains three variables: a, b and c.", "Easy"],
+  ["What does 'al-jabr' mean in Arabic?", ["To divide", "To reunite/put together", "To multiply", "To subtract"], 1, "'Al-jabr' means 'to reunite' or 'to put broken parts together'.", "Easy"],
+]);
+
+const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
+  ["Diberi x = 3, cari nilai 2x + 1.", ["5", "6", "7", "8"], 2, "2x + 1 = 2(3) + 1 = 7.", "Medium"],
+  ["Diberi x = 4, cari nilai 3x − 2.", ["8", "9", "10", "12"], 2, "3x − 2 = 3(4) − 2 = 10.", "Medium"],
+  ["Diberi x = 3 dan y = 2, cari nilai 8x − 5y + 7.", ["19", "20", "21", "22"], 2, "8(3) − 5(2) + 7 = 24 − 10 + 7 = 21.", "Medium"],
+  ["Diberi a = 5, cari nilai a² + 1.", ["11", "21", "25", "26"], 3, "a² + 1 = 5² + 1 = 25 + 1 = 26.", "Medium"],
+  ["Diberi x = 2, cari nilai 5x − x².", ["4", "6", "8", "10"], 1, "5x − x² = 5(2) − 2² = 10 − 4 = 6.", "Medium"],
+  ["Permudahkan 3x + 2x.", ["5x", "5x²", "6x", "x"], 0, "3x + 2x = 5x kerana kedua-duanya sebutan serupa.", "Medium"],
+  ["Permudahkan 9y − 4y.", ["4y", "5y", "5", "13y"], 1, "9y − 4y = 5y.", "Medium"],
+  ["Permudahkan 7ab − 4ab.", ["3", "3a", "3ab", "11ab"], 2, "7ab − 4ab = 3ab.", "Medium"],
+  ["Permudahkan 6x + 3x − 2x.", ["5x", "7x", "9x", "11x"], 1, "6x + 3x − 2x = 7x.", "Medium"],
+  ["Permudahkan 4m + 5n − m.", ["3m + 5n", "9m + 5n", "4m + 4n", "3m − 5n"], 0, "Gabungkan sebutan serupa m: 4m − m = 3m, hasilnya 3m + 5n.", "Medium"],
+  ["Permudahkan 2a + 3b + 4a − b.", ["6a + 2b", "6a + 4b", "2a + 2b", "6a − 2b"], 0, "Gabungkan sebutan serupa: (2a + 4a) + (3b − b) = 6a + 2b.", "Medium"],
+  ["Permudahkan −(x + 4).", ["x + 4", "−x + 4", "−x − 4", "x − 4"], 2, "−(x + 4) = −x − 4.", "Medium"],
+  ["Permudahkan −(3a − 2b).", ["−3a − 2b", "−3a + 2b", "3a − 2b", "3a + 2b"], 1, "−(3a − 2b) = −3a + 2b.", "Medium"],
+  ["Permudahkan −(−5x − 1).", ["5x + 1", "−5x − 1", "−5x + 1", "5x − 1"], 0, "−(−5x − 1) = 5x + 1.", "Medium"],
+  ["Permudahkan 5x − (2x − 3).", ["3x − 3", "3x + 3", "7x − 3", "7x + 3"], 1, "5x − (2x − 3) = 5x − 2x + 3 = 3x + 3.", "Medium"],
+  ["Permudahkan 8a − (3a + 2).", ["5a + 2", "5a − 2", "11a + 2", "11a − 2"], 1, "8a − (3a + 2) = 8a − 3a − 2 = 5a − 2.", "Medium"],
+  ["Permudahkan 6x − (x − 5).", ["5x − 5", "5x + 5", "7x − 5", "7x + 5"], 1, "6x − (x − 5) = 6x − x + 5 = 5x + 5.", "Medium"],
+  ["Permudahkan 4y + (2y − 3).", ["6y − 3", "6y + 3", "2y − 3", "2y + 3"], 0, "4y + (2y − 3) = 4y + 2y − 3 = 6y − 3.", "Medium"],
+  ["Manakah persamaan yang betul?", ["−(a + b) = a + b", "−(a + b) = −a + b", "−(a + b) = −a − b", "−(a + b) = a − b"], 2, "−(a + b) = −a − b kerana tanda negatif didarab dengan setiap sebutan dalam kurungan.", "Medium"],
+  ["Manakah persamaan yang betul?", ["−(a − b) = −a − b", "−(a − b) = −a + b", "−(a − b) = a − b", "−(a − b) = a + b"], 1, "−(a − b) = −a + b kerana tanda setiap sebutan dalam kurungan bertukar.", "Medium"],
+  ["Permudahkan −(2x + 3) + 5x.", ["3x − 3", "3x + 3", "7x − 3", "7x + 3"], 0, "−(2x + 3) + 5x = −2x − 3 + 5x = 3x − 3.", "Medium"],
+  ["Permudahkan −(4a − b) + 2a.", ["−2a + b", "−2a − b", "6a − b", "2a − b"], 0, "−(4a − b) + 2a = −4a + b + 2a = −2a + b.", "Medium"],
+  ["Diberi x = 5, cari nilai 4x − 3.", ["15", "17", "20", "23"], 1, "4x − 3 = 4(5) − 3 = 20 − 3 = 17.", "Medium"],
+  ["Diberi x = 1 dan y = 4, cari nilai 6x + 2y.", ["12", "14", "16", "18"], 1, "6x + 2y = 6(1) + 2(4) = 6 + 8 = 14.", "Medium"],
+  ["Diberi a = 2 dan b = 3, cari nilai a² + b².", ["11", "12", "13", "14"], 2, "a² + b² = 2² + 3² = 4 + 9 = 13.", "Medium"],
+  ["Permudahkan 5x + 7 − 2x − 4.", ["3x + 3", "3x − 3", "7x + 3", "7x − 3"], 0, "Gabungkan sebutan serupa: (5x − 2x) + (7 − 4) = 3x + 3.", "Medium"],
+  ["Permudahkan 9ab − 5ab + ab.", ["3ab", "4ab", "5ab", "13ab"], 2, "9ab − 5ab + ab = 5ab.", "Medium"],
+  ["Apakah hasil bagi 3x + 5x − x?", ["6x", "7x", "8x", "9x"], 1, "3x + 5x − x = 7x.", "Medium"],
+  ["Permudahkan 10p − (3p − 2).", ["7p − 2", "7p + 2", "13p − 2", "13p + 2"], 1, "10p − (3p − 2) = 10p − 3p + 2 = 7p + 2.", "Medium"],
+  ["Manakah ungkapan yang dipermudahkan dengan betul daripada 6x − (2x − 5)?", ["4x − 5", "4x + 5", "8x − 5", "8x + 5"], 1, "6x − (2x − 5) = 6x − 2x + 5 = 4x + 5.", "Medium"],
+]);
+
+const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
+  ["Given x = 3, find the value of 2x + 1.", ["5", "6", "7", "8"], 2, "2x + 1 = 2(3) + 1 = 7.", "Medium"],
+  ["Given x = 4, find the value of 3x − 2.", ["8", "9", "10", "12"], 2, "3x − 2 = 3(4) − 2 = 10.", "Medium"],
+  ["Given x = 3 and y = 2, find the value of 8x − 5y + 7.", ["19", "20", "21", "22"], 2, "8(3) − 5(2) + 7 = 24 − 10 + 7 = 21.", "Medium"],
+  ["Given a = 5, find the value of a² + 1.", ["11", "21", "25", "26"], 3, "a² + 1 = 5² + 1 = 25 + 1 = 26.", "Medium"],
+  ["Given x = 2, find the value of 5x − x².", ["4", "6", "8", "10"], 1, "5x − x² = 5(2) − 2² = 10 − 4 = 6.", "Medium"],
+  ["Simplify 3x + 2x.", ["5x", "5x²", "6x", "x"], 0, "3x + 2x = 5x because both are like terms.", "Medium"],
+  ["Simplify 9y − 4y.", ["4y", "5y", "5", "13y"], 1, "9y − 4y = 5y.", "Medium"],
+  ["Simplify 7ab − 4ab.", ["3", "3a", "3ab", "11ab"], 2, "7ab − 4ab = 3ab.", "Medium"],
+  ["Simplify 6x + 3x − 2x.", ["5x", "7x", "9x", "11x"], 1, "6x + 3x − 2x = 7x.", "Medium"],
+  ["Simplify 4m + 5n − m.", ["3m + 5n", "9m + 5n", "4m + 4n", "3m − 5n"], 0, "Combine the like terms m: 4m − m = 3m, giving 3m + 5n.", "Medium"],
+  ["Simplify 2a + 3b + 4a − b.", ["6a + 2b", "6a + 4b", "2a + 2b", "6a − 2b"], 0, "Combine like terms: (2a + 4a) + (3b − b) = 6a + 2b.", "Medium"],
+  ["Simplify −(x + 4).", ["x + 4", "−x + 4", "−x − 4", "x − 4"], 2, "−(x + 4) = −x − 4.", "Medium"],
+  ["Simplify −(3a − 2b).", ["−3a − 2b", "−3a + 2b", "3a − 2b", "3a + 2b"], 1, "−(3a − 2b) = −3a + 2b.", "Medium"],
+  ["Simplify −(−5x − 1).", ["5x + 1", "−5x − 1", "−5x + 1", "5x − 1"], 0, "−(−5x − 1) = 5x + 1.", "Medium"],
+  ["Simplify 5x − (2x − 3).", ["3x − 3", "3x + 3", "7x − 3", "7x + 3"], 1, "5x − (2x − 3) = 5x − 2x + 3 = 3x + 3.", "Medium"],
+  ["Simplify 8a − (3a + 2).", ["5a + 2", "5a − 2", "11a + 2", "11a − 2"], 1, "8a − (3a + 2) = 8a − 3a − 2 = 5a − 2.", "Medium"],
+  ["Simplify 6x − (x − 5).", ["5x − 5", "5x + 5", "7x − 5", "7x + 5"], 1, "6x − (x − 5) = 6x − x + 5 = 5x + 5.", "Medium"],
+  ["Simplify 4y + (2y − 3).", ["6y − 3", "6y + 3", "2y − 3", "2y + 3"], 0, "4y + (2y − 3) = 4y + 2y − 3 = 6y − 3.", "Medium"],
+  ["Which equation is correct?", ["−(a + b) = a + b", "−(a + b) = −a + b", "−(a + b) = −a − b", "−(a + b) = a − b"], 2, "−(a + b) = −a − b because the negative sign multiplies every term inside the brackets.", "Medium"],
+  ["Which equation is correct?", ["−(a − b) = −a − b", "−(a − b) = −a + b", "−(a − b) = a − b", "−(a − b) = a + b"], 1, "−(a − b) = −a + b because the sign of every term inside the brackets changes.", "Medium"],
+  ["Simplify −(2x + 3) + 5x.", ["3x − 3", "3x + 3", "7x − 3", "7x + 3"], 0, "−(2x + 3) + 5x = −2x − 3 + 5x = 3x − 3.", "Medium"],
+  ["Simplify −(4a − b) + 2a.", ["−2a + b", "−2a − b", "6a − b", "2a − b"], 0, "−(4a − b) + 2a = −4a + b + 2a = −2a + b.", "Medium"],
+  ["Given x = 5, find the value of 4x − 3.", ["15", "17", "20", "23"], 1, "4x − 3 = 4(5) − 3 = 20 − 3 = 17.", "Medium"],
+  ["Given x = 1 and y = 4, find the value of 6x + 2y.", ["12", "14", "16", "18"], 1, "6x + 2y = 6(1) + 2(4) = 6 + 8 = 14.", "Medium"],
+  ["Given a = 2 and b = 3, find the value of a² + b².", ["11", "12", "13", "14"], 2, "a² + b² = 2² + 3² = 4 + 9 = 13.", "Medium"],
+  ["Simplify 5x + 7 − 2x − 4.", ["3x + 3", "3x − 3", "7x + 3", "7x − 3"], 0, "Combine like terms: (5x − 2x) + (7 − 4) = 3x + 3.", "Medium"],
+  ["Simplify 9ab − 5ab + ab.", ["3ab", "4ab", "5ab", "13ab"], 2, "9ab − 5ab + ab = 5ab.", "Medium"],
+  ["What is the result of 3x + 5x − x?", ["6x", "7x", "8x", "9x"], 1, "3x + 5x − x = 7x.", "Medium"],
+  ["Simplify 10p − (3p − 2).", ["7p − 2", "7p + 2", "13p − 2", "13p + 2"], 1, "10p − (3p − 2) = 10p − 3p + 2 = 7p + 2.", "Medium"],
+  ["Which expression is the correctly simplified form of 6x − (2x − 5)?", ["4x − 5", "4x + 5", "8x − 5", "8x + 5"], 1, "6x − (2x − 5) = 6x − 2x + 5 = 4x + 5.", "Medium"],
+]);
+
+const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
+  ["Permudahkan a × a × a.", ["3a", "a³", "a + 3", "3a³"], 1, "a × a × a = a³ kerana pemboleh ubah didarab dengan dirinya sendiri tiga kali.", "Medium"],
+  ["Permudahkan a² × a³.", ["a⁵", "a⁶", "2a⁵", "a¹"], 0, "a² × a³ = a²⁺³ = a⁵ (tambah kuasa pemboleh ubah yang sama).", "Medium"],
+  ["Permudahkan a⁵ ÷ a².", ["a²", "a³", "a⁷", "a¹⁰"], 1, "a⁵ ÷ a² = a⁵⁻² = a³ (tolak kuasa pemboleh ubah yang sama).", "Medium"],
+  ["Permudahkan b⁴ ÷ b.", ["b³", "b⁴", "b⁵", "b"], 0, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
+  ["Permudahkan 2a × 3a.", ["5a", "6a", "5a²", "6a²"], 3, "2a × 3a = (2 × 3) × (a × a) = 6a².", "Medium"],
+  ["Permudahkan 4x × 2x².", ["6x²", "6x³", "8x²", "8x³"], 3, "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.", "Medium"],
+  ["Permudahkan 3ab² × 4a³b.", ["7a⁴b³", "12a³b²", "12a⁴b³", "12a⁴b²"], 2, "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.", "Hard"],
+  ["Permudahkan 5m²n × 2mn³.", ["7m³n⁴", "10m³n⁴", "10m²n³", "7m²n³"], 1, "5m²n × 2mn³ = (5 × 2) × m²⁺¹ × n¹⁺³ = 10m³n⁴.", "Hard"],
+  ["Permudahkan 20m⁴n² ÷ 5m²n³.", ["4m²n", "4m²/n", "4mn⁻¹", "4m⁶n⁻¹"], 1, "20m⁴n² ÷ 5m²n³ = (20 ÷ 5) × m⁴⁻² × n²⁻³ = 4m²n⁻¹ = 4m²/n.", "Hard"],
+  ["Permudahkan 12x³y² ÷ 4xy.", ["3x²y", "3x³y²", "3xy", "8x²y"], 0, "12x³y² ÷ 4xy = (12 ÷ 4) × x³⁻¹ × y²⁻¹ = 3x²y.", "Hard"],
+  ["Permudahkan 18a⁵b³ ÷ 6a²b.", ["3a³b²", "3a⁷b⁴", "12a³b²", "3a²b³"], 0, "18a⁵b³ ÷ 6a²b = (18 ÷ 6) × a⁵⁻² × b³⁻¹ = 3a³b².", "Hard"],
+  ["Tulis m × m × m × m dalam bentuk kuasa.", ["m³", "m⁴", "4m", "4m⁴"], 1, "m × m × m × m = m⁴ (empat kali pendaraban berulang).", "Medium"],
+  ["Tulis (a + b)(a + b)(a + b) dalam bentuk kuasa.", ["(a + b) + 3", "3(a + b)", "(a + b)³", "(a + b)²"], 2, "(a + b)(a + b)(a + b) = (a + b)³ (pendaraban berulang ungkapan).", "Medium"],
+  ["Permudahkan 6x² × 3x.", ["9x²", "9x³", "18x²", "18x³"], 3, "6x² × 3x = (6 × 3) × x²⁺¹ = 18x³.", "Medium"],
+  ["Permudahkan 9p⁴ ÷ 3p².", ["3p", "3p²", "6p²", "6p⁶"], 1, "9p⁴ ÷ 3p² = (9 ÷ 3) × p⁴⁻² = 3p².", "Medium"],
+  ["Permudahkan 7a²b³ × 2ab².", ["9a³b⁵", "14a²b⁵", "14a³b⁵", "14a³b⁶"], 2, "7a²b³ × 2ab² = (7 × 2) × a²⁺¹ × b³⁺² = 14a³b⁵.", "Hard"],
+  ["Permudahkan 24x⁵y⁴ ÷ 8x³y².", ["3x²y²", "3x⁸y⁶", "16x²y²", "3x²y⁶"], 0, "24x⁵y⁴ ÷ 8x³y² = (24 ÷ 8) × x⁵⁻³ × y⁴⁻² = 3x²y².", "Hard"],
+  ["Permudahkan 7x − (2x − 3) + 4.", ["5x − 1", "5x + 7", "5x + 1", "9x + 1"], 1, "7x − (2x − 3) + 4 = 7x − 2x + 3 + 4 = 5x + 7.", "Medium"],
+  ["Permudahkan 5a − (3a + 2) − 4.", ["2a − 6", "2a + 6", "8a − 6", "8a + 6"], 0, "5a − (3a + 2) − 4 = 5a − 3a − 2 − 4 = 2a − 6.", "Medium"],
+  ["Permudahkan 9y − (y − 6) + 2y.", ["10y + 6", "10y − 6", "12y + 6", "6y + 6"], 0, "9y − (y − 6) + 2y = 9y − y + 6 + 2y = 10y + 6.", "Medium"],
+  ["Permudahkan 4m²n × 5mn² ÷ 2mn.", ["10m²n²", "10mn²", "20m²n²", "20mn"], 0, "4m²n × 5mn² = 20m³n³; kemudian 20m³n³ ÷ 2mn = 10m²n².", "Hard"],
+  ["Permudahkan (3x²y)(2xy²) ÷ (xy).", ["6x²y²", "6xy²", "6x²y", "3xy²"], 0, "(3x²y)(2xy²) = 6x³y³; kemudian 6x³y³ ÷ (xy) = 6x²y².", "Hard"],
+  ["Cari nilai bagi 5x² − 2x apabila x = 3.", ["35", "39", "41", "45"], 1, "5x² − 2x = 5(3)² − 2(3) = 45 − 6 = 39.", "Medium"],
+  ["Cari nilai bagi 2a² + 3b apabila a = 2 dan b = 4.", ["14", "16", "18", "20"], 3, "2a² + 3b = 2(2)² + 3(4) = 8 + 12 = 20.", "Medium"],
+  ["Permudahkan 8x − 3y − (2x − y).", ["6x − 2y", "6x − 4y", "10x − 2y", "10x − 4y"], 0, "8x − 3y − (2x − y) = 8x − 3y − 2x + y = 6x − 2y.", "Medium"],
+  ["Permudahkan 7m − 4n − (3m − 2n).", ["4m − 2n", "4m − 6n", "10m − 2n", "10m − 6n"], 0, "7m − 4n − (3m − 2n) = 7m − 4n − 3m + 2n = 4m − 2n.", "Medium"],
+  ["Sebuah segi empat tepat mempunyai panjang 3x dan lebar 2x. Apakah ungkapan bagi luasnya?", ["5x", "6x", "5x²", "6x²"], 3, "Luas segi empat tepat = panjang × lebar = 3x × 2x = 6x².", "Hard"],
+  ["Sebuah kotak berbentuk kubus mempunyai sisi sepanjang a unit. Apakah ungkapan bagi isipadunya?", ["3a", "a³", "a²", "3a³"], 1, "Isipadu kubus = sisi × sisi × sisi = a × a × a = a³.", "Hard"],
+  ["Permudahkan 6x²y³ ÷ 3xy menggunakan hukum kuasa.", ["2xy²", "3xy²", "2x²y³", "2xy"], 0, "6x²y³ ÷ 3xy = (6 ÷ 3) × x²⁻¹ × y³⁻¹ = 2xy².", "Hard"],
+  ["Permudahkan −(2x − y) − (x + 3y).", ["−3x − 2y", "−3x + 2y", "−x − 2y", "−x + 4y"], 0, "−(2x − y) − (x + 3y) = (−2x + y) + (−x − 3y) = −3x − 2y.", "Hard"],
+]);
+
+const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
+  ["Simplify a × a × a.", ["3a", "a³", "a + 3", "3a³"], 1, "a × a × a = a³ because the variable is multiplied by itself three times.", "Medium"],
+  ["Simplify a² × a³.", ["a⁵", "a⁶", "2a⁵", "a¹"], 0, "a² × a³ = a²⁺³ = a⁵ (add the powers of the same variable).", "Medium"],
+  ["Simplify a⁵ ÷ a².", ["a²", "a³", "a⁷", "a¹⁰"], 1, "a⁵ ÷ a² = a⁵⁻² = a³ (subtract the powers of the same variable).", "Medium"],
+  ["Simplify b⁴ ÷ b.", ["b³", "b⁴", "b⁵", "b"], 0, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
+  ["Simplify 2a × 3a.", ["5a", "6a", "5a²", "6a²"], 3, "2a × 3a = (2 × 3) × (a × a) = 6a².", "Medium"],
+  ["Simplify 4x × 2x².", ["6x²", "6x³", "8x²", "8x³"], 3, "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.", "Medium"],
+  ["Simplify 3ab² × 4a³b.", ["7a⁴b³", "12a³b²", "12a⁴b³", "12a⁴b²"], 2, "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.", "Hard"],
+  ["Simplify 5m²n × 2mn³.", ["7m³n⁴", "10m³n⁴", "10m²n³", "7m²n³"], 1, "5m²n × 2mn³ = (5 × 2) × m²⁺¹ × n¹⁺³ = 10m³n⁴.", "Hard"],
+  ["Simplify 20m⁴n² ÷ 5m²n³.", ["4m²n", "4m²/n", "4mn⁻¹", "4m⁶n⁻¹"], 1, "20m⁴n² ÷ 5m²n³ = (20 ÷ 5) × m⁴⁻² × n²⁻³ = 4m²n⁻¹ = 4m²/n.", "Hard"],
+  ["Simplify 12x³y² ÷ 4xy.", ["3x²y", "3x³y²", "3xy", "8x²y"], 0, "12x³y² ÷ 4xy = (12 ÷ 4) × x³⁻¹ × y²⁻¹ = 3x²y.", "Hard"],
+  ["Simplify 18a⁵b³ ÷ 6a²b.", ["3a³b²", "3a⁷b⁴", "12a³b²", "3a²b³"], 0, "18a⁵b³ ÷ 6a²b = (18 ÷ 6) × a⁵⁻² × b³⁻¹ = 3a³b².", "Hard"],
+  ["Write m × m × m × m in power form.", ["m³", "m⁴", "4m", "4m⁴"], 1, "m × m × m × m = m⁴ (four repeated multiplications).", "Medium"],
+  ["Write (a + b)(a + b)(a + b) in power form.", ["(a + b) + 3", "3(a + b)", "(a + b)³", "(a + b)²"], 2, "(a + b)(a + b)(a + b) = (a + b)³ (repeated multiplication of an expression).", "Medium"],
+  ["Simplify 6x² × 3x.", ["9x²", "9x³", "18x²", "18x³"], 3, "6x² × 3x = (6 × 3) × x²⁺¹ = 18x³.", "Medium"],
+  ["Simplify 9p⁴ ÷ 3p².", ["3p", "3p²", "6p²", "6p⁶"], 1, "9p⁴ ÷ 3p² = (9 ÷ 3) × p⁴⁻² = 3p².", "Medium"],
+  ["Simplify 7a²b³ × 2ab².", ["9a³b⁵", "14a²b⁵", "14a³b⁵", "14a³b⁶"], 2, "7a²b³ × 2ab² = (7 × 2) × a²⁺¹ × b³⁺² = 14a³b⁵.", "Hard"],
+  ["Simplify 24x⁵y⁴ ÷ 8x³y².", ["3x²y²", "3x⁸y⁶", "16x²y²", "3x²y⁶"], 0, "24x⁵y⁴ ÷ 8x³y² = (24 ÷ 8) × x⁵⁻³ × y⁴⁻² = 3x²y².", "Hard"],
+  ["Simplify 7x − (2x − 3) + 4.", ["5x − 1", "5x + 7", "5x + 1", "9x + 1"], 1, "7x − (2x − 3) + 4 = 7x − 2x + 3 + 4 = 5x + 7.", "Medium"],
+  ["Simplify 5a − (3a + 2) − 4.", ["2a − 6", "2a + 6", "8a − 6", "8a + 6"], 0, "5a − (3a + 2) − 4 = 5a − 3a − 2 − 4 = 2a − 6.", "Medium"],
+  ["Simplify 9y − (y − 6) + 2y.", ["10y + 6", "10y − 6", "12y + 6", "6y + 6"], 0, "9y − (y − 6) + 2y = 9y − y + 6 + 2y = 10y + 6.", "Medium"],
+  ["Simplify 4m²n × 5mn² ÷ 2mn.", ["10m²n²", "10mn²", "20m²n²", "20mn"], 0, "4m²n × 5mn² = 20m³n³; then 20m³n³ ÷ 2mn = 10m²n².", "Hard"],
+  ["Simplify (3x²y)(2xy²) ÷ (xy).", ["6x²y²", "6xy²", "6x²y", "3xy²"], 0, "(3x²y)(2xy²) = 6x³y³; then 6x³y³ ÷ (xy) = 6x²y².", "Hard"],
+  ["Find the value of 5x² − 2x when x = 3.", ["35", "39", "41", "45"], 1, "5x² − 2x = 5(3)² − 2(3) = 45 − 6 = 39.", "Medium"],
+  ["Find the value of 2a² + 3b when a = 2 and b = 4.", ["14", "16", "18", "20"], 3, "2a² + 3b = 2(2)² + 3(4) = 8 + 12 = 20.", "Medium"],
+  ["Simplify 8x − 3y − (2x − y).", ["6x − 2y", "6x − 4y", "10x − 2y", "10x − 4y"], 0, "8x − 3y − (2x − y) = 8x − 3y − 2x + y = 6x − 2y.", "Medium"],
+  ["Simplify 7m − 4n − (3m − 2n).", ["4m − 2n", "4m − 6n", "10m − 2n", "10m − 6n"], 0, "7m − 4n − (3m − 2n) = 7m − 4n − 3m + 2n = 4m − 2n.", "Medium"],
+  ["A rectangle has a length of 3x and a width of 2x. What is the expression for its area?", ["5x", "6x", "5x²", "6x²"], 3, "Area of rectangle = length × width = 3x × 2x = 6x².", "Hard"],
+  ["A cube-shaped box has sides of length a units. What is the expression for its volume?", ["3a", "a³", "a²", "3a³"], 1, "Volume of cube = side × side × side = a × a × a = a³.", "Hard"],
+  ["Simplify 6x²y³ ÷ 3xy using the laws of indices.", ["2xy²", "3xy²", "2x²y³", "2xy"], 0, "6x²y³ ÷ 3xy = (6 ÷ 3) × x²⁻¹ × y³⁻¹ = 2xy².", "Hard"],
+  ["Simplify −(2x − y) − (x + 3y).", ["−3x − 2y", "−3x + 2y", "−x − 2y", "−x + 4y"], 0, "−(2x − y) − (x + 3y) = (−2x + y) + (−x − 3y) = −3x − 2y.", "Hard"],
+]);
+
 const MATH_QUIZ_BANKS: Partial<
   Record<string, Record<MathObjectiveId, Record<MathQuizLang, ShuffledQuestion[]>>>
 > = {
@@ -4139,6 +4337,20 @@ const MATH_QUIZ_BANKS: Partial<
     "objective-3": {
       bm: MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS,
       dlp: MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+    },
+  },
+  "Chapter 5": {
+    "objective-1": {
+      bm: MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS,
+      dlp: MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+    },
+    "objective-2": {
+      bm: MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS,
+      dlp: MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+    },
+    "objective-3": {
+      bm: MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS,
+      dlp: MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
     },
   },
 };
@@ -5361,21 +5573,26 @@ function MathObjectiveIntroScreen({
   const isChapter2 = chapterKey === "Chapter 2";
   const isChapter3 = chapterKey === "Chapter 3";
   const isChapter4 = chapterKey === "Chapter 4";
+  const isChapter5 = chapterKey === "Chapter 5";
   const chapterTitle = isDlp
-    ? isChapter4
-      ? "Chapter 4: Ratios, Rates and Proportions"
-      : isChapter3
-        ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
-        : isChapter2
-          ? "Chapter 2: Factors and Multiples"
-          : "Chapter 1: Rational Numbers"
-    : isChapter4
-      ? "Bab 4: Nisbah, Kadar dan Kadaran"
-      : isChapter3
-        ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
-        : isChapter2
-          ? "Bab 2: Faktor dan Gandaan"
-          : "Bab 1: Nombor Nisbah";
+    ? isChapter5
+      ? "Chapter 5: Algebraic Expressions"
+      : isChapter4
+        ? "Chapter 4: Ratios, Rates and Proportions"
+        : isChapter3
+          ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
+          : isChapter2
+            ? "Chapter 2: Factors and Multiples"
+            : "Chapter 1: Rational Numbers"
+    : isChapter5
+      ? "Bab 5: Ungkapan Algebra"
+      : isChapter4
+        ? "Bab 4: Nisbah, Kadar dan Kadaran"
+        : isChapter3
+          ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
+          : isChapter2
+            ? "Bab 2: Faktor dan Gandaan"
+            : "Bab 1: Nombor Nisbah";
   const introTitle = isFoundation
     ? "🎯 Objective 1 – Foundation"
     : isPractice || isChallenge
@@ -5385,16 +5602,20 @@ function MathObjectiveIntroScreen({
         : "📝 Bersedia Untuk Quiz!";
   const introDescription = isChallenge
     ? isDlp
-      ? isChapter2
-        ? "This quiz contains exam-style and problem-solving questions."
-        : isChapter3
-          ? "This quiz is designed to test your full mastery of Chapter 3."
-          : "This quiz is designed to test your full mastery of Chapter 1."
-      : isChapter2
-        ? "Quiz ini mengandungi soalan berbentuk peperiksaan dan penyelesaian masalah."
-        : isChapter3
-          ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 3."
-          : "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 1."
+      ? isChapter5
+        ? "This quiz is designed to test your full mastery of Chapter 5."
+        : isChapter2
+          ? "This quiz contains exam-style and problem-solving questions."
+          : isChapter3
+            ? "This quiz is designed to test your full mastery of Chapter 3."
+            : "This quiz is designed to test your full mastery of Chapter 1."
+      : isChapter5
+        ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 5."
+        : isChapter2
+          ? "Quiz ini mengandungi soalan berbentuk peperiksaan dan penyelesaian masalah."
+          : isChapter3
+            ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 3."
+            : "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 1."
     : isPractice
       ? isDlp
         ? "This quiz tests your intermediate understanding of:"
@@ -5452,7 +5673,17 @@ function MathObjectiveIntroScreen({
   const instructions = isChallenge
     ? isDlp
       ? [
-          ...(isChapter2
+          ...(isChapter5
+            ? [
+                "Multiplication of algebraic terms",
+                "Division of algebraic terms",
+                "Laws of indices",
+                "Multi-step simplification",
+                "Substitution and evaluation",
+                "Problem solving",
+                "Exam-style questions",
+              ]
+            : isChapter2
             ? [
                 "Factors",
                 "Prime factors",
@@ -5485,7 +5716,17 @@ function MathObjectiveIntroScreen({
                 ]),
         ]
       : [
-          ...(isChapter2
+          ...(isChapter5
+            ? [
+                "Pendaraban sebutan algebra",
+                "Pembahagian sebutan algebra",
+                "Hukum indeks",
+                "Permudahan pelbagai langkah",
+                "Penggantian dan penilaian",
+                "Penyelesaian masalah",
+                "Soalan berbentuk peperiksaan",
+              ]
+            : isChapter2
             ? [
                 "Faktor",
                 "Faktor perdana",
@@ -5520,7 +5761,16 @@ function MathObjectiveIntroScreen({
     : isPractice
       ? isDlp
         ? [
-            ...(isChapter2
+            ...(isChapter5
+              ? [
+                  "Substitution and evaluation",
+                  "Addition of algebraic expressions",
+                  "Subtraction of algebraic expressions",
+                  "Sign rules with brackets",
+                  "Simplifying expressions",
+                  "Mixed practice",
+                ]
+              : isChapter2
               ? [
                   "Factors",
                   "Prime factorisation",
@@ -5550,7 +5800,16 @@ function MathObjectiveIntroScreen({
                   ]),
           ]
         : [
-            ...(isChapter2
+            ...(isChapter5
+              ? [
+                  "Penggantian dan penilaian",
+                  "Penambahan ungkapan algebra",
+                  "Penolakan ungkapan algebra",
+                  "Peraturan tanda dengan kurungan",
+                  "Permudahan ungkapan",
+                  "Latihan campuran",
+                ]
+              : isChapter2
               ? [
                   "Faktor",
                   "Pemfaktoran perdana",
@@ -5582,7 +5841,16 @@ function MathObjectiveIntroScreen({
       : isFoundation
         ? isDlp
           ? [
-              ...(isChapter2
+              ...(isChapter5
+                ? [
+                    "Variables",
+                    "Algebraic expressions",
+                    "Algebraic terms",
+                    "Coefficients",
+                    "Like terms",
+                    "Unlike terms",
+                  ]
+                : isChapter2
                 ? [
                     "Factors",
                     "Prime factors",
@@ -5610,7 +5878,16 @@ function MathObjectiveIntroScreen({
                     ]),
             ]
           : [
-              ...(isChapter2
+              ...(isChapter5
+                ? [
+                    "Pemboleh ubah",
+                    "Ungkapan algebra",
+                    "Sebutan algebra",
+                    "Pekali",
+                    "Sebutan serupa",
+                    "Sebutan tidak serupa",
+                  ]
+                : isChapter2
                 ? [
                     "Faktor",
                     "Faktor perdana",
@@ -5670,16 +5947,20 @@ function MathObjectiveIntroScreen({
         : [];
   const introSupportText = isFoundation
     ? isDlp
-      ? isChapter2
-        ? "This quiz tests your understanding of:"
-        : isChapter3
-          ? "This quiz is designed to help you understand the basic concepts of Chapter 3: Squares, Square Roots, Cubes and Cube Roots."
-          : "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
-      : isChapter2
-        ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 2: Faktor dan Gandaan."
-        : isChapter3
-          ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga."
-          : "Quiz ini direka untuk membantu anda memahami konsep asas bagi bab ini sebelum meneruskan ke tahap yang lebih mencabar."
+      ? isChapter5
+        ? "This quiz is designed to help you understand the basic concepts of Chapter 5: Algebraic Expressions."
+        : isChapter2
+          ? "This quiz tests your understanding of:"
+          : isChapter3
+            ? "This quiz is designed to help you understand the basic concepts of Chapter 3: Squares, Square Roots, Cubes and Cube Roots."
+            : "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
+      : isChapter5
+        ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 5: Ungkapan Algebra."
+        : isChapter2
+          ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 2: Faktor dan Gandaan."
+          : isChapter3
+            ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga."
+            : "Quiz ini direka untuk membantu anda memahami konsep asas bagi bab ini sebelum meneruskan ke tahap yang lebih mencabar."
     : null;
 
   return (
@@ -6089,13 +6370,28 @@ function MathObjectiveResultsScreen({
   const isChallenge = objective?.id === "objective-3";
   const isDlp = quizLang === "dlp";
   const isChapter2 = chapterKey === "Chapter 2";
+  const isChapter3 = chapterKey === "Chapter 3";
+  const isChapter4 = chapterKey === "Chapter 4";
+  const isChapter5 = chapterKey === "Chapter 5";
   const chapterName = isDlp
-    ? isChapter2
-      ? "Chapter 2: Factors and Multiples"
-      : "Chapter 1: Rational Numbers"
-    : isChapter2
-      ? "Bab 2: Faktor dan Gandaan"
-      : "Bab 1: Nombor Nisbah";
+    ? isChapter5
+      ? "Chapter 5: Algebraic Expressions"
+      : isChapter4
+        ? "Chapter 4: Ratios, Rates and Proportions"
+        : isChapter3
+          ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
+          : isChapter2
+            ? "Chapter 2: Factors and Multiples"
+            : "Chapter 1: Rational Numbers"
+    : isChapter5
+      ? "Bab 5: Ungkapan Algebra"
+      : isChapter4
+        ? "Bab 4: Nisbah, Kadar dan Kadaran"
+        : isChapter3
+          ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
+          : isChapter2
+            ? "Bab 2: Faktor dan Gandaan"
+            : "Bab 1: Nombor Nisbah";
   const rating =
     score >= 27
       ? {
