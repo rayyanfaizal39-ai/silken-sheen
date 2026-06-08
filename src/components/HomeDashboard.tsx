@@ -100,44 +100,94 @@ export function HomeDashboard() {
     <section className="px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div className="min-w-0 space-y-6">
-          <section className="grid min-h-[420px] gap-7 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:grid-cols-[1fr_0.92fr] md:p-9">
-            <div className="relative z-10 flex flex-col justify-center">
-              <p className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-xs font-bold uppercase text-[#94A3B8]">
-                <Sparkles className="h-3.5 w-3.5 text-[#8B5CF6]" />
-                Premium KSSM Learning
-              </p>
-              <h1 className="font-display text-5xl font-bold leading-[0.95] sm:text-6xl xl:text-7xl">
-                <span className="block">Work Smarter.</span>
-                <span className="mt-2 block bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent">
-                  Achieve More.
-                </span>
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-8 text-[#94A3B8]">
-                AcadeMy helps Malaysian students master KSSM subjects with smart notes, mind maps,
-                quizzes, videos and AI-powered learning.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  to="/notes"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-6 py-3.5 text-sm font-bold shadow-[0_0_38px_rgba(99,102,241,0.45)] transition-transform hover:scale-[1.03]"
-                >
-                  Start Learning
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="inline-flex items-center justify-center rounded-2xl border border-white/[0.10] bg-white/[0.06] px-6 py-3.5 text-sm font-bold transition-colors hover:bg-white/[0.10]"
-                >
-                  My Progress
-                </Link>
+          <section className="relative isolate -mx-4 -mt-6 min-h-[520px] overflow-hidden px-4 pb-12 pt-10 sm:-mx-6 sm:px-6 md:min-h-[600px] md:pb-16 md:pt-14 lg:-mx-8 lg:px-8">
+            {/* Full-bleed cosmic scene — no card, no border, no rectangle */}
+            <AstronautScene />
+
+            {/* Atmospheric nebula clouds spreading behind both title + astronaut */}
+            <div className="pointer-events-none absolute inset-0" aria-hidden>
+              <div className="absolute -left-[10%] top-[8%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.40),transparent_65%)] blur-3xl" />
+              <div className="absolute left-[22%] top-[45%] h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.32),transparent_65%)] blur-3xl" />
+              <div className="absolute right-[4%] top-[2%] h-[580px] w-[580px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.36),transparent_65%)] blur-3xl" />
+              <div className="absolute right-[18%] bottom-[-10%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(244,114,182,0.20),transparent_70%)] blur-3xl" />
+            </div>
+
+            {/* Soft radial legibility scrim — keeps title crisp without a visible edge */}
+            <div
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_50%,rgba(7,10,24,0.78)_0%,rgba(7,10,24,0.40)_42%,transparent_72%)]"
+              aria-hidden
+            />
+
+            {/* Glowing dust connecting title to astronaut */}
+            <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
+              <span className="absolute left-[30%] top-[28%] h-1.5 w-1.5 rounded-full bg-white/80 shadow-[0_0_18px_4px_rgba(167,139,250,0.9)] animate-pulse" />
+              <span className="absolute left-[45%] top-[58%] h-1 w-1 rounded-full bg-white/70 shadow-[0_0_14px_3px_rgba(99,102,241,0.9)] animate-pulse [animation-delay:600ms]" />
+              <span className="absolute left-[55%] top-[38%] h-1 w-1 rounded-full bg-white/60 shadow-[0_0_12px_3px_rgba(244,114,182,0.7)] animate-pulse [animation-delay:1200ms]" />
+              <span className="absolute left-[38%] top-[72%] h-1 w-1 rounded-full bg-white/50 shadow-[0_0_10px_2px_rgba(59,130,246,0.8)] animate-pulse [animation-delay:1800ms]" />
+              <span className="absolute left-[62%] top-[22%] h-[3px] w-[3px] rounded-full bg-white/80 shadow-[0_0_16px_4px_rgba(255,255,255,0.6)] animate-pulse [animation-delay:900ms]" />
+            </div>
+
+            {/* Title + CTAs */}
+            <div className="relative z-20 flex min-h-[520px] flex-col justify-center md:min-h-[600px]">
+              <div className="max-w-xl">
+                <p className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.06] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/75 backdrop-blur-xl">
+                  <Sparkles className="h-3.5 w-3.5 text-[#A78BFA]" />
+                  Premium KSSM Learning
+                </p>
+                <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-white drop-shadow-[0_0_40px_rgba(99,102,241,0.45)] sm:text-6xl xl:text-7xl">
+                  <span className="block">Work Smarter.</span>
+                  <span className="mt-2 block bg-gradient-to-r from-[#818CF8] via-[#A78BFA] to-[#F472B6] bg-clip-text text-transparent">
+                    Achieve More.
+                  </span>
+                </h1>
+                <p className="mt-6 max-w-md text-base leading-7 text-white/70">
+                  AcadeMy helps Malaysian students master KSSM subjects with smart notes, mind
+                  maps, quizzes, videos and AI-powered learning.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    to="/notes"
+                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-4 text-sm font-bold text-white shadow-[0_20px_50px_-10px_rgba(99,102,241,0.6)] transition-transform hover:scale-[1.03]"
+                  >
+                    Start Learning
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="inline-flex items-center justify-center rounded-2xl border border-white/[0.12] bg-white/[0.05] px-7 py-4 text-sm font-bold text-white backdrop-blur-md transition-colors hover:bg-white/[0.10]"
+                  >
+                    My Progress
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="relative min-h-[320px]">
-              <AstronautScene />
+
+            {/* Floating glass info chips — free-floating in the scene */}
+            <div className="pointer-events-none absolute right-4 top-10 z-30 hidden items-center gap-3 rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 shadow-2xl backdrop-blur-2xl md:right-8 md:top-12 md:flex">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#6366F1]/25">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#A78BFA]" />
+              </div>
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/45">
+                  Daily Streak
+                </p>
+                <p className="text-sm font-extrabold text-white">12 Days</p>
+              </div>
             </div>
 
-
+            <div className="pointer-events-none absolute bottom-14 right-6 z-30 hidden rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 shadow-2xl backdrop-blur-2xl md:bottom-20 md:right-12 md:block">
+              <div className="mb-2 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <span className="text-[10px] font-bold uppercase tracking-wide text-white/65">
+                  Math Mastery
+                </span>
+              </div>
+              <div className="h-1.5 w-32 overflow-hidden rounded-full bg-white/[0.10]">
+                <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400" />
+              </div>
+            </div>
           </section>
+
 
           <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
             <div className="mb-5 flex items-center justify-between gap-4">

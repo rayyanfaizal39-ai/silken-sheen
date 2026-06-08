@@ -1158,6 +1158,320 @@ const MATH_F1_C3_FLASHCARD_PAIRS: Record<
   ],
 };
 
+const MATH_F1_C4_FLASHCARD_PAIRS: Record<
+  MathFlashcardCategoryId,
+  Array<{ bm: [string, string]; dlp: [string, string] }>
+> = {
+  concepts: [
+    mathCard(
+      "Apakah nisbah?",
+      "Nisbah ialah perbandingan dua atau lebih kuantiti yang sama jenis dan unit.",
+      "What is a ratio?",
+      "A ratio compares two or more quantities of the same kind and same unit.",
+    ),
+    mathCard(
+      "Bagaimana nisbah ditulis?",
+      "Dalam bentuk a : b atau a : b : c.",
+      "How is a ratio written?",
+      "In the form a : b or a : b : c.",
+    ),
+    mathCard(
+      "Apakah syarat utama membentuk nisbah?",
+      "Kuantiti mestilah sama jenis dan sama unit.",
+      "What is the main condition to form a ratio?",
+      "The quantities must be of the same kind and same unit.",
+    ),
+    mathCard(
+      "Apakah nisbah setara?",
+      "Nisbah yang mempunyai nilai sama tetapi ditulis dalam bentuk berbeza.",
+      "What are equivalent ratios?",
+      "Ratios that have the same value but are written differently.",
+    ),
+    mathCard(
+      "Bagaimana mendapat nisbah setara?",
+      "Darab atau bahagi setiap sebutan dengan nombor sama bukan sifar.",
+      "How do you form an equivalent ratio?",
+      "Multiply or divide each term by the same non-zero number.",
+    ),
+    mathCard(
+      "Apakah bentuk termudah nisbah?",
+      "Apabila FSTB semua sebutan ialah 1.",
+      "What is the simplest form of a ratio?",
+      "When the HCF of all terms is 1.",
+    ),
+    mathCard(
+      "Bagaimana mempermudah nisbah?",
+      "Bahagi semua sebutan dengan FSTB mereka.",
+      "How do you simplify a ratio?",
+      "Divide every term by their HCF.",
+    ),
+    mathCard(
+      "Apakah yang perlu dilakukan jika nisbah dalam unit berbeza?",
+      "Tukar kepada unit yang sama dahulu.",
+      "What should you do if a ratio has different units?",
+      "Convert to the same unit first.",
+    ),
+    mathCard(
+      "Apakah kadar?",
+      "Kadar ialah perbandingan dua kuantiti yang berlainan jenis atau unit.",
+      "What is a rate?",
+      "A rate compares two quantities of different kinds or units.",
+    ),
+    mathCard(
+      "Berikan contoh kadar.",
+      "60 km/j, RM 5 per kg, 12 km per liter.",
+      "Give examples of rates.",
+      "60 km/h, RM 5 per kg, 12 km per litre.",
+    ),
+    mathCard(
+      "Apakah perbezaan utama nisbah dan kadar?",
+      "Nisbah membandingkan kuantiti sama jenis; kadar membandingkan kuantiti berbeza jenis.",
+      "What is the main difference between a ratio and a rate?",
+      "A ratio compares same-kind quantities; a rate compares different-kind quantities.",
+    ),
+    mathCard(
+      "Apakah kadaran?",
+      "Kadaran ialah persamaan dua nisbah atau dua kadar yang setara.",
+      "What is a proportion?",
+      "A proportion is an equation of two equivalent ratios or rates.",
+    ),
+    mathCard(
+      "Bagaimana kadaran ditulis?",
+      "a : b = c : d atau a/b = c/d.",
+      "How is a proportion written?",
+      "a : b = c : d or a/b = c/d.",
+    ),
+    mathCard(
+      "Apakah maksud nisbah sebagai pecahan?",
+      "Nisbah a : b boleh ditulis sebagai a/b.",
+      "What does ratio mean as a fraction?",
+      "The ratio a : b can be written as a/b.",
+    ),
+    mathCard(
+      "Bagaimana peratusan ditulis sebagai nisbah?",
+      "x% ditulis sebagai x : 100.",
+      "How is a percentage written as a ratio?",
+      "x% is written as x : 100.",
+    ),
+  ],
+  operations: [
+    mathCard(
+      "Apakah langkah pertama mempermudah nisbah?",
+      "Cari FSTB bagi semua sebutan.",
+      "What is the first step to simplify a ratio?",
+      "Find the HCF of all the terms.",
+    ),
+    mathCard(
+      "Bagaimana menggabungkan A : B dan B : C?",
+      "Samakan nilai B menggunakan GSTK, kemudian gabungkan.",
+      "How do you combine A : B and B : C?",
+      "Make the value of B equal using the LCM, then combine.",
+    ),
+    mathCard(
+      "Apakah kaedah unitari?",
+      "Cari nilai satu unit, kemudian darab dengan bilangan unit yang dikehendaki.",
+      "What is the unitary method?",
+      "Find the value of one unit, then multiply by the number of units required.",
+    ),
+    mathCard(
+      "Apakah kaedah kadaran?",
+      "Tulis dua nisbah sebagai pecahan setara dan selesaikan.",
+      "What is the proportion method?",
+      "Write the two ratios as equivalent fractions and solve.",
+    ),
+    mathCard(
+      "Apakah kaedah pendaraban silang?",
+      "Jika a/b = c/d, maka a × d = b × c.",
+      "What is the cross-multiplication method?",
+      "If a/b = c/d, then a × d = b × c.",
+    ),
+    mathCard(
+      "Bilakah kaedah pendaraban silang digunakan?",
+      "Apabila nilai tidak diketahui berada dalam pengangka atau penyebut kadaran.",
+      "When is cross multiplication used?",
+      "When the unknown is in the numerator or denominator of a proportion.",
+    ),
+    mathCard(
+      "Bagaimana menukar RM per m kepada RM per cm?",
+      "Bahagikan dengan 100 kerana 1 m = 100 cm.",
+      "How do you convert RM per m to RM per cm?",
+      "Divide by 100 because 1 m = 100 cm.",
+    ),
+    mathCard(
+      "Bagaimana menukar km/j kepada m/s?",
+      "Bahagi dengan 3.6 atau darab dengan 1000/3600.",
+      "How do you convert km/h to m/s?",
+      "Divide by 3.6 or multiply by 1000/3600.",
+    ),
+    mathCard(
+      "Bagaimana mencari kadar laju?",
+      "Bahagikan jarak dengan masa.",
+      "How do you find speed?",
+      "Divide distance by time.",
+    ),
+    mathCard(
+      "Bagaimana mencari harga seunit?",
+      "Bahagikan jumlah harga dengan kuantiti.",
+      "How do you find unit price?",
+      "Divide total price by quantity.",
+    ),
+    mathCard(
+      "Bagaimana mengesahkan dua nisbah setara?",
+      "Permudahkan kedua-duanya kepada bentuk termudah dan bandingkan.",
+      "How do you check two ratios are equivalent?",
+      "Reduce both to simplest form and compare.",
+    ),
+    mathCard(
+      "Bagaimana menyelesaikan 4/6 = x/9?",
+      "Pendaraban silang: 4 × 9 = 6x, x = 6.",
+      "How do you solve 4/6 = x/9?",
+      "Cross multiply: 4 × 9 = 6x, x = 6.",
+    ),
+    mathCard(
+      "Bagaimana mempermudah 12 : 18?",
+      "FSTB = 6, jadi 12 : 18 = 2 : 3.",
+      "How do you simplify 12 : 18?",
+      "HCF = 6, so 12 : 18 = 2 : 3.",
+    ),
+    mathCard(
+      "Bagaimana mempermudah 6 : 9 : 12?",
+      "FSTB = 3, jadi 6 : 9 : 12 = 2 : 3 : 4.",
+      "How do you simplify 6 : 9 : 12?",
+      "HCF = 3, so 6 : 9 : 12 = 2 : 3 : 4.",
+    ),
+    mathCard(
+      "Bagaimana mengira skala peta?",
+      "Skala 1 : n bermaksud 1 unit pada peta = n unit sebenar.",
+      "How do you read a map scale?",
+      "A scale of 1 : n means 1 unit on the map = n actual units.",
+    ),
+  ],
+  facts: [
+    mathCard("1 m = ? cm", "100 cm.", "1 m = ? cm", "100 cm."),
+    mathCard("1 km = ? m", "1000 m.", "1 km = ? m", "1000 m."),
+    mathCard("1 jam = ? minit", "60 minit.", "1 hour = ? minutes", "60 minutes."),
+    mathCard("1 kg = ? g", "1000 g.", "1 kg = ? g", "1000 g."),
+    mathCard("50% sebagai nisbah?", "1 : 2.", "50% as a ratio?", "1 : 2."),
+    mathCard("25% sebagai nisbah?", "1 : 4.", "25% as a ratio?", "1 : 4."),
+    mathCard("20% sebagai nisbah?", "1 : 5.", "20% as a ratio?", "1 : 5."),
+    mathCard("80% sebagai nisbah?", "4 : 5.", "80% as a ratio?", "4 : 5."),
+    mathCard("75% sebagai nisbah?", "3 : 4.", "75% as a ratio?", "3 : 4."),
+    mathCard(
+      "Formula pendaraban silang?",
+      "a × d = b × c.",
+      "Cross-multiplication formula?",
+      "a × d = b × c.",
+    ),
+    mathCard(
+      "Formula peratusan kepada bahagian?",
+      "x/100 = Bahagian/Keseluruhan.",
+      "Percentage to part formula?",
+      "x/100 = Part/Whole.",
+    ),
+    mathCard(
+      "Formula anggaran populasi?",
+      "(Ditangkap bertanda / Jumlah ditangkap semula) = (Asal ditanda / Anggaran populasi).",
+      "Population estimation formula?",
+      "(Marked recaptured / Total recaptured) = (Originally marked / Estimated population).",
+    ),
+    mathCard("2 : 3 = 4 : ?", "6.", "2 : 3 = 4 : ?", "6."),
+    mathCard("3 : 5 = ? : 15", "9.", "3 : 5 = ? : 15", "9."),
+    mathCard("FSTB bagi 8 dan 12?", "4.", "HCF of 8 and 12?", "4."),
+  ],
+  practice: [
+    mathCard(
+      "Permudahkan 15 : 25.",
+      "3 : 5.",
+      "Simplify 15 : 25.",
+      "3 : 5.",
+    ),
+    mathCard(
+      "Jika 5 buku berharga RM 20, harga 8 buku ialah?",
+      "RM 32.",
+      "If 5 books cost RM 20, the cost of 8 books is?",
+      "RM 32.",
+    ),
+    mathCard(
+      "Selesaikan 3/4 = x/12.",
+      "x = 9.",
+      "Solve 3/4 = x/12.",
+      "x = 9.",
+    ),
+    mathCard(
+      "Kereta bergerak 120 km dalam 2 jam. Apakah kelajuannya?",
+      "60 km/j.",
+      "A car travels 120 km in 2 hours. What is its speed?",
+      "60 km/h.",
+    ),
+    mathCard(
+      "Jika A : B = 2 : 3 dan B : C = 4 : 5, maka A : B : C ialah?",
+      "8 : 12 : 15.",
+      "If A : B = 2 : 3 and B : C = 4 : 5, then A : B : C is?",
+      "8 : 12 : 15.",
+    ),
+    mathCard(
+      "Tukar RM 8 per m kepada RM per cm.",
+      "RM 0.08 per cm.",
+      "Convert RM 8 per m to RM per cm.",
+      "RM 0.08 per cm.",
+    ),
+    mathCard(
+      "Adakah 2 : 3 dan 8 : 12 setara?",
+      "Ya.",
+      "Are 2 : 3 and 8 : 12 equivalent?",
+      "Yes.",
+    ),
+    mathCard(
+      "Permudahkan 200 g : 1 kg.",
+      "1 : 5.",
+      "Simplify 200 g : 1 kg.",
+      "1 : 5.",
+    ),
+    mathCard(
+      "Tulis 40% sebagai nisbah termudah.",
+      "2 : 5.",
+      "Write 40% as a simplest ratio.",
+      "2 : 5.",
+    ),
+    mathCard(
+      "5 pen = RM 15. Harga 3 pen?",
+      "RM 9.",
+      "5 pens = RM 15. Price of 3 pens?",
+      "RM 9.",
+    ),
+    mathCard(
+      "Skala peta 1 : 1000. Jarak sebenar 5 cm pada peta ialah?",
+      "5000 cm atau 50 m.",
+      "Map scale 1 : 1000. Actual distance for 5 cm on map?",
+      "5000 cm or 50 m.",
+    ),
+    mathCard(
+      "20 ditanda dilepaskan; 50 ditangkap, 10 bertanda. Anggaran populasi?",
+      "100.",
+      "20 marked released; 50 recaptured, 10 marked. Estimated population?",
+      "100.",
+    ),
+    mathCard(
+      "Resipi untuk 4 orang gunakan 200 g tepung. Untuk 6 orang?",
+      "300 g.",
+      "Recipe for 4 uses 200 g flour. For 6 people?",
+      "300 g.",
+    ),
+    mathCard(
+      "Kadar 90 km/j sama dengan berapa m/s?",
+      "25 m/s.",
+      "Rate 90 km/h equals how many m/s?",
+      "25 m/s.",
+    ),
+    mathCard(
+      "Jika nisbah lelaki kepada perempuan 3 : 2 dan jumlah 25, berapa lelaki?",
+      "15.",
+      "If boys to girls is 3 : 2 and total is 25, how many boys?",
+      "15.",
+    ),
+  ],
+};
+
 const MATH_FLASHCARD_BANKS: Partial<
   Record<
     string,
@@ -1167,6 +1481,7 @@ const MATH_FLASHCARD_BANKS: Partial<
   "Chapter 1": MATH_F1_C1_FLASHCARD_PAIRS,
   "Chapter 2": MATH_F1_C2_FLASHCARD_PAIRS,
   "Chapter 3": MATH_F1_C3_FLASHCARD_PAIRS,
+  "Chapter 4": MATH_F1_C4_FLASHCARD_PAIRS,
 };
 
 const MATH_FLASHCARD_CHAPTER_TITLES: Record<
@@ -1190,6 +1505,12 @@ const MATH_FLASHCARD_CHAPTER_TITLES: Record<
     dlp: "🧠 Chapter 3 Flashcards: Squares, Square Roots, Cubes and Cube Roots",
     headerBm: "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
     headerDlp: "Chapter 3: Squares, Square Roots, Cubes and Cube Roots",
+  },
+  "Chapter 4": {
+    bm: "🧠 Flashcards Bab 4: Nisbah, Kadar dan Kadaran",
+    dlp: "🧠 Chapter 4 Flashcards: Ratios, Rates and Proportions",
+    headerBm: "Bab 4: Nisbah, Kadar dan Kadaran",
+    headerDlp: "Chapter 4: Ratios, Rates and Proportions",
   },
 };
 

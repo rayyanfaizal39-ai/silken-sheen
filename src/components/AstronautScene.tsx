@@ -56,14 +56,12 @@ export function AstronautScene() {
   return (
     <div
       ref={ref}
-      className="astronaut-scene absolute inset-0 overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#050816]/55"
+      className="astronaut-scene pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden
     >
       {/* Background — nebula */}
-      <div
-        className="absolute inset-0 will-change-transform"
-        style={layer(-8)}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_50%,rgba(99,102,241,0.22),transparent_42%),radial-gradient(circle_at_30%_72%,rgba(59,130,246,0.16),transparent_38%),radial-gradient(circle_at_78%_28%,rgba(139,92,246,0.18),transparent_36%)]" />
+      <div className="absolute inset-0 will-change-transform" style={layer(-8)}>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(99,102,241,0.28),transparent_45%),radial-gradient(circle_at_25%_75%,rgba(139,92,246,0.20),transparent_42%),radial-gradient(circle_at_82%_22%,rgba(59,130,246,0.22),transparent_40%)]" />
         <div className="astronaut-nebula absolute inset-0" />
       </div>
 
@@ -78,31 +76,35 @@ export function AstronautScene() {
         <span className="astronaut-planet astronaut-planet--b" />
       </div>
 
-      {/* Midground — rocket trail glow */}
-      <div
-        className="absolute inset-0 will-change-transform"
-        style={layer(12)}
-        aria-hidden
-      >
+      {/* Midground — rocket trail glow (sweeps across the headline) */}
+      <div className="absolute inset-0 will-change-transform" style={layer(12)}>
         <div className="astronaut-trail" />
         <span className="astronaut-particle astronaut-particle--1" />
         <span className="astronaut-particle astronaut-particle--2" />
         <span className="astronaut-particle astronaut-particle--3" />
       </div>
 
-      {/* Foreground — astronaut + visor sweep */}
-      <div
-        className="absolute inset-0 will-change-transform"
-        style={layer(22)}
-      >
-        <div className="astronaut-float absolute inset-0">
+      {/* Foreground — astronaut weaving into the hero with soft edges */}
+      <div className="absolute inset-0 will-change-transform" style={layer(22)}>
+        <div className="astronaut-float absolute right-[-8%] top-1/2 h-[120%] w-[68%] -translate-y-1/2 sm:right-[-2%] sm:w-[58%] md:w-[54%]">
+          {/* Radial halo light source behind the astronaut */}
+          <div
+            className="pointer-events-none absolute right-[6%] top-1/2 h-[85%] w-[85%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(129,140,248,0.55)_0%,rgba(139,92,246,0.30)_32%,transparent_68%)] blur-2xl"
+            aria-hidden
+          />
           <img
             src={astronautRocket}
-            alt="Premium 3D astronaut riding a rocket through a purple blue nebula"
-            className="absolute inset-0 h-full w-full object-cover object-center select-none"
+            alt=""
+            className="relative h-full w-full select-none object-contain object-right drop-shadow-[0_30px_80px_rgba(99,102,241,0.55)]"
             draggable={false}
+            style={{
+              WebkitMaskImage:
+                "radial-gradient(ellipse 78% 82% at 65% 50%, #000 58%, rgba(0,0,0,0.55) 78%, transparent 100%)",
+              maskImage:
+                "radial-gradient(ellipse 78% 82% at 65% 50%, #000 58%, rgba(0,0,0,0.55) 78%, transparent 100%)",
+            }}
           />
-          <div className="astronaut-visor" aria-hidden />
+          <div className="astronaut-visor" />
         </div>
       </div>
     </div>
