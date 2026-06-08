@@ -84,14 +84,25 @@ export function AstronautScene() {
         <span className="astronaut-particle astronaut-particle--3" />
       </div>
 
-      {/* Foreground — astronaut anchored right, weaving into hero */}
+      {/* Foreground — astronaut weaving into the hero with soft edges */}
       <div className="absolute inset-0 will-change-transform" style={layer(22)}>
-        <div className="astronaut-float absolute right-[-6%] top-1/2 h-[118%] w-[64%] -translate-y-1/2 sm:right-[-2%] sm:w-[56%] md:w-[52%]">
+        <div className="astronaut-float absolute right-[-8%] top-1/2 h-[120%] w-[68%] -translate-y-1/2 sm:right-[-2%] sm:w-[58%] md:w-[54%]">
+          {/* Radial halo light source behind the astronaut */}
+          <div
+            className="pointer-events-none absolute right-[6%] top-1/2 h-[85%] w-[85%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(129,140,248,0.55)_0%,rgba(139,92,246,0.30)_32%,transparent_68%)] blur-2xl"
+            aria-hidden
+          />
           <img
             src={astronautRocket}
             alt=""
-            className="h-full w-full object-contain object-right select-none drop-shadow-[0_30px_80px_rgba(99,102,241,0.45)]"
+            className="relative h-full w-full select-none object-contain object-right drop-shadow-[0_30px_80px_rgba(99,102,241,0.55)]"
             draggable={false}
+            style={{
+              WebkitMaskImage:
+                "radial-gradient(ellipse 78% 82% at 65% 50%, #000 58%, rgba(0,0,0,0.55) 78%, transparent 100%)",
+              maskImage:
+                "radial-gradient(ellipse 78% 82% at 65% 50%, #000 58%, rgba(0,0,0,0.55) 78%, transparent 100%)",
+            }}
           />
           <div className="astronaut-visor" />
         </div>
