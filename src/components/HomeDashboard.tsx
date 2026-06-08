@@ -100,30 +100,47 @@ export function HomeDashboard() {
     <section className="px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div className="min-w-0 space-y-6">
-          <section className="relative isolate min-h-[460px] overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#070A18] shadow-[0_28px_90px_rgba(0,0,0,0.45)] md:min-h-[520px]">
-            {/* Unified cosmic scene — background, planets, astronaut all share one canvas */}
+          <section className="relative isolate -mx-4 -mt-6 min-h-[520px] overflow-hidden px-4 pb-12 pt-10 sm:-mx-6 sm:px-6 md:min-h-[600px] md:pb-16 md:pt-14 lg:-mx-8 lg:px-8">
+            {/* Full-bleed cosmic scene — no card, no border, no rectangle */}
             <AstronautScene />
 
-            {/* Soft left-side legibility scrim so type stays crisp over the scene */}
+            {/* Atmospheric nebula clouds spreading behind both title + astronaut */}
+            <div className="pointer-events-none absolute inset-0" aria-hidden>
+              <div className="absolute -left-[10%] top-[8%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.40),transparent_65%)] blur-3xl" />
+              <div className="absolute left-[22%] top-[45%] h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.32),transparent_65%)] blur-3xl" />
+              <div className="absolute right-[4%] top-[2%] h-[580px] w-[580px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.36),transparent_65%)] blur-3xl" />
+              <div className="absolute right-[18%] bottom-[-10%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(244,114,182,0.20),transparent_70%)] blur-3xl" />
+            </div>
+
+            {/* Soft radial legibility scrim — keeps title crisp without a visible edge */}
             <div
-              className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,rgba(7,10,24,0.92)_0%,rgba(7,10,24,0.78)_38%,rgba(7,10,24,0.18)_62%,transparent_82%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_50%,rgba(7,10,24,0.78)_0%,rgba(7,10,24,0.40)_42%,transparent_72%)]"
               aria-hidden
             />
 
-            {/* Midground content — title + CTAs sit on the same canvas as the astronaut */}
-            <div className="relative z-20 flex min-h-[460px] flex-col justify-center px-6 py-10 md:min-h-[520px] md:px-12 md:py-14">
+            {/* Glowing dust connecting title to astronaut */}
+            <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
+              <span className="absolute left-[30%] top-[28%] h-1.5 w-1.5 rounded-full bg-white/80 shadow-[0_0_18px_4px_rgba(167,139,250,0.9)] animate-pulse" />
+              <span className="absolute left-[45%] top-[58%] h-1 w-1 rounded-full bg-white/70 shadow-[0_0_14px_3px_rgba(99,102,241,0.9)] animate-pulse [animation-delay:600ms]" />
+              <span className="absolute left-[55%] top-[38%] h-1 w-1 rounded-full bg-white/60 shadow-[0_0_12px_3px_rgba(244,114,182,0.7)] animate-pulse [animation-delay:1200ms]" />
+              <span className="absolute left-[38%] top-[72%] h-1 w-1 rounded-full bg-white/50 shadow-[0_0_10px_2px_rgba(59,130,246,0.8)] animate-pulse [animation-delay:1800ms]" />
+              <span className="absolute left-[62%] top-[22%] h-[3px] w-[3px] rounded-full bg-white/80 shadow-[0_0_16px_4px_rgba(255,255,255,0.6)] animate-pulse [animation-delay:900ms]" />
+            </div>
+
+            {/* Title + CTAs */}
+            <div className="relative z-20 flex min-h-[520px] flex-col justify-center md:min-h-[600px]">
               <div className="max-w-xl">
                 <p className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.06] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/75 backdrop-blur-xl">
                   <Sparkles className="h-3.5 w-3.5 text-[#A78BFA]" />
                   Premium KSSM Learning
                 </p>
-                <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-6xl xl:text-7xl">
+                <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-white drop-shadow-[0_0_40px_rgba(99,102,241,0.45)] sm:text-6xl xl:text-7xl">
                   <span className="block">Work Smarter.</span>
                   <span className="mt-2 block bg-gradient-to-r from-[#818CF8] via-[#A78BFA] to-[#F472B6] bg-clip-text text-transparent">
                     Achieve More.
                   </span>
                 </h1>
-                <p className="mt-6 max-w-md text-base leading-7 text-white/65">
+                <p className="mt-6 max-w-md text-base leading-7 text-white/70">
                   AcadeMy helps Malaysian students master KSSM subjects with smart notes, mind
                   maps, quizzes, videos and AI-powered learning.
                 </p>
@@ -145,7 +162,7 @@ export function HomeDashboard() {
               </div>
             </div>
 
-            {/* Floating glass cards near astronaut — anchor it into the scene */}
+            {/* Floating glass info chips — free-floating in the scene */}
             <div className="pointer-events-none absolute right-4 top-10 z-30 hidden items-center gap-3 rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 shadow-2xl backdrop-blur-2xl md:right-8 md:top-12 md:flex">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#6366F1]/25">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#A78BFA]" />
@@ -158,7 +175,7 @@ export function HomeDashboard() {
               </div>
             </div>
 
-            <div className="pointer-events-none absolute bottom-6 right-6 z-30 hidden rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 shadow-2xl backdrop-blur-2xl md:bottom-10 md:right-12 md:block">
+            <div className="pointer-events-none absolute bottom-14 right-6 z-30 hidden rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 shadow-2xl backdrop-blur-2xl md:bottom-20 md:right-12 md:block">
               <div className="mb-2 flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-emerald-400" />
                 <span className="text-[10px] font-bold uppercase tracking-wide text-white/65">
@@ -169,12 +186,6 @@ export function HomeDashboard() {
                 <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400" />
               </div>
             </div>
-
-            {/* Bottom fade into the page surface */}
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#070A18] to-transparent"
-              aria-hidden
-            />
           </section>
 
 
