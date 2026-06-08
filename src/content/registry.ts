@@ -33,6 +33,8 @@ import { mathF1C4NotesBM } from "@/data/math-f1-c4-notes-bm";
 import { mathF1C4NotesDLP } from "@/data/math-f1-c4-notes-dlp";
 import { mathF1C5NotesBM } from "@/data/math-f1-c5-notes-bm";
 import { mathF1C5NotesDLP } from "@/data/math-f1-c5-notes-dlp";
+import { mathF1C6NotesBM } from "@/data/math-f1-c6-notes-bm";
+import { mathF1C6NotesDLP } from "@/data/math-f1-c6-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -261,6 +263,24 @@ export const chapters: ChapterContent[] = [
     title: "Algebraic Expressions",
     lang: "dlp",
     notes: mathF1C5NotesDLP,
+  },
+  {
+    id: "math-f1-c6-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 6",
+    title: "Persamaan Linear",
+    lang: "bm",
+    notes: mathF1C6NotesBM,
+  },
+  {
+    id: "math-f1-c6-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 6",
+    title: "Linear Equations",
+    lang: "dlp",
+    notes: mathF1C6NotesDLP,
   },
 
   // Science Form 1 (bilingual)

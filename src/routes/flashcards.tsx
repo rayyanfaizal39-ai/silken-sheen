@@ -1756,6 +1756,380 @@ const MATH_F1_C5_FLASHCARD_PAIRS: Record<
   ],
 };
 
+const MATH_F1_C6_FLASHCARD_PAIRS: Record<
+  MathFlashcardCategoryId,
+  Array<{ bm: [string, string]; dlp: [string, string] }>
+> = {
+  concepts: [
+    mathCard(
+      "Apakah persamaan linear?",
+      "Persamaan yang kuasa tertinggi pemboleh ubahnya ialah 1.",
+      "What is a linear equation?",
+      "An equation in which the highest power of the variable is 1.",
+    ),
+    mathCard(
+      "Bagaimanakah anda mengenal pasti persamaan linear?",
+      "Periksa kuasa tertinggi setiap pemboleh ubah; jika semuanya berkuasa 1, persamaan itu linear.",
+      "How do you identify a linear equation?",
+      "Check the highest power of every variable; if all are raised to power 1, the equation is linear.",
+    ),
+    mathCard(
+      "Berikan contoh persamaan tidak linear.",
+      "10x² + 5x − 3 = 1, kerana x berkuasa 2.",
+      "Give an example of a non-linear equation.",
+      "10x² + 5x − 3 = 1, because x is raised to power 2.",
+    ),
+    mathCard(
+      "Apakah ciri utama persamaan linear dalam satu pemboleh ubah?",
+      "Ia hanya mengandungi satu jenis pemboleh ubah yang berkuasa 1.",
+      "What is the main feature of a linear equation in one variable?",
+      "It contains only one type of variable, raised to the power of 1.",
+    ),
+    mathCard(
+      "Berikan contoh persamaan linear dalam satu pemboleh ubah.",
+      "x + 7 = 11.",
+      "Give an example of a linear equation in one variable.",
+      "x + 7 = 11.",
+    ),
+    mathCard(
+      "Apakah ciri utama persamaan linear dalam dua pemboleh ubah?",
+      "Ia mengandungi dua pemboleh ubah berbeza yang setiap satunya berkuasa 1.",
+      "What is the main feature of a linear equation in two variables?",
+      "It contains two different variables, each raised to the power of 1.",
+    ),
+    mathCard(
+      "Berikan contoh persamaan linear dalam dua pemboleh ubah.",
+      "5x + 2y = 8.",
+      "Give an example of a linear equation in two variables.",
+      "5x + 2y = 8.",
+    ),
+    mathCard(
+      "Apakah maksud 'menyelesaikan' suatu persamaan linear?",
+      "Mencari nilai pemboleh ubah yang menjadikan kedua-dua belah persamaan sama nilai.",
+      "What does it mean to 'solve' a linear equation?",
+      "Finding the value of the variable that makes both sides of the equation equal in value.",
+    ),
+    mathCard(
+      "Berapakah bilangan penyelesaian bagi persamaan linear dalam dua pemboleh ubah?",
+      "Tidak terhingga banyaknya.",
+      "How many solutions does a linear equation in two variables have?",
+      "An infinite number of solutions.",
+    ),
+    mathCard(
+      "Apakah persamaan linear serentak?",
+      "Dua atau lebih persamaan linear yang melibatkan pemboleh ubah sama, diselesaikan bersama.",
+      "What are simultaneous linear equations?",
+      "Two or more linear equations involving the same variables, solved together.",
+    ),
+    mathCard(
+      "Mengapakah persamaan itu dipanggil 'serentak'?",
+      "Kerana penyelesaian (x, y) yang dicari mesti memuaskan kedua-dua persamaan pada masa yang sama.",
+      "Why are these equations called 'simultaneous'?",
+      "Because the solution (x, y) sought must satisfy both equations at the same time.",
+    ),
+    mathCard(
+      "Apakah penyelesaian unik bagi persamaan serentak?",
+      "Apabila dua garis lurus bersilang pada hanya satu titik.",
+      "What is a unique solution for simultaneous equations?",
+      "When the two straight lines intersect at exactly one point.",
+    ),
+    mathCard(
+      "Bilakah persamaan serentak tiada penyelesaian?",
+      "Apabila dua garis lurus selari dan tidak akan bersilang.",
+      "When do simultaneous equations have no solution?",
+      "When the two straight lines are parallel and never intersect.",
+    ),
+    mathCard(
+      "Bilakah persamaan serentak mempunyai penyelesaian tak terhingga?",
+      "Apabila kedua-dua persamaan mewakili garis lurus yang sama (bertindih).",
+      "When do simultaneous equations have infinitely many solutions?",
+      "When both equations represent the same straight line (overlapping).",
+    ),
+    mathCard(
+      "Apakah maksud 'pemboleh ubah' dalam persamaan linear?",
+      "Huruf atau simbol yang mewakili nilai yang tidak diketahui.",
+      "What does 'variable' mean in a linear equation?",
+      "A letter or symbol representing an unknown value.",
+    ),
+  ],
+  operations: [
+    mathCard(
+      "Apakah konsep kesamaan dalam menyelesaikan persamaan linear?",
+      "Melakukan operasi yang sama pada kedua-dua belah persamaan supaya ia kekal seimbang.",
+      "What is the equality concept in solving linear equations?",
+      "Performing the same operation on both sides of the equation so it stays balanced.",
+    ),
+    mathCard(
+      "Bagaimanakah konsep kesamaan menyelesaikan x + 7 = 11?",
+      "Tolak 7 daripada kedua-dua belah: x + 7 − 7 = 11 − 7, maka x = 4.",
+      "How does the equality concept solve x + 7 = 11?",
+      "Subtract 7 from both sides: x + 7 − 7 = 11 − 7, giving x = 4.",
+    ),
+    mathCard(
+      "Apakah kaedah cuba jaya?",
+      "Kaedah menyelesaikan persamaan dengan mencuba beberapa nilai sehingga kedua-dua belah sama nilai.",
+      "What is the trial and error method?",
+      "A method of solving an equation by trying several values until both sides are equal in value.",
+    ),
+    mathCard(
+      "Apakah kelemahan kaedah cuba jaya?",
+      "Mengambil masa lebih lama jika penyelesaiannya nombor besar atau pecahan.",
+      "What is a limitation of the trial and error method?",
+      "It takes longer when the solution is a large number or a fraction.",
+    ),
+    mathCard(
+      "Apakah kaedah pematahbalikan?",
+      "Kaedah menyelesaikan persamaan dengan membalikkan turutan operasi dan menggunakan operasi songsangnya.",
+      "What is the backtracking method?",
+      "A method that solves an equation by reversing the order of operations and using their inverse operations.",
+    ),
+    mathCard(
+      "Apakah operasi songsang bagi penambahan?",
+      "Penolakan (−).",
+      "What is the inverse operation of addition?",
+      "Subtraction (−).",
+    ),
+    mathCard(
+      "Apakah operasi songsang bagi pendaraban?",
+      "Pembahagian (÷).",
+      "What is the inverse operation of multiplication?",
+      "Division (÷).",
+    ),
+    mathCard(
+      "Dalam kaedah pematahbalikan, dalam susunan apakah operasi songsang digunakan?",
+      "Dalam susunan terbalik, iaitu dari luar ke dalam.",
+      "In the backtracking method, in what order are inverse operations applied?",
+      "In reverse order, that is, from the outside in.",
+    ),
+    mathCard(
+      "Apakah kaedah penggantian?",
+      "Kaedah menyelesaikan persamaan serentak dengan mengungkapkan satu pemboleh ubah dan menggantikannya ke persamaan lain.",
+      "What is the substitution method?",
+      "A method of solving simultaneous equations by expressing one variable and substituting it into the other equation.",
+    ),
+    mathCard(
+      "Apakah langkah pertama dalam kaedah penggantian?",
+      "Ungkapkan satu pemboleh ubah dalam sebutan pemboleh ubah yang satu lagi.",
+      "What is the first step in the substitution method?",
+      "Express one variable in terms of the other variable.",
+    ),
+    mathCard(
+      "Apakah kaedah penghapusan?",
+      "Kaedah menyelesaikan persamaan serentak dengan menyamakan pekali satu pemboleh ubah, kemudian menambah atau menolak persamaan.",
+      "What is the elimination method?",
+      "A method of solving simultaneous equations by equalising the coefficient of one variable, then adding or subtracting the equations.",
+    ),
+    mathCard(
+      "Selepas pekali disamakan dalam kaedah penghapusan, apakah langkah seterusnya?",
+      "Tambah atau tolak kedua-dua persamaan untuk menghapuskan satu pemboleh ubah.",
+      "After equalising coefficients in the elimination method, what is the next step?",
+      "Add or subtract the two equations to eliminate one variable.",
+    ),
+    mathCard(
+      "Apakah kaedah graf untuk persamaan serentak?",
+      "Melukis kedua-dua garis lurus pada satah Cartesan dan mencari titik persilangannya.",
+      "What is the graphical method for simultaneous equations?",
+      "Drawing both straight lines on a Cartesian plane and finding their point of intersection.",
+    ),
+    mathCard(
+      "Apakah yang mesti dilakukan selepas mendapat nilai satu pemboleh ubah dalam kaedah penggantian atau penghapusan?",
+      "Gantikan nilai itu semula ke salah satu persamaan untuk mencari nilai pemboleh ubah satu lagi.",
+      "What must be done after finding the value of one variable in the substitution or elimination method?",
+      "Substitute that value back into one of the equations to find the value of the other variable.",
+    ),
+    mathCard(
+      "Bagaimanakah anda menyemak jawapan persamaan linear?",
+      "Gantikan nilai yang diperoleh ke dalam persamaan asal; jika kedua-dua belah sama, jawapan betul.",
+      "How do you check the answer to a linear equation?",
+      "Substitute the obtained value back into the original equation; if both sides are equal, the answer is correct.",
+    ),
+  ],
+  facts: [
+    mathCard(
+      "Tulis persamaan bagi: 'Suatu nombor m dibahagi dengan 6 memberi 12'.",
+      "m/6 = 12.",
+      "Write the equation for: 'A number m divided by 6 gives 12'.",
+      "m/6 = 12.",
+    ),
+    mathCard(
+      "Tulis persamaan bagi: 'Rahim ada RM p, belanja RM q, baki RM10'.",
+      "p − q = 10.",
+      "Write the equation for: 'Rahim has RM p, spends RM q, and has RM10 left'.",
+      "p − q = 10.",
+    ),
+    mathCard(
+      "Tulis persamaan bagi: 'Beza umur Salim, p tahun, dengan adiknya, q tahun, ialah 10 tahun'.",
+      "p − q = 10.",
+      "Write the equation for: 'The difference between Salim's age, p years, and his sister's age, q years, is 10 years'.",
+      "p − q = 10.",
+    ),
+    mathCard(
+      "Selesaikan x + 7 = 11 menggunakan konsep kesamaan.",
+      "x = 4.",
+      "Solve x + 7 = 11 using the equality concept.",
+      "x = 4.",
+    ),
+    mathCard(
+      "Selesaikan 4x/5 + 7 = 23 menggunakan kaedah pematahbalikan.",
+      "x = 20.",
+      "Solve 4x/5 + 7 = 23 using the backtracking method.",
+      "x = 20.",
+    ),
+    mathCard(
+      "Diberi y = 7x + 6, apakah nilai y apabila x = 0?",
+      "y = 6.",
+      "Given y = 7x + 6, what is the value of y when x = 0?",
+      "y = 6.",
+    ),
+    mathCard(
+      "Diberi y = 7x + 6, apakah nilai y apabila x = 1?",
+      "y = 13.",
+      "Given y = 7x + 6, what is the value of y when x = 1?",
+      "y = 13.",
+    ),
+    mathCard(
+      "Selesaikan persamaan serentak x + y = 10 dan x − y = 2 menggunakan kaedah penghapusan.",
+      "x = 6, y = 4.",
+      "Solve the simultaneous equations x + y = 10 and x − y = 2 using the elimination method.",
+      "x = 6, y = 4.",
+    ),
+    mathCard(
+      "Selesaikan persamaan serentak x + y = 10 dan x − y = 2 menggunakan kaedah penggantian.",
+      "x = 6, y = 4.",
+      "Solve the simultaneous equations x + y = 10 and x − y = 2 using the substitution method.",
+      "x = 6, y = 4.",
+    ),
+    mathCard(
+      "Apakah ciri dua garis lurus bagi persamaan serentak yang mempunyai penyelesaian unik?",
+      "Kedua-dua garis mempunyai kecerunan berbeza dan bersilang pada satu titik.",
+      "What is the feature of two lines for simultaneous equations with a unique solution?",
+      "The two lines have different gradients and intersect at one point.",
+    ),
+    mathCard(
+      "Apakah ciri dua garis lurus bagi persamaan serentak yang tiada penyelesaian?",
+      "Kedua-dua garis mempunyai kecerunan sama tetapi pintasan-y berbeza (selari).",
+      "What is the feature of two lines for simultaneous equations with no solution?",
+      "The two lines have the same gradient but different y-intercepts (parallel).",
+    ),
+    mathCard(
+      "Apakah ciri dua persamaan serentak yang mempunyai penyelesaian tak terhingga?",
+      "Kedua-dua persamaan, apabila dipermudahkan, adalah setara antara satu sama lain.",
+      "What is the feature of two simultaneous equations with infinitely many solutions?",
+      "Both equations, when simplified, are equivalent to each other.",
+    ),
+    mathCard(
+      "Apakah langkah pertama menggunakan kalkulator saintifik untuk persamaan serentak?",
+      "Tekan butang MODE atau MENU.",
+      "What is the first step in using a scientific calculator for simultaneous equations?",
+      "Press the MODE or MENU button.",
+    ),
+    mathCard(
+      "Selepas memilih Mod Persamaan pada kalkulator saintifik, apakah yang anda pilih seterusnya?",
+      "Persamaan Serentak, kemudian 2 Tidak Diketahui.",
+      "After selecting Equation Mode on a scientific calculator, what do you select next?",
+      "Simultaneous Equation, then 2 Unknowns.",
+    ),
+    mathCard(
+      "Bagaimanakah anda mendapatkan nilai x dan y selepas memasukkan pekali pada kalkulator saintifik?",
+      "Tekan butang '=' untuk memperoleh nilai x dan y.",
+      "How do you obtain the values of x and y after entering the coefficients on a scientific calculator?",
+      "Press the '=' button to obtain the values of x and y.",
+    ),
+  ],
+  practice: [
+    mathCard(
+      "Adakah 5r + 1 = 0 suatu persamaan linear?",
+      "Ya, kerana kuasa tertinggi r ialah 1.",
+      "Is 5r + 1 = 0 a linear equation?",
+      "Yes, because the highest power of r is 1.",
+    ),
+    mathCard(
+      "Adakah 10x² + 5x − 3 = 1 suatu persamaan linear?",
+      "Tidak, kerana x berkuasa 2.",
+      "Is 10x² + 5x − 3 = 1 a linear equation?",
+      "No, because x is raised to the power of 2.",
+    ),
+    mathCard(
+      "Berapakah nilai x dalam x + 7 = 11?",
+      "x = 4.",
+      "What is the value of x in x + 7 = 11?",
+      "x = 4.",
+    ),
+    mathCard(
+      "Gunakan kaedah cuba jaya untuk x + 5 = 9. Apakah nilai x?",
+      "x = 4, kerana 4 + 5 = 9.",
+      "Use trial and error for x + 5 = 9. What is the value of x?",
+      "x = 4, because 4 + 5 = 9.",
+    ),
+    mathCard(
+      "Apakah operasi songsang bagi penolakan dalam kaedah pematahbalikan?",
+      "Penambahan (+).",
+      "What is the inverse operation of subtraction in the backtracking method?",
+      "Addition (+).",
+    ),
+    mathCard(
+      "Apakah operasi songsang bagi pembahagian dalam kaedah pematahbalikan?",
+      "Pendaraban (×).",
+      "What is the inverse operation of division in the backtracking method?",
+      "Multiplication (×).",
+    ),
+    mathCard(
+      "Tulis satu pasangan penyelesaian (x, y) bagi y = 7x + 6 selain (0, 6) dan (1, 13).",
+      "(2, 20), kerana y = 7(2) + 6 = 20.",
+      "Write one solution pair (x, y) for y = 7x + 6 other than (0, 6) and (1, 13).",
+      "(2, 20), because y = 7(2) + 6 = 20.",
+    ),
+    mathCard(
+      "Dalam persamaan serentak x + y = 10 dan x − y = 2, apakah ungkapan x jika x dikira daripada persamaan pertama?",
+      "x = 10 − y.",
+      "In the simultaneous equations x + y = 10 and x − y = 2, what is x expressed as from the first equation?",
+      "x = 10 − y.",
+    ),
+    mathCard(
+      "Apabila (10 − y) − y = 2 dipermudahkan, apakah persamaan satu pemboleh ubah yang terhasil?",
+      "10 − 2y = 2, lalu y = 4.",
+      "When (10 − y) − y = 2 is simplified, what one-variable equation results?",
+      "10 − 2y = 2, giving y = 4.",
+    ),
+    mathCard(
+      "Apabila persamaan x + y = 10 dan x − y = 2 ditambah, apakah persamaan yang terhasil?",
+      "2x = 12, lalu x = 6.",
+      "When the equations x + y = 10 and x − y = 2 are added, what equation results?",
+      "2x = 12, giving x = 6.",
+    ),
+    mathCard(
+      "Selepas mendapat x = 6 daripada x + y = 10, apakah nilai y?",
+      "y = 4, kerana 6 + y = 10.",
+      "After finding x = 6 from x + y = 10, what is the value of y?",
+      "y = 4, because 6 + y = 10.",
+    ),
+    mathCard(
+      "Jika graf bagi dua persamaan serentak bersilang pada satu titik, berapakah penyelesaiannya?",
+      "Satu penyelesaian (penyelesaian unik).",
+      "If the graphs of two simultaneous equations intersect at one point, how many solutions are there?",
+      "One solution (a unique solution).",
+    ),
+    mathCard(
+      "Jika graf bagi dua persamaan serentak adalah selari, berapakah penyelesaiannya?",
+      "Tiada penyelesaian.",
+      "If the graphs of two simultaneous equations are parallel, how many solutions are there?",
+      "No solution.",
+    ),
+    mathCard(
+      "Jika graf bagi dua persamaan serentak bertindih sepenuhnya, berapakah penyelesaiannya?",
+      "Tidak terhingga banyaknya.",
+      "If the graphs of two simultaneous equations completely overlap, how many solutions are there?",
+      "An infinite number of solutions.",
+    ),
+    mathCard(
+      "Tulis persamaan linear dalam dua pemboleh ubah menggunakan x dan y dengan pekali 5 dan 2.",
+      "5x + 2y = 8 (contoh).",
+      "Write a linear equation in two variables using x and y with coefficients 5 and 2.",
+      "5x + 2y = 8 (example).",
+    ),
+  ],
+};
+
 const MATH_FLASHCARD_BANKS: Partial<
   Record<
     string,
@@ -1767,6 +2141,7 @@ const MATH_FLASHCARD_BANKS: Partial<
   "Chapter 3": MATH_F1_C3_FLASHCARD_PAIRS,
   "Chapter 4": MATH_F1_C4_FLASHCARD_PAIRS,
   "Chapter 5": MATH_F1_C5_FLASHCARD_PAIRS,
+  "Chapter 6": MATH_F1_C6_FLASHCARD_PAIRS,
 };
 
 const MATH_FLASHCARD_CHAPTER_TITLES: Record<
@@ -1802,6 +2177,12 @@ const MATH_FLASHCARD_CHAPTER_TITLES: Record<
     dlp: "🧠 Chapter 5 Flashcards: Algebraic Expressions",
     headerBm: "Bab 5: Ungkapan Algebra",
     headerDlp: "Chapter 5: Algebraic Expressions",
+  },
+  "Chapter 6": {
+    bm: "🧠 Flashcards Bab 6: Persamaan Linear",
+    dlp: "🧠 Chapter 6 Flashcards: Linear Equations",
+    headerBm: "Bab 6: Persamaan Linear",
+    headerDlp: "Chapter 6: Linear Equations",
   },
 };
 

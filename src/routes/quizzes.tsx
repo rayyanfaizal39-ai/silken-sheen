@@ -4280,6 +4280,204 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ["Simplify −(2x − y) − (x + 3y).", ["−3x − 2y", "−3x + 2y", "−x − 2y", "−x + 4y"], 0, "−(2x − y) − (x + 3y) = (−2x + y) + (−x − 3y) = −3x − 2y.", "Hard"],
 ]);
 
+const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
+  ["Apakah persamaan linear?", ["Persamaan dengan kuasa tertinggi pemboleh ubah ialah 1", "Persamaan dengan kuasa tertinggi pemboleh ubah ialah 2", "Persamaan tanpa pemboleh ubah", "Persamaan dengan dua tanda sama dengan"], 0, "Persamaan linear ialah persamaan yang kuasa tertinggi pemboleh ubahnya ialah 1.", "Easy"],
+  ["Manakah antara berikut ialah persamaan linear?", ["10x² + 5x − 3 = 1", "x² − 4 = 0", "5r + 1 = 0", "x² + y = 6"], 2, "5r + 1 = 0 ialah persamaan linear kerana kuasa tertinggi r ialah 1.", "Easy"],
+  ["Mengapakah 10x² + 5x − 3 = 1 BUKAN persamaan linear?", ["Kerana ia mempunyai dua pemboleh ubah", "Kerana x berkuasa 2", "Kerana ia tiada pemalar", "Kerana pekali x ialah 5"], 1, "Persamaan itu mengandungi x², iaitu pemboleh ubah berkuasa 2, jadi ia bukan persamaan linear.", "Easy"],
+  ["Apakah ciri utama persamaan linear dalam satu pemboleh ubah?", ["Mengandungi dua jenis pemboleh ubah", "Mengandungi hanya satu jenis pemboleh ubah berkuasa 1", "Tiada pemboleh ubah", "Mempunyai dua tanda sama dengan"], 1, "Persamaan linear dalam satu pemboleh ubah hanya mengandungi satu jenis pemboleh ubah yang berkuasa 1.", "Easy"],
+  ["Manakah berikut ialah contoh persamaan linear dalam satu pemboleh ubah?", ["5x + 2y = 8", "x + 7 = 11", "x² = 9", "xy = 10"], 1, "x + 7 = 11 hanya mengandungi satu pemboleh ubah, iaitu x, berkuasa 1.", "Easy"],
+  ["Berapakah bilangan jenis pemboleh ubah dalam persamaan x + 7 = 11?", ["0", "1", "2", "3"], 1, "Persamaan x + 7 = 11 hanya mengandungi satu jenis pemboleh ubah, iaitu x.", "Easy"],
+  ["Tulis persamaan bagi 'Suatu nombor m dibahagi dengan 6 memberi 12'.", ["m × 6 = 12", "m + 6 = 12", "m/6 = 12", "m − 6 = 12"], 2, "'Dibahagi dengan 6 memberi 12' diterjemahkan kepada m/6 = 12.", "Easy"],
+  ["Tulis persamaan bagi 'Rahim ada RM p, membelanjakan RM q dan berbaki RM10'.", ["p + q = 10", "p − q = 10", "p × q = 10", "p ÷ q = 10"], 1, "Baki = jumlah asal − perbelanjaan, maka p − q = 10.", "Easy"],
+  ["Apakah ciri utama persamaan linear dalam dua pemboleh ubah?", ["Mengandungi dua pemboleh ubah berbeza yang masing-masing berkuasa 1", "Mengandungi satu pemboleh ubah sahaja", "Mengandungi pemboleh ubah berkuasa 2", "Tiada pemalar"], 0, "Persamaan linear dalam dua pemboleh ubah mengandungi dua pemboleh ubah berbeza yang setiap satunya berkuasa 1.", "Easy"],
+  ["Manakah berikut ialah contoh persamaan linear dalam dua pemboleh ubah?", ["x + 7 = 11", "5x + 2y = 8", "x² + y = 6", "x³ = 27"], 1, "5x + 2y = 8 mengandungi dua pemboleh ubah berbeza, x dan y, masing-masing berkuasa 1.", "Easy"],
+  ["Berapakah bilangan jenis pemboleh ubah dalam persamaan 5x + 2y = 8?", ["1", "2", "3", "4"], 1, "Persamaan 5x + 2y = 8 mengandungi dua jenis pemboleh ubah, iaitu x dan y.", "Easy"],
+  ["Apakah maksud 'pemboleh ubah' dalam suatu persamaan?", ["Nombor tetap dalam persamaan", "Huruf atau simbol yang mewakili nilai yang tidak diketahui", "Tanda operasi seperti + atau −", "Jawapan akhir kepada persamaan"], 1, "Pemboleh ubah ialah huruf atau simbol yang mewakili nilai yang tidak diketahui.", "Easy"],
+  ["Pada kuasa berapakah pemboleh ubah mesti berada supaya suatu persamaan dianggap persamaan linear?", ["0", "1", "2", "3"], 1, "Bagi suatu persamaan dianggap linear, semua pemboleh ubahnya mesti berkuasa 1.", "Easy"],
+  ["Tulis persamaan bagi 'beza umur Salim, p tahun, dengan adiknya, q tahun, ialah 10 tahun'.", ["p + q = 10", "p − q = 10", "p ÷ q = 10", "pq = 10"], 1, "Beza umur ditulis sebagai p − q = 10.", "Easy"],
+  ["Manakah berikut BUKAN persamaan linear dalam dua pemboleh ubah?", ["5x + 2y = 8", "p − q = 10", "x² + y = 6", "2m + n = 15"], 2, "x² + y = 6 mengandungi x berkuasa 2, jadi ia bukan persamaan linear.", "Easy"],
+  ["Apakah perbezaan utama antara persamaan linear dalam satu pemboleh ubah dan dua pemboleh ubah?", ["Persamaan satu pemboleh ubah tidak mempunyai penyelesaian", "Persamaan satu pemboleh ubah mengandungi satu jenis pemboleh ubah, manakala persamaan dua pemboleh ubah mengandungi dua", "Persamaan dua pemboleh ubah hanya mempunyai satu penyelesaian", "Tiada perbezaan antara kedua-duanya"], 1, "Perbezaan utama ialah bilangan jenis pemboleh ubah yang terlibat: satu berbanding dua.", "Easy"],
+  ["Apakah maksud 'menyelesaikan' suatu persamaan linear?", ["Menukar persamaan kepada ungkapan", "Mencari nilai pemboleh ubah yang menjadikan kedua-dua belah persamaan sama nilai", "Menggandakan kedua-dua belah persamaan", "Menukar tanda semua sebutan dalam persamaan"], 1, "Menyelesaikan persamaan bermaksud mencari nilai pemboleh ubah yang menjadikan kedua-dua belah persamaan sama nilai.", "Easy"],
+  ["Berapakah bilangan penyelesaian yang dimiliki oleh sebuah persamaan linear dalam dua pemboleh ubah?", ["Tiada penyelesaian", "Hanya satu penyelesaian", "Dua penyelesaian sahaja", "Tidak terhingga banyaknya"], 3, "Persamaan linear dalam dua pemboleh ubah mempunyai bilangan penyelesaian yang tidak terhingga.", "Easy"],
+  ["Apakah bentuk standard bagi persamaan linear dalam dua pemboleh ubah?", ["ax + b = 0", "ax² + bx + c = 0", "ax + by = c", "a/x = b"], 2, "Bentuk standard persamaan linear dalam dua pemboleh ubah ialah ax + by = c.", "Easy"],
+  ["Bagaimanakah anda menentukan sama ada suatu persamaan ialah persamaan linear?", ["Lihat bilangan sebutan dalam persamaan", "Periksa kuasa tertinggi setiap pemboleh ubah", "Lihat tanda di hadapan pemalar", "Kira jumlah pekali dalam persamaan"], 1, "Untuk menentukan sama ada suatu persamaan linear, periksa kuasa tertinggi setiap pemboleh ubah; jika semuanya 1, ia linear.", "Easy"],
+  ["Tulis persamaan bagi 'dua kali suatu nombor n tambah 5 sama dengan 17'.", ["2n + 5 = 17", "n + 2 = 17", "2(n + 5) = 17", "n − 2 = 17"], 0, "'Dua kali suatu nombor n tambah 5' diterjemahkan kepada 2n + 5, maka persamaannya ialah 2n + 5 = 17.", "Easy"],
+  ["Manakah antara berikut mengandungi pemboleh ubah berkuasa 2?", ["5r + 1 = 0", "x + 7 = 11", "x² − 4 = 0", "5x + 2y = 8"], 2, "x² − 4 = 0 mengandungi pemboleh ubah x yang berkuasa 2.", "Easy"],
+  ["Tulis persamaan bagi 'jumlah dua nombor x dan y ialah 20'.", ["x − y = 20", "x + y = 20", "xy = 20", "x/y = 20"], 1, "Jumlah dua nombor ditulis sebagai x + y = 20.", "Easy"],
+  ["Apakah langkah pertama dalam membentuk persamaan linear daripada situasi harian?", ["Selesaikan persamaan terus", "Kenal pasti kuantiti yang tidak diketahui dan wakilkannya dengan pemboleh ubah", "Lukis graf situasi tersebut", "Tukar semua nombor kepada pecahan"], 1, "Langkah pertama ialah mengenal pasti kuantiti yang tidak diketahui dan mewakilkannya dengan pemboleh ubah.", "Easy"],
+  ["Persamaan 5r + 1 = 0 ialah persamaan linear dalam berapa pemboleh ubah?", ["Tiada pemboleh ubah", "Satu pemboleh ubah", "Dua pemboleh ubah", "Tiga pemboleh ubah"], 1, "Persamaan 5r + 1 = 0 hanya mengandungi satu jenis pemboleh ubah, iaitu r.", "Easy"],
+  ["Manakah antara berikut ialah persamaan linear?", ["xy = 12", "x + y = 9", "x³ = 8", "1/x = 5"], 1, "x + y = 9 ialah persamaan linear kerana x dan y masing-masing berkuasa 1.", "Easy"],
+  ["Apakah yang dimaksudkan dengan 'kuasa tertinggi pemboleh ubah ialah 1'?", ["Pemboleh ubah didarab dengan 1", "Pemboleh ubah tidak mempunyai sebarang kuasa yang ditulis melebihi 1, iaitu x¹", "Pemalar persamaan ialah 1", "Pekali pemboleh ubah ialah 1"], 1, "Maksudnya ialah pemboleh ubah itu hanya muncul sebagai x¹ (ditulis sebagai x), bukan x², x³ dan sebagainya.", "Easy"],
+  ["Tulis persamaan bagi 'tiga kali suatu nombor p ditolak 4 sama dengan 11'.", ["3p − 4 = 11", "3(p − 4) = 11", "p − 3 = 11", "3p + 4 = 11"], 0, "'Tiga kali suatu nombor p ditolak 4' diterjemahkan kepada 3p − 4, maka persamaannya ialah 3p − 4 = 11.", "Easy"],
+  ["Berikan satu sebab mengapa x² + y = 6 bukan persamaan linear.", ["Ia mempunyai dua pemboleh ubah", "Pemboleh ubah x berkuasa 2", "Pemalar 6 terlalu besar", "Ia mempunyai tanda tambah"], 1, "x² + y = 6 bukan persamaan linear kerana pemboleh ubah x berkuasa 2, bukan 1.", "Easy"],
+  ["Apakah yang membezakan suatu persamaan daripada ungkapan algebra?", ["Persamaan mempunyai tanda sama dengan (=) yang menunjukkan dua bahagian sama nilai", "Persamaan tidak mempunyai pemboleh ubah", "Ungkapan algebra sentiasa lebih panjang", "Persamaan tidak mempunyai pemalar"], 0, "Persamaan mengandungi tanda sama dengan (=) yang menunjukkan dua bahagian mempunyai nilai yang sama, manakala ungkapan algebra tidak.", "Easy"],
+]);
+
+const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
+  ["What is a linear equation?", ["An equation in which the highest power of the variable is 1", "An equation in which the highest power of the variable is 2", "An equation without any variables", "An equation with two equals signs"], 0, "A linear equation is an equation in which the highest power of the variable is 1.", "Easy"],
+  ["Which of the following is a linear equation?", ["10x² + 5x − 3 = 1", "x² − 4 = 0", "5r + 1 = 0", "x² + y = 6"], 2, "5r + 1 = 0 is a linear equation because the highest power of r is 1.", "Easy"],
+  ["Why is 10x² + 5x − 3 = 1 NOT a linear equation?", ["Because it has two variables", "Because x is raised to the power of 2", "Because it has no constant", "Because the coefficient of x is 5"], 1, "The equation contains x², a variable raised to the power of 2, so it is not linear.", "Easy"],
+  ["What is the main feature of a linear equation in one variable?", ["It contains two types of variables", "It contains only one type of variable raised to the power of 1", "It contains no variables", "It has two equals signs"], 1, "A linear equation in one variable contains only one type of variable raised to the power of 1.", "Easy"],
+  ["Which of the following is an example of a linear equation in one variable?", ["5x + 2y = 8", "x + 7 = 11", "x² = 9", "xy = 10"], 1, "x + 7 = 11 contains only one variable, x, raised to the power of 1.", "Easy"],
+  ["How many types of variables are in the equation x + 7 = 11?", ["0", "1", "2", "3"], 1, "The equation x + 7 = 11 contains only one type of variable, x.", "Easy"],
+  ["Write the equation for 'A number m divided by 6 gives 12'.", ["m × 6 = 12", "m + 6 = 12", "m/6 = 12", "m − 6 = 12"], 2, "'Divided by 6 gives 12' translates to m/6 = 12.", "Easy"],
+  ["Write the equation for 'Rahim has RM p, spends RM q, and has RM10 left'.", ["p + q = 10", "p − q = 10", "p × q = 10", "p ÷ q = 10"], 1, "Amount left = original amount − amount spent, so p − q = 10.", "Easy"],
+  ["What is the main feature of a linear equation in two variables?", ["It contains two different variables, each raised to the power of 1", "It contains only one variable", "It contains a variable raised to the power of 2", "It has no constant"], 0, "A linear equation in two variables contains two different variables, each raised to the power of 1.", "Easy"],
+  ["Which of the following is an example of a linear equation in two variables?", ["x + 7 = 11", "5x + 2y = 8", "x² + y = 6", "x³ = 27"], 1, "5x + 2y = 8 contains two different variables, x and y, each raised to the power of 1.", "Easy"],
+  ["How many types of variables are in the equation 5x + 2y = 8?", ["1", "2", "3", "4"], 1, "The equation 5x + 2y = 8 contains two types of variables, x and y.", "Easy"],
+  ["What does 'variable' mean in an equation?", ["A fixed number in the equation", "A letter or symbol that represents an unknown value", "An operation sign such as + or −", "The final answer to the equation"], 1, "A variable is a letter or symbol that represents an unknown value.", "Easy"],
+  ["To what power must a variable be raised for an equation to be considered linear?", ["0", "1", "2", "3"], 1, "For an equation to be considered linear, all of its variables must be raised to the power of 1.", "Easy"],
+  ["Write the equation for 'The difference between Salim's age, p years, and his sister's age, q years, is 10 years'.", ["p + q = 10", "p − q = 10", "p ÷ q = 10", "pq = 10"], 1, "The age difference is written as p − q = 10.", "Easy"],
+  ["Which of the following is NOT a linear equation in two variables?", ["5x + 2y = 8", "p − q = 10", "x² + y = 6", "2m + n = 15"], 2, "x² + y = 6 contains x raised to the power of 2, so it is not a linear equation.", "Easy"],
+  ["What is the main difference between a linear equation in one variable and one in two variables?", ["A one-variable equation has no solutions", "A one-variable equation contains one type of variable, while a two-variable equation contains two", "A two-variable equation only has one solution", "There is no difference between them"], 1, "The main difference is the number of types of variables involved: one versus two.", "Easy"],
+  ["What does it mean to 'solve' a linear equation?", ["Turning the equation into an expression", "Finding the value of the variable that makes both sides of the equation equal in value", "Doubling both sides of the equation", "Changing the sign of every term in the equation"], 1, "Solving an equation means finding the value of the variable that makes both sides of the equation equal in value.", "Easy"],
+  ["How many solutions does a linear equation in two variables have?", ["No solutions", "Only one solution", "Only two solutions", "An infinite number of solutions"], 3, "A linear equation in two variables has an infinite number of solutions.", "Easy"],
+  ["What is the standard form of a linear equation in two variables?", ["ax + b = 0", "ax² + bx + c = 0", "ax + by = c", "a/x = b"], 2, "The standard form of a linear equation in two variables is ax + by = c.", "Easy"],
+  ["How do you determine whether an equation is a linear equation?", ["Look at the number of terms in the equation", "Check the highest power of every variable", "Look at the sign in front of the constant", "Count the total of the coefficients"], 1, "To determine whether an equation is linear, check the highest power of every variable; if all are 1, it is linear.", "Easy"],
+  ["Write the equation for 'Two times a number n plus 5 equals 17'.", ["2n + 5 = 17", "n + 2 = 17", "2(n + 5) = 17", "n − 2 = 17"], 0, "'Two times a number n plus 5' translates to 2n + 5, so the equation is 2n + 5 = 17.", "Easy"],
+  ["Which of the following contains a variable raised to the power of 2?", ["5r + 1 = 0", "x + 7 = 11", "x² − 4 = 0", "5x + 2y = 8"], 2, "x² − 4 = 0 contains the variable x raised to the power of 2.", "Easy"],
+  ["Write the equation for 'The sum of two numbers x and y is 20'.", ["x − y = 20", "x + y = 20", "xy = 20", "x/y = 20"], 1, "The sum of two numbers is written as x + y = 20.", "Easy"],
+  ["What is the first step in forming a linear equation from a daily-life situation?", ["Solve the equation directly", "Identify the unknown quantity and represent it with a variable", "Draw a graph of the situation", "Convert all numbers to fractions"], 1, "The first step is to identify the unknown quantity and represent it with a variable.", "Easy"],
+  ["How many variables does the equation 5r + 1 = 0 contain?", ["No variables", "One variable", "Two variables", "Three variables"], 1, "The equation 5r + 1 = 0 contains only one type of variable, r.", "Easy"],
+  ["Which of the following is a linear equation?", ["xy = 12", "x + y = 9", "x³ = 8", "1/x = 5"], 1, "x + y = 9 is a linear equation because x and y are each raised to the power of 1.", "Easy"],
+  ["What does it mean for the 'highest power of the variable to be 1'?", ["The variable is multiplied by 1", "The variable does not appear with any power higher than 1, that is, written as x¹", "The constant of the equation is 1", "The coefficient of the variable is 1"], 1, "It means the variable only appears as x¹ (written as x), not x², x³, and so on.", "Easy"],
+  ["Write the equation for 'Three times a number p minus 4 equals 11'.", ["3p − 4 = 11", "3(p − 4) = 11", "p − 3 = 11", "3p + 4 = 11"], 0, "'Three times a number p minus 4' translates to 3p − 4, so the equation is 3p − 4 = 11.", "Easy"],
+  ["Give one reason why x² + y = 6 is not a linear equation.", ["It has two variables", "The variable x is raised to the power of 2", "The constant 6 is too large", "It has a plus sign"], 1, "x² + y = 6 is not a linear equation because the variable x is raised to the power of 2, not 1.", "Easy"],
+  ["What distinguishes an equation from an algebraic expression?", ["An equation has an equals sign (=) showing two parts have equal value", "An equation has no variables", "An algebraic expression is always longer", "An equation has no constants"], 0, "An equation contains an equals sign (=) showing that two parts have equal value, while an algebraic expression does not.", "Easy"],
+]);
+
+const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
+  ["Selesaikan persamaan x + 7 = 11 menggunakan konsep kesamaan.", ["x = 3", "x = 4", "x = 18", "x = −4"], 1, "Tolak 7 daripada kedua-dua belah: x + 7 − 7 = 11 − 7, maka x = 4.", "Medium"],
+  ["Apakah operasi yang perlu dilakukan pada kedua-dua belah persamaan x + 7 = 11 untuk mendapatkan x bersendirian?", ["Tambah 7", "Tolak 7", "Darab dengan 7", "Bahagi dengan 7"], 1, "Untuk mengasingkan x, tolak 7 daripada kedua-dua belah persamaan.", "Medium"],
+  ["Apakah konsep kesamaan?", ["Melakukan operasi berbeza pada setiap belah persamaan", "Melakukan operasi yang sama pada kedua-dua belah persamaan supaya ia kekal seimbang", "Menukar semua pemboleh ubah kepada nombor", "Mengabaikan tanda sama dengan dalam persamaan"], 1, "Konsep kesamaan ialah melakukan operasi yang sama pada kedua-dua belah persamaan supaya ia kekal seimbang.", "Medium"],
+  ["Selesaikan persamaan x − 5 = 9 menggunakan konsep kesamaan.", ["x = 4", "x = 14", "x = −4", "x = 45"], 1, "Tambah 5 pada kedua-dua belah: x − 5 + 5 = 9 + 5, maka x = 14.", "Medium"],
+  ["Gunakan kaedah cuba jaya untuk menyelesaikan x + 5 = 9. Apakah nilai x yang betul?", ["x = 2", "x = 3", "x = 4", "x = 5"], 2, "Apabila x = 4, 4 + 5 = 9, jadi kedua-dua belah sama nilai dan x = 4 ialah penyelesaiannya.", "Medium"],
+  ["Mengapakah kaedah cuba jaya kurang sesuai untuk persamaan dengan penyelesaian berbentuk pecahan?", ["Kerana kaedah ini terlalu mudah", "Kerana ia mengambil masa lebih lama untuk mencuba pelbagai nilai", "Kerana pecahan tidak boleh disubstitusikan", "Kerana ia hanya berfungsi untuk persamaan dua pemboleh ubah"], 1, "Kaedah cuba jaya mengambil masa lebih lama apabila penyelesaiannya ialah nombor besar atau pecahan.", "Medium"],
+  ["Apakah operasi songsang bagi penambahan?", ["Pendaraban", "Pembahagian", "Penolakan", "Punca kuasa dua"], 2, "Operasi songsang bagi penambahan (+) ialah penolakan (−).", "Medium"],
+  ["Apakah operasi songsang bagi pendaraban?", ["Penambahan", "Penolakan", "Pembahagian", "Kuasa dua"], 2, "Operasi songsang bagi pendaraban (×) ialah pembahagian (÷).", "Medium"],
+  ["Selesaikan persamaan 4x/5 + 7 = 23 menggunakan kaedah pematahbalikan. Apakah langkah pertama?", ["Darab kedua-dua belah dengan 5", "Tolak 7 daripada kedua-dua belah", "Bahagi kedua-dua belah dengan 4", "Tambah 7 pada kedua-dua belah"], 1, "Langkah pertama ialah menolak 7 daripada kedua-dua belah supaya 4x/5 = 16.", "Medium"],
+  ["Dalam menyelesaikan 4x/5 + 7 = 23, selepas mendapat 4x/5 = 16, apakah langkah seterusnya?", ["Bahagi kedua-dua belah dengan 5", "Darab kedua-dua belah dengan 5", "Tolak 16 daripada kedua-dua belah", "Tambah 4 pada kedua-dua belah"], 1, "Darab kedua-dua belah dengan 5 untuk mendapatkan 4x = 80.", "Medium"],
+  ["Berapakah nilai x dalam persamaan 4x/5 + 7 = 23?", ["x = 16", "x = 20", "x = 80", "x = 4"], 1, "Mengikut langkah pematahbalikan: 4x/5 = 16 → 4x = 80 → x = 20.", "Medium"],
+  ["Selesaikan persamaan 3x − 4 = 11.", ["x = 3", "x = 5", "x = 7", "x = 15"], 1, "3x − 4 = 11 → 3x = 15 → x = 5.", "Medium"],
+  ["Selesaikan persamaan x/4 = 6.", ["x = 1.5", "x = 10", "x = 24", "x = 2"], 2, "x/4 = 6 → x = 6 × 4 = 24.", "Medium"],
+  ["Selesaikan persamaan 2x + 3 = 13.", ["x = 5", "x = 8", "x = 10", "x = 6.5"], 0, "2x + 3 = 13 → 2x = 10 → x = 5.", "Medium"],
+  ["Selesaikan persamaan 5x − 1 = 0.", ["x = −5", "x = 5", "x = −0.2", "x = 0.2"], 3, "5x − 1 = 0 → 5x = 1 → x = 0.2.", "Medium"],
+  ["Diberi y = 7x + 6, apakah nilai y apabila x = 0?", ["y = 0", "y = 6", "y = 7", "y = 13"], 1, "y = 7(0) + 6 = 6.", "Medium"],
+  ["Diberi y = 7x + 6, apakah nilai y apabila x = 1?", ["y = 6", "y = 7", "y = 13", "y = 14"], 2, "y = 7(1) + 6 = 13.", "Medium"],
+  ["Diberi y = 7x + 6, apakah nilai y apabila x = 2?", ["y = 13", "y = 18", "y = 20", "y = 26"], 2, "y = 7(2) + 6 = 14 + 6 = 20.", "Medium"],
+  ["Manakah pasangan (x, y) berikut ialah penyelesaian bagi y = 7x + 6?", ["(1, 6)", "(0, 7)", "(2, 20)", "(1, 7)"], 2, "Apabila x = 2, y = 7(2) + 6 = 20, maka (2, 20) ialah penyelesaian yang sah.", "Medium"],
+  ["Mengapakah persamaan linear dalam dua pemboleh ubah mempunyai bilangan penyelesaian yang tidak terhingga?", ["Kerana setiap nilai x yang berbeza menghasilkan nilai y yang sepadan", "Kerana persamaan itu tidak mempunyai pemalar", "Kerana ia tidak boleh diselesaikan", "Kerana pemboleh ubahnya berkuasa 2"], 0, "Setiap nilai berbeza yang disubstitusikan untuk satu pemboleh ubah menghasilkan nilai sepadan bagi pemboleh ubah satu lagi, menghasilkan banyak pasangan penyelesaian.", "Medium"],
+  ["Selesaikan persamaan x + 9 = 15 menggunakan konsep kesamaan.", ["x = 6", "x = 24", "x = −6", "x = 1.67"], 0, "Tolak 9 daripada kedua-dua belah: x = 15 − 9 = 6.", "Medium"],
+  ["Selesaikan persamaan 2x = 18 menggunakan konsep kesamaan.", ["x = 9", "x = 16", "x = 20", "x = 36"], 0, "Bahagi kedua-dua belah dengan 2: x = 18 ÷ 2 = 9.", "Medium"],
+  ["Apakah yang perlu dilakukan untuk menyemak sama ada x = 4 ialah penyelesaian bagi x + 7 = 11?", ["Gantikan x = 4 ke dalam persamaan dan periksa jika kedua-dua belah sama nilai", "Selesaikan semula persamaan dari awal", "Lukis graf persamaan tersebut", "Tukar persamaan kepada bentuk pecahan"], 0, "Untuk menyemak penyelesaian, gantikan nilai itu ke dalam persamaan asal dan periksa jika kedua-dua belah sama nilai.", "Medium"],
+  ["Gunakan kaedah cuba jaya untuk x − 3 = 7. Manakah nilai x yang betul?", ["x = 4", "x = 7", "x = 10", "x = 21"], 2, "Apabila x = 10, 10 − 3 = 7, maka kedua-dua belah sama dan x = 10 ialah penyelesaiannya.", "Medium"],
+  ["Selesaikan persamaan 6x + 2 = 20 menggunakan kaedah pematahbalikan.", ["x = 3", "x = 4", "x = 18", "x = 22"], 0, "6x + 2 = 20 → 6x = 18 → x = 3.", "Medium"],
+  ["Apakah operasi songsang yang digunakan untuk menyelesaikan persamaan x × 5 = 35?", ["Tambah", "Tolak", "Bahagi", "Darab"], 2, "Untuk mengasingkan x, gunakan operasi songsang bagi pendaraban, iaitu pembahagian: x = 35 ÷ 5 = 7.", "Medium"],
+  ["Apakah operasi songsang yang digunakan untuk menyelesaikan persamaan x ÷ 3 = 9?", ["Bahagi dengan 3", "Tambah 3", "Darab dengan 3", "Tolak 3"], 2, "Untuk mengasingkan x, darabkan kedua-dua belah dengan 3: x = 9 × 3 = 27.", "Medium"],
+  ["Diberi y = 3x − 2, apakah nilai y apabila x = 5?", ["y = 13", "y = 15", "y = 17", "y = 10"], 0, "y = 3(5) − 2 = 15 − 2 = 13.", "Medium"],
+  ["Selesaikan persamaan 7x − 3 = 4x + 9.", ["x = 2", "x = 3", "x = 4", "x = 12"], 2, "7x − 3 = 4x + 9 → 7x − 4x = 9 + 3 → 3x = 12 → x = 4.", "Medium"],
+  ["Diberi 4x/5 + 7 = 23, apakah nilai 4x/5 selepas langkah pertama kaedah pematahbalikan?", ["9", "16", "20", "30"], 1, "Tolak 7 daripada kedua-dua belah: 4x/5 = 23 − 7 = 16.", "Medium"],
+]);
+
+const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
+  ["Solve the equation x + 7 = 11 using the equality concept.", ["x = 3", "x = 4", "x = 18", "x = −4"], 1, "Subtract 7 from both sides: x + 7 − 7 = 11 − 7, giving x = 4.", "Medium"],
+  ["What operation should be performed on both sides of x + 7 = 11 to isolate x?", ["Add 7", "Subtract 7", "Multiply by 7", "Divide by 7"], 1, "To isolate x, subtract 7 from both sides of the equation.", "Medium"],
+  ["What is the equality concept?", ["Performing different operations on each side of the equation", "Performing the same operation on both sides of the equation so it stays balanced", "Converting all variables into numbers", "Ignoring the equals sign in the equation"], 1, "The equality concept means performing the same operation on both sides of the equation so it stays balanced.", "Medium"],
+  ["Solve the equation x − 5 = 9 using the equality concept.", ["x = 4", "x = 14", "x = −4", "x = 45"], 1, "Add 5 to both sides: x − 5 + 5 = 9 + 5, giving x = 14.", "Medium"],
+  ["Use trial and error to solve x + 5 = 9. What is the correct value of x?", ["x = 2", "x = 3", "x = 4", "x = 5"], 2, "When x = 4, 4 + 5 = 9, so both sides are equal and x = 4 is the solution.", "Medium"],
+  ["Why is the trial and error method less suitable for equations whose solution is a fraction?", ["Because the method is too easy", "Because it takes longer to try many values", "Because fractions cannot be substituted", "Because it only works for two-variable equations"], 1, "The trial and error method takes longer when the solution is a large number or a fraction.", "Medium"],
+  ["What is the inverse operation of addition?", ["Multiplication", "Division", "Subtraction", "Square root"], 2, "The inverse operation of addition (+) is subtraction (−).", "Medium"],
+  ["What is the inverse operation of multiplication?", ["Addition", "Subtraction", "Division", "Squaring"], 2, "The inverse operation of multiplication (×) is division (÷).", "Medium"],
+  ["Solve 4x/5 + 7 = 23 using the backtracking method. What is the first step?", ["Multiply both sides by 5", "Subtract 7 from both sides", "Divide both sides by 4", "Add 7 to both sides"], 1, "The first step is to subtract 7 from both sides so that 4x/5 = 16.", "Medium"],
+  ["When solving 4x/5 + 7 = 23, after obtaining 4x/5 = 16, what is the next step?", ["Divide both sides by 5", "Multiply both sides by 5", "Subtract 16 from both sides", "Add 4 to both sides"], 1, "Multiply both sides by 5 to obtain 4x = 80.", "Medium"],
+  ["What is the value of x in the equation 4x/5 + 7 = 23?", ["x = 16", "x = 20", "x = 80", "x = 4"], 1, "Following the backtracking steps: 4x/5 = 16 → 4x = 80 → x = 20.", "Medium"],
+  ["Solve the equation 3x − 4 = 11.", ["x = 3", "x = 5", "x = 7", "x = 15"], 1, "3x − 4 = 11 → 3x = 15 → x = 5.", "Medium"],
+  ["Solve the equation x/4 = 6.", ["x = 1.5", "x = 10", "x = 24", "x = 2"], 2, "x/4 = 6 → x = 6 × 4 = 24.", "Medium"],
+  ["Solve the equation 2x + 3 = 13.", ["x = 5", "x = 8", "x = 10", "x = 6.5"], 0, "2x + 3 = 13 → 2x = 10 → x = 5.", "Medium"],
+  ["Solve the equation 5x − 1 = 0.", ["x = −5", "x = 5", "x = −0.2", "x = 0.2"], 3, "5x − 1 = 0 → 5x = 1 → x = 0.2.", "Medium"],
+  ["Given y = 7x + 6, what is the value of y when x = 0?", ["y = 0", "y = 6", "y = 7", "y = 13"], 1, "y = 7(0) + 6 = 6.", "Medium"],
+  ["Given y = 7x + 6, what is the value of y when x = 1?", ["y = 6", "y = 7", "y = 13", "y = 14"], 2, "y = 7(1) + 6 = 13.", "Medium"],
+  ["Given y = 7x + 6, what is the value of y when x = 2?", ["y = 13", "y = 18", "y = 20", "y = 26"], 2, "y = 7(2) + 6 = 14 + 6 = 20.", "Medium"],
+  ["Which of the following pairs (x, y) is a solution of y = 7x + 6?", ["(1, 6)", "(0, 7)", "(2, 20)", "(1, 7)"], 2, "When x = 2, y = 7(2) + 6 = 20, so (2, 20) is a valid solution.", "Medium"],
+  ["Why does a linear equation in two variables have an infinite number of solutions?", ["Because each different value of x produces a corresponding value of y", "Because the equation has no constant", "Because it cannot be solved", "Because its variables are raised to the power of 2"], 0, "Each different value substituted for one variable produces a corresponding value for the other, giving many solution pairs.", "Medium"],
+  ["Solve the equation x + 9 = 15 using the equality concept.", ["x = 6", "x = 24", "x = −6", "x = 1.67"], 0, "Subtract 9 from both sides: x = 15 − 9 = 6.", "Medium"],
+  ["Solve the equation 2x = 18 using the equality concept.", ["x = 9", "x = 16", "x = 20", "x = 36"], 0, "Divide both sides by 2: x = 18 ÷ 2 = 9.", "Medium"],
+  ["What should be done to check whether x = 4 is the solution of x + 7 = 11?", ["Substitute x = 4 into the equation and check if both sides are equal", "Solve the equation again from the start", "Draw the graph of the equation", "Convert the equation into fraction form"], 0, "To check the solution, substitute the value into the original equation and verify both sides are equal in value.", "Medium"],
+  ["Use trial and error for x − 3 = 7. Which value of x is correct?", ["x = 4", "x = 7", "x = 10", "x = 21"], 2, "When x = 10, 10 − 3 = 7, so both sides are equal and x = 10 is the solution.", "Medium"],
+  ["Solve the equation 6x + 2 = 20 using the backtracking method.", ["x = 3", "x = 4", "x = 18", "x = 22"], 0, "6x + 2 = 20 → 6x = 18 → x = 3.", "Medium"],
+  ["Which inverse operation is used to solve the equation x × 5 = 35?", ["Addition", "Subtraction", "Division", "Multiplication"], 2, "To isolate x, use the inverse of multiplication, which is division: x = 35 ÷ 5 = 7.", "Medium"],
+  ["Which inverse operation is used to solve the equation x ÷ 3 = 9?", ["Divide by 3", "Add 3", "Multiply by 3", "Subtract 3"], 2, "To isolate x, multiply both sides by 3: x = 9 × 3 = 27.", "Medium"],
+  ["Given y = 3x − 2, what is the value of y when x = 5?", ["y = 13", "y = 15", "y = 17", "y = 10"], 0, "y = 3(5) − 2 = 15 − 2 = 13.", "Medium"],
+  ["Solve the equation 7x − 3 = 4x + 9.", ["x = 2", "x = 3", "x = 4", "x = 12"], 2, "7x − 3 = 4x + 9 → 7x − 4x = 9 + 3 → 3x = 12 → x = 4.", "Medium"],
+  ["Given 4x/5 + 7 = 23, what is the value of 4x/5 after the first step of the backtracking method?", ["9", "16", "20", "30"], 1, "Subtract 7 from both sides: 4x/5 = 23 − 7 = 16.", "Medium"],
+]);
+
+const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
+  ["Apakah persamaan linear serentak?", ["Dua persamaan tidak berkaitan yang diselesaikan berasingan", "Dua atau lebih persamaan linear yang melibatkan pemboleh ubah sama dan diselesaikan bersama", "Persamaan dengan tiga pemboleh ubah", "Persamaan yang tiada penyelesaian"], 1, "Persamaan linear serentak ialah dua atau lebih persamaan linear yang melibatkan pemboleh ubah sama yang diselesaikan bersama.", "Medium"],
+  ["Mengapakah persamaan itu dipanggil 'serentak'?", ["Kerana ia ditulis pada masa yang sama", "Kerana penyelesaian (x, y) mesti memuaskan kedua-dua persamaan pada masa yang sama", "Kerana ia mempunyai bilangan sebutan yang sama", "Kerana ia menggunakan pemboleh ubah yang sama nilai"], 1, "Ia dipanggil 'serentak' kerana penyelesaian yang dicari mesti memuaskan kedua-dua persamaan pada masa yang sama.", "Medium"],
+  ["Bilakah persamaan serentak mempunyai penyelesaian unik?", ["Apabila dua garis lurus selari", "Apabila dua garis lurus bersilang pada hanya satu titik", "Apabila dua garis lurus bertindih", "Apabila dua garis lurus tidak dapat dilukis"], 1, "Penyelesaian unik wujud apabila dua garis lurus bersilang pada hanya satu titik.", "Medium"],
+  ["Bilakah persamaan serentak tiada penyelesaian?", ["Apabila dua garis lurus bersilang pada satu titik", "Apabila dua garis lurus bertindih sepenuhnya", "Apabila dua garis lurus selari dan tidak bersilang", "Apabila salah satu persamaan mempunyai pemalar sifar"], 2, "Persamaan serentak tiada penyelesaian apabila dua garis lurus selari dan tidak akan bersilang.", "Medium"],
+  ["Bilakah persamaan serentak mempunyai penyelesaian tak terhingga?", ["Apabila dua garis lurus bersilang pada satu titik", "Apabila dua garis lurus mewakili garis yang sama (bertindih)", "Apabila dua garis lurus selari", "Apabila salah satu persamaan tiada pemboleh ubah"], 1, "Penyelesaian tak terhingga wujud apabila kedua-dua persamaan mewakili garis lurus yang sama dan bertindih sepenuhnya.", "Medium"],
+  ["Apakah langkah pertama dalam kaedah penggantian?", ["Lukis graf kedua-dua persamaan", "Ungkapkan satu pemboleh ubah dalam sebutan pemboleh ubah yang satu lagi", "Tambah kedua-dua persamaan", "Samakan pekali kedua-dua persamaan"], 1, "Langkah pertama dalam kaedah penggantian ialah mengungkapkan satu pemboleh ubah dalam sebutan pemboleh ubah yang satu lagi.", "Medium"],
+  ["Diberi persamaan serentak x + y = 10 dan x − y = 2, ungkapkan x daripada persamaan pertama.", ["x = 10 + y", "x = 10 − y", "x = y − 10", "x = y + 10"], 1, "Daripada x + y = 10, ungkapkan x = 10 − y.", "Medium"],
+  ["Selepas menggantikan x = 10 − y ke dalam x − y = 2, apakah persamaan satu pemboleh ubah yang terhasil (sebelum dipermudahkan)?", ["(10 − y) − y = 2", "(10 + y) − y = 2", "(10 − y) + y = 2", "10 − y = 2"], 0, "Gantikan x = 10 − y ke dalam x − y = 2 untuk mendapatkan (10 − y) − y = 2.", "Medium"],
+  ["Permudahkan (10 − y) − y = 2 untuk mendapatkan persamaan satu pemboleh ubah.", ["10 − 2y = 2", "10 + 2y = 2", "10 − y = 2", "2y = 10"], 0, "(10 − y) − y = 2 dipermudahkan kepada 10 − 2y = 2.", "Medium"],
+  ["Selesaikan 10 − 2y = 2 untuk mendapatkan nilai y.", ["y = 2", "y = 4", "y = 6", "y = 8"], 1, "10 − 2y = 2 → 2y = 8 → y = 4.", "Medium"],
+  ["Selepas mendapat y = 4, apakah nilai x dalam persamaan serentak x + y = 10 dan x − y = 2?", ["x = 4", "x = 6", "x = 10", "x = 14"], 1, "Gantikan y = 4 ke dalam x = 10 − y: x = 10 − 4 = 6.", "Medium"],
+  ["Apakah langkah pertama dalam kaedah penghapusan?", ["Selesaikan persamaan tanpa mengubah pekali", "Buat pekali satu pemboleh ubah sama dalam kedua-dua persamaan", "Lukis graf kedua-dua persamaan", "Gantikan satu pemboleh ubah dengan nombor"], 1, "Langkah pertama kaedah penghapusan ialah membuat pekali satu pemboleh ubah sama dalam kedua-dua persamaan.", "Medium"],
+  ["Diberi x + y = 10 dan x − y = 2, apakah persamaan yang terhasil apabila kedua-dua persamaan ditambah?", ["2x = 12", "2y = 8", "2x = 8", "2y = 12"], 0, "Menambah persamaan (1) dan (2): (x + y) + (x − y) = 10 + 2, maka 2x = 12.", "Medium"],
+  ["Daripada 2x = 12, apakah nilai x?", ["x = 4", "x = 6", "x = 12", "x = 24"], 1, "2x = 12 → x = 6.", "Medium"],
+  ["Selepas mendapat x = 6 dalam persamaan x + y = 10, apakah nilai y?", ["y = 2", "y = 4", "y = 6", "y = 16"], 1, "Gantikan x = 6: 6 + y = 10, maka y = 4.", "Medium"],
+  ["Apakah penyelesaian akhir bagi persamaan serentak x + y = 10 dan x − y = 2?", ["x = 4, y = 6", "x = 6, y = 4", "x = 5, y = 5", "x = 8, y = 2"], 1, "Penyelesaian persamaan serentak ialah x = 6, y = 4.", "Medium"],
+  ["Apakah langkah pertama dalam kaedah graf untuk menyelesaikan persamaan serentak?", ["Selesaikan persamaan secara algebra dahulu", "Lukis graf bagi persamaan pertama pada satah Cartesan", "Tukar kedua-dua persamaan kepada bentuk pecahan", "Cari nilai pemalar sahaja"], 1, "Langkah pertama kaedah graf ialah melukis graf persamaan pertama pada satah Cartesan.", "Medium"],
+  ["Dalam kaedah graf, apakah yang mewakili penyelesaian persamaan serentak?", ["Titik permulaan setiap garis", "Titik persilangan antara dua garis lurus", "Kecerunan setiap garis", "Pintasan-x bagi setiap garis"], 1, "Penyelesaian persamaan serentak diwakili oleh titik persilangan antara dua garis lurus pada graf.", "Medium"],
+  ["Jika graf bagi dua persamaan serentak adalah dua garis selari, apakah kesimpulan tentang penyelesaiannya?", ["Terdapat satu penyelesaian unik", "Terdapat penyelesaian tak terhingga", "Tiada penyelesaian", "Penyelesaiannya ialah (0, 0)"], 2, "Garis selari tidak akan bersilang, jadi persamaan serentak itu tiada penyelesaian.", "Medium"],
+  ["Apakah langkah pertama menggunakan kalkulator saintifik untuk menyelesaikan persamaan serentak?", ["Tekan butang sama dengan (=)", "Tekan butang MODE atau MENU", "Masukkan nilai x terus", "Pilih mod statistik"], 1, "Langkah pertama ialah menekan butang MODE atau MENU pada kalkulator.", "Medium"],
+  ["Selepas memilih Mod Persamaan pada kalkulator saintifik, apakah pilihan seterusnya bagi persamaan serentak dengan dua pemboleh ubah?", ["Persamaan Kuadratik", "Persamaan Serentak, kemudian 2 Tidak Diketahui", "Mod Statistik", "Mod Pecahan"], 1, "Pilih Persamaan Serentak, kemudian 2 Tidak Diketahui untuk persamaan dua pemboleh ubah.", "Medium"],
+  ["Selesaikan persamaan serentak 2x + y = 7 dan x − y = 2 menggunakan kaedah penghapusan.", ["x = 1, y = 5", "x = 2, y = 3", "x = 3, y = 1", "x = 5, y = −3"], 2, "Tambah kedua-dua persamaan: 3x = 9, maka x = 3; gantikan ke (2): 3 − y = 2, maka y = 1.", "Hard"],
+  ["Selesaikan persamaan serentak x + 2y = 8 dan x − y = 2 menggunakan kaedah penggantian.", ["x = 4, y = 2", "x = 2, y = 4", "x = 6, y = 1", "x = 3, y = 2.5"], 0, "Daripada x − y = 2, x = 2 + y. Gantikan ke x + 2y = 8: (2 + y) + 2y = 8 → 3y = 6 → y = 2, maka x = 4.", "Hard"],
+  ["Suatu kedai menjual 2 buku dan 3 pensel dengan harga RM16, manakala 1 buku dan 1 pensel berharga RM7. Jika harga buku ialah RM b dan pensel RM p, tulis persamaan serentak bagi situasi ini.", ["2b + 3p = 16 dan b + p = 7", "b + p = 16 dan 2b + 3p = 7", "2b + p = 16 dan b + 3p = 7", "b − p = 16 dan b + p = 7"], 0, "Dua buku dan tiga pensel berharga RM16 ditulis 2b + 3p = 16; satu buku dan satu pensel berharga RM7 ditulis b + p = 7.", "Hard"],
+  ["Daripada persamaan serentak 2b + 3p = 16 dan b + p = 7, cari nilai b dan p.", ["b = 5, p = 2", "b = 2, p = 5", "b = 4, p = 3", "b = 3, p = 4"], 0, "Daripada b + p = 7, b = 7 − p. Gantikan ke 2b + 3p = 16: 2(7 − p) + 3p = 16 → 14 + p = 16 → p = 2, maka b = 5.", "Hard"],
+  ["Dua garis lurus y = 2x + 1 dan y = 2x − 3 dilukis pada satah Cartesan yang sama. Apakah jenis penyelesaian bagi persamaan serentak ini?", ["Penyelesaian unik", "Tiada penyelesaian", "Penyelesaian tak terhingga", "Dua penyelesaian"], 1, "Kedua-dua garis mempunyai kecerunan sama (2) tetapi pintasan-y berbeza, maka ia selari dan persamaan serentak tiada penyelesaian.", "Hard"],
+  ["Dua persamaan 2x + 4y = 10 dan x + 2y = 5 dilukis sebagai graf. Apakah jenis penyelesaian bagi persamaan serentak ini?", ["Penyelesaian unik", "Tiada penyelesaian", "Penyelesaian tak terhingga", "Tidak dapat ditentukan"], 2, "Persamaan 2x + 4y = 10 boleh dipermudahkan kepada x + 2y = 5, iaitu sama dengan persamaan kedua, maka kedua-duanya mewakili garis yang sama dan mempunyai penyelesaian tak terhingga.", "Hard"],
+  ["Dalam suatu soalan peperiksaan, persamaan serentak ialah x + y = 12 dan 2x − y = 3. Selesaikan untuk mencari x dan y menggunakan kaedah penghapusan.", ["x = 5, y = 7", "x = 7, y = 5", "x = 4, y = 8", "x = 6, y = 6"], 0, "Tambah kedua-dua persamaan: 3x = 15, maka x = 5; gantikan ke x + y = 12: y = 7.", "Hard"],
+  ["Sebuah taman segi empat tepat mempunyai perimeter 28 m. Jika panjangnya ialah x m dan lebarnya y m, tulis persamaan yang mewakili perimeter ini.", ["x + y = 28", "2x + 2y = 28", "xy = 28", "x − y = 28"], 1, "Perimeter segi empat tepat = 2(panjang + lebar), maka 2x + 2y = 28.", "Hard"],
+  ["Diberi 2x + 2y = 28 dan x − y = 2, cari nilai x dan y.", ["x = 8, y = 6", "x = 6, y = 8", "x = 10, y = 4", "x = 7, y = 7"], 0, "Permudahkan 2x + 2y = 28 kepada x + y = 14. Tambah dengan x − y = 2: 2x = 16, maka x = 8 dan y = 6.", "Hard"],
+]);
+
+const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
+  ["What are simultaneous linear equations?", ["Two unrelated equations solved separately", "Two or more linear equations involving the same variables solved together", "An equation with three variables", "An equation with no solution"], 1, "Simultaneous linear equations are two or more linear equations involving the same variables that are solved together.", "Medium"],
+  ["Why are these equations called 'simultaneous'?", ["Because they are written at the same time", "Because the solution (x, y) must satisfy both equations at the same time", "Because they have the same number of terms", "Because they use variables of equal value"], 1, "They are called 'simultaneous' because the solution sought must satisfy both equations at the same time.", "Medium"],
+  ["When do simultaneous equations have a unique solution?", ["When the two straight lines are parallel", "When the two straight lines intersect at exactly one point", "When the two straight lines overlap", "When the two straight lines cannot be drawn"], 1, "A unique solution exists when the two straight lines intersect at exactly one point.", "Medium"],
+  ["When do simultaneous equations have no solution?", ["When the two straight lines intersect at one point", "When the two straight lines completely overlap", "When the two straight lines are parallel and never intersect", "When one of the equations has a zero constant"], 2, "Simultaneous equations have no solution when the two straight lines are parallel and never intersect.", "Medium"],
+  ["When do simultaneous equations have an infinite number of solutions?", ["When the two straight lines intersect at one point", "When the two lines represent the same line (overlap)", "When the two straight lines are parallel", "When one equation has no variable"], 1, "Infinite solutions exist when both equations represent the same straight line and overlap completely.", "Medium"],
+  ["What is the first step in the substitution method?", ["Draw the graphs of both equations", "Express one variable in terms of the other variable", "Add both equations", "Equalise the coefficients of both equations"], 1, "The first step in the substitution method is to express one variable in terms of the other variable.", "Medium"],
+  ["Given the simultaneous equations x + y = 10 and x − y = 2, express x from the first equation.", ["x = 10 + y", "x = 10 − y", "x = y − 10", "x = y + 10"], 1, "From x + y = 10, express x = 10 − y.", "Medium"],
+  ["After substituting x = 10 − y into x − y = 2, what one-variable equation results (before simplifying)?", ["(10 − y) − y = 2", "(10 + y) − y = 2", "(10 − y) + y = 2", "10 − y = 2"], 0, "Substituting x = 10 − y into x − y = 2 gives (10 − y) − y = 2.", "Medium"],
+  ["Simplify (10 − y) − y = 2 to get a one-variable equation.", ["10 − 2y = 2", "10 + 2y = 2", "10 − y = 2", "2y = 10"], 0, "(10 − y) − y = 2 simplifies to 10 − 2y = 2.", "Medium"],
+  ["Solve 10 − 2y = 2 to find the value of y.", ["y = 2", "y = 4", "y = 6", "y = 8"], 1, "10 − 2y = 2 → 2y = 8 → y = 4.", "Medium"],
+  ["After finding y = 4, what is the value of x in the simultaneous equations x + y = 10 and x − y = 2?", ["x = 4", "x = 6", "x = 10", "x = 14"], 1, "Substitute y = 4 into x = 10 − y: x = 10 − 4 = 6.", "Medium"],
+  ["What is the first step in the elimination method?", ["Solve the equations without changing the coefficients", "Make the coefficients of one variable equal in both equations", "Draw the graphs of both equations", "Replace one variable with a number"], 1, "The first step in the elimination method is to make the coefficients of one variable equal in both equations.", "Medium"],
+  ["Given x + y = 10 and x − y = 2, what equation results when both equations are added?", ["2x = 12", "2y = 8", "2x = 8", "2y = 12"], 0, "Adding equations (1) and (2): (x + y) + (x − y) = 10 + 2, giving 2x = 12.", "Medium"],
+  ["From 2x = 12, what is the value of x?", ["x = 4", "x = 6", "x = 12", "x = 24"], 1, "2x = 12 → x = 6.", "Medium"],
+  ["After finding x = 6 in the equation x + y = 10, what is the value of y?", ["y = 2", "y = 4", "y = 6", "y = 16"], 1, "Substitute x = 6: 6 + y = 10, so y = 4.", "Medium"],
+  ["What is the final solution of the simultaneous equations x + y = 10 and x − y = 2?", ["x = 4, y = 6", "x = 6, y = 4", "x = 5, y = 5", "x = 8, y = 2"], 1, "The solution of the simultaneous equations is x = 6, y = 4.", "Medium"],
+  ["What is the first step in the graphical method for solving simultaneous equations?", ["Solve the equations algebraically first", "Draw the graph of the first equation on a Cartesian plane", "Convert both equations into fraction form", "Find only the constant value"], 1, "The first step of the graphical method is to draw the graph of the first equation on a Cartesian plane.", "Medium"],
+  ["In the graphical method, what represents the solution of simultaneous equations?", ["The starting point of each line", "The point of intersection between the two straight lines", "The gradient of each line", "The x-intercept of each line"], 1, "The solution of simultaneous equations is represented by the point of intersection between the two straight lines on the graph.", "Medium"],
+  ["If the graphs of two simultaneous equations are two parallel lines, what can be concluded about the solution?", ["There is one unique solution", "There are infinitely many solutions", "There is no solution", "The solution is (0, 0)"], 2, "Parallel lines never intersect, so the simultaneous equations have no solution.", "Medium"],
+  ["What is the first step in using a scientific calculator to solve simultaneous equations?", ["Press the equals (=) button", "Press the MODE or MENU button", "Enter the value of x directly", "Select statistics mode"], 1, "The first step is to press the MODE or MENU button on the calculator.", "Medium"],
+  ["After selecting Equation Mode on a scientific calculator, what is the next selection for a two-variable simultaneous equation?", ["Quadratic Equation", "Simultaneous Equation, then 2 Unknowns", "Statistics Mode", "Fraction Mode"], 1, "Select Simultaneous Equation, then 2 Unknowns for a two-variable equation.", "Medium"],
+  ["Solve the simultaneous equations 2x + y = 7 and x − y = 2 using the elimination method.", ["x = 1, y = 5", "x = 2, y = 3", "x = 3, y = 1", "x = 5, y = −3"], 2, "Adding both equations: 3x = 9, so x = 3; substituting into x − y = 2 gives y = 1.", "Hard"],
+  ["Solve the simultaneous equations x + 2y = 8 and x − y = 2 using the substitution method.", ["x = 4, y = 2", "x = 2, y = 4", "x = 6, y = 1", "x = 3, y = 2.5"], 0, "From x − y = 2, x = 2 + y. Substituting into x + 2y = 8: (2 + y) + 2y = 8 → 3y = 6 → y = 2, so x = 4.", "Hard"],
+  ["A shop sells 2 books and 3 pencils for RM16, while 1 book and 1 pencil cost RM7. If a book costs RM b and a pencil costs RM p, write the simultaneous equations for this situation.", ["2b + 3p = 16 and b + p = 7", "b + p = 16 and 2b + 3p = 7", "2b + p = 16 and b + 3p = 7", "b − p = 16 and b + p = 7"], 0, "Two books and three pencils costing RM16 is written as 2b + 3p = 16; one book and one pencil costing RM7 is written as b + p = 7.", "Hard"],
+  ["From the simultaneous equations 2b + 3p = 16 and b + p = 7, find the values of b and p.", ["b = 5, p = 2", "b = 2, p = 5", "b = 4, p = 3", "b = 3, p = 4"], 0, "From b + p = 7, b = 7 − p. Substituting into 2b + 3p = 16: 2(7 − p) + 3p = 16 → 14 + p = 16 → p = 2, so b = 5.", "Hard"],
+  ["Two straight lines y = 2x + 1 and y = 2x − 3 are drawn on the same Cartesian plane. What type of solution do these simultaneous equations have?", ["A unique solution", "No solution", "Infinitely many solutions", "Two solutions"], 1, "Both lines have the same gradient (2) but different y-intercepts, so they are parallel and the simultaneous equations have no solution.", "Hard"],
+  ["The equations 2x + 4y = 10 and x + 2y = 5 are drawn as graphs. What type of solution do these simultaneous equations have?", ["A unique solution", "No solution", "Infinitely many solutions", "Cannot be determined"], 2, "The equation 2x + 4y = 10 simplifies to x + 2y = 5, the same as the second equation, so both represent the same line and have infinitely many solutions.", "Hard"],
+  ["In an exam question, the simultaneous equations are x + y = 12 and 2x − y = 3. Solve for x and y using the elimination method.", ["x = 5, y = 7", "x = 7, y = 5", "x = 4, y = 8", "x = 6, y = 6"], 0, "Adding both equations: 3x = 15, so x = 5; substituting into x + y = 12 gives y = 7.", "Hard"],
+  ["A rectangular garden has a perimeter of 28 m. If its length is x m and width is y m, write the equation representing this perimeter.", ["x + y = 28", "2x + 2y = 28", "xy = 28", "x − y = 28"], 1, "The perimeter of a rectangle = 2(length + width), so 2x + 2y = 28.", "Hard"],
+  ["Given 2x + 2y = 28 and x − y = 2, find the values of x and y.", ["x = 8, y = 6", "x = 6, y = 8", "x = 10, y = 4", "x = 7, y = 7"], 0, "Simplify 2x + 2y = 28 to x + y = 14. Adding to x − y = 2: 2x = 16, so x = 8 and y = 6.", "Hard"],
+]);
+
 const MATH_QUIZ_BANKS: Partial<
   Record<string, Record<MathObjectiveId, Record<MathQuizLang, ShuffledQuestion[]>>>
 > = {
@@ -4351,6 +4549,20 @@ const MATH_QUIZ_BANKS: Partial<
     "objective-3": {
       bm: MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS,
       dlp: MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+    },
+  },
+  "Chapter 6": {
+    "objective-1": {
+      bm: MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS,
+      dlp: MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+    },
+    "objective-2": {
+      bm: MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS,
+      dlp: MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+    },
+    "objective-3": {
+      bm: MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS,
+      dlp: MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
     },
   },
 };
@@ -5574,8 +5786,11 @@ function MathObjectiveIntroScreen({
   const isChapter3 = chapterKey === "Chapter 3";
   const isChapter4 = chapterKey === "Chapter 4";
   const isChapter5 = chapterKey === "Chapter 5";
+  const isChapter6 = chapterKey === "Chapter 6";
   const chapterTitle = isDlp
-    ? isChapter5
+    ? isChapter6
+      ? "Chapter 6: Linear Equations"
+      : isChapter5
       ? "Chapter 5: Algebraic Expressions"
       : isChapter4
         ? "Chapter 4: Ratios, Rates and Proportions"
@@ -5584,7 +5799,9 @@ function MathObjectiveIntroScreen({
           : isChapter2
             ? "Chapter 2: Factors and Multiples"
             : "Chapter 1: Rational Numbers"
-    : isChapter5
+    : isChapter6
+      ? "Bab 6: Persamaan Linear"
+      : isChapter5
       ? "Bab 5: Ungkapan Algebra"
       : isChapter4
         ? "Bab 4: Nisbah, Kadar dan Kadaran"
@@ -5602,14 +5819,18 @@ function MathObjectiveIntroScreen({
         : "📝 Bersedia Untuk Quiz!";
   const introDescription = isChallenge
     ? isDlp
-      ? isChapter5
+      ? isChapter6
+        ? "This quiz is designed to test your full mastery of Chapter 6."
+        : isChapter5
         ? "This quiz is designed to test your full mastery of Chapter 5."
         : isChapter2
           ? "This quiz contains exam-style and problem-solving questions."
           : isChapter3
             ? "This quiz is designed to test your full mastery of Chapter 3."
             : "This quiz is designed to test your full mastery of Chapter 1."
-      : isChapter5
+      : isChapter6
+        ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 6."
+        : isChapter5
         ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 5."
         : isChapter2
           ? "Quiz ini mengandungi soalan berbentuk peperiksaan dan penyelesaian masalah."
@@ -5673,7 +5894,15 @@ function MathObjectiveIntroScreen({
   const instructions = isChallenge
     ? isDlp
       ? [
-          ...(isChapter5
+          ...(isChapter6
+            ? [
+                "Simultaneous linear equations",
+                "Substitution method",
+                "Elimination method",
+                "Graphical interpretation",
+                "Exam-style problem solving",
+              ]
+            : isChapter5
             ? [
                 "Multiplication of algebraic terms",
                 "Division of algebraic terms",
@@ -5716,7 +5945,15 @@ function MathObjectiveIntroScreen({
                 ]),
         ]
       : [
-          ...(isChapter5
+          ...(isChapter6
+            ? [
+                "Persamaan linear serentak",
+                "Kaedah penggantian",
+                "Kaedah penghapusan",
+                "Tafsiran graf",
+                "Penyelesaian masalah berbentuk peperiksaan",
+              ]
+            : isChapter5
             ? [
                 "Pendaraban sebutan algebra",
                 "Pembahagian sebutan algebra",
@@ -5761,7 +5998,15 @@ function MathObjectiveIntroScreen({
     : isPractice
       ? isDlp
         ? [
-            ...(isChapter5
+            ...(isChapter6
+              ? [
+                  "Solving one-variable equations",
+                  "The equality concept",
+                  "Backtracking method",
+                  "Trial and error method",
+                  "Possible solutions of two-variable equations",
+                ]
+              : isChapter5
               ? [
                   "Substitution and evaluation",
                   "Addition of algebraic expressions",
@@ -5800,7 +6045,15 @@ function MathObjectiveIntroScreen({
                   ]),
           ]
         : [
-            ...(isChapter5
+            ...(isChapter6
+              ? [
+                  "Penyelesaian persamaan satu pemboleh ubah",
+                  "Konsep kesamaan",
+                  "Kaedah pematahbalikan",
+                  "Kaedah cuba jaya",
+                  "Penyelesaian yang mungkin bagi persamaan dua pemboleh ubah",
+                ]
+              : isChapter5
               ? [
                   "Penggantian dan penilaian",
                   "Penambahan ungkapan algebra",
@@ -5841,7 +6094,15 @@ function MathObjectiveIntroScreen({
       : isFoundation
         ? isDlp
           ? [
-              ...(isChapter5
+              ...(isChapter6
+                ? [
+                    "Linear equations",
+                    "Variables",
+                    "Forming equations",
+                    "One-variable equations",
+                    "Two-variable equations",
+                  ]
+                : isChapter5
                 ? [
                     "Variables",
                     "Algebraic expressions",
@@ -5878,7 +6139,15 @@ function MathObjectiveIntroScreen({
                     ]),
             ]
           : [
-              ...(isChapter5
+              ...(isChapter6
+                ? [
+                    "Persamaan linear",
+                    "Pemboleh ubah",
+                    "Membentuk persamaan",
+                    "Persamaan satu pemboleh ubah",
+                    "Persamaan dua pemboleh ubah",
+                  ]
+                : isChapter5
                 ? [
                     "Pemboleh ubah",
                     "Ungkapan algebra",
@@ -5947,14 +6216,18 @@ function MathObjectiveIntroScreen({
         : [];
   const introSupportText = isFoundation
     ? isDlp
-      ? isChapter5
+      ? isChapter6
+        ? "This quiz is designed to help you understand the basic concepts of Chapter 6: Linear Equations."
+        : isChapter5
         ? "This quiz is designed to help you understand the basic concepts of Chapter 5: Algebraic Expressions."
         : isChapter2
           ? "This quiz tests your understanding of:"
           : isChapter3
             ? "This quiz is designed to help you understand the basic concepts of Chapter 3: Squares, Square Roots, Cubes and Cube Roots."
             : "This quiz is designed to help you understand the fundamental concepts of this chapter before progressing to more challenging levels."
-      : isChapter5
+      : isChapter6
+        ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 6: Persamaan Linear."
+        : isChapter5
         ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 5: Ungkapan Algebra."
         : isChapter2
           ? "Quiz ini direka untuk membantu anda memahami konsep asas bagi Bab 2: Faktor dan Gandaan."
@@ -6373,8 +6646,11 @@ function MathObjectiveResultsScreen({
   const isChapter3 = chapterKey === "Chapter 3";
   const isChapter4 = chapterKey === "Chapter 4";
   const isChapter5 = chapterKey === "Chapter 5";
+  const isChapter6 = chapterKey === "Chapter 6";
   const chapterName = isDlp
-    ? isChapter5
+    ? isChapter6
+      ? "Chapter 6: Linear Equations"
+      : isChapter5
       ? "Chapter 5: Algebraic Expressions"
       : isChapter4
         ? "Chapter 4: Ratios, Rates and Proportions"
@@ -6383,7 +6659,9 @@ function MathObjectiveResultsScreen({
           : isChapter2
             ? "Chapter 2: Factors and Multiples"
             : "Chapter 1: Rational Numbers"
-    : isChapter5
+    : isChapter6
+      ? "Bab 6: Persamaan Linear"
+      : isChapter5
       ? "Bab 5: Ungkapan Algebra"
       : isChapter4
         ? "Bab 4: Nisbah, Kadar dan Kadaran"
