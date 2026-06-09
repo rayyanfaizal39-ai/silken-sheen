@@ -41,6 +41,8 @@ import { mathF1C8NotesBM } from "@/data/math-f1-c8-notes-bm";
 import { mathF1C8NotesDLP } from "@/data/math-f1-c8-notes-dlp";
 import { mathF1C9NotesBM } from "@/data/math-f1-c9-notes-bm";
 import { mathF1C9NotesDLP } from "@/data/math-f1-c9-notes-dlp";
+import { mathF1C10NotesBM } from "@/data/math-f1-c10-notes-bm";
+import { mathF1C10NotesDLP } from "@/data/math-f1-c10-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -341,6 +343,24 @@ export const chapters: ChapterContent[] = [
     title: "Basic Polygons",
     lang: "dlp",
     notes: mathF1C9NotesDLP,
+  },
+  {
+    id: "math-f1-c10-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 10",
+    title: "Perimeter dan Luas",
+    lang: "bm",
+    notes: mathF1C10NotesBM,
+  },
+  {
+    id: "math-f1-c10-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 10",
+    title: "Perimeter and Area",
+    lang: "dlp",
+    notes: mathF1C10NotesDLP,
   },
 
   // Science Form 1 (bilingual)
