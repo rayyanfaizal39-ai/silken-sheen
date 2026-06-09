@@ -45,6 +45,8 @@ import { mathF1C10NotesBM } from "@/data/math-f1-c10-notes-bm";
 import { mathF1C10NotesDLP } from "@/data/math-f1-c10-notes-dlp";
 import { mathF1C11NotesBM } from "@/data/math-f1-c11-notes-bm";
 import { mathF1C11NotesDLP } from "@/data/math-f1-c11-notes-dlp";
+import { mathF1C12NotesBM } from "@/data/math-f1-c12-notes-bm";
+import { mathF1C12NotesDLP } from "@/data/math-f1-c12-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -381,6 +383,24 @@ export const chapters: ChapterContent[] = [
     title: "Introduction to Sets",
     lang: "dlp",
     notes: mathF1C11NotesDLP,
+  },
+  {
+    id: "math-f1-c12-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 12",
+    title: "Pengendalian Data",
+    lang: "bm",
+    notes: mathF1C12NotesBM,
+  },
+  {
+    id: "math-f1-c12-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 12",
+    title: "Data Handling",
+    lang: "dlp",
+    notes: mathF1C12NotesDLP,
   },
 
   // Science Form 1 (bilingual)
