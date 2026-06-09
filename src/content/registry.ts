@@ -37,6 +37,8 @@ import { mathF1C6NotesBM } from "@/data/math-f1-c6-notes-bm";
 import { mathF1C6NotesDLP } from "@/data/math-f1-c6-notes-dlp";
 import { mathF1C7NotesBM } from "@/data/math-f1-c7-notes-bm";
 import { mathF1C7NotesDLP } from "@/data/math-f1-c7-notes-dlp";
+import { mathF1C8NotesBM } from "@/data/math-f1-c8-notes-bm";
+import { mathF1C8NotesDLP } from "@/data/math-f1-c8-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -301,6 +303,24 @@ export const chapters: ChapterContent[] = [
     title: "Linear Inequalities",
     lang: "dlp",
     notes: mathF1C7NotesDLP,
+  },
+  {
+    id: "math-f1-c8-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 8",
+    title: "Garis dan Sudut",
+    lang: "bm",
+    notes: mathF1C8NotesBM,
+  },
+  {
+    id: "math-f1-c8-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 8",
+    title: "Lines and Angles",
+    lang: "dlp",
+    notes: mathF1C8NotesDLP,
   },
 
   // Science Form 1 (bilingual)
