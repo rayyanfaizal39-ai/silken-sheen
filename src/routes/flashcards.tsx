@@ -2130,6 +2130,380 @@ const MATH_F1_C6_FLASHCARD_PAIRS: Record<
   ],
 };
 
+const MATH_F1_C7_FLASHCARD_PAIRS: Record<
+  MathFlashcardCategoryId,
+  Array<{ bm: [string, string]; dlp: [string, string] }>
+> = {
+  concepts: [
+    mathCard(
+      "Apakah ketaksamaan linear?",
+      "Hubungan antara dua ungkapan linear yang tidak semestinya sama nilainya, dengan pemboleh ubah berkuasa 1.",
+      "What is a linear inequality?",
+      "A relationship between two linear expressions that are not necessarily equal, with the variable having a power of 1.",
+    ),
+    mathCard(
+      "Apakah maksud 'linear' dalam ketaksamaan linear?",
+      "Pemboleh ubah dalam ungkapan hanya berkuasa 1 sahaja.",
+      "What does 'linear' mean in a linear inequality?",
+      "The variable in the expression has a power of 1 only.",
+    ),
+    mathCard(
+      "Berikan contoh ungkapan linear.",
+      "4a, −7x, 2y + 3, 5m − 1 (semua pemboleh ubah berkuasa 1).",
+      "Give examples of linear expressions.",
+      "4a, −7x, 2y + 3, 5m − 1 (all variables have a power of 1).",
+    ),
+    mathCard(
+      "Apakah perbezaan antara persamaan dan ketaksamaan?",
+      "Persamaan menggunakan tanda = (kedua-dua belah sama nilai); ketaksamaan menggunakan simbol >, <, ≥, atau ≤.",
+      "What is the difference between an equation and an inequality?",
+      "An equation uses the = sign (both sides equal in value); an inequality uses >, <, ≥, or ≤.",
+    ),
+    mathCard(
+      "Apakah simbol 'lebih besar daripada'?",
+      "Simbol > (greater than).",
+      "What is the symbol for 'greater than'?",
+      "The symbol > (greater than).",
+    ),
+    mathCard(
+      "Apakah simbol 'lebih kecil daripada'?",
+      "Simbol < (less than).",
+      "What is the symbol for 'less than'?",
+      "The symbol < (less than).",
+    ),
+    mathCard(
+      "Apakah simbol 'lebih besar daripada atau sama dengan'?",
+      "Simbol ≥ (greater than or equal to).",
+      "What is the symbol for 'greater than or equal to'?",
+      "The symbol ≥ (greater than or equal to).",
+    ),
+    mathCard(
+      "Apakah simbol 'lebih kecil daripada atau sama dengan'?",
+      "Simbol ≤ (less than or equal to).",
+      "What is the symbol for 'less than or equal to'?",
+      "The symbol ≤ (less than or equal to).",
+    ),
+    mathCard(
+      "Kata kunci apakah yang dikaitkan dengan simbol ≥?",
+      "Sekurang-kurangnya, minimum, at least, tidak kurang daripada.",
+      "What keywords are associated with the symbol ≥?",
+      "At least, minimum, not less than, sekurang-kurangnya.",
+    ),
+    mathCard(
+      "Kata kunci apakah yang dikaitkan dengan simbol ≤?",
+      "Paling banyak, maksimum, at most, tidak melebihi.",
+      "What keywords are associated with the symbol ≤?",
+      "At most, maximum, not more than, paling banyak.",
+    ),
+    mathCard(
+      "Apakah garis nombor dalam konteks ketaksamaan?",
+      "Alat visual berbentuk garis mendatar untuk mewakili semua nilai yang memenuhi sesuatu ketaksamaan.",
+      "What is a number line in the context of inequalities?",
+      "A horizontal visual tool used to represent all values that satisfy a given inequality.",
+    ),
+    mathCard(
+      "Bilakah bulatan terbuka ○ digunakan pada garis nombor?",
+      "Apabila menggunakan simbol > atau < — nilai sempadan TIDAK termasuk dalam penyelesaian.",
+      "When is an open circle ○ used on the number line?",
+      "When using the symbol > or < — the boundary value is NOT included in the solution.",
+    ),
+    mathCard(
+      "Bilakah bulatan tertutup ● digunakan pada garis nombor?",
+      "Apabila menggunakan simbol ≥ atau ≤ — nilai sempadan TERMASUK dalam penyelesaian.",
+      "When is a closed circle ● used on the number line?",
+      "When using the symbol ≥ or ≤ — the boundary value IS included in the solution.",
+    ),
+    mathCard(
+      "Ke arah manakah anak panah untuk x > 3?",
+      "Anak panah menghala ke kanan (→), kerana x lebih besar daripada 3.",
+      "Which direction does the arrow point for x > 3?",
+      "The arrow points right (→), because x is greater than 3.",
+    ),
+    mathCard(
+      "Ke arah manakah anak panah untuk x ≤ −4?",
+      "Anak panah menghala ke kiri (←), kerana x lebih kecil daripada atau sama dengan −4.",
+      "Which direction does the arrow point for x ≤ −4?",
+      "The arrow points left (←), because x is less than or equal to −4.",
+    ),
+    mathCard(
+      "Apakah ketaksamaan linear serentak?",
+      "Dua atau lebih ketaksamaan linear yang perlu dipenuhi pada masa yang sama oleh satu pemboleh ubah.",
+      "What are simultaneous linear inequalities?",
+      "Two or more linear inequalities that must be satisfied at the same time by one variable.",
+    ),
+    mathCard(
+      "Apakah nilai sepunya dalam ketaksamaan serentak?",
+      "Nilai atau julat nilai yang memenuhi KEDUA-DUA ketaksamaan serentak pada masa yang sama.",
+      "What are common values in simultaneous inequalities?",
+      "Values or a range of values that satisfy BOTH simultaneous inequalities at the same time.",
+    ),
+    mathCard(
+      "Bilakah terdapat tiada nilai sepunya dalam ketaksamaan serentak?",
+      "Apabila kawasan penyelesaian kedua-dua ketaksamaan tidak bertindih langsung pada garis nombor.",
+      "When are there no common values in simultaneous inequalities?",
+      "When the solution regions of both inequalities do not overlap on the number line.",
+    ),
+  ],
+  operations: [
+    mathCard(
+      "Apakah peraturan penting apabila mendarab ketaksamaan dengan nombor negatif?",
+      "Arah simbol ketaksamaan MESTI DITUKAR.",
+      "What is the important rule when multiplying an inequality by a negative number?",
+      "The direction of the inequality symbol MUST BE REVERSED.",
+    ),
+    mathCard(
+      "Apakah peraturan penting apabila membahagi ketaksamaan dengan nombor negatif?",
+      "Arah simbol ketaksamaan MESTI DITUKAR.",
+      "What is the important rule when dividing an inequality by a negative number?",
+      "The direction of the inequality symbol MUST BE REVERSED.",
+    ),
+    mathCard(
+      "Selesaikan −x > −3.",
+      "Darab kedua-dua belah dengan −1 dan tukar simbol: x < 3.",
+      "Solve −x > −3.",
+      "Multiply both sides by −1 and reverse the symbol: x < 3.",
+    ),
+    mathCard(
+      "Selesaikan −2x > 6.",
+      "Bahagi kedua-dua belah dengan −2 dan tukar simbol: x < −3.",
+      "Solve −2x > 6.",
+      "Divide both sides by −2 and reverse the symbol: x < −3.",
+    ),
+    mathCard(
+      "Selesaikan −4x ≤ 8.",
+      "Bahagi kedua-dua belah dengan −4 dan tukar simbol: x ≥ −2.",
+      "Solve −4x ≤ 8.",
+      "Divide both sides by −4 and reverse the symbol: x ≥ −2.",
+    ),
+    mathCard(
+      "Apakah Sifat Akas ketaksamaan?",
+      "Jika a < b, maka b > a. Apabila susunan ditukar, simbol juga mesti ditukar.",
+      "What is the Converse Property of inequalities?",
+      "If a < b, then b > a. When the order is swapped, the symbol must also be reversed.",
+    ),
+    mathCard(
+      "Tulis bentuk akas bagi x < 5.",
+      "5 > x.",
+      "Write the converse form of x < 5.",
+      "5 > x.",
+    ),
+    mathCard(
+      "Apakah Sifat Transitif ketaksamaan?",
+      "Jika a < b dan b < c, maka a < c.",
+      "What is the Transitive Property of inequalities?",
+      "If a < b and b < c, then a < c.",
+    ),
+    mathCard(
+      "Jika x < 3 dan 3 < 7, apakah kesimpulan menggunakan Sifat Transitif?",
+      "x < 7.",
+      "If x < 3 and 3 < 7, what is the conclusion using the Transitive Property?",
+      "x < 7.",
+    ),
+    mathCard(
+      "Apakah tiga langkah menyelesaikan ketaksamaan linear?",
+      "Langkah 1: Selesaikan ketaksamaan. Langkah 2: Wakilkan pada garis nombor. Langkah 3: Senaraikan nilai integer yang mungkin.",
+      "What are the three steps to solve a linear inequality?",
+      "Step 1: Solve the inequality. Step 2: Represent on a number line. Step 3: List possible integer values.",
+    ),
+    mathCard(
+      "Selesaikan 2x + 3 > 7.",
+      "2x > 4, maka x > 2. Garis nombor: bulatan terbuka pada 2, anak panah ke kanan.",
+      "Solve 2x + 3 > 7.",
+      "2x > 4, so x > 2. Number line: open circle at 2, arrow right.",
+    ),
+    mathCard(
+      "Selesaikan 3x − 1 ≤ 8.",
+      "3x ≤ 9, maka x ≤ 3. Garis nombor: bulatan tertutup pada 3, anak panah ke kiri.",
+      "Solve 3x − 1 ≤ 8.",
+      "3x ≤ 9, so x ≤ 3. Number line: closed circle at 3, arrow left.",
+    ),
+    mathCard(
+      "Selesaikan −2x + 5 > 1.",
+      "−2x > −4, bahagi dengan −2 dan tukar simbol: x < 2.",
+      "Solve −2x + 5 > 1.",
+      "−2x > −4, divide by −2 and reverse: x < 2.",
+    ),
+    mathCard(
+      "Apakah langkah menyelesaikan ketaksamaan serentak?",
+      "Selesaikan setiap ketaksamaan, wakilkan pada garis nombor yang sama, kenal pasti kawasan bertindih.",
+      "What are the steps to solve simultaneous inequalities?",
+      "Solve each inequality, represent both on the same number line, identify the overlapping region.",
+    ),
+    mathCard(
+      "Diberi x > 2 dan x > 5, apakah nilai sepunya?",
+      "Gunakan syarat lebih ketat: x > 5. Nilai integer: 6, 7, 8, ...",
+      "Given x > 2 and x > 5, what are the common values?",
+      "Use the stricter condition: x > 5. Integer values: 6, 7, 8, ...",
+    ),
+    mathCard(
+      "Diberi x ≤ 3 dan x ≤ 1, apakah nilai sepunya?",
+      "Gunakan syarat lebih ketat: x ≤ 1. Nilai integer: 1, 0, −1, −2, ...",
+      "Given x ≤ 3 and x ≤ 1, what are the common values?",
+      "Use the stricter condition: x ≤ 1. Integer values: 1, 0, −1, −2, ...",
+    ),
+    mathCard(
+      "Apakah Peraturan Salingan (Reciprocal Rule) untuk ketaksamaan?",
+      "Jika a < b (dengan a, b > 0), maka 1/a > 1/b. Simbol ditukar apabila mengambil salingan.",
+      "What is the Reciprocal Rule for inequalities?",
+      "If a < b (where a, b > 0), then 1/a > 1/b. The symbol is reversed when taking the reciprocal.",
+    ),
+  ],
+  facts: [
+    mathCard(
+      "Apakah bunyi Sifat Akas secara lengkap untuk semua empat simbol?",
+      "Jika a < b → b > a; jika a > b → b < a; jika a ≤ b → b ≥ a; jika a ≥ b → b ≤ a.",
+      "What is the full Converse Property for all four symbols?",
+      "If a < b → b > a; if a > b → b < a; if a ≤ b → b ≥ a; if a ≥ b → b ≤ a.",
+    ),
+    mathCard(
+      "Apakah bunyi Sifat Transitif secara lengkap?",
+      "Jika a < b dan b < c, maka a < c. Berlaku juga untuk >, ≤, dan ≥.",
+      "What is the full Transitive Property?",
+      "If a < b and b < c, then a < c. Also applies for >, ≤, and ≥.",
+    ),
+    mathCard(
+      "Berikan contoh nyata menggunakan Sifat Transitif.",
+      "Jika x < 3 dan 3 < 7, maka x < 7.",
+      "Give a real example using the Transitive Property.",
+      "If x < 3 and 3 < 7, then x < 7.",
+    ),
+    mathCard(
+      "Apakah nilai integer yang mungkin bagi x > 3?",
+      "4, 5, 6, 7, ... (tidak terhingga, mulai dari 4).",
+      "What are the possible integer values for x > 3?",
+      "4, 5, 6, 7, ... (infinite, starting from 4).",
+    ),
+    mathCard(
+      "Apakah nilai integer yang mungkin bagi x ≤ 2?",
+      "2, 1, 0, −1, −2, ... (tidak terhingga, termasuk 2).",
+      "What are the possible integer values for x ≤ 2?",
+      "2, 1, 0, −1, −2, ... (infinite, including 2).",
+    ),
+    mathCard(
+      "Apakah nilai integer yang mungkin bagi −1 < x ≤ 4?",
+      "0, 1, 2, 3, 4.",
+      "What are the possible integer values for −1 < x ≤ 4?",
+      "0, 1, 2, 3, 4.",
+    ),
+    mathCard(
+      "Apakah nilai integer yang mungkin bagi 2 ≤ x < 7?",
+      "2, 3, 4, 5, 6.",
+      "What are the possible integer values for 2 ≤ x < 7?",
+      "2, 3, 4, 5, 6.",
+    ),
+    mathCard(
+      "Apakah nilai integer yang mungkin bagi 1 < x < 5?",
+      "2, 3, 4.",
+      "What are the possible integer values for 1 < x < 5?",
+      "2, 3, 4.",
+    ),
+    mathCard(
+      "Apakah nilai integer yang mungkin bagi −3 ≤ x ≤ 3?",
+      "−3, −2, −1, 0, 1, 2, 3.",
+      "What are the possible integer values for −3 ≤ x ≤ 3?",
+      "−3, −2, −1, 0, 1, 2, 3.",
+    ),
+    mathCard(
+      "Apakah tiga senario kemungkinan dalam ketaksamaan serentak?",
+      "1. Bertindih di tengah (ada nilai sepunya). 2. Bertindih satu arah (ada nilai sepunya, guna syarat ketat). 3. Tidak bertindih (tiada nilai sepunya).",
+      "What are the three possible scenarios in simultaneous inequalities?",
+      "1. Middle overlap (common values exist). 2. Same-direction overlap (use stricter condition). 3. No overlap (no common values).",
+    ),
+    mathCard(
+      "Apakah contoh tiada nilai sepunya?",
+      "x > 5 dan x < 2 — tiada nilai yang melebihi 5 dan kurang daripada 2 pada masa yang sama.",
+      "What is an example of no common values?",
+      "x > 5 and x < 2 — no value can be both greater than 5 and less than 2 at the same time.",
+    ),
+    mathCard(
+      "Nyatakan formula Reciprocal Rule.",
+      "Jika a < b dengan a, b > 0, maka 1/a > 1/b.",
+      "State the Reciprocal Rule formula.",
+      "If a < b where a, b > 0, then 1/a > 1/b.",
+    ),
+  ],
+  practice: [
+    mathCard(
+      "Apakah simbol yang digunakan untuk 'sekurang-kurangnya 50'?",
+      "≥ 50 (lebih besar daripada atau sama dengan 50).",
+      "What symbol is used for 'at least 50'?",
+      "≥ 50 (greater than or equal to 50).",
+    ),
+    mathCard(
+      "Apakah simbol yang digunakan untuk 'tidak melebihi 100'?",
+      "≤ 100 (lebih kecil daripada atau sama dengan 100).",
+      "What symbol is used for 'does not exceed 100'?",
+      "≤ 100 (less than or equal to 100).",
+    ),
+    mathCard(
+      "Adakah x = 3 memenuhi ketaksamaan x > 3?",
+      "Tidak. Bulatan terbuka bermaksud 3 tidak termasuk dalam penyelesaian.",
+      "Does x = 3 satisfy the inequality x > 3?",
+      "No. The open circle means 3 is not included in the solution.",
+    ),
+    mathCard(
+      "Adakah x = 3 memenuhi ketaksamaan x ≥ 3?",
+      "Ya. Bulatan tertutup bermaksud 3 termasuk dalam penyelesaian.",
+      "Does x = 3 satisfy the inequality x ≥ 3?",
+      "Yes. The closed circle means 3 is included in the solution.",
+    ),
+    mathCard(
+      "Selesaikan x/3 + 1 ≥ 4 dan nyatakan tiga nilai integer yang mungkin.",
+      "x ≥ 9. Nilai integer: 9, 10, 11.",
+      "Solve x/3 + 1 ≥ 4 and state three possible integer values.",
+      "x ≥ 9. Integer values: 9, 10, 11.",
+    ),
+    mathCard(
+      "Tulis ketaksamaan bagi 'umur sekurang-kurangnya 18 tahun' dengan u mewakili umur.",
+      "u ≥ 18.",
+      "Write the inequality for 'age at least 18 years' where u represents age.",
+      "u ≥ 18.",
+    ),
+    mathCard(
+      "Selesaikan −3x < 9 dan nyatakan arah anak panah.",
+      "Bahagi dengan −3, tukar simbol: x > −3. Anak panah ke kanan.",
+      "Solve −3x < 9 and state the arrow direction.",
+      "Divide by −3, reverse symbol: x > −3. Arrow points right.",
+    ),
+    mathCard(
+      "Diberi x > −1 dan x ≤ 3, nyatakan nilai sepunya dalam bentuk ketaksamaan berganda.",
+      "−1 < x ≤ 3.",
+      "Given x > −1 and x ≤ 3, state the common values as a compound inequality.",
+      "−1 < x ≤ 3.",
+    ),
+    mathCard(
+      "Diberi x > 5 dan x < 2, apakah kesimpulannya?",
+      "Tiada nilai sepunya kerana kawasan dua ketaksamaan tidak bertindih.",
+      "Given x > 5 and x < 2, what is the conclusion?",
+      "No common values because the regions of the two inequalities do not overlap.",
+    ),
+    mathCard(
+      "Apakah nilai integer yang mungkin bagi ketaksamaan serentak x > 0 dan x ≤ 4?",
+      "1, 2, 3, 4.",
+      "What are the possible integer values for the simultaneous inequality x > 0 and x ≤ 4?",
+      "1, 2, 3, 4.",
+    ),
+    mathCard(
+      "Tukar ke bentuk akas: y ≤ 6.",
+      "6 ≥ y.",
+      "Convert to converse form: y ≤ 6.",
+      "6 ≥ y.",
+    ),
+    mathCard(
+      "Jika 2 < a dan a < 8, apakah kesimpulan menggunakan Sifat Transitif?",
+      "2 < 8 (atau secara langsung: a berada antara 2 dan 8).",
+      "If 2 < a and a < 8, what is the conclusion using the Transitive Property?",
+      "2 < 8 (or directly: a lies between 2 and 8).",
+    ),
+    mathCard(
+      "Selesaikan 5 − x > 2 dan nyatakan penyelesaian.",
+      "−x > −3, darab dengan −1 dan tukar simbol: x < 3.",
+      "Solve 5 − x > 2 and state the solution.",
+      "−x > −3, multiply by −1 and reverse: x < 3.",
+    ),
+  ],
+};
+
 const MATH_FLASHCARD_BANKS: Partial<
   Record<
     string,
@@ -2142,6 +2516,7 @@ const MATH_FLASHCARD_BANKS: Partial<
   "Chapter 4": MATH_F1_C4_FLASHCARD_PAIRS,
   "Chapter 5": MATH_F1_C5_FLASHCARD_PAIRS,
   "Chapter 6": MATH_F1_C6_FLASHCARD_PAIRS,
+  "Chapter 7": MATH_F1_C7_FLASHCARD_PAIRS,
 };
 
 const MATH_FLASHCARD_CHAPTER_TITLES: Record<
@@ -2183,6 +2558,12 @@ const MATH_FLASHCARD_CHAPTER_TITLES: Record<
     dlp: "🧠 Chapter 6 Flashcards: Linear Equations",
     headerBm: "Bab 6: Persamaan Linear",
     headerDlp: "Chapter 6: Linear Equations",
+  },
+  "Chapter 7": {
+    bm: "🧠 Flashcards Bab 7: Ketaksamaan Linear",
+    dlp: "🧠 Chapter 7 Flashcards: Linear Inequalities",
+    headerBm: "Bab 7: Ketaksamaan Linear",
+    headerDlp: "Chapter 7: Linear Inequalities",
   },
 };
 

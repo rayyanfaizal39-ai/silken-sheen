@@ -35,6 +35,8 @@ import { mathF1C5NotesBM } from "@/data/math-f1-c5-notes-bm";
 import { mathF1C5NotesDLP } from "@/data/math-f1-c5-notes-dlp";
 import { mathF1C6NotesBM } from "@/data/math-f1-c6-notes-bm";
 import { mathF1C6NotesDLP } from "@/data/math-f1-c6-notes-dlp";
+import { mathF1C7NotesBM } from "@/data/math-f1-c7-notes-bm";
+import { mathF1C7NotesDLP } from "@/data/math-f1-c7-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -281,6 +283,24 @@ export const chapters: ChapterContent[] = [
     title: "Linear Equations",
     lang: "dlp",
     notes: mathF1C6NotesDLP,
+  },
+  {
+    id: "math-f1-c7-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 7",
+    title: "Ketaksamaan Linear",
+    lang: "bm",
+    notes: mathF1C7NotesBM,
+  },
+  {
+    id: "math-f1-c7-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 7",
+    title: "Linear Inequalities",
+    lang: "dlp",
+    notes: mathF1C7NotesDLP,
   },
 
   // Science Form 1 (bilingual)
