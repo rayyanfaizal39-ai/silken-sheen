@@ -47,6 +47,8 @@ import { mathF1C11NotesBM } from "@/data/math-f1-c11-notes-bm";
 import { mathF1C11NotesDLP } from "@/data/math-f1-c11-notes-dlp";
 import { mathF1C12NotesBM } from "@/data/math-f1-c12-notes-bm";
 import { mathF1C12NotesDLP } from "@/data/math-f1-c12-notes-dlp";
+import { mathF1C13NotesBM } from "@/data/math-f1-c13-notes-bm";
+import { mathF1C13NotesDLP } from "@/data/math-f1-c13-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -401,6 +403,24 @@ export const chapters: ChapterContent[] = [
     title: "Data Handling",
     lang: "dlp",
     notes: mathF1C12NotesDLP,
+  },
+  {
+    id: "math-f1-c13-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 13",
+    title: "Teorem Pythagoras",
+    lang: "bm",
+    notes: mathF1C13NotesBM,
+  },
+  {
+    id: "math-f1-c13-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 13",
+    title: "Pythagoras' Theorem",
+    lang: "dlp",
+    notes: mathF1C13NotesDLP,
   },
 
   // Science Form 1 (bilingual)
