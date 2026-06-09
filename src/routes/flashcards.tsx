@@ -2581,6 +2581,81 @@ const MATH_F1_C8_FLASHCARD_PAIRS: Record<
   ],
 };
 
+const MATH_F1_C9_FLASHCARD_PAIRS: Record<
+  MathFlashcardCategoryId,
+  Array<{ bm: [string, string]; dlp: [string, string] }>
+> = {
+  concepts: [
+    mathCard("Apakah poligon?", "Poligon ialah bentuk 2D tertutup yang dibatasi oleh tiga atau lebih sisi lurus.", "What is a polygon?", "A polygon is a closed 2D shape bounded by three or more straight sides."),
+    mathCard("Apakah perbezaan poligon sekata dan tidak sekata?", "Sekata: semua sisi sama dan semua sudut sama. Tidak sekata: sisi atau sudut berbeza.", "What is the difference between regular and irregular polygons?", "Regular: all sides equal and all angles equal. Irregular: sides or angles differ."),
+    mathCard("Apakah pepenjuru poligon?", "Pepenjuru ialah tembereng garis yang menghubungkan dua bucu yang TIDAK bersebelahan.", "What is a diagonal of a polygon?", "A diagonal is a line segment connecting two NON-ADJACENT vertices."),
+    mathCard("Berapakah bilangan sisi segi tiga, sisi empat dan pentagon?", "Segi tiga = 3, Sisi empat = 4, Pentagon = 5.", "How many sides do a triangle, quadrilateral and pentagon have?", "Triangle = 3, Quadrilateral = 4, Pentagon = 5."),
+    mathCard("Apakah segi tiga sama sisi?", "Segi tiga sama sisi mempunyai 3 sisi sama panjang, 3 sudut = 60°, dan 3 garis simetri.", "What is an equilateral triangle?", "An equilateral triangle has 3 equal sides, all angles = 60°, and 3 lines of symmetry."),
+    mathCard("Apakah segi tiga sama kaki?", "Segi tiga sama kaki mempunyai 2 sisi sama, 2 sudut tapak sama, dan 1 garis simetri.", "What is an isosceles triangle?", "An isosceles triangle has 2 equal sides, 2 equal base angles, and 1 line of symmetry."),
+    mathCard("Apakah segi tiga tak sama kaki?", "Segi tiga tak sama kaki mempunyai semua sisi berbeza, semua sudut berbeza, dan tiada garis simetri.", "What is a scalene triangle?", "A scalene triangle has all sides different, all angles different, and no lines of symmetry."),
+    mathCard("Apakah segi tiga bersudut tegak?", "Segi tiga bersudut tegak mempunyai satu sudut 90°. Sisi terpanjang dipanggil hipotenus.", "What is a right-angled triangle?", "A right-angled triangle has one 90° angle. The longest side is called the hypotenuse."),
+    mathCard("Apakah segi tiga bersudut cakah?", "Segi tiga bersudut cakah mempunyai SATU sudut lebih besar daripada 90°.", "What is an obtuse-angled triangle?", "An obtuse-angled triangle has ONE angle greater than 90°."),
+    mathCard("Apakah segi tiga bersudut tirus?", "Segi tiga bersudut tirus mempunyai SEMUA TIGA sudut kurang daripada 90°.", "What is an acute-angled triangle?", "An acute-angled triangle has ALL THREE angles less than 90°."),
+    mathCard("Apakah segi empat tepat?", "Segi empat tepat mempunyai 4 sudut 90°, sisi bertentangan sama dan selari, dan 2 garis simetri.", "What is a rectangle?", "A rectangle has 4 right angles, opposite sides equal and parallel, and 2 lines of symmetry."),
+    mathCard("Apakah segi empat sama?", "Segi empat sama mempunyai 4 sisi sama, 4 sudut 90°, pepenjuru berserenjang, dan 4 garis simetri.", "What is a square?", "A square has 4 equal sides, 4 right angles, perpendicular diagonals, and 4 lines of symmetry."),
+    mathCard("Apakah jajaran genjang?", "Jajaran genjang mempunyai 2 pasang sisi bertentangan yang selari dan sama, sudut bertentangan sama, dan tiada garis simetri.", "What is a parallelogram?", "A parallelogram has 2 pairs of opposite parallel equal sides, opposite angles equal, and no lines of symmetry."),
+    mathCard("Apakah belah ketupat?", "Belah ketupat mempunyai 4 sisi sama, pepenjuru berserenjang, dan 2 garis simetri.", "What is a rhombus?", "A rhombus has 4 equal sides, perpendicular diagonals, and 2 lines of symmetry."),
+    mathCard("Apakah trapezium?", "Trapezium mempunyai tepat SATU pasang sisi yang selari.", "What is a trapezium?", "A trapezium has exactly ONE pair of parallel sides."),
+    mathCard("Apakah lelayang?", "Lelayang mempunyai DUA pasang sisi BERSEBELAHAN yang sama, pepenjuru berserenjang, dan 1 garis simetri.", "What is a kite?", "A kite has TWO pairs of ADJACENT equal sides, perpendicular diagonals, and 1 line of symmetry."),
+    mathCard("Apakah hipotenus?", "Hipotenus ialah sisi terpanjang segi tiga bersudut tegak — sisi yang bertentangan dengan sudut 90°.", "What is the hypotenuse?", "The hypotenuse is the longest side of a right-angled triangle — the side opposite the 90° angle."),
+    mathCard("Apakah garis simetri?", "Garis simetri ialah garis yang membahagi bentuk kepada dua bahagian yang sama (imej cermin antara satu sama lain).", "What is a line of symmetry?", "A line of symmetry divides a shape into two identical mirror-image halves."),
+  ],
+  operations: [
+    mathCard("Bagaimana mengira bilangan pepenjuru?", "Guna formula: n(n − 3) / 2, di mana n ialah bilangan sisi.", "How do you calculate the number of diagonals?", "Use the formula: n(n − 3) / 2, where n is the number of sides."),
+    mathCard("Berapa pepenjuru bagi sisi empat?", "n = 4: 4(4 − 3)/2 = 4(1)/2 = 2 pepenjuru.", "How many diagonals does a quadrilateral have?", "n = 4: 4(4 − 3)/2 = 4(1)/2 = 2 diagonals."),
+    mathCard("Berapa pepenjuru bagi pentagon?", "n = 5: 5(5 − 3)/2 = 5(2)/2 = 5 pepenjuru.", "How many diagonals does a pentagon have?", "n = 5: 5(5 − 3)/2 = 5(2)/2 = 5 diagonals."),
+    mathCard("Berapa pepenjuru bagi heksagon?", "n = 6: 6(6 − 3)/2 = 6(3)/2 = 9 pepenjuru.", "How many diagonals does a hexagon have?", "n = 6: 6(6 − 3)/2 = 6(3)/2 = 9 diagonals."),
+    mathCard("Bagaimana mencari sudut ketiga segi tiga?", "Tolak dua sudut yang diketahui daripada 180°. Contoh: ∠C = 180° − ∠A − ∠B.", "How do you find the third angle of a triangle?", "Subtract the two known angles from 180°. Example: ∠C = 180° − ∠A − ∠B."),
+    mathCard("Bagaimana menggunakan sifat sudut luar segi tiga?", "Sudut luar = jumlah dua sudut dalam yang tidak bersebelahan. Contoh: jika ∠A = 40° dan ∠B = 60°, sudut luar di C = 100°.", "How do you use the exterior angle property of a triangle?", "Exterior angle = sum of two non-adjacent interior angles. Example: if ∠A = 40° and ∠B = 60°, exterior angle at C = 100°."),
+    mathCard("Bagaimana mencari sudut keempat sisi empat?", "Tolak tiga sudut yang diketahui daripada 360°. Contoh: ∠D = 360° − ∠A − ∠B − ∠C.", "How do you find the fourth angle of a quadrilateral?", "Subtract the three known angles from 360°. Example: ∠D = 360° − ∠A − ∠B − ∠C."),
+    mathCard("Bagaimana menggunakan sifat jajaran genjang?", "Sudut bertentangan sama, dan sudut bersebelahan berjumlah 180°. Jika ∠A = 75°, maka ∠C = 75° dan ∠B = 105°.", "How do you use parallelogram angle properties?", "Opposite angles equal, adjacent angles sum to 180°. If ∠A = 75°, then ∠C = 75° and ∠B = 105°."),
+    mathCard("Segi tiga sama kaki: dua sudut tapak = 55°. Cari sudut puncak.", "Sudut puncak = 180° − 55° − 55° = 70°.", "Isosceles triangle: two base angles = 55°. Find the apex angle.", "Apex angle = 180° − 55° − 55° = 70°."),
+    mathCard("Segi tiga bersudut tegak: dua sudut lain = 30° dan x. Cari x.", "30° + x = 90° (dua sudut bukan tegak berjumlah 90°). x = 60°.", "Right-angled triangle: two non-right angles = 30° and x. Find x.", "30° + x = 90° (two non-right angles sum to 90°). x = 60°."),
+    mathCard("Jajaran genjang ABCD: ∠A = 68°. Cari semua sudut.", "∠C = 68° (bertentangan). ∠B = ∠D = 180° − 68° = 112°.", "Parallelogram ABCD: ∠A = 68°. Find all angles.", "∠C = 68° (opposite). ∠B = ∠D = 180° − 68° = 112°."),
+    mathCard("Cara mengenal pasti segi tiga berdasarkan sisi.", "1 seretan (tick) = satu sisi. 2 seretan = sisi yang sama. 3 seretan = segi tiga tak sama kaki. Semua 1 seretan = sama sisi.", "How to identify triangles by their sides in a diagram.", "1 tick = one side. 2 ticks = equal sides. Same tick on all = equilateral. Mixed ticks = scalene."),
+    mathCard("Cara membezakan belah ketupat dan segi empat sama.", "Belah ketupat: 4 sisi sama, tiada sudut 90° (melainkan ianya segi empat sama). Segi empat sama: 4 sisi sama DENGAN 4 sudut 90°.", "How to distinguish a rhombus from a square.", "Rhombus: 4 equal sides, no 90° angles (unless it is a square). Square: 4 equal sides WITH 4 right angles."),
+    mathCard("Sudut luar segi tiga = (3x + 10)° dan dua sudut dalam berhadapan = 70° dan (x + 20)°. Cari x.", "3x + 10 = 70 + (x + 20). 3x + 10 = x + 90. 2x = 80. x = 40.", "Exterior angle = (3x + 10)°, two non-adjacent interior angles = 70° and (x + 20)°. Find x.", "3x + 10 = 70 + (x + 20). 3x + 10 = x + 90. 2x = 80. x = 40."),
+    mathCard("Sisi empat ABCD: ∠A = 80°, ∠B = 100°, ∠C = 75°. Cari ∠D.", "∠D = 360° − 80° − 100° − 75° = 105°.", "Quadrilateral ABCD: ∠A = 80°, ∠B = 100°, ∠C = 75°. Find ∠D.", "∠D = 360° − 80° − 100° − 75° = 105°."),
+    mathCard("Cari bilangan pepenjuru oktagon (n = 8).", "8(8 − 3)/2 = 8(5)/2 = 40/2 = 20 pepenjuru.", "Find the number of diagonals of an octagon (n = 8).", "8(8 − 3)/2 = 8(5)/2 = 40/2 = 20 diagonals."),
+    mathCard("Segi tiga PQR: ∠P = (2x + 5)°, ∠Q = (x + 10)°, ∠R = (3x − 15)°. Cari x.", "(2x + 5) + (x + 10) + (3x − 15) = 180. 6x = 180. x = 30.", "Triangle PQR: ∠P = (2x + 5)°, ∠Q = (x + 10)°, ∠R = (3x − 15)°. Find x.", "(2x + 5) + (x + 10) + (3x − 15) = 180. 6x = 180. x = 30."),
+  ],
+  facts: [
+    mathCard("Berapakah jumlah sudut dalam segi tiga?", "Jumlah sudut dalam segi tiga = 180°. Ini berlaku untuk MANA-MANA segi tiga.", "What is the sum of interior angles of a triangle?", "Sum of interior angles of a triangle = 180°. This applies to ANY triangle."),
+    mathCard("Berapakah jumlah sudut dalam sisi empat?", "Jumlah sudut dalam sisi empat = 360°. Ini berlaku untuk MANA-MANA sisi empat.", "What is the sum of interior angles of a quadrilateral?", "Sum of interior angles of a quadrilateral = 360°. This applies to ANY quadrilateral."),
+    mathCard("Formula bilangan pepenjuru.", "Bilangan pepenjuru = n(n − 3) / 2, di mana n ialah bilangan sisi.", "Formula for number of diagonals.", "Number of diagonals = n(n − 3) / 2, where n is the number of sides."),
+    mathCard("Bilangan garis simetri: segi empat sama vs segi empat tepat.", "Segi empat sama: 4 garis simetri. Segi empat tepat: 2 garis simetri.", "Lines of symmetry: square vs rectangle.", "Square: 4 lines of symmetry. Rectangle: 2 lines of symmetry."),
+    mathCard("Bilangan garis simetri: jajaran genjang vs belah ketupat.", "Jajaran genjang: 0 garis simetri. Belah ketupat: 2 garis simetri.", "Lines of symmetry: parallelogram vs rhombus.", "Parallelogram: 0 lines of symmetry. Rhombus: 2 lines of symmetry."),
+    mathCard("Bilangan garis simetri pelbagai bentuk.", "Segi tiga sama sisi: 3. Segi empat sama: 4. Belah ketupat: 2. Lelayang: 1. Trapezium: 0. Jajaran genjang: 0.", "Lines of symmetry for various shapes.", "Equilateral triangle: 3. Square: 4. Rhombus: 2. Kite: 1. Trapezium: 0. Parallelogram: 0."),
+    mathCard("Apakah sifat pepenjuru segi empat sama?", "Pepenjuru segi empat sama adalah sama panjang, bersilang di tengah, berserenjang (90°), dan membahagi dua sudut bucu.", "What are the diagonal properties of a square?", "Diagonals of a square are equal in length, bisect each other, are perpendicular (90°), and bisect the corner angles."),
+    mathCard("Apakah sifat pepenjuru belah ketupat?", "Pepenjuru belah ketupat berserenjang (90°) dan bersilang di tengah, tetapi tidak sama panjang.", "What are the diagonal properties of a rhombus?", "Diagonals of a rhombus are perpendicular (90°) and bisect each other, but are NOT equal in length."),
+    mathCard("Apakah sifat pepenjuru segi empat tepat?", "Pepenjuru segi empat tepat adalah sama panjang dan bersilang di tengah, tetapi TIDAK berserenjang.", "What are the diagonal properties of a rectangle?", "Diagonals of a rectangle are equal in length and bisect each other, but are NOT perpendicular."),
+    mathCard("Apakah sifat pepenjuru lelayang?", "Satu pepenjuru membahagi dua pepenjuru yang lain. Pepenjuru berserenjang (90°). Pepenjuru tidak sama panjang.", "What are the diagonal properties of a kite?", "One diagonal bisects the other. Diagonals are perpendicular (90°). Diagonals are not equal in length."),
+    mathCard("Apakah sifat sudut jajaran genjang?", "Sudut bertentangan sama. Sudut bersebelahan berjumlah 180°.", "What are the angle properties of a parallelogram?", "Opposite angles are equal. Adjacent angles sum to 180°."),
+    mathCard("Nyatakan sifat sudut luar segi tiga.", "Sudut luar segi tiga = jumlah dua sudut dalam yang TIDAK bersebelahan (berhadapan).", "State the exterior angle property of a triangle.", "Exterior angle of a triangle = sum of the two NON-ADJACENT (opposite) interior angles."),
+    mathCard("Berapa banyak pepenjuru segi tiga mempunyai?", "Sifar (0). Semua bucu segi tiga adalah bersebelahan, jadi tiada dua bucu yang 'tidak bersebelahan'.", "How many diagonals does a triangle have?", "Zero (0). All vertices of a triangle are adjacent, so there are no 'non-adjacent' pairs of vertices."),
+  ],
+  practice: [
+    mathCard("Cari bilangan pepenjuru heptagon.", "n = 7: 7(7 − 3)/2 = 7(4)/2 = 14 pepenjuru.", "Find the number of diagonals of a heptagon.", "n = 7: 7(7 − 3)/2 = 7(4)/2 = 14 diagonals."),
+    mathCard("Segi tiga: ∠A = 65°, ∠B = 70°. Cari ∠C.", "∠C = 180° − 65° − 70° = 45°.", "Triangle: ∠A = 65°, ∠B = 70°. Find ∠C.", "∠C = 180° − 65° − 70° = 45°."),
+    mathCard("Sisi empat: ∠A = 90°, ∠B = 80°, ∠C = 100°. Cari ∠D.", "∠D = 360° − 90° − 80° − 100° = 90°.", "Quadrilateral: ∠A = 90°, ∠B = 80°, ∠C = 100°. Find ∠D.", "∠D = 360° − 90° − 80° − 100° = 90°."),
+    mathCard("Sudut luar segi tiga = 115°. Satu sudut dalam berhadapan = 55°. Cari yang lain.", "115° − 55° = 60°.", "Exterior angle of a triangle = 115°. One non-adjacent interior angle = 55°. Find the other.", "115° − 55° = 60°."),
+    mathCard("Jajaran genjang: ∠A = 125°. Cari semua sudut lain.", "∠C = 125°. ∠B = ∠D = 180° − 125° = 55°.", "Parallelogram: ∠A = 125°. Find all other angles.", "∠C = 125°. ∠B = ∠D = 180° − 125° = 55°."),
+    mathCard("Segi tiga sama kaki: sudut puncak = 40°. Cari sudut tapak.", "(180° − 40°) / 2 = 140° / 2 = 70°.", "Isosceles triangle: apex angle = 40°. Find the base angles.", "(180° − 40°) / 2 = 140° / 2 = 70°."),
+    mathCard("Poligon dengan n = 10 (dekagon). Berapa pepenjuru?", "10(10 − 3)/2 = 10(7)/2 = 35 pepenjuru.", "Polygon with n = 10 (decagon). How many diagonals?", "10(10 − 3)/2 = 10(7)/2 = 35 diagonals."),
+    mathCard("Sebuah sisi empat mempunyai 3 sudut sama iaitu 85° setiap satu. Cari sudut keempat.", "360° − 85° − 85° − 85° = 105°.", "A quadrilateral has 3 equal angles of 85° each. Find the fourth angle.", "360° − 85° − 85° − 85° = 105°."),
+    mathCard("Segi tiga dengan sudut (2x)°, (3x)° dan (x + 30)°. Cari x.", "2x + 3x + x + 30 = 180. 6x + 30 = 180. 6x = 150. x = 25.", "Triangle with angles (2x)°, (3x)° and (x + 30)°. Find x.", "2x + 3x + x + 30 = 180. 6x + 30 = 180. 6x = 150. x = 25."),
+    mathCard("Namakan poligon dengan 9 sisi.", "Nonagon.", "Name the polygon with 9 sides.", "Nonagon."),
+    mathCard("Sebuah sisi empat mempunyai tepat satu pasang sisi selari. Apakah namanya?", "Trapezium.", "A quadrilateral has exactly one pair of parallel sides. What is it called?", "Trapezium."),
+    mathCard("Apakah sisi empat yang mempunyai 4 sisi sama tetapi sudut bukan 90°?", "Belah ketupat.", "What quadrilateral has 4 equal sides but angles not equal to 90°?", "Rhombus."),
+    mathCard("Bilangan garis simetri lelayang dan segi tiga sama kaki.", "Lelayang: 1 garis simetri. Segi tiga sama kaki: 1 garis simetri.", "Lines of symmetry for a kite and isosceles triangle.", "Kite: 1 line of symmetry. Isosceles triangle: 1 line of symmetry."),
+  ],
+};
+
 const MATH_FLASHCARD_BANKS: Partial<
   Record<
     string,
@@ -2595,6 +2670,7 @@ const MATH_FLASHCARD_BANKS: Partial<
   "Chapter 6": MATH_F1_C6_FLASHCARD_PAIRS,
   "Chapter 7": MATH_F1_C7_FLASHCARD_PAIRS,
   "Chapter 8": MATH_F1_C8_FLASHCARD_PAIRS,
+  "Chapter 9": MATH_F1_C9_FLASHCARD_PAIRS,
 };
 
 const MATH_FLASHCARD_CHAPTER_TITLES: Record<
@@ -2648,6 +2724,12 @@ const MATH_FLASHCARD_CHAPTER_TITLES: Record<
     dlp: "🧠 Chapter 8 Flashcards: Lines and Angles",
     headerBm: "Bab 8: Garis dan Sudut",
     headerDlp: "Chapter 8: Lines and Angles",
+  },
+  "Chapter 9": {
+    bm: "🧠 Flashcards Bab 9: Poligon Asas",
+    dlp: "🧠 Chapter 9 Flashcards: Basic Polygons",
+    headerBm: "Bab 9: Poligon Asas",
+    headerDlp: "Chapter 9: Basic Polygons",
   },
 };
 

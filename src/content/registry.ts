@@ -39,6 +39,8 @@ import { mathF1C7NotesBM } from "@/data/math-f1-c7-notes-bm";
 import { mathF1C7NotesDLP } from "@/data/math-f1-c7-notes-dlp";
 import { mathF1C8NotesBM } from "@/data/math-f1-c8-notes-bm";
 import { mathF1C8NotesDLP } from "@/data/math-f1-c8-notes-dlp";
+import { mathF1C9NotesBM } from "@/data/math-f1-c9-notes-bm";
+import { mathF1C9NotesDLP } from "@/data/math-f1-c9-notes-dlp";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -321,6 +323,24 @@ export const chapters: ChapterContent[] = [
     title: "Lines and Angles",
     lang: "dlp",
     notes: mathF1C8NotesDLP,
+  },
+  {
+    id: "math-f1-c9-bm",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 9",
+    title: "Poligon Asas",
+    lang: "bm",
+    notes: mathF1C9NotesBM,
+  },
+  {
+    id: "math-f1-c9-dlp",
+    subjectId: "math",
+    form: "Form 1",
+    chapterKey: "Chapter 9",
+    title: "Basic Polygons",
+    lang: "dlp",
+    notes: mathF1C9NotesDLP,
   },
 
   // Science Form 1 (bilingual)
