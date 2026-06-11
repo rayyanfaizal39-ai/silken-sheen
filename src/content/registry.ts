@@ -50,6 +50,21 @@ import { mathF1C12NotesDLP } from "@/data/math-f1-c12-notes-dlp";
 import { mathF1C13NotesBM } from "@/data/math-f1-c13-notes-bm";
 import { mathF1C13NotesDLP } from "@/data/math-f1-c13-notes-dlp";
 
+// Geografi F1 mind maps
+import { geoF1C1MindMap } from "@/data/geo-f1-c1-mindmap";
+import { geoF1C2MindMap } from "@/data/geo-f1-c2-mindmap";
+import { geoF1C3MindMap } from "@/data/geo-f1-c3-mindmap";
+import { geoF1C4MindMap } from "@/data/geo-f1-c4-mindmap";
+import { geoF1C5MindMap } from "@/data/geo-f1-c5-mindmap";
+import { geoF1C6MindMap } from "@/data/geo-f1-c6-mindmap";
+import { geoF1C7MindMap } from "@/data/geo-f1-c7-mindmap";
+import { geoF1C8MindMap } from "@/data/geo-f1-c8-mindmap";
+import { geoF1C9MindMap } from "@/data/geo-f1-c9-mindmap";
+import { geoF1C10MindMap } from "@/data/geo-f1-c10-mindmap";
+import { geoF1C11MindMap } from "@/data/geo-f1-c11-mindmap";
+import { geoF1C12MindMap } from "@/data/geo-f1-c12-mindmap";
+import { geoF1C13MindMap } from "@/data/geo-f1-c13-mindmap";
+
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
@@ -142,7 +157,11 @@ function geographyQuizzesFor(chapterNum: number) {
   return allQuizzes.filter((q) => q.subjectId === "geography" && q.chapter === chapterKey);
 }
 
-function geography(chapterNum: number): ChapterContent {
+function geography(
+  chapterNum: number,
+  mindMapData?: MindNode,
+  mindMapTitle?: string,
+): ChapterContent {
   const chapterKey = `Chapter ${chapterNum}`;
   return {
     id: `geography-f1-c${chapterNum}`,
@@ -150,6 +169,7 @@ function geography(chapterNum: number): ChapterContent {
     form: "Form 1",
     chapterKey,
     title: GEOGRAPHY_F1_CHAPTER_TITLES[chapterNum],
+    ...(mindMapData && mindMapTitle ? { mindMap: { data: mindMapData, title: mindMapTitle } } : {}),
     flashcards: geographyFlashcardsFor(chapterNum),
     quiz: geographyQuizzesFor(chapterNum),
     subtopics: getGeographyF1Subtopics(chapterKey),
@@ -185,7 +205,19 @@ export const chapters: ChapterContent[] = [
   ),
 
   // Geography Form 1
-  ...Array.from({ length: 13 }, (_, index) => geography(index + 1)),
+  geography(1, geoF1C1MindMap, "Arah"),
+  geography(2, geoF1C2MindMap, "Kedudukan"),
+  geography(3, geoF1C3MindMap, "Peta Lakar"),
+  geography(4, geoF1C4MindMap, "Lakaran Peta Malaysia"),
+  geography(5, geoF1C5MindMap, "Bumi"),
+  geography(6, geoF1C6MindMap, "Bentuk Muka Bumi"),
+  geography(7, geoF1C7MindMap, "Saliran"),
+  geography(8, geoF1C8MindMap, "Penduduk di Malaysia"),
+  geography(9, geoF1C9MindMap, "Petempatan di Malaysia"),
+  geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"),
+  geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"),
+  geography(12, geoF1C12MindMap, "Sumber Air"),
+  geography(13, geoF1C13MindMap, "Sisa Domestik"),
 
   // Mathematics Form 1
   {
