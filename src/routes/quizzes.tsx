@@ -22,6 +22,9 @@ import {
   Play,
   TimerOff,
   Shuffle,
+  Lightbulb,
+  Flame,
+  Zap,
 } from "lucide-react";
 import {
   SubjectGrid,
@@ -6793,146 +6796,266 @@ function QuizzesPage() {
             <>
               <Confetti count={shuffledPool && score === shuffledPool.length ? 160 : 70} />
               {shuffledPool && score === shuffledPool.length && <Confetti count={120} />}
-              <div className="glass-strong rounded-3xl p-10 text-center animate-fade-up relative overflow-hidden">
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,oklch(0.63_0.22_295_/_0.35),transparent_70%)]" />
-                <Sparkles className="w-12 h-12 mx-auto text-nova-yellow mb-4 animate-pulse" />
-                <h2 className="font-display text-3xl font-bold">
-                  {shuffledPool && score === shuffledPool.length
-                    ? "PERFECT SCORE! 🏆"
-                    : "Quiz complete!"}
-                </h2>
-                <p className="mt-2 text-muted-foreground">You scored</p>
-                <p
-                  key={`score-${done}`}
-                  className="font-display text-7xl sm:text-8xl font-extrabold gradient-text my-4 animate-score-reveal drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.7)]"
-                >
-                  {animatedScore}
-                  <span className="text-muted-foreground/60">
-                    /{shuffledPool?.length ?? pool.length}
-                  </span>
-                </p>
-                {pool.length > 0 && score === pool.length && (
-                  <p className="text-emerald-300 font-semibold mb-3 animate-pulse">
-                    Flawless victory! ⚡
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#0B1220]/90 animate-fade-up backdrop-blur-2xl"
+                style={{ boxShadow: "0 32px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)" }}
+              >
+                {/* Background gradient */}
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.3),transparent_60%)]" />
+
+                {/* Top accent bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#F472B6]" />
+
+                <div className="relative px-8 py-10 text-center">
+                  {/* Score emoji + title */}
+                  <div className="mb-4 flex items-center justify-center">
+                    {shuffledPool && score === shuffledPool.length ? (
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#FBBF24] to-[#F59E0B] shadow-[0_0_48px_rgba(251,191,36,0.5)] text-4xl">
+                        🏆
+                      </div>
+                    ) : score >= Math.ceil((shuffledPool?.length ?? pool.length) * 0.7) ? (
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-[0_0_40px_rgba(52,211,153,0.4)] text-4xl">
+                        ⭐
+                      </div>
+                    ) : (
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] shadow-[0_0_36px_rgba(99,102,241,0.4)] text-4xl">
+                        📚
+                      </div>
+                    )}
+                  </div>
+
+                  <h2 className="font-display text-3xl font-extrabold">
+                    {shuffledPool && score === shuffledPool.length
+                      ? "Perfect Score!"
+                      : score >= Math.ceil((shuffledPool?.length ?? pool.length) * 0.7)
+                        ? "Great Job!"
+                        : "Quiz Complete!"}
+                  </h2>
+
+                  <p className="mt-1.5 text-sm text-white/50">Here's how you did</p>
+
+                  {/* Big score number */}
+                  <p
+                    key={`score-${done}`}
+                    className="font-display text-8xl font-extrabold my-6 animate-score-reveal gradient-text drop-shadow-[0_0_40px_oklch(0.63_0.22_295_/_0.7)]"
+                  >
+                    {animatedScore}
+                    <span className="text-white/25 text-5xl">/{shuffledPool?.length ?? pool.length}</span>
                   </p>
-                )}
-                <button
-                  onClick={reset}
-                  className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
-                >
-                  <RotateCcw className="w-4 h-4" /> Try again
-                </button>
+
+                  {/* Stat chips */}
+                  <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+                    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2">
+                      <span className="text-base">🎯</span>
+                      <span className="text-sm font-bold">
+                        {Math.round((score / (shuffledPool?.length ?? pool.length)) * 100)}%
+                      </span>
+                      <span className="text-xs text-white/40">Accuracy</span>
+                    </div>
+                    <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
+                      <Zap className="h-4 w-4 text-[#FBBF24]" />
+                      <span className="text-sm font-bold text-[#FBBF24]">+{score * 10}</span>
+                      <span className="text-xs text-white/40">XP Earned</span>
+                    </div>
+                    <div className="flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-2">
+                      <Flame className="h-4 w-4 text-orange-400" />
+                      <span className="text-sm font-bold text-orange-300">{streak}</span>
+                      <span className="text-xs text-white/40">Combo</span>
+                    </div>
+                  </div>
+
+                  {/* CTA buttons */}
+                  <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                    <button
+                      onClick={reset}
+                      className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-8 py-3.5 font-bold text-white shadow-[0_0_32px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] hover:shadow-[0_0_48px_rgba(139,92,246,0.5)]"
+                    >
+                      <RotateCcw className="h-4 w-4" /> Try Again
+                    </button>
+                    <button
+                      onClick={() => { setChapter(null); reset(); }}
+                      className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.06] px-8 py-3.5 font-bold text-white transition-all hover:bg-white/[0.10]"
+                    >
+                      <ArrowLeft className="h-4 w-4" /> Choose Chapter
+                    </button>
+                  </div>
+                </div>
               </div>
             </>
           ) : (
             current && (
               <div
                 key={idx}
-                className={`glass-strong rounded-3xl p-8 animate-question-reveal ${
+                className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
                   feedback?.kind === "wrong"
                     ? "animate-shake"
                     : feedback?.kind === "correct"
                       ? "animate-correct-pulse"
                       : ""
                 }`}
+                style={{ boxShadow: "0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)" }}
               >
-                {/* Question progress bar */}
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-xs font-semibold text-muted-foreground">
-                    Question {idx + 1} of {shuffledPool?.length ?? pool.length} •{" "}
-                    {current.difficulty}
-                  </span>
-                  {timerPref?.mode === "timer" && (
-                    <span
-                      className={`inline-flex items-center gap-1 text-xs font-bold transition-colors ${
-                        timeLeft <= 5
-                          ? "text-rose-400 animate-pulse"
-                          : timeLeft <= 10
-                            ? "text-nova-yellow"
-                            : "text-emerald-300"
-                      }`}
-                    >
-                      <Timer className="w-3.5 h-3.5" /> {timeLeft}s
+                {/* Ambient glow behind the card */}
+                <div className="pointer-events-none absolute -top-20 left-1/2 h-40 w-80 -translate-x-1/2 rounded-full bg-indigo-600/15 blur-3xl" />
+
+                {/* ── Card header ── */}
+                <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5">
+                      <span className="text-xs font-bold text-white/50">Q</span>
+                      <span className="font-display text-sm font-bold">{idx + 1}</span>
+                      <span className="text-xs text-white/30">/ {shuffledPool?.length ?? pool.length}</span>
+                    </div>
+                    <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${
+                      current.difficulty === "Hard"
+                        ? "bg-rose-500/20 text-rose-300"
+                        : current.difficulty === "Medium"
+                          ? "bg-amber-500/20 text-amber-300"
+                          : "bg-emerald-500/20 text-emerald-300"
+                    }`}>
+                      {current.difficulty}
                     </span>
-                  )}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {/* Live score */}
+                    <div className="flex items-center gap-1.5 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-3 py-1.5">
+                      <Zap className="h-3 w-3 text-[#FBBF24]" />
+                      <span className="text-xs font-bold text-[#FBBF24]">{score}</span>
+                      <span className="text-[10px] text-white/30">correct</span>
+                    </div>
+                    {timerPref?.mode === "timer" && (
+                      <div className={`flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-bold transition-all ${
+                        timeLeft <= 5
+                          ? "border-rose-500/40 bg-rose-500/15 text-rose-300 animate-pulse"
+                          : timeLeft <= 10
+                            ? "border-amber-500/30 bg-amber-500/10 text-amber-300"
+                            : "border-emerald-500/25 bg-emerald-500/10 text-emerald-300"
+                      }`}>
+                        <Timer className="h-3 w-3" /> {timeLeft}s
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-3">
-                  <div
-                    className="h-full bg-gradient-to-r from-primary to-accent transition-all"
-                    style={{
-                      width: `${((idx + 1) / (shuffledPool?.length ?? pool.length)) * 100}%`,
-                    }}
-                  />
-                </div>
-                {/* Timer bar — green → yellow → red (only if timer mode) */}
-                {timerPref?.mode === "timer" && (
-                  <div className="h-1.5 w-full rounded-full bg-white/5 overflow-hidden mb-6">
+
+                {/* ── Progress bars ── */}
+                <div className="px-6 pt-4">
+                  {/* Question progress */}
+                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
                     <div
-                      className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
-                      style={{ width: `${timerPct}%` }}
+                      className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] transition-all duration-500"
+                      style={{ width: `${((idx + 1) / (shuffledPool?.length ?? pool.length)) * 100}%` }}
                     />
                   </div>
-                )}
+                  {/* Timer bar */}
+                  {timerPref?.mode === "timer" && (
+                    <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-white/[0.04]">
+                      <div
+                        className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear rounded-full ${timerColor}`}
+                        style={{ width: `${timerPct}%` }}
+                      />
+                    </div>
+                  )}
+                </div>
 
-                <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">
-                  {current.question}
-                </h2>
+                {/* ── Question text ── */}
+                <div className="px-6 pb-4 pt-6">
+                  <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
+                    {current.question}
+                  </h2>
+                </div>
 
-                <div className="grid sm:grid-cols-2 gap-3">
+                {/* ── Answer options ── */}
+                <div className="grid gap-2.5 px-6 pb-6 sm:grid-cols-2">
                   {current.options.map((o, i) => {
                     const isAnswer = i === current.answerIndex;
                     const isPicked = i === selected;
                     const reveal = selected !== null;
+                    const letter = ["A", "B", "C", "D"][i] ?? String(i + 1);
                     return (
                       <button
                         key={i}
                         onClick={() => answer(i)}
                         disabled={reveal}
-                        className={`text-left p-4 rounded-2xl border transition-all ${
+                        className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 ${
                           reveal && isAnswer
-                            ? "bg-emerald-500/20 border-emerald-500/50"
+                            ? "border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
                             : reveal && isPicked && !isAnswer
-                              ? "bg-rose-500/20 border-rose-500/50"
-                              : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50"
+                              ? "border-rose-400/50 bg-rose-500/15 shadow-[0_0_16px_rgba(239,68,68,0.15)]"
+                              : reveal
+                                ? "border-white/[0.05] bg-white/[0.02] opacity-50"
+                                : "border-white/[0.09] bg-white/[0.04] hover:border-[#8B5CF6]/50 hover:bg-white/[0.08] hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(139,92,246,0.15)]"
                         }`}
                       >
-                        <div className="flex items-center justify-between">
-                          <span>{o}</span>
-                          {reveal && isAnswer && (
-                            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                          )}
-                          {reveal && isPicked && !isAnswer && (
-                            <XCircle className="w-5 h-5 text-rose-400" />
-                          )}
-                        </div>
+                        {/* Letter badge */}
+                        <span
+                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black transition-all ${
+                            reveal && isAnswer
+                              ? "bg-emerald-400 text-[#050816]"
+                              : reveal && isPicked && !isAnswer
+                                ? "bg-rose-400 text-white"
+                                : "bg-white/[0.08] text-white/60 group-hover:bg-[#8B5CF6]/25 group-hover:text-[#A78BFA]"
+                          }`}
+                        >
+                          {letter}
+                        </span>
+                        <span className={`flex-1 text-sm font-semibold leading-6 ${
+                          reveal && isAnswer
+                            ? "text-emerald-100"
+                            : reveal && isPicked && !isAnswer
+                              ? "text-rose-100"
+                              : "text-white/80 group-hover:text-white"
+                        }`}>
+                          {o}
+                        </span>
+                        {reveal && isAnswer && (
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
+                        )}
+                        {reveal && isPicked && !isAnswer && (
+                          <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-400" />
+                        )}
                       </button>
                     );
                   })}
                 </div>
 
+                {/* ── Feedback callout ── */}
                 {feedback && (
                   <div
-                    className={`mt-5 text-center font-display text-2xl font-bold animate-fade-up ${
-                      feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
+                    className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
+                      feedback.kind === "correct"
+                        ? "border-emerald-400/30 bg-emerald-500/12"
+                        : "border-rose-400/30 bg-rose-500/12"
                     }`}
                   >
-                    {feedback.msg}
+                    {feedback.kind === "correct"
+                      ? <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
+                      : <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
+                    }
+                    <span className={`font-display text-lg font-bold ${
+                      feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
+                    }`}>
+                      {feedback.msg}
+                    </span>
                   </div>
                 )}
 
+                {/* ── Explanation ── */}
                 {selected !== null && current.explanation && (
-                  <p className="mt-4 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
-                    💡 {current.explanation}
-                  </p>
+                  <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">
+                    <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-[#A78BFA]" />
+                    <p className="text-sm leading-7 text-slate-300">{current.explanation}</p>
+                  </div>
                 )}
 
+                {/* ── Next button ── */}
                 {selected !== null && (
-                  <button
-                    onClick={next}
-                    className="mt-6 w-full py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-[1.02] transition-transform"
-                  >
-                    {idx + 1 >= pool.length ? "Finish" : "Next question →"}
-                  </button>
+                  <div className="border-t border-white/[0.06] px-6 py-4">
+                    <button
+                      onClick={next}
+                      className="w-full rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3.5 font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] active:scale-[0.99]"
+                    >
+                      {idx + 1 >= (shuffledPool?.length ?? pool.length) ? "See Results ✨" : "Next Question →"}
+                    </button>
+                  </div>
                 )}
               </div>
             )
@@ -7874,98 +7997,127 @@ function MathObjectiveQuizScreen({
 
       <div
         key={idx}
-        className={`glass-strong rounded-3xl p-6 sm:p-8 animate-question-reveal ${
+        className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
           feedback?.kind === "wrong"
             ? "animate-shake"
             : feedback?.kind === "correct"
               ? "animate-correct-pulse"
               : ""
         }`}
+        style={{ boxShadow: "0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)" }}
       >
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent">
-              {objective.badge} {objective.title}
-            </p>
-            <p className="mt-1 text-xs font-semibold text-muted-foreground">
-              {isDlp ? "Question" : "Question"} {idx + 1} {isDlp ? "of" : "of"} {total} •{" "}
-              {isDlp ? "Full marks" : "Markah penuh"}: {total}
-            </p>
+        {/* Ambient glow */}
+        <div className="pointer-events-none absolute -top-20 left-1/2 h-40 w-80 -translate-x-1/2 rounded-full bg-amber-500/10 blur-3xl" />
+
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-bold" style={{ color: "#FBBF24" }}>{objective.badge} {objective.title}</span>
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5">
+              <span className="text-xs font-bold text-white/50">Q</span>
+              <span className="font-display text-sm font-bold">{idx + 1}</span>
+              <span className="text-xs text-white/30">/ {total}</span>
+            </div>
           </div>
-          <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-slate-200">
-            {isDlp ? "Score" : "Score"}: {score}/{total}
+          <div className="flex items-center gap-1.5 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-3 py-1.5">
+            <Zap className="h-3 w-3 text-[#FBBF24]" />
+            <span className="text-xs font-bold text-[#FBBF24]">{score}</span>
+            <span className="text-[10px] text-white/30">/{total}</span>
           </div>
         </div>
 
-        <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-8">
-          <div
-            className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
-            style={{ width: `${((idx + 1) / total) * 100}%` }}
-          />
+        {/* Progress bar */}
+        <div className="px-6 pt-4">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] transition-all duration-500"
+              style={{ width: `${((idx + 1) / total) * 100}%` }}
+            />
+          </div>
         </div>
 
-        <h2 className="font-display text-2xl sm:text-3xl font-bold mb-8">{current.question}</h2>
+        {/* Question */}
+        <div className="px-6 pb-4 pt-6">
+          <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">{current.question}</h2>
+        </div>
 
-        <div className="grid sm:grid-cols-2 gap-3">
+        {/* Answer options */}
+        <div className="grid gap-2.5 px-6 pb-6 sm:grid-cols-2">
           {current.options.map((option, optionIndex) => {
             const isAnswer = optionIndex === current.answerIndex;
             const isPicked = optionIndex === selected;
             const reveal = selected !== null;
+            const letter = ["A", "B", "C", "D"][optionIndex] ?? String(optionIndex + 1);
 
             return (
               <button
                 key={`${idx}-${option}`}
                 onClick={() => onAnswer(optionIndex)}
                 disabled={reveal}
-                className={`text-left p-4 rounded-2xl border transition-all ${
+                className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 ${
                   reveal && isAnswer
-                    ? "bg-emerald-500/20 border-emerald-500/50"
+                    ? "border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
                     : reveal && isPicked && !isAnswer
-                      ? "bg-rose-500/20 border-rose-500/50"
-                      : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary/50"
+                      ? "border-rose-400/50 bg-rose-500/15 shadow-[0_0_16px_rgba(239,68,68,0.15)]"
+                      : reveal
+                        ? "border-white/[0.05] bg-white/[0.02] opacity-50"
+                        : "border-white/[0.09] bg-white/[0.04] hover:border-[#FBBF24]/40 hover:bg-white/[0.08] hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(251,191,36,0.1)]"
                 }`}
               >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="font-medium">
-                    {String.fromCharCode(65 + optionIndex)}. {option}
-                  </span>
-                  {reveal && isAnswer && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
-                  {reveal && isPicked && !isAnswer && <XCircle className="w-5 h-5 text-rose-400" />}
-                </div>
+                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black transition-all ${
+                  reveal && isAnswer ? "bg-emerald-400 text-[#050816]"
+                    : reveal && isPicked && !isAnswer ? "bg-rose-400 text-white"
+                    : "bg-white/[0.08] text-white/60 group-hover:bg-[#FBBF24]/20 group-hover:text-[#FBBF24]"
+                }`}>
+                  {letter}
+                </span>
+                <span className={`flex-1 text-sm font-semibold leading-6 ${
+                  reveal && isAnswer ? "text-emerald-100"
+                    : reveal && isPicked && !isAnswer ? "text-rose-100"
+                    : "text-white/80 group-hover:text-white"
+                }`}>
+                  {option}
+                </span>
+                {reveal && isAnswer && <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />}
+                {reveal && isPicked && !isAnswer && <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-400" />}
               </button>
             );
           })}
         </div>
 
+        {/* Feedback */}
         {feedback && (
-          <div
-            className={`mt-5 text-center font-display text-2xl font-bold animate-fade-up ${
-              feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
-            }`}
-          >
-            {feedback.msg}
+          <div className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
+            feedback.kind === "correct" ? "border-emerald-400/30 bg-emerald-500/12" : "border-rose-400/30 bg-rose-500/12"
+          }`}>
+            {feedback.kind === "correct"
+              ? <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
+              : <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
+            }
+            <span className={`font-display text-lg font-bold ${feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"}`}>
+              {feedback.msg}
+            </span>
           </div>
         )}
 
         {selected !== null && current.explanation && (
-          <p className="mt-4 text-sm text-muted-foreground bg-white/5 rounded-xl p-4">
-            💡 {current.explanation}
-          </p>
+          <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">
+            <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-[#A78BFA]" />
+            <p className="text-sm text-slate-300 leading-7">{current.explanation}</p>
+          </div>
         )}
 
         {selected !== null && (
-          <button
-            onClick={onNext}
-            className="mt-6 w-full py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-[1.02] transition-transform"
-          >
-            {idx + 1 >= total
-              ? isDlp
-                ? "Finish"
-                : "Finish"
-              : isDlp
-                ? "Next question →"
-                : "Next question →"}
-          </button>
+          <div className="border-t border-white/[0.06] px-6 py-4">
+            <button
+              onClick={onNext}
+              className="w-full rounded-2xl bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] py-3.5 font-bold text-[#050816] shadow-[0_0_28px_rgba(251,191,36,0.35)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(251,191,36,0.5)] active:scale-[0.99]"
+            >
+              {idx + 1 >= total
+                ? isDlp ? "See Results ✨" : "Lihat Keputusan ✨"
+                : isDlp ? "Next Question →" : "Soalan Seterusnya →"}
+            </button>
+          </div>
         )}
       </div>
     </div>

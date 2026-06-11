@@ -2450,3 +2450,269 @@
   .animate-card-enter,
   .skeleton { animation: none !important; }
 }
+
+/* =========================================================================
+   PREMIUM UI v2 — Subject planet art, page transitions, enhanced nav
+   ========================================================================= */
+
+/* ── Page content entrance ─────────────────────────────────────────────── */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-content {
+  animation: page-in 0.4s ease-out both;
+}
+
+/* ── Hero section breathe ──────────────────────────────────────────────── */
+@keyframes hero-breathe {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.04); }
+}
+.hero-section {
+  /* Subtle breathing effect on the hero */
+}
+
+/* ── Planet art patterns — unique per subject ──────────────────────────── */
+/* Science — blue: atom ring arcs + molecule dots */
+.planet-art-science {
+  background:
+    /* Atom ring 1 */
+    radial-gradient(ellipse 80% 30% at 50% 50%, transparent 70%, rgba(56,189,248,0.3) 71%, transparent 73%),
+    /* Atom ring 2 */
+    radial-gradient(ellipse 30% 80% at 50% 50%, transparent 70%, rgba(14,165,233,0.25) 71%, transparent 73%),
+    /* Nucleus glow */
+    radial-gradient(circle 6px at 50% 50%, rgba(125,211,252,0.9) 0%, transparent 100%),
+    /* Molecule dots */
+    radial-gradient(circle 3px at 75% 28%, rgba(56,189,248,0.8), transparent 100%),
+    radial-gradient(circle 3px at 25% 72%, rgba(14,165,233,0.7), transparent 100%),
+    radial-gradient(circle 3px at 80% 70%, rgba(56,189,248,0.6), transparent 100%);
+}
+
+/* Math — amber: grid lines + Pi symbol glow */
+.planet-art-math {
+  background:
+    /* Horizontal grid */
+    repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(251,191,36,0.15) 18px, rgba(251,191,36,0.15) 19px),
+    /* Vertical grid */
+    repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(245,158,11,0.12) 18px, rgba(245,158,11,0.12) 19px),
+    /* Corner accent */
+    radial-gradient(circle at 82% 18%, rgba(251,191,36,0.35), transparent 35%);
+}
+.planet-art-math::after {
+  content: "π";
+  position: absolute;
+  right: 1.2rem;
+  bottom: 0.8rem;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(251,191,36,0.15);
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Sejarah — amber/orange: architectural arch silhouette */
+.planet-art-sejarah {
+  background:
+    /* Warm radial */
+    radial-gradient(ellipse at 65% 20%, rgba(251,146,60,0.35), transparent 50%),
+    /* Horizontal accent line */
+    linear-gradient(rgba(251,146,60,0.15) 0 1px, transparent 1px 100%) 0 40% / 100% 100%,
+    /* Diagonal stripe */
+    linear-gradient(135deg, transparent 60%, rgba(249,115,22,0.12) 60% 62%, transparent 62%);
+}
+.planet-art-sejarah::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 50px;
+  border: 2px solid rgba(251,146,60,0.22);
+  border-bottom: none;
+  border-radius: 50px 50px 0 0;
+  pointer-events: none;
+}
+
+/* Geography — emerald: topographic contour lines + globe arc */
+.planet-art-geo {
+  background:
+    /* Topographic rings */
+    radial-gradient(ellipse 90% 55% at 50% 60%, transparent 45%, rgba(52,211,153,0.18) 46%, transparent 50%),
+    radial-gradient(ellipse 70% 40% at 50% 60%, transparent 35%, rgba(16,185,129,0.15) 36%, transparent 40%),
+    radial-gradient(ellipse 50% 28% at 50% 60%, transparent 25%, rgba(52,211,153,0.12) 26%, transparent 30%),
+    /* Upper glow */
+    radial-gradient(circle at 62% 22%, rgba(52,211,153,0.28), transparent 40%);
+}
+.planet-art-geo::after {
+  content: "";
+  position: absolute;
+  right: 14%;
+  top: 15%;
+  width: 52px;
+  height: 52px;
+  border: 2px solid rgba(52,211,153,0.28);
+  border-radius: 50%;
+  /* equator line */
+  box-shadow: inset 0 0 0 0.5px rgba(52,211,153,0.18);
+  background:
+    linear-gradient(rgba(52,211,153,0.12) 0 1px, transparent 1px 100%) 0 50% / 100% 100%;
+  pointer-events: none;
+}
+
+/* English — violet: text lines + letter art */
+.planet-art-english {
+  background:
+    /* Text line stubs */
+    repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(192,132,252,0.12) 10px, rgba(192,132,252,0.12) 11px),
+    /* Upper corner glow */
+    radial-gradient(circle at 72% 22%, rgba(192,132,252,0.3), transparent 40%);
+}
+.planet-art-english::after {
+  content: "Aa";
+  position: absolute;
+  right: 1.1rem;
+  bottom: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: rgba(192,132,252,0.18);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* BM — rose/pink: flowing wave curves */
+.planet-art-bm {
+  background:
+    radial-gradient(circle at 68% 25%, rgba(244,114,182,0.32), transparent 42%);
+}
+.planet-art-bm::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    /* Wave 1 */
+    radial-gradient(ellipse 120% 24% at 50% 58%, transparent 65%, rgba(244,114,182,0.18) 66%, transparent 68%),
+    /* Wave 2 */
+    radial-gradient(ellipse 110% 18% at 50% 72%, transparent 65%, rgba(236,72,153,0.14) 66%, transparent 68%);
+  pointer-events: none;
+}
+.planet-art-bm::after {
+  content: "BM";
+  position: absolute;
+  right: 1rem;
+  bottom: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(244,114,182,0.16);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+/* ── Planet card shine sweep ────────────────────────────────────────────── */
+.planet-card-shine {
+  background: linear-gradient(105deg, transparent 15%, rgba(255,255,255,0.22) 48%, transparent 85%);
+  transform: translateX(-120%) skewX(-20deg);
+  transition: transform 0.7s ease;
+}
+.group:hover .planet-card-shine {
+  transform: translateX(120%) skewX(-20deg);
+}
+
+/* ── Chapter card hover glow ────────────────────────────────────────────── */
+.chapter-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.chapter-card::before {
+  content: none;
+}
+
+/* ── Sidebar nav active glow pulse ─────────────────────────────────────── */
+@keyframes nav-glow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* ── Subject orbit improvements (existing pages) ───────────────────────── */
+.subject-orbit-orb {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Quick access cards ─────────────────────────────────────────────────── */
+.quick-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.quick-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ── Ensure sidebar stays above all content ─────────────────────────────── */
+.sidebar-fixed {
+  z-index: 60;
+}
+
+/* ── Notes block section card colors ───────────────────────────────────── */
+.notes-section-0 { --section-accent: #3B82F6; }
+.notes-section-1 { --section-accent: #8B5CF6; }
+.notes-section-2 { --section-accent: #10B981; }
+.notes-section-3 { --section-accent: #F59E0B; }
+.notes-section-4 { --section-accent: #EC4899; }
+.notes-section-5 { --section-accent: #06B6D4; }
+
+/* ── Flashcard improved flip ────────────────────────────────────────────── */
+@keyframes fc-flip-in {
+  from { transform: rotateY(-90deg) scale(0.92); opacity: 0; }
+  to   { transform: rotateY(0deg) scale(1); opacity: 1; }
+}
+@keyframes fc-flip-out {
+  from { transform: rotateY(0deg) scale(1); opacity: 1; }
+  to   { transform: rotateY(90deg) scale(0.92); opacity: 0; }
+}
+.fc-flip-in  { animation: fc-flip-in  0.28s cubic-bezier(.2,.7,.3,1.2) both; }
+.fc-flip-out { animation: fc-flip-out 0.22s cubic-bezier(.4,.1,.3,1) both; }
+
+/* ── Quiz question reveal ───────────────────────────────────────────────── */
+@keyframes quiz-q-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.quiz-q-enter { animation: quiz-q-in 0.42s cubic-bezier(.2,.7,.3,1) both; }
+
+/* ── XP earned burst ────────────────────────────────────────────────────── */
+@keyframes xp-burst {
+  0%   { opacity: 0; transform: translate(-50%, 0) scale(0.5) rotate(-10deg); }
+  30%  { opacity: 1; transform: translate(-50%, -16px) scale(1.2) rotate(3deg); }
+  100% { opacity: 0; transform: translate(-50%, -56px) scale(1) rotate(0); }
+}
+.animate-xp-burst { animation: xp-burst 1.4s ease-out forwards; }
+
+/* ── Premium scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: oklch(0.35 0.06 265 / 0.6);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.5 0.1 285 / 0.8);
+}
+
+/* ── Smooth focus ring ──────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #8B5CF6;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planet-card-shine,
+  .fc-flip-in,
+  .fc-flip-out,
+  .quiz-q-enter,
+  .animate-xp-burst,
+  .page-content { animation: none !important; }
+}

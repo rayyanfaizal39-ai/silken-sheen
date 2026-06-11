@@ -9,56 +9,296 @@ import {
   GraduationCap,
   Languages,
   Target,
+  ArrowRight,
 } from "lucide-react";
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
 
+// ─── Subject identity system ─────────────────────────────────────────────────
+// Each subject has a fully unique visual identity: palette, art, atmosphere.
 const subjectPlanetStyles = {
   science: {
     name: "Science",
     label: "Sains",
-    color: "#3B82F6",
-    glow: "rgba(59, 130, 246, 0.52)",
+    color: "#38BDF8",
+    glow: "rgba(56,189,248,0.55)",
     icon: FlaskConical,
+    gradient: "from-sky-900 via-blue-900 to-teal-950",
+    artClass: "planet-art-science",
+    accentFrom: "#38BDF8",
+    accentTo: "#0EA5E9",
+    ring: "rgba(56,189,248,0.25)",
+    tagline: "Explore the universe of life & matter",
+    chapters: 9,
   },
   sejarah: {
     name: "Sejarah",
     label: "Sejarah",
-    color: "#F97316",
-    glow: "rgba(249, 115, 22, 0.5)",
+    color: "#FB923C",
+    glow: "rgba(251,146,60,0.55)",
     icon: GraduationCap,
+    gradient: "from-orange-950 via-amber-900 to-red-950",
+    artClass: "planet-art-sejarah",
+    accentFrom: "#FB923C",
+    accentTo: "#F97316",
+    ring: "rgba(251,146,60,0.25)",
+    tagline: "Journey through Malaysia's rich past",
+    chapters: 8,
   },
   geography: {
     name: "Geography",
     label: "Geografi",
-    color: "#10B981",
-    glow: "rgba(16, 185, 129, 0.48)",
+    color: "#34D399",
+    glow: "rgba(52,211,153,0.55)",
     icon: Compass,
+    gradient: "from-emerald-950 via-teal-900 to-cyan-950",
+    artClass: "planet-art-geo",
+    accentFrom: "#34D399",
+    accentTo: "#10B981",
+    ring: "rgba(52,211,153,0.25)",
+    tagline: "Discover landscapes and peoples of Earth",
+    chapters: 13,
   },
   english: {
     name: "English",
     label: "English",
-    color: "#A855F7",
-    glow: "rgba(168, 85, 247, 0.5)",
+    color: "#C084FC",
+    glow: "rgba(192,132,252,0.55)",
     icon: Languages,
+    gradient: "from-violet-950 via-purple-900 to-indigo-950",
+    artClass: "planet-art-english",
+    accentFrom: "#C084FC",
+    accentTo: "#A855F7",
+    ring: "rgba(192,132,252,0.25)",
+    tagline: "Master the language of the world",
+    chapters: 4,
   },
   math: {
     name: "Mathematics",
     label: "Matematik",
-    color: "#F59E0B",
-    glow: "rgba(245, 158, 11, 0.48)",
+    color: "#FBBF24",
+    glow: "rgba(251,191,36,0.55)",
     icon: Target,
+    gradient: "from-amber-950 via-yellow-900 to-orange-950",
+    artClass: "planet-art-math",
+    accentFrom: "#FBBF24",
+    accentTo: "#F59E0B",
+    ring: "rgba(251,191,36,0.25)",
+    tagline: "Solve problems with precision & logic",
+    chapters: 13,
   },
   bm: {
     name: "Bahasa Melayu",
     label: "BM",
-    color: "#EC4899",
-    glow: "rgba(236, 72, 153, 0.5)",
+    color: "#F472B6",
+    glow: "rgba(244,114,182,0.55)",
     icon: BookOpen,
+    gradient: "from-rose-950 via-pink-900 to-fuchsia-950",
+    artClass: "planet-art-bm",
+    accentFrom: "#F472B6",
+    accentTo: "#EC4899",
+    ring: "rgba(244,114,182,0.25)",
+    tagline: "Kuasai bahasa dan kesusasteraan Melayu",
+    chapters: 1,
   },
 } as const;
 
 export type SubjectPlanetId = keyof typeof subjectPlanetStyles;
 
+// ─── Planet card inner content ────────────────────────────────────────────────
+function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; planet: typeof subjectPlanetStyles[SubjectPlanetId] }) {
+  const Icon = planet.icon;
+  return (
+    <div className={`relative h-[130px] w-full overflow-hidden rounded-2xl bg-gradient-to-br ${planet.gradient}`}>
+      {/* Ambient orb glow */}
+      <div
+        className="absolute inset-0 opacity-40"
+        style={{
+          background: `radial-gradient(circle at 70% 35%, ${planet.accentFrom}50, transparent 65%)`,
+        }}
+      />
+      {/* Subject art pattern */}
+      <div className={`planet-art ${planet.artClass} absolute inset-0 opacity-30`} />
+      {/* Star field */}
+      <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px),radial-gradient(circle,rgba(255,255,255,0.6)_1px,transparent_1px)] [background-position:0_0,22px_18px] [background-size:38px_38px,58px_58px]" />
+      {/* Main icon — large and centered */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 shadow-2xl transition-transform duration-300 group-hover:scale-110"
+          style={{
+            background: `linear-gradient(135deg, ${planet.accentFrom}44, rgba(255,255,255,0.06))`,
+            boxShadow: `0 0 40px ${planet.glow}, 0 0 0 1px rgba(255,255,255,0.12)`,
+          }}
+        >
+          <Icon
+            className="h-8 w-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+            style={{ color: planet.color }}
+          />
+          {/* Icon inner glow */}
+          <div
+            className="absolute inset-0 rounded-2xl opacity-30"
+            style={{ background: `radial-gradient(circle at 35% 35%, ${planet.accentFrom}, transparent 60%)` }}
+          />
+        </div>
+      </div>
+      {/* Atmospheric ring */}
+      <div
+        className="absolute inset-[-4px] rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ boxShadow: `inset 0 0 0 1px ${planet.ring}` }}
+      />
+      {/* Shine sweep */}
+      <div className="planet-card-shine absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+    </div>
+  );
+}
+
+// ─── SubjectPlanetLink (used on Home, Subjects pages) ────────────────────────
+export function SubjectPlanetLink({
+  subjectId,
+  to = "/notes",
+}: {
+  subjectId: SubjectPlanetId;
+  to?: "/notes" | "/flashcards" | "/quizzes";
+}) {
+  const planet = subjectPlanetStyles[subjectId];
+  return (
+    <Link
+      to={to}
+      search={{ subject: subjectId, form: 1 }}
+      className="group relative block overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+      style={{
+        boxShadow: `0 0 0 0 ${planet.glow}`,
+        transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px -15px ${planet.glow}`;
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0 transparent";
+      }}
+    >
+      {/* Planet art header */}
+      <div className="p-3 pb-0">
+        <PlanetCardArt subjectId={subjectId} planet={planet} />
+      </div>
+
+      {/* Info section */}
+      <div className="p-4 pt-3">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <h3 className="font-display text-lg font-bold leading-tight text-white">{planet.name}</h3>
+            <p className="mt-0.5 text-xs font-medium text-white/45">{planet.tagline}</p>
+          </div>
+          <div
+            className="shrink-0 rounded-xl px-2 py-1 text-center"
+            style={{ background: `${planet.accentFrom}18` }}
+          >
+            <span className="block text-sm font-bold" style={{ color: planet.color }}>{planet.chapters}</span>
+            <span className="block text-[9px] font-bold uppercase tracking-wide text-white/40">Ch</span>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-all duration-200 group-hover:scale-[1.02]"
+          style={{
+            background: `linear-gradient(135deg, ${planet.accentFrom}, ${planet.accentTo})`,
+            boxShadow: `0 4px 20px -4px ${planet.glow}`,
+          }}
+        >
+          Start Learning
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+// ─── SubjectPlanetButton (used in ChapterPicker/picker modals) ───────────────
+export function SubjectPlanetButton({
+  subjectId,
+  title,
+  subtitle,
+  counts,
+  ctaLabel,
+  emphasis = "default",
+  onClick,
+}: {
+  subjectId: string;
+  title?: string;
+  subtitle?: string;
+  counts?: { chapters: number; flashcards: number; quizzes: number };
+  ctaLabel?: string;
+  emphasis?: "default" | "learning";
+  onClick: () => void;
+}) {
+  const planet = subjectPlanetStyles[subjectId as SubjectPlanetId] ?? subjectPlanetStyles.science;
+  const pid = subjectId as SubjectPlanetId;
+  const contentTotal = (counts?.flashcards ?? 0) + (counts?.quizzes ?? 0);
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group relative w-full overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px -15px ${planet.glow}`;
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = "none";
+      }}
+    >
+      {/* Planet art header */}
+      <div className="p-3 pb-0">
+        <PlanetCardArt subjectId={pid} planet={planet} />
+      </div>
+
+      {/* Info section */}
+      <div className="p-4 pt-3">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <h3 className="font-display text-lg font-bold leading-tight text-white">
+              {title ?? planet.name}
+            </h3>
+            <p className="mt-0.5 text-xs text-white/45">{subtitle ?? planet.label}</p>
+          </div>
+        </div>
+
+        {counts && (
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {[
+              ["Chapters", counts.chapters],
+              ["Cards & Qs", contentTotal],
+            ].map(([label, value]) => (
+              <div
+                key={label as string}
+                className="rounded-xl border border-white/[0.06] px-3 py-2"
+                style={{ background: `${planet.accentFrom}10` }}
+              >
+                <span className="block text-base font-bold" style={{ color: planet.color }}>{value}</span>
+                <span className="block text-[10px] font-semibold uppercase tracking-wide text-white/40">{label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {ctaLabel && (
+          <div
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-transform group-hover:scale-[1.02]"
+            style={{
+              background: `linear-gradient(135deg, ${planet.accentFrom}, ${planet.accentTo})`,
+              boxShadow: `0 4px 20px -4px ${planet.glow}`,
+            }}
+          >
+            {ctaLabel}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </div>
+        )}
+      </div>
+    </button>
+  );
+}
+
+// ─── Page shell ───────────────────────────────────────────────────────────────
 export function AcademyPageShell({
   children,
   className = "max-w-7xl",
@@ -74,6 +314,7 @@ export function AcademyPageShell({
   );
 }
 
+// ─── Hero block ───────────────────────────────────────────────────────────────
 export function AcademyHero({
   eyebrow,
   title,
@@ -115,12 +356,8 @@ export function AcademyHero({
               key={stat.label}
               className="rounded-3xl border border-white/[0.08] bg-[#101827]/78 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.24)]"
             >
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                {stat.label}
-              </p>
-              <p className={`mt-1 font-display text-3xl font-bold ${stat.tone ?? "text-white"}`}>
-                {stat.value}
-              </p>
+              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">{stat.label}</p>
+              <p className={`mt-1 font-display text-3xl font-bold ${stat.tone ?? "text-white"}`}>{stat.value}</p>
             </div>
           ))}
         </div>
@@ -144,6 +381,7 @@ function LearningHeroIllustration() {
   );
 }
 
+// ─── Panel + Section header ───────────────────────────────────────────────────
 export function AcademyPanel({
   children,
   className = "",
@@ -152,9 +390,7 @@ export function AcademyPanel({
   className?: string;
 }) {
   return (
-    <div
-      className={`rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-6 ${className}`}
-    >
+    <div className={`rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-6 ${className}`}>
       {children}
     </div>
   );
@@ -182,149 +418,7 @@ export function AcademySectionHeader({
   );
 }
 
-export function SubjectPlanetButton({
-  subjectId,
-  title,
-  subtitle,
-  counts,
-  ctaLabel,
-  emphasis = "default",
-  onClick,
-}: {
-  subjectId: string;
-  title?: string;
-  subtitle?: string;
-  counts?: { chapters: number; flashcards: number; quizzes: number };
-  ctaLabel?: string;
-  emphasis?: "default" | "learning";
-  onClick: () => void;
-}) {
-  const planet = subjectPlanetStyles[subjectId as SubjectPlanetId] ?? subjectPlanetStyles.science;
-  const Icon = planet.icon;
-  const contentTotal = (counts?.flashcards ?? 0) + (counts?.quizzes ?? 0);
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="group relative min-h-[245px] overflow-hidden rounded-3xl border border-white/[0.08] bg-[#101827]/72 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:bg-[#101827]/92 hover:shadow-[0_22px_70px_rgba(99,102,241,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
-    >
-      <div
-        className="absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-2xl transition-opacity group-hover:opacity-45"
-        style={{ background: planet.color }}
-      />
-      <span
-        className="absolute right-5 top-5 h-28 w-12 rotate-[-58deg] rounded-full border border-white/20"
-        style={{ boxShadow: `0 0 34px ${planet.glow}` }}
-      />
-      <div
-        className="relative flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105"
-        style={{
-          background: `linear-gradient(135deg, ${planet.color}33, rgba(255,255,255,0.08))`,
-          color: planet.color,
-          boxShadow: `0 0 32px ${planet.glow}`,
-        }}
-      >
-        <Icon className="relative z-10 h-9 w-9 drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]" />
-      </div>
-      <p className="relative mt-5 font-display text-2xl font-bold leading-tight">
-        {title ?? planet.name}
-      </p>
-      <p className="relative mt-1 text-sm font-semibold text-[#94A3B8]">
-        {subtitle ?? planet.label}
-      </p>
-      {counts && (
-        <div className="relative mt-5 grid grid-cols-2 gap-2">
-          {[
-            ["Chapters", counts.chapters],
-            ["Cards / Questions", contentTotal],
-          ].map(([label, value]) => (
-            <span
-              key={label}
-              className="rounded-2xl border border-white/[0.07] bg-white/[0.05] px-3 py-2"
-            >
-              <span className="block text-lg font-bold text-white">{value}</span>
-              <span className="block text-[10px] font-semibold uppercase tracking-wide text-[#94A3B8]">
-                {label}
-              </span>
-            </span>
-          ))}
-        </div>
-      )}
-      {ctaLabel && (
-        <span className="mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-4 py-3 text-sm font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.30)] transition-transform group-hover:scale-[1.02]">
-          {ctaLabel}
-        </span>
-      )}
-    </button>
-  );
-}
-
-export function SubjectPlanetLink({
-  subjectId,
-  to = "/notes",
-}: {
-  subjectId: SubjectPlanetId;
-  to?: "/notes" | "/flashcards" | "/quizzes";
-}) {
-  const planet = subjectPlanetStyles[subjectId];
-  const Icon = planet.icon;
-  const chapterCount =
-    subjectId === "math" || subjectId === "geography"
-      ? 13
-      : subjectId === "science"
-        ? 9
-        : subjectId === "sejarah"
-          ? 8
-          : subjectId === "english"
-            ? 4
-            : 1;
-  return (
-    <Link
-      to={to}
-      search={{ subject: subjectId, form: 1 }}
-      className="group relative block min-h-[245px] overflow-hidden rounded-3xl border border-white/[0.08] bg-[#101827]/72 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:bg-[#101827]/92 hover:shadow-[0_22px_70px_rgba(99,102,241,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
-    >
-      <div
-        className="absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-2xl transition-opacity group-hover:opacity-45"
-        style={{ background: planet.color }}
-      />
-      <span
-        className="absolute right-5 top-5 h-28 w-12 rotate-[-58deg] rounded-full border border-white/20"
-        style={{ boxShadow: `0 0 34px ${planet.glow}` }}
-      />
-      <div
-        className="relative flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105"
-        style={{
-          background: `linear-gradient(135deg, ${planet.color}33, rgba(255,255,255,0.08))`,
-          color: planet.color,
-          boxShadow: `0 0 32px ${planet.glow}`,
-        }}
-      >
-        <Icon className="h-9 w-9 drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]" />
-      </div>
-      <p className="relative mt-5 font-display text-2xl font-bold leading-tight">{planet.name}</p>
-      <p className="relative mt-1 text-sm font-semibold text-[#94A3B8]">{planet.label}</p>
-      <div className="relative mt-5 grid grid-cols-2 gap-2">
-        <span className="rounded-2xl border border-white/[0.07] bg-white/[0.05] px-3 py-2">
-          <span className="block text-lg font-bold text-white">{chapterCount}</span>
-          <span className="block text-[10px] font-semibold uppercase tracking-wide text-[#94A3B8]">
-            Chapters
-          </span>
-        </span>
-        <span className="rounded-2xl border border-white/[0.07] bg-white/[0.05] px-3 py-2">
-          <span className="block text-lg font-bold text-white">Ready</span>
-          <span className="block text-[10px] font-semibold uppercase tracking-wide text-[#94A3B8]">
-            Content
-          </span>
-        </span>
-      </div>
-      <span className="relative mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-4 py-3 text-sm font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.30)] transition-transform group-hover:scale-[1.02]">
-        Start Learning
-      </span>
-    </Link>
-  );
-}
-
+// ─── Mini metric ──────────────────────────────────────────────────────────────
 export function MiniMetric({
   label,
   value,
@@ -345,6 +439,7 @@ export function MiniMetric({
   );
 }
 
+// ─── Backdrop ─────────────────────────────────────────────────────────────────
 function AcademyBackdrop() {
   return (
     <>

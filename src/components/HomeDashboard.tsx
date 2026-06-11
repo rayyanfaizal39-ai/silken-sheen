@@ -119,100 +119,115 @@ export function HomeDashboard() {
         <div className="min-w-0 space-y-6">
 
           {/* ── HERO ─────────────────────────────────────────────── */}
-          <section className="relative isolate -mx-4 -mt-6 min-h-[520px] overflow-hidden px-4 pb-12 pt-10 sm:-mx-6 sm:px-6 md:min-h-[600px] md:pb-16 md:pt-14 lg:-mx-8 lg:px-8">
+          <section className="hero-section relative isolate -mx-4 -mt-6 min-h-[560px] overflow-hidden px-4 pb-14 pt-12 sm:-mx-6 sm:px-6 md:min-h-[660px] md:pb-18 md:pt-16 lg:-mx-8 lg:px-8">
             <AstronautScene />
 
-            {/* Atmospheric nebula */}
+            {/* Deeper atmospheric nebula — denser for drama */}
             <div className="pointer-events-none absolute inset-0" aria-hidden>
-              <div className="absolute -left-[10%] top-[8%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.40),transparent_65%)] blur-3xl" />
-              <div className="absolute left-[22%] top-[45%] h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.32),transparent_65%)] blur-3xl" />
-              <div className="absolute right-[4%] top-[2%] h-[580px] w-[580px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.36),transparent_65%)] blur-3xl" />
-              <div className="absolute right-[18%] bottom-[-10%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(244,114,182,0.20),transparent_70%)] blur-3xl" />
+              <div className="absolute -left-[15%] top-[5%] h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.48),transparent_60%)] blur-3xl" />
+              <div className="absolute left-[15%] top-[40%] h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.38),transparent_62%)] blur-3xl" />
+              <div className="absolute right-[2%] top-[0%] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.38),transparent_62%)] blur-3xl" />
+              <div className="absolute right-[20%] bottom-[-8%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(244,114,182,0.22),transparent_68%)] blur-3xl" />
+              {/* Gold accent near headline */}
+              <div className="absolute left-[8%] top-[20%] h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.10),transparent_70%)] blur-2xl" />
             </div>
 
-            {/* Legibility scrim */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_50%,rgba(7,10,24,0.78)_0%,rgba(7,10,24,0.40)_42%,transparent_72%)]" aria-hidden />
+            {/* Left-side legibility scrim — stronger gradient for clear text */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,rgba(5,8,22,0.88)_0%,rgba(5,8,22,0.72)_38%,rgba(5,8,22,0.28)_62%,transparent_80%)]" aria-hidden />
+            {/* Bottom scrim */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050816] to-transparent" aria-hidden />
 
-            {/* Glowing dust particles */}
+            {/* Glowing star particles — more varied */}
             <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
-              <span className="absolute left-[30%] top-[28%] h-1.5 w-1.5 rounded-full bg-white/80 shadow-[0_0_18px_4px_rgba(167,139,250,0.9)] animate-pulse" />
-              <span className="absolute left-[45%] top-[58%] h-1 w-1 rounded-full bg-white/70 shadow-[0_0_14px_3px_rgba(99,102,241,0.9)] animate-pulse [animation-delay:600ms]" />
-              <span className="absolute left-[55%] top-[38%] h-1 w-1 rounded-full bg-white/60 shadow-[0_0_12px_3px_rgba(244,114,182,0.7)] animate-pulse [animation-delay:1200ms]" />
-              <span className="absolute left-[38%] top-[72%] h-1 w-1 rounded-full bg-white/50 shadow-[0_0_10px_2px_rgba(59,130,246,0.8)] animate-pulse [animation-delay:1800ms]" />
-              <span className="absolute left-[62%] top-[22%] h-[3px] w-[3px] rounded-full bg-white/80 shadow-[0_0_16px_4px_rgba(255,255,255,0.6)] animate-pulse [animation-delay:900ms]" />
+              <span className="absolute left-[28%] top-[24%] h-2 w-2 rounded-full bg-white/90 shadow-[0_0_22px_6px_rgba(167,139,250,0.95)] animate-pulse" />
+              <span className="absolute left-[44%] top-[55%] h-1.5 w-1.5 rounded-full bg-white/80 shadow-[0_0_18px_4px_rgba(99,102,241,0.9)] animate-pulse [animation-delay:600ms]" />
+              <span className="absolute left-[53%] top-[35%] h-1 w-1 rounded-full bg-white/70 shadow-[0_0_14px_4px_rgba(244,114,182,0.8)] animate-pulse [animation-delay:1200ms]" />
+              <span className="absolute left-[37%] top-[70%] h-1 w-1 rounded-full bg-white/60 shadow-[0_0_12px_3px_rgba(59,130,246,0.9)] animate-pulse [animation-delay:1800ms]" />
+              <span className="absolute left-[60%] top-[18%] h-[3px] w-[3px] rounded-full bg-white/90 shadow-[0_0_18px_5px_rgba(255,255,255,0.7)] animate-pulse [animation-delay:900ms]" />
+              <span className="absolute left-[20%] top-[68%] h-1 w-1 rounded-full bg-white/50 shadow-[0_0_10px_3px_rgba(167,139,250,0.7)] animate-pulse [animation-delay:2400ms]" />
+              <span className="absolute left-[70%] top-[50%] h-[2px] w-[2px] rounded-full bg-white/70 shadow-[0_0_12px_3px_rgba(250,204,21,0.6)] animate-pulse [animation-delay:300ms]" />
             </div>
 
             {/* Headline + CTAs */}
-            <div className="relative z-20 flex min-h-[520px] flex-col justify-center md:min-h-[600px]">
-              <div className="max-w-xl">
-                {/* Rank badge — live */}
-                <p className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.06] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/75 backdrop-blur-xl">
+            <div className="relative z-20 flex min-h-[560px] flex-col justify-center md:min-h-[660px]">
+              <div className="max-w-[560px]">
+                {/* Rank badge — live, premium style */}
+                <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.12] bg-black/30 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-2xl">
                   <span className="text-base leading-none">{rank.emoji}</span>
-                  <span style={{ color: rank.color }}>{rank.name}</span>
+                  <span className="font-black" style={{ color: rank.color }}>{rank.name}</span>
                   {progress.xp > 0 && (
-                    <span className="ml-1 rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-white/60">
-                      {progress.xp.toLocaleString()} XP
-                    </span>
+                    <>
+                      <span className="h-3 w-px bg-white/20" />
+                      <Zap className="h-3 w-3 text-yellow-400" />
+                      <span className="text-[10px] font-bold text-white/60">
+                        {progress.xp.toLocaleString()} XP
+                      </span>
+                    </>
                   )}
-                </p>
+                </div>
 
-                <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-white drop-shadow-[0_0_40px_rgba(99,102,241,0.45)] sm:text-6xl xl:text-7xl">
-                  <span className="block">Work Smarter.</span>
-                  <span className="mt-2 block bg-gradient-to-r from-[#818CF8] via-[#A78BFA] to-[#F472B6] bg-clip-text text-transparent">
-                    Achieve More.
+                {/* Main headline — blended with astronaut atmosphere */}
+                <h1 className="font-display font-extrabold leading-[0.92] tracking-tight text-white [text-shadow:0_0_60px_rgba(99,102,241,0.5),0_0_120px_rgba(139,92,246,0.3)]" style={{ fontSize: "clamp(2.75rem,6vw,4.5rem)" }}>
+                  <span className="block">Learn Smarter.</span>
+                  <span className="mt-2 block bg-gradient-to-r from-[#818CF8] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent [filter:drop-shadow(0_0_30px_rgba(167,139,250,0.5))]">
+                    Reach Further.
+                  </span>
+                  <span className="mt-1 block text-white/90">
+                    Rise <span className="bg-gradient-to-r from-[#FBBF24] to-[#F97316] bg-clip-text text-transparent">Higher.</span>
                   </span>
                 </h1>
-                <p className="mt-6 max-w-md text-base leading-7 text-white/70">
-                  AcadeMy helps Malaysian students master KSSM subjects with smart notes, mind
-                  maps, quizzes, videos and AI-powered learning.
+                <p className="mt-5 max-w-md text-sm leading-7 text-white/60">
+                  The ultimate KSSM Form 1 platform. Master Science, Math, Sejarah, Geography and
+                  more — with notes, flashcards, quizzes, mind maps and AI tutoring.
                 </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <Link
                     to="/notes"
-                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-4 text-sm font-bold text-white shadow-[0_20px_50px_-10px_rgba(99,102,241,0.6)] transition-transform hover:scale-[1.03]"
+                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-4 text-sm font-bold text-white shadow-[0_20px_50px_-10px_rgba(99,102,241,0.65)] transition-all hover:scale-[1.03] hover:shadow-[0_24px_60px_-10px_rgba(99,102,241,0.75)]"
                   >
                     Start Learning
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <Link
                     to="/dashboard"
-                    className="inline-flex items-center justify-center rounded-2xl border border-white/[0.12] bg-white/[0.05] px-7 py-4 text-sm font-bold text-white backdrop-blur-md transition-colors hover:bg-white/[0.10]"
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.06] px-7 py-4 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.10] hover:border-white/[0.22]"
                   >
+                    <TrendingUp className="h-4 w-4" />
                     My Progress
                   </Link>
                 </div>
               </div>
             </div>
 
-            {/* Live streak chip */}
+            {/* Live streak chip — top right float */}
             {progress.streak > 0 && (
-              <div className="pointer-events-none absolute right-4 top-10 z-30 hidden items-center gap-3 rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 shadow-2xl backdrop-blur-2xl md:right-8 md:top-12 md:flex">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/20">
+              <div className="pointer-events-none absolute right-5 top-8 z-30 hidden items-center gap-2.5 rounded-2xl border border-orange-500/25 bg-orange-950/60 p-2.5 shadow-[0_4px_30px_rgba(249,115,22,0.25)] backdrop-blur-2xl md:right-10 md:top-10 md:flex">
+                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-500/25">
                   <Flame className="h-4 w-4 text-orange-400" />
                 </div>
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/45">Daily Streak</p>
-                  <p className="text-sm font-extrabold text-white">{progress.streak} {progress.streak === 1 ? "Day" : "Days"}</p>
+                  <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-orange-300/60">Streak</p>
+                  <p className="text-sm font-extrabold text-white">{progress.streak}d 🔥</p>
                 </div>
               </div>
             )}
 
-            {/* Live rank progress chip */}
+            {/* Live rank progress chip — bottom right float */}
             {nextRank && (
-              <div className="pointer-events-none absolute bottom-14 right-6 z-30 hidden rounded-2xl border border-white/[0.10] bg-white/[0.06] p-3 shadow-2xl backdrop-blur-2xl md:bottom-20 md:right-12 md:block">
+              <div className="pointer-events-none absolute bottom-16 right-5 z-30 hidden rounded-2xl border border-white/[0.09] bg-black/50 p-3 shadow-2xl backdrop-blur-2xl md:bottom-20 md:right-10 md:block">
                 <div className="mb-2 flex items-center gap-2">
-                  <span className="text-sm">{rank.emoji}</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: rank.color }}>
-                    {rank.name}
-                  </span>
+                  <span className="text-sm leading-none">{rank.emoji}</span>
+                  <span className="text-[10px] font-bold" style={{ color: rank.color }}>{rank.name}</span>
+                  <span className="text-white/25">→</span>
+                  <span className="text-[10px] text-white/40">{nextRank.emoji} {nextRank.name}</span>
                 </div>
-                <div className="h-1.5 w-32 overflow-hidden rounded-full bg-white/[0.10]">
+                <div className="h-1.5 w-36 overflow-hidden rounded-full bg-white/[0.08]">
                   <div
                     className="h-full rounded-full transition-all duration-700"
                     style={{ width: `${rankPct}%`, background: `linear-gradient(90deg, ${rank.color}, ${nextRank.color})` }}
                   />
                 </div>
-                <p className="mt-1 text-[9px] text-white/40">{rankPct}% → {nextRank.emoji} {nextRank.name}</p>
+                <p className="mt-1.5 text-[9px] text-white/35">{rankPct}% to next rank</p>
               </div>
             )}
           </section>
@@ -221,14 +236,19 @@ export function HomeDashboard() {
           <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
             <div className="mb-5 flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Choose Subject</p>
-                <h2 className="font-display text-2xl font-bold">Learning Worlds</h2>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#6366F1]">Choose Your World</p>
+                <h2 className="font-display text-2xl font-bold text-white">
+                  Learning Worlds
+                  <span className="ml-2 inline-block rounded-lg bg-[#6366F1]/20 px-2 py-0.5 text-sm font-bold text-[#818CF8]">
+                    6
+                  </span>
+                </h2>
               </div>
               <Link
                 to="/subjects"
-                className="hidden rounded-2xl border border-white/[0.08] px-4 py-2 text-sm font-bold text-[#94A3B8] transition-colors hover:text-white sm:inline-flex"
+                className="hidden items-center gap-1.5 rounded-2xl border border-white/[0.08] px-4 py-2 text-sm font-bold text-[#94A3B8] transition-all hover:border-white/[0.15] hover:text-white sm:inline-flex"
               >
-                View All
+                View All <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

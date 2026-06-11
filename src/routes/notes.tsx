@@ -342,7 +342,7 @@ function NotesPage() {
               title={activeChapter.mindMap.title}
             />
           )}
-          {activeChapter?.notes && <NotesBlock id="notes" notes={activeChapter.notes} />}
+          {activeChapter?.notes && <NotesBlock id="notes" notes={activeChapter.notes} subjectId={subject ?? undefined} />}
 
           {filtered.length === 0 ? (
             !activeChapter?.notes &&
@@ -356,7 +356,7 @@ function NotesPage() {
             )
           ) : (
             <>
-              {!activeChapter?.notes && <NotesBlock id="notes" sections={legacyNoteSections} />}
+              {!activeChapter?.notes && <NotesBlock id="notes" sections={legacyNoteSections} subjectId={subject ?? undefined} />}
 
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button
@@ -444,7 +444,7 @@ function SubtopicView({
         />
       )}
 
-      <NotesBlock id="notes" sections={subtopicSections} />
+      <NotesBlock id="notes" sections={subtopicSections} subjectId={subjectId} />
 
       <div className="mt-10 flex justify-center">
         <button

@@ -1,9 +1,23 @@
 import { subjects, getSubjectChapters, flashcards, quizzes } from "@/data/content";
-import { Lock, ArrowLeft, Sparkles, Clock, Gauge, NotebookPen, Brain, Layers } from "lucide-react";
+import { Lock, ArrowLeft, Sparkles, Clock, Gauge, NotebookPen, Brain, Layers, CheckCircle2, BookOpen } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import { getChapter } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
+
+// Subject accent colors — must stay in sync with AcademyPage subjectPlanetStyles
+const SUBJECT_COLORS: Record<string, { color: string; glow: string; from: string; to: string }> = {
+  science:   { color: "#38BDF8", glow: "rgba(56,189,248,0.35)",   from: "#38BDF8", to: "#0EA5E9" },
+  sejarah:   { color: "#FB923C", glow: "rgba(251,146,60,0.35)",   from: "#FB923C", to: "#F97316" },
+  geography: { color: "#34D399", glow: "rgba(52,211,153,0.35)",   from: "#34D399", to: "#10B981" },
+  english:   { color: "#C084FC", glow: "rgba(192,132,252,0.35)",  from: "#C084FC", to: "#A855F7" },
+  math:      { color: "#FBBF24", glow: "rgba(251,191,36,0.35)",   from: "#FBBF24", to: "#F59E0B" },
+  bm:        { color: "#F472B6", glow: "rgba(244,114,182,0.35)",  from: "#F472B6", to: "#EC4899" },
+};
+
+function getSubjectAccent(subjectId: string) {
+  return SUBJECT_COLORS[subjectId] ?? SUBJECT_COLORS.science;
+}
 
 function chapterCountFor(subjectId: string) {
   if (subjectId === "science" || subjectId === "math") {
@@ -55,13 +69,7 @@ export function SubjectGrid({
             : "Pick a subject and continue your learning path."
         }
       />
-      <div
-        className={
-          mode === "flashcards"
-            ? "grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
-            : "grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
-        }
-      >
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {orderedSubjects.map((s, i) => (
           <div key={s.id} className="animate-slide-up" style={{ animationDelay: `${i * 60}ms` }}>
             <SubjectPlanetButton
@@ -94,20 +102,23 @@ export function ChapterGrid({
   const subj = subjects.find((s) => s.id === subjectId);
   const chapters = getSubjectChapters(subjectId, scienceLang);
   const { progress } = useProgress();
+  const accent = getSubjectAccent(subjectId);
 
   return (
     <AcademyPanel>
-      <div className="flex items-center justify-between mb-5">
+      {/* Back header with subject accent */}
+      <div className="mb-6 flex items-center justify-between">
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/70 transition-all hover:-translate-x-0.5 hover:bg-white/[0.10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
         >
-          <ArrowLeft className="w-4 h-4" /> All subjects
+          <ArrowLeft className="h-4 w-4" /> All subjects
         </button>
-        <span className="text-sm font-semibold text-muted-foreground">
-          {subj?.emoji} {subj?.name}
-        </span>
+        <div className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+          <span className="text-sm">{subj?.emoji}</span>
+          <span className="text-sm font-bold" style={{ color: accent.color }}>{subj?.name}</span>
+        </div>
       </div>
 
       <AcademySectionHeader
@@ -117,11 +128,11 @@ export function ChapterGrid({
       />
 
       {chapters.length === 0 ? (
-        <div className="text-center py-20 glass rounded-[2rem]">
+        <div className="rounded-[2rem] border border-white/[0.06] bg-white/[0.02] py-20 text-center">
           <p className="text-muted-foreground">No chapters available yet for this subject.</p>
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {chapters.map((c, i) => {
             const pct = chapterProgressPct(
               progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
@@ -136,80 +147,147 @@ export function ChapterGrid({
               Math.round(notesCount * 2 + (chapterContent?.notes?.quickRevision?.length ?? 0)),
             );
             const diff = difficultyFor(i);
-            const status = pct >= 100 ? "Complete" : pct > 0 ? "In progress" : "Not started";
+            const isComplete = pct >= 100;
+            const isStarted = pct > 0;
+            const status = isComplete ? "Complete" : isStarted ? "In progress" : "Not started";
+
             return (
               <button
                 type="button"
                 key={c.key}
                 onClick={() => onSelect(c.key, c.available)}
-                className={`chapter-card relative text-left border border-white/[0.08] bg-[#101827]/72 rounded-3xl p-5 animate-slide-up overflow-hidden transition-all backdrop-blur-2xl ${
+                className={`chapter-card group relative overflow-hidden rounded-3xl border bg-[#0D1525]/80 p-0 text-left transition-all duration-300 animate-slide-up backdrop-blur-2xl ${
                   c.available
-                    ? "hover:-translate-y-1 hover:border-[#6366F1]/45 hover:shadow-[0_20px_60px_rgba(99,102,241,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
-                    : "opacity-70 hover:bg-white/[0.05]"
+                    ? "border-white/[0.08] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+                    : "border-white/[0.05] opacity-60"
                 }`}
-                style={{ animationDelay: `${i * 60}ms` }}
+                style={{
+                  animationDelay: `${i * 55}ms`,
+                  ...(c.available ? {} : {}),
+                }}
+                onMouseEnter={(e) => {
+                  if (c.available) {
+                    (e.currentTarget as HTMLElement).style.borderColor = `${accent.color}45`;
+                    (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px -20px ${accent.glow}`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "";
+                }}
               >
-                {c.isNew && c.available && (
-                  <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-nova-yellow to-orange-400 text-nova-navy shadow-lg animate-pulse">
-                    <Sparkles className="w-3 h-3" /> NEW
-                  </span>
-                )}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                    <span className="chapter-card-num">{String(i + 1).padStart(2, "0")}</span>
-                    {subj?.name}
-                  </span>
-                  {!c.available && <Lock className="w-4 h-4 text-muted-foreground" />}
+                {/* Subject-colored top accent bar */}
+                <div
+                  className="h-1 w-full rounded-t-[inherit]"
+                  style={{
+                    background: c.available
+                      ? `linear-gradient(90deg, ${accent.from}, ${accent.to})`
+                      : "rgba(255,255,255,0.06)",
+                    opacity: isComplete ? 1 : isStarted ? 0.7 : 0.3,
+                  }}
+                />
+
+                {/* Card content */}
+                <div className="p-4">
+                  {/* Header row */}
+                  <div className="mb-3 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {/* Chapter number pill */}
+                      <span
+                        className="inline-flex h-7 min-w-[1.75rem] items-center justify-center rounded-lg px-1.5 text-[11px] font-black"
+                        style={{
+                          background: `${accent.from}22`,
+                          color: accent.color,
+                          boxShadow: isComplete ? `0 0 10px ${accent.glow}` : "none",
+                        }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-[11px] font-bold uppercase tracking-wide text-white/35">
+                        {subj?.name}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      {c.isNew && c.available && (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-nova-yellow to-orange-400 px-2 py-0.5 text-[9px] font-bold text-black">
+                          <Sparkles className="h-2.5 w-2.5" /> NEW
+                        </span>
+                      )}
+                      {isComplete && (
+                        <CheckCircle2 className="h-4 w-4" style={{ color: accent.color }} />
+                      )}
+                      {!c.available && <Lock className="h-4 w-4 text-white/30" />}
+                    </div>
+                  </div>
+
+                  {/* Chapter label */}
+                  <h3 className="font-display text-base font-bold leading-snug text-white">
+                    {c.label}
+                  </h3>
+
+                  {/* Feature chips */}
+                  {c.available && (
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      <span className="chapter-chip">
+                        <Clock className="h-3 w-3" /> {readMins} min
+                      </span>
+                      <span className={`chapter-chip border ${diff.tone}`}>
+                        <Gauge className="h-3 w-3" /> {diff.label}
+                      </span>
+                      {notesCount > 0 && (
+                        <span className="chapter-chip">
+                          <NotebookPen className="h-3 w-3" /> {notesCount}
+                        </span>
+                      )}
+                      {cardCount > 0 && (
+                        <span className="chapter-chip">
+                          <Layers className="h-3 w-3" /> {cardCount}
+                        </span>
+                      )}
+                      {quizCount > 0 && (
+                        <span className="chapter-chip">
+                          <Brain className="h-3 w-3" /> {quizCount}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  {!c.available && (
+                    <p className="mt-2 text-xs font-semibold text-amber-400/80">Coming Soon</p>
+                  )}
+
+                  {/* Progress bar */}
+                  {c.available && (
+                    <div className="mt-3.5">
+                      <div className="mb-1.5 flex justify-between text-[10px] font-semibold">
+                        <span
+                          className="font-bold uppercase tracking-wide"
+                          style={{
+                            color: isComplete
+                              ? accent.color
+                              : isStarted
+                              ? "rgba(255,255,255,0.55)"
+                              : "rgba(255,255,255,0.3)",
+                          }}
+                        >
+                          {status}
+                        </span>
+                        <span style={{ color: pct > 0 ? accent.color : "rgba(255,255,255,0.3)" }}>
+                          {pct}%
+                        </span>
+                      </div>
+                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.08]">
+                        <div
+                          className="h-full rounded-full transition-all duration-700"
+                          style={{
+                            width: `${pct}%`,
+                            background: `linear-gradient(90deg, ${accent.from}, ${accent.to})`,
+                            boxShadow: pct > 0 ? `0 0 8px ${accent.glow}` : "none",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <h3 className="font-display text-lg font-bold leading-snug">{c.label}</h3>
-
-                {c.available && (
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    <span className="chapter-chip">
-                      <Clock className="w-3 h-3" /> {readMins} min
-                    </span>
-                    <span className={`chapter-chip border ${diff.tone}`}>
-                      <Gauge className="w-3 h-3" /> {diff.label}
-                    </span>
-                    {notesCount > 0 && (
-                      <span className="chapter-chip">
-                        <NotebookPen className="w-3 h-3" /> {notesCount}
-                      </span>
-                    )}
-                    {cardCount > 0 && (
-                      <span className="chapter-chip">
-                        <Layers className="w-3 h-3" /> {cardCount}
-                      </span>
-                    )}
-                    {quizCount > 0 && (
-                      <span className="chapter-chip">
-                        <Brain className="w-3 h-3" /> {quizCount}
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                {!c.available && (
-                  <p className="mt-2 text-xs font-semibold text-amber-300">Coming Soon</p>
-                )}
-
-                {c.available && (
-                  <div className="mt-4">
-                    <div className="flex justify-between text-[10px] font-semibold text-muted-foreground mb-1.5">
-                      <span>Progress</span>
-                      <span>{pct}%</span>
-                    </div>
-                    <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                    <p className="mt-2 text-[11px] font-bold uppercase tracking-wide text-[#94A3B8]">
-                      {status}
-                    </p>
-                  </div>
-                )}
               </button>
             );
           })}
@@ -232,25 +310,61 @@ export function ContentHeader({
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const accent = getSubjectAccent(subjectId);
+
   return (
     <div className="mb-5 animate-fade-up">
-      <div className="mb-5 flex items-center justify-between flex-wrap gap-3">
+      <div className="mb-4 flex items-center justify-between flex-wrap gap-3">
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/70 transition-all hover:-translate-x-0.5 hover:bg-white/[0.10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
         >
-          <ArrowLeft className="w-4 h-4" /> Back to chapters
+          <ArrowLeft className="h-4 w-4" /> Back to chapters
         </button>
-        <span className="text-sm font-semibold text-muted-foreground">
-          {subj?.emoji} {subj?.name} • {chapter?.label ?? chapterKey}
-        </span>
+        <div className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+          <span className="text-sm">{subj?.emoji}</span>
+          <span className="text-sm font-bold" style={{ color: accent.color }}>
+            {subj?.name}
+          </span>
+          <span className="text-white/30">•</span>
+          <span className="max-w-[180px] truncate text-xs text-white/55">
+            {chapter?.label ?? chapterKey}
+          </span>
+        </div>
       </div>
-      <AcademySectionHeader
-        eyebrow="Content Area"
-        title={chapter?.label ?? chapterKey}
-        description="Review the available notes, videos, maps, flashcards, and quizzes."
-      />
+
+      {/* Chapter banner */}
+      <div
+        className="mb-5 overflow-hidden rounded-2xl border border-white/[0.06] p-5"
+        style={{
+          background: `linear-gradient(135deg, ${accent.from}18, ${accent.to}08)`,
+          borderColor: `${accent.from}25`,
+        }}
+      >
+        <div className="flex items-center gap-4">
+          <div
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+            style={{
+              background: `${accent.from}25`,
+              boxShadow: `0 0 20px ${accent.glow}`,
+            }}
+          >
+            <BookOpen className="h-5 w-5" style={{ color: accent.color }} />
+          </div>
+          <div>
+            <p
+              className="text-xs font-bold uppercase tracking-widest"
+              style={{ color: accent.color }}
+            >
+              {subj?.name} • Learning Content
+            </p>
+            <h2 className="mt-0.5 font-display text-xl font-bold leading-tight text-white">
+              {chapter?.label ?? chapterKey}
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -267,17 +381,23 @@ export function ComingSoonScreen({
   scienceLang?: "bm" | "dlp";
 }) {
   const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const accent = getSubjectAccent(subjectId);
+
   return (
-    <div className="text-center py-20 glass-strong rounded-3xl animate-fade-up">
-      <div className="text-5xl mb-4 animate-float-soft">🚧</div>
-      <h2 className="font-display text-3xl font-bold">{chapter?.label ?? chapterKey}</h2>
-      <p className="mt-3 text-muted-foreground">Coming Soon</p>
+    <div className="animate-fade-up rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 py-20 text-center">
+      <div className="mb-6 text-6xl animate-float-soft">🚧</div>
+      <h2 className="font-display text-2xl font-bold text-white">{chapter?.label ?? chapterKey}</h2>
+      <p className="mt-2 text-sm text-white/50">This chapter is coming soon. Stay tuned!</p>
       <button
         type="button"
         onClick={onBack}
-        className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+        className="mt-8 inline-flex items-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+        style={{
+          background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
+          boxShadow: `0 4px 20px -4px ${accent.glow}`,
+        }}
       >
-        <ArrowLeft className="w-4 h-4" /> Back to chapters
+        <ArrowLeft className="h-4 w-4" /> Back to chapters
       </button>
     </div>
   );
