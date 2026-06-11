@@ -119,40 +119,82 @@ export function HomeDashboard() {
         <div className="min-w-0 space-y-6">
 
           {/* ── HERO ─────────────────────────────────────────────── */}
-          <section className="hero-section relative isolate -mx-4 -mt-6 min-h-[560px] overflow-hidden px-4 pb-14 pt-12 sm:-mx-6 sm:px-6 md:min-h-[660px] md:pb-18 md:pt-16 lg:-mx-8 lg:px-8">
+          <section className="hero-section relative isolate -mx-4 -mt-6 overflow-hidden px-4 pb-16 pt-12 sm:-mx-6 sm:px-6 md:pb-20 md:pt-16 lg:-mx-8 lg:min-h-[780px] lg:px-8">
+
+            {/* Astronaut scene — cinematic full-hero background */}
             <AstronautScene />
 
-            {/* Deeper atmospheric nebula — denser for drama */}
+            {/* ── Deep nebula orbs — distributed across the FULL hero ── */}
             <div className="pointer-events-none absolute inset-0" aria-hidden>
-              <div className="absolute -left-[15%] top-[5%] h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.48),transparent_60%)] blur-3xl" />
-              <div className="absolute left-[15%] top-[40%] h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.38),transparent_62%)] blur-3xl" />
-              <div className="absolute right-[2%] top-[0%] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.38),transparent_62%)] blur-3xl" />
-              <div className="absolute right-[20%] bottom-[-8%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(244,114,182,0.22),transparent_68%)] blur-3xl" />
+              {/* Far-left indigo cloud — behind text */}
+              <div className="absolute -left-[20%] top-[0%] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.48),transparent_55%)] blur-3xl" />
+              {/* Center-left violet — connects text to astronaut */}
+              <div className="absolute left-[8%] top-[30%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.32),transparent_58%)] blur-3xl" />
+              {/* Right blue cloud */}
+              <div className="absolute right-[-5%] top-[-8%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.28),transparent_58%)] blur-3xl" />
+              {/* Lower-center rose accent */}
+              <div className="absolute left-[30%] bottom-[-8%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(244,114,182,0.16),transparent_62%)] blur-3xl" />
               {/* Gold accent near headline */}
-              <div className="absolute left-[8%] top-[20%] h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.10),transparent_70%)] blur-2xl" />
+              <div className="absolute left-[3%] top-[15%] h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.11),transparent_65%)] blur-2xl" />
             </div>
 
-            {/* Left-side legibility scrim — stronger gradient for clear text */}
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,rgba(5,8,22,0.88)_0%,rgba(5,8,22,0.72)_38%,rgba(5,8,22,0.28)_62%,transparent_80%)]" aria-hidden />
-            {/* Bottom scrim */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050816] to-transparent" aria-hidden />
+            {/*
+              ── CINEMATIC SCRIM ──────────────────────────────────────
+              Replaced the old hard linear-gradient (which visually split
+              the hero in two) with a RADIAL scrim anchored behind the
+              text. This lets the astronaut's atmosphere bleed around and
+              through the text zone while still keeping text readable.
+              Think: spotlight on the text, darkness falls away naturally.
+            */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 58% 78% at 20% 50%, rgba(5,8,22,0.90) 0%, rgba(5,8,22,0.72) 30%, rgba(5,8,22,0.38) 55%, rgba(5,8,22,0.10) 72%, transparent 85%)",
+              }}
+              aria-hidden
+            />
+            {/* Bottom fade */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#050816] to-transparent" aria-hidden />
+            {/* Top vignette */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#050816]/35 to-transparent" aria-hidden />
 
-            {/* Glowing star particles — more varied */}
+            {/* ── Foreground star particles scattered across full width ── */}
             <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
-              <span className="absolute left-[28%] top-[24%] h-2 w-2 rounded-full bg-white/90 shadow-[0_0_22px_6px_rgba(167,139,250,0.95)] animate-pulse" />
-              <span className="absolute left-[44%] top-[55%] h-1.5 w-1.5 rounded-full bg-white/80 shadow-[0_0_18px_4px_rgba(99,102,241,0.9)] animate-pulse [animation-delay:600ms]" />
-              <span className="absolute left-[53%] top-[35%] h-1 w-1 rounded-full bg-white/70 shadow-[0_0_14px_4px_rgba(244,114,182,0.8)] animate-pulse [animation-delay:1200ms]" />
-              <span className="absolute left-[37%] top-[70%] h-1 w-1 rounded-full bg-white/60 shadow-[0_0_12px_3px_rgba(59,130,246,0.9)] animate-pulse [animation-delay:1800ms]" />
-              <span className="absolute left-[60%] top-[18%] h-[3px] w-[3px] rounded-full bg-white/90 shadow-[0_0_18px_5px_rgba(255,255,255,0.7)] animate-pulse [animation-delay:900ms]" />
-              <span className="absolute left-[20%] top-[68%] h-1 w-1 rounded-full bg-white/50 shadow-[0_0_10px_3px_rgba(167,139,250,0.7)] animate-pulse [animation-delay:2400ms]" />
-              <span className="absolute left-[70%] top-[50%] h-[2px] w-[2px] rounded-full bg-white/70 shadow-[0_0_12px_3px_rgba(250,204,21,0.6)] animate-pulse [animation-delay:300ms]" />
+              {/* Text zone sparkles */}
+              <span className="absolute left-[8%] top-[24%] h-[6px] w-[6px] rounded-full bg-white/90 shadow-[0_0_18px_6px_rgba(167,139,250,1)] animate-pulse" />
+              <span className="absolute left-[22%] top-[64%] h-[5px] w-[5px] rounded-full bg-white/80 shadow-[0_0_14px_4px_rgba(99,102,241,0.9)] animate-pulse [animation-delay:700ms]" />
+              {/* Transition zone — connects text and astronaut visually */}
+              <span className="absolute left-[40%] top-[32%] h-[4px] w-[4px] rounded-full bg-white/75 shadow-[0_0_14px_5px_rgba(244,114,182,0.88)] animate-pulse [animation-delay:1100ms]" />
+              <span className="absolute left-[46%] top-[68%] h-[3px] w-[3px] rounded-full bg-white/65 shadow-[0_0_12px_4px_rgba(59,130,246,0.9)] animate-pulse [animation-delay:1900ms]" />
+              <span className="absolute left-[34%] top-[16%] h-[3px] w-[3px] rounded-full bg-white/60 shadow-[0_0_10px_3px_rgba(139,92,246,0.8)] animate-pulse [animation-delay:1600ms]" />
+              {/* Astronaut zone sparkles */}
+              <span className="absolute left-[60%] top-[18%] h-[4px] w-[4px] rounded-full bg-white/90 shadow-[0_0_16px_5px_rgba(255,255,255,0.75)] animate-pulse [animation-delay:850ms]" />
+              <span className="absolute left-[72%] top-[55%] h-[3px] w-[3px] rounded-full bg-white/70 shadow-[0_0_12px_3px_rgba(250,204,21,0.65)] animate-pulse [animation-delay:350ms]" />
+              <span className="absolute left-[82%] top-[30%] h-[2px] w-[2px] rounded-full bg-white/55 shadow-[0_0_8px_3px_rgba(99,102,241,0.7)] animate-pulse [animation-delay:2200ms]" />
             </div>
 
-            {/* Headline + CTAs */}
-            <div className="relative z-20 flex min-h-[560px] flex-col justify-center md:min-h-[660px]">
-              <div className="max-w-[560px]">
-                {/* Rank badge — live, premium style */}
-                <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.12] bg-black/30 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-2xl">
+            {/* ── Headline + CTAs ────────────────────────────────────── */}
+            <div className="hero-copy-arrive relative z-20 flex min-h-[600px] flex-col justify-center lg:min-h-[780px]">
+              <div className="relative max-w-[520px]">
+
+                {/*
+                  Text legibility backdrop — a soft frosted scrim that sits
+                  directly behind the text block. Uses radial so it fades
+                  organically, letting the astronaut environment bleed through
+                  at the edges rather than hitting a hard boundary.
+                */}
+                <div
+                  className="pointer-events-none absolute -inset-10 -z-10 rounded-[3rem]"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at 38% 50%, rgba(5,8,22,0.62) 0%, rgba(5,8,22,0.30) 50%, transparent 78%)",
+                    filter: "blur(18px)",
+                  }}
+                />
+
+                {/* Rank badge */}
+                <div className="mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.14] bg-[#050816]/50 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(99,102,241,0.15)]">
                   <span className="text-base leading-none">{rank.emoji}</span>
                   <span className="font-black" style={{ color: rank.color }}>{rank.name}</span>
                   {progress.xp > 0 && (
@@ -166,31 +208,57 @@ export function HomeDashboard() {
                   )}
                 </div>
 
-                {/* Main headline — blended with astronaut atmosphere */}
-                <h1 className="font-display font-extrabold leading-[0.92] tracking-tight text-white [text-shadow:0_0_60px_rgba(99,102,241,0.5),0_0_120px_rgba(139,92,246,0.3)]" style={{ fontSize: "clamp(2.75rem,6vw,4.5rem)" }}>
+                {/*
+                  Main headline — three lines designed to work with the astronaut:
+                  • Line 1 "Learn Smarter." — white, fully in the text safe zone
+                  • Line 2 "Reach Further." — gradient, sits in the transition zone
+                    where the astronaut atmosphere glow bleeds in
+                  • Line 3 "Rise Higher." — white + gold, positioned at the lower
+                    boundary — the astronaut's helmet area frames this line
+                */}
+                <h1
+                  className="font-display font-extrabold leading-[0.94] tracking-tight text-white"
+                  style={{
+                    fontSize: "clamp(2.8rem, 5.5vw, 4.6rem)",
+                    textShadow: "0 0 50px rgba(99,102,241,0.45), 0 0 100px rgba(139,92,246,0.25), 0 2px 4px rgba(0,0,0,0.6)",
+                  }}
+                >
                   <span className="block">Learn Smarter.</span>
-                  <span className="mt-2 block bg-gradient-to-r from-[#818CF8] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent [filter:drop-shadow(0_0_30px_rgba(167,139,250,0.5))]">
+                  <span
+                    className="mt-2 block bg-gradient-to-r from-[#818CF8] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent"
+                    style={{ filter: "drop-shadow(0 0 28px rgba(167,139,250,0.55))" }}
+                  >
                     Reach Further.
                   </span>
-                  <span className="mt-1 block text-white/90">
-                    Rise <span className="bg-gradient-to-r from-[#FBBF24] to-[#F97316] bg-clip-text text-transparent">Higher.</span>
+                  <span className="mt-2 block text-white/90">
+                    Rise{" "}
+                    <span
+                      className="bg-gradient-to-r from-[#FBBF24] to-[#F97316] bg-clip-text text-transparent"
+                      style={{ filter: "drop-shadow(0 0 20px rgba(251,191,36,0.5))" }}
+                    >
+                      Higher.
+                    </span>
                   </span>
                 </h1>
-                <p className="mt-5 max-w-md text-sm leading-7 text-white/60">
-                  The ultimate KSSM Form 1 platform. Master Science, Math, Sejarah, Geography and
-                  more — with notes, flashcards, quizzes, mind maps and AI tutoring.
+
+                {/* Descriptor */}
+                <p className="mt-5 max-w-[400px] text-sm leading-[1.85] text-white/55">
+                  The ultimate KSSM Form 1 platform — notes, flashcards, quizzes,
+                  mind maps and AI tutoring. All in one place.
                 </p>
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+
+                {/* CTAs */}
+                <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     to="/notes"
-                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-4 text-sm font-bold text-white shadow-[0_20px_50px_-10px_rgba(99,102,241,0.65)] transition-all hover:scale-[1.03] hover:shadow-[0_24px_60px_-10px_rgba(99,102,241,0.75)]"
+                    className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-3.5 text-sm font-bold text-white shadow-[0_16px_40px_-8px_rgba(99,102,241,0.65)] transition-all hover:scale-[1.04] hover:shadow-[0_20px_50px_-8px_rgba(99,102,241,0.80)] active:scale-[0.98]"
                   >
                     Start Learning
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <Link
                     to="/dashboard"
-                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.06] px-7 py-4 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.10] hover:border-white/[0.22]"
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.12] hover:border-white/[0.25]"
                   >
                     <TrendingUp className="h-4 w-4" />
                     My Progress
@@ -199,10 +267,10 @@ export function HomeDashboard() {
               </div>
             </div>
 
-            {/* Live streak chip — top right float */}
+            {/* ── Live streak chip — right of hero, vertical center top ── */}
             {progress.streak > 0 && (
-              <div className="pointer-events-none absolute right-5 top-8 z-30 hidden items-center gap-2.5 rounded-2xl border border-orange-500/25 bg-orange-950/60 p-2.5 shadow-[0_4px_30px_rgba(249,115,22,0.25)] backdrop-blur-2xl md:right-10 md:top-10 md:flex">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-500/25">
+              <div className="pointer-events-none absolute right-5 top-10 z-30 hidden items-center gap-2.5 rounded-2xl border border-orange-500/30 bg-[#0F0805]/70 p-2.5 shadow-[0_4px_28px_rgba(249,115,22,0.22)] backdrop-blur-2xl md:right-8 md:flex lg:right-12">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/22">
                   <Flame className="h-4 w-4 text-orange-400" />
                 </div>
                 <div>
@@ -212,9 +280,9 @@ export function HomeDashboard() {
               </div>
             )}
 
-            {/* Live rank progress chip — bottom right float */}
+            {/* ── Rank progress chip — bottom right ─────────────────── */}
             {nextRank && (
-              <div className="pointer-events-none absolute bottom-16 right-5 z-30 hidden rounded-2xl border border-white/[0.09] bg-black/50 p-3 shadow-2xl backdrop-blur-2xl md:bottom-20 md:right-10 md:block">
+              <div className="pointer-events-none absolute bottom-20 right-5 z-30 hidden rounded-2xl border border-white/[0.10] bg-[#050816]/65 p-3 shadow-2xl backdrop-blur-2xl md:right-8 md:block lg:bottom-24 lg:right-12">
                 <div className="mb-2 flex items-center gap-2">
                   <span className="text-sm leading-none">{rank.emoji}</span>
                   <span className="text-[10px] font-bold" style={{ color: rank.color }}>{rank.name}</span>

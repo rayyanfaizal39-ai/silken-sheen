@@ -2156,15 +2156,53 @@
 /* ============================================================
    Astronaut Hero Scene
    ============================================================ */
-.astronaut-scene { isolation: isolate; }
+.astronaut-scene {
+  isolation: isolate;
+  /* Cinematic load-in: scene arrives with depth and brightness */
+  animation: hero-cinematic-in 1.6s cubic-bezier(0.18, 0.84, 0.32, 1) both;
+}
 
+@keyframes hero-cinematic-in {
+  0%   { opacity: 0; transform: scale(1.03) translateY(6px); filter: brightness(0.6) blur(4px); }
+  60%  { opacity: 1; filter: brightness(1) blur(0px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1) blur(0px); }
+}
+
+/* Hero copy arrives slightly after the scene */
+.hero-copy-arrive {
+  animation: hero-copy-arrive 0.9s 0.45s cubic-bezier(0.18, 0.84, 0.32, 1) both;
+}
+@keyframes hero-copy-arrive {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/*
+  Float animation:
+  - Vertical drift (up 14px over cycle)
+  - Gentle rotation (±2.5deg) for organic feel
+  - Slight horizontal drift to suggest weightlessness
+*/
 @keyframes astronaut-float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(0, -6px, 0); }
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25%  { transform: translate3d(3px, -6px, 0) rotate(-1.2deg); }
+  50%  { transform: translate3d(0, -14px, 0) rotate(-2.5deg); }
+  75%  { transform: translate3d(-2px, -8px, 0) rotate(-1deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
 }
 .astronaut-float {
-  animation: astronaut-float 6s ease-in-out infinite;
+  animation: astronaut-float 7s ease-in-out infinite;
   will-change: transform;
+}
+
+/* Halo animation — gentle pulse timed slightly off from the float */
+@keyframes astronaut-halo-pulse {
+  0%, 100% { opacity: 0.85; transform: translate3d(0, -50%, 0) scale(1); }
+  45%      { opacity: 1;    transform: translate3d(0, -50%, 0) scale(1.06); }
+}
+.astronaut-halo {
+  animation: astronaut-halo-pulse 7s ease-in-out 0.8s infinite;
+  will-change: transform, opacity;
 }
 
 /* Visor light sweep — diagonal soft highlight across upper portion */
@@ -2192,7 +2230,35 @@
   100% { background-position: -30% 0; }
 }
 
-/* Rocket trail — soft purple/blue plume below the rocket */
+/* ── SCENE-WIDE DIAGONAL ROCKET TRAIL ──────────────────────────────────────
+   The central composition element. Sweeps diagonally from the rocket's
+   exhaust position (center-right of scene) leftward and upward through
+   the text zone. This is what makes the astronaut and headline feel like
+   they exist in ONE continuous illustration rather than side-by-side panels.
+   ────────────────────────────────────────────────────────────────────────── */
+.astronaut-rocket-trail-scene {
+  position: absolute;
+  inset: -5%;
+  background:
+    /* Core exhaust: bright plume at rocket nozzle area */
+    radial-gradient(ellipse 26% 16% at 70% 72%, rgba(167,139,250,0.50) 0%, rgba(139,92,246,0.30) 28%, transparent 52%),
+    /* Mid sweep: diagonal left-upward */
+    radial-gradient(ellipse 44% 24% at 54% 58%, rgba(99,102,241,0.26) 0%, rgba(139,92,246,0.14) 36%, transparent 60%),
+    /* Left reach: crosses into the text zone */
+    radial-gradient(ellipse 34% 20% at 36% 44%, rgba(79,70,229,0.18) 0%, rgba(99,102,241,0.09) 40%, transparent 65%),
+    /* Far reach: glows faintly behind the headline */
+    radial-gradient(ellipse 22% 16% at 16% 30%, rgba(67,56,202,0.12) 0%, rgba(79,70,229,0.05) 45%, transparent 68%);
+  filter: blur(22px);
+  animation: astronaut-trail-scene-pulse 9s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes astronaut-trail-scene-pulse {
+  0%, 100% { opacity: 0.70; transform: scale(1); }
+  40%      { opacity: 1;    transform: scale(1.03); }
+  70%      { opacity: 0.82; transform: scale(1.01); }
+}
+
+/* Local trail remnant (kept for internal float container depth) */
 .astronaut-trail {
   position: absolute;
   left: 50%;
@@ -2228,6 +2294,9 @@
 .astronaut-particle--1 { animation: astronaut-particle 4.2s ease-in 0s infinite; }
 .astronaut-particle--2 { animation: astronaut-particle 5.0s ease-in 1.3s infinite; margin-left: -22px; }
 .astronaut-particle--3 { animation: astronaut-particle 4.6s ease-in 2.4s infinite; margin-left: 24px; }
+/* Extra particles — scattered in wider area */
+.astronaut-particle--4 { animation: astronaut-particle 4.8s ease-in 0.7s infinite; margin-left: 42px; bottom: 30%; }
+.astronaut-particle--5 { animation: astronaut-particle 5.2s ease-in 2.1s infinite; margin-left: -44px; bottom: 20%; }
 @keyframes astronaut-particle {
   0%   { opacity: 0; transform: translate(-50%, 0) scale(0.6); }
   20%  { opacity: 0.8; }
@@ -2242,19 +2311,41 @@
   opacity: 0.55;
   pointer-events: none;
 }
+/* Upper-left — drifts behind the headline */
 .astronaut-planet--a {
   width: 70px; height: 70px;
-  top: 14%; left: 8%;
+  top: 12%; left: 6%;
   background: radial-gradient(circle at 32% 30%, #a78bfa, #4c1d95 70%, #1e1b4b);
   box-shadow: 0 0 32px rgba(139, 92, 246, 0.35);
   animation: astronaut-drift-a 22s ease-in-out infinite;
 }
+/* Lower-right — near astronaut rocket area */
 .astronaut-planet--b {
   width: 44px; height: 44px;
-  top: 70%; left: 78%;
+  top: 68%; left: 76%;
   background: radial-gradient(circle at 30% 30%, #93c5fd, #1d4ed8 70%, #0c1a3a);
   box-shadow: 0 0 24px rgba(59, 130, 246, 0.35);
   animation: astronaut-drift-b 28s ease-in-out infinite;
+}
+/* Tiny rose — transition zone between text and astronaut */
+/* Previously at 42% left — kept for depth in the text→scene boundary */
+/* NEW: Mid-left — drifts near the "Reach Further" line */
+.astronaut-planet--d {
+  width: 30px; height: 30px;
+  top: 30%; left: 30%;
+  background: radial-gradient(circle at 34% 28%, #c4b5fd, #5b21b6 70%, #1e1b4b);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.32);
+  animation: astronaut-drift-d 25s ease-in-out infinite;
+  opacity: 0.50;
+}
+/* NEW: Tiny distant — upper-right of scene near astronaut's head */
+.astronaut-planet--e {
+  width: 18px; height: 18px;
+  top: 16%; left: 60%;
+  background: radial-gradient(circle at 35% 30%, #bae6fd, #0369a1 70%, #082037);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.28);
+  animation: astronaut-drift-e 32s ease-in-out infinite;
+  opacity: 0.45;
 }
 @keyframes astronaut-drift-a {
   0%, 100% { transform: translate(0, 0); }
@@ -2263,6 +2354,59 @@
 @keyframes astronaut-drift-b {
   0%, 100% { transform: translate(0, 0); }
   50%      { transform: translate(-12px, 6px); }
+}
+@keyframes astronaut-drift-d {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(8px, -12px); }
+  66%      { transform: translate(-5px, -6px); }
+}
+@keyframes astronaut-drift-e {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-7px, 9px); }
+}
+
+/*
+  Atmosphere bridge — a wide soft glow in the midground layer.
+  It occupies the full hero width and creates a diffuse indigo/violet
+  haze that ties the left nebula clouds and the right astronaut glow
+  into a single unified atmosphere. This is NOT a separate element —
+  it runs at parallax layer 4 so it subtly responds to mouse movement.
+*/
+.astronaut-atmosphere-bridge {
+  background:
+    /* Broad center-right glow — where astronaut atmosphere lives */
+    radial-gradient(ellipse at 68% 52%, rgba(99,102,241,0.20) 0%, rgba(139,92,246,0.10) 38%, transparent 65%),
+    /* Left-center extension — reaches toward headline */
+    radial-gradient(ellipse at 42% 48%, rgba(99,102,241,0.12) 0%, rgba(59,130,246,0.06) 40%, transparent 68%);
+  filter: blur(32px);
+  animation: astronaut-atmosphere-breathe 12s ease-in-out infinite;
+}
+@keyframes astronaut-atmosphere-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.04); }
+}
+
+/*
+  Orbit arc ring — partial elliptical ring behind the astronaut.
+  Uses a conic or border trick to show just a partial arc.
+*/
+.astronaut-orbit-ring {
+  border: 1.5px solid rgba(129, 140, 248, 0.15);
+  border-radius: 50%;
+  /* Show only the left+top arc, fade right+bottom */
+  -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 72%, black 74%, black 88%, transparent 92%),
+                      linear-gradient(225deg, transparent 40%, rgba(0,0,0,0.6) 55%, black 70%);
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 72%, black 74%, black 88%, transparent 92%),
+              linear-gradient(225deg, transparent 40%, rgba(0,0,0,0.6) 55%, black 70%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  box-shadow: 0 0 12px rgba(129, 140, 248, 0.12);
+  animation: astronaut-orbit-rotate 32s linear infinite;
+  transform-origin: center center;
+}
+@keyframes astronaut-orbit-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 /* Twinkling stars (CSS-only star field via layered radial gradients) */
@@ -2296,14 +2440,41 @@
   50%      { opacity: 1; transform: scale(1.04); }
 }
 
+/* Hero zenith pulse — for the nexus glow bridge in HomeDashboard */
+@keyframes hero-zenith-pulse {
+  0%, 100% { opacity: 0.65; transform: translateY(-50%) scale(1); }
+  40%       { opacity: 1;    transform: translateY(-50%) scale(1.12); }
+  70%       { opacity: 0.80; transform: translateY(-50%) scale(1.06); }
+}
+
+/* Tiny rose accent — in the text→scene transition zone */
+.astronaut-planet--c {
+  width: 20px; height: 20px;
+  top: 55%; left: 20%;
+  background: radial-gradient(circle at 35% 30%, #f9a8d4, #9d174d 70%, #1a0a14);
+  box-shadow: 0 0 12px rgba(244, 114, 182, 0.40);
+  animation: astronaut-drift-c 18s ease-in-out infinite;
+  opacity: 0.55;
+}
+@keyframes astronaut-drift-c {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(-6px, 10px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .astronaut-scene,
+  .hero-copy-arrive,
   .astronaut-float,
+  .astronaut-halo,
   .astronaut-visor,
   .astronaut-trail,
+  .astronaut-rocket-trail-scene,
   .astronaut-particle,
   .astronaut-planet,
   .astronaut-stars,
-  .astronaut-nebula { animation: none !important; }
+  .astronaut-nebula,
+  .astronaut-atmosphere-bridge,
+  .astronaut-orbit-ring { animation: none !important; }
 }
 
 /* =========================================================================
