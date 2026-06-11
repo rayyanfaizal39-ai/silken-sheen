@@ -7264,29 +7264,9 @@ function MathObjectiveIntroScreen({
   const isChapter4 = chapterKey === "Chapter 4";
   const isChapter5 = chapterKey === "Chapter 5";
   const isChapter6 = chapterKey === "Chapter 6";
-  const chapterTitle = isDlp
-    ? isChapter6
-      ? "Chapter 6: Linear Equations"
-      : isChapter5
-      ? "Chapter 5: Algebraic Expressions"
-      : isChapter4
-        ? "Chapter 4: Ratios, Rates and Proportions"
-        : isChapter3
-          ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
-          : isChapter2
-            ? "Chapter 2: Factors and Multiples"
-            : "Chapter 1: Rational Numbers"
-    : isChapter6
-      ? "Bab 6: Persamaan Linear"
-      : isChapter5
-      ? "Bab 5: Ungkapan Algebra"
-      : isChapter4
-        ? "Bab 4: Nisbah, Kadar dan Kadaran"
-        : isChapter3
-          ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
-          : isChapter2
-            ? "Bab 2: Faktor dan Gandaan"
-            : "Bab 1: Nombor Nisbah";
+  const chapterBmEntry = getSubjectChapters(subjectId, "bm").find((c) => c.key === chapterKey);
+  const chapterDlpEntry = getSubjectChapters(subjectId, "dlp").find((c) => c.key === chapterKey);
+  const chapterTitle = isDlp ? (chapterDlpEntry?.label ?? chapterKey) : (chapterBmEntry?.label ?? chapterKey);
   const introTitle = isFoundation
     ? "🎯 Objective 1 – Foundation"
     : isPractice || isChallenge
@@ -7304,7 +7284,7 @@ function MathObjectiveIntroScreen({
           ? "This quiz contains exam-style and problem-solving questions."
           : isChapter3
             ? "This quiz is designed to test your full mastery of Chapter 3."
-            : "This quiz is designed to test your full mastery of Chapter 1."
+            : `This quiz is designed to test your full mastery of ${chapterTitle}.`
       : isChapter6
         ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 6."
         : isChapter5
@@ -7313,7 +7293,7 @@ function MathObjectiveIntroScreen({
           ? "Quiz ini mengandungi soalan berbentuk peperiksaan dan penyelesaian masalah."
           : isChapter3
             ? "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 3."
-            : "Quiz ini direka untuk menguji penguasaan penuh anda terhadap Bab 1."
+            : `Quiz ini direka untuk menguji penguasaan penuh anda terhadap ${chapterTitle}.`
     : isPractice
       ? isDlp
         ? "This quiz tests your intermediate understanding of:"
@@ -7410,13 +7390,8 @@ function MathObjectiveIntroScreen({
                   "Exam-style questions",
                 ]
               : [
-                  "Integers",
-                  "Integer operations",
-                  "Positive and negative fractions",
-                  "Positive and negative decimals",
-                  "Rational numbers",
-                  "Order of operations",
-                  "Combined calculations",
+                  "Core topic concepts",
+                  "Application of formulas",
                   "Problem solving",
                   "Exam-style questions",
                 ]),
@@ -7461,13 +7436,8 @@ function MathObjectiveIntroScreen({
                   "Soalan berbentuk peperiksaan",
                 ]
               : [
-                  "Integer",
-                  "Operasi integer",
-                  "Pecahan positif dan negatif",
-                  "Perpuluhan positif dan negatif",
-                  "Nombor nisbah",
-                  "Tertib operasi",
-                  "Pengiraan gabungan",
+                  "Konsep teras topik",
+                  "Penerapan rumus",
                   "Penyelesaian masalah",
                   "Soalan berbentuk peperiksaan",
                 ]),
@@ -7511,14 +7481,10 @@ function MathObjectiveIntroScreen({
                     "Combined operations",
                   ]
                 : [
-                    "Integer operations",
-                    "Addition and subtraction of integers",
-                    "Multiplication and division of integers",
-                    "Order of operations",
-                    "Positive and negative fractions",
-                    "Positive and negative decimals",
-                    "Rational numbers",
-                    "Mixed calculations",
+                    "Core concepts",
+                    "Intermediate calculations",
+                    "Mixed practice",
+                    "Problem solving",
                   ]),
           ]
         : [
@@ -7558,14 +7524,10 @@ function MathObjectiveIntroScreen({
                     "Operasi bergabung",
                   ]
                 : [
-                    "Operasi integer",
-                    "Penambahan dan penolakan integer",
-                    "Pendaraban dan pembahagian integer",
-                    "Tertib operasi",
-                    "Pecahan positif dan negatif",
-                    "Perpuluhan positif dan negatif",
-                    "Nombor nisbah",
-                    "Pengiraan campuran",
+                    "Konsep teras",
+                    "Pengiraan pertengahan",
+                    "Latihan campuran",
+                    "Penyelesaian masalah",
                   ]),
           ]
       : isFoundation
@@ -8120,33 +8082,9 @@ function MathObjectiveResultsScreen({
   const isChallenge = objective?.id === "objective-3";
   const isDlp = quizLang === "dlp";
   const isChapter2 = chapterKey === "Chapter 2";
-  const isChapter3 = chapterKey === "Chapter 3";
-  const isChapter4 = chapterKey === "Chapter 4";
-  const isChapter5 = chapterKey === "Chapter 5";
-  const isChapter6 = chapterKey === "Chapter 6";
-  const chapterName = isDlp
-    ? isChapter6
-      ? "Chapter 6: Linear Equations"
-      : isChapter5
-      ? "Chapter 5: Algebraic Expressions"
-      : isChapter4
-        ? "Chapter 4: Ratios, Rates and Proportions"
-        : isChapter3
-          ? "Chapter 3: Squares, Square Roots, Cubes and Cube Roots"
-          : isChapter2
-            ? "Chapter 2: Factors and Multiples"
-            : "Chapter 1: Rational Numbers"
-    : isChapter6
-      ? "Bab 6: Persamaan Linear"
-      : isChapter5
-      ? "Bab 5: Ungkapan Algebra"
-      : isChapter4
-        ? "Bab 4: Nisbah, Kadar dan Kadaran"
-        : isChapter3
-          ? "Bab 3: Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga"
-          : isChapter2
-            ? "Bab 2: Faktor dan Gandaan"
-            : "Bab 1: Nombor Nisbah";
+  const resultChapterBm = getSubjectChapters("math", "bm").find((c) => c.key === chapterKey);
+  const resultChapterDlp = getSubjectChapters("math", "dlp").find((c) => c.key === chapterKey);
+  const chapterName = isDlp ? (resultChapterDlp?.label ?? chapterKey) : (resultChapterBm?.label ?? chapterKey);
   const rating =
     score >= 27
       ? {

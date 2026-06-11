@@ -1,9 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { useProgress } from "@/hooks/use-progress";
-import { subjects, badges } from "@/data/content";
-import { Flame, Trophy, Zap, Target, Sparkles } from "lucide-react";
+import {
+  useProgress,
+  getRank,
+  getNextRank,
+  getRankProgress,
+  SPACE_RANKS,
+  ALL_BADGES,
+  DAILY_MISSIONS,
+  chapterProgressPct,
+  totalChaptersCompleted,
+} from "@/hooks/use-progress";
+import { subjects } from "@/data/content";
+import {
+  Flame,
+  Trophy,
+  Zap,
+  Target,
+  Star,
+  BookOpen,
+  TrendingUp,
+  CheckCircle2,
+  Circle,
+  Lock,
+  ArrowRight,
+} from "lucide-react";
 import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -17,22 +40,25 @@ export const Route = createFileRoute("/dashboard")({
   component: DashboardPage,
 });
 
-// fake leaderboard with the user injected
+// Demo leaderboard — injected with real "You" entry
 const leaderboardSeed = [
-  { name: "Aisyah", xp: 1240 },
-  { name: "Daniel", xp: 980 },
-  { name: "Mei Ling", xp: 870 },
-  { name: "Arjun", xp: 720 },
-  { name: "Hafiz", xp: 540 },
+  { name: "Aisyah",   xp: 1240 },
+  { name: "Daniel",   xp: 980  },
+  { name: "Mei Ling", xp: 870  },
+  { name: "Arjun",    xp: 720  },
+  { name: "Hafiz",    xp: 540  },
 ];
 
 function DashboardPage() {
   const { progress } = useProgress();
+  const rank       = getRank(progress.xp);
+  const nextRank   = getNextRank(progress.xp);
+  const rankPct    = getRankProgress(progress.xp);
+  const completed  = totalChaptersCompleted(progress.chapterActivity);
+  const board      = [...leaderboardSeed, { name: "You", xp: progress.xp }].sort((a, b) => b.xp - a.xp);
 
-  const level = Math.floor(progress.xp / 100) + 1;
-  const intoLevel = progress.xp % 100;
-
-  const board = [...leaderboardSeed, { name: "You", xp: progress.xp }].sort((a, b) => b.xp - a.xp);
+  const todayDate = new Date().toISOString().slice(0, 10);
+  const missionsActive = progress.missions?.dailyDate === todayDate;
 
   return (
     <AcademyPageShell>
@@ -42,120 +68,219 @@ function DashboardPage() {
         gradientTitle="Dashboard"
         description="Stay consistent, track mastery, and watch your AcadeMy progress level up."
         stats={[
-          { label: "Current Level", value: level },
-          { label: "Total XP", value: progress.xp, tone: "text-[#60A5FA]" },
-          { label: "Day Streak", value: progress.streak, tone: "text-[#F97316]" },
+          { label: "Total XP",    value: progress.xp,          tone: "text-[#60A5FA]" },
+          { label: "Day Streak",  value: progress.streak,      tone: "text-[#F97316]" },
+          { label: "Quizzes",     value: progress.quizzesTaken, tone: "text-[#34D399]" },
         ]}
       />
 
-      {/* top stats */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard
-          icon={<Zap className="w-5 h-5" />}
-          label="Total XP"
-          value={progress.xp}
-          color="from-blue-500 to-indigo-500"
-        />
-        <StatCard
-          icon={<Flame className="w-5 h-5" />}
-          label="Day Streak"
-          value={progress.streak}
-          color="from-orange-500 to-rose-500"
-        />
-        <StatCard
-          icon={<Target className="w-5 h-5" />}
-          label="Quizzes Done"
-          value={progress.quizzesTaken}
-          color="from-emerald-500 to-teal-500"
-        />
-        <StatCard
-          icon={<Trophy className="w-5 h-5" />}
-          label="Badges"
-          value={progress.badges.length}
-          color="from-amber-500 to-yellow-500"
-        />
+      {/* ── Top stat cards ───────────────────────────────────────── */}
+      <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard icon={<Zap className="h-5 w-5" />}    label="Total XP"       value={progress.xp}           color="from-blue-500 to-indigo-500" />
+        <StatCard icon={<Flame className="h-5 w-5" />}  label="Day Streak"     value={progress.streak}       color="from-orange-500 to-rose-500" />
+        <StatCard icon={<Target className="h-5 w-5" />} label="Quizzes Done"   value={progress.quizzesTaken} color="from-emerald-500 to-teal-500" />
+        <StatCard icon={<Trophy className="h-5 w-5" />} label="Badges Earned"  value={progress.badges.length} color="from-amber-500 to-yellow-500" />
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Level card */}
-        <div className="lg:col-span-2 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_28px_90px_rgba(0,0,0,0.32)] backdrop-blur-2xl">
-          <div className="flex justify-between items-center mb-4">
-            <div>
-              <p className="text-xs text-muted-foreground font-semibold">CURRENT LEVEL</p>
-              <p className="font-display text-3xl font-bold">Level {level}</p>
-            </div>
-            <Sparkles className="w-8 h-8 text-nova-yellow" />
-          </div>
-          <div className="h-3 rounded-full bg-white/10 overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-primary to-accent transition-all"
-              style={{ width: `${intoLevel}%` }}
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2">
-            {intoLevel}/100 XP to Level {level + 1}
-          </p>
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* ── Left: Rank + subject progress ──────────────────────── */}
+        <div className="space-y-6 lg:col-span-2">
 
-          {/* subject progress */}
-          <div className="mt-8 space-y-3">
-            <p className="text-xs text-muted-foreground font-semibold">SUBJECT PROGRESS</p>
-            {subjects.map((s) => {
-              const xp = progress.subjectXp[s.id] || 0;
-              const pct = Math.min(100, (xp / 200) * 100);
-              return (
-                <div key={s.id}>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>
-                      {s.emoji} {s.name}
-                    </span>
-                    <span className="text-muted-foreground">{xp} XP</span>
+          {/* Space rank card */}
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 backdrop-blur-2xl">
+            <p className="mb-4 text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Space Rank</p>
+
+            {/* Current rank + XP bar */}
+            <div className="flex items-center gap-4">
+              <div
+                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-3xl"
+                style={{ background: `${rank.color}18`, boxShadow: `0 0 20px ${rank.color}44` }}
+              >
+                {rank.emoji}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-display text-xl font-bold" style={{ color: rank.color }}>{rank.name}</p>
+                <p className="text-xs text-[#94A3B8]">{rank.description} • {progress.xp.toLocaleString()} XP</p>
+                {nextRank && (
+                  <div className="mt-2">
+                    <div className="mb-1 flex justify-between text-[10px] text-[#94A3B8]">
+                      <span>{rank.name}</span>
+                      <span>{nextRank.emoji} {nextRank.name} at {nextRank.minXp.toLocaleString()} XP</span>
+                    </div>
+                    <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/[0.08]">
+                      <div
+                        className="h-full rounded-full transition-all duration-700 animate-progress-fill"
+                        style={{ width: `${rankPct}%`, background: `linear-gradient(90deg, ${rank.color}, ${nextRank.color})` }}
+                      />
+                    </div>
                   </div>
-                  <div className="h-2 rounded-full bg-white/10 overflow-hidden">
-                    <div
-                      className={`h-full bg-gradient-to-r ${s.color}`}
-                      style={{ width: `${pct}%` }}
-                    />
+                )}
+              </div>
+            </div>
+
+            {/* Rank road-map */}
+            <div className="mt-6 overflow-x-auto">
+              <div className="flex min-w-max items-center gap-1 pb-1">
+                {SPACE_RANKS.map((r, i) => {
+                  const done = progress.xp >= r.minXp;
+                  const current = r.id === rank.id;
+                  return (
+                    <div key={r.id} className="flex items-center">
+                      <div
+                        title={`${r.name} (${r.minXp.toLocaleString()} XP)`}
+                        className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-lg transition-all ${
+                          current
+                            ? "scale-110 border-2 shadow-lg"
+                            : done
+                            ? "opacity-80"
+                            : "opacity-30 grayscale"
+                        }`}
+                        style={current ? { borderColor: r.color, boxShadow: `0 0 16px ${r.color}66` } : { borderColor: "rgba(255,255,255,0.1)" }}
+                      >
+                        {r.emoji}
+                      </div>
+                      {i < SPACE_RANKS.length - 1 && (
+                        <div className={`h-0.5 w-5 rounded-full ${done ? "bg-white/30" : "bg-white/[0.08]"}`} />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Subject progress */}
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 backdrop-blur-2xl">
+            <div className="mb-4 flex items-center justify-between">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Subject Progress</p>
+              <Link to="/notes" className="text-xs font-bold text-[#94A3B8] hover:text-white transition-colors">
+                Study Now →
+              </Link>
+            </div>
+            <div className="space-y-4">
+              {subjects.map((s) => {
+                const xp   = progress.subjectXp[s.id] || 0;
+                const acts = Object.entries(progress.chapterActivity)
+                  .filter(([k]) => k.startsWith(`${s.id}:`))
+                  .map(([, v]) => v);
+                const chapDone = acts.filter((a) => a.read && a.quiz && a.cards).length;
+                const pct  = Math.min(100, Math.round((xp / 500) * 100));
+                return (
+                  <div key={s.id}>
+                    <div className="mb-2 flex items-center justify-between text-sm">
+                      <span className="flex items-center gap-2 font-medium">
+                        <span>{s.emoji}</span>
+                        {s.name}
+                      </span>
+                      <span className="flex items-center gap-2 text-[#94A3B8]">
+                        {chapDone > 0 && (
+                          <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px]">
+                            {chapDone} chapters
+                          </span>
+                        )}
+                        <span className="font-bold text-white">{xp} XP</span>
+                      </span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-white/[0.08]">
+                      <div
+                        className={`h-full rounded-full bg-gradient-to-r ${s.color} transition-all duration-700`}
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Chapters mastered */}
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 backdrop-blur-2xl">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Chapters Mastered</p>
+                <p className="mt-1 font-display text-4xl font-bold">{completed}</p>
+              </div>
+              <BookOpen className="h-8 w-8 text-[#8B5CF6]" />
+            </div>
+            <p className="mt-2 text-sm text-[#94A3B8]">
+              {completed === 0
+                ? "Start learning to earn your first master badge!"
+                : `${completed} chapter${completed !== 1 ? "s" : ""} fully completed (notes + quiz + flashcards)`}
+            </p>
           </div>
         </div>
 
-        {/* Right column */}
+        {/* ── Right column ──────────────────────────────────────── */}
         <div className="space-y-6">
-          {/* Daily challenge */}
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-nova-yellow/20 blur-3xl rounded-full" />
-            <p className="text-xs text-muted-foreground font-semibold">DAILY CHALLENGE</p>
-            <h3 className="font-display text-xl font-bold mt-1">Answer 5 quizzes today</h3>
-            <p className="text-sm text-muted-foreground mt-2">Reward: +50 XP & streak boost</p>
-            <div className="mt-4 h-2 rounded-full bg-white/10 overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-nova-yellow to-orange-500"
-                style={{ width: `${Math.min(100, (progress.quizzesTaken % 5) * 20)}%` }}
-              />
+
+          {/* Daily missions */}
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl">
+            <div className="mb-4 flex items-center gap-2">
+              <Star className="h-4 w-4 text-[#FBBF24]" />
+              <p className="font-bold">Daily Missions</p>
+              <span className="ml-auto rounded-full bg-[#FBBF24]/20 px-2 py-0.5 text-[10px] font-bold text-[#FBBF24]">
+                {DAILY_MISSIONS.filter((m) =>
+                  missionsActive && progress.missions ? m.current(progress.missions) >= m.target : false
+                ).length}/{DAILY_MISSIONS.length}
+              </span>
+            </div>
+            <div className="space-y-2.5">
+              {DAILY_MISSIONS.map((mission) => {
+                const current = missionsActive && progress.missions ? mission.current(progress.missions) : 0;
+                const done = current >= mission.target;
+                const pct  = Math.min(100, Math.round((current / mission.target) * 100));
+                return (
+                  <div
+                    key={mission.id}
+                    className={`rounded-xl border p-3 ${done ? "border-emerald-500/30 bg-emerald-500/10" : "border-white/[0.07] bg-white/[0.03]"}`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      {done
+                        ? <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
+                        : <Circle className="h-4 w-4 shrink-0 text-[#94A3B8]" />}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold">{mission.label}</span>
+                          <span className="rounded-full bg-[#FBBF24]/15 px-1.5 py-0.5 text-[10px] font-bold text-[#FBBF24]">
+                            +{mission.xpReward}
+                          </span>
+                        </div>
+                        {!done && (
+                          <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/[0.08]">
+                            <div className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]" style={{ width: `${pct}%` }} />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* Badges */}
-          <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
-            <p className="text-xs text-muted-foreground font-semibold mb-4">ACHIEVEMENTS</p>
-            <div className="grid grid-cols-2 gap-3">
-              {badges.map((b) => {
-                const unlocked = progress.badges.includes(b.id);
+          <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl">
+            <p className="mb-4 text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Achievements</p>
+            <div className="grid grid-cols-3 gap-2.5">
+              {ALL_BADGES.map((badge) => {
+                const unlocked = progress.badges.includes(badge.id);
                 return (
                   <div
-                    key={b.id}
-                    className={`rounded-xl p-3 text-center border ${
+                    key={badge.id}
+                    title={`${badge.name}: ${badge.description}`}
+                    className={`flex flex-col items-center gap-1 rounded-xl border p-2.5 text-center transition-all ${
                       unlocked
-                        ? "bg-gradient-to-br from-primary/20 to-accent/20 border-accent/40"
-                        : "bg-white/5 border-white/10 opacity-50"
+                        ? "border-white/[0.12] bg-gradient-to-br from-white/[0.06] to-white/[0.02]"
+                        : "border-white/[0.05] bg-white/[0.02] opacity-35 grayscale"
                     }`}
                   >
-                    <div className="text-3xl">{b.emoji}</div>
-                    <p className="text-xs font-semibold mt-1">{b.name}</p>
-                    <p className="text-[10px] text-muted-foreground">{b.desc}</p>
+                    <span className="text-xl">{unlocked ? badge.emoji : "🔒"}</span>
+                    <span
+                      className="text-[9px] font-bold leading-tight"
+                      style={{ color: unlocked ? badge.color : "#94A3B8" }}
+                    >
+                      {badge.name}
+                    </span>
                   </div>
                 );
               })}
@@ -164,39 +289,42 @@ function DashboardPage() {
         </div>
       </div>
 
-      {/* Leaderboard */}
-      <div className="mt-8 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
-        <p className="text-xs text-muted-foreground font-semibold mb-4">🏆 LEADERBOARD</p>
+      {/* ── Leaderboard ──────────────────────────────────────────── */}
+      <div className="mt-8 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 backdrop-blur-2xl">
+        <p className="mb-4 text-xs font-bold uppercase tracking-wider text-[#94A3B8]">🏆 Leaderboard</p>
         <ul className="space-y-2">
-          {board.map((u, i) => (
-            <li
-              key={u.name}
-              className={`flex items-center justify-between p-3 rounded-xl ${
-                u.name === "You"
-                  ? "bg-gradient-to-r from-primary/20 to-accent/20 border border-accent/30"
-                  : "bg-white/5"
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <span
-                  className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold ${
-                    i === 0
-                      ? "bg-yellow-400 text-black"
-                      : i === 1
-                        ? "bg-gray-300 text-black"
-                        : i === 2
-                          ? "bg-orange-400 text-black"
-                          : "bg-white/10"
-                  }`}
-                >
-                  {i + 1}
-                </span>
-                <span className="font-medium">{u.name}</span>
-              </div>
-              <span className="font-bold text-nova-yellow">{u.xp} XP</span>
-            </li>
-          ))}
+          {board.map((u, i) => {
+            const isYou = u.name === "You";
+            const medal =
+              i === 0 ? "bg-yellow-400 text-black" :
+              i === 1 ? "bg-gray-300 text-black" :
+              i === 2 ? "bg-orange-400 text-black" :
+              "bg-white/10 text-white";
+            return (
+              <li
+                key={u.name}
+                className={`flex items-center justify-between rounded-xl p-3 ${
+                  isYou
+                    ? "bg-gradient-to-r from-primary/20 to-accent/20 border border-accent/30"
+                    : "bg-white/[0.04] border border-white/[0.06]"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold ${medal}`}>
+                    {i + 1}
+                  </span>
+                  <span className={`font-medium ${isYou ? "text-white" : "text-slate-200"}`}>
+                    {u.name} {isYou && <span className="text-xs text-[#94A3B8]">(you)</span>}
+                  </span>
+                </div>
+                <span className="font-bold text-[#FBBF24]">{u.xp.toLocaleString()} XP</span>
+              </li>
+            );
+          })}
         </ul>
+        <p className="mt-3 text-center text-xs text-[#94A3B8]">
+          Leaderboard updates as you earn XP from quizzes and chapters
+        </p>
       </div>
     </AcademyPageShell>
   );
@@ -214,14 +342,12 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-all hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(99,102,241,0.20)]">
-      <div
-        className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white mb-3`}
-      >
+    <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 backdrop-blur-2xl transition-all hover:-translate-y-1">
+      <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${color} text-white`}>
         {icon}
       </div>
-      <p className="text-xs text-muted-foreground font-semibold">{label.toUpperCase()}</p>
-      <p className="font-display text-4xl font-bold mt-1">{value}</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-[#94A3B8]">{label}</p>
+      <p className="mt-1 font-display text-4xl font-bold">{value.toLocaleString()}</p>
     </div>
   );
 }
