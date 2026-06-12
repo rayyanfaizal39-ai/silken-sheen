@@ -4,6 +4,14 @@ const KEY = "learnnova-progress-v1";
 
 export type ChapterActivity = { read?: boolean; quiz?: boolean; cards?: boolean };
 
+export interface CardMasteryRecord {
+  interval: number;    // days until next review
+  easeFactor: number;  // SM-2 ease factor (starts 2.5)
+  due: string;         // YYYY-MM-DD next review date
+  reps: number;        // successful reviews count
+  lapses: number;      // times rated "Again"
+}
+
 export interface Progress {
   xp: number;
   streak: number;
@@ -15,6 +23,16 @@ export interface Progress {
   chapterActivity: Record<string, ChapterActivity>; // key: `${subjectId}:${chapterKey}`
   lastPerfectQuiz?: string; // ISO date of last perfect quiz
   missions?: MissionProgress;
+  cardMastery?: Record<string, CardMasteryRecord>; // cardId → SM-2 data
+  lastVisited?: LastVisited;
+}
+
+export interface LastVisited {
+  subjectId: string;
+  chapterKey: string;
+  type: "notes" | "flashcards" | "quiz";
+  label: string; // human-readable chapter name
+  timestamp: number;
 }
 
 export interface MissionProgress {
@@ -97,6 +115,10 @@ export const ALL_BADGES: BadgeDef[] = [
   // Chapters
   { id: "chapter_master",  name: "Chapter Master",    description: "100% completed a chapter",       emoji: "📚", color: "#06B6D4" },
   { id: "five_chapters",   name: "5 Chapters Done",   description: "Fully completed 5 chapters",     emoji: "🎓", color: "#8B5CF6" },
+  // Spaced repetition mastery
+  { id: "mastery10",  name: "Memory Starter",   description: "Mastered 10 flashcards with spaced repetition",  emoji: "🧩", color: "#38BDF8" },
+  { id: "mastery50",  name: "Memory Expert",    description: "Mastered 50 flashcards with spaced repetition",  emoji: "🔮", color: "#A78BFA" },
+  { id: "mastery100", name: "Memory Legend",    description: "Mastered 100 flashcards with spaced repetition", emoji: "🌌", color: "#FBBF24" },
 ];
 
 export function getBadgeDef(id: string): BadgeDef | undefined {
@@ -161,6 +183,61 @@ export function totalChaptersCompleted(chapterActivity: Record<string, ChapterAc
   ).length;
 }
 
+// ─── SM-2 Spaced Repetition ───────────────────────────────────────────────────
+// rating: 0=Again, 1=Hard, 2=Good, 3=Easy
+function sm2(record: CardMasteryRecord | undefined, rating: 0 | 1 | 2 | 3): CardMasteryRecord {
+  const ef = record?.easeFactor ?? 2.5;
+  const reps = record?.reps ?? 0;
+  const interval = record?.interval ?? 0;
+  const lapses = record?.lapses ?? 0;
+
+  let newInterval: number;
+  let newReps: number;
+  let newLapses = lapses;
+
+  if (rating >= 2) {
+    if (reps === 0) newInterval = 1;
+    else if (reps === 1) newInterval = 6;
+    else newInterval = Math.round(interval * ef);
+    if (rating === 3) newInterval = Math.round(newInterval * 1.3);
+    newReps = reps + 1;
+  } else {
+    newInterval = 1;
+    newReps = 0;
+    newLapses = lapses + 1;
+  }
+
+  const newEf = Math.max(1.3, ef + 0.1 - (3 - rating) * (0.08 + (3 - rating) * 0.02));
+  const dueDate = new Date();
+  dueDate.setDate(dueDate.getDate() + newInterval);
+
+  return {
+    interval: newInterval,
+    easeFactor: Math.round(newEf * 100) / 100,
+    due: dueDate.toISOString().slice(0, 10),
+    reps: newReps,
+    lapses: newLapses,
+  };
+}
+
+export function getDueCount(cardMastery: Record<string, CardMasteryRecord> = {}): number {
+  const t = today();
+  return Object.values(cardMastery).filter((r) => r.due <= t).length;
+}
+
+export function getDueCardIds(cardMastery: Record<string, CardMasteryRecord> = {}): Set<string> {
+  const t = today();
+  return new Set(
+    Object.entries(cardMastery)
+      .filter(([, r]) => r.due <= t)
+      .map(([id]) => id)
+  );
+}
+
+export function getMasteredCount(cardMastery: Record<string, CardMasteryRecord> = {}): number {
+  return Object.values(cardMastery).filter((r) => r.reps >= 3).length;
+}
+
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 export function useProgress() {
   const [progress, setProgress] = useState<Progress>(initial);
@@ -223,13 +300,17 @@ export function useProgress() {
       if (!newBadges.includes("quiz50") && newCount >= 50)  newBadges.push("quiz50");
       if (perfect && !newBadges.includes("perfect_quiz"))   newBadges.push("perfect_quiz");
 
-      // Daily mission update
+      // Daily mission update + award XP when quiz2 mission just completes
       const missions = resetMissionsIfNewDay(prev.missions, t);
+      const newQuizzesDone = missions.quizzesDone + 1;
+      const missionXp = (missions.quizzesDone < 2 && newQuizzesDone >= 2) ? 30 : 0;
+
       const next: Progress = {
         ...prev,
+        xp: prev.xp + missionXp,
         quizzesTaken: newCount,
         badges: newBadges,
-        missions: { ...missions, quizzesDone: missions.quizzesDone + 1 },
+        missions: { ...missions, quizzesDone: newQuizzesDone },
       };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
       return next;
@@ -268,6 +349,11 @@ export function useProgress() {
         if (kind === "read")  updatedMissions.readChapters  += 1;
         if (kind === "cards") updatedMissions.flashcardsDone += 1;
 
+        // Award XP when read2 or cards1 mission just completes
+        const missionXp =
+          (kind === "read"  && missions.readChapters < 2  && updatedMissions.readChapters  >= 2) ? 20 :
+          (kind === "cards" && missions.flashcardsDone < 1 && updatedMissions.flashcardsDone >= 1) ? 15 : 0;
+
         const newActivity = { ...prev.chapterActivity, [k]: { ...prior, [kind]: true } };
         const completedCount = totalChaptersCompleted(newActivity);
         const newBadges = [...prev.badges];
@@ -278,6 +364,7 @@ export function useProgress() {
 
         const next: Progress = {
           ...prev,
+          xp: prev.xp + missionXp,
           badges: newBadges,
           chapterActivity: newActivity,
           missions: updatedMissions,
@@ -289,7 +376,34 @@ export function useProgress() {
     []
   );
 
-  return { progress, addXp, recordQuiz, awardBadge, toggleFavorite, save, markChapter };
+  const rateCard = useCallback((cardId: string, rating: 0 | 1 | 2 | 3) => {
+    setProgress((prev) => {
+      const existing = prev.cardMastery?.[cardId];
+      const newRecord = sm2(existing, rating);
+      const mastery = { ...(prev.cardMastery ?? {}), [cardId]: newRecord };
+
+      // Mastery badges
+      const masteredNow = Object.values(mastery).filter((r) => r.reps >= 3).length;
+      const newBadges = [...prev.badges];
+      if (!newBadges.includes("mastery10") && masteredNow >= 10)  newBadges.push("mastery10");
+      if (!newBadges.includes("mastery50") && masteredNow >= 50)  newBadges.push("mastery50");
+      if (!newBadges.includes("mastery100") && masteredNow >= 100) newBadges.push("mastery100");
+
+      const next: Progress = { ...prev, cardMastery: mastery, badges: newBadges };
+      try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      return next;
+    });
+  }, []);
+
+  const setLastVisited = useCallback((lv: LastVisited) => {
+    setProgress((prev) => {
+      const next: Progress = { ...prev, lastVisited: lv };
+      try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      return next;
+    });
+  }, []);
+
+  return { progress, addXp, recordQuiz, awardBadge, toggleFavorite, save, markChapter, rateCard, setLastVisited };
 }
 
 function resetMissionsIfNewDay(missions: MissionProgress | undefined, t: string): MissionProgress {

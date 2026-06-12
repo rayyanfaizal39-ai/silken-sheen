@@ -3273,7 +3273,7 @@ function MathFlashcardCategoryPicker({
 }
 
 function FlashcardsPage() {
-  const { progress, toggleFavorite, markChapter, addXp } = useProgress();
+  const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(null);
@@ -3386,20 +3386,28 @@ function FlashcardsPage() {
     setTimeout(() => setDealing(false), 500);
   }
 
-  function handleResponse(known: boolean) {
+  // rating: 0=Again, 1=Hard, 2=Good, 3=Easy
+  function handleResponse(rating: 0 | 1 | 2 | 3) {
     if (!current || slideOut) return;
+    if (!flipped) return; // must see answer before rating
 
-    if (known) {
+    // SM-2 spaced repetition
+    if (rateCard) rateCard(current.id, rating);
+
+    const pass = rating >= 2;
+    const xpAmount = rating === 3 ? 15 : rating === 2 ? 10 : rating === 1 ? 5 : 0;
+
+    if (pass) {
       sfx.ding();
       vibrate(40, vibrateOn);
       setFlash("green");
       setBurstColor("#22C55E");
-      setFloatXp(true);
+      if (xpAmount > 0) setFloatXp(true);
       setToast(ENCOURAGE[Math.floor(Math.random() * ENCOURAGE.length)]);
       setSlideOut("right");
       setKnownCount((c) => c + 1);
-      addXp(10, subject ?? undefined);
-      setXpEarned((x) => x + 10);
+      if (xpAmount > 0) addXp(xpAmount, subject ?? undefined);
+      setXpEarned((x) => x + xpAmount);
       const newStreak = streak + 1;
       setStreak(newStreak);
       setLongestStreak((l) => Math.max(l, newStreak));
@@ -3428,11 +3436,10 @@ function FlashcardsPage() {
       setFlipped(false);
       setSwipeOffset(0);
 
-      // advance queue
       setQueue((q) => {
         const remaining = q.slice(idx + 1);
-        // re-queue wrong cards at end
-        const nextQueue = known ? remaining : [...remaining, q[idx]];
+        // re-queue Again/Hard cards at end of session
+        const nextQueue = pass ? remaining : [...remaining, q[idx]];
         if (nextQueue.length === 0) {
           setCompleted(true);
           if (subject && chapter) markChapter(subject, chapter, "cards");
@@ -3477,8 +3484,8 @@ function FlashcardsPage() {
     if (touchStart.current === null) return;
     const dx = swipeOffset;
     touchStart.current = null;
-    if (dx > 80) handleResponse(true);
-    else if (dx < -80) handleResponse(false);
+    if (dx > 80) handleResponse(2);   // swipe right = Good
+    else if (dx < -80) handleResponse(0); // swipe left = Again
     else setSwipeOffset(0);
   }
 
@@ -3704,6 +3711,10 @@ function FlashcardsPage() {
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
               resetSession();
+              if (subject && setLastVisited) {
+                const chapMeta = getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === key);
+                setLastVisited({ subjectId: subject, chapterKey: key, type: "flashcards", label: chapMeta?.label ?? key, timestamp: Date.now() });
+              }
             }}
             onBack={() => {
               setSubject(null);
@@ -4033,7 +4044,7 @@ function FlashcardsPage() {
                   {/* Floating XP */}
                   {floatXp && (
                     <div className="pointer-events-none absolute left-1/2 top-6 z-40 animate-xp-float font-display font-bold text-2xl text-emerald-300 drop-shadow-[0_0_12px_rgba(34,197,94,0.7)]">
-                      +10 XP
+                      +XP
                     </div>
                   )}
                   {/* Toast message */}
@@ -4049,38 +4060,58 @@ function FlashcardsPage() {
                 </div>
               </div>
 
-              {/* Action row */}
-              <div className="mt-10 grid grid-cols-3 gap-3">
-                <button
-                  onClick={() => handleResponse(false)}
-                  className="py-3 rounded-2xl bg-rose-500/15 text-rose-200 hover:bg-rose-500/25 transition flex items-center justify-center gap-2 font-semibold"
-                >
-                  <X className="w-4 h-4" /> Don't know
+              {/* Navigation row */}
+              <div className="mt-6 flex items-center justify-center gap-3">
+                <button onClick={() => go(-1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <ChevronLeft className="w-5 h-5" />
                 </button>
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={() => go(-1)}
-                    className="p-3 rounded-full glass hover:bg-white/10"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <span className="text-sm text-muted-foreground">
-                    {done + 1} / {total}
-                  </span>
-                  <button
-                    onClick={() => go(1)}
-                    className="p-3 rounded-full glass hover:bg-white/10"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-                <button
-                  onClick={() => handleResponse(true)}
-                  className="py-3 rounded-2xl bg-emerald-500/15 text-emerald-200 hover:bg-emerald-500/25 transition flex items-center justify-center gap-2 font-semibold"
-                >
-                  <Check className="w-4 h-4" /> I know it
+                <span className="text-sm text-muted-foreground">{done + 1} / {total}</span>
+                <button onClick={() => go(1)} className="p-3 rounded-full glass hover:bg-white/10">
+                  <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
+
+              {/* SM-2 Rating row — shown after card is flipped */}
+              {flipped ? (
+                <div className="mt-4 grid grid-cols-4 gap-2">
+                  <button
+                    onClick={() => handleResponse(0)}
+                    className="py-3 rounded-2xl bg-rose-500/15 text-rose-200 hover:bg-rose-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                  >
+                    <X className="w-4 h-4" />
+                    <span>Lagi</span>
+                    <span className="text-[10px] font-normal opacity-60">Again</span>
+                  </button>
+                  <button
+                    onClick={() => handleResponse(1)}
+                    className="py-3 rounded-2xl bg-orange-500/15 text-orange-200 hover:bg-orange-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                  >
+                    <span className="text-base">😓</span>
+                    <span>Hampir</span>
+                    <span className="text-[10px] font-normal opacity-60">+5 XP</span>
+                  </button>
+                  <button
+                    onClick={() => handleResponse(2)}
+                    className="py-3 rounded-2xl bg-emerald-500/15 text-emerald-200 hover:bg-emerald-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                  >
+                    <Check className="w-4 h-4" />
+                    <span>Tahu</span>
+                    <span className="text-[10px] font-normal opacity-60">+10 XP</span>
+                  </button>
+                  <button
+                    onClick={() => handleResponse(3)}
+                    className="py-3 rounded-2xl bg-sky-500/15 text-sky-200 hover:bg-sky-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                  >
+                    <span className="text-base">✨</span>
+                    <span>Mudah</span>
+                    <span className="text-[10px] font-normal opacity-60">+15 XP</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="mt-4 flex items-center justify-center gap-3 text-xs text-muted-foreground">
+                  <span>Tap card to flip, then rate how well you knew it</span>
+                </div>
+              )}
 
               {showTip && (
                 <div className="mobile-bottom-toast fixed left-1/2 -translate-x-1/2 z-50 glass-strong rounded-full px-4 py-2 text-sm animate-fade-up shadow-xl">

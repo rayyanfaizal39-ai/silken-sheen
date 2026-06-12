@@ -11,17 +11,18 @@ import {
   Library,
   NotebookTabs,
   PlayCircle,
-  Sparkles,
   Zap,
   Flame,
   Trophy,
   Star,
   Target,
   TrendingUp,
+  Bell,
+  RotateCcw,
 } from "lucide-react";
 import { AstronautScene } from "@/components/AstronautScene";
 import { SubjectPlanetLink } from "@/components/AcademyPage";
-import { useProgress, getRank, getNextRank, getRankProgress, DAILY_MISSIONS, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
+import { useProgress, getRank, getNextRank, getRankProgress, DAILY_MISSIONS, chapterProgressPct, getDueCount, getMasteredCount, type LastVisited } from "@/hooks/use-progress";
 
 const quickAccess = [
   {
@@ -76,11 +77,20 @@ const SUBJECT_META = [
   { id: "english",   label: "English",         icon: BookOpen,      color: "#06B6D4" },
 ] as const;
 
+function useStreakUrgent(lastActive: string, streak: number) {
+  const today = new Date().toISOString().slice(0, 10);
+  const hour = new Date().getHours();
+  return streak > 0 && lastActive !== today && hour >= 15;
+}
+
 export function HomeDashboard() {
   const { progress } = useProgress();
   const rank = getRank(progress.xp);
   const nextRank = getNextRank(progress.xp);
   const rankPct = getRankProgress(progress.xp);
+  const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
+  const dueCount = getDueCount(progress.cardMastery);
+  const masteredCount = getMasteredCount(progress.cardMastery);
 
   // Compute subject progress from real activity data
   const subjectCards = SUBJECT_META.map((s) => {
@@ -300,6 +310,40 @@ export function HomeDashboard() {
             )}
           </section>
 
+          {/* ── STREAK URGENCY BANNER ────────────────────────────── */}
+          {streakUrgent && (
+            <Link
+              to="/flashcards"
+              className="flex items-center gap-4 rounded-[2rem] border border-orange-500/30 bg-orange-500/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-orange-500/50 hover:bg-orange-500/15"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-500/20">
+                <Bell className="h-5 w-5 text-orange-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-orange-200">Don't break your {progress.streak}-day streak! 🔥</p>
+                <p className="text-sm text-orange-300/70">Study any chapter before midnight to keep it alive.</p>
+              </div>
+              <ArrowRight className="h-4 w-4 shrink-0 text-orange-400" />
+            </Link>
+          )}
+
+          {/* ── DUE CARDS BANNER ─────────────────────────────────── */}
+          {dueCount > 0 && (
+            <Link
+              to="/flashcards"
+              className="flex items-center gap-4 rounded-[2rem] border border-sky-500/30 bg-sky-500/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-sky-500/50 hover:bg-sky-500/15"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500/20">
+                <RotateCcw className="h-5 w-5 text-sky-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-sky-200">{dueCount} flashcard{dueCount !== 1 ? "s" : ""} due for review today</p>
+                <p className="text-sm text-sky-300/70">{masteredCount} cards mastered · Spaced repetition active</p>
+              </div>
+              <ArrowRight className="h-4 w-4 shrink-0 text-sky-400" />
+            </Link>
+          )}
+
           {/* ── SUBJECTS ─────────────────────────────────────────── */}
           <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
             <div className="mb-5 flex items-center justify-between gap-4">
@@ -400,6 +444,7 @@ export function HomeDashboard() {
 
         {/* ── Sidebar ──────────────────────────────────────────────── */}
         <aside className="space-y-6">
+          {progress.lastVisited && <ResumePanel lastVisited={progress.lastVisited} />}
           <ProgressPanel />
           <DailyMissionsPanel missionsActive={missionsActive} missions={progress.missions} />
           {progress.badges.length > 0 && <RecentBadgesPanel badges={progress.badges} />}
@@ -552,6 +597,45 @@ function DailyMissionsPanel({
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+// ─── Resume Panel ─────────────────────────────────────────────────────────────
+const TYPE_ROUTES = {
+  notes: "/notes",
+  flashcards: "/flashcards",
+  quiz: "/quizzes",
+} as const;
+
+const TYPE_ICONS: Record<string, string> = { notes: "📖", flashcards: "🃏", quiz: "🧠" };
+const TYPE_LABELS: Record<string, string> = { notes: "Notes", flashcards: "Flashcards", quiz: "Quiz" };
+
+function ResumePanel({ lastVisited }: { lastVisited: LastVisited }) {
+  const elapsed = Date.now() - lastVisited.timestamp;
+  const hours = Math.floor(elapsed / 3600000);
+  const timeAgo = hours < 1 ? "Just now" : hours < 24 ? `${hours}h ago` : `${Math.floor(hours / 24)}d ago`;
+
+  return (
+    <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/68 p-5 backdrop-blur-2xl">
+      <p className="text-xs font-bold uppercase tracking-widest text-[#6366F1]">Resume</p>
+      <h2 className="mt-1 font-display text-xl font-bold">Continue Where You Left Off</h2>
+      <div className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.04] p-4">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{TYPE_ICONS[lastVisited.type]}</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold capitalize truncate">{lastVisited.label}</p>
+            <p className="text-xs text-[#94A3B8] capitalize">{lastVisited.subjectId} · {TYPE_LABELS[lastVisited.type]} · {timeAgo}</p>
+          </div>
+        </div>
+        <Link
+          to={TYPE_ROUTES[lastVisited.type]}
+          search={{ subject: lastVisited.subjectId, form: 1 } as Record<string, unknown>}
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-2.5 text-sm font-bold text-white transition-all hover:opacity-90"
+        >
+          Continue <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </div>
   );

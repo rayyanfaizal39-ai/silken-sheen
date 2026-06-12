@@ -10,6 +10,8 @@ import {
   DAILY_MISSIONS,
   chapterProgressPct,
   totalChaptersCompleted,
+  getDueCount,
+  getMasteredCount,
 } from "@/hooks/use-progress";
 import { subjects } from "@/data/content";
 import {
@@ -56,6 +58,8 @@ function DashboardPage() {
   const rankPct    = getRankProgress(progress.xp);
   const completed  = totalChaptersCompleted(progress.chapterActivity);
   const board      = [...leaderboardSeed, { name: "You", xp: progress.xp }].sort((a, b) => b.xp - a.xp);
+  const dueCount   = getDueCount(progress.cardMastery);
+  const masteredCount = getMasteredCount(progress.cardMastery);
 
   const todayDate = new Date().toISOString().slice(0, 10);
   const missionsActive = progress.missions?.dailyDate === todayDate;
@@ -76,10 +80,10 @@ function DashboardPage() {
 
       {/* ── Top stat cards ───────────────────────────────────────── */}
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard icon={<Zap className="h-5 w-5" />}    label="Total XP"       value={progress.xp}           color="from-blue-500 to-indigo-500" />
-        <StatCard icon={<Flame className="h-5 w-5" />}  label="Day Streak"     value={progress.streak}       color="from-orange-500 to-rose-500" />
-        <StatCard icon={<Target className="h-5 w-5" />} label="Quizzes Done"   value={progress.quizzesTaken} color="from-emerald-500 to-teal-500" />
-        <StatCard icon={<Trophy className="h-5 w-5" />} label="Badges Earned"  value={progress.badges.length} color="from-amber-500 to-yellow-500" />
+        <StatCard icon={<Zap className="h-5 w-5" />}    label="Total XP"        value={progress.xp}            color="from-blue-500 to-indigo-500" />
+        <StatCard icon={<Flame className="h-5 w-5" />}  label="Day Streak"      value={progress.streak}        color="from-orange-500 to-rose-500" />
+        <StatCard icon={<Target className="h-5 w-5" />} label="Cards Mastered"  value={masteredCount}          color="from-emerald-500 to-teal-500" />
+        <StatCard icon={<Trophy className="h-5 w-5" />} label="Due for Review"  value={dueCount}               color={dueCount > 0 ? "from-sky-500 to-blue-500" : "from-amber-500 to-yellow-500"} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">

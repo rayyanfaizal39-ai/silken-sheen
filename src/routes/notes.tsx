@@ -72,7 +72,7 @@ function NotesPage() {
   const [chapter, setChapter] = useState<string | null>(null);
   const form = normalizeFormParam(search.form);
   const [scrollPct, setScrollPct] = useState(0);
-  const { progress, markChapter } = useProgress();
+  const { progress, markChapter, setLastVisited } = useProgress();
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
   const needsScienceLang = isBilingualSubject && !scienceLang;
@@ -294,6 +294,10 @@ function NotesPage() {
             scienceLang={activeScienceLang}
             onSelect={(key) => {
               setChapter(key);
+              if (subject && setLastVisited) {
+                const chapMeta = getSubjectChapters(subject, activeScienceLang).find((c) => c.key === key);
+                setLastVisited({ subjectId: subject, chapterKey: key, type: "notes", label: chapMeta?.label ?? key, timestamp: Date.now() });
+              }
             }}
             onBack={() => {
               setChapter(null);
