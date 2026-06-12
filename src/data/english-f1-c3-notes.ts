@@ -1,280 +1,339 @@
-import type { ScienceChapter2Notes } from "./content";
+import type { EnglishChapterData } from "./english-types";
 
-export const englishF1C3Notes: ScienceChapter2Notes = {
-  quickRevision: [
-    "The MAIN IDEA is the most important point in a passage — what the whole text is about.",
-    "SUPPORTING DETAILS are facts, examples, or reasons that support the main idea.",
-    "INFERENCE means reading between the lines — using clues to draw conclusions not stated directly.",
-    "SKIMMING = read quickly to get the general idea. SCANNING = search for specific information.",
-    "FACT = can be proven true. OPINION = a personal belief or feeling that may vary.",
-    "Context clues in surrounding sentences help you figure out the meaning of unfamiliar words.",
+export const englishF1C3Notes: EnglishChapterData = {
+  chapterTitle: "Reading — Unlock Every Text",
+  tagline: "Reading isn't just seeing words — it's decoding meaning, feeling stories, and thinking between the lines.",
+  heroEmoji: "📖",
+  theme: "reading",
+  learningGoals: [
+    "Identify the main idea of any passage",
+    "Make inferences from text evidence",
+    "Skim and scan efficiently",
+    "Distinguish facts from opinions",
+  ],
+  wordVault: [
+    { word: "main idea", partOfSpeech: "noun phrase", meaning: "the most important point of a text — what the whole passage is about", example: "The main idea of the article was Malaysia's environmental challenges." },
+    { word: "inference", partOfSpeech: "noun", meaning: "a conclusion drawn from clues in the text, not stated directly", example: "The author's use of dark imagery implies danger — we infer the character is afraid." },
+    { word: "skim", partOfSpeech: "verb", meaning: "to read quickly to get the general idea", example: "Skim the passage first to understand what it's about." },
+    { word: "scan", partOfSpeech: "verb", meaning: "to read quickly looking for specific information", example: "Scan the text to find the date of the event." },
+    { word: "fact", partOfSpeech: "noun", meaning: "something that can be proven true or false", example: "Malaysia has 13 states — this is a fact." },
+    { word: "opinion", partOfSpeech: "noun", meaning: "a personal belief or view — cannot be proven", example: "Nasi lemak is the best Malaysian food — this is an opinion." },
+    { word: "topic sentence", partOfSpeech: "noun phrase", meaning: "the sentence that states the main idea of a paragraph (usually first)", example: "The first sentence of each paragraph is often the topic sentence." },
+    { word: "supporting detail", partOfSpeech: "noun phrase", meaning: "information that explains or proves the main idea", example: "Statistics about tourist numbers are supporting details about tourism growth." },
+  ],
+  examFacts: [
+    "The MAIN IDEA is usually in the FIRST or LAST sentence of the opening paragraph.",
+    "Inference questions ask you to READ BETWEEN THE LINES — the answer is NOT directly in the text.",
+    "SKIM for the general idea; SCAN for specific information like names, dates, numbers.",
+    "A FACT can be proven true or false. An OPINION uses words like 'believe', 'feel', 'think', 'should'.",
+    "For vocabulary questions: find the word in context, read the whole sentence, then choose the synonym that fits.",
+    "For True/False questions: find the exact sentence in the passage before deciding.",
+    "Never choose answers that sound good but are NOT supported by the text.",
+    "In comprehension, use your own words when asked — don't copy full sentences unless asked to quote.",
   ],
   sections: [
     {
-      title: "1. Before You Read — Smart Strategies",
-      subsections: [
+      title: "Before You Read — Pre-Reading Strategies",
+      emoji: "👀",
+      cards: [
         {
-          content:
-            "Great readers are ACTIVE readers — they think before, during, and after reading. Before you even start reading a passage, you can already predict a lot from the title, headings, and pictures.",
+          type: "story",
+          title: "The Detective's First Look",
+          body: "A detective doesn't walk into a crime scene and immediately pick up random objects. They stand back first and survey the whole scene — observing the layout, patterns, and clues. Reading is the same. Before you dive in, take 30 seconds to look at the title, headings, images, and first/last sentences. You'll build a mental map of the text — and comprehension becomes dramatically easier.",
         },
         {
-          title: "The Pre-Reading Checklist",
-          bulletPoints: [
-            "Read the TITLE first — it tells you the topic.",
-            "Scan the HEADINGS and SUBHEADINGS — they show the structure.",
-            "Look at any IMAGES, GRAPHS, or DIAGRAMS — they support the main ideas.",
-            "Read the QUESTIONS first (in exams) — so you know what to look for.",
-            "Predict: 'What do I already know about this topic?'",
+          type: "concept",
+          title: "Pre-Reading: Set Your Brain Up",
+          body: "Pre-reading strategies prepare your brain to receive information. Like loading a map on your GPS before starting a journey — your brain knows what 'terrain' is coming.",
+          items: [
+            "Read the TITLE — what topic does it suggest?",
+            "Read ALL headings and subheadings — see the structure.",
+            "Look at images, captions, charts — they show key content.",
+            "Read the QUESTIONS first (if any) — know what to look for.",
+            "Read the first and last paragraphs — usually contain main ideas.",
           ],
         },
         {
-          title: "Did You Know?",
-          content:
-            "In a UPSR/PT3 exam, students who read the questions BEFORE the passage score significantly higher — they know exactly what to look for!",
+          type: "real-world",
+          title: "A Malaysian Student's Pre-Reading",
+          body: "Aishah gets a passage titled 'Protecting Taman Negara's Wildlife'. Before reading the body, she reads the title (topic: wildlife conservation), glances at the questions (looking for facts about endangered species), reads the first paragraph (introduces deforestation as a threat). Now her brain is primed. She reads the passage and answers 8/10 questions correctly without re-reading.",
+        },
+        {
+          type: "exam-tip",
+          title: "Read the Questions FIRST",
+          body: "In comprehension exams, always read ALL the questions before reading the passage. Then as you read, your brain automatically highlights relevant sections. This turns one long read into a focused, targeted search.",
+          items: [
+            "Underline key words in each question.",
+            "As you read, mark the paragraph where the answer might be.",
+            "Use question numbers as 'section markers' in the passage.",
+          ],
         },
       ],
     },
     {
-      title: "2. Main Idea — The Heart of the Passage",
-      subsections: [
+      title: "The Heart of the Text — Main Idea",
+      emoji: "🎯",
+      cards: [
         {
-          content:
-            "The main idea is the central message or theme of a text — what the writer MOST wants you to understand. It is usually stated in the first or last paragraph (the topic sentence), but sometimes you have to infer it.",
-        },
-        {
-          title: "How to Find the Main Idea",
-          bulletPoints: [
-            "Step 1: Read the full paragraph or passage.",
-            "Step 2: Ask yourself: 'What is this mostly about?'",
-            "Step 3: Find the sentence that best captures the whole text — that's the main idea.",
-            "Step 4: Check — do all the other sentences support this main idea?",
-          ],
-        },
-        {
+          type: "concept",
           title: "Main Idea vs Topic",
+          body: "These two are NOT the same! The TOPIC is the subject (what it's about). The MAIN IDEA is the POINT being made about that topic — the author's central message.",
+          items: [
+            "Topic: Tigers in Malaysia.",
+            "Main Idea: Tiger populations in Malaysia are rapidly declining and urgent action is needed.",
+            "Tip: Ask yourself — 'What is the author trying to TELL me about this topic?'",
+          ],
+        },
+        {
+          type: "grammar-rule",
+          title: "The Main Idea Formula",
+          formula: "Topic + What the author says about it = Main Idea",
+          items: [
+            "Topic: 'Social media'",
+            "What author says: 'it affects teenagers' mental health negatively'",
+            "Main Idea: 'Social media has a negative impact on teenagers' mental health.'",
+          ],
+        },
+        {
+          type: "table",
+          title: "Finding the Main Idea — Where to Look",
           table: {
-            headers: ["", "Topic", "Main Idea"],
+            headers: ["Location", "How Common", "Why It Works"],
             rows: [
-              ["What it is", "A word or phrase — the subject", "A full sentence — what is said ABOUT the subject"],
-              ["Example", "Recycling", "Recycling helps protect our environment from pollution."],
-              ["Example", "Exercise", "Regular exercise improves both physical and mental health."],
-              ["Example", "Kuala Lumpur", "Kuala Lumpur is a modern city that blends culture and technology."],
+              ["First sentence of para 1", "Very common", "Authors state the main point upfront"],
+              ["Last sentence of para 1", "Common", "Used after giving background/context"],
+              ["First sentence of body paragraphs", "Common", "Topic sentences introduce each idea"],
+              ["Last sentence of entire passage", "Common", "Authors often summarise at the end"],
+              ["Middle of the passage", "Less common", "Usually in longer academic texts"],
             ],
           },
         },
         {
-          title: "Exam Tip",
-          bulletPoints: [
-            "If the question asks for the main idea, your answer should be a COMPLETE SENTENCE.",
-            "Avoid answers that are too narrow (only about one detail) or too broad (too general).",
-            "Key phrases in the question: 'What is the passage mainly about?' / 'What is the writer's main message?'",
+          type: "mistake",
+          title: "Don't Confuse Detail with Main Idea",
+          body: "Supporting details PROVE the main idea — they are NOT the main idea themselves.",
+          wrong: "Main idea = 'Malaysia has 127,317 square km of rainforest.' (This is a FACT/DETAIL)",
+          right: "Main idea = 'Malaysia's rainforests are vital and must be protected.' (This is the POINT)",
+          items: [
+            "If it's a specific number, name, or example → it's a DETAIL.",
+            "If it could summarise the whole passage → it's the MAIN IDEA.",
+          ],
+        },
+        {
+          type: "challenge",
+          title: "Main Idea Practice",
+          body: "Read this mini-passage and identify the main idea: 'Recycling is one of the most impactful habits a Malaysian student can adopt. Separating paper, plastic, and metal reduces landfill waste. It also conserves energy — recycling aluminium uses 95% less energy than producing it from raw materials. Schools that run recycling programmes report increased environmental awareness. Every item recycled is a small step toward a greener Malaysia.'",
+          items: [
+            "a) Aluminium recycling saves energy.",
+            "b) Recycling is a highly impactful environmental habit for students.",
+            "c) Schools should run recycling programmes.",
+            "d) Malaysia has a landfill waste problem.",
           ],
         },
       ],
     },
     {
-      title: "3. Supporting Details — The Evidence",
-      subsections: [
+      title: "Reading Between the Lines — Inference",
+      emoji: "🕵️",
+      cards: [
         {
-          content:
-            "Supporting details are the facts, examples, statistics, reasons, and descriptions that back up the main idea. Think of the main idea as the roof of a house — the supporting details are the pillars holding it up.",
+          type: "story",
+          title: "The Clue Reader",
+          body: "Imagine you walk into class and see all the desks pushed to the sides, a stack of question papers on the teacher's desk, and everyone sitting quietly with pens ready. Nobody told you there's a test — but you KNOW there's a test. That's inference: using clues to figure out something that isn't directly stated. Good readers do this on every page.",
         },
         {
-          title: "Types of Supporting Details",
-          table: {
-            headers: ["Type", "Description", "Example"],
-            rows: [
-              ["Facts/Statistics", "Proven information with numbers or data", "'Malaysia has 13 states and 3 federal territories.'"],
-              ["Examples", "Specific cases that illustrate the main point", "'Such as Penang, Langkawi, and Tioman.'"],
-              ["Reasons", "Explanations for why something is true", "'Because deforestation destroys animal habitats.'"],
-              ["Descriptions", "Sensory details that paint a picture", "'The golden dome gleamed under the hot afternoon sun.'"],
-              ["Quotations", "Words spoken by an authority", "'According to the Minister, education is a priority.'"],
-            ],
-          },
+          type: "concept",
+          title: "What Is Inference?",
+          body: "Inference is drawing a conclusion that is NOT directly written in the text. You use CLUES in the text + your own KNOWLEDGE to arrive at a reasonable conclusion.",
+          items: [
+            "Text says: 'She came home, threw her bag on the floor, and slammed her bedroom door.'",
+            "Inference: She is angry or upset about something.",
+            "The text never says 'she was angry' — you inferred it from the ACTIONS described.",
+          ],
         },
         {
-          title: "Finding Supporting Details",
-          bulletPoints: [
-            "Look for 'for example', 'such as', 'in addition', 'furthermore', 'also', 'first', 'second'.",
-            "Each body paragraph usually has one supporting detail that develops the main idea.",
-            "In a list question, supporting details are the individual items to identify.",
+          type: "grammar-rule",
+          title: "The Inference Formula",
+          formula: "Clue in text  +  Your knowledge  =  Inference",
+          items: [
+            "Clue: 'The boy wiped his eyes and sniffled.'",
+            "Knowledge: People wipe eyes and sniffle when crying.",
+            "Inference: The boy was crying / upset.",
+          ],
+        },
+        {
+          type: "real-world",
+          title: "Inference in Malaysian Contexts",
+          body: "Read this: 'The family arrived at the field at 7am with tupperware containers, a mat, and small flags.' What can you infer?",
+          items: [
+            "Inference: They are attending an outdoor celebration (possibly Merdeka or sports day).",
+            "Evidence: mat (sitting outdoors), tupperware (packed food for a long event), flags (national event).",
+            "You combine clues from the text with knowledge of Malaysian culture.",
+          ],
+        },
+        {
+          type: "exam-tip",
+          title: "How to Answer Inference Questions",
+          body: "Inference questions often use: 'What can you conclude...?' / 'What does this suggest...?' / 'Why most likely...?' Never write 'It says in the passage...' — inference means it's NOT directly said.",
+          items: [
+            "Step 1: Find the relevant lines in the passage.",
+            "Step 2: Identify the clue words (actions, emotions, descriptions).",
+            "Step 3: Ask 'What does this suggest?' using your knowledge.",
+            "Step 4: Write your answer using 'This suggests...' or 'We can infer that...'",
           ],
         },
       ],
     },
     {
-      title: "4. Inference — Reading Between the Lines",
-      subsections: [
+      title: "Speed Reading — Skimming & Scanning",
+      emoji: "⚡",
+      cards: [
         {
-          content:
-            "Making an inference means drawing a logical conclusion from clues in the text — even when the answer is NOT directly stated. It is like being a detective: you use evidence to figure out what is true.",
-        },
-        {
-          title: "The 3-Step Inference Method",
-          bulletPoints: [
-            "Step 1: Read the relevant part of the passage carefully.",
-            "Step 2: Ask: 'What clues does the writer give me?' (look for actions, feelings, descriptions)",
-            "Step 3: Ask: 'What can I logically conclude from these clues?'",
-          ],
-        },
-        {
-          title: "Inference Practice",
+          type: "table",
+          title: "Skim vs Scan — Know the Difference",
           table: {
-            headers: ["Text Clue", "What You Can Infer"],
+            headers: ["Strategy", "Purpose", "How to Do It", "When to Use"],
             rows: [
-              ["'She stared at the clock every few minutes, tapping her foot.'", "She is nervous or impatient about something."],
-              ["'He smiled and pumped his fist when the results were announced.'", "He received good results / passed his exam."],
-              ["'The shelves were empty and cobwebs hung in every corner.'", "The shop / room has been unused for a long time."],
-              ["'She spoke very softly and looked at her feet when asked.'", "She is shy, nervous, or embarrassed."],
+              ["SKIM", "Get the general idea of the whole text", "Read title, headings, first/last sentences of paragraphs", "Before reading a passage; in pre-reading"],
+              ["SCAN", "Find specific information quickly", "Move eyes rapidly, looking for key words/numbers/names", "Answering 'who, what, when, where' questions"],
             ],
           },
         },
         {
-          title: "Common Mistake",
-          bulletPoints: [
-            "WRONG: Making inferences based on YOUR personal feelings, not the text.",
-            "RIGHT: Every inference must be supported by specific evidence from the passage.",
-            "Ask: 'Where in the text does it say or suggest this?'",
+          type: "concept",
+          title: "Skimming — The Overview",
+          body: "Skimming gives you the 'map' of a text in under 30 seconds. You're not reading every word — you're flying over it to spot the landscape.",
+          items: [
+            "Read the TITLE and any HEADINGS.",
+            "Read the FIRST sentence of each paragraph (topic sentence).",
+            "Read the LAST sentence of the last paragraph (conclusion).",
+            "Look at any bold, italic, or underlined words.",
+          ],
+        },
+        {
+          type: "concept",
+          title: "Scanning — The Search Laser",
+          body: "Scanning is like using a search function. You have a specific target (a name, date, number, keyword) and you move your eyes rapidly until you SPOT it.",
+          items: [
+            "Decide EXACTLY what you're looking for before scanning.",
+            "Move your eyes in a Z-pattern or down the middle of the page.",
+            "Stop ONLY when you spot your target word or a synonym of it.",
+            "Don't read the full sentence until you've found your target.",
+          ],
+        },
+        {
+          type: "memory-trick",
+          title: "The Speed Reading Chant",
+          body: "Use this to remember the difference:",
+          items: [
+            "SKIM = Get the GIST (general overview of the whole text)",
+            "SCAN = Find the FACT (specific detail buried in the text)",
+            "Think: a boat SKIMS the surface... a SCANNER hunts for one specific barcode.",
           ],
         },
       ],
     },
     {
-      title: "5. Skimming & Scanning — Speed Reading Tools",
-      subsections: [
+      title: "True or Made Up? — Facts vs Opinions",
+      emoji: "⚖️",
+      cards: [
         {
-          content:
-            "Not all reading is the same. Knowing WHEN to skim and when to scan will save you valuable time in exams and in everyday life.",
+          type: "concept",
+          title: "Can It Be Proved?",
+          body: "The key difference between a fact and an opinion is PROOF. Facts can be checked and verified. Opinions are what someone thinks or feels — they cannot be proven right or wrong.",
+          items: [
+            "FACT: Malaysia was granted independence on 31 August 1957.",
+            "OPINION: Merdeka Day is the most meaningful Malaysian celebration.",
+            "FACT: Kuala Lumpur has a population of over 1.7 million.",
+            "OPINION: Kuala Lumpur is the best city to live in.",
+          ],
         },
         {
-          title: "Skimming vs Scanning",
+          type: "table",
+          title: "Opinion Signal Words",
           table: {
-            headers: ["", "Skimming", "Scanning"],
+            headers: ["Signal Word", "Example"],
             rows: [
-              ["Purpose", "Get the general idea / overview", "Find a specific piece of information"],
-              ["How", "Read first sentences, headings, conclusions", "Move eyes quickly, looking for keywords"],
-              ["Speed", "Very fast — skip most content", "Fast, but stop when you find the target"],
-              ["When to use", "First read-through of a long passage", "Finding dates, names, numbers, or facts"],
-              ["Example", "Reading the newspaper to see what is interesting", "Looking up a phone number in a directory"],
+              ["I believe / I think", "I believe online learning is equally effective."],
+              ["In my opinion", "In my opinion, students should have longer holidays."],
+              ["should / must / ought to", "Schools should ban social media."],
+              ["perhaps / possibly", "Perhaps stricter laws would reduce littering."],
+              ["the best / the worst", "This is the best solution to the problem."],
+              ["it seems / it appears", "It seems the situation is improving."],
             ],
           },
         },
         {
-          title: "Scanning Tips for Exams",
-          bulletPoints: [
-            "Know your TARGET before you scan — a name? A date? A number? A specific word?",
-            "Let your eyes move quickly over the text without stopping at every word.",
-            "When you spot your target (or nearby keywords), slow down and read carefully.",
-            "In comprehension exams, scan for KEY WORDS from the question in the passage.",
+          type: "did-you-know",
+          title: "Facts Can Be Wrong!",
+          body: "Facts are statements that CAN be checked — but that doesn't mean they're always correct! 'The Earth is flat' is a FACTUAL CLAIM (it can be proven) — but it's a WRONG fact. Don't confuse 'fact' with 'truth'. Facts are provable claims. Opinions are personal beliefs.",
+        },
+        {
+          type: "challenge",
+          title: "Fact or Opinion?",
+          body: "Label each statement F (fact) or O (opinion):",
+          items: [
+            "1. Malaysia has 329,847 km² of land area.",
+            "2. Malaysian food is the most delicious in the world.",
+            "3. The Petronas Twin Towers were once the tallest buildings in the world.",
+            "4. Students should spend more time reading instead of playing games.",
+            "5. Peninsular Malaysia is connected to Borneo by the South China Sea.",
           ],
         },
       ],
     },
     {
-      title: "6. Facts vs Opinions — Know the Difference",
-      subsections: [
+      title: "Answering Like a Champion — Comprehension Techniques",
+      emoji: "🏆",
+      cards: [
         {
-          content:
-            "Being able to distinguish facts from opinions is a critical thinking skill. Writers mix both in texts, and knowing the difference helps you evaluate what you read with confidence.",
-        },
-        {
-          title: "Fact vs Opinion",
-          table: {
-            headers: ["", "Fact", "Opinion"],
-            rows: [
-              ["Definition", "Something that can be proven true or false", "A personal belief, feeling, or judgement"],
-              ["Can be verified?", "Yes — with evidence, data, experiments", "No — it depends on perspective"],
-              ["Signal words", "is, was, are, measured, recorded, found", "I think, I believe, should, best, worst, probably"],
-              ["Example", "Malaysia gained independence on 31 August 1957.", "Malaysia is the best country in the world."],
-              ["Example", "The Amazon rainforest covers 5.5 million km².", "The Amazon rainforest is more important than any other."],
-            ],
-          },
-        },
-        {
-          title: "Opinion Signal Words to Watch For",
-          bulletPoints: [
-            "Verbs: think, believe, feel, consider, suggest, argue, claim.",
-            "Adjectives: best, worst, greatest, most important, beautiful, terrible.",
-            "Modal verbs: should, must, ought to, could (when expressing what is desirable).",
-            "Adverbs: probably, possibly, perhaps, clearly (when expressing a view).",
-          ],
-        },
-        {
-          title: "Malaysian Examples",
-          bulletPoints: [
-            "FACT: Malaysia has the Petronas Twin Towers, which were the world's tallest buildings from 1998–2004.",
-            "OPINION: Petronas Twin Towers are the most beautiful buildings in the world.",
-            "FACT: The Malaysian ringgit is divided into 100 sen.",
-            "OPINION: Malaysia's food is the tastiest in all of Asia.",
-          ],
-        },
-      ],
-    },
-    {
-      title: "7. Comprehension Questions — How to Answer Them",
-      subsections: [
-        {
-          content:
-            "Answering comprehension questions is a skill you can train. Different question types need different strategies.",
-        },
-        {
+          type: "table",
           title: "Types of Comprehension Questions",
           table: {
-            headers: ["Question Type", "Strategy", "Key Tip"],
+            headers: ["Question Type", "What It Asks", "Strategy"],
             rows: [
-              ["Literal (stated in text)", "Find the exact words in the passage", "Quote directly from the text where possible"],
-              ["Vocabulary (word meanings)", "Use context clues; look at surrounding words", "Try replacing the word — does the sentence still make sense?"],
-              ["Inference (implied)", "Look for clues; reason logically", "Your answer must be supported by the text"],
-              ["Main Idea", "Read the whole passage; find the central message", "It should cover EVERYTHING in the passage"],
-              ["Opinion/Evaluation", "State your view with a reason", "Use evidence from the passage to support your answer"],
+              ["Literal", "Answer is directly in the text", "Find, underline, quote accurately"],
+              ["Vocabulary", "Word meaning in context", "Read the full sentence, find a synonym"],
+              ["Inference", "Answer is NOT in text — use clues", "Clue + knowledge → conclusion"],
+              ["Main Idea", "What is the passage mainly about?", "Summarise in 1 sentence — the author's message"],
+              ["True/False", "Is this statement correct?", "Find exact evidence in text before deciding"],
             ],
           },
         },
         {
-          title: "Answer Writing Formula",
-          bulletPoints: [
-            "For 2-mark answers: State the point + support it with evidence from the text.",
-            "For 'what does X mean in line Y?' → use context; replace in the sentence to check.",
-            "Use FULL SENTENCES — point form is rarely accepted in comprehension.",
-            "Check: Does your answer directly address the question asked?",
+          type: "grammar-rule",
+          title: "The Answer Structure Formula",
+          formula: "Point  +  Evidence  +  Explanation (PEE)",
+          items: [
+            "Q: Why did the fishermen leave the sea?",
+            "Point: The fishermen left the sea because of rough weather.",
+            "Evidence: The passage states 'strong waves battered the shore.'",
+            "Explanation: This shows conditions were too dangerous to fish.",
           ],
         },
         {
-          title: "Common Mistakes to Avoid",
-          bulletPoints: [
-            "Copying large chunks of the passage without answering the question.",
-            "Writing 'I think...' in literal questions — the answer is IN the text.",
-            "Giving incomplete answers when a question asks for multiple points.",
-            "Forgetting to use evidence when the question asks you to 'refer to the text'.",
+          type: "mistake",
+          title: "The Most Common Comprehension Mistakes",
+          wrong: "Copying an entire paragraph as the answer. Writing 'yes, because it says so in the passage.'",
+          right: "Picking the specific relevant sentence and writing it accurately in your answer.",
+          items: [
+            "Never copy MORE than the question asks for.",
+            "Never say 'it says in the passage' without quoting the exact words.",
+            "Always use SPECIFIC evidence, not vague references.",
+          ],
+        },
+        {
+          type: "exam-tip",
+          title: "Time Management in Comprehension",
+          body: "In the exam, don't spend too long on one question. Use this time allocation:",
+          items: [
+            "Pre-reading (read questions first): 2-3 minutes.",
+            "First read of passage: 5-7 minutes.",
+            "Answering questions: 1-2 minutes per question.",
+            "If stuck: skip, answer others, come back. A blank answer gets 0 marks — any answer gets a chance.",
           ],
         },
       ],
     },
   ],
-  keyExamFacts: [
-    "Main Idea = the central message of the passage — stated as a complete sentence.",
-    "Supporting Details = facts, examples, and reasons that back up the main idea.",
-    "Inference = logical conclusion based on text clues — not directly stated.",
-    "Skimming = quick read for general idea | Scanning = quick search for specific information.",
-    "Fact = can be proven | Opinion = personal view, uses signal words like 'think', 'believe', 'best'.",
-    "Read the comprehension QUESTIONS first — then search the passage for answers.",
-    "Every inference must be supported by specific evidence from the text.",
-    "Full sentences are required in comprehension answers — not point form.",
-  ],
-  keyTerms: [
-    "Main Idea",
-    "Supporting Detail",
-    "Inference",
-    "Context Clue",
-    "Skimming",
-    "Scanning",
-    "Fact",
-    "Opinion",
-    "Comprehension",
-    "Topic Sentence",
-    "Evidence",
-    "Signal Words",
-  ],
-  chapterSummary:
-    "Chapter 3 transforms you into an active, strategic reader. By mastering the skills of identifying main ideas, finding supporting details, making inferences, distinguishing facts from opinions, and using skimming/scanning efficiently, you will confidently tackle any reading comprehension passage — in exams and in real life.",
 };

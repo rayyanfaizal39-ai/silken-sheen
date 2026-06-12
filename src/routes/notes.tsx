@@ -30,6 +30,7 @@ import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
+import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
 
@@ -346,9 +347,12 @@ function NotesPage() {
               title={activeChapter.mindMap.title}
             />
           )}
-          {activeChapter?.notes && <NotesBlock id="notes" notes={activeChapter.notes} subjectId={subject ?? undefined} />}
+          {subject === "english" && activeChapter?.englishData
+            ? <EnglishNotesBlock id="notes" data={activeChapter.englishData} />
+            : activeChapter?.notes && <NotesBlock id="notes" notes={activeChapter.notes} subjectId={subject ?? undefined} />}
 
           {filtered.length === 0 ? (
+            !activeChapter?.englishData &&
             !activeChapter?.notes &&
             !activeChapter?.mindMap &&
             !activeChapter?.video && (
@@ -360,7 +364,7 @@ function NotesPage() {
             )
           ) : (
             <>
-              {!activeChapter?.notes && <NotesBlock id="notes" sections={legacyNoteSections} subjectId={subject ?? undefined} />}
+              {!activeChapter?.englishData && !activeChapter?.notes && <NotesBlock id="notes" sections={legacyNoteSections} subjectId={subject ?? undefined} />}
 
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button

@@ -6,6 +6,7 @@ import type {
   QuizQuestion,
 } from "@/data/content";
 import type { Subtopic } from "@/data/sejarah-f1-subtopics";
+import type { EnglishChapterData } from "@/data/english-types";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -38,6 +39,8 @@ export type ChapterContent = {
   video?: VideoBlock;
   mindMap?: { data: MindNode; title: string };
   notes?: StructuredNotes;
+  /** English-specific learning experience — replaces generic StructuredNotes for English chapters. */
+  englishData?: EnglishChapterData;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -52,7 +55,7 @@ export type ChapterFeatureKey =
 
 export function getChapterFeatures(c: ChapterContent | undefined): Record<ChapterFeatureKey, boolean> {
   return {
-    notes: !!c?.notes || !!c?.subtopics?.length,
+    notes: !!c?.notes || !!c?.englishData || !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,
     mindMap: !!c?.mindMap,

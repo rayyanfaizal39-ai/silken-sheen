@@ -1,304 +1,344 @@
-import type { ScienceChapter2Notes } from "./content";
+import type { EnglishChapterData } from "./english-types";
 
-export const englishF1C4Notes: ScienceChapter2Notes = {
-  quickRevision: [
-    "Every good piece of writing has a clear PURPOSE (why you're writing) and AUDIENCE (who reads it).",
-    "INFORMAL writing (emails to friends, diary entries) uses casual, friendly language.",
-    "FORMAL writing (official letters, reports, essays) uses professional, polite language.",
-    "A PARAGRAPH = Topic sentence + Supporting sentences + Closing sentence.",
-    "PLANNING before writing saves time and produces better, more organised work.",
-    "Punctuation marks (. , ? ! ; :) signal meaning — missing them confuses the reader.",
+export const englishF1C4Notes: EnglishChapterData = {
+  chapterTitle: "Writing — Craft Your Voice",
+  tagline: "Writing is thinking made visible. Master the craft and your words will outlast the page.",
+  heroEmoji: "✍️",
+  theme: "writing",
+  learningGoals: [
+    "Plan and structure any piece of writing",
+    "Write well-developed paragraphs using TEEL",
+    "Distinguish and write informal and formal letters",
+    "Use punctuation correctly for full marks",
+  ],
+  wordVault: [
+    { word: "purpose", partOfSpeech: "noun", meaning: "the reason you are writing — to inform, persuade, entertain, or describe", example: "The purpose of a formal letter is to inform or request." },
+    { word: "audience", partOfSpeech: "noun", meaning: "who will read what you write — affects tone and vocabulary", example: "An informal letter is written for a friend (casual audience)." },
+    { word: "thesis statement", partOfSpeech: "noun phrase", meaning: "the central argument or point of an essay — states your main position", example: "Thesis: 'Social media has more benefits than drawbacks for Malaysian teenagers.'" },
+    { word: "TEEL", partOfSpeech: "acronym", meaning: "Topic sentence, Evidence, Explanation, Link back — a paragraph formula", example: "Use TEEL for every body paragraph in your essay." },
+    { word: "tone", partOfSpeech: "noun", meaning: "the attitude and feeling in your writing", example: "Formal letters use a respectful, professional tone." },
+    { word: "coherence", partOfSpeech: "noun", meaning: "logical flow and connection between ideas in writing", example: "Use linking words to ensure coherence: 'Furthermore', 'In addition', 'However'." },
+    { word: "draft", partOfSpeech: "noun/verb", meaning: "an early version of a piece of writing before it is finalised", example: "Always write a draft first, then revise and edit." },
+    { word: "revise", partOfSpeech: "verb", meaning: "to review and improve your writing", example: "After drafting, revise for clarity and grammar errors." },
+  ],
+  examFacts: [
+    "Every essay needs an Introduction, 2-3 Body paragraphs, and a Conclusion.",
+    "TEEL paragraph = Topic Sentence + Evidence + Explanation + Link (back to thesis).",
+    "Informal letters: casual language, contractions OK, signed 'Yours truly' or 'Best wishes'.",
+    "Formal letters: no contractions, respectful tone, signed 'Yours faithfully' (unknown) or 'Yours sincerely' (known name).",
+    "Punctuation marks carry marks: capital letters, full stops, commas, question marks.",
+    "Linking words for essays: Furthermore, In addition, However, Nevertheless, As a result.",
+    "Show, don't tell: instead of 'He was happy', write 'He grinned from ear to ear.'",
+    "Vary sentence length: short sentences create impact, long sentences build detail.",
   ],
   sections: [
     {
-      title: "1. The Writing Process — Plan Before You Write",
-      subsections: [
+      title: "Before You Write — The Writing Process",
+      emoji: "📋",
+      cards: [
         {
-          content:
-            "Great writers don't just start writing and hope for the best. They PLAN. Taking 5 minutes to plan saves you 20 minutes of confusion and produces far better work. Think of planning as building a house — you need a blueprint before you lay the bricks.",
+          type: "story",
+          title: "The Builder Who Never Draws Plans",
+          body: "Imagine a builder who starts constructing a house without any blueprint. He builds a wall here, a room there — and ends up with crooked walls, rooms that go nowhere, and a structure that collapses. Good writing is the same: without planning, you get ideas that ramble, paragraphs that repeat, and an essay that falls apart. The best writers plan first.",
         },
         {
-          title: "The 5-Step Writing Process",
-          table: {
-            headers: ["Step", "What You Do", "Time (in exam)"],
-            rows: [
-              ["1. Plan", "Brainstorm ideas, decide on structure, note key points", "5 minutes"],
-              ["2. Draft", "Write your first version — don't worry about perfection", "25 minutes"],
-              ["3. Revise", "Check content — have you answered the question? Is it complete?", "5 minutes"],
-              ["4. Edit", "Fix grammar, spelling, punctuation mistakes", "5 minutes"],
-              ["5. Proofread", "Final check — read aloud to catch errors your eyes miss", "2 minutes"],
-            ],
-          },
+          type: "concept",
+          title: "The 5-Stage Writing Process",
+          body: "Writing is never just one step. Professional writers — and exam writers who score A — follow a process:",
+          items: [
+            "1. PLAN: brainstorm ideas, make an outline (spidergram or list)",
+            "2. DRAFT: write your first version — get ideas down, don't stop to perfect",
+            "3. REVISE: check ideas, organisation, and relevance — is it clear?",
+            "4. EDIT: fix grammar, punctuation, vocabulary, and spelling",
+            "5. PUBLISH/SUBMIT: final clean copy",
+          ],
         },
         {
-          title: "Brainstorming Tools",
-          bulletPoints: [
-            "Mind Map — draw a central idea and branch out related points.",
-            "Bullet Points — list ideas quickly, then number them in order.",
-            "5W1H — Who? What? When? Where? Why? How? — great for narratives and reports.",
-            "PEEL paragraph planning — Point, Evidence, Explain, Link.",
+          type: "real-world",
+          title: "The Exam Planning Strategy",
+          body: "In an exam, you have limited time — but skipping planning actually wastes more time! Spend 5 minutes planning and save 10 minutes of rambling.",
+          items: [
+            "Read the question carefully — underline the key task words.",
+            "Write a quick 3-column outline: Introduction idea | 3 body points | Conclusion angle.",
+            "This 5-minute plan keeps you on topic for the entire essay.",
+          ],
+        },
+        {
+          type: "exam-tip",
+          title: "Understand the Question First",
+          body: "Many students lose marks by misreading the question. Always identify the TASK WORD and the TOPIC:",
+          items: [
+            "Describe = give details about what it looks/feels/sounds like.",
+            "Discuss = give reasons and different perspectives.",
+            "Explain = give reasons or causes clearly.",
+            "Narrate = tell a story in sequence.",
           ],
         },
       ],
     },
     {
-      title: "2. Paragraphs — The Building Blocks of Writing",
-      subsections: [
+      title: "The Perfect Paragraph — TEEL",
+      emoji: "🧱",
+      cards: [
         {
-          content:
-            "A paragraph is a group of sentences about ONE main idea. Good writing flows from paragraph to paragraph, each building on the last. Think of paragraphs as rooms in a house — each one has a different purpose, but together they form something complete.",
-        },
-        {
-          title: "The Perfect Paragraph Structure (TEEL)",
+          type: "grammar-rule",
+          title: "TEEL — Your Paragraph Blueprint",
+          formula: "T = Topic Sentence  |  E = Evidence  |  E = Explanation  |  L = Link",
           table: {
-            headers: ["Letter", "Part", "Purpose", "Example"],
+            headers: ["Part", "What It Does", "Example"],
             rows: [
-              ["T", "Topic Sentence", "States the main idea of the paragraph", "'Regular exercise has many benefits for teenagers.'"],
-              ["E", "Evidence/Example", "Supports the topic sentence with proof", "'For instance, studies show that 30 minutes of daily exercise improves concentration.'"],
-              ["E", "Explanation", "Explains how the evidence supports the point", "'This means students who exercise are better able to focus during lessons.'"],
-              ["L", "Link/Conclusion", "Links back to the main topic or leads to the next point", "'Clearly, making time for exercise is essential for academic success.'"],
+              ["Topic (T)", "States the main point of this paragraph", "Social media improves communication for Malaysian students."],
+              ["Evidence (E)", "A fact, example, or quote that supports it", "For example, platforms like WhatsApp allow group study sessions across states."],
+              ["Explanation (E)", "Explain HOW the evidence proves the point", "This shows that students can learn collaboratively beyond physical boundaries."],
+              ["Link (L)", "Connect back to your thesis or main argument", "Therefore, social media enhances learning opportunities for today's students."],
             ],
           },
         },
         {
-          title: "Linking Words — Make Your Writing Flow",
-          table: {
-            headers: ["Purpose", "Linking Words"],
-            rows: [
-              ["Adding a point", "Furthermore, In addition, Moreover, Besides, Also"],
-              ["Showing contrast", "However, On the other hand, Nevertheless, Although, Despite"],
-              ["Giving examples", "For instance, For example, Such as, Namely"],
-              ["Showing result", "Therefore, As a result, Consequently, Hence, Thus"],
-              ["Concluding", "In conclusion, In summary, To sum up, Overall, Finally"],
-              ["Time order", "First, Secondly, Then, After that, Eventually, Meanwhile"],
-            ],
-          },
-        },
-      ],
-    },
-    {
-      title: "3. Essay Writing — Making Your Voice Heard",
-      subsections: [
-        {
-          content:
-            "An essay is an organised piece of writing that develops ideas about a topic. In KSSM Form 1, you will write both descriptive (describe something) and narrative (tell a story) essays.",
+          type: "real-world",
+          title: "TEEL in Action — Malaysian Topic",
+          body: "Question: Write an essay about the importance of protecting Malaysian rainforests.",
+          items: [
+            "T: Malaysia's rainforests are home to thousands of unique species that cannot be found elsewhere.",
+            "E: The Malayan tiger, the proboscis monkey, and the Rafflesia flower are all found exclusively in Malaysian forests.",
+            "E: If these forests are destroyed, these species face extinction — a loss that can never be recovered.",
+            "L: Therefore, protecting Malaysian rainforests is not just an environmental issue, but a national responsibility.",
+          ],
         },
         {
-          title: "The 3-Part Essay Structure",
-          table: {
-            headers: ["Part", "Purpose", "What to Include"],
-            rows: [
-              ["Introduction", "Hook the reader; introduce the topic", "Opening statement + background + thesis (main idea)"],
-              ["Body (2–3 paragraphs)", "Develop your ideas with details and examples", "One main idea per paragraph, with supporting details"],
-              ["Conclusion", "Sum up and leave an impression", "Restate thesis in different words + final thought / call to action"],
-            ],
-          },
+          type: "mistake",
+          title: "The Weak Paragraph Trap",
+          wrong: "Social media is good. It helps students. Many people use it. It is very popular.",
+          right: "Social media enhances learning by enabling collaborative study. For example, students use shared WhatsApp groups to discuss homework and share notes. This collaboration improves understanding beyond what classroom time alone can offer.",
+          items: [
+            "Short, disconnected sentences = low marks.",
+            "Each paragraph should have ONE clear point, supported and explained.",
+          ],
         },
         {
-          title: "Types of Essays in KSSM Form 1",
-          table: {
-            headers: ["Type", "Purpose", "Characteristics"],
-            rows: [
-              ["Narrative Essay", "Tell a story (real or imagined)", "Characters, setting, plot, climax, resolution; uses past tense"],
-              ["Descriptive Essay", "Describe a person, place, or event", "Sensory details (sight, sound, smell, taste, touch); vivid adjectives"],
-              ["Continuous Writing", "Extended creative or expository writing", "May combine narrative and descriptive elements"],
-            ],
-          },
-        },
-        {
-          title: "Opening Sentences That Grab Attention",
-          bulletPoints: [
-            "Start with action: 'The fire alarm shrieked, jolting me awake at 3 a.m.'",
-            "Start with a question: 'Have you ever felt completely lost in a crowd of thousands?'",
-            "Start with description: 'The rainforest hummed with a thousand hidden voices.'",
-            "Start with a quote or saying: 'Every cloud has a silver lining — and that stormy day proved it.'",
-            "AVOID: 'I am going to write about...' or 'This essay is about...' — these are boring!",
+          type: "challenge",
+          title: "Build a TEEL Paragraph",
+          body: "Topic: The benefits of reading. Write a TEEL paragraph:",
+          items: [
+            "T: State a benefit of reading as your topic sentence.",
+            "E: Give a specific example (Malaysian context is a bonus).",
+            "E: Explain HOW that example proves your point.",
+            "L: Link back to the idea that reading is valuable.",
           ],
         },
       ],
     },
     {
-      title: "4. Informal Email & Letter Writing",
-      subsections: [
+      title: "The Complete Essay — Structure",
+      emoji: "🏛️",
+      cards: [
         {
-          content:
-            "Informal emails and letters are written to friends, family, or people you know well. The tone is warm, personal, and conversational. In KSSM, this is a common writing task — so learn the format well!",
+          type: "concept",
+          title: "The 3-Part Essay",
+          body: "Every essay — narrative, expository, or argumentative — needs all three parts working together like a beginning, middle, and end of a great story.",
+          items: [
+            "INTRODUCTION: hook the reader, give background, state your thesis.",
+            "BODY PARAGRAPHS (2-3): each one = one main point in TEEL format.",
+            "CONCLUSION: summarise main points, restate thesis in new words, end with impact.",
+          ],
         },
         {
-          title: "Informal Email Format",
+          type: "grammar-rule",
+          title: "Introduction Formula",
+          formula: "Hook  →  Background / Context  →  Thesis Statement",
+          items: [
+            "HOOK: A question, surprising fact, or short scenario that grabs attention.",
+            "Example: 'Every year, Malaysia loses thousands of hectares of rainforest — land that took millions of years to grow.'",
+            "THESIS: Your main argument in one clear sentence.",
+            "Example: 'Immediate and collective action is needed to protect Malaysia's natural heritage.'",
+          ],
+        },
+        {
+          type: "table",
+          title: "Linking Words — Upgrade Your Essay",
           table: {
-            headers: ["Part", "What to Write", "Example"],
+            headers: ["Function", "Linking Words"],
             rows: [
-              ["Subject line", "Brief description of the email's content", "Subject: My Amazing Holiday in Langkawi!"],
-              ["Greeting", "Friendly opening using first name", "Hi Priya, / Dear Zara, / Hey Hafiz,"],
-              ["Opening line", "Friendly starter — reference shared experience", "Hope you're doing well! It feels like ages since we last met."],
-              ["Body", "Your main content — keep it natural, friendly", "Paragraphs about your topic; use casual language and contractions."],
-              ["Closing line", "Warm sign-off reference", "Can't wait to hear from you! / Write back soon!"],
-              ["Sign-off", "Friendly ending", "Your friend, / Best wishes, / Take care, / Love,"],
-              ["Name", "Your first name only", "Aisyah"],
+              ["Adding a point", "Furthermore, In addition, Moreover, Besides that"],
+              ["Contrasting", "However, Nevertheless, On the other hand, Despite this"],
+              ["Giving a reason", "Because, Since, As, Due to, Owing to"],
+              ["Showing a result", "Therefore, As a result, Consequently, Thus, Hence"],
+              ["Giving an example", "For example, For instance, Such as, In particular"],
+              ["Concluding", "In conclusion, To sum up, Overall, In summary"],
             ],
           },
         },
         {
-          title: "Informal Language Features",
-          bulletPoints: [
-            "Use contractions: I'm, you're, don't, can't, it's, we'll.",
-            "Use casual vocabulary: amazing, awesome, super, cool, totally.",
-            "Ask questions to engage: 'Guess what?', 'Can you believe it?', 'What do you think?'",
-            "Use exclamation marks for excitement (but don't overdo it!).",
-            "Use personal pronouns: I, you, we, my, your.",
+          type: "exam-tip",
+          title: "Conclusion: Don't Just Repeat",
+          body: "A weak conclusion just repeats the body paragraphs word for word. A strong conclusion SYNTHESISES — it shows how all the points come together to prove your thesis.",
+          items: [
+            "Weak: 'In conclusion, social media has benefits. It helps students. It is also popular.'",
+            "Strong: 'In conclusion, while social media carries risks, its potential to enhance Malaysian students' learning and connectivity makes it an invaluable modern tool — if used with responsibility and intention.'",
           ],
         },
       ],
     },
     {
-      title: "5. Formal Letter Writing",
-      subsections: [
+      title: "Letters — Two Very Different Worlds",
+      emoji: "✉️",
+      cards: [
         {
-          content:
-            "Formal letters are used for official purposes — applying for something, making a complaint, requesting information, or writing to authorities. The tone is always respectful, professional, and clear.",
-        },
-        {
-          title: "Formal Letter Format (KSSM)",
+          type: "table",
+          title: "Formal vs Informal — At a Glance",
           table: {
-            headers: ["Part", "Position", "Example"],
+            headers: ["Feature", "Formal Letter", "Informal Letter"],
             rows: [
-              ["Your address", "Top right", "15, Jalan Merdeka, Taman Baru, 50000 Kuala Lumpur."],
-              ["Date", "Below your address", "12 June 2026"],
-              ["Recipient's address", "Top left, below date", "The Principal, SMK Bangsa Maju, Kuala Lumpur."],
-              ["Salutation", "Dear + title", "Dear Sir / Dear Madam / Dear Mr. Hassan,"],
-              ["Subject line", "Bold, states the purpose", "RE: Application for Library Volunteer Programme"],
-              ["Body (3 paragraphs)", "Introduction, details, closing request", "Para 1: State purpose. Para 2: Elaboration. Para 3: Request/action."],
-              ["Sign-off (known name)", "End if you know recipient's name", "Yours sincerely,"],
-              ["Sign-off (unknown)", "End if you don't know recipient", "Yours faithfully,"],
-              ["Your name", "Below sign-off (printed)", "Ahmad Fauzi bin Abdullah"],
+              ["To whom", "Managers, principals, editors, officials", "Friends, family, classmates"],
+              ["Tone", "Respectful, professional, neutral", "Warm, casual, personal"],
+              ["Language", "No contractions (I am, not I'm)", "Contractions OK (I'm, can't, we've)"],
+              ["Greeting", "Dear Mr Tan / Dear Sir or Madam", "Dear Kai / Hey / Hi Ali"],
+              ["Closing", "Yours faithfully / Yours sincerely", "Best wishes / Take care / Cheers"],
+              ["Style", "No slang or idioms", "Slang and idioms are fine"],
             ],
           },
         },
         {
-          title: "Formal Language Features",
-          bulletPoints: [
-            "NO contractions: Write 'I am' NOT 'I'm', 'do not' NOT 'don't'.",
-            "Use polite phrases: 'I would like to...', 'I am writing to...', 'I would be grateful if...'",
-            "Avoid casual words: instead of 'nice', use 'beneficial' or 'favourable'.",
-            "One idea per paragraph — be clear and concise.",
-            "'Yours sincerely' = when you know the name | 'Yours faithfully' = when you don't.",
+          type: "grammar-rule",
+          title: "Formal Letter Layout",
+          formula: "Your Address → Date → Recipient Address → Greeting → Body → Closing → Signature",
+          items: [
+            "Your address: top right (or left, depending on format).",
+            "Date: below address — 12 June 2025 OR 12th June 2025.",
+            "Greeting: 'Dear Sir/Madam' (unknown name) OR 'Dear Mr. Lee' (known name).",
+            "Closing: 'Yours faithfully' if you wrote 'Sir/Madam'; 'Yours sincerely' if you used their name.",
+          ],
+        },
+        {
+          type: "real-world",
+          title: "When Would You Write Each Type?",
+          body: "Malaysian students write both in school and in real life:",
+          items: [
+            "FORMAL: Complaining to the school principal about canteen hygiene. Writing to the newspaper about air pollution. Applying for a scholarship.",
+            "INFORMAL: Telling your cousin about your school trip to Langkawi. Inviting a friend to your Raya open house. Describing your best day to a pen pal.",
+          ],
+        },
+        {
+          type: "mistake",
+          title: "Mixing Formal and Informal",
+          body: "The most common error in letter writing: using the wrong register for the wrong audience.",
+          wrong: "Dear Mr. Principal, I'm writing to complain about the toilet. It's super gross and smells bad. You guys should fix it ASAP.",
+          right: "Dear Mr. Principal, I am writing to bring to your attention a matter of concern regarding the hygiene of the school toilets. I respectfully request that immediate steps be taken to address this issue.",
+        },
+      ],
+    },
+    {
+      title: "Punctuation Power",
+      emoji: "🔍",
+      cards: [
+        {
+          type: "concept",
+          title: "Punctuation = Meaning",
+          body: "Punctuation is not decoration — it CREATES meaning. Change a comma, and you change what a sentence says. Read this: 'Let's eat, Grandma!' vs 'Let's eat Grandma!' Punctuation literally saved Grandma's life.",
+          items: [
+            "Full stop (.) → ends a statement",
+            "Question mark (?) → ends a question",
+            "Exclamation mark (!) → shows surprise, excitement, or strong emotion",
+            "Comma (,) → separates items or clauses; shows a pause",
+            "Apostrophe (') → shows possession OR contraction",
+            "Quotation marks (\" \") → surrounds direct speech",
+          ],
+        },
+        {
+          type: "table",
+          title: "Commas — The Most Misused Punctuation",
+          table: {
+            headers: ["Comma Use", "Example"],
+            rows: [
+              ["Listing items", "I packed a book, a pen, and my lunch."],
+              ["After introductory phrase", "After school, we went to the pasar malam."],
+              ["Before conjunction in compound sentence", "I wanted to study, but my brother was watching TV."],
+              ["Setting off extra information", "Petronas, a Malaysian company, is world-famous."],
+            ],
+          },
+        },
+        {
+          type: "grammar-rule",
+          title: "Apostrophe — Two Uses Only",
+          formula: "Possession: Ali's bag  |  Contraction: I'm = I am, don't = do not",
+          items: [
+            "POSSESSION: 'The teacher's book' = the book that belongs to the teacher.",
+            "CONTRACTION: 'She's coming' = She is coming.",
+            "NEVER use apostrophes to make plurals: 'three book's' is WRONG. 'Three books' is correct.",
+          ],
+        },
+        {
+          type: "mistake",
+          title: "The Apostrophe Catastrophe",
+          wrong: "The student's went to the library. She's bag was on the table.",
+          right: "The students went to the library. Her bag was on the table.",
+          items: [
+            "students = plural (no apostrophe needed — just add -s).",
+            "'She's bag' is wrong — 'she's' means 'she is', not possession. Use 'her bag'.",
+          ],
+        },
+        {
+          type: "did-you-know",
+          title: "Punctuation in Direct Speech",
+          body: "When writing what someone said, the punctuation goes INSIDE the quotation marks:",
+          items: [
+            "✓ \"Malaysia Boleh!\" she cheered.",
+            "✓ \"Where are you going?\" asked the teacher.",
+            "✓ He replied, \"I am going to the library.\"",
+            "New speaker = new line in dialogue.",
           ],
         },
       ],
     },
     {
-      title: "6. Punctuation — The Traffic Signs of Writing",
-      subsections: [
+      title: "Show, Don't Tell — Writing With Power",
+      emoji: "🌟",
+      cards: [
         {
-          content:
-            "Punctuation tells readers when to stop, pause, question, or exclaim. Missing punctuation creates confusion. Correct punctuation shows the examiner you are a careful, skilled writer.",
-        },
-        {
-          title: "Essential Punctuation Marks",
-          table: {
-            headers: ["Mark", "Name", "Use", "Example"],
-            rows: [
-              [".", "Full Stop", "End of a statement or command", "The sun rose above the mountains."],
-              [",", "Comma", "Pause; listing items; joining clauses", "I bought apples, mangoes, and papayas."],
-              ["?", "Question Mark", "End of a question", "Where are you going after school?"],
-              ["!", "Exclamation Mark", "Strong emotion; surprise; commands", "Watch out! The bus is coming!"],
-              ["\"\"", "Quotation Marks", "Direct speech; titles", "She said, \"I will be there at noon.\""],
-              ["'", "Apostrophe", "Contractions; possession", "It's Ali's birthday today."],
-              [":", "Colon", "Introduce a list or explanation", "She packed three things: a book, a pen, and water."],
-              [";", "Semicolon", "Link two related independent clauses", "The exam was hard; everyone looked exhausted."],
-            ],
-          },
-        },
-        {
-          title: "Capital Letters — When to Use Them",
-          bulletPoints: [
-            "First word of every sentence.",
-            "Proper nouns: names of people (Ali), places (Kuala Lumpur), days (Monday), months (March).",
-            "The pronoun 'I' is ALWAYS capitalised.",
-            "Titles before names: Mr., Mrs., Dr., Cikgu.",
-            "Names of nationalities and languages: Malaysian, English, Chinese.",
+          type: "concept",
+          title: "The Most Powerful Writing Principle",
+          body: "The golden rule of creative writing: SHOW the reader what's happening through vivid details, actions, and sensory descriptions. Don't just TELL them the conclusion.",
+          items: [
+            "TELL: She was sad.",
+            "SHOW: She stared at her plate without eating, blinking slowly, her hands wrapped tightly around her glass.",
+            "TELL: The market was busy.",
+            "SHOW: Vendors hollered prices, the smell of char kuey teow drifted through the crowd, and children wove between legs chasing escaped balloons.",
           ],
         },
         {
-          title: "Common Punctuation Mistakes",
-          bulletPoints: [
-            "WRONG: its mine (missing apostrophe) → RIGHT: it's mine (it is mine) / it's mine (possession).",
-            "WRONG: She said i will come → RIGHT: She said, \"I will come.\"",
-            "WRONG: i went to putrajaya → RIGHT: I went to Putrajaya.",
-            "WRONG: The cat was tired it slept → RIGHT: The cat was tired, so it slept.",
-          ],
-        },
-      ],
-    },
-    {
-      title: "7. Vocabulary for Strong Writing",
-      subsections: [
-        {
-          content:
-            "The words you choose determine the quality of your writing. Vague, common words produce average essays. Specific, powerful vocabulary produces memorable ones.",
-        },
-        {
-          title: "Upgrading Your Vocabulary",
-          table: {
-            headers: ["Weak Word", "Stronger Options"],
-            rows: [
-              ["said", "exclaimed, whispered, announced, declared, muttered, shouted"],
-              ["walked", "strolled, marched, sprinted, trudged, wandered, tiptoed"],
-              ["nice", "wonderful, magnificent, delightful, charming, breathtaking"],
-              ["bad", "terrible, dreadful, horrifying, devastating, appalling"],
-              ["happy", "overjoyed, ecstatic, thrilled, elated, cheerful, content"],
-              ["big", "enormous, massive, vast, towering, colossal, immense"],
-              ["got", "received, obtained, achieved, acquired, earned"],
-            ],
-          },
-        },
-        {
-          title: "Sensory Language — Paint a Picture",
-          bulletPoints: [
-            "SIGHT: 'The blazing orange sunset painted the sky in shades of gold.'",
-            "SOUND: 'The marketplace buzzed with a symphony of vendor calls and laughter.'",
-            "SMELL: 'The warm aroma of freshly baked roti canai drifted through the air.'",
-            "TASTE: 'The char kway teow was smoky, savoury, and absolutely delicious.'",
-            "TOUCH: 'The cool rainwater splashed on my face, refreshing after the long walk.'",
+          type: "real-world",
+          title: "Sensory Details — A Malaysian Scene",
+          body: "Use all five senses to SHOW your reader the scene. This is the difference between a B essay and an A essay:",
+          items: [
+            "SIGHT: The golden domes of the mosque glittered under the midday sun.",
+            "SOUND: Vendors called out in three languages, competing with the sizzle of satay.",
+            "SMELL: Fragrant lemongrass and dried chilli drifted from the curry stall.",
+            "TASTE: The first bite of mango with preserved lime was sour, sweet, and perfect.",
+            "TOUCH: The warm, smooth wood of the old kedai kopi chair felt like history.",
           ],
         },
         {
-          title: "Exam Tip — Mark Boosters",
-          bulletPoints: [
-            "Use at least 3 different linking words in your essay.",
-            "Include ONE idiom used correctly — it signals advanced language use.",
-            "Vary your sentence length — mix short punchy sentences with longer ones.",
-            "Start some sentences with adverbs: 'Suddenly, ...' / 'Fortunately, ...' / 'Gradually, ...'",
+          type: "memory-trick",
+          title: "The Upgrade Formula",
+          body: "Take any boring sentence and upgrade it in 3 steps:",
+          items: [
+            "Step 1 — BASIC: 'The river was beautiful.'",
+            "Step 2 — ADD A DETAIL: 'The river sparkled under the sunlight.'",
+            "Step 3 — SHOW IT: 'Sunlight fractured across the river's surface like scattered diamonds, and the sound of water over smooth stones filled the quiet afternoon.'",
+          ],
+        },
+        {
+          type: "exam-tip",
+          title: "Vary Your Sentence Starters",
+          body: "Markers notice when every sentence begins with 'I', 'He', or 'The'. Use different starters to show command of English:",
+          items: [
+            "Start with an adverb: 'Suddenly, a figure appeared at the door.'",
+            "Start with a prepositional phrase: 'Under the blazing midday sun, the children played on.'",
+            "Start with a participle: 'Breathing heavily, she finally reached the finish line.'",
+            "Start with 'Although/Despite': 'Despite the rain, the festival continued in full spirit.'",
           ],
         },
       ],
     },
   ],
-  keyExamFacts: [
-    "Plan BEFORE writing — use 5 minutes to brainstorm and organise your ideas.",
-    "Introduction + Body paragraphs + Conclusion = The 3-part essay structure.",
-    "TEEL paragraph: Topic sentence → Evidence → Explanation → Link.",
-    "Informal = friendly, casual, contractions OK | Formal = professional, no contractions.",
-    "'Yours sincerely' (know the name) | 'Yours faithfully' (don't know the name).",
-    "Every sentence starts with a CAPITAL LETTER and ends with punctuation (. ? !).",
-    "Apostrophe uses: contractions (it's = it is) and possession (Ali's bag).",
-    "Strong vocabulary: replace 'said' with 'exclaimed', 'walked' with 'strolled'.",
-  ],
-  keyTerms: [
-    "Essay",
-    "Paragraph",
-    "Topic Sentence",
-    "Informal Letter",
-    "Formal Letter",
-    "Linking Words",
-    "Punctuation",
-    "Narrative",
-    "Descriptive",
-    "Brainstorm",
-    "Thesis Statement",
-    "TEEL",
-  ],
-  chapterSummary:
-    "Chapter 4 gives you everything you need to write with confidence and style. From planning and structuring essays to mastering formal and informal letter formats, punctuation, and powerful vocabulary — these tools transform you from a hesitant writer into a skilled communicator who can express ideas clearly and creatively.",
 };
