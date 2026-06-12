@@ -21,10 +21,10 @@ export const subjects: Subject[] = [
   {
     id: "english",
     name: "English",
-    emoji: "🇬🇧",
-    color: "from-sky-500 to-blue-600",
-    description: "Grammar, comprehension, and writing.",
-    tagline: "Level up your English!",
+    emoji: "📚",
+    color: "from-violet-500 to-purple-600",
+    description: "Master grammar, vocabulary, reading & writing.",
+    tagline: "Unlock the power of words!",
   },
   {
     id: "math",

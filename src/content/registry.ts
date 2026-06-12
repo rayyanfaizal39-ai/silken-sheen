@@ -1,5 +1,13 @@
 import type { ChapterContent } from "./types";
 import type { MindNode } from "@/components/MindMap";
+import { englishF1C1Notes } from "@/data/english-f1-c1-notes";
+import { englishF1C2Notes } from "@/data/english-f1-c2-notes";
+import { englishF1C3Notes } from "@/data/english-f1-c3-notes";
+import { englishF1C4Notes } from "@/data/english-f1-c4-notes";
+import { englishF1C1MindMap } from "@/data/english-f1-c1-mindmap";
+import { englishF1C2MindMap } from "@/data/english-f1-c2-mindmap";
+import { englishF1C3MindMap } from "@/data/english-f1-c3-mindmap";
+import { englishF1C4MindMap } from "@/data/english-f1-c4-mindmap";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,
@@ -92,6 +100,13 @@ import { scienceF1C8MindMapBM } from "@/data/science-f1-c8-mindmap-bm";
 import { scienceF1C8MindMapDLP } from "@/data/science-f1-c8-mindmap-dlp";
 import { scienceF1C9MindMapBM } from "@/data/science-f1-c9-mindmap-bm";
 import { scienceF1C9MindMapDLP } from "@/data/science-f1-c9-mindmap-dlp";
+
+function englishFlashcardsFor(chapterKey: string) {
+  return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey);
+}
+function englishQuizzesFor(chapterKey: string) {
+  return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey);
+}
 
 function sejarahFlashcardsFor(chapterNum: number) {
   return allFlashcards.filter(
@@ -633,6 +648,52 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C9MindMapDLP, title: "Chapter 9: Earth" },
     notes: scienceF1C9NotesDLP,
+  },
+
+  // English Form 1
+  {
+    id: "english-f1-c1",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Chapter 1",
+    title: "Grammar — Word Wizardry",
+    notes: englishF1C1Notes,
+    mindMap: { data: englishF1C1MindMap, title: "Grammar — Word Wizardry" },
+    flashcards: englishFlashcardsFor("Chapter 1"),
+    quiz: englishQuizzesFor("Chapter 1"),
+  },
+  {
+    id: "english-f1-c2",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Chapter 2",
+    title: "Vocabulary — Word Explorer",
+    notes: englishF1C2Notes,
+    mindMap: { data: englishF1C2MindMap, title: "Vocabulary — Word Explorer" },
+    flashcards: englishFlashcardsFor("Chapter 2"),
+    quiz: englishQuizzesFor("Chapter 2"),
+  },
+  {
+    id: "english-f1-c3",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Chapter 3",
+    title: "Reading — Detective Skills",
+    notes: englishF1C3Notes,
+    mindMap: { data: englishF1C3MindMap, title: "Reading — Detective Skills" },
+    flashcards: englishFlashcardsFor("Chapter 3"),
+    quiz: englishQuizzesFor("Chapter 3"),
+  },
+  {
+    id: "english-f1-c4",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Chapter 4",
+    title: "Writing — Story Architect",
+    notes: englishF1C4Notes,
+    mindMap: { data: englishF1C4MindMap, title: "Writing — Story Architect" },
+    flashcards: englishFlashcardsFor("Chapter 4"),
+    quiz: englishQuizzesFor("Chapter 4"),
   },
 ];
 
