@@ -101,6 +101,36 @@ import { scienceF1C8MindMapDLP } from "@/data/science-f1-c8-mindmap-dlp";
 import { scienceF1C9MindMapBM } from "@/data/science-f1-c9-mindmap-bm";
 import { scienceF1C9MindMapDLP } from "@/data/science-f1-c9-mindmap-dlp";
 
+// Mathematics F1 mind maps (BM)
+import { mathF1C1MindMapBM } from "@/data/math-f1-c1-mindmap-bm";
+import { mathF1C2MindMapBM } from "@/data/math-f1-c2-mindmap-bm";
+import { mathF1C3MindMapBM } from "@/data/math-f1-c3-mindmap-bm";
+import { mathF1C4MindMapBM } from "@/data/math-f1-c4-mindmap-bm";
+import { mathF1C5MindMapBM } from "@/data/math-f1-c5-mindmap-bm";
+import { mathF1C6MindMapBM } from "@/data/math-f1-c6-mindmap-bm";
+import { mathF1C7MindMapBM } from "@/data/math-f1-c7-mindmap-bm";
+import { mathF1C8MindMapBM } from "@/data/math-f1-c8-mindmap-bm";
+import { mathF1C9MindMapBM } from "@/data/math-f1-c9-mindmap-bm";
+import { mathF1C10MindMapBM } from "@/data/math-f1-c10-mindmap-bm";
+import { mathF1C11MindMapBM } from "@/data/math-f1-c11-mindmap-bm";
+import { mathF1C12MindMapBM } from "@/data/math-f1-c12-mindmap-bm";
+import { mathF1C13MindMapBM } from "@/data/math-f1-c13-mindmap-bm";
+
+// Mathematics F1 mind maps (DLP)
+import { mathF1C1MindMapDLP } from "@/data/math-f1-c1-mindmap-dlp";
+import { mathF1C2MindMapDLP } from "@/data/math-f1-c2-mindmap-dlp";
+import { mathF1C3MindMapDLP } from "@/data/math-f1-c3-mindmap-dlp";
+import { mathF1C4MindMapDLP } from "@/data/math-f1-c4-mindmap-dlp";
+import { mathF1C5MindMapDLP } from "@/data/math-f1-c5-mindmap-dlp";
+import { mathF1C6MindMapDLP } from "@/data/math-f1-c6-mindmap-dlp";
+import { mathF1C7MindMapDLP } from "@/data/math-f1-c7-mindmap-dlp";
+import { mathF1C8MindMapDLP } from "@/data/math-f1-c8-mindmap-dlp";
+import { mathF1C9MindMapDLP } from "@/data/math-f1-c9-mindmap-dlp";
+import { mathF1C10MindMapDLP } from "@/data/math-f1-c10-mindmap-dlp";
+import { mathF1C11MindMapDLP } from "@/data/math-f1-c11-mindmap-dlp";
+import { mathF1C12MindMapDLP } from "@/data/math-f1-c12-mindmap-dlp";
+import { mathF1C13MindMapDLP } from "@/data/math-f1-c13-mindmap-dlp";
+
 function englishFlashcardsFor(chapterKey: string) {
   return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey);
 }
@@ -242,6 +272,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Nombor Nisbah",
     lang: "bm",
+    mindMap: { data: mathF1C1MindMapBM, title: "Nombor Nisbah" },
     notes: mathF1C1NotesBM,
   },
   {
@@ -251,6 +282,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Rational Numbers",
     lang: "dlp",
+    mindMap: { data: mathF1C1MindMapDLP, title: "Rational Numbers" },
     notes: mathF1C1NotesDLP,
   },
   {
@@ -260,6 +292,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Faktor dan Gandaan",
     lang: "bm",
+    mindMap: { data: mathF1C2MindMapBM, title: "Faktor dan Gandaan" },
     notes: mathF1C2NotesBM,
   },
   {
@@ -269,6 +302,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Factors and Multiples",
     lang: "dlp",
+    mindMap: { data: mathF1C2MindMapDLP, title: "Factors and Multiples" },
     notes: mathF1C2NotesDLP,
   },
   {
@@ -278,6 +312,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
     lang: "bm",
+    mindMap: { data: mathF1C3MindMapBM, title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga & Punca Kuasa Tiga" },
     notes: mathF1C3NotesBM,
   },
   {
@@ -287,6 +322,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Squares, Square Roots, Cubes and Cube Roots",
     lang: "dlp",
+    mindMap: { data: mathF1C3MindMapDLP, title: "Squares, Square Roots, Cubes and Cube Roots" },
     notes: mathF1C3NotesDLP,
   },
   {
@@ -296,6 +332,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Nisbah, Kadar dan Kadaran",
     lang: "bm",
+    mindMap: { data: mathF1C4MindMapBM, title: "Nisbah, Kadar dan Kadaran" },
     notes: mathF1C4NotesBM,
   },
   {
@@ -305,6 +342,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Ratio, Rate and Proportion",
     lang: "dlp",
+    mindMap: { data: mathF1C4MindMapDLP, title: "Ratio, Rate and Proportion" },
     notes: mathF1C4NotesDLP,
   },
   {
@@ -314,6 +352,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Ungkapan Algebra",
     lang: "bm",
+    mindMap: { data: mathF1C5MindMapBM, title: "Ungkapan Algebra" },
     notes: mathF1C5NotesBM,
   },
   {
@@ -323,6 +362,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Algebraic Expressions",
     lang: "dlp",
+    mindMap: { data: mathF1C5MindMapDLP, title: "Algebraic Expressions" },
     notes: mathF1C5NotesDLP,
   },
   {
@@ -332,6 +372,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Persamaan Linear",
     lang: "bm",
+    mindMap: { data: mathF1C6MindMapBM, title: "Persamaan Linear" },
     notes: mathF1C6NotesBM,
   },
   {
@@ -341,6 +382,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Linear Equations",
     lang: "dlp",
+    mindMap: { data: mathF1C6MindMapDLP, title: "Linear Equations" },
     notes: mathF1C6NotesDLP,
   },
   {
@@ -350,6 +392,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Ketaksamaan Linear",
     lang: "bm",
+    mindMap: { data: mathF1C7MindMapBM, title: "Ketaksamaan Linear" },
     notes: mathF1C7NotesBM,
   },
   {
@@ -359,6 +402,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Linear Inequalities",
     lang: "dlp",
+    mindMap: { data: mathF1C7MindMapDLP, title: "Linear Inequalities" },
     notes: mathF1C7NotesDLP,
   },
   {
@@ -368,6 +412,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Garis dan Sudut",
     lang: "bm",
+    mindMap: { data: mathF1C8MindMapBM, title: "Garis dan Sudut" },
     notes: mathF1C8NotesBM,
   },
   {
@@ -377,6 +422,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Lines and Angles",
     lang: "dlp",
+    mindMap: { data: mathF1C8MindMapDLP, title: "Lines and Angles" },
     notes: mathF1C8NotesDLP,
   },
   {
@@ -386,6 +432,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Poligon Asas",
     lang: "bm",
+    mindMap: { data: mathF1C9MindMapBM, title: "Poligon Asas" },
     notes: mathF1C9NotesBM,
   },
   {
@@ -395,6 +442,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Basic Polygons",
     lang: "dlp",
+    mindMap: { data: mathF1C9MindMapDLP, title: "Basic Polygons" },
     notes: mathF1C9NotesDLP,
   },
   {
@@ -404,6 +452,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Perimeter dan Luas",
     lang: "bm",
+    mindMap: { data: mathF1C10MindMapBM, title: "Perimeter dan Luas" },
     notes: mathF1C10NotesBM,
   },
   {
@@ -413,6 +462,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Perimeter and Area",
     lang: "dlp",
+    mindMap: { data: mathF1C10MindMapDLP, title: "Perimeter and Area" },
     notes: mathF1C10NotesDLP,
   },
   {
@@ -422,6 +472,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Pengenalan Set",
     lang: "bm",
+    mindMap: { data: mathF1C11MindMapBM, title: "Pengenalan Set" },
     notes: mathF1C11NotesBM,
   },
   {
@@ -431,6 +482,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Introduction to Sets",
     lang: "dlp",
+    mindMap: { data: mathF1C11MindMapDLP, title: "Introduction to Sets" },
     notes: mathF1C11NotesDLP,
   },
   {
@@ -440,6 +492,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Pengendalian Data",
     lang: "bm",
+    mindMap: { data: mathF1C12MindMapBM, title: "Pengendalian Data" },
     notes: mathF1C12NotesBM,
   },
   {
@@ -449,6 +502,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Data Handling",
     lang: "dlp",
+    mindMap: { data: mathF1C12MindMapDLP, title: "Data Handling" },
     notes: mathF1C12NotesDLP,
   },
   {
@@ -458,6 +512,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 13",
     title: "Teorem Pythagoras",
     lang: "bm",
+    mindMap: { data: mathF1C13MindMapBM, title: "Teorem Pythagoras" },
     notes: mathF1C13NotesBM,
   },
   {
@@ -467,6 +522,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 13",
     title: "Pythagoras' Theorem",
     lang: "dlp",
+    mindMap: { data: mathF1C13MindMapDLP, title: "Pythagoras' Theorem" },
     notes: mathF1C13NotesDLP,
   },
 
