@@ -19,14 +19,14 @@ import { useProgress, getRank } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 
 const navItems = [
-  { label: "Home", short: "Home", to: "/", icon: Home, accent: "#6366F1" },
-  { label: "Dashboard", short: "Dash", to: "/dashboard", icon: LayoutDashboard, accent: "#8B5CF6" },
-  { label: "Notes", short: "Notes", to: "/notes", icon: BookOpen, accent: "#3B82F6" },
-  { label: "Flashcards", short: "Cards", to: "/flashcards", icon: Library, accent: "#A855F7" },
-  { label: "Quizzes", short: "Quiz", to: "/quizzes", icon: Brain, accent: "#F59E0B" },
-  { label: "Mind Maps", short: "Maps", to: "/notes", icon: Compass, accent: "#10B981" },
-  { label: "Videos", short: "Video", to: "/notes", icon: Video, accent: "#EC4899" },
-  { label: "AI Tutor", short: "AI", to: "/dashboard", icon: Sparkles, accent: "#06B6D4" },
+  { label: "Home",       short: "Base",    to: "/",           icon: Home,            accent: "#6366F1", accentGlow: "rgba(99,102,241,0.55)",  accentBg: "rgba(99,102,241,0.22)",  line: "linear-gradient(90deg,#818CF8,#C084FC)" },
+  { label: "Dashboard",  short: "Mission", to: "/dashboard",  icon: LayoutDashboard, accent: "#8B5CF6", accentGlow: "rgba(139,92,246,0.55)",  accentBg: "rgba(139,92,246,0.22)",  line: "linear-gradient(90deg,#A78BFA,#7C3AED)" },
+  { label: "Notes",      short: "Learn",   to: "/notes",      icon: BookOpen,        accent: "#3B82F6", accentGlow: "rgba(59,130,246,0.55)",  accentBg: "rgba(59,130,246,0.22)",  line: "linear-gradient(90deg,#60A5FA,#2563EB)" },
+  { label: "Flashcards", short: "Cards",   to: "/flashcards", icon: Library,         accent: "#A855F7", accentGlow: "rgba(168,85,247,0.55)",  accentBg: "rgba(168,85,247,0.22)",  line: "linear-gradient(90deg,#C084FC,#9333EA)" },
+  { label: "Quizzes",    short: "Quests",  to: "/quizzes",    icon: Brain,           accent: "#F59E0B", accentGlow: "rgba(245,158,11,0.55)",  accentBg: "rgba(245,158,11,0.22)",  line: "linear-gradient(90deg,#FBBF24,#D97706)" },
+  { label: "Mind Maps",  short: "Maps",    to: "/notes",      icon: Compass,         accent: "#10B981", accentGlow: "rgba(16,185,129,0.5)",   accentBg: "rgba(16,185,129,0.18)",  line: "linear-gradient(90deg,#34D399,#059669)" },
+  { label: "Videos",     short: "Video",   to: "/notes",      icon: Video,           accent: "#EC4899", accentGlow: "rgba(236,73,153,0.5)",   accentBg: "rgba(236,73,153,0.18)",  line: "linear-gradient(90deg,#F472B6,#DB2777)" },
+  { label: "AI Tutor",   short: "AI",      to: "/dashboard",  icon: Sparkles,        accent: "#06B6D4", accentGlow: "rgba(6,182,212,0.5)",    accentBg: "rgba(6,182,212,0.18)",   line: "linear-gradient(90deg,#22D3EE,#0284C7)" },
 ] as const;
 
 function isActive(pathname: string, to: string, label: string) {
@@ -221,9 +221,9 @@ export function AppShell({ children }: { children: ReactNode }) {
         <main className="app-main page-content min-h-svh">{children}</main>
       </div>
 
-      {/* ── Mobile Bottom Nav ─────────────────────────────────── */}
-      <nav className="mobile-nav-shell fixed left-3 right-3 z-[80] rounded-2xl px-2 lg:hidden">
-        <div className="mx-auto flex h-full max-w-md items-center justify-between">
+      {/* ── Mobile Bottom Nav — Space Theme ──────────────────── */}
+      <nav className="space-nav-shell mobile-nav-shell fixed left-3 right-3 z-[80] rounded-[1.25rem] px-1.5 lg:hidden">
+        <div className="mx-auto flex h-full max-w-md items-center justify-between gap-0.5">
           {navItems.slice(0, 5).map((item) => {
             const Icon = item.icon;
             const active = isActive(pathname, item.to, item.label);
@@ -231,13 +231,24 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Link
                 key={item.label}
                 to={item.to}
-                className={`mobile-nav-item relative flex flex-col items-center justify-center gap-0.5 rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] ${
-                  active ? "mobile-nav-item-active" : "text-slate-400 hover:text-white"
-                }`}
+                className={`space-nav-item focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] ${active ? "space-nav-item-active" : ""}`}
+                style={active ? {
+                  "--nav-accent-bg":   `linear-gradient(135deg, ${item.accentBg}, ${item.accentBg.replace("0.22", "0.16")})`,
+                  "--nav-accent-glow": item.accentGlow,
+                  "--nav-accent-line": item.line,
+                } as React.CSSProperties : undefined}
                 aria-current={active ? "page" : undefined}
               >
-                <Icon className="h-5 w-5" style={active ? { color: item.accent } : undefined} />
-                <span className="text-[10px] font-semibold leading-none">{item.short}</span>
+                <Icon
+                  className="relative h-5 w-5 transition-transform"
+                  style={active ? { color: item.accent, filter: `drop-shadow(0 0 6px ${item.accentGlow})` } : undefined}
+                />
+                <span
+                  className="space-nav-label"
+                  style={active ? { color: item.accent } : undefined}
+                >
+                  {item.short}
+                </span>
               </Link>
             );
           })}

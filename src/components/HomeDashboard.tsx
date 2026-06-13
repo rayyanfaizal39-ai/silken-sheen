@@ -1,12 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  BookOpen,
   Brain,
-  Compass,
   Library,
   NotebookTabs,
   PlayCircle,
+  Compass,
   Zap,
   Flame,
   RotateCcw,
@@ -15,6 +14,7 @@ import {
   Sparkles,
   TrendingUp,
 } from "lucide-react";
+import type { CSSProperties } from "react";
 import { AstronautScene } from "@/components/AstronautScene";
 import { SubjectPlanetLink } from "@/components/AcademyPage";
 import {
@@ -26,120 +26,175 @@ import {
   getMasteredCount,
   type LastVisited,
 } from "@/hooks/use-progress";
+import { useCikgu } from "@/context/cikgu-context";
+
+// ─── Subject planet strip data ────────────────────────────────────────────────
+const HERO_PLANETS = [
+  { id: "math",      emoji: "🧮", label: "Maths",     color: "#FBBF24", glow: "rgba(251,191,36,0.35)",   bg: "rgba(251,191,36,0.18)",  dur: "5.2s", delay: "0s"    },
+  { id: "science",   emoji: "🧪", label: "Science",   color: "#38BDF8", glow: "rgba(56,189,248,0.35)",   bg: "rgba(56,189,248,0.18)",  dur: "6.0s", delay: "0.35s" },
+  { id: "english",   emoji: "📖", label: "English",   color: "#C084FC", glow: "rgba(192,132,252,0.35)",  bg: "rgba(192,132,252,0.18)", dur: "4.8s", delay: "0.7s"  },
+  { id: "geography", emoji: "🌍", label: "Geo",       color: "#34D399", glow: "rgba(52,211,153,0.35)",   bg: "rgba(52,211,153,0.18)",  dur: "5.6s", delay: "1.05s" },
+  { id: "sejarah",   emoji: "🏛️", label: "Sejarah",  color: "#FB923C", glow: "rgba(251,146,60,0.35)",   bg: "rgba(251,146,60,0.18)",  dur: "5.0s", delay: "1.4s"  },
+  { id: "bm",        emoji: "📝", label: "BM",        color: "#F472B6", glow: "rgba(244,114,182,0.35)",  bg: "rgba(244,114,182,0.18)", dur: "6.4s", delay: "1.75s" },
+] as const;
 
 // ─── Quick access tiles ───────────────────────────────────────────────────────
-
 const QUICK_ACCESS = [
-  {
-    title: "Notes",
-    description: "Smart KSSM chapter summaries",
-    to: "/notes" as const,
-    icon: NotebookTabs,
-    color: "#3B82F6",
-    gradient: "from-blue-500/20 to-indigo-500/20",
-  },
-  {
-    title: "Flashcards",
-    description: "Active recall with spaced repetition",
-    to: "/flashcards" as const,
-    icon: Library,
-    color: "#8B5CF6",
-    gradient: "from-purple-500/20 to-violet-500/20",
-  },
-  {
-    title: "Quizzes",
-    description: "Instant feedback, XP rewards",
-    to: "/quizzes" as const,
-    icon: Brain,
-    color: "#F59E0B",
-    gradient: "from-amber-500/20 to-orange-500/20",
-  },
-  {
-    title: "Mind Maps",
-    description: "Visual concept connections",
-    to: "/notes" as const,
-    icon: Compass,
-    color: "#10B981",
-    gradient: "from-emerald-500/20 to-teal-500/20",
-  },
-  {
-    title: "Videos",
-    description: "Chapter by chapter walkthroughs",
-    to: "/notes" as const,
-    icon: PlayCircle,
-    color: "#EC4899",
-    gradient: "from-pink-500/20 to-rose-500/20",
-  },
+  { title: "Notes",       description: "Smart KSSM chapter summaries",          to: "/notes"      as const, icon: NotebookTabs, color: "#3B82F6", gradient: "from-blue-500/20 to-indigo-500/20"   },
+  { title: "Flashcards",  description: "Active recall with spaced repetition",  to: "/flashcards" as const, icon: Library,     color: "#8B5CF6", gradient: "from-purple-500/20 to-violet-500/20" },
+  { title: "Quizzes",     description: "Instant feedback, XP rewards",          to: "/quizzes"    as const, icon: Brain,       color: "#F59E0B", gradient: "from-amber-500/20 to-orange-500/20"  },
+  { title: "Mind Maps",   description: "Visual concept connections",            to: "/notes"      as const, icon: Compass,     color: "#10B981", gradient: "from-emerald-500/20 to-teal-500/20"  },
+  { title: "Videos",      description: "Chapter by chapter walkthroughs",       to: "/notes"      as const, icon: PlayCircle,  color: "#EC4899", gradient: "from-pink-500/20 to-rose-500/20"     },
 ] as const;
 
 // ─── Feature highlights ───────────────────────────────────────────────────────
-
 const FEATURES = [
-  {
-    icon: "🤖",
-    color: "#8B5CF6",
-    title: "Cikgu AI Tutor",
-    desc: "A patient AI teacher available 24/7. Ask anything. Get taught — not just answered.",
-    badge: "New",
-  },
-  {
-    icon: "🧠",
-    color: "#F59E0B",
-    title: "Smart Quizzes",
-    desc: "XP rewards, streaks, combo multipliers, and instant explanations for every question.",
-    badge: null,
-  },
-  {
-    icon: "🃏",
-    color: "#34D399",
-    title: "Spaced Repetition",
-    desc: "Science-backed flashcard system that schedules cards exactly when you're about to forget.",
-    badge: null,
-  },
+  { icon: "🤖", color: "#8B5CF6", title: "Cikgu AI Tutor",    desc: "A patient AI teacher available 24/7. Ask anything. Get taught — not just answered.", badge: "New" },
+  { icon: "🧠", color: "#F59E0B", title: "Smart Quizzes",     desc: "XP rewards, streaks, combo multipliers, and instant explanations for every question.", badge: null },
+  { icon: "🃏", color: "#34D399", title: "Spaced Repetition", desc: "Science-backed flashcard system that schedules cards exactly when you're about to forget.", badge: null },
 ] as const;
 
-// ─── Resume type helpers ──────────────────────────────────────────────────────
-
-const TYPE_ROUTES = {
-  notes: "/notes",
-  flashcards: "/flashcards",
-  quiz: "/quizzes",
-} as const;
-
-const TYPE_ICONS: Record<string, string> = { notes: "📖", flashcards: "🃏", quiz: "🧠" };
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const TYPE_ROUTES = { notes: "/notes", flashcards: "/flashcards", quiz: "/quizzes" } as const;
+const TYPE_ICONS: Record<string, string>  = { notes: "📖", flashcards: "🃏", quiz: "🧠" };
 const TYPE_LABELS: Record<string, string> = { notes: "Notes", flashcards: "Flashcards", quiz: "Quiz" };
 
 function timeAgo(ts: number) {
-  const elapsed = Date.now() - ts;
-  const hours = Math.floor(elapsed / 3600000);
-  if (hours < 1) return "Just now";
-  if (hours < 24) return `${hours}h ago`;
-  return `${Math.floor(hours / 24)}d ago`;
+  const h = Math.floor((Date.now() - ts) / 3600000);
+  if (h < 1) return "Just now";
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
 }
 
 function useStreakUrgent(lastActive: string, streak: number) {
-  const today = new Date().toISOString().slice(0, 10);
-  const hour = new Date().getHours();
-  return streak > 0 && lastActive !== today && hour >= 15;
+  return streak > 0 && lastActive !== new Date().toISOString().slice(0, 10) && new Date().getHours() >= 15;
+}
+
+// ─── Hero subject strip ───────────────────────────────────────────────────────
+
+function HeroSubjectStrip() {
+  return (
+    <div className="hero-subject-strip mt-9 flex flex-wrap items-center gap-2">
+      <span className="mr-1 hidden text-[9px] font-black uppercase tracking-[0.22em] text-white/20 sm:block">
+        Explore
+      </span>
+      {HERO_PLANETS.map((p) => (
+        <Link
+          key={p.id}
+          to="/notes"
+          search={{ subject: p.id, form: 1 } as Record<string, unknown>}
+          className="hero-planet-pill"
+          style={{
+            "--pill-color": p.color,
+            "--pill-glow":  p.glow,
+            "--bob-dur":    p.dur,
+            "--bob-delay":  p.delay,
+          } as CSSProperties}
+        >
+          <span
+            className="hero-planet-orb"
+            style={{ "--orb-bg": p.bg } as CSSProperties}
+          >
+            {p.emoji}
+          </span>
+          <span className="hero-planet-name" style={{ color: p.color }}>
+            {p.label}
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+// ─── Rank progression card ────────────────────────────────────────────────────
+
+function HeroRankCard() {
+  const { progress } = useProgress();
+  const rank     = getRank(progress.xp);
+  const nextRank = getNextRank(progress.xp);
+  const rankPct  = getRankProgress(progress.xp);
+
+  return (
+    <div className="hero-rank-card pointer-events-auto absolute bottom-24 right-4 z-30 hidden w-56 md:right-8 md:block lg:bottom-28 lg:right-12">
+      <div className="rounded-[1.5rem] border border-white/[0.12] bg-[#050816]/80 p-4 shadow-[0_24px_64px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
+        {/* Current rank */}
+        <div className="mb-3 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5">
+            <div
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl"
+              style={{ background: `${rank.color}1A`, boxShadow: `0 0 16px ${rank.color}55` }}
+            >
+              {rank.emoji}
+            </div>
+            <div>
+              <p className="text-[9px] font-black uppercase tracking-[0.18em] text-white/30">Current Rank</p>
+              <p className="text-sm font-bold leading-tight" style={{ color: rank.color }}>{rank.name}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-2 py-1">
+            <Zap className="h-3 w-3 text-yellow-400" />
+            <span className="text-[11px] font-bold text-yellow-300">{progress.xp.toLocaleString()}</span>
+          </div>
+        </div>
+
+        {nextRank ? (
+          <>
+            {/* Progress bar */}
+            <div className="mb-1 flex justify-between text-[9px] text-white/25">
+              <span>{rankPct}% there</span>
+              <span>{nextRank.minXp.toLocaleString()} XP</span>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-white/[0.07]">
+              <div
+                className="hero-rank-bar-fill h-full rounded-full"
+                style={{
+                  width: `${rankPct}%`,
+                  "--bar-from": rank.color,
+                  "--bar-to":   nextRank.color,
+                } as CSSProperties}
+              />
+            </div>
+
+            {/* Next rank */}
+            <div className="mt-3 flex items-center gap-2.5 rounded-xl border border-white/[0.07] bg-white/[0.04] p-2">
+              <span className="text-base">{nextRank.emoji}</span>
+              <div className="min-w-0">
+                <p className="text-[9px] font-black uppercase tracking-[0.16em] text-white/25">Next Rank</p>
+                <p className="text-xs font-bold text-white">{nextRank.name}</p>
+              </div>
+              <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-white/20" />
+            </div>
+          </>
+        ) : (
+          <p className="mt-2 text-center text-[10px] font-bold text-white/30">
+            ✨ Maximum rank achieved
+          </p>
+        )}
+      </div>
+    </div>
+  );
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function HomeDashboard() {
   const { progress } = useProgress();
-  const rank = getRank(progress.xp);
-  const nextRank = getNextRank(progress.xp);
-  const rankPct = getRankProgress(progress.xp);
+  const { openCikgu } = useCikgu();
+  const rank         = getRank(progress.xp);
   const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
-  const dueCount = getDueCount(progress.cardMastery);
+  const dueCount     = getDueCount(progress.cardMastery);
   const masteredCount = getMasteredCount(progress.cardMastery);
+  const hasProgress   = progress.xp > 0 || !!progress.lastVisited;
 
   return (
     <section className="px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10 space-y-6">
 
-      {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <div className="hero-section relative isolate -mx-4 -mt-6 overflow-hidden px-4 pb-16 pt-12 sm:-mx-6 sm:px-6 md:pb-20 md:pt-16 lg:-mx-8 lg:min-h-[780px] lg:px-8">
+      {/* ════════════════════════════════════════════════════════════
+          HERO — One cinematic space scene
+          ════════════════════════════════════════════════════════════ */}
+      <div className="hero-section relative isolate -mx-4 -mt-6 overflow-hidden px-4 pb-20 pt-10 sm:-mx-6 sm:px-6 md:pb-24 md:pt-14 lg:-mx-8 lg:min-h-[820px] lg:px-8">
 
+        {/* Living space scene */}
         <AstronautScene />
 
         {/* Nebula orbs */}
@@ -151,15 +206,16 @@ export function HomeDashboard() {
           <div className="absolute left-[3%] top-[15%] h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.11),transparent_65%)] blur-2xl" />
         </div>
 
+        {/* Left atmosphere veil — keeps text readable */}
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(ellipse 58% 78% at 20% 50%, rgba(5,8,22,0.90) 0%, rgba(5,8,22,0.72) 30%, rgba(5,8,22,0.38) 55%, rgba(5,8,22,0.10) 72%, transparent 85%)" }}
+          style={{ background: "radial-gradient(ellipse 62% 82% at 18% 50%, rgba(5,8,22,0.92) 0%, rgba(5,8,22,0.74) 30%, rgba(5,8,22,0.38) 55%, rgba(5,8,22,0.10) 72%, transparent 86%)" }}
           aria-hidden
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#050816] to-transparent" aria-hidden />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#050816]/35 to-transparent" aria-hidden />
 
-        {/* Star particles */}
+        {/* Star accent particles (mid foreground) */}
         <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
           <span className="absolute left-[8%] top-[24%] h-[6px] w-[6px] rounded-full bg-white/90 shadow-[0_0_18px_6px_rgba(167,139,250,1)] animate-pulse" />
           <span className="absolute left-[22%] top-[64%] h-[5px] w-[5px] rounded-full bg-white/80 shadow-[0_0_14px_4px_rgba(99,102,241,0.9)] animate-pulse [animation-delay:700ms]" />
@@ -170,16 +226,18 @@ export function HomeDashboard() {
           <span className="absolute left-[82%] top-[30%] h-[2px] w-[2px] rounded-full bg-white/55 shadow-[0_0_8px_3px_rgba(99,102,241,0.7)] animate-pulse [animation-delay:2200ms]" />
         </div>
 
-        {/* Headline + CTAs */}
-        <div className="hero-copy-arrive relative z-20 flex min-h-[600px] flex-col justify-center lg:min-h-[780px]">
-          <div className="relative max-w-[520px]">
+        {/* ── Headline + CTAs + Planet strip ──────────────────────── */}
+        <div className="hero-copy-arrive relative z-20 flex min-h-[640px] flex-col justify-center lg:min-h-[820px]">
+          <div className="relative max-w-[540px]">
+
+            {/* Subtle text-zone backing so copy reads over astronaut */}
             <div
               className="pointer-events-none absolute -inset-10 -z-10 rounded-[3rem]"
-              style={{ background: "radial-gradient(ellipse at 38% 50%, rgba(5,8,22,0.62) 0%, rgba(5,8,22,0.30) 50%, transparent 78%)", filter: "blur(18px)" }}
+              style={{ background: "radial-gradient(ellipse at 38% 50%, rgba(5,8,22,0.60) 0%, rgba(5,8,22,0.28) 50%, transparent 78%)", filter: "blur(20px)" }}
             />
 
-            {/* Rank badge — live data */}
-            <div className="mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.14] bg-[#050816]/50 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(99,102,241,0.15)]">
+            {/* Live rank badge */}
+            <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.14] bg-[#050816]/52 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(99,102,241,0.15)]">
               <span className="text-base leading-none">{rank.emoji}</span>
               <span className="font-black" style={{ color: rank.color }}>{rank.name}</span>
               {progress.xp > 0 && (
@@ -191,14 +249,15 @@ export function HomeDashboard() {
               )}
             </div>
 
+            {/* Main headline */}
             <h1
-              className="font-display font-extrabold leading-[0.94] tracking-tight text-white"
-              style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.6rem)", textShadow: "0 0 50px rgba(99,102,241,0.45), 0 0 100px rgba(139,92,246,0.25), 0 2px 4px rgba(0,0,0,0.6)" }}
+              className="font-display font-extrabold leading-[0.93] tracking-tight text-white"
+              style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.8rem)", textShadow: "0 0 60px rgba(99,102,241,0.5), 0 0 120px rgba(139,92,246,0.25), 0 2px 4px rgba(0,0,0,0.7)" }}
             >
               <span className="block">Learn Smarter.</span>
               <span
                 className="mt-2 block bg-gradient-to-r from-[#818CF8] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent"
-                style={{ filter: "drop-shadow(0 0 28px rgba(167,139,250,0.55))" }}
+                style={{ filter: "drop-shadow(0 0 30px rgba(167,139,250,0.6))" }}
               >
                 Reach Further.
               </span>
@@ -206,41 +265,55 @@ export function HomeDashboard() {
                 Rise{" "}
                 <span
                   className="bg-gradient-to-r from-[#FBBF24] to-[#F97316] bg-clip-text text-transparent"
-                  style={{ filter: "drop-shadow(0 0 20px rgba(251,191,36,0.5))" }}
+                  style={{ filter: "drop-shadow(0 0 22px rgba(251,191,36,0.55))" }}
                 >
                   Higher.
                 </span>
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[400px] text-sm leading-[1.85] text-white/55">
+            <p className="mt-5 max-w-[400px] text-sm leading-[1.9] text-white/52">
               The complete KSSM Form 1 platform — notes, flashcards, quizzes,
               mind maps, and AI tutoring. Everything in one place.
             </p>
 
+            {/* CTA row */}
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/notes"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-3.5 text-sm font-bold text-white shadow-[0_16px_40px_-8px_rgba(99,102,241,0.65)] transition-all hover:scale-[1.04] hover:shadow-[0_20px_50px_-8px_rgba(99,102,241,0.80)] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-3.5 text-sm font-bold text-white shadow-[0_16px_48px_-8px_rgba(99,102,241,0.70)] transition-all hover:scale-[1.04] hover:shadow-[0_20px_60px_-8px_rgba(99,102,241,0.85)] active:scale-[0.98]"
               >
-                Start Learning
+                🚀 Launch Mission
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
-              <Link
-                to="/dashboard"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.12] hover:border-white/[0.25]"
-              >
-                <TrendingUp className="h-4 w-4" />
-                My Progress
-              </Link>
+
+              {hasProgress ? (
+                <Link
+                  to="/dashboard"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.12] hover:border-white/[0.25]"
+                >
+                  <TrendingUp className="h-4 w-4" />
+                  Continue Journey
+                </Link>
+              ) : (
+                <Link
+                  to="/flashcards"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.12] hover:border-white/[0.25]"
+                >
+                  🃏 Explore Academy
+                </Link>
+              )}
             </div>
+
+            {/* Subject planet strip */}
+            <HeroSubjectStrip />
           </div>
         </div>
 
         {/* Live streak chip */}
         {progress.streak > 0 && (
-          <div className="pointer-events-none absolute right-5 top-10 z-30 hidden items-center gap-2.5 rounded-2xl border border-orange-500/30 bg-[#0F0805]/70 p-2.5 shadow-[0_4px_28px_rgba(249,115,22,0.22)] backdrop-blur-2xl md:right-8 md:flex lg:right-12">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/22">
+          <div className="pointer-events-none absolute right-5 top-10 z-30 hidden items-center gap-2.5 rounded-2xl border border-orange-500/30 bg-[#0F0805]/72 p-2.5 shadow-[0_4px_28px_rgba(249,115,22,0.24)] backdrop-blur-2xl md:right-8 md:flex lg:right-12">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/20">
               <Flame className="h-4 w-4 text-orange-400" />
             </div>
             <div>
@@ -250,24 +323,8 @@ export function HomeDashboard() {
           </div>
         )}
 
-        {/* Rank progress chip */}
-        {nextRank && (
-          <div className="pointer-events-none absolute bottom-20 right-5 z-30 hidden rounded-2xl border border-white/[0.10] bg-[#050816]/65 p-3 shadow-2xl backdrop-blur-2xl md:right-8 md:block lg:bottom-24 lg:right-12">
-            <div className="mb-2 flex items-center gap-2">
-              <span className="text-sm leading-none">{rank.emoji}</span>
-              <span className="text-[10px] font-bold" style={{ color: rank.color }}>{rank.name}</span>
-              <span className="text-white/25">→</span>
-              <span className="text-[10px] text-white/40">{nextRank.emoji} {nextRank.name}</span>
-            </div>
-            <div className="h-1.5 w-36 overflow-hidden rounded-full bg-white/[0.08]">
-              <div
-                className="h-full rounded-full transition-all duration-700"
-                style={{ width: `${rankPct}%`, background: `linear-gradient(90deg, ${rank.color}, ${nextRank.color})` }}
-              />
-            </div>
-            <p className="mt-1.5 text-[9px] text-white/35">{rankPct}% to next rank</p>
-          </div>
-        )}
+        {/* Rank progression card */}
+        <HeroRankCard />
       </div>
 
       {/* ── RESUME BANNER (real data only) ───────────────────────────────── */}
@@ -414,10 +471,7 @@ export function HomeDashboard() {
             </p>
           </div>
           <button
-            onClick={() => {
-              const btn = document.querySelector<HTMLButtonElement>("[aria-label='Buka Cikgu AI']");
-              btn?.click();
-            }}
+            onClick={() => openCikgu({ mode: "general" })}
             className="shrink-0 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-6 py-3 text-sm font-bold text-white transition-all hover:scale-[1.03] active:scale-[0.98]"
           >
             <Bot className="h-4 w-4" />
