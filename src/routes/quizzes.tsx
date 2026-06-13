@@ -10,6 +10,7 @@ import {
   type QuizQuestion,
 } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
+import { useCikgu } from "@/context/cikgu-context";
 import {
   CheckCircle2,
   XCircle,
@@ -6067,6 +6068,7 @@ function readStudySearch() {
 
 function QuizzesPage() {
   const { progress, addXp, recordQuiz, awardBadge, markChapter } = useProgress();
+  const { openCikgu } = useCikgu();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(null);
@@ -7043,6 +7045,36 @@ function QuizzesPage() {
                   <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">
                     <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-[#A78BFA]" />
                     <p className="text-sm leading-7 text-slate-300">{current.explanation}</p>
+                  </div>
+                )}
+
+                {/* ── Cikgu AI wrong-answer explainer ── */}
+                {selected !== null && feedback?.kind === "wrong" && (
+                  <div className="mx-6 mb-4 animate-fade-up">
+                    <button
+                      onClick={() =>
+                        openCikgu({
+                          mode: "quiz-explain",
+                          subjectId: subject ?? undefined,
+                          subjectName: subjects.find((s) => s.id === subject)?.name,
+                          chapterKey: chapter ?? undefined,
+                          chapterTitle: chapterMeta?.label,
+                          quizContext: {
+                            question: current.question,
+                            options: current.options,
+                            wrongAnswerIndex: selected,
+                            correctAnswerIndex: current.answerIndex,
+                            explanation: current.explanation,
+                            subjectId: subject ?? undefined,
+                          },
+                          initialMessage: `Saya salah pilih "${current.options[selected]}" untuk soalan ini. Boleh Cikgu terangkan kenapa jawapan saya salah dan kenapa "${current.options[current.answerIndex]}" adalah betul?`,
+                        })
+                      }
+                      className="w-full flex items-center justify-center gap-2.5 rounded-2xl border border-[#6366F1]/30 bg-[#6366F1]/10 py-3 text-sm font-semibold text-[#A5B4FC] transition-all hover:bg-[#6366F1]/20 hover:border-[#6366F1]/50 active:scale-[0.99]"
+                    >
+                      <span className="text-base">👨‍🚀</span>
+                      Cikgu AI — Kenapa jawapan saya salah?
+                    </button>
                   </div>
                 )}
 
