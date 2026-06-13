@@ -14,7 +14,8 @@ import {
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
 
 // ─── Subject identity system ─────────────────────────────────────────────────
-// Each subject has a fully unique visual identity: palette, art, atmosphere.
+// Each subject has a fully unique visual identity: palette, art, atmosphere,
+// world name, floating symbols, and subject-specific CTAs.
 const subjectPlanetStyles = {
   science: {
     name: "Science",
@@ -29,6 +30,11 @@ const subjectPlanetStyles = {
     ring: "rgba(56,189,248,0.25)",
     tagline: "Explore the universe of life & matter",
     chapters: 9,
+    worldName: "Science Laboratory Planet",
+    worldEyebrow: "🧪 Lab in Space",
+    cta: "Run Experiment",
+    atmosphere: "Exploration · Discovery · Experimentation",
+    symbols: ["H₂O", "⚛", "DNA"],
   },
   sejarah: {
     name: "Sejarah",
@@ -43,6 +49,11 @@ const subjectPlanetStyles = {
     ring: "rgba(251,146,60,0.25)",
     tagline: "Journey through Malaysia's rich past",
     chapters: 8,
+    worldName: "Time Traveller Realm",
+    worldEyebrow: "🏛️ History Vault",
+    cta: "Travel Through Time",
+    atmosphere: "Mystery · History · Legacy",
+    symbols: ["1957", "BCE", "📜"],
   },
   geography: {
     name: "Geography",
@@ -57,6 +68,11 @@ const subjectPlanetStyles = {
     ring: "rgba(52,211,153,0.25)",
     tagline: "Discover landscapes and peoples of Earth",
     chapters: 13,
+    worldName: "Explorer Planet",
+    worldEyebrow: "🌍 Field Expedition",
+    cta: "Begin Expedition",
+    atmosphere: "Exploration · Adventure · Discovery",
+    symbols: ["N", "S·E", "W"],
   },
   english: {
     name: "English",
@@ -71,6 +87,11 @@ const subjectPlanetStyles = {
     ring: "rgba(192,132,252,0.25)",
     tagline: "Master the language of the world",
     chapters: 4,
+    worldName: "Language Universe",
+    worldEyebrow: "📖 Story Archive",
+    cta: "Begin Your Story",
+    atmosphere: "Storytelling · Communication · Creativity",
+    symbols: ["ABC", "❝❞", "Vocab"],
   },
   math: {
     name: "Mathematics",
@@ -85,6 +106,11 @@ const subjectPlanetStyles = {
     ring: "rgba(251,191,36,0.25)",
     tagline: "Solve problems with precision & logic",
     chapters: 13,
+    worldName: "Mathematics Galaxy",
+    worldEyebrow: "🧮 Mission Control",
+    cta: "Launch Mission",
+    atmosphere: "Precision · Logic · Discovery",
+    symbols: ["π", "∑", "∞"],
   },
   bm: {
     name: "Bahasa Melayu",
@@ -99,6 +125,11 @@ const subjectPlanetStyles = {
     ring: "rgba(244,114,182,0.25)",
     tagline: "Kuasai bahasa dan kesusasteraan Melayu",
     chapters: 1,
+    worldName: "Nusantara Language Realm",
+    worldEyebrow: "📝 Dewan Sastera",
+    cta: "Mula Belajar",
+    atmosphere: "Budaya · Bahasa · Identiti",
+    symbols: ["BM", "Tata", "Puisi"],
   },
 } as const;
 
@@ -120,6 +151,35 @@ function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; plan
       <div className={`planet-art ${planet.artClass} absolute inset-0 opacity-30`} />
       {/* Star field */}
       <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px),radial-gradient(circle,rgba(255,255,255,0.6)_1px,transparent_1px)] [background-position:0_0,22px_18px] [background-size:38px_38px,58px_58px]" />
+
+      {/* Science: electron orbit rings */}
+      {subjectId === "science" && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-55">
+          <div className="science-orbit-1" />
+          <div className="science-orbit-2 absolute" />
+        </div>
+      )}
+
+      {/* Floating ambient symbols — unique per subject */}
+      <span
+        className="absolute right-3 top-2 pointer-events-none select-none text-[11px] font-black particle-float-1"
+        style={{ color: planet.color, opacity: 0.22 }}
+      >
+        {planet.symbols[0]}
+      </span>
+      <span
+        className="absolute left-3 bottom-2 pointer-events-none select-none text-[10px] font-black particle-float-2"
+        style={{ color: planet.color, opacity: 0.18 }}
+      >
+        {planet.symbols[1]}
+      </span>
+      <span
+        className="absolute right-[30%] top-3 pointer-events-none select-none text-[10px] font-black particle-float-3"
+        style={{ color: planet.accentTo, opacity: 0.15 }}
+      >
+        {planet.symbols[2]}
+      </span>
+
       {/* Main icon — large and centered */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div
@@ -197,7 +257,7 @@ export function SubjectPlanetLink({
           </div>
         </div>
 
-        {/* CTA */}
+        {/* CTA — subject-specific label */}
         <div
           className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-all duration-200 group-hover:scale-[1.02]"
           style={{
@@ -205,7 +265,7 @@ export function SubjectPlanetLink({
             boxShadow: `0 4px 20px -4px ${planet.glow}`,
           }}
         >
-          Start Learning
+          {planet.cta}
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
         </div>
       </div>
@@ -295,6 +355,80 @@ export function SubjectPlanetButton({
         )}
       </div>
     </button>
+  );
+}
+
+// ─── Subject world banner — rendered when entering a subject ──────────────────
+export function SubjectWorldBanner({ subjectId }: { subjectId: SubjectPlanetId }) {
+  const planet = subjectPlanetStyles[subjectId];
+  const Icon = planet.icon;
+  return (
+    <div
+      className={`relative mb-6 overflow-hidden rounded-[2rem] border border-white/[0.10] bg-gradient-to-br ${planet.gradient}`}
+      style={{ boxShadow: `0 0 70px -20px ${planet.glow}` }}
+    >
+      {/* World art pattern */}
+      <div className={`planet-art ${planet.artClass} absolute inset-0 opacity-20`} />
+      {/* Ambient radial glow */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `radial-gradient(circle at 78% 22%, ${planet.accentFrom}38, transparent 52%)`,
+        }}
+      />
+      {/* Fine star field */}
+      <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px)] [background-size:40px_40px]" />
+
+      {/* Science orbit rings in banner */}
+      {subjectId === "science" && (
+        <div className="absolute right-20 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden opacity-40 hidden sm:flex items-center justify-center">
+          <div className="science-orbit-1" />
+          <div className="science-orbit-2 absolute" />
+        </div>
+      )}
+
+      {/* Floating ambient symbols in banner */}
+      <span
+        className="absolute left-6 bottom-3 pointer-events-none select-none text-[13px] font-black particle-float-1"
+        style={{ color: planet.color, opacity: 0.2 }}
+      >
+        {planet.symbols[0]}
+      </span>
+      <span
+        className="absolute right-24 bottom-4 pointer-events-none select-none text-[11px] font-black particle-float-3"
+        style={{ color: planet.color, opacity: 0.15 }}
+      >
+        {planet.symbols[2]}
+      </span>
+
+      <div className="relative z-10 flex items-start justify-between p-5 md:p-7">
+        <div>
+          <p
+            className="mb-2 text-[11px] font-black uppercase tracking-[0.2em]"
+            style={{ color: planet.color }}
+          >
+            {planet.worldEyebrow}
+          </p>
+          <h2 className="font-display text-2xl font-bold text-white md:text-3xl">
+            {planet.worldName}
+          </h2>
+          <p className="mt-1.5 text-xs font-semibold tracking-wide text-white/38">
+            {planet.atmosphere}
+          </p>
+        </div>
+
+        {/* Icon orb */}
+        <div
+          className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 shadow-2xl md:h-16 md:w-16"
+          style={{
+            background: `linear-gradient(135deg, ${planet.accentFrom}28, rgba(255,255,255,0.05))`,
+            boxShadow: `0 0 32px ${planet.glow}`,
+          }}
+        >
+          <Icon className="h-7 w-7 md:h-8 md:w-8" style={{ color: planet.color }} />
+        </div>
+      </div>
+    </div>
   );
 }
 

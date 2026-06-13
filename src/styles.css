@@ -3158,11 +3158,154 @@
   outline-offset: 2px;
 }
 
+/* =========================================================================
+   SUBJECT WORLDS — unique immersive identities, ambient particles, world art
+   ========================================================================= */
+
+/* ── Particle float animations (3 staggered variants) ───────────────────── */
+@keyframes particle-float-1 {
+  0%, 100% { transform: translateY(0) rotate(0deg);  opacity: 0.22; }
+  33%       { transform: translateY(-6px) rotate(3deg);  opacity: 0.34; }
+  66%       { transform: translateY(4px) rotate(-2deg); opacity: 0.14; }
+}
+@keyframes particle-float-2 {
+  0%, 100% { transform: translateY(0) rotate(0deg);  opacity: 0.18; }
+  40%       { transform: translateY(8px) rotate(-4deg); opacity: 0.28; }
+  80%       { transform: translateY(-4px) rotate(2deg); opacity: 0.10; }
+}
+@keyframes particle-float-3 {
+  0%, 100% { transform: translateY(0);   opacity: 0.15; }
+  50%       { transform: translateY(-5px); opacity: 0.27; }
+}
+.particle-float-1 { animation: particle-float-1 5.5s ease-in-out infinite; }
+.particle-float-2 { animation: particle-float-2 4.8s ease-in-out infinite 0.8s; }
+.particle-float-3 { animation: particle-float-3 6.2s ease-in-out infinite 1.6s; }
+
+/* ── Science: electron orbit rings ──────────────────────────────────────── */
+@keyframes orbit-spin-cw  { to { transform: rotate(360deg);  } }
+@keyframes orbit-spin-ccw { to { transform: rotate(-360deg); } }
+.science-orbit-1 {
+  width: 88px;
+  height: 32px;
+  border: 1.5px solid rgba(56,189,248,0.40);
+  border-radius: 50%;
+  animation: orbit-spin-cw 4s linear infinite;
+}
+.science-orbit-2 {
+  width: 80px;
+  height: 80px;
+  border: 1px dashed rgba(14,165,233,0.24);
+  border-radius: 50%;
+  animation: orbit-spin-ccw 7s linear infinite;
+}
+
+/* ── Math: formula glow banner ───────────────────────────────────────────── */
+@keyframes formula-glow {
+  0%, 100% { opacity: 0.13; }
+  50%       { opacity: 0.28; }
+}
+.planet-art-math::before {
+  content: "∑  ∫  π  ∞";
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 900;
+  color: rgba(251,191,36,0.24);
+  letter-spacing: 0.5rem;
+  pointer-events: none;
+  animation: formula-glow 3.5s ease-in-out infinite;
+}
+
+/* ── Sejarah: timeline shimmer bar ──────────────────────────────────────── */
+@keyframes sejarah-shimmer {
+  0%, 100% { opacity: 0.10; }
+  50%       { opacity: 0.28; }
+}
+.planet-art-sejarah::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 18px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(251,146,60,0.55), transparent);
+  pointer-events: none;
+  animation: sejarah-shimmer 3s ease-in-out infinite;
+}
+
+/* ── Geography: compass N indicator ──────────────────────────────────────── */
+@keyframes compass-breathe {
+  0%, 100% { opacity: 0.22; transform: rotate(0deg) scale(1);    }
+  25%       { opacity: 0.40; transform: rotate(2deg) scale(1.05); }
+  75%       { opacity: 0.28; transform: rotate(-1deg) scale(1);   }
+}
+.planet-art-geo::before {
+  content: "N";
+  position: absolute;
+  left: 12%;
+  top: 10%;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: rgba(52,211,153,0.60);
+  pointer-events: none;
+  animation: compass-breathe 5s ease-in-out infinite;
+}
+
+/* ── English: opening quotation mark ─────────────────────────────────────── */
+@keyframes quote-drift {
+  0%, 100% { transform: translateY(0);   opacity: 0.14; }
+  50%       { transform: translateY(-5px); opacity: 0.26; }
+}
+.planet-art-english::before {
+  content: "❝";
+  position: absolute;
+  left: 1rem;
+  top: 0.3rem;
+  font-size: 2.6rem;
+  color: rgba(192,132,252,0.24);
+  pointer-events: none;
+  line-height: 1;
+  animation: quote-drift 5s ease-in-out infinite;
+}
+
+/* ── BM: animated wave flow ──────────────────────────────────────────────── */
+@keyframes bm-wave-flow {
+  0%, 100% { transform: translateX(0);  opacity: 0.18; }
+  50%       { transform: translateX(5px); opacity: 0.30; }
+}
+.planet-art-bm::before {
+  animation: bm-wave-flow 5.5s ease-in-out infinite;
+}
+
+/* ── Subject world banner — glow borders per subject ─────────────────────── */
+/* Used by SubjectWorldBanner for border accent */
+.world-border-science  { border-color: rgba(56,189,248,0.18);  }
+.world-border-math     { border-color: rgba(251,191,36,0.18);  }
+.world-border-sejarah  { border-color: rgba(251,146,60,0.18);  }
+.world-border-geography{ border-color: rgba(52,211,153,0.18);  }
+.world-border-english  { border-color: rgba(192,132,252,0.18); }
+.world-border-bm       { border-color: rgba(244,114,182,0.18); }
+
 @media (prefers-reduced-motion: reduce) {
   .planet-card-shine,
   .fc-flip-in,
   .fc-flip-out,
   .quiz-q-enter,
   .animate-xp-burst,
-  .page-content { animation: none !important; }
+  .page-content,
+  .particle-float-1,
+  .particle-float-2,
+  .particle-float-3,
+  .science-orbit-1,
+  .science-orbit-2,
+  .planet-art-math::before,
+  .planet-art-sejarah::before,
+  .planet-art-geo::before,
+  .planet-art-english::before,
+  .planet-art-bm::before { animation: none !important; }
 }

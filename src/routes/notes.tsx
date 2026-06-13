@@ -32,7 +32,7 @@ import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
+import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -287,6 +287,7 @@ function NotesPage() {
         </div>
       ) : !activeChapterKey ? (
         <>
+          <SubjectWorldBanner subjectId={subject as SubjectPlanetId} />
           {isBilingualSubject && scienceLang && (
             <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
           )}

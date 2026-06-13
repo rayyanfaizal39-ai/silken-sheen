@@ -39,7 +39,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
+import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -6536,6 +6536,7 @@ function QuizzesPage() {
         />
       ) : !chapter ? (
         <>
+          <SubjectWorldBanner subjectId={subject as SubjectPlanetId} />
           {isBilingualSubject && scienceLang && (
             <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
           )}
