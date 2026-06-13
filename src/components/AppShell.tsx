@@ -7,6 +7,8 @@ import {
   Home,
   LayoutDashboard,
   Library,
+  LogIn,
+  LogOut,
   Rocket,
   Sparkles,
   Video,
@@ -14,6 +16,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { useProgress, getRank } from "@/hooks/use-progress";
+import { useAuth } from "@/context/auth-context";
 
 const navItems = [
   { label: "Home", short: "Home", to: "/", icon: Home, accent: "#6366F1" },
@@ -33,9 +36,50 @@ function isActive(pathname: string, to: string, label: string) {
 
 function SidebarBottom() {
   const { progress } = useProgress();
+  const { user, signOut, isConfigured } = useAuth();
   const rank = getRank(progress.xp);
+
   return (
     <div className="mt-auto space-y-3">
+      {/* User profile card when signed in */}
+      {user ? (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-3 space-y-2.5">
+          <div className="flex items-center gap-2.5">
+            {user.avatarUrl ? (
+              <img
+                src={user.avatarUrl}
+                alt={user.name ?? "Avatar"}
+                className="h-8 w-8 shrink-0 rounded-xl object-cover ring-1 ring-white/10"
+              />
+            ) : (
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] text-xs font-bold text-white">
+                {(user.name ?? user.email ?? "?")[0].toUpperCase()}
+              </div>
+            )}
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-xs font-bold text-white">{user.name ?? "Student"}</p>
+              <p className="truncate text-[10px] text-white/40">{user.email}</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => void signOut()}
+            className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white/80"
+          >
+            <LogOut className="h-3 w-3" />
+            Sign out
+          </button>
+        </div>
+      ) : isConfigured ? (
+        <Link
+          to="/login"
+          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.09] bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white"
+        >
+          <LogIn className="h-3.5 w-3.5" />
+          Sign in to sync progress
+        </Link>
+      ) : null}
+
       {/* Live rank chip */}
       {progress.xp > 0 && (
         <div className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5">
@@ -217,10 +261,19 @@ function HeaderStreak() {
 
 function RankBadge() {
   const { progress } = useProgress();
+  const { user } = useAuth();
   const rank = getRank(progress.xp);
   return (
     <div className="flex items-center gap-2">
-      <span className="text-base leading-none">{rank.emoji}</span>
+      {user?.avatarUrl ? (
+        <img
+          src={user.avatarUrl}
+          alt={user.name ?? "Avatar"}
+          className="h-6 w-6 rounded-lg object-cover ring-1 ring-white/10"
+        />
+      ) : (
+        <span className="text-base leading-none">{rank.emoji}</span>
+      )}
       <span className="hidden text-xs font-bold md:inline" style={{ color: rank.color }}>{rank.name}</span>
     </div>
   );

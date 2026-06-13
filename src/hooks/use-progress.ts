@@ -1,6 +1,8 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 const KEY = "learnnova-progress-v1";
+const SYNC_DEBOUNCE_MS = 2000;
 
 export type ChapterActivity = { read?: boolean; quiz?: boolean; cards?: boolean };
 
@@ -183,6 +185,96 @@ export function totalChaptersCompleted(chapterActivity: Record<string, ChapterAc
   ).length;
 }
 
+// ─── Supabase sync helpers ────────────────────────────────────────────────────
+
+function progressToRow(p: Progress) {
+  return {
+    xp: p.xp,
+    streak: p.streak,
+    last_active: p.lastActive || null,
+    quizzes_taken: p.quizzesTaken,
+    badges: p.badges,
+    favorites: p.favorites,
+    subject_xp: p.subjectXp,
+    chapter_activity: p.chapterActivity,
+    missions: p.missions ?? null,
+    card_mastery: p.cardMastery ?? {},
+    last_visited: p.lastVisited ?? null,
+    updated_at: new Date().toISOString(),
+  };
+}
+
+function rowToProgress(row: Record<string, unknown>): Progress {
+  return {
+    ...initial,
+    xp:              typeof row.xp === "number"           ? row.xp              : 0,
+    streak:          typeof row.streak === "number"       ? row.streak          : 0,
+    lastActive:      typeof row.last_active === "string"  ? row.last_active     : "",
+    quizzesTaken:    typeof row.quizzes_taken === "number"? row.quizzes_taken   : 0,
+    badges:          Array.isArray(row.badges)            ? row.badges          : [],
+    favorites:       Array.isArray(row.favorites)         ? row.favorites       : [],
+    subjectXp:       (row.subject_xp as Record<string, number>) ?? {},
+    chapterActivity: (row.chapter_activity as Record<string, ChapterActivity>) ?? {},
+    missions:        (row.missions as MissionProgress | undefined) ?? undefined,
+    cardMastery:     (row.card_mastery as Record<string, CardMasteryRecord>) ?? {},
+    lastVisited:     (row.last_visited as LastVisited | undefined) ?? undefined,
+  };
+}
+
+// Merge: take the union of badges, the higher XP, etc.
+function mergeProgress(local: Progress, remote: Progress): Progress {
+  const mergedBadges = Array.from(new Set([...local.badges, ...remote.badges]));
+  const useRemote = remote.xp >= local.xp;
+  const base = useRemote ? remote : local;
+  // Merge chapter activity keys from both (keep any activity that exists on either side)
+  const mergedActivity: Record<string, ChapterActivity> = { ...remote.chapterActivity };
+  for (const [k, v] of Object.entries(local.chapterActivity)) {
+    if (!mergedActivity[k]) {
+      mergedActivity[k] = v;
+    } else {
+      mergedActivity[k] = {
+        read:  !!(mergedActivity[k].read  || v.read),
+        quiz:  !!(mergedActivity[k].quiz  || v.quiz),
+        cards: !!(mergedActivity[k].cards || v.cards),
+      };
+    }
+  }
+  return {
+    ...base,
+    badges: mergedBadges,
+    chapterActivity: mergedActivity,
+    favorites: Array.from(new Set([...local.favorites, ...remote.favorites])),
+    cardMastery: useRemote ? { ...local.cardMastery, ...remote.cardMastery } : { ...remote.cardMastery, ...local.cardMastery },
+  };
+}
+
+async function loadFromSupabase(userId: string): Promise<Progress | null> {
+  if (!isSupabaseConfigured) return null;
+  try {
+    const { data, error } = await supabase
+      .from("user_progress")
+      .select("*")
+      .eq("user_id", userId)
+      .maybeSingle();
+    if (error || !data) return null;
+    return rowToProgress(data as Record<string, unknown>);
+  } catch {
+    return null;
+  }
+}
+
+async function saveToSupabase(userId: string, p: Progress): Promise<void> {
+  if (!isSupabaseConfigured) return;
+  try {
+    await supabase.from("user_progress").upsert(
+      { user_id: userId, ...progressToRow(p) },
+      { onConflict: "user_id" }
+    );
+  } catch {
+    // Silent — localStorage is still the safety net
+  }
+}
+
 // ─── SM-2 Spaced Repetition ───────────────────────────────────────────────────
 // rating: 0=Again, 1=Hard, 2=Good, 3=Easy
 function sm2(record: CardMasteryRecord | undefined, rating: 0 | 1 | 2 | 3): CardMasteryRecord {
@@ -241,17 +333,68 @@ export function getMasteredCount(cardMastery: Record<string, CardMasteryRecord> 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 export function useProgress() {
   const [progress, setProgress] = useState<Progress>(initial);
+  const [cloudSynced, setCloudSynced] = useState(false);
+  const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const userIdRef = useRef<string | null>(null);
 
+  // On mount: load localStorage then optionally merge Supabase data
   useEffect(() => {
-    setProgress(load());
+    const local = load();
+    setProgress(local);
+
+    if (!isSupabaseConfigured) return;
+
+    // Get current user and sync
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      userIdRef.current = user.id;
+      const remote = await loadFromSupabase(user.id);
+      if (!remote) {
+        // No cloud record yet — push local to cloud
+        await saveToSupabase(user.id, local);
+        setCloudSynced(true);
+        return;
+      }
+      const merged = mergeProgress(local, remote);
+      setProgress(merged);
+      try { localStorage.setItem(KEY, JSON.stringify(merged)); } catch {}
+      setCloudSynced(true);
+    });
+
+    // Listen for auth changes (login / logout)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "SIGNED_IN" && session?.user) {
+        userIdRef.current = session.user.id;
+        const local2 = load();
+        const remote2 = await loadFromSupabase(session.user.id);
+        const merged2 = remote2 ? mergeProgress(local2, remote2) : local2;
+        setProgress(merged2);
+        try { localStorage.setItem(KEY, JSON.stringify(merged2)); } catch {}
+        await saveToSupabase(session.user.id, merged2);
+        setCloudSynced(true);
+      } else if (event === "SIGNED_OUT") {
+        userIdRef.current = null;
+        setCloudSynced(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  // Debounced sync to Supabase after every progress change
+  const scheduleSync = useCallback((p: Progress) => {
+    if (!isSupabaseConfigured || !userIdRef.current) return;
+    if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    syncTimerRef.current = setTimeout(() => {
+      void saveToSupabase(userIdRef.current!, p);
+    }, SYNC_DEBOUNCE_MS);
   }, []);
 
   const save = useCallback((p: Progress) => {
     setProgress(p);
-    try {
-      localStorage.setItem(KEY, JSON.stringify(p));
-    } catch {}
-  }, []);
+    try { localStorage.setItem(KEY, JSON.stringify(p)); } catch {}
+    scheduleSync(p);
+  }, [scheduleSync]);
 
   const addXp = useCallback((amount: number, subjectId?: string) => {
     setProgress((prev) => {
@@ -287,9 +430,10 @@ export function useProgress() {
           : prev.subjectXp,
       };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      scheduleSync(next);
       return next;
     });
-  }, []);
+  }, [scheduleSync]);
 
   const recordQuiz = useCallback((perfect?: boolean) => {
     setProgress((prev) => {
@@ -313,18 +457,20 @@ export function useProgress() {
         missions: { ...missions, quizzesDone: newQuizzesDone },
       };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      scheduleSync(next);
       return next;
     });
-  }, []);
+  }, [scheduleSync]);
 
   const awardBadge = useCallback((id: string) => {
     setProgress((prev) => {
       if (prev.badges.includes(id)) return prev;
       const next = { ...prev, badges: [...prev.badges, id] };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      scheduleSync(next);
       return next;
     });
-  }, []);
+  }, [scheduleSync]);
 
   const toggleFavorite = useCallback((id: string) => {
     setProgress((prev) => {
@@ -332,9 +478,10 @@ export function useProgress() {
       const favorites = exists ? prev.favorites.filter((f) => f !== id) : [...prev.favorites, id];
       const next = { ...prev, favorites };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      scheduleSync(next);
       return next;
     });
-  }, []);
+  }, [scheduleSync]);
 
   const markChapter = useCallback(
     (subjectId: string, chapterKey: string, kind: keyof ChapterActivity) => {
@@ -370,10 +517,11 @@ export function useProgress() {
           missions: updatedMissions,
         };
         try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+        scheduleSync(next);
         return next;
       });
     },
-    []
+    [scheduleSync]
   );
 
   const rateCard = useCallback((cardId: string, rating: 0 | 1 | 2 | 3) => {
@@ -391,19 +539,21 @@ export function useProgress() {
 
       const next: Progress = { ...prev, cardMastery: mastery, badges: newBadges };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      scheduleSync(next);
       return next;
     });
-  }, []);
+  }, [scheduleSync]);
 
   const setLastVisited = useCallback((lv: LastVisited) => {
     setProgress((prev) => {
       const next: Progress = { ...prev, lastVisited: lv };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
+      scheduleSync(next);
       return next;
     });
-  }, []);
+  }, [scheduleSync]);
 
-  return { progress, addXp, recordQuiz, awardBadge, toggleFavorite, save, markChapter, rateCard, setLastVisited };
+  return { progress, cloudSynced, addXp, recordQuiz, awardBadge, toggleFavorite, save, markChapter, rateCard, setLastVisited };
 }
 
 function resetMissionsIfNewDay(missions: MissionProgress | undefined, t: string): MissionProgress {

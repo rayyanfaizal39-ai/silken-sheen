@@ -15,6 +15,7 @@ import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { AIAssistant } from "@/components/AIAssistant";
+import { AuthProvider } from "@/context/auth-context";
 
 function NotFoundComponent() {
   return (
@@ -133,13 +134,15 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <ParticleBg />
-      <SoundFx />
-      <MusicPlayer />
-      <AppShell>
-        <Outlet />
-      </AppShell>
-      <AIAssistant />
+      <AuthProvider>
+        <ParticleBg />
+        <SoundFx />
+        <MusicPlayer />
+        <AppShell>
+          <Outlet />
+        </AppShell>
+        <AIAssistant />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
