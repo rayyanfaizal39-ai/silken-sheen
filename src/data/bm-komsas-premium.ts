@@ -169,9 +169,9 @@ function q(
 
 function quiz(mcq: string, matching: string, kbat: string): KomsasExamQuestion[] {
   return [
-    { question: `MCQ: ${mcq}`, answerHint: "Placeholder jawapan: pilih pilihan yang paling tepat berdasarkan tema dan bukti karya." },
-    { question: `Matching: ${matching}`, answerHint: "Placeholder jawapan: padankan istilah dengan contoh peristiwa atau maksud yang betul." },
-    { question: `KBAT: ${kbat}`, answerHint: "Placeholder jawapan: beri pendapat, sebab dan contoh kehidupan murid." },
+    { question: `Aneka Pilihan: ${mcq}`, answerHint: "Ruang jawapan: pilih pilihan yang paling tepat berdasarkan tema dan bukti karya." },
+    { question: `Padanan: ${matching}`, answerHint: "Ruang jawapan: padankan istilah dengan contoh peristiwa atau maksud yang betul." },
+    { question: `KBAT: ${kbat}`, answerHint: "Ruang jawapan: beri pendapat, sebab dan contoh kehidupan murid." },
   ];
 }
 
