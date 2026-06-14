@@ -603,10 +603,391 @@ function WorldStats({
   );
 }
 
-// ─── Chapter / location card ──────────────────────────────────────────────────
+// ─── Chapter map types ───────────────────────────────────────────────────────
 
 type ChapterEntry = ReturnType<typeof getSubjectChapters>[number];
-type ProgressMap   = ReturnType<typeof useProgress>["progress"];
+type ProgressMap  = ReturnType<typeof useProgress>["progress"];
+
+type MapProps = {
+  chapters: ChapterEntry[];
+  config: WorldConfig;
+  subjectId: string;
+  scienceLang?: "bm" | "dlp";
+  progress: ProgressMap;
+  onSelect: (key: string) => void;
+};
+
+// ─── Path node (circular marker sitting on the path line) ────────────────────
+
+function PathNode({
+  chapter, index, config, pct, isComplete, isStarted,
+}: {
+  chapter: ChapterEntry;
+  index: number;
+  config: WorldConfig;
+  pct: number;
+  isComplete: boolean;
+  isStarted: boolean;
+}) {
+  const C = 2 * Math.PI * 22; // SVG circle circumference, r=22
+
+  return (
+    <div
+      className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full transition-all duration-500"
+      style={{
+        background: isComplete
+          ? `radial-gradient(circle, ${config.from}55, ${config.to}22)`
+          : isStarted
+          ? `${config.from}1a`
+          : "rgba(0,0,0,0.45)",
+        border: `2px solid ${
+          isComplete        ? config.color :
+          isStarted         ? `${config.color}65` :
+          chapter.available ? `${config.color}28` :
+                              "rgba(255,255,255,0.08)"
+        }`,
+        boxShadow: isComplete
+          ? `0 0 22px ${config.glow}, 0 0 7px ${config.color}`
+          : isStarted
+          ? `0 0 14px ${config.glow}60`
+          : "none",
+      }}
+    >
+      {/* Progress ring */}
+      {isStarted && !isComplete && (
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 56 56"
+          style={{ transform: "rotate(-90deg)" }}>
+          <circle cx="28" cy="28" r="22" fill="none"
+            stroke={`${config.color}20`} strokeWidth="2.5" />
+          <circle
+            cx="28" cy="28" r="22" fill="none"
+            stroke={config.color} strokeWidth="2.5"
+            strokeDasharray={C} strokeDashoffset={C * (1 - pct / 100)}
+            strokeLinecap="round"
+          />
+        </svg>
+      )}
+
+      {/* Centre icon */}
+      {!chapter.available ? (
+        <Lock className="h-4 w-4 text-white/20" />
+      ) : isComplete ? (
+        <CheckCircle2 className="h-5 w-5" style={{ color: config.color }} />
+      ) : (
+        <span className="relative z-10 font-display text-sm font-black"
+          style={{ color: isStarted ? config.color : "rgba(255,255,255,0.28)" }}>
+          {index + 1}
+        </span>
+      )}
+
+      {/* NEW dot */}
+      {chapter.isNew && chapter.available && !isComplete && (
+        <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-nova-yellow text-[7px] font-black text-black">
+          N
+        </span>
+      )}
+    </div>
+  );
+}
+
+// ─── Location card (compact info card extending from each path node) ──────────
+
+function LocationCard({
+  chapter, index, config, subjectId, scienceLang, progress, onSelect, align,
+}: {
+  chapter: ChapterEntry;
+  index: number;
+  config: WorldConfig;
+  subjectId: string;
+  scienceLang?: "bm" | "dlp";
+  progress: ProgressMap;
+  onSelect: (key: string) => void;
+  align: "left" | "right";
+}) {
+  const pct        = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, chapter.key)]);
+  const isComplete = pct >= 100;
+  const isStarted  = pct > 0;
+  const location   = LOCATIONS[subjectId]?.[chapter.key];
+
+  const chapterContent = getChapter(subjectId, chapter.key, scienceLang);
+  const notesCount = chapterContent?.notes?.sections?.length ?? 0;
+  const cardCount  = chapterContent?.flashcards?.length ?? 0;
+  const quizCount  = chapterContent?.quiz?.length ?? 0;
+
+  return (
+    <button
+      type="button"
+      onClick={() => chapter.available && onSelect(chapter.key)}
+      disabled={!chapter.available}
+      className={[
+        "w-full rounded-2xl border transition-all duration-300",
+        chapter.available
+          ? "cursor-pointer hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2"
+          : "opacity-38 cursor-not-allowed",
+      ].join(" ")}
+      style={{
+        background: `linear-gradient(${align === "left" ? "135deg" : "225deg"}, ${config.from}0d, rgba(0,0,0,0.50))`,
+        border: "1px solid rgba(255,255,255,0.06)",
+        "--tw-ring-color": config.color,
+      } as CSSProperties}
+      onMouseEnter={(e) => {
+        if (!chapter.available) return;
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = `${config.color}35`;
+        el.style.boxShadow   = `0 12px 40px -12px ${config.glow}`;
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = "";
+        el.style.boxShadow   = "";
+      }}
+    >
+      <div className={`p-3 md:p-4 ${align === "right" ? "text-right" : "text-left"}`}>
+        {/* World location name */}
+        {location && chapter.available && (
+          <p className="mb-0.5 text-[9px] font-black uppercase tracking-[0.18em]"
+            style={{ color: config.color, opacity: 0.6 }}>
+            {location}
+          </p>
+        )}
+
+        {/* KSSM chapter title */}
+        <h3 className="font-display text-xs font-bold leading-snug text-white sm:text-sm">
+          {chapter.label}
+        </h3>
+
+        {/* Status line */}
+        <p className="mt-1 text-[9px] font-bold"
+          style={{ color: isComplete ? config.color : isStarted ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
+          {isComplete
+            ? "✓ Complete"
+            : isStarted
+            ? `${pct}% in progress`
+            : chapter.available
+            ? "Not started"
+            : "Coming soon"}
+        </p>
+
+        {/* Content chips */}
+        {chapter.available && (notesCount > 0 || cardCount > 0 || quizCount > 0) && (
+          <div className={`mt-1.5 flex flex-wrap gap-1 ${align === "right" ? "justify-end" : "justify-start"}`}>
+            {notesCount > 0 && <span className="chapter-chip">📄 {notesCount}</span>}
+            {cardCount  > 0 && <span className="chapter-chip">🃏 {cardCount}</span>}
+            {quizCount  > 0 && <span className="chapter-chip">🧠 {quizCount}q</span>}
+          </div>
+        )}
+
+        {/* Mini progress fill */}
+        {chapter.available && isStarted && (
+          <div
+            className={`mt-2 h-[2px] overflow-hidden rounded-full bg-white/[0.07] ${align === "right" ? "ml-auto" : ""}`}
+            style={{ width: "72%" }}
+          >
+            <div className="h-full rounded-full transition-all duration-700"
+              style={{
+                width: `${pct}%`,
+                background: `linear-gradient(90deg, ${config.from}, ${config.to})`,
+              }} />
+          </div>
+        )}
+      </div>
+    </button>
+  );
+}
+
+// ─── Vertical winding path map ────────────────────────────────────────────────
+// Math · Science · English · Geography · BM
+// Desktop: chapters alternate left / right of a centre path line
+// Mobile:  single column with path line on the left
+
+const PATH_DASH: Record<string, string> = {
+  math:      "5px, 10px",
+  science:   "2px,  7px",
+  english:   "10px, 6px",
+  geography: "3px,  8px",
+  bm:        "7px,  5px",
+};
+
+function VerticalPathMap({ chapters, config, subjectId, scienceLang, progress, onSelect }: MapProps) {
+  const [dashOn, dashOff] = (PATH_DASH[config.id] ?? "5px, 9px").split(",").map((s) => s.trim());
+  const pathLine = `repeating-linear-gradient(to bottom, ${config.color}60 0px, ${config.color}60 ${dashOn}, transparent ${dashOn}, transparent calc(${dashOn} + ${dashOff}))`;
+
+  return (
+    <div className="relative py-2">
+      {/* Desktop centre path */}
+      <div className="absolute top-7 bottom-7 hidden sm:block"
+        style={{ left: "50%", width: 2, transform: "translateX(-50%)", background: pathLine }} />
+      {/* Mobile left path */}
+      <div className="absolute top-7 bottom-7 sm:hidden"
+        style={{ left: 27, width: 2, background: pathLine }} />
+
+      <div className="space-y-4">
+        {chapters.map((chapter, i) => {
+          const pct        = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, chapter.key)]);
+          const isComplete = pct >= 100;
+          const isStarted  = pct > 0;
+          const cardLeft   = i % 2 === 0; // even → card on left (desktop)
+
+          return (
+            <div key={chapter.key} className="animate-slide-up" style={{ animationDelay: `${i * 40}ms` }}>
+
+              {/* Mobile: path left, card right */}
+              <div className="flex items-center gap-3 sm:hidden">
+                <PathNode chapter={chapter} index={i} config={config} pct={pct} isComplete={isComplete} isStarted={isStarted} />
+                <div className="flex-1">
+                  <LocationCard chapter={chapter} index={i} config={config} subjectId={subjectId}
+                    scienceLang={scienceLang} progress={progress} onSelect={onSelect} align="left" />
+                </div>
+              </div>
+
+              {/* Desktop: alternating sides */}
+              <div className="hidden items-center sm:flex">
+                {cardLeft ? (
+                  <>
+                    <div className="w-[calc(50%-28px)] pr-5">
+                      <LocationCard chapter={chapter} index={i} config={config} subjectId={subjectId}
+                        scienceLang={scienceLang} progress={progress} onSelect={onSelect} align="right" />
+                    </div>
+                    <PathNode chapter={chapter} index={i} config={config} pct={pct} isComplete={isComplete} isStarted={isStarted} />
+                    <div className="w-[calc(50%-28px)]" />
+                  </>
+                ) : (
+                  <>
+                    <div className="w-[calc(50%-28px)]" />
+                    <PathNode chapter={chapter} index={i} config={config} pct={pct} isComplete={isComplete} isStarted={isStarted} />
+                    <div className="w-[calc(50%-28px)] pl-5">
+                      <LocationCard chapter={chapter} index={i} config={config} subjectId={subjectId}
+                        scienceLang={scienceLang} progress={progress} onSelect={onSelect} align="left" />
+                    </div>
+                  </>
+                )}
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── Horizontal timeline map ──────────────────────────────────────────────────
+// Sejarah only — chapters are historical eras on a chronological timeline
+
+const SEJARAH_ERA_LABELS = [
+  "Prasejarah", "Zaman Batu", "Prasejarah", "Tamadun Awal",
+  "Tamadun Dunia", "Zaman Klasik", "Zaman Pertengahan", "Tamadun Islam",
+];
+
+function SejarahTimelineMap({ chapters, config, subjectId, scienceLang, progress, onSelect }: MapProps) {
+  const NODE_W   = 164;
+  const totalW   = Math.max(chapters.length * NODE_W, 640);
+
+  return (
+    <div className="-mx-2 overflow-x-auto pb-6">
+      <div className="relative inline-flex flex-col" style={{ width: totalW, minWidth: "100%", paddingTop: 8 }}>
+
+        {/* Era epoch labels */}
+        <div className="flex w-full">
+          {chapters.map((c, i) => (
+            <div key={`era-${c.key}`} className="flex justify-center" style={{ width: NODE_W }}>
+              <p className="mb-1 text-[7.5px] font-black uppercase tracking-widest"
+                style={{ color: config.color, opacity: 0.48 }}>
+                {SEJARAH_ERA_LABELS[i] ?? "Era"}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Timeline bar + nodes row */}
+        <div className="relative flex w-full items-center" style={{ height: 60 }}>
+          {/* Baseline bar */}
+          <div className="absolute top-1/2 -translate-y-1/2" style={{
+            left: NODE_W / 2, right: NODE_W / 2, height: 2,
+            background: `linear-gradient(90deg, transparent, ${config.color}55, transparent)`,
+          }} />
+
+          {/* Completed segment fills */}
+          {chapters.map((c, i) => {
+            if (i >= chapters.length - 1) return null;
+            const thisPct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
+            const nextKey = chapters[i + 1].key;
+            const nextPct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, nextKey)]);
+            if (!(thisPct >= 100 && nextPct > 0)) return null;
+            return (
+              <div key={`seg-${c.key}`} className="absolute top-1/2 -translate-y-1/2 h-0.5 transition-all"
+                style={{
+                  left: (i + 0.5) * NODE_W, width: NODE_W,
+                  background: `linear-gradient(90deg, ${config.color}, ${config.color}80)`,
+                  boxShadow: `0 0 8px ${config.glow}`,
+                }} />
+            );
+          })}
+
+          {/* Nodes */}
+          {chapters.map((c, i) => {
+            const pct        = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
+            const isComplete = pct >= 100;
+            const isStarted  = pct > 0;
+            return (
+              <div key={`node-${c.key}`} className="absolute flex justify-center"
+                style={{ left: (i + 0.5) * NODE_W - 28, width: 56 }}>
+                <PathNode chapter={c} index={i} config={config} pct={pct} isComplete={isComplete} isStarted={isStarted} />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Era cards below */}
+        <div className="flex w-full">
+          {chapters.map((c, i) => {
+            const pct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
+            return (
+              <div key={`card-${c.key}`} className="animate-slide-up px-1.5 pt-3"
+                style={{ width: NODE_W, animationDelay: `${i * 50}ms` }}>
+                <button
+                  type="button"
+                  onClick={() => c.available && onSelect(c.key)}
+                  disabled={!c.available}
+                  className={[
+                    "w-full rounded-2xl border p-2.5 text-center transition-all duration-300",
+                    c.available ? "cursor-pointer hover:border-white/[0.14]" : "opacity-38 cursor-not-allowed",
+                  ].join(" ")}
+                  style={{ background: `linear-gradient(180deg, ${config.from}0d, rgba(0,0,0,0.5))`, border: "1px solid rgba(255,255,255,0.06)" }}
+                  onMouseEnter={(e) => { if (c.available) (e.currentTarget as HTMLElement).style.borderColor = `${config.color}35`; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
+                >
+                  {LOCATIONS[subjectId]?.[c.key] && c.available && (
+                    <p className="mb-0.5 text-[7.5px] font-black uppercase tracking-widest"
+                      style={{ color: config.color, opacity: 0.55 }}>
+                      {LOCATIONS[subjectId][c.key]}
+                    </p>
+                  )}
+                  <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
+                  <p className="mt-1 text-[9px] font-semibold"
+                    style={{ color: pct >= 100 ? config.color : pct > 0 ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
+                    {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : c.available ? "Not started" : "Coming soon"}
+                  </p>
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+// ─── Chapter path map dispatcher ─────────────────────────────────────────────
+
+function ChapterPathMap(props: MapProps) {
+  if (props.subjectId === "sejarah") return <SejarahTimelineMap {...props} />;
+  return <VerticalPathMap {...props} />;
+}
+
+// ─── LEGACY ChapterCard kept for type compatibility ───────────────────────────
+// (not rendered; replaced by ChapterPathMap — keeping to avoid future confusion)
 
 function ChapterCard({
   chapter,
@@ -910,20 +1291,14 @@ export function SubjectWorldPage({
             <p className="text-white/35">No content available for this world yet.</p>
           </div>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {chapters.map((c, i) => (
-              <ChapterCard
-                key={c.key}
-                chapter={c}
-                index={i}
-                config={config}
-                subjectId={subjectId}
-                scienceLang={scienceLang}
-                progress={progress}
-                onSelect={onSelectChapter}
-              />
-            ))}
-          </div>
+          <ChapterPathMap
+            chapters={chapters}
+            config={config}
+            subjectId={subjectId}
+            scienceLang={scienceLang}
+            progress={progress}
+            onSelect={onSelectChapter}
+          />
         )}
       </div>
     </div>
