@@ -40,6 +40,7 @@ import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
+import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -6405,6 +6406,20 @@ function QuizzesPage() {
       : timeLeft <= 10
         ? "bg-nova-yellow"
         : "bg-emerald-400";
+
+  // ── Subject World early-return ────────────────────────────────────────────
+  if (subject && !needsScienceLang && !chapter) {
+    return (
+      <SubjectWorldPage
+        subjectId={subject}
+        scienceLang={scienceLang ?? undefined}
+        isBilingualSubject={isBilingualSubject}
+        onSelectChapter={(key) => setChapter(key)}
+        onBack={() => setSubject(null)}
+        onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
+      />
+    );
+  }
 
   return (
     <AcademyPageShell className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}>

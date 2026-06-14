@@ -26,6 +26,7 @@ import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
+import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -3581,6 +3582,20 @@ function FlashcardsPage() {
   const fav = current ? progress.favorites.includes(current.id) : false;
   const subj = current ? subjects.find((s) => s.id === current.subjectId) : null;
   const remaining = queue.length - idx;
+
+  // ── Subject World early-return ────────────────────────────────────────────
+  if (subject && !needsScienceLang && !chapter) {
+    return (
+      <SubjectWorldPage
+        subjectId={subject}
+        scienceLang={scienceLang ?? undefined}
+        isBilingualSubject={isBilingualSubject}
+        onSelectChapter={(key) => setChapter(key)}
+        onBack={() => setSubject(null)}
+        onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
+      />
+    );
+  }
 
   return (
     <AcademyPageShell>

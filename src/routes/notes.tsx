@@ -33,6 +33,7 @@ import { NotesBlock, type NotesAccordionSection } from "@/components/notes/Notes
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
+import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -150,6 +151,31 @@ function NotesPage() {
   function jumpTo(key: string) {
     const el = document.getElementById(key);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // ── Subject World early-return — replaces AcademyPageShell entirely ──────
+  if (subject && !needsScienceLang && !activeChapterKey && !missingChapter) {
+    return (
+      <SubjectWorldPage
+        subjectId={subject}
+        scienceLang={scienceLang ?? undefined}
+        isBilingualSubject={isBilingualSubject}
+        onSelectChapter={(key) => {
+          setChapter(key);
+          if (setLastVisited) {
+            const chapMeta = getSubjectChapters(subject, activeScienceLang).find((c) => c.key === key);
+            setLastVisited({ subjectId: subject, chapterKey: key, type: "notes", label: chapMeta?.label ?? key, timestamp: Date.now() });
+          }
+        }}
+        onBack={() => {
+          setChapter(null);
+          void navigate({
+            search: (previous: Record<string, unknown>) => ({ ...previous, subject: undefined }),
+          });
+        }}
+        onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
+      />
+    );
   }
 
   return (
