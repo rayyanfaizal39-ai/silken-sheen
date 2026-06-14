@@ -92,7 +92,7 @@ const WORLD_PORTALS = [
     icon:      "📝",
     color:     "#F472B6",
     glow:      "rgba(244,114,182,0.55)",
-    chapters:  1,
+    chapters:  38,
     ctaLabel:  "Masuk Dunia",
     symbols:   ["ا", "بـم", "ث", "ج"],
   },

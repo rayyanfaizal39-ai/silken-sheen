@@ -34,6 +34,7 @@ import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
+import { BMWorldPage } from "@/components/BMWorldPage";
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -151,6 +152,20 @@ function NotesPage() {
   function jumpTo(key: string) {
     const el = document.getElementById(key);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // ── BM has its own hub page ───────────────────────────────────────────────
+  if (subject === "bm" && !activeChapterKey) {
+    return (
+      <BMWorldPage
+        onBack={() => {
+          setChapter(null);
+          void navigate({
+            search: (previous: Record<string, unknown>) => ({ ...previous, subject: undefined }),
+          });
+        }}
+      />
+    );
   }
 
   // ── Subject World early-return — replaces AcademyPageShell entirely ──────

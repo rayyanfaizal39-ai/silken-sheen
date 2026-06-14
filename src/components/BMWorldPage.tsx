@@ -1,0 +1,1208 @@
+import { useState } from "react";
+import { ArrowRight, ChevronLeft, BookOpen, Zap, CheckCircle, Clock, Star } from "lucide-react";
+import type { CSSProperties } from "react";
+import {
+  BM_KERTAS,
+  getBMKertas,
+  getBMHub,
+  getBMTopic,
+  type BMKertas,
+  type BMHub,
+  type BMTopic,
+} from "@/data/bm-structure";
+
+// ─── Navigation state ─────────────────────────────────────────────────────────
+
+type BMScreen =
+  | { type: "landing" }
+  | { type: "kertas"; kertasId: "k1" | "k2" }
+  | { type: "hub"; kertasId: "k1" | "k2"; hubId: string }
+  | { type: "topic"; kertasId: "k1" | "k2"; hubId: string; topicId: string };
+
+// ─── Shared chip + badge components ──────────────────────────────────────────
+
+function Badge({ label, color }: { label: string; color: string }) {
+  return (
+    <span
+      className="inline-block rounded-full px-2.5 py-0.5 text-[9px] font-black uppercase tracking-widest"
+      style={{ background: `${color}25`, color }}
+    >
+      {label}
+    </span>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-3 text-[9px] font-black uppercase tracking-[0.28em] text-[#818CF8]">
+      {children}
+    </p>
+  );
+}
+
+function PlaceholderChip({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-white/40">
+      <Clock className="h-3 w-3" />
+      {label} — Coming Soon
+    </span>
+  );
+}
+
+// ─── Back / breadcrumb header ─────────────────────────────────────────────────
+
+function PageHeader({
+  breadcrumb,
+  onBack,
+  accent,
+}: {
+  breadcrumb: string[];
+  onBack: () => void;
+  accent: string;
+}) {
+  return (
+    <div className="mb-6 flex items-center gap-3">
+      <button
+        onClick={onBack}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all hover:bg-white/10"
+        aria-label="Kembali"
+      >
+        <ChevronLeft className="h-4 w-4 text-white/60" />
+      </button>
+      <div className="flex min-w-0 flex-wrap items-center gap-1 text-[11px] text-white/40">
+        {breadcrumb.map((crumb, i) => (
+          <span key={i} className="flex items-center gap-1">
+            {i > 0 && <span className="text-white/20">/</span>}
+            <span
+              className={i === breadcrumb.length - 1 ? "font-bold text-white/70" : ""}
+              style={i === breadcrumb.length - 1 ? { color: accent } : {}}
+            >
+              {crumb}
+            </span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── LANDING VIEW — Kertas 1 & 2 cards ───────────────────────────────────────
+
+function LandingView({
+  onSelectKertas,
+  onBack,
+}: {
+  onSelectKertas: (id: "k1" | "k2") => void;
+  onBack: () => void;
+}) {
+  return (
+    <div>
+      {/* BM World Header */}
+      <div className="mb-8">
+        <button
+          onClick={onBack}
+          className="mb-5 flex items-center gap-2 text-[11px] font-bold text-white/40 transition-colors hover:text-white/70"
+        >
+          <ChevronLeft className="h-3.5 w-3.5" />
+          Semua Subjek
+        </button>
+
+        <div className="flex items-center gap-4">
+          <div
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl"
+            style={{ background: "radial-gradient(circle at 35% 30%, #F472B640, #F472B618)", boxShadow: "0 0 24px rgba(244,114,182,0.4)" }}
+          >
+            📝
+          </div>
+          <div>
+            <p className="text-[9px] font-black uppercase tracking-[0.28em] text-[#F472B6]/60">
+              ✦ DEWAN SASTERA ✦
+            </p>
+            <h1 className="font-display text-2xl font-bold text-white">Bahasa Melayu</h1>
+            <p className="mt-0.5 text-sm text-white/40">Nusantara Realm · Tingkatan 1</p>
+          </div>
+        </div>
+
+        {/* Identity ticker */}
+        <div className="mt-5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] py-2">
+          <p className="text-center text-[9px] font-bold uppercase tracking-[0.3em] text-[#F472B6]/40">
+            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · ULASAN · RINGKASAN
+          </p>
+        </div>
+      </div>
+
+      {/* Exam path intro */}
+      <div className="mb-6">
+        <SectionLabel>Laluan Peperiksaan</SectionLabel>
+        <p className="text-sm text-white/50">
+          Pilih kertas untuk mula belajar. Setiap kertas mempunyai hub tersendiri dengan
+          modul yang tersusun dari asas hingga peringkat cemerlang.
+        </p>
+      </div>
+
+      {/* Kertas cards */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        {BM_KERTAS.map((kertas) => (
+          <KertasCard key={kertas.id} kertas={kertas} onSelect={() => onSelectKertas(kertas.id)} />
+        ))}
+      </div>
+
+      {/* Quick stats */}
+      <div className="mt-6 grid grid-cols-3 gap-3">
+        {[
+          { label: "Hub Belajar", value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.length, 0)}` },
+          { label: "Topik Total", value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.reduce((s2, h) => s2 + h.topics.length, 0), 0)}` },
+          { label: "Kertas Exam", value: "2" },
+        ].map((stat) => (
+          <div key={stat.label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
+            <p className="text-xl font-black text-white">{stat.value}</p>
+            <p className="mt-0.5 text-[9px] font-bold uppercase tracking-widest text-white/30">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function KertasCard({ kertas, onSelect }: { kertas: BMKertas; onSelect: () => void }) {
+  const topicCount = kertas.hubs.reduce((s, h) => s + h.topics.length, 0);
+  return (
+    <button
+      onClick={onSelect}
+      className={`group relative overflow-hidden rounded-[1.75rem] border p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+      style={{
+        borderColor: `${kertas.color}28`,
+        background: `linear-gradient(135deg, ${kertas.color}18 0%, ${kertas.color}08 60%, transparent 100%)`,
+      }}
+    >
+      {/* Hover glow */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ boxShadow: `inset 0 0 60px ${kertas.color}18, 0 16px 48px ${kertas.color}30` }}
+      />
+
+      {/* Decorative symbol */}
+      <div className="pointer-events-none absolute right-5 top-5 text-5xl opacity-[0.07]">
+        {kertas.icon}
+      </div>
+
+      <div className="relative z-10">
+        <div
+          className="mb-4 inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-black"
+          style={{ background: `${kertas.color}20`, color: kertas.color }}
+        >
+          <span>{kertas.icon}</span>
+          <span>{kertas.label}</span>
+        </div>
+
+        <h2 className="mb-2 text-lg font-bold text-white">{kertas.description}</h2>
+
+        <p className="mb-5 text-xs text-white/40">{kertas.examDetails}</p>
+
+        {/* Hub previews */}
+        <div className="mb-5 flex flex-wrap gap-1.5">
+          {kertas.hubs.map((hub) => (
+            <span
+              key={hub.id}
+              className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/50"
+            >
+              {hub.icon} {hub.shortLabel}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-white/30">
+            {kertas.hubs.length} hub · {topicCount} topik
+          </span>
+          <span
+            className="flex items-center gap-1 text-xs font-bold"
+            style={{ color: kertas.color }}
+          >
+            Mula Belajar
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+// ─── KERTAS VIEW — Hub grid ───────────────────────────────────────────────────
+
+function KertasView({
+  kertas,
+  onSelectHub,
+  onBack,
+}: {
+  kertas: BMKertas;
+  onSelectHub: (hubId: string) => void;
+  onBack: () => void;
+}) {
+  return (
+    <div>
+      <PageHeader
+        breadcrumb={["Bahasa Melayu", kertas.label]}
+        onBack={onBack}
+        accent={kertas.color}
+      />
+
+      <div className="mb-6">
+        <div
+          className="mb-2 inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-black"
+          style={{ background: `${kertas.color}20`, color: kertas.color }}
+        >
+          {kertas.icon} {kertas.label}
+        </div>
+        <h2 className="font-display text-xl font-bold text-white">{kertas.description}</h2>
+        <p className="mt-1 text-sm text-white/40">{kertas.examDetails}</p>
+      </div>
+
+      <SectionLabel>Hub Pembelajaran</SectionLabel>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {kertas.hubs.map((hub) => (
+          <HubCard key={hub.id} hub={hub} onSelect={() => onSelectHub(hub.id)} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function HubCard({ hub, onSelect }: { hub: BMHub; onSelect: () => void }) {
+  return (
+    <button
+      onClick={onSelect}
+      className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border p-5 text-left transition-all duration-200 hover:-translate-y-1"
+      style={{
+        borderColor: hub.borderColor,
+        background: `linear-gradient(135deg, ${hub.color}12 0%, transparent 80%)`,
+      }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[1.5rem] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        style={{ boxShadow: `inset 0 0 40px ${hub.color}14, 0 8px 32px ${hub.color}28` }}
+      />
+
+      <div className="relative z-10">
+        <div
+          className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl text-xl transition-transform duration-200 group-hover:scale-110"
+          style={{ background: `${hub.color}20` }}
+        >
+          {hub.icon}
+        </div>
+
+        <h3 className="mb-1 font-bold text-white">{hub.label}</h3>
+        <p className="mb-4 text-xs leading-relaxed text-white/45">{hub.description}</p>
+
+        <div className="flex items-center justify-between">
+          <span
+            className="rounded-full px-2 py-0.5 text-[10px] font-bold"
+            style={{ background: `${hub.color}18`, color: hub.color }}
+          >
+            {hub.topics.length} topik
+          </span>
+          <ArrowRight
+            className="h-3.5 w-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+            style={{ color: hub.color }}
+          />
+        </div>
+      </div>
+    </button>
+  );
+}
+
+// ─── HUB VIEW — Topic list ────────────────────────────────────────────────────
+
+function HubView({
+  kertas,
+  hub,
+  onSelectTopic,
+  onBack,
+}: {
+  kertas: BMKertas;
+  hub: BMHub;
+  onSelectTopic: (topicId: string) => void;
+  onBack: () => void;
+}) {
+  return (
+    <div>
+      <PageHeader
+        breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]}
+        onBack={onBack}
+        accent={hub.color}
+      />
+
+      <div className="mb-6 flex items-center gap-4">
+        <div
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl"
+          style={{ background: `${hub.color}20`, boxShadow: `0 0 20px ${hub.color}40` }}
+        >
+          {hub.icon}
+        </div>
+        <div>
+          <h2 className="font-display text-xl font-bold text-white">{hub.label}</h2>
+          <p className="text-sm text-white/40">{hub.description}</p>
+        </div>
+      </div>
+
+      <SectionLabel>Topik dalam {hub.label}</SectionLabel>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {hub.topics.map((topic, idx) => (
+          <TopicCard
+            key={topic.id}
+            topic={topic}
+            index={idx + 1}
+            hubColor={hub.color}
+            onSelect={() => onSelectTopic(topic.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TopicCard({
+  topic,
+  index,
+  hubColor,
+  onSelect,
+}: {
+  topic: BMTopic;
+  index: number;
+  hubColor: string;
+  onSelect: () => void;
+}) {
+  const getTopicTypeLabel = (t: string) => {
+    const map: Record<string, string> = {
+      tatabahasa: "Tatabahasa", pemahaman: "Teknik", komsas: "KOMSAS", novel: "Novel",
+      "ringkasan-ulasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
+      workshop: "Workshop", "model-karangan": "Model", "peribahasa-bank": "Peribahasa", "essay-improvement": "Teknik",
+    };
+    return map[t] ?? t;
+  };
+
+  return (
+    <button
+      onClick={onSelect}
+      className="group flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-left transition-all hover:border-white/[0.14] hover:bg-white/[0.06]"
+    >
+      <div
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-black text-white/60"
+        style={{ background: `${hubColor}15` }}
+      >
+        {String(index).padStart(2, "0")}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="mb-1 flex items-center gap-2">
+          <span
+            className="text-[9px] font-black uppercase tracking-widest"
+            style={{ color: hubColor, opacity: 0.7 }}
+          >
+            {getTopicTypeLabel(topic.topicType)}
+          </span>
+          {topic.badge && topic.topicType === "komsas" && topic.genre && (
+            <span className="text-[9px] text-white/30">{topic.genre}</span>
+          )}
+          {topic.zon && (
+            <span className="text-[9px] text-white/30">{topic.zon.split(" ").slice(0, 2).join(" ")}</span>
+          )}
+        </div>
+        <p className="truncate text-sm font-semibold text-white">{topic.label}</p>
+      </div>
+      <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-60" style={{ color: hubColor }} />
+    </button>
+  );
+}
+
+// ─── TOPIC DETAIL VIEWS ───────────────────────────────────────────────────────
+
+function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {/* Definition */}
+      {topic.definition && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Definisi</p>
+          <p className="text-sm leading-relaxed text-white/80">{topic.definition}</p>
+        </div>
+      )}
+
+      {/* Subtypes */}
+      {topic.subtypes && topic.subtypes.length > 0 && (
+        <div>
+          <SectionLabel>Jenis-jenis</SectionLabel>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {topic.subtypes.map((sub) => (
+              <div key={sub.name} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+                <p className="mb-1 text-sm font-bold text-white">{sub.name}</p>
+                <p className="mb-3 text-xs text-white/45">{sub.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {sub.examples.map((ex) => (
+                    <span key={ex} className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-white/60">
+                      {ex}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Common Mistakes */}
+      {topic.commonMistakes && (
+        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesalahan Lazim</p>
+          <ul className="space-y-2">
+            {topic.commonMistakes.map((m, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <span className="mt-0.5 shrink-0 text-rose-400">×</span>
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* UASA Tips */}
+      {topic.uasaTips && (
+        <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips UASA</p>
+          <ul className="space-y-2">
+            {topic.uasaTips.map((tip, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Nota Lengkap" />
+        <PlaceholderChip label="Kuiz Mini" />
+        <PlaceholderChip label="Kad Imbas" />
+      </div>
+    </div>
+  );
+}
+
+function KOMSASDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  const rows = [
+    { label: "Genre", value: topic.genre },
+    { label: "Tema", value: topic.tema },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* Genre + Sinopsis */}
+      {topic.genre && (
+        <div className="flex items-center gap-2">
+          <Badge label={topic.genre} color={color} />
+        </div>
+      )}
+
+      {topic.sinopsis && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Sinopsis</p>
+          <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
+        </div>
+      )}
+
+      {/* Tema */}
+      {topic.tema && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Tema</p>
+          <p className="text-sm font-medium text-white/80">{topic.tema}</p>
+        </div>
+      )}
+
+      {/* Persoalan / Nilai / Pengajaran / Gaya Bahasa */}
+      {[
+        { label: "Persoalan", items: topic.persoalan, accent: "#C084FC" },
+        { label: "Nilai", items: topic.nilai, accent: "#34D399" },
+        { label: "Pengajaran", items: topic.pengajaran, accent: "#FBBF24" },
+        { label: "Gaya Bahasa", items: topic.gayaBahasa, accent: "#FB923C" },
+      ].map(({ label, items, accent }) =>
+        items && items.length > 0 ? (
+          <div key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+            <p className="mb-3 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>
+              {label}
+            </p>
+            <ul className="space-y-1.5">
+              {items.map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null,
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Soalan Latihan" />
+        <PlaceholderChip label="Kuiz KOMSAS" />
+      </div>
+    </div>
+  );
+}
+
+function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {topic.zon && (
+        <div className="flex items-center gap-2">
+          <Badge label={topic.zon} color={color} />
+          {topic.penulis && <span className="text-xs text-white/40">Penulis: {topic.penulis}</span>}
+        </div>
+      )}
+
+      {topic.sinopsis && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Sinopsis</p>
+          <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
+        </div>
+      )}
+
+      {topic.watak && topic.watak.length > 0 && (
+        <div>
+          <SectionLabel>Watak & Perwatakan</SectionLabel>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {topic.watak.map((w) => (
+              <div key={w.nama} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+                <div className="mb-1 flex items-center justify-between">
+                  <p className="font-bold text-white">{w.nama}</p>
+                  <span className="text-[9px] font-bold text-white/30">{w.peranan}</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {w.perwatakan.map((p) => (
+                    <span key={p} className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white/55">
+                      {p}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {[
+        { label: "Tema", value: topic.tema ? [topic.tema] : undefined, accent: color },
+        { label: "Persoalan", value: topic.persoalan, accent: "#C084FC" },
+        { label: "Nilai", value: topic.nilai, accent: "#34D399" },
+        { label: "Pengajaran", value: topic.pengajaran, accent: "#FBBF24" },
+      ].map(({ label, value, accent }) =>
+        value && value.length > 0 ? (
+          <div key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+            <p className="mb-3 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>{label}</p>
+            <ul className="space-y-1.5">
+              {value.map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null,
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Soalan UASA" />
+        <PlaceholderChip label="Kuiz Novel" />
+      </div>
+    </div>
+  );
+}
+
+function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {topic.description && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
+        </div>
+      )}
+
+      {topic.steps && topic.steps.length > 0 && (
+        <div>
+          <SectionLabel>Langkah-langkah</SectionLabel>
+          <div className="space-y-2.5">
+            {topic.steps.map((step, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                  style={{ background: `${color}25`, color }}
+                >
+                  {i + 1}
+                </span>
+                <p className="text-sm text-white/70">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {topic.keyPoints && topic.keyPoints.length > 0 && (
+        <div className="rounded-2xl border border-[#818CF8]/20 bg-[#818CF8]/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-[#818CF8]">📌 Perkara Utama</p>
+          <ul className="space-y-2">
+            {topic.keyPoints.map((pt, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#818CF8]" />
+                {pt}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {topic.uasaTips && (
+        <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips UASA</p>
+          <ul className="space-y-2">
+            {topic.uasaTips.map((tip, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Petikan Latihan" />
+        <PlaceholderChip label="Soalan Contoh" />
+      </div>
+    </div>
+  );
+}
+
+function RingkasanUlasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {topic.description && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
+        </div>
+      )}
+
+      {topic.formula && (
+        <div>
+          <SectionLabel>Formula / Langkah</SectionLabel>
+          <div className="space-y-2">
+            {topic.formula.map((step, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+                  {i + 1}
+                </span>
+                <p className="text-sm text-white/70">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {topic.steps && topic.steps.length > 0 && (
+        <div>
+          <SectionLabel>Cara Menulis</SectionLabel>
+          <div className="space-y-2">
+            {topic.steps.map((step, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+                  {i + 1}
+                </span>
+                <p className="text-sm text-white/70">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {topic.commonMistakes && (
+        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesalahan Lazim</p>
+          <ul className="space-y-2">
+            {topic.commonMistakes.map((m, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <span className="mt-0.5 shrink-0 text-rose-400">×</span>
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {topic.uasaTips && (
+        <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips UASA</p>
+          <ul className="space-y-2">
+            {topic.uasaTips.map((tip, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Petikan Latihan" />
+        <PlaceholderChip label="Semak Tulisan" />
+      </div>
+    </div>
+  );
+}
+
+function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {topic.description && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
+        </div>
+      )}
+
+      {/* Formulae table */}
+      {topic.formulae && topic.formulae.length > 0 && (
+        <div>
+          <SectionLabel>Formula Penulisan</SectionLabel>
+          <div className="space-y-3">
+            {topic.formulae.map((f, i) => (
+              <div key={i} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+                    {i + 1}
+                  </span>
+                  <p className="text-sm font-bold text-white">{f.part}</p>
+                </div>
+                <p className="mb-2 text-xs text-white/50">{f.formula}</p>
+                <div className="rounded-lg border border-white/5 bg-white/5 p-3">
+                  <p className="text-[10px] font-bold text-white/30 mb-1">CONTOH:</p>
+                  <p className="text-xs leading-relaxed text-white/60 italic">{f.example}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {topic.formula && topic.topicType === "karangan-pendek" && (
+        <div>
+          <SectionLabel>Langkah-langkah</SectionLabel>
+          <div className="space-y-2">
+            {topic.formula.map((step, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+                  {i + 1}
+                </span>
+                <p className="text-sm text-white/70">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {topic.steps && (
+        <div>
+          <SectionLabel>Cara Baca & Cara Tulis</SectionLabel>
+          <div className="space-y-2">
+            {topic.steps.map((step, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+                  {i + 1}
+                </span>
+                <p className="text-sm text-white/70">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {topic.commonMistakes && (
+        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesalahan Lazim</p>
+          <ul className="space-y-2">
+            {topic.commonMistakes.map((m, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <span className="mt-0.5 shrink-0 text-rose-400">×</span>
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {topic.uasaTips && (
+        <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips Markah Penuh</p>
+          <ul className="space-y-2">
+            {topic.uasaTips.map((tip, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Contoh Karangan" />
+        <PlaceholderChip label="Latihan Menulis" />
+      </div>
+    </div>
+  );
+}
+
+function WorkshopDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {/* Idea Bank */}
+      {topic.ideaBank && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest" style={{ color }}>💡 Idea Bank</p>
+          <div className="flex flex-wrap gap-2">
+            {topic.ideaBank.map((idea) => (
+              <span key={idea} className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/60">
+                {idea}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Pendahuluan Template */}
+      {topic.pendahuluan && (
+        <div>
+          <SectionLabel>Template Pendahuluan</SectionLabel>
+          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+            <p className="text-sm leading-relaxed italic text-white/65">{topic.pendahuluan}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Isi */}
+      {topic.isi && topic.isi.length > 0 && (
+        <div>
+          <SectionLabel>Cadangan Isi</SectionLabel>
+          <div className="space-y-2">
+            {topic.isi.map((isi, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+                  {i + 1}
+                </span>
+                <p className="text-sm text-white/70">{isi}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Penutup */}
+      {topic.penutup && (
+        <div>
+          <SectionLabel>Template Penutup</SectionLabel>
+          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+            <p className="text-sm leading-relaxed italic text-white/65">{topic.penutup}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Peribahasa */}
+      {topic.peribahasa && topic.peribahasa.length > 0 && (
+        <div className="rounded-2xl border border-[#F472B6]/20 bg-[#F472B6]/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-[#F472B6]">💎 Peribahasa Sesuai</p>
+          <div className="space-y-2">
+            {topic.peribahasa.map((p, i) => (
+              <p key={i} className="text-sm italic text-white/65">"{p}"</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Model Karangan" />
+        <PlaceholderChip label="Kuiz Topik" />
+      </div>
+    </div>
+  );
+}
+
+function ModelKaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {topic.description && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
+        </div>
+      )}
+
+      {topic.keyFeatures && (
+        <div>
+          <SectionLabel>Ciri-ciri Utama</SectionLabel>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {topic.keyFeatures.map((f, i) => (
+              <div key={i} className="flex items-start gap-2 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0" style={{ color }} />
+                <p className="text-sm text-white/65">{f}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="flex gap-3">
+        <PlaceholderChip label="Contoh Model" />
+        <PlaceholderChip label="Latihan Menulis" />
+      </div>
+    </div>
+  );
+}
+
+function PeribahsaBankDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-4">
+      {topic.peribuhasaItems && topic.peribuhasaItems.map((p, i) => (
+        <div key={i} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="mb-2 text-base font-bold italic text-white">{p.text}</p>
+          <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
+            <p className="text-[9px] font-black uppercase tracking-widest text-white/30 mb-1">Maksud</p>
+            <p className="text-sm text-white/70">{p.maksud}</p>
+          </div>
+          <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
+            <p className="text-[9px] font-black uppercase tracking-widest text-white/30 mb-1">Contoh Ayat</p>
+            <p className="text-sm italic text-white/60">{p.contohAyat}</p>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            <p className="w-full text-[9px] font-bold uppercase tracking-widest text-white/30 mb-1">Sesuai untuk topik:</p>
+            {p.topikSesuai.map((t) => (
+              <span key={t} className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-medium" style={{ color }}>
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <PlaceholderChip label="Lebih Banyak Peribahasa" />
+    </div>
+  );
+}
+
+function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  return (
+    <div className="space-y-6">
+      {topic.description && (
+        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+          <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
+        </div>
+      )}
+
+      {/* Before/After */}
+      {topic.beforeAfter && topic.beforeAfter.length > 0 && (
+        <div>
+          <SectionLabel>Sebelum & Selepas</SectionLabel>
+          <div className="space-y-4">
+            {topic.beforeAfter.map((ba, i) => (
+              <div key={i} className="overflow-hidden rounded-2xl border border-white/[0.07]">
+                <div className="bg-rose-500/10 p-4 border-b border-white/[0.05]">
+                  <p className="mb-1 text-[9px] font-black uppercase tracking-widest text-rose-400">✗ Ayat Lemah</p>
+                  <p className="text-sm text-white/60">{ba.lemah}</p>
+                </div>
+                <div className="bg-emerald-500/10 p-4">
+                  <p className="mb-1 text-[9px] font-black uppercase tracking-widest text-emerald-400">✓ Ayat Cemerlang</p>
+                  <p className="text-sm text-white/75">{ba.cemerlang}</p>
+                  <p className="mt-2 text-[10px] italic text-white/35">Teknik: {ba.tip}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Kosa Kata */}
+      {topic.kosaKata && topic.kosaKata.length > 0 && (
+        <div>
+          <SectionLabel>Kosa Kata: Biasa → Menarik</SectionLabel>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {topic.kosaKata.map((k, i) => (
+              <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                <span className="text-sm text-white/40 line-through">{k.biasa}</span>
+                <ArrowRight className="h-3 w-3 shrink-0 text-white/20" />
+                <span className="text-sm font-semibold" style={{ color }}>{k.menarik}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Mistakes */}
+      {topic.mistakes && (
+        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
+          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesilapan Biasa dalam Karangan</p>
+          <ul className="space-y-2">
+            {topic.mistakes.map((m, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                <span className="mt-0.5 shrink-0 text-rose-400">×</span>
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TopicDetailRenderer({ topic, hubColor }: { topic: BMTopic; hubColor: string }) {
+  switch (topic.topicType) {
+    case "tatabahasa":     return <TatabahasaDetail topic={topic} color={hubColor} />;
+    case "komsas":         return <KOMSASDetail topic={topic} color={hubColor} />;
+    case "novel":          return <NovelDetail topic={topic} color={hubColor} />;
+    case "pemahaman":      return <PemahamanDetail topic={topic} color={hubColor} />;
+    case "ringkasan-ulasan": return <RingkasanUlasanDetail topic={topic} color={hubColor} />;
+    case "karangan-pendek":
+    case "respons-terbuka": return <KaranganDetail topic={topic} color={hubColor} />;
+    case "workshop":       return <WorkshopDetail topic={topic} color={hubColor} />;
+    case "model-karangan": return <ModelKaranganDetail topic={topic} color={hubColor} />;
+    case "peribahasa-bank": return <PeribahsaBankDetail topic={topic} color={hubColor} />;
+    case "essay-improvement": return <EssayImprovementDetail topic={topic} color={hubColor} />;
+    default:               return null;
+  }
+}
+
+// ─── TOPIC VIEW ───────────────────────────────────────────────────────────────
+
+function TopicView({
+  kertas,
+  hub,
+  topic,
+  onBack,
+}: {
+  kertas: BMKertas;
+  hub: BMHub;
+  topic: BMTopic;
+  onBack: () => void;
+}) {
+  return (
+    <div>
+      <PageHeader
+        breadcrumb={["BM", kertas.shortLabel, hub.shortLabel, topic.label]}
+        onBack={onBack}
+        accent={hub.color}
+      />
+
+      {/* Topic header */}
+      <div className="mb-6">
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          {topic.badge && <Badge label={topic.badge} color={hub.color} />}
+          {topic.genre && <Badge label={topic.genre} color={hub.color} />}
+        </div>
+        <h2 className="font-display text-xl font-bold text-white">{topic.label}</h2>
+      </div>
+
+      {/* Study tools row */}
+      <div className="mb-6 flex flex-wrap gap-2">
+        {[
+          { icon: <BookOpen className="h-3.5 w-3.5" />, label: "Nota", color: hub.color },
+          { icon: <Zap className="h-3.5 w-3.5" />, label: "Kuiz", color: "#FBBF24" },
+          { icon: <Star className="h-3.5 w-3.5" />, label: "Kad Imbas", color: "#34D399" },
+        ].map((tool) => (
+          <button
+            key={tool.label}
+            className="flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-xs font-bold text-white/50 transition-all hover:bg-white/[0.07]"
+          >
+            <span style={{ color: tool.color }}>{tool.icon}</span>
+            {tool.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Topic content */}
+      <TopicDetailRenderer topic={topic} hubColor={hub.color} />
+    </div>
+  );
+}
+
+// ─── MAIN EXPORT ──────────────────────────────────────────────────────────────
+
+export function BMWorldPage({ onBack }: { onBack: () => void }) {
+  const [history, setHistory] = useState<BMScreen[]>([{ type: "landing" }]);
+  const screen = history[history.length - 1];
+
+  function push(next: BMScreen) {
+    setHistory((prev) => [...prev, next]);
+  }
+
+  function pop() {
+    if (history.length === 1) {
+      onBack();
+    } else {
+      setHistory((prev) => prev.slice(0, -1));
+    }
+  }
+
+  // Resolve current context
+  const kertas =
+    screen.type !== "landing"
+      ? getBMKertas(screen.kertasId)
+      : undefined;
+
+  const hub =
+    (screen.type === "hub" || screen.type === "topic") && kertas
+      ? getBMHub(screen.kertasId, screen.hubId)
+      : undefined;
+
+  const topic =
+    screen.type === "topic" && hub
+      ? getBMTopic(screen.kertasId, screen.hubId, screen.topicId)
+      : undefined;
+
+  return (
+    <div
+      className="min-h-screen px-4 py-6 pb-[calc(var(--mobile-content-bottom,90px)+2rem)] sm:px-6 lg:px-8"
+      style={{ background: "linear-gradient(180deg, #050816 0%, #080c1a 100%)" }}
+    >
+      <div className="mx-auto max-w-4xl">
+        {screen.type === "landing" && (
+          <LandingView
+            onSelectKertas={(id) => push({ type: "kertas", kertasId: id })}
+            onBack={onBack}
+          />
+        )}
+
+        {screen.type === "kertas" && kertas && (
+          <KertasView
+            kertas={kertas}
+            onSelectHub={(hubId) =>
+              push({ type: "hub", kertasId: screen.kertasId, hubId })
+            }
+            onBack={pop}
+          />
+        )}
+
+        {screen.type === "hub" && kertas && hub && (
+          <HubView
+            kertas={kertas}
+            hub={hub}
+            onSelectTopic={(topicId) =>
+              push({ type: "topic", kertasId: screen.kertasId, hubId: screen.hubId, topicId })
+            }
+            onBack={pop}
+          />
+        )}
+
+        {screen.type === "topic" && kertas && hub && topic && (
+          <TopicView kertas={kertas} hub={hub} topic={topic} onBack={pop} />
+        )}
+      </div>
+    </div>
+  );
+}

@@ -41,6 +41,7 @@ import { sfx, music } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
+import { BMWorldPage } from "@/components/BMWorldPage";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -6406,6 +6407,11 @@ function QuizzesPage() {
       : timeLeft <= 10
         ? "bg-nova-yellow"
         : "bg-emerald-400";
+
+  // ── BM has its own hub page ───────────────────────────────────────────────
+  if (subject === "bm" && !chapter) {
+    return <BMWorldPage onBack={() => setSubject(null)} />;
+  }
 
   // ── Subject World early-return ────────────────────────────────────────────
   if (subject && !needsScienceLang && !chapter) {
