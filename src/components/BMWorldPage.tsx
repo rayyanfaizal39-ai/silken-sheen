@@ -5,9 +5,11 @@ import {
   Brain,
   CheckCircle,
   ChevronLeft,
+  Clapperboard,
   Clock,
   FileQuestion,
   Flame,
+  Globe2,
   GraduationCap,
   Heart,
   Lightbulb,
@@ -17,6 +19,7 @@ import {
   Star,
   Target,
   Trophy,
+  XCircle,
   Zap,
 } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -647,7 +650,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             </div>
           )}
 
-          {isStory && work.timeline && (
+          {isStory && Array.isArray(work.timeline) && work.timeline.length > 0 && (
             <div>
               <SectionLabel>Story Timeline</SectionLabel>
               <div className="grid gap-3 md:grid-cols-5">
@@ -666,7 +669,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             </div>
           )}
 
-          {isStory && work.characters && (
+          {isStory && Array.isArray(work.characters) && work.characters.length > 0 && (
             <div>
               <SectionLabel>Watak Utama</SectionLabel>
               <div className="grid gap-3 md:grid-cols-3">
@@ -685,7 +688,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             </div>
           )}
 
-          {isStory && work.events && (
+          {isStory && Array.isArray(work.events) && work.events.length > 0 && (
             <div>
               <SectionLabel>Peristiwa Penting</SectionLabel>
               <Accordion type="single" collapsible defaultValue="event-0" className="space-y-3">
@@ -714,7 +717,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
 
           <SectionLabel>{isStory ? "Bahasa Mudah" : work.id === "pantun-dua-kerat" ? "Pantun Dalam Bahasa Mudah" : "Rangkap Explorer"}</SectionLabel>
           <Accordion type="single" collapsible defaultValue="rangkap-0" className="space-y-3">
-            {work.decoder.map((item, index) => (
+            {(Array.isArray(work.decoder) ? work.decoder : []).map((item, index) => (
               <AccordionItem key={item.rangkap} value={`rangkap-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
                   <span className="flex items-center gap-3">
@@ -742,7 +745,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
               <h3 className="font-display text-lg font-bold">Cikgu AcadeMy Terangkan</h3>
             </div>
             <div className="space-y-3">
-              {work.teacherExplains.map((explain) => (
+              {(Array.isArray(work.teacherExplains) ? work.teacherExplains : []).map((explain) => (
                 <p key={explain} className="rounded-xl border border-cyan-400/10 bg-black/10 p-3 text-sm leading-7 text-white/70">
                   {explain}
                 </p>
@@ -756,17 +759,17 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
             <div className="mb-3 flex items-center gap-2">
               <Target className="h-5 w-5" style={{ color }} />
-              <h3 className="font-display text-lg font-bold text-white">{work.theme.title}</h3>
+              <h3 className="font-display text-lg font-bold text-white">{work.theme?.title ?? "Tema utama"}</h3>
             </div>
             <div className="grid gap-3 md:grid-cols-2">
-              <DecoderCell label="Explanation" value={work.theme.explanation} accent={color} />
-              <DecoderCell label="Why it matters" value={work.theme.whyItMatters} accent="#FBBF24" />
+              <DecoderCell label="Explanation" value={work.theme?.explanation ?? "Penerangan tema belum tersedia."} accent={color} />
+              <DecoderCell label="Why it matters" value={work.theme?.whyItMatters ?? "Tema ini membantu murid memahami mesej karya."} accent="#FBBF24" />
             </div>
           </div>
 
           <SectionLabel>Pengajaran</SectionLabel>
           <div className="grid gap-3 md:grid-cols-3">
-            {work.lessons.map((lesson) => (
+            {(Array.isArray(work.lessons) ? work.lessons : []).map((lesson) => (
               <LearningCard key={lesson.value} icon={<Lightbulb className="h-4 w-4" />} item={lesson} accent="#FBBF24" />
             ))}
           </div>
@@ -775,7 +778,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         <TabsContent value="nilai" className="mt-0 space-y-4">
           <SectionLabel>Nilai</SectionLabel>
           <div className="grid gap-3 md:grid-cols-3">
-            {work.values.map((value) => (
+            {(Array.isArray(work.values) ? work.values : []).map((value) => (
               <LearningCard key={value.value} icon={<Star className="h-4 w-4" />} item={value} accent="#34D399" />
             ))}
           </div>
@@ -789,7 +792,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
               <h3 className="font-display text-lg font-bold">Frequently Tested Points</h3>
             </div>
             <div className="grid gap-2 sm:grid-cols-2">
-              {work.examBooster.frequentPoints.map((point, index) => (
+              {(Array.isArray(work.examBooster?.frequentPoints) ? work.examBooster.frequentPoints : []).map((point, index) => (
                 <div key={point} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-black/10 p-3">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-400/20 text-[10px] font-black text-orange-300">
                     {index + 1}
@@ -801,7 +804,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           </div>
 
           <Accordion type="single" collapsible defaultValue="common-0" className="space-y-3">
-            {work.examBooster.commonQuestions.map((item, index) => (
+            {(Array.isArray(work.examBooster?.commonQuestions) ? work.examBooster.commonQuestions : []).map((item, index) => (
               <AccordionItem key={item.question} value={`common-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
                   <span className="flex items-center gap-3">
@@ -826,10 +829,10 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
               <h3 className="font-display text-lg font-bold text-white">Quick Revision Card</h3>
             </div>
             <div className="grid gap-3 md:grid-cols-4">
-              <DecoderCell label="Theme" value={work.revision.theme} accent={color} />
-              <DecoderCell label="Values" value={work.revision.values} accent="#34D399" />
-              <DecoderCell label="Lessons" value={work.revision.lessons} accent="#FBBF24" />
-              <DecoderCell label="Exam Tips" value={work.revision.examTips} accent="#60A5FA" />
+              <DecoderCell label="Theme" value={work.revision?.theme ?? "Tema belum tersedia."} accent={color} />
+              <DecoderCell label="Values" value={work.revision?.values ?? "Nilai belum tersedia."} accent="#34D399" />
+              <DecoderCell label="Lessons" value={work.revision?.lessons ?? "Pengajaran belum tersedia."} accent="#FBBF24" />
+              <DecoderCell label="Exam Tips" value={work.revision?.examTips ?? "Jawab dengan bukti karya."} accent="#60A5FA" />
             </div>
           </div>
         </TabsContent>
@@ -838,6 +841,8 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <MiniQuizPlaceholder work={work} color={color} />
         </TabsContent>
       </Tabs>
+
+      <KomsasExamPrepAddOns work={work} color={color} />
     </div>
   );
 }
@@ -897,6 +902,8 @@ function LearningCard({
 }
 
 function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string }) {
+  const quizItems = Array.isArray(work.miniQuiz) ? work.miniQuiz : [];
+
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
       <div className="mb-4 flex items-center justify-between gap-3">
@@ -910,7 +917,7 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
         </div>
       </div>
       <div className="grid gap-3 md:grid-cols-3">
-        {work.miniQuiz.map((quiz, index) => (
+        {quizItems.map((quiz, index) => (
           <div key={quiz.question} className="rounded-2xl border border-white/[0.08] bg-black/10 p-4">
             <div className="mb-2 flex items-center gap-2 font-bold" style={{ color }}>
               {index === 0 ? <FileQuestion className="h-4 w-4" /> : index === 1 ? <Map className="h-4 w-4" /> : <Brain className="h-4 w-4" />}
@@ -930,6 +937,324 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
       </div>
     </div>
   );
+}
+
+function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string }) {
+  const examinerQuestions = getExaminerQuestions(work);
+  const survival = getSurvivalBullets(work);
+  const spotterItems = getSpotterItems(work);
+  const reflections = getReflectionQuestions(work);
+  const relationships = getRelationshipCards(work);
+  const mistakes = getCommonMistakes(work);
+
+  return (
+    <div className="space-y-6">
+      {spotterItems.length > 0 && (
+        <section>
+          <SectionLabel>Soalan Popular UASA</SectionLabel>
+          <div className="grid gap-3 md:grid-cols-4">
+            {spotterItems.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <p className="mb-2 text-sm font-bold text-white">{item.label}</p>
+                <span
+                  className="inline-flex rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-widest"
+                  style={{ background: `${item.color}20`, color: item.color }}
+                >
+                  {item.frequency}
+                </span>
+                <p className="mt-3 text-xs leading-5 text-white/45">{item.focus}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {examinerQuestions.length > 0 && (
+        <section className="rounded-2xl border border-sky-400/20 bg-sky-400/5 p-5">
+          <div className="mb-4 flex items-center gap-2 text-sky-300">
+            <GraduationCap className="h-5 w-5" />
+            <h3 className="font-display text-lg font-bold">Jika Saya Pemeriksa</h3>
+          </div>
+          <Accordion type="single" collapsible defaultValue="examiner-0" className="space-y-3">
+            {examinerQuestions.map((item, index) => (
+              <AccordionItem key={item.question} value={`examiner-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-black/10">
+                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                  <span className="flex items-center gap-3">
+                    <FileQuestion className="h-4 w-4" style={{ color }} />
+                    <span className="font-bold text-white/85">{item.question}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  <DecoderCell label="Tap reveal answer" value={item.modelAnswer ?? item.answerHint ?? "Jawapan belum tersedia."} accent="#60A5FA" />
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      )}
+
+      {examinerQuestions.length > 0 && (
+        <section>
+        <SectionLabel>Jawapan Skema Penuh</SectionLabel>
+        <div className="grid gap-3 md:grid-cols-2">
+          {examinerQuestions.map((item) => (
+            <div key={item.question} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+              <div className="border-b border-white/[0.06] p-4">
+                <p className="text-sm font-bold leading-6 text-white">{item.question}</p>
+              </div>
+              <div className="grid gap-0 sm:grid-cols-2">
+                <div className="border-b border-rose-400/10 bg-rose-400/8 p-4 sm:border-b-0 sm:border-r sm:border-rose-400/10">
+                  <div className="mb-2 flex items-center gap-2 text-rose-300">
+                    <XCircle className="h-4 w-4" />
+                    <p className="text-xs font-black uppercase tracking-widest">Jawapan Lemah</p>
+                  </div>
+                  <p className="text-sm text-white/65">{getWeakAnswer(item)}</p>
+                </div>
+                <div className="bg-emerald-400/8 p-4">
+                  <div className="mb-2 flex items-center gap-2 text-emerald-300">
+                    <CheckCircle className="h-4 w-4" />
+                    <p className="text-xs font-black uppercase tracking-widest">Jawapan Skor Penuh</p>
+                  </div>
+                  <p className="text-sm leading-6 text-white/70">{item.modelAnswer ?? item.answerHint}</p>
+                  <p className="mt-2 text-xs leading-5 text-emerald-100/55">{item.examTip ?? "Tambah bukti atau contoh supaya jawapan tidak terlalu umum."}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        </section>
+      )}
+
+      <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
+        <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
+          <Clapperboard className="h-5 w-5" />
+          <h3 className="font-display text-lg font-bold">Cerita Dalam 30 Saat</h3>
+        </div>
+        <p className="text-sm leading-7 text-white/75">{getTrailerSummary(work)}</p>
+      </section>
+
+      <section>
+        <SectionLabel>Jika Ini Berlaku Kepada Anda</SectionLabel>
+        <div className="grid gap-3 md:grid-cols-3">
+          {reflections.map((question) => (
+            <div key={question} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <div className="mb-2 flex items-center gap-2 text-cyan-300">
+                <Globe2 className="h-4 w-4" />
+                <p className="text-[10px] font-black uppercase tracking-widest">Reflect</p>
+              </div>
+              <p className="text-sm leading-6 text-white/70">{question}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-yellow-400/20 bg-yellow-400/5 p-5">
+        <div className="mb-4 flex items-center gap-2 text-yellow-300">
+          <Zap className="h-5 w-5" />
+          <h3 className="font-display text-lg font-bold">Hafal Dalam 60 Saat</h3>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          <MemoryChip label="Tema" value={work.revision?.theme ?? "Tema belum tersedia."} color={color} />
+          <MemoryChip label="Nilai" value={work.revision?.values ?? "Nilai belum tersedia."} color="#34D399" />
+          <MemoryChip label="Pengajaran" value={work.revision?.lessons ?? "Pengajaran belum tersedia."} color="#FBBF24" />
+          <MemoryChip label={work.kind === "story" ? "Watak" : "Fokus"} value={getMemoryCharacter(work)} color="#C084FC" />
+          <MemoryChip label="Peristiwa Penting" value={getMemoryEvent(work)} color="#60A5FA" />
+          <MemoryChip label="Exam Reminder" value={work.revision?.examTips ?? "Jawab dengan bukti karya."} color="#FB923C" />
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-5">
+        <div className="mb-3 flex items-center gap-2 text-violet-300">
+          <Brain className="h-5 w-5" />
+          <h3 className="font-display text-lg font-bold">KBAT Challenge</h3>
+        </div>
+        <DecoderCell label={getKbatChallenge(work).question} value={getKbatChallenge(work).answer} accent="#C084FC" />
+      </section>
+
+      {work.kind === "story" && relationships.length > 0 && (
+        <section>
+          <SectionLabel>Hubungan Watak</SectionLabel>
+          <div className="grid gap-3 md:grid-cols-3">
+            {relationships.map((relationship) => (
+              <div key={relationship} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 text-center">
+                <p className="text-sm font-black text-white">{relationship}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section>
+        <SectionLabel>Kesalahan Murid Yang Selalu Berlaku</SectionLabel>
+        <div className="grid gap-3 md:grid-cols-3">
+          {mistakes.map((mistake) => (
+            <div key={mistake.wrong} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <p className="mb-2 text-sm font-bold text-rose-300">{mistake.wrong}</p>
+              <p className="text-xs leading-5 text-white/45">{mistake.fix}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="rounded-[1.75rem] border p-5"
+        style={{
+          borderColor: `${color}35`,
+          background: `linear-gradient(135deg, ${color}18, rgba(251,191,36,0.08), rgba(255,255,255,0.03))`,
+          boxShadow: `0 0 40px ${color}16`,
+        }}
+      >
+        <div className="mb-4 flex items-center gap-2">
+          <Target className="h-5 w-5" style={{ color }} />
+          <h3 className="font-display text-lg font-bold text-white">Sebelum Masuk Dewan</h3>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-5">
+          {survival.map((item) => (
+            <div key={item} className="rounded-xl border border-white/[0.08] bg-black/10 p-3 text-xs font-bold leading-5 text-white/70">
+              {item}
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function MemoryChip({ label, value, color }: { label: string; value: string; color: string }) {
+  return (
+    <div className="rounded-xl border border-white/[0.08] bg-black/10 p-3">
+      <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>{label}</p>
+      <p className="text-xs leading-5 text-white/70">{value}</p>
+    </div>
+  );
+}
+
+function getSpotterItems(work: KomsasWork) {
+  const high = { frequency: "Sangat Kerap Ditanya", color: "#34D399" };
+  const mid = { frequency: "Kadang-kadang Ditanya", color: "#FBBF24" };
+  const low = { frequency: "Jarang Ditanya", color: "#F43F5E" };
+  const revision = work.revision;
+  const base = [
+    { label: "Tema", focus: revision?.theme ?? "Tema utama karya.", ...high },
+    { label: "Nilai", focus: revision?.values ?? "Nilai penting dalam karya.", ...high },
+    { label: "Pengajaran", focus: revision?.lessons ?? "Pengajaran yang boleh diamalkan.", ...high },
+    { label: work.kind === "story" ? "Watak dan Perwatakan" : "Maksud Rangkap", focus: work.kind === "story" ? getMemoryCharacter(work) : "Bahasa mudah dan maksud tersirat.", ...mid },
+  ];
+  return work.kind === "story"
+    ? [...base, { label: "Peristiwa Penting", focus: getMemoryEvent(work), ...mid }, { label: "Latar / Konflik", focus: "Fahami punca konflik dan peleraian.", ...low }]
+    : [...base, { label: "Gaya Bahasa", focus: "Fokus simbol, metafora atau perbandingan utama.", ...low }];
+}
+
+function getExaminerQuestions(work: KomsasWork): KomsasExamQuestion[] {
+  const revision = work.revision;
+  const extras = work.kind === "story"
+    ? [
+        makeExamQuestion("Apakah konflik utama yang berlaku dalam karya ini?", `Konflik utama berkaitan ${(work.examFocus ?? "peristiwa penting").toLowerCase()} dan perlu dihuraikan dengan peristiwa penting.`, "Konflik ialah masalah yang menggerakkan cerita.", "Sebut punca konflik dan kesannya."),
+        makeExamQuestion("Bagaimanakah karya ini boleh dikaitkan dengan kehidupan murid?", `${work.title ?? "Karya ini"} mengajar murid supaya mengamalkan pengajaran seperti ${(revision?.lessons ?? "nilai baik").toLowerCase()}.`, "Soalan KBAT mahu kaitan dengan diri murid.", "Berikan contoh sekolah atau keluarga."),
+      ]
+    : [
+        makeExamQuestion("Apakah maksud rangkap penting dalam karya ini?", `Rangkap penting menyampaikan ${(work.theme?.title ?? "mesej utama").toLowerCase()} secara mudah dan dekat dengan kehidupan.`, "Puisi perlu difahami melalui maksud tersirat.", "Jangan salin semula rangkap."),
+        makeExamQuestion("Bagaimanakah karya ini sesuai untuk remaja?", `${work.title ?? "Karya ini"} sesuai kerana mengajar remaja tentang ${(revision?.values ?? "nilai murni").toLowerCase()}.`, "KBAT mahu hubungan dengan kehidupan murid.", "Beri contoh sekolah."),
+      ];
+  const baseQuestions = Array.isArray(work.examBooster?.commonQuestions) ? work.examBooster.commonQuestions : [];
+  return [...baseQuestions, ...extras].filter((item) => item?.question).slice(0, 5);
+}
+
+function makeExamQuestion(
+  question: string,
+  modelAnswer: string,
+  explanation: string,
+  examTip: string,
+): KomsasExamQuestion {
+  return { question, answerHint: modelAnswer, modelAnswer, explanation, examTip };
+}
+
+function getWeakAnswer(item: KomsasExamQuestion) {
+  if (/nilai/i.test(item.question)) return "Kasih sayang.";
+  if (/tema/i.test(item.question)) return "Tema yang baik.";
+  if (/pengajaran/i.test(item.question)) return "Kita perlu baik.";
+  return "Jawapan terlalu pendek.";
+}
+
+function getTrailerSummary(work: KomsasWork) {
+  if (typeof work.story60 === "string" && work.story60.trim()) {
+    return work.story60.split(".").slice(0, 3).join(". ").replace(/\s+/g, " ").trim() + ".";
+  }
+  return `${work.title ?? "Karya ini"} membawa mesej yang nampak ringkas tetapi kuat. Di sebalik bahasa yang padat, murid diajak memahami ${(work.theme?.title ?? "mesej utama").toLowerCase()}. Adakah anda hanya mahu hafal, atau benar-benar faham mesejnya sebelum UASA?`;
+}
+
+function getReflectionQuestions(work: KomsasWork) {
+  const title = work.title ?? "karya ini";
+  if (work.kind === "story") {
+    return [
+      `Jika anda berada dalam situasi watak utama ${title}, apakah tindakan paling matang?`,
+      `Pernahkah anda melihat konflik seperti ini berlaku di sekolah atau rumah?`,
+      `Apakah satu pengajaran karya ini yang anda boleh amalkan minggu ini?`,
+    ];
+  }
+  return [
+    `Pernah tak anda berada dalam situasi yang sama dengan mesej ${title}?`,
+      `Nilai manakah yang paling susah anda amalkan: ${work.revision?.values ?? "nilai dalam karya"}?`,
+    `Bagaimanakah karya ini boleh mengubah cara anda bercakap atau bertindak?`,
+  ];
+}
+
+function getMemoryCharacter(work: KomsasWork) {
+  return (Array.isArray(work.characters) ? work.characters : [])
+    .map((c) => c?.name)
+    .filter(Boolean)
+    .slice(0, 3)
+    .join(", ") || (work.kind === "poem" ? "Aku lirik / mesej penyair" : "Watak utama");
+}
+
+function getMemoryEvent(work: KomsasWork) {
+  const events = Array.isArray(work.events) ? work.events : [];
+  const decoder = Array.isArray(work.decoder) ? work.decoder : [];
+  return events[0]?.event || decoder[0]?.tema || "Fahami maksud utama karya.";
+}
+
+function getKbatChallenge(work: KomsasWork) {
+  const title = work.title ?? "karya ini";
+  if (work.kind === "story") {
+    return {
+      question: `Jika konflik dalam ${title} diselesaikan lebih awal, adakah pengajaran karya masih kuat? Mengapa?`,
+      answer: `Ya, pengajaran masih kuat kerana murid tetap dapat melihat kepentingan ${(work.revision?.lessons ?? "nilai baik").toLowerCase()}. Namun, konflik yang berlaku menjadikan mesej lebih jelas dan mudah diingati.`,
+    };
+  }
+  return {
+    question: `Adakah mesej ${title} masih relevan kepada murid zaman media sosial? Mengapa?`,
+    answer: `Ya, mesejnya masih relevan kerana murid masih perlu mengamalkan ${(work.revision?.values ?? "nilai murni").toLowerCase()} dalam percakapan, tindakan dan keputusan harian.`,
+  };
+}
+
+function getRelationshipCards(work: KomsasWork) {
+  const names = (Array.isArray(work.characters) ? work.characters : [])
+    .map((c) => c?.name)
+    .filter(Boolean);
+  if (names.length < 2) return [];
+  return [
+    `${names[0]} ↔ ${names[1]}`,
+    names[2] ? `${names[2]} ↔ ${names[0]}` : `${names[1]} ↔ konflik utama`,
+    `Komuniti / keluarga ↔ ${names[0]}`,
+  ];
+}
+
+function getCommonMistakes(work: KomsasWork) {
+  return [
+    { wrong: "Menyamakan tema dengan pengajaran.", fix: `Betulkan: tema ialah idea besar seperti "${work.revision?.theme ?? "tema utama"}". Pengajaran ialah ayat tindakan.` },
+    { wrong: "Menulis nilai tanpa contoh.", fix: "Betulkan: tulis nilai + bukti ringkas daripada karya." },
+    { wrong: work.kind === "story" ? "Menulis watak tanpa perwatakan." : "Menyalin maksud tanpa huraian.", fix: work.kind === "story" ? "Betulkan: nyatakan watak, sifat dan bukti." : "Betulkan: jelaskan maksud dengan bahasa sendiri." },
+  ];
+}
+
+function getSurvivalBullets(work: KomsasWork) {
+  return [
+    "✓ Hafal tema",
+    "✓ Hafal 3 nilai",
+    "✓ Hafal 3 pengajaran",
+    work.kind === "story" ? "✓ Ingat klimaks" : "✓ Faham maksud rangkap",
+    work.kind === "story" ? "✓ Kenal watak utama" : "✓ Ingat simbol utama",
+  ];
 }
 
 function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
