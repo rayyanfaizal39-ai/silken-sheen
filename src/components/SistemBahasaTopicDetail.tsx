@@ -531,7 +531,7 @@ function MiniKuizSection({ topic }: { topic: SistemBahasaTopic }) {
 
 function ExamBoosterSection({ topic }: { topic: SistemBahasaTopic }) {
   return (
-    <Accordion title="🚀 Exam Booster + Rumusan" accent="#F472B6">
+    <Accordion title="🚀 Fokus UASA + Rumusan" accent="#F472B6">
       <CalloutBox icon="📌" title="Rumusan Utama" color={topic.warna}>
         <ul className="space-y-1.5 mt-1">
           {topic.examBooster.rumusan.map((r, i) => (
@@ -541,7 +541,7 @@ function ExamBoosterSection({ topic }: { topic: SistemBahasaTopic }) {
           ))}
         </ul>
       </CalloutBox>
-      <CalloutBox icon="⚡" title="Last-Minute Tips" color="#F472B6">
+      <CalloutBox icon="⚡" title="Petua Saat Akhir" color="#F472B6">
         <ul className="space-y-1.5 mt-1">
           {topic.examBooster.lastMinuteTips.map((t, i) => (
             <li key={i} className="flex items-start gap-2 text-sm">

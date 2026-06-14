@@ -19,18 +19,18 @@ import { useProgress, getRank } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 
 const navItems = [
-  { label: "Home",       short: "Base",    to: "/",           icon: Home,            accent: "#6366F1", accentGlow: "rgba(99,102,241,0.55)",  accentBg: "rgba(99,102,241,0.22)",  line: "linear-gradient(90deg,#818CF8,#C084FC)" },
-  { label: "Dashboard",  short: "Mission", to: "/dashboard",  icon: LayoutDashboard, accent: "#8B5CF6", accentGlow: "rgba(139,92,246,0.55)",  accentBg: "rgba(139,92,246,0.22)",  line: "linear-gradient(90deg,#A78BFA,#7C3AED)" },
-  { label: "Notes",      short: "Learn",   to: "/notes",      icon: BookOpen,        accent: "#3B82F6", accentGlow: "rgba(59,130,246,0.55)",  accentBg: "rgba(59,130,246,0.22)",  line: "linear-gradient(90deg,#60A5FA,#2563EB)" },
-  { label: "Flashcards", short: "Cards",   to: "/flashcards", icon: Library,         accent: "#A855F7", accentGlow: "rgba(168,85,247,0.55)",  accentBg: "rgba(168,85,247,0.22)",  line: "linear-gradient(90deg,#C084FC,#9333EA)" },
-  { label: "Quizzes",    short: "Quests",  to: "/quizzes",    icon: Brain,           accent: "#F59E0B", accentGlow: "rgba(245,158,11,0.55)",  accentBg: "rgba(245,158,11,0.22)",  line: "linear-gradient(90deg,#FBBF24,#D97706)" },
-  { label: "Mind Maps",  short: "Maps",    to: "/notes",      icon: Compass,         accent: "#10B981", accentGlow: "rgba(16,185,129,0.5)",   accentBg: "rgba(16,185,129,0.18)",  line: "linear-gradient(90deg,#34D399,#059669)" },
-  { label: "Videos",     short: "Video",   to: "/notes",      icon: Video,           accent: "#EC4899", accentGlow: "rgba(236,73,153,0.5)",   accentBg: "rgba(236,73,153,0.18)",  line: "linear-gradient(90deg,#F472B6,#DB2777)" },
-  { label: "AI Tutor",   short: "AI",      to: "/dashboard",  icon: Sparkles,        accent: "#06B6D4", accentGlow: "rgba(6,182,212,0.5)",    accentBg: "rgba(6,182,212,0.18)",   line: "linear-gradient(90deg,#22D3EE,#0284C7)" },
+  { label: "Utama",      short: "Utama",   to: "/",           icon: Home,            accent: "#6366F1", accentGlow: "rgba(99,102,241,0.55)",  accentBg: "rgba(99,102,241,0.22)",  line: "linear-gradient(90deg,#818CF8,#C084FC)" },
+  { label: "Papan Pemuka", short: "Misi",  to: "/dashboard",  icon: LayoutDashboard, accent: "#8B5CF6", accentGlow: "rgba(139,92,246,0.55)",  accentBg: "rgba(139,92,246,0.22)",  line: "linear-gradient(90deg,#A78BFA,#7C3AED)" },
+  { label: "Nota",       short: "Belajar", to: "/notes",      icon: BookOpen,        accent: "#3B82F6", accentGlow: "rgba(59,130,246,0.55)",  accentBg: "rgba(59,130,246,0.22)",  line: "linear-gradient(90deg,#60A5FA,#2563EB)" },
+  { label: "Kad Imbas",  short: "Kad",     to: "/flashcards", icon: Library,         accent: "#A855F7", accentGlow: "rgba(168,85,247,0.55)",  accentBg: "rgba(168,85,247,0.22)",  line: "linear-gradient(90deg,#C084FC,#9333EA)" },
+  { label: "Kuiz",       short: "Kuiz",    to: "/quizzes",    icon: Brain,           accent: "#F59E0B", accentGlow: "rgba(245,158,11,0.55)",  accentBg: "rgba(245,158,11,0.22)",  line: "linear-gradient(90deg,#FBBF24,#D97706)" },
+  { label: "Peta Minda", short: "Peta",    to: "/notes",      icon: Compass,         accent: "#10B981", accentGlow: "rgba(16,185,129,0.5)",   accentBg: "rgba(16,185,129,0.18)",  line: "linear-gradient(90deg,#34D399,#059669)" },
+  { label: "Video",      short: "Video",   to: "/notes",      icon: Video,           accent: "#EC4899", accentGlow: "rgba(236,73,153,0.5)",   accentBg: "rgba(236,73,153,0.18)",  line: "linear-gradient(90deg,#F472B6,#DB2777)" },
+  { label: "Cikgu Kecerdasan Buatan", short: "Cikgu", to: "/dashboard", icon: Sparkles, accent: "#06B6D4", accentGlow: "rgba(6,182,212,0.5)", accentBg: "rgba(6,182,212,0.18)", line: "linear-gradient(90deg,#22D3EE,#0284C7)" },
 ] as const;
 
 function isActive(pathname: string, to: string, label: string) {
-  if (label === "Mind Maps" || label === "Videos" || label === "AI Tutor") return false;
+  if (label === "Peta Minda" || label === "Video" || label === "Cikgu Kecerdasan Buatan") return false;
   return to === "/" ? pathname === "/" : pathname.startsWith(to);
 }
 

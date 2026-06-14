@@ -73,11 +73,61 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
+function bmText(value: string | undefined) {
+  if (!value) return "";
+  return value
+    .replace(/\bPopular theme:/gi, "Tema kerap ditanya:")
+    .replace(/\bPopular themes:/gi, "Tema kerap ditanya:")
+    .replace(/\bPopular values:/gi, "Nilai kerap ditanya:")
+    .replace(/\bPopular value:/gi, "Nilai kerap ditanya:")
+    .replace(/\bCommon exam focus:/gi, "Fokus peperiksaan lazim:")
+    .replace(/\bCommon focus:/gi, "Fokus lazim:")
+    .replace(/\bCommon question:/gi, "Soalan lazim:")
+    .replace(/\bCommon questions:/gi, "Soalan lazim:")
+    .replace(/\bExam focus:/gi, "Fokus peperiksaan:")
+    .replace(/\bExam Focus/gi, "Fokus Peperiksaan")
+    .replace(/\bExam Tips/gi, "Petua Peperiksaan")
+    .replace(/\bExam Reminder/gi, "Peringatan Peperiksaan")
+    .replace(/\bFrequently Tested Points/gi, "Perkara Kerap Ditanya")
+    .replace(/\bQuick Revision Card/gi, "Kad Ulang Kaji Pantas")
+    .replace(/\bModel answer/gi, "Jawapan Contoh")
+    .replace(/\bExplanation/gi, "Penjelasan")
+    .replace(/\bWhy it matters/gi, "Mengapa penting")
+    .replace(/\bWhat happened/gi, "Apa berlaku")
+    .replace(/\bReal life example/gi, "Contoh kehidupan sebenar")
+    .replace(/\bSchool example/gi, "Contoh di sekolah")
+    .replace(/\bPersonality/gi, "Perwatakan")
+    .replace(/\bEvidence/gi, "Bukti")
+    .replace(/\bImportance/gi, "Kepentingan")
+    .replace(/\bTheme/gi, "Tema")
+    .replace(/\bValues/gi, "Nilai")
+    .replace(/\bLessons/gi, "Pengajaran")
+    .replace(/\bQuiz/gi, "Kuiz")
+    .replace(/\bScore/gi, "Markah")
+    .replace(/\bProgress tracker placeholder/gi, "Penjejak kemajuan")
+    .replace(/\bFuture:/gi, "Akan datang:")
+    .replace(/\bquizzes/gi, "kuiz")
+    .replace(/\bflashcards/gi, "kad imbas")
+    .replace(/\bAI video summaries/gi, "ringkasan video kecerdasan buatan")
+    .replace(/\bPlaceholder/gi, "Ruang latihan")
+    .replace(/\bMatching/gi, "Padanan")
+    .replace(/\bTap reveal answer/gi, "Tekan untuk lihat jawapan")
+    .replace(/\bReflect/gi, "Renung")
+    .replace(/\bMovie Trailer/gi, "Ringkasan Cerita")
+    .replace(/\bKBAT Challenge/gi, "Cabaran KBAT")
+    .replace(/\bMaster File/gi, "Fail Lengkap")
+    .replace(/\bExam Character Analysis/gi, "Analisis Watak UASA")
+    .replace(/\bMini Quiz Lab/gi, "Makmal Kuiz Mini")
+    .replace(/\bQuiz placeholders ready/gi, "Ruang kuiz mini tersedia")
+    .replace(/\bStudy Time/gi, "Tempoh Pembelajaran")
+    .replace(/\bDifficulty/gi, "Tahap Kesukaran");
+}
+
 function PlaceholderChip({ label }: { label: string }) {
   return (
     <span className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-white/40">
       <Clock className="h-3 w-3" />
-      {label} — Coming Soon
+      {label} - Akan Datang
     </span>
   );
 }
@@ -152,7 +202,7 @@ function LandingView({
               ✦ DEWAN SASTERA ✦
             </p>
             <h1 className="font-display text-2xl font-bold text-white">Bahasa Melayu</h1>
-            <p className="mt-0.5 text-sm text-white/40">Nusantara Realm · Tingkatan 1</p>
+            <p className="mt-0.5 text-sm text-white/40">Dunia Nusantara - Tingkatan 1</p>
           </div>
         </div>
 
@@ -184,8 +234,8 @@ function LandingView({
       <div className="mt-6 grid grid-cols-3 gap-3">
         {[
           { label: "Hub Belajar", value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.length, 0)}` },
-          { label: "Topik Total", value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.reduce((s2, h) => s2 + h.topics.length, 0), 0)}` },
-          { label: "Kertas Exam", value: "2" },
+          { label: "Jumlah Topik", value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.reduce((s2, h) => s2 + h.topics.length, 0), 0)}` },
+          { label: "Kertas UASA", value: "2" },
         ].map((stat) => (
           <div key={stat.label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
             <p className="text-xl font-black text-white">{stat.value}</p>
@@ -409,7 +459,7 @@ function TopicCard({
     const map: Record<string, string> = {
       tatabahasa: "Tatabahasa", pemahaman: "Teknik", komsas: "KOMSAS", novel: "Novel",
       "ringkasan-ulasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
-      workshop: "Workshop", "model-karangan": "Model", "peribahasa-bank": "Peribahasa", "essay-improvement": "Teknik",
+      workshop: "Bengkel", "model-karangan": "Model", "peribahasa-bank": "Peribahasa", "essay-improvement": "Teknik",
     };
     return map[t] ?? t;
   };
@@ -607,18 +657,20 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             <Badge label={work.typeLabel} color={color} />
             <span className="inline-flex items-center gap-1 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-2.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-yellow-300">
               <Zap className="h-3 w-3" />
-              Quick Revision
+              Ulang Kaji Pantas
             </span>
           </div>
           <h3 className="font-display text-2xl font-black text-white sm:text-3xl">{work.title}</h3>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-white/70">{work.intro}</p>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <KomsasHeroStat icon={<Target className="h-4 w-4" />} label="Difficulty" value={work.difficulty} color="#34D399" />
-            <KomsasHeroStat icon={<Clock className="h-4 w-4" />} label="Study Time" value={work.studyTime} color={color} />
-            <KomsasHeroStat icon={<Trophy className="h-4 w-4" />} label="Exam Focus" value={work.examFocus} color="#FBBF24" />
+            <KomsasHeroStat icon={<Target className="h-4 w-4" />} label="Tahap Kesukaran" value={work.difficulty} color="#34D399" />
+            <KomsasHeroStat icon={<Clock className="h-4 w-4" />} label="Tempoh Pembelajaran" value={work.studyTime} color={color} />
+            <KomsasHeroStat icon={<Trophy className="h-4 w-4" />} label="Fokus UASA" value={bmText(work.examFocus)} color="#FBBF24" />
           </div>
         </div>
       </section>
+
+      <KomsasKeywordSection work={work} color={color} />
 
       <Tabs defaultValue="maksud" className="w-full">
         <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-2 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-2">
@@ -632,10 +684,10 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             <Heart className="mr-1.5 h-3.5 w-3.5" /> Nilai
           </TabsTrigger>
           <TabsTrigger value="exam" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
-            <Flame className="mr-1.5 h-3.5 w-3.5" /> Exam
+            <Flame className="mr-1.5 h-3.5 w-3.5" /> UASA
           </TabsTrigger>
           <TabsTrigger value="quiz" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
-            <FileQuestion className="mr-1.5 h-3.5 w-3.5" /> Quiz
+            <FileQuestion className="mr-1.5 h-3.5 w-3.5" /> Kuiz
           </TabsTrigger>
         </TabsList>
 
@@ -652,7 +704,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
 
           {isStory && Array.isArray(work.timeline) && work.timeline.length > 0 && (
             <div>
-              <SectionLabel>Story Timeline</SectionLabel>
+              <SectionLabel>Jalan Cerita</SectionLabel>
               <div className="grid gap-3 md:grid-cols-5">
                 {work.timeline.map((item, index) => (
                   <div key={item.stage} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -679,9 +731,9 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                       <Heart className="h-4 w-4" />
                       <p className="font-bold">{character.name}</p>
                     </div>
-                    <MiniExplain label="Personality" text={character.personality} accent="#34D399" />
-                    <MiniExplain label="Evidence" text={character.evidence} accent="#60A5FA" />
-                    <MiniExplain label="Importance" text={character.importance} accent="#FBBF24" />
+                    <MiniExplain label="Perwatakan" text={character.personality} accent="#34D399" />
+                    <MiniExplain label="Bukti" text={character.evidence} accent="#60A5FA" />
+                    <MiniExplain label="Kepentingan" text={character.importance} accent="#FBBF24" />
                   </div>
                 ))}
               </div>
@@ -704,9 +756,9 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                     </AccordionTrigger>
                     <AccordionContent className="px-4 pb-4">
                       <div className="grid gap-3 md:grid-cols-3">
-                        <DecoderCell label="What happened" value={event.whatHappened} accent={color} />
-                        <DecoderCell label="Why it matters" value={event.whyItMatters} accent="#FBBF24" />
-                        <DecoderCell label="Exam focus" value={event.examFocus} accent="#60A5FA" />
+                        <DecoderCell label="Apa berlaku" value={event.whatHappened} accent={color} />
+                        <DecoderCell label="Mengapa penting" value={event.whyItMatters} accent="#FBBF24" />
+                        <DecoderCell label="Fokus UASA" value={bmText(event.examFocus)} accent="#60A5FA" />
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -715,7 +767,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             </div>
           )}
 
-          <SectionLabel>{isStory ? "Bahasa Mudah" : work.id === "pantun-dua-kerat" ? "Pantun Dalam Bahasa Mudah" : "Rangkap Explorer"}</SectionLabel>
+          <SectionLabel>{isStory ? "Bahasa Mudah" : work.id === "pantun-dua-kerat" ? "Pantun Dalam Bahasa Mudah" : "Peneroka Rangkap"}</SectionLabel>
           <Accordion type="single" collapsible defaultValue="rangkap-0" className="space-y-3">
             {(Array.isArray(work.decoder) ? work.decoder : []).map((item, index) => (
               <AccordionItem key={item.rangkap} value={`rangkap-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
@@ -755,19 +807,25 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         </TabsContent>
 
         <TabsContent value="tema" className="mt-0 space-y-4">
-          <SectionLabel>Tema</SectionLabel>
+          <div className="flex items-center justify-between gap-3">
+            <SectionLabel>Tema</SectionLabel>
+            <ImportanceBadge level="Sangat Penting" />
+          </div>
           <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
             <div className="mb-3 flex items-center gap-2">
               <Target className="h-5 w-5" style={{ color }} />
               <h3 className="font-display text-lg font-bold text-white">{work.theme?.title ?? "Tema utama"}</h3>
             </div>
             <div className="grid gap-3 md:grid-cols-2">
-              <DecoderCell label="Explanation" value={work.theme?.explanation ?? "Penerangan tema belum tersedia."} accent={color} />
-              <DecoderCell label="Why it matters" value={work.theme?.whyItMatters ?? "Tema ini membantu murid memahami mesej karya."} accent="#FBBF24" />
+              <DecoderCell label="Penjelasan" value={work.theme?.explanation ?? "Penerangan tema belum tersedia."} accent={color} />
+              <DecoderCell label="Mengapa penting" value={work.theme?.whyItMatters ?? "Tema ini membantu murid memahami mesej karya."} accent="#FBBF24" />
             </div>
           </div>
 
-          <SectionLabel>Pengajaran</SectionLabel>
+          <div className="flex items-center justify-between gap-3">
+            <SectionLabel>Pengajaran</SectionLabel>
+            <ImportanceBadge level="Sangat Penting" />
+          </div>
           <div className="grid gap-3 md:grid-cols-3">
             {(Array.isArray(work.lessons) ? work.lessons : []).map((lesson) => (
               <LearningCard key={lesson.value} icon={<Lightbulb className="h-4 w-4" />} item={lesson} accent="#FBBF24" />
@@ -776,7 +834,10 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         </TabsContent>
 
         <TabsContent value="nilai" className="mt-0 space-y-4">
-          <SectionLabel>Nilai</SectionLabel>
+          <div className="flex items-center justify-between gap-3">
+            <SectionLabel>Nilai</SectionLabel>
+            <ImportanceBadge level="Sangat Penting" />
+          </div>
           <div className="grid gap-3 md:grid-cols-3">
             {(Array.isArray(work.values) ? work.values : []).map((value) => (
               <LearningCard key={value.value} icon={<Star className="h-4 w-4" />} item={value} accent="#34D399" />
@@ -785,11 +846,14 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         </TabsContent>
 
         <TabsContent value="exam" className="mt-0 space-y-5">
-          <SectionLabel>Exam Booster</SectionLabel>
+          <div className="flex items-center justify-between gap-3">
+            <SectionLabel>Fokus UASA</SectionLabel>
+            <ImportanceBadge level="Sangat Penting" />
+          </div>
           <div className="rounded-2xl border border-orange-400/20 bg-orange-400/5 p-5">
             <div className="mb-4 flex items-center gap-2 text-orange-300">
               <Flame className="h-5 w-5" />
-              <h3 className="font-display text-lg font-bold">Frequently Tested Points</h3>
+              <h3 className="font-display text-lg font-bold">Perkara Kerap Ditanya</h3>
             </div>
             <div className="grid gap-2 sm:grid-cols-2">
               {(Array.isArray(work.examBooster?.frequentPoints) ? work.examBooster.frequentPoints : []).map((point, index) => (
@@ -797,7 +861,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-400/20 text-[10px] font-black text-orange-300">
                     {index + 1}
                   </span>
-                  <p className="text-sm leading-6 text-white/65">{point}</p>
+                  <p className="text-sm leading-6 text-white/65">{bmText(point)}</p>
                 </div>
               ))}
             </div>
@@ -809,14 +873,14 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
                   <span className="flex items-center gap-3">
                     <FileQuestion className="h-4 w-4" style={{ color }} />
-                    <span className="font-bold text-white/85">Common Question {index + 1}</span>
+                    <span className="font-bold text-white/85">Soalan Lazim {index + 1}</span>
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-4">
                   <div className="grid gap-3 md:grid-cols-3">
-                    <DecoderCell label="Model answer" value={item.modelAnswer ?? item.answerHint} accent="#60A5FA" />
-                    <DecoderCell label="Explanation" value={item.explanation ?? "Jawapan perlu disokong dengan bukti karya dan contoh yang sesuai."} accent="#34D399" />
-                    <DecoderCell label="Exam tip" value={item.examTip ?? "Jawab dengan ayat lengkap dan terus kepada kehendak soalan."} accent="#FBBF24" />
+                    <DecoderCell label="Jawapan Contoh" value={bmText(item.modelAnswer ?? item.answerHint)} accent="#60A5FA" />
+                    <DecoderCell label="Penjelasan" value={bmText(item.explanation ?? "Jawapan perlu disokong dengan bukti karya dan contoh yang sesuai.")} accent="#34D399" />
+                    <DecoderCell label="Petua UASA" value={bmText(item.examTip ?? "Jawab dengan ayat lengkap dan terus kepada kehendak soalan.")} accent="#FBBF24" />
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -826,13 +890,13 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
             <div className="mb-4 flex items-center gap-2">
               <GraduationCap className="h-5 w-5" style={{ color }} />
-              <h3 className="font-display text-lg font-bold text-white">Quick Revision Card</h3>
+              <h3 className="font-display text-lg font-bold text-white">Kad Ulang Kaji Pantas</h3>
             </div>
             <div className="grid gap-3 md:grid-cols-4">
-              <DecoderCell label="Theme" value={work.revision?.theme ?? "Tema belum tersedia."} accent={color} />
-              <DecoderCell label="Values" value={work.revision?.values ?? "Nilai belum tersedia."} accent="#34D399" />
-              <DecoderCell label="Lessons" value={work.revision?.lessons ?? "Pengajaran belum tersedia."} accent="#FBBF24" />
-              <DecoderCell label="Exam Tips" value={work.revision?.examTips ?? "Jawab dengan bukti karya."} accent="#60A5FA" />
+              <DecoderCell label="Tema" value={work.revision?.theme ?? "Tema belum tersedia."} accent={color} />
+              <DecoderCell label="Nilai" value={work.revision?.values ?? "Nilai belum tersedia."} accent="#34D399" />
+              <DecoderCell label="Pengajaran" value={work.revision?.lessons ?? "Pengajaran belum tersedia."} accent="#FBBF24" />
+              <DecoderCell label="Petua UASA" value={bmText(work.revision?.examTips ?? "Jawab dengan bukti karya.")} accent="#60A5FA" />
             </div>
           </div>
         </TabsContent>
@@ -895,9 +959,9 @@ function LearningCard({
         {icon}
         {item.value}
       </div>
-      <MiniExplain label="Explanation" text={item.explanation} accent={accent} />
-      <MiniExplain label="Real life example" text={item.realLife} accent="#60A5FA" />
-      {item.schoolLife && <MiniExplain label="School example" text={item.schoolLife} accent="#C084FC" />}
+      <MiniExplain label="Penjelasan" text={item.explanation} accent={accent} />
+      <MiniExplain label="Contoh kehidupan sebenar" text={item.realLife} accent="#60A5FA" />
+      {item.schoolLife && <MiniExplain label="Contoh di sekolah" text={item.schoolLife} accent="#C084FC" />}
     </div>
   );
 }
@@ -909,11 +973,11 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
     <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
-          <p className="text-[9px] font-black uppercase tracking-widest" style={{ color }}>Mini Quiz Lab</p>
-          <h3 className="font-display text-lg font-bold text-white">Quiz placeholders ready</h3>
+          <p className="text-[9px] font-black uppercase tracking-widest" style={{ color }}>Makmal Kuiz Mini</p>
+          <h3 className="font-display text-lg font-bold text-white">Ruang kuiz mini tersedia</h3>
         </div>
         <div className="rounded-xl border border-white/[0.08] bg-black/20 px-3 py-2 text-right">
-          <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Score</p>
+          <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Markah</p>
           <p className="text-lg font-black text-white">0 / 0</p>
         </div>
       </div>
@@ -922,22 +986,86 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
           <div key={quiz.question} className="rounded-2xl border border-white/[0.08] bg-black/10 p-4">
             <div className="mb-2 flex items-center gap-2 font-bold" style={{ color }}>
               {index === 0 ? <FileQuestion className="h-4 w-4" /> : index === 1 ? <Map className="h-4 w-4" /> : <Brain className="h-4 w-4" />}
-              Placeholder {index + 1}
+              Ruang Latihan {index + 1}
             </div>
-            <p className="text-sm font-semibold leading-6 text-white/75">{quiz.question}</p>
-            <p className="mt-2 text-xs leading-5 text-white/45">{quiz.answerHint}</p>
+            <p className="text-sm font-semibold leading-6 text-white/75">{bmText(quiz.question)}</p>
+            <p className="mt-2 text-xs leading-5 text-white/45">{bmText(quiz.answerHint)}</p>
           </div>
         ))}
       </div>
       <div className="mt-4 rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-4">
         <div className="mb-2 flex items-center justify-between text-xs text-white/45">
-          <span>Progress tracker placeholder</span>
-          <span>Future: quizzes, flashcards, AI video summaries</span>
+          <span>Penjejak kemajuan</span>
+          <span>Akan datang: kuiz, kad imbas, ringkasan video kecerdasan buatan</span>
         </div>
         <Progress value={0} className="h-2 bg-white/10" />
       </div>
     </div>
   );
+}
+
+function KomsasKeywordSection({ work, color }: { work: KomsasWork; color: string }) {
+  const keywords = getKeywordTags(work);
+  if (keywords.length === 0) return null;
+
+  return (
+    <section className="rounded-2xl border border-sky-400/20 bg-sky-400/5 p-5">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-sky-300">
+          <BookOpen className="h-5 w-5" />
+          <h3 className="font-display text-lg font-bold">Kata Kunci</h3>
+        </div>
+        <ImportanceBadge level="Sangat Penting" />
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {keywords.map((keyword, index) => (
+          <span
+            key={`${keyword}-${index}`}
+            className="rounded-2xl border px-3 py-2 text-sm font-black text-white shadow-sm"
+            style={{
+              borderColor: `${index % 3 === 0 ? color : index % 3 === 1 ? "#34D399" : "#FBBF24"}55`,
+              background: `${index % 3 === 0 ? color : index % 3 === 1 ? "#34D399" : "#FBBF24"}18`,
+            }}
+          >
+            {keyword}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ImportanceBadge({ level }: { level: "Sangat Penting" | "Penting" | "Perlu Tahu" }) {
+  const styles = {
+    "Sangat Penting": { icon: "🔥", color: "#FB923C" },
+    Penting: { icon: "⭐", color: "#FBBF24" },
+    "Perlu Tahu": { icon: "📌", color: "#60A5FA" },
+  }[level];
+
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-widest"
+      style={{ borderColor: `${styles.color}35`, background: `${styles.color}18`, color: styles.color }}
+    >
+      <span>{styles.icon}</span>
+      {level}
+    </span>
+  );
+}
+
+function getKeywordTags(work: KomsasWork) {
+  const values = Array.isArray(work.values) ? work.values.map((item) => item.value) : [];
+  const characters = Array.isArray(work.characters) ? work.characters.map((item) => item.name) : [];
+  const masterCharacters = Array.isArray(work.masterCharacters) ? work.masterCharacters.map((item) => item.name) : [];
+  const events = Array.isArray(work.events) ? work.events.map((item) => item.event) : [];
+  const themeWords = (work.theme?.title ?? "")
+    .split(/\s+/)
+    .filter((word) => word.length > 5)
+    .slice(0, 3);
+
+  return Array.from(new Set([...values, ...characters, ...masterCharacters, ...themeWords, ...events]))
+    .filter(Boolean)
+    .slice(0, 12);
 }
 
 function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: string }) {
@@ -955,7 +1083,10 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
     <div className="space-y-6">
       {characters.length > 0 && (
         <section>
-          <SectionLabel>Watak & Perwatakan Master File</SectionLabel>
+          <div className="flex items-center justify-between gap-3">
+            <SectionLabel>Watak & Perwatakan</SectionLabel>
+            <ImportanceBadge level="Penting" />
+          </div>
           <div className="grid gap-3 md:grid-cols-2">
             {characters.map((character) => (
               <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -964,7 +1095,7 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
                     <Heart className="h-4 w-4" />
                     <p className="font-display text-lg font-bold">{character.name}</p>
                   </div>
-                  <Badge label="Master File" color={color} />
+                  <Badge label="Fail Lengkap" color={color} />
                 </div>
                 <div className="mb-3 flex flex-wrap gap-1.5">
                   {(Array.isArray(character.traits) ? character.traits : []).map((trait) => (
@@ -1067,7 +1198,10 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
 
       {events.length > 0 && (
         <section>
-          <SectionLabel>Peristiwa Penting</SectionLabel>
+          <div className="flex items-center justify-between gap-3">
+            <SectionLabel>Peristiwa Penting</SectionLabel>
+            <ImportanceBadge level="Penting" />
+          </div>
           <div className="grid gap-3 md:grid-cols-2">
             {events.map((event, index) => (
               <div key={`${event.event}-${index}`} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1120,7 +1254,7 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
                   <span className="flex items-center gap-3">
                     <span className="rounded-lg px-2 py-1 text-[10px] font-black uppercase tracking-widest" style={{ background: `${color}20`, color }}>
-                      {item.type}
+                      {item.type === "MCQ" ? "Aneka Pilihan" : item.type}
                     </span>
                     <span className="font-bold text-white/85">{item.question}</span>
                   </span>
@@ -1139,7 +1273,7 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
 
       {examCharacters.length > 0 && (
         <section>
-          <SectionLabel>Exam Character Analysis</SectionLabel>
+          <SectionLabel>Analisis Watak UASA</SectionLabel>
           <Accordion type="single" collapsible defaultValue="exam-char-0" className="space-y-3">
             {examCharacters.map((item, index) => (
               <AccordionItem key={`${item.character}-${item.trait}`} value={`exam-char-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
@@ -1153,7 +1287,7 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
                   <div className="grid gap-3 md:grid-cols-3">
                     <DecoderCell label="Watak" value={item.character} accent={color} />
                     <DecoderCell label="Bukti" value={item.evidence ?? "Bukti umum daripada karya."} accent="#60A5FA" />
-                    <DecoderCell label="Model answer" value={item.modelAnswer ?? "Jawab dengan watak, perwatakan dan bukti."} accent="#34D399" />
+                    <DecoderCell label="Jawapan Contoh" value={item.modelAnswer ?? "Jawab dengan watak, perwatakan dan bukti."} accent="#34D399" />
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -1234,7 +1368,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-4">
-                  <DecoderCell label="Tap reveal answer" value={item.modelAnswer ?? item.answerHint ?? "Jawapan belum tersedia."} accent="#60A5FA" />
+                  <DecoderCell label="Tekan untuk lihat jawapan" value={bmText(item.modelAnswer ?? item.answerHint ?? "Jawapan belum tersedia.")} accent="#60A5FA" />
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -1277,7 +1411,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
       <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
         <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
           <Clapperboard className="h-5 w-5" />
-          <h3 className="font-display text-lg font-bold">{work.movieTrailer ? "Movie Trailer" : "Cerita Dalam 30 Saat"}</h3>
+          <h3 className="font-display text-lg font-bold">Ringkasan Cerita</h3>
         </div>
         <p className="text-sm leading-7 text-white/75">{getTrailerSummary(work)}</p>
       </section>
@@ -1289,7 +1423,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
             <div key={question} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
               <div className="mb-2 flex items-center gap-2 text-cyan-300">
                 <Globe2 className="h-4 w-4" />
-                <p className="text-[10px] font-black uppercase tracking-widest">Reflect</p>
+                <p className="text-[10px] font-black uppercase tracking-widest">Renung</p>
               </div>
               <p className="text-sm leading-6 text-white/70">{question}</p>
             </div>
@@ -1308,14 +1442,14 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
           <MemoryChip label="Pengajaran" value={work.revision?.lessons ?? "Pengajaran belum tersedia."} color="#FBBF24" />
           <MemoryChip label={work.kind === "story" ? "Watak" : "Fokus"} value={getMemoryCharacter(work)} color="#C084FC" />
           <MemoryChip label="Peristiwa Penting" value={getMemoryEvent(work)} color="#60A5FA" />
-          <MemoryChip label="Exam Reminder" value={work.revision?.examTips ?? "Jawab dengan bukti karya."} color="#FB923C" />
+          <MemoryChip label="Peringatan UASA" value={bmText(work.revision?.examTips ?? "Jawab dengan bukti karya.")} color="#FB923C" />
         </div>
       </section>
 
       <section className="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-5">
         <div className="mb-3 flex items-center gap-2 text-violet-300">
           <Brain className="h-5 w-5" />
-          <h3 className="font-display text-lg font-bold">KBAT Challenge</h3>
+          <h3 className="font-display text-lg font-bold">Cabaran KBAT</h3>
         </div>
         <DecoderCell label={getKbatChallenge(work).question} value={getKbatChallenge(work).answer} accent="#C084FC" />
       </section>
