@@ -583,6 +583,9 @@ function LegacyKOMSASDetail({ topic, color }: { topic: BMTopic; color: string })
 }
 
 function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: string }) {
+  const isStory = work.kind === "story";
+  const featureWord = isStory ? "KISAH" : work.typeLabel.includes("Syair") ? "SYAIR" : "PUISI";
+
   return (
     <div className="space-y-6">
       <section
@@ -594,7 +597,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         }}
       >
         <div className="pointer-events-none absolute right-4 top-4 text-7xl font-black text-white/[0.035]">
-          PANTUN
+          {featureWord}
         </div>
         <div className="relative z-10">
           <div className="mb-4 flex flex-wrap gap-2">
@@ -609,7 +612,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             <KomsasHeroStat icon={<Target className="h-4 w-4" />} label="Difficulty" value={work.difficulty} color="#34D399" />
             <KomsasHeroStat icon={<Clock className="h-4 w-4" />} label="Study Time" value={work.studyTime} color={color} />
-            <KomsasHeroStat icon={<Trophy className="h-4 w-4" />} label="Exam Focus" value="Maksud + Nilai" color="#FBBF24" />
+            <KomsasHeroStat icon={<Trophy className="h-4 w-4" />} label="Exam Focus" value={work.examFocus} color="#FBBF24" />
           </div>
         </div>
       </section>
@@ -617,7 +620,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
       <Tabs defaultValue="maksud" className="w-full">
         <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-2 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-2">
           <TabsTrigger value="maksud" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
-            <PenTool className="mr-1.5 h-3.5 w-3.5" /> Maksud
+            <PenTool className="mr-1.5 h-3.5 w-3.5" /> {isStory ? "Cerita" : "Maksud"}
           </TabsTrigger>
           <TabsTrigger value="tema" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
             <Target className="mr-1.5 h-3.5 w-3.5" /> Tema
@@ -634,7 +637,82 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         </TabsList>
 
         <TabsContent value="maksud" className="mt-0 space-y-5">
-          <SectionLabel>Pantun Dalam Bahasa Mudah</SectionLabel>
+          {isStory && work.story60 && (
+            <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
+              <div className="mb-3 flex items-center gap-2 text-cyan-300">
+                <BookOpen className="h-5 w-5" />
+                <h3 className="font-display text-lg font-bold">Cerita Dalam 60 Saat</h3>
+              </div>
+              <p className="text-sm leading-7 text-white/75">{work.story60}</p>
+            </div>
+          )}
+
+          {isStory && work.timeline && (
+            <div>
+              <SectionLabel>Story Timeline</SectionLabel>
+              <div className="grid gap-3 md:grid-cols-5">
+                {work.timeline.map((item, index) => (
+                  <div key={item.stage} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <div className="mb-2 flex items-center gap-2">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${storyTimelineColors[index]}25`, color: storyTimelineColors[index] }}>
+                        {index + 1}
+                      </span>
+                      <p className="text-sm font-bold text-white">{item.stage}</p>
+                    </div>
+                    <p className="text-xs leading-6 text-white/55">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {isStory && work.characters && (
+            <div>
+              <SectionLabel>Watak Utama</SectionLabel>
+              <div className="grid gap-3 md:grid-cols-3">
+                {work.characters.map((character) => (
+                  <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <div className="mb-3 flex items-center gap-2" style={{ color }}>
+                      <Heart className="h-4 w-4" />
+                      <p className="font-bold">{character.name}</p>
+                    </div>
+                    <MiniExplain label="Personality" text={character.personality} accent="#34D399" />
+                    <MiniExplain label="Evidence" text={character.evidence} accent="#60A5FA" />
+                    <MiniExplain label="Importance" text={character.importance} accent="#FBBF24" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {isStory && work.events && (
+            <div>
+              <SectionLabel>Peristiwa Penting</SectionLabel>
+              <Accordion type="single" collapsible defaultValue="event-0" className="space-y-3">
+                {work.events.map((event, index) => (
+                  <AccordionItem key={event.event} value={`event-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                    <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                      <span className="flex items-center gap-3">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${color}20`, color }}>
+                          E{index + 1}
+                        </span>
+                        <span className="font-bold text-white/85">{event.event}</span>
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4 pb-4">
+                      <div className="grid gap-3 md:grid-cols-3">
+                        <DecoderCell label="What happened" value={event.whatHappened} accent={color} />
+                        <DecoderCell label="Why it matters" value={event.whyItMatters} accent="#FBBF24" />
+                        <DecoderCell label="Exam focus" value={event.examFocus} accent="#60A5FA" />
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          )}
+
+          <SectionLabel>{isStory ? "Bahasa Mudah" : work.id === "pantun-dua-kerat" ? "Pantun Dalam Bahasa Mudah" : "Rangkap Explorer"}</SectionLabel>
           <Accordion type="single" collapsible defaultValue="rangkap-0" className="space-y-3">
             {work.decoder.map((item, index) => (
               <AccordionItem key={item.rangkap} value={`rangkap-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
@@ -648,9 +726,9 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-4">
                   <div className="grid gap-3 md:grid-cols-2">
-                    <DecoderCell label="Pantun Dalam Bahasa Mudah" value={item.pantunMudah} accent={color} />
+                    <DecoderCell label={isStory ? "Bahasa Mudah" : "Bahasa Mudah"} value={item.pantunMudah} accent={color} />
                     <DecoderCell label="Maksud Mudah" value={item.maksud} accent="#60A5FA" />
-                    <DecoderCell label="Tema Rangkap" value={item.tema} accent="#C084FC" />
+                    <DecoderCell label={isStory ? "Fokus Bahagian" : "Tema Rangkap"} value={item.tema} accent="#C084FC" />
                     <DecoderCell label="Nilai + Pengajaran" value={`${item.nilai} ${item.pengajaran}`} accent="#34D399" />
                   </div>
                 </AccordionContent>
@@ -732,7 +810,11 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-4">
-                  <DecoderCell label={item.question} value={item.answerHint} accent="#60A5FA" />
+                  <div className="grid gap-3 md:grid-cols-3">
+                    <DecoderCell label="Model answer" value={item.modelAnswer ?? item.answerHint} accent="#60A5FA" />
+                    <DecoderCell label="Explanation" value={item.explanation ?? "Jawapan perlu disokong dengan bukti karya dan contoh yang sesuai."} accent="#34D399" />
+                    <DecoderCell label="Exam tip" value={item.examTip ?? "Jawab dengan ayat lengkap dan terus kepada kehendak soalan."} accent="#FBBF24" />
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -772,18 +854,6 @@ function KomsasHeroStat({ icon, label, value, color }: { icon: React.ReactNode; 
   );
 }
 
-function OverviewCard({ icon, label, value, accent }: { icon: React.ReactNode; label: string; value: string; accent: string }) {
-  return (
-    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-      <div className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
-        {icon}
-        {label}
-      </div>
-      <p className="text-sm leading-6 text-white/75">{value}</p>
-    </div>
-  );
-}
-
 function DecoderCell({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
     <div className="rounded-xl border border-white/[0.06] bg-black/10 p-3">
@@ -802,6 +872,8 @@ function MiniExplain({ label, text, accent }: { label: string; text: string; acc
   );
 }
 
+const storyTimelineColors = ["#34D399", "#FBBF24", "#FB923C", "#F43F5E", "#60A5FA"];
+
 function LearningCard({
   icon,
   item,
@@ -819,6 +891,7 @@ function LearningCard({
       </div>
       <MiniExplain label="Explanation" text={item.explanation} accent={accent} />
       <MiniExplain label="Real life example" text={item.realLife} accent="#60A5FA" />
+      {item.schoolLife && <MiniExplain label="School example" text={item.schoolLife} accent="#C084FC" />}
     </div>
   );
 }
