@@ -1,5 +1,27 @@
 import { useState } from "react";
-import { ArrowRight, ChevronLeft, BookOpen, Zap, CheckCircle, Clock, Star } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowRight,
+  BookOpen,
+  Brain,
+  CheckCircle,
+  ChevronLeft,
+  Clock,
+  Drama,
+  FileQuestion,
+  Flame,
+  GraduationCap,
+  Heart,
+  Lightbulb,
+  Map,
+  MessageCircle,
+  PenTool,
+  Star,
+  Target,
+  Trophy,
+  UserRound,
+  Zap,
+} from "lucide-react";
 import type { CSSProperties } from "react";
 import {
   BM_KERTAS,
@@ -11,7 +33,16 @@ import {
   type BMTopic,
 } from "@/data/bm-structure";
 import { getSistemBahasaContent } from "@/data/bm-k1-sistem-bahasa";
+import { getPremiumKomsasWork, type KomsasWork } from "@/data/bm-komsas-premium";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // ─── Navigation state ─────────────────────────────────────────────────────────
 
@@ -491,62 +522,450 @@ function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
 }
 
 function KOMSASDetail({ topic, color }: { topic: BMTopic; color: string }) {
-  const rows = [
-    { label: "Genre", value: topic.genre },
-    { label: "Tema", value: topic.tema },
-  ];
+  const work = getPremiumKomsasWork(topic.id);
+
+  if (!work) {
+    return (
+      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+        <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
+      </div>
+    );
+  }
+
+  return <PremiumKomsasExperience work={work} color={color} />;
+}
+
+function PremiumKomsasExperience({ work, color }: { work: KomsasWork; color: string }) {
+  const isPoem = work.kind === "poem";
+  const completionValue = isPoem ? 42 : 52;
 
   return (
     <div className="space-y-6">
-      {/* Genre + Sinopsis */}
-      {topic.genre && (
-        <div className="flex items-center gap-2">
-          <Badge label={topic.genre} color={color} />
+      <section
+        className="relative overflow-hidden rounded-[1.75rem] border p-5 sm:p-7"
+        style={{
+          borderColor: `${color}28`,
+          background: `linear-gradient(135deg, ${color}20, rgba(255,255,255,0.035) 48%, rgba(5,8,22,0.7))`,
+          boxShadow: `0 24px 70px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08)`,
+        }}
+      >
+        <div className="pointer-events-none absolute right-4 top-4 text-7xl font-black text-white/[0.035]">
+          {isPoem ? "PUISI" : "KISAH"}
         </div>
-      )}
-
-      {topic.sinopsis && (
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Sinopsis</p>
-          <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
-        </div>
-      )}
-
-      {/* Tema */}
-      {topic.tema && (
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Tema</p>
-          <p className="text-sm font-medium text-white/80">{topic.tema}</p>
-        </div>
-      )}
-
-      {/* Persoalan / Nilai / Pengajaran / Gaya Bahasa */}
-      {[
-        { label: "Persoalan", items: topic.persoalan, accent: "#C084FC" },
-        { label: "Nilai", items: topic.nilai, accent: "#34D399" },
-        { label: "Pengajaran", items: topic.pengajaran, accent: "#FBBF24" },
-        { label: "Gaya Bahasa", items: topic.gayaBahasa, accent: "#FB923C" },
-      ].map(({ label, items, accent }) =>
-        items && items.length > 0 ? (
-          <div key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-            <p className="mb-3 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>
-              {label}
-            </p>
-            <ul className="space-y-1.5">
-              {items.map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
-                  {item}
-                </li>
-              ))}
-            </ul>
+        <div className="relative z-10">
+          <div className="mb-4 flex flex-wrap gap-2">
+            <Badge label={work.typeLabel} color={color} />
+            <span className="inline-flex items-center gap-1 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-2.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-yellow-300">
+              <Zap className="h-3 w-3" />
+              Quick Revision
+            </span>
           </div>
-        ) : null,
-      )}
+          <h3 className="font-display text-2xl font-black text-white sm:text-3xl">{work.title}</h3>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-white/70">{work.intro}</p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <KomsasHeroStat icon={<Clock className="h-4 w-4" />} label="Study Time" value={work.studyTime} color={color} />
+            <KomsasHeroStat icon={<Target className="h-4 w-4" />} label="Level" value={work.difficulty} color="#34D399" />
+            <KomsasHeroStat icon={<Trophy className="h-4 w-4" />} label="Exam Mode" value="Siap ulang kaji" color="#FBBF24" />
+          </div>
+          <div className="mt-5 rounded-2xl border border-white/[0.08] bg-black/15 p-4">
+            <div className="mb-2 flex items-center justify-between text-xs">
+              <span className="font-bold text-white/60">Learning journey</span>
+              <span className="font-black" style={{ color }}>{completionValue}% unlocked</span>
+            </div>
+            <Progress value={completionValue} className="h-2 bg-white/10" />
+          </div>
+        </div>
+      </section>
 
-      <div className="flex gap-3">
-        <PlaceholderChip label="Soalan Latihan" />
-        <PlaceholderChip label="Kuiz KOMSAS" />
+      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <OverviewCard icon={<Target className="h-4 w-4" />} label="Tema Utama" value={work.quickOverview.theme} accent="#60A5FA" />
+        <OverviewCard icon={<UserRound className="h-4 w-4" />} label="Watak Utama" value={work.quickOverview.mainCharacters ?? "Tiada watak khusus"} accent="#C084FC" />
+        <OverviewCard icon={<Heart className="h-4 w-4" />} label="Nilai Penting" value={work.quickOverview.values} accent="#34D399" />
+        <OverviewCard icon={<Lightbulb className="h-4 w-4" />} label="Pengajaran Utama" value={work.quickOverview.lesson} accent="#FBBF24" />
+      </section>
+
+      <Tabs defaultValue={isPoem ? "decoder" : "story"} className="w-full">
+        <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-2 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-2">
+          {isPoem ? (
+            <TabsTrigger value="decoder" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+              <PenTool className="mr-1.5 h-3.5 w-3.5" /> Decoder
+            </TabsTrigger>
+          ) : (
+            <>
+              <TabsTrigger value="story" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+                <BookOpen className="mr-1.5 h-3.5 w-3.5" /> Story Mode
+              </TabsTrigger>
+              <TabsTrigger value="characters" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+                <UserRound className="mr-1.5 h-3.5 w-3.5" /> Watak
+              </TabsTrigger>
+            </>
+          )}
+          <TabsTrigger value="explore" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+            <Map className="mr-1.5 h-3.5 w-3.5" /> Explore
+          </TabsTrigger>
+          <TabsTrigger value="exam" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+            <Flame className="mr-1.5 h-3.5 w-3.5" /> Exam
+          </TabsTrigger>
+          <TabsTrigger value="quiz" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+            <FileQuestion className="mr-1.5 h-3.5 w-3.5" /> Quiz
+          </TabsTrigger>
+        </TabsList>
+
+        {isPoem && (
+          <TabsContent value="decoder" className="mt-0 space-y-5">
+            <SectionLabel>Maksud Dalam Bahasa Mudah</SectionLabel>
+            <Accordion type="single" collapsible defaultValue="rangkap-0" className="space-y-3">
+              {work.decoder?.map((item, index) => (
+                <AccordionItem key={item.rangkap} value={`rangkap-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                  <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                    <span className="flex items-center gap-3">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${color}20`, color }}>
+                        R{index + 1}
+                      </span>
+                      <span className="font-bold text-white/85">{item.rangkap}</span>
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4">
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <DecoderCell label="Maksud Mudah" value={item.maksud} accent={color} />
+                      <DecoderCell label="Tema" value={item.tema} accent="#60A5FA" />
+                      <DecoderCell label="Nilai" value={item.nilai} accent="#34D399" />
+                      <DecoderCell label="Pengajaran" value={item.pengajaran} accent="#FBBF24" />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </TabsContent>
+        )}
+
+        {!isPoem && (
+          <TabsContent value="story" className="mt-0 space-y-6">
+            <div>
+              <SectionLabel>Jalan Cerita Ringkas</SectionLabel>
+              <div className="space-y-3">
+                {work.story?.map((stage, index) => (
+                  <div key={stage.stage} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                    <div className="mb-2 flex items-center gap-3">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${timelineColors[index].color}25`, color: timelineColors[index].color }}>
+                        {index + 1}
+                      </span>
+                      <div>
+                        <p className="font-bold text-white">{stage.stage}</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">{stage.tone}</p>
+                      </div>
+                    </div>
+                    <p className="text-sm leading-7 text-white/65">{stage.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <SectionLabel>Plot Timeline</SectionLabel>
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <div className="grid gap-3 sm:grid-cols-5">
+                  {work.story?.map((stage, index) => (
+                    <div key={stage.stage} className="relative rounded-xl border border-white/[0.06] bg-black/10 p-3 text-center">
+                      <div className="mx-auto mb-2 h-3 w-3 rounded-full" style={{ background: timelineColors[index].color, boxShadow: `0 0 16px ${timelineColors[index].color}` }} />
+                      <p className="text-xs font-black text-white">{timelineColors[index].emoji} {stage.stage}</p>
+                      <p className="mt-1 text-[10px] leading-4 text-white/40">{stage.tone}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+        )}
+
+        {!isPoem && (
+          <TabsContent value="characters" className="mt-0">
+            <SectionLabel>Character Explorer</SectionLabel>
+            <div className="grid gap-4 md:grid-cols-2">
+              {work.characters?.map((character) => (
+                <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+                  <div className="mb-3 flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-display text-lg font-black text-white">{character.name}</p>
+                      <p className="text-xs text-white/40">{character.role}</p>
+                    </div>
+                    <Drama className="h-5 w-5 shrink-0" style={{ color }} />
+                  </div>
+                  <div className="mb-4 flex flex-wrap gap-1.5">
+                    {character.traits.map((trait) => (
+                      <span key={trait} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold text-white/55">
+                        {trait}
+                      </span>
+                    ))}
+                  </div>
+                  <MiniExplain label="Bukti dalam karya" text={character.evidence} accent="#60A5FA" />
+                  <MiniExplain label="Mengapa penting" text={character.importance} accent="#FBBF24" />
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+        )}
+
+        <TabsContent value="explore" className="mt-0 space-y-6">
+          <ExplorerSections work={work} color={color} />
+        </TabsContent>
+
+        <TabsContent value="exam" className="mt-0 space-y-6">
+          <ExamSections work={work} color={color} />
+        </TabsContent>
+
+        <TabsContent value="quiz" className="mt-0 space-y-6">
+          <MiniQuizPlaceholder color={color} />
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
+
+function KomsasHeroStat({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
+  return (
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.05] p-3">
+      <div className="mb-1 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/35">
+        <span style={{ color }}>{icon}</span>
+        {label}
+      </div>
+      <p className="text-sm font-bold text-white">{value}</p>
+    </div>
+  );
+}
+
+function OverviewCard({ icon, label, value, accent }: { icon: React.ReactNode; label: string; value: string; accent: string }) {
+  return (
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+      <div className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest" style={{ color: accent }}>
+        {icon}
+        {label}
+      </div>
+      <p className="text-sm leading-6 text-white/75">{value}</p>
+    </div>
+  );
+}
+
+function DecoderCell({ label, value, accent }: { label: string; value: string; accent: string }) {
+  return (
+    <div className="rounded-xl border border-white/[0.06] bg-black/10 p-3">
+      <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>{label}</p>
+      <p className="text-sm leading-6 text-white/70">{value}</p>
+    </div>
+  );
+}
+
+function MiniExplain({ label, text, accent }: { label: string; text: string; accent: string }) {
+  return (
+    <div className="mb-3 rounded-xl border border-white/[0.06] bg-black/10 p-3">
+      <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>{label}</p>
+      <p className="text-xs leading-6 text-white/60">{text}</p>
+    </div>
+  );
+}
+
+const timelineColors = [
+  { color: "#34D399", emoji: "" },
+  { color: "#FBBF24", emoji: "" },
+  { color: "#FB923C", emoji: "" },
+  { color: "#F43F5E", emoji: "" },
+  { color: "#60A5FA", emoji: "" },
+];
+
+function ExplorerSections({ work, color }: { work: KomsasWork; color: string }) {
+  return (
+    <>
+      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+        <div className="mb-4 flex items-center gap-2">
+          <Target className="h-5 w-5" style={{ color }} />
+          <h3 className="font-display text-lg font-bold text-white">Tema Explorer</h3>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
+          <DecoderCell label="Maksud tema" value={work.themeExplorer.meaning} accent={color} />
+          <DecoderCell label="Mengapa muncul" value={work.themeExplorer.whyAppears} accent="#60A5FA" />
+          <DecoderCell label="Bukti karya" value={work.themeExplorer.evidence} accent="#34D399" />
+          <DecoderCell label="Kenapa murid perlu peduli" value={work.themeExplorer.whyCare} accent="#FBBF24" />
+        </div>
+      </div>
+
+      <div>
+        <SectionLabel>Persoalan Explorer</SectionLabel>
+        <div className="grid gap-3 md:grid-cols-3">
+          {work.persoalan.map((item) => (
+            <div key={item.title} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <p className="mb-2 font-bold text-white">{item.title}</p>
+              <MiniExplain label="Situasi dalam karya" text={item.situation} accent="#C084FC" />
+              <p className="text-sm leading-6 text-white/60">{item.explanation}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <SectionLabel>Nilai & Pengajaran</SectionLabel>
+        <div className="grid gap-3 md:grid-cols-3">
+          {work.valuesLessons.map((item) => (
+            <div key={item.value} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+              <div className="mb-3 flex items-center gap-2 text-emerald-300">
+                <Star className="h-4 w-4" />
+                <p className="font-bold">{item.value}</p>
+              </div>
+              <MiniExplain label="Contoh dalam karya" text={item.example} accent="#60A5FA" />
+              <MiniExplain label="Pengajaran hidup sebenar" text={item.lesson} accent="#FBBF24" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
+        <div className="mb-3 flex items-center gap-2 text-cyan-300">
+          <MessageCircle className="h-5 w-5" />
+          <h3 className="font-display text-lg font-bold">Cikgu AcadeMy Explains</h3>
+        </div>
+        <div className="space-y-3">
+          {work.teacherExplains.map((explain) => (
+            <p key={explain} className="rounded-xl border border-cyan-400/10 bg-black/10 p-3 text-sm leading-7 text-white/70">
+              {explain}
+            </p>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function ExamSections({ work, color }: { work: KomsasWork; color: string }) {
+  return (
+    <>
+      <div className="rounded-2xl border border-orange-400/20 bg-orange-400/5 p-5">
+        <div className="mb-4 flex items-center gap-2 text-orange-300">
+          <Flame className="h-5 w-5" />
+          <h3 className="font-display text-lg font-bold">Frequently Tested Points</h3>
+        </div>
+        <div className="grid gap-3 md:grid-cols-4">
+          <ExamList title="Popular Themes" items={work.examBooster.themes} accent="#60A5FA" />
+          <ExamList title="Popular Characters" items={work.examBooster.characters} accent="#C084FC" />
+          <ExamList title="Values" items={work.examBooster.values} accent="#34D399" />
+          <ExamList title="Lessons" items={work.examBooster.lessons} accent="#FBBF24" />
+        </div>
+      </div>
+
+      <div>
+        <SectionLabel>KBAT Corner</SectionLabel>
+        <Accordion type="single" collapsible defaultValue="kbat-0" className="space-y-3">
+          {work.kbat.map((item, index) => (
+            <AccordionItem key={item.question} value={`kbat-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+              <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                <span className="flex items-center gap-3">
+                  <Brain className="h-5 w-5" style={{ color }} />
+                  <span className="font-bold text-white/85">KBAT {index + 1}</span>
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="px-4 pb-4">
+                <div className="grid gap-3 md:grid-cols-2">
+                  <DecoderCell label="Scenario" value={item.scenario} accent="#60A5FA" />
+                  <DecoderCell label="KBAT Question" value={item.question} accent="#C084FC" />
+                  <DecoderCell label="Model Answer" value={item.answer} accent="#34D399" />
+                  <DecoderCell label="Explanation" value={item.explanation} accent="#FBBF24" />
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+
+      <div>
+        <SectionLabel>Common Student Mistakes</SectionLabel>
+        <div className="grid gap-3 md:grid-cols-2">
+          {work.mistakes.map((mistake) => (
+            <div key={mistake.wrong} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+              <div className="border-b border-rose-400/10 bg-rose-400/8 p-4">
+                <div className="mb-1 flex items-center gap-2 text-rose-300">
+                  <AlertTriangle className="h-4 w-4" />
+                  <p className="font-bold">Wrong interpretation</p>
+                </div>
+                <p className="text-sm text-white/70">{mistake.wrong}</p>
+                <p className="mt-2 text-xs leading-5 text-rose-100/60">{mistake.whyWrong}</p>
+              </div>
+              <div className="bg-emerald-400/8 p-4">
+                <div className="mb-1 flex items-center gap-2 text-emerald-300">
+                  <CheckCircle className="h-4 w-4" />
+                  <p className="font-bold">Correct interpretation</p>
+                </div>
+                <p className="text-sm text-white/70">{mistake.correct}</p>
+                <p className="mt-2 text-xs leading-5 text-emerald-100/60">{mistake.whyCorrect}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+        <div className="mb-4 flex items-center gap-2">
+          <GraduationCap className="h-5 w-5" style={{ color }} />
+          <h3 className="font-display text-lg font-bold text-white">Quick Revision Sheet</h3>
+        </div>
+        <div className="grid gap-3 md:grid-cols-5">
+          <DecoderCell label="Tema" value={work.revision.tema} accent={color} />
+          <DecoderCell label="Persoalan" value={work.revision.persoalan} accent="#60A5FA" />
+          <DecoderCell label="Watak" value={work.revision.watak} accent="#C084FC" />
+          <DecoderCell label="Nilai" value={work.revision.nilai} accent="#34D399" />
+          <DecoderCell label="Pengajaran" value={work.revision.pengajaran} accent="#FBBF24" />
+        </div>
+      </div>
+    </>
+  );
+}
+
+function ExamList({ title, items, accent }: { title: string; items: string[]; accent: string }) {
+  return (
+    <div className="rounded-xl border border-white/[0.06] bg-black/10 p-3">
+      <p className="mb-2 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>{title}</p>
+      <div className="space-y-1.5">
+        {items.map((item) => (
+          <p key={item} className="rounded-lg bg-white/[0.04] px-2 py-1.5 text-xs text-white/65">{item}</p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MiniQuizPlaceholder({ color }: { color: string }) {
+  const quizTypes = [
+    { icon: <FileQuestion className="h-4 w-4" />, title: "MCQ", text: "Objektif cepat untuk semak tema, watak dan nilai." },
+    { icon: <Map className="h-4 w-4" />, title: "Matching", text: "Padankan watak, peristiwa, nilai dan pengajaran." },
+    { icon: <Brain className="h-4 w-4" />, title: "KBAT", text: "Jawapan berpandu dengan ruang model answer." },
+  ];
+
+  return (
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div>
+          <p className="text-[9px] font-black uppercase tracking-widest" style={{ color }}>Mini Quiz Lab</p>
+          <h3 className="font-display text-lg font-bold text-white">Quiz placeholders ready</h3>
+        </div>
+        <div className="rounded-xl border border-white/[0.08] bg-black/20 px-3 py-2 text-right">
+          <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Score</p>
+          <p className="text-lg font-black text-white">0 / 0</p>
+        </div>
+      </div>
+      <div className="grid gap-3 md:grid-cols-3">
+        {quizTypes.map((quiz) => (
+          <div key={quiz.title} className="rounded-2xl border border-white/[0.08] bg-black/10 p-4">
+            <div className="mb-2 flex items-center gap-2 font-bold" style={{ color }}>
+              {quiz.icon}
+              {quiz.title}
+            </div>
+            <p className="text-sm leading-6 text-white/55">{quiz.text}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-4">
+        <div className="mb-2 flex items-center justify-between text-xs text-white/45">
+          <span>Progress tracker placeholder</span>
+          <span>Future: quizzes, flashcards, AI video summaries</span>
+        </div>
+        <Progress value={0} className="h-2 bg-white/10" />
       </div>
     </div>
   );

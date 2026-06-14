@@ -410,7 +410,7 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
 const KOMSAS_TOPICS: BMTopic[] = [
   {
     id: "pantun-dua-kerat",
-    label: "Pantun Dua Kerat",
+    label: "Pantun Dua Kerat (Nasihat)",
     topicType: "komsas",
     badge: "Pantun",
     genre: "Pantun",
