@@ -10,6 +10,8 @@ import {
   type BMHub,
   type BMTopic,
 } from "@/data/bm-structure";
+import { getSistemBahasaContent } from "@/data/bm-k1-sistem-bahasa";
+import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 
 // ─── Navigation state ─────────────────────────────────────────────────────────
 
@@ -1091,6 +1093,14 @@ function TopicView({
   topic: BMTopic;
   onBack: () => void;
 }) {
+  // Premium full-page renderer for Sistem Bahasa topics
+  if (topic.topicType === "tatabahasa") {
+    const premiumContent = getSistemBahasaContent(topic.id);
+    if (premiumContent) {
+      return <SistemBahasaTopicDetail topic={premiumContent} onBack={onBack} />;
+    }
+  }
+
   return (
     <div>
       <PageHeader
