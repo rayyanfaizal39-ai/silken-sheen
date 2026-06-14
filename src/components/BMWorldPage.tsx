@@ -1277,7 +1277,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
       <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
         <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
           <Clapperboard className="h-5 w-5" />
-          <h3 className="font-display text-lg font-bold">Cerita Dalam 30 Saat</h3>
+          <h3 className="font-display text-lg font-bold">{work.movieTrailer ? "Movie Trailer" : "Cerita Dalam 30 Saat"}</h3>
         </div>
         <p className="text-sm leading-7 text-white/75">{getTrailerSummary(work)}</p>
       </section>
@@ -1426,6 +1426,9 @@ function getWeakAnswer(item: KomsasExamQuestion) {
 }
 
 function getTrailerSummary(work: KomsasWork) {
+  if (typeof work.movieTrailer === "string" && work.movieTrailer.trim()) {
+    return work.movieTrailer;
+  }
   if (typeof work.story60 === "string" && work.story60.trim()) {
     return work.story60.split(".").slice(0, 3).join(". ").replace(/\s+/g, " ").trim() + ".";
   }
@@ -1489,6 +1492,20 @@ function getRelationshipCards(work: KomsasWork) {
 }
 
 function getCommonMistakes(work: KomsasWork) {
+  if (work.id === "cerpen-oren") {
+    return [
+      { wrong: "Menganggap Kelabu ialah watak jahat.", fix: "Betulkan: Kelabu bukan jahat. Kelabu hanya kucing baharu yang manja; konflik berlaku kerana perhatian keluarga tidak seimbang." },
+      { wrong: "Menganggap Oren marah tanpa sebab.", fix: "Betulkan: Oren terasa tersisih kerana layanan keluarga berubah selepas Kelabu hadir." },
+      { wrong: "Tidak memahami maksud penyesalan Ayah.", fix: "Betulkan: Penyesalan Ayah menunjukkan kesedaran bahawa kasih sayang terhadap Oren telah diabaikan." },
+    ];
+  }
+  if (work.id === "cerpen-kuih-bakul") {
+    return [
+      { wrong: "Menyamakan tema dengan pengajaran.", fix: "Betulkan: tema ialah idea besar, iaitu kebenaran dan kasih sayang keluarga. Pengajaran ialah ayat tindakan seperti kita hendaklah bercakap benar." },
+      { wrong: "Menganggap Lim Meng punca sebenar masalah.", fix: "Betulkan: Lim Meng ialah mangsa tuduhan. Punca sebenar berkaitan perbuatan Lim Foong dan prasangka Lim Pooi." },
+      { wrong: "Tidak memahami peranan Sim Pau.", fix: "Betulkan: Sim Pau ialah watak penting yang mendedahkan kebenaran dan membantu menyatukan semula keluarga." },
+    ];
+  }
   return [
     { wrong: "Menyamakan tema dengan pengajaran.", fix: `Betulkan: tema ialah idea besar seperti "${work.revision?.theme ?? "tema utama"}". Pengajaran ialah ayat tindakan.` },
     { wrong: "Menulis nilai tanpa contoh.", fix: "Betulkan: tulis nilai + bukti ringkas daripada karya." },
