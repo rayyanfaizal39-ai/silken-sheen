@@ -842,6 +842,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         </TabsContent>
       </Tabs>
 
+      <KomsasKssmMasterSections work={work} color={color} />
       <KomsasExamPrepAddOns work={work} color={color} />
     </div>
   );
@@ -935,6 +936,254 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
         </div>
         <Progress value={0} className="h-2 bg-white/10" />
       </div>
+    </div>
+  );
+}
+
+function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: string }) {
+  const characters = Array.isArray(work.masterCharacters) ? work.masterCharacters : [];
+  const relationships = Array.isArray(work.relationshipMap) ? work.relationshipMap : [];
+  const plot = Array.isArray(work.detailedPlot) ? work.detailedPlot : [];
+  const events = Array.isArray(work.importantEvents) ? work.importantEvents : [];
+  const examCharacters = Array.isArray(work.examCharacterAnalysis) ? work.examCharacterAnalysis : [];
+  const issues = Array.isArray(work.issues) ? work.issues : [];
+  const uasaQuestions = Array.isArray(work.uasaQuestions) ? work.uasaQuestions : [];
+  const focus = work.keyCharacterFocus;
+  const memory = work.memory60;
+
+  return (
+    <div className="space-y-6">
+      {characters.length > 0 && (
+        <section>
+          <SectionLabel>Watak & Perwatakan Master File</SectionLabel>
+          <div className="grid gap-3 md:grid-cols-2">
+            {characters.map((character) => (
+              <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2" style={{ color }}>
+                    <Heart className="h-4 w-4" />
+                    <p className="font-display text-lg font-bold">{character.name}</p>
+                  </div>
+                  <Badge label="Master File" color={color} />
+                </div>
+                <div className="mb-3 flex flex-wrap gap-1.5">
+                  {(Array.isArray(character.traits) ? character.traits : []).map((trait) => (
+                    <span key={trait} className="rounded-lg border border-emerald-400/15 bg-emerald-400/10 px-2 py-1 text-[10px] font-bold text-emerald-200">
+                      {trait}
+                    </span>
+                  ))}
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <MiniExplain label="Peranan" text={character.role ?? "Peranan belum tersedia."} accent={color} />
+                  <MiniExplain label="Bukti Perwatakan" text={character.evidence ?? "Bukti umum daripada karya."} accent="#60A5FA" />
+                  <MiniExplain label="Hubungan" text={character.relationships ?? "Hubungan watak membantu mesej karya."} accent="#C084FC" />
+                  <MiniExplain label="Kepentingan" text={character.importance ?? "Watak ini membantu membawa tema dan pengajaran."} accent="#FBBF24" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {relationships.length > 0 && (
+        <section>
+          <SectionLabel>Hubungan Watak</SectionLabel>
+          <div className="grid gap-3 md:grid-cols-3">
+            {relationships.map((relationship) => (
+              <div key={`${relationship.from}-${relationship.to}-${relationship.relation}`} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <div className="mb-3 rounded-xl border border-white/[0.06] bg-black/10 p-3 text-center text-sm font-black text-white">
+                  {relationship.from} <span style={{ color }}>{relationship.relation}</span> {relationship.to}
+                </div>
+                <p className="text-xs leading-6 text-white/55">{relationship.explanation}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {plot.length > 0 && (
+        <section>
+          <SectionLabel>Jalan Cerita Lengkap</SectionLabel>
+          <Accordion type="single" collapsible defaultValue="plot-0" className="space-y-3">
+            {plot.map((item, index) => (
+              <AccordionItem key={item.stage} value={`plot-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${storyTimelineColors[index] ?? color}22`, color: storyTimelineColors[index] ?? color }}>
+                      {index + 1}
+                    </span>
+                    <span className="font-bold text-white/85">{item.stage}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  <div className="grid gap-3 md:grid-cols-3">
+                    <DecoderCell label="Apa berlaku" value={item.what ?? "Isi belum tersedia."} accent={color} />
+                    <DecoderCell label="Mengapa berlaku" value={item.why ?? "Sebab belum tersedia."} accent="#FBBF24" />
+                    <DecoderCell label="Kesan kepada cerita" value={item.effect ?? "Kesan belum tersedia."} accent="#60A5FA" />
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      )}
+
+      {work.story90 && (
+        <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
+          <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
+            <Clapperboard className="h-5 w-5" />
+            <h3 className="font-display text-lg font-bold">Cerita Dalam 90 Saat</h3>
+          </div>
+          <p className="text-sm leading-7 text-white/75">{work.story90}</p>
+        </section>
+      )}
+
+      {work.retelling3Min && (
+        <section className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
+          <div className="mb-3 flex items-center gap-2 text-cyan-300">
+            <BookOpen className="h-5 w-5" />
+            <h3 className="font-display text-lg font-bold">{work.kind === "story" ? "Cerita Dalam 3 Minit" : "Karya Dalam 3 Minit"}</h3>
+          </div>
+          <p className="text-sm leading-7 text-white/75">{work.retelling3Min}</p>
+        </section>
+      )}
+
+      {issues.length > 0 && (
+        <section>
+          <SectionLabel>Persoalan</SectionLabel>
+          <div className="grid gap-3 md:grid-cols-2">
+            {issues.map((issue) => (
+              <div key={issue.issue} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <div className="mb-2 flex items-center gap-2" style={{ color }}>
+                  <Brain className="h-4 w-4" />
+                  <p className="font-bold text-white">{issue.issue}</p>
+                </div>
+                <p className="text-sm leading-6 text-white/60">{issue.explanation}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {events.length > 0 && (
+        <section>
+          <SectionLabel>Peristiwa Penting</SectionLabel>
+          <div className="grid gap-3 md:grid-cols-2">
+            {events.map((event, index) => (
+              <div key={`${event.event}-${index}`} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-xl text-[10px] font-black" style={{ background: `${color}20`, color }}>
+                    {index + 1}
+                  </span>
+                  <p className="font-bold text-white">{event.event}</p>
+                </div>
+                <MiniExplain label="Apa berlaku" text={event.what ?? "Peristiwa utama karya."} accent={color} />
+                <MiniExplain label="Mengapa penting" text={event.whyImportant ?? "Peristiwa ini membantu membina tema."} accent="#FBBF24" />
+                <MiniExplain label="Soalan mungkin keluar" text={event.possibleQuestion ?? "Jelaskan kepentingan peristiwa ini."} accent="#60A5FA" />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {focus && (
+        <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
+          <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
+            <Target className="h-5 w-5" />
+            <h3 className="font-display text-lg font-bold">Watak Paling Penting: {focus.name}</h3>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            <DecoderCell label="Mengapa penting" value={focus.whyMatters ?? "Watak ini membawa mesej utama karya."} accent="#F0ABFC" />
+            <DecoderCell label="Tema" value={focus.supportsTheme ?? "Menyokong tema utama."} accent={color} />
+            <DecoderCell label="Persoalan" value={focus.supportsIssues ?? "Membantu persoalan karya."} accent="#60A5FA" />
+            <DecoderCell label="Nilai & Pengajaran" value={`${focus.supportsValues ?? "Menonjolkan nilai."} ${focus.supportsLessons ?? "Menguatkan pengajaran."}`} accent="#FBBF24" />
+          </div>
+        </section>
+      )}
+
+      {work.authorPurpose && (
+        <section className="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-5">
+          <div className="mb-3 flex items-center gap-2 text-violet-300">
+            <Brain className="h-5 w-5" />
+            <h3 className="font-display text-lg font-bold">Mengapa Cerita Ini Ditulis</h3>
+          </div>
+          <p className="text-sm leading-7 text-white/75">{work.authorPurpose}</p>
+        </section>
+      )}
+
+      {uasaQuestions.length > 0 && (
+        <section>
+          <SectionLabel>Soalan Popular UASA - Skema Penuh</SectionLabel>
+          <Accordion type="single" collapsible defaultValue="uasa-0" className="space-y-3">
+            {uasaQuestions.map((item, index) => (
+              <AccordionItem key={`${item.type}-${item.question}`} value={`uasa-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                  <span className="flex items-center gap-3">
+                    <span className="rounded-lg px-2 py-1 text-[10px] font-black uppercase tracking-widest" style={{ background: `${color}20`, color }}>
+                      {item.type}
+                    </span>
+                    <span className="font-bold text-white/85">{item.question}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  <div className="grid gap-3 md:grid-cols-2">
+                    <DecoderCell label="Skema Jawapan" value={item.answer ?? "Jawapan belum tersedia."} accent="#34D399" />
+                    <DecoderCell label="Cara fikir" value={item.explanation ?? "Jawab dengan bukti karya dan ayat lengkap."} accent="#60A5FA" />
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      )}
+
+      {examCharacters.length > 0 && (
+        <section>
+          <SectionLabel>Exam Character Analysis</SectionLabel>
+          <Accordion type="single" collapsible defaultValue="exam-char-0" className="space-y-3">
+            {examCharacters.map((item, index) => (
+              <AccordionItem key={`${item.character}-${item.trait}`} value={`exam-char-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                  <span className="flex items-center gap-3">
+                    <FileQuestion className="h-4 w-4" style={{ color }} />
+                    <span className="font-bold text-white/85">{item.character}: {item.trait}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  <div className="grid gap-3 md:grid-cols-3">
+                    <DecoderCell label="Watak" value={item.character} accent={color} />
+                    <DecoderCell label="Bukti" value={item.evidence ?? "Bukti umum daripada karya."} accent="#60A5FA" />
+                    <DecoderCell label="Model answer" value={item.modelAnswer ?? "Jawab dengan watak, perwatakan dan bukti."} accent="#34D399" />
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      )}
+
+      {memory && (
+        <section
+          className="rounded-[1.75rem] border p-5"
+          style={{
+            borderColor: `${color}35`,
+            background: `linear-gradient(135deg, ${color}16, rgba(52,211,153,0.08), rgba(255,255,255,0.03))`,
+          }}
+        >
+          <div className="mb-4 flex items-center gap-2">
+            <Zap className="h-5 w-5" style={{ color }} />
+            <h3 className="font-display text-lg font-bold text-white">Hafal Dalam 60 Saat</h3>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            <MemoryChip label="Tema" value={memory.theme ?? "Tema utama"} color={color} />
+            <MemoryChip label="Persoalan" value={memory.issues ?? "Persoalan utama"} color="#60A5FA" />
+            <MemoryChip label="Watak Utama" value={memory.mainCharacters ?? "Watak utama"} color="#C084FC" />
+            <MemoryChip label="Peristiwa Penting" value={memory.importantEvents ?? "Peristiwa utama"} color="#FB923C" />
+            <MemoryChip label="Nilai" value={memory.values ?? "Nilai utama"} color="#34D399" />
+            <MemoryChip label="Pengajaran" value={memory.lessons ?? "Pengajaran utama"} color="#FBBF24" />
+          </div>
+        </section>
+      )}
     </div>
   );
 }
