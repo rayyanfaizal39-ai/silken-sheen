@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run build 2>&1)",
+      "Read(//c/Users/rayya/.claude/skills/ui-ux-pro-max/**)",
+      "Read(//c/Users/rayya/.claude/src/ui-ux-pro-max/**)",
+      "Read(//c/Users/rayya/.claude/**)",
+      "Bash(npx eslint *)",
+      "Bash(npx prettier *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)"
+    ]
+  }
+}

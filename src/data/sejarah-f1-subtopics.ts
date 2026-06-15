@@ -1,0 +1,540 @@
+export interface Subtopic {
+  key: string;
+  num: number;
+  title: string;
+  summary: string;
+  keywords: string[];
+}
+
+// Sejarah Form 1 subtopics, keyed by chapter (e.g. "Chapter 1")
+export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
+  "Chapter 1": [
+    {
+      key: "c1-s1",
+      num: 1,
+      title: "Pengertian Sejarah",
+      summary:
+        "Istilah sejarah mempunyai makna unik mengikut bahasa dan pandangan tokoh. Dalam bahasa Arab, ia berasal daripada perkataan 'syajaratun' yang bermaksud pokok — melambangkan salasilah dan asal usul. Dalam bahasa Melayu, sejarah merujuk kepada asal usul, silsilah, dan peristiwa yang benar-benar berlaku, dengan istilah lain seperti 'tambo' (riwayat dahulu kala). Dalam bahasa Inggeris, 'history' berasal daripada perkataan Yunani 'historia' yang bermaksud penyelidikan. Herodotus (Bapa Sejarah) menyatakan sejarah ialah penceritaan tentang tindakan manusia yang mengagumkan. Ibn Khaldun membicarakan masyarakat manusia, peradaban dunia, dan perubahan sifat masyarakat. E.H. Carr menganggap sejarah sebagai proses interaksi berterusan antara ahli sejarah dengan fakta-faktanya. Khoo Kay Kim pula merujuk sejarah kepada apa-apa yang pernah atau sudah berlaku.",
+      keywords: ["syajaratun", "tambo", "historia", "Herodotus", "Ibn Khaldun", "E.H. Carr", "Khoo Kay Kim"],
+    },
+    {
+      key: "c1-s2",
+      num: 2,
+      title: "Masa Silam dan Ruang dalam Sejarah",
+      summary:
+        "Masa silam ialah rentetan peristiwa yang telah berlaku, manakala kronologi ialah penyusunan peristiwa mengikut urutan masa kejadian. Unit masa penting termasuk dekad (10 tahun), abad (100 tahun), dan alaf (1,000 tahun). Konsep Sebelum Masihi (SM) merujuk kepada zaman sebelum kelahiran Nabi Isa AS, manakala Masihi (M) merujuk kepada selepas kelahiran baginda. Pemahaman ruang dan masa membantu sejarawan menyusun peristiwa secara teratur untuk menerangkan sebab dan akibat sesuatu kejadian.",
+      keywords: ["masa silam", "kronologi", "dekad", "abad", "alaf", "SM", "Masihi"],
+    },
+    {
+      key: "c1-s3",
+      num: 3,
+      title: "Sumber Sejarah",
+      summary:
+        "Sumber sejarah terbahagi kepada dua: sumber primer dan sumber sekunder. Sumber primer bersifat asli dan belum diolah — contohnya fosil, artifak (kapak batu, loceng gangsa, mata wang), dokumen rasmi, diari, manuskrip asal, batu bersurat, serta bukan artifak seperti dinding gua, struktur candi, dan lubang sampah yang tidak boleh dialih. Sumber sekunder ialah bahan yang telah diolah, ditafsir, dan diterbitkan untuk umum — contohnya buku teks, majalah, surat khabar, dan ensiklopedia. Sumber primer adalah lebih sahih kerana ia berasal terus dari zaman peristiwa berlaku.",
+      keywords: ["sumber primer", "sumber sekunder", "artifak", "bukan artifak", "fosil", "manuskrip"],
+    },
+    {
+      key: "c1-s4",
+      num: 4,
+      title: "Kaedah Penyelidikan Sejarah",
+      summary:
+        "Terdapat tiga kaedah utama penyelidikan sejarah. (1) Kaedah Bertulis: mengkaji catatan pada batu bersurat, dinding gua, kulit kayu, gading, dan kertas. Langkahnya bermula dengan mengenal pasti sumber, mengumpul, mengesahkan, menganalisis, dan akhirnya menulis. (2) Kaedah Lisan: mendapatkan maklumat melalui temubual dengan tokoh atau saksi peristiwa (orang sumber). Risikonya ialah wujud unsur tokok tambah akibat ingatan yang lemah. (3) Kaedah Arkeologi: pendekatan saintifik melalui aktiviti gali cari (ekskavasi) peninggalan sejarah di permukaan tanah atau di bawah air, menggunakan teknologi moden seperti ujian karbon radioaktif.",
+      keywords: ["kaedah bertulis", "kaedah lisan", "kaedah arkeologi", "ekskavasi", "orang sumber", "tokok tambah"],
+    },
+    {
+      key: "c1-s5",
+      num: 5,
+      title: "Tafsiran Sejarah",
+      summary:
+        "Tafsiran sejarah ialah tindakan menerangkan, mengulas, dan memberi makna kepada fakta sejarah berdasarkan sumber yang ada. Perbezaan tafsiran berlaku kerana perbezaan pandangan sejarawan, ideologi, latar belakang, tujuan penulisan, dan pemilihan sumber yang tidak sama. Contohnya, sejarawan Barat melihat Tok Janggut sebagai pemberontak, manakala sejarawan tempatan memandang beliau sebagai pejuang tanah air. Tafsiran objektif memerlukan pelbagai sumber. Kepentingan tafsiran ialah untuk mendorong kita berfikir secara kritis dalam menilai sesuatu peristiwa dari pelbagai sudut pandang.",
+      keywords: ["tafsiran", "ideologi", "Tok Janggut", "objektif", "pemikiran kritis"],
+    },
+    {
+      key: "c1-s6",
+      num: 6,
+      title: "Kepentingan Mempelajari Sejarah",
+      summary:
+        "Mempelajari sejarah membawa pelbagai kepentingan: (1) Mengenal asal usul keluarga, bangsa, dan negara untuk membina identiti diri. (2) Mengambil iktibar dan pengajaran daripada kejayaan dan kegagalan masa lalu supaya kita boleh membuat keputusan yang lebih baik. (3) Memupuk patriotisme — semangat cinta dan taat setia terhadap negara — dengan menghargai perjuangan nenek moyang dan warisan negara. (4) Mengukuhkan perpaduan dengan memahami sejarah, budaya, dan sumbangan pelbagai kaum di Malaysia agar dapat hidup harmoni.",
+      keywords: ["asal usul", "iktibar", "patriotisme", "perpaduan", "warisan"],
+    },
+  ],
+  "Chapter 2": [
+    {
+      key: "c2-s1",
+      num: 1,
+      title: "Pengenalan dan Istilah Penting",
+      summary:
+        "Zaman Air Batu ialah tempoh di mana suhu bumi turun secara mendadak dan sebahagian besar permukaan bumi dilitupi oleh lapisan air batu yang tebal. Usia bumi dianggarkan kira-kira 4.6 bilion tahun. Dua bidang utama yang mengkaji zaman ini ialah Geologi (sains mengkaji struktur fizikal dan sejarah pembentukan bumi) dan Paleontologi (kajian tentang fosil dan organisma purba). Istilah penting lain termasuk glasier (lapisan ais besar yang bergerak), pengglasieran (proses bumi dilitupi air batu), fosil (sisa hidupan purba), dan nomad (hidup berpindah-randah).",
+      keywords: ["Zaman Air Batu", "Geologi", "Paleontologi", "glasier", "fosil", "nomad"],
+    },
+    {
+      key: "c2-s2",
+      num: 2,
+      title: "Tahap Zaman Air Batu (MPPH)",
+      summary:
+        "Zaman Air Batu dibahagikan kepada empat tahap utama (MPPH): (1) Miosen (23–5 juta tahun dahulu) — pembentukan banjaran gunung dan kemunculan mamalia awal. (2) Pliosen (5.3–2.6 juta tahun dahulu) — penyejukan global dan penyebaran padang rumput yang luas. (3) Pleistosen (2.5 juta–11,700 tahun dahulu) — berlaku 11 kali pengglasieran utama dan manusia mula berhijrah ke Eropah dan Asia. (4) Holosen (11,700 tahun dahulu hingga kini) — zaman moden dengan aktiviti bercucuk tanam, penternakan, ciptaan roda, dan tulisan awal.",
+      keywords: ["Miosen", "Pliosen", "Pleistosen", "Holosen", "pengglasieran", "MPPH"],
+    },
+    {
+      key: "c2-s3",
+      num: 3,
+      title: "Ciri-ciri Zaman Air Batu",
+      summary:
+        "Ciri-ciri utama Zaman Air Batu: suhu bumi sangat rendah; hanya tumbuhan renek dan rumput yang menjalar dapat tumbuh; haiwan berbulu tebal seperti mamot, badak berbulu, dan harimau bertaring panjang mendominasi; manusia hidup secara nomad dengan memburu dan mengumpul makanan untuk mencari kawasan yang lebih panas; paras laut sangat rendah kerana sebahagian besar air terkunci dalam bentuk ais; manusia menggunakan peralatan batu yang kasar dan tinggal di dalam gua untuk berlindung daripada kesejukan.",
+      keywords: ["mamot", "nomad", "tumbuhan renek", "paras laut", "gua", "peralatan batu"],
+    },
+    {
+      key: "c2-s4",
+      num: 4,
+      title: "Perubahan dan Kesan Berakhirnya Zaman Air Batu",
+      summary:
+        "Apabila Zaman Air Batu berakhir, suhu bumi meningkat secara beransur-ansur akibat radiasi matahari. Kesan utamanya: ais cair dan paras laut naik sehingga kira-kira 100 meter; kawasan daratan rendah tenggelam dan membentuk selat, teluk, serta pulau; tasik air tawar baharu terbentuk; mamot dan beberapa mamalia besar pupus kerana gagal menyesuaikan diri dengan iklim panas; manusia mula menetap di satu tempat, bercucuk tanam, menternak, dan membina petempatan kekal — menandakan permulaan Zaman Holosen dan tamadun awal.",
+      keywords: ["pencairan ais", "paras laut", "kepupusan", "penetapan", "Holosen", "tamadun awal"],
+    },
+    {
+      key: "c2-s5",
+      num: 5,
+      title: "Kesan di Asia Tenggara (Pentas Sunda)",
+      summary:
+        "Sebelum Zaman Air Batu berakhir, kawasan Asia Tenggara dihubungkan oleh sebuah daratan luas yang dikenali sebagai Pentas Sunda. Pentas Sunda menyambungkan Semenanjung Malaysia, Singapura, Sumatera, Jawa, dan Borneo sebagai satu daratan tunggal. Apabila ais cair dan paras laut naik, sebahagian besar Pentas Sunda tenggelam dan membentuk Laut China Selatan serta kepulauan yang ada hari ini. Inilah sebab mengapa penduduk Asia Tenggara mempunyai banyak persamaan dari segi ciri fizikal, bahasa Melayu-Polinesia, dan budaya — kerana asalnya mereka berkongsi tamadun di daratan yang sama.",
+      keywords: ["Pentas Sunda", "Laut China Selatan", "Borneo", "Sumatera", "Melayu-Polinesia"],
+    },
+    {
+      key: "c2-s6",
+      num: 6,
+      title: "Kesimpulan",
+      summary:
+        "Zaman Air Batu memberi pengajaran penting tentang hubungan manusia dengan alam sekitar. Perubahan iklim yang ekstrem boleh mengubah muka bumi, menyebabkan kepupusan spesies, dan memaksa manusia berhijrah serta menyesuaikan diri. Pembentukan Pentas Sunda dan kepulauan Asia Tenggara menunjukkan bagaimana geografi rantau kita terbentuk. Memahami zaman ini mendorong kita menjaga alam sekitar pada hari ini bagi mengelakkan perubahan iklim yang ekstrem dan memastikan kelestarian bumi untuk generasi akan datang.",
+      keywords: ["perubahan iklim", "kelestarian", "alam sekitar", "evolusi", "pengajaran"],
+    },
+  ],
+  "Chapter 3": [
+    {
+      key: "c3-s1",
+      num: 1,
+      title: "Maksud Zaman Prasejarah",
+      summary:
+        "Zaman Prasejarah ialah zaman manusia belum mengenali tulisan. Ia dibahagikan kepada dua tahap utama:\n\n🪨 Zaman Batu — Penggunaan teknologi batu dalam kehidupan harian:\n- Paleolitik (Zaman Batu Lama)\n- Mesolitik (Zaman Batu Pertengahan)\n- Neolitik (Zaman Batu Baru)\n\n⚙️ Zaman Logam — Penggunaan teknologi gangsa dan besi.",
+      keywords: ["Zaman Prasejarah", "Zaman Batu", "Zaman Logam", "Paleolitik", "Mesolitik", "Neolitik", "tulisan"],
+    },
+    {
+      key: "c3-s2",
+      num: 2,
+      title: "Garis Masa Zaman Prasejarah",
+      summary:
+        "1️⃣ Zaman Paleolitik (2.5 juta SM – 8,000 SM): Manusia menggunakan peralatan batu yang ringkas dan kasar.\n\n2️⃣ Zaman Mesolitik (12,000 SM – 4,000 SM): Cara hidup semakin berkembang. Menggunakan alat batu yang lebih kecil (mikrolit). Mula tinggal di pinggir sungai dan laut.\n\n3️⃣ Zaman Neolitik (10,000 SM – 2,000 SM): Bermulanya kehidupan menetap. Aktiviti pertanian, penternakan, dan pembuatan tembikar.\n\n4️⃣ Zaman Logam (3,500 SM – 500 M): Manusia mula mencipta alatan daripada gangsa dan besi. Aktiviti pelayaran dan perdagangan mula berkembang.",
+      keywords: ["Paleolitik", "Mesolitik", "Neolitik", "Zaman Logam", "mikrolit", "pertanian", "pelayaran", "SM", "M"],
+    },
+    {
+      key: "c3-s3",
+      num: 3,
+      title: "Lokasi Zaman Prasejarah",
+      summary:
+        "🌍 Lokasi di Dunia:\n- Gua Chauvet (Perancis) — Lukisan gua yang membuktikan aktiviti memburu.\n- Altamira (Sepanyol) — Lukisan gua zaman Paleolitik.\n- Stonehenge (Britain) — Binaan batu besar (megalitik) berkaitan upacara ritual dan astronomi.\n- Catal Huyuk (Turki) — Petempatan Zaman Neolitik yang tersusun.\n- Zhoukoudian (China) — Penemuan rangka 'Peking Man'.\n\n🇲🇾 Lokasi di Malaysia:\n⛏️ Paleolitik:\n- Kota Tampan (Perak) — Bengkel membuat alat batu.\n- Gua Niah (Sarawak) — Penemuan manusia tertua di Asia Tenggara.\n\n⛏️ Mesolitik:\n- Gua Kecil (Pahang)\n- Kawasan di sepanjang Sungai Tembeling.\n\n⛏️ Neolitik:\n- Gua Cha (Kelantan) — Tapak pengebumian penting.\n- Bukit Tengkorak (Sabah) — Tapak pembuatan tembikar.\n\n⛏️ Zaman Logam:\n- Sungai Lang (Selangor) — Penemuan gendang gangsa.\n- Lembah Bernam (Selangor) — Penemuan alat besi bersoket.",
+      keywords: [
+        "Gua Chauvet",
+        "Altamira",
+        "Stonehenge",
+        "Catal Huyuk",
+        "Zhoukoudian",
+        "Kota Tampan",
+        "Gua Niah",
+        "Gua Kecil",
+        "Gua Cha",
+        "Bukit Tengkorak",
+        "Sungai Lang",
+        "Lembah Bernam",
+        "megalitik",
+      ],
+    },
+    {
+      key: "c3-s4",
+      num: 4,
+      title: "Ciri-ciri Kehidupan Manusia Prasejarah",
+      summary:
+        "🏠 Tempat Tinggal:\n- Paleolitik & Mesolitik — Gua, lubang bawah tanah, tempat terbuka.\n- Neolitik — Menetap dalam rumah kayu/tanah di lembah sungai.\n- Zaman Logam — Menetap lebih lama, membina bandar dan kota.\n\n🪓 Peralatan:\n- Paleolitik & Mesolitik — Batu kasar dan ringkas.\n- Neolitik — Batu yang dicanai halus, tembikar.\n- Zaman Logam — Alatan daripada gangsa dan besi (kapak, sabit, mata lembing).\n\n💰 Ekonomi:\n- Paleolitik & Mesolitik — Memburu binatang, mengumpul hasil hutan.\n- Neolitik — Pertanian, penternakan, sistem barter.\n- Zaman Logam — Pertanian pesat, perdagangan antarabangsa melalui laut.\n\n👥 Organisasi Sosial:\n- Paleolitik & Mesolitik — Kumpulan kecil, nomad (berpindah-randah).\n- Neolitik — Hidup menetap, ada ketua, wujud pembahagian kerja.\n- Zaman Logam — Masyarakat kompleks, wujud ketua berwibawa dan undang-undang.\n\n🙏 Kepercayaan:\n- Paleolitik & Mesolitik — Animisme, menghormati si mati.\n- Neolitik — Ritual keagamaan lebih tersusun, percaya kehidupan selepas mati.\n- Zaman Logam — Membina tempat ibadat khusus, upacara pengebumian menggunakan kubur kepingan batu.\n\n🎨 Kesenian:\n- Paleolitik & Mesolitik — Lukisan gua (bersifat realisme).\n- Neolitik — Corak pada tembikar (geometrik).\n- Zaman Logam — Kesenian pada peralatan logam (gendang gangsa Dong Son).",
+      keywords: [
+        "nomad",
+        "animisme",
+        "pertanian",
+        "penternakan",
+        "barter",
+        "tembikar",
+        "gendang gangsa",
+        "Dong Son",
+        "kubur kepingan batu",
+        "kapak",
+        "sabit",
+      ],
+    },
+    {
+      key: "c3-s5",
+      num: 5,
+      title: "Kesinambungan Sumbangan Zaman Prasejarah",
+      summary:
+        "Aktiviti manusia hari ini adalah evolusi daripada penemuan Zaman Prasejarah:\n\n🌾 Pertanian\n→ Bermula daripada menanam bijirin untuk sara diri kepada industri pertanian komersial masa kini.\n\n🐄 Penternakan\n→ Menjamin bekalan makanan yang berterusan.\n\n🔧 Peralatan\n→ Daripada batu kepada logam, membawa kepada penciptaan jentera moden.\n\n🏗️ Seni Bina\n→ Keupayaan membina tempat tinggal berkembang menjadi reka bentuk bangunan yang canggih.",
+      keywords: ["evolusi", "pertanian komersial", "jentera moden", "seni bina", "kesinambungan"],
+    },
+    {
+      key: "c3-s6",
+      num: 6,
+      title: "Penemuan Penting: Perak Man",
+      summary:
+        "📍 Lokasi: Gua Gunung Runtuh, Lenggong, Perak.\n\n🦴 Kepentingan:\n→ Merupakan rangka manusia Zaman Paleolitik yang paling lengkap ditemui di Malaysia.\n→ Membuktikan sistem kepercayaan awal melalui cara si mati dikebumikan bersama barangan tertentu.",
+      keywords: ["Perak Man", "Gua Gunung Runtuh", "Lenggong", "Paleolitik", "pengebumian"],
+    },
+  ],
+  "Chapter 4": [
+    {
+      key: "c4-s1",
+      num: 1,
+      title: "Pengertian Tamadun",
+      summary:
+        "Tamadun bukan sekadar pembangunan bangunan tinggi tetapi merangkumi kemajuan menyeluruh dalam masyarakat.\n\n🌍 Mengikut Bahasa:\n- Bahasa Yunani (Civitas) — Merujuk kepada bandar atau kota. Masyarakat bertamadun telah mencapai kemajuan dalam sistem politik, ekonomi, dan sosial.\n- Bahasa Inggeris (Civilization) — Tahap kebudayaan yang kompleks diukur melalui pencapaian sains, teknologi, seni, dan undang-undang.\n- Bahasa Arab — Menggunakan istilah: Mudun, Madain, Madana (tinggi budi bahasa dan pembukaan bandar); Hadharah (kawasan, daerah, atau kota); Madaniyyah (taraf kehidupan yang maju).\n- Bahasa Melayu — Dikenali sebagai Peradaban, iaitu kemajuan lahiriah dan rohani masyarakat.",
+      keywords: ["Tamadun", "Civitas", "Civilization", "Peradaban", "Mudun", "Hadharah", "Madaniyyah"],
+    },
+    {
+      key: "c4-s2",
+      num: 2,
+      title: "Perbezaan Konsep Tamadun",
+      summary:
+        "☪️ Sudut Pandang Islam:\n- Tamadun adalah pembangunan SEIMBANG antara kebendaan (lahiriah) dan kerohanian (insaniah).\n- Tokoh: Syed Naquib al-Attas → Tamadun ialah keadaan kehidupan insan yang mencapai taraf kehalusan budi pekerti dan kebudayaan yang luhur bagi seluruh masyarakat.\n- Berteraskan nilai murni, akidah, dan syariat Islam.\n\n🌐 Sudut Pandang Barat:\n- Lebih menitikberatkan pembangunan LAHIRIAH (aspek fizikal sahaja).\n- Tokoh: Arnold J. Toynbee → Tamadun sebagai satu sistem masyarakat yang membantu manusia mempertingkatkan hasil kesenian, penulisan, undang-undang, dan sains.",
+      keywords: ["Syed Naquib al-Attas", "Arnold J. Toynbee", "Tamadun Islam", "Tamadun Barat", "lahiriah", "insaniah"],
+    },
+    {
+      key: "c4-s3",
+      num: 3,
+      title: "Sembilan Ciri Utama Tamadun Awal",
+      summary:
+        "1️⃣ Pertanian dan Perdagangan — Manusia mencipta sistem pengairan dan kincir air. Lebihan hasil pertanian membawa kepada perdagangan (barter → mata wang).\n\n2️⃣ Sistem Pemerintahan — Sistem beraja diwujudkan untuk menguruskan populasi yang besar. Undang-undang digubal untuk menjaga keamanan. Contoh: Kod Hammurabi.\n\n3️⃣ Pembentukan Bandar — Bandar berfungsi sebagai pusat pentadbiran, ekonomi (pasar), dan pusat ibadat. Dibina secara terancang dengan sistem saliran dan perparitan.\n\n4️⃣ Pengkhususan Pekerjaan — Wujud golongan pakar seperti artisan (pembuat tembikar dan alat logam), askar, dan pegawai kerajaan.\n\n5️⃣ Teknologi — Penemuan gangsa dan besi untuk alat pertanian yang lebih kuat. Penciptaan RODA membantu pengangkutan (kereta kuda) dan pembuatan tembikar.\n\n6️⃣ Organisasi Sosial — Susun lapis masyarakat berbentuk piramid: Atas (Raja dan Bangsawan), Tengah (Pendeta, pedagang, dan artisan), Bawah (Petani dan hamba).\n\n7️⃣ Agama dan Kepercayaan — Manusia awal mengamalkan politeisme (menyembah banyak tuhan). Membina monumen keagamaan besar seperti Ziggurat (Mesopotamia) dan Piramid (Mesir).\n\n8️⃣ Tulisan dan Penyimpanan Rekod — Penting untuk merekod cukai, perdagangan, dan undang-undang. Contoh tulisan: Kuneiform (Mesopotamia), Hieroglif (Mesir), Ideogram (China).\n\n9️⃣ Kesenian dan Kesusasteraan — Seniman menghasilkan patung tuhan atau raja daripada batu dan logam. Karya sastera menceritakan kehebatan wira dan sejarah raja-raja mereka.",
+      keywords: [
+        "Pertanian",
+        "Kod Hammurabi",
+        "Bandar",
+        "Artisan",
+        "Roda",
+        "Organisasi Sosial",
+        "Politeisme",
+        "Ziggurat",
+        "Piramid",
+        "Kuneiform",
+        "Hieroglif",
+        "Ideogram",
+        "Kesenian",
+      ],
+    },
+  ],
+  "Chapter 5": [
+    {
+      key: "c5-s1",
+      num: 1,
+      title: "Faktor Geografi: Mengapa Lembah Sungai?",
+      summary:
+        "Keempat-empat tamadun awal dunia muncul di lembah sungai utama kerana faktor-faktor berikut:\n\n🌱 Tanah yang Subur — Banjir sungai membawa mendapan lumpur (lanar) yang sangat kaya dengan nutrien untuk pertanian.\n\n💧 Bekalan Air — Sumber utama untuk kegunaan harian manusia, minuman haiwan ternakan, dan pengairan tanaman.\n\n🚢 Pengangkutan & Perhubungan — Sungai berfungsi sebagai jalan raya semula jadi untuk perdagangan antara wilayah.\n\n🐟 Sumber Protein — Membekalkan ikan dan hidupan air sebagai tambahan sumber makanan penduduk.",
+      keywords: [
+        "lembah sungai",
+        "tanah subur",
+        "lanar",
+        "mendapan lumpur",
+        "bekalan air",
+        "pengangkutan",
+        "perdagangan",
+      ],
+    },
+    {
+      key: "c5-s2",
+      num: 2,
+      title: "Tamadun Mesopotamia (3,500 SM – 539 SM)",
+      summary:
+        "Tamadun Mesopotamia terletak di wilayah yang dikenali sebagai Bulan Sabit Subur (Fertile Crescent).\n\n👑 Sistem Beraja & Kerajaan:\n- Setiap negara kota mempunyai pemerintah sendiri. Raja dianggap sebagai wakil tuhan di bumi.\n- Negara kota yang terkenal: Ur, Uruk, Lagash, dan Babylon.\n\n🔬 Sumbangan Sains & Teknologi:\n- Matematik: Memperkenalkan sistem perpuluhan, konsep bulatan 360 darjah, dan formula pengiraan luas.\n- Astronomi: Mencipta kalendar berdasarkan fasa bulan (12 bulan dalam setahun).\n- Seni Bina: Membina Ziggurat sebagai pusat ibadat, pusat penyimpanan khazanah, dan pusat pendidikan.\n\n⚖️ Kod Undang-undang Hammurabi:\n- Merupakan kod undang-undang bertulis tertua.\n- Mengandungi prinsip 'mata ganti mata' untuk memastikan keadilan sosial yang ketat.",
+      keywords: [
+        "Mesopotamia",
+        "Bulan Sabit Subur",
+        "Fertile Crescent",
+        "Ur",
+        "Uruk",
+        "Lagash",
+        "Babylon",
+        "Ziggurat",
+        "Kod Hammurabi",
+        "Kuneiform",
+        "360 darjah",
+        "kalendar bulan",
+      ],
+    },
+    {
+      key: "c5-s3",
+      num: 3,
+      title: "Tamadun Mesir Purba (3,100 SM – 332 SM)",
+      summary:
+        "Tamadun Mesir Purba dibahagikan kepada tiga zaman utama: Kerajaan Purba, Kerajaan Pertengahan, dan Kerajaan Baru.\n\n👑 Organisasi Sosial & Pentadbiran:\n- Firaun: Mempunyai kuasa mutlak dalam pentadbiran, agama, dan ketenteraan.\n- Wazir: Pegawai tertinggi yang membantu Firaun dalam urusan kutipan cukai dan keadilan.\n- Jurutulis (Scribes): Golongan elit yang pakar dalam tulisan Hieroglif untuk menyimpan rekod kerajaan.\n\n🔬 Sumbangan Intelektual & Sains:\n- Perubatan: Kepakaran dalam Mumia (pengawetan mayat) membawa kepada pemahaman anatomi manusia dan pembedahan.\n- Kertas Papirus: Menggunakan serat pokok papirus untuk dijadikan kertas bagi tujuan penulisan dan lukisan.\n- Matematik: Memperkenalkan konsep geometri bagi menguruskan banjir dan pembinaan piramid.",
+      keywords: [
+        "Mesir Purba",
+        "Firaun",
+        "Wazir",
+        "Jurutulis",
+        "Scribes",
+        "Hieroglif",
+        "Mumia",
+        "Papirus",
+        "geometri",
+        "Piramid",
+        "Kerajaan Purba",
+        "Kerajaan Pertengahan",
+        "Kerajaan Baru",
+      ],
+    },
+    {
+      key: "c5-s4",
+      num: 4,
+      title: "Tamadun Indus (2,500 SM – 1,750 SM)",
+      summary:
+        "Tamadun Indus dikenali sebagai tamadun yang mempunyai kemahiran kejuruteraan bangunan yang paling maju pada zamannya.\n\n🏙️ Perancangan Bandar Sistematik:\n- Bandar dibina mengikut pelan grid yang teratur (segi empat tepat).\n- Sistem Perparitan: Longkang di bawah jalan raya adalah tertutup dan mempunyai lubang pemeriksaan untuk memudahkan pembersihan.\n- Pusat Awam: Adanya The Great Bath (kolam mandi awam) yang digunakan untuk upacara keagamaan dan kebersihan.\n\n💼 Ekonomi & Perdagangan:\n- Mencipta Meterai (Seals) yang mempunyai ukiran haiwan dan tulisan sebagai simbol pengenalan pedagang dalam urusan perdagangan antarabangsa dengan Mesopotamia.",
+      keywords: [
+        "Tamadun Indus",
+        "pelan grid",
+        "sistem perparitan",
+        "The Great Bath",
+        "Meterai",
+        "Seals",
+        "Piktograf",
+        "perdagangan antarabangsa",
+        "Mohenjo-daro",
+        "Harappa",
+      ],
+    },
+    {
+      key: "c5-s5",
+      num: 5,
+      title: "Tamadun Huang He (1,766 SM – 256 SM)",
+      summary:
+        "Tamadun Huang He bermula di Lembah Sungai Huang He yang juga dikenali sebagai Sungai Kuning.\n\n🏛️ Sistem Politik:\n- Konsep Mandat dari Syurga: Pemerintah dipercayai mendapat restu tuhan. Jika berlaku bencana alam, ia dianggap petanda bahawa mandat raja telah ditarik balik.\n\n🌾 Kemajuan Pertanian & Ekonomi:\n- Peralatan Besi: Penggunaan cangkul dan sabit daripada besi meningkatkan produktiviti makanan.\n- Sistem Pengairan: Terusan dibina untuk mengalirkan air ke kawasan pertanian dan mengawal banjir.\n\n🖋️ Budaya & Tulisan:\n- Ideogram: Tulisan yang berkembang daripada simbol-simbol pada tulang sula (oracle bones).\n- Sutera: Masyarakat Huang He merupakan yang pertama menenun sutera untuk pakaian.",
+      keywords: [
+        "Huang He",
+        "Sungai Kuning",
+        "Mandat dari Syurga",
+        "oracle bones",
+        "Ideogram",
+        "sutera",
+        "cangkul",
+        "sabit",
+        "terusan",
+        "pengairan",
+      ],
+    },
+    {
+      key: "c5-s6",
+      num: 6,
+      title: "Perbandingan Antara Tamadun Awal",
+      summary:
+        "Jadual perbandingan ringkas antara keempat-empat tamadun awal dunia:\n\n🏛️ Mesopotamia\n- Lokasi Sungai: Tigris & Euphrates\n- Sistem Tulisan: Kuneiform\n- Monumen Terkenal: Ziggurat\n\n🏛️ Mesir Purba\n- Lokasi Sungai: Sungai Nil\n- Sistem Tulisan: Hieroglif\n- Monumen Terkenal: Piramid\n\n🏛️ Indus\n- Lokasi Sungai: Sungai Indus\n- Sistem Tulisan: Piktograf (Indus script)\n- Monumen Terkenal: The Great Bath\n\n🏛️ Huang He\n- Lokasi Sungai: Sungai Huang He\n- Sistem Tulisan: Ideogram\n- Monumen Terkenal: Tembok Besar (Zaman kemudian)",
+      keywords: [
+        "Mesopotamia",
+        "Mesir Purba",
+        "Indus",
+        "Huang He",
+        "Tigris",
+        "Euphrates",
+        "Nil",
+        "Kuneiform",
+        "Hieroglif",
+        "Piktograf",
+        "Ideogram",
+        "Ziggurat",
+        "Piramid",
+        "The Great Bath",
+        "Tembok Besar",
+      ],
+    },
+  ],
+  "Chapter 6": [
+    {
+      key: "c6-s1",
+      num: 1,
+      title: "Pengenalan Tamadun Yunani",
+      summary:
+        "Tamadun Yunani berkembang di Semenanjung Balkan dan pulau-pulau di Laut Aegean. Peningkatannya yang paling ketara adalah dalam aspek pemerintahan dan pentadbiran.\n\n🏛️ Sistem Negara Kota (Polis):\nPolis bukan sekadar bandar, tetapi unit politik yang bebas dan merdeka. Komponen utama polis ialah:\n- Bandar Utama: Pusat tumpuan penduduk.\n- Acropolis: Kawasan tertinggi yang menempatkan bangunan kerajaan, kuil, dan kubu pertahanan.\n- Agora: Kawasan lapang yang berfungsi sebagai pusat ekonomi (pasar) dan tempat pertemuan warganegara.\n- Kawasan Kampung: Kawasan di luar bandar yang membekalkan sumber pertanian.\n\n🌟 Tiga Polis Terkenal: Athens (pusat ilmu dan demokrasi), Sparta (pusat ketenteraan), dan Corinth.",
+      keywords: ["Polis", "Acropolis", "Agora", "Athens", "Sparta", "Corinth", "Semenanjung Balkan", "Laut Aegean"],
+    },
+    {
+      key: "c6-s2",
+      num: 2,
+      title: "Evolusi Pemerintahan Athens (5 Tahap)",
+      summary:
+        "Athens melalui perubahan sistem pemerintahan yang kompleks sebelum mencapai demokrasi:\n\n1️⃣ Monarki — Pemerintahan beraja. Raja mempunyai kuasa mutlak dan dibantu oleh Majlis golongan bangsawan.\n\n2️⃣ Oligarki — Pemerintahan oleh sekelompok kecil orang kaya yang memegang kuasa politik dan ekonomi.\n\n3️⃣ Aristokrasi — Kuasa dipegang oleh golongan bangsawan yang memiliki tanah dan mempunyai pengaruh besar.\n\n4️⃣ Tirani — Pemerintahan oleh individu (diktator) yang merampas kuasa. Walaupun berkuasa mutlak, mereka sering melakukan pembaharuan untuk meraih sokongan rakyat.\n\n5️⃣ Demokrasi — Pemerintahan oleh rakyat melalui wakil. Athens merupakan pelopor sistem demokrasi langsung di dunia.",
+      keywords: ["Monarki", "Oligarki", "Aristokrasi", "Tirani", "Demokrasi", "Athens", "demokrasi langsung"],
+    },
+    {
+      key: "c6-s3",
+      num: 3,
+      title: "Struktur Demokrasi Athens",
+      summary:
+        "Sistem demokrasi Athens mempunyai empat badan utama:\n\n🏛️ Dewan Perhimpunan:\n- Fungsi: Badan tertinggi yang menggubal undang-undang, mengawal kewangan, membincangkan dasar luar, dan bertindak sebagai mahkamah rayuan.\n- Keahlian: Semua warganegara lelaki Athens berumur 18 tahun ke atas. Bersidang sekurang-kurangnya 3 kali sebulan.\n\n📋 Majlis (Council of 500):\n- Fungsi: Menguruskan hal ehwal harian kerajaan dan menyediakan agenda mesyuarat Dewan Perhimpunan.\n- Keahlian: 500 orang dipilih melalui undian untuk tempoh satu tahun.\n\n⚖️ Majistret:\n- Fungsi: Kakitangan awam yang melaksanakan dasar-dasar kerajaan.\n\n👨‍⚖️ Juri:\n- Fungsi: Memutuskan kes mahkamah. Bilangan juri sangat besar (201–501 orang) untuk mengelakkan rasuah.",
+      keywords: ["Dewan Perhimpunan", "Majlis", "Council of 500", "Majistret", "Juri", "demokrasi langsung", "undian"],
+    },
+    {
+      key: "c6-s4",
+      num: 4,
+      title: "Keunikan Sparta: Kerajaan Ketenteraan",
+      summary:
+        "Sparta dikenali sebagai negara kota yang mengutamakan kekuatan ketenteraan:\n\n⚔️ Sistem Diarqi:\n- Diperintah oleh DUA orang raja serentak untuk memastikan tiada seorang pun yang memegang kuasa mutlak.\n\n🏋️ Agoge (Sistem Pendidikan):\n- Anak lelaki Sparta diambil dari keluarga seawal usia 7 tahun untuk menjalani latihan ketenteraan yang sangat keras.\n- Matlamatnya: melahirkan tentera yang setia dan perkasa.\n\n👩 Peranan Wanita:\n- Wanita Sparta diberikan latihan fizikal supaya dapat melahirkan anak yang kuat dan sihat untuk menjadi tentera.",
+      keywords: ["Sparta", "Diarqi", "Agoge", "sistem pendidikan", "latihan ketenteraan", "wanita Sparta"],
+    },
+    {
+      key: "c6-s5",
+      num: 5,
+      title: "Tamadun Rom: Seni Bina Ikonik",
+      summary:
+        "Peningkatan Tamadun Rom yang paling menonjol adalah dalam bidang seni bina yang menggabungkan kepakaran kejuruteraan dengan estetika.\n\n🧱 Bahan Binaan: Pozzolana (campuran kapur dan abu gunung berapi) menghasilkan simen yang sangat kuat dan tahan air.\n\n🏟️ Tujuh Hasil Seni Bina Ikonik:\n1. Colosseum — Amfiteater berbentuk elips, memuatkan 50,000 penonton. Digunakan untuk pertarungan gladiator.\n2. Pantheon — Kuil untuk tuhan-tuhan Rom. Mempunyai kubah konkrit terbesar tanpa tulang sokongan. Di atasnya terdapat Oculus (lubang cahaya).\n3. Akueduk — Sistem saluran air membawa air bersih dari pergunungan ke bandar melalui graviti.\n4. Amfiteater — Tempat persembahan terbuka untuk seni dan teater; direka bentuk dengan aspek akustik.\n5. Jalan Raya Rom — Dibina berlapis (pasir, batu, simen) untuk pergerakan tentera dan perdagangan.\n6. Tembok Hadrian — Tembok pertahanan sepanjang 117 km di Britain untuk melindungi wilayah Rom.\n7. Pusat Mandi Awam — Pusat sosial dilengkapi bilik mandi panas/sejuk/suam, perpustakaan, dan gimnasium.",
+      keywords: [
+        "Pozzolana",
+        "Colosseum",
+        "Pantheon",
+        "Oculus",
+        "Akueduk",
+        "Jalan Raya Rom",
+        "Tembok Hadrian",
+        "Pusat Mandi Awam",
+        "gladiator",
+      ],
+    },
+    {
+      key: "c6-s6",
+      num: 6,
+      title: "Kesimpulan dan Iktibar",
+      summary:
+        "Tamadun Yunani dan Rom meninggalkan warisan yang sangat besar kepada dunia moden:\n\n🗳️ Inovasi Politik:\n- Idea demokrasi Athens menjadi asas kepada sistem politik moden kebanyakan negara hari ini. Konsep parlimen, mahkamah bebas, dan undian adalah warisan terus dari Athens.\n\n🏗️ Inovasi Teknologi:\n- Kepakaran seni bina Rom dalam menggunakan simen (Pozzolana) dan struktur arca membuktikan kehebatan sains dan kreativiti manusia purba. Banyak binaan Rom masih tegak berdiri sehingga kini.\n\n📖 Iktibar:\n- Tamadun boleh tegak melalui kemajuan pemikiran (Yunani) dan kemajuan teknologi (Rom). Kita perlu menggabungkan kedua-dua aspek ini untuk membina masyarakat yang bertamadun.",
+      keywords: [
+        "demokrasi moden",
+        "parlimen",
+        "warisan Yunani",
+        "warisan Rom",
+        "Pozzolana",
+        "seni bina moden",
+        "iktibar",
+      ],
+    },
+  ],
+  "Chapter 8": [
+    {
+      key: "c8-s1",
+      num: 1,
+      title: "Masyarakat Arab Jahiliah",
+      summary:
+        "Zaman Jahiliah (300–610 M) merujuk kepada kejahilan dari segi moral dan akidah, bukan intelek. Masyarakat Arab hidup berpuak-puak mengikut sistem kabilah dan semangat asabiyah yang menyebabkan peperangan berpanjangan seperti Perang al-Basus. Dalam ekonomi pula, amalan riba dan penipuan timbangan menyebabkan ketidakadilan sosial dan penindasan terhadap golongan miskin.",
+      keywords: ["Jahiliah", "asabiyah", "kabilah", "Perang al-Basus", "riba", "penipuan timbangan"],
+    },
+
+    {
+      key: "c8-s2",
+      num: 2,
+      title: "Kelahiran Islam dan Wahyu Pertama",
+      summary:
+        "Islam bermula dengan penurunan wahyu pertama kepada Nabi Muhammad SAW di Gua Hira melalui Surah al-Alaq yang dimulakan dengan perkataan 'Iqra' (Bacalah). Wahyu ini menekankan kepentingan ilmu pengetahuan dan mencetuskan revolusi intelek dalam masyarakat Arab. Dakwah secara terbuka di Bukit Safa ditentang oleh pembesar Quraisy kerana mereka bimbang kehilangan kuasa politik dan ekonomi daripada perniagaan berhala di Kaabah.",
+      keywords: ["Iqra", "Surah al-Alaq", "Gua Hira", "Bukit Safa", "Quraisy", "dakwah", "Kaabah"],
+    },
+
+    {
+      key: "c8-s3",
+      num: 3,
+      title: "Kepimpinan Nabi Muhammad SAW di Madinah",
+      summary:
+        "Nabi Muhammad SAW membina negara Islam Madinah berasaskan perpaduan dan keadilan. Piagam Madinah merupakan perlembagaan bertulis pertama yang menyatukan orang Islam, Yahudi, dan kaum lain di bawah konsep Ummah. Sistem syura pula menekankan perbincangan dan permuafakatan dalam pentadbiran negara bagi menjaga kepentingan masyarakat.",
+      keywords: ["Piagam Madinah", "Ummah", "syura", "Madinah", "pluralisme", "perlembagaan"],
+    },
+
+    {
+      key: "c8-s4",
+      num: 4,
+      title: "Sumbangan Ekonomi dan Sosial Islam",
+      summary:
+        "Tamadun Islam memperkenalkan sistem ekonomi yang adil melalui institusi Baitulmal yang menguruskan zakat, kharaj, dan jizyah. Zakat membantu golongan miskin dan memastikan kekayaan diagihkan secara seimbang dalam masyarakat. Jizyah pula ialah cukai perlindungan yang dikenakan kepada bukan Islam sebagai balasan kepada jaminan keselamatan negara.",
+      keywords: ["Baitulmal", "zakat", "kharaj", "jizyah", "ekonomi Islam", "kebajikan", "asnaf"],
+    },
+
+    {
+      key: "c8-s5",
+      num: 5,
+      title: "Seni Bina Islam",
+      summary:
+        "Seni bina Islam menekankan nilai kerohanian dan keindahan yang berasaskan tauhid. Corak geometri dan kaligrafi digunakan bagi mengelakkan unsur pemujaan terhadap makhluk hidup. Kubah masjid pula direka untuk memperbaiki akustik dan pengudaraan supaya suasana ibadat menjadi lebih selesa dan khusyuk.",
+      keywords: ["seni bina Islam", "kaligrafi", "geometri", "tauhid", "kubah", "akustik", "arabes"],
+    },
+
+    {
+      key: "c8-s6",
+      num: 6,
+      title: "Kesan dan Kepentingan Tamadun Islam",
+      summary:
+        "Tamadun Islam membawa perubahan besar dalam bidang ilmu, pentadbiran, ekonomi, dan sosial. Islam menekankan keadilan, ilmu pengetahuan, dan perpaduan masyarakat tanpa mengira kaum atau agama. Sumbangan tamadun Islam menjadi asas penting kepada perkembangan tamadun dunia moden termasuk sistem pendidikan, perlembagaan, dan kebajikan sosial.",
+      keywords: ["tamadun Islam", "ilmu", "keadilan", "perpaduan", "pendidikan", "kebajikan sosial"],
+    },
+  ],
+  "Chapter 7": [
+    {
+      key: "c7-s1",
+      num: 1,
+      title: "Peningkatan Tamadun India",
+      summary:
+        "Tamadun India berkembang daripada petempatan kecil yang dikenali sebagai Janapada kepada kerajaan besar Mahajanapada. Perubahan ini menunjukkan peningkatan dalam sistem politik, ekonomi, dan sosial masyarakat India sehingga munculnya kerajaan yang lebih tersusun dan kuat.",
+      keywords: ["Janapada", "Mahajanapada", "Tamadun India", "politik", "ekonomi", "sosial"],
+    },
+
+    {
+      key: "c7-s2",
+      num: 2,
+      title: "Keunggulan Kerajaan Magadha",
+      summary:
+        "Kerajaan Magadha muncul sebagai kuasa utama di India antara 540 SM hingga 320 SM. Kedudukannya di Lembah Ganges yang subur membantu perkembangan pertanian dan perdagangan. Selain itu, Magadha mempunyai sumber besi yang banyak untuk menghasilkan senjata serta gajah hutan yang digunakan dalam ketenteraan.",
+      keywords: ["Magadha", "Lembah Ganges", "pertanian", "perdagangan", "besi", "gajah", "ketenteraan"],
+    },
+
+    {
+      key: "c7-s3",
+      num: 3,
+      title: "Perluasan Kuasa Dinasti Maurya",
+      summary:
+        "Dinasti Maurya mencapai kegemilangan semasa pemerintahan Chandragupta Maurya dan Bindusara. Chandragupta Maurya dengan bantuan Chanakya membina angkatan tentera yang besar untuk menyatukan India Utara. Bindusara pula meneruskan usaha perluasan kuasa ke India Selatan sehingga ke Mysore.",
+      keywords: ["Dinasti Maurya", "Chandragupta Maurya", "Bindusara", "Chanakya", "tentera", "Mysore", "India Utara"],
+    },
+
+    {
+      key: "c7-s4",
+      num: 4,
+      title: "Raja Asoka dan Dasar Dharma",
+      summary:
+        "Selepas Perang Kalinga pada tahun 261 SM, Raja Asoka berasa kesal terhadap kematian dan penderitaan yang berlaku. Beliau memeluk agama Buddha dan memperkenalkan Dasar Dharma yang menekankan kasih sayang, keadilan, toleransi agama, dan kebajikan rakyat. Titah perintah Asoka diukir pada Tiang Asoka untuk dijadikan panduan masyarakat.",
+      keywords: ["Asoka", "Perang Kalinga", "Dharma", "Buddha", "Tiang Asoka", "keadilan", "toleransi agama"],
+    },
+
+    {
+      key: "c7-s5",
+      num: 5,
+      title: "Peningkatan Tamadun China",
+      summary:
+        "Peningkatan Tamadun China berasaskan sistem pendidikan dan meritokrasi. Pendidikan bertujuan melahirkan pegawai kerajaan yang berkualiti, mengekalkan ajaran Konfusianisme, dan meningkatkan status sosial masyarakat. Sistem ini membantu melahirkan pentadbiran yang cekap dan stabil.",
+      keywords: ["Tamadun China", "meritokrasi", "Konfusianisme", "pendidikan", "pegawai kerajaan", "status sosial"],
+    },
+
+    {
+      key: "c7-s6",
+      num: 6,
+      title: "Sistem Pendidikan dan Peperiksaan Awam China",
+      summary:
+        "Sistem pendidikan China dibahagikan kepada pendidikan rendah, menengah, dan tinggi. Pelajar mempelajari tulisan, sastera, falsafah Konfusius, etika, dan kepimpinan. Sistem peperiksaan awam dimulakan oleh Maharaja Wu semasa Dinasti Han. Peperiksaan terdiri daripada tiga tahap: Xiucai, Juren, dan Jinshi. Sistem ini sangat ketat dan bertujuan memilih pegawai kerajaan berdasarkan kebolehan serta ilmu pengetahuan.",
+      keywords: [
+        "Maharaja Wu",
+        "Dinasti Han",
+        "Xiucai",
+        "Juren",
+        "Jinshi",
+        "Konfusius",
+        "peperiksaan awam",
+        "meritokrasi",
+      ],
+    },
+  ],
+};
+export function getSejarahF1Subtopics(chapterKey: string): Subtopic[] {
+  return sejarahF1Subtopics[chapterKey] ?? [];
+}
