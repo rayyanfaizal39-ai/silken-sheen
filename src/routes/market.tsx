@@ -130,8 +130,9 @@ function MarketPage() {
       equipAvatar(item.slot, item.id);
       return;
     }
+    const prev = getItem(avatar[item.slot])?.name;
     if (buyAvatarItem(item.slot, item.id, item.cost)) {
-      setReward(rewardForCosmetic(item));
+      setReward(rewardForCosmetic(item, prev));
       markCollectiblesSeen([item.id]);
     }
   }
