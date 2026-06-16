@@ -37,7 +37,7 @@ export const getDashboardStats = createServerFn({ method: 'GET' }).handler(
 );
 
 export const getUsers = createServerFn({ method: 'POST' })
-  .validator((f: AdminFilters) => f)
+  .inputValidator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<UserRow[]> => {
     const supabase = getSupabaseServerClient();
     let q = supabase
@@ -59,7 +59,7 @@ export const getUsers = createServerFn({ method: 'POST' })
   });
 
 export const getPayments = createServerFn({ method: 'POST' })
-  .validator((f: AdminFilters) => f)
+  .inputValidator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<PaymentRow[]> => {
     const supabase = getSupabaseServerClient();
     let q = supabase
@@ -77,7 +77,7 @@ export const getPayments = createServerFn({ method: 'POST' })
   });
 
 export const getQuizActivity = createServerFn({ method: 'POST' })
-  .validator((f: AdminFilters) => f)
+  .inputValidator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<QuizRow[]> => {
     const supabase = getSupabaseServerClient();
     let q = supabase
