@@ -47,7 +47,7 @@ const TABS: { id: Tab; label: string; icon: typeof Shirt }[] = [
   { id: "badges", label: "Badges", icon: BadgeCheck },
 ];
 
-function rewardForCosmetic(item: AvatarItem): UnlockReward {
+function rewardForCosmetic(item: AvatarItem, fromName?: string): UnlockReward {
   const r = RARITIES[item.rarity];
   return {
     id: item.id,
@@ -56,6 +56,8 @@ function rewardForCosmetic(item: AvatarItem): UnlockReward {
     color: r.color,
     glow: r.glow,
     rarityLabel: r.label,
+    rarityKey: item.rarity,
+    from: fromName,
   };
 }
 
