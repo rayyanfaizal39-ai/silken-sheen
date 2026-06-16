@@ -12,4 +12,39 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  vite: {
+    // @tanstack/start-server-core@1.169+ uses dynamic '#' package-subpath imports
+    // (#tanstack-router-entry, #tanstack-start-entry) that esbuild cannot resolve during
+    // optimizeDeps scanning because they are missing from the package's own "imports" map.
+    // The package.json has been patched (adding those keys) and stub files were created so
+    // esbuild can satisfy the import; at runtime the TanStack Start Vite plugin alias takes
+    // over. Excluding the packages here prevents esbuild from pre-bundling them so the
+    // aliased runtime paths are used instead of the stubs.
+    //
+    // Root-level optimizeDeps.exclude covers the CLIENT environment (esbuild reaches
+    // @tanstack/start-server-core via: router.tsx → routeTree → admin routes →
+    // -admin.server.ts → supabase.server.ts → getCookies from @tanstack/start-server-core).
+    optimizeDeps: {
+      exclude: [
+        "@tanstack/react-start",
+        "@tanstack/start-server-core",
+        "@tanstack/start-client-core",
+        "@tanstack/start-plugin-core",
+      ],
+    },
+    environments: {
+      ssr: {
+        optimizeDeps: {
+          exclude: [
+            "@tanstack/react-start",
+            "@tanstack/react-router",
+            "@tanstack/start-server-core",
+            "@tanstack/start-client-core",
+            "@tanstack/start-plugin-core",
+            "@tanstack/router-core",
+          ],
+        },
+      },
+    },
+  },
 });

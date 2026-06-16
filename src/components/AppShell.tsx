@@ -23,8 +23,8 @@ import { Avatar } from "@/components/Avatar";
 
 const navItems = [
   {
-    label: "Utama",
-    short: "Utama",
+    label: "Home",
+    short: "Home",
     to: "/",
     icon: Home,
     accent: "#6366F1",
@@ -33,8 +33,8 @@ const navItems = [
     line: "linear-gradient(90deg,#818CF8,#C084FC)",
   },
   {
-    label: "Papan Pemuka",
-    short: "Pemuka",
+    label: "Dashboard",
+    short: "Dash",
     to: "/dashboard",
     icon: LayoutDashboard,
     accent: "#8B5CF6",
@@ -43,8 +43,8 @@ const navItems = [
     line: "linear-gradient(90deg,#A78BFA,#7C3AED)",
   },
   {
-    label: "Nota",
-    short: "Nota",
+    label: "Notes",
+    short: "Notes",
     to: "/notes",
     icon: BookOpen,
     accent: "#3B82F6",
@@ -53,8 +53,8 @@ const navItems = [
     line: "linear-gradient(90deg,#60A5FA,#2563EB)",
   },
   {
-    label: "Kad Imbas",
-    short: "Kad",
+    label: "Flashcards",
+    short: "Cards",
     to: "/flashcards",
     icon: Library,
     accent: "#A855F7",
@@ -63,8 +63,8 @@ const navItems = [
     line: "linear-gradient(90deg,#C084FC,#9333EA)",
   },
   {
-    label: "Kuiz",
-    short: "Kuiz",
+    label: "Quizzes",
+    short: "Quiz",
     to: "/quizzes",
     icon: Brain,
     accent: "#F59E0B",
@@ -73,8 +73,8 @@ const navItems = [
     line: "linear-gradient(90deg,#FBBF24,#D97706)",
   },
   {
-    label: "Penjejak AI",
-    short: "Jejak",
+    label: "AI Tracker",
+    short: "Track",
     to: "/tracker",
     icon: Radar,
     accent: "#22D3EE",
@@ -83,8 +83,8 @@ const navItems = [
     line: "linear-gradient(90deg,#67E8F9,#0EA5E9)",
   },
   {
-    label: "Pasaran Bintang",
-    short: "Pasar",
+    label: "Star Market",
+    short: "Market",
     to: "/market",
     icon: Store,
     accent: "#FBBF24",
@@ -93,8 +93,8 @@ const navItems = [
     line: "linear-gradient(90deg,#FDE68A,#F59E0B)",
   },
   {
-    label: "Dewan Kebanggaan",
-    short: "Ranking",
+    label: "Leaderboard",
+    short: "Ranks",
     to: "/leaderboard",
     icon: Trophy,
     accent: "#FCD34D",
@@ -103,8 +103,8 @@ const navItems = [
     line: "linear-gradient(90deg,#FDE68A,#F59E0B)",
   },
   {
-    label: "Laporan Ibu Bapa",
-    short: "Ibu Bapa",
+    label: "Parent Report",
+    short: "Parents",
     to: "/parent",
     icon: Users,
     accent: "#34D399",
@@ -132,7 +132,7 @@ function SidebarBottom() {
             {user.avatarUrl ? (
               <img
                 src={user.avatarUrl}
-                alt={user.name ?? "Gambar profil"}
+                alt={user.name ?? "Profile picture"}
                 className="h-8 w-8 shrink-0 rounded-xl object-cover ring-1 ring-white/10"
               />
             ) : (
@@ -141,7 +141,7 @@ function SidebarBottom() {
               </div>
             )}
             <div className="min-w-0 flex-1">
-              <p className="truncate text-xs font-bold text-white">{user.name ?? "Murid"}</p>
+              <p className="truncate text-xs font-bold text-white">{user.name ?? "Student"}</p>
               <p className="truncate text-[10px] text-white/40">{user.email}</p>
             </div>
           </div>
@@ -151,7 +151,7 @@ function SidebarBottom() {
             className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white/80"
           >
             <LogOut className="h-3 w-3" />
-            Log keluar
+            Sign Out
           </button>
         </div>
       ) : isConfigured ? (
@@ -160,7 +160,7 @@ function SidebarBottom() {
           className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.09] bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white"
         >
           <LogIn className="h-3.5 w-3.5" />
-          Log masuk untuk selaraskan kemajuan
+          Sign in to sync progress
         </Link>
       ) : null}
 
@@ -193,13 +193,13 @@ function SidebarBottom() {
         <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] shadow-[0_0_24px_rgba(99,102,241,0.5)]">
           <Zap className="h-4 w-4 text-white" />
         </div>
-        <p className="text-sm font-bold text-white">Sedia untuk belajar?</p>
-        <p className="mt-1 text-xs leading-5 text-white/50">Kekalkan rentak belajar setiap hari.</p>
+        <p className="text-sm font-bold text-white">Ready to study?</p>
+        <p className="mt-1 text-xs leading-5 text-white/50">Keep your daily study streak going.</p>
         <Link
           to="/notes"
           className="mt-3 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2 text-xs font-bold text-[#050816] transition-transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          Mula Belajar
+          Start Studying
         </Link>
       </div>
     </div>
@@ -296,13 +296,31 @@ export function AppShell({ children }: { children: ReactNode }) {
             <HeaderTokens />
             {/* Live streak */}
             <HeaderStreak />
-            {/* Profile link */}
+            {/* Upgrade button */}
             <Link
-              to="/dashboard"
-              className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2 py-1.5 text-sm transition-colors hover:bg-white/[0.10]"
+              to="/upgrade"
+              className="hidden items-center gap-1.5 rounded-xl border border-[#F59E0B]/40 bg-[#F59E0B]/10 px-2.5 py-1.5 text-xs font-bold text-[#FBBF24] transition-colors hover:bg-[#F59E0B]/20 sm:flex"
             >
-              <RankBadge />
+              <Sparkles className="h-3.5 w-3.5" />
+              Upgrade
             </Link>
+            {/* Profile / avatar link with upgrade pip */}
+            <div className="relative">
+              <Link
+                to="/dashboard"
+                className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2 py-1.5 text-sm transition-colors hover:bg-white/[0.10]"
+              >
+                <RankBadge />
+              </Link>
+              {/* Upgrade pip on avatar */}
+              <Link
+                to="/upgrade"
+                title="Upgrade to Premium"
+                className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-[#F59E0B] to-[#D97706] text-[9px] shadow-[0_0_8px_rgba(245,158,11,0.6)] transition-transform hover:scale-110"
+              >
+                ⭐
+              </Link>
+            </div>
           </div>
         </header>
 

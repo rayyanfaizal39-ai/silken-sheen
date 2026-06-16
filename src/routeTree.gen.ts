@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpgradeRouteImport } from './routes/upgrade'
 import { Route as TrackerRouteImport } from './routes/tracker'
 import { Route as SubjectsRouteImport } from './routes/subjects'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
@@ -19,8 +20,15 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 
+const UpgradeRoute = UpgradeRouteImport.update({
+  id: '/upgrade',
+  path: '/upgrade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrackerRoute = TrackerRouteImport.update({
   id: '/tracker',
   path: '/tracker',
@@ -71,14 +79,25 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
@@ -89,6 +108,8 @@ export interface FileRoutesByFullPath {
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
   '/tracker': typeof TrackerRoute
+  '/upgrade': typeof UpgradeRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,10 +123,13 @@ export interface FileRoutesByTo {
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
   '/tracker': typeof TrackerRoute
+  '/upgrade': typeof UpgradeRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
@@ -116,11 +140,14 @@ export interface FileRoutesById {
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
   '/tracker': typeof TrackerRoute
+  '/upgrade': typeof UpgradeRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/dashboard'
     | '/flashcards'
     | '/leaderboard'
@@ -131,6 +158,8 @@ export interface FileRouteTypes {
     | '/quizzes'
     | '/subjects'
     | '/tracker'
+    | '/upgrade'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,9 +173,12 @@ export interface FileRouteTypes {
     | '/quizzes'
     | '/subjects'
     | '/tracker'
+    | '/upgrade'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/dashboard'
     | '/flashcards'
     | '/leaderboard'
@@ -157,10 +189,13 @@ export interface FileRouteTypes {
     | '/quizzes'
     | '/subjects'
     | '/tracker'
+    | '/upgrade'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   DashboardRoute: typeof DashboardRoute
   FlashcardsRoute: typeof FlashcardsRoute
   LeaderboardRoute: typeof LeaderboardRoute
@@ -171,10 +206,18 @@ export interface RootRouteChildren {
   QuizzesRoute: typeof QuizzesRoute
   SubjectsRoute: typeof SubjectsRoute
   TrackerRoute: typeof TrackerRoute
+  UpgradeRoute: typeof UpgradeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/upgrade': {
+      id: '/upgrade'
+      path: '/upgrade'
+      fullPath: '/upgrade'
+      preLoaderRoute: typeof UpgradeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tracker': {
       id: '/tracker'
       path: '/tracker'
@@ -245,6 +288,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -252,11 +302,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   DashboardRoute: DashboardRoute,
   FlashcardsRoute: FlashcardsRoute,
   LeaderboardRoute: LeaderboardRoute,
@@ -267,6 +335,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuizzesRoute: QuizzesRoute,
   SubjectsRoute: SubjectsRoute,
   TrackerRoute: TrackerRoute,
+  UpgradeRoute: UpgradeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
