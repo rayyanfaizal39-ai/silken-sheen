@@ -4,6 +4,7 @@ import {
   BookOpen,
   Brain,
   CheckCircle,
+  CheckCircle2,
   ChevronLeft,
   Clapperboard,
   Clock,
@@ -16,6 +17,7 @@ import {
   Map,
   MessageCircle,
   PenTool,
+  RotateCcw,
   Star,
   Target,
   Trophy,
@@ -34,6 +36,9 @@ import {
 } from "@/data/bm-structure";
 import { getSistemBahasaContent } from "@/data/bm-k1-sistem-bahasa";
 import { getPremiumKomsasWork, type KomsasWork, type KomsasExamQuestion } from "@/data/bm-komsas-premium";
+import { bmF1ObjektifKuiz1, bmF1ObjektifKuiz2, bmF1ObjektifKuiz3 } from "@/data/bm-f1-objektif-quizzes";
+import type { QuizQuestion } from "@/data/types";
+import { useProgress } from "@/hooks/use-progress";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import {
   Accordion,
@@ -50,14 +55,40 @@ type BMScreen =
   | { type: "landing" }
   | { type: "kertas"; kertasId: "k1" | "k2" }
   | { type: "hub"; kertasId: "k1" | "k2"; hubId: string }
-  | { type: "topic"; kertasId: "k1" | "k2"; hubId: string; topicId: string };
+  | { type: "topic"; kertasId: "k1" | "k2"; hubId: string; topicId: string }
+  | { type: "objektif-quiz"; setIndex: 0 | 1 | 2 };
+
+// Objektif UASA set metadata
+const OBJEKTIF_SETS = [
+  {
+    id: "bm-f1-obj1",
+    label: "Set A",
+    badge: "A",
+    color: "#818CF8",
+    questions: bmF1ObjektifKuiz1,
+  },
+  {
+    id: "bm-f1-obj2",
+    label: "Set B",
+    badge: "B",
+    color: "#34D399",
+    questions: bmF1ObjektifKuiz2,
+  },
+  {
+    id: "bm-f1-obj3",
+    label: "Set C",
+    badge: "C",
+    color: "#F472B6",
+    questions: bmF1ObjektifKuiz3,
+  },
+] as const;
 
 // ─── Shared chip + badge components ──────────────────────────────────────────
 
 function Badge({ label, color }: { label: string; color: string }) {
   return (
     <span
-      className="inline-block rounded-full px-2.5 py-0.5 text-[9px] font-black uppercase tracking-widest"
+      className="inline-block rounded-full px-2.5 py-0.5 text-[9px] font-black tracking-wide"
       style={{ background: `${color}25`, color }}
     >
       {label}
@@ -67,7 +98,7 @@ function Badge({ label, color }: { label: string; color: string }) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-3 text-[9px] font-black uppercase tracking-[0.28em] text-[#818CF8]">
+    <p className="mb-3 text-[11px] font-black tracking-wide text-[#818CF8]">
       {children}
     </p>
   );
@@ -198,7 +229,7 @@ function LandingView({
             📝
           </div>
           <div>
-            <p className="text-[9px] font-black uppercase tracking-[0.28em] text-[#F472B6]/60">
+            <p className="text-[9px] font-black tracking-wide text-[#F472B6]/60">
               ✦ DEWAN SASTERA ✦
             </p>
             <h1 className="font-display text-2xl font-bold text-white">Bahasa Melayu</h1>
@@ -209,7 +240,7 @@ function LandingView({
         {/* Identity ticker */}
         <div className="mt-5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] py-2">
           <p className="text-center text-[9px] font-bold uppercase tracking-[0.3em] text-[#F472B6]/40">
-            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · ULASAN · RINGKASAN
+            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RINGKASAN
           </p>
         </div>
       </div>
@@ -239,7 +270,7 @@ function LandingView({
         ].map((stat) => (
           <div key={stat.label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
             <p className="text-xl font-black text-white">{stat.value}</p>
-            <p className="mt-0.5 text-[9px] font-bold uppercase tracking-widest text-white/30">{stat.label}</p>
+            <p className="mt-0.5 text-[9px] font-bold tracking-wide text-white/30">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -308,6 +339,493 @@ function KertasCard({ kertas, onSelect }: { kertas: BMKertas; onSelect: () => vo
         </div>
       </div>
     </button>
+  );
+}
+
+// ─── OBJEKTIF KUIZ RUNNER ─────────────────────────────────────────────────────
+
+function ObjektifKuizView({
+  setIndex,
+  onBack,
+}: {
+  setIndex: 0 | 1 | 2;
+  onBack: () => void;
+}) {
+  const set = OBJEKTIF_SETS[setIndex];
+  const questions: QuizQuestion[] = set.questions as unknown as QuizQuestion[];
+  const { recordQuiz, recordQuizResult } = useProgress();
+
+  type Phase = "intro" | "quiz" | "results";
+  const [phase, setPhase] = useState<Phase>("intro");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [revealed, setRevealed] = useState(false);
+  const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
+
+  const q = questions[current];
+  const correct = answers.filter((a, i) => a === questions[i].answerIndex).length;
+  const pct = Math.round((correct / questions.length) * 100);
+
+  function handleSelect(idx: number) {
+    if (revealed) return;
+    setSelected(idx);
+    setRevealed(true);
+    const next = [...answers];
+    next[current] = idx;
+    setAnswers(next);
+  }
+
+  function handleNext() {
+    if (current < questions.length - 1) {
+      setCurrent((c) => c + 1);
+      setSelected(null);
+      setRevealed(false);
+    } else {
+      recordQuiz(pct === 100);
+      recordQuizResult({ subjectId: "bm", chapterKey: set.id, correct, total: questions.length });
+      setPhase("results");
+    }
+  }
+
+  function handleRestart() {
+    setCurrent(0);
+    setSelected(null);
+    setRevealed(false);
+    setAnswers(Array(questions.length).fill(null));
+    setPhase("quiz");
+  }
+
+  if (phase === "intro") {
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", "Kertas 1", `Objektif ${set.label}`]}
+          onBack={onBack}
+          accent={set.color}
+        />
+        <div
+          className="rounded-[2rem] border p-8 text-center"
+          style={{ borderColor: `${set.color}30`, background: `${set.color}0a` }}
+        >
+          <div
+            className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl text-4xl font-black text-white"
+            style={{ background: `linear-gradient(135deg, ${set.color}60, ${set.color}30)` }}
+          >
+            {set.badge}
+          </div>
+          <h2 className="font-display text-2xl font-bold text-white">Kuiz Objektif {set.label}</h2>
+          <p className="mt-1 text-sm text-white/50">Kertas 1 Bahagian A — Format UASA Tingkatan 1</p>
+          <div className="mx-auto mt-6 grid max-w-xs grid-cols-3 gap-3">
+            {[
+              { icon: "📝", label: "15 Soalan" },
+              { icon: "⏱️", label: "15 Minit" },
+              { icon: "🎯", label: "4 Pilihan" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.04] py-3 text-center"
+              >
+                <p className="text-lg">{item.icon}</p>
+                <p className="mt-1 text-[10px] font-bold text-white/60">{item.label}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-4 py-3">
+            <p className="text-xs text-white/40 leading-relaxed">
+              Struktur: S1 Gambar · S2–4 Lengkap Ayat · S5 Ayat Betul · S6 Maksud Kata · S7 Peribahasa · S8–9 Tatabahasa · S10 Kesalahan Bahasa · S11–15 Petikan
+            </p>
+          </div>
+          <button
+            onClick={() => setPhase("quiz")}
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-bold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
+            style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}bb)`, boxShadow: `0 8px 24px ${set.color}40` }}
+          >
+            Mula Kuiz <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (phase === "results") {
+    const grade = pct >= 80 ? { label: "Cemerlang", color: "#34D399", emoji: "🏆" }
+      : pct >= 60 ? { label: "Memuaskan", color: "#FBBF24", emoji: "⭐" }
+      : { label: "Cuba Lagi", color: "#F472B6", emoji: "💪" };
+
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", "Kertas 1", `Objektif ${set.label}`]}
+          onBack={onBack}
+          accent={set.color}
+        />
+        <div
+          className="rounded-[2rem] border p-8 text-center"
+          style={{ borderColor: `${set.color}30`, background: `${set.color}0a` }}
+        >
+          <p className="text-5xl mb-3">{grade.emoji}</p>
+          <h2 className="font-display text-2xl font-bold text-white">{grade.label}</h2>
+          <p className="mt-1 text-sm text-white/50">Kuiz Objektif {set.label} selesai</p>
+
+          <div
+            className="mx-auto mt-6 flex h-28 w-28 items-center justify-center rounded-full text-3xl font-black text-white"
+            style={{ background: `conic-gradient(${grade.color} ${pct}%, rgba(255,255,255,0.06) 0%)`, boxShadow: `0 0 40px ${grade.color}40` }}
+          >
+            <div className="flex h-20 w-20 items-center justify-center rounded-full" style={{ background: "#080c1a" }}>
+              {pct}%
+            </div>
+          </div>
+
+          <p className="mt-4 text-sm text-white/60">
+            {correct} daripada {questions.length} soalan betul
+          </p>
+
+          <div className="mt-6 space-y-2 text-left">
+            {questions.map((question, i) => {
+              const ans = answers[i];
+              const isCorrect = ans === question.answerIndex;
+              return (
+                <div
+                  key={question.id}
+                  className="flex items-start gap-3 rounded-xl border px-3 py-2.5"
+                  style={{
+                    borderColor: isCorrect ? "rgba(52,211,153,0.25)" : "rgba(248,113,113,0.25)",
+                    background: isCorrect ? "rgba(52,211,153,0.06)" : "rgba(248,113,113,0.06)",
+                  }}
+                >
+                  {isCorrect
+                    ? <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                    : <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold text-white/80 line-clamp-1">S{i + 1}. {question.question.split("\n")[0]}</p>
+                    {!isCorrect && (
+                      <p className="mt-0.5 text-[10px] text-white/40">
+                        Jawapan: {question.options[question.answerIndex]}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <button
+              onClick={handleRestart}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.05] px-4 py-3 text-sm font-bold text-white transition-all hover:bg-white/[0.09]"
+            >
+              <RotateCcw className="h-4 w-4" /> Cuba Semula
+            </button>
+            <button
+              onClick={onBack}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold text-white transition-all hover:scale-[1.02]"
+              style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}bb)` }}
+            >
+              Selesai <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Quiz phase
+  const isCorrect = selected === q.answerIndex;
+  const progress = ((current) / questions.length) * 100;
+
+  return (
+    <div>
+      <PageHeader
+        breadcrumb={["Bahasa Melayu", "Kertas 1", `Objektif ${set.label}`]}
+        onBack={onBack}
+        accent={set.color}
+      />
+
+      {/* Progress bar */}
+      <div className="mb-5">
+        <div className="mb-1.5 flex items-center justify-between">
+          <span className="text-xs font-bold text-white/40">Soalan {current + 1} / {questions.length}</span>
+          <span className="text-xs font-bold" style={{ color: set.color }}>{Math.round(progress)}%</span>
+        </div>
+        <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
+          <div
+            className="h-full rounded-full transition-all duration-500"
+            style={{ width: `${progress}%`, background: `linear-gradient(90deg, ${set.color}, ${set.color}cc)` }}
+          />
+        </div>
+      </div>
+
+      {/* Question card */}
+      <div
+        className="mb-4 rounded-[1.5rem] border p-5"
+        style={{ borderColor: `${set.color}25`, background: `${set.color}08` }}
+      >
+        <span
+          className="mb-3 inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-black"
+          style={{ background: `${set.color}20`, color: set.color }}
+        >
+          Soalan {current + 1}
+        </span>
+        <p className="text-sm font-semibold leading-relaxed text-white whitespace-pre-line">{q.question}</p>
+      </div>
+
+      {/* Options */}
+      <div className="mb-4 space-y-2.5">
+        {q.options.map((opt, i) => {
+          const letter = ["A", "B", "C", "D"][i];
+          let borderColor = "rgba(255,255,255,0.08)";
+          let bg = "rgba(255,255,255,0.03)";
+          let textColor = "text-white/80";
+
+          if (revealed) {
+            if (i === q.answerIndex) {
+              borderColor = "rgba(52,211,153,0.4)";
+              bg = "rgba(52,211,153,0.1)";
+              textColor = "text-emerald-300";
+            } else if (i === selected && i !== q.answerIndex) {
+              borderColor = "rgba(248,113,113,0.4)";
+              bg = "rgba(248,113,113,0.08)";
+              textColor = "text-rose-300";
+            }
+          } else if (selected === i) {
+            borderColor = `${set.color}50`;
+            bg = `${set.color}12`;
+          }
+
+          return (
+            <button
+              key={i}
+              onClick={() => handleSelect(i)}
+              disabled={revealed}
+              className="flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-all"
+              style={{ borderColor, background: bg }}
+            >
+              <span
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs font-black"
+                style={{ background: `${set.color}20`, color: set.color }}
+              >
+                {letter}
+              </span>
+              <span className={`text-sm font-medium leading-snug ${textColor}`}>{opt}</span>
+              {revealed && i === q.answerIndex && <CheckCircle2 className="ml-auto h-4 w-4 shrink-0 text-emerald-400" />}
+              {revealed && i === selected && i !== q.answerIndex && <XCircle className="ml-auto h-4 w-4 shrink-0 text-rose-400" />}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Explanation */}
+      {revealed && q.explanation && (
+        <div className="mb-4 rounded-2xl border border-[#FBBF24]/20 bg-[#FBBF24]/06 px-4 py-3">
+          <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-1">💡 Penerangan</p>
+          <p className="text-xs leading-relaxed text-white/75">{q.explanation}</p>
+        </div>
+      )}
+
+      {/* Feedback + Next */}
+      {revealed && (
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {isCorrect
+              ? <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-400">Betul! ✓</span>
+              : <span className="rounded-full bg-rose-500/12 px-3 py-1 text-xs font-bold text-rose-400">Salah ✗</span>}
+          </div>
+          <button
+            onClick={handleNext}
+            className="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-bold text-white transition-all hover:scale-[1.02]"
+            style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}cc)`, boxShadow: `0 4px 16px ${set.color}35` }}
+          >
+            {current < questions.length - 1 ? "Seterusnya" : "Lihat Keputusan"} <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── K1 QUIZ VIEW — Exam preparation layout ───────────────────────────────────
+
+function K1QuizView({
+  kertas,
+  onSelectObjektif,
+  onSelectHub,
+  onBack,
+}: {
+  kertas: BMKertas;
+  onSelectObjektif: (setIndex: 0 | 1 | 2) => void;
+  onSelectHub: (hubId: string) => void;
+  onBack: () => void;
+}) {
+  const { progress } = useProgress();
+
+  // Compute best score for each set from quizHistory
+  const bestScores = OBJEKTIF_SETS.map((set) => {
+    const results = (progress.quizHistory ?? []).filter((r) => r.chapterKey === set.id);
+    return results.length > 0 ? Math.max(...results.map((r) => r.scorePct)) : null;
+  });
+
+  const setLabels = ["Set A", "Set B", "Set C"] as const;
+  const setColors = ["#818CF8", "#34D399", "#F472B6"] as const;
+  const setEmoji = ["🟣", "🟢", "🩷"] as const;
+
+  const gatewayHubs = [
+    { id: "pemahaman",  label: "Pemahaman",      emoji: "🔍", color: "#34D399", desc: "Teknik menjawab soalan pemahaman dan KBAT" },
+    { id: "komsas",    label: "Novel & KOMSAS",  emoji: "📜", color: "#C084FC", desc: "Pantun, syair, cerpen, drama, dan novel" },
+    { id: "ringkasan", label: "Ringkasan",        emoji: "✏️", color: "#FBBF24", desc: "Bahagian C: 100 patah perkataan, kata kunci" },
+  ] as const;
+
+  return (
+    <div>
+      <PageHeader
+        breadcrumb={["Bahasa Melayu", "Kertas 1"]}
+        onBack={onBack}
+        accent={kertas.color}
+      />
+
+      {/* Page header */}
+      <div className="mb-8">
+        <div
+          className="mb-2 inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-black"
+          style={{ background: `${kertas.color}20`, color: kertas.color }}
+        >
+          📝 Kertas 1
+        </div>
+        <h2 className="font-display text-2xl font-bold text-white">Persediaan Peperiksaan</h2>
+        <p className="mt-1 text-sm text-white/40">Sistem Bahasa · Pemahaman · KOMSAS · Novel · Ringkasan</p>
+      </div>
+
+      {/* ── Section 1: Objektif UASA ──────────────────────────────────────── */}
+      <div className="mb-8">
+        <div className="mb-4 flex items-center gap-3">
+          <div className="h-px flex-1 bg-white/[0.07]" />
+          <span className="text-[11px] font-black tracking-widest text-[#818CF8]">KERTAS 1 — OBJEKTIF UASA</span>
+          <div className="h-px flex-1 bg-white/[0.07]" />
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          {([0, 1, 2] as const).map((i) => {
+            const best = bestScores[i];
+            const color = setColors[i];
+            const completed = best !== null;
+
+            return (
+              <button
+                key={i}
+                onClick={() => onSelectObjektif(i)}
+                className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border text-left transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  borderColor: completed ? `${color}50` : `${color}25`,
+                  background: `linear-gradient(145deg, ${color}10 0%, transparent 70%)`,
+                }}
+              >
+                {/* Hover glow */}
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ boxShadow: `inset 0 0 40px ${color}12, 0 12px 40px ${color}30` }}
+                />
+
+                {/* Completion badge */}
+                {completed && (
+                  <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5">
+                    <CheckCircle2 className="h-3 w-3 text-emerald-400" />
+                    <span className="text-[9px] font-black text-emerald-400">Selesai</span>
+                  </div>
+                )}
+
+                <div className="relative z-10 flex flex-col gap-4 p-5">
+                  {/* Set letter */}
+                  <div
+                    className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-black text-white transition-transform duration-300 group-hover:scale-110"
+                    style={{
+                      background: `linear-gradient(135deg, ${color}50, ${color}25)`,
+                      boxShadow: `0 4px 20px ${color}35`,
+                    }}
+                  >
+                    {setEmoji[i]}
+                  </div>
+
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-white">{setLabels[i]}</h3>
+                    <p className="text-[11px] font-semibold text-white/40">Format UASA Tingkatan 1</p>
+                  </div>
+
+                  {/* Specs */}
+                  <div className="space-y-1.5">
+                    {[
+                      { icon: "📝", text: "15 Soalan" },
+                      { icon: "🧠", text: "Sistem Bahasa + Pemahaman" },
+                      { icon: "⏱️", text: "15 Minit" },
+                    ].map((spec) => (
+                      <div key={spec.text} className="flex items-center gap-2">
+                        <span className="text-sm">{spec.icon}</span>
+                        <span className="text-xs text-white/55">{spec.text}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Score bar or start button */}
+                  {best !== null ? (
+                    <div>
+                      <div className="mb-1 flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-white/40">Markah Terbaik</span>
+                        <span className="text-xs font-black" style={{ color }}>{best}%</span>
+                      </div>
+                      <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
+                        <div
+                          className="h-full rounded-full transition-all"
+                          style={{ width: `${best}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }}
+                        />
+                      </div>
+                    </div>
+                  ) : null}
+
+                  <div
+                    className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold text-white transition-all duration-200"
+                    style={{
+                      background: `linear-gradient(135deg, ${color}60, ${color}30)`,
+                      boxShadow: `0 4px 16px ${color}25`,
+                    }}
+                  >
+                    {completed ? "Cuba Semula" : "Mula Set"} <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Sections 2–4: Gateway hubs ───────────────────────────────────── */}
+      <div className="space-y-3">
+        {gatewayHubs.map((hub, idx) => (
+          <button
+            key={hub.id}
+            onClick={() => onSelectHub(hub.id)}
+            className="group flex w-full items-center gap-4 rounded-[1.5rem] border border-white/[0.07] bg-white/[0.025] px-5 py-4 text-left transition-all hover:border-white/[0.12] hover:bg-white/[0.05]"
+          >
+            <div
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-xl transition-transform duration-200 group-hover:scale-110"
+              style={{ background: `${hub.color}18` }}
+            >
+              {hub.emoji}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-black tracking-widest" style={{ color: hub.color }}>
+                  BAHAGIAN {["B", "C", "D"][idx]}
+                </span>
+              </div>
+              <h3 className="font-bold text-white">{hub.label}</h3>
+              <p className="text-xs text-white/40 mt-0.5">{hub.desc}</p>
+            </div>
+            <ArrowRight
+              className="h-4 w-4 shrink-0 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+              style={{ color: hub.color }}
+            />
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -458,7 +976,7 @@ function TopicCard({
   const getTopicTypeLabel = (t: string) => {
     const map: Record<string, string> = {
       tatabahasa: "Tatabahasa", pemahaman: "Teknik", komsas: "KOMSAS", novel: "Novel",
-      "ringkasan-ulasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
+      "ringkasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
       workshop: "Bengkel", "model-karangan": "Model", "peribahasa-bank": "Peribahasa", "essay-improvement": "Teknik",
     };
     return map[t] ?? t;
@@ -478,7 +996,7 @@ function TopicCard({
       <div className="min-w-0 flex-1">
         <div className="mb-1 flex items-center gap-2">
           <span
-            className="text-[9px] font-black uppercase tracking-widest"
+            className="text-[9px] font-black tracking-wide"
             style={{ color: hubColor, opacity: 0.7 }}
           >
             {getTopicTypeLabel(topic.topicType)}
@@ -505,7 +1023,7 @@ function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Definition */}
       {topic.definition && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Definisi</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Definisi</p>
           <p className="text-sm leading-relaxed text-white/80">{topic.definition}</p>
         </div>
       )}
@@ -535,7 +1053,7 @@ function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Common Mistakes */}
       {topic.commonMistakes && (
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesalahan Lazim</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Lazim</p>
           <ul className="space-y-2">
             {topic.commonMistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -550,7 +1068,7 @@ function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* UASA Tips */}
       {topic.uasaTips && (
         <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips UASA</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">★ Tips UASA</p>
           <ul className="space-y-2">
             {topic.uasaTips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -592,14 +1110,14 @@ function LegacyKOMSASDetail({ topic, color }: { topic: BMTopic; color: string })
 
       {topic.sinopsis && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Sinopsis</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Sinopsis</p>
           <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
         </div>
       )}
 
       {topic.tema && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Tema</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Tema</p>
           <p className="text-sm font-medium text-white/80">{topic.tema}</p>
         </div>
       )}
@@ -612,7 +1130,7 @@ function LegacyKOMSASDetail({ topic, color }: { topic: BMTopic; color: string })
       ].map(({ label, items, accent }) =>
         items && items.length > 0 ? (
           <div key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-            <p className="mb-3 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>
+            <p className="mb-3 text-[9px] font-black tracking-wide" style={{ color: accent }}>
               {label}
             </p>
             <ul className="space-y-1.5">
@@ -655,7 +1173,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
         <div className="relative z-10">
           <div className="mb-4 flex flex-wrap gap-2">
             <Badge label={work.typeLabel} color={color} />
-            <span className="inline-flex items-center gap-1 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-2.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-yellow-300">
+            <span className="inline-flex items-center gap-1 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-2.5 py-0.5 text-[9px] font-black tracking-wide text-yellow-300">
               <Zap className="h-3 w-3" />
               Ulang Kaji Pantas
             </span>
@@ -915,7 +1433,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
 function KomsasHeroStat({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-white/[0.05] p-3">
-      <div className="mb-1 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/35">
+      <div className="mb-1 flex items-center gap-2 text-[10px] font-black tracking-wide text-white/35">
         <span style={{ color }}>{icon}</span>
         {label}
       </div>
@@ -927,7 +1445,7 @@ function KomsasHeroStat({ icon, label, value, color }: { icon: React.ReactNode; 
 function DecoderCell({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
     <div className="rounded-xl border border-white/[0.06] bg-black/10 p-3">
-      <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>{label}</p>
+      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color: accent }}>{label}</p>
       <p className="text-sm leading-6 text-white/70">{value}</p>
     </div>
   );
@@ -936,7 +1454,7 @@ function DecoderCell({ label, value, accent }: { label: string; value: string; a
 function MiniExplain({ label, text, accent }: { label: string; text: string; accent: string }) {
   return (
     <div className="mb-3 rounded-xl border border-white/[0.06] bg-black/10 p-3">
-      <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>{label}</p>
+      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color: accent }}>{label}</p>
       <p className="text-xs leading-6 text-white/60">{text}</p>
     </div>
   );
@@ -973,11 +1491,11 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
     <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
-          <p className="text-[9px] font-black uppercase tracking-widest" style={{ color }}>Makmal Kuiz Mini</p>
+          <p className="text-[9px] font-black tracking-wide" style={{ color }}>Makmal Kuiz Mini</p>
           <h3 className="font-display text-lg font-bold text-white">Ruang kuiz mini tersedia</h3>
         </div>
         <div className="rounded-xl border border-white/[0.08] bg-black/20 px-3 py-2 text-right">
-          <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Markah</p>
+          <p className="text-[9px] font-black tracking-wide text-white/30">Markah</p>
           <p className="text-lg font-black text-white">0 / 0</p>
         </div>
       </div>
@@ -1044,7 +1562,7 @@ function ImportanceBadge({ level }: { level: "Sangat Penting" | "Penting" | "Per
 
   return (
     <span
-      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-widest"
+      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-black tracking-wide"
       style={{ borderColor: `${styles.color}35`, background: `${styles.color}18`, color: styles.color }}
     >
       <span>{styles.icon}</span>
@@ -1253,7 +1771,7 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               <AccordionItem key={`${item.type}-${item.question}`} value={`uasa-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
                   <span className="flex items-center gap-3">
-                    <span className="rounded-lg px-2 py-1 text-[10px] font-black uppercase tracking-widest" style={{ background: `${color}20`, color }}>
+                    <span className="rounded-lg px-2 py-1 text-[10px] font-black tracking-wide" style={{ background: `${color}20`, color }}>
                       {item.type === "MCQ" ? "Aneka Pilihan" : item.type}
                     </span>
                     <span className="font-bold text-white/85">{item.question}</span>
@@ -1340,7 +1858,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
               <div key={item.label} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
                 <p className="mb-2 text-sm font-bold text-white">{item.label}</p>
                 <span
-                  className="inline-flex rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-widest"
+                  className="inline-flex rounded-full px-2.5 py-1 text-[10px] font-black tracking-wide"
                   style={{ background: `${item.color}20`, color: item.color }}
                 >
                   {item.frequency}
@@ -1389,14 +1907,14 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
                 <div className="border-b border-rose-400/10 bg-rose-400/8 p-4 sm:border-b-0 sm:border-r sm:border-rose-400/10">
                   <div className="mb-2 flex items-center gap-2 text-rose-300">
                     <XCircle className="h-4 w-4" />
-                    <p className="text-xs font-black uppercase tracking-widest">Jawapan Lemah</p>
+                    <p className="text-xs font-black tracking-wide">Jawapan Lemah</p>
                   </div>
                   <p className="text-sm text-white/65">{getWeakAnswer(item)}</p>
                 </div>
                 <div className="bg-emerald-400/8 p-4">
                   <div className="mb-2 flex items-center gap-2 text-emerald-300">
                     <CheckCircle className="h-4 w-4" />
-                    <p className="text-xs font-black uppercase tracking-widest">Jawapan Skor Penuh</p>
+                    <p className="text-xs font-black tracking-wide">Jawapan Skor Penuh</p>
                   </div>
                   <p className="text-sm leading-6 text-white/70">{item.modelAnswer ?? item.answerHint}</p>
                   <p className="mt-2 text-xs leading-5 text-emerald-100/55">{item.examTip ?? "Tambah bukti atau contoh supaya jawapan tidak terlalu umum."}</p>
@@ -1423,7 +1941,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
             <div key={question} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
               <div className="mb-2 flex items-center gap-2 text-cyan-300">
                 <Globe2 className="h-4 w-4" />
-                <p className="text-[10px] font-black uppercase tracking-widest">Renung</p>
+                <p className="text-[10px] font-black tracking-wide">Renung</p>
               </div>
               <p className="text-sm leading-6 text-white/70">{question}</p>
             </div>
@@ -1506,7 +2024,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
 function MemoryChip({ label, value, color }: { label: string; value: string; color: string }) {
   return (
     <div className="rounded-xl border border-white/[0.08] bg-black/10 p-3">
-      <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>{label}</p>
+      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>{label}</p>
       <p className="text-xs leading-5 text-white/70">{value}</p>
     </div>
   );
@@ -1674,7 +2192,7 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.sinopsis && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-1 text-[9px] font-black uppercase tracking-widest" style={{ color }}>Sinopsis</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Sinopsis</p>
           <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
         </div>
       )}
@@ -1710,7 +2228,7 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
       ].map(({ label, value, accent }) =>
         value && value.length > 0 ? (
           <div key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-            <p className="mb-3 text-[9px] font-black uppercase tracking-widest" style={{ color: accent }}>{label}</p>
+            <p className="mb-3 text-[9px] font-black tracking-wide" style={{ color: accent }}>{label}</p>
             <ul className="space-y-1.5">
               {value.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1761,7 +2279,7 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.keyPoints && topic.keyPoints.length > 0 && (
         <div className="rounded-2xl border border-[#818CF8]/20 bg-[#818CF8]/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-[#818CF8]">📌 Perkara Utama</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-[#818CF8]">📌 Perkara Utama</p>
           <ul className="space-y-2">
             {topic.keyPoints.map((pt, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1775,7 +2293,7 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.uasaTips && (
         <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips UASA</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">★ Tips UASA</p>
           <ul className="space-y-2">
             {topic.uasaTips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1795,7 +2313,712 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   );
 }
 
-function RingkasanUlasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
+// ─── RANGKA RINGKASAN MARKAH TINGGI ──────────────────────────────────────────
+
+const RANGKA_KESALAHAN = [
+  "Menulis pendahuluan",
+  "Menulis penutup",
+  "Menulis melebihi 100 patah perkataan",
+  "Mengambil isi yang tidak berkaitan dengan kata kunci",
+  "Tidak menggunakan penanda wacana",
+  "Menyalin keseluruhan petikan",
+];
+
+const HAFALAN_LANGKAH = [
+  "Kata Kunci",
+  "Cari Isi",
+  "Susun Isi",
+  "Tulis Dalam Satu Perenggan",
+  "Semak 100 Patah Perkataan",
+  "Semak Ejaan",
+];
+
+const RANGKA_ISI_CUACA = [
+  "Membahayakan kesihatan manusia",
+  "Menjejaskan aktiviti harian",
+  "Mengurangkan sumber air",
+  "Merosakkan tanaman pertanian",
+  "Meningkatkan risiko kebakaran",
+  "Menyebabkan strok haba",
+];
+
+const RANGKA_JAWAPAN_CUACA = [
+  { pw: "Antara",          isi: "kesan cuaca panas ialah membahayakan kesihatan manusia." },
+  { pw: "Selain itu,",     isi: "aktiviti harian turut terjejas." },
+  { pw: "Seterusnya,",     isi: "sumber air semakin berkurangan." },
+  { pw: "Di samping itu,", isi: "tanaman pertanian boleh rosak." },
+  { pw: "Tambahan pula,",  isi: "risiko kebakaran meningkat." },
+  { pw: "Akhir sekali,",   isi: "cuaca panas boleh menyebabkan strok haba." },
+];
+
+function RangkaRingkasanDetail({ color }: { color: string }) {
+  return (
+    <div className="space-y-6">
+
+      {/* Header */}
+      <div className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+        <span className="text-2xl">📖</span>
+        <div>
+          <p className="text-[10px] font-black tracking-wide mb-0.5" style={{ color }}>Formula Ringkasan UASA</p>
+          <p className="text-sm text-white/70">Ikuti tiga langkah ini untuk mendapat markah penuh dalam soalan ringkasan.</p>
+        </div>
+      </div>
+
+      {/* Langkah 1 */}
+      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
+        <div className="flex items-center gap-3">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black" style={{ background: `${color}30`, color }}>1</span>
+          <p className="text-sm font-bold text-white">Kenal Pasti Kata Kunci Soalan</p>
+        </div>
+        <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
+          <p className="text-[10px] font-black tracking-wide text-white/35 mb-1">Contoh</p>
+          <p className="text-sm text-white/65 italic">"Tulis ringkasan tentang kesan cuaca panas."</p>
+        </div>
+        <div className="flex items-start gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/8 px-4 py-3">
+          <span className="text-base mt-0.5">✅</span>
+          <div>
+            <p className="text-[10px] font-black tracking-wide text-emerald-400 mb-0.5">Kata Kunci Soalan</p>
+            <p className="text-base font-black text-white">Kesan Cuaca Panas</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Langkah 2 */}
+      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
+        <div className="flex items-center gap-3">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black" style={{ background: `${color}30`, color }}>2</span>
+          <p className="text-sm font-bold text-white">Kenal Pasti Isi Penting Daripada Petikan</p>
+        </div>
+        <div className="space-y-2">
+          {Array.from({ length: 6 }, (_, i) => (
+            <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}20`, color }}>{i + 1}</span>
+              <p className="text-[11px] font-bold text-white/35 mr-2 shrink-0">Isi {i + 1} →</p>
+              <div className="flex-1 border-b border-dashed border-white/[0.15] pb-1" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Langkah 3 */}
+      <div className="rounded-2xl border border-[#6366F1]/20 bg-[#6366F1]/8 p-5 space-y-3">
+        <div className="flex items-center gap-3">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black" style={{ background: `${color}30`, color }}>3</span>
+          <p className="text-sm font-bold text-white">Masukkan semua isi dalam <span className="font-bold text-white underline decoration-dotted">satu perenggan</span></p>
+        </div>
+        <p className="text-[10px] font-black tracking-wide text-[#A78BFA]">📌 Rangka Ringkasan</p>
+        <div className="space-y-2">
+          {[
+            ["Antara",          "Isi 1"],
+            ["Selain itu,",     "Isi 2"],
+            ["Seterusnya,",     "Isi 3"],
+            ["Di samping itu,", "Isi 4"],
+            ["Tambahan pula,",  "Isi 5"],
+            ["Akhir sekali,",   "Isi 6"],
+          ].map(([pw, slot], i) => (
+            <div key={i} className="flex items-baseline gap-2 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-2.5">
+              <span className="font-bold text-white shrink-0 text-sm">{pw}</span>
+              <div className="flex-1 border-b border-dashed border-white/[0.15] pb-0.5" />
+              <span className="text-[10px] text-white/30 shrink-0">({slot})</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Contoh Ringkasan Lengkap */}
+      <div>
+        <SectionLabel>Contoh Ringkasan Lengkap</SectionLabel>
+        <div className="space-y-4">
+
+          <div className="flex items-center gap-3 rounded-2xl border border-[#FBBF24]/25 bg-[#FBBF24]/8 px-5 py-4">
+            <span className="text-xl">📌</span>
+            <div>
+              <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-0.5">Kata Kunci Soalan</p>
+              <p className="text-base font-black text-white">Kesan Cuaca Panas</p>
+            </div>
+          </div>
+
+          <div>
+            <div className="mb-2 flex items-center gap-2">
+              <span className="text-base">📌</span>
+              <p className="text-[10px] font-black tracking-wide text-white/40">Isi Yang Dipilih</p>
+            </div>
+            <div className="space-y-2">
+              {RANGKA_ISI_CUACA.map((isi, i) => (
+                <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-black" style={{ background: `${color}20`, color }}>{i + 1}</span>
+                  <p className="text-sm text-white/75">{isi}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="mb-2 flex items-center gap-2">
+              <span className="text-base">📌</span>
+              <p className="text-[10px] font-black tracking-wide text-white/40">Jawapan Ringkasan</p>
+            </div>
+            <div className="rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/8 p-5">
+              <p className="text-sm leading-relaxed text-white/80">
+                {RANGKA_JAWAPAN_CUACA.map((j, i) => (
+                  <span key={i}>
+                    <span className="font-bold text-white">{j.pw}</span>{" "}{j.isi}{" "}
+                  </span>
+                ))}
+              </p>
+              <p className="mt-3 text-[11px] text-white/40">(55 patah perkataan)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Kesalahan Lazim */}
+      <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
+        <p className="mb-4 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Yang Sering Dilakukan Murid</p>
+        <div className="space-y-2">
+          {RANGKA_KESALAHAN.map((k, i) => (
+            <div key={i} className="flex items-center gap-3 rounded-xl border border-rose-500/10 bg-rose-500/5 px-4 py-2.5">
+              <span className="text-base shrink-0">❌</span>
+              <p className="text-sm text-white/70">{k}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Formula Hafalan 20 Saat */}
+      <div>
+        <SectionLabel>Formula Hafalan 20 Saat</SectionLabel>
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
+          <div className="flex flex-wrap items-center gap-2">
+            {HAFALAN_LANGKAH.map((langkah, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <div className="rounded-xl border px-3 py-2 text-center" style={{ borderColor: `${color}40`, background: `${color}12` }}>
+                  <p className="text-[10px] font-black text-white/40 mb-0.5">Langkah {i + 1}</p>
+                  <p className="text-xs font-bold text-white">{langkah}</p>
+                </div>
+                {i < HAFALAN_LANGKAH.length - 1 && (
+                  <span className="text-white/25 font-bold text-lg">→</span>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="flex items-start gap-2 rounded-xl border border-[#FBBF24]/20 bg-[#FBBF24]/8 px-4 py-3 mt-1">
+            <span className="shrink-0">🎯</span>
+            <p className="text-sm text-white/80 italic">Ringkasan yang mendapat markah tinggi bukan kerana ayat yang panjang, tetapi kerana isi yang tepat dan menepati kehendak soalan.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+// ─── TEKNIK MENJAWAB RINGKASAN PREMIUM ───────────────────────────────────────
+
+// ─── DATA: 5 LATIHAN RINGKASAN INTERAKTIF ─────────────────────────────────────
+
+const LATIHAN_RINGKASAN = [
+  {
+    id: 1,
+    tajuk: "Kebaikan Aktiviti Berbasikal",
+    emoji: "🚴",
+    petikan:
+      "Aktiviti berbasikal semakin mendapat tempat dalam kalangan masyarakat di negara kita. Berbasikal secara berkala dapat menjaga kesihatan fizikal seseorang kerana ia melibatkan pergerakan aktif seluruh anggota badan. Selain itu, penggunaan basikal sebagai kenderaan harian dapat mengurangkan kebergantungan kepada kenderaan bermotor, justeru membantu mengawal kadar pencemaran udara di kawasan bandar. Aktiviti ini juga membantu menjimatkan kos pengangkutan harian terutamanya bagi golongan yang tinggal berhampiran tempat kerja atau sekolah. Di samping itu, berbasikal secara berkumpulan dapat memupuk semangat kerjasama dan mewujudkan ikatan sosial yang erat dalam kalangan ahli masyarakat. Penggunaan basikal yang meluas turut menyumbang kepada pengurangan kesesakan lalu lintas di jalan raya. Akhirnya, amalan berbasikal secara tidak langsung membantu memelihara alam sekitar kerana basikal tidak melepaskan gas karbon dioksida ke udara.",
+    fokus: "Kebaikan aktiviti berbasikal kepada masyarakat.",
+    kataKunci: [
+      { kata: "Kebaikan",           warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
+      { kata: "Aktiviti Berbasikal", warna: "bg-[#0EA5E9]/20 text-[#38BDF8] border border-[#0EA5E9]/35" },
+      { kata: "Masyarakat",          warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+    ],
+    isiPenting: [
+      "Menjaga kesihatan fizikal penunggang basikal.",
+      "Mengurangkan pencemaran udara di kawasan bandar.",
+      "Menjimatkan kos pengangkutan harian.",
+      "Memupuk semangat kerjasama dalam kalangan masyarakat.",
+      "Mengurangkan kesesakan lalu lintas di jalan raya.",
+      "Membantu memelihara alam sekitar.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "kebaikan aktiviti berbasikal ialah ia dapat menjaga kesihatan fizikal penunggang." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "berbasikal membantu mengurangkan pencemaran udara kerana ia tidak menggunakan bahan api." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "aktiviti ini menjimatkan kos pengangkutan harian seseorang." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "berbasikal secara berkumpulan dapat memupuk semangat kerjasama dalam kalangan masyarakat." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "penggunaan basikal turut mengurangkan kesesakan lalu lintas di jalan raya." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "berbasikal secara tidak langsung membantu memelihara alam sekitar." },
+    ],
+    jawapanLengkap:
+      "Antara kebaikan aktiviti berbasikal kepada masyarakat ialah ia dapat menjaga kesihatan fizikal penunggang. Selain itu, berbasikal membantu mengurangkan pencemaran udara kerana ia tidak menggunakan bahan api. Seterusnya, aktiviti ini menjimatkan kos pengangkutan harian seseorang. Di samping itu, berbasikal secara berkumpulan dapat memupuk semangat kerjasama dalam kalangan masyarakat. Tambahan pula, penggunaan basikal turut mengurangkan kesesakan lalu lintas di jalan raya. Akhir sekali, berbasikal secara tidak langsung membantu memelihara alam sekitar.",
+    bilPatah: 73,
+    kesalahanLazim: [
+      "Mengambil isi yang tidak menjawab fokus — contoh: menulis tentang bahaya berbasikal.",
+      "Menulis pendahuluan seperti 'Terdapat banyak kebaikan...' — membuang patah perkataan.",
+      "Menyalin keseluruhan ayat daripada petikan tanpa olahan sendiri.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana seperti 'Antara', 'Selain itu'.",
+    ],
+    tipCikgu:
+      "Fokus kata kunci adalah 'kebaikan' — pastikan semua isi yang dipilih menjawab soalan 'apa kebaikannya?' dan bukannya kesan, masalah, atau cadangan.",
+  },
+  {
+    id: 2,
+    tajuk: "Kesan Cuaca Panas",
+    emoji: "☀️",
+    petikan:
+      "Cuaca panas yang melampau membawa pelbagai kesan buruk kepada kehidupan manusia dan alam sekitar. Kesihatan manusia terancam apabila suhu yang terlalu tinggi boleh menyebabkan seseorang mengalami strok haba, terutamanya bagi golongan warga emas dan kanak-kanak. Aktiviti harian turut terjejas apabila cuaca yang panas menyukarkan orang ramai menjalankan kerja luar. Di samping itu, cuaca panas yang berpanjangan menyebabkan sumber air semakin berkurangan akibat kadar penyejatan yang tinggi. Tanaman pertanian juga turut terjejas kerana kekurangan air dan suhu yang melampau boleh menyebabkan tanaman mati sebelum musim tuaian. Cuaca panas yang kering juga meningkatkan risiko kebakaran hutan dan kebun, yang boleh memusnahkan harta benda dan nyawa. Selain itu, penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin, menyebabkan beban sistem elektrik negara bertambah.",
+    fokus: "Kesan cuaca panas kepada manusia dan alam sekitar.",
+    kataKunci: [
+      { kata: "Kesan",       warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      { kata: "Cuaca Panas", warna: "bg-[#F59E0B]/20 text-[#FBBF24] border border-[#F59E0B]/35" },
+    ],
+    isiPenting: [
+      "Mengancam kesihatan manusia dan menyebabkan strok haba.",
+      "Menjejaskan aktiviti harian orang ramai.",
+      "Mengurangkan sumber air akibat kadar penyejatan yang tinggi.",
+      "Merosakkan tanaman pertanian.",
+      "Meningkatkan risiko kebakaran hutan dan kebun.",
+      "Meningkatkan penggunaan elektrik sehingga membebankan sistem bekalan.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "cuaca panas turut menjejaskan aktiviti harian orang ramai." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "sumber air semakin berkurangan akibat kadar penyejatan yang tinggi." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin." },
+    ],
+    jawapanLengkap:
+      "Antara kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba. Selain itu, cuaca panas turut menjejaskan aktiviti harian orang ramai. Seterusnya, sumber air semakin berkurangan akibat kadar penyejatan yang tinggi. Di samping itu, tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian. Tambahan pula, cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun. Akhir sekali, penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin.",
+    bilPatah: 75,
+    kesalahanLazim: [
+      "Menulis cara mengatasi cuaca panas — soalan tanya kesan, bukan penyelesaian.",
+      "Mengambil isi yang sama dengan perkataan berbeza (isi berganda).",
+      "Menyalin keseluruhan perenggan tanpa memilih isi yang spesifik.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Lupa menggunakan penanda wacana untuk menyambung isi.",
+    ],
+    tipCikgu:
+      "Kata kunci 'kesan' bermakna kamu mencari akibat atau impak cuaca panas. Jangan tulis cara mengatasinya — itu menjawab soalan yang berbeza!",
+  },
+  {
+    id: 3,
+    tajuk: "Cara Mengesan Penipuan Skim Cepat Kaya",
+    emoji: "🚨",
+    petikan:
+      "Penipuan berkaitan skim cepat kaya semakin berleluasa dan memerlukan orang ramai bersikap berhati-hati. Antara cara mengesan penipuan sedemikian ialah dengan memerhati tawaran yang menjanjikan pulangan wang yang luar biasa tinggi dalam masa yang sangat singkat, kerana ini adalah tanda amaran yang jelas. Selain itu, skim yang memerlukan pembayaran wang pendahuluan sebelum sebarang keuntungan diterima wajar disyaki dengan serius. Orang ramai juga perlu menyemak sama ada syarikat berkenaan mempunyai pendaftaran yang sah dengan pihak berkuasa seperti Bank Negara Malaysia atau Suruhanjaya Sekuriti. Teknik menekan mangsa supaya segera membuat keputusan tanpa masa untuk berfikir juga merupakan petanda penipuan. Di samping itu, penggunaan testimoni yang tidak boleh disahkan daripada individu yang tidak dikenali harus diwaspadai. Maklumat tentang syarikat yang kabur dan alamat atau nombor telefon yang tidak dapat disahkan turut menjadi petanda sesebuah skim itu adalah penipuan.",
+    fokus: "Cara mengesan penipuan skim cepat kaya.",
+    kataKunci: [
+      { kata: "Cara Mengesan",   warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
+      { kata: "Penipuan",         warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      { kata: "Skim Cepat Kaya",  warna: "bg-[#F59E0B]/20 text-[#FBBF24] border border-[#F59E0B]/35" },
+    ],
+    isiPenting: [
+      "Tawaran menjanjikan pulangan wang luar biasa tinggi dalam masa singkat.",
+      "Memerlukan pembayaran wang pendahuluan sebelum keuntungan diterima.",
+      "Syarikat tidak mempunyai pendaftaran sah dengan pihak berkuasa.",
+      "Mangsa ditekan untuk membuat keputusan segera tanpa masa berfikir.",
+      "Menggunakan testimoni yang tidak boleh disahkan.",
+      "Maklumat syarikat yang kabur dan tidak dapat disahkan.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "penggunaan testimoni yang tidak boleh disahkan harus diwaspadai." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan." },
+    ],
+    jawapanLengkap:
+      "Antara cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat. Selain itu, skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki. Seterusnya, syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan. Di samping itu, teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan. Tambahan pula, penggunaan testimoni yang tidak boleh disahkan harus diwaspadai. Akhir sekali, maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan.",
+    bilPatah: 83,
+    kesalahanLazim: [
+      "Menulis cara mengelak penipuan — soalan tanya cara mengesan, bukan mengelak.",
+      "Mengambil maklumat am tentang penipuan yang tidak terdapat dalam petikan.",
+      "Mengulang isi yang sama dengan perkataan berbeza.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana yang betul.",
+    ],
+    tipCikgu:
+      "Perhatikan perbezaan: 'cara mengesan' bermakna tanda-tanda yang menunjukkan ia penipuan. Bukan cara nak lari atau cara nak lapor — itu soalan berbeza!",
+  },
+  {
+    id: 4,
+    tajuk: "Cara Menangani Masalah Sosial Remaja",
+    emoji: "🤝",
+    petikan:
+      "Masalah sosial dalam kalangan remaja memerlukan penyelesaian yang menyeluruh daripada pelbagai pihak. Ibu bapa memainkan peranan utama dalam mengatasi isu ini dengan sentiasa memantau pergaulan dan aktiviti anak-anak mereka agar tidak terlibat dengan pengaruh negatif. Pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil supaya remaja mempunyai benteng dalaman yang kuat untuk menolak ajakan kepada perkara yang salah. Pihak sekolah pula perlu menyediakan lebih banyak aktiviti kokurikulum yang berfaedah bagi mengisi masa lapang remaja dengan perkara yang positif. Kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang menunjukkan tanda-tanda bermasalah. Pihak berkuasa turut bertanggungjawab menguatkuasakan undang-undang yang berkaitan supaya terdapat kesan jera kepada mereka yang melanggar. Selain itu, masyarakat perlu berganding bahu memastikan persekitaran kejiranan yang selamat dan sihat untuk perkembangan remaja.",
+    fokus: "Cara menangani masalah sosial dalam kalangan remaja.",
+    kataKunci: [
+      { kata: "Cara Menangani", warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+      { kata: "Masalah Sosial",  warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      { kata: "Remaja",           warna: "bg-[#8B5CF6]/20 text-[#C4B5FD] border border-[#8B5CF6]/35" },
+    ],
+    isiPenting: [
+      "Ibu bapa memantau pergaulan dan aktiviti anak-anak.",
+      "Pendidikan agama dan moral yang kukuh diterapkan sejak kecil.",
+      "Menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang.",
+      "Memberikan kaunseling dan bimbingan yang berterusan.",
+      "Menguatkuasakan undang-undang yang berkaitan.",
+      "Masyarakat mewujudkan persekitaran kejiranan yang selamat.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat." },
+    ],
+    jawapanLengkap:
+      "Antara cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak. Selain itu, pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil. Seterusnya, pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja. Di samping itu, kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah. Tambahan pula, pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera. Akhir sekali, masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat.",
+    bilPatah: 80,
+    kesalahanLazim: [
+      "Menulis punca atau kesan masalah sosial — soalan tanya cara menangani.",
+      "Mengambil isi yang tidak jelas menjawab siapa yang perlu bertindak.",
+      "Menulis isi yang terlalu umum tanpa huraian yang spesifik.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana yang tepat.",
+    ],
+    tipCikgu:
+      "Untuk soalan 'cara menangani', setiap isi kamu sepatutnya boleh dijawab dengan soalan 'siapa buat apa?' — contoh: Ibu bapa (siapa) memantau anak (buat apa). Ini cara paling mudah pastikan isi kamu tepat.",
+  },
+  {
+    id: 5,
+    tajuk: "Langkah Mengamalkan Gaya Hidup Sihat",
+    emoji: "💪",
+    petikan:
+      "Gaya hidup sihat perlu diamalkan sejak awal usia bagi memastikan kualiti kehidupan yang baik sepanjang hayat. Langkah pertama ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu bagi mengekalkan kecergasan fizikal dan meningkatkan daya tahan badan. Selain itu, seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil pelbagai jenis makanan berkhasiat dan mengelakkan makanan yang tinggi lemak serta gula. Mendapatkan waktu tidur yang cukup iaitu antara tujuh hingga lapan jam sehari juga penting untuk memulihkan tenaga badan dan minda. Di samping itu, mengelakkan tabiat buruk seperti merokok dan mengambil minuman beralkohol dapat melindungi kesihatan dalam jangka masa panjang. Pemeriksaan kesihatan secara berkala pula membolehkan sebarang penyakit dikesan lebih awal sebelum menjadi parah. Akhirnya, mengurangkan tahap tekanan atau stres melalui aktiviti rekreasi dan masa bersama keluarga juga penting untuk kesihatan mental.",
+    fokus: "Langkah mengamalkan gaya hidup sihat.",
+    kataKunci: [
+      { kata: "Langkah",          warna: "bg-[#06B6D4]/20 text-[#22D3EE] border border-[#06B6D4]/35" },
+      { kata: "Gaya Hidup Sihat", warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+    ],
+    isiPenting: [
+      "Bersenam secara berkala sekurang-kurangnya tiga kali seminggu.",
+      "Mengamalkan pemakanan yang seimbang dan berkhasiat.",
+      "Mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari.",
+      "Mengelakkan tabiat buruk seperti merokok dan minuman beralkohol.",
+      "Menjalani pemeriksaan kesihatan secara berkala.",
+      "Mengurangkan tekanan atau stres melalui aktiviti rekreasi.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental." },
+    ],
+    jawapanLengkap:
+      "Antara langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu. Selain itu, seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat. Seterusnya, mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting. Di samping itu, mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang. Tambahan pula, pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal. Akhir sekali, mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental.",
+    bilPatah: 78,
+    kesalahanLazim: [
+      "Menulis kesan mengamalkan gaya hidup sihat — soalan tanya langkah, bukan kesan.",
+      "Mengambil isi yang tidak berkaitan dengan amalan peribadi.",
+      "Mengulang isi yang sama dengan perkataan sedikit berbeza.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana yang lengkap.",
+    ],
+    tipCikgu:
+      "Untuk soalan 'langkah', setiap isi kamu mestilah tindakan yang boleh dilakukan — mulakan dengan kata kerja: 'bersenam', 'mengamalkan', 'mendapatkan', 'mengelakkan'. Jika isi tidak boleh dimulakan dengan kata kerja, ia mungkin bukan langkah.",
+  },
+];
+
+// ─── KOMPONEN: SATU KAD LATIHAN ──────────────────────────────────────────────
+
+function LatihanKadRingkasan({
+  latihan,
+  color,
+}: {
+  latihan: (typeof LATIHAN_RINGKASAN)[number];
+  color: string;
+}) {
+  const [isiDedah, setIsiDedah] = useState(false);
+  const [jawapanDedah, setJawapanDedah] = useState(false);
+
+  return (
+    <div className="space-y-7">
+
+      {/* 1. Petikan */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">📖</span>
+          <p className="text-sm font-black tracking-wide text-white">Petikan</p>
+        </div>
+        <div className="rounded-2xl border border-white/[0.10] bg-white/[0.04] p-5">
+          <p className="text-sm leading-[1.85] text-white/75 italic">{latihan.petikan}</p>
+        </div>
+      </div>
+
+      {/* 2. Fokus Soalan */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">🎯</span>
+          <p className="text-sm font-black tracking-wide text-white">Fokus Soalan</p>
+        </div>
+        <div className="rounded-2xl border border-[#FBBF24]/35 bg-gradient-to-r from-[#FBBF24]/12 to-[#F59E0B]/8 p-4">
+          <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-1.5">Soalan Peperiksaan</p>
+          <p className="text-base font-bold text-white leading-snug">{latihan.fokus}</p>
+          <p className="mt-2 text-[11px] text-white/45 leading-relaxed">
+            Cari isi yang menjawab fokus ini sahaja. Buang semua maklumat yang tidak berkaitan.
+          </p>
+        </div>
+      </div>
+
+      {/* 3. Kata Kunci */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">🔍</span>
+          <p className="text-sm font-black tracking-wide text-white">Kata Kunci Soalan</p>
+        </div>
+        <div className="flex flex-wrap gap-2 mb-2">
+          {latihan.kataKunci.map((kk, i) => (
+            <span key={i} className={`rounded-xl px-4 py-2 text-sm font-bold ${kk.warna}`}>
+              {kk.kata}
+            </span>
+          ))}
+        </div>
+        <p className="text-[11px] text-white/40 px-1">
+          Semua isi yang dipilih mesti berkaitan dengan kata kunci di atas.
+        </p>
+      </div>
+
+      {/* 4. Isi Penting (interaktif — tunjuk/sembunyikan) */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">✏️</span>
+          <p className="text-sm font-black tracking-wide text-white">Isi Penting Yang Perlu Dicari</p>
+        </div>
+        {!isiDedah && (
+          <p className="mb-3 text-[11px] text-white/40 px-1">
+            Cuba kenal pasti 6 isi penting daripada petikan di atas sebelum melihat jawapan.
+          </p>
+        )}
+        <div className="grid gap-2 sm:grid-cols-2 mb-3">
+          {latihan.isiPenting.map((isi, i) => (
+            <div
+              key={i}
+              className={`flex items-start gap-3 rounded-xl border p-3 transition-all duration-300 ${
+                isiDedah
+                  ? "border-emerald-500/25 bg-emerald-500/[0.07]"
+                  : "border-white/[0.08] bg-white/[0.03]"
+              }`}
+            >
+              <span
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black mt-0.5"
+                style={{ background: `${color}22`, color }}
+              >
+                {i + 1}
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-bold text-white/30 mb-1">Isi {i + 1}</p>
+                {isiDedah ? (
+                  <p className="text-sm text-white/85 leading-relaxed">{isi}</p>
+                ) : (
+                  <div className="space-y-1.5">
+                    <div className="h-2 rounded-full bg-white/[0.08] w-full" />
+                    <div className="h-2 rounded-full bg-white/[0.05] w-3/4" />
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        {!isiDedah && (
+          <button
+            onClick={() => setIsiDedah(true)}
+            className="w-full rounded-xl border border-[#6366F1]/35 bg-[#6366F1]/12 py-3 text-xs font-bold text-[#A78BFA] transition-all hover:bg-[#6366F1]/22 active:scale-[0.98]"
+          >
+            ✅ Tunjuk Isi Penting
+          </button>
+        )}
+      </div>
+
+      {/* 5. Jawapan Contoh — Struktur */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">📚</span>
+          <p className="text-sm font-black tracking-wide text-white">Jawapan Contoh — Struktur Ringkasan</p>
+        </div>
+        <div className="rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/[0.07] p-5">
+          <p className="text-[10px] font-black tracking-wide text-[#A78BFA] mb-4">
+            Susun isi mengikut penanda wacana ini:
+          </p>
+          <div className="space-y-3">
+            {latihan.struktur.map((s, i) => (
+              <div key={i} className="flex items-baseline gap-2 leading-relaxed">
+                <span className={`font-black text-sm shrink-0 ${s.warna}`}>{s.penanda}</span>
+                <span className="text-sm text-white/65">{s.isi}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 6. Jawapan Lengkap (interaktif) */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">🔥</span>
+          <p className="text-sm font-black tracking-wide text-white">Jawapan Lengkap</p>
+        </div>
+        {jawapanDedah ? (
+          <div className="space-y-3">
+            <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.07] p-5">
+              <p className="text-sm leading-[1.85] text-white/85">{latihan.jawapanLengkap}</p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 px-1">
+              <span className="text-[11px] text-white/40">Jumlah Patah Perkataan:</span>
+              <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-[11px] font-bold text-emerald-400">
+                {latihan.bilPatah} patah perkataan ✓
+              </span>
+              <span className="rounded-full bg-emerald-500/12 px-3 py-1 text-[11px] font-semibold text-emerald-400">
+                Dalam had 100 patah perkataan ✓
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+            <p className="text-[11px] text-white/40 mb-4 leading-relaxed">
+              Cuba tulis jawapan ringkasan kamu sendiri dahulu menggunakan struktur di atas, kemudian semak dengan jawapan lengkap.
+            </p>
+            <button
+              onClick={() => setJawapanDedah(true)}
+              className="w-full rounded-xl border border-[#FBBF24]/35 bg-[#FBBF24]/12 py-3 text-xs font-bold text-[#FBBF24] transition-all hover:bg-[#FBBF24]/22 active:scale-[0.98]"
+            >
+              🔥 Tunjuk Jawapan Lengkap
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* 7. Kesalahan Lazim */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">⚠️</span>
+          <p className="text-sm font-black tracking-wide text-rose-400">Kesalahan Lazim</p>
+        </div>
+        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.05] p-5 space-y-2">
+          {latihan.kesalahanLazim.map((k, i) => (
+            <div key={i} className="flex items-start gap-2.5 rounded-xl border border-rose-500/12 bg-rose-500/[0.04] px-3 py-2.5">
+              <span className="shrink-0 text-base mt-0.5">❌</span>
+              <p className="text-sm text-white/70 leading-relaxed">{k}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 8. Tip Cikgu AcadeMy */}
+      <div className="rounded-2xl border border-[#FBBF24]/30 bg-gradient-to-br from-[#FBBF24]/10 to-[#F59E0B]/8 p-5">
+        <div className="flex items-start gap-3">
+          <div
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-xl"
+            style={{ background: "linear-gradient(135deg, #FBBF24, #F59E0B)" }}
+          >
+            🧑‍🏫
+          </div>
+          <div>
+            <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-2">Tip Cikgu AcadeMy</p>
+            <p className="text-sm leading-relaxed text-white/80 italic">"{latihan.tipCikgu}"</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+function RingkasanPremiumDetail({ color }: { color: string }) {
+  const [aktif, setAktif] = useState(0);
+
+  return (
+    <div className="space-y-6">
+
+      {/* Pengenalan + fakta penting */}
+      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+        <p className="text-sm leading-relaxed text-white/75">
+          Ringkasan ialah soalan{" "}
+          <span className="font-bold text-white">Bahagian C (15 markah)</span> yang memerlukan
+          murid mengenal pasti isi penting daripada petikan dan menulis semula dalam bentuk ringkas
+          menggunakan ayat gramatis.{" "}
+          <span className="font-semibold text-white">Tidak lebih daripada 100 patah perkataan.</span>{" "}
+          Tulis dalam{" "}
+          <span className="font-semibold text-white">satu perenggan.</span>{" "}
+          Tiada pendahuluan. Tiada penutup.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {[
+          { icon: "📌", label: "Bahagian C" },
+          { icon: "⭐", label: "15 Markah" },
+          { icon: "📝", label: "Maks. 100 Patah Perkataan" },
+          { icon: "📄", label: "Satu Perenggan Sahaja" },
+        ].map((f, i) => (
+          <div key={i} className="flex items-center gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-3 py-3">
+            <span className="text-base shrink-0">{f.icon}</span>
+            <p className="text-xs font-semibold text-white/85 leading-tight">{f.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Tab navigasi */}
+      <div>
+        <p className="mb-3 text-[10px] font-black tracking-wide text-white/40">
+          5 Latihan Ringkasan Interaktif
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {LATIHAN_RINGKASAN.map((l, i) => (
+            <button
+              key={i}
+              onClick={() => setAktif(i)}
+              className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-bold transition-all ${
+                aktif === i
+                  ? "border-transparent text-white shadow-md"
+                  : "border-white/[0.08] bg-white/[0.03] text-white/45 hover:text-white/70"
+              }`}
+              style={
+                aktif === i
+                  ? { background: `${color}28`, borderColor: `${color}45`, color }
+                  : {}
+              }
+            >
+              <span>{l.emoji}</span>
+              <span className="hidden sm:inline">{l.tajuk}</span>
+              <span className="sm:hidden">Latihan {l.id}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Kad latihan aktif */}
+      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
+        <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/[0.06]">
+          <span
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl"
+            style={{ background: `${color}22` }}
+          >
+            {LATIHAN_RINGKASAN[aktif].emoji}
+          </span>
+          <div>
+            <p className="text-[10px] font-black tracking-wide text-white/30 mb-0.5">
+              Latihan {LATIHAN_RINGKASAN[aktif].id} daripada 5
+            </p>
+            <p className="text-base font-bold text-white">
+              {LATIHAN_RINGKASAN[aktif].tajuk}
+            </p>
+          </div>
+        </div>
+        <LatihanKadRingkasan
+          key={aktif}
+          latihan={LATIHAN_RINGKASAN[aktif]}
+          color={color}
+        />
+      </div>
+
+    </div>
+  );
+}
+
+function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
     <div className="space-y-6">
       {topic.description && (
@@ -1838,7 +3061,7 @@ function RingkasanUlasanDetail({ topic, color }: { topic: BMTopic; color: string
 
       {topic.commonMistakes && (
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesalahan Lazim</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Lazim</p>
           <ul className="space-y-2">
             {topic.commonMistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1852,7 +3075,7 @@ function RingkasanUlasanDetail({ topic, color }: { topic: BMTopic; color: string
 
       {topic.uasaTips && (
         <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips UASA</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">★ Tips UASA</p>
           <ul className="space-y-2">
             {topic.uasaTips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1939,7 +3162,7 @@ function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.commonMistakes && (
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesalahan Lazim</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Lazim</p>
           <ul className="space-y-2">
             {topic.commonMistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1953,7 +3176,7 @@ function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.uasaTips && (
         <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-yellow-400">★ Tips Markah Penuh</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">★ Tips Markah Penuh</p>
           <ul className="space-y-2">
             {topic.uasaTips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1979,7 +3202,7 @@ function WorkshopDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Idea Bank */}
       {topic.ideaBank && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest" style={{ color }}>💡 Idea Bank</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide" style={{ color }}>💡 Idea Bank</p>
           <div className="flex flex-wrap gap-2">
             {topic.ideaBank.map((idea) => (
               <span key={idea} className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/60">
@@ -2030,7 +3253,7 @@ function WorkshopDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Peribahasa */}
       {topic.peribahasa && topic.peribahasa.length > 0 && (
         <div className="rounded-2xl border border-[#F472B6]/20 bg-[#F472B6]/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-[#F472B6]">💎 Peribahasa Sesuai</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-[#F472B6]">💎 Peribahasa Sesuai</p>
           <div className="space-y-2">
             {topic.peribahasa.map((p, i) => (
               <p key={i} className="text-sm italic text-white/65">"{p}"</p>
@@ -2085,15 +3308,15 @@ function PeribahsaBankDetail({ topic, color }: { topic: BMTopic; color: string }
         <div key={i} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
           <p className="mb-2 text-base font-bold italic text-white">{p.text}</p>
           <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
-            <p className="text-[9px] font-black uppercase tracking-widest text-white/30 mb-1">Maksud</p>
+            <p className="text-[9px] font-black tracking-wide text-white/30 mb-1">Maksud</p>
             <p className="text-sm text-white/70">{p.maksud}</p>
           </div>
           <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
-            <p className="text-[9px] font-black uppercase tracking-widest text-white/30 mb-1">Contoh Ayat</p>
+            <p className="text-[9px] font-black tracking-wide text-white/30 mb-1">Contoh Ayat</p>
             <p className="text-sm italic text-white/60">{p.contohAyat}</p>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            <p className="w-full text-[9px] font-bold uppercase tracking-widest text-white/30 mb-1">Sesuai untuk topik:</p>
+            <p className="w-full text-[9px] font-bold tracking-wide text-white/30 mb-1">Sesuai untuk topik:</p>
             {p.topikSesuai.map((t) => (
               <span key={t} className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-medium" style={{ color }}>
                 {t}
@@ -2125,11 +3348,11 @@ function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: strin
             {topic.beforeAfter.map((ba, i) => (
               <div key={i} className="overflow-hidden rounded-2xl border border-white/[0.07]">
                 <div className="bg-rose-500/10 p-4 border-b border-white/[0.05]">
-                  <p className="mb-1 text-[9px] font-black uppercase tracking-widest text-rose-400">✗ Ayat Lemah</p>
+                  <p className="mb-1 text-[9px] font-black tracking-wide text-rose-400">✗ Ayat Lemah</p>
                   <p className="text-sm text-white/60">{ba.lemah}</p>
                 </div>
                 <div className="bg-emerald-500/10 p-4">
-                  <p className="mb-1 text-[9px] font-black uppercase tracking-widest text-emerald-400">✓ Ayat Cemerlang</p>
+                  <p className="mb-1 text-[9px] font-black tracking-wide text-emerald-400">✓ Ayat Cemerlang</p>
                   <p className="text-sm text-white/75">{ba.cemerlang}</p>
                   <p className="mt-2 text-[10px] italic text-white/35">Teknik: {ba.tip}</p>
                 </div>
@@ -2158,7 +3381,7 @@ function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: strin
       {/* Mistakes */}
       {topic.mistakes && (
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black uppercase tracking-widest text-rose-400">⚠ Kesilapan Biasa dalam Karangan</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesilapan Biasa dalam Karangan</p>
           <ul className="space-y-2">
             {topic.mistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -2179,7 +3402,9 @@ function TopicDetailRenderer({ topic, hubColor }: { topic: BMTopic; hubColor: st
     case "komsas":         return <KOMSASDetail topic={topic} color={hubColor} />;
     case "novel":          return <NovelDetail topic={topic} color={hubColor} />;
     case "pemahaman":      return <PemahamanDetail topic={topic} color={hubColor} />;
-    case "ringkasan-ulasan": return <RingkasanUlasanDetail topic={topic} color={hubColor} />;
+    case "rangka-ringkasan":  return <RangkaRingkasanDetail color={hubColor} />;
+    case "ringkasan-premium": return <RingkasanPremiumDetail color={hubColor} />;
+    case "ringkasan": return <RingkasanDetail topic={topic} color={hubColor} />;
     case "karangan-pendek":
     case "respons-terbuka": return <KaranganDetail topic={topic} color={hubColor} />;
     case "workshop":       return <WorkshopDetail topic={topic} color={hubColor} />;
@@ -2271,7 +3496,7 @@ export function BMWorldPage({ onBack }: { onBack: () => void }) {
 
   // Resolve current context
   const kertas =
-    screen.type !== "landing"
+    (screen.type !== "landing" && screen.type !== "objektif-quiz")
       ? getBMKertas(screen.kertasId)
       : undefined;
 
@@ -2298,7 +3523,18 @@ export function BMWorldPage({ onBack }: { onBack: () => void }) {
           />
         )}
 
-        {screen.type === "kertas" && kertas && (
+        {/* K1: redesigned quiz prep view */}
+        {screen.type === "kertas" && screen.kertasId === "k1" && kertas && (
+          <K1QuizView
+            kertas={kertas}
+            onSelectObjektif={(setIndex) => push({ type: "objektif-quiz", setIndex })}
+            onSelectHub={(hubId) => push({ type: "hub", kertasId: "k1", hubId })}
+            onBack={pop}
+          />
+        )}
+
+        {/* K2: existing hub grid */}
+        {screen.type === "kertas" && screen.kertasId === "k2" && kertas && (
           <KertasView
             kertas={kertas}
             onSelectHub={(hubId) =>
@@ -2306,6 +3542,11 @@ export function BMWorldPage({ onBack }: { onBack: () => void }) {
             }
             onBack={pop}
           />
+        )}
+
+        {/* Objektif UASA mini quiz runner */}
+        {screen.type === "objektif-quiz" && (
+          <ObjektifKuizView setIndex={screen.setIndex} onBack={pop} />
         )}
 
         {screen.type === "hub" && kertas && hub && (
