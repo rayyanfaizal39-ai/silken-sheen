@@ -6,7 +6,9 @@ export type BMTopicType =
   | "pemahaman"
   | "komsas"
   | "novel"
-  | "ringkasan-ulasan"
+  | "ringkasan"
+  | "ringkasan-premium"
+  | "rangka-ringkasan"
   | "karangan-pendek"
   | "respons-terbuka"
   | "workshop"
@@ -77,7 +79,7 @@ export interface BMTopic {
   zon?: string;
   penulis?: string;
   watak?: BMWatak[];
-  // Ringkasan/Ulasan
+  // Ringkasan
   formula?: string[];
   // Karangan
   formulae?: BMFormula[];
@@ -262,7 +264,7 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
       "Menambah keterangan dan mendakwa itu masih pola ayat inti",
     ],
     uasaTips: [
-      "Ayat inti TIDAK ada keterangan — hapus semua keterangan untuk mendapat pola inti",
+      "Ayat inti tidak ada keterangan — hapus semua keterangan untuk mendapat pola inti",
       "Soalan lazim: 'Tulis semula ayat berikut dalam pola ayat inti'",
     ],
   },
@@ -319,20 +321,20 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     badge: "Pemahaman",
     description: "Kemahiran menjawab soalan berdasarkan petikan teks yang diberikan dalam peperiksaan.",
     steps: [
-      "Baca soalan DAHULU sebelum membaca petikan",
+      "Baca soalan dahulu sebelum membaca petikan",
       "Baca petikan sekali lalu — faham idea umum",
       "Garis bawahi maklumat penting semasa membaca kali kedua",
       "Jawab menggunakan ayat lengkap dan bahasa baku",
       "Semak ejaan dan tanda baca sebelum hantar",
     ],
     keyPoints: [
-      "Jawapan MESTI dalam ayat lengkap kecuali soalan minta kata kunci sahaja",
-      "Gunakan perkataan dalam petikan tetapi TUKAR SUSUN AYAT",
+      "Jawapan mesti dalam ayat lengkap kecuali soalan minta kata kunci sahaja",
+      "Gunakan perkataan dalam petikan tetapi tukar susun ayat",
       "Jangan salin perkataan mentah-mentah — parafrasakan",
       "Soalan 'apa' → kemukakan fakta; soalan 'mengapa' → kemukakan sebab",
     ],
     uasaTips: [
-      "Jawapan perlu merujuk BARIS dalam petikan (contoh: 'Berdasarkan perenggan 2...')",
+      "Jawapan perlu merujuk baris dalam petikan (contoh: 'Berdasarkan perenggan 2...')",
       "Markah: 1 markah untuk isi + 1 markah untuk bahasa",
     ],
   },
@@ -344,12 +346,12 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     description: "Kemahiran Berfikir Aras Tinggi (KBAT) — soalan yang menguji analisis, penilaian, dan kreativiti pelajar.",
     steps: [
       "Kenal pasti kata arahan: 'jelaskan', 'nilaikan', 'bandingkan', 'huraikan'",
-      "Berikan pendapat peribadi DENGAN justifikasi",
-      "Sokong dengan BUKTI dari petikan atau pengetahuan am",
+      "Berikan pendapat peribadi dengan justifikasi",
+      "Sokong dengan bukti dari petikan atau pengetahuan am",
       "Struktur jawapan: Pernyataan → Huraian → Contoh → Kesimpulan (PHCK)",
     ],
     keyPoints: [
-      "KBAT tidak ada jawapan 'betul' atau 'salah' — markah diberi untuk alasan",
+      "Soalan KBAT tidak ada jawapan 'betul' atau 'salah' — markah diberi untuk alasan",
       "Jawapan perlu relevan, bernas, dan disokong bukti",
       "Panjang jawapan: minimum 3 ayat untuk soalan 3 markah",
     ],
@@ -372,8 +374,8 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
       "Senaraikan isi dalam bentuk poin sebelum menulis ayat penuh",
     ],
     keyPoints: [
-      "Setiap perenggan biasanya ada SATU idea utama",
-      "Contoh, ilustrasi, dan perangkaan adalah BUKAN isi — isi ialah idea utama",
+      "Setiap perenggan biasanya ada satu idea utama",
+      "Contoh, ilustrasi, dan perangkaan bukan isi — isi ialah idea utama",
       "Untuk ringkasan: maksimum 120 patah perkataan, gunakan isi sahaja",
     ],
     uasaTips: [
@@ -389,7 +391,7 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     description: "Panduan lengkap cara menjawab pelbagai jenis soalan pemahaman dalam UASA dan peperiksaan lain.",
     steps: [
       "Baca soalan dengan teliti — berapa markah? apa yang ditanya?",
-      "Tentukan jenis soalan: fakta, inferens, kosa kata, atau KBAT",
+      "Tentukan jenis soalan: fakta, inferens, kosa kata, atau soalan KBAT",
       "Untuk soalan fakta: cari maklumat terus dari teks",
       "Untuk soalan kosa kata: faham konteks sebelum jawab",
       "Untuk soalan inferens: gunakan maklumat teks + logik",
@@ -401,7 +403,7 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
       "Soalan 3-4 markah: beberapa isi dengan huraian",
     ],
     uasaTips: [
-      "Semak: adakah jawapan menjawab soalan yang DITANYA, bukan yang 'rasa nak jawab'?",
+      "Semak: adakah jawapan menjawab soalan yang ditanya, bukan yang 'rasa nak jawab'?",
       "Skor penuh = isi betul + bahasa lancar + ejaan tepat",
     ],
   },
@@ -590,153 +592,162 @@ const NOVEL_TOPICS: BMTopic[] = [
   {
     id: "pelari-muda",
     label: "Pelari Muda",
-    topicType: "novel",
+    topicType: "komsas",
     badge: "Novel",
     zon: "Zon Utara (Kedah, Perlis, Pulau Pinang, Perak)",
-    penulis: "[Penulis — placeholder]",
-    sinopsis:
-      "Novel tentang seorang remaja lelaki yang berjuang keras dalam sukan lari untuk membuktikan kemampuannya kepada keluarga dan dirinya sendiri, sambil menghadapi pelbagai cabaran hidup.",
-    watak: [
-      { nama: "Protagonis (pelari muda)", peranan: "Watak utama", perwatakan: ["Gigih", "Bersemangat", "Kadangkala ragu-ragu", "Bercita-cita tinggi"] },
-      { nama: "Jurulatih", peranan: "Mentor", perwatakan: ["Tegas", "Penyayang", "Berpengalaman"] },
-      { nama: "Ibu/Bapa", peranan: "Sokongan keluarga", perwatakan: ["Penyayang", "Bimbang", "Berkorban"] },
-    ],
-    tema: "Kegigihan dan ketabahan dalam mengejar impian.",
-    persoalan: ["Semangat tidak mudah putus asa", "Kepentingan sokongan keluarga", "Pengorbanan untuk mencapai cita-cita"],
-    nilai: ["Kegigihan", "Ketabahan", "Tanggungjawab", "Kasih sayang keluarga"],
+    penulis: "Novel KSSM Tingkatan 1",
+    sinopsis: "Kamarul seorang atlet lari berbakat yang menjadi terkenal dan mula bersikap sombong serta mengabaikan latihan. Beliau bersikap kasar terhadap Saridah dan bertengkar dengan jurulatihnya Encik Kadir. Sebuah kemalangan jalan raya mengubah segala-galanya — Kamarul insaf, kembali berlatih dengan disiplin, dan akhirnya menjadi juara Sukan SEA sambil memecahkan rekod.",
+    tema: "Keinsafan membawa kejayaan.",
+    persoalan: ["Kepentingan disiplin", "Kesan kesombongan", "Persahabatan sejati", "Tanggungjawab jurulatih", "Keberanian berubah"],
+    nilai: ["Disiplin", "Keinsafan", "Bertanggungjawab", "Kasih sayang", "Ketabahan"],
     pengajaran: [
-      "Kejayaan hanya boleh dicapai melalui usaha yang berterusan",
-      "Sokongan keluarga amat penting dalam perjalanan seseorang",
-      "Kegagalan adalah batu loncatan menuju kejayaan",
+      "Kita hendaklah sentiasa berdisiplin dalam apa jua bidang yang diceburi",
+      "Kita hendaklah menjauhi sifat sombong dan angkuh",
+      "Kita hendaklah menghargai sahabat yang setia dalam susah dan senang",
+      "Kita hendaklah berani mengakui kesilapan dan berubah menjadi lebih baik",
+      "Kita hendaklah menghormati dan mendengar nasihat jurulatih",
+      "Kita hendaklah bersyukur dengan bakat yang dikurniakan",
+    ],
+    watak: [
+      { nama: "Kamarul", peranan: "Watak utama", perwatakan: ["Berbakat", "Sombong", "Angkuh", "Berani mengakui kesilapan", "Gigih"] },
+      { nama: "Encik Kadir", peranan: "Jurulatih", perwatakan: ["Penyabar", "Bertanggungjawab", "Berdedikasi"] },
+      { nama: "Saridah", peranan: "Watak sampingan", perwatakan: ["Prihatin", "Setia berkawan", "Pemaaf"] },
+      { nama: "De Wega", peranan: "Atlet berpengalaman", perwatakan: ["Berdisiplin", "Merendah diri", "Memberi nasihat"] },
     ],
   },
   {
     id: "destinasi-impian",
     label: "Destinasi Impian",
-    topicType: "novel",
+    topicType: "komsas",
     badge: "Novel",
     zon: "Zon Timur (Pahang, Terengganu, Kelantan)",
-    penulis: "[Penulis — placeholder]",
-    sinopsis:
-      "Novel tentang seorang pelajar yang bermimpi merantau jauh untuk belajar, menghadapi cabaran keluarga yang serba kekurangan dan halangan sosial di kampungnya.",
-    watak: [
-      { nama: "Protagonis (pelajar)", peranan: "Watak utama", perwatakan: ["Bijak", "Tabah", "Berpegang pada prinsip"] },
-      { nama: "Guru Pembimbing", peranan: "Penasihat", perwatakan: ["Dedikasi", "Beriltizam", "Empati"] },
-      { nama: "Rakan sebaya", peranan: "Watak sampingan", perwatakan: ["Mencabar", "Penyokong"] },
-    ],
-    tema: "Pendidikan sebagai tiket keluar dari kemiskinan dan pencapaian impian.",
-    persoalan: ["Persoalan kemiskinan dan kesempatan", "Persoalan semangat belajar", "Persoalan hubungan guru-murid"],
-    nilai: ["Ketekunan", "Optimisme", "Rasa syukur", "Hormat guru"],
+    penulis: "Novel KSSM Tingkatan 1",
+    sinopsis: "Datuk mencabar Firdaus dan rakan-rakannya menjalankan ekspedisi berbasikal ke Pantai Morib. Firdaus yang manja dan mudah berputus asa terpaksa menghadapi pelbagai cabaran sepanjang perjalanan bersama Azlina dan Johari. Firdaus terjatuh, meminta berhenti, dan kemudian berbohong kepada Mazlinda tentang pencapaiannya. Apabila Firdaus hampir lemas di laut, beliau diselamatkan dan akhirnya insaf — berjanji untuk berubah menjadi lebih jujur dan berani.",
+    tema: "Cabaran dan konflik remaja dalam membentuk jati diri.",
+    persoalan: ["Kepentingan kejujuran", "Semangat tidak berputus asa", "Persahabatan", "Cabaran remaja", "Kepentingan berfikir sebelum bertindak"],
+    nilai: ["Keberanian", "Kesabaran", "Kejujuran", "Bertanggungjawab", "Ketabahan"],
     pengajaran: [
-      "Ilmu adalah kunci untuk mengubah nasib",
-      "Kesusahan pada hari ini adalah bekalan kekuatan pada masa hadapan",
-      "Guru yang baik mampu mengubah hala tuju kehidupan seseorang",
+      "Kita hendaklah jujur dalam setiap keadaan walaupun kebenaran itu pahit",
+      "Kita hendaklah tabah menghadapi cabaran dan tidak mudah berputus asa",
+      "Kita hendaklah berfikir sebelum bertindak supaya tidak menyesal kemudian",
+      "Kita hendaklah menghargai persahabatan yang sejati",
+      "Kita hendaklah menerima teguran dengan hati terbuka",
+      "Kita hendaklah berani mengakui kesilapan dan berubah menjadi lebih baik",
+    ],
+    watak: [
+      { nama: "Firdaus", peranan: "Watak utama", perwatakan: ["Manja", "Mudah berputus asa", "Tidak jujur", "Berani berubah"] },
+      { nama: "Azlina", peranan: "Watak sampingan", perwatakan: ["Cergas", "Berani", "Tegas"] },
+      { nama: "Johari", peranan: "Watak sampingan", perwatakan: ["Matang", "Bertanggungjawab", "Penyabar"] },
+      { nama: "Datuk", peranan: "Pemberi cabaran", perwatakan: ["Tegas", "Prihatin"] },
+      { nama: "Mazlinda", peranan: "Penguji kejujuran", perwatakan: ["Bijak", "Berani"] },
     ],
   },
   {
     id: "sejambak-bakti",
     label: "Sejambak Bakti",
-    topicType: "novel",
+    topicType: "komsas",
     badge: "Novel",
     zon: "Zon Selatan (Johor, Melaka, Negeri Sembilan)",
-    penulis: "[Penulis — placeholder]",
-    sinopsis:
-      "Novel tentang seorang doktor muda yang pulang ke kampung halaman untuk berkhidmat kepada masyarakat, meskipun ada peluang lebih lumayan di bandar.",
-    watak: [
-      { nama: "Protagonis (doktor muda)", peranan: "Watak utama", perwatakan: ["Berdedikasi", "Berperikemanusiaan", "Rendah hati"] },
-      { nama: "Orang tua kampung", peranan: "Simbol masyarakat", perwatakan: ["Bijak", "Berterima kasih", "Menjadi motivasi"] },
-    ],
-    tema: "Pengabdian diri kepada masyarakat dan erti bakti yang sebenar.",
-    persoalan: ["Persoalan tanggungjawab sosial", "Persoalan pengorbanan demi masyarakat", "Persoalan kemanusiaan"],
-    nilai: ["Keikhlasan berkhidmat", "Tanggungjawab", "Belas kasihan", "Patriotisme"],
+    penulis: "Novel KSSM Tingkatan 1",
+    sinopsis: "Razali dilantik menjadi penolong setiausaha koperasi sekolah. Beliau bersama Cikgu Zulkifli dan rakan-rakan membawa koperasi ke tahap kejayaan. Namun Munir yang berasa cemburu melancarkan pelbagai gangguan sehingga menyebabkan Razali dipukul, koperasi diceroboh, dan Razali difitnah. Setelah kebenaran terungkap, Munir insaf, koperasi menjadi johan, dan Razali menemui Pak Ramli — bapanya yang dicari.",
+    tema: "Kegigihan murid dan guru memajukan koperasi sekolah.",
+    persoalan: ["Kesan iri hati", "Kepentingan amanah", "Semangat kerjasama", "Kepentingan memaafkan", "Ketabahan menghadapi dugaan", "Peranan guru membimbing murid"],
+    nilai: ["Amanah", "Kerajinan", "Kerjasama", "Ketabahan", "Kejujuran", "Kemaafan"],
     pengajaran: [
-      "Kejayaan individu perlu digunakan untuk membantu orang lain",
-      "Berkhidmat kepada masyarakat adalah tanggungjawab yang mulia",
+      "Kita hendaklah bersikap amanah dalam melaksanakan tanggungjawab yang diberikan",
+      "Kita hendaklah menjauhi sifat iri hati kerana ia membawa kemudaratan",
+      "Kita hendaklah bekerjasama untuk mencapai matlamat bersama",
+      "Kita hendaklah tabah menghadapi fitnah dan tohmahan",
+      "Kita hendaklah sentiasa bersedia memaafkan orang yang telah bersalah",
+      "Kita hendaklah menghormati guru yang membimbing kita",
+    ],
+    watak: [
+      { nama: "Razali", peranan: "Watak utama", perwatakan: ["Rajin", "Amanah", "Tabah", "Bertanggungjawab", "Pemaaf"] },
+      { nama: "Munir", peranan: "Antagonis", perwatakan: ["Iri hati", "Pendendam", "Tidak amanah", "Insaf akan kesilapan"] },
+      { nama: "Ramlah", peranan: "Watak sampingan", perwatakan: ["Rajin", "Setia kawan", "Prihatin"] },
+      { nama: "Cikgu Zulkifli", peranan: "Penasihat koperasi", perwatakan: ["Bijak", "Bertanggungjawab", "Berdedikasi"] },
     ],
   },
   {
     id: "formula-termodinamik",
     label: "Formula Termodinamik",
-    topicType: "novel",
+    topicType: "komsas",
     badge: "Novel",
     zon: "Zon Sabah & Sarawak",
-    penulis: "[Penulis — placeholder]",
+    penulis: "Novel KSSM Tingkatan 1",
     sinopsis:
-      "Novel berlatarkan dunia saintifik — tentang seorang remaja yang tertarik dengan sains dan berusaha membuktikan bahawa ilmu sains dan seni budaya boleh berjalan seiring.",
-    watak: [
-      { nama: "Protagonis", peranan: "Pelajar sains berbakat", perwatakan: ["Ingin tahu", "Kreatif", "Bersungguh-sungguh"] },
-      { nama: "Mentor sains", peranan: "Penasihat ilmu", perwatakan: ["Berpengalaman", "Sabar", "Menggalakkan"] },
+      "Amir dan Usamah pulang ke kampung lalu membina mesin 2 dalam 1 menggunakan Formula Termodinamik. Aswan berasa iri hati, mencuri pen drive, dan melancarkan jenayah siber. Banjir melanda kampung — Amir menyelamatkan Aswan, Aswan insaf, dan Amir akhirnya memenangi Anugerah Saintis Muda serta biasiswa.",
+    tema: "Kegigihan remaja melakukan inovasi demi manfaat masyarakat.",
+    persoalan: [
+      "Kepentingan inovasi dalam kehidupan masyarakat",
+      "Kesan buruk hasad dengki",
+      "Semangat kerjasama dalam mencapai matlamat",
+      "Kepentingan sikap memaafkan",
+      "Penggunaan teknologi secara beretika",
+      "Ketabahan menghadapi cabaran dan dugaan",
     ],
-    tema: "Kecemerlangan akademik melalui semangat cinta ilmu.",
-    persoalan: ["Persoalan minat dan bakat", "Persoalan keseimbangan sains dan seni", "Persoalan persaingan sihat"],
-    nilai: ["Cinta ilmu", "Kerja keras", "Hormat kepakaran orang lain"],
+    nilai: ["Kerjasama", "Keberanian", "Keinsafan", "Kegigihan", "Kasih sayang", "Pemaaf", "Bertanggungjawab"],
     pengajaran: [
-      "Ilmu sains dan kreativiti dapat digabungkan untuk menghasilkan sesuatu yang luar biasa",
-      "Kejayaan dalam bidang apa pun memerlukan dedikasi dan minat yang mendalam",
+      "Kita hendaklah menggunakan ilmu untuk memberi manfaat kepada masyarakat",
+      "Kita hendaklah bekerjasama untuk mencapai matlamat yang lebih besar",
+      "Kita hendaklah menjauhi sifat hasad dengki kerana ia membawa padah",
+      "Kita hendaklah tabah menghadapi cabaran dan tidak berputus asa",
+      "Kita hendaklah menggunakan teknologi secara beretika dan bertanggungjawab",
+      "Kita hendaklah sentiasa bersedia untuk memaafkan walaupun pernah disakiti",
+    ],
+    watak: [
+      { nama: "Amir", peranan: "Watak utama / Protagonis", perwatakan: ["Kreatif", "Bijaksana", "Gigih", "Pemaaf", "Bertanggungjawab"] },
+      { nama: "Usamah", peranan: "Rakan setia Amir", perwatakan: ["Mahir teknologi", "Rajin", "Setia kawan"] },
+      { nama: "Aswan", peranan: "Antagonis yang insaf", perwatakan: ["Iri hati", "Sombong", "Tidak berfikir panjang", "Insaf"] },
+      { nama: "Asma", peranan: "Watak sampingan emosi", perwatakan: ["Lemah lembut", "Tegas", "Prihatin"] },
     ],
   },
 ];
 
-const RINGKASAN_ULASAN_TOPICS: BMTopic[] = [
+const RINGKASAN_TOPICS: BMTopic[] = [
+  {
+    id: "rangka-ringkasan-markah-tinggi",
+    label: "Rangka Ringkasan Markah Tinggi",
+    topicType: "rangka-ringkasan",
+    badge: "Premium",
+    description: "Formula langkah demi langkah untuk menulis ringkasan markah tinggi — kata kunci, rangka isi, contoh jawapan lengkap, dan senarai semakan.",
+  },
+  {
+    id: "teknik-ringkasan-bahagian-c",
+    label: "Teknik Menjawab Ringkasan",
+    topicType: "ringkasan-premium",
+    badge: "Premium",
+    description: "Panduan lengkap menjawab soalan Ringkasan Bahagian C — fakta penting, formula emas, penanda wacana, contoh jawapan, dan cabaran interaktif.",
+  },
   {
     id: "ringkasan-mastery",
     label: "Penguasaan Ringkasan",
-    topicType: "ringkasan-ulasan",
+    topicType: "ringkasan",
     badge: "Ringkasan",
     description: "Cara menulis ringkasan yang tepat dan padat berdasarkan teks yang diberikan.",
     formula: [
-      "Baca teks SEKALI LALU untuk faham idea umum",
-      "Baca KALI KEDUA — kenal pasti dan gariskan isi PENTING sahaja",
+      "Baca teks sekali lalu untuk faham idea umum",
+      "Baca kali kedua — kenal pasti dan gariskan isi penting sahaja",
       "Tulis semula isi dalam ayat sendiri (bukan salin)",
-      "Pastikan tidak melebihi had perkataan (120 patah perkataan)",
+      "Pastikan tidak melebihi had perkataan (100 patah perkataan)",
       "Semak: ejaan, tatabahasa, dan kejelasan",
     ],
     steps: [
-      "Tulis perenggan pendahuluan: 'Petikan di atas menceritakan tentang...'",
-      "Senaraikan 4-6 isi penting dalam ayat lengkap",
-      "Jangan masukkan contoh, statistik, atau ulasan — ISI sahaja",
-      "Penutup ringkas: 'Kesimpulannya, ...'",
+      "Kenal pasti kata kunci soalan dahulu",
+      "Senaraikan 5–6 isi penting dalam ayat sendiri",
+      "Jangan masukkan pendapat peribadi, contoh, atau statistik — ISI sahaja",
+      "Tulis dalam satu perenggan menggunakan penanda wacana",
     ],
     commonMistakes: [
       "Memasukkan pendapat peribadi dalam ringkasan",
-      "Menyalin ayat word-for-word dari teks asal",
-      "Melebihi had perkataan yang ditetapkan",
-      "Memasukkan contoh dan huraian (bukan isi)",
+      "Menyalin ayat terus dari teks asal tanpa olahan",
+      "Melebihi 100 patah perkataan",
+      "Menulis pendahuluan atau penutup",
     ],
     uasaTips: [
-      "Kira perkataan selepas menulis — jangan terlalu panjang",
+      "Kira perkataan selepas menulis — jangan melebihi 100 patah perkataan",
       "Markah dibahagi: isi (content marks) + bahasa (language marks)",
-      "Latih dengan petikan 3-4 perenggan setiap hari",
-    ],
-  },
-  {
-    id: "ulasan-mastery",
-    label: "Penguasaan Ulasan",
-    topicType: "ringkasan-ulasan",
-    badge: "Ulasan",
-    description: "Cara menulis ulasan yang bernas, kritis, dan menyeluruh terhadap sesuatu karya atau petikan.",
-    formula: [
-      "Pendahuluan: Nyatakan tajuk, penulis, dan gambaran umum karya",
-      "Isi 1: Aspek yang baik/kekuatan karya + bukti + huraian",
-      "Isi 2: Aspek lain yang menarik + bukti + huraian",
-      "Isi 3 (jika perlu): Kelemahan atau cadangan penambahbaikan",
-      "Penutup: Penilaian keseluruhan + cadangan pembaca sasaran",
-    ],
-    steps: [
-      "Baca karya/petikan dengan teliti sebelum menulis ulasan",
-      "Buat nota tentang aspek-aspek penting: tema, watak, gaya bahasa",
-      "Susun isi mengikut keutamaan — isi terkuat dahulu",
-      "Tulis dengan bahasa formal dan gunakan kosa kata kritikan sastera",
-    ],
-    commonMistakes: [
-      "Menulis ringkasan, bukan ulasan (ulasan perlu ada PENILAIAN)",
-      "Tidak menggunakan kosa kata kritikan sastera",
-      "Tidak menyebut tajuk dan penulis dalam pendahuluan",
-      "Penutup yang terlalu ringkas atau tidak ada",
-    ],
-    uasaTips: [
-      "Hafal kosa kata ulasan: 'pengarang berjaya menggambarkan', 'penggunaan simbol yang tepat'",
-      "Ulasan yang baik menunjukkan PEMAHAMAN MENDALAM, bukan sekadar menceritakan semula",
+      "Gunakan penanda wacana: Antara, Selain itu, Seterusnya, Di samping itu, Tambahan pula, Akhir sekali",
     ],
   },
 ];
@@ -750,8 +761,8 @@ const KARANGAN_PENDEK_TOPIC: BMTopic = {
   badge: "Kertas 2",
   description: "Karangan pendek berdasarkan bahan grafik (jadual, gambar rajah, carta, atau gambar).",
   formula: [
-    "Baca ARAHAN dengan teliti — berapa patah perkataan? Apa yang perlu ditulis?",
-    "Perhatikan bahan grafik — kenal pasti maklumat PENTING sahaja",
+    "Baca arahan dengan teliti — berapa patah perkataan? Apa yang perlu ditulis?",
+    "Perhatikan bahan grafik — kenal pasti maklumat penting sahaja",
     "Pilih 3-4 isi penting dari grafik (jangan tulis semua)",
     "Tulis dalam ayat penuh, bukan poin",
     "Kira perkataan — pastikan 50-80 patah perkataan",
@@ -809,8 +820,8 @@ const RESPONS_TERBUKA_TOPIC: BMTopic = {
     },
   ],
   steps: [
-    "Baca soalan — kenal pasti TOPIK dan JENIS karangan",
-    "Tulis RANGKA: 3 isi utama dengan contoh",
+    "Baca soalan — kenal pasti topik dan jenis karangan",
+    "Tulis rangka: 3 isi utama dengan contoh",
     "Tulis pendahuluan (2-3 ayat)",
     "Kembangkan setiap isi: Isi → Huraian → Contoh",
     "Tulis penutup (2-3 ayat)",
@@ -825,7 +836,7 @@ const RESPONS_TERBUKA_TOPIC: BMTopic = {
   ],
   uasaTips: [
     "Gunakan kata hubung: 'selain itu', 'tambahan pula', 'di samping itu', 'sehubungan itu'",
-    "Setiap isi perlu ada CONTOH spesifik — jangan terlalu umum",
+    "Setiap isi perlu ada contoh spesifik — jangan terlalu umum",
     "Panjang ideal: 250-300 patah perkataan",
   ],
 };
@@ -894,7 +905,7 @@ const MODEL_KARANGAN_TOPICS: BMTopic[] = [
     keyFeatures: ["Bahasa formal dan objektif", "Menggunakan fakta dan data", "Tiada pendapat peribadi yang emosional", "Struktur: Pendahuluan → Isi berfakta → Penutup"] },
   { id: "model-perbincangan", label: "Karangan Perbincangan", topicType: "model-karangan", badge: "Model",
     description: "Karangan yang membincangkan sesuatu isu dari pelbagai sudut pandang sebelum membuat kesimpulan.",
-    keyFeatures: ["Bincang PRO dan KONTRA", "Bahasa neutral tapi akhirnya berpihak", "Gunakan frasa: 'sebaliknya', 'di satu pihak', 'namun begitu'", "Penutup: cadangan atau pendirian akhir"] },
+    keyFeatures: ["Bincang pro dan kontra", "Bahasa neutral tapi akhirnya berpihak", "Gunakan frasa: 'sebaliknya', 'di satu pihak', 'namun begitu'", "Penutup: cadangan atau pendirian akhir"] },
   { id: "model-pengalaman", label: "Karangan Pengalaman", topicType: "model-karangan", badge: "Model",
     description: "Karangan berdasarkan pengalaman peribadi — ditulis dalam gaya naratif orang pertama.",
     keyFeatures: ["Guna kata ganti nama 'saya/aku'", "Bahasa naratif dan deskriptif", "Aliran masa: latar → konflik → penyelesaian", "Akhiri dengan pengajaran/refleksi"] },
@@ -983,7 +994,7 @@ export const BM_KERTAS: BMKertas[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "📝",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan & Ulasan",
+    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan",
     examDetails: "Masa: 1 jam 45 minit · Soalan berstruktur · Teks + KOMSAS",
     color: "#818CF8",
     gradient: "from-indigo-500/20 to-violet-500/20",
@@ -1033,15 +1044,15 @@ export const BM_KERTAS: BMKertas[] = [
         topics: NOVEL_TOPICS,
       },
       {
-        id: "ringkasan-ulasan",
-        label: "Ringkasan & Ulasan",
+        id: "ringkasan",
+        label: "Ringkasan",
         shortLabel: "Ringkasan",
         icon: "✏️",
         color: "#FBBF24",
         bgGradient: "from-yellow-500/15 to-amber-500/10",
         borderColor: "rgba(251,191,36,0.25)",
-        description: "Formula ringkasan dan ulasan — langkah demi langkah untuk markah penuh.",
-        topics: RINGKASAN_ULASAN_TOPICS,
+        description: "Bahagian C: Ringkasan — kata kunci, isi penting, penanda wacana, dan had 100 patah perkataan.",
+        topics: RINGKASAN_TOPICS,
       },
     ],
   },
