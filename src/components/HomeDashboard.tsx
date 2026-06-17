@@ -301,7 +301,7 @@ function WorldPortalCard({
               style={{ background: world.color, opacity: 0.45 }}
             />
             <span className="text-[11px] font-medium text-white/35">
-              {world.chapters} chapter{world.chapters !== 1 ? "s" : ""}
+              {world.chapters} chapter{(world.chapters as number) !== 1 ? "s" : ""}
             </span>
           </div>
 

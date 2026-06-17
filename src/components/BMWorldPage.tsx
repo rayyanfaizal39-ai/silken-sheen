@@ -33,7 +33,7 @@ import {
   type BMTopic,
 } from "@/data/bm-structure";
 import { getSistemBahasaContent } from "@/data/bm-k1-sistem-bahasa";
-import { getPremiumKomsasWork, type KomsasWork } from "@/data/bm-komsas-premium";
+import { getPremiumKomsasWork, type KomsasWork, type KomsasExamQuestion } from "@/data/bm-komsas-premium";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import {
   Accordion,
@@ -950,7 +950,7 @@ function LearningCard({
   accent,
 }: {
   icon: React.ReactNode;
-  item: { value: string; explanation: string; realLife: string };
+  item: { value: string; explanation: string; realLife: string; schoolLife?: string };
   accent: string;
 }) {
   return (
@@ -1658,6 +1658,11 @@ function getSurvivalBullets(work: KomsasWork) {
 }
 
 function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
+  const premiumWork = getPremiumKomsasWork(topic.id);
+  if (premiumWork) {
+    return <PantunDuaKeratExperience work={premiumWork} color={color} />;
+  }
+
   return (
     <div className="space-y-6">
       {topic.zon && (
