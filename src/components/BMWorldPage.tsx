@@ -42,6 +42,11 @@ import { useProgress } from "@/hooks/use-progress";
 import { sfx } from "@/lib/sounds";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import { KaranganPendekHub } from "@/components/KaranganPendekHub";
+import { KaranganPanjangHub } from "@/components/KaranganPanjangHub";
+import { BengkelKaranganHub } from "@/components/BengkelKaranganHub";
+import { getWorkshopContent } from "@/data/bm-workshop-hub";
+import { ModelKaranganHub } from "@/components/ModelKaranganHub";
+import { getModelKarangan } from "@/data/bm-model-karangan-hub";
 import {
   Accordion,
   AccordionContent,
@@ -3484,6 +3489,27 @@ function TopicView({
   // Premium full-page exam prep hub for Karangan Pendek
   if (topic.id === "karangan-pendek") {
     return <KaranganPendekHub topic={topic} color={hub.color} onBack={onBack} />;
+  }
+
+  // Premium full-page exam prep hub for Karangan Panjang (Respons Terbuka)
+  if (topic.id === "respons-terbuka") {
+    return <KaranganPanjangHub topic={topic} color={hub.color} onBack={onBack} />;
+  }
+
+  // Premium full-page writing workshop for Bengkel Karangan topics
+  if (topic.topicType === "workshop") {
+    const workshopContent = getWorkshopContent(topic.id);
+    if (workshopContent) {
+      return <BengkelKaranganHub topic={topic} content={workshopContent} color={hub.color} onBack={onBack} />;
+    }
+  }
+
+  // Karangan template library for Model Karangan Bank topics
+  if (topic.topicType === "model-karangan") {
+    const model = getModelKarangan(topic.id);
+    if (model) {
+      return <ModelKaranganHub topic={topic} model={model} color={hub.color} onBack={onBack} />;
+    }
   }
 
   return (
