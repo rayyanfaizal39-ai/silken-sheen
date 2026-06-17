@@ -25,6 +25,7 @@ import { scienceF1C8QuizzesBM } from "./science-f1-c8-quizzes-bm";
 import { scienceF1C8QuizzesDLP } from "./science-f1-c8-quizzes-dlp";
 import { scienceF1C9QuizzesBM } from "./science-f1-c9-quizzes-bm";
 import { scienceF1C9QuizzesDLP } from "./science-f1-c9-quizzes-dlp";
+import { bmF1ObjektifKuiz1, bmF1ObjektifKuiz2, bmF1ObjektifKuiz3 } from "./bm-f1-objektif-quizzes";
 
 export const quizzes: QuizQuestion[] = [
   {
@@ -12429,4 +12430,9 @@ export const quizzes: QuizQuestion[] = [
     answerIndex: 1,
     explanation: "Polite means having good manners and being respectful to others.",
   },
+
+  // ─── BM Tingkatan 1 — Kuiz Objektif UASA Kertas 1 Bahagian A ──────────────
+  ...bmF1ObjektifKuiz1,
+  ...bmF1ObjektifKuiz2,
+  ...bmF1ObjektifKuiz3,
 ];
