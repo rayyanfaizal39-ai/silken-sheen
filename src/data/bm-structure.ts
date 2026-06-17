@@ -7,6 +7,8 @@ export type BMTopicType =
   | "komsas"
   | "novel"
   | "ringkasan-ulasan"
+  | "ringkasan-premium"
+  | "rangka-ringkasan"
   | "karangan-pendek"
   | "respons-terbuka"
   | "workshop"
@@ -657,27 +659,54 @@ const NOVEL_TOPICS: BMTopic[] = [
   {
     id: "formula-termodinamik",
     label: "Formula Termodinamik",
-    topicType: "novel",
+    topicType: "komsas",
     badge: "Novel",
     zon: "Zon Sabah & Sarawak",
-    penulis: "[Penulis — placeholder]",
+    penulis: "Novel KSSM Tingkatan 1",
     sinopsis:
-      "Novel berlatarkan dunia saintifik — tentang seorang remaja yang tertarik dengan sains dan berusaha membuktikan bahawa ilmu sains dan seni budaya boleh berjalan seiring.",
-    watak: [
-      { nama: "Protagonis", peranan: "Pelajar sains berbakat", perwatakan: ["Ingin tahu", "Kreatif", "Bersungguh-sungguh"] },
-      { nama: "Mentor sains", peranan: "Penasihat ilmu", perwatakan: ["Berpengalaman", "Sabar", "Menggalakkan"] },
+      "Amir dan Usamah pulang ke kampung lalu membina mesin 2 dalam 1 menggunakan Formula Termodinamik. Aswan berasa iri hati, mencuri pen drive, dan melancarkan jenayah siber. Banjir melanda kampung — Amir menyelamatkan Aswan, Aswan insaf, dan Amir akhirnya memenangi Anugerah Saintis Muda serta biasiswa.",
+    tema: "Kegigihan remaja melakukan inovasi demi manfaat masyarakat.",
+    persoalan: [
+      "Kepentingan inovasi dalam kehidupan masyarakat",
+      "Kesan buruk hasad dengki",
+      "Semangat kerjasama dalam mencapai matlamat",
+      "Kepentingan sikap memaafkan",
+      "Penggunaan teknologi secara beretika",
+      "Ketabahan menghadapi cabaran dan dugaan",
     ],
-    tema: "Kecemerlangan akademik melalui semangat cinta ilmu.",
-    persoalan: ["Persoalan minat dan bakat", "Persoalan keseimbangan sains dan seni", "Persoalan persaingan sihat"],
-    nilai: ["Cinta ilmu", "Kerja keras", "Hormat kepakaran orang lain"],
+    nilai: ["Kerjasama", "Keberanian", "Keinsafan", "Kegigihan", "Kasih sayang", "Pemaaf", "Bertanggungjawab"],
     pengajaran: [
-      "Ilmu sains dan kreativiti dapat digabungkan untuk menghasilkan sesuatu yang luar biasa",
-      "Kejayaan dalam bidang apa pun memerlukan dedikasi dan minat yang mendalam",
+      "Kita hendaklah menggunakan ilmu untuk memberi manfaat kepada masyarakat",
+      "Kita hendaklah bekerjasama untuk mencapai matlamat yang lebih besar",
+      "Kita hendaklah menjauhi sifat hasad dengki kerana ia membawa padah",
+      "Kita hendaklah tabah menghadapi cabaran dan tidak berputus asa",
+      "Kita hendaklah menggunakan teknologi secara beretika dan bertanggungjawab",
+      "Kita hendaklah sentiasa bersedia untuk memaafkan walaupun pernah disakiti",
+    ],
+    watak: [
+      { nama: "Amir", peranan: "Watak utama / Protagonis", perwatakan: ["Kreatif", "Bijaksana", "Gigih", "Pemaaf", "Bertanggungjawab"] },
+      { nama: "Usamah", peranan: "Rakan setia Amir", perwatakan: ["Mahir teknologi", "Rajin", "Setia kawan"] },
+      { nama: "Aswan", peranan: "Antagonis yang insaf", perwatakan: ["Iri hati", "Sombong", "Tidak berfikir panjang", "Insaf"] },
+      { nama: "Asma", peranan: "Watak sampingan emosi", perwatakan: ["Lemah lembut", "Tegas", "Prihatin"] },
     ],
   },
 ];
 
 const RINGKASAN_ULASAN_TOPICS: BMTopic[] = [
+  {
+    id: "rangka-ringkasan-markah-tinggi",
+    label: "Rangka Ringkasan Markah Tinggi",
+    topicType: "rangka-ringkasan",
+    badge: "Premium",
+    description: "Formula langkah demi langkah untuk menulis ringkasan markah tinggi — kata kunci, rangka isi, contoh jawapan lengkap, dan senarai semakan.",
+  },
+  {
+    id: "teknik-ringkasan-bahagian-c",
+    label: "Teknik Menjawab Ringkasan",
+    topicType: "ringkasan-premium",
+    badge: "Premium",
+    description: "Panduan lengkap menjawab soalan Ringkasan Bahagian C — fakta penting, formula emas, penanda wacana, contoh jawapan, dan cabaran interaktif.",
+  },
   {
     id: "ringkasan-mastery",
     label: "Penguasaan Ringkasan",

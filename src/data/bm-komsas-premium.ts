@@ -1323,6 +1323,551 @@ const storyWorks: KomsasWork[] = [
       { type: "KBAT", question: "Bagaimanakah murid boleh menunjukkan penghargaan terhadap jasa anggota keselamatan negara?", answer: "Murid boleh menghormati mereka, menyertai program patriotik, menjaga keamanan sekolah dan tidak memandang ringan pengorbanan mereka.", explanation: "Jawapan mesti praktikal dan sesuai dengan kehidupan murid." },
     ],
   },
+
+  // ─── Novel: Formula Termodinamik (Zon Sabah & Sarawak) ──────────────────────
+  {
+    id: "formula-termodinamik",
+    title: "Formula Termodinamik",
+    typeLabel: "Novel (Zon Sabah & Sarawak)",
+    kind: "story",
+    studyTime: "25 minit",
+    difficulty: "Sederhana",
+    examFocus: "Watak + Tema + Peristiwa + Nilai",
+    intro:
+      "Jangan risau jika cerita ini kedengaran rumit. Selepas belajar di sini, kamu akan faham keseluruhan novel Formula Termodinamik dan bersedia sepenuhnya untuk peperiksaan — tanpa perlu menghafal teks asal.",
+
+    story60:
+      "Amir & Usamah pulang ke kampung → bina mesin 2 dalam 1 dengan Formula Termodinamik → Aswan iri hati → curi pen drive + jenayah siber → banjir besar → Aswan hampir lemas → Amir selamatkan Aswan → Aswan insaf & mohon maaf → Anugerah Saintis Muda + biasiswa → Asma sudah bertunang.",
+
+    story90:
+      "Amir dan Usamah kembali ke kampung selepas menimba ilmu. Mereka mencipta mesin 2 dalam 1 dengan Formula Termodinamik untuk membantu masyarakat. Aswan berasa cemburu lalu mencuri pen drive data mesin itu dan melancarkan serangan siber. Banjir besar menimpa kampung. Aswan hampir lemas — Amir menyelamatkannya walaupun Aswan pernah menyakitinya. Aswan insaf dan memohon maaf. Amir menang Anugerah Saintis Muda, mendapat biasiswa, tetapi mengetahui Asma sudah bertunang.",
+
+    retelling3Min:
+      "Dua orang remaja berbakat bernama Amir dan Usamah pulang ke kampung selepas berjaya dalam pengajian mereka. Dengan penuh semangat, mereka mula membina sebuah mesin 2 dalam 1 menggunakan prinsip Formula Termodinamik. Mesin ini direka khas untuk memberi manfaat kepada masyarakat kampung yang kebanyakannya bergantung kepada kerja-kerja manual.\n\nNamun, kejayaan Amir dan Usamah menarik perhatian Aswan — seorang pemuda yang berasa iri hati dan tidak senang melihat orang lain lebih maju. Didorong oleh hasad dengki, Aswan mencuri pen drive yang menyimpan semua data penting mesin tersebut, dan turut mencuba melancarkan serangan jenayah siber untuk memusnahkan kerja keras Amir.\n\nKetika suasana semakin tegang, banjir besar tiba-tiba melanda kawasan kampung. Dalam kekacauan itu, Aswan terperangkap dan hampir lemas. Walaupun Aswan pernah berbuat jahat, Amir tidak berfikir panjang — dengan berani beliau menyelamatkan nyawa Aswan.\n\nPerbuatan mulia Amir membuka mata hati Aswan. Dia menyedari betapa salahnya tindakannya selama ini, lalu memohon maaf dengan ikhlas kepada Amir dan Usamah. Amir memaafkan Aswan dengan hati yang terbuka.\n\nAkhirnya, usaha Amir mendapat pengiktirafan apabila beliau memenangi Anugerah Saintis Muda dan mendapat biasiswa. Walau bagaimanapun, Amir turut menerima berita yang menyentuh hati — Asma, gadis yang disukainya, telah bertunang dengan orang lain.",
+
+    timeline: [
+      { stage: "Permulaan",    text: "Amir dan Usamah pulang ke kampung dengan semangat inovasi untuk membantu masyarakat." },
+      { stage: "Perkembangan", text: "Pembinaan mesin 2 dalam 1 menggunakan Formula Termodinamik. Aswan mula berasa cemburu." },
+      { stage: "Konflik",      text: "Aswan mencuri pen drive data mesin dan melancarkan serangan jenayah siber." },
+      { stage: "Klimaks",      text: "Banjir melanda kampung. Amir menyelamatkan Aswan yang hampir lemas." },
+      { stage: "Peleraian",    text: "Aswan insaf dan mohon maaf. Amir menang Anugerah Saintis Muda dan biasiswa. Asma bertunang." },
+    ],
+
+    decoder: [
+      {
+        rangkap: "Bahagian 1 — Kepulangan dan Cita-cita",
+        pantunMudah: "Amir dan Usamah pulang ke kampung dengan misi mulia — menggunakan ilmu untuk mengubah kehidupan masyarakat melalui inovasi.",
+        maksud: "Bahagian permulaan ini memperkenalkan watak utama dan niat mulia mereka. Ia menunjukkan bahawa pendidikan sepatutnya mendorong seseorang memberi sumbangan kepada masyarakat.",
+        tema: "Semangat inovasi dan tanggungjawab kepada masyarakat",
+        nilai: "Bertanggungjawab, Kerjasama",
+        pengajaran: "Kita hendaklah menggunakan ilmu yang dipelajari untuk memberi manfaat kepada orang sekeliling.",
+      },
+      {
+        rangkap: "Bahagian 2 — Pembinaan Mesin dan Munculnya Konflik",
+        pantunMudah: "Amir dan Usamah membina mesin 2 dalam 1 dengan bersungguh-sungguh. Mesin ini akan membantu masyarakat kampung. Namun, kejayaan mereka menimbulkan perasaan iri hati dalam diri Aswan.",
+        maksud: "Proses inovasi memerlukan usaha, kreativiti, dan kerjasama. Munculnya hasad dengki Aswan memperlihatkan sisi gelap manusia yang tidak dapat menerima kejayaan orang lain.",
+        tema: "Inovasi berhadapan hasad dengki",
+        nilai: "Kerjasama, Kegigihan",
+        pengajaran: "Kita hendaklah bekerjasama dan tidak biarkan perasaan dengki menguasai diri.",
+      },
+      {
+        rangkap: "Bahagian 3 — Konflik Memuncak",
+        pantunMudah: "Aswan mencuri pen drive Amir dan melancarkan serangan jenayah siber. Amir dan Usamah menghadapi tekanan besar namun tetap tenang dan tidak berputus asa.",
+        maksud: "Peristiwa jenayah ini menguji ketabahan Amir dan mendidik pembaca tentang bahaya penyalahgunaan teknologi.",
+        tema: "Etika teknologi dan ketabahan menghadapi dugaan",
+        nilai: "Ketabahan, Pemaaf",
+        pengajaran: "Kita hendaklah tabah menghadapi cabaran dan menggunakan teknologi secara beretika.",
+      },
+      {
+        rangkap: "Bahagian 4 — Banjir dan Penyelamatan",
+        pantunMudah: "Banjir besar melanda kampung. Aswan hampir lemas. Tanpa berfikir tentang dendam, Amir terjun menyelamatkan Aswan — detik paling mengharukan dalam keseluruhan cerita.",
+        maksud: "Tindakan Amir membuktikan nilai pemaaf dan keberanian melebihi sebarang konflik peribadi.",
+        tema: "Keberanian dan kemaafan melebihi dendam",
+        nilai: "Keberanian, Kasih sayang, Pemaaf",
+        pengajaran: "Kita hendaklah bersedia memaafkan dan menolong orang lain walaupun mereka pernah menyakiti kita.",
+      },
+      {
+        rangkap: "Bahagian 5 — Keinsafan dan Pengakhiran",
+        pantunMudah: "Aswan insaf dan memohon maaf dengan tulus. Amir memaafkan Aswan. Amir memenangi Anugerah Saintis Muda dan biasiswa — tetapi berita pertunangan Asma mengajar tentang redha.",
+        maksud: "Peleraian menunjukkan bahawa kebaikan mendapat ganjaran. Keinsafan Aswan membuktikan manusia boleh berubah. Berita Asma mengajar tentang menerima takdir.",
+        tema: "Ganjaran kegigihan dan keikhlasan pemaafan",
+        nilai: "Keinsafan, Kasih sayang, Bertanggungjawab",
+        pengajaran: "Kita hendaklah menerima takdir dengan redha kerana setiap kebaikan akan mendapat balasan yang setimpal.",
+      },
+    ],
+
+    masterCharacters: [
+      {
+        name: "Amir",
+        role: "Watak utama dan protagonis. Amir ialah remaja yang menjadi penggerak utama pembinaan mesin 2 dalam 1. Setiap peristiwa penting dalam novel berkisar kepada keputusan dan tindakannya.",
+        traits: ["Kreatif", "Bijaksana", "Gigih", "Pemaaf", "Bertanggungjawab"],
+        evidence:
+          "Amir mencetuskan idea mesin 2 dalam 1 menggunakan Formula Termodinamik untuk manfaat masyarakat. Beliau terus berusaha walaupun pen drive dicuri dan menghadapi serangan siber. Amir menyelamatkan Aswan semasa banjir walaupun Aswan pernah menyakitinya — bukti terkuat sifat pemaaf dan keberaniannya.",
+        relationships:
+          "Rakan seperjuangan Usamah yang kukuh berasaskan kepercayaan. Berhadapan konflik dengan Aswan namun akhirnya menunjukkan kemaafan. Dengan Asma, ada perasaan terpendam yang terpaksa diterima dengan redha.",
+        importance:
+          "Tanpa Amir tiada inovasi, tiada penyelamatan, dan tiada pengajaran kemaafan. Amir melambangkan remaja yang menggunakan ilmu dan akhlak mulia untuk memberi kebaikan kepada masyarakat.",
+      },
+      {
+        name: "Usamah",
+        role: "Watak sampingan utama dan rakan setia Amir. Usamah menyokong Amir dari segi teknikal dan memberi sokongan moral dalam setiap cabaran.",
+        traits: ["Mahir teknologi", "Rajin", "Setia kawan", "Membantu"],
+        evidence:
+          "Usamah bekerjasama dengan Amir dalam setiap peringkat pembinaan mesin. Beliau menggunakan kepakaran teknologinya untuk menyokong visi Amir dan tidak berputus asa walaupun menghadapi halangan daripada Aswan.",
+        relationships:
+          "Rakan karib Amir yang paling dipercayai. Hubungan mereka menggambarkan nilai kerjasama dan persahabatan yang tulus. Dengan Aswan, Usamah berada di pihak bertentangan namun tidak pernah membalas kejahatan dengan kejahatan.",
+        importance:
+          "Usamah membuktikan kejayaan bergantung kepada sokongan rakan yang setia. Tanpa Usamah, Amir tidak mungkin mampu menyiapkan mesin tersebut.",
+      },
+      {
+        name: "Aswan",
+        role: "Watak antagonis yang kemudiannya insaf. Aswan mewakili kelemahan manusia apabila dikuasai hasad dengki, namun perubahan sikapnya menjadi pengajaran paling bermakna dalam novel.",
+        traits: ["Iri hati", "Sombong", "Tidak berfikir panjang", "Insaf"],
+        evidence:
+          "Aswan mencuri pen drive Amir dan melancarkan serangan jenayah siber. Sikapnya berubah sepenuhnya selepas diselamatkan oleh Amir semasa banjir. Aswan memohon maaf dengan tulus kepada Amir dan Usamah.",
+        relationships:
+          "Bermula sebagai musuh tidak langsung Amir akibat hasad dengki. Selepas peristiwa penyelamatan, hubungan berubah kepada rasa hormat dan penyesalan yang mendalam.",
+        importance:
+          "Aswan mewakili bahawa manusia boleh berubah menjadi lebih baik jika diberi peluang dan dihadapi dengan kasih sayang bukan dendam.",
+      },
+      {
+        name: "Asma",
+        role: "Watak sampingan yang mewakili sisi emosi Amir dan menambah dimensi kemanusiaan kepada cerita.",
+        traits: ["Lemah lembut", "Tegas", "Prihatin"],
+        evidence:
+          "Asma prihatin dengan perkembangan sekitarnya dan menunjukkan sikap tegas dalam membuat keputusan hidupnya. Berita pertunangan Asma pada akhir cerita mengejutkan Amir dan pembaca.",
+        relationships:
+          "Mempunyai hubungan emosi yang tersirat dengan Amir. Pertunangan Asma pada penghujung cerita mendedahkan sisi manusiawi Amir — bahawa di sebalik kejayaan, ada hati yang perlu belajar menerima kenyataan.",
+        importance:
+          "Pertunangan Asma mengajar bahawa dalam kehidupan tidak semua yang diharapkan tercapai, dan redha adalah sebahagian daripada kematangan jiwa.",
+      },
+    ],
+
+    relationshipMap: [
+      {
+        from: "Amir",
+        relation: "↔ Sahabat Seperjuangan",
+        to: "Usamah",
+        explanation:
+          "Amir dan Usamah terikat oleh semangat inovasi yang sama. Hubungan mereka berasaskan kepercayaan, kerjasama, dan saling melengkapi. Usamah menyokong Amir dari segi kepakaran teknologi, manakala Amir memberi hala tuju dan visi. Hubungan ini menjadi tulang belakang kejayaan mesin 2 dalam 1.",
+      },
+      {
+        from: "Amir",
+        relation: "↔ Konflik & Kemaafan",
+        to: "Aswan",
+        explanation:
+          "Hubungan Amir dengan Aswan bermula dengan ketegangan akibat hasad dengki. Konflik memuncak apabila pen drive dicuri dan jenayah siber dilancarkan. Namun Amir menunjukkan kebesaran hati dengan menyelamatkan Aswan semasa banjir. Hubungan ini berakhir dengan kemaafan ikhlas — teras pengajaran moral novel ini.",
+      },
+      {
+        from: "Amir",
+        relation: "↔ Perasaan Terpendam",
+        to: "Asma",
+        explanation:
+          "Amir dan Asma mempunyai hubungan emosi yang halus namun bermakna. Berita pertunangan Asma pada akhir cerita mendedahkan sisi manusiawi Amir — bahawa di sebalik kejayaan besar, ada hati yang perlu belajar menerima kenyataan hidup dengan redha.",
+      },
+      {
+        from: "Usamah",
+        relation: "↔ Pihak Bertentangan",
+        to: "Aswan",
+        explanation:
+          "Usamah berada di pihak berlawanan dengan Aswan akibat hasad dengki Aswan terhadap kejayaan mereka. Namun Usamah tidak membalas kejahatan dengan kejahatan. Hubungan ini menggambarkan bagaimana insan berjiwa mulia menangani konflik dengan cara yang matang.",
+      },
+    ],
+
+    detailedPlot: [
+      {
+        stage: "Permulaan",
+        what: "Amir dan Usamah pulang ke kampung selepas menimba ilmu, membawa semangat dan cita-cita untuk memberi manfaat kepada masyarakat menggunakan Formula Termodinamik.",
+        why: "Pembaca diperkenalkan kepada watak utama dan latar cerita. Semangat kedua-dua remaja menggambarkan tema kegigihan dan inovasi yang menjadi nadi novel.",
+        effect: "Pembaca berasa teruja dan mula faham bahawa cerita ini bukan sekadar tentang sains, tetapi tentang semangat remaja yang ingin menyumbang kepada masyarakat.",
+      },
+      {
+        stage: "Perkembangan",
+        what: "Amir dan Usamah merancang dan membina mesin 2 dalam 1. Proses pembinaan menunjukkan kerjasama, kreativiti, dan usaha gigih mereka. Aswan mula berasa iri hati melihat kemajuan Amir.",
+        why: "Bahagian ini memperlihatkan proses inovasi secara praktikal. Perwatakan negatif Aswan mula ketara, membina ketegangan dalam cerita.",
+        effect: "Pembaca mula menjangka konflik yang bakal berlaku dan memahami latar belakang watak antagonis.",
+      },
+      {
+        stage: "Konflik",
+        what: "Aswan mencuri pen drive yang menyimpan data penting mesin Amir. Beliau turut melancarkan serangan jenayah siber untuk memusnahkan kerja keras Amir dan Usamah.",
+        why: "Peristiwa ini menjadi titik kritikal yang menguji ketabahan Amir. Ia menggambarkan kesan buruk hasad dengki yang bukan sahaja merosakkan hubungan, malah mendorong perbuatan jenayah.",
+        effect: "Ketegangan cerita memuncak. Nilai ketabahan dan kebijaksanaan Amir diuji pada peringkat yang paling mencabar.",
+      },
+      {
+        stage: "Klimaks",
+        what: "Banjir besar melanda kampung. Aswan terperangkap dan hampir lemas. Tanpa ragu-ragu, Amir tampil menyelamatkan Aswan walaupun Aswan adalah orang yang pernah menyakitinya.",
+        why: "Ini adalah detik paling penting dalam novel — Amir memilih antara dendam dan pemaafan. Pilihan Amir mencerminkan perwatakannya yang mulia dan menjadi puncak pengajaran moral cerita.",
+        effect: "Peristiwa penyelamatan mengubah segalanya. Aswan tersedar akan kesilapannya. Pembaca merasai kuasa pemaafan dan kebaikan hati.",
+      },
+      {
+        stage: "Peleraian",
+        what: "Aswan memohon maaf dengan ikhlas. Amir memaafkan Aswan. Amir memenangi Anugerah Saintis Muda dan mendapat biasiswa. Namun Amir menerima berita bahawa Asma telah bertunang.",
+        why: "Peleraian menunjukkan bahawa kebaikan akhirnya mendapat ganjaran. Berita pertunangan Asma pula mengajar tentang menerima takdir dengan redha.",
+        effect: "Cerita berakhir dengan pengajaran menyeluruh — kejayaan kerjaya, kematangan emosi, dan keikhlasan pemaafan.",
+      },
+    ],
+
+    importantEvents: [
+      {
+        event: "Amir dan Usamah membina mesin 2 dalam 1",
+        what: "Kedua-dua remaja menggabungkan ilmu termodinamik dengan kreativiti untuk mencipta mesin yang boleh melakukan dua fungsi sekaligus demi membantu masyarakat kampung.",
+        whyImportant: "Peristiwa ini menjadi titik permulaan konflik dan pencapaian dalam cerita. Ia membuktikan ilmu boleh digunakan secara praktikal untuk kebaikan masyarakat.",
+        possibleQuestion: "Apakah tujuan Amir membina mesin 2 dalam 1 dan bagaimana ia menggambarkan tema novel?",
+      },
+      {
+        event: "Formula Termodinamik digunakan dalam mesin",
+        what: "Amir mengaplikasikan prinsip termodinamik dalam reka bentuk mesin, menunjukkan gabungan ilmu akademik dengan kemahiran praktikal yang memberi manfaat sebenar.",
+        whyImportant: "Membuktikan bahawa pembelajaran boleh digunakan secara nyata. Novel ini mendorong murid menghargai ilmu sains sebagai alat untuk mengubah dunia.",
+        possibleQuestion: "Mengapakah penggunaan Formula Termodinamik penting dari segi nilai pendidikan dalam novel ini?",
+      },
+      {
+        event: "Aswan berasa cemburu dan iri hati",
+        what: "Melihat kejayaan Amir dan Usamah, Aswan diresapi perasaan hasad dengki. Dia tidak gembira melihat orang lain lebih maju daripadanya.",
+        whyImportant: "Memperlihatkan kesan negatif hasad dengki dalam diri manusia. Ini menjadi punca utama konflik dalam cerita.",
+        possibleQuestion: "Apakah yang menyebabkan Aswan berasa iri hati dan bagaimana perasaan itu mempengaruhi jalan cerita?",
+      },
+      {
+        event: "Pen drive dicuri oleh Aswan",
+        what: "Didorong hasad dengki, Aswan mencuri pen drive yang menyimpan semua data penting mesin Amir dan Usamah.",
+        whyImportant: "Kecurian ini menjadi konflik utama cerita, menggambarkan bahawa hasad dengki boleh membawa seseorang ke arah perbuatan jenayah.",
+        possibleQuestion: "Mengapakah Aswan mencuri pen drive Amir dan apakah kesannya terhadap Amir dan Usamah?",
+      },
+      {
+        event: "Cubaan jenayah siber",
+        what: "Aswan tidak berhenti pada kecurian sahaja — beliau turut melancarkan serangan siber untuk memusnahkan kerja keras Amir dan Usamah secara digital.",
+        whyImportant: "Membawa unsur jenayah siber dalam cerita, mendidik murid tentang bahaya penyalahgunaan teknologi dan kepentingan etika digital.",
+        possibleQuestion: "Apakah mesej yang disampaikan melalui peristiwa jenayah siber dalam novel ini?",
+      },
+      {
+        event: "Kampung dilanda banjir besar",
+        what: "Bencana alam melanda kawasan kampung secara tiba-tiba, menyebabkan penduduk bertempiaran dan beberapa orang terperangkap termasuk Aswan.",
+        whyImportant: "Banjir menjadi pemangkin kepada perubahan besar dalam cerita, menguji nilai setiap watak ketika bencana melanda.",
+        possibleQuestion: "Bagaimana banjir yang melanda kampung menjadi titik perubahan penting dalam novel ini?",
+      },
+      {
+        event: "Aswan hampir lemas",
+        what: "Dalam kekacauan banjir, Aswan terperangkap dan hampir lemas. Nasibnya bergantung sepenuhnya kepada belas ihsan orang lain.",
+        whyImportant: "Situasi ini merupakan detik pengadilan bagi Aswan. Orang yang pernah disakitinya kini menjadi satu-satunya penyelamatnya — penuh ironi dan pengajaran.",
+        possibleQuestion: "Apakah nilai yang tergambar melalui peristiwa Aswan hampir lemas dalam banjir?",
+      },
+      {
+        event: "Amir menyelamatkan Aswan",
+        what: "Tanpa rasa dendam, Amir terjun ke dalam bah menyelamatkan nyawa Aswan — orang yang pernah mencuri data dan cuba memusnahkan kerjanya.",
+        whyImportant: "Ini ialah puncak pengajaran moral novel. Amir membuktikan bahawa kemaafan dan kebaikan hati lebih besar daripada dendam. Tindakan ini mengubah keseluruhan jalan cerita.",
+        possibleQuestion: "Mengapakah tindakan Amir menyelamatkan Aswan dianggap peristiwa paling penting dalam novel ini?",
+      },
+      {
+        event: "Aswan memohon maaf",
+        what: "Selepas diselamatkan, Aswan insaf akan segala kesilapannya dan memohon maaf dengan ikhlas kepada Amir dan Usamah atas semua perbuatan buruknya.",
+        whyImportant: "Keinsafan Aswan membuktikan manusia boleh berubah. Pemaafan Amir menggenapi nilai kemaafan dan kasih sayang sebagai teras cerita.",
+        possibleQuestion: "Apakah yang mendorong Aswan insaf dan memohon maaf? Apakah kepentingannya kepada cerita?",
+      },
+      {
+        event: "Amir memenangi Anugerah Saintis Muda",
+        what: "Usaha gigih Amir mendapat pengiktirafan apabila beliau dinobatkan sebagai pemenang Anugerah Saintis Muda yang berprestij.",
+        whyImportant: "Kemenangan ini membuktikan kegigihan dan penggunaan ilmu untuk kebaikan masyarakat akhirnya mendapat penghargaan, mengukuhkan tema novel.",
+        possibleQuestion: "Apakah yang dibuktikan oleh kemenangan Amir dalam Anugerah Saintis Muda kepada tema novel?",
+      },
+      {
+        event: "Amir mendapat biasiswa",
+        what: "Selain anugerah, Amir turut mendapat tawaran biasiswa untuk meneruskan pengajian ke peringkat yang lebih tinggi.",
+        whyImportant: "Biasiswa adalah ganjaran konkrit kepada usaha dan ilmu, mengajar murid bahawa ilmu membuka peluang lebih luas dalam kehidupan.",
+        possibleQuestion: "Apakah pengajaran yang boleh diambil daripada kejayaan Amir mendapat biasiswa?",
+      },
+      {
+        event: "Amir mengetahui pertunangan Asma",
+        what: "Di sebalik semua kejayaan, Amir menerima berita mengejutkan — Asma, gadis yang selama ini disukainya, telah bertunang dengan orang lain.",
+        whyImportant: "Menambah dimensi kemanusiaan kepada cerita. Mengajar bahawa dalam kehidupan tidak semua yang kita inginkan tercapai, dan redha adalah tanda kematangan jiwa.",
+        possibleQuestion: "Apakah mesej yang disampaikan melalui berita pertunangan Asma pada akhir cerita?",
+      },
+    ],
+
+    issues: [
+      {
+        issue: "Kepentingan inovasi dalam kehidupan masyarakat",
+        explanation:
+          "Novel ini menunjukkan bahawa inovasi bukan milik orang dewasa atau saintis terkenal sahaja. Remaja seperti Amir mampu mencipta sesuatu yang bernilai jika ada ilmu, semangat, dan kerjasama. Inovasi boleh mengubah kehidupan masyarakat menjadi lebih baik.",
+      },
+      {
+        issue: "Kesan buruk hasad dengki",
+        explanation:
+          "Aswan menggambarkan akibat buruk apabila seseorang dikuasai hasad dengki. Ia bukan sahaja merosakkan hubungan, malah mendorong perbuatan jenayah. Akhirnya Aswan sendiri yang menanggung padahnya.",
+      },
+      {
+        issue: "Semangat kerjasama dalam mencapai matlamat",
+        explanation:
+          "Kejayaan mesin 2 dalam 1 tidak mungkin tercapai tanpa kerjasama Amir dan Usamah. Novel ini menegaskan bahawa kerja berpasukan, saling mempercayai, dan saling melengkapi adalah kunci kejayaan.",
+      },
+      {
+        issue: "Kepentingan sikap memaafkan",
+        explanation:
+          "Amir memilih memaafkan Aswan walaupun Aswan pernah mencuri dan cuba memusnahkan kerjanya. Kemaafan Amir bukan tanda kelemahan — ia tanda kebesaran hati yang membawa ketenangan dan penyelesaian.",
+      },
+      {
+        issue: "Penggunaan teknologi secara beretika",
+        explanation:
+          "Aswan menyalahgunakan teknologi untuk jenayah siber. Ini berbeza dengan Amir dan Usamah yang menggunakan teknologi untuk kebaikan. Novel ini mengajar bahawa teknologi adalah alat yang neutral — baik atau buruknya bergantung kepada tangan siapa ia berada.",
+      },
+      {
+        issue: "Ketabahan menghadapi cabaran dan dugaan",
+        explanation:
+          "Amir menghadapi pencurian data, serangan siber, dan bencana banjir namun tidak pernah berputus asa. Ketabahan Amir menjadi contoh bahawa cabaran adalah sebahagian daripada perjalanan menuju kejayaan.",
+      },
+    ],
+
+    theme: {
+      title: "Kegigihan remaja melakukan inovasi demi manfaat masyarakat",
+      explanation:
+        "Novel ini mengisahkan Amir dan Usamah yang tidak berpuas hati hanya dengan lulus peperiksaan. Mereka menggunakan ilmu untuk mencipta sesuatu yang berguna bagi orang ramai. Walaupun menghadapi pelbagai rintangan — pencurian, jenayah siber, dan bencana alam — mereka tidak pernah berputus asa. Inilah maksud kegigihan dalam berinovasi.",
+      whyItMatters:
+        "Tema ini penting untuk murid Tingkatan 1 kerana ia mengajar bahawa belajar bukan sekadar untuk lulus peperiksaan. Ilmu sepatutnya digunakan untuk memberi manfaat kepada orang lain. Novel ini mendorong generasi muda berfikir kreatif, berani mencuba, dan tidak mudah putus asa.",
+    },
+
+    values: [
+      {
+        value: "Kerjasama",
+        explanation: "Amir dan Usamah bekerjasama dalam setiap peringkat pembinaan mesin 2 dalam 1, saling berkongsi idea dan memanfaatkan kekuatan masing-masing.",
+        realLife: "Kerjasama diperlukan dalam kerja berkumpulan di sekolah, projek komuniti, dan dalam keluarga.",
+        schoolLife: "Menyiapkan projek sains bersama rakan — setiap orang menyumbang mengikut kebolehan masing-masing.",
+      },
+      {
+        value: "Keberanian",
+        explanation: "Amir menunjukkan keberanian apabila terjun ke dalam bah menyelamatkan Aswan tanpa memikirkan bahaya.",
+        realLife: "Keberanian bermaksud melakukan perkara yang betul walaupun ia sukar atau menakutkan.",
+        schoolLife: "Berani menyuarakan pendapat yang betul walaupun tidak dipersetujui oleh majoriti.",
+      },
+      {
+        value: "Keinsafan",
+        explanation: "Aswan insaf selepas diselamatkan oleh Amir dan memohon maaf dengan ikhlas atas semua perbuatan buruknya.",
+        realLife: "Keinsafan bermakna sedar akan kesilapan diri dan bersedia berubah menjadi lebih baik.",
+        schoolLife: "Mengakui kesilapan dengan jujur dan berjanji untuk tidak mengulanginya.",
+      },
+      {
+        value: "Kegigihan",
+        explanation: "Amir dan Usamah tidak berputus asa walaupun menghadapi pelbagai halangan dalam usaha membina mesin mereka.",
+        realLife: "Kegigihan bermaksud terus mencuba walaupun gagal berulang kali sehinggalah berjaya.",
+        schoolLife: "Terus berlatih soalan yang susah sehingga mampu menjawabnya dengan betul.",
+      },
+      {
+        value: "Kasih sayang",
+        explanation: "Amir menyelamatkan Aswan bukan kerana mereka rakan baik, tetapi kerana kasih sayang sejati melampaui konflik dan dendam.",
+        realLife: "Kasih sayang ditunjukkan melalui perbuatan, bukan sekadar kata-kata.",
+        schoolLife: "Membantu rakan yang ketinggalan dalam pelajaran walaupun tidak rapat dengannya.",
+      },
+      {
+        value: "Pemaaf",
+        explanation: "Amir memaafkan Aswan walaupun Aswan telah mencuri pen drive dan melancarkan serangan siber. Sifat pemaaf Amir mengubah hati Aswan.",
+        realLife: "Memaafkan orang lain bukan tanda kelemahan — ia menunjukkan kekuatan jiwa.",
+        schoolLife: "Memaafkan rakan yang pernah berbohong dan memberi peluang kepadanya untuk berubah.",
+      },
+      {
+        value: "Bertanggungjawab",
+        explanation: "Amir bertanggungjawab terhadap projek mesin, rakan-rakannya, dan masyarakat yang akan memanfaatkan ciptaannya.",
+        realLife: "Bertanggungjawab bermakna menunaikan kewajipan dengan sebaik-baiknya tanpa perlu disuruh.",
+        schoolLife: "Menyiapkan tugasan sekolah tepat pada masanya dan memastikan kualiti kerja terjamin.",
+      },
+    ],
+
+    lessons: [
+      {
+        value: "Kita hendaklah menggunakan ilmu untuk memberi manfaat kepada masyarakat",
+        explanation: "Amir tidak menyimpan ilmunya untuk dirinya sendiri — beliau menggunakan ilmu termodinamik untuk mencipta mesin yang membantu orang ramai.",
+        realLife: "Ilmu yang dipelajari di sekolah boleh digunakan untuk menyelesaikan masalah sebenar dalam kehidupan masyarakat.",
+        schoolLife: "Seorang murid yang mahir matematik boleh membantu rakan yang bermasalah — inilah penggunaan ilmu yang bermakna.",
+      },
+      {
+        value: "Kita hendaklah bekerjasama untuk mencapai matlamat yang lebih besar",
+        explanation: "Amir dan Usamah berjaya menyiapkan mesin 2 dalam 1 kerana mereka bekerjasama. Seorang sahaja tidak mampu melakukan segalanya.",
+        realLife: "Tiada seorang manusia pun yang boleh berjaya bersendirian. Kerjasama adalah kunci.",
+        schoolLife: "Kerja berkumpulan yang baik menghasilkan produk yang jauh lebih berkualiti berbanding kerja berseorangan.",
+      },
+      {
+        value: "Kita hendaklah menjauhi sifat hasad dengki kerana ia membawa padah",
+        explanation: "Aswan membuktikan hasad dengki membawa kepada tindakan yang merugikan diri sendiri dan orang lain. Akhirnya Aswan sendiri hampir celaka akibat perbuatannya.",
+        realLife: "Gembira dengan kejayaan orang lain membolehkan kita lebih fokus pada usaha diri sendiri.",
+        schoolLife: "Gantikan rasa cemburu kepada rakan yang lebih pandai dengan motivasi untuk belajar lebih gigih.",
+      },
+      {
+        value: "Kita hendaklah tabah menghadapi cabaran dan tidak berputus asa",
+        explanation: "Amir menghadapi pencurian, serangan siber, dan bencana alam namun tidak pernah menyerah. Ketabahan inilah yang akhirnya membawa kejayaan.",
+        realLife: "Cabaran adalah ujian yang menguatkan diri. Setiap masalah ada penyelesaiannya jika kita tidak berputus asa.",
+        schoolLife: "Jangan menyerah apabila gagal dalam ujian. Analisis kesilapan, belajar semula, dan cuba lagi.",
+      },
+      {
+        value: "Kita hendaklah menggunakan teknologi secara beretika dan bertanggungjawab",
+        explanation: "Aswan menyalahgunakan teknologi untuk jenayah siber. Sebaliknya Amir menggunakan teknologi untuk kebaikan. Kita perlu memilih jalan yang betul.",
+        realLife: "Teknologi seperti internet adalah alat berkuasa. Gunakanlah untuk perkara yang bermanfaat.",
+        schoolLife: "Gunakan peranti digital untuk mencari ilmu, bukan untuk mengganggu atau menyakiti orang lain.",
+      },
+      {
+        value: "Kita hendaklah sentiasa bersedia memaafkan walaupun pernah disakiti",
+        explanation: "Amir memaafkan Aswan walaupun Aswan pernah mencuri dan cuba memusnahkan kerjanya. Kemaafan Amir bukan sahaja menyelamatkan jiwa Aswan tetapi juga mengubah hatinya.",
+        realLife: "Kemaafan memberi kebebasan kepada diri kita sendiri daripada rasa marah yang membebankan.",
+        schoolLife: "Jika ada rakan yang pernah menyakiti hati kita, kemaafan adalah pilihan lebih bijak daripada dendam.",
+      },
+    ],
+
+    teacherExplains: [
+      "Hai murid-murid! Cikgu tahu ramai antara kamu mungkin berfikir bahawa novel Formula Termodinamik ini adalah tentang sains dan mesin sahaja. Memang benar ada unsur sains di dalamnya, tetapi itu bukan mesej utama yang ingin disampaikan oleh penulis.",
+      "Sebenarnya, novel ini mengajar empat perkara penting dalam kehidupan. Pertama — ilmu. Amir menggunakan ilmunya untuk kebaikan orang lain. Kedua — usaha. Mereka tidak berhenti walaupun menghadapi pelbagai dugaan. Ketiga — kerjasama. Tanpa Usamah, Amir tidak akan berjaya bersendirian. Keempat — sifat pemaaf. Inilah yang membezakan Amir daripada orang kebanyakan.",
+      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham MESEJ di sebalik cerita, bukan sekadar hafal nama watak. Belajarlah menghubungkan watak, peristiwa, dan nilai dengan tema utama — kegigihan remaja melakukan inovasi demi manfaat masyarakat.",
+      "Ramai murid terlepas pandang tentang watak Aswan. Ramai yang menganggap Aswan hanya jahat. Sebenarnya, Aswan adalah watak yang PALING banyak pengajaran — dia menunjukkan kesan hasad dengki, dan kemudian membuktikan bahawa manusia boleh berubah menjadi lebih baik. Kedua-dua perkara ini sangat penting untuk peperiksaan!",
+    ],
+
+    keyCharacterFocus: {
+      name: "Amir",
+      whyMatters:
+        "Amir adalah nadi keseluruhan cerita. Tanpa Amir tiada inovasi, tiada penyelamatan, dan tiada pengajaran tentang kemaafan. Setiap peristiwa utama berkisar kepada keputusan dan tindakannya.",
+      supportsTheme:
+        "Amir menjadi bukti hidup tema kegigihan dalam berinovasi. Dari pembinaan mesin hingga menyelamatkan musuhnya, setiap tindakan Amir menggambarkan remaja yang menggunakan ilmu dan hati untuk memberi manfaat kepada masyarakat.",
+      supportsIssues:
+        "Amir menghidupkan semua persoalan utama — kepentingan inovasi melalui ciptaannya, kepentingan kemaafan melalui tindakannya terhadap Aswan, dan etika teknologi melalui cara beliau menggunakan ilmu.",
+      supportsValues:
+        "Amir menonjolkan nilai kerjasama (bersama Usamah), keberanian (menyelamatkan Aswan), pemaaf (terhadap Aswan), kegigihan (tidak berputus asa), dan bertanggungjawab (terhadap projek dan masyarakat).",
+      supportsLessons:
+        "Setiap pengajaran dalam novel boleh dikaitkan dengan tindakan Amir — tentang ilmu, usaha, kerjasama, dan kemaafan.",
+    },
+
+    authorPurpose:
+      "Penulis menghasilkan novel ini untuk mendidik generasi muda bahawa sains dan teknologi bukan sekadar mata pelajaran di sekolah, tetapi alat yang boleh mengubah kehidupan masyarakat. Di sebalik kisah mesin dan formula, penulis ingin menyampaikan bahawa kejayaan sebenar bukan diukur dari pingat atau biasiswa sahaja, tetapi dari kesan positif yang kita tinggalkan dalam kehidupan orang sekeliling.",
+
+    memory60: {
+      theme: "Kegigihan remaja melakukan inovasi demi manfaat masyarakat",
+      issues: "Inovasi · Hasad dengki · Kerjasama · Kemaafan · Etika teknologi · Ketabahan",
+      mainCharacters: "Amir (gigih, pemaaf) · Usamah (setia, mahir) · Aswan (iri hati→insaf) · Asma (prihatin, bertunang)",
+      importantEvents: "Bina mesin → Aswan cemburu → Pen drive dicuri → Jenayah siber → Banjir → Amir selamatkan Aswan → Aswan insaf → Anugerah Saintis Muda → Biasiswa → Asma bertunang",
+      values: "Kerjasama · Keberanian · Keinsafan · Kegigihan · Kasih sayang · Pemaaf · Bertanggungjawab",
+      lessons: "Guna ilmu untuk kebaikan · Bekerjasama · Jauhi hasad dengki · Tabah hadapi cabaran · Teknologi beretika · Sentiasa memaafkan",
+    },
+
+    uasaQuestions: [
+      {
+        type: "MCQ",
+        question: "Apakah perasaan Aswan apabila melihat kejayaan Amir dan Usamah membina mesin 2 dalam 1?",
+        answer: "Aswan berasa iri hati dan hasad dengki terhadap kejayaan Amir dan Usamah.",
+        explanation: "Hasad dengki Aswan menjadi punca utama konflik dalam novel. Perasaan negatif ini mendorongnya melakukan jenayah.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah dua tindakan Aswan yang menjadi punca konflik utama dalam novel ini?",
+        answer: "Aswan mencuri pen drive data mesin Amir dan melancarkan serangan jenayah siber.",
+        explanation: "Dua tindakan jenayah ini menguji ketabahan dan kebijaksanaan Amir dalam menghadapi dugaan.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah peristiwa alam yang menjadi titik perubahan penting dalam novel Formula Termodinamik?",
+        answer: "Banjir besar yang melanda kawasan kampung menjadi titik perubahan utama dalam novel ini.",
+        explanation: "Banjir menyebabkan Aswan hampir lemas dan memberi peluang kepada Amir membuktikan sifat pemaaf dan keberaniannya.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah anugerah dan tawaran yang diterima oleh Amir pada akhir cerita?",
+        answer: "Amir memenangi Anugerah Saintis Muda dan mendapat tawaran biasiswa untuk meneruskan pengajian.",
+        explanation: "Anugerah dan biasiswa ini melambangkan pengiktirafan terhadap usaha gigih dan sumbangan Amir kepada masyarakat.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah berita mengejutkan yang diterima oleh Amir pada penghujung novel?",
+        answer: "Amir mengetahui bahawa Asma, gadis yang disukainya, telah bertunang dengan orang lain.",
+        explanation: "Berita ini menambah dimensi emosi dan mengajar tentang kepentingan menerima takdir dengan redha.",
+      },
+      {
+        type: "Struktur",
+        question: "Jelaskan dua perwatakan Amir beserta bukti daripada novel.",
+        answer: "Pertama, Amir bersifat gigih kerana tidak berputus asa walaupun pen drive datanya dicuri dan menghadapi serangan siber. Beliau terus berusaha sehingga akhirnya memenangi Anugerah Saintis Muda. Kedua, Amir bersifat pemaaf kerana walaupun Aswan pernah menyakitinya, Amir tetap menyelamatkan nyawa Aswan semasa banjir dan memaafkan segala perbuatan buruk Aswan.",
+        explanation: "Soalan perwatakan adalah antara soalan paling kerap keluar. Sertakan sifat + bukti daripada cerita untuk setiap sifat yang dinyatakan.",
+      },
+      {
+        type: "Struktur",
+        question: "Huraikan dua nilai yang terdapat dalam novel Formula Termodinamik beserta contoh daripada cerita.",
+        answer: "Pertama, nilai kerjasama. Amir dan Usamah bekerjasama dalam membina mesin 2 dalam 1. Mereka saling membantu dan melengkapi kepakaran masing-masing sehingga berjaya. Kedua, nilai keinsafan. Aswan insaf akan kesilapannya selepas diselamatkan oleh Amir semasa banjir dan memohon maaf dengan ikhlas.",
+        explanation: "Soalan nilai memerlukan: nama nilai + penjelasan + contoh daripada cerita. Tiga elemen ini penting untuk markah penuh.",
+      },
+      {
+        type: "Struktur",
+        question: "Apakah tema utama novel Formula Termodinamik? Jelaskan bagaimana tema ini digambarkan dalam cerita.",
+        answer: "Tema utama novel ini ialah kegigihan remaja melakukan inovasi demi manfaat masyarakat. Tema ini digambarkan melalui usaha Amir dan Usamah yang tidak berputus asa membina mesin 2 dalam 1 menggunakan Formula Termodinamik walaupun menghadapi pencurian data dan serangan siber. Akhirnya mesin mereka memberi manfaat kepada masyarakat kampung dan Amir memenangi Anugerah Saintis Muda.",
+        explanation: "Soalan tema memerlukan penyataan tema yang jelas dan penghuraian bagaimana tema dikemukakan melalui watak dan peristiwa.",
+      },
+      {
+        type: "Struktur",
+        question: "Nyatakan dua pengajaran daripada novel Formula Termodinamik dan hubungkannya dengan peristiwa dalam cerita.",
+        answer: "Pertama, kita hendaklah menggunakan ilmu untuk memberi manfaat kepada masyarakat. Amir menggunakan ilmu termodinamiknya untuk membina mesin yang membantu penduduk kampung, bukan untuk kepentingan dirinya semata-mata. Kedua, kita hendaklah menjauhi sifat hasad dengki kerana ia membawa padah. Aswan yang dikuasai hasad dengki akhirnya mencuri dan hampir merana apabila hampir lemas dalam banjir.",
+        explanation: "Format pengajaran yang betul: 'Kita hendaklah...' diikuti penjelasan dan bukti daripada cerita. Elak penulisan yang terlalu pendek.",
+      },
+      {
+        type: "Struktur",
+        question: "Mengapakah peristiwa Amir menyelamatkan Aswan semasa banjir dianggap peristiwa paling penting dalam novel ini? Berikan dua sebab.",
+        answer: "Pertama, peristiwa ini merupakan puncak pengajaran moral novel. Amir membuktikan bahawa kemaafan lebih besar daripada dendam walaupun Aswan pernah menyakitinya dengan mencuri pen drive dan melancarkan serangan siber. Kedua, peristiwa ini menjadi titik perubahan watak Aswan. Selepas diselamatkan, Aswan insaf dan memohon maaf dengan ikhlas, membuktikan kebaikan hati boleh mengubah hati manusia yang paling keras sekalipun.",
+        explanation: "Soalan 'mengapa penting' memerlukan penjelasan tentang kesan peristiwa terhadap jalan cerita dan mesej yang ingin disampaikan.",
+      },
+    ],
+
+    examBooster: {
+      frequentPoints: [
+        "🔥 Sangat Penting — Tema: Kegigihan remaja melakukan inovasi demi manfaat masyarakat",
+        "🔥 Sangat Penting — Perwatakan Amir lengkap dengan bukti: gigih, pemaaf, kreatif, bijaksana, bertanggungjawab",
+        "🔥 Sangat Penting — Peristiwa penyelamatan Aswan: bukti sifat pemaaf dan keberanian Amir",
+        "⭐ Penting — Perwatakan Aswan: dari iri hati & sombong berubah kepada insaf & memohon maaf",
+        "⭐ Penting — Nilai kerjasama, kegigihan, pemaaf, dan keinsafan beserta contoh dari cerita",
+        "⭐ Penting — Peristiwa pencurian pen drive dan jenayah siber sebagai punca konflik utama",
+        "⭐ Penting — Pengajaran dalam format 'Kita hendaklah...' beserta bukti cerita",
+        "📌 Perlu Tahu — Perwatakan Usamah: rakan setia, mahir teknologi, menyokong Amir",
+        "📌 Perlu Tahu — Perwatakan Asma: lemah lembut, prihatin, bertunang pada akhir cerita",
+        "📌 Perlu Tahu — Zon novel: Sabah & Sarawak",
+        "📌 Perlu Tahu — Anugerah Saintis Muda dan biasiswa yang dimenangi Amir",
+      ],
+      commonQuestions: [
+        {
+          question: "Jelaskan perwatakan watak utama beserta bukti.",
+          answerHint:
+            "Amir: Gigih (terus berusaha walaupun pen drive dicuri) · Pemaaf (menyelamatkan Aswan) · Kreatif (mencipta mesin 2 dalam 1) · Bijaksana (menangani konflik dengan tenang) · Bertanggungjawab (terhadap projek dan masyarakat)",
+          modelAnswer:
+            "Watak utama ialah Amir. Pertama, Amir bersifat gigih kerana tidak berputus asa walaupun pen drive dicuri dan menghadapi serangan siber. Kedua, Amir bersifat pemaaf kerana menyelamatkan Aswan semasa banjir walaupun Aswan pernah menyakitinya. Ketiga, Amir bersifat kreatif apabila berjaya mencipta mesin 2 dalam 1 menggunakan Formula Termodinamik.",
+          examTip: "Sertakan minimum tiga sifat dengan bukti. Soalan perwatakan membawa markah yang tinggi.",
+        },
+        {
+          question: "Apakah tema novel dan bagaimana ia dikemukakan dalam cerita?",
+          answerHint:
+            "Tema: Kegigihan remaja melakukan inovasi demi manfaat masyarakat. Dikemukakan melalui: pembinaan mesin, menghadapi halangan, dan kejayaan akhir.",
+          modelAnswer:
+            "Tema utama ialah kegigihan remaja melakukan inovasi demi manfaat masyarakat. Tema ini dikemukakan melalui usaha gigih Amir dan Usamah membina mesin 2 dalam 1 untuk membantu masyarakat kampung. Walaupun menghadapi pencurian data dan serangan siber, mereka tidak menyerah. Kejayaan Amir memenangi Anugerah Saintis Muda mengukuhkan lagi tema kegigihan ini.",
+          examTip: "Nyatakan tema dengan jelas kemudian hubungkan dengan sekurang-kurangnya dua peristiwa dalam cerita.",
+        },
+      ],
+    },
+
+    revision: {
+      theme: "Kegigihan remaja melakukan inovasi demi manfaat masyarakat",
+      values: "Kerjasama · Keberanian · Keinsafan · Kegigihan · Kasih sayang · Pemaaf · Bertanggungjawab",
+      lessons: "Guna ilmu untuk kebaikan · Bekerjasama · Jauhi hasad dengki · Tabah hadapi cabaran · Teknologi beretika · Sentiasa memaafkan",
+      examTips: "Fokus: Perwatakan Amir (5 sifat + bukti) · Tema · Peristiwa penyelamatan · Nilai · Pengajaran 'Kita hendaklah...'",
+    },
+
+    miniQuiz: [
+      {
+        question: "Siapakah yang mencuri pen drive Amir?",
+        answerHint: "Aswan mencuri pen drive kerana dipengaruhi perasaan hasad dengki.",
+        modelAnswer: "Aswan",
+        explanation: "Aswan mencuri pen drive Amir kerana didorong rasa iri hati melihat kejayaan Amir dan Usamah.",
+        examTip: "Ingat: Aswan = antagonis yang kemudiannya insaf.",
+      },
+      {
+        question: "Apakah anugerah yang dimenangi oleh Amir?",
+        answerHint: "Anugerah Saintis Muda — pengiktirafan ke atas usaha inovasi Amir.",
+        modelAnswer: "Anugerah Saintis Muda",
+        explanation: "Anugerah ini adalah ganjaran kepada kegigihan Amir menggunakan ilmu untuk manfaat masyarakat.",
+        examTip: "Anugerah ini membuktikan tema kegigihan dalam berinovasi.",
+      },
+      {
+        question: "Mengapakah Amir menyelamatkan Aswan walaupun Aswan pernah menyakitinya?",
+        answerHint: "Kerana Amir memiliki sifat pemaaf dan kasih sayang yang tidak membeza-bezakan orang.",
+        modelAnswer: "Amir menyelamatkan Aswan kerana beliau memiliki sifat pemaaf dan kasih sayang yang tulus. Bagi Amir, menyelamatkan nyawa lebih penting daripada membalas dendam.",
+        explanation: "Ini adalah peristiwa paling penting yang menggambarkan nilai pemaaf dan keberanian Amir.",
+        examTip: "Hubungkan jawapan dengan nilai pemaaf, keberanian, dan kasih sayang.",
+      },
+    ],
+  },
 ];
 
 for (const work of storyWorks) {
