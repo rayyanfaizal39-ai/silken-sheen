@@ -6423,7 +6423,7 @@ function QuizzesPage() {
 
   // ── BM has its own hub page ───────────────────────────────────────────────
   if (subject === "bm" && !chapter) {
-    return <BMWorldPage onBack={() => setSubject(null)} />;
+    return <BMWorldPage mode="quiz" onBack={() => setSubject(null)} />;
   }
 
   // ── Subject World early-return ────────────────────────────────────────────

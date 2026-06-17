@@ -9,7 +9,49 @@ import type { QuizQuestion } from "./types";
 //   S7      — Peribahasa / bandingan semacam
 //   S8–S9   — Pilih ayat gramatis (format I/II/III/IV)
 //   S10     — Kesalahan bahasa + pembetulan
-//   S11–S15 — Pemahaman petikan / KOMSAS
+//   S11–S15 — KOMSAS Form 1 berdasarkan bahan: pantun, syair, sajak, drama
+
+const SET_A_KOMSAS_BAHAN = `Baca pantun di bawah dengan teliti.
+
+PANTUN NASIHAT
+
+Pergi ke dusun memetik duku,
+Singgah sebentar di tepi telaga;
+Rajin membaca menambah ilmu,
+Bekal berguna sepanjang usia.
+
+Burung merpati terbang ke kota,
+Hinggap berehat di dahan sena;
+Hormati guru hormati ibu bapa,
+Hidup berkat jiwa sempurna.`;
+
+const SET_B_KOMSAS_BAHAN = `Baca sajak di bawah dengan teliti.
+
+SAJAK: LANGKAH REMAJA
+
+Di halaman sekolah kami berdiri,
+Membawa impian setinggi awan,
+Jika tersadung bangun kembali,
+Ilmu dipeluk menjadi pedoman.
+
+Rakan di sisi jangan dilupa,
+Tangan dihulur ketika sukar,
+Budi bahasa menjadi cahaya,
+Menerangi jalan menuju benar.`;
+
+const SET_C_KOMSAS_BAHAN = `Baca petikan drama di bawah dengan teliti.
+
+DRAMA: AMANAH KELAS
+
+FARIS: Duit tabung kelas ini mesti kita simpan dengan baik. Cikgu sudah memberi amanah kepada kita.
+
+AINA: Betul. Walaupun tiada orang melihat, kita tetap perlu jujur.
+
+RIZAL: Saya hampir menggunakan duit itu untuk membeli makanan tadi. Mujur kamu mengingatkan saya.
+
+FARIS: Kita boleh lapar sebentar, tetapi jangan sesekali mengkhianati kepercayaan orang.
+
+AINA: Esok kita serahkan tabung ini kepada cikgu bersama-sama.`;
 
 // ─── SET 1 ────────────────────────────────────────────────────────────────────
 export const bmF1ObjektifKuiz1: QuizQuestion[] = [
@@ -174,8 +216,7 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
       "'Berbincang' ialah kata kerja tak transitif. Apabila ada objek ('kemajuan anak-anak mereka'), kata kerja transitif 'membincangkan' perlu digunakan. Contoh betul: 'berbincang tentang...' atau 'membincangkan kemajuan...'.",
   },
 
-  // ─── S11–S15: Petikan Pemahaman ──────────────────────────────────────────
-  // Petikan: Budaya membaca dalam kalangan pelajar
+  // ─── S11–S15: KOMSAS Form 1 ─────────────────────────────────────────────
   {
     id: "bm-f1-obj1-q11",
     subjectId: "bm",
@@ -184,16 +225,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Baca petikan di bawah, kemudian jawab soalan 11 hingga 15.\n\n───\nBudaya membaca dalam kalangan pelajar di negara kita masih berada pada tahap yang membimbangkan. Kajian menunjukkan bahawa pelajar di Malaysia membaca kurang daripada dua buah buku setahun di luar sukatan pelajaran. Keadaan ini amat berbeza dengan negara-negara maju yang menjadikan membaca sebagai amalan harian.\n\nTerdapat pelbagai faktor yang menyebabkan pelajar tidak gemar membaca. Antaranya ialah pengaruh media sosial yang menyita masa mereka. Selain itu, kurangnya koleksi buku yang menarik di perpustakaan sekolah turut menjadi punca masalah ini.\n\nUsaha untuk memupuk budaya membaca hendaklah bermula dari rumah. Ibu bapa memainkan peranan penting dalam mendedahkan anak-anak kepada buku sejak usia muda. Guru pula harus mencadangkan bahan bacaan yang sesuai dengan minat pelajar. Dengan kerjasama semua pihak, budaya membaca dapat ditingkatkan dalam kalangan generasi muda.\n───\n\nApakah isu utama yang dibincangkan dalam petikan di atas?",
+      `${SET_A_KOMSAS_BAHAN}\n\n11. Apakah maksud rangkai kata *bekal berguna* dalam pantun tersebut?`,
     options: [
-      "Masalah kemiskinan dalam kalangan pelajar",
-      "Tahap budaya membaca pelajar di Malaysia yang rendah",
-      "Kepentingan media sosial kepada pelajar",
-      "Kekurangan guru yang berkelayakan di sekolah",
+      "Makanan yang dibawa ketika berjalan",
+      "Ilmu yang dapat digunakan dalam kehidupan",
+      "Hadiah yang diberikan oleh guru",
+      "Barang yang disimpan di rumah",
     ],
     answerIndex: 1,
     explanation:
-      "Petikan membincangkan budaya membaca yang masih berada pada tahap membimbangkan. Fakta 'kurang daripada dua buah buku setahun' mengesahkan bahawa isu utama ialah tahap budaya membaca yang rendah.",
+      "Dalam pantun, 'bekal berguna' merujuk kepada ilmu yang bermanfaat sepanjang usia.",
   },
   {
     id: "bm-f1-obj1-q12",
@@ -203,16 +244,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Berdasarkan petikan, apakah faktor yang menyebabkan pelajar tidak gemar membaca?",
+      `${SET_A_KOMSAS_BAHAN}\n\n12. Berdasarkan pantun tersebut, apakah faedah rajin membaca?`,
     options: [
-      "Kekurangan masa belajar di sekolah",
-      "Pengaruh media sosial dan kurangnya koleksi buku menarik",
-      "Harga buku yang terlalu mahal",
-      "Ibu bapa yang tidak mengizinkan anak membaca",
+      "Menambah ilmu",
+      "Menjadi terkenal",
+      "Mendapat hadiah",
+      "Dapat pergi ke dusun",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Petikan menyatakan dua faktor: pengaruh media sosial yang menyita masa dan kurangnya koleksi buku menarik di perpustakaan sekolah.",
+      "Baris 'Rajin membaca menambah ilmu' menyatakan faedah membaca secara langsung.",
   },
   {
     id: "bm-f1-obj1-q13",
@@ -222,11 +263,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Menurut petikan, siapakah yang memainkan peranan penting dalam memupuk budaya membaca anak-anak?",
-    options: ["Rakan sebaya", "Ibu bapa", "Kerajaan", "Ketua kampung"],
-    answerIndex: 1,
+      `${SET_A_KOMSAS_BAHAN}\n\n13. Apakah mesej rangkap kedua pantun tersebut?`,
+    options: [
+      "Kita hendaklah menghormati guru dan ibu bapa",
+      "Kita hendaklah memetik buah di dusun",
+      "Kita hendaklah berehat di dahan sena",
+      "Kita hendaklah pergi ke kota setiap hari",
+    ],
+    answerIndex: 0,
     explanation:
-      "Petikan menyatakan dengan jelas: 'Ibu bapa memainkan peranan penting dalam mendedahkan anak-anak kepada buku sejak usia muda.'",
+      "Rangkap kedua menegaskan sikap menghormati guru dan ibu bapa supaya hidup diberkati.",
   },
   {
     id: "bm-f1-obj1-q14",
@@ -236,11 +282,11 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Apakah maksud perkataan *memupuk* dalam petikan di atas?",
-    options: ["Menghapuskan", "Menanam dan menggalakkan", "Mengurangkan", "Menggantikan"],
-    answerIndex: 1,
+      `${SET_A_KOMSAS_BAHAN}\n\n14. Apakah nilai murni yang terdapat dalam pantun tersebut?`,
+    options: ["Rajin menuntut ilmu", "Suka membazir masa", "Berani melawan nasihat", "Bangga diri"],
+    answerIndex: 0,
     explanation:
-      "'Memupuk' bermaksud menanam, menggalakkan, dan membina sesuatu secara berterusan sehingga ia berkembang. Dalam konteks petikan, memupuk budaya membaca bermaksud menggalakkan dan membina tabiat membaca.",
+      "Pantun menonjolkan nilai kerajinan menuntut ilmu melalui amalan membaca.",
   },
   {
     id: "bm-f1-obj1-q15",
@@ -250,16 +296,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Apakah cadangan yang diberikan dalam petikan untuk mengatasi masalah budaya membaca yang rendah?",
+      `${SET_A_KOMSAS_BAHAN}\n\n15. Rakan anda malas membaca buku. Apakah tindakan paling sesuai berdasarkan pengajaran pantun tersebut?`,
     options: [
-      "Menutup semua platform media sosial",
-      "Membeli lebih banyak buku untuk setiap pelajar",
-      "Kerjasama ibu bapa dan guru dalam memupuk minat membaca",
-      "Mengadakan peperiksaan tentang buku-buku pilihan",
+      "Mengajaknya membaca bahan yang sesuai secara konsisten",
+      "Mengejeknya kerana kurang membaca",
+      "Menyuruhnya berhenti belajar",
+      "Menyembunyikan buku-bukunya",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Petikan mencadangkan kerjasama semua pihak — ibu bapa mendedahkan anak kepada buku dari kecil, dan guru mencadangkan bahan bacaan yang sesuai dengan minat pelajar.",
+      "Pantun menggalakkan amalan membaca kerana membaca menambah ilmu yang berguna dalam kehidupan.",
   },
 ];
 
@@ -426,8 +472,7 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
       "Ayat ini sudah betul dari segi tatabahasa. 'Mesti' digunakan dengan betul sebagai kata modaliti yang menunjukkan kewajipan. 'Peraturan-peraturan' adalah jamak berganda yang sah. 'Supaya' adalah kata hubung tujuan yang sesuai.",
   },
 
-  // ─── S11–S15: Petikan Pemahaman ──────────────────────────────────────────
-  // Petikan: Kepentingan sukan kepada pelajar
+  // ─── S11–S15: KOMSAS Form 1 ─────────────────────────────────────────────
   {
     id: "bm-f1-obj2-q11",
     subjectId: "bm",
@@ -436,16 +481,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Baca petikan di bawah, kemudian jawab soalan 11 hingga 15.\n\n───\nSukan memainkan peranan penting dalam kehidupan pelajar. Melalui sukan, pelajar bukan sahaja dapat mengekalkan kesihatan fizikal, malah turut membina sahsiah yang mulia. Semangat berpasukan, disiplin diri, dan ketabahan hati adalah antara nilai murni yang dipupuk melalui aktiviti sukan.\n\nWalaupun sukan penting, segelintir pelajar mengabaikan pelajaran demi sukan. Keadaan ini berlaku apabila pelajar tidak dapat mengimbangi antara kedua-dua aspek tersebut. Oleh sebab itu, pelajar perlu bijak mengurus masa supaya pencapaian akademik dan kecemerlangan sukan dapat dicapai serentak.\n\nSekolah dan ibu bapa seharusnya membimbing pelajar dalam pengurusan masa. Jadual yang tersusun dan sokongan yang berterusan akan membantu pelajar menguasai kemahiran seimbang ini. Ingatlah, bukan sukar untuk menjadi pelajar yang cemerlang dalam akademik dan sukan serentak.\n───\n\nApakah isu utama yang dibincangkan dalam petikan di atas?",
+      `${SET_B_KOMSAS_BAHAN}\n\n11. Apakah maksud rangkai kata *ilmu dipeluk* dalam sajak tersebut?`,
     options: [
-      "Masalah pelajar yang malas bersukan",
-      "Kepentingan sukan dan cara mengimbanginya dengan pelajaran",
-      "Cara menjadi atlet profesional",
-      "Peranan guru dalam mengajar sukan",
+      "Ilmu dijadikan pegangan hidup",
+      "Buku dibawa ke mana-mana",
+      "Awan dipeluk oleh remaja",
+      "Rakan memegang tangan penyajak",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Petikan membincangkan kepentingan sukan kepada pelajar dan keperluan mengimbangi sukan dengan pelajaran. Tema utama ialah keseimbangan antara sukan dan akademik.",
+      "Rangkai kata 'ilmu dipeluk' bermaksud ilmu dijadikan pegangan atau pedoman dalam kehidupan.",
   },
   {
     id: "bm-f1-obj2-q12",
@@ -455,16 +500,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Berdasarkan petikan, apakah nilai murni yang dapat dipupuk melalui sukan?",
+      `${SET_B_KOMSAS_BAHAN}\n\n12. Berdasarkan sajak tersebut, apakah yang perlu dilakukan jika tersadung?`,
     options: [
-      "Kesombongan, kejayaan, dan kekayaan",
-      "Semangat berpasukan, disiplin diri, dan ketabahan hati",
-      "Kebolehan, kecerdasan, dan kreativiti",
-      "Keberanian, kebebasan, dan kemewahan",
+      "Bangun kembali",
+      "Melupakan impian",
+      "Menjauhi rakan",
+      "Berhenti belajar",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Petikan menyatakan dengan jelas: 'Semangat berpasukan, disiplin diri, dan ketabahan hati adalah antara nilai murni yang dipupuk melalui aktiviti sukan.'",
+      "Jawapan terdapat pada baris 'Jika tersadung bangun kembali'.",
   },
   {
     id: "bm-f1-obj2-q13",
@@ -474,16 +519,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Menurut petikan, apakah yang menyebabkan segelintir pelajar mengabaikan pelajaran demi sukan?",
+      `${SET_B_KOMSAS_BAHAN}\n\n13. Apakah mesej yang disampaikan dalam rangkap kedua sajak tersebut?`,
     options: [
-      "Guru tidak memberi perhatian kepada pelajaran",
-      "Ibu bapa yang memaksa anak bersukan",
-      "Pelajar tidak dapat mengimbangi antara sukan dan pelajaran",
-      "Jadual sukan yang terlalu padat ditetapkan sekolah",
+      "Kita hendaklah membantu rakan dan berbudi bahasa",
+      "Kita hendaklah berjalan seorang diri",
+      "Kita hendaklah mengejar awan",
+      "Kita hendaklah melupakan sekolah",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Petikan menyatakan: 'Keadaan ini berlaku apabila pelajar tidak dapat mengimbangi antara kedua-dua aspek tersebut' — merujuk kepada sukan dan pelajaran.",
+      "Rangkap kedua menyatakan rakan tidak harus dilupakan, tangan perlu dihulur ketika sukar dan budi bahasa menjadi cahaya.",
   },
   {
     id: "bm-f1-obj2-q14",
@@ -493,11 +538,11 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Apakah maksud perkataan *mengimbangi* dalam petikan di atas?",
-    options: ["Memilih salah satu daripada dua perkara", "Menyeimbangkan dua atau lebih perkara", "Meninggalkan semua aktiviti", "Menambahkan beban kerja"],
-    answerIndex: 1,
+      `${SET_B_KOMSAS_BAHAN}\n\n14. Apakah nilai murni yang jelas dalam baris 'Tangan dihulur ketika sukar'?`,
+    options: ["Tolong-menolong", "Mementingkan diri", "Putus asa", "Kesombongan"],
+    answerIndex: 0,
     explanation:
-      "'Mengimbangi' bermaksud menyeimbangkan atau membahagi-bahagikan perhatian, masa, atau usaha secara saksama antara dua perkara atau lebih.",
+      "Baris tersebut menggambarkan kesediaan membantu rakan yang menghadapi kesusahan.",
   },
   {
     id: "bm-f1-obj2-q15",
@@ -507,16 +552,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Apakah cadangan yang diberikan dalam petikan untuk membantu pelajar mengimbangi sukan dan pelajaran?",
+      `${SET_B_KOMSAS_BAHAN}\n\n15. Rakan anda gagal dalam pertandingan dan berasa kecewa. Apakah nasihat paling sesuai berdasarkan sajak tersebut?`,
     options: [
-      "Pelajar harus berhenti bersukan sepenuhnya",
-      "Sekolah perlu kurangkan waktu sukan",
-      "Bimbingan sekolah dan ibu bapa serta jadual yang tersusun",
-      "Pelajar perlu memilih antara sukan atau akademik",
+      "Bangun semula dan terus berusaha",
+      "Berhenti menyertai semua pertandingan",
+      "Menyalahkan rakan sepasukan",
+      "Melupakan nasihat guru",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Petikan mencadangkan: 'Sekolah dan ibu bapa seharusnya membimbing pelajar dalam pengurusan masa. Jadual yang tersusun dan sokongan yang berterusan akan membantu pelajar.'",
+      "Sajak menasihati remaja supaya bangun kembali apabila tersadung dan menjadikan ilmu sebagai pedoman.",
   },
 ];
 
@@ -683,8 +728,7 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
       "'Dari' digunakan untuk menunjukkan asal tempat seseorang (asal-usul atau titik permulaan perjalanan). 'Daripada' pula digunakan untuk perbandingan, sumber bukan manusia, atau asal bahan. 'Dia dari Johor Bahru' adalah betul.",
   },
 
-  // ─── S11–S15: Pantun & Pemahaman ─────────────────────────────────────────
-  // Pantun empat kerat untuk pemahaman
+  // ─── S11–S15: KOMSAS Form 1 ─────────────────────────────────────────────
   {
     id: "bm-f1-obj3-q11",
     subjectId: "bm",
@@ -693,16 +737,16 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Baca pantun di bawah, kemudian jawab soalan 11 hingga 15.\n\n───\nBuah cempedak di luar pagar,\nAmbil galah tolong jolokkan;\nSaya budak baharu belajar,\nKalau salah tolong tunjukkan.\n───\n\nApakah tema pantun di atas?",
+      `${SET_C_KOMSAS_BAHAN}\n\n11. Apakah maksud perkataan *amanah* dalam petikan drama tersebut?`,
     options: [
-      "Keberanian dan ketegasan",
-      "Kerendahan hati dan kesediaan belajar",
-      "Kesombongan dan kecuaian",
-      "Kemarahan dan kekecewaan",
+      "Kepercayaan atau tanggungjawab yang perlu dijaga",
+      "Makanan yang hendak dibeli",
+      "Tempat menyimpan buku",
+      "Hadiah daripada rakan",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Tema pantun ini ialah kerendahan hati (tawaduk) dan kesediaan belajar. Penutur mengakui dirinya masih baru belajar dan memohon tunjuk ajar jika melakukan kesilapan.",
+      "Dalam drama, amanah merujuk kepada kepercayaan cikgu terhadap murid untuk menjaga duit tabung kelas.",
   },
   {
     id: "bm-f1-obj3-q12",
@@ -712,16 +756,16 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Dalam pantun di atas, apakah bahagian yang merupakan pembayang?",
+      `${SET_C_KOMSAS_BAHAN}\n\n12. Mengapakah Faris menegaskan bahawa duit tabung kelas mesti disimpan dengan baik?`,
     options: [
-      "Saya budak baharu belajar / Kalau salah tolong tunjukkan",
-      "Buah cempedak di luar pagar / Ambil galah tolong jolokkan",
-      "Ambil galah tolong jolokkan / Saya budak baharu belajar",
-      "Buah cempedak di luar pagar / Saya budak baharu belajar",
+      "Cikgu telah memberi amanah kepada mereka",
+      "Faris mahu membeli makanan",
+      "Aina menyuruh Faris menyembunyikannya",
+      "Rizal tidak hadir ke sekolah",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Dalam pantun empat kerat, dua baris pertama adalah pembayang (bayangan), manakala dua baris terakhir adalah maksud. Pembayang ialah: 'Buah cempedak di luar pagar / Ambil galah tolong jolokkan.'",
+      "Faris menyatakan, 'Cikgu sudah memberi amanah kepada kita.'",
   },
   {
     id: "bm-f1-obj3-q13",
@@ -731,16 +775,16 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Apakah nilai murni yang terdapat dalam pantun tersebut?",
+      `${SET_C_KOMSAS_BAHAN}\n\n13. Apakah mesej utama petikan drama tersebut?`,
     options: [
-      "Keberanian dan kecekalan",
-      "Kerendahan hati dan menghormati orang yang lebih tahu",
-      "Kegigihan dan ketabahan diri",
-      "Kejujuran dan keterbukaan fikiran",
+      "Kita mestilah jujur ketika memegang amanah",
+      "Kita boleh menggunakan duit kelas sesuka hati",
+      "Kita hendaklah menyembunyikan kesalahan rakan",
+      "Kita tidak perlu menyerahkan tabung kepada guru",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Nilai murni yang terkandung ialah kerendahan hati — penutur tidak berlagak tahu segalanya, malah meminta panduan. Ini juga mencerminkan sikap menghormati orang yang lebih berpengalaman.",
+      "Dialog Aina dan Faris menekankan kejujuran dan larangan mengkhianati kepercayaan orang.",
   },
   {
     id: "bm-f1-obj3-q14",
@@ -750,11 +794,11 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Berapakah bilangan suku kata dalam baris pertama pantun tersebut?\n\n'Buah cempedak di luar pagar'",
-    options: ["6 suku kata", "7 suku kata", "8 suku kata", "9 suku kata"],
-    answerIndex: 2,
+      `${SET_C_KOMSAS_BAHAN}\n\n14. Apakah nilai murni yang ditunjukkan oleh Aina dalam petikan drama tersebut?`,
+    options: ["Kejujuran", "Ketamakan", "Keangkuhan", "Kecuaian"],
+    answerIndex: 0,
     explanation:
-      "Bu-ah-cem-pe-dak-di-lu-ar = 8 suku kata. Pantun yang baik biasanya mengandungi 8 hingga 12 suku kata bagi setiap baris.",
+      "Aina berkata bahawa walaupun tiada orang melihat, mereka tetap perlu jujur.",
   },
   {
     id: "bm-f1-obj3-q15",
@@ -764,10 +808,15 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      "Apakah skema rima akhir pantun di atas?",
-    options: ["aa-aa", "ab-ab", "aa-bb", "ab-ba"],
-    answerIndex: 1,
+      `${SET_C_KOMSAS_BAHAN}\n\n15. Jika anda berada di tempat Rizal, apakah tindakan paling wajar selepas sedar hampir melakukan kesalahan?`,
+    options: [
+      "Mengaku kesilapan dan menyerahkan tabung kepada cikgu",
+      "Menggunakan duit itu secara senyap-senyap",
+      "Menyalahkan Faris dan Aina",
+      "Membuang tabung supaya tiada bukti",
+    ],
+    answerIndex: 0,
     explanation:
-      "Pantun empat kerat menggunakan skema rima ab-ab: baris 1 (pagar) berkait dengan baris 3 (belajar) — rima 'ar'; baris 2 (jolokkan) berkait dengan baris 4 (tunjukkan) — rima 'kan'. Ini adalah ciri utama pantun Melayu.",
+      "Tindakan paling wajar ialah jujur, mengakui kesilapan dan menjaga amanah yang diberikan.",
   },
 ];
