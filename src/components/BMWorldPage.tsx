@@ -458,7 +458,7 @@ function TopicCard({
   const getTopicTypeLabel = (t: string) => {
     const map: Record<string, string> = {
       tatabahasa: "Tatabahasa", pemahaman: "Teknik", komsas: "KOMSAS", novel: "Novel",
-      "ringkasan-ulasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
+      "ringkasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
       workshop: "Bengkel", "model-karangan": "Model", "peribahasa-bank": "Peribahasa", "essay-improvement": "Teknik",
     };
     return map[t] ?? t;
@@ -1997,459 +1997,510 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
 
 // ─── TEKNIK MENJAWAB RINGKASAN PREMIUM ───────────────────────────────────────
 
-const FAKTA_PENTING = [
-  { icon: "📌", label: "Bahagian C" },
-  { icon: "📌", label: "15 Markah" },
-  { icon: "📌", label: "Maks. 100 Patah Perkataan" },
-  { icon: "📌", label: "SATU Perenggan" },
-  { icon: "📌", label: "Tiada Pendahuluan" },
-  { icon: "📌", label: "Tiada Penutup" },
-  { icon: "📌", label: "Fokus Kehendak Soalan" },
-];
+// ─── DATA: 5 LATIHAN RINGKASAN INTERAKTIF ─────────────────────────────────────
 
-const FORMULA_EMAS = [
-  { langkah: "Langkah 1", isi: "Kenal pasti kata kunci soalan" },
-  { langkah: "Langkah 2", isi: "Gariskan isi penting dalam petikan" },
-  { langkah: "Langkah 3", isi: "Pilih sekurang-kurangnya 5 hingga 6 isi" },
-  { langkah: "Langkah 4", isi: "Susun isi mengikut urutan" },
-  { langkah: "Langkah 5", isi: "Gunakan penanda wacana" },
-  { langkah: "Langkah 6", isi: "Semak jumlah perkataan" },
-];
-
-const PENANDA_WACANA = [
-  { kata: "Antara",        warna: "from-[#6366F1]/30 to-[#8B5CF6]/20", border: "#6366F1" },
-  { kata: "Selain itu",    warna: "from-[#0EA5E9]/30 to-[#38BDF8]/20", border: "#0EA5E9" },
-  { kata: "Di samping itu",warna: "from-[#10B981]/30 to-[#34D399]/20", border: "#10B981" },
-  { kata: "Seterusnya",    warna: "from-[#F59E0B]/30 to-[#FBBF24]/20", border: "#F59E0B" },
-  { kata: "Dalam pada itu",warna: "from-[#EC4899]/30 to-[#F472B6]/20", border: "#EC4899" },
-  { kata: "Tambahan pula", warna: "from-[#8B5CF6]/30 to-[#A78BFA]/20", border: "#8B5CF6" },
-  { kata: "Selanjutnya",   warna: "from-[#06B6D4]/30 to-[#22D3EE]/20", border: "#06B6D4" },
-  { kata: "Akhir sekali",  warna: "from-[#F97316]/30 to-[#FB923C]/20", border: "#F97316" },
-];
-
-const KESALAHAN = [
-  "Menulis pendahuluan",
-  "Menulis penutup",
-  "Melebihi 100 patah perkataan",
-  "Mengambil isi yang tidak berkaitan",
-  "Tidak menggunakan penanda wacana",
-  "Menyalin bulat-bulat keseluruhan ayat",
-  "Tidak menyemak ejaan",
-];
-
-const STRATEGI_MARKAH = [
-  "Cari kehendak soalan dahulu",
-  "Ambil isi yang tepat",
-  "Gunakan penanda wacana",
-  "Pastikan ayat gramatis",
-  "Semak ejaan",
-  "Pastikan tidak melebihi 100 patah perkataan",
-];
-
-const CONTOH_PETIKAN = `Kegiatan berkebun memberikan banyak faedah kepada individu dan masyarakat. Melalui aktiviti ini, seseorang dapat memperoleh bekalan makanan yang segar dan berkhasiat tanpa perlu bergantung sepenuhnya kepada kedai. Selain itu, berkebun dapat mengurangkan tekanan dan menenangkan fikiran kerana aktiviti ini melibatkan sentuhan langsung dengan alam semula jadi. Individu yang sering berkebun juga didapati lebih cergas dan sihat kerana mereka bergerak aktif semasa menjaga tanaman. Di samping itu, aktiviti berkebun secara berkumpulan dapat memupuk semangat kerjasama dan mempererat hubungan antara ahli komuniti. Melalui perkongsian ilmu dan hasil kebun, hubungan kejiranan turut dapat diperkukuhkan. Kegiatan ini juga membantu menghijaukanpersekitaran dan menyumbang kepada kualiti udara yang lebih baik.`;
-
-const KATA_KUNCI_SOALAN = "Nyatakan faedah kegiatan berkebun berdasarkan petikan di atas.";
-
-const ISI_PENTING = [
-  { isi: "Memperoleh bekalan makanan segar dan berkhasiat.", terima: true, sebab: "Berkaitan langsung dengan faedah berkebun kepada individu." },
-  { isi: "Mengurangkan tekanan dan menenangkan fikiran.", terima: true, sebab: "Faedah psikologi yang jelas dinyatakan dalam petikan." },
-  { isi: "Individu lebih cergas dan sihat kerana bergerak aktif.", terima: true, sebab: "Faedah fizikal yang eksplisit dalam petikan." },
-  { isi: "Memupuk semangat kerjasama dan mempererat hubungan komuniti.", terima: true, sebab: "Faedah sosial yang dinyatakan dengan jelas." },
-  { isi: "Menghijaukan persekitaran dan memperbaiki kualiti udara.", terima: true, sebab: "Faedah alam sekitar yang disebut di penghujung petikan." },
-  { isi: "Berkebun adalah hobi yang menyeronokkan.", terima: false, sebab: "Maklumat ini TIDAK terdapat dalam petikan. Jangan tambah maklumat sendiri." },
-];
-
-const JAWAPAN_CONTOH = `Antara faedah kegiatan berkebun ialah individu dapat memperoleh bekalan makanan yang segar dan berkhasiat. Selain itu, aktiviti ini dapat mengurangkan tekanan dan menenangkan fikiran. Di samping itu, individu yang berkebun menjadi lebih cergas dan sihat kerana sentiasa bergerak aktif. Seterusnya, berkebun secara berkumpulan dapat memupuk semangat kerjasama dan mempererat hubungan komuniti. Akhir sekali, kegiatan berkebun turut membantu menghijaukan persekitaran dan meningkatkan kualiti udara.`;
-
-const CABARAN_SOALAN = [
+const LATIHAN_RINGKASAN = [
   {
-    isi: "Berkebun boleh mengurangkan tekanan dan menenangkan fikiran.",
-    terima: true,
-    penerangan: "✅ DITERIMA — Isi ini terdapat dengan jelas dalam petikan. Ia merupakan faedah psikologi yang berkaitan dengan kehendak soalan.",
+    id: 1,
+    tajuk: "Kebaikan Aktiviti Berbasikal",
+    emoji: "🚴",
+    petikan:
+      "Aktiviti berbasikal semakin mendapat tempat dalam kalangan masyarakat di negara kita. Berbasikal secara berkala dapat menjaga kesihatan fizikal seseorang kerana ia melibatkan pergerakan aktif seluruh anggota badan. Selain itu, penggunaan basikal sebagai kenderaan harian dapat mengurangkan kebergantungan kepada kenderaan bermotor, justeru membantu mengawal kadar pencemaran udara di kawasan bandar. Aktiviti ini juga membantu menjimatkan kos pengangkutan harian terutamanya bagi golongan yang tinggal berhampiran tempat kerja atau sekolah. Di samping itu, berbasikal secara berkumpulan dapat memupuk semangat kerjasama dan mewujudkan ikatan sosial yang erat dalam kalangan ahli masyarakat. Penggunaan basikal yang meluas turut menyumbang kepada pengurangan kesesakan lalu lintas di jalan raya. Akhirnya, amalan berbasikal secara tidak langsung membantu memelihara alam sekitar kerana basikal tidak melepaskan gas karbon dioksida ke udara.",
+    fokus: "Kebaikan aktiviti berbasikal kepada masyarakat.",
+    kataKunci: [
+      { kata: "Kebaikan",           warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
+      { kata: "Aktiviti Berbasikal", warna: "bg-[#0EA5E9]/20 text-[#38BDF8] border border-[#0EA5E9]/35" },
+      { kata: "Masyarakat",          warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+    ],
+    isiPenting: [
+      "Menjaga kesihatan fizikal penunggang basikal.",
+      "Mengurangkan pencemaran udara di kawasan bandar.",
+      "Menjimatkan kos pengangkutan harian.",
+      "Memupuk semangat kerjasama dalam kalangan masyarakat.",
+      "Mengurangkan kesesakan lalu lintas di jalan raya.",
+      "Membantu memelihara alam sekitar.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "kebaikan aktiviti berbasikal ialah ia dapat menjaga kesihatan fizikal penunggang." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "berbasikal membantu mengurangkan pencemaran udara kerana ia tidak menggunakan bahan api." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "aktiviti ini menjimatkan kos pengangkutan harian seseorang." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "berbasikal secara berkumpulan dapat memupuk semangat kerjasama dalam kalangan masyarakat." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "penggunaan basikal turut mengurangkan kesesakan lalu lintas di jalan raya." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "berbasikal secara tidak langsung membantu memelihara alam sekitar." },
+    ],
+    jawapanLengkap:
+      "Antara kebaikan aktiviti berbasikal kepada masyarakat ialah ia dapat menjaga kesihatan fizikal penunggang. Selain itu, berbasikal membantu mengurangkan pencemaran udara kerana ia tidak menggunakan bahan api. Seterusnya, aktiviti ini menjimatkan kos pengangkutan harian seseorang. Di samping itu, berbasikal secara berkumpulan dapat memupuk semangat kerjasama dalam kalangan masyarakat. Tambahan pula, penggunaan basikal turut mengurangkan kesesakan lalu lintas di jalan raya. Akhir sekali, berbasikal secara tidak langsung membantu memelihara alam sekitar.",
+    bilPatah: 73,
+    kesalahanLazim: [
+      "Mengambil isi yang tidak menjawab fokus — contoh: menulis tentang bahaya berbasikal.",
+      "Menulis pendahuluan seperti 'Terdapat banyak kebaikan...' — membuang patah perkataan.",
+      "Menyalin keseluruhan ayat daripada petikan tanpa olahan sendiri.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana seperti 'Antara', 'Selain itu'.",
+    ],
+    tipCikgu:
+      "Fokus kata kunci adalah 'kebaikan' — pastikan SEMUA isi yang dipilih menjawab soalan 'apa kebaikannya?' dan bukannya kesan, masalah, atau cadangan.",
   },
   {
-    isi: "Kegiatan berkebun memerlukan banyak peralatan mahal.",
-    terima: false,
-    penerangan: "❌ DITOLAK — Maklumat ini langsung tidak terdapat dalam petikan. Jangan tambah maklumat dari luar walaupun ia benar dalam kehidupan sebenar.",
+    id: 2,
+    tajuk: "Kesan Cuaca Panas",
+    emoji: "☀️",
+    petikan:
+      "Cuaca panas yang melampau membawa pelbagai kesan buruk kepada kehidupan manusia dan alam sekitar. Kesihatan manusia terancam apabila suhu yang terlalu tinggi boleh menyebabkan seseorang mengalami strok haba, terutamanya bagi golongan warga emas dan kanak-kanak. Aktiviti harian turut terjejas apabila cuaca yang panas menyukarkan orang ramai menjalankan kerja luar. Di samping itu, cuaca panas yang berpanjangan menyebabkan sumber air semakin berkurangan akibat kadar penyejatan yang tinggi. Tanaman pertanian juga turut terjejas kerana kekurangan air dan suhu yang melampau boleh menyebabkan tanaman mati sebelum musim tuaian. Cuaca panas yang kering juga meningkatkan risiko kebakaran hutan dan kebun, yang boleh memusnahkan harta benda dan nyawa. Selain itu, penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin, menyebabkan beban sistem elektrik negara bertambah.",
+    fokus: "Kesan cuaca panas kepada manusia dan alam sekitar.",
+    kataKunci: [
+      { kata: "Kesan",       warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      { kata: "Cuaca Panas", warna: "bg-[#F59E0B]/20 text-[#FBBF24] border border-[#F59E0B]/35" },
+    ],
+    isiPenting: [
+      "Mengancam kesihatan manusia dan menyebabkan strok haba.",
+      "Menjejaskan aktiviti harian orang ramai.",
+      "Mengurangkan sumber air akibat kadar penyejatan yang tinggi.",
+      "Merosakkan tanaman pertanian.",
+      "Meningkatkan risiko kebakaran hutan dan kebun.",
+      "Meningkatkan penggunaan elektrik sehingga membebankan sistem bekalan.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "cuaca panas turut menjejaskan aktiviti harian orang ramai." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "sumber air semakin berkurangan akibat kadar penyejatan yang tinggi." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin." },
+    ],
+    jawapanLengkap:
+      "Antara kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba. Selain itu, cuaca panas turut menjejaskan aktiviti harian orang ramai. Seterusnya, sumber air semakin berkurangan akibat kadar penyejatan yang tinggi. Di samping itu, tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian. Tambahan pula, cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun. Akhir sekali, penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin.",
+    bilPatah: 75,
+    kesalahanLazim: [
+      "Menulis cara mengatasi cuaca panas — soalan tanya KESAN, bukan penyelesaian.",
+      "Mengambil isi yang sama dengan perkataan berbeza (isi berganda).",
+      "Menyalin keseluruhan perenggan tanpa memilih isi yang spesifik.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Lupa menggunakan penanda wacana untuk menyambung isi.",
+    ],
+    tipCikgu:
+      "Kata kunci 'kesan' bermakna kamu mencari AKIBAT atau IMPAK cuaca panas. Jangan tulis cara mengatasinya — itu menjawab soalan yang berbeza!",
   },
   {
-    isi: "Berkebun secara berkumpulan mempererat hubungan kejiranan.",
-    terima: true,
-    penerangan: "✅ DITERIMA — Isi ini terdapat dalam petikan. Ia menggambarkan faedah sosial kegiatan berkebun.",
+    id: 3,
+    tajuk: "Cara Mengesan Penipuan Skim Cepat Kaya",
+    emoji: "🚨",
+    petikan:
+      "Penipuan berkaitan skim cepat kaya semakin berleluasa dan memerlukan orang ramai bersikap berhati-hati. Antara cara mengesan penipuan sedemikian ialah dengan memerhati tawaran yang menjanjikan pulangan wang yang luar biasa tinggi dalam masa yang sangat singkat, kerana ini adalah tanda amaran yang jelas. Selain itu, skim yang memerlukan pembayaran wang pendahuluan sebelum sebarang keuntungan diterima wajar disyaki dengan serius. Orang ramai juga perlu menyemak sama ada syarikat berkenaan mempunyai pendaftaran yang sah dengan pihak berkuasa seperti Bank Negara Malaysia atau Suruhanjaya Sekuriti. Teknik menekan mangsa supaya segera membuat keputusan tanpa masa untuk berfikir juga merupakan petanda penipuan. Di samping itu, penggunaan testimoni yang tidak boleh disahkan daripada individu yang tidak dikenali harus diwaspadai. Maklumat tentang syarikat yang kabur dan alamat atau nombor telefon yang tidak dapat disahkan turut menjadi petanda sesebuah skim itu adalah penipuan.",
+    fokus: "Cara mengesan penipuan skim cepat kaya.",
+    kataKunci: [
+      { kata: "Cara Mengesan",   warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
+      { kata: "Penipuan",         warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      { kata: "Skim Cepat Kaya",  warna: "bg-[#F59E0B]/20 text-[#FBBF24] border border-[#F59E0B]/35" },
+    ],
+    isiPenting: [
+      "Tawaran menjanjikan pulangan wang luar biasa tinggi dalam masa singkat.",
+      "Memerlukan pembayaran wang pendahuluan sebelum keuntungan diterima.",
+      "Syarikat tidak mempunyai pendaftaran sah dengan pihak berkuasa.",
+      "Mangsa ditekan untuk membuat keputusan segera tanpa masa berfikir.",
+      "Menggunakan testimoni yang tidak boleh disahkan.",
+      "Maklumat syarikat yang kabur dan tidak dapat disahkan.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "penggunaan testimoni yang tidak boleh disahkan harus diwaspadai." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan." },
+    ],
+    jawapanLengkap:
+      "Antara cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat. Selain itu, skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki. Seterusnya, syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan. Di samping itu, teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan. Tambahan pula, penggunaan testimoni yang tidak boleh disahkan harus diwaspadai. Akhir sekali, maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan.",
+    bilPatah: 83,
+    kesalahanLazim: [
+      "Menulis cara MENGELAK penipuan — soalan tanya cara MENGESAN, bukan mengelak.",
+      "Mengambil maklumat am tentang penipuan yang tidak terdapat dalam petikan.",
+      "Mengulang isi yang sama dengan perkataan berbeza.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana yang betul.",
+    ],
+    tipCikgu:
+      "Perhatikan perbezaan: 'cara mengesan' bermakna tanda-tanda yang menunjukkan ia penipuan. Bukan cara nak lari atau cara nak lapor — itu soalan berbeza!",
   },
   {
-    isi: "Aktiviti berkebun mengambil masa yang lama.",
-    terima: false,
-    penerangan: "❌ DITOLAK — Ini bukan maklumat yang terdapat dalam petikan. Murid yang menulis isi ini akan kehilangan markah.",
+    id: 4,
+    tajuk: "Cara Menangani Masalah Sosial Remaja",
+    emoji: "🤝",
+    petikan:
+      "Masalah sosial dalam kalangan remaja memerlukan penyelesaian yang menyeluruh daripada pelbagai pihak. Ibu bapa memainkan peranan utama dalam mengatasi isu ini dengan sentiasa memantau pergaulan dan aktiviti anak-anak mereka agar tidak terlibat dengan pengaruh negatif. Pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil supaya remaja mempunyai benteng dalaman yang kuat untuk menolak ajakan kepada perkara yang salah. Pihak sekolah pula perlu menyediakan lebih banyak aktiviti kokurikulum yang berfaedah bagi mengisi masa lapang remaja dengan perkara yang positif. Kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang menunjukkan tanda-tanda bermasalah. Pihak berkuasa turut bertanggungjawab menguatkuasakan undang-undang yang berkaitan supaya terdapat kesan jera kepada mereka yang melanggar. Selain itu, masyarakat perlu berganding bahu memastikan persekitaran kejiranan yang selamat dan sihat untuk perkembangan remaja.",
+    fokus: "Cara menangani masalah sosial dalam kalangan remaja.",
+    kataKunci: [
+      { kata: "Cara Menangani", warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+      { kata: "Masalah Sosial",  warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      { kata: "Remaja",           warna: "bg-[#8B5CF6]/20 text-[#C4B5FD] border border-[#8B5CF6]/35" },
+    ],
+    isiPenting: [
+      "Ibu bapa memantau pergaulan dan aktiviti anak-anak.",
+      "Pendidikan agama dan moral yang kukuh diterapkan sejak kecil.",
+      "Menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang.",
+      "Memberikan kaunseling dan bimbingan yang berterusan.",
+      "Menguatkuasakan undang-undang yang berkaitan.",
+      "Masyarakat mewujudkan persekitaran kejiranan yang selamat.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat." },
+    ],
+    jawapanLengkap:
+      "Antara cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak. Selain itu, pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil. Seterusnya, pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja. Di samping itu, kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah. Tambahan pula, pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera. Akhir sekali, masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat.",
+    bilPatah: 80,
+    kesalahanLazim: [
+      "Menulis PUNCA atau KESAN masalah sosial — soalan tanya CARA MENANGANI.",
+      "Mengambil isi yang tidak jelas menjawab siapa yang perlu bertindak.",
+      "Menulis isi yang terlalu umum tanpa huraian yang spesifik.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana yang tepat.",
+    ],
+    tipCikgu:
+      "Untuk soalan 'cara menangani', setiap isi kamu sepatutnya boleh dijawab dengan soalan 'siapa buat apa?' — contoh: Ibu bapa (siapa) memantau anak (buat apa). Ini cara paling mudah pastikan isi kamu tepat.",
+  },
+  {
+    id: 5,
+    tajuk: "Langkah Mengamalkan Gaya Hidup Sihat",
+    emoji: "💪",
+    petikan:
+      "Gaya hidup sihat perlu diamalkan sejak awal usia bagi memastikan kualiti kehidupan yang baik sepanjang hayat. Langkah pertama ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu bagi mengekalkan kecergasan fizikal dan meningkatkan daya tahan badan. Selain itu, seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil pelbagai jenis makanan berkhasiat dan mengelakkan makanan yang tinggi lemak serta gula. Mendapatkan waktu tidur yang cukup iaitu antara tujuh hingga lapan jam sehari juga penting untuk memulihkan tenaga badan dan minda. Di samping itu, mengelakkan tabiat buruk seperti merokok dan mengambil minuman beralkohol dapat melindungi kesihatan dalam jangka masa panjang. Pemeriksaan kesihatan secara berkala pula membolehkan sebarang penyakit dikesan lebih awal sebelum menjadi parah. Akhirnya, mengurangkan tahap tekanan atau stres melalui aktiviti rekreasi dan masa bersama keluarga juga penting untuk kesihatan mental.",
+    fokus: "Langkah mengamalkan gaya hidup sihat.",
+    kataKunci: [
+      { kata: "Langkah",          warna: "bg-[#06B6D4]/20 text-[#22D3EE] border border-[#06B6D4]/35" },
+      { kata: "Gaya Hidup Sihat", warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+    ],
+    isiPenting: [
+      "Bersenam secara berkala sekurang-kurangnya tiga kali seminggu.",
+      "Mengamalkan pemakanan yang seimbang dan berkhasiat.",
+      "Mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari.",
+      "Mengelakkan tabiat buruk seperti merokok dan minuman beralkohol.",
+      "Menjalani pemeriksaan kesihatan secara berkala.",
+      "Mengurangkan tekanan atau stres melalui aktiviti rekreasi.",
+    ],
+    struktur: [
+      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu." },
+      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat." },
+      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting." },
+      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang." },
+      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal." },
+      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental." },
+    ],
+    jawapanLengkap:
+      "Antara langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu. Selain itu, seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat. Seterusnya, mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting. Di samping itu, mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang. Tambahan pula, pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal. Akhir sekali, mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental.",
+    bilPatah: 78,
+    kesalahanLazim: [
+      "Menulis KESAN mengamalkan gaya hidup sihat — soalan tanya LANGKAH, bukan kesan.",
+      "Mengambil isi yang tidak berkaitan dengan amalan peribadi.",
+      "Mengulang isi yang sama dengan perkataan sedikit berbeza.",
+      "Menulis lebih daripada 100 patah perkataan.",
+      "Tidak menggunakan penanda wacana yang lengkap.",
+    ],
+    tipCikgu:
+      "Untuk soalan 'langkah', setiap isi kamu mestilah TINDAKAN yang boleh dilakukan — mulakan dengan kata kerja: 'bersenam', 'mengamalkan', 'mendapatkan', 'mengelakkan'. Jika isi tidak boleh dimulakan dengan kata kerja, ia mungkin bukan langkah.",
   },
 ];
 
-function CabaranInteraktif() {
-  const [jawapan, setJawapan] = useState<Record<number, boolean | null>>({});
-  const [dedah, setDedah] = useState<Record<number, boolean>>({});
+// ─── KOMPONEN: SATU KAD LATIHAN ──────────────────────────────────────────────
 
-  const pilih = (i: number, pilihan: boolean) => {
-    if (dedah[i]) return;
-    setJawapan((prev) => ({ ...prev, [i]: pilihan }));
-    setDedah((prev) => ({ ...prev, [i]: true }));
-  };
+function LatihanKadRingkasan({
+  latihan,
+  color,
+}: {
+  latihan: (typeof LATIHAN_RINGKASAN)[number];
+  color: string;
+}) {
+  const [isiDedah, setIsiDedah] = useState(false);
+  const [jawapanDedah, setJawapanDedah] = useState(false);
 
   return (
-    <div className="space-y-4">
-      {CABARAN_SOALAN.map((s, i) => {
-        const telahJawab = dedah[i];
-        const betul = telahJawab && jawapan[i] === s.terima;
-        return (
-          <div key={i} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
-            <p className="text-sm font-semibold text-white/90 leading-relaxed">
-              <span className="mr-2 rounded-full bg-[#FBBF24]/20 px-2 py-0.5 text-[10px] font-black text-[#FBBF24]">ISI {i + 1}</span>
-              {s.isi}
-            </p>
-            {!telahJawab ? (
-              <div className="flex gap-3">
-                <button
-                  onClick={() => pilih(i, true)}
-                  className="flex-1 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-2.5 text-xs font-bold text-emerald-400 transition-all hover:bg-emerald-500/20"
-                >
-                  ✅ Diterima
-                </button>
-                <button
-                  onClick={() => pilih(i, false)}
-                  className="flex-1 rounded-xl border border-rose-500/30 bg-rose-500/10 py-2.5 text-xs font-bold text-rose-400 transition-all hover:bg-rose-500/20"
-                >
-                  ❌ Ditolak
-                </button>
+    <div className="space-y-7">
+
+      {/* 1. Petikan */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">📖</span>
+          <p className="text-sm font-black tracking-wide text-white">Petikan</p>
+        </div>
+        <div className="rounded-2xl border border-white/[0.10] bg-white/[0.04] p-5">
+          <p className="text-sm leading-[1.85] text-white/75 italic">{latihan.petikan}</p>
+        </div>
+      </div>
+
+      {/* 2. Fokus Soalan */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">🎯</span>
+          <p className="text-sm font-black tracking-wide text-white">Fokus Soalan</p>
+        </div>
+        <div className="rounded-2xl border border-[#FBBF24]/35 bg-gradient-to-r from-[#FBBF24]/12 to-[#F59E0B]/8 p-4">
+          <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-1.5">Soalan Peperiksaan</p>
+          <p className="text-base font-bold text-white leading-snug">{latihan.fokus}</p>
+          <p className="mt-2 text-[11px] text-white/45 leading-relaxed">
+            Cari isi yang menjawab fokus ini sahaja. Buang semua maklumat yang tidak berkaitan.
+          </p>
+        </div>
+      </div>
+
+      {/* 3. Kata Kunci */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">🔍</span>
+          <p className="text-sm font-black tracking-wide text-white">Kata Kunci Soalan</p>
+        </div>
+        <div className="flex flex-wrap gap-2 mb-2">
+          {latihan.kataKunci.map((kk, i) => (
+            <span key={i} className={`rounded-xl px-4 py-2 text-sm font-bold ${kk.warna}`}>
+              {kk.kata}
+            </span>
+          ))}
+        </div>
+        <p className="text-[11px] text-white/40 px-1">
+          Semua isi yang dipilih mesti berkaitan dengan kata kunci di atas.
+        </p>
+      </div>
+
+      {/* 4. Isi Penting (interaktif — tunjuk/sembunyikan) */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">✏️</span>
+          <p className="text-sm font-black tracking-wide text-white">Isi Penting Yang Perlu Dicari</p>
+        </div>
+        {!isiDedah && (
+          <p className="mb-3 text-[11px] text-white/40 px-1">
+            Cuba kenal pasti 6 isi penting daripada petikan di atas sebelum melihat jawapan.
+          </p>
+        )}
+        <div className="grid gap-2 sm:grid-cols-2 mb-3">
+          {latihan.isiPenting.map((isi, i) => (
+            <div
+              key={i}
+              className={`flex items-start gap-3 rounded-xl border p-3 transition-all duration-300 ${
+                isiDedah
+                  ? "border-emerald-500/25 bg-emerald-500/[0.07]"
+                  : "border-white/[0.08] bg-white/[0.03]"
+              }`}
+            >
+              <span
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black mt-0.5"
+                style={{ background: `${color}22`, color }}
+              >
+                {i + 1}
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-bold text-white/30 mb-1">Isi {i + 1}</p>
+                {isiDedah ? (
+                  <p className="text-sm text-white/85 leading-relaxed">{isi}</p>
+                ) : (
+                  <div className="space-y-1.5">
+                    <div className="h-2 rounded-full bg-white/[0.08] w-full" />
+                    <div className="h-2 rounded-full bg-white/[0.05] w-3/4" />
+                  </div>
+                )}
               </div>
-            ) : (
-              <div className={`rounded-xl border p-3 text-xs leading-relaxed ${betul ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300" : "border-rose-500/30 bg-rose-500/10 text-rose-300"}`}>
-                {betul ? "🎉 Betul! " : "💡 Cuba lagi. "}{s.penerangan}
+            </div>
+          ))}
+        </div>
+        {!isiDedah && (
+          <button
+            onClick={() => setIsiDedah(true)}
+            className="w-full rounded-xl border border-[#6366F1]/35 bg-[#6366F1]/12 py-3 text-xs font-bold text-[#A78BFA] transition-all hover:bg-[#6366F1]/22 active:scale-[0.98]"
+          >
+            ✅ Tunjuk Isi Penting
+          </button>
+        )}
+      </div>
+
+      {/* 5. Jawapan Contoh — Struktur */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">📚</span>
+          <p className="text-sm font-black tracking-wide text-white">Jawapan Contoh — Struktur Ringkasan</p>
+        </div>
+        <div className="rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/[0.07] p-5">
+          <p className="text-[10px] font-black tracking-wide text-[#A78BFA] mb-4">
+            Susun isi mengikut penanda wacana ini:
+          </p>
+          <div className="space-y-3">
+            {latihan.struktur.map((s, i) => (
+              <div key={i} className="flex items-baseline gap-2 leading-relaxed">
+                <span className={`font-black text-sm shrink-0 ${s.warna}`}>{s.penanda}</span>
+                <span className="text-sm text-white/65">{s.isi}</span>
               </div>
-            )}
+            ))}
           </div>
-        );
-      })}
+        </div>
+      </div>
+
+      {/* 6. Jawapan Lengkap (interaktif) */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">🔥</span>
+          <p className="text-sm font-black tracking-wide text-white">Jawapan Lengkap</p>
+        </div>
+        {jawapanDedah ? (
+          <div className="space-y-3">
+            <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.07] p-5">
+              <p className="text-sm leading-[1.85] text-white/85">{latihan.jawapanLengkap}</p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 px-1">
+              <span className="text-[11px] text-white/40">Jumlah Patah Perkataan:</span>
+              <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-[11px] font-bold text-emerald-400">
+                {latihan.bilPatah} patah perkataan ✓
+              </span>
+              <span className="rounded-full bg-emerald-500/12 px-3 py-1 text-[11px] font-semibold text-emerald-400">
+                Dalam had 100 patah perkataan ✓
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+            <p className="text-[11px] text-white/40 mb-4 leading-relaxed">
+              Cuba tulis jawapan ringkasan kamu sendiri dahulu menggunakan struktur di atas, kemudian semak dengan jawapan lengkap.
+            </p>
+            <button
+              onClick={() => setJawapanDedah(true)}
+              className="w-full rounded-xl border border-[#FBBF24]/35 bg-[#FBBF24]/12 py-3 text-xs font-bold text-[#FBBF24] transition-all hover:bg-[#FBBF24]/22 active:scale-[0.98]"
+            >
+              🔥 Tunjuk Jawapan Lengkap
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* 7. Kesalahan Lazim */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-base">⚠️</span>
+          <p className="text-sm font-black tracking-wide text-rose-400">Kesalahan Lazim</p>
+        </div>
+        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.05] p-5 space-y-2">
+          {latihan.kesalahanLazim.map((k, i) => (
+            <div key={i} className="flex items-start gap-2.5 rounded-xl border border-rose-500/12 bg-rose-500/[0.04] px-3 py-2.5">
+              <span className="shrink-0 text-base mt-0.5">❌</span>
+              <p className="text-sm text-white/70 leading-relaxed">{k}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 8. Tip Cikgu AcadeMy */}
+      <div className="rounded-2xl border border-[#FBBF24]/30 bg-gradient-to-br from-[#FBBF24]/10 to-[#F59E0B]/8 p-5">
+        <div className="flex items-start gap-3">
+          <div
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-xl"
+            style={{ background: "linear-gradient(135deg, #FBBF24, #F59E0B)" }}
+          >
+            🧑‍🏫
+          </div>
+          <div>
+            <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-2">Tip Cikgu AcadeMy</p>
+            <p className="text-sm leading-relaxed text-white/80 italic">"{latihan.tipCikgu}"</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
 
 function RingkasanPremiumDetail({ color }: { color: string }) {
-  return (
-    <div className="space-y-8">
+  const [aktif, setAktif] = useState(0);
 
-      {/* Pengenalan */}
+  return (
+    <div className="space-y-6">
+
+      {/* Pengenalan + fakta penting */}
       <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
         <p className="text-sm leading-relaxed text-white/75">
-          Ringkasan ialah soalan <span className="font-bold text-white">Bahagian C</span> yang memerlukan murid mengenal pasti isi penting daripada petikan dan menulis semula dalam bentuk ringkas menggunakan ayat gramatis.
+          Ringkasan ialah soalan{" "}
+          <span className="font-bold text-white">Bahagian C (15 markah)</span> yang memerlukan
+          murid mengenal pasti isi penting daripada petikan dan menulis semula dalam bentuk ringkas
+          menggunakan ayat gramatis.{" "}
+          <span className="font-semibold text-white">Tidak lebih daripada 100 patah perkataan.</span>{" "}
+          Tulis dalam{" "}
+          <span className="font-semibold text-white">satu perenggan.</span>{" "}
+          Tiada pendahuluan. Tiada penutup.
         </p>
       </div>
 
-      {/* Fakta Penting */}
-      <div>
-        <SectionLabel>Fakta Penting Ringkasan</SectionLabel>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {FAKTA_PENTING.map((f, i) => (
-            <div key={i} className="flex items-center gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-4 py-3">
-              <span className="text-base">{f.icon}</span>
-              <p className="text-xs font-semibold text-white/85">{f.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Formula Emas */}
-      <div>
-        <SectionLabel>Formula Emas Ringkasan</SectionLabel>
-        <div className="space-y-2">
-          {FORMULA_EMAS.map((f, i) => (
-            <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}30`, color }}>
-                {i + 1}
-              </span>
-              <div>
-                <p className="text-[10px] font-black tracking-wide mb-0.5" style={{ color }}>{f.langkah}</p>
-                <p className="text-sm text-white/80">{f.isi}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Penanda Wacana */}
-      <div>
-        <SectionLabel>Penanda Wacana Markah Tinggi</SectionLabel>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {PENANDA_WACANA.map((p, i) => (
-            <div key={i} className={`rounded-2xl border p-3 text-center bg-gradient-to-br ${p.warna}`} style={{ borderColor: `${p.border}40` }}>
-              <p className="text-sm font-bold text-white">{p.kata}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Kesalahan Lazim */}
-      <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-        <p className="mb-4 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Yang Sering Dilakukan Murid</p>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {KESALAHAN.map((k, i) => (
-            <div key={i} className="flex items-start gap-2 rounded-xl border border-rose-500/10 bg-rose-500/5 px-3 py-2.5">
-              <span className="mt-0.5 shrink-0 text-base">❌</span>
-              <p className="text-sm text-white/70">{k}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Contoh Lengkap */}
-      <div>
-        <SectionLabel>Contoh Ringkasan Lengkap</SectionLabel>
-        <div className="space-y-4">
-
-          {/* Petikan */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
-            <p className="mb-2 text-[9px] font-black tracking-wide text-white/40">Petikan</p>
-            <p className="text-sm leading-relaxed text-white/70 italic">{CONTOH_PETIKAN}</p>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {[
+          { icon: "📌", label: "Bahagian C" },
+          { icon: "⭐", label: "15 Markah" },
+          { icon: "📝", label: "Maks. 100 Patah Perkataan" },
+          { icon: "📄", label: "Satu Perenggan Sahaja" },
+        ].map((f, i) => (
+          <div key={i} className="flex items-center gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-3 py-3">
+            <span className="text-base shrink-0">{f.icon}</span>
+            <p className="text-xs font-semibold text-white/85 leading-tight">{f.label}</p>
           </div>
+        ))}
+      </div>
 
-          {/* Kata Kunci */}
-          <div className="flex items-start gap-3 rounded-2xl border border-[#FBBF24]/30 bg-[#FBBF24]/8 p-4">
-            <span className="text-lg">🔑</span>
-            <div>
-              <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-1">Kata Kunci Soalan</p>
-              <p className="text-sm font-semibold text-white/90">{KATA_KUNCI_SOALAN}</p>
-            </div>
-          </div>
+      {/* Tab navigasi */}
+      <div>
+        <p className="mb-3 text-[10px] font-black tracking-wide text-white/40">
+          5 Latihan Ringkasan Interaktif
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {LATIHAN_RINGKASAN.map((l, i) => (
+            <button
+              key={i}
+              onClick={() => setAktif(i)}
+              className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-bold transition-all ${
+                aktif === i
+                  ? "border-transparent text-white shadow-md"
+                  : "border-white/[0.08] bg-white/[0.03] text-white/45 hover:text-white/70"
+              }`}
+              style={
+                aktif === i
+                  ? { background: `${color}28`, borderColor: `${color}45`, color }
+                  : {}
+              }
+            >
+              <span>{l.emoji}</span>
+              <span className="hidden sm:inline">{l.tajuk}</span>
+              <span className="sm:hidden">Latihan {l.id}</span>
+            </button>
+          ))}
+        </div>
+      </div>
 
-          {/* Isi Penting */}
+      {/* Kad latihan aktif */}
+      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
+        <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/[0.06]">
+          <span
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl"
+            style={{ background: `${color}22` }}
+          >
+            {LATIHAN_RINGKASAN[aktif].emoji}
+          </span>
           <div>
-            <p className="mb-3 text-[9px] font-black tracking-wide text-white/40">Isi Penting Yang Dikenal Pasti</p>
-            <div className="space-y-2">
-              {ISI_PENTING.map((isi, i) => (
-                <div key={i} className={`flex items-start gap-3 rounded-xl border p-3 ${isi.terima ? "border-emerald-500/20 bg-emerald-500/5" : "border-rose-500/20 bg-rose-500/5"}`}>
-                  <span className="mt-0.5 shrink-0 text-base">{isi.terima ? "✅" : "❌"}</span>
-                  <div>
-                    <p className="text-sm text-white/80">{isi.isi}</p>
-                    <p className={`mt-0.5 text-[11px] ${isi.terima ? "text-emerald-400" : "text-rose-400"}`}>{isi.sebab}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Jawapan Lengkap */}
-          <div className="rounded-2xl border border-[#6366F1]/30 bg-[#6366F1]/8 p-5">
-            <p className="mb-2 text-[9px] font-black tracking-wide text-[#A78BFA]">Jawapan Ringkasan (80 patah perkataan)</p>
-            <p className="text-sm leading-relaxed text-white/80">{JAWAPAN_CONTOH}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Strategi Markah Penuh */}
-      <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-        <p className="mb-4 text-[9px] font-black tracking-wide text-emerald-400">✅ Strategi Dapat Markah Penuh</p>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {STRATEGI_MARKAH.map((s, i) => (
-            <div key={i} className="flex items-center gap-2 rounded-xl border border-emerald-500/10 bg-emerald-500/5 px-3 py-2.5">
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-[9px] font-black text-emerald-400">{i + 1}</span>
-              <p className="text-sm text-white/80">{s}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Cabaran Interaktif */}
-      <div>
-        <SectionLabel>Cabaran Ringkasan Interaktif</SectionLabel>
-        <div className="mb-4 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-          <p className="text-[10px] font-black tracking-wide text-white/40 mb-2">Soalan Latihan</p>
-          <p className="text-sm text-white/75 italic">{CONTOH_PETIKAN}</p>
-          <div className="mt-3 flex items-start gap-2 rounded-xl border border-[#FBBF24]/20 bg-[#FBBF24]/8 p-3">
-            <span>🔑</span>
-            <p className="text-sm font-semibold text-white/90">{KATA_KUNCI_SOALAN}</p>
-          </div>
-        </div>
-        <p className="mb-3 text-xs text-white/50">Pilih sama ada setiap isi di bawah patut diterima atau ditolak dalam ringkasan kamu.</p>
-        <CabaranInteraktif />
-      </div>
-
-      {/* Rangka Ringkasan Markah Tinggi */}
-      <div>
-        <SectionLabel>Rangka Ringkasan Markah Tinggi</SectionLabel>
-
-        {/* Langkah 1 — Kata Kunci */}
-        <div className="mb-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
-          <div className="flex items-center gap-2">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}30`, color }}>1</span>
-            <p className="text-sm font-bold text-white">Kenal Pasti Kata Kunci Soalan</p>
-          </div>
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
-            <p className="text-[10px] font-black tracking-wide text-white/35 mb-1">Contoh Soalan</p>
-            <p className="text-sm text-white/70 italic">"Tulis ringkasan tentang kesan cuaca panas."</p>
-          </div>
-          <div className="flex items-center gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/8 px-4 py-3">
-            <span className="text-base">✅</span>
-            <div>
-              <p className="text-[10px] font-black tracking-wide text-emerald-400 mb-0.5">Kata Kunci Soalan</p>
-              <p className="text-sm font-bold text-white">Kesan Cuaca Panas</p>
-              <p className="text-[11px] text-white/50 mt-0.5">Semua isi yang dipilih mesti berkaitan dengan kata kunci ini.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Langkah 2 — Kenal Pasti Isi */}
-        <div className="mb-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
-          <div className="flex items-center gap-2">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}30`, color }}>2</span>
-            <p className="text-sm font-bold text-white">Kenal Pasti Isi Penting</p>
-          </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {["Isi 1","Isi 2","Isi 3","Isi 4","Isi 5","Isi 6"].map((label, i) => (
-              <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-black" style={{ background: `${color}25`, color }}>{i + 1}</span>
-                <div className="flex-1">
-                  <p className="text-[10px] font-bold text-white/40 mb-0.5">{label}</p>
-                  <div className="h-px w-full rounded-full bg-white/[0.10]" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Langkah 3 — Rangka */}
-        <div className="mb-4 rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/8 p-5 space-y-3">
-          <div className="flex items-center gap-2">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}30`, color }}>3</span>
-            <p className="text-sm font-bold text-white">Susun Mengikut Rangka Ringkasan</p>
-          </div>
-          <div className="space-y-2 text-sm leading-relaxed text-white/75">
-            {[
-              ["Antara",         "Isi 1"],
-              ["Selain itu,",    "Isi 2"],
-              ["Seterusnya,",    "Isi 3"],
-              ["Di samping itu,","Isi 4"],
-              ["Tambahan pula,", "Isi 5"],
-              ["Akhir sekali,",  "Isi 6"],
-            ].map(([pw, isi], i) => (
-              <div key={i} className="flex items-baseline gap-2">
-                <span className="font-bold text-white shrink-0">{pw}</span>
-                <span className="flex-1 border-b border-dashed border-white/[0.15] pb-0.5 text-[11px] text-white/40">({isi})</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Contoh Lengkap */}
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-4">
-          <p className="text-[9px] font-black tracking-wide text-white/35">Contoh Lengkap</p>
-
-          {/* Kata kunci */}
-          <div className="flex items-center gap-3 rounded-xl border border-[#FBBF24]/20 bg-[#FBBF24]/8 px-4 py-3">
-            <span>📌</span>
-            <div>
-              <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-0.5">Kata Kunci Soalan</p>
-              <p className="text-sm font-bold text-white">Kesan Cuaca Panas</p>
-            </div>
-          </div>
-
-          {/* Isi dikenal pasti */}
-          <div>
-            <p className="mb-2 text-[10px] font-black tracking-wide text-white/35">📌 Isi yang Dikenal Pasti</p>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {[
-                ["Isi 1","Membahayakan kesihatan manusia"],
-                ["Isi 2","Menjejaskan aktiviti harian"],
-                ["Isi 3","Mengurangkan sumber air"],
-                ["Isi 4","Merosakkan tanaman pertanian"],
-                ["Isi 5","Meningkatkan risiko kebakaran"],
-                ["Isi 6","Menyebabkan strok haba"],
-              ].map(([label, isi], i) => (
-                <div key={i} className="flex items-start gap-2 rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 py-2.5">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-black" style={{ background: `${color}25`, color }}>{i + 1}</span>
-                  <div>
-                    <p className="text-[10px] font-bold text-white/35">{label}</p>
-                    <p className="text-xs text-white/75">{isi}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Jawapan ringkasan */}
-          <div>
-            <p className="mb-2 text-[10px] font-black tracking-wide text-white/35">📌 Jawapan Ringkasan</p>
-            <div className="rounded-xl border border-[#6366F1]/25 bg-[#6366F1]/8 p-4">
-              <p className="text-sm leading-relaxed text-white/80">
-                <span className="font-bold text-white">Antara</span> kesan cuaca panas ialah membahayakan kesihatan manusia.{" "}
-                <span className="font-bold text-white">Selain itu,</span> aktiviti harian turut terjejas.{" "}
-                <span className="font-bold text-white">Seterusnya,</span> sumber air semakin berkurangan.{" "}
-                <span className="font-bold text-white">Di samping itu,</span> tanaman pertanian boleh rosak.{" "}
-                <span className="font-bold text-white">Tambahan pula,</span> risiko kebakaran meningkat.{" "}
-                <span className="font-bold text-white">Akhir sekali,</span> cuaca panas boleh menyebabkan strok haba.
-              </p>
-            </div>
-            <div className="mt-2 flex items-center gap-2 px-1">
-              <span className="text-[11px] text-white/40">📌 Jumlah Patah Perkataan:</span>
-              <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400">55 patah perkataan ✓</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Senarai Semakan */}
-        <div className="mt-4 rounded-2xl border border-[#6366F1]/20 bg-[#6366F1]/8 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-[#A78BFA]">☑ Semakan Sebelum Hantar</p>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {[
-              "Kata kunci dipatuhi",
-              "5–6 isi digunakan",
-              "Satu perenggan",
-              "Penanda wacana digunakan",
-              "Tidak melebihi 100 patah perkataan",
-              "Tiada pendahuluan",
-              "Tiada penutup",
-              "Ejaan betul",
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 rounded-xl border border-[#6366F1]/15 bg-[#6366F1]/5 px-3 py-2">
-                <span className="text-[#A78BFA] font-bold text-sm">☑</span>
-                <p className="text-sm text-white/75">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Petua Cikgu AcadeMy */}
-      <div className="rounded-2xl border border-[#FBBF24]/30 bg-gradient-to-br from-[#FBBF24]/10 to-[#F59E0B]/10 p-6">
-        <div className="flex items-start gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl" style={{ background: "linear-gradient(135deg, #FBBF24, #F59E0B)" }}>
-            👨‍🏫
-          </div>
-          <div>
-            <p className="mb-2 text-[10px] font-black tracking-wide text-[#FBBF24]">Petua Cikgu AcadeMy</p>
-            <p className="mb-3 text-sm leading-relaxed text-white/80 italic">
-              "Markah ringkasan bukan bergantung kepada ayat yang cantik. Markah datang daripada keupayaan mengenal pasti isi penting dengan tepat."
+            <p className="text-[10px] font-black tracking-wide text-white/30 mb-0.5">
+              Latihan {LATIHAN_RINGKASAN[aktif].id} daripada 5
             </p>
-            <div className="space-y-1.5">
-              {[
-                "Cari kata kunci dahulu.",
-                "Gariskan isi penting.",
-                "Masukkan Isi 1 hingga Isi 6 ke dalam rangka.",
-                "Gunakan penanda wacana.",
-                "Semak jumlah patah perkataan sebelum menghantar jawapan.",
-              ].map((tip, i) => (
-                <div key={i} className="flex items-start gap-2">
-                  <span className="text-[#FBBF24] font-bold shrink-0">🎯</span>
-                  <p className="text-sm text-white/75">{tip}</p>
-                </div>
-              ))}
-            </div>
+            <p className="text-base font-bold text-white">
+              {LATIHAN_RINGKASAN[aktif].tajuk}
+            </p>
           </div>
         </div>
+        <LatihanKadRingkasan
+          key={aktif}
+          latihan={LATIHAN_RINGKASAN[aktif]}
+          color={color}
+        />
       </div>
 
     </div>
   );
 }
 
-function RingkasanUlasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
+function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
     <div className="space-y-6">
       {topic.description && (
@@ -2835,7 +2886,7 @@ function TopicDetailRenderer({ topic, hubColor }: { topic: BMTopic; hubColor: st
     case "pemahaman":      return <PemahamanDetail topic={topic} color={hubColor} />;
     case "rangka-ringkasan":  return <RangkaRingkasanDetail color={hubColor} />;
     case "ringkasan-premium": return <RingkasanPremiumDetail color={hubColor} />;
-    case "ringkasan-ulasan": return <RingkasanUlasanDetail topic={topic} color={hubColor} />;
+    case "ringkasan": return <RingkasanDetail topic={topic} color={hubColor} />;
     case "karangan-pendek":
     case "respons-terbuka": return <KaranganDetail topic={topic} color={hubColor} />;
     case "workshop":       return <WorkshopDetail topic={topic} color={hubColor} />;

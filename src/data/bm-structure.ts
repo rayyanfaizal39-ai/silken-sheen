@@ -6,7 +6,7 @@ export type BMTopicType =
   | "pemahaman"
   | "komsas"
   | "novel"
-  | "ringkasan-ulasan"
+  | "ringkasan"
   | "ringkasan-premium"
   | "rangka-ringkasan"
   | "karangan-pendek"
@@ -79,7 +79,7 @@ export interface BMTopic {
   zon?: string;
   penulis?: string;
   watak?: BMWatak[];
-  // Ringkasan/Ulasan
+  // Ringkasan
   formula?: string[];
   // Karangan
   formulae?: BMFormula[];
@@ -704,7 +704,7 @@ const NOVEL_TOPICS: BMTopic[] = [
   },
 ];
 
-const RINGKASAN_ULASAN_TOPICS: BMTopic[] = [
+const RINGKASAN_TOPICS: BMTopic[] = [
   {
     id: "rangka-ringkasan-markah-tinggi",
     label: "Rangka Ringkasan Markah Tinggi",
@@ -722,62 +722,32 @@ const RINGKASAN_ULASAN_TOPICS: BMTopic[] = [
   {
     id: "ringkasan-mastery",
     label: "Penguasaan Ringkasan",
-    topicType: "ringkasan-ulasan",
+    topicType: "ringkasan",
     badge: "Ringkasan",
     description: "Cara menulis ringkasan yang tepat dan padat berdasarkan teks yang diberikan.",
     formula: [
       "Baca teks SEKALI LALU untuk faham idea umum",
       "Baca KALI KEDUA — kenal pasti dan gariskan isi PENTING sahaja",
       "Tulis semula isi dalam ayat sendiri (bukan salin)",
-      "Pastikan tidak melebihi had perkataan (120 patah perkataan)",
+      "Pastikan tidak melebihi had perkataan (100 patah perkataan)",
       "Semak: ejaan, tatabahasa, dan kejelasan",
     ],
     steps: [
-      "Tulis perenggan pendahuluan: 'Petikan di atas menceritakan tentang...'",
-      "Senaraikan 4-6 isi penting dalam ayat lengkap",
-      "Jangan masukkan contoh, statistik, atau ulasan — ISI sahaja",
-      "Penutup ringkas: 'Kesimpulannya, ...'",
+      "Kenal pasti kata kunci soalan dahulu",
+      "Senaraikan 5–6 isi penting dalam ayat sendiri",
+      "Jangan masukkan pendapat peribadi, contoh, atau statistik — ISI sahaja",
+      "Tulis dalam SATU perenggan menggunakan penanda wacana",
     ],
     commonMistakes: [
       "Memasukkan pendapat peribadi dalam ringkasan",
-      "Menyalin ayat word-for-word dari teks asal",
-      "Melebihi had perkataan yang ditetapkan",
-      "Memasukkan contoh dan huraian (bukan isi)",
+      "Menyalin ayat terus dari teks asal tanpa olahan",
+      "Melebihi 100 patah perkataan",
+      "Menulis pendahuluan atau penutup",
     ],
     uasaTips: [
-      "Kira perkataan selepas menulis — jangan terlalu panjang",
+      "Kira perkataan selepas menulis — jangan melebihi 100 patah perkataan",
       "Markah dibahagi: isi (content marks) + bahasa (language marks)",
-      "Latih dengan petikan 3-4 perenggan setiap hari",
-    ],
-  },
-  {
-    id: "ulasan-mastery",
-    label: "Penguasaan Ulasan",
-    topicType: "ringkasan-ulasan",
-    badge: "Ulasan",
-    description: "Cara menulis ulasan yang bernas, kritis, dan menyeluruh terhadap sesuatu karya atau petikan.",
-    formula: [
-      "Pendahuluan: Nyatakan tajuk, penulis, dan gambaran umum karya",
-      "Isi 1: Aspek yang baik/kekuatan karya + bukti + huraian",
-      "Isi 2: Aspek lain yang menarik + bukti + huraian",
-      "Isi 3 (jika perlu): Kelemahan atau cadangan penambahbaikan",
-      "Penutup: Penilaian keseluruhan + cadangan pembaca sasaran",
-    ],
-    steps: [
-      "Baca karya/petikan dengan teliti sebelum menulis ulasan",
-      "Buat nota tentang aspek-aspek penting: tema, watak, gaya bahasa",
-      "Susun isi mengikut keutamaan — isi terkuat dahulu",
-      "Tulis dengan bahasa formal dan gunakan kosa kata kritikan sastera",
-    ],
-    commonMistakes: [
-      "Menulis ringkasan, bukan ulasan (ulasan perlu ada PENILAIAN)",
-      "Tidak menggunakan kosa kata kritikan sastera",
-      "Tidak menyebut tajuk dan penulis dalam pendahuluan",
-      "Penutup yang terlalu ringkas atau tidak ada",
-    ],
-    uasaTips: [
-      "Hafal kosa kata ulasan: 'pengarang berjaya menggambarkan', 'penggunaan simbol yang tepat'",
-      "Ulasan yang baik menunjukkan PEMAHAMAN MENDALAM, bukan sekadar menceritakan semula",
+      "Gunakan penanda wacana: Antara, Selain itu, Seterusnya, Di samping itu, Tambahan pula, Akhir sekali",
     ],
   },
 ];
@@ -1024,7 +994,7 @@ export const BM_KERTAS: BMKertas[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "📝",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan & Ulasan",
+    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan",
     examDetails: "Masa: 1 jam 45 minit · Soalan berstruktur · Teks + KOMSAS",
     color: "#818CF8",
     gradient: "from-indigo-500/20 to-violet-500/20",
@@ -1074,15 +1044,15 @@ export const BM_KERTAS: BMKertas[] = [
         topics: NOVEL_TOPICS,
       },
       {
-        id: "ringkasan-ulasan",
-        label: "Ringkasan & Ulasan",
+        id: "ringkasan",
+        label: "Ringkasan",
         shortLabel: "Ringkasan",
         icon: "✏️",
         color: "#FBBF24",
         bgGradient: "from-yellow-500/15 to-amber-500/10",
         borderColor: "rgba(251,191,36,0.25)",
-        description: "Formula ringkasan dan ulasan — langkah demi langkah untuk markah penuh.",
-        topics: RINGKASAN_ULASAN_TOPICS,
+        description: "Bahagian C: Ringkasan — kata kunci, isi penting, penanda wacana, dan had 100 patah perkataan.",
+        topics: RINGKASAN_TOPICS,
       },
     ],
   },
