@@ -1868,6 +1868,1658 @@ const storyWorks: KomsasWork[] = [
       },
     ],
   },
+
+  // ─── Novel: Destinasi Impian (Zon Timur) ─────────────────────────────────────
+  {
+    id: "destinasi-impian",
+    title: "Destinasi Impian",
+    typeLabel: "Novel (Zon Timur — Pahang, Terengganu, Kelantan)",
+    kind: "story",
+    studyTime: "25 minit",
+    difficulty: "Sederhana",
+    examFocus: "Watak + Tema + Peristiwa + Nilai",
+    intro:
+      "Jangan risau walaupun kamu tidak pernah membaca novel ini. Selepas belajar di sini, kamu akan faham keseluruhan cerita Destinasi Impian dan bersedia menjawab soalan peperiksaan sepenuhnya.",
+
+    story60:
+      "Datuk cabar Firdaus berbasikal → Firdaus merungut → basikal pancit → Firdaus jatuh → sampai Pantai Morib → Firdaus berbohong kepada Mazlinda → Mazlinda uji Firdaus → Firdaus hampir lemas → diselamatkan → Firdaus insaf & berjanji berubah.",
+
+    story90:
+      "Datuk mencabar Firdaus dan rakan-rakannya menjalankan ekspedisi berbasikal ke Pantai Morib. Firdaus yang manja tidak bersemangat dan merungut sepanjang perjalanan. Pelbagai halangan ditempuhi bersama Azlina dan Johari — basikal pancit, Firdaus terjatuh, dan pelbagai konflik kecil. Mereka akhirnya tiba di destinasi. Namun Firdaus berbohong kepada Mazlinda tentang perjalanannya. Mazlinda yang bijak menguji kejujuran Firdaus. Kemudian Firdaus hampir lemas di laut dan diselamatkan. Insiden itu membuka mata Firdaus — beliau insaf dan berjanji untuk berubah menjadi lebih jujur dan tabah.",
+
+    retelling3Min:
+      "Firdaus seorang remaja yang manja dan tidak biasa menghadapi cabaran fizikal. Suatu hari, datuknya memberi cabaran yang luar biasa — menjalankan ekspedisi berbasikal ke Pantai Morib. Bagi Firdaus, cabaran itu terasa berat dan tidak perlu, lalu beliau mula merungut sejak awal perjalanan.\n\nBersama dua rakan perjalanannya, Azlina yang cergas dan berani serta Johari yang matang dan bertanggungjawab, Firdaus terpaksa meneruskan ekspedisi itu walaupun hati tidak bersetuju. Sepanjang perjalanan, pelbagai halangan terpaksa diharungi — basikal yang pancit, Firdaus yang terjatuh, dan ketegangan antara rakan-rakan yang kadangkala berbeza pendapat dalam membuat keputusan.\n\nMereka akhirnya berjaya tiba di Pantai Morib. Namun Firdaus membuat satu kesilapan besar apabila beliau berbohong kepada Mazlinda tentang perjalanannya — cuba menggambarkan dirinya lebih hebat daripada yang sebenarnya. Mazlinda yang bijak dan berani tidak mudah diperdaya. Beliau menguji kejujuran Firdaus dengan cara yang cerdik, dan Firdaus mula berasa tidak selesa.\n\nKejadian yang paling menggegarkan berlaku apabila Firdaus hampir lemas di laut. Detik hampir maut itu menggugah kesedaran Firdaus. Selepas diselamatkan, Firdaus duduk bermuhasabah — menyedari betapa sifat pengecut, pembohong, dan tidak bertanggungjawab tidak seharusnya terus menjadi sebahagian daripadanya. Dengan penuh keinsafan, Firdaus berjanji untuk berubah — menjadi lebih jujur, lebih berani, dan lebih bersedia menghadapi cabaran kehidupan.",
+
+    timeline: [
+      { stage: "Permulaan",    text: "Datuk memberi cabaran ekspedisi berbasikal ke Pantai Morib kepada Firdaus. Firdaus yang manja merasa berat hati tetapi terpaksa menerimanya." },
+      { stage: "Perkembangan", text: "Firdaus, Azlina, dan Johari memulakan perjalanan. Pelbagai halangan ditempuhi — basikal pancit, Firdaus terjatuh, dan konflik antara rakan." },
+      { stage: "Konflik",      text: "Firdaus berbohong kepada Mazlinda tentang perjalanannya. Mazlinda yang bijak mengesyaki dan menguji kejujuran Firdaus." },
+      { stage: "Klimaks",      text: "Firdaus hampir lemas di laut — detik paling menggegarkan yang menggugah kesedaran dan keinsafannya." },
+      { stage: "Peleraian",    text: "Firdaus diselamatkan, insaf akan kesilapannya, dan berjanji untuk berubah menjadi lebih jujur dan berani menghadapi cabaran." },
+    ],
+
+    decoder: [
+      {
+        rangkap: "Bahagian 1 — Cabaran yang Tidak Diingini",
+        pantunMudah: "Datuk memberi cabaran kepada Firdaus untuk menjalani ekspedisi berbasikal. Firdaus yang manja dan tidak suka bersusah payah merasa keberatan tetapi tidak dapat menolak.",
+        maksud: "Bahagian ini memperkenalkan watak Firdaus yang masih belum matang. Cabaran datuk adalah pemangkin kepada keseluruhan cerita — tanpa cabaran ini, Firdaus tidak akan mengalami proses pembentukan jati diri.",
+        tema: "Cabaran sebagai jalan ke arah kematangan",
+        nilai: "Ketabahan, Bertanggungjawab",
+        pengajaran: "Kita hendaklah menerima cabaran dengan hati terbuka kerana ia adalah peluang untuk membesar.",
+      },
+      {
+        rangkap: "Bahagian 2 — Perjalanan Penuh Dugaan",
+        pantunMudah: "Firdaus bersama Azlina dan Johari menghadapi pelbagai halangan. Basikal pancit. Firdaus jatuh. Pertengkaran kecil. Setiap halangan mendedahkan sisi sebenar watak masing-masing.",
+        maksud: "Halangan-halangan kecil ini adalah ujian sebenar kepada watak. Azlina dan Johari menunjukkan kematangan, manakala Firdaus masih berjuang dengan sifat manjanya.",
+        tema: "Cabaran mendedahkan kekuatan dan kelemahan seseorang",
+        nilai: "Kesabaran, Kerjasama",
+        pengajaran: "Kita hendaklah bersabar dan bekerjasama ketika menghadapi cabaran bersama.",
+      },
+      {
+        rangkap: "Bahagian 3 — Pembohongan dan Ujian",
+        pantunMudah: "Tiba di Pantai Morib, Firdaus membuat kesilapan besar — berbohong kepada Mazlinda. Mazlinda yang bijak menguji Firdaus. Kebohongan mula terdedah.",
+        maksud: "Pembohongan Firdaus menggambarkan kelemahan terdalamnya. Mazlinda mewakili kebenaran yang tidak boleh disembunyikan selamanya.",
+        tema: "Kebenaran pasti terserlah",
+        nilai: "Kejujuran",
+        pengajaran: "Kita hendaklah jujur dalam setiap keadaan kerana berbohong hanya menambah masalah.",
+      },
+      {
+        rangkap: "Bahagian 4 — Detik Hampir Maut",
+        pantunMudah: "Firdaus hampir lemas di laut. Detik yang menakutkan itu menjadi pemangkin kepada keinsafan yang mendalam.",
+        maksud: "Insiden hampir lemas adalah kemuncak dramatik yang memaksa Firdaus berhadapan dengan kenyataan dirinya yang sebenar. Ia menggambarkan betapa rapuhnya nyawa manusia.",
+        tema: "Ujian hidup sebagai pelajaran terbesar",
+        nilai: "Keberanian, Ketabahan",
+        pengajaran: "Kita hendaklah berfikir sebelum bertindak supaya tidak meletakkan diri dalam bahaya.",
+      },
+      {
+        rangkap: "Bahagian 5 — Keinsafan dan Janji Perubahan",
+        pantunMudah: "Selepas diselamatkan, Firdaus insaf. Beliau berjanji untuk berubah — lebih jujur, lebih berani, lebih bersedia menghadapi cabaran.",
+        maksud: "Peleraian menunjukkan bahawa ekspedisi bukan sekadar perjalanan fizikal — ia adalah perjalanan dalaman yang mengubah Firdaus.",
+        tema: "Keinsafan membentuk jati diri",
+        nilai: "Keinsafan, Kejujuran, Keberanian",
+        pengajaran: "Kita hendaklah berani berubah menjadi lebih baik apabila sedar akan kesilapan diri.",
+      },
+    ],
+
+    masterCharacters: [
+      {
+        name: "Firdaus",
+        role: "Watak utama dan protagonis. Firdaus menjalani perjalanan pembentukan jati diri yang paling ketara dalam novel — daripada remaja manja dan tidak jujur kepada seseorang yang insaf dan bersedia berubah.",
+        traits: ["Manja", "Mudah berputus asa", "Tidak jujur", "Berani berubah"],
+        evidence:
+          "Sifat manja Firdaus terbukti apabila beliau merungut sejak awal perjalanan dan mudah berputus asa apabila menghadapi halangan. Ketidakjujurannya ketara apabila beliau berbohong kepada Mazlinda tentang perjalanannya. Namun keberanian berubah terbukti apabila selepas diselamatkan daripada lemas, Firdaus insaf dan berjanji dengan tulus untuk menjadi lebih baik.",
+        relationships:
+          "Dicabar oleh datuknya. Didampingi Azlina yang cergas dan Johari yang matang. Diuji kejujurannya oleh Mazlinda yang bijak.",
+        importance:
+          "Firdaus adalah cermin kepada remaja yang masih dalam proses membesar. Perjalanannya mengajar pembaca bahawa kelemahan bukanlah penghalang kepada perubahan — yang penting ialah kesediaan untuk insaf dan berubah.",
+      },
+      {
+        name: "Azlina",
+        role: "Rakan ekspedisi Firdaus yang mewakili keberanian dan ketegasan.",
+        traits: ["Cergas", "Berani", "Tegas"],
+        evidence:
+          "Azlina tidak berundur apabila basikal pancit dan tidak membenarkan halangan kecil menghentikan perjalanan. Sikapnya yang tegas mendorong rakan-rakan terus maju walaupun penat dan susah.",
+        relationships:
+          "Rakan seperjalanan Firdaus yang keberaniannya menjadi kontras kepada sifat penakut Firdaus pada awal cerita.",
+        importance:
+          "Azlina menggambarkan nilai keberanian dan ketegasan — menunjukkan cara yang betul untuk menghadapi cabaran tanpa mengeluh.",
+      },
+      {
+        name: "Johari",
+        role: "Rakan ekspedisi yang paling matang dan bertanggungjawab.",
+        traits: ["Matang", "Bertanggungjawab", "Penyabar"],
+        evidence:
+          "Johari sentiasa berfikir sebelum bertindak, memastikan kumpulan selamat, dan bersabar menghadapi sifat merungut Firdaus. Apabila berlaku konflik kecil antara rakan-rakan, Johari yang meredakannya.",
+        relationships:
+          "Penyeimbang dalam kumpulan ekspedisi. Johari menjadi tunjang kepada kumpulan apabila situasi menjadi tegang.",
+        importance:
+          "Johari menggambarkan nilai kematangan dan tanggungjawab — sifat-sifat yang Firdaus perlu pelajari sepanjang ekspedisi.",
+      },
+      {
+        name: "Datuk",
+        role: "Pemberi cabaran yang menjadi pemangkin kepada keseluruhan cerita.",
+        traits: ["Tegas", "Prihatin"],
+        evidence:
+          "Datuk dengan tegas memberikan cabaran ekspedisi kepada Firdaus, bukan untuk menyusahkan tetapi kerana prihatin terhadap perkembangan watak cucu beliau.",
+        relationships:
+          "Datuk kepada Firdaus. Hubungan ini menggambarkan cara seorang warga tua yang bijak membimbing generasi muda melalui pengalaman, bukan sekadar kata-kata.",
+        importance:
+          "Tanpa cabaran datuk, Firdaus tidak akan mengalami proses pembentukan jati diri. Datuk mewakili hikmah generasi tua yang tahu cara mendidik tanpa mengajar secara langsung.",
+      },
+      {
+        name: "Mazlinda",
+        role: "Watak yang menguji kejujuran Firdaus dan menjadi cermin kepada kebohongannya.",
+        traits: ["Bijak", "Berani"],
+        evidence:
+          "Mazlinda tidak menerima bulat-bulat cerita Firdaus tentang perjalanannya. Dengan kebijaksanaannya, beliau merancang ujian untuk mendedahkan kebenaran.",
+        relationships:
+          "Penguji kejujuran Firdaus. Hubungan mereka menggambarkan bahawa orang yang kita sayangi atau hormati adalah cermin paling jujur kepada diri kita.",
+        importance:
+          "Mazlinda mewakili persoalan kejujuran — menunjukkan bahawa kebohongan tidak boleh bertahan lama di hadapan orang yang bijak dan berani.",
+      },
+    ],
+
+    relationshipMap: [
+      {
+        from: "Datuk",
+        relation: "↔ Pembimbing & Cucu",
+        to: "Firdaus",
+        explanation:
+          "Hubungan ini adalah asas kepada seluruh cerita. Datuk tidak mengajar Firdaus melalui ceramah — beliau mengajar melalui pengalaman dengan memberi cabaran. Tegasnya datuk adalah tanda kasih sayang yang mendalam terhadap perkembangan watak cucunya.",
+      },
+      {
+        from: "Firdaus",
+        relation: "↔ Kontras Watak",
+        to: "Azlina",
+        explanation:
+          "Keberanian dan ketegasan Azlina menjadi cermin kepada sifat penakut dan merungut Firdaus pada awal cerita. Hubungan mereka menggambarkan bagaimana rakan sebaya boleh menjadi motivasi kepada perubahan.",
+      },
+      {
+        from: "Firdaus",
+        relation: "↔ Model Kematangan",
+        to: "Johari",
+        explanation:
+          "Kematangan dan tanggungjawab Johari menunjukkan kepada Firdaus bagaimana seorang remaja sepatutnya berkelakuan. Johari adalah model yang secara tidak langsung mendidik Firdaus melalui tindakannya.",
+      },
+      {
+        from: "Firdaus",
+        relation: "❤ Penguji Kejujuran",
+        to: "Mazlinda",
+        explanation:
+          "Firdaus berbohong kepada Mazlinda kerana ingin kelihatan hebat. Hubungan emosi ini menjadikan pembohongan Firdaus lebih bermakna — orang yang kita sayangi adalah ujian terbesar bagi kejujuran kita.",
+      },
+    ],
+
+    detailedPlot: [
+      {
+        stage: "Permulaan",
+        what: "Datuk memberi cabaran kepada Firdaus untuk menjalani ekspedisi berbasikal ke Pantai Morib bersama Azlina dan Johari. Firdaus yang manja dan tidak biasa bersusah payah merasa berat hati.",
+        why: "Cabaran datuk meletakkan asas kepada keseluruhan cerita. Ia memperkenalkan konflik dalaman utama Firdaus — antara sifat manjanya dengan keperluan untuk membesar.",
+        effect: "Pembaca memahami bahawa ini bukan sekadar cerita tentang perjalanan — ia adalah cerita tentang proses pembentukan jati diri seorang remaja.",
+      },
+      {
+        stage: "Perkembangan",
+        what: "Firdaus, Azlina, dan Johari memulakan perjalanan berbasikal. Pelbagai halangan ditempuhi — basikal pancit, Firdaus terjatuh, konflik kecil antara rakan, dan Firdaus yang tidak berhenti merungut.",
+        why: "Setiap halangan mendedahkan perwatakan sebenar setiap watak. Azlina dan Johari menghadapi masalah dengan matang manakala Firdaus masih berjuang.",
+        effect: "Perbandingan antara cara Firdaus dan rakan-rakannya menghadapi masalah mengajar pembaca tentang kepentingan kesabaran dan kerjasama.",
+      },
+      {
+        stage: "Konflik",
+        what: "Kumpulan tiba di Pantai Morib. Firdaus kemudian berbohong kepada Mazlinda tentang perjalanannya, cuba menggambarkan dirinya lebih hebat. Mazlinda yang bijak mengesyaki dan mula menguji kejujuran Firdaus.",
+        why: "Pembohongan Firdaus menggambarkan kelemahan terdalamnya — ketidakupayaan untuk jujur walaupun dengan orang yang dipercayai. Ini adalah konflik terpenting dalam novel.",
+        effect: "Ujian Mazlinda menambahkan tekanan kepada Firdaus dan meletakkan asas kepada keinsafannya.",
+      },
+      {
+        stage: "Klimaks",
+        what: "Firdaus hampir lemas di laut dalam satu insiden yang menggegarkan. Nyawanya terancam dan beliau terpaksa diselamatkan.",
+        why: "Detik hampir maut ini adalah kemuncak dramatik yang memaksa Firdaus berhadapan dengan kenyataan — betapa rapuhnya nyawa dan betapa sia-sianya kebohongan dan sifat angkuh.",
+        effect: "Insiden ini menjadi pemangkin paling kuat kepada keinsafan Firdaus.",
+      },
+      {
+        stage: "Peleraian",
+        what: "Selepas diselamatkan, Firdaus bermuhasabah dan insaf akan semua kesilapannya. Beliau berjanji untuk berubah — menjadi lebih jujur, lebih berani, dan lebih bersedia menghadapi cabaran.",
+        why: "Peleraian menunjukkan bahawa ekspedisi berjaya mencapai tujuan sebenarnya — bukan sekadar perjalanan fizikal ke Pantai Morib, tetapi perjalanan dalaman Firdaus menuju kematangan.",
+        effect: "Novel berakhir dengan pengajaran menyeluruh tentang pembentukan jati diri melalui cabaran, kejujuran, dan keberanian berubah.",
+      },
+    ],
+
+    importantEvents: [
+      {
+        event: "Datuk memberi cabaran ekspedisi",
+        what: "Datuk dengan tegas mencabar Firdaus menjalankan ekspedisi berbasikal ke Pantai Morib — cabaran fizikal dan mental yang besar bagi seorang remaja manja.",
+        whyImportant: "Peristiwa ini adalah titik permulaan yang menggerakkan keseluruhan plot. Ia menggambarkan hikmah datuk yang mengajar melalui pengalaman, bukan ceramah.",
+        possibleQuestion: "Apakah tujuan datuk memberi cabaran ekspedisi kepada Firdaus?",
+      },
+      {
+        event: "Firdaus merungut",
+        what: "Firdaus tidak berhenti merungut sepanjang perjalanan, menggambarkan sifat manjanya yang masih belum bersedia menerima cabaran.",
+        whyImportant: "Merungut Firdaus menggambarkan konflik dalaman antara keinginan untuk menyerah dan keperluan untuk meneruskan. Ia menjadi titik perbandingan dengan sikapnya di akhir cerita.",
+        possibleQuestion: "Apakah yang digambarkan oleh sikap merungut Firdaus tentang wataknya?",
+      },
+      {
+        event: "Basikal pancit",
+        what: "Salah satu basikal pancit semasa perjalanan — halangan pertama yang menguji kesabaran dan kemampuan kumpulan untuk menyelesaikan masalah.",
+        whyImportant: "Halangan ini mendedahkan perbezaan cara Firdaus, Azlina, dan Johari menangani masalah — membandingkan kematangan masing-masing.",
+        possibleQuestion: "Bagaimana peristiwa basikal pancit menggambarkan perbezaan perwatakan Firdaus berbanding Azlina dan Johari?",
+      },
+      {
+        event: "Firdaus terjatuh",
+        what: "Firdaus terjatuh dari basikal semasa perjalanan, menambah lagi cabaran fizikal yang perlu dihadapinya.",
+        whyImportant: "Terjatuh secara fizikal menjadi lambang kepada perjalanan Firdaus secara keseluruhannya — jatuh dan perlu bangkit semula.",
+        possibleQuestion: "Apakah nilai yang boleh diambil daripada peristiwa Firdaus terjatuh semasa ekspedisi?",
+      },
+      {
+        event: "Kumpulan tiba di Pantai Morib",
+        what: "Selepas pelbagai halangan, Firdaus, Azlina, dan Johari berjaya mencapai destinasi mereka di Pantai Morib.",
+        whyImportant: "Ketibaan di destinasi membuktikan bahawa usaha dan ketabahan membuahkan hasil. Ia adalah pencapaian fizikal sebelum ujian moral yang lebih besar berlaku.",
+        possibleQuestion: "Apakah pengajaran yang boleh diambil daripada kejayaan kumpulan mencapai Pantai Morib?",
+      },
+      {
+        event: "Firdaus berbohong kepada Mazlinda",
+        what: "Firdaus berbohong kepada Mazlinda tentang pengalamannya semasa ekspedisi, cuba kelihatan lebih hebat daripada yang sebenarnya.",
+        whyImportant: "Ini adalah konflik moral paling penting dalam novel. Pembohongan menggambarkan kelemahan terdalam Firdaus dan menjadi punca ujian kejujurannya.",
+        possibleQuestion: "Mengapakah Firdaus berbohong kepada Mazlinda dan apakah akibat tindakannya itu?",
+      },
+      {
+        event: "Mazlinda menguji Firdaus",
+        what: "Mazlinda yang bijak mengesyaki pembohongan Firdaus dan merancang cara untuk menguji kejujurannya.",
+        whyImportant: "Ujian Mazlinda menggambarkan bahawa kebohongan tidak boleh bertahan di hadapan orang yang bijak. Ia mengajar tentang kepentingan kejujuran dalam hubungan.",
+        possibleQuestion: "Apakah yang menunjukkan bahawa Mazlinda adalah watak yang bijak dalam novel Destinasi Impian?",
+      },
+      {
+        event: "Firdaus hampir lemas",
+        what: "Firdaus terlibat dalam insiden berbahaya di laut dan hampir lemas — detik paling menggegarkan dalam keseluruhan cerita.",
+        whyImportant: "Insiden hampir maut ini adalah pemangkin terkuat kepada keinsafan Firdaus. Ia menunjukkan betapa bahayanya tindakan tanpa berfikir terlebih dahulu.",
+        possibleQuestion: "Bagaimana insiden Firdaus hampir lemas menjadi titik perubahan paling penting dalam novel ini?",
+      },
+      {
+        event: "Firdaus diselamatkan",
+        what: "Firdaus diselamatkan daripada lemas — nyawanya terselamat, memberinya peluang untuk hidup dan berubah.",
+        whyImportant: "Penyelamatan ini adalah hadiah yang memberi Firdaus peluang kedua. Ia menggambarkan nilai kasih sayang dan kepentingan orang lain dalam kehidupan kita.",
+        possibleQuestion: "Apakah kepentingan peristiwa Firdaus diselamatkan dalam konteks tema dan pengajaran novel?",
+      },
+      {
+        event: "Firdaus insaf",
+        what: "Selepas diselamatkan, Firdaus bermuhasabah dan insaf — menyedari semua kesilapannya dan berjanji untuk berubah menjadi lebih jujur dan berani.",
+        whyImportant: "Keinsafan Firdaus adalah puncak pengajaran moral novel. Ia menunjukkan bahawa cabaran dan ujian hidup, walaupun menyakitkan, boleh membentuk jati diri seseorang.",
+        possibleQuestion: "Apakah yang mendorong Firdaus insaf dan apakah kepentingan keinsafan itu kepada tema novel?",
+      },
+    ],
+
+    issues: [
+      {
+        issue: "Kepentingan kejujuran dalam hubungan",
+        explanation:
+          "Novel ini menunjukkan secara jelas bahawa berbohong — walaupun untuk kelihatan hebat — akhirnya merosakkan kepercayaan dan hubungan. Firdaus belajar bahawa kejujuran, walaupun pahit, lebih berharga daripada kebohongan yang manis.",
+      },
+      {
+        issue: "Semangat tidak berputus asa menghadapi cabaran",
+        explanation:
+          "Ekspedisi berbasikal menggambarkan cabaran kehidupan. Novel ini mengajar bahawa tidak kira betapa beratnya dugaan, sikap tidak berputus asa adalah kunci untuk mencapai destinasi — sama ada fizikal mahupun kehidupan.",
+      },
+      {
+        issue: "Nilai persahabatan sejati",
+        explanation:
+          "Azlina dan Johari menggambarkan persahabatan yang memberi kekuatan. Mereka tidak meninggalkan Firdaus walaupun beliau sering merungut. Persahabatan sejati bukan tentang suka pada waktu senang sahaja.",
+      },
+      {
+        issue: "Cabaran remaja dalam membentuk jati diri",
+        explanation:
+          "Firdaus mewakili ramai remaja yang masih dalam proses memahami diri sendiri. Novel ini menggambarkan bahawa proses membentuk jati diri sering memerlukan cabaran, kesilapan, dan keinsafan.",
+      },
+      {
+        issue: "Kepentingan berfikir sebelum bertindak",
+        explanation:
+          "Insiden Firdaus hampir lemas adalah akibat langsung daripada tindakan tanpa berfikir. Novel ini menegaskan bahawa berfikir sebelum bertindak bukan tanda kelemahan — ia adalah tanda kebijaksanaan.",
+      },
+    ],
+
+    theme: {
+      title: "Cabaran dan konflik remaja dalam membentuk jati diri",
+      explanation:
+        "Novel ini mengisahkan bagaimana seorang remaja yang manja dan tidak jujur terpaksa menghadapi cabaran yang membentuk peribadinya. Melalui ekspedisi berbasikal, Firdaus belajar tentang kejujuran, ketabahan, dan keberanian untuk berubah — semua perkara yang membentuk jati diri sebenar seorang insan.",
+      whyItMatters:
+        "Tema ini penting kerana ia berkaitan langsung dengan kehidupan murid Tingkatan 1. Setiap murid menghadapi cabaran tersendiri dalam proses membesar. Novel ini mengajar bahawa cabaran bukan musuh — ia adalah guru terbaik dalam membentuk jati diri.",
+    },
+
+    values: [
+      {
+        value: "Keberanian",
+        explanation: "Azlina menggambarkan nilai keberanian apabila beliau tidak berundur menghadapi halangan sepanjang ekspedisi. Firdaus pula akhirnya menunjukkan keberanian apabila berani mengakui kesilapan dan berjanji untuk berubah.",
+        realLife: "Keberanian bukan bermakna tidak takut — ia bermakna terus melakukan perkara yang betul walaupun takut.",
+        schoolLife: "Berani mengangkat tangan di kelas walaupun tidak pasti jawapan adalah lebih baik daripada berdiam diri.",
+      },
+      {
+        value: "Kesabaran",
+        explanation: "Johari menggambarkan kesabaran apabila beliau dengan tenang menghadapi sifat merungut Firdaus dan halangan-halangan sepanjang perjalanan tanpa hilang semangat.",
+        realLife: "Kesabaran adalah kemahiran yang perlu dipelajari — ia tidak datang secara semula jadi tetapi boleh dilatih melalui pengalaman.",
+        schoolLife: "Bersabar ketika menghadapi rakan sekumpulan yang lambat dalam kerja berkumpulan.",
+      },
+      {
+        value: "Kejujuran",
+        explanation: "Pembohongan Firdaus kepada Mazlinda dan akibatnya mengajar pembaca bahawa kejujuran adalah asas kepada setiap hubungan yang bermakna.",
+        realLife: "Berbohong mungkin terasa lebih mudah pada mulanya, tetapi kesan jangka panjang selalu lebih menyakitkan.",
+        schoolLife: "Jujur memberitahu guru bahawa tidak menyiapkan kerja rumah lebih baik daripada membuat alasan yang rekaan.",
+      },
+      {
+        value: "Bertanggungjawab",
+        explanation: "Johari menunjukkan nilai tanggungjawab apabila beliau sentiasa memastikan keselamatan kumpulan dan tidak membiarkan masalah terbengkalai.",
+        realLife: "Tanggungjawab bermakna tidak mengelak daripada kewajipan walaupun ada jalan mudah yang tersedia.",
+        schoolLife: "Menyelesaikan tugas yang telah diamanahkan tanpa menunggu orang lain mengingatkna.",
+      },
+      {
+        value: "Ketabahan",
+        explanation: "Kumpulan ekspedisi menunjukkan ketabahan apabila terus meneruskan perjalanan walaupun menghadapi basikal pancit, Firdaus terjatuh, dan pelbagai halangan lain.",
+        realLife: "Ketabahan bermakna tidak berhenti walaupun perjalanan terasa berat dan tidak ada yang memuji.",
+        schoolLife: "Terus belajar walaupun sesuatu topik terasa susah dan memerlukan banyak ulang kaji.",
+      },
+    ],
+
+    lessons: [
+      {
+        value: "Kita hendaklah jujur dalam setiap keadaan walaupun kebenaran itu pahit",
+        explanation: "Firdaus membuktikan bahawa berbohong hanya menambah masalah. Apabila kebohongan terdedah, keadaan menjadi lebih buruk daripada jika beliau jujur dari awal.",
+        realLife: "Kejujuran mungkin menyakitkan pada masa kini, tetapi ia menyelamatkan hubungan dan kepercayaan pada masa depan.",
+        schoolLife: "Jika tidak faham pelajaran, katakan dengan jujur kepada guru daripada berpura-pura faham.",
+      },
+      {
+        value: "Kita hendaklah tabah menghadapi cabaran dan tidak mudah berputus asa",
+        explanation: "Sekiranya Firdaus berputus asa pada halangan pertama, beliau tidak akan sampai ke Pantai Morib dan tidak akan mengalami keinsafan yang mengubah hidupnya.",
+        realLife: "Setiap cabaran yang berjaya dilalui menambahkan kekuatan untuk menghadapi cabaran seterusnya.",
+        schoolLife: "Jangan berhenti mencuba dalam pelajaran hanya kerana gagal dalam ujian pertama.",
+      },
+      {
+        value: "Kita hendaklah berfikir sebelum bertindak supaya tidak menyesal kemudian",
+        explanation: "Insiden Firdaus hampir lemas adalah akibat tindakan yang tidak diikuti dengan pemikiran yang matang. Berfikir sebelum bertindak boleh mengelakkan bahaya.",
+        realLife: "Setiap keputusan mempunyai akibat. Luangkan masa untuk berfikir sebelum mengambil sebarang tindakan yang penting.",
+        schoolLife: "Baca arahan peperiksaan dengan teliti sebelum mula menjawab — jangan tergesa-gesa.",
+      },
+      {
+        value: "Kita hendaklah menghargai persahabatan yang memberi sokongan",
+        explanation: "Azlina dan Johari tidak meninggalkan Firdaus walaupun beliau sering merungut dan menyusahkan. Persahabatan mereka adalah kekuatan yang membolehkan Firdaus meneruskan perjalanan.",
+        realLife: "Sahabat yang memberi nasihat jujur walaupun tidak menyenangkan adalah lebih berharga daripada sahabat yang hanya memuji.",
+        schoolLife: "Hargai rakan yang sanggup memberitahu kita apabila kita berbuat salah, bukan hanya yang setuju dengan semua yang kita lakukan.",
+      },
+      {
+        value: "Kita hendaklah menerima teguran dengan hati terbuka",
+        explanation: "Ujian Mazlinda adalah satu bentuk teguran terhadap kebohongan Firdaus. Hanya apabila Firdaus menerimanya dengan hati terbuka, perubahan boleh berlaku.",
+        realLife: "Teguran yang ikhlas adalah hadiah yang berharga — ia menunjukkan bahawa orang itu mengambil berat tentang kita.",
+        schoolLife: "Terima semakan dan pembetulan guru dengan sikap positif — itu adalah cara guru membantu kita berkembang.",
+      },
+      {
+        value: "Kita hendaklah berani mengakui kesilapan dan berubah menjadi lebih baik",
+        explanation: "Keinsafan Firdaus selepas diselamatkan menunjukkan keberanian yang paling sukar — keberanian berhadapan dengan diri sendiri dan mengakui kesilapan.",
+        realLife: "Mengakui kesilapan bukan tanda kelemahan. Ia adalah langkah pertama yang paling penting menuju perubahan.",
+        schoolLife: "Jika membuat kesilapan dalam ujian, analisis kesilapan itu dengan jujur dan perbaiki — jangan sekadar terima markah tanpa belajar dari kesilapan.",
+      },
+    ],
+
+    teacherExplains: [
+      "Hai murid-murid! Ramai yang beranggapan novel Destinasi Impian ini hanya tentang seorang remaja yang berbasikal ke pantai. Memang ada ekspedisi berbasikal dalam cerita ini, tetapi destinasi sebenar yang ingin dicapai penulis bukan Pantai Morib — ia adalah DESTINASI JATI DIRI Firdaus.",
+      "Sebenarnya, novel ini mengajar empat perkara penting. Pertama — kejujuran adalah asas kepada setiap hubungan. Firdaus hampir kehilangan kepercayaan Mazlinda akibat pembohongannya. Kedua — cabaran adalah guru terbaik. Tanpa ekspedisi yang sukar itu, Firdaus tidak akan berubah. Ketiga — persahabatan memberi kekuatan. Azlina dan Johari adalah tunjang yang membolehkan Firdaus meneruskan. Keempat — keinsafan memerlukan keberanian.",
+      "Apabila menjawab soalan tentang novel ini, ingat: tema utamanya ialah PEMBENTUKAN JATI DIRI melalui cabaran. Setiap peristiwa dalam cerita — dari basikal pancit hingga hampir lemas — semuanya adalah proses yang membentuk watak Firdaus.",
+      "Ramai murid keliru antara tujuan ekspedisi dan tujuan cerita. Ekspedisi ke Pantai Morib adalah perjalanan FIZIKAL. Tetapi tujuan sebenar cerita adalah perjalanan DALAMAN Firdaus — daripada remaja manja dan tidak jujur kepada seseorang yang insaf dan bersedia berubah. Ini yang pemeriksa ingin murid faham!",
+    ],
+
+    keyCharacterFocus: {
+      name: "Firdaus",
+      whyMatters:
+        "Firdaus adalah nadi cerita. Perjalanannya — fizikal dan dalaman — adalah apa yang membawa pembaca mengikuti plot dari awal hingga akhir.",
+      supportsTheme:
+        "Firdaus membuktikan tema pembentukan jati diri secara langsung. Setiap kesilapannya, setiap halangan yang dihadapi, dan keinsafannya pada akhir cerita semuanya menggambarkan proses ini.",
+      supportsIssues:
+        "Firdaus menghidupkan semua persoalan utama — kejujuran melalui pembohongannya, semangat tidak berputus asa melalui perjalanannya, dan keberanian berubah melalui keinsafannya.",
+      supportsValues:
+        "Perjalanan Firdaus menggambarkan nilai keberanian (berani mengakui kesilapan), kejujuran (belajar dari pembohongan), dan ketabahan (meneruskan ekspedisi).",
+      supportsLessons:
+        "Setiap pengajaran novel boleh dikaitkan dengan peristiwa dalam perjalanan Firdaus — dari merungut hingga insaf.",
+    },
+
+    authorPurpose:
+      "Penulis menghasilkan novel ini untuk mendidik generasi muda bahawa proses membesar memerlukan cabaran, kesilapan, dan keinsafan. Melalui ekspedisi berbasikal yang nampak mudah, penulis menggambarkan perjalanan yang jauh lebih besar — perjalanan seorang remaja mencari dan membentuk jati dirinya sendiri.",
+
+    memory60: {
+      theme: "Cabaran dan konflik remaja dalam membentuk jati diri",
+      issues: "Kejujuran · Tidak berputus asa · Persahabatan · Cabaran remaja · Berfikir sebelum bertindak",
+      mainCharacters: "Firdaus (manja→insaf) · Azlina (cergas, berani) · Johari (matang, bertanggungjawab) · Datuk (tegas, prihatin) · Mazlinda (bijak, penguji kejujuran)",
+      importantEvents: "Datuk beri cabaran → Firdaus merungut → Basikal pancit → Firdaus jatuh → Tiba Pantai Morib → Firdaus berbohong → Mazlinda uji → Firdaus hampir lemas → Diselamatkan → Firdaus insaf",
+      values: "Keberanian · Kesabaran · Kejujuran · Bertanggungjawab · Ketabahan",
+      lessons: "Jujur walaupun pahit · Tabah hadapi cabaran · Berfikir sebelum bertindak · Hargai persahabatan · Terima teguran · Berani mengakui kesilapan",
+    },
+
+    uasaQuestions: [
+      {
+        type: "MCQ",
+        question: "Apakah cabaran yang diberikan oleh datuk kepada Firdaus dalam novel Destinasi Impian?",
+        answer: "Datuk mencabar Firdaus menjalankan ekspedisi berbasikal ke Pantai Morib bersama rakan-rakannya.",
+        explanation: "Cabaran datuk adalah titik permulaan yang menggerakkan keseluruhan plot novel ini.",
+      },
+      {
+        type: "MCQ",
+        question: "Siapakah rakan-rakan Firdaus yang menyertainya dalam ekspedisi berbasikal?",
+        answer: "Azlina dan Johari menyertai Firdaus dalam ekspedisi berbasikal ke Pantai Morib.",
+        explanation: "Azlina dan Johari mewakili nilai-nilai positif yang menjadi cermin kepada kelemahan Firdaus.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah kesilapan moral paling besar yang dilakukan oleh Firdaus dalam novel ini?",
+        answer: "Firdaus berbohong kepada Mazlinda tentang pengalamannya semasa ekspedisi berbasikal.",
+        explanation: "Pembohongan ini adalah konflik moral utama yang akhirnya mendorong proses keinsafan Firdaus.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah yang berlaku kepada Firdaus di laut yang menjadi titik perubahan utama dalam cerita?",
+        answer: "Firdaus hampir lemas di laut dan terpaksa diselamatkan — insiden berbahaya yang mencetuskan keinsafannya.",
+        explanation: "Insiden hampir lemas adalah pemangkin terkuat kepada perubahan dalaman Firdaus.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah perwatakan Johari yang membezakannya daripada Firdaus pada awal cerita?",
+        answer: "Johari bersifat matang, bertanggungjawab, dan penyabar — berbeza dengan Firdaus yang manja dan mudah berputus asa.",
+        explanation: "Perbandingan antara Johari dan Firdaus menggambarkan nilai-nilai yang perlu Firdaus pelajari.",
+      },
+      {
+        type: "Struktur",
+        question: "Jelaskan dua perwatakan Firdaus beserta bukti daripada novel.",
+        answer: "Pertama, Firdaus bersifat manja dan mudah berputus asa apabila beliau tidak berhenti merungut sepanjang ekspedisi berbasikal dan ingin berhenti apabila menghadapi halangan seperti basikal pancit dan terjatuh. Kedua, Firdaus bersifat berani berubah apabila selepas insaf daripada insiden hampir lemas, beliau dengan ikhlas berjanji untuk mengubah dirinya menjadi lebih jujur dan berani menghadapi cabaran.",
+        explanation: "Sertakan sifat + penerangan + bukti konkrit daripada cerita untuk setiap sifat yang dinyatakan.",
+      },
+      {
+        type: "Struktur",
+        question: "Huraikan dua nilai yang terdapat dalam novel Destinasi Impian beserta contoh daripada cerita.",
+        answer: "Pertama, nilai kejujuran. Novel ini menunjukkan kepentingan kejujuran apabila Firdaus yang berbohong kepada Mazlinda akhirnya mengalami kesusahan yang lebih besar. Keinsafan Firdaus pada akhir cerita pun bermula dengan keinsafan tentang kesilapan berbohongnya. Kedua, nilai ketabahan. Kumpulan ekspedisi tidak berputus asa walaupun menghadapi basikal pancit dan Firdaus terjatuh — mereka terus meneruskan perjalanan sehingga berjaya tiba di Pantai Morib.",
+        explanation: "Format: nama nilai + huraian + contoh konkrit daripada cerita.",
+      },
+      {
+        type: "Struktur",
+        question: "Apakah tema utama novel Destinasi Impian? Jelaskan bagaimana tema ini digambarkan dalam cerita.",
+        answer: "Tema utama novel ini ialah cabaran dan konflik remaja dalam membentuk jati diri. Tema ini digambarkan melalui perjalanan Firdaus yang bermula sebagai remaja manja dan tidak jujur. Melalui cabaran ekspedisi berbasikal, pembohongan yang terdedah, dan insiden hampir lemas, Firdaus mengalami proses pembentukan jati diri yang akhirnya menjadikannya seorang yang insaf dan bersedia berubah.",
+        explanation: "Nyatakan tema dengan tepat dan hubungkan dengan peristiwa utama yang menggambarkan proses pembentukan jati diri.",
+      },
+      {
+        type: "Struktur",
+        question: "Jelaskan kepentingan watak Mazlinda dalam novel Destinasi Impian.",
+        answer: "Mazlinda penting dalam novel ini kerana beliau berperanan sebagai penguji kejujuran Firdaus. Kebijaksanaan Mazlinda dalam mengesan pembohongan Firdaus dan mengujinya mendedahkan kelemahan moral Firdaus yang paling ketara. Tanpa watak Mazlinda, kesilapan Firdaus berbohong tidak akan menjadi konflik yang bermakna. Mazlinda menggambarkan persoalan kejujuran — menunjukkan bahawa kebohongan tidak boleh bertahan di hadapan orang yang bijak dan berani.",
+        explanation: "Soalan kepentingan watak memerlukan penjelasan tentang fungsi watak dalam plot dan mesej yang dibawa.",
+      },
+      {
+        type: "Struktur",
+        question: "Nyatakan dua pengajaran daripada novel Destinasi Impian dan hubungkannya dengan peristiwa dalam cerita.",
+        answer: "Pertama, kita hendaklah jujur dalam setiap keadaan walaupun kebenaran itu pahit. Firdaus membuktikan ini apabila pembohongannya kepada Mazlinda akhirnya menambah beban dan tekanan kepada dirinya sendiri, berbanding jika beliau jujur dari awal. Kedua, kita hendaklah berfikir sebelum bertindak supaya tidak menyesal kemudian. Insiden Firdaus hampir lemas berlaku akibat tindakan yang tidak difikirkan dengan matang — mengajar bahawa kebijaksanaan dalam bertindak boleh mengelakkan bahaya.",
+        explanation: "Format: 'Kita hendaklah...' + penerangan + bukti konkrit daripada cerita.",
+      },
+      {
+        type: "KBAT",
+        question: "Mengapakah datuk memilih ekspedisi berbasikal sebagai cara mendidik Firdaus? Adakah kaedah ini berkesan? Berikan alasan.",
+        answer: "Datuk memilih ekspedisi berbasikal kerana beliau ingin mengajar Firdaus melalui pengalaman langsung, bukan ceramah. Kaedah ini jauh lebih berkesan kerana pelajaran yang dipelajari melalui pengalaman meninggalkan kesan yang lebih mendalam berbanding kata-kata. Melalui ekspedisi, Firdaus terpaksa berhadapan dengan cabarannya sendiri dan membuat keputusan sendiri. Kaedah ini terbukti berkesan kerana pada akhir cerita, Firdaus insaf dan berubah — sesuatu yang mungkin tidak akan berlaku jika datuk hanya menasihati beliau.",
+        explanation: "Soalan KBAT memerlukan penilaian terhadap kaedah yang digunakan. Sokong dengan hujah dan bukti.",
+      },
+      {
+        type: "KBAT",
+        question: "Pada pendapat kamu, apakah pengajaran paling berharga yang boleh diambil daripada watak Firdaus? Berikan alasan.",
+        answer: "Pengajaran paling berharga daripada watak Firdaus ialah bahawa kelemahan bukanlah penghalang kepada perubahan. Firdaus memiliki banyak kelemahan — manja, mudah berputus asa, dan tidak jujur. Namun akhirnya beliau insaf dan berjanji untuk berubah. Ini mengajar pembaca bahawa tidak kira betapa banyak kesilapan yang dilakukan, selagi ada keinsafan yang tulen dan keberanian untuk berubah, seseorang masih boleh memperbaiki dirinya. Ini adalah pengajaran yang paling relevan kepada remaja kerana semua orang pernah melakukan kesilapan.",
+        explanation: "Soalan KBAT memerlukan pendapat yang disokong dengan hujah yang kukuh dan dikaitkan dengan kehidupan nyata.",
+      },
+      {
+        type: "KBAT",
+        question: "Bandingkan cara Azlina dan Johari menghadapi cabaran berbanding Firdaus. Apakah yang boleh Firdaus pelajari daripada mereka?",
+        answer: "Azlina menghadapi setiap halangan dengan berani dan tidak pernah mempersoalkan sama ada patut meneruskan atau tidak. Johari pula menghadapi masalah dengan matang dan bertanggungjawab, memastikan kumpulan selamat tanpa mengeluh. Berbanding Firdaus yang merungut dan mudah berputus asa. Firdaus boleh belajar daripada Azlina bahawa keberanian bukan tentang ketiadaan rasa takut, tetapi tentang tindakan walaupun takut. Daripada Johari, Firdaus boleh belajar bahawa kematangan bermakna mengutamakan tanggungjawab kepada orang lain berbanding kselesaan diri sendiri.",
+        explanation: "Soalan perbandingan memerlukan analisis perbezaan yang jelas dengan kesimpulan tentang nilai yang boleh dipelajari.",
+      },
+    ],
+
+    examBooster: {
+      frequentPoints: [
+        "🔥 Sangat Penting — Tema: Cabaran dan konflik remaja dalam membentuk jati diri",
+        "🔥 Sangat Penting — Perwatakan Firdaus: manja, mudah berputus asa, tidak jujur, berani berubah",
+        "🔥 Sangat Penting — Peristiwa Firdaus berbohong dan hampir lemas sebagai puncak konflik dan keinsafan",
+        "⭐ Penting — Perwatakan Azlina (cergas, berani, tegas) dan Johari (matang, bertanggungjawab, penyabar)",
+        "⭐ Penting — Peranan Datuk sebagai pemberi cabaran yang mendidik melalui pengalaman",
+        "⭐ Penting — Nilai kejujuran, ketabahan, dan keberanian beserta contoh dari cerita",
+        "⭐ Penting — Pengajaran dalam format 'Kita hendaklah...' beserta bukti peristiwa",
+        "📌 Perlu Tahu — Peranan Mazlinda sebagai penguji kejujuran Firdaus",
+        "📌 Perlu Tahu — Peristiwa basikal pancit dan Firdaus terjatuh sebagai ujian ketabahan",
+        "📌 Perlu Tahu — Destinasi ekspedisi: Pantai Morib",
+        "📌 Perlu Tahu — Zon novel: Timur (Pahang, Terengganu, Kelantan)",
+      ],
+      commonQuestions: [
+        {
+          question: "Jelaskan perwatakan watak utama beserta bukti.",
+          answerHint:
+            "Firdaus: Manja (merungut sepanjang perjalanan) · Tidak jujur (berbohong kepada Mazlinda) · Berani berubah (insaf selepas hampir lemas dan berjanji untuk berubah)",
+          modelAnswer:
+            "Watak utama ialah Firdaus. Pertama, Firdaus bersifat manja apabila beliau tidak berhenti merungut sepanjang ekspedisi dan ingin berhenti apabila menghadapi halangan. Kedua, Firdaus bersifat tidak jujur apabila beliau berbohong kepada Mazlinda tentang pengalamannya. Ketiga, Firdaus bersifat berani berubah apabila selepas insaf daripada insiden hampir lemas, beliau berjanji dengan ikhlas untuk menjadi lebih baik.",
+          examTip: "Sertakan minimum tiga sifat dengan bukti yang berbeza.",
+        },
+        {
+          question: "Apakah tema novel dan bagaimana ia dikemukakan dalam cerita?",
+          answerHint:
+            "Tema: Cabaran dan konflik remaja dalam membentuk jati diri. Bukti: ekspedisi sukar → pembohongan → hampir lemas → insaf → berjanji berubah.",
+          modelAnswer:
+            "Tema utama ialah cabaran dan konflik remaja dalam membentuk jati diri. Tema ini dikemukakan melalui perjalanan Firdaus yang bermula sebagai remaja manja dan tidak jujur. Melalui pelbagai halangan dalam ekspedisi, pembohongan kepada Mazlinda, dan insiden hampir lemas di laut, Firdaus mengalami proses pembentukan jati diri yang akhirnya menjadikannya insaf dan bersedia berubah.",
+          examTip: "Hubungkan tema dengan sekurang-kurangnya tiga peristiwa berbeza dalam cerita.",
+        },
+      ],
+    },
+
+    revision: {
+      theme: "Cabaran dan konflik remaja dalam membentuk jati diri",
+      values: "Keberanian · Kesabaran · Kejujuran · Bertanggungjawab · Ketabahan",
+      lessons: "Jujur walaupun pahit · Tabah hadapi cabaran · Berfikir sebelum bertindak · Hargai persahabatan · Terima teguran · Berani mengakui kesilapan",
+      examTips: "Fokus: Perwatakan Firdaus (4 sifat) · Tema pembentukan jati diri · Peristiwa pembohongan & hampir lemas · Nilai kejujuran · Pengajaran 'Kita hendaklah...'",
+    },
+
+    miniQuiz: [
+      {
+        question: "Apakah cabaran yang diberikan datuk kepada Firdaus?",
+        answerHint: "Ekspedisi berbasikal ke Pantai Morib.",
+        modelAnswer: "Datuk mencabar Firdaus menjalankan ekspedisi berbasikal ke Pantai Morib.",
+        explanation: "Cabaran ini adalah pemangkin kepada keseluruhan proses pembentukan jati diri Firdaus.",
+        examTip: "Destinasi ekspedisi = Pantai Morib. Cara cabaran = berbasikal.",
+      },
+      {
+        question: "Kepada siapakah Firdaus berbohong dan apakah akibatnya?",
+        answerHint: "Firdaus berbohong kepada Mazlinda. Mazlinda menguji kejujurannya dan Firdaus akhirnya insaf.",
+        modelAnswer: "Firdaus berbohong kepada Mazlinda tentang perjalanannya. Mazlinda yang bijak mengesyaki dan menguji Firdaus, menyebabkan pembohongan hampir terdedah dan menambah tekanan kepada Firdaus.",
+        explanation: "Pembohongan kepada Mazlinda adalah konflik moral utama novel.",
+        examTip: "Mazlinda = penguji kejujuran. Pembohongan Firdaus kepada Mazlinda = konflik moral utama.",
+      },
+      {
+        question: "Apakah peristiwa yang mencetuskan keinsafan Firdaus?",
+        answerHint: "Firdaus hampir lemas di laut dan diselamatkan.",
+        modelAnswer: "Insiden Firdaus hampir lemas di laut dan diselamatkan menjadi pemangkin kepada keinsafannya.",
+        explanation: "Hampir maut menggugah kesedaran Firdaus tentang kesilapan-kesilapannya.",
+        examTip: "Hampir lemas = pemangkin keinsafan. Ini soalan yang kerap keluar.",
+      },
+    ],
+  },
+
+  // ─── Novel: Pelari Muda (Zon Utara) ──────────────────────────────────────────
+  {
+    id: "pelari-muda",
+    title: "Pelari Muda",
+    typeLabel: "Novel (Zon Utara — Kedah, Perlis, Pulau Pinang, Perak)",
+    kind: "story",
+    studyTime: "25 minit",
+    difficulty: "Sederhana",
+    examFocus: "Watak + Tema + Peristiwa + Nilai",
+    intro:
+      "Jangan risau jika novel ini terasa rumit. Selepas belajar di sini, kamu akan faham keseluruhan cerita Pelari Muda dan bersedia menjawab soalan peperiksaan — tanpa perlu membaca nota tambahan.",
+
+    story60:
+      "Kamarul terkenal → sombong → abaikan latihan → kasar terhadap Saridah → bergaduh dengan Encik Kadir → buang pingat → kemalangan → hospital → insaf → mohon maaf → berlatih semula → juara Sukan SEA → pecah rekod.",
+
+    story90:
+      "Kamarul seorang atlet lari berbakat yang naik ke puncak kemasyhuran. Namun kemasyhuran itu mengubahnya — beliau menjadi sombong, mengabaikan latihan, bersikap kasar terhadap Saridah, dan bertengkar dengan jurulatihnya Encik Kadir sehingga membuang pingat. Satu kemalangan jalan raya menghentikan segala-galanya. Semasa di hospital, Kamarul bermuhasabah dan insaf. Dengan sokongan Saridah, Encik Kadir, dan De Wega, Kamarul kembali berlatih dengan disiplin penuh. Akhirnya beliau memenangi pingat emas Sukan SEA dan memecahkan rekod.",
+
+    retelling3Min:
+      "Kamarul adalah seorang atlet lari remaja yang penuh bakat. Prestasinya yang cemerlang membawa beliau ke puncak kemasyhuran dalam dunia sukan. Namun di sebalik kejayaan itu, tumbuh satu sifat yang amat berbahaya — kesombongan.\n\nKamarul mula mengabaikan jadual latihan yang telah ditetapkan oleh jurulatihnya, Encik Kadir. Beliau merasakan bahawa bakatnya sudah cukup tanpa perlu bersusah payah berlatih. Sikapnya berubah kasar terhadap Saridah, sahabat setianya yang sentiasa menyokong beliau. Pertelingkahan dengan Encik Kadir memuncak apabila Kamarul bertindak membuang pingat yang pernah dimenanginya — lambang betapa jauhnya beliau telah tersasar daripada landasan yang betul.\n\nNasib Kamarul berubah drastik apabila beliau terlibat dalam satu kemalangan jalan raya yang serius. Semasa dirawat di hospital, jauh daripada sorak-sorai peminat dan lampu sorot kemasyhuran, Kamarul bersendirian dengan fikirannya. Detik sunyi itulah yang menjadi titik keinsafannya. Beliau menyedari betapa banyak yang telah dipersia-siakan — bakat, persahabatan, kepercayaan, dan peluang.\n\nDengan hati yang penuh keinsafan, Kamarul memohon maaf kepada Saridah dan Encik Kadir. De Wega, seorang atlet berpengalaman yang merendah diri, turut memberi nasihat berharga yang membuka mata Kamarul. Dengan semangat baharu dan disiplin yang dipulihkan, Kamarul kembali ke padang latihan.\n\nKerja keras Kamarul membuahkan hasil yang luar biasa — beliau bukan sahaja memenangi pingat emas di Sukan SEA, malah turut memecahkan rekod lama. Kejayaan kali ini jauh lebih bermakna kerana ia dibina atas keinsafan dan usaha yang tulus.",
+
+    timeline: [
+      { stage: "Permulaan",    text: "Kamarul menjadi atlet terkenal dan mula meraih kemasyhuran dalam dunia sukan lari." },
+      { stage: "Perkembangan", text: "Sifat sombong mula tumbuh — Kamarul mengabaikan latihan dan bersikap kasar terhadap Saridah." },
+      { stage: "Konflik",      text: "Pertelingkahan dengan Encik Kadir memuncak. Kamarul membuang pingat dalam keadaan marah." },
+      { stage: "Klimaks",      text: "Kemalangan jalan raya yang serius. Kamarul dirawat di hospital dan berhadapan dengan keinsafan." },
+      { stage: "Peleraian",    text: "Kamarul insaf, mohon maaf, kembali berlatih dengan disiplin, dan menjuarai Sukan SEA sambil memecahkan rekod." },
+    ],
+
+    decoder: [
+      {
+        rangkap: "Bahagian 1 — Puncak Kemasyhuran",
+        pantunMudah: "Kamarul meraih kemasyhuran sebagai atlet lari berbakat. Semua orang mengaguminya. Namun di sebalik senyuman itu, benih kesombongan mula bercambah.",
+        maksud: "Bahagian ini memperkenalkan Kamarul sebagai watak yang penuh potensi. Kemasyhuran menjadi ujian pertama — adakah Kamarul akan kekal rendah diri atau tersasar?",
+        tema: "Ujian kemasyhuran terhadap karakter seseorang",
+        nilai: "Ketabahan, Disiplin",
+        pengajaran: "Kita hendaklah kekal rendah diri walaupun berada di puncak kejayaan.",
+      },
+      {
+        rangkap: "Bahagian 2 — Keruntuhan Disiplin",
+        pantunMudah: "Kamarul mula mengabaikan latihan. Dia bersikap kasar kepada Saridah. Encik Kadir hilang sabar. Segalanya mula retak.",
+        maksud: "Disiplin yang longgar dan kesombongan menghakis hubungan Kamarul dengan orang-orang yang penting dalam hidupnya. Ini menunjukkan betapa berbahayanya sifat angkuh.",
+        tema: "Kesan kesombongan terhadap hubungan dan prestasi",
+        nilai: "Kasih sayang, Bertanggungjawab",
+        pengajaran: "Kita hendaklah menghargai orang yang menyayangi dan membimbing kita.",
+      },
+      {
+        rangkap: "Bahagian 3 — Titik Terendah",
+        pantunMudah: "Pertengkaran dengan Encik Kadir mencapai kemuncak. Kamarul membuang pingat — tindakan paling dramatik yang menggambarkan betapa jauhnya dia tersasar.",
+        maksud: "Membuang pingat adalah simbol Kamarul menolak semua yang telah dibinanya. Ini titik terendah dalam perjalanannya — namun seringkali titik terendah adalah permulaan kepada perubahan.",
+        tema: "Akibat kehilangan kawalan diri",
+        nilai: "Keinsafan",
+        pengajaran: "Kita hendaklah mengawal emosi dan tidak membuat keputusan ketika marah.",
+      },
+      {
+        rangkap: "Bahagian 4 — Kemalangan dan Keinsafan",
+        pantunMudah: "Kemalangan jalan raya menghentikan segala-galanya. Di hospital, dalam kesunyian, Kamarul akhirnya bertemu dengan dirinya yang sebenar. Keinsafan mula hadir.",
+        maksud: "Kadangkala kita memerlukan detik yang mengejutkan untuk sedar akan kesilapan kita. Kemalangan bukan sekadar nasib malang — ia menjadi pemangkin perubahan bagi Kamarul.",
+        tema: "Keinsafan melalui ujian hidup",
+        nilai: "Keinsafan, Ketabahan",
+        pengajaran: "Kita hendaklah mengambil iktibar daripada setiap ujian yang menimpa kita.",
+      },
+      {
+        rangkap: "Bahagian 5 — Kebangkitan dan Kejayaan",
+        pantunMudah: "Kamarul mohon maaf. Kembali berlatih. Menang pingat emas. Pecah rekod. Kejayaan kali ini berbeza — ia lahir dari hati yang insaf dan usaha yang tulus.",
+        maksud: "Peleraian membuktikan tema utama — keinsafan membawa kejayaan. Kemenangan Kamarul lebih bermakna kerana ia dibina atas perubahan dalaman yang sebenar.",
+        tema: "Keinsafan membawa kejayaan",
+        nilai: "Disiplin, Ketabahan, Kasih sayang",
+        pengajaran: "Kita hendaklah berani berubah dan tidak takut untuk memulakan semula.",
+      },
+    ],
+
+    masterCharacters: [
+      {
+        name: "Kamarul",
+        role: "Watak utama dan protagonis. Kamarul ialah atlet lari berbakat yang mengalami perjalanan daripada puncak kesombongan kepada lembah keinsafan dan akhirnya kembali ke puncak — kali ini dengan jiwa yang lebih matang.",
+        traits: ["Berbakat", "Sombong", "Angkuh", "Berani mengakui kesilapan", "Gigih"],
+        evidence:
+          "Kamarul membuktikan bakatnya dengan menjuarai pelbagai pertandingan lari. Kesombongannya terbukti apabila beliau mengabaikan latihan, bersikap kasar kepada Saridah, bertengkar dengan Encik Kadir, dan membuang pingat. Keberanian mengakui kesilapan terlihat apabila beliau memohon maaf dengan tulus selepas insaf di hospital. Kegigihan terbukti apabila beliau kembali berlatih dengan disiplin penuh sehingga memenangi pingat emas Sukan SEA.",
+        relationships:
+          "Dibimbing oleh Encik Kadir yang penyabar. Disokong oleh Saridah yang setia berkawan. Mendapat inspirasi daripada De Wega yang berdisiplin dan merendah diri.",
+        importance:
+          "Kamarul adalah bukti hidup bahawa bakat sahaja tidak mencukupi. Kejayaan sebenar memerlukan disiplin, rendah diri, dan keberanian untuk berubah apabila tersasar.",
+      },
+      {
+        name: "Encik Kadir",
+        role: "Jurulatih Kamarul yang berdedikasi. Encik Kadir mewakili seorang mentor yang tidak mudah berputus asa terhadap anak didiknya.",
+        traits: ["Penyabar", "Bertanggungjawab", "Berdedikasi"],
+        evidence:
+          "Encik Kadir terus berusaha membimbing Kamarul walaupun Kamarul mengabaikan latihan dan bersikap tidak hormat. Beliau sanggup melalui pertengkaran dengan Kamarul kerana ingin melihat potensi muridnya berkembang. Apabila Kamarul insaf dan kembali berlatih, Encik Kadir menerima Kamarul dengan hati terbuka.",
+        relationships:
+          "Hubungan jurulatih-atlet yang diuji oleh kesombongan Kamarul. Encik Kadir mewakili nilai bertanggungjawab kepada anak didik melebihi kepentingan peribadi.",
+        importance:
+          "Tanpa Encik Kadir, Kamarul tidak akan mempunyai asas yang kukuh untuk bangkit semula. Encik Kadir menggambarkan peranan seorang pembimbing yang tidak putus berharap.",
+      },
+      {
+        name: "Saridah",
+        role: "Sahabat setia Kamarul yang mewakili persahabatan sejati.",
+        traits: ["Prihatin", "Setia berkawan", "Pemaaf"],
+        evidence:
+          "Saridah terus menyokong Kamarul walaupun beliau diperlakukan dengan kasar. Beliau tidak meninggalkan Kamarul ketika Kamarul di hospital dan memaafkan Kamarul apabila beliau memohon maaf. Kasih sayang Saridah kepada sahabatnya tidak berubah walaupun Kamarul berubah perangai.",
+        relationships:
+          "Sahabat yang paling setia kepada Kamarul. Hubungan mereka menggambarkan nilai persahabatan sejati yang tidak diukur oleh keadaan.",
+        importance:
+          "Saridah membuktikan bahawa sahabat sejati adalah mereka yang hadir ketika kita berada di titik terendah, bukan hanya ketika kita di puncak.",
+      },
+      {
+        name: "De Wega",
+        role: "Atlet berpengalaman yang menjadi sumber inspirasi kepada Kamarul.",
+        traits: ["Berdisiplin", "Merendah diri", "Memberi nasihat"],
+        evidence:
+          "De Wega walaupun lebih berpengalaman dan berjaya, tetap merendah diri dan sentiasa berdisiplin dalam latihannya. Nasihat De Wega kepada Kamarul membuka mata beliau bahawa kejayaan sebenar tidak datang daripada bakat semata-mata.",
+        relationships:
+          "De Wega berfungsi sebagai cermin kepada Kamarul — menunjukkan seperti mana seorang atlet cemerlang sepatutnya berkelakuan.",
+        importance:
+          "De Wega melambangkan bahawa orang yang paling berjaya sekalipun perlu kekal rendah diri dan berdisiplin. Kontrasnya dengan sikap Kamarul menjadikan pengajaran ini lebih jelas.",
+      },
+    ],
+
+    relationshipMap: [
+      {
+        from: "Kamarul",
+        relation: "↔ Jurulatih & Anak Didik",
+        to: "Encik Kadir",
+        explanation:
+          "Hubungan ini menggambarkan ujian kepada kepercayaan antara jurulatih dan atlet. Kesombongan Kamarul merosakkan kepercayaan ini, namun keinsafan Kamarul dan kesabaran Encik Kadir memulihkannya. Encik Kadir adalah punca utama Kamarul mendapat asas untuk bangkit semula.",
+      },
+      {
+        from: "Kamarul",
+        relation: "↔ Persahabatan Sejati",
+        to: "Saridah",
+        explanation:
+          "Kamarul memperlakukan Saridah dengan kasar semasa angkuh, namun Saridah tidak meninggalkan beliau. Hubungan ini menguji makna persahabatan sebenar. Kemaafan Saridah akhirnya menjadi sebahagian daripada kekuatan yang mendorong Kamarul untuk berubah.",
+      },
+      {
+        from: "Kamarul",
+        relation: "↔ Cermin Inspirasi",
+        to: "De Wega",
+        explanation:
+          "De Wega bukan sahaja memberi nasihat tetapi menjadi contoh hidup tentang cara atlet cemerlang sepatutnya berkelakuan. Kerendahan diri dan disiplin De Wega menjadi cermin yang menunjukkan kepada Kamarul apa yang perlu diubah dalam dirinya.",
+      },
+    ],
+
+    detailedPlot: [
+      {
+        stage: "Permulaan",
+        what: "Kamarul menjadi atlet lari terkenal. Kemasyhuran dan pujian yang diterima mula mengubah peribadi dan sikapnya.",
+        why: "Bahagian ini memperkenalkan Kamarul sebagai watak yang penuh potensi tetapi rentan kepada ujian kemasyhuran. Ia meletakkan asas kepada konflik yang bakal berlaku.",
+        effect: "Pembaca memahami bahawa Kamarul memiliki bakat luar biasa tetapi kemasyhuran adalah ujian yang paling berbahaya bagi jiwa yang belum matang.",
+      },
+      {
+        stage: "Perkembangan",
+        what: "Kamarul mula mengabaikan latihan, bersikap kasar terhadap Saridah, dan tidak menghormati Encik Kadir. Sifat sombong semakin jelas.",
+        why: "Perubahan tingkah laku Kamarul menggambarkan betapa cepat seseorang boleh berubah apabila tidak mempunyai kawalan diri. Ini memperlihatkan kesan negatif kesombongan.",
+        effect: "Hubungan Kamarul dengan orang-orang penting dalam hidupnya mula retak. Pembaca mula merasai ketegangan yang bakal memuncak.",
+      },
+      {
+        stage: "Konflik",
+        what: "Pertengkaran dengan Encik Kadir mencapai kemuncak. Dalam keadaan marah dan hilang kawalan, Kamarul membuang pingat yang pernah dimenanginya.",
+        why: "Membuang pingat adalah simbol paling dramatik kejatuhan Kamarul. Ia menggambarkan betapa jauhnya beliau tersasar daripada nilai-nilai yang sepatutnya dipegang.",
+        effect: "Ini adalah titik terendah Kamarul. Pembaca merasai betapa besar kesilapan yang dilakukan dan mula menunggu titik perubahan.",
+      },
+      {
+        stage: "Klimaks",
+        what: "Kamarul terlibat dalam kemalangan jalan raya yang serius dan dirawat di hospital. Di dalam kesunyian hospital, beliau bermuhasabah dan insaf.",
+        why: "Kemalangan menjadi pemangkin perubahan. Jauh daripada kemasyhuran dan sorak-sorai, Kamarul terpaksa berhadapan dengan dirinya yang sebenar.",
+        effect: "Keinsafan Kamarul di hospital menjadi titik paling penting dalam novel — ini adalah detik transformasi dalaman yang mengubah segala-galanya.",
+      },
+      {
+        stage: "Peleraian",
+        what: "Kamarul memohon maaf kepada Saridah dan Encik Kadir. Dibantu oleh nasihat De Wega, beliau kembali berlatih dengan disiplin. Akhirnya Kamarul memenangi pingat emas Sukan SEA dan memecahkan rekod.",
+        why: "Peleraian menunjukkan bahawa keinsafan bukan sekadar perasaan — ia perlu dibuktikan melalui tindakan nyata. Kejayaan Kamarul kali ini lebih bermakna kerana ia lahir dari perubahan yang tulus.",
+        effect: "Novel berakhir dengan pengajaran menyeluruh — keinsafan membawa kejayaan yang lebih bermakna daripada kejayaan yang diperoleh tanpa susah payah.",
+      },
+    ],
+
+    importantEvents: [
+      {
+        event: "Kamarul menjadi terkenal",
+        what: "Prestasi cemerlang Kamarul dalam sukan lari membawa beliau ke puncak kemasyhuran, dipuji oleh semua pihak.",
+        whyImportant: "Kemasyhuran ini menjadi ujian pertama kepada karakter Kamarul. Ia adalah punca kepada semua perubahan negatif yang berlaku selepas itu.",
+        possibleQuestion: "Bagaimanakah kemasyhuran Kamarul menjadi punca kepada permasalahan yang berlaku dalam novel?",
+      },
+      {
+        event: "Kamarul mengabaikan latihan",
+        what: "Kamarul mula tidak hadir ke sesi latihan dan tidak mengikut arahan Encik Kadir, merasakan bakatnya sudah cukup.",
+        whyImportant: "Pengabaian latihan menggambarkan akibat terus daripada kesombongan. Ia menunjukkan bahawa bakat tanpa disiplin tidak akan membawa kejayaan jangka panjang.",
+        possibleQuestion: "Apakah yang mendorong Kamarul mengabaikan latihan dan apakah kesannya?",
+      },
+      {
+        event: "Kamarul bertengkar dengan Encik Kadir",
+        what: "Pertengkaran antara Kamarul dan jurulatihnya Encik Kadir mencapai tahap yang serius, menggambarkan betapa jauh hubungan mereka telah rosak.",
+        whyImportant: "Pertengkaran ini adalah klimaks kepada hubungan yang semakin tegang. Ia menguji nilai tanggungjawab jurulatih dan keingkaran anak didik.",
+        possibleQuestion: "Apakah sebab pertengkaran Kamarul dengan Encik Kadir dan apakah akibatnya?",
+      },
+      {
+        event: "Kamarul membuang pingat",
+        what: "Dalam keadaan marah, Kamarul membuang pingat yang pernah dimenanginya — tindakan yang paling dramatik dalam keseluruhan novel.",
+        whyImportant: "Membuang pingat adalah simbol Kamarul menolak semua yang telah dibinanya. Ia menggambarkan betapa berbahayanya kemarahan yang tidak terkawal.",
+        possibleQuestion: "Apakah yang dimaksudkan oleh tindakan Kamarul membuang pingat dari segi simbolisme dalam cerita?",
+      },
+      {
+        event: "Kemalangan jalan raya",
+        what: "Kamarul terlibat dalam kemalangan jalan raya yang serius dan terpaksa dirawat di hospital.",
+        whyImportant: "Kemalangan ini menjadi pemangkin kepada keinsafan Kamarul. Tanpa peristiwa ini, perubahan Kamarul mungkin tidak akan berlaku.",
+        possibleQuestion: "Bagaimana kemalangan jalan raya menjadi titik perubahan penting dalam novel Pelari Muda?",
+      },
+      {
+        event: "Kamarul dirawat di hospital",
+        what: "Semasa dirawat, Kamarul bersendirian dengan fikirannya dan mula bermuhasabah tentang semua tindakannya yang salah.",
+        whyImportant: "Hospital menjadi tempat keinsafan Kamarul. Kesunyian itulah yang membolehkan beliau berfikir dengan jernih tentang kesilapan yang dilakukan.",
+        possibleQuestion: "Mengapakah tempoh dirawat di hospital begitu penting kepada perubahan watak Kamarul?",
+      },
+      {
+        event: "Kamarul memohon maaf",
+        what: "Selepas insaf, Kamarul memohon maaf kepada Saridah dan Encik Kadir dengan penuh keikhlasan.",
+        whyImportant: "Permohonan maaf ini membuktikan keinsafan Kamarul bukan sekadar kata-kata — ia adalah tindakan nyata yang memerlukan keberanian dan kerendahan diri.",
+        possibleQuestion: "Apakah yang mendorong Kamarul memohon maaf dan apakah kepentingannya kepada jalan cerita?",
+      },
+      {
+        event: "Kamarul kembali berlatih",
+        what: "Dengan semangat baharu dan disiplin yang dipulihkan, Kamarul kembali ke padang latihan di bawah bimbingan Encik Kadir.",
+        whyImportant: "Kembalinya Kamarul berlatih adalah bukti bahawa keinsafannya adalah tulen. Ia menggambarkan nilai disiplin dan ketabahan yang diperolehi semula.",
+        possibleQuestion: "Apakah yang membuktikan bahawa keinsafan Kamarul adalah tulen dan bukan sekadar kata-kata?",
+      },
+      {
+        event: "Kamarul menang pingat emas",
+        what: "Usaha gigih Kamarul membuahkan hasil apabila beliau memenangi pingat emas dalam Sukan SEA.",
+        whyImportant: "Kemenangan ini membuktikan tema utama novel — keinsafan membawa kejayaan. Pingat emas ini berbeza nilainya dengan kejayaan terdahulu kerana ia lahir dari perubahan yang tulus.",
+        possibleQuestion: "Mengapakah pingat emas yang dimenangi Kamarul di Sukan SEA lebih bermakna berbanding kejayaan-kejayaannya terdahulu?",
+      },
+      {
+        event: "Kamarul memecahkan rekod",
+        what: "Bukan sahaja memenangi pingat emas, Kamarul turut memecahkan rekod lama — pencapaian tertinggi dalam kerjaya sukannya.",
+        whyImportant: "Memecahkan rekod adalah kemuncak perjalanan Kamarul — membuktikan bahawa disiplin dan keinsafan boleh membawa seseorang lebih jauh daripada bakat semata-mata.",
+        possibleQuestion: "Apakah mesej yang disampaikan melalui peristiwa Kamarul memecahkan rekod pada akhir novel?",
+      },
+    ],
+
+    issues: [
+      {
+        issue: "Kepentingan disiplin dalam sukan dan kehidupan",
+        explanation:
+          "Novel ini menunjukkan dengan jelas bahawa bakat tanpa disiplin tidak akan membawa kejayaan jangka panjang. Kamarul yang berbakat akhirnya gagal apabila mengabaikan disiplin latihan. Hanya apabila disiplin dipulihkan, kejayaan sebenar dicapai.",
+      },
+      {
+        issue: "Kesan kesombongan terhadap diri dan hubungan",
+        explanation:
+          "Kesombongan Kamarul merosakkan hubungannya dengan Encik Kadir dan Saridah, menyebabkan beliau mengabaikan latihan, dan akhirnya terlibat dalam kemalangan. Novel ini mengajar bahawa kesombongan adalah pemusnah yang tersembunyi.",
+      },
+      {
+        issue: "Nilai persahabatan sejati dalam masa susah",
+        explanation:
+          "Saridah menggambarkan persahabatan sejati — hadir bukan hanya ketika Kamarul di puncak, tetapi juga ketika beliau berada di titik terendah. Novel ini menegaskan bahawa sahabat sejati tidak berubah walaupun kita berubah.",
+      },
+      {
+        issue: "Tanggungjawab jurulatih terhadap anak didik",
+        explanation:
+          "Encik Kadir mewakili jurulatih yang bertanggungjawab tidak hanya terhadap prestasi sukan tetapi juga terhadap pembentukan karakter anak didiknya. Kesabarannya terhadap Kamarul menggambarkan dedikasi seorang pembimbing sejati.",
+      },
+      {
+        issue: "Keberanian mengakui kesilapan dan berubah",
+        explanation:
+          "Salah satu persoalan terpenting — adakah seseorang berani mengakui kesilapan dan berubah? Kamarul membuktikan bahawa keberanian berubah lebih sukar daripada keberanian bersaing, tetapi hasilnya lebih bermakna.",
+      },
+    ],
+
+    theme: {
+      title: "Keinsafan membawa kejayaan",
+      explanation:
+        "Novel ini menggambarkan bahawa kejayaan sebenar bukan lahir daripada bakat semata-mata, tetapi daripada keinsafan yang mendorong perubahan peribadi. Kamarul berjaya menjuarai Sukan SEA dan memecahkan rekod bukan kerana bakatnya sahaja — tetapi kerana beliau insaf, berubah, dan berlatih dengan disiplin penuh.",
+      whyItMatters:
+        "Tema ini mengajar murid bahawa dalam setiap kejatuhan ada peluang untuk bangkit semula — tetapi kebangkitan itu memerlukan keinsafan yang tulen, bukan sekadar janji. Ini adalah pengajaran hidup yang melampaui dunia sukan.",
+    },
+
+    values: [
+      {
+        value: "Disiplin",
+        explanation: "Kamarul berjaya memecahkan rekod hanya selepas beliau kembali berdisiplin dalam latihan di bawah bimbingan Encik Kadir.",
+        realLife: "Disiplin bermakna melakukan perkara yang betul walaupun tiada yang memerhati dan walaupun rasanya berat.",
+        schoolLife: "Belajar mengikut jadual yang ditetapkan walaupun ada rancangan televisyen yang lebih menarik.",
+      },
+      {
+        value: "Keinsafan",
+        explanation: "Semasa di hospital, Kamarul bermuhasabah dan insaf akan semua kesilapannya — titik terpenting dalam perjalanannya.",
+        realLife: "Keinsafan bermakna sedar akan kesilapan diri dan bersedia berubah, bukan sekadar menyesal dalam hati.",
+        schoolLife: "Sedar bahawa sikap malas belajar adalah kesilapan dan segera berubah dengan membuat jadual belajar yang lebih disiplin.",
+      },
+      {
+        value: "Bertanggungjawab",
+        explanation: "Encik Kadir terus bertanggungjawab terhadap Kamarul walaupun Kamarul tidak menghormatinya. Ini menggambarkan nilai tanggungjawab yang tidak bersyarat.",
+        realLife: "Tanggungjawab bermakna menunaikan kewajipan walaupun situasinya tidak selesa atau tidak dihargai.",
+        schoolLife: "Menyiapkan tugasan yang diberikan dengan sempurna walaupun tiada siapa yang akan memeriksa.",
+      },
+      {
+        value: "Kasih sayang",
+        explanation: "Saridah menunjukkan kasih sayang persahabatan yang tulus dengan tetap menyokong Kamarul walaupun diperlakukan dengan kasar.",
+        realLife: "Kasih sayang sejati tidak bersyarat — ia tidak berubah mengikut tingkah laku orang yang disayangi.",
+        schoolLife: "Terus membantu rakan yang bermasalah walaupun rakan itu kadangkala bersikap tidak baik.",
+      },
+      {
+        value: "Ketabahan",
+        explanation: "Kamarul menghadapi kemalangan, tempoh di hospital, dan cabaran kembali berlatih — semua ini memerlukan ketabahan yang luar biasa.",
+        realLife: "Ketabahan bermakna terus berdiri selepas jatuh, bukan bermakna tidak pernah jatuh.",
+        schoolLife: "Terus berusaha dalam pelajaran walaupun pernah gagal dalam ujian sebelumnya.",
+      },
+    ],
+
+    lessons: [
+      {
+        value: "Kita hendaklah sentiasa berdisiplin dalam apa jua bidang yang diceburi",
+        explanation: "Kamarul membuktikan bahawa disiplin adalah kunci kejayaan. Apabila beliau mengabaikan disiplin, prestasinya merosot. Apabila beliau kembali berdisiplin, beliau memecahkan rekod.",
+        realLife: "Disiplin dalam belajar, bekerja, dan kehidupan seharian adalah asas kepada sebarang pencapaian bermakna.",
+        schoolLife: "Hadiri kelas, siapkan tugasan, dan ulang kaji dengan konsisten — bukan hanya sebelum peperiksaan.",
+      },
+      {
+        value: "Kita hendaklah menjauhi sifat sombong dan angkuh",
+        explanation: "Kesombongan Kamarul telah merosakkan hubungannya, prestasi sukannya, dan hampir menghancurkan masa depannya.",
+        realLife: "Orang yang sombong sukar menerima teguran dan sukar berkembang kerana mereka merasakan diri sudah sempurna.",
+        schoolLife: "Walaupun mendapat markah tertinggi dalam kelas, tetap rendah diri dan sedia membantu rakan yang memerlukan.",
+      },
+      {
+        value: "Kita hendaklah menghargai sahabat yang setia dalam susah dan senang",
+        explanation: "Saridah yang setia adalah aset terbesar Kamarul, namun beliau hampir kehilangan persahabatan itu akibat kesombongan.",
+        realLife: "Sahabat sejati adalah orang yang hadir bukan hanya ketika kita berjaya, tetapi juga ketika kita paling memerlukan sokongan.",
+        schoolLife: "Jangan abaikan sahabat lama hanya kerana mendapat kenalan baru yang lebih 'popular' atau 'cool'.",
+      },
+      {
+        value: "Kita hendaklah berani mengakui kesilapan dan berubah menjadi lebih baik",
+        explanation: "Kamarul menunjukkan keberanian apabila memohon maaf kepada Saridah dan Encik Kadir — tindakan yang memerlukan kerendahan diri.",
+        realLife: "Mengakui kesilapan bukan tanda kelemahan — ia adalah tanda kematangan dan kekuatan jiwa.",
+        schoolLife: "Jika terlanjur berkata kasar kepada rakan, beranikan diri untuk memohon maaf dengan tulus.",
+      },
+      {
+        value: "Kita hendaklah menghormati dan mendengar nasihat jurulatih atau guru",
+        explanation: "Encik Kadir mempunyai pengalaman dan pengetahuan yang Kamarul tidak miliki. Menolak nasihat beliau hanya merugikan Kamarul sendiri.",
+        realLife: "Guru dan jurulatih melihat potensi kita lebih jelas daripada kita sendiri — nasihat mereka perlu dihargai.",
+        schoolLife: "Dengar dan ikuti teguran guru dengan hati terbuka, bukan dengan sikap membantah.",
+      },
+      {
+        value: "Kita hendaklah bersyukur dengan bakat yang dikurniakan dan menggunakannya dengan betul",
+        explanation: "Kamarul memiliki bakat luar biasa tetapi hampir mensia-siakannya. Bakat adalah amanah yang perlu dijaga dan digunakan untuk kebaikan.",
+        realLife: "Setiap orang mempunyai bakat tersendiri — tanggungjawab kita adalah mengenal pasti dan mengembangkannya.",
+        schoolLife: "Jika pandai dalam sesuatu mata pelajaran, gunakan kepandaian itu untuk membantu rakan dan tidak sekadar berbangga.",
+      },
+    ],
+
+    teacherExplains: [
+      "Hai murid-murid! Ramai yang beranggapan bahawa novel Pelari Muda ini hanya tentang dunia sukan — tentang larian, pingat, dan rekod. Memang ada semua itu, tetapi mesej utama novel ini jauh lebih dalam daripada sekadar kisah seorang pelari.",
+      "Sebenarnya, novel ini mengajar empat perkara penting dalam kehidupan. Pertama — disiplin. Bakat tanpa disiplin tidak bermakna. Kedua — keinsafan. Hanya apabila Kamarul insaf barulah beliau benar-benar berjaya. Ketiga — menghargai hubungan. Kamarul hampir kehilangan Saridah dan Encik Kadir akibat sombong. Keempat — keberanian berubah. Ini yang paling sukar tetapi paling penting.",
+      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham MESEJ di sebalik cerita, bukan sekadar hafal nama watak. Tema 'keinsafan membawa kejayaan' perlu kamu hubungkan dengan peristiwa-peristiwa dalam cerita.",
+      "Ada satu perkara yang ramai murid terlepas pandang — watak De Wega. Ramai yang tidak tahu mengapa De Wega ada dalam cerita ini. De Wega adalah CERMIN kepada Kamarul — menunjukkan seperti mana seorang atlet cemerlang sepatutnya berkelakuan. Kontras antara De Wega yang merendah diri dengan Kamarul yang sombong itulah yang menjadikan pengajaran novel ini lebih kuat!",
+    ],
+
+    keyCharacterFocus: {
+      name: "Kamarul",
+      whyMatters:
+        "Kamarul adalah nadi keseluruhan cerita. Perjalanannya dari puncak kemasyhuran, turun ke lembah kesilapan, dan bangkit semula melalui keinsafan adalah teras kepada tema dan semua pengajaran novel.",
+      supportsTheme:
+        "Kamarul membuktikan tema 'keinsafan membawa kejayaan' secara langsung — kejayaan terbesarnya (pingat emas dan rekod) hanya datang selepas beliau insaf dan berubah.",
+      supportsIssues:
+        "Kamarul menghidupkan semua persoalan — disiplin melalui pengabaian latihannya, kesan kesombongan melalui tingkah lakunya, dan keberanian berubah melalui permohonan maafnya.",
+      supportsValues:
+        "Kamarul menunjukkan nilai keinsafan, disiplin (selepas berubah), ketabahan, dan kasih sayang (terhadap sahabat dan jurulatih) melalui tindakannya.",
+      supportsLessons:
+        "Setiap pengajaran novel boleh dikaitkan terus dengan perjalanan Kamarul — dari kesilapan kepada keinsafan kepada kejayaan.",
+    },
+
+    authorPurpose:
+      "Penulis menghasilkan novel ini untuk mendidik generasi muda bahawa bakat dan kemasyhuran tanpa disiplin dan rendah diri boleh membawa kehancuran. Melalui kisah Kamarul, penulis ingin menunjukkan bahawa kejatuhan bukanlah akhir — ia boleh menjadi permulaan kepada kebangkitan yang lebih bermakna apabila dihadapi dengan keinsafan yang tulen.",
+
+    memory60: {
+      theme: "Keinsafan membawa kejayaan",
+      issues: "Disiplin · Kesombongan · Persahabatan sejati · Tanggungjawab jurulatih · Keberanian berubah",
+      mainCharacters: "Kamarul (berbakat→sombong→insaf→juara) · Encik Kadir (penyabar, berdedikasi) · Saridah (setia berkawan, pemaaf) · De Wega (berdisiplin, merendah diri)",
+      importantEvents: "Terkenal → Abaikan latihan → Kasar terhadap Saridah → Bertengkar Encik Kadir → Buang pingat → Kemalangan → Hospital → Insaf → Mohon maaf → Berlatih → Pingat emas → Pecah rekod",
+      values: "Disiplin · Keinsafan · Bertanggungjawab · Kasih sayang · Ketabahan",
+      lessons: "Berdisiplin · Jauhi sombong · Hargai sahabat · Berani mengakui kesilapan · Hormati jurulatih · Bersyukur dengan bakat",
+    },
+
+    uasaQuestions: [
+      {
+        type: "MCQ",
+        question: "Apakah perubahan sikap Kamarul selepas menjadi terkenal dalam sukan lari?",
+        answer: "Kamarul menjadi sombong dan angkuh, mula mengabaikan latihan, dan bersikap kasar terhadap orang-orang di sekelilingnya.",
+        explanation: "Perubahan sikap Kamarul ini adalah punca utama kepada semua konflik dalam novel.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah peristiwa yang menjadi pemangkin kepada keinsafan Kamarul?",
+        answer: "Kemalangan jalan raya yang menyebabkan Kamarul dirawat di hospital menjadi pemangkin kepada keinsafannya.",
+        explanation: "Tempoh di hospital memberi Kamarul masa dan kesunyian untuk bermuhasabah dan insaf.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah peranan De Wega dalam novel Pelari Muda?",
+        answer: "De Wega berperanan sebagai contoh teladan kepada Kamarul — menunjukkan bahawa atlet yang berjaya sepatutnya kekal berdisiplin dan merendah diri.",
+        explanation: "Watak De Wega berfungsi sebagai cermin yang menunjukkan sikap atlet yang betul berbanding sikap Kamarul yang sombong.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah pencapaian Kamarul pada akhir novel?",
+        answer: "Kamarul memenangi pingat emas dalam Sukan SEA dan berjaya memecahkan rekod lama.",
+        explanation: "Pencapaian ini membuktikan tema utama — keinsafan membawa kejayaan yang lebih besar.",
+      },
+      {
+        type: "MCQ",
+        question: "Mengapakah Saridah dianggap sahabat sejati Kamarul?",
+        answer: "Saridah dianggap sahabat sejati kerana beliau tetap setia menyokong Kamarul walaupun Kamarul pernah bersikap kasar terhadapnya, dan memaafkan Kamarul apabila beliau memohon maaf.",
+        explanation: "Saridah menggambarkan persahabatan sejati yang tidak berubah mengikut keadaan.",
+      },
+      {
+        type: "Struktur",
+        question: "Jelaskan dua perwatakan Kamarul beserta bukti daripada novel.",
+        answer: "Pertama, Kamarul bersifat sombong dan angkuh apabila beliau mula mengabaikan sesi latihan yang ditetapkan oleh Encik Kadir dan bersikap kasar terhadap Saridah setelah menjadi terkenal. Kedua, Kamarul bersifat gigih apabila selepas insaf, beliau kembali berlatih dengan penuh disiplin sehingga berjaya memenangi pingat emas Sukan SEA dan memecahkan rekod lama.",
+        explanation: "Pastikan setiap sifat disokong dengan bukti konkrit daripada peristiwa dalam cerita.",
+      },
+      {
+        type: "Struktur",
+        question: "Huraikan dua nilai yang terdapat dalam novel Pelari Muda beserta contoh daripada cerita.",
+        answer: "Pertama, nilai disiplin. Kamarul hanya berjaya memecahkan rekod Sukan SEA selepas beliau kembali berlatih dengan penuh disiplin di bawah bimbingan Encik Kadir selepas insaf. Ini membuktikan bahawa disiplin adalah asas kepada kejayaan. Kedua, nilai keinsafan. Kamarul insaf akan kesilapannya semasa dirawat di hospital dan memohon maaf kepada Saridah dan Encik Kadir — bukti bahawa beliau berani mengakui kesilapan dan berubah.",
+        explanation: "Setiap nilai perlu disertai dengan contoh daripada cerita. Elak jawapan yang terlalu umum.",
+      },
+      {
+        type: "Struktur",
+        question: "Apakah tema utama novel Pelari Muda? Jelaskan bagaimana tema ini digambarkan melalui jalan cerita.",
+        answer: "Tema utama novel ini ialah keinsafan membawa kejayaan. Tema ini digambarkan melalui perjalanan Kamarul yang bermula dengan kejayaan, kemudian tersasar akibat kesombongan, dan akhirnya mencapai kejayaan sebenar selepas insaf. Walaupun Kamarul pernah membuang pingat dan mengabaikan latihan, keinsafannya semasa di hospital mendorong beliau untuk kembali berlatih dengan bersungguh-sungguh sehingga memenangi pingat emas dan memecahkan rekod Sukan SEA.",
+        explanation: "Nyatakan tema dengan jelas, kemudian hubungkan dengan peristiwa penting dalam cerita.",
+      },
+      {
+        type: "Struktur",
+        question: "Jelaskan kepentingan watak Encik Kadir dalam novel Pelari Muda.",
+        answer: "Encik Kadir penting dalam novel ini kerana beliau berperanan sebagai jurulatih yang bertanggungjawab dan berdedikasi terhadap anak didiknya. Walaupun Kamarul pernah tidak menghormati dan bertengkar dengannya, Encik Kadir tetap bersabar dan menerima Kamarul kembali apabila beliau insaf. Tanpa kesabaran dan dedikasi Encik Kadir, Kamarul tidak akan mempunyai bimbingan yang diperlukan untuk bangkit semula. Beliau menggambarkan persoalan tanggungjawab jurulatih yang bukan sekadar melatih kemahiran sukan, tetapi turut membentuk karakter anak didik.",
+        explanation: "Soalan kepentingan watak memerlukan penjelasan tentang fungsi watak dalam plot dan mesej yang dibawa.",
+      },
+      {
+        type: "Struktur",
+        question: "Nyatakan dua pengajaran daripada novel Pelari Muda dan hubungkannya dengan peristiwa dalam cerita.",
+        answer: "Pertama, kita hendaklah sentiasa berdisiplin dalam apa jua bidang yang diceburi. Kamarul membuktikan bahawa apabila beliau mengabaikan disiplin latihan, prestasinya merosot. Hanya apabila beliau kembali berdisiplin, beliau berjaya memecahkan rekod Sukan SEA. Kedua, kita hendaklah menjauhi sifat sombong dan angkuh. Kesombongan Kamarul telah merosakkan hubungannya dengan Saridah dan Encik Kadir, menyebabkan beliau mengabaikan latihan, dan hampir menghancurkan masa depan sukannya.",
+        explanation: "Format yang betul: 'Kita hendaklah...' + huraian + bukti daripada cerita.",
+      },
+      {
+        type: "KBAT",
+        question: "Pada pendapat kamu, apakah faktor yang paling penting dalam kebangkitan semula Kamarul? Berikan alasan yang kukuh.",
+        answer: "Faktor paling penting dalam kebangkitan semula Kamarul ialah keinsafan dalaman yang berlaku semasa beliau dirawat di hospital. Walaupun sokongan Saridah dan bimbingan Encik Kadir penting, tanpa keinsafan Kamarul sendiri, sokongan orang lain tidak akan berkesan. Keinsafan itulah yang mendorong Kamarul memohon maaf, kembali berlatih dengan disiplin, dan akhirnya memecahkan rekod. Ini membuktikan bahawa perubahan sebenar harus datang dari dalam diri seseorang, bukan sekadar tekanan dari luar.",
+        explanation: "Soalan KBAT memerlukan pendapat yang disokong dengan hujah dan bukti. Tunjukkan pemikiran kritis dan hubungan antara faktor.",
+      },
+      {
+        type: "KBAT",
+        question: "Bandingkan sikap Kamarul pada awal cerita dengan sikapnya pada akhir cerita. Apakah perubahan yang paling ketara?",
+        answer: "Pada awal cerita, Kamarul adalah seorang atlet yang sombong, tidak berdisiplin, dan tidak menghargai orang di sekelilingnya. Beliau mengabaikan latihan, bersikap kasar kepada Saridah, dan bertengkar dengan Encik Kadir sehingga membuang pingat. Pada akhir cerita, Kamarul telah berubah sepenuhnya — beliau rendah diri, berdisiplin, menghargai persahabatan Saridah, dan menghormati bimbingan Encik Kadir. Perubahan paling ketara ialah dari angkuh kepada rendah diri, yang dibuktikan apabila beliau memohon maaf dan menerima bimbingan semula. Perubahan inilah yang membolehkan beliau mencapai kejayaan sebenar.",
+        explanation: "Soalan perbandingan memerlukan jawapan yang jelas menunjukkan perbezaan antara dua keadaan dengan contoh konkrit.",
+      },
+      {
+        type: "KBAT",
+        question: "Mengapakah novel Pelari Muda relevan kepada kehidupan murid-murid hari ini walaupun ia berkisarkan dunia sukan?",
+        answer: "Novel Pelari Muda relevan kepada kehidupan murid hari ini kerana pengajaran utamanya melampaui dunia sukan. Pertama, cabaran untuk kekal rendah diri setelah berjaya adalah sesuatu yang dihadapi oleh semua orang — bukan hanya atlet. Kedua, kepentingan disiplin dalam belajar adalah sama seperti disiplin dalam latihan sukan. Ketiga, menghadapi godaan untuk bersikap sombong setelah mendapat perhatian adalah realiti yang dihadapi oleh ramai remaja hari ini, terutama di era media sosial. Keempat, keberanian mengakui kesilapan dan memohon maaf adalah kemahiran hidup yang diperlukan dalam semua aspek kehidupan.",
+        explanation: "Soalan relevan memerlukan jawapan yang menghubungkan cerita dengan kehidupan nyata murid. Tunjukkan pemahaman konteks semasa.",
+      },
+    ],
+
+    examBooster: {
+      frequentPoints: [
+        "🔥 Sangat Penting — Tema: Keinsafan membawa kejayaan",
+        "🔥 Sangat Penting — Perwatakan Kamarul lengkap: berbakat, sombong, angkuh, insaf, gigih",
+        "🔥 Sangat Penting — Peristiwa kemalangan dan keinsafan di hospital sebagai titik perubahan",
+        "⭐ Penting — Perwatakan Encik Kadir: penyabar, bertanggungjawab, berdedikasi",
+        "⭐ Penting — Perwatakan Saridah: prihatin, setia berkawan, pemaaf",
+        "⭐ Penting — Nilai disiplin dan keinsafan beserta contoh daripada cerita",
+        "⭐ Penting — Pengajaran dalam format 'Kita hendaklah...' beserta bukti",
+        "📌 Perlu Tahu — Peranan De Wega sebagai cermin/contoh teladan kepada Kamarul",
+        "📌 Perlu Tahu — Peristiwa Kamarul membuang pingat sebagai simbol",
+        "📌 Perlu Tahu — Kamarul memenangi pingat emas dan memecahkan rekod Sukan SEA",
+        "📌 Perlu Tahu — Zon novel: Utara (Kedah, Perlis, Pulau Pinang, Perak)",
+      ],
+      commonQuestions: [
+        {
+          question: "Jelaskan perwatakan watak utama beserta bukti.",
+          answerHint:
+            "Kamarul: Sombong (abaikan latihan, kasar terhadap Saridah) · Berani mengakui kesilapan (mohon maaf kepada Saridah dan Encik Kadir) · Gigih (kembali berlatih hingga pecah rekod)",
+          modelAnswer:
+            "Watak utama ialah Kamarul. Pertama, Kamarul bersifat sombong apabila beliau mengabaikan latihan dan bersikap kasar terhadap Saridah setelah menjadi terkenal. Kedua, Kamarul bersifat berani mengakui kesilapan apabila beliau memohon maaf kepada Saridah dan Encik Kadir dengan ikhlas selepas insaf di hospital. Ketiga, Kamarul bersifat gigih apabila beliau kembali berlatih dengan disiplin penuh sehingga memenangi pingat emas dan memecahkan rekod Sukan SEA.",
+          examTip: "Sertakan minimum tiga sifat dengan bukti yang berbeza-beza.",
+        },
+        {
+          question: "Apakah tema novel dan bagaimana ia dikemukakan dalam cerita?",
+          answerHint:
+            "Tema: Keinsafan membawa kejayaan. Bukti: Kamarul insaf di hospital → mohon maaf → berlatih semula → pingat emas + rekod.",
+          modelAnswer:
+            "Tema utama ialah keinsafan membawa kejayaan. Tema ini dikemukakan melalui perjalanan Kamarul yang bermula dengan kejayaan, kemudian tersasar akibat kesombongan, dan akhirnya mencapai kejayaan tertinggi selepas insaf. Semasa dirawat di hospital, Kamarul bermuhasabah dan insaf lalu memohon maaf, kembali berlatih dengan disiplin, dan memenangi pingat emas serta memecahkan rekod Sukan SEA.",
+          examTip: "Nyatakan tema dengan tepat, kemudian hubungkan dengan sekurang-kurangnya dua peristiwa.",
+        },
+      ],
+    },
+
+    revision: {
+      theme: "Keinsafan membawa kejayaan",
+      values: "Disiplin · Keinsafan · Bertanggungjawab · Kasih sayang · Ketabahan",
+      lessons: "Berdisiplin · Jauhi sombong · Hargai sahabat · Berani mengakui kesilapan · Hormati jurulatih · Bersyukur dengan bakat",
+      examTips: "Fokus: Perwatakan Kamarul (sombong→insaf→gigih) · Tema · Peristiwa kemalangan & keinsafan · Nilai disiplin · Pengajaran 'Kita hendaklah...'",
+    },
+
+    miniQuiz: [
+      {
+        question: "Apakah yang dilakukan oleh Kamarul semasa marah kepada Encik Kadir?",
+        answerHint: "Kamarul membuang pingat yang pernah dimenanginya dalam pertengkaran dengan Encik Kadir.",
+        modelAnswer: "Kamarul membuang pingat yang pernah dimenanginya.",
+        explanation: "Tindakan membuang pingat adalah simbol titik terendah Kamarul sebelum keinsafannya.",
+        examTip: "Ingat: Membuang pingat = titik terendah Kamarul = simbol kehilangan kawalan diri.",
+      },
+      {
+        question: "Di manakah Kamarul insaf akan kesilapannya?",
+        answerHint: "Kamarul insaf semasa dirawat di hospital selepas terlibat dalam kemalangan jalan raya.",
+        modelAnswer: "Kamarul insaf semasa dirawat di hospital selepas kemalangan jalan raya.",
+        explanation: "Hospital adalah tempat Kamarul bermuhasabah dalam kesunyian — titik transformasi paling penting dalam cerita.",
+        examTip: "Hospital = tempat keinsafan Kamarul. Ini soalan yang kerap keluar.",
+      },
+      {
+        question: "Apakah peranan De Wega dalam mengubah sikap Kamarul?",
+        answerHint: "De Wega memberi nasihat dan menjadi contoh teladan kepada Kamarul tentang cara atlet cemerlang sepatutnya berkelakuan.",
+        modelAnswer: "De Wega memberi nasihat berharga kepada Kamarul dan menjadi contoh teladan — menunjukkan bahawa atlet cemerlang perlu kekal berdisiplin dan merendah diri.",
+        explanation: "De Wega berfungsi sebagai cermin kepada Kamarul — kontras sikap De Wega yang merendah diri dengan sombongnya Kamarul.",
+        examTip: "De Wega = contoh teladan + cermin kepada Kamarul. Bukan watak utama tetapi penting untuk soalan.",
+      },
+    ],
+  },
+
+  // ─── Novel: Sejambak Bakti (Zon Selatan) ─────────────────────────────────────
+  {
+    id: "sejambak-bakti",
+    title: "Sejambak Bakti",
+    typeLabel: "Novel (Zon Selatan — Johor, Melaka, Negeri Sembilan)",
+    kind: "story",
+    studyTime: "25 minit",
+    difficulty: "Sederhana",
+    examFocus: "Watak + Tema + Peristiwa + Nilai",
+    intro:
+      "Jangan risau jika novel ini terasa panjang. Selepas belajar di sini, kamu akan faham keseluruhan cerita Sejambak Bakti dan bersedia menjawab soalan peperiksaan — tanpa perlu membaca nota tambahan.",
+
+    story60:
+      "Razali dilantik ke koperasi → koperasi maju → Munir cemburu → Munir ganggu koperasi → Razali dipukul → koperasi diceroboh → Razali difitnah → disiasat polis → Munir ditangkap → Munir insaf & mohon maaf → koperasi johan → Razali jumpa Pak Ramli (bapa kandung).",
+
+    story90:
+      "Razali dilantik sebagai penolong setiausaha koperasi sekolah dan bersama Cikgu Zulkifli, membawa koperasi mencapai kejayaan. Munir yang cemburu melancarkan pelbagai gangguan — Razali dipukul, koperasi diceroboh, dan Razali difitnah menyebabkan beliau disiasat polis. Pak Zakaria yang tergesa-gesa menghalau Razali. Akhirnya kebenaran terungkap, Munir ditangkap dan insaf, koperasi memenangi kejohanan, dan Razali menemui Pak Ramli — bapa kandungnya yang selama ini dicari.",
+
+    retelling3Min:
+      "Razali merupakan seorang murid yang rajin dan bertanggungjawab. Beliau telah dipilih untuk memegang jawatan penolong setiausaha koperasi sekolah. Di bawah bimbingan Cikgu Zulkifli yang berdedikasi, Razali dan rakan-rakannya termasuk Ramlah bekerja keras untuk memajukan koperasi. Usaha mereka membuahkan hasil apabila koperasi mula berkembang maju.\n\nNamun kejayaan Razali menarik perasaan tidak senang dalam diri Munir. Munir yang berasa cemburu mula melancarkan pelbagai gangguan untuk menghalang kejayaan koperasi. Pertama, Razali telah dipukul dalam satu insiden. Kemudian koperasi diceroboh dan barang-barangnya dicuri. Lebih menyedihkan, Razali difitnah sebagai dalang di sebalik kecerobohan itu sendiri. Akibat fitnah tersebut, Razali dibawa untuk disiasat oleh polis. Pak Zakaria, seorang yang cepat membuat kesimpulan, telah menghalau Razali tanpa mendengar penjelasannya terlebih dahulu.\n\nDalam keadaan tertekan, Razali tetap tabah. Beliau tidak berputus asa dan tidak membalas kejahatan dengan kejahatan. Akhirnya kebenaran mula terserlah. Munir ditangkap dan berhadapan dengan undang-undang. Di sebalik itu semua, Munir menyedari betapa salahnya tindakannya dan memohon maaf kepada Razali dengan penuh keikhlasan.\n\nPada penghujung cerita, koperasi sekolah telah berjaya memenangi kejohanan — bukti kukuh bahawa kegigihan dan kerjasama membuahkan hasil yang manis. Yang lebih bermakna, Razali akhirnya berpeluang bertemu dengan Pak Ramli — bapa kandungnya yang selama ini dirindui.",
+
+    timeline: [
+      { stage: "Permulaan",    text: "Razali dilantik sebagai penolong setiausaha koperasi sekolah di bawah bimbingan Cikgu Zulkifli." },
+      { stage: "Perkembangan", text: "Koperasi semakin maju. Munir mula berasa cemburu dan merancang untuk mengganggu." },
+      { stage: "Konflik",      text: "Razali dipukul, koperasi diceroboh, dan Razali difitnah sehingga disiasat polis." },
+      { stage: "Klimaks",      text: "Pak Zakaria menghalau Razali. Munir ditangkap. Kebenaran mula terungkap." },
+      { stage: "Peleraian",    text: "Munir insaf dan mohon maaf. Koperasi menjadi johan. Razali bertemu Pak Ramli." },
+    ],
+
+    decoder: [
+      {
+        rangkap: "Bahagian 1 — Pelantikan dan Semangat Baru",
+        pantunMudah: "Razali dipilih untuk memimpin koperasi. Dengan semangat dan bimbingan Cikgu Zulkifli, koperasi mula berkembang maju.",
+        maksud: "Bahagian ini memperkenalkan watak utama dan suasana awal yang penuh harapan. Pelantikan Razali menggambarkan kepercayaan yang diberikan dan tanggungjawab yang perlu dipikul.",
+        tema: "Amanah dan tanggungjawab dalam kepimpinan",
+        nilai: "Amanah, Kerajinan",
+        pengajaran: "Kita hendaklah menerima tanggungjawab dengan penuh amanah dan bersungguh-sungguh.",
+      },
+      {
+        rangkap: "Bahagian 2 — Kemajuan dan Kemunculan Konflik",
+        pantunMudah: "Koperasi semakin maju dengan usaha Razali dan rakan-rakan. Namun kemajuan ini menimbulkan perasaan cemburu dalam diri Munir.",
+        maksud: "Kejayaan Razali menjadi pencetus kepada konflik. Sifat iri hati Munir menggambarkan bagaimana kejayaan orang lain boleh menimbulkan reaksi negatif jika tidak dikawal.",
+        tema: "Kesan iri hati terhadap hubungan",
+        nilai: "Kerjasama, Kerajinan",
+        pengajaran: "Kita hendaklah gembira dengan kejayaan orang lain dan menjadikannya dorongan untuk berusaha lebih gigih.",
+      },
+      {
+        rangkap: "Bahagian 3 — Serangan dan Fitnah",
+        pantunMudah: "Munir melancarkan serangan — Razali dipukul, koperasi diceroboh, dan yang paling menyakitkan, Razali difitnah sebagai penjenayah.",
+        maksud: "Fitnah adalah kejahatan yang paling menyakitkan kerana ia merosakkan nama baik seseorang. Razali yang tidak bersalah terpaksa menanggung bebanan yang bukan kesalahannya.",
+        tema: "Ketabahan menghadapi fitnah",
+        nilai: "Ketabahan, Kejujuran",
+        pengajaran: "Kita hendaklah tabah menghadapi fitnah dan terus berpegang kepada kebenaran.",
+      },
+      {
+        rangkap: "Bahagian 4 — Kebenaran Terungkap",
+        pantunMudah: "Siasatan dijalankan. Munir akhirnya ditangkap. Pak Zakaria yang terburu-buru menyedari kesilapannya. Kebenaran tidak dapat disembunyikan selamanya.",
+        maksud: "Bahagian ini mengajarkan bahawa kejahatan pasti akan terdedah. Pak Zakaria pula menjadi pengajaran tentang bahaya membuat keputusan tanpa usul periksa.",
+        tema: "Keadilan dan kebenaran akhirnya menang",
+        nilai: "Kejujuran, Ketabahan",
+        pengajaran: "Kita hendaklah berhati-hati sebelum membuat tuduhan dan tidak tergesa-gesa dalam membuat kesimpulan.",
+      },
+      {
+        rangkap: "Bahagian 5 — Peleraian dan Kegembiraan",
+        pantunMudah: "Munir insaf dan mohon maaf. Koperasi menjadi johan. Razali bertemu Pak Ramli. Segala kesusahan terbayar dengan kegembiraan yang berlipat ganda.",
+        maksud: "Peleraian yang sempurna — Munir berubah, koperasi berjaya, dan Razali mendapat hadiah paling bermakna iaitu menemui bapanya.",
+        tema: "Kegigihan dan kebaikan mendapat ganjaran",
+        nilai: "Kemaafan, Kerjasama, Ketabahan",
+        pengajaran: "Kita hendaklah memaafkan orang yang telah bersalah kerana keikhlasan memaafkan membawa ketenangan dan kebahagiaan.",
+      },
+    ],
+
+    masterCharacters: [
+      {
+        name: "Razali",
+        role: "Watak utama dan protagonis. Razali ialah murid yang dilantik menjadi penolong setiausaha koperasi. Setiap peristiwa besar dalam novel berpusar di sekelilingnya.",
+        traits: ["Rajin", "Amanah", "Tabah", "Bertanggungjawab", "Pemaaf"],
+        evidence:
+          "Razali menjalankan tugasnya di koperasi dengan penuh dedikasi walaupun menghadapi gangguan daripada Munir. Walaupun dipukul, difitnah, dan disiasat polis, Razali tidak berputus asa. Yang paling jelas, Razali memaafkan Munir walaupun Munir telah banyak menyakitinya — bukti terkuat sifat pemaafnya.",
+        relationships:
+          "Bersahabat baik dengan Ramlah. Dibimbing oleh Cikgu Zulkifli. Berhadapan konflik dengan Munir tetapi akhirnya memaafkan. Mempunyai hubungan emosi mendalam dengan Pak Ramli yang terungkap di akhir cerita.",
+        importance:
+          "Tanpa Razali tiada koperasi yang maju, tiada konflik yang bermakna, dan tiada pengajaran kemaafan. Razali melambangkan remaja yang menggunakan amanah dan kesabaran untuk mencapai kejayaan.",
+      },
+      {
+        name: "Munir",
+        role: "Watak antagonis yang akhirnya insaf. Munir mewakili bahaya sifat iri hati yang tidak dikawal.",
+        traits: ["Iri hati", "Pendendam", "Tidak amanah", "Insaf akan kesilapan"],
+        evidence:
+          "Munir merancang dan melaksanakan gangguan terhadap koperasi, memukul Razali, dan mengetuai kecerobohan koperasi. Namun selepas ditangkap, Munir menyedari kesilapannya dan memohon maaf kepada Razali dengan ikhlas.",
+        relationships:
+          "Bermula sebagai musuh Razali akibat iri hati. Hubungan berubah selepas Munir insaf — dari permusuhan kepada penyesalan dan kemaafan.",
+        importance:
+          "Munir mengajarkan dua perkara penting: bahaya iri hati yang boleh merosakkan diri dan orang lain, serta bukti bahawa manusia boleh berubah menjadi lebih baik.",
+      },
+      {
+        name: "Ramlah",
+        role: "Watak sampingan dan rakan setia Razali. Ramlah mewakili persahabatan yang tulus dan sokongan moral.",
+        traits: ["Rajin", "Setia kawan", "Prihatin"],
+        evidence:
+          "Ramlah sentiasa hadir menyokong Razali dalam pengurusan koperasi. Beliau prihatin terhadap tekanan yang dihadapi Razali dan tidak pernah meninggalkan sahabatnya ketika susah.",
+        relationships:
+          "Sahabat paling dipercayai Razali. Hubungan mereka menggambarkan nilai persahabatan sejati yang tidak goyah dek dugaan.",
+        importance:
+          "Ramlah membuktikan bahawa dalam setiap perjuangan, sokongan sahabat yang setia adalah kekuatan yang tidak ternilai.",
+      },
+      {
+        name: "Cikgu Zulkifli",
+        role: "Penasihat koperasi dan pembimbing Razali. Cikgu Zulkifli mewakili peranan guru yang berdedikasi.",
+        traits: ["Bijak", "Bertanggungjawab", "Berdedikasi"],
+        evidence:
+          "Cikgu Zulkifli membimbing Razali dan murid-murid lain dalam pengurusan koperasi dengan sabar. Beliau tidak mudah berputus asa walaupun koperasi menghadapi pelbagai cabaran.",
+        relationships:
+          "Hubungan guru-murid yang positif dengan Razali. Cikgu Zulkifli adalah pendorong utama kejayaan koperasi.",
+        importance:
+          "Cikgu Zulkifli menggambarkan peranan guru yang melampaui bilik darjah — seorang pembimbing yang membantu murid berkembang.",
+      },
+      {
+        name: "Pak Zakaria",
+        role: "Watak dewasa yang menggambarkan bahaya tindakan tergesa-gesa.",
+        traits: ["Tegas", "Cepat membuat kesimpulan"],
+        evidence:
+          "Pak Zakaria menghalau Razali tanpa memberi peluang kepada Razali menjelaskan dirinya, hanya berdasarkan maklumat yang belum disahkan kebenarannya.",
+        relationships:
+          "Hubungan yang tegang dengan Razali akibat salah faham. Tindakannya menambahkan tekanan kepada Razali.",
+        importance:
+          "Pak Zakaria mengajar bahawa orang dewasa pun boleh membuat kesilapan apabila bertindak tanpa usul periksa.",
+      },
+      {
+        name: "Pak Ramli",
+        role: "Watak yang membawa resolusi emosi kepada cerita — bapa kandung Razali.",
+        traits: ["Penyayang", "Mengambil berat"],
+        evidence:
+          "Pak Ramli terbukti penyayang apabila pertemuan dengan Razali pada akhir cerita menggambarkan kasih sayang yang tulus seorang bapa.",
+        relationships:
+          "Bapa kandung Razali yang akhirnya ditemui pada penghujung cerita. Pertemuan ini menjadi ganjaran emosi kepada semua kesusahan yang dilalui Razali.",
+        importance:
+          "Pak Ramli memberikan dimensi peribadi kepada perjuangan Razali — di sebalik kesibukan koperasi, ada kerinduan seorang anak kepada bapanya.",
+      },
+    ],
+
+    relationshipMap: [
+      {
+        from: "Razali",
+        relation: "↔ Konflik & Kemaafan",
+        to: "Munir",
+        explanation:
+          "Hubungan paling kompleks dalam novel. Munir berasa cemburu terhadap kejayaan Razali dan melancarkan pelbagai serangan. Namun Razali tidak membalas dengan dendam. Apabila Munir insaf, Razali memaafkannya — menjadikan hubungan ini teras pengajaran moral novel.",
+      },
+      {
+        from: "Razali",
+        relation: "↔ Persahabatan Tulus",
+        to: "Ramlah",
+        explanation:
+          "Ramlah adalah sahabat setia yang menyokong Razali dalam setiap keadaan. Hubungan mereka menggambarkan nilai persahabatan sejati yang tidak goyah walaupun menghadapi tekanan.",
+      },
+      {
+        from: "Razali",
+        relation: "↔ Hubungan Guru-Murid",
+        to: "Cikgu Zulkifli",
+        explanation:
+          "Cikgu Zulkifli membimbing Razali dengan dedikasi. Hubungan ini menggambarkan betapa pentingnya peranan guru dalam membentuk potensi murid.",
+      },
+      {
+        from: "Razali",
+        relation: "↔ Salah Faham",
+        to: "Pak Zakaria",
+        explanation:
+          "Pak Zakaria tergesa-gesa menghalau Razali berdasarkan fitnah. Hubungan ini menggambarkan betapa bahayanya membuat kesimpulan tanpa usul periksa.",
+      },
+      {
+        from: "Razali",
+        relation: "↔ Ikatan Darah",
+        to: "Pak Ramli",
+        explanation:
+          "Pak Ramli adalah bapa kandung Razali yang akhirnya ditemui. Hubungan ini menambahkan dimensi emosi yang mendalam kepada perjuangan Razali sepanjang cerita.",
+      },
+    ],
+
+    detailedPlot: [
+      {
+        stage: "Permulaan",
+        what: "Razali dilantik sebagai penolong setiausaha koperasi sekolah. Di bawah bimbingan Cikgu Zulkifli, beliau bersama Ramlah dan rakan-rakan mula bekerja keras untuk memajukan koperasi.",
+        why: "Bahagian ini memperkenalkan watak utama dan latar cerita. Semangat Razali dan kepercayaan yang diberikan kepadanya meletakkan asas tema amanah dan tanggungjawab.",
+        effect: "Pembaca memahami bahawa Razali adalah murid yang dipercayai dan bersemangat — menjadikan dugaan yang bakal dihadapinya lebih bermakna.",
+      },
+      {
+        stage: "Perkembangan",
+        what: "Koperasi semakin maju berkat usaha Razali dan rakan-rakan. Kejayaan ini mula menarik perhatian, namun turut mencetuskan perasaan cemburu dalam diri Munir.",
+        why: "Kemajuan koperasi menjadi bukti kejayaan Razali, sementara reaksi Munir menggambarkan kesan negatif iri hati yang tidak dikawal.",
+        effect: "Pembaca mula merasai ketegangan yang bakal berlaku apabila Munir mula merancang gangguan.",
+      },
+      {
+        stage: "Konflik",
+        what: "Munir dan rakan-rakannya melancarkan serangan — Razali dipukul, koperasi diceroboh, dan yang paling menyakitkan, Razali difitnah sebagai orang yang bertanggungjawab atas kecerobohan itu.",
+        why: "Fitnah adalah titik konflik paling kritikal. Ia menguji ketabahan Razali pada tahap paling berat — apabila orang yang tidak bersalah dituduh melakukan jenayah.",
+        effect: "Razali disiasat polis dan Pak Zakaria menghalau Razali — memuncakkan tekanan yang dihadapinya.",
+      },
+      {
+        stage: "Klimaks",
+        what: "Siasatan polis dijalankan. Munir akhirnya ditangkap. Kebenaran mula terungkap secara beransur-ansur. Pak Zakaria menyedari tindakannya yang tergesa-gesa.",
+        why: "Ini adalah titik paling penting — keadilan mula berpihak kepada kebenaran. Tangkapan Munir membuktikan bahawa kejahatan tidak boleh bersembunyi selamanya.",
+        effect: "Suasana berpaling daripada tekanan kepada harapan. Pembaca merasai kelegaan apabila kebenaran mula terserlah.",
+      },
+      {
+        stage: "Peleraian",
+        what: "Munir insaf dan memohon maaf. Razali memaafkan Munir. Koperasi memenangi kejohanan. Razali bertemu Pak Ramli — bapa kandungnya.",
+        why: "Peleraian yang menyeluruh — kemaafan, kejayaan, dan pertemuan keluarga menjadikan akhir cerita sangat bermakna.",
+        effect: "Novel berakhir dengan pengajaran menyeluruh — kegigihan, kerjasama, kemaafan, dan kepercayaan semuanya terbayar.",
+      },
+    ],
+
+    importantEvents: [
+      {
+        event: "Razali dilantik ke koperasi",
+        what: "Razali dipilih untuk memegang jawatan penolong setiausaha koperasi sekolah — satu kepercayaan besar yang diberikan kepada murid.",
+        whyImportant: "Pelantikan ini menjadi titik permulaan keseluruhan cerita. Ia membuktikan bahawa Razali dipercayai kerana rajin dan amanah.",
+        possibleQuestion: "Mengapakah Razali dipilih sebagai penolong setiausaha koperasi dan apakah yang ini menggambarkan tentang wataknya?",
+      },
+      {
+        event: "Munir berasa cemburu",
+        what: "Melihat kejayaan Razali dan kemajuan koperasi, Munir tidak dapat menahan perasaan cemburu dan mula merancang gangguan.",
+        whyImportant: "Perasaan cemburu Munir menjadi punca utama seluruh konflik dalam novel. Ia menggambarkan kesan buruk iri hati yang tidak dikawal.",
+        possibleQuestion: "Apakah yang mendorong Munir berasa cemburu dan bagaimana perasaan itu mempengaruhi jalan cerita?",
+      },
+      {
+        event: "Razali dipukul",
+        what: "Munir dan rakan-rakannya menyerang dan memukul Razali dalam satu insiden yang menggambarkan betapa jauhnya tindakan Munir dalam meluahkan iri hati.",
+        whyImportant: "Serangan fizikal ini menunjukkan bahawa iri hati Munir telah melampaui batas. Ia mencerminkan nilai negatif yang perlu dielakkan.",
+        possibleQuestion: "Apakah nilai yang tergambar melalui peristiwa Razali dipukul?",
+      },
+      {
+        event: "Koperasi diceroboh",
+        what: "Koperasi sekolah diceroboh dan barang-barangnya diambil — serangan langsung terhadap sesuatu yang Razali jaga dengan penuh amanah.",
+        whyImportant: "Kecerobohan ini menggambarkan betapa serius akibat iri hati. Ia juga menguji ketabahan Razali dalam melindungi amanah yang diberikan kepadanya.",
+        possibleQuestion: "Bagaimana kecerobohan koperasi menggambarkan tema dan nilai dalam novel?",
+      },
+      {
+        event: "Razali difitnah",
+        what: "Razali dituduh sebagai orang yang bertanggungjawab atas kecerobohan koperasi — fitnah yang paling berat kerana ia membalikkan keadaan seolah-olah Razali adalah penjenayah.",
+        whyImportant: "Fitnah adalah ujian terberat kepada sifat tabah dan kejujuran Razali. Peristiwa ini menggambarkan betapa mudah seseorang yang tidak bersalah boleh dizalimi.",
+        possibleQuestion: "Apakah pengajaran yang boleh diambil daripada peristiwa Razali difitnah?",
+      },
+      {
+        event: "Razali dibawa untuk siasatan",
+        what: "Akibat fitnah, Razali terpaksa berurusan dengan pihak berkuasa. Beliau disiasat walaupun tidak melakukan apa-apa kesalahan.",
+        whyImportant: "Siasatan ini merupakan ujian tertinggi kepada ketabahan Razali. Namun dalam situasi ini, kejujuran Razali menjadi perisai terkuat.",
+        possibleQuestion: "Bagaimana sikap Razali semasa disiasat menggambarkan nilai-nilai mulia dalam dirinya?",
+      },
+      {
+        event: "Pak Zakaria menghalau Razali",
+        what: "Pak Zakaria, tanpa mendengar penjelasan Razali terlebih dahulu, menghalau beliau berdasarkan maklumat yang belum disahkan.",
+        whyImportant: "Tindakan Pak Zakaria mengajarkan bahawa orang dewasa pun boleh melakukan kesilapan apabila bertindak tergesa-gesa tanpa usul periksa.",
+        possibleQuestion: "Apakah pengajaran yang boleh diambil daripada tindakan Pak Zakaria menghalau Razali?",
+      },
+      {
+        event: "Munir ditangkap",
+        what: "Siasatan polis akhirnya berjaya mendedahkan kebenaran. Munir ditangkap dan berhadapan dengan akibat tindakannya.",
+        whyImportant: "Tangkapan Munir adalah titik peralihan cerita — keadilan mula berpihak kepada yang benar. Ia membuktikan bahawa kejahatan tidak boleh lari dari hukumannya.",
+        possibleQuestion: "Apakah mesej yang disampaikan melalui peristiwa Munir ditangkap?",
+      },
+      {
+        event: "Munir insaf dan memohon maaf",
+        what: "Selepas ditangkap dan berhadapan dengan akibat tindakannya, Munir insaf dan memohon maaf kepada Razali dengan ikhlas.",
+        whyImportant: "Keinsafan Munir adalah teras pengajaran moral novel. Ia membuktikan manusia boleh berubah, dan kemaafan Razali melengkapkan nilai mulia yang ingin disampaikan penulis.",
+        possibleQuestion: "Mengapakah keinsafan Munir dan kemaafan Razali dianggap puncak pengajaran moral dalam novel ini?",
+      },
+      {
+        event: "Koperasi menjadi johan",
+        what: "Setelah semua dugaan dilalui, koperasi sekolah akhirnya berjaya memenangi kejohanan — ganjaran kepada kerjasama dan kegigihan.",
+        whyImportant: "Kejayaan koperasi membuktikan tema utama novel — kegigihan dan kerjasama membuahkan hasil. Ia juga mengesahkan bahawa amanah yang dipegang Razali tidak sia-sia.",
+        possibleQuestion: "Bagaimana kejayaan koperasi menjadi bukti kepada tema utama novel Sejambak Bakti?",
+      },
+      {
+        event: "Razali bertemu Pak Ramli",
+        what: "Pada penghujung cerita, Razali berpeluang bertemu dengan Pak Ramli — bapa kandungnya yang selama ini dicari.",
+        whyImportant: "Pertemuan ini menambahkan dimensi peribadi yang mengharukan. Ia menggambarkan bahawa di sebalik semua perjuangan, ada ganjaran yang lebih bermakna daripada sekadar kejayaan koperasi.",
+        possibleQuestion: "Apakah kepentingan pertemuan Razali dengan Pak Ramli pada akhir cerita?",
+      },
+    ],
+
+    issues: [
+      {
+        issue: "Kesan iri hati",
+        explanation:
+          "Novel ini menggambarkan secara jelas bahawa iri hati yang tidak dikawal boleh mendorong seseorang melakukan perkara yang merugikan diri sendiri dan orang lain. Munir menjadi bukti nyata bagaimana iri hati boleh mengubah seseorang menjadi penjenayah.",
+      },
+      {
+        issue: "Kepentingan amanah dalam tanggungjawab",
+        explanation:
+          "Razali menjalankan tugasnya di koperasi dengan penuh amanah walaupun menghadapi tekanan dari pelbagai penjuru. Novel ini menegaskan bahawa amanah adalah asas kepada sebarang tanggungjawab.",
+      },
+      {
+        issue: "Semangat kerjasama mencapai matlamat",
+        explanation:
+          "Kejayaan koperasi bukan hasil usaha seorang sahaja. Razali, Ramlah, Cikgu Zulkifli, dan ahli-ahli lain bekerja bersama. Novel ini menunjukkan bahawa kerjasama adalah kunci kepada kejayaan bersama.",
+      },
+      {
+        issue: "Kepentingan memaafkan",
+        explanation:
+          "Razali memaafkan Munir walaupun Munir telah banyak menyakitinya. Kemaafan Razali bukan tanda kelemahan — ia adalah tanda kebesaran hati yang mengubah hati Munir.",
+      },
+      {
+        issue: "Ketabahan menghadapi dugaan",
+        explanation:
+          "Razali menghadapi pukulan, kecerobohan koperasi, fitnah, dan siasatan — namun tidak pernah berputus asa. Novel ini mengajar bahawa ketabahan adalah kualiti yang paling penting ketika diuji.",
+      },
+      {
+        issue: "Peranan guru dalam membimbing murid",
+        explanation:
+          "Cikgu Zulkifli membuktikan bahawa guru yang berdedikasi bukan sahaja mengajar ilmu tetapi turut membentuk karakter murid. Bimbingannya adalah tulang belakang kejayaan koperasi.",
+      },
+    ],
+
+    theme: {
+      title: "Kegigihan murid dan guru memajukan koperasi sekolah",
+      explanation:
+        "Novel ini menunjukkan bahawa kejayaan koperasi sekolah bukan berlaku secara kebetulan. Ia adalah hasil kerjasama, kegigihan, dan amanah yang ditunjukkan oleh Razali, Ramlah, dan Cikgu Zulkifli — walaupun menghadapi pelbagai halangan dan dugaan.",
+      whyItMatters:
+        "Tema ini mengajar murid bahawa untuk mencapai sesuatu yang bermakna, diperlukan usaha berterusan, kerjasama, dan keberanian untuk terus maju walaupun ada halangan. Ini bukan hanya tentang koperasi — ini tentang kehidupan.",
+    },
+
+    values: [
+      {
+        value: "Amanah",
+        explanation: "Razali menjalankan tugasnya di koperasi dengan penuh amanah walaupun menghadapi tekanan dan gangguan daripada Munir.",
+        realLife: "Amanah bermakna melakukan tugas dengan jujur dan bertanggungjawab walaupun tiada yang memerhatikan.",
+        schoolLife: "Menyiapkan tugasan yang diberikan guru dengan jujur tanpa meniru atau menipu.",
+      },
+      {
+        value: "Kerajinan",
+        explanation: "Razali, Ramlah, dan ahli koperasi lain bekerja keras dalam mengurus koperasi sekolah sehingga berjaya.",
+        realLife: "Kerajinan bermakna berusaha dengan gigih tanpa menunggu orang lain mengarahkan.",
+        schoolLife: "Menyiapkan kerja rumah dan berulang kaji tanpa perlu disuruh berulang kali.",
+      },
+      {
+        value: "Kerjasama",
+        explanation: "Kejayaan koperasi adalah hasil kerjasama Razali, Ramlah, Cikgu Zulkifli, dan semua ahli yang bekerja dengan penuh komitmen.",
+        realLife: "Kerjasama bermakna menyumbang kepada matlamat bersama dan saling menyokong.",
+        schoolLife: "Bekerjasama dalam projek kumpulan dengan membahagikan tugas secara adil.",
+      },
+      {
+        value: "Ketabahan",
+        explanation: "Razali menghadapi pukulan, fitnah, dan siasatan polis namun tidak pernah berputus asa atau menyerah kalah.",
+        realLife: "Ketabahan bermakna terus berdiri walaupun berulang kali dijatuhkan.",
+        schoolLife: "Terus belajar dan berlatih walaupun gagal dalam ujian pertama.",
+      },
+      {
+        value: "Kejujuran",
+        explanation: "Razali tetap jujur semasa disiasat walaupun keadaan sukar. Kejujurannya akhirnya membantu kebenaran terungkap.",
+        realLife: "Kejujuran bermakna berkata benar walaupun kebenaran itu mungkin tidak menguntungkan diri sendiri.",
+        schoolLife: "Mengakui dengan jujur apabila tidak faham pelajaran daripada berpura-pura faham.",
+      },
+      {
+        value: "Kemaafan",
+        explanation: "Razali memaafkan Munir walaupun Munir telah memukul, menceroboh koperasi, dan menfitnah beliau.",
+        realLife: "Memaafkan bukan bermakna melupakan — ia bermakna membebaskan diri daripada beban kebencian.",
+        schoolLife: "Memaafkan rakan yang pernah mengejek atau menyakiti hati dengan lapang dada.",
+      },
+    ],
+
+    lessons: [
+      {
+        value: "Kita hendaklah bersikap amanah dalam melaksanakan tanggungjawab yang diberikan",
+        explanation: "Razali membuktikan bahawa amanah adalah asas kepada sebarang tugasan. Kepercayaan yang diberi harus dijaga dengan sepenuh hati.",
+        realLife: "Setiap tanggungjawab yang diberikan kepada kita — besar atau kecil — perlu dilaksanakan dengan penuh amanah.",
+        schoolLife: "Jika dilantik sebagai ketua kelas, jalankan tugas dengan jujur dan tidak mengambil kesempatan.",
+      },
+      {
+        value: "Kita hendaklah menjauhi sifat iri hati kerana ia membawa kemudaratan",
+        explanation: "Munir membuktikan bahawa iri hati yang tidak dikawal boleh mendorong seseorang melakukan jenayah dan akhirnya merugikan diri sendiri.",
+        realLife: "Gantikan perasaan iri hati dengan motivasi untuk berusaha lebih keras demi mencapai kejayaan sendiri.",
+        schoolLife: "Jika rakan mendapat markah lebih tinggi, jadikan ia semangat untuk belajar lebih gigih.",
+      },
+      {
+        value: "Kita hendaklah bekerjasama untuk mencapai matlamat bersama",
+        explanation: "Koperasi tidak mungkin berjaya tanpa kerjasama semua pihak. Kejayaan bersama lebih bermakna daripada kejayaan bersendirian.",
+        realLife: "Setiap usaha besar memerlukan kerjasama pelbagai pihak yang masing-masing menyumbang mengikut kebolehan.",
+        schoolLife: "Dalam kerja berkumpulan, setiap ahli perlu menyumbang dengan jujur dan tidak bergantung kepada orang lain sahaja.",
+      },
+      {
+        value: "Kita hendaklah tabah menghadapi fitnah dan tohmahan",
+        explanation: "Razali tidak goyah walaupun difitnah dan disiasat. Ketabahan beliau akhirnya membuahkan keadilan.",
+        realLife: "Apabila dipersalahkan untuk sesuatu yang bukan kesalahan kita, teruskan bersikap jujur dan percayakan kebenaran akan menang.",
+        schoolLife: "Jika dituduh melakukan sesuatu yang tidak dilakukan, jelaskan dengan tenang dan jangan bertindak balas dengan marah.",
+      },
+      {
+        value: "Kita hendaklah berhati-hati sebelum membuat tuduhan terhadap orang lain",
+        explanation: "Pak Zakaria menghalau Razali tanpa usul periksa. Tindakan tergesa-gesa ini menambahkan kesusahan kepada orang yang tidak bersalah.",
+        realLife: "Sebelum membuat tuduhan, pastikan maklumat yang ada adalah benar dan lengkap.",
+        schoolLife: "Jangan menuduh rakan mencuri atau berbohong hanya berdasarkan sangkaan — dapatkan fakta terlebih dahulu.",
+      },
+      {
+        value: "Kita hendaklah sentiasa bersedia memaafkan orang yang telah bersalah",
+        explanation: "Razali memaafkan Munir walaupun Munir telah banyak menyakitinya. Kemaafan ini bukan sahaja membebaskan Razali daripada dendam, malah mengubah hati Munir.",
+        realLife: "Memaafkan adalah tanda kekuatan jiwa, bukan kelemahan.",
+        schoolLife: "Jika rakan memohon maaf dengan ikhlas, terimalah kemaafannya dengan hati yang terbuka.",
+      },
+    ],
+
+    teacherExplains: [
+      "Hai murid-murid! Ramai yang beranggapan bahawa novel Sejambak Bakti ini hanya tentang koperasi sekolah — tentang jual beli barang dan pengurusan wang. Memang betul ada unsur koperasi di dalamnya, tetapi itu bukan mesej utama yang ingin disampaikan penulis.",
+      "Sebenarnya, novel ini mengajar empat perkara penting dalam kehidupan. Pertama — amanah. Razali menjaga tugasnya dengan penuh amanah walaupun menghadapi tekanan. Kedua — ketabahan. Beliau tidak berputus asa walaupun dipukul, difitnah, dan disiasat. Ketiga — kerjasama. Tanpa pasukan yang kukuh, koperasi tidak mungkin berjaya. Keempat — kemaafan. Inilah yang menjadikan Razali watak yang paling mulia dalam cerita ini.",
+      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham MESEJ di sebalik cerita, bukan sekadar hafal nama watak. Belajarlah menghubungkan watak, peristiwa, dan nilai dengan tema utama — kegigihan murid dan guru memajukan koperasi sekolah.",
+      "Ramai murid terlepas pandang tentang watak Munir. Mereka hanya nampak Munir sebagai 'penjahat'. Sebenarnya watak Munir mengandungi DUA pengajaran penting — pertama, bahaya iri hati yang tidak dikawal, dan kedua, bahawa manusia boleh berubah menjadi lebih baik apabila insaf. Kedua-dua pengajaran ini sangat bernilai untuk peperiksaan!",
+    ],
+
+    keyCharacterFocus: {
+      name: "Razali",
+      whyMatters:
+        "Razali adalah nadi cerita. Setiap peristiwa penting berkisar kepada keputusan dan tindakannya — dari pelantikan hingga memaafkan Munir dan bertemu Pak Ramli.",
+      supportsTheme:
+        "Razali menjadi bukti tema kegigihan. Dari mengurus koperasi hingga bertahan menghadapi fitnah, setiap tindakannya menggambarkan murid yang menggunakan amanah dan kesabaran untuk mencapai kejayaan.",
+      supportsIssues:
+        "Razali menghidupkan semua persoalan utama — amanah melalui tugasnya di koperasi, ketabahan melalui ujian yang dihadapi, dan kemaafan melalui sikapnya terhadap Munir.",
+      supportsValues:
+        "Razali menonjolkan nilai amanah, kerajinan, kerjasama, ketabahan, kejujuran, dan kemaafan — setiap satu boleh dikaitkan langsung dengan tindakannya dalam cerita.",
+      supportsLessons:
+        "Setiap pengajaran dalam novel boleh dikaitkan dengan tindakan Razali — tentang amanah, ketabahan, kerjasama, dan kemaafan.",
+    },
+
+    authorPurpose:
+      "Penulis menghasilkan novel ini untuk mendidik generasi muda bahawa kejayaan sebenar bukan sahaja diukur dari pencapaian akademik atau kewangan, tetapi dari nilai-nilai murni yang dipegang dalam menjalankan tanggungjawab. Melalui kisah koperasi sekolah, penulis ingin menunjukkan bahawa murid biasa boleh mencapai sesuatu yang luar biasa jika mereka bersikap amanah, gigih, dan sanggup bekerjasama.",
+
+    memory60: {
+      theme: "Kegigihan murid dan guru memajukan koperasi sekolah",
+      issues: "Iri hati · Amanah · Kerjasama · Kemaafan · Ketabahan · Peranan guru",
+      mainCharacters: "Razali (amanah, tabah, pemaaf) · Munir (iri hati→insaf) · Ramlah (setia kawan) · Cikgu Zulkifli (berdedikasi) · Pak Zakaria (cepat buat kesimpulan) · Pak Ramli (penyayang, bapa Razali)",
+      importantEvents: "Razali dilantik → Munir cemburu → Razali dipukul → Koperasi diceroboh → Razali difitnah → Disiasat polis → Pak Zakaria halau Razali → Munir ditangkap → Munir insaf → Koperasi johan → Razali jumpa Pak Ramli",
+      values: "Amanah · Kerajinan · Kerjasama · Ketabahan · Kejujuran · Kemaafan",
+      lessons: "Bersikap amanah · Jauhi iri hati · Bekerjasama · Tabah hadapi fitnah · Berhati-hati sebelum menuduh · Sentiasa memaafkan",
+    },
+
+    uasaQuestions: [
+      {
+        type: "MCQ",
+        question: "Apakah jawatan yang dipegang oleh Razali dalam koperasi sekolah?",
+        answer: "Razali memegang jawatan penolong setiausaha koperasi sekolah.",
+        explanation: "Pelantikan Razali sebagai penolong setiausaha adalah titik permulaan seluruh jalan cerita novel ini.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah perasaan Munir apabila melihat kejayaan Razali menguruskan koperasi?",
+        answer: "Munir berasa cemburu dan iri hati terhadap kejayaan Razali.",
+        explanation: "Iri hati Munir menjadi punca utama konflik dalam novel. Perasaan negatif ini mendorongnya melakukan pelbagai jenayah.",
+      },
+      {
+        type: "MCQ",
+        question: "Siapakah watak yang difitnah sebagai orang yang bertanggungjawab atas kecerobohan koperasi?",
+        answer: "Razali difitnah sebagai orang yang bertanggungjawab atas kecerobohan koperasi.",
+        explanation: "Fitnah terhadap Razali adalah konflik paling kritikal — ia menggambarkan betapa bahaya fitnah kepada orang yang tidak bersalah.",
+      },
+      {
+        type: "MCQ",
+        question: "Apakah pencapaian koperasi sekolah pada akhir novel?",
+        answer: "Koperasi sekolah berjaya memenangi kejohanan.",
+        explanation: "Kejayaan koperasi membuktikan tema utama — kegigihan dan kerjasama membuahkan hasil yang membanggakan.",
+      },
+      {
+        type: "MCQ",
+        question: "Siapakah Pak Ramli dalam novel Sejambak Bakti?",
+        answer: "Pak Ramli adalah bapa kandung Razali yang akhirnya ditemui pada penghujung cerita.",
+        explanation: "Pertemuan Razali dengan Pak Ramli menambahkan dimensi emosi yang mengharukan kepada peleraian cerita.",
+      },
+      {
+        type: "Struktur",
+        question: "Jelaskan dua perwatakan Razali beserta bukti daripada novel.",
+        answer: "Pertama, Razali bersifat amanah kerana beliau menjalankan tugasnya sebagai penolong setiausaha koperasi dengan penuh tanggungjawab walaupun menghadapi gangguan dan tekanan daripada Munir. Kedua, Razali bersifat pemaaf kerana walaupun Munir telah memukul, menceroboh koperasi, dan menfitnah beliau, Razali tetap memaafkan Munir apabila Munir memohon maaf dengan ikhlas.",
+        explanation: "Soalan perwatakan memerlukan: nama sifat + penjelasan + bukti daripada cerita. Tiga elemen ini penting untuk markah penuh.",
+      },
+      {
+        type: "Struktur",
+        question: "Huraikan dua nilai yang terdapat dalam novel Sejambak Bakti beserta contoh daripada cerita.",
+        answer: "Pertama, nilai kerjasama. Razali, Ramlah, Cikgu Zulkifli, dan ahli-ahli koperasi bekerjasama dengan bersungguh-sungguh untuk memajukan koperasi sekolah sehingga berjaya memenangi kejohanan. Kedua, nilai ketabahan. Razali tidak berputus asa walaupun menghadapi pukulan, kecerobohan koperasi, fitnah, dan siasatan polis — beliau terus berjuang sehingga kebenaran terungkap.",
+        explanation: "Format: nama nilai + penjelasan + contoh konkrit daripada cerita. Elak jawapan umum yang tidak berkaitan dengan cerita.",
+      },
+      {
+        type: "Struktur",
+        question: "Apakah tema utama novel Sejambak Bakti? Jelaskan bagaimana tema ini digambarkan dalam cerita.",
+        answer: "Tema utama novel ini ialah kegigihan murid dan guru memajukan koperasi sekolah. Tema ini digambarkan melalui usaha gigih Razali, Ramlah, dan Cikgu Zulkifli yang tidak berputus asa mengurus koperasi walaupun menghadapi gangguan daripada Munir. Walaupun koperasi diceroboh dan Razali difitnah, mereka terus berjuang. Akhirnya koperasi berjaya memenangi kejohanan — bukti kukuh kepada kegigihan mereka.",
+        explanation: "Nyatakan tema dengan tepat kemudian tunjukkan bagaimana ia digambarkan melalui watak dan peristiwa.",
+      },
+      {
+        type: "Struktur",
+        question: "Nyatakan dua pengajaran daripada novel Sejambak Bakti dan hubungkannya dengan peristiwa dalam cerita.",
+        answer: "Pertama, kita hendaklah bersikap amanah dalam melaksanakan tanggungjawab. Razali membuktikan ini dengan menjalankan tugasnya di koperasi dengan penuh dedikasi walaupun menghadapi gangguan dan tekanan berterusan. Kedua, kita hendaklah menjauhi sifat iri hati kerana ia membawa kemudaratan. Munir yang dikuasai iri hati akhirnya ditangkap dan menanggung akibat buruk tindakannya sendiri.",
+        explanation: "Format: 'Kita hendaklah...' + penjelasan + bukti daripada peristiwa dalam cerita.",
+      },
+      {
+        type: "Struktur",
+        question: "Jelaskan kepentingan watak Cikgu Zulkifli dalam novel Sejambak Bakti.",
+        answer: "Cikgu Zulkifli penting dalam novel ini kerana beliau berperanan sebagai pembimbing yang menyokong Razali dan murid-murid lain dalam menguruskan koperasi. Bimbingan dan dedikasi Cikgu Zulkifli menjadi tulang belakang kejayaan koperasi. Beliau juga menggambarkan persoalan peranan guru dalam membimbing murid — guru yang baik bukan sahaja mengajar ilmu tetapi turut membentuk karakter dan potensi murid.",
+        explanation: "Soalan 'kepentingan watak' memerlukan penjelasan tentang fungsi watak dalam jalan cerita dan mesej yang dibawa.",
+      },
+      {
+        type: "KBAT",
+        question: "Pada pendapat kamu, apakah pelajaran paling berharga yang boleh diambil daripada watak Munir dalam novel ini? Berikan alasan.",
+        answer: "Pelajaran paling berharga daripada watak Munir ialah bahawa manusia boleh berubah menjadi lebih baik jika diberi peluang dan keinsafan yang tulus. Munir yang pada mulanya dikuasai iri hati dan melakukan pelbagai jenayah, akhirnya insaf selepas ditangkap. Keinsafannya mengajarkan bahawa tidak ada manusia yang terlalu jahat untuk berubah. Selain itu, Munir juga mengajarkan bahawa iri hati yang tidak dikawal akan membawa padah kepada diri sendiri — menjadikan watak Munir pengajaran yang paling kaya dalam keseluruhan novel.",
+        explanation: "Soalan KBAT memerlukan pendapat yang disokong dengan hujah dan bukti daripada cerita. Tunjukkan pemikiran kritis.",
+      },
+      {
+        type: "KBAT",
+        question: "Mengapakah tindakan Pak Zakaria menghalau Razali boleh dianggap sebagai kesalahan yang serius? Huraikan.",
+        answer: "Tindakan Pak Zakaria menghalau Razali adalah serius kerana beliau bertindak tanpa usul periksa — menghalau Razali berdasarkan maklumat yang belum disahkan kebenarannya. Tindakan ini menambahkan bebanan kepada Razali yang sebenarnya tidak bersalah. Ia menggambarkan bahawa keputusan tergesa-gesa tanpa pemikiran yang matang boleh mendatangkan kezaliman kepada orang lain. Pak Zakaria seharusnya mendengar penjelasan Razali terlebih dahulu sebelum mengambil sebarang tindakan.",
+        explanation: "Jawapan KBAT menilai tindakan dan akibatnya. Hubungkan dengan nilai berhati-hati sebelum membuat tuduhan.",
+      },
+      {
+        type: "KBAT",
+        question: "Sejauh manakah kejayaan koperasi merupakan kejayaan peribadi Razali? Bincangkan.",
+        answer: "Kejayaan koperasi adalah kejayaan peribadi Razali dalam banyak aspek. Pertama, Razali telah membuktikan bahawa amanah yang diberikan kepadanya tidak sia-sia — koperasi berjaya walaupun menghadapi pelbagai halangan. Kedua, kejayaan itu membuktikan bahawa ketabahan dan kegigihan Razali dalam menghadapi fitnah dan gangguan adalah benar. Namun kejayaan ini juga bukan semata-mata milik Razali — ia adalah hasil kerjasama Ramlah, Cikgu Zulkifli, dan semua ahli. Jadi kejayaan koperasi ialah kejayaan bersama yang dimungkinkan oleh kepimpinan amanah Razali.",
+        explanation: "Soalan 'sejauh mana' memerlukan jawapan yang melihat dari dua sudut — sokong dan pertimbangkan batasannya.",
+      },
+    ],
+
+    examBooster: {
+      frequentPoints: [
+        "🔥 Sangat Penting — Tema: Kegigihan murid dan guru memajukan koperasi sekolah",
+        "🔥 Sangat Penting — Perwatakan Razali lengkap dengan bukti: amanah, tabah, rajin, bertanggungjawab, pemaaf",
+        "🔥 Sangat Penting — Peristiwa Razali difitnah dan memaafkan Munir sebagai puncak pengajaran moral",
+        "⭐ Penting — Perwatakan Munir: dari iri hati & pendendam berubah kepada insaf & memohon maaf",
+        "⭐ Penting — Nilai amanah, kerjasama, ketabahan, dan kemaafan beserta contoh dari cerita",
+        "⭐ Penting — Peranan Cikgu Zulkifli sebagai pembimbing yang mendorong kejayaan koperasi",
+        "⭐ Penting — Pengajaran dalam format 'Kita hendaklah...' beserta bukti peristiwa",
+        "📌 Perlu Tahu — Perwatakan Ramlah: setia kawan, rajin, prihatin",
+        "📌 Perlu Tahu — Perwatakan Pak Zakaria: tegas, cepat membuat kesimpulan (negatif)",
+        "📌 Perlu Tahu — Pak Ramli adalah bapa kandung Razali",
+        "📌 Perlu Tahu — Zon novel: Selatan (Johor, Melaka, Negeri Sembilan)",
+      ],
+      commonQuestions: [
+        {
+          question: "Jelaskan perwatakan watak utama beserta bukti.",
+          answerHint:
+            "Razali: Amanah (urus koperasi dengan dedikasi) · Tabah (tidak berputus asa walaupun dipukul dan difitnah) · Rajin (bekerja keras memajukan koperasi) · Pemaaf (maafkan Munir)",
+          modelAnswer:
+            "Watak utama ialah Razali. Pertama, Razali bersifat amanah kerana menjalankan tugasnya sebagai penolong setiausaha koperasi dengan penuh tanggungjawab walaupun menghadapi gangguan. Kedua, Razali bersifat tabah kerana tidak berputus asa walaupun dipukul, koperasi diceroboh, dan beliau difitnah. Ketiga, Razali bersifat pemaaf kerana memaafkan Munir walaupun Munir telah banyak menyakitinya.",
+          examTip: "Sertakan minimum tiga sifat dengan bukti. Soalan perwatakan membawa markah yang tinggi.",
+        },
+        {
+          question: "Apakah tema novel dan bagaimana ia dikemukakan dalam cerita?",
+          answerHint:
+            "Tema: Kegigihan murid dan guru memajukan koperasi sekolah. Bukti: Razali + Cikgu Zulkifli + Ramlah bekerja keras + hadapi halangan + koperasi johan.",
+          modelAnswer:
+            "Tema utama ialah kegigihan murid dan guru memajukan koperasi sekolah. Tema ini dikemukakan melalui usaha gigih Razali, Ramlah, dan Cikgu Zulkifli yang tidak berputus asa walaupun menghadapi gangguan daripada Munir. Walaupun koperasi diceroboh dan Razali difitnah, mereka terus berjuang. Akhirnya koperasi berjaya memenangi kejohanan — bukti kukuh kepada kegigihan mereka.",
+          examTip: "Nyatakan tema dengan jelas kemudian tunjukkan sekurang-kurangnya dua peristiwa yang membuktikan tema tersebut.",
+        },
+      ],
+    },
+
+    revision: {
+      theme: "Kegigihan murid dan guru memajukan koperasi sekolah",
+      values: "Amanah · Kerajinan · Kerjasama · Ketabahan · Kejujuran · Kemaafan",
+      lessons: "Bersikap amanah · Jauhi iri hati · Bekerjasama · Tabah hadapi fitnah · Berhati-hati sebelum menuduh · Sentiasa memaafkan",
+      examTips: "Fokus: Perwatakan Razali (5 sifat + bukti) · Tema · Peristiwa fitnah & kemaafan · Nilai · Pengajaran 'Kita hendaklah...'",
+    },
+
+    miniQuiz: [
+      {
+        question: "Apakah jawatan Razali dalam koperasi?",
+        answerHint: "Penolong setiausaha koperasi sekolah.",
+        modelAnswer: "Penolong setiausaha koperasi sekolah",
+        explanation: "Pelantikan Razali sebagai penolong setiausaha adalah titik permulaan cerita.",
+        examTip: "Ingat: Razali = penolong setiausaha, bukan setiausaha penuh.",
+      },
+      {
+        question: "Mengapakah Razali memaafkan Munir?",
+        answerHint: "Razali bersifat pemaaf dan memilih kebaikan berbanding dendam apabila Munir insaf dan mohon maaf.",
+        modelAnswer: "Razali memaafkan Munir kerana beliau memiliki sifat pemaaf yang tinggi. Apabila Munir insaf dan memohon maaf dengan ikhlas, Razali menerima kemaafan itu dengan hati yang terbuka.",
+        explanation: "Peristiwa kemaafan ini adalah teras pengajaran moral novel.",
+        examTip: "Hubungkan dengan nilai kemaafan dan pengajaran 'Kita hendaklah sentiasa bersedia memaafkan'.",
+      },
+      {
+        question: "Siapakah Pak Ramli dan apakah kepentingannya dalam cerita?",
+        answerHint: "Pak Ramli adalah bapa kandung Razali yang ditemui pada akhir cerita.",
+        modelAnswer: "Pak Ramli adalah bapa kandung Razali. Pertemuan Razali dengan Pak Ramli pada penghujung cerita menambahkan dimensi emosi yang mengharukan dan menjadikan ganjaran Razali lebih bermakna.",
+        explanation: "Pertemuan ini melengkapkan peleraian cerita dengan dimensi peribadi.",
+        examTip: "Pak Ramli ≠ Pak Zakaria. Pak Zakaria adalah yang menghalau Razali; Pak Ramli adalah bapa Razali.",
+      },
+    ],
+  },
 ];
 
 for (const work of storyWorks) {
