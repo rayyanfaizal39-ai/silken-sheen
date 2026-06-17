@@ -1710,8 +1710,8 @@ const storyWorks: KomsasWork[] = [
     teacherExplains: [
       "Hai murid-murid! Cikgu tahu ramai antara kamu mungkin berfikir bahawa novel Formula Termodinamik ini adalah tentang sains dan mesin sahaja. Memang benar ada unsur sains di dalamnya, tetapi itu bukan mesej utama yang ingin disampaikan oleh penulis.",
       "Sebenarnya, novel ini mengajar empat perkara penting dalam kehidupan. Pertama — ilmu. Amir menggunakan ilmunya untuk kebaikan orang lain. Kedua — usaha. Mereka tidak berhenti walaupun menghadapi pelbagai dugaan. Ketiga — kerjasama. Tanpa Usamah, Amir tidak akan berjaya bersendirian. Keempat — sifat pemaaf. Inilah yang membezakan Amir daripada orang kebanyakan.",
-      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham MESEJ di sebalik cerita, bukan sekadar hafal nama watak. Belajarlah menghubungkan watak, peristiwa, dan nilai dengan tema utama — kegigihan remaja melakukan inovasi demi manfaat masyarakat.",
-      "Ramai murid terlepas pandang tentang watak Aswan. Ramai yang menganggap Aswan hanya jahat. Sebenarnya, Aswan adalah watak yang PALING banyak pengajaran — dia menunjukkan kesan hasad dengki, dan kemudian membuktikan bahawa manusia boleh berubah menjadi lebih baik. Kedua-dua perkara ini sangat penting untuk peperiksaan!",
+      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham mesej di sebalik cerita, bukan sekadar hafal nama watak. Belajarlah menghubungkan watak, peristiwa, dan nilai dengan tema utama — kegigihan remaja melakukan inovasi demi manfaat masyarakat.",
+      "Ramai murid terlepas pandang tentang watak Aswan. Ramai yang menganggap Aswan hanya jahat. Sebenarnya, Aswan adalah watak yang paling banyak pengajaran — dia menunjukkan kesan hasad dengki, dan kemudian membuktikan bahawa manusia boleh berubah menjadi lebih baik. Kedua-dua perkara ini sangat penting untuk peperiksaan!",
     ],
 
     keyCharacterFocus: {
@@ -2235,10 +2235,10 @@ const storyWorks: KomsasWork[] = [
     ],
 
     teacherExplains: [
-      "Hai murid-murid! Ramai yang beranggapan novel Destinasi Impian ini hanya tentang seorang remaja yang berbasikal ke pantai. Memang ada ekspedisi berbasikal dalam cerita ini, tetapi destinasi sebenar yang ingin dicapai penulis bukan Pantai Morib — ia adalah DESTINASI JATI DIRI Firdaus.",
+      "Hai murid-murid! Ramai yang beranggapan novel Destinasi Impian ini hanya tentang seorang remaja yang berbasikal ke pantai. Memang ada ekspedisi berbasikal dalam cerita ini, tetapi destinasi sebenar yang ingin dicapai penulis bukan Pantai Morib — ia adalah destinasi jati diri Firdaus.",
       "Sebenarnya, novel ini mengajar empat perkara penting. Pertama — kejujuran adalah asas kepada setiap hubungan. Firdaus hampir kehilangan kepercayaan Mazlinda akibat pembohongannya. Kedua — cabaran adalah guru terbaik. Tanpa ekspedisi yang sukar itu, Firdaus tidak akan berubah. Ketiga — persahabatan memberi kekuatan. Azlina dan Johari adalah tunjang yang membolehkan Firdaus meneruskan. Keempat — keinsafan memerlukan keberanian.",
-      "Apabila menjawab soalan tentang novel ini, ingat: tema utamanya ialah PEMBENTUKAN JATI DIRI melalui cabaran. Setiap peristiwa dalam cerita — dari basikal pancit hingga hampir lemas — semuanya adalah proses yang membentuk watak Firdaus.",
-      "Ramai murid keliru antara tujuan ekspedisi dan tujuan cerita. Ekspedisi ke Pantai Morib adalah perjalanan FIZIKAL. Tetapi tujuan sebenar cerita adalah perjalanan DALAMAN Firdaus — daripada remaja manja dan tidak jujur kepada seseorang yang insaf dan bersedia berubah. Ini yang pemeriksa ingin murid faham!",
+      "Apabila menjawab soalan tentang novel ini, ingat: tema utamanya ialah pembentukan jati diri melalui cabaran. Setiap peristiwa dalam cerita — dari basikal pancit hingga hampir lemas — semuanya adalah proses yang membentuk watak Firdaus.",
+      "Ramai murid keliru antara tujuan ekspedisi dan tujuan cerita. Ekspedisi ke Pantai Morib adalah perjalanan fizikal. Tetapi tujuan sebenar cerita adalah perjalanan dalaman Firdaus — daripada remaja manja dan tidak jujur kepada seseorang yang insaf dan bersedia berubah. Ini yang pemeriksa ingin murid faham!",
     ],
 
     keyCharacterFocus: {
@@ -2764,8 +2764,8 @@ const storyWorks: KomsasWork[] = [
     teacherExplains: [
       "Hai murid-murid! Ramai yang beranggapan bahawa novel Pelari Muda ini hanya tentang dunia sukan — tentang larian, pingat, dan rekod. Memang ada semua itu, tetapi mesej utama novel ini jauh lebih dalam daripada sekadar kisah seorang pelari.",
       "Sebenarnya, novel ini mengajar empat perkara penting dalam kehidupan. Pertama — disiplin. Bakat tanpa disiplin tidak bermakna. Kedua — keinsafan. Hanya apabila Kamarul insaf barulah beliau benar-benar berjaya. Ketiga — menghargai hubungan. Kamarul hampir kehilangan Saridah dan Encik Kadir akibat sombong. Keempat — keberanian berubah. Ini yang paling sukar tetapi paling penting.",
-      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham MESEJ di sebalik cerita, bukan sekadar hafal nama watak. Tema 'keinsafan membawa kejayaan' perlu kamu hubungkan dengan peristiwa-peristiwa dalam cerita.",
-      "Ada satu perkara yang ramai murid terlepas pandang — watak De Wega. Ramai yang tidak tahu mengapa De Wega ada dalam cerita ini. De Wega adalah CERMIN kepada Kamarul — menunjukkan seperti mana seorang atlet cemerlang sepatutnya berkelakuan. Kontras antara De Wega yang merendah diri dengan Kamarul yang sombong itulah yang menjadikan pengajaran novel ini lebih kuat!",
+      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham mesej di sebalik cerita, bukan sekadar hafal nama watak. Tema 'keinsafan membawa kejayaan' perlu kamu hubungkan dengan peristiwa-peristiwa dalam cerita.",
+      "Ada satu perkara yang ramai murid terlepas pandang — watak De Wega. Ramai yang tidak tahu mengapa De Wega ada dalam cerita ini. De Wega adalah cermin kepada Kamarul — menunjukkan seperti mana seorang atlet cemerlang sepatutnya berkelakuan. Kontras antara De Wega yang merendah diri dengan Kamarul yang sombong itulah yang menjadikan pengajaran novel ini lebih kuat!",
     ],
 
     keyCharacterFocus: {
@@ -3344,8 +3344,8 @@ const storyWorks: KomsasWork[] = [
     teacherExplains: [
       "Hai murid-murid! Ramai yang beranggapan bahawa novel Sejambak Bakti ini hanya tentang koperasi sekolah — tentang jual beli barang dan pengurusan wang. Memang betul ada unsur koperasi di dalamnya, tetapi itu bukan mesej utama yang ingin disampaikan penulis.",
       "Sebenarnya, novel ini mengajar empat perkara penting dalam kehidupan. Pertama — amanah. Razali menjaga tugasnya dengan penuh amanah walaupun menghadapi tekanan. Kedua — ketabahan. Beliau tidak berputus asa walaupun dipukul, difitnah, dan disiasat. Ketiga — kerjasama. Tanpa pasukan yang kukuh, koperasi tidak mungkin berjaya. Keempat — kemaafan. Inilah yang menjadikan Razali watak yang paling mulia dalam cerita ini.",
-      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham MESEJ di sebalik cerita, bukan sekadar hafal nama watak. Belajarlah menghubungkan watak, peristiwa, dan nilai dengan tema utama — kegigihan murid dan guru memajukan koperasi sekolah.",
-      "Ramai murid terlepas pandang tentang watak Munir. Mereka hanya nampak Munir sebagai 'penjahat'. Sebenarnya watak Munir mengandungi DUA pengajaran penting — pertama, bahaya iri hati yang tidak dikawal, dan kedua, bahawa manusia boleh berubah menjadi lebih baik apabila insaf. Kedua-dua pengajaran ini sangat bernilai untuk peperiksaan!",
+      "Bila menjawab soalan peperiksaan tentang novel ini, ingat: pemeriksa ingin tahu sama ada kamu faham mesej di sebalik cerita, bukan sekadar hafal nama watak. Belajarlah menghubungkan watak, peristiwa, dan nilai dengan tema utama — kegigihan murid dan guru memajukan koperasi sekolah.",
+      "Ramai murid terlepas pandang tentang watak Munir. Mereka hanya nampak Munir sebagai 'penjahat'. Sebenarnya watak Munir mengandungi dua pengajaran penting — pertama, bahaya iri hati yang tidak dikawal, dan kedua, bahawa manusia boleh berubah menjadi lebih baik apabila insaf. Kedua-dua pengajaran ini sangat bernilai untuk peperiksaan!",
     ],
 
     keyCharacterFocus: {

@@ -264,7 +264,7 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
       "Menambah keterangan dan mendakwa itu masih pola ayat inti",
     ],
     uasaTips: [
-      "Ayat inti TIDAK ada keterangan — hapus semua keterangan untuk mendapat pola inti",
+      "Ayat inti tidak ada keterangan — hapus semua keterangan untuk mendapat pola inti",
       "Soalan lazim: 'Tulis semula ayat berikut dalam pola ayat inti'",
     ],
   },
@@ -321,20 +321,20 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     badge: "Pemahaman",
     description: "Kemahiran menjawab soalan berdasarkan petikan teks yang diberikan dalam peperiksaan.",
     steps: [
-      "Baca soalan DAHULU sebelum membaca petikan",
+      "Baca soalan dahulu sebelum membaca petikan",
       "Baca petikan sekali lalu — faham idea umum",
       "Garis bawahi maklumat penting semasa membaca kali kedua",
       "Jawab menggunakan ayat lengkap dan bahasa baku",
       "Semak ejaan dan tanda baca sebelum hantar",
     ],
     keyPoints: [
-      "Jawapan MESTI dalam ayat lengkap kecuali soalan minta kata kunci sahaja",
-      "Gunakan perkataan dalam petikan tetapi TUKAR SUSUN AYAT",
+      "Jawapan mesti dalam ayat lengkap kecuali soalan minta kata kunci sahaja",
+      "Gunakan perkataan dalam petikan tetapi tukar susun ayat",
       "Jangan salin perkataan mentah-mentah — parafrasakan",
       "Soalan 'apa' → kemukakan fakta; soalan 'mengapa' → kemukakan sebab",
     ],
     uasaTips: [
-      "Jawapan perlu merujuk BARIS dalam petikan (contoh: 'Berdasarkan perenggan 2...')",
+      "Jawapan perlu merujuk baris dalam petikan (contoh: 'Berdasarkan perenggan 2...')",
       "Markah: 1 markah untuk isi + 1 markah untuk bahasa",
     ],
   },
@@ -346,12 +346,12 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     description: "Kemahiran Berfikir Aras Tinggi (KBAT) — soalan yang menguji analisis, penilaian, dan kreativiti pelajar.",
     steps: [
       "Kenal pasti kata arahan: 'jelaskan', 'nilaikan', 'bandingkan', 'huraikan'",
-      "Berikan pendapat peribadi DENGAN justifikasi",
-      "Sokong dengan BUKTI dari petikan atau pengetahuan am",
+      "Berikan pendapat peribadi dengan justifikasi",
+      "Sokong dengan bukti dari petikan atau pengetahuan am",
       "Struktur jawapan: Pernyataan → Huraian → Contoh → Kesimpulan (PHCK)",
     ],
     keyPoints: [
-      "KBAT tidak ada jawapan 'betul' atau 'salah' — markah diberi untuk alasan",
+      "Soalan KBAT tidak ada jawapan 'betul' atau 'salah' — markah diberi untuk alasan",
       "Jawapan perlu relevan, bernas, dan disokong bukti",
       "Panjang jawapan: minimum 3 ayat untuk soalan 3 markah",
     ],
@@ -374,8 +374,8 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
       "Senaraikan isi dalam bentuk poin sebelum menulis ayat penuh",
     ],
     keyPoints: [
-      "Setiap perenggan biasanya ada SATU idea utama",
-      "Contoh, ilustrasi, dan perangkaan adalah BUKAN isi — isi ialah idea utama",
+      "Setiap perenggan biasanya ada satu idea utama",
+      "Contoh, ilustrasi, dan perangkaan bukan isi — isi ialah idea utama",
       "Untuk ringkasan: maksimum 120 patah perkataan, gunakan isi sahaja",
     ],
     uasaTips: [
@@ -391,7 +391,7 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     description: "Panduan lengkap cara menjawab pelbagai jenis soalan pemahaman dalam UASA dan peperiksaan lain.",
     steps: [
       "Baca soalan dengan teliti — berapa markah? apa yang ditanya?",
-      "Tentukan jenis soalan: fakta, inferens, kosa kata, atau KBAT",
+      "Tentukan jenis soalan: fakta, inferens, kosa kata, atau soalan KBAT",
       "Untuk soalan fakta: cari maklumat terus dari teks",
       "Untuk soalan kosa kata: faham konteks sebelum jawab",
       "Untuk soalan inferens: gunakan maklumat teks + logik",
@@ -403,7 +403,7 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
       "Soalan 3-4 markah: beberapa isi dengan huraian",
     ],
     uasaTips: [
-      "Semak: adakah jawapan menjawab soalan yang DITANYA, bukan yang 'rasa nak jawab'?",
+      "Semak: adakah jawapan menjawab soalan yang ditanya, bukan yang 'rasa nak jawab'?",
       "Skor penuh = isi betul + bahasa lancar + ejaan tepat",
     ],
   },
@@ -726,8 +726,8 @@ const RINGKASAN_TOPICS: BMTopic[] = [
     badge: "Ringkasan",
     description: "Cara menulis ringkasan yang tepat dan padat berdasarkan teks yang diberikan.",
     formula: [
-      "Baca teks SEKALI LALU untuk faham idea umum",
-      "Baca KALI KEDUA — kenal pasti dan gariskan isi PENTING sahaja",
+      "Baca teks sekali lalu untuk faham idea umum",
+      "Baca kali kedua — kenal pasti dan gariskan isi penting sahaja",
       "Tulis semula isi dalam ayat sendiri (bukan salin)",
       "Pastikan tidak melebihi had perkataan (100 patah perkataan)",
       "Semak: ejaan, tatabahasa, dan kejelasan",
@@ -736,7 +736,7 @@ const RINGKASAN_TOPICS: BMTopic[] = [
       "Kenal pasti kata kunci soalan dahulu",
       "Senaraikan 5–6 isi penting dalam ayat sendiri",
       "Jangan masukkan pendapat peribadi, contoh, atau statistik — ISI sahaja",
-      "Tulis dalam SATU perenggan menggunakan penanda wacana",
+      "Tulis dalam satu perenggan menggunakan penanda wacana",
     ],
     commonMistakes: [
       "Memasukkan pendapat peribadi dalam ringkasan",
@@ -761,8 +761,8 @@ const KARANGAN_PENDEK_TOPIC: BMTopic = {
   badge: "Kertas 2",
   description: "Karangan pendek berdasarkan bahan grafik (jadual, gambar rajah, carta, atau gambar).",
   formula: [
-    "Baca ARAHAN dengan teliti — berapa patah perkataan? Apa yang perlu ditulis?",
-    "Perhatikan bahan grafik — kenal pasti maklumat PENTING sahaja",
+    "Baca arahan dengan teliti — berapa patah perkataan? Apa yang perlu ditulis?",
+    "Perhatikan bahan grafik — kenal pasti maklumat penting sahaja",
     "Pilih 3-4 isi penting dari grafik (jangan tulis semua)",
     "Tulis dalam ayat penuh, bukan poin",
     "Kira perkataan — pastikan 50-80 patah perkataan",
@@ -820,8 +820,8 @@ const RESPONS_TERBUKA_TOPIC: BMTopic = {
     },
   ],
   steps: [
-    "Baca soalan — kenal pasti TOPIK dan JENIS karangan",
-    "Tulis RANGKA: 3 isi utama dengan contoh",
+    "Baca soalan — kenal pasti topik dan jenis karangan",
+    "Tulis rangka: 3 isi utama dengan contoh",
     "Tulis pendahuluan (2-3 ayat)",
     "Kembangkan setiap isi: Isi → Huraian → Contoh",
     "Tulis penutup (2-3 ayat)",
@@ -836,7 +836,7 @@ const RESPONS_TERBUKA_TOPIC: BMTopic = {
   ],
   uasaTips: [
     "Gunakan kata hubung: 'selain itu', 'tambahan pula', 'di samping itu', 'sehubungan itu'",
-    "Setiap isi perlu ada CONTOH spesifik — jangan terlalu umum",
+    "Setiap isi perlu ada contoh spesifik — jangan terlalu umum",
     "Panjang ideal: 250-300 patah perkataan",
   ],
 };
@@ -905,7 +905,7 @@ const MODEL_KARANGAN_TOPICS: BMTopic[] = [
     keyFeatures: ["Bahasa formal dan objektif", "Menggunakan fakta dan data", "Tiada pendapat peribadi yang emosional", "Struktur: Pendahuluan → Isi berfakta → Penutup"] },
   { id: "model-perbincangan", label: "Karangan Perbincangan", topicType: "model-karangan", badge: "Model",
     description: "Karangan yang membincangkan sesuatu isu dari pelbagai sudut pandang sebelum membuat kesimpulan.",
-    keyFeatures: ["Bincang PRO dan KONTRA", "Bahasa neutral tapi akhirnya berpihak", "Gunakan frasa: 'sebaliknya', 'di satu pihak', 'namun begitu'", "Penutup: cadangan atau pendirian akhir"] },
+    keyFeatures: ["Bincang pro dan kontra", "Bahasa neutral tapi akhirnya berpihak", "Gunakan frasa: 'sebaliknya', 'di satu pihak', 'namun begitu'", "Penutup: cadangan atau pendirian akhir"] },
   { id: "model-pengalaman", label: "Karangan Pengalaman", topicType: "model-karangan", badge: "Model",
     description: "Karangan berdasarkan pengalaman peribadi — ditulis dalam gaya naratif orang pertama.",
     keyFeatures: ["Guna kata ganti nama 'saya/aku'", "Bahasa naratif dan deskriptif", "Aliran masa: latar → konflik → penyelesaian", "Akhiri dengan pengajaran/refleksi"] },

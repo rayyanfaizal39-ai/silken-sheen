@@ -209,7 +209,7 @@ function LandingView({
         {/* Identity ticker */}
         <div className="mt-5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] py-2">
           <p className="text-center text-[9px] font-bold uppercase tracking-[0.3em] text-[#F472B6]/40">
-            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · ULASAN · RINGKASAN
+            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RINGKASAN
           </p>
         </div>
       </div>
@@ -1886,7 +1886,7 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
       <div className="rounded-2xl border border-[#6366F1]/20 bg-[#6366F1]/8 p-5 space-y-3">
         <div className="flex items-center gap-3">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black" style={{ background: `${color}30`, color }}>3</span>
-          <p className="text-sm font-bold text-white">Masukkan Semua Isi Dalam <span className="text-white underline decoration-dotted">SATU Perenggan</span></p>
+          <p className="text-sm font-bold text-white">Masukkan semua isi dalam <span className="font-bold text-white underline decoration-dotted">satu perenggan</span></p>
         </div>
         <p className="text-[10px] font-black tracking-wide text-[#A78BFA]">📌 Rangka Ringkasan</p>
         <div className="space-y-2">
@@ -2039,7 +2039,7 @@ const LATIHAN_RINGKASAN = [
       "Tidak menggunakan penanda wacana seperti 'Antara', 'Selain itu'.",
     ],
     tipCikgu:
-      "Fokus kata kunci adalah 'kebaikan' — pastikan SEMUA isi yang dipilih menjawab soalan 'apa kebaikannya?' dan bukannya kesan, masalah, atau cadangan.",
+      "Fokus kata kunci adalah 'kebaikan' — pastikan semua isi yang dipilih menjawab soalan 'apa kebaikannya?' dan bukannya kesan, masalah, atau cadangan.",
   },
   {
     id: 2,
@@ -2072,14 +2072,14 @@ const LATIHAN_RINGKASAN = [
       "Antara kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba. Selain itu, cuaca panas turut menjejaskan aktiviti harian orang ramai. Seterusnya, sumber air semakin berkurangan akibat kadar penyejatan yang tinggi. Di samping itu, tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian. Tambahan pula, cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun. Akhir sekali, penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin.",
     bilPatah: 75,
     kesalahanLazim: [
-      "Menulis cara mengatasi cuaca panas — soalan tanya KESAN, bukan penyelesaian.",
+      "Menulis cara mengatasi cuaca panas — soalan tanya kesan, bukan penyelesaian.",
       "Mengambil isi yang sama dengan perkataan berbeza (isi berganda).",
       "Menyalin keseluruhan perenggan tanpa memilih isi yang spesifik.",
       "Menulis lebih daripada 100 patah perkataan.",
       "Lupa menggunakan penanda wacana untuk menyambung isi.",
     ],
     tipCikgu:
-      "Kata kunci 'kesan' bermakna kamu mencari AKIBAT atau IMPAK cuaca panas. Jangan tulis cara mengatasinya — itu menjawab soalan yang berbeza!",
+      "Kata kunci 'kesan' bermakna kamu mencari akibat atau impak cuaca panas. Jangan tulis cara mengatasinya — itu menjawab soalan yang berbeza!",
   },
   {
     id: 3,
@@ -2113,7 +2113,7 @@ const LATIHAN_RINGKASAN = [
       "Antara cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat. Selain itu, skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki. Seterusnya, syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan. Di samping itu, teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan. Tambahan pula, penggunaan testimoni yang tidak boleh disahkan harus diwaspadai. Akhir sekali, maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan.",
     bilPatah: 83,
     kesalahanLazim: [
-      "Menulis cara MENGELAK penipuan — soalan tanya cara MENGESAN, bukan mengelak.",
+      "Menulis cara mengelak penipuan — soalan tanya cara mengesan, bukan mengelak.",
       "Mengambil maklumat am tentang penipuan yang tidak terdapat dalam petikan.",
       "Mengulang isi yang sama dengan perkataan berbeza.",
       "Menulis lebih daripada 100 patah perkataan.",
@@ -2154,7 +2154,7 @@ const LATIHAN_RINGKASAN = [
       "Antara cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak. Selain itu, pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil. Seterusnya, pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja. Di samping itu, kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah. Tambahan pula, pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera. Akhir sekali, masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat.",
     bilPatah: 80,
     kesalahanLazim: [
-      "Menulis PUNCA atau KESAN masalah sosial — soalan tanya CARA MENANGANI.",
+      "Menulis punca atau kesan masalah sosial — soalan tanya cara menangani.",
       "Mengambil isi yang tidak jelas menjawab siapa yang perlu bertindak.",
       "Menulis isi yang terlalu umum tanpa huraian yang spesifik.",
       "Menulis lebih daripada 100 patah perkataan.",
@@ -2194,14 +2194,14 @@ const LATIHAN_RINGKASAN = [
       "Antara langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu. Selain itu, seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat. Seterusnya, mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting. Di samping itu, mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang. Tambahan pula, pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal. Akhir sekali, mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental.",
     bilPatah: 78,
     kesalahanLazim: [
-      "Menulis KESAN mengamalkan gaya hidup sihat — soalan tanya LANGKAH, bukan kesan.",
+      "Menulis kesan mengamalkan gaya hidup sihat — soalan tanya langkah, bukan kesan.",
       "Mengambil isi yang tidak berkaitan dengan amalan peribadi.",
       "Mengulang isi yang sama dengan perkataan sedikit berbeza.",
       "Menulis lebih daripada 100 patah perkataan.",
       "Tidak menggunakan penanda wacana yang lengkap.",
     ],
     tipCikgu:
-      "Untuk soalan 'langkah', setiap isi kamu mestilah TINDAKAN yang boleh dilakukan — mulakan dengan kata kerja: 'bersenam', 'mengamalkan', 'mendapatkan', 'mengelakkan'. Jika isi tidak boleh dimulakan dengan kata kerja, ia mungkin bukan langkah.",
+      "Untuk soalan 'langkah', setiap isi kamu mestilah tindakan yang boleh dilakukan — mulakan dengan kata kerja: 'bersenam', 'mengamalkan', 'mendapatkan', 'mengelakkan'. Jika isi tidak boleh dimulakan dengan kata kerja, ia mungkin bukan langkah.",
   },
 ];
 
