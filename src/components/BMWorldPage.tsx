@@ -41,6 +41,7 @@ import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { sfx } from "@/lib/sounds";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
+import { KaranganPendekHub } from "@/components/KaranganPendekHub";
 import {
   Accordion,
   AccordionContent,
@@ -3478,6 +3479,11 @@ function TopicView({
     if (premiumContent) {
       return <SistemBahasaTopicDetail topic={premiumContent} onBack={onBack} />;
     }
+  }
+
+  // Premium full-page exam prep hub for Karangan Pendek
+  if (topic.id === "karangan-pendek") {
+    return <KaranganPendekHub topic={topic} color={hub.color} onBack={onBack} />;
   }
 
   return (
