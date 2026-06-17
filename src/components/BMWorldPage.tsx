@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -39,6 +39,7 @@ import { getPremiumKomsasWork, type KomsasWork, type KomsasExamQuestion } from "
 import { bmF1ObjektifKuiz1, bmF1ObjektifKuiz2, bmF1ObjektifKuiz3 } from "@/data/bm-f1-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
+import { sfx } from "@/lib/sounds";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import {
   Accordion,
@@ -53,6 +54,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type BMScreen =
   | { type: "landing" }
+  | { type: "k1-quiz" }
   | { type: "kertas"; kertasId: "k1" | "k2" }
   | { type: "hub"; kertasId: "k1" | "k2"; hubId: string }
   | { type: "topic"; kertasId: "k1" | "k2"; hubId: string; topicId: string }
@@ -82,6 +84,34 @@ const OBJEKTIF_SETS = [
     questions: bmF1ObjektifKuiz3,
   },
 ] as const;
+
+function shuffleItems<T>(items: T[]): T[] {
+  const next = [...items];
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [next[i], next[j]] = [next[j], next[i]];
+  }
+  return next;
+}
+
+function shuffleObjectiveQuestions(questions: QuizQuestion[]): QuizQuestion[] {
+  const groups = [shuffleItems(questions.slice(0, 5)), shuffleItems(questions.slice(5, 10)), questions.slice(10, 15)];
+  return groups.flatMap((group) =>
+    group.map((question) => {
+      const correctAnswer = question.options[question.answerIndex];
+      const options = shuffleItems(question.options);
+      return { ...question, options, answerIndex: options.indexOf(correctAnswer) };
+    }),
+  );
+}
+
+function gradeFromPct(pct: number) {
+  if (pct >= 90) return { label: "A", tone: "#34D399", message: "Cemerlang" };
+  if (pct >= 80) return { label: "B", tone: "#60A5FA", message: "Sangat Baik" };
+  if (pct >= 70) return { label: "C", tone: "#A78BFA", message: "Baik" };
+  if (pct >= 60) return { label: "D", tone: "#FBBF24", message: "Hampir Mantap" };
+  return { label: "Perlu Latihan", tone: "#FB7185", message: "Teruskan Usaha" };
+}
 
 // ─── Shared chip + badge components ──────────────────────────────────────────
 
@@ -347,27 +377,47 @@ function KertasCard({ kertas, onSelect }: { kertas: BMKertas; onSelect: () => vo
 function ObjektifKuizView({
   setIndex,
   onBack,
+  onNextSet,
 }: {
   setIndex: 0 | 1 | 2;
   onBack: () => void;
+  onNextSet?: () => void;
 }) {
   const set = OBJEKTIF_SETS[setIndex];
   const questions: QuizQuestion[] = set.questions as unknown as QuizQuestion[];
-  const { recordQuiz, recordQuizResult } = useProgress();
+  const { addXp, recordQuiz, recordQuizResult } = useProgress();
+  const totalSeconds = 60;
 
   type Phase = "intro" | "quiz" | "results";
   const [phase, setPhase] = useState<Phase>("intro");
+  const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(() => shuffleObjectiveQuestions(questions));
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
+  const [timeLeft, setTimeLeft] = useState(totalSeconds);
+  const [earnedXp, setEarnedXp] = useState(0);
 
-  const q = questions[current];
-  const correct = answers.filter((a, i) => a === questions[i].answerIndex).length;
-  const pct = Math.round((correct / questions.length) * 100);
+  const q = quizQuestions[current];
+  const correct = answers.filter((a, i) => a === quizQuestions[i]?.answerIndex).length;
+  const pct = Math.round((correct / quizQuestions.length) * 100);
+  const progressPct = Math.round(((current + (revealed ? 1 : 0)) / quizQuestions.length) * 100);
+  const grade = gradeFromPct(pct);
 
-  function handleSelect(idx: number) {
+  useEffect(() => {
+    if (phase !== "quiz" || revealed) return;
+    if (timeLeft <= 0) {
+      handleSelect(null);
+      return;
+    }
+    const timer = window.setTimeout(() => setTimeLeft((value) => value - 1), 1000);
+    return () => window.clearTimeout(timer);
+  }, [phase, revealed, timeLeft]);
+
+  function handleSelect(idx: number | null) {
     if (revealed) return;
+    if (idx === q.answerIndex) sfx.success();
+    if (idx !== null && idx !== q.answerIndex) sfx.whomp();
     setSelected(idx);
     setRevealed(true);
     const next = [...answers];
@@ -376,23 +426,37 @@ function ObjektifKuizView({
   }
 
   function handleNext() {
-    if (current < questions.length - 1) {
+    if (current < quizQuestions.length - 1) {
+      sfx.whoosh();
       setCurrent((c) => c + 1);
       setSelected(null);
       setRevealed(false);
+      setTimeLeft(totalSeconds);
     } else {
       recordQuiz(pct === 100);
-      recordQuizResult({ subjectId: "bm", chapterKey: set.id, correct, total: questions.length });
+      recordQuizResult({ subjectId: "bm", chapterKey: set.id, correct, total: quizQuestions.length });
+      const xpReward = pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10;
+      addXp(xpReward, "bm");
+      setEarnedXp(xpReward);
+      if (pct >= 60) sfx.fanfare();
       setPhase("results");
     }
   }
 
   function handleRestart() {
+    setQuizQuestions(shuffleObjectiveQuestions(questions));
     setCurrent(0);
     setSelected(null);
     setRevealed(false);
     setAnswers(Array(questions.length).fill(null));
+    setTimeLeft(totalSeconds);
+    setEarnedXp(0);
     setPhase("quiz");
+  }
+
+  function handleStart() {
+    sfx.click();
+    handleRestart();
   }
 
   if (phase === "intro") {
@@ -432,11 +496,11 @@ function ObjektifKuizView({
           </div>
           <div className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-4 py-3">
             <p className="text-xs text-white/40 leading-relaxed">
-              Struktur: S1 Gambar · S2–4 Lengkap Ayat · S5 Ayat Betul · S6 Maksud Kata · S7 Peribahasa · S8–9 Tatabahasa · S10 Kesalahan Bahasa · S11–15 Petikan
+              Struktur: S1–5 Sistem Bahasa · S6–10 Pemahaman · S11–15 KOMSAS Tingkatan 1
             </p>
           </div>
           <button
-            onClick={() => setPhase("quiz")}
+            onClick={handleStart}
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-bold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
             style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}bb)`, boxShadow: `0 8px 24px ${set.color}40` }}
           >
@@ -448,9 +512,7 @@ function ObjektifKuizView({
   }
 
   if (phase === "results") {
-    const grade = pct >= 80 ? { label: "Cemerlang", color: "#34D399", emoji: "🏆" }
-      : pct >= 60 ? { label: "Memuaskan", color: "#FBBF24", emoji: "⭐" }
-      : { label: "Cuba Lagi", color: "#F472B6", emoji: "💪" };
+    const passed = pct >= 60;
 
     return (
       <div>
@@ -460,28 +522,52 @@ function ObjektifKuizView({
           accent={set.color}
         />
         <div
-          className="rounded-[2rem] border p-8 text-center"
+          className="relative overflow-hidden rounded-[2rem] border p-8 text-center animate-fade-up"
           style={{ borderColor: `${set.color}30`, background: `${set.color}0a` }}
         >
-          <p className="text-5xl mb-3">{grade.emoji}</p>
-          <h2 className="font-display text-2xl font-bold text-white">{grade.label}</h2>
+          {passed && (
+            <div className="pointer-events-none absolute inset-0">
+              {["✦", "✧", "✦", "✧", "✦", "✧"].map((star, i) => (
+                <span
+                  key={`${star}-${i}`}
+                  className="absolute animate-xp-burst text-xl text-sky-200"
+                  style={{ left: `${18 + i * 12}%`, top: `${16 + (i % 3) * 14}%`, animationDelay: `${i * 80}ms` }}
+                >
+                  {star}
+                </span>
+              ))}
+            </div>
+          )}
+          <p className="text-5xl mb-3">{passed ? "🏆" : "💪"}</p>
+          <h2 className="font-display text-2xl font-bold text-white">{grade.message}</h2>
           <p className="mt-1 text-sm text-white/50">Kuiz Objektif {set.label} selesai</p>
 
           <div
-            className="mx-auto mt-6 flex h-28 w-28 items-center justify-center rounded-full text-3xl font-black text-white"
-            style={{ background: `conic-gradient(${grade.color} ${pct}%, rgba(255,255,255,0.06) 0%)`, boxShadow: `0 0 40px ${grade.color}40` }}
+            className="mx-auto mt-6 flex h-28 w-28 items-center justify-center rounded-full text-3xl font-black text-white animate-score-reveal"
+            style={{ background: `conic-gradient(${grade.tone} ${pct}%, rgba(255,255,255,0.06) 0%)`, boxShadow: `0 0 40px ${grade.tone}40` }}
           >
             <div className="flex h-20 w-20 items-center justify-center rounded-full" style={{ background: "#080c1a" }}>
               {pct}%
             </div>
           </div>
 
-          <p className="mt-4 text-sm text-white/60">
-            {correct} daripada {questions.length} soalan betul
-          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-3">
+              <p className="text-[10px] font-black uppercase tracking-wide text-white/35">Betul</p>
+              <p className="mt-1 text-lg font-black text-white">{correct}/{quizQuestions.length}</p>
+            </div>
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-3">
+              <p className="text-[10px] font-black uppercase tracking-wide text-white/35">Gred</p>
+              <p className="mt-1 text-lg font-black" style={{ color: grade.tone }}>{grade.label}</p>
+            </div>
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-3">
+              <p className="text-[10px] font-black uppercase tracking-wide text-white/35">Ganjaran</p>
+              <p className="mt-1 text-lg font-black text-sky-200">+{earnedXp} XP</p>
+            </div>
+          </div>
 
           <div className="mt-6 space-y-2 text-left">
-            {questions.map((question, i) => {
+            {quizQuestions.map((question, i) => {
               const ans = answers[i];
               const isCorrect = ans === question.answerIndex;
               return (
@@ -517,11 +603,11 @@ function ObjektifKuizView({
               <RotateCcw className="h-4 w-4" /> Cuba Semula
             </button>
             <button
-              onClick={onBack}
+              onClick={onNextSet ?? onBack}
               className="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold text-white transition-all hover:scale-[1.02]"
               style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}bb)` }}
             >
-              Selesai <ArrowRight className="h-4 w-4" />
+              {onNextSet ? "Kuiz Seterusnya" : "Selesai"} <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -531,7 +617,7 @@ function ObjektifKuizView({
 
   // Quiz phase
   const isCorrect = selected === q.answerIndex;
-  const progress = ((current) / questions.length) * 100;
+  const timerPct = (timeLeft / totalSeconds) * 100;
 
   return (
     <div>
@@ -544,20 +630,29 @@ function ObjektifKuizView({
       {/* Progress bar */}
       <div className="mb-5">
         <div className="mb-1.5 flex items-center justify-between">
-          <span className="text-xs font-bold text-white/40">Soalan {current + 1} / {questions.length}</span>
-          <span className="text-xs font-bold" style={{ color: set.color }}>{Math.round(progress)}%</span>
+          <span className="text-xs font-bold text-white/40">Soalan {current + 1} / {quizQuestions.length}</span>
+          <span className="inline-flex items-center gap-1 text-xs font-bold" style={{ color: timeLeft <= 10 ? "#FB7185" : set.color }}>
+            <Clock className="h-3.5 w-3.5" /> {timeLeft}s
+          </span>
         </div>
         <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
           <div
             className="h-full rounded-full transition-all duration-500"
-            style={{ width: `${progress}%`, background: `linear-gradient(90deg, ${set.color}, ${set.color}cc)` }}
+            style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${set.color}, ${set.color}cc)` }}
+          />
+        </div>
+        <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/[0.06]">
+          <div
+            className="h-full rounded-full transition-all duration-1000"
+            style={{ width: `${timerPct}%`, background: timeLeft <= 10 ? "#FB7185" : "#60A5FA" }}
           />
         </div>
       </div>
 
       {/* Question card */}
       <div
-        className="mb-4 rounded-[1.5rem] border p-5"
+        key={q.id}
+        className="mb-4 rounded-[1.5rem] border p-5 animate-question-reveal"
         style={{ borderColor: `${set.color}25`, background: `${set.color}08` }}
       >
         <span
@@ -597,7 +692,9 @@ function ObjektifKuizView({
               key={i}
               onClick={() => handleSelect(i)}
               disabled={revealed}
-              className="flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-all"
+              className={`flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
+                revealed && i === q.answerIndex ? "animate-correct-pulse" : ""
+              } ${revealed && i === selected && i !== q.answerIndex ? "animate-shake" : "hover:translate-x-1"}`}
               style={{ borderColor, background: bg }}
             >
               <span
@@ -628,14 +725,14 @@ function ObjektifKuizView({
           <div className="flex items-center gap-2">
             {isCorrect
               ? <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-400">Betul! ✓</span>
-              : <span className="rounded-full bg-rose-500/12 px-3 py-1 text-xs font-bold text-rose-400">Salah ✗</span>}
+              : <span className="rounded-full bg-rose-500/12 px-3 py-1 text-xs font-bold text-rose-400">{selected === null ? "Masa Tamat" : "Salah ✗"}</span>}
           </div>
           <button
             onClick={handleNext}
             className="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-bold text-white transition-all hover:scale-[1.02]"
             style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}cc)`, boxShadow: `0 4px 16px ${set.color}35` }}
           >
-            {current < questions.length - 1 ? "Seterusnya" : "Lihat Keputusan"} <ArrowRight className="h-4 w-4" />
+            {current < quizQuestions.length - 1 ? "Soalan Seterusnya" : "Lihat Keputusan"} <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       )}
@@ -648,12 +745,10 @@ function ObjektifKuizView({
 function K1QuizView({
   kertas,
   onSelectObjektif,
-  onSelectHub,
   onBack,
 }: {
   kertas: BMKertas;
   onSelectObjektif: (setIndex: 0 | 1 | 2) => void;
-  onSelectHub: (hubId: string) => void;
   onBack: () => void;
 }) {
   const { progress } = useProgress();
@@ -664,166 +759,115 @@ function K1QuizView({
     return results.length > 0 ? Math.max(...results.map((r) => r.scorePct)) : null;
   });
 
-  const setLabels = ["Set A", "Set B", "Set C"] as const;
-  const setColors = ["#818CF8", "#34D399", "#F472B6"] as const;
-  const setEmoji = ["🟣", "🟢", "🩷"] as const;
-
-  const gatewayHubs = [
-    { id: "pemahaman",  label: "Pemahaman",      emoji: "🔍", color: "#34D399", desc: "Teknik menjawab soalan pemahaman dan KBAT" },
-    { id: "komsas",    label: "Novel & KOMSAS",  emoji: "📜", color: "#C084FC", desc: "Pantun, syair, cerpen, drama, dan novel" },
-    { id: "ringkasan", label: "Ringkasan",        emoji: "✏️", color: "#FBBF24", desc: "Bahagian C: 100 patah perkataan, kata kunci" },
+  const setMeta = [
+    { title: "Set A", subtitle: "Latihan Asas", difficulty: "Mudah", color: "#8B5CF6", glow: "rgba(139,92,246,0.28)" },
+    { title: "Set B", subtitle: "Latihan Pertengahan", difficulty: "Sederhana", color: "#22C55E", glow: "rgba(34,197,94,0.24)" },
+    { title: "Set C", subtitle: "Latihan Cabaran", difficulty: "Sukar", color: "#F97316", glow: "rgba(249,115,22,0.25)" },
   ] as const;
 
   return (
-    <div>
+    <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.06] bg-[#070B18]/70 p-4 sm:p-6 animate-fade-up">
+      <div className="pointer-events-none absolute inset-0">
+        <span className="absolute left-[8%] top-[14%] h-1.5 w-1.5 rounded-full bg-sky-200/80 shadow-[0_0_18px_rgba(125,211,252,0.8)] animate-pulse" />
+        <span className="absolute right-[13%] top-[24%] h-1 w-1 rounded-full bg-violet-200/80 shadow-[0_0_16px_rgba(167,139,250,0.8)] animate-pulse [animation-delay:600ms]" />
+        <span className="absolute left-[18%] bottom-[16%] h-1 w-1 rounded-full bg-white/70 shadow-[0_0_14px_rgba(255,255,255,0.65)] animate-pulse [animation-delay:1000ms]" />
+        <span className="absolute right-[24%] bottom-[20%] h-1.5 w-1.5 rounded-full bg-blue-200/70 shadow-[0_0_16px_rgba(96,165,250,0.72)] animate-pulse [animation-delay:1400ms]" />
+        <div className="absolute -left-20 top-8 h-48 w-48 rounded-full bg-violet-500/10 blur-3xl" />
+        <div className="absolute -right-24 bottom-0 h-56 w-56 rounded-full bg-sky-500/10 blur-3xl" />
+      </div>
+
+      <div className="relative z-10">
       <PageHeader
         breadcrumb={["Bahasa Melayu", "Kertas 1"]}
         onBack={onBack}
         accent={kertas.color}
       />
 
-      {/* Page header */}
-      <div className="mb-8">
-        <div
-          className="mb-2 inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-black"
-          style={{ background: `${kertas.color}20`, color: kertas.color }}
-        >
-          📝 Kertas 1
+      <div className="mb-7 text-center">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/50 to-sky-500/30 text-3xl shadow-[0_0_34px_rgba(96,165,250,0.28)] animate-float-soft">
+          📘
         </div>
-        <h2 className="font-display text-2xl font-bold text-white">Persediaan Peperiksaan</h2>
-        <p className="mt-1 text-sm text-white/40">Sistem Bahasa · Pemahaman · KOMSAS · Novel · Ringkasan</p>
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-200/70">Bahasa Melayu Form 1</p>
+        <h2 className="mt-2 font-display text-2xl font-bold text-white sm:text-3xl">Kertas 1 Objektif</h2>
+        <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/52">
+          Pilih Set A, Set B atau Set C. Setiap misi mengandungi 15 soalan mengikut format objektif UASA Tingkatan 1.
+        </p>
       </div>
 
-      {/* ── Section 1: Objektif UASA ──────────────────────────────────────── */}
-      <div className="mb-8">
-        <div className="mb-4 flex items-center gap-3">
-          <div className="h-px flex-1 bg-white/[0.07]" />
-          <span className="text-[11px] font-black tracking-widest text-[#818CF8]">KERTAS 1 — OBJEKTIF UASA</span>
-          <div className="h-px flex-1 bg-white/[0.07]" />
-        </div>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {([0, 1, 2] as const).map((i) => {
+          const best = bestScores[i];
+          const meta = setMeta[i];
+          const completed = best !== null;
+          const status = completed ? "Selesai" : "Belum Bermula";
 
-        <div className="grid gap-4 sm:grid-cols-3">
-          {([0, 1, 2] as const).map((i) => {
-            const best = bestScores[i];
-            const color = setColors[i];
-            const completed = best !== null;
+          return (
+            <button
+              key={meta.title}
+              onClick={() => onSelectObjektif(i)}
+              onMouseEnter={() => sfx.hover()}
+              className="group relative flex min-h-[245px] flex-col overflow-hidden rounded-[1.5rem] border bg-[#0B1220]/78 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] animate-slide-up"
+              style={{
+                borderColor: completed ? `${meta.color}55` : `${meta.color}26`,
+                boxShadow: `0 18px 44px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.02)`,
+                animationDelay: `${i * 80}ms`,
+              }}
+            >
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ boxShadow: `inset 0 0 42px ${meta.glow}, 0 18px 52px ${meta.glow}` }}
+              />
+              <div className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full blur-3xl transition-opacity duration-300 group-hover:opacity-100" style={{ background: meta.glow }} />
 
-            return (
-              <button
-                key={i}
-                onClick={() => onSelectObjektif(i)}
-                className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border text-left transition-all duration-300 hover:-translate-y-1"
-                style={{
-                  borderColor: completed ? `${color}50` : `${color}25`,
-                  background: `linear-gradient(145deg, ${color}10 0%, transparent 70%)`,
-                }}
-              >
-                {/* Hover glow */}
-                <div
-                  className="pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{ boxShadow: `inset 0 0 40px ${color}12, 0 12px 40px ${color}30` }}
-                />
-
-                {/* Completion badge */}
-                {completed && (
-                  <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5">
-                    <CheckCircle2 className="h-3 w-3 text-emerald-400" />
-                    <span className="text-[9px] font-black text-emerald-400">Selesai</span>
-                  </div>
-                )}
-
-                <div className="relative z-10 flex flex-col gap-4 p-5">
-                  {/* Set letter */}
-                  <div
-                    className="flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-black text-white transition-transform duration-300 group-hover:scale-110"
-                    style={{
-                      background: `linear-gradient(135deg, ${color}50, ${color}25)`,
-                      boxShadow: `0 4px 20px ${color}35`,
-                    }}
-                  >
-                    {setEmoji[i]}
-                  </div>
-
+              <div className="relative z-10 flex h-full flex-col">
+                <div className="mb-5 flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="font-display text-lg font-bold text-white">{setLabels[i]}</h3>
-                    <p className="text-[11px] font-semibold text-white/40">Format UASA Tingkatan 1</p>
+                    <p className="text-xs font-black uppercase tracking-[0.18em]" style={{ color: meta.color }}>{meta.title}</p>
+                    <h3 className="mt-1 font-display text-xl font-bold text-white">{meta.subtitle}</h3>
                   </div>
-
-                  {/* Specs */}
-                  <div className="space-y-1.5">
-                    {[
-                      { icon: "📝", text: "15 Soalan" },
-                      { icon: "🧠", text: "Sistem Bahasa + Pemahaman" },
-                      { icon: "⏱️", text: "15 Minit" },
-                    ].map((spec) => (
-                      <div key={spec.text} className="flex items-center gap-2">
-                        <span className="text-sm">{spec.icon}</span>
-                        <span className="text-xs text-white/55">{spec.text}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Score bar or start button */}
-                  {best !== null ? (
-                    <div>
-                      <div className="mb-1 flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-white/40">Markah Terbaik</span>
-                        <span className="text-xs font-black" style={{ color }}>{best}%</span>
-                      </div>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
-                        <div
-                          className="h-full rounded-full transition-all"
-                          style={{ width: `${best}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }}
-                        />
-                      </div>
-                    </div>
-                  ) : null}
-
                   <div
-                    className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold text-white transition-all duration-200"
-                    style={{
-                      background: `linear-gradient(135deg, ${color}60, ${color}30)`,
-                      boxShadow: `0 4px 16px ${color}25`,
-                    }}
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-lg font-black text-white"
+                    style={{ background: `${meta.color}22`, color: meta.color }}
                   >
-                    {completed ? "Cuba Semula" : "Mula Set"} <ArrowRight className="h-3.5 w-3.5" />
+                    {OBJEKTIF_SETS[i].badge}
                   </div>
                 </div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
 
-      {/* ── Sections 2–4: Gateway hubs ───────────────────────────────────── */}
-      <div className="space-y-3">
-        {gatewayHubs.map((hub, idx) => (
-          <button
-            key={hub.id}
-            onClick={() => onSelectHub(hub.id)}
-            className="group flex w-full items-center gap-4 rounded-[1.5rem] border border-white/[0.07] bg-white/[0.025] px-5 py-4 text-left transition-all hover:border-white/[0.12] hover:bg-white/[0.05]"
-          >
-            <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-xl transition-transform duration-200 group-hover:scale-110"
-              style={{ background: `${hub.color}18` }}
-            >
-              {hub.emoji}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-black tracking-widest" style={{ color: hub.color }}>
-                  BAHAGIAN {["B", "C", "D"][idx]}
-                </span>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
+                    <span className="text-white/48">15 Soalan</span>
+                    <FileQuestion className="h-4 w-4" style={{ color: meta.color }} />
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
+                    <span className="text-white/48">Tahap Kesukaran</span>
+                    <span className="font-bold text-white/78">{meta.difficulty}</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
+                    <span className="text-white/48">Skor Tertinggi</span>
+                    <span className="font-bold text-white/78">{best !== null ? `${best}%` : "-"}</span>
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center justify-between">
+                  <span
+                    className="rounded-full px-2.5 py-1 text-[10px] font-black"
+                    style={{ background: `${completed ? "#34D399" : meta.color}18`, color: completed ? "#34D399" : meta.color }}
+                  >
+                    {status}
+                  </span>
+                </div>
+
+                <div
+                  className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-black text-white transition-all duration-200 group-hover:shadow-lg"
+                  style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.color}aa)` }}
+                >
+                  Mulakan <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </div>
               </div>
-              <h3 className="font-bold text-white">{hub.label}</h3>
-              <p className="text-xs text-white/40 mt-0.5">{hub.desc}</p>
-            </div>
-            <ArrowRight
-              className="h-4 w-4 shrink-0 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
-              style={{ color: hub.color }}
-            />
-          </button>
-        ))}
+            </button>
+          );
+        })}
+      </div>
       </div>
     </div>
   );
@@ -3478,8 +3522,14 @@ function TopicView({
 
 // ─── MAIN EXPORT ──────────────────────────────────────────────────────────────
 
-export function BMWorldPage({ onBack }: { onBack: () => void }) {
-  const [history, setHistory] = useState<BMScreen[]>([{ type: "landing" }]);
+export function BMWorldPage({
+  onBack,
+  mode = "default",
+}: {
+  onBack: () => void;
+  mode?: "default" | "quiz";
+}) {
+  const [history, setHistory] = useState<BMScreen[]>([mode === "quiz" ? { type: "k1-quiz" } : { type: "landing" }]);
   const screen = history[history.length - 1];
 
   function push(next: BMScreen) {
@@ -3496,7 +3546,9 @@ export function BMWorldPage({ onBack }: { onBack: () => void }) {
 
   // Resolve current context
   const kertas =
-    (screen.type !== "landing" && screen.type !== "objektif-quiz")
+    screen.type === "k1-quiz"
+      ? getBMKertas("k1")
+      : (screen.type !== "landing" && screen.type !== "objektif-quiz")
       ? getBMKertas(screen.kertasId)
       : undefined;
 
@@ -3523,18 +3575,17 @@ export function BMWorldPage({ onBack }: { onBack: () => void }) {
           />
         )}
 
-        {/* K1: redesigned quiz prep view */}
-        {screen.type === "kertas" && screen.kertasId === "k1" && kertas && (
+        {/* K1: redesigned quiz prep view for the dedicated quiz route */}
+        {screen.type === "k1-quiz" && kertas && (
           <K1QuizView
             kertas={kertas}
             onSelectObjektif={(setIndex) => push({ type: "objektif-quiz", setIndex })}
-            onSelectHub={(hubId) => push({ type: "hub", kertasId: "k1", hubId })}
             onBack={pop}
           />
         )}
 
-        {/* K2: existing hub grid */}
-        {screen.type === "kertas" && screen.kertasId === "k2" && kertas && (
+        {/* Existing hub grid used by non-quiz BM worlds */}
+        {screen.type === "kertas" && kertas && (
           <KertasView
             kertas={kertas}
             onSelectHub={(hubId) =>
@@ -3546,7 +3597,12 @@ export function BMWorldPage({ onBack }: { onBack: () => void }) {
 
         {/* Objektif UASA mini quiz runner */}
         {screen.type === "objektif-quiz" && (
-          <ObjektifKuizView setIndex={screen.setIndex} onBack={pop} />
+          <ObjektifKuizView
+            key={screen.setIndex}
+            setIndex={screen.setIndex}
+            onBack={pop}
+            onNextSet={screen.setIndex < 2 ? () => push({ type: "objektif-quiz", setIndex: (screen.setIndex + 1) as 0 | 1 | 2 }) : undefined}
+          />
         )}
 
         {screen.type === "hub" && kertas && hub && (
