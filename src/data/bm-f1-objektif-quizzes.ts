@@ -9,49 +9,61 @@ import type { QuizQuestion } from "./types";
 //   S7      — Peribahasa / bandingan semacam
 //   S8–S9   — Pilih ayat gramatis (format I/II/III/IV)
 //   S10     — Kesalahan bahasa + pembetulan
-//   S11–S15 — KOMSAS Form 1 berdasarkan bahan: pantun, syair, sajak, drama
+//   S11–S15 — KOMSAS Tingkatan 1 berdasarkan bahan KOMSAS rasmi (puisi tradisional/moden, prosa tradisional)
+//             Set A: Pantun Dua Kerat (Nasihat) · Set B: Kita Umpama Sehelai Daun · Set C: Asal Padi
 
-const SET_A_KOMSAS_BAHAN = `Baca pantun di bawah dengan teliti.
+const SET_A_KOMSAS_BAHAN = `Baca bahan berikut dengan teliti.
 
-PANTUN NASIHAT
+PANTUN DUA KERAT (NASIHAT)
 
-Pergi ke dusun memetik duku,
-Singgah sebentar di tepi telaga;
-Rajin membaca menambah ilmu,
-Bekal berguna sepanjang usia.
+Rangkap 1
+Berjalan peliharakan kaki,
+Berkata peliharakan lidah.
 
-Burung merpati terbang ke kota,
-Hinggap berehat di dahan sena;
-Hormati guru hormati ibu bapa,
-Hidup berkat jiwa sempurna.`;
+Rangkap 2
+Sedikit hujan basahlah bumi,
+Sedikit usaha jadilah bukti.
 
-const SET_B_KOMSAS_BAHAN = `Baca sajak di bawah dengan teliti.
+Rangkap 3
+Kalau hendak berkata-kata,
+Fikir dahulu sebelum bersuara.
 
-SAJAK: LANGKAH REMAJA
+Kemudian, jawab Soalan 11 hingga Soalan 15 berdasarkan bahan tersebut.`;
 
-Di halaman sekolah kami berdiri,
-Membawa impian setinggi awan,
-Jika tersadung bangun kembali,
-Ilmu dipeluk menjadi pedoman.
+const SET_B_KOMSAS_BAHAN = `Baca bahan berikut dengan teliti.
 
-Rakan di sisi jangan dilupa,
-Tangan dihulur ketika sukar,
-Budi bahasa menjadi cahaya,
-Menerangi jalan menuju benar.`;
+KITA UMPAMA SEHELAI DAUN
 
-const SET_C_KOMSAS_BAHAN = `Baca petikan drama di bawah dengan teliti.
+Kita umpama sehelai daun,
+Hijau seketika, lalu gugur jua,
+Namun sebelum rebah ke bumi,
+Kita memberi naungan dan teduh.
 
-DRAMA: AMANAH KELAS
+Kita umpama sehelai daun,
+Kecil di mata, namun berguna,
+Menjadi baja buat pohon muda,
+Walau usia tidak lama.
 
-FARIS: Duit tabung kelas ini mesti kita simpan dengan baik. Cikgu sudah memberi amanah kepada kita.
+Maka jadilah daun yang ikhlas,
+Biar singkat, biar tidak ternama,
+Asalkan jasa tetap dikenang,
+Selepas kita tiada di dunia.
 
-AINA: Betul. Walaupun tiada orang melihat, kita tetap perlu jujur.
+Kemudian, jawab Soalan 11 hingga Soalan 15 berdasarkan bahan tersebut.`;
 
-RIZAL: Saya hampir menggunakan duit itu untuk membeli makanan tadi. Mujur kamu mengingatkan saya.
+const SET_C_KOMSAS_BAHAN = `Baca bahan berikut dengan teliti.
 
-FARIS: Kita boleh lapar sebentar, tetapi jangan sesekali mengkhianati kepercayaan orang.
+ASAL PADI
 
-AINA: Esok kita serahkan tabung ini kepada cikgu bersama-sama.`;
+Pada zaman dahulu, terdapat sebuah kampung yang dilanda kebuluran kerana tanah ladang tidak menghasilkan sebarang tanaman. Penduduk kampung berasa sangat susah hati kerana tidak mempunyai makanan untuk dimakan.
+
+Pada suatu malam, seorang tua kampung bermimpi didatangi oleh seorang wanita berpakaian serba kuning. Wanita itu memberitahu bahawa dirinya ialah Puteri Padi yang diutuskan untuk membantu penduduk kampung yang kelaparan. Puteri Padi sanggup mengorbankan dirinya menjadi benih, asalkan penduduk kampung berjanji untuk sentiasa menghargai dan menjaga setiap butir hasil tanaman dengan baik.
+
+Selepas mimpi itu, orang tua tersebut menjumpai sejenis tumbuhan berbutir kuning keemasan tumbuh subur di tepi sungai. Penduduk kampung mengambil benih tersebut dan menanamnya di seluruh kawasan ladang. Hasil tanaman itu kemudiannya dipanggil padi.
+
+Sejak peristiwa itu, penduduk kampung tidak pernah lagi kebuluran. Mereka sentiasa mengadakan kesyukuran setiap kali menuai padi sebagai tanda menghormati pengorbanan Puteri Padi. Mereka juga mengajar anak cucu supaya tidak membazirkan sebutir pun nasi kerana ia melambangkan pengorbanan dan rahmat.
+
+Kemudian, jawab Soalan 11 hingga Soalan 15 berdasarkan bahan tersebut.`;
 
 // ─── SET 1 ────────────────────────────────────────────────────────────────────
 export const bmF1ObjektifKuiz1: QuizQuestion[] = [
@@ -225,16 +237,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_A_KOMSAS_BAHAN}\n\n11. Apakah maksud rangkai kata *bekal berguna* dalam pantun tersebut?`,
+      `${SET_A_KOMSAS_BAHAN}\n\nSoalan 11: Apakah maksud perkataan 'peliharakan' dalam rangkap pertama pantun tersebut?`,
     options: [
-      "Makanan yang dibawa ketika berjalan",
-      "Ilmu yang dapat digunakan dalam kehidupan",
-      "Hadiah yang diberikan oleh guru",
-      "Barang yang disimpan di rumah",
+      "Jagalah",
+      "Buangkan",
+      "Lupakan",
+      "Abaikan",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Dalam pantun, 'bekal berguna' merujuk kepada ilmu yang bermanfaat sepanjang usia.",
+      "'Peliharakan' bermaksud jagalah atau awasilah. Pantun ini menasihati kita supaya menjaga tingkah laku (kaki) dan tutur kata (lidah).",
   },
   {
     id: "bm-f1-obj1-q12",
@@ -244,16 +256,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_A_KOMSAS_BAHAN}\n\n12. Berdasarkan pantun tersebut, apakah faedah rajin membaca?`,
+      `${SET_A_KOMSAS_BAHAN}\n\nSoalan 12: Berdasarkan rangkap kedua pantun tersebut, apakah yang akan terhasil daripada sedikit usaha?`,
     options: [
-      "Menambah ilmu",
-      "Menjadi terkenal",
-      "Mendapat hadiah",
-      "Dapat pergi ke dusun",
+      "Usaha itu akan membawa hasil",
+      "Usaha itu akan sia-sia sahaja",
+      "Usaha itu perlu dihentikan",
+      "Tiada apa-apa akan berlaku",
     ],
     answerIndex: 0,
     explanation:
-      "Baris 'Rajin membaca menambah ilmu' menyatakan faedah membaca secara langsung.",
+      "Baris 'Sedikit usaha jadilah bukti' menyatakan secara langsung bahawa usaha sekecil mana pun akan membawa hasil yang nyata.",
   },
   {
     id: "bm-f1-obj1-q13",
@@ -263,16 +275,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_A_KOMSAS_BAHAN}\n\n13. Apakah mesej rangkap kedua pantun tersebut?`,
+      `${SET_A_KOMSAS_BAHAN}\n\nSoalan 13: Apakah maksud rangkap ketiga pantun tersebut?`,
     options: [
-      "Kita hendaklah menghormati guru dan ibu bapa",
-      "Kita hendaklah memetik buah di dusun",
-      "Kita hendaklah berehat di dahan sena",
-      "Kita hendaklah pergi ke kota setiap hari",
+      "Kita perlu berfikir dahulu sebelum bercakap supaya tidak menyesal",
+      "Kita perlu bercakap dengan cepat tanpa berfikir",
+      "Kita perlu berdiam diri sepanjang masa",
+      "Kita tidak perlu peduli akan kata-kata sendiri",
     ],
     answerIndex: 0,
     explanation:
-      "Rangkap kedua menegaskan sikap menghormati guru dan ibu bapa supaya hidup diberkati.",
+      "Rangkap ketiga menasihati kita supaya berfikir dahulu sebelum bersuara agar tidak menyesal kemudian.",
   },
   {
     id: "bm-f1-obj1-q14",
@@ -282,11 +294,11 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_A_KOMSAS_BAHAN}\n\n14. Apakah nilai murni yang terdapat dalam pantun tersebut?`,
-    options: ["Rajin menuntut ilmu", "Suka membazir masa", "Berani melawan nasihat", "Bangga diri"],
+      `${SET_A_KOMSAS_BAHAN}\n\nSoalan 14: Apakah nilai murni yang terdapat dalam rangkap pertama pantun tersebut?`,
+    options: ["Berhemah", "Kedekut", "Pentingkan diri", "Sombong"],
     answerIndex: 0,
     explanation:
-      "Pantun menonjolkan nilai kerajinan menuntut ilmu melalui amalan membaca.",
+      "Rangkap pertama menonjolkan nilai berhemah, iaitu menjaga kelakuan dan pertuturan supaya disenangi orang.",
   },
   {
     id: "bm-f1-obj1-q15",
@@ -296,16 +308,16 @@ export const bmF1ObjektifKuiz1: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_A_KOMSAS_BAHAN}\n\n15. Rakan anda malas membaca buku. Apakah tindakan paling sesuai berdasarkan pengajaran pantun tersebut?`,
+      `${SET_A_KOMSAS_BAHAN}\n\nSoalan 15: Rakan anda sering bercakap kasar tanpa berfikir akibatnya. Berdasarkan pengajaran pantun tersebut, apakah nasihat paling sesuai untuk diberikan kepada rakan anda?`,
     options: [
-      "Mengajaknya membaca bahan yang sesuai secara konsisten",
-      "Mengejeknya kerana kurang membaca",
-      "Menyuruhnya berhenti belajar",
-      "Menyembunyikan buku-bukunya",
+      "Nasihatkan dia supaya berfikir dahulu sebelum bercakap agar tidak menyinggung perasaan orang lain",
+      "Suruh dia terus bercakap sesuka hati",
+      "Abaikan sahaja sikap rakan tersebut",
+      "Ikut sahaja cara rakan itu bercakap",
     ],
     answerIndex: 0,
     explanation:
-      "Pantun menggalakkan amalan membaca kerana membaca menambah ilmu yang berguna dalam kehidupan.",
+      "Pengajaran pantun ialah berfikir dahulu sebelum bersuara, jadi nasihat paling sesuai ialah menggalakkan rakan berfikir dahulu sebelum bercakap.",
   },
 ];
 
@@ -481,16 +493,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_B_KOMSAS_BAHAN}\n\n11. Apakah maksud rangkai kata *ilmu dipeluk* dalam sajak tersebut?`,
+      `${SET_B_KOMSAS_BAHAN}\n\nSoalan 11: Apakah maksud perkataan 'naungan' dalam rangkap pertama sajak tersebut?`,
     options: [
-      "Ilmu dijadikan pegangan hidup",
-      "Buku dibawa ke mana-mana",
-      "Awan dipeluk oleh remaja",
-      "Rakan memegang tangan penyajak",
+      "Perlindungan atau tempat berlindung",
+      "Kemarahan",
+      "Kesedihan",
+      "Kehancuran",
     ],
     answerIndex: 0,
     explanation:
-      "Rangkai kata 'ilmu dipeluk' bermaksud ilmu dijadikan pegangan atau pedoman dalam kehidupan.",
+      "'Naungan' bermaksud perlindungan atau tempat berlindung. Daun memberi naungan dan teduh sebelum ia gugur.",
   },
   {
     id: "bm-f1-obj2-q12",
@@ -500,16 +512,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_B_KOMSAS_BAHAN}\n\n12. Berdasarkan sajak tersebut, apakah yang perlu dilakukan jika tersadung?`,
+      `${SET_B_KOMSAS_BAHAN}\n\nSoalan 12: Berdasarkan rangkap kedua sajak tersebut, apakah yang dilakukan oleh daun walaupun usianya tidak lama?`,
     options: [
-      "Bangun kembali",
-      "Melupakan impian",
-      "Menjauhi rakan",
-      "Berhenti belajar",
+      "Menjadi baja buat pohon muda",
+      "Hilang begitu sahaja tanpa meninggalkan apa-apa",
+      "Tumbuh semula menjadi pokok baharu",
+      "Terbang dibawa angin ke tempat lain",
     ],
     answerIndex: 0,
     explanation:
-      "Jawapan terdapat pada baris 'Jika tersadung bangun kembali'.",
+      "Baris 'Menjadi baja buat pohon muda' menyatakan secara langsung bahawa daun tetap berguna walaupun usianya singkat.",
   },
   {
     id: "bm-f1-obj2-q13",
@@ -519,16 +531,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_B_KOMSAS_BAHAN}\n\n13. Apakah mesej yang disampaikan dalam rangkap kedua sajak tersebut?`,
+      `${SET_B_KOMSAS_BAHAN}\n\nSoalan 13: Apakah maksud rangkap ketiga sajak tersebut?`,
     options: [
-      "Kita hendaklah membantu rakan dan berbudi bahasa",
-      "Kita hendaklah berjalan seorang diri",
-      "Kita hendaklah mengejar awan",
-      "Kita hendaklah melupakan sekolah",
+      "Kita perlu menjadi insan yang berjasa walaupun sumbangan kita tidak diketahui ramai",
+      "Kita perlu menjadi terkenal supaya dikenang orang",
+      "Kita tidak perlu membuat sebarang kebaikan",
+      "Kita perlu mengelak daripada membantu orang lain",
     ],
     answerIndex: 0,
     explanation:
-      "Rangkap kedua menyatakan rakan tidak harus dilupakan, tangan perlu dihulur ketika sukar dan budi bahasa menjadi cahaya.",
+      "Rangkap ketiga menasihati kita supaya berjasa secara ikhlas, walaupun singkat dan tidak ternama, asalkan jasa itu dikenang.",
   },
   {
     id: "bm-f1-obj2-q14",
@@ -538,11 +550,11 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_B_KOMSAS_BAHAN}\n\n14. Apakah nilai murni yang jelas dalam baris 'Tangan dihulur ketika sukar'?`,
-    options: ["Tolong-menolong", "Mementingkan diri", "Putus asa", "Kesombongan"],
+      `${SET_B_KOMSAS_BAHAN}\n\nSoalan 14: Apakah nilai murni yang dapat dicontohi daripada sikap daun dalam sajak tersebut?`,
+    options: ["Ikhlas memberi manfaat kepada orang lain", "Mementingkan diri sendiri", "Berputus asa dengan cepat", "Tidak menghargai masa"],
     answerIndex: 0,
     explanation:
-      "Baris tersebut menggambarkan kesediaan membantu rakan yang menghadapi kesusahan.",
+      "Sajak menonjolkan nilai keikhlasan memberi manfaat, seperti daun yang memberi naungan dan menjadi baja walaupun usianya singkat.",
   },
   {
     id: "bm-f1-obj2-q15",
@@ -552,16 +564,16 @@ export const bmF1ObjektifKuiz2: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_B_KOMSAS_BAHAN}\n\n15. Rakan anda gagal dalam pertandingan dan berasa kecewa. Apakah nasihat paling sesuai berdasarkan sajak tersebut?`,
+      `${SET_B_KOMSAS_BAHAN}\n\nSoalan 15: Sebagai seorang murid, bagaimanakah anda boleh mencontohi sikap 'daun' seperti dalam sajak tersebut dalam kehidupan seharian di sekolah?`,
     options: [
-      "Bangun semula dan terus berusaha",
-      "Berhenti menyertai semua pertandingan",
-      "Menyalahkan rakan sepasukan",
-      "Melupakan nasihat guru",
+      "Menolong rakan sekelas tanpa mengharapkan balasan",
+      "Mengabaikan rakan yang memerlukan bantuan",
+      "Hanya membantu jika diberi habuan",
+      "Memilih untuk bersendirian sahaja",
     ],
     answerIndex: 0,
     explanation:
-      "Sajak menasihati remaja supaya bangun kembali apabila tersadung dan menjadikan ilmu sebagai pedoman.",
+      "Seperti daun yang memberi manfaat walaupun kecil dan usianya singkat, murid boleh mencontohinya dengan menolong rakan secara ikhlas tanpa mengharapkan balasan.",
   },
 ];
 
@@ -737,16 +749,16 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_C_KOMSAS_BAHAN}\n\n11. Apakah maksud perkataan *amanah* dalam petikan drama tersebut?`,
+      `${SET_C_KOMSAS_BAHAN}\n\nSoalan 11: Apakah maksud perkataan 'kebuluran' dalam petikan tersebut?`,
     options: [
-      "Kepercayaan atau tanggungjawab yang perlu dijaga",
-      "Makanan yang hendak dibeli",
-      "Tempat menyimpan buku",
-      "Hadiah daripada rakan",
+      "Kekurangan makanan atau kelaparan",
+      "Kekayaan",
+      "Kegembiraan",
+      "Kesihatan",
     ],
     answerIndex: 0,
     explanation:
-      "Dalam drama, amanah merujuk kepada kepercayaan cikgu terhadap murid untuk menjaga duit tabung kelas.",
+      "'Kebuluran' bermaksud kekurangan makanan atau kelaparan. Kampung itu dilanda kebuluran kerana tanah ladang tidak menghasilkan tanaman.",
   },
   {
     id: "bm-f1-obj3-q12",
@@ -756,16 +768,16 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_C_KOMSAS_BAHAN}\n\n12. Mengapakah Faris menegaskan bahawa duit tabung kelas mesti disimpan dengan baik?`,
+      `${SET_C_KOMSAS_BAHAN}\n\nSoalan 12: Mengapakah penduduk kampung dalam petikan tersebut berasa sangat susah hati?`,
     options: [
-      "Cikgu telah memberi amanah kepada mereka",
-      "Faris mahu membeli makanan",
-      "Aina menyuruh Faris menyembunyikannya",
-      "Rizal tidak hadir ke sekolah",
+      "Kerana tanah ladang mereka tidak menghasilkan sebarang tanaman",
+      "Kerana rumah mereka terbakar",
+      "Kerana ternakan mereka mati",
+      "Kerana mereka kehilangan wang",
     ],
     answerIndex: 0,
     explanation:
-      "Faris menyatakan, 'Cikgu sudah memberi amanah kepada kita.'",
+      "Petikan menyatakan secara langsung bahawa penduduk kampung susah hati kerana tanah ladang tidak menghasilkan sebarang tanaman.",
   },
   {
     id: "bm-f1-obj3-q13",
@@ -775,16 +787,16 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_C_KOMSAS_BAHAN}\n\n13. Apakah mesej utama petikan drama tersebut?`,
+      `${SET_C_KOMSAS_BAHAN}\n\nSoalan 13: Apakah yang dilakukan oleh Puteri Padi bagi membantu penduduk kampung tersebut?`,
     options: [
-      "Kita mestilah jujur ketika memegang amanah",
-      "Kita boleh menggunakan duit kelas sesuka hati",
-      "Kita hendaklah menyembunyikan kesalahan rakan",
-      "Kita tidak perlu menyerahkan tabung kepada guru",
+      "Puteri Padi mengorbankan dirinya menjadi benih untuk ditanam",
+      "Puteri Padi memberikan wang kepada penduduk kampung",
+      "Puteri Padi membina rumah baharu untuk penduduk",
+      "Puteri Padi membawa penduduk kampung berpindah",
     ],
     answerIndex: 0,
     explanation:
-      "Dialog Aina dan Faris menekankan kejujuran dan larangan mengkhianati kepercayaan orang.",
+      "Puteri Padi sanggup mengorbankan dirinya menjadi benih yang kemudiannya ditanam oleh penduduk kampung dan dipanggil padi.",
   },
   {
     id: "bm-f1-obj3-q14",
@@ -794,11 +806,16 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_C_KOMSAS_BAHAN}\n\n14. Apakah nilai murni yang ditunjukkan oleh Aina dalam petikan drama tersebut?`,
-    options: ["Kejujuran", "Ketamakan", "Keangkuhan", "Kecuaian"],
+      `${SET_C_KOMSAS_BAHAN}\n\nSoalan 14: Apakah pengajaran yang dapat diperoleh daripada petikan tersebut?`,
+    options: [
+      "Kita hendaklah menghargai dan tidak membazirkan makanan",
+      "Kita boleh membazirkan makanan sesuka hati",
+      "Kita tidak perlu bersyukur atas rezeki yang diperoleh",
+      "Kita perlu mementingkan diri semasa kesusahan",
+    ],
     answerIndex: 0,
     explanation:
-      "Aina berkata bahawa walaupun tiada orang melihat, mereka tetap perlu jujur.",
+      "Petikan menyatakan penduduk kampung mengajar anak cucu supaya tidak membazirkan sebutir nasi kerana ia melambangkan pengorbanan dan rahmat.",
   },
   {
     id: "bm-f1-obj3-q15",
@@ -808,15 +825,15 @@ export const bmF1ObjektifKuiz3: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question:
-      `${SET_C_KOMSAS_BAHAN}\n\n15. Jika anda berada di tempat Rizal, apakah tindakan paling wajar selepas sedar hampir melakukan kesalahan?`,
+      `${SET_C_KOMSAS_BAHAN}\n\nSoalan 15: Jika anda melihat seorang rakan membazirkan nasi semasa makan di kantin, apakah tindakan paling sesuai berdasarkan pengajaran petikan tersebut?`,
     options: [
-      "Mengaku kesilapan dan menyerahkan tabung kepada cikgu",
-      "Menggunakan duit itu secara senyap-senyap",
-      "Menyalahkan Faris dan Aina",
-      "Membuang tabung supaya tiada bukti",
+      "Menasihati rakan tersebut supaya menghargai makanan dan tidak membazirkannya",
+      "Mengikut sahaja perbuatan rakan tersebut",
+      "Mengambil nasi yang dibazirkan itu untuk dibuang bersama",
+      "Berdiam diri tanpa menasihati rakan tersebut",
     ],
     answerIndex: 0,
     explanation:
-      "Tindakan paling wajar ialah jujur, mengakui kesilapan dan menjaga amanah yang diberikan.",
+      "Berdasarkan pengajaran petikan, tindakan paling sesuai ialah menasihati rakan supaya menghargai makanan dan tidak membazirkannya.",
   },
 ];
