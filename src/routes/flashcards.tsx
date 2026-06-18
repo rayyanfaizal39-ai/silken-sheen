@@ -27,6 +27,12 @@ import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
+import {
+  ENGLISH_FLASHCARD_DECKS,
+  getEnglishFlashcardsForDeck,
+  isEnglishFlashcardDeckId,
+  type EnglishFlashcardDeckId,
+} from "@/data/english-f1-flashcard-decks";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -3273,6 +3279,67 @@ function MathFlashcardCategoryPicker({
   );
 }
 
+function EnglishFlashcardDeckPicker({
+  onBack,
+  onSelect,
+}: {
+  onBack: () => void;
+  onSelect: (deckId: EnglishFlashcardDeckId) => void;
+}) {
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to subjects
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">English Form 1</span>
+      </div>
+
+      <div className="glass-strong rounded-3xl p-6 sm:p-8">
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
+            English Form 1
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
+            Open <span className="gradient-text">Paper 1 Flashcards</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
+            Quick revision for high-frequency UASA Paper 1 skills.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {ENGLISH_FLASHCARD_DECKS.map((deck, index) => (
+            <button
+              key={deck.id}
+              onClick={() => onSelect(deck.id)}
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
+              style={{ animationDelay: `${index * 70}ms` }}
+            >
+              <div
+                className={`absolute -right-14 -top-14 h-40 w-40 rounded-full bg-gradient-to-br ${deck.tone} opacity-20 blur-3xl transition-opacity group-hover:opacity-40`}
+              />
+              <div
+                className={`relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${deck.tone} text-4xl shadow-lg`}
+              >
+                {deck.badge}
+              </div>
+              <h3 className="relative font-display text-2xl font-bold">{deck.title}</h3>
+              <p className="relative mt-3 text-sm leading-7 text-slate-300">{deck.description}</p>
+              <div className="relative mt-5 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100">
+                {deck.count} Cards
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function FlashcardsPage() {
   const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
   const initialSearch = useMemo(readStudySearch, []);
@@ -3321,15 +3388,20 @@ function FlashcardsPage() {
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
   const hasMathFlashcards = !!(subject === "math" && chapter && MATH_FLASHCARD_BANKS[chapter]);
+  const isEnglishFlashcardDeck = subject === "english" && isEnglishFlashcardDeckId(chapter);
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const chapterMeta =
     subject && chapter
       ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
       : null;
-  const missingChapter = !!(subject && chapter && !chapterMeta);
+  const missingChapter = !!(subject && chapter && !chapterMeta && !isEnglishFlashcardDeck);
 
   const pool = useMemo(() => {
+    if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
+      const englishCards = getEnglishFlashcardsForDeck(chapter);
+      return favOnly ? englishCards.filter((f) => progress.favorites.includes(f.id)) : englishCards;
+    }
     if (
       subject === "math" &&
       chapter &&
@@ -3585,6 +3657,34 @@ function FlashcardsPage() {
 
   // ── Subject World early-return ────────────────────────────────────────────
   if (subject && !needsScienceLang && !chapter) {
+    if (subject === "english") {
+      return (
+        <AcademyPageShell>
+          <EnglishFlashcardDeckPicker
+            onBack={() => {
+              setSubject(null);
+              setChapter(null);
+              resetSession();
+            }}
+            onSelect={(deckId) => {
+              setChapter(deckId);
+              resetSession();
+              if (setLastVisited) {
+                const deck = ENGLISH_FLASHCARD_DECKS.find((item) => item.id === deckId);
+                setLastVisited({
+                  subjectId: "english",
+                  chapterKey: deckId,
+                  type: "flashcards",
+                  label: deck?.title ?? deckId,
+                  timestamp: Date.now(),
+                });
+              }
+            }}
+          />
+        </AcademyPageShell>
+      );
+    }
+
     return (
       <SubjectWorldPage
         subjectId={subject}
@@ -3793,19 +3893,37 @@ function FlashcardsPage() {
         />
       ) : (
         <>
-          <ContentHeader
-            subjectId={subject}
-            chapterKey={chapter}
-            scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-            onBack={() => {
-              if (hasMathFlashcards) {
-                setMathFlashcardCategory(null);
-                resetSession();
-                return;
-              }
-              setChapter(null);
-            }}
-          />
+          {isEnglishFlashcardDeck ? (
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+              <button
+                onClick={() => {
+                  setChapter(null);
+                  resetSession();
+                }}
+                className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
+              >
+                <ArrowLeft className="h-4 w-4" /> Back to flashcards
+              </button>
+              <span className="text-sm font-semibold text-muted-foreground">
+                English Form 1 •{" "}
+                {ENGLISH_FLASHCARD_DECKS.find((deck) => deck.id === chapter)?.title ?? chapter}
+              </span>
+            </div>
+          ) : (
+            <ContentHeader
+              subjectId={subject}
+              chapterKey={chapter}
+              scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+              onBack={() => {
+                if (hasMathFlashcards) {
+                  setMathFlashcardCategory(null);
+                  resetSession();
+                  return;
+                }
+                setChapter(null);
+              }}
+            />
+          )}
 
           {/* Settings row */}
           <div className="flex justify-end gap-2 mb-3">
@@ -3858,6 +3976,7 @@ function FlashcardsPage() {
               </div>
             )}
 
+          {!isEnglishFlashcardDeck && (
           <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
             <div className="flex flex-wrap gap-2 items-center">
               <select
@@ -3892,6 +4011,28 @@ function FlashcardsPage() {
               <Shuffle className="w-4 h-4" /> Shuffle
             </button>
           </div>
+          )}
+          {isEnglishFlashcardDeck && (
+            <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-bold text-cyan-100">
+                {total || pool.length} Cards
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setFavOnly((v) => !v)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition ${favOnly ? "bg-rose-500/30 text-rose-200" : "bg-white/5 text-muted-foreground"}`}
+                >
+                  Favorites
+                </button>
+                <button
+                  onClick={shuffle}
+                  className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10"
+                >
+                  <Shuffle className="w-4 h-4" /> Shuffle
+                </button>
+              </div>
+            </div>
+          )}
           <p className="text-center text-xs text-muted-foreground mb-4 animate-fade-up">
             🔀 Cards are shuffled every session
           </p>

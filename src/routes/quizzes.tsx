@@ -43,7 +43,6 @@ import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import {
-  ENGLISH_QUIZ_PAPERS,
   ENGLISH_QUIZ_SETS,
   getEnglishQuizSet,
   getEnglishQuizSetsForPaper,
@@ -6550,20 +6549,7 @@ function QuizzesPage() {
           </div>
         )}
 
-        {!englishPaperId ? (
-          <EnglishPaperSelectionScreen
-            onBack={() => {
-              setSubject(null);
-              reset();
-            }}
-            onSelect={(paperId) => {
-              setEnglishPaperId(paperId);
-              setEnglishSetId(null);
-              setEnglishPhase("select");
-              resetRegularQuiz();
-            }}
-          />
-        ) : englishSetId && selectedEnglishSet && englishPhase !== "select" ? (
+        {englishSetId && selectedEnglishSet && englishPhase !== "select" ? (
           englishPhase === "intro" ? (
             <EnglishSetIntroScreen
               quizSet={selectedEnglishSet}
@@ -6613,9 +6599,9 @@ function QuizzesPage() {
           )
         ) : (
           <EnglishSetSelectionScreen
-            paperId={englishPaperId}
+            paperId="paper-1"
             onBack={() => {
-              setEnglishPaperId(null);
+              setSubject(null);
               setEnglishSetId(null);
               setEnglishPhase("select");
               resetRegularQuiz();
@@ -7473,72 +7459,6 @@ function QuizSettingsScreen({
   );
 }
 
-function EnglishPaperSelectionScreen({
-  onBack,
-  onSelect,
-}: {
-  onBack: () => void;
-  onSelect: (paperId: EnglishQuizPaperId) => void;
-}) {
-  return (
-    <div className="animate-fade-up">
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to subjects
-        </button>
-        <span className="text-sm font-semibold text-muted-foreground">English Form 1</span>
-      </div>
-
-      <div className="glass-strong overflow-hidden rounded-3xl p-6 sm:p-8">
-        <div className="text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
-            English Form 1
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
-            Choose a <span className="gradient-text">Quiz Paper</span>
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
-            Practice in exam-paper sets. Paper 1 uses objective practice. Paper 2 builds writing
-            skills through format, cohesion, vocabulary, and organisation questions.
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {ENGLISH_QUIZ_PAPERS.map((paper, index) => (
-            <button
-              key={paper.id}
-              onClick={() => onSelect(paper.id)}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
-              style={{ animationDelay: `${index * 70}ms` }}
-            >
-              <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-gradient-to-br from-sky-500 to-fuchsia-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-35" />
-              <div className="relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-4xl shadow-lg">
-                {paper.badge}
-              </div>
-              <h3 className="relative font-display text-2xl font-bold">{paper.title}</h3>
-              <p className="relative mt-2 text-sm leading-7 text-slate-300">{paper.description}</p>
-              <div className="relative mt-5 grid gap-2">
-                {getEnglishQuizSetsForPaper(paper.id).map((set) => (
-                  <div key={set.id} className="rounded-2xl bg-white/5 px-4 py-3">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="font-bold">{set.title}</span>
-                      <span className="text-xs font-bold text-cyan-200">30 Questions</span>
-                    </div>
-                    <p className="mt-1 text-xs text-muted-foreground">{set.level}</p>
-                  </div>
-                ))}
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function EnglishSetSelectionScreen({
   paperId,
   onBack,
@@ -7622,7 +7542,6 @@ function EnglishSetIntroScreen({
   onBack: () => void;
   onStart: () => void;
 }) {
-  const isPaper1 = quizSet.paperId === "paper-1";
   const focus =
     quizSet.id === "objective-c"
       ? ["Full mixed Paper 1 simulation", "Parts 1, 2, 3, 4 and 5", "Mini UASA exam flow"]
@@ -7652,7 +7571,7 @@ function EnglishSetIntroScreen({
           >
             {quizSet.badge}
           </div>
-          <p className="text-sm font-bold text-cyan-200">{isPaper1 ? "Paper 1 Quizzes" : "Paper 2 Quizzes"}</p>
+          <p className="text-sm font-bold text-cyan-200">English Form 1 Quizzes</p>
           <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">{quizSet.title}</h2>
           <p className="mt-2 font-semibold text-muted-foreground">{quizSet.level}</p>
 

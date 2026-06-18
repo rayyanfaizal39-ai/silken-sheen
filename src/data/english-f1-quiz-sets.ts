@@ -1,12 +1,10 @@
 import type { QuizQuestion } from "./types";
 
-export type EnglishQuizPaperId = "paper-1" | "paper-2";
+export type EnglishQuizPaperId = "paper-1";
 export type EnglishQuizSetId =
   | "objective-a"
   | "objective-b"
-  | "objective-c"
-  | "writing-skills-a"
-  | "writing-skills-b";
+  | "objective-c";
 
 export interface EnglishQuizSetMeta {
   id: EnglishQuizSetId;
@@ -31,12 +29,6 @@ export const ENGLISH_QUIZ_PAPERS: Array<{
     badge: "\u{1F4C4}",
     title: "Paper 1 Quizzes",
     description: "Objective reading and language awareness practice.",
-  },
-  {
-    id: "paper-2",
-    badge: "\u270F\uFE0F",
-    title: "Paper 2 Quizzes",
-    description: "Writing format, organisation, and language practice.",
   },
 ];
 
@@ -74,28 +66,6 @@ export const ENGLISH_QUIZ_SETS: EnglishQuizSetMeta[] = [
     coverage: ["Parts 1-5", "UASA Simulation", "30 Questions", "Multiple Choice"],
     tone: "from-violet-500 to-fuchsia-500",
   },
-  {
-    id: "writing-skills-a",
-    paperId: "paper-2",
-    badge: "\u270F\uFE0F",
-    title: "Writing Skills A",
-    shortLabel: "Format and Sentences",
-    level: "Writing Practice",
-    description: "Email, message, opening sentence, closing sentence, and vocabulary practice.",
-    coverage: ["Email Format", "Message Format", "30 Questions", "Multiple Choice"],
-    tone: "from-amber-500 to-orange-500",
-  },
-  {
-    id: "writing-skills-b",
-    paperId: "paper-2",
-    badge: "\u270F\uFE0F",
-    title: "Writing Skills B",
-    shortLabel: "Organisation and Cohesion",
-    level: "Writing Practice",
-    description: "Cohesive devices, paragraph order, essay structure, and vocabulary usage.",
-    coverage: ["Essay Structure", "Paragraph Organisation", "30 Questions", "Multiple Choice"],
-    tone: "from-rose-500 to-pink-500",
-  },
 ];
 
 type EnglishQuizTuple = [
@@ -112,7 +82,7 @@ function buildSet(setId: EnglishQuizSetId, paperId: EnglishQuizPaperId, rows: En
     id: `eng-f1-${setId}-${id}`,
     subjectId: "english",
     form: "Form 1",
-    chapter: paperId === "paper-1" ? "Paper 1 Quizzes" : "Paper 2 Quizzes",
+    chapter: "Paper 1 Quizzes",
     difficulty,
     question,
     options,
@@ -220,78 +190,10 @@ const objectiveC = buildSet("objective-c", "paper-1", [
   ["q30", "Read: \"The school website was updated with the new exam timetable.\" Where can students find the new timetable?", ["On the school website", "At the bus stop", "Inside the laboratory", "On a lunch menu"], 0, "The timetable was updated on the school website.", "Easy"],
 ]);
 
-const writingSkillsA = buildSet("writing-skills-a", "paper-2", [
-  ["q01", "Which is the best way to begin an email to your teacher?", ["Hey you,", "Dear Teacher,", "Oi Teacher,", "What now,"], 1, "Dear Teacher is polite and suitable.", "Easy"],
-  ["q02", "Which closing is suitable for an email to a teacher?", ["Yours sincerely, Aiman", "Bye bye forever", "Okay done", "From me only"], 0, "Yours sincerely is a formal closing.", "Easy"],
-  ["q03", "Which subject line is best for an email about a lost book?", ["Hello", "Lost Library Book", "Read this", "Book thing"], 1, "The subject line is clear and specific.", "Easy"],
-  ["q04", "Which sentence states the purpose of an email clearly?", ["I am writing to ask about the Science project deadline.", "The sky is cloudy today.", "My brother likes noodles.", "I have many shoes."], 0, "It clearly explains why the email is written.", "Easy"],
-  ["q05", "Choose the correct order for an email.", ["Closing, greeting, body", "Greeting, body, closing", "Body, closing, greeting", "Subject, closing, greeting only"], 1, "An email usually has a greeting, body and closing.", "Easy"],
-  ["q06", "Which message is most suitable to ask a friend to return a ruler?", ["Return my ruler now!", "Can you please return my ruler tomorrow?", "You lost everything.", "Ruler. Tomorrow."], 1, "It is polite and clear.", "Easy"],
-  ["q07", "Which opening sentence is best for thanking a neighbour?", ["I am writing to thank you for helping us clean the playground.", "Why did you come?", "This is not important.", "I want many things."], 0, "The sentence clearly thanks the neighbour.", "Easy"],
-  ["q08", "Which closing sentence is best for an invitation email?", ["I hope you can join us.", "Do not come.", "The table is round.", "I forgot everything."], 0, "It politely ends an invitation.", "Easy"],
-  ["q09", "Which sentence is most suitable in a message to a classmate?", ["Please bring the group poster tomorrow.", "You are a terrible person.", "I demand all your books.", "Teacher is not school."], 0, "It is clear, polite and relevant.", "Easy"],
-  ["q10", "Choose the best phrase to give a reason.", ["This is because", "In the table", "Very muchly", "Next pencil"], 0, "This is because introduces a reason.", "Easy"],
-  ["q11", "Choose the best connector to add information: \"We need gloves. ___, we need rubbish bags.\"", ["Besides", "However", "Although", "Unless"], 0, "Besides adds another point.", "Medium"],
-  ["q12", "Choose the best connector to show contrast.", ["However", "Therefore", "Firstly", "Besides"], 0, "However shows a contrast.", "Medium"],
-  ["q13", "Which sentence uses suitable vocabulary for a formal email?", ["I would like to request permission to join the trip.", "I wanna go trip.", "Let me go lah.", "Trip is cool."], 0, "The wording is polite and formal.", "Medium"],
-  ["q14", "Which is the best sentence to apologise?", ["I am sorry for submitting the form late.", "You are late.", "Late form nice.", "I do not care."], 0, "The sentence is polite and direct.", "Easy"],
-  ["q15", "Which detail should be included in a message about a meeting?", ["Time and place", "Your favourite song only", "A random joke", "Your shoe size"], 0, "A meeting message should include time and place.", "Easy"],
-  ["q16", "Choose the best opening for an email to a friend.", ["Hi Ravi,", "Dear Principal,", "To whom it may concern,", "Respectfully yours,"], 0, "Hi Ravi is suitable for a friend.", "Easy"],
-  ["q17", "Which message has the clearest instruction?", ["Meet at the library at 2.30 p.m.", "Maybe later somewhere.", "Things happen.", "Bring that thing."], 0, "It gives a clear place and time.", "Easy"],
-  ["q18", "Which closing is suitable for an informal message?", ["See you soon!", "Yours faithfully,", "Officially approved,", "To the manager,"], 0, "See you soon is friendly and informal.", "Easy"],
-  ["q19", "Choose the best word: \"Please ___ your attendance by Friday.\"", ["confirm", "destroy", "borrow", "hide"], 0, "Confirm means state that you will attend.", "Medium"],
-  ["q20", "Which sentence is too informal for an email to the principal?", ["Can u approve this?", "I would like to request your approval.", "Thank you for your time.", "I am writing about the school campaign."], 0, "Text-message spelling is too informal.", "Medium"],
-  ["q21", "Which is the best first sentence for a complaint email?", ["I am writing to inform you about the broken fan in our classroom.", "You never fix anything.", "My cat is sleeping.", "This email is yellow."], 0, "It states the complaint politely and clearly.", "Medium"],
-  ["q22", "Which sentence gives a helpful suggestion?", ["Perhaps we could place recycling bins near the canteen.", "No one should try.", "Everything is bad.", "I like cakes."], 0, "It gives a practical suggestion politely.", "Medium"],
-  ["q23", "Which sentence is best for ending a request email?", ["I hope you will consider my request.", "Give it now.", "Nothing else.", "The end, no reply."], 0, "It is polite and suitable for a request.", "Medium"],
-  ["q24", "Choose the best replacement for \"a lot of rubbish\" in a formal report.", ["a large amount of rubbish", "loads of trashy stuff", "rubbish everywhere lah", "so much bad thing"], 0, "A large amount of rubbish is more formal.", "Medium"],
-  ["q25", "Which sentence is grammatically correct?", ["I hope you are well.", "I hopes you is well.", "I hoping you well.", "I hope you well are."], 0, "The sentence has correct subject-verb agreement and word order.", "Easy"],
-  ["q26", "Which phrase is best for giving sequence?", ["Firstly", "Because of", "Although", "Unlike"], 0, "Firstly introduces the first point.", "Easy"],
-  ["q27", "Which sentence shows a polite reminder?", ["May I remind you to bring the consent form?", "Bring it or else.", "You always forget.", "Consent form now!"], 0, "The sentence is polite and clear.", "Medium"],
-  ["q28", "Which information is most important in an invitation?", ["Date, time and venue", "The writer's height", "A random password", "The colour of the gate"], 0, "An invitation needs date, time and venue.", "Easy"],
-  ["q29", "Choose the best closing for a thank-you email.", ["Thank you again for your kindness.", "That is all.", "I am bored.", "Do not reply."], 0, "It closes the thank-you email appropriately.", "Easy"],
-  ["q30", "Which message is best for asking about homework?", ["Hi Sara, what pages should we complete for English homework?", "Homework thing?", "You tell now.", "English is paper."], 0, "It is polite, specific and clear.", "Easy"],
-]);
-
-const writingSkillsB = buildSet("writing-skills-b", "paper-2", [
-  ["q01", "Choose the best topic sentence for a paragraph about healthy habits.", ["Healthy habits help students stay active and focused.", "My shoes are near the door.", "Yesterday was Tuesday.", "The wall is white."], 0, "A topic sentence should introduce the main idea.", "Easy"],
-  ["q02", "Which sentence should come first in an essay introduction about recycling?", ["Recycling is an important habit that protects the environment.", "In conclusion, we must recycle.", "Secondly, bins are useful.", "For example, paper can be reused."], 0, "An introduction starts with the main topic.", "Medium"],
-  ["q03", "Choose the best concluding sentence.", ["Therefore, everyone should help keep the school clean.", "Firstly, there are three reasons.", "My pencil is blue.", "After that, we ate."], 0, "Therefore signals a conclusion.", "Medium"],
-  ["q04", "Which connector shows a result?", ["Therefore", "Although", "Besides", "Firstly"], 0, "Therefore introduces a result or conclusion.", "Medium"],
-  ["q05", "Which connector shows contrast?", ["However", "Moreover", "Then", "Finally"], 0, "However shows contrast.", "Medium"],
-  ["q06", "Choose the best order for a paragraph.", ["Topic sentence, supporting details, closing sentence", "Closing sentence, details, topic sentence", "Details only", "Title, title, title"], 0, "A clear paragraph has a topic sentence, details and a closing sentence.", "Easy"],
-  ["q07", "Which sentence supports the topic \"Technology helps students learn\"?", ["Educational videos can explain difficult topics clearly.", "The field is wet.", "My aunt has a garden.", "The bus is late."], 0, "The sentence gives a relevant supporting detail.", "Easy"],
-  ["q08", "Choose the best vocabulary: \"The school campaign was very ___. Many students joined it.\"", ["successful", "empty", "dangerous", "broken"], 0, "Successful fits a campaign joined by many students.", "Easy"],
-  ["q09", "Which sentence is irrelevant in a paragraph about sports benefits?", ["Playing sports improves stamina.", "Team games teach cooperation.", "Exercise keeps us healthy.", "My favourite fruit is mango."], 3, "Mango is not related to sports benefits.", "Easy"],
-  ["q10", "Choose the best transition for a second point.", ["Secondly", "In conclusion", "Once upon a time", "Suddenly"], 0, "Secondly introduces the second point.", "Easy"],
-  ["q11", "Which phrase is suitable for giving an example?", ["For example", "In conclusion", "On the other hand", "As a result"], 0, "For example introduces an example.", "Easy"],
-  ["q12", "Choose the best sentence to improve cohesion: \"Students should sleep early. ___, they can concentrate better in class.\"", ["As a result", "Although", "For instance", "Meanwhile"], 0, "As a result links the habit to its effect.", "Medium"],
-  ["q13", "Which essay structure is most suitable?", ["Introduction, body paragraphs, conclusion", "Conclusion, title, greeting only", "Body, body, no ending", "Greeting, signature, date only"], 0, "An essay needs an introduction, body and conclusion.", "Easy"],
-  ["q14", "Which sentence is best for a narrative opening?", ["It was still dark when I heard a loud knock on the door.", "In conclusion, I was happy.", "Firstly, recycling is useful.", "Yours sincerely, Daniel."], 0, "The sentence begins a story and creates interest.", "Medium"],
-  ["q15", "Choose the best word: \"The volunteers worked ___ to clean the park.\"", ["together", "lonely", "angry", "broken"], 0, "Together fits the idea of volunteers cooperating.", "Easy"],
-  ["q16", "Which sentence improves paragraph organisation?", ["Start a new paragraph when you introduce a new main point.", "Put all ideas in one very long sentence.", "Never use full stops.", "Write the conclusion first in every paragraph."], 0, "New main points should begin new paragraphs.", "Medium"],
-  ["q17", "Choose the best closing sentence for a paragraph about friendship.", ["A good friend makes school life happier.", "The bus arrived at 6.00.", "My bag is heavy.", "I bought a ruler."], 0, "It concludes the idea about friendship.", "Easy"],
-  ["q18", "Which pair of words is best for sequencing events?", ["First, next", "Because, although", "Under, beside", "Happy, happier"], 0, "First and next organise events in order.", "Easy"],
-  ["q19", "Choose the sentence with the clearest meaning.", ["We cleaned the beach and collected five bags of rubbish.", "Beach rubbish clean bags five we.", "Cleaned rubbish five beach we bags.", "The beach bags cleaned us."], 0, "The sentence has clear word order.", "Easy"],
-  ["q20", "Which sentence is more precise?", ["The students collected 25 plastic bottles.", "The students collected many things.", "Stuff was collected.", "They did some activity."], 0, "A specific number makes the sentence precise.", "Medium"],
-  ["q21", "Choose the best connector: \"The trail was muddy. ___, the hikers continued carefully.\"", ["However", "Therefore", "Besides", "For example"], 0, "However shows contrast between difficulty and continuing.", "Medium"],
-  ["q22", "Which sentence uses suitable vocabulary for an essay about safety?", ["Students should follow safety rules during outdoor activities.", "Students should simply do random things outside.", "Safety is whatever.", "Rules are very rule."], 0, "The vocabulary is clear and appropriate.", "Easy"],
-  ["q23", "Which sentence should be in the conclusion?", ["In short, teamwork helps us complete tasks faster.", "The first reason is teamwork.", "For example, Ali carried the boxes.", "Next, we cleaned the hall."], 0, "In short signals a concluding statement.", "Medium"],
-  ["q24", "Choose the best supporting detail for \"Reading improves vocabulary\".", ["Students learn new words from stories and articles.", "The football field is large.", "My bicycle is red.", "The canteen sells rice."], 0, "The detail explains how reading improves vocabulary.", "Easy"],
-  ["q25", "Which sentence has the best tone for a formal essay?", ["We should reduce food waste in school.", "Food waste is super yuck lol.", "Don't waste lah.", "This thing is bad bad."], 0, "The tone is formal and clear.", "Medium"],
-  ["q26", "Choose the best ending for a story about helping a lost child.", ["I felt relieved when the child found his mother.", "Firstly, helping is good.", "Dear Sir,", "The timetable is below."], 0, "It ends the narrative event naturally.", "Medium"],
-  ["q27", "Which sentence links two ideas smoothly?", ["I wanted to join the trip, but I had to attend a family event.", "I wanted trip family event attend but join.", "Trip. Family. Join. Event.", "I join but family to wanted."], 0, "The connector but links contrasting ideas clearly.", "Medium"],
-  ["q28", "Which detail belongs in a paragraph about community service?", ["We painted the old benches at the playground.", "My phone battery is low.", "The moon is far away.", "The cake was chocolate."], 0, "Painting old benches is related to community service.", "Easy"],
-  ["q29", "Choose the best replacement for \"nice\" in \"The speaker gave a nice talk about health.\"", ["useful", "round", "plastic", "sleepy"], 0, "Useful is more precise in this context.", "Medium"],
-  ["q30", "Which sentence best summarises an essay about protecting animals?", ["Everyone has a role in keeping animals safe.", "Animals have legs.", "My class starts early.", "The shop is closed."], 0, "The sentence summarises the essay's main message.", "Medium"],
-]);
-
 export const ENGLISH_QUIZ_QUESTIONS: Record<EnglishQuizSetId, QuizQuestion[]> = {
   "objective-a": objectiveA,
   "objective-b": objectiveB,
   "objective-c": objectiveC,
-  "writing-skills-a": writingSkillsA,
-  "writing-skills-b": writingSkillsB,
 };
 
 export function getEnglishQuizSet(setId: EnglishQuizSetId) {
