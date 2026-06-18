@@ -1,6 +1,11 @@
 import { useState } from "react";
-import { BookOpen, ChevronDown, ChevronUp, Star } from "lucide-react";
-import type { EnglishChapterData, EnglishCard, EnglishCardType, VocabWord } from "@/data/english-types";
+import { BookOpen, ChevronDown, ChevronUp, FileText, Star } from "lucide-react";
+import type {
+  EnglishChapterData,
+  EnglishCard,
+  EnglishCardType,
+  VocabWord,
+} from "@/data/english-types";
 
 // ─── Card type config ───────────────────────────────────────────────────────
 const CARD_CONFIG: Record<
@@ -8,88 +13,132 @@ const CARD_CONFIG: Record<
   { icon: string; label: string; border: string; bg: string; accent: string; labelBg: string }
 > = {
   goal: {
-    icon: "🎯", label: "Learning Goal",
-    border: "border-violet-500/40", bg: "bg-violet-500/10",
-    accent: "text-violet-300", labelBg: "bg-violet-500/20",
+    icon: "🎯",
+    label: "Learning Goal",
+    border: "border-violet-500/40",
+    bg: "bg-violet-500/10",
+    accent: "text-violet-300",
+    labelBg: "bg-violet-500/20",
   },
   story: {
-    icon: "📖", label: "Story",
-    border: "border-amber-500/40", bg: "bg-amber-500/10",
-    accent: "text-amber-300", labelBg: "bg-amber-500/20",
+    icon: "📖",
+    label: "Story",
+    border: "border-amber-500/40",
+    bg: "bg-amber-500/10",
+    accent: "text-amber-300",
+    labelBg: "bg-amber-500/20",
   },
   concept: {
-    icon: "💡", label: "Key Concept",
-    border: "border-blue-500/40", bg: "bg-blue-500/10",
-    accent: "text-blue-300", labelBg: "bg-blue-500/20",
+    icon: "💡",
+    label: "Key Concept",
+    border: "border-blue-500/40",
+    bg: "bg-blue-500/10",
+    accent: "text-blue-300",
+    labelBg: "bg-blue-500/20",
   },
   "grammar-rule": {
-    icon: "⚡", label: "Grammar Rule",
-    border: "border-indigo-500/40", bg: "bg-indigo-500/10",
-    accent: "text-indigo-300", labelBg: "bg-indigo-500/20",
+    icon: "⚡",
+    label: "Grammar Rule",
+    border: "border-indigo-500/40",
+    bg: "bg-indigo-500/10",
+    accent: "text-indigo-300",
+    labelBg: "bg-indigo-500/20",
   },
   "real-world": {
-    icon: "🌍", label: "Real World",
-    border: "border-emerald-500/40", bg: "bg-emerald-500/10",
-    accent: "text-emerald-300", labelBg: "bg-emerald-500/20",
+    icon: "🌍",
+    label: "Real World",
+    border: "border-emerald-500/40",
+    bg: "bg-emerald-500/10",
+    accent: "text-emerald-300",
+    labelBg: "bg-emerald-500/20",
   },
   mistake: {
-    icon: "⚠️", label: "Common Mistake",
-    border: "border-red-500/40", bg: "bg-red-500/8",
-    accent: "text-red-300", labelBg: "bg-red-500/20",
+    icon: "⚠️",
+    label: "Common Mistake",
+    border: "border-red-500/40",
+    bg: "bg-red-500/8",
+    accent: "text-red-300",
+    labelBg: "bg-red-500/20",
   },
   "memory-trick": {
-    icon: "🧠", label: "Memory Trick",
-    border: "border-purple-500/40", bg: "bg-purple-500/10",
-    accent: "text-purple-300", labelBg: "bg-purple-500/20",
+    icon: "🧠",
+    label: "Memory Trick",
+    border: "border-purple-500/40",
+    bg: "bg-purple-500/10",
+    accent: "text-purple-300",
+    labelBg: "bg-purple-500/20",
   },
   challenge: {
-    icon: "🏆", label: "Challenge",
-    border: "border-yellow-500/40", bg: "bg-yellow-500/10",
-    accent: "text-yellow-300", labelBg: "bg-yellow-500/20",
+    icon: "🏆",
+    label: "Challenge",
+    border: "border-yellow-500/40",
+    bg: "bg-yellow-500/10",
+    accent: "text-yellow-300",
+    labelBg: "bg-yellow-500/20",
   },
   vocab: {
-    icon: "🔤", label: "Vocabulary",
-    border: "border-teal-500/40", bg: "bg-teal-500/10",
-    accent: "text-teal-300", labelBg: "bg-teal-500/20",
+    icon: "🔤",
+    label: "Vocabulary",
+    border: "border-teal-500/40",
+    bg: "bg-teal-500/10",
+    accent: "text-teal-300",
+    labelBg: "bg-teal-500/20",
   },
   "exam-tip": {
-    icon: "✏️", label: "Exam Tip",
-    border: "border-orange-500/40", bg: "bg-orange-500/10",
-    accent: "text-orange-300", labelBg: "bg-orange-500/20",
+    icon: "✏️",
+    label: "Exam Tip",
+    border: "border-orange-500/40",
+    bg: "bg-orange-500/10",
+    accent: "text-orange-300",
+    labelBg: "bg-orange-500/20",
   },
   "did-you-know": {
-    icon: "🤔", label: "Did You Know?",
-    border: "border-sky-500/40", bg: "bg-sky-500/10",
-    accent: "text-sky-300", labelBg: "bg-sky-500/20",
+    icon: "🤔",
+    label: "Did You Know?",
+    border: "border-sky-500/40",
+    bg: "bg-sky-500/10",
+    accent: "text-sky-300",
+    labelBg: "bg-sky-500/20",
   },
   table: {
-    icon: "📊", label: "Reference Table",
-    border: "border-slate-500/40", bg: "bg-slate-500/10",
-    accent: "text-slate-300", labelBg: "bg-slate-500/20",
+    icon: "📊",
+    label: "Reference Table",
+    border: "border-slate-500/40",
+    bg: "bg-slate-500/10",
+    accent: "text-slate-300",
+    labelBg: "bg-slate-500/20",
   },
 };
 
 const THEME_GRADIENT: Record<string, string> = {
-  grammar:    "from-violet-600 to-indigo-600",
+  grammar: "from-violet-600 to-indigo-600",
   vocabulary: "from-teal-600 to-cyan-600",
-  reading:    "from-sky-600 to-blue-600",
-  writing:    "from-purple-600 to-violet-600",
+  reading: "from-sky-600 to-blue-600",
+  writing: "from-purple-600 to-violet-600",
 };
 
 const THEME_GLOW: Record<string, string> = {
-  grammar:    "shadow-[0_0_60px_rgba(139,92,246,0.25)]",
+  grammar: "shadow-[0_0_60px_rgba(139,92,246,0.25)]",
   vocabulary: "shadow-[0_0_60px_rgba(20,184,166,0.25)]",
-  reading:    "shadow-[0_0_60px_rgba(56,189,248,0.25)]",
-  writing:    "shadow-[0_0_60px_rgba(168,85,247,0.25)]",
+  reading: "shadow-[0_0_60px_rgba(56,189,248,0.25)]",
+  writing: "shadow-[0_0_60px_rgba(168,85,247,0.25)]",
 };
 
 // ─── Card sub-renderers ──────────────────────────────────────────────────────
 
-function MistakeCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+function MistakeCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
+}) {
   return (
     <div className={`rounded-2xl border ${cfg.border} ${cfg.bg} p-5`}>
       <div className="flex items-center gap-2 mb-3">
-        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}>
+        <span
+          className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}
+        >
           {cfg.icon} {cfg.label}
         </span>
       </div>
@@ -123,11 +172,19 @@ function MistakeCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG
   );
 }
 
-function GrammarRuleCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+function GrammarRuleCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
+}) {
   return (
     <div className={`rounded-2xl border ${cfg.border} ${cfg.bg} p-5`}>
       <div className="flex items-center gap-2 mb-3">
-        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}>
+        <span
+          className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}
+        >
           {cfg.icon} {cfg.label}
         </span>
       </div>
@@ -154,11 +211,19 @@ function GrammarRuleCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CO
   );
 }
 
-function VocabCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+function VocabCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
+}) {
   return (
     <div className={`rounded-2xl border ${cfg.border} ${cfg.bg} p-5`}>
       <div className="flex items-center gap-2 mb-3">
-        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}>
+        <span
+          className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}
+        >
           {cfg.icon} {cfg.label}
         </span>
       </div>
@@ -192,12 +257,20 @@ function VocabCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[E
   );
 }
 
-function TableCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+function TableCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
+}) {
   if (!card.table) return null;
   return (
     <div className={`rounded-2xl border ${cfg.border} ${cfg.bg} p-5`}>
       <div className="flex items-center gap-2 mb-3">
-        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}>
+        <span
+          className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}
+        >
           {cfg.icon} {cfg.label}
         </span>
       </div>
@@ -208,7 +281,10 @@ function TableCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[E
           <thead>
             <tr className="border-b border-white/10 bg-white/5">
               {card.table.headers.map((h, i) => (
-                <th key={i} className="px-4 py-2.5 text-left font-bold text-white/80 whitespace-nowrap">
+                <th
+                  key={i}
+                  className="px-4 py-2.5 text-left font-bold text-white/80 whitespace-nowrap"
+                >
                   {h}
                 </th>
               ))}
@@ -231,12 +307,20 @@ function TableCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[E
   );
 }
 
-function ChallengeCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+function ChallengeCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
+}) {
   return (
     <div className={`rounded-2xl border-2 ${cfg.border} ${cfg.bg} p-5 relative overflow-hidden`}>
       <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-yellow-500/10 blur-2xl" />
       <div className="flex items-center gap-2 mb-3">
-        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}>
+        <span
+          className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}
+        >
           {cfg.icon} {cfg.label}
         </span>
       </div>
@@ -257,7 +341,13 @@ function ChallengeCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONF
   );
 }
 
-function StoryCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+function StoryCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
+}) {
   if (card.title === "UASA Reference Examples" && card.body) {
     return <ReferenceExamplesCard card={card} cfg={cfg} />;
   }
@@ -266,7 +356,9 @@ function StoryCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[E
     <div className={`rounded-2xl border ${cfg.border} ${cfg.bg} p-5 relative overflow-hidden`}>
       <div className="absolute -top-4 -right-4 text-6xl opacity-10 select-none">📖</div>
       <div className="flex items-center gap-2 mb-3">
-        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}>
+        <span
+          className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}
+        >
           {cfg.icon} {cfg.label}
         </span>
       </div>
@@ -324,12 +416,32 @@ const REFERENCE_LABELS: Array<{
   icon: string;
   tone: ReferenceSection["tone"];
 }> = [
-  { match: /^(READING PASSAGE|FULL PASSAGE|PASSAGE|ORIGINAL SENTENCE)\b:?/i, label: "Passage", icon: "📖", tone: "passage" },
-  { match: /^(QUESTION(?:\s+\d+)?|Question(?:\s+\d+)?)\b:?/i, label: "Question", icon: "❓", tone: "question" },
+  {
+    match: /^(READING PASSAGE|FULL PASSAGE|PASSAGE|ORIGINAL SENTENCE)\b:?/i,
+    label: "Passage",
+    icon: "📖",
+    tone: "passage",
+  },
+  {
+    match: /^(QUESTION(?:\s+\d+)?|Question(?:\s+\d+)?)\b:?/i,
+    label: "Question",
+    icon: "❓",
+    tone: "question",
+  },
   { match: /^OPTIONS\b:?/i, label: "Options", icon: "📝", tone: "options" },
-  { match: /^(CORRECT ANSWER|ANSWER|CORRECT)\b:?/i, label: "Correct Answer", icon: "✅", tone: "answer" },
+  {
+    match: /^(CORRECT ANSWER|ANSWER|CORRECT)\b:?/i,
+    label: "Correct Answer",
+    icon: "✅",
+    tone: "answer",
+  },
   { match: /^(EXPLANATION)\b:?/i, label: "Explanation", icon: "💡", tone: "explanation" },
-  { match: /^(KEYWORDS|COMPLETED ANSWERS AND KEYWORDS|INCORRECT WORD|INCORRECT)\b:?/i, label: "Keywords", icon: "🔑", tone: "keywords" },
+  {
+    match: /^(KEYWORDS|COMPLETED ANSWERS AND KEYWORDS|INCORRECT WORD|INCORRECT)\b:?/i,
+    label: "Keywords",
+    icon: "🔑",
+    tone: "keywords",
+  },
   { match: /^(EXAM TIP)\b:?/i, label: "Exam Tip", icon: "🎯", tone: "tip" },
   { match: /^TABLE\b:?/i, label: "Table", icon: "📝", tone: "options" },
 ];
@@ -429,7 +541,10 @@ function formatReferenceContent(section: ReferenceSection) {
   if (section.tone === "keywords") {
     const items = lines.flatMap((line) =>
       line.includes(",")
-        ? line.split(",").map((item) => item.trim()).filter(Boolean)
+        ? line
+            .split(",")
+            .map((item) => item.trim())
+            .filter(Boolean)
         : [line],
     );
     return (
@@ -460,18 +575,22 @@ function ReferenceExamplesCard({
   cfg,
 }: {
   card: EnglishCard;
-  cfg: typeof CARD_CONFIG[EnglishCardType];
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
 }) {
   const examples = splitReferenceExamples(card.body ?? "").map(parseReferenceExample);
   const [active, setActive] = useState(0);
   const activeExample = examples[active];
 
   return (
-    <div className={`rounded-2xl border ${cfg.border} bg-amber-950/20 p-5 relative overflow-hidden`}>
+    <div
+      className={`rounded-2xl border ${cfg.border} bg-amber-950/20 p-5 relative overflow-hidden`}
+    >
       <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl" />
       <div className="relative mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-widest ${cfg.labelBg} ${cfg.accent}`}>
+          <span
+            className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-widest ${cfg.labelBg} ${cfg.accent}`}
+          >
             📚 {card.title}
           </span>
           <p className="mt-2 text-sm text-amber-100/70">
@@ -532,11 +651,19 @@ function ReferenceExamplesCard({
   );
 }
 
-function GenericCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+function GenericCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: (typeof CARD_CONFIG)[EnglishCardType];
+}) {
   return (
     <div className={`rounded-2xl border ${cfg.border} ${cfg.bg} p-5`}>
       <div className="flex items-center gap-2 mb-3">
-        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}>
+        <span
+          className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded-full ${cfg.labelBg} ${cfg.accent}`}
+        >
           {cfg.icon} {cfg.label}
         </span>
       </div>
@@ -551,7 +678,9 @@ function GenericCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG
         <ul className="mt-2 space-y-1.5">
           {card.items.map((item, i) => (
             <li key={i} className="text-sm text-white/75 flex gap-2 items-start">
-              <span className={`shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full ${cfg.accent.replace("text-", "bg-")}`} />
+              <span
+                className={`shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full ${cfg.accent.replace("text-", "bg-")}`}
+              />
               {item}
             </li>
           ))}
@@ -579,7 +708,11 @@ function WordVault({ words }: { words: VocabWord[] }) {
   const toggle = (word: string) =>
     setCollected((prev) => {
       const next = new Set(prev);
-      next.has(word) ? next.delete(word) : next.add(word);
+      if (next.has(word)) {
+        next.delete(word);
+      } else {
+        next.add(word);
+      }
       return next;
     });
 
@@ -589,7 +722,9 @@ function WordVault({ words }: { words: VocabWord[] }) {
         <span className="text-2xl">🔤</span>
         <div>
           <h3 className="font-bold text-lg text-teal-200">Word Vault</h3>
-          <p className="text-xs text-teal-400/70">Tap a word to collect it — {collected.size}/{words.length} collected</p>
+          <p className="text-xs text-teal-400/70">
+            Tap a word to collect it — {collected.size}/{words.length} collected
+          </p>
         </div>
         <div className="ml-auto text-right">
           <div className="flex gap-1 justify-end mb-1">
@@ -601,7 +736,9 @@ function WordVault({ words }: { words: VocabWord[] }) {
             ))}
           </div>
           <p className="text-xs text-teal-500">
-            {collected.size === words.length && words.length > 0 ? "🏅 All collected!" : `${Math.round((collected.size / Math.max(words.length, 1)) * 100)}%`}
+            {collected.size === words.length && words.length > 0
+              ? "🏅 All collected!"
+              : `${Math.round((collected.size / Math.max(words.length, 1)) * 100)}%`}
           </p>
         </div>
       </div>
@@ -652,7 +789,10 @@ function ExamFacts({ facts }: { facts: string[] }) {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {facts.map((fact, i) => (
-          <div key={i} className="flex items-start gap-3 rounded-xl bg-orange-950/30 border border-orange-500/15 p-3">
+          <div
+            key={i}
+            className="flex items-start gap-3 rounded-xl bg-orange-950/30 border border-orange-500/15 p-3"
+          >
             <span className="shrink-0 w-5 h-5 rounded-full bg-orange-500/30 text-orange-300 text-xs font-bold flex items-center justify-center mt-0.5">
               {i + 1}
             </span>
@@ -678,7 +818,10 @@ function EnglishSectionBlock({
     ? `english-paper-1-part-${index + 1}`
     : undefined;
   return (
-    <div id={sectionId} className="scroll-mt-24 rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden mb-4 animate-fade-up">
+    <div
+      id={sectionId}
+      className="scroll-mt-24 rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden mb-4 animate-fade-up"
+    >
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -697,7 +840,9 @@ function EnglishSectionBlock({
               key={ci}
               className={
                 // Wide cards: mistake (needs both columns), table, vocab with many words, challenge
-                card.type === "mistake" || card.type === "table" || card.type === "challenge" ||
+                card.type === "mistake" ||
+                card.type === "table" ||
+                card.type === "challenge" ||
                 (card.type === "vocab" && (card.words?.length ?? 0) > 2)
                   ? "lg:col-span-2"
                   : ""
@@ -718,7 +863,9 @@ function ChapterHero({ data }: { data: EnglishChapterData }) {
   const gradient = THEME_GRADIENT[data.theme] ?? THEME_GRADIENT.grammar;
   const glow = THEME_GLOW[data.theme] ?? THEME_GLOW.grammar;
   return (
-    <div className={`relative overflow-hidden rounded-[2rem] bg-gradient-to-br ${gradient} p-7 mb-6 ${glow} animate-fade-up`}>
+    <div
+      className={`relative overflow-hidden rounded-[2rem] bg-gradient-to-br ${gradient} p-7 mb-6 ${glow} animate-fade-up`}
+    >
       <div className="absolute -top-8 -right-8 text-[9rem] opacity-10 select-none pointer-events-none leading-none">
         {data.heroEmoji}
       </div>
@@ -796,9 +943,7 @@ function Paper1Overview({ sections }: { sections: EnglishChapterData["sections"]
         <p className="text-[10px] font-black uppercase tracking-[0.24em] text-sky-300/70">
           Paper 1 Exam Flow
         </p>
-        <h3 className="mt-1 font-display text-xl font-bold text-white">
-          The 5 UASA Parts
-        </h3>
+        <h3 className="mt-1 font-display text-xl font-bold text-white">The 5 UASA Parts</h3>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         {PAPER_1_PARTS.map((part, i) => (
@@ -886,9 +1031,11 @@ function Paper2Overview({
             >
               <div className="mb-4 flex items-center justify-between gap-3">
                 <span className="text-3xl">{group.icon}</span>
-                <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${
-                  isActive ? "bg-purple-200 text-purple-950" : "bg-purple-400/15 text-purple-200"
-                }`}>
+                <span
+                  className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${
+                    isActive ? "bg-purple-200 text-purple-950" : "bg-purple-400/15 text-purple-200"
+                  }`}
+                >
                   {group.label}
                 </span>
               </div>
@@ -918,7 +1065,10 @@ function Paper2StudySections({ sections }: { sections: EnglishChapterData["secti
   const cohesiveDevicesBank = sections.find((section) => section.title === "Cohesive Devices Bank");
   const visibleSections = group.sectionIndexes
     .map((sectionIndex) => ({ section: sections[sectionIndex], sectionIndex }))
-    .filter((item): item is { section: EnglishChapterData["sections"][number]; sectionIndex: number } => !!item.section);
+    .filter(
+      (item): item is { section: EnglishChapterData["sections"][number]; sectionIndex: number } =>
+        !!item.section,
+    );
 
   return (
     <>
@@ -953,10 +1103,59 @@ function Paper2StudySections({ sections }: { sections: EnglishChapterData["secti
 export function EnglishNotesBlock({
   id,
   data,
+  storageKey,
 }: {
   id?: string;
   data: EnglishChapterData;
+  storageKey?: string;
 }) {
+  const stateKey = storageKey ?? `notes:english-study-notes:${id ?? data.chapterTitle}`;
+  const [isOpen, setIsOpen] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.sessionStorage.getItem(stateKey) === "open";
+  });
+
+  function openNotes() {
+    setIsOpen(true);
+    if (typeof window !== "undefined") {
+      window.sessionStorage.setItem(stateKey, "open");
+    }
+  }
+
+  if (!isOpen) {
+    return (
+      <div id={id} className="mx-auto mb-6 w-full max-w-5xl scroll-mt-24 animate-fade-up">
+        <button
+          type="button"
+          onClick={openNotes}
+          className="group w-full overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 p-5 text-left shadow-[0_20px_80px_rgba(0,0,0,0.30)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-violet-300/30 hover:bg-[#101827]/84 hover:shadow-[0_24px_80px_rgba(168,85,247,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/70"
+        >
+          <div className="mb-5 h-1 w-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-transparent" />
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-violet-300/20 bg-violet-400/10 shadow-[0_0_34px_rgba(168,85,247,0.16)] transition-transform duration-300 group-hover:scale-105">
+                <FileText className="h-6 w-6 text-violet-200" />
+              </div>
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">
+                  {data.sections.length} section{data.sections.length !== 1 ? "s" : ""}
+                </p>
+                <h2 className="mt-1 font-display text-2xl font-bold text-white">Study Notes</h2>
+                <p className="mt-1 text-sm leading-6 text-white/55">
+                  Structured notes organised by topic.
+                </p>
+              </div>
+            </div>
+            <span className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(168,85,247,0.22)] transition-transform duration-300 group-hover:scale-105">
+              <BookOpen className="h-4 w-4" />
+              Open Notes
+            </span>
+          </div>
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div id={id} className="mx-auto mb-8 w-full max-w-5xl scroll-mt-24">
       <ChapterHero data={data} />

@@ -11,7 +11,7 @@ import {
   GraduationCap,
   Target,
   AlertCircle,
-  CheckCircle2,
+  FileText,
 } from "lucide-react";
 import {
   Accordion,
@@ -35,24 +35,45 @@ type DisplaySection = ScienceNotesSection & {
 };
 
 // Subject-aware accent palette
-const SUBJECT_PALETTE: Record<string, { primary: string; glow: string; from: string; to: string }> = {
-  science:   { primary: "#38BDF8", glow: "rgba(56,189,248,0.25)",  from: "#38BDF8", to: "#0EA5E9" },
-  sejarah:   { primary: "#FB923C", glow: "rgba(251,146,60,0.25)",  from: "#FB923C", to: "#F97316" },
-  geography: { primary: "#34D399", glow: "rgba(52,211,153,0.25)",  from: "#34D399", to: "#10B981" },
-  english:   { primary: "#C084FC", glow: "rgba(192,132,252,0.25)", from: "#C084FC", to: "#A855F7" },
-  math:      { primary: "#FBBF24", glow: "rgba(251,191,36,0.25)",  from: "#FBBF24", to: "#F59E0B" },
-  bm:        { primary: "#F472B6", glow: "rgba(244,114,182,0.25)", from: "#F472B6", to: "#EC4899" },
-  _default:  { primary: "#8B5CF6", glow: "rgba(139,92,246,0.25)",  from: "#8B5CF6", to: "#6366F1" },
-};
+const SUBJECT_PALETTE: Record<string, { primary: string; glow: string; from: string; to: string }> =
+  {
+    science: { primary: "#38BDF8", glow: "rgba(56,189,248,0.25)", from: "#38BDF8", to: "#0EA5E9" },
+    sejarah: { primary: "#FB923C", glow: "rgba(251,146,60,0.25)", from: "#FB923C", to: "#F97316" },
+    geography: {
+      primary: "#34D399",
+      glow: "rgba(52,211,153,0.25)",
+      from: "#34D399",
+      to: "#10B981",
+    },
+    english: { primary: "#C084FC", glow: "rgba(192,132,252,0.25)", from: "#C084FC", to: "#A855F7" },
+    math: { primary: "#FBBF24", glow: "rgba(251,191,36,0.25)", from: "#FBBF24", to: "#F59E0B" },
+    bm: { primary: "#F472B6", glow: "rgba(244,114,182,0.25)", from: "#F472B6", to: "#EC4899" },
+    _default: { primary: "#8B5CF6", glow: "rgba(139,92,246,0.25)", from: "#8B5CF6", to: "#6366F1" },
+  };
 
 // Colour palette rotated across sections for visual variety
 const SECTION_ACCENTS = [
-  { bg: "bg-blue-500/10",    border: "border-blue-500/20",    num: "bg-blue-500",   text: "text-blue-300" },
-  { bg: "bg-purple-500/10",  border: "border-purple-500/20",  num: "bg-purple-500", text: "text-purple-300" },
-  { bg: "bg-emerald-500/10", border: "border-emerald-500/20", num: "bg-emerald-500",text: "text-emerald-300" },
-  { bg: "bg-amber-500/10",   border: "border-amber-500/20",   num: "bg-amber-500",  text: "text-amber-300" },
-  { bg: "bg-pink-500/10",    border: "border-pink-500/20",    num: "bg-pink-500",   text: "text-pink-300" },
-  { bg: "bg-cyan-500/10",    border: "border-cyan-500/20",    num: "bg-cyan-500",   text: "text-cyan-300" },
+  { bg: "bg-blue-500/10", border: "border-blue-500/20", num: "bg-blue-500", text: "text-blue-300" },
+  {
+    bg: "bg-purple-500/10",
+    border: "border-purple-500/20",
+    num: "bg-purple-500",
+    text: "text-purple-300",
+  },
+  {
+    bg: "bg-emerald-500/10",
+    border: "border-emerald-500/20",
+    num: "bg-emerald-500",
+    text: "text-emerald-300",
+  },
+  {
+    bg: "bg-amber-500/10",
+    border: "border-amber-500/20",
+    num: "bg-amber-500",
+    text: "text-amber-300",
+  },
+  { bg: "bg-pink-500/10", border: "border-pink-500/20", num: "bg-pink-500", text: "text-pink-300" },
+  { bg: "bg-cyan-500/10", border: "border-cyan-500/20", num: "bg-cyan-500", text: "text-cyan-300" },
 ];
 
 export function NotesBlock({
@@ -60,11 +81,13 @@ export function NotesBlock({
   sections,
   id,
   subjectId,
+  storageKey,
 }: {
   notes?: StructuredNotes;
   sections?: NotesAccordionSection[];
   id?: string;
   subjectId?: string;
+  storageKey?: string;
 }) {
   const subjectPalette = SUBJECT_PALETTE[subjectId ?? "_default"] ?? SUBJECT_PALETTE["_default"];
   const [query, setQuery] = useState("");
@@ -84,6 +107,11 @@ export function NotesBlock({
       keywords: section.keywords,
     }));
   }, [notes, sections]);
+  const stateKey = storageKey ?? `notes:study-notes:${id ?? subjectId ?? "default"}`;
+  const [isOpen, setIsOpen] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.sessionStorage.getItem(stateKey) === "open";
+  });
 
   const filteredSections = useMemo(() => {
     if (!query.trim()) return displaySections;
@@ -131,16 +159,80 @@ export function NotesBlock({
     });
   }
 
+  function openNotes() {
+    setIsOpen(true);
+    if (typeof window !== "undefined") {
+      window.sessionStorage.setItem(stateKey, "open");
+    }
+  }
+
+  if (!isOpen) {
+    return (
+      <div id={id} className="mx-auto mb-6 w-full max-w-5xl scroll-mt-24 animate-fade-up">
+        <button
+          type="button"
+          onClick={openNotes}
+          className="group w-full overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 p-5 text-left shadow-[0_20px_80px_rgba(0,0,0,0.30)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.16] hover:bg-[#101827]/84 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+          style={{
+            boxShadow: `0 20px 80px rgba(0,0,0,0.30), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06)`,
+          }}
+        >
+          <div
+            className="mb-5 h-1 w-full rounded-full"
+            style={{
+              background: `linear-gradient(90deg, ${subjectPalette.from}, ${subjectPalette.to}, transparent)`,
+            }}
+          />
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 transition-transform duration-300 group-hover:scale-105"
+                style={{
+                  background: `linear-gradient(135deg, ${subjectPalette.from}33, ${subjectPalette.to}22)`,
+                  boxShadow: `0 0 28px ${subjectPalette.glow}`,
+                }}
+              >
+                <FileText className="h-6 w-6" style={{ color: subjectPalette.primary }} />
+              </div>
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">
+                  {displaySections.length} section{displaySections.length !== 1 ? "s" : ""}
+                </p>
+                <h2 className="mt-1 font-display text-2xl font-bold text-white">Study Notes</h2>
+                <p className="mt-1 text-sm leading-6 text-white/55">
+                  Structured notes organised by topic.
+                </p>
+              </div>
+            </div>
+            <span
+              className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(139,92,246,0.20)] transition-transform duration-300 group-hover:scale-105"
+              style={{
+                background: `linear-gradient(90deg, ${subjectPalette.from}, ${subjectPalette.to})`,
+              }}
+            >
+              <BookOpen className="h-4 w-4" />
+              Open Notes
+            </span>
+          </div>
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div
       id={id}
       className="mx-auto mb-8 w-full max-w-5xl scroll-mt-24 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl animate-fade-up overflow-hidden"
-      style={{ boxShadow: `0 20px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06)` }}
+      style={{
+        boxShadow: `0 20px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06)`,
+      }}
     >
       {/* ── Subject accent top bar ─────────────────────────────────── */}
       <div
         className="h-1 w-full"
-        style={{ background: `linear-gradient(90deg, ${subjectPalette.from}, ${subjectPalette.to}, transparent)` }}
+        style={{
+          background: `linear-gradient(90deg, ${subjectPalette.from}, ${subjectPalette.to}, transparent)`,
+        }}
       />
 
       {/* ── Header bar ────────────────────────────────────────────── */}
@@ -156,7 +248,9 @@ export function NotesBlock({
             <BookOpen className="h-5 w-5" style={{ color: subjectPalette.primary }} />
           </div>
           <div>
-            <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">Study Notes</h2>
+            <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
+              Study Notes
+            </h2>
             {filteredSections.length > 0 && (
               <p className="mt-0.5 text-xs text-white/40">
                 {filteredSections.length} section{filteredSections.length !== 1 ? "s" : ""}
@@ -197,7 +291,9 @@ export function NotesBlock({
           <div>
             <div className="mb-3 flex items-center gap-2">
               <Zap className="h-4 w-4 text-[#FBBF24]" />
-              <h3 className="text-sm font-bold uppercase tracking-wider text-[#FBBF24]">Quick Revision</h3>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[#FBBF24]">
+                Quick Revision
+              </h3>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {quickRevision.map((item, i) => (
@@ -231,16 +327,24 @@ export function NotesBlock({
               {/* Nav header */}
               <div
                 className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3"
-                style={{ background: `linear-gradient(135deg, ${subjectPalette.from}11, transparent)` }}
+                style={{
+                  background: `linear-gradient(135deg, ${subjectPalette.from}11, transparent)`,
+                }}
               >
                 <div
                   className="h-2 w-2 rounded-full"
-                  style={{ background: subjectPalette.primary, boxShadow: `0 0 8px ${subjectPalette.glow}` }}
+                  style={{
+                    background: subjectPalette.primary,
+                    boxShadow: `0 0 8px ${subjectPalette.glow}`,
+                  }}
                 />
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
                   Sections
                 </p>
-                <span className="ml-auto rounded-full px-1.5 py-0.5 text-[9px] font-bold" style={{ background: `${subjectPalette.from}22`, color: subjectPalette.primary }}>
+                <span
+                  className="ml-auto rounded-full px-1.5 py-0.5 text-[9px] font-bold"
+                  style={{ background: `${subjectPalette.from}22`, color: subjectPalette.primary }}
+                >
                   {filteredSections.length}
                 </span>
               </div>
@@ -258,28 +362,43 @@ export function NotesBlock({
                           ? "text-white"
                           : "text-white/45 hover:bg-white/[0.05] hover:text-white/80"
                       }`}
-                      style={active ? {
-                        background: `${subjectPalette.from}18`,
-                        borderRadius: "0.75rem",
-                      } : undefined}
+                      style={
+                        active
+                          ? {
+                              background: `${subjectPalette.from}18`,
+                              borderRadius: "0.75rem",
+                            }
+                          : undefined
+                      }
                     >
                       {active && (
                         <span
                           className="absolute left-0 top-1/2 h-4 w-[2.5px] -translate-y-1/2 rounded-full"
-                          style={{ background: subjectPalette.primary, boxShadow: `0 0 8px ${subjectPalette.primary}` }}
+                          style={{
+                            background: subjectPalette.primary,
+                            boxShadow: `0 0 8px ${subjectPalette.primary}`,
+                          }}
                         />
                       )}
                       <span
                         className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded text-[8px] font-black text-white/80"
-                        style={active
-                          ? { background: `linear-gradient(135deg, ${subjectPalette.from}, ${subjectPalette.to})` }
-                          : { background: "rgba(255,255,255,0.08)" }
+                        style={
+                          active
+                            ? {
+                                background: `linear-gradient(135deg, ${subjectPalette.from}, ${subjectPalette.to})`,
+                              }
+                            : { background: "rgba(255,255,255,0.08)" }
                         }
                       >
                         {i + 1}
                       </span>
                       <span className="flex-1 leading-tight">{section.title}</span>
-                      {active && <ChevronRight className="h-3 w-3 shrink-0" style={{ color: subjectPalette.primary }} />}
+                      {active && (
+                        <ChevronRight
+                          className="h-3 w-3 shrink-0"
+                          style={{ color: subjectPalette.primary }}
+                        />
+                      )}
                     </button>
                   );
                 })}
@@ -308,29 +427,41 @@ export function NotesBlock({
                         ? "border-white/[0.12] bg-white/[0.04]"
                         : "border-white/[0.06] bg-white/[0.02] hover:border-white/[0.09] hover:bg-white/[0.03]"
                     }`}
-                    style={isOpen ? {
-                      boxShadow: `0 0 0 1px ${subjectPalette.from}20, 0 8px 32px rgba(0,0,0,0.2)`,
-                    } : undefined}
+                    style={
+                      isOpen
+                        ? {
+                            boxShadow: `0 0 0 1px ${subjectPalette.from}20, 0 8px 32px rgba(0,0,0,0.2)`,
+                          }
+                        : undefined
+                    }
                   >
                     {/* Accent top stripe on open sections */}
                     {isOpen && (
                       <div
                         className="h-0.5 w-full"
-                        style={{ background: `linear-gradient(90deg, ${subjectPalette.from}80, ${subjectPalette.to}40, transparent)` }}
+                        style={{
+                          background: `linear-gradient(90deg, ${subjectPalette.from}80, ${subjectPalette.to}40, transparent)`,
+                        }}
                       />
                     )}
                     <AccordionTrigger className="px-4 py-4 text-left hover:no-underline sm:px-5 [&[data-state=open]]:pb-3">
                       <div className="flex items-center gap-3">
                         <span
                           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-[11px] font-black text-white transition-all"
-                          style={isOpen ? {
-                            background: `linear-gradient(135deg, ${subjectPalette.from}, ${subjectPalette.to})`,
-                            boxShadow: `0 0 16px ${subjectPalette.glow}`,
-                          } : { background: "rgba(255,255,255,0.08)" }}
+                          style={
+                            isOpen
+                              ? {
+                                  background: `linear-gradient(135deg, ${subjectPalette.from}, ${subjectPalette.to})`,
+                                  boxShadow: `0 0 16px ${subjectPalette.glow}`,
+                                }
+                              : { background: "rgba(255,255,255,0.08)" }
+                          }
                         >
                           {i + 1}
                         </span>
-                        <span className={`text-sm font-bold sm:text-base ${isOpen ? "text-white" : "text-white/75"}`}>
+                        <span
+                          className={`text-sm font-bold sm:text-base ${isOpen ? "text-white" : "text-white/75"}`}
+                        >
                           {section.title}
                         </span>
                       </div>
@@ -395,7 +526,9 @@ export function NotesBlock({
               >
                 <FlaskConical className="h-3.5 w-3.5" style={{ color: subjectPalette.primary }} />
               </div>
-              <h3 className="font-bold" style={{ color: subjectPalette.primary }}>Key Terms</h3>
+              <h3 className="font-bold" style={{ color: subjectPalette.primary }}>
+                Key Terms
+              </h3>
               <span
                 className="ml-auto rounded-full px-2 py-0.5 text-[9px] font-bold"
                 style={{ background: `${subjectPalette.from}20`, color: subjectPalette.primary }}
@@ -471,7 +604,9 @@ export function NotesBlock({
               <Star className="h-5 w-5" style={{ color: subjectPalette.primary }} />
               <h3 className="font-display text-lg font-bold text-white">Chapter Summary</h3>
             </div>
-            <p className="relative text-sm leading-8 text-slate-200 sm:text-base">{notes.chapterSummary}</p>
+            <p className="relative text-sm leading-8 text-slate-200 sm:text-base">
+              {notes.chapterSummary}
+            </p>
           </div>
         )}
       </div>
@@ -497,21 +632,24 @@ function SubsectionBlock({
         <h3 className="flex items-center gap-2.5 text-sm font-bold text-white/90 sm:text-base">
           <span
             className="h-4 w-1 shrink-0 rounded-full"
-            style={{ background: `linear-gradient(to bottom, ${subjectPalette.from}, ${subjectPalette.to})` }}
+            style={{
+              background: `linear-gradient(to bottom, ${subjectPalette.from}, ${subjectPalette.to})`,
+            }}
           />
           {sub.title}
         </h3>
       )}
-      {sub.content && (
-        <ReadableContent text={sub.content} keywords={keywords} />
-      )}
+      {sub.content && <ReadableContent text={sub.content} keywords={keywords} />}
       {Array.isArray(sub.bulletPoints) && sub.bulletPoints.length > 0 && (
         <ul className="space-y-2 pl-1">
           {sub.bulletPoints.map((p: string) => (
             <li key={p} className="flex items-start gap-3 text-sm leading-7 text-slate-300">
               <span
                 className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                style={{ background: subjectPalette.primary, boxShadow: `0 0 6px ${subjectPalette.glow}` }}
+                style={{
+                  background: subjectPalette.primary,
+                  boxShadow: `0 0 6px ${subjectPalette.glow}`,
+                }}
               />
               <span>{p}</span>
             </li>
@@ -529,46 +667,43 @@ function SubsectionBlock({
             <FlaskConical className="h-3.5 w-3.5" />
             Key Formula
           </div>
-          <div className="mt-1 border-t border-cyan-500/15 pt-3 font-mono text-sm leading-8 text-cyan-100">{sub.formula}</div>
+          <div className="mt-1 border-t border-cyan-500/15 pt-3 font-mono text-sm leading-8 text-cyan-100">
+            {sub.formula}
+          </div>
         </div>
       )}
-      {sub.table &&
-        Array.isArray(sub.table.headers) &&
-        Array.isArray(sub.table.rows) && (
-          <div className="overflow-x-auto rounded-xl border border-white/[0.08]">
-            <table className="min-w-full text-left text-sm">
-              <thead>
-                <tr className="border-b border-white/[0.08] bg-white/[0.04]">
-                  {sub.table.headers.map((h: string) => (
-                    <th
-                      key={h}
-                      className="px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-slate-300"
-                    >
-                      {h}
-                    </th>
+      {sub.table && Array.isArray(sub.table.headers) && Array.isArray(sub.table.rows) && (
+        <div className="overflow-x-auto rounded-xl border border-white/[0.08]">
+          <table className="min-w-full text-left text-sm">
+            <thead>
+              <tr className="border-b border-white/[0.08] bg-white/[0.04]">
+                {sub.table.headers.map((h: string) => (
+                  <th
+                    key={h}
+                    className="px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-slate-300"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sub.table.rows.map((row: string[], ri: number) => (
+                <tr
+                  key={`${ri}-${row[0]}`}
+                  className={`border-b border-white/[0.04] transition-colors hover:bg-white/[0.03] ${ri % 2 === 0 ? "bg-transparent" : "bg-white/[0.02]"}`}
+                >
+                  {(Array.isArray(row) ? row : []).map((cell: string, ci: number) => (
+                    <td key={ci} className="px-4 py-2.5 text-sm text-slate-300">
+                      {cell}
+                    </td>
                   ))}
                 </tr>
-              </thead>
-              <tbody>
-                {sub.table.rows.map((row: string[], ri: number) => (
-                  <tr
-                    key={`${ri}-${row[0]}`}
-                    className={`border-b border-white/[0.04] transition-colors hover:bg-white/[0.03] ${ri % 2 === 0 ? "bg-transparent" : "bg-white/[0.02]"}`}
-                  >
-                    {(Array.isArray(row) ? row : []).map((cell: string, ci: number) => (
-                      <td
-                        key={ci}
-                        className="px-4 py-2.5 text-sm text-slate-300"
-                      >
-                        {cell}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
@@ -595,11 +730,11 @@ function ContentParagraph({ paragraph, keywords }: { paragraph: string; keywords
     paragraph.includes("→") ||
     /^(formula|rumus|rule|peraturan)\b/i.test(paragraph);
 
-  const isImportantNote =
-    /^(note:|nota:|important:|penting:|remember:|ingat:)/i.test(paragraph.trim());
+  const isImportantNote = /^(note:|nota:|important:|penting:|remember:|ingat:)/i.test(
+    paragraph.trim(),
+  );
 
-  const isTip =
-    /^(tip:|hint:|petua:|cara:|strategy:|strategi:)/i.test(paragraph.trim());
+  const isTip = /^(tip:|hint:|petua:|cara:|strategy:|strategi:)/i.test(paragraph.trim());
 
   if (isImportantNote) {
     return (
@@ -607,7 +742,9 @@ function ContentParagraph({ paragraph, keywords }: { paragraph: string; keywords
         <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-amber-500/20">
           <AlertCircle className="h-3.5 w-3.5 text-amber-400" />
         </div>
-        <p className="whitespace-pre-line text-amber-100/90 text-sm leading-7">{highlight(paragraph, keywords)}</p>
+        <p className="whitespace-pre-line text-amber-100/90 text-sm leading-7">
+          {highlight(paragraph, keywords)}
+        </p>
       </div>
     );
   }
@@ -618,7 +755,9 @@ function ContentParagraph({ paragraph, keywords }: { paragraph: string; keywords
         <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20">
           <Lightbulb className="h-3.5 w-3.5 text-emerald-400" />
         </div>
-        <p className="whitespace-pre-line text-emerald-100/90 text-sm leading-7">{highlight(paragraph, keywords)}</p>
+        <p className="whitespace-pre-line text-emerald-100/90 text-sm leading-7">
+          {highlight(paragraph, keywords)}
+        </p>
       </div>
     );
   }
@@ -657,7 +796,10 @@ function highlight(text: string, keywords: string[]) {
   const re = new RegExp(`\\b(${escaped.join("|")})\\b`, "gi");
   return text.split(re).map((part, index) =>
     keywords.some((keyword) => part.toLowerCase() === keyword.toLowerCase()) ? (
-      <mark key={index} className="rounded bg-[#8B5CF6]/25 px-1 py-0.5 text-[#C4B5FD] not-italic font-medium">
+      <mark
+        key={index}
+        className="rounded bg-[#8B5CF6]/25 px-1 py-0.5 text-[#C4B5FD] not-italic font-medium"
+      >
         {part}
       </mark>
     ) : (

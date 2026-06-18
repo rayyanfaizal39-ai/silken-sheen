@@ -32,7 +32,12 @@ import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
+import {
+  AcademyHero,
+  AcademyPageShell,
+  SubjectWorldBanner,
+  type SubjectPlanetId,
+} from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 
@@ -178,8 +183,16 @@ function NotesPage() {
         onSelectChapter={(key) => {
           setChapter(key);
           if (setLastVisited) {
-            const chapMeta = getSubjectChapters(subject, activeScienceLang).find((c) => c.key === key);
-            setLastVisited({ subjectId: subject, chapterKey: key, type: "notes", label: chapMeta?.label ?? key, timestamp: Date.now() });
+            const chapMeta = getSubjectChapters(subject, activeScienceLang).find(
+              (c) => c.key === key,
+            );
+            setLastVisited({
+              subjectId: subject,
+              chapterKey: key,
+              type: "notes",
+              label: chapMeta?.label ?? key,
+              timestamp: Date.now(),
+            });
           }
         }}
         onBack={() => {
@@ -338,8 +351,16 @@ function NotesPage() {
             onSelect={(key) => {
               setChapter(key);
               if (subject && setLastVisited) {
-                const chapMeta = getSubjectChapters(subject, activeScienceLang).find((c) => c.key === key);
-                setLastVisited({ subjectId: subject, chapterKey: key, type: "notes", label: chapMeta?.label ?? key, timestamp: Date.now() });
+                const chapMeta = getSubjectChapters(subject, activeScienceLang).find(
+                  (c) => c.key === key,
+                );
+                setLastVisited({
+                  subjectId: subject,
+                  chapterKey: key,
+                  type: "notes",
+                  label: chapMeta?.label ?? key,
+                  timestamp: Date.now(),
+                });
               }
             }}
             onBack={() => {
@@ -387,11 +408,25 @@ function NotesPage() {
               id="mindMap"
               data={activeChapter.mindMap.data}
               title={activeChapter.mindMap.title}
+              storageKey={`notes:${subject}:${activeChapterKey}:mind-map`}
             />
           )}
-          {subject === "english" && activeChapter?.englishData
-            ? <EnglishNotesBlock id="notes" data={activeChapter.englishData} />
-            : activeChapter?.notes && <NotesBlock id="notes" notes={activeChapter.notes} subjectId={subject ?? undefined} />}
+          {subject === "english" && activeChapter?.englishData ? (
+            <EnglishNotesBlock
+              id="notes"
+              data={activeChapter.englishData}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+            />
+          ) : (
+            activeChapter?.notes && (
+              <NotesBlock
+                id="notes"
+                notes={activeChapter.notes}
+                subjectId={subject ?? undefined}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              />
+            )
+          )}
 
           {filtered.length === 0 ? (
             !activeChapter?.englishData &&
@@ -406,7 +441,14 @@ function NotesPage() {
             )
           ) : (
             <>
-              {!activeChapter?.englishData && !activeChapter?.notes && <NotesBlock id="notes" sections={legacyNoteSections} subjectId={subject ?? undefined} />}
+              {!activeChapter?.englishData && !activeChapter?.notes && (
+                <NotesBlock
+                  id="notes"
+                  sections={legacyNoteSections}
+                  subjectId={subject ?? undefined}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                />
+              )}
 
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button
@@ -491,10 +533,16 @@ function SubtopicView({
           id="mindMap"
           data={chapterContent.mindMap.data}
           title={chapterContent.mindMap.title}
+          storageKey={`notes:${subjectId}:${chapterKey}:mind-map`}
         />
       )}
 
-      <NotesBlock id="notes" sections={subtopicSections} subjectId={subjectId} />
+      <NotesBlock
+        id="notes"
+        sections={subtopicSections}
+        subjectId={subjectId}
+        storageKey={`notes:${subjectId}:${chapterKey}:study-notes`}
+      />
 
       <div className="mt-10 flex justify-center">
         <button

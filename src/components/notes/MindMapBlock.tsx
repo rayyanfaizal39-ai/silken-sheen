@@ -1,6 +1,71 @@
+import { useState } from "react";
+import { GitFork, Network } from "lucide-react";
 import { MindMap, type MindNode } from "@/components/MindMap";
 
-export function MindMapBlock({ data, title, id }: { data: MindNode; title: string; id?: string }) {
+function readStoredOpen(key: string) {
+  if (typeof window === "undefined") return false;
+  return window.sessionStorage.getItem(key) === "open";
+}
+
+function storeOpenState(key: string, open: boolean) {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.setItem(key, open ? "open" : "closed");
+}
+
+export function MindMapBlock({
+  data,
+  title,
+  id,
+  storageKey,
+}: {
+  data: MindNode;
+  title: string;
+  id?: string;
+  storageKey?: string;
+}) {
+  const stateKey = storageKey ?? `notes:mind-map:${id ?? title}`;
+  const [isOpen, setIsOpen] = useState(() => readStoredOpen(stateKey));
+
+  function openMindMap() {
+    setIsOpen(true);
+    storeOpenState(stateKey, true);
+  }
+
+  if (!isOpen) {
+    return (
+      <div id={id} className="mb-6 animate-fade-up scroll-mt-24">
+        <button
+          type="button"
+          onClick={openMindMap}
+          className="group w-full overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-[#101827]/84 hover:shadow-[0_24px_80px_rgba(14,165,233,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
+        >
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 shadow-[0_0_34px_rgba(34,211,238,0.16)] transition-transform duration-300 group-hover:scale-105">
+                <Network className="h-6 w-6 text-cyan-200" />
+              </div>
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-200/60">
+                  Visual learning
+                </p>
+                <h2 className="mt-1 font-display text-2xl font-bold text-white">
+                  Interactive Mind Map
+                </h2>
+                <p className="mt-1 text-sm leading-6 text-white/55">
+                  Visualise this chapter with an interactive mind map.
+                </p>
+              </div>
+            </div>
+            <span className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(14,165,233,0.22)] transition-transform duration-300 group-hover:scale-105">
+              <GitFork className="h-4 w-4" />
+              Open Mind Map
+            </span>
+          </div>
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div id={id} className="mb-8 animate-fade-up scroll-mt-24">
       <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
