@@ -36,6 +36,7 @@ import {
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
+type FlashcardSetIndex = 0 | 1 | 2;
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -58,6 +59,14 @@ const GENTLE = [
   "Jangan give up! 🌈",
   "Hampir! Keep going! 🎮",
   "Ulang semula! 📚",
+];
+
+const FLASHCARD_SET_SIZE = 20;
+const FLASHCARD_SPLIT_SIZE = 60;
+const FLASHCARD_SET_OPTIONS: Array<{ index: FlashcardSetIndex; title: string; range: string }> = [
+  { index: 0, title: "Flashcards Set 1", range: "Cards 1-20" },
+  { index: 1, title: "Flashcards Set 2", range: "Cards 21-40" },
+  { index: 2, title: "Flashcards Set 3", range: "Cards 41-60" },
 ];
 
 function vibrate(pattern: number | number[], enabled: boolean) {
@@ -3340,6 +3349,60 @@ function EnglishFlashcardDeckPicker({
   );
 }
 
+function FlashcardSetPicker({
+  title,
+  onBack,
+  onSelect,
+}: {
+  title: string;
+  onBack: () => void;
+  onSelect: (setIndex: FlashcardSetIndex) => void;
+}) {
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">{title}</span>
+      </div>
+
+      <div className="glass-strong rounded-3xl p-6 sm:p-8">
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
+            Choose Flashcard Set
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">{title}</h2>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {FLASHCARD_SET_OPTIONS.map((set, index) => (
+            <button
+              key={set.index}
+              onClick={() => onSelect(set.index)}
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
+              style={{ animationDelay: `${index * 70}ms` }}
+            >
+              <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
+              <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-xl font-black shadow-lg">
+                {index + 1}
+              </div>
+              <h3 className="relative font-display text-2xl font-bold">{set.title}</h3>
+              <p className="relative mt-3 text-sm leading-7 text-slate-300">{set.range}</p>
+              <div className="relative mt-5 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100">
+                {FLASHCARD_SET_SIZE} Cards
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function FlashcardsPage() {
   const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
   const initialSearch = useMemo(readStudySearch, []);
@@ -3349,6 +3412,7 @@ function FlashcardsPage() {
   const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
   const [mathFlashcardCategory, setMathFlashcardCategory] =
     useState<MathFlashcardCategoryId | null>(null);
+  const [selectedFlashcardSet, setSelectedFlashcardSet] = useState<FlashcardSetIndex | null>(null);
   const [favOnly, setFavOnly] = useState(false);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -3397,10 +3461,9 @@ function FlashcardsPage() {
       : null;
   const missingChapter = !!(subject && chapter && !chapterMeta && !isEnglishFlashcardDeck);
 
-  const pool = useMemo(() => {
+  const rawPool = useMemo(() => {
     if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
-      const englishCards = getEnglishFlashcardsForDeck(chapter);
-      return favOnly ? englishCards.filter((f) => progress.favorites.includes(f.id)) : englishCards;
+      return getEnglishFlashcardsForDeck(chapter);
     }
     if (
       subject === "math" &&
@@ -3409,8 +3472,7 @@ function FlashcardsPage() {
       mathFlashcardLang &&
       mathFlashcardCategory
     ) {
-      const mathCards = getMathFlashcards(chapter, mathFlashcardLang, mathFlashcardCategory);
-      return favOnly ? mathCards.filter((f) => progress.favorites.includes(f.id)) : mathCards;
+      return getMathFlashcards(chapter, mathFlashcardLang, mathFlashcardCategory);
     }
     if (!subject || !chapter) return [];
     return flashcards.filter((f) => {
@@ -3418,26 +3480,46 @@ function FlashcardsPage() {
       if (getItemChapterKey(f) !== chapter) return false;
       if (isBilingualSubject && scienceLang && f.lang && f.lang !== scienceLang) return false;
       if (form !== "All" && f.form !== form) return false;
-      if (favOnly && !progress.favorites.includes(f.id)) return false;
       return true;
     });
   }, [
     subject,
     chapter,
     form,
-    favOnly,
-    progress.favorites,
     scienceLang,
     isBilingualSubject,
     mathFlashcardLang,
     mathFlashcardCategory,
   ]);
 
+  const shouldSplitFlashcards = rawPool.length === FLASHCARD_SPLIT_SIZE;
+  const pool = useMemo(() => {
+    const setCards =
+      shouldSplitFlashcards && selectedFlashcardSet !== null
+        ? rawPool.slice(
+            selectedFlashcardSet * FLASHCARD_SET_SIZE,
+            selectedFlashcardSet * FLASHCARD_SET_SIZE + FLASHCARD_SET_SIZE,
+          )
+        : shouldSplitFlashcards
+          ? []
+          : rawPool;
+
+    return favOnly ? setCards.filter((f) => progress.favorites.includes(f.id)) : setCards;
+  }, [rawPool, shouldSplitFlashcards, selectedFlashcardSet, favOnly, progress.favorites]);
+
   const currentPoolIdx = queue[idx];
   const current = currentPoolIdx !== undefined ? pool[currentPoolIdx] : pool[0];
   const total = totalCards || pool.length;
   const done = Math.max(0, total - queue.length + idx);
   const pct = total > 0 ? Math.min(100, Math.round((done / total) * 100)) : 0;
+  const flashcardSetTitle =
+    subject === "english" && isEnglishFlashcardDeck
+      ? (ENGLISH_FLASHCARD_DECKS.find((deck) => deck.id === chapter)?.title ?? "Paper 1 Flashcards")
+      : subject === "math" && chapter && mathFlashcardLang && mathFlashcardCategory
+        ? (MATH_FLASHCARD_CATEGORIES.find((category) => category.id === mathFlashcardCategory)?.[
+            mathFlashcardLang
+          ].title ?? getMathFlashcardChapterTitle(chapter, mathFlashcardLang))
+        : (chapterMeta?.label ?? chapter ?? "Flashcards");
 
   function buildShuffled() {
     return pool.map((_, i) => i).sort(() => Math.random() - 0.5);
@@ -3574,6 +3656,12 @@ function FlashcardsPage() {
     setUnknownCount(0);
     setXpEarned(0);
     setTotalCards(0);
+    setSelectedFlashcardSet(null);
+  }
+
+  function selectFlashcardSet(setIndex: FlashcardSetIndex) {
+    resetSession();
+    setSelectedFlashcardSet(setIndex);
   }
 
   function resetMathFlashcardFlow() {
@@ -3890,6 +3978,19 @@ function FlashcardsPage() {
             resetSession();
           }}
           onSelect={selectMathCategory}
+        />
+      ) : shouldSplitFlashcards && selectedFlashcardSet === null ? (
+        <FlashcardSetPicker
+          title={flashcardSetTitle}
+          onBack={() => {
+            if (hasMathFlashcards) {
+              setMathFlashcardCategory(null);
+            } else {
+              setChapter(null);
+            }
+            resetSession();
+          }}
+          onSelect={selectFlashcardSet}
         />
       ) : (
         <>
