@@ -162,33 +162,37 @@ export function buildStudySearchIndex(): StudySearchResult[] {
       }),
     );
 
-    const chapterRows = new Map<string, string>();
-    for (const lang of [undefined, "bm", "dlp"] as const) {
-      for (const chapter of getSubjectChapters(subject.id, lang)) {
-        chapterRows.set(chapter.key, chapter.label);
+    for (const form of ["Form 1", "Form 2"] as const) {
+      const chapterRows = new Map<string, string>();
+      for (const lang of [undefined, "bm", "dlp"] as const) {
+        for (const chapter of getSubjectChapters(subject.id, lang, form)) {
+          chapterRows.set(chapter.key, chapter.label);
+        }
       }
-    }
 
-    for (const chapter of getChaptersForSubject(subject.id)) {
-      chapterRows.set(chapter.chapterKey, chapter.title);
-    }
+      if (form === "Form 1") {
+        for (const chapter of getChaptersForSubject(subject.id)) {
+          chapterRows.set(chapter.chapterKey, chapter.title);
+        }
+      }
 
-    for (const [chapterKey, chapterLabel] of chapterRows) {
-      addUnique(
-        results,
-        seen,
-        makeResult({
-          id: `chapter:${subject.id}:${chapterKey}`,
-          type: "Chapter",
-          subjectId: subject.id,
-          subject: subject.name,
-          form: "Form 1",
-          chapterKey,
-          chapter: chapterLabel,
-          title: chapterLabel,
-          preview: `Open ${subject.name} ${chapterLabel}.`,
-        }),
-      );
+      for (const [chapterKey, chapterLabel] of chapterRows) {
+        addUnique(
+          results,
+          seen,
+          makeResult({
+            id: `chapter:${subject.id}:${form}:${chapterKey}`,
+            type: "Chapter",
+            subjectId: subject.id,
+            subject: subject.name,
+            form,
+            chapterKey,
+            chapter: chapterLabel,
+            title: chapterLabel,
+            preview: `Open ${subject.name} ${chapterLabel}.`,
+          }),
+        );
+      }
     }
   }
 

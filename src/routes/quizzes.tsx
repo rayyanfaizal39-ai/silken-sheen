@@ -7,6 +7,7 @@ import {
   getItemChapterKey,
   getSubjectChapters,
   type Difficulty,
+  type Form,
   type QuizQuestion,
 } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
@@ -6068,6 +6069,8 @@ interface ShuffledQuestion {
   subjectId: string;
 }
 
+type FormFilter = Form | "All";
+
 function readStudySearch() {
   if (typeof window === "undefined") return { subject: null, form: "All", chapter: null };
   const params = new URLSearchParams(window.location.search);
@@ -6084,7 +6087,7 @@ function QuizzesPage() {
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
-  const [form, setForm] = useState<string>(initialSearch.form);
+  const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -6121,7 +6124,7 @@ function QuizzesPage() {
 
   const chapterMeta =
     subject && chapter
-      ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
+      ? getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === chapter)
       : null;
   const missingChapter = !!(subject && chapter && !chapterMeta);
 
@@ -6769,6 +6772,7 @@ function QuizzesPage() {
           <ChapterGrid
             subjectId={subject}
             scienceLang={scienceLang ?? undefined}
+            form={form}
             onSelect={(key) => {
               setChapter(key);
               reset();
@@ -6799,12 +6803,13 @@ function QuizzesPage() {
           subjectId={subject}
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+          form={form}
           onBack={() => {
             setChapter(null);
             reset();
           }}
         />
-      ) : subject === "math" ? (
+      ) : subject === "math" && form === "Form 1" ? (
         !mathQuizLang ? (
           <MathQuizLanguagePicker
             subjectId={subject}
@@ -6917,6 +6922,7 @@ function QuizzesPage() {
             subjectId={subject}
             chapterKey={chapter}
             scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+            form={form}
             onBack={() => {
               setChapter(null);
               reset();
@@ -6949,7 +6955,7 @@ function QuizzesPage() {
                   <select
                     value={form}
                     onChange={(e) => {
-                      setForm(e.target.value);
+                      setForm(e.target.value as FormFilter);
                       reset();
                     }}
                     className="px-4 py-2 rounded-full bg-white/5 text-sm"

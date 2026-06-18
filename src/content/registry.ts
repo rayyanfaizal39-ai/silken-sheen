@@ -797,10 +797,12 @@ export function getChapter(
   subjectId: string,
   chapterKey: string,
   lang?: "bm" | "dlp",
+  form: ChapterContent["form"] = "Form 1",
 ): ChapterContent | undefined {
   return chapters.find(
     (c) =>
       c.subjectId === subjectId &&
+      c.form === form &&
       c.chapterKey === chapterKey &&
       (lang ? c.lang === lang : !c.lang || c.lang === lang),
   );

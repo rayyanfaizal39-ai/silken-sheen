@@ -93,14 +93,16 @@ export function ChapterGrid({
   onSelect,
   onBack,
   scienceLang,
+  form = "Form 1",
 }: {
   subjectId: string;
   onSelect: (key: string, available: boolean) => void;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
+  form?: "Form 1" | "Form 2" | "Form 3" | "All";
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapters = getSubjectChapters(subjectId, scienceLang);
+  const chapters = getSubjectChapters(subjectId, scienceLang, form);
   const { progress } = useProgress();
   const accent = getSubjectAccent(subjectId);
 
@@ -137,7 +139,12 @@ export function ChapterGrid({
             const pct = chapterProgressPct(
               progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
             );
-            const chapterContent = getChapter(subjectId, c.key, scienceLang);
+            const chapterContent = getChapter(
+              subjectId,
+              c.key,
+              scienceLang,
+              form === "All" ? "Form 1" : form,
+            );
             const feats = getChapterFeatures(chapterContent);
             const notesCount = chapterContent?.notes?.sections?.length ?? 0;
             const cardCount = chapterContent?.flashcards?.length ?? 0;
@@ -302,14 +309,18 @@ export function ContentHeader({
   chapterKey,
   onBack,
   scienceLang,
+  form = "Form 1",
 }: {
   subjectId: string;
   chapterKey: string;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
+  form?: "Form 1" | "Form 2" | "Form 3" | "All";
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
+    (c) => c.key === chapterKey,
+  );
   const accent = getSubjectAccent(subjectId);
 
   return (
@@ -374,13 +385,17 @@ export function ComingSoonScreen({
   chapterKey,
   onBack,
   scienceLang,
+  form = "Form 1",
 }: {
   subjectId: string;
   chapterKey: string;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
+  form?: "Form 1" | "Form 2" | "Form 3" | "All";
 }) {
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
+    (c) => c.key === chapterKey,
+  );
   const accent = getSubjectAccent(subjectId);
 
   return (

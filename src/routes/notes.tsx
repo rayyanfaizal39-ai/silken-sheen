@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { subjects, notes, getItemChapterKey, getSubjectChapters } from "@/data/content";
+import { subjects, notes, getItemChapterKey, getSubjectChapters, type Form } from "@/data/content";
 import { BookOpenCheck, ArrowLeft } from "lucide-react";
 import { z } from "zod";
 import {
@@ -82,7 +82,7 @@ function NotesPage() {
       ? normalizedSubject
       : null;
   const [chapter, setChapter] = useState<string | null>(search.chapter ?? null);
-  const form = normalizeFormParam(search.form);
+  const form = normalizeFormParam(search.form) as Form;
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter, setLastVisited } = useProgress();
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
@@ -90,10 +90,11 @@ function NotesPage() {
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const activeScienceLang = isBilingualSubject ? (scienceLang ?? undefined) : undefined;
-  const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang) : [];
+  const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang, form) : [];
   const activeChapterKey =
     chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
-  const hasSubtopics = (subject === "sejarah" || subject === "geography") && !!activeChapterKey;
+  const hasSubtopics =
+    form === "Form 1" && (subject === "sejarah" || subject === "geography") && !!activeChapterKey;
   const subtopics: Subtopic[] = hasSubtopics
     ? subject === "sejarah"
       ? getSejarahF1Subtopics(activeChapterKey ?? "")
@@ -111,7 +112,7 @@ function NotesPage() {
       : false;
   const activeChapter =
     subject && activeChapterKey
-      ? (getChapter(subject, activeChapterKey, activeScienceLang) ?? undefined)
+      ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
       : undefined;
   const features = getChapterFeatures(activeChapter);
 
@@ -137,7 +138,7 @@ function NotesPage() {
     return notes.filter((n) => {
       if (n.subjectId !== subject) return false;
       if (getItemChapterKey(n) !== activeChapterKey) return false;
-      if (form !== "All" && n.form !== form) return false;
+      if (n.form !== form) return false;
       if (isBilingualSubject && n.lang && scienceLang && n.lang !== scienceLang) return false;
       return true;
     });
@@ -164,7 +165,7 @@ function NotesPage() {
   }
 
   // ── BM has its own hub page ───────────────────────────────────────────────
-  if (subject === "bm" && !activeChapterKey) {
+  if (subject === "bm" && form === "Form 1" && !activeChapterKey) {
     return (
       <BMWorldPage
         onBack={() => {
@@ -182,12 +183,13 @@ function NotesPage() {
     return (
       <SubjectWorldPage
         subjectId={subject}
+        form={form}
         scienceLang={scienceLang ?? undefined}
         isBilingualSubject={isBilingualSubject}
         onSelectChapter={(key) => {
           setChapter(key);
           if (setLastVisited) {
-            const chapMeta = getSubjectChapters(subject, activeScienceLang).find(
+            const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
               (c) => c.key === key,
             );
             setLastVisited({
@@ -352,10 +354,11 @@ function NotesPage() {
           <ChapterGrid
             subjectId={subject}
             scienceLang={activeScienceLang}
+            form={form}
             onSelect={(key) => {
               setChapter(key);
               if (subject && setLastVisited) {
-                const chapMeta = getSubjectChapters(subject, activeScienceLang).find(
+                const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
                   (c) => c.key === key,
                 );
                 setLastVisited({
@@ -383,6 +386,7 @@ function NotesPage() {
           subjectId={subject}
           chapterKey={activeChapterKey}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+          form={form}
           onBack={() => setChapter(null)}
         />
       ) : hasSubtopics ? (
@@ -401,6 +405,7 @@ function NotesPage() {
             subjectId={subject}
             chapterKey={activeChapterKey}
             scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+            form={form}
             onBack={() => setChapter(null)}
           />
 

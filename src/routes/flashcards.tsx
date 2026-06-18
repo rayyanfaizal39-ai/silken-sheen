@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
-import { subjects, forms, flashcards, getItemChapterKey, getSubjectChapters } from "@/data/content";
+import {
+  subjects,
+  forms,
+  flashcards,
+  getItemChapterKey,
+  getSubjectChapters,
+  type Form,
+} from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import {
   Heart,
@@ -37,6 +44,7 @@ import {
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
 type FlashcardSetIndex = 0 | 1 | 2;
+type FormFilter = Form | "All";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -3409,7 +3417,7 @@ function FlashcardsPage() {
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
-  const [form, setForm] = useState(initialSearch.form);
+  const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
   const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
   const [mathFlashcardCategory, setMathFlashcardCategory] =
     useState<MathFlashcardCategoryId | null>(null);
@@ -3452,13 +3460,18 @@ function FlashcardsPage() {
 
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
-  const hasMathFlashcards = !!(subject === "math" && chapter && MATH_FLASHCARD_BANKS[chapter]);
+  const hasMathFlashcards = !!(
+    form === "Form 1" &&
+    subject === "math" &&
+    chapter &&
+    MATH_FLASHCARD_BANKS[chapter]
+  );
   const isEnglishFlashcardDeck = subject === "english" && isEnglishFlashcardDeckId(chapter);
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const chapterMeta =
     subject && chapter
-      ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
+      ? getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === chapter)
       : null;
   const missingChapter = !!(subject && chapter && !chapterMeta && !isEnglishFlashcardDeck);
 
@@ -3911,13 +3924,14 @@ function FlashcardsPage() {
           <ChapterGrid
             subjectId={subject}
             scienceLang={scienceLang ?? undefined}
+            form={form}
             onSelect={(key) => {
               setChapter(key);
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
               resetSession();
               if (subject && setLastVisited) {
-                const chapMeta = getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === key);
+                const chapMeta = getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === key);
                 setLastVisited({ subjectId: subject, chapterKey: key, type: "flashcards", label: chapMeta?.label ?? key, timestamp: Date.now() });
               }
             }}
@@ -3950,6 +3964,7 @@ function FlashcardsPage() {
           subjectId={subject}
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+          form={form}
           onBack={() => {
             setChapter(null);
             setMathFlashcardLang(null);
@@ -4016,6 +4031,7 @@ function FlashcardsPage() {
               subjectId={subject}
               chapterKey={chapter}
               scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+              form={form}
               onBack={() => {
                 if (hasMathFlashcards) {
                   setMathFlashcardCategory(null);
@@ -4084,7 +4100,7 @@ function FlashcardsPage() {
               <select
                 value={form}
                 onChange={(e) => {
-                  setForm(e.target.value);
+                  setForm(e.target.value as FormFilter);
                   resetSession();
                 }}
                 className="px-4 py-2 rounded-full bg-white/5 text-sm"
