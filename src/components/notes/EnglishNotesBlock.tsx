@@ -258,6 +258,10 @@ function ChallengeCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONF
 }
 
 function StoryCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[EnglishCardType] }) {
+  if (card.title === "UASA Reference Examples" && card.body) {
+    return <ReferenceExamplesCard card={card} cfg={cfg} />;
+  }
+
   return (
     <div className={`rounded-2xl border ${cfg.border} ${cfg.bg} p-5 relative overflow-hidden`}>
       <div className="absolute -top-4 -right-4 text-6xl opacity-10 select-none">📖</div>
@@ -281,6 +285,248 @@ function StoryCard({ card, cfg }: { card: EnglishCard; cfg: typeof CARD_CONFIG[E
             </li>
           ))}
         </ul>
+      )}
+    </div>
+  );
+}
+
+type ReferenceSection = {
+  label: string;
+  icon: string;
+  content: string;
+  tone: "passage" | "question" | "options" | "answer" | "explanation" | "keywords" | "tip";
+};
+
+const EXAMPLE_STARTERS = new Set([
+  "MESSAGE",
+  "NOTICE",
+  "ADVERTISEMENT",
+  "POSTER",
+  "BANNER",
+  "SIGN",
+  "LABEL",
+  "PREPOSITIONS",
+  "PRONOUNS",
+  "ARTICLES",
+  "TENSES",
+  "SUBJECT-VERB AGREEMENT",
+  "CONJUNCTIONS",
+  "VOCABULARY USAGE",
+  "WORD FORMS",
+  "READING PASSAGE",
+  "PASSAGE",
+  "FULL PASSAGE",
+]);
+
+const REFERENCE_LABELS: Array<{
+  match: RegExp;
+  label: string;
+  icon: string;
+  tone: ReferenceSection["tone"];
+}> = [
+  { match: /^(READING PASSAGE|FULL PASSAGE|PASSAGE|ORIGINAL SENTENCE)\b:?/i, label: "Passage", icon: "📖", tone: "passage" },
+  { match: /^(QUESTION(?:\s+\d+)?|Question(?:\s+\d+)?)\b:?/i, label: "Question", icon: "❓", tone: "question" },
+  { match: /^OPTIONS\b:?/i, label: "Options", icon: "📝", tone: "options" },
+  { match: /^(CORRECT ANSWER|ANSWER|CORRECT)\b:?/i, label: "Correct Answer", icon: "✅", tone: "answer" },
+  { match: /^(EXPLANATION)\b:?/i, label: "Explanation", icon: "💡", tone: "explanation" },
+  { match: /^(KEYWORDS|COMPLETED ANSWERS AND KEYWORDS|INCORRECT WORD|INCORRECT)\b:?/i, label: "Keywords", icon: "🔑", tone: "keywords" },
+  { match: /^(EXAM TIP)\b:?/i, label: "Exam Tip", icon: "🎯", tone: "tip" },
+  { match: /^TABLE\b:?/i, label: "Table", icon: "📝", tone: "options" },
+];
+
+function splitReferenceExamples(body: string) {
+  const chunks: string[][] = [];
+  let current: string[] = [];
+
+  body.split("\n").forEach((line) => {
+    const trimmed = line.trim();
+    const startsExample = EXAMPLE_STARTERS.has(trimmed) && current.some((item) => item.trim());
+    if (startsExample) {
+      chunks.push(current);
+      current = [line];
+      return;
+    }
+    current.push(line);
+  });
+
+  if (current.some((line) => line.trim())) chunks.push(current);
+  return chunks.map((lines) => lines.join("\n").trim());
+}
+
+function labelForLine(line: string) {
+  return REFERENCE_LABELS.find(({ match }) => match.test(line.trim()));
+}
+
+function stripLabel(line: string, label: ReturnType<typeof labelForLine>) {
+  if (!label) return line.trim();
+  return line.trim().replace(label.match, "").trim();
+}
+
+function parseReferenceExample(chunk: string) {
+  const lines = chunk.split("\n");
+  const first = lines[0]?.trim() ?? "Reference Example";
+  const hasHeading = EXAMPLE_STARTERS.has(first);
+  const heading = hasHeading ? first : "Reference Example";
+  const bodyLines = hasHeading ? lines.slice(1) : lines;
+  const sections: ReferenceSection[] = [];
+  let current: ReferenceSection | null = null;
+
+  const pushCurrent = () => {
+    if (current && current.content.trim()) {
+      sections.push({ ...current, content: current.content.trim() });
+    }
+  };
+
+  bodyLines.forEach((line) => {
+    const label = labelForLine(line);
+    if (label) {
+      pushCurrent();
+      current = {
+        label: label.label,
+        icon: label.icon,
+        tone: label.tone,
+        content: stripLabel(line, label),
+      };
+      return;
+    }
+
+    if (!current) {
+      current = {
+        label: "Passage",
+        icon: "📖",
+        tone: "passage",
+        content: line,
+      };
+      return;
+    }
+
+    current.content += `${current.content ? "\n" : ""}${line}`;
+  });
+
+  pushCurrent();
+  return { heading, sections };
+}
+
+function toneClasses(tone: ReferenceSection["tone"]) {
+  const classes: Record<ReferenceSection["tone"], string> = {
+    passage: "border-sky-400/25 bg-sky-500/[0.08] text-sky-50",
+    question: "border-violet-400/25 bg-violet-500/[0.08] text-violet-50",
+    options: "border-white/10 bg-white/[0.05] text-white/80",
+    answer: "border-emerald-400/35 bg-emerald-500/[0.12] text-emerald-100",
+    explanation: "border-amber-400/30 bg-amber-500/[0.10] text-amber-50",
+    keywords: "border-yellow-400/35 bg-yellow-500/[0.12] text-yellow-100",
+    tip: "border-orange-400/30 bg-orange-500/[0.10] text-orange-50",
+  };
+  return classes[tone];
+}
+
+function formatReferenceContent(section: ReferenceSection) {
+  const lines = section.content
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (section.tone === "keywords") {
+    const items = lines.flatMap((line) =>
+      line.includes(",")
+        ? line.split(",").map((item) => item.trim()).filter(Boolean)
+        : [line],
+    );
+    return (
+      <ul className="space-y-1.5">
+        {items.map((item, i) => (
+          <li key={i} className="flex gap-2 text-sm leading-7">
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-yellow-300" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-2">
+      {lines.map((line, i) => (
+        <p key={i} className="whitespace-pre-wrap text-sm leading-7">
+          {line}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function ReferenceExamplesCard({
+  card,
+  cfg,
+}: {
+  card: EnglishCard;
+  cfg: typeof CARD_CONFIG[EnglishCardType];
+}) {
+  const examples = splitReferenceExamples(card.body ?? "").map(parseReferenceExample);
+  const [active, setActive] = useState(0);
+  const activeExample = examples[active];
+
+  return (
+    <div className={`rounded-2xl border ${cfg.border} bg-amber-950/20 p-5 relative overflow-hidden`}>
+      <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-amber-400/10 blur-3xl" />
+      <div className="relative mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-widest ${cfg.labelBg} ${cfg.accent}`}>
+            📚 {card.title}
+          </span>
+          <p className="mt-2 text-sm text-amber-100/70">
+            Open one example at a time for quick revision.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {examples.map((example, i) => (
+            <button
+              key={`${example.heading}-${i}`}
+              type="button"
+              onClick={() => setActive(i)}
+              className={`rounded-full border px-3 py-1.5 text-xs font-bold transition-colors ${
+                active === i
+                  ? "border-amber-300/60 bg-amber-300/20 text-amber-100"
+                  : "border-white/10 bg-white/[0.04] text-white/45 hover:text-white/75"
+              }`}
+            >
+              Reference Example {i + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {activeExample && (
+        <div className="relative rounded-2xl border border-amber-300/20 bg-[#090E1A]/72 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.25)]">
+          <div className="mb-4 flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-amber-300/70">
+                Reference Example {active + 1}
+              </p>
+              <h4 className="mt-1 text-lg font-bold text-white">{activeExample.heading}</h4>
+            </div>
+            <span className="rounded-full bg-amber-300/15 px-3 py-1 text-xs font-bold text-amber-200">
+              {active + 1}/{examples.length}
+            </span>
+          </div>
+
+          <div className="space-y-3">
+            {activeExample.sections.map((section, i) => (
+              <div
+                key={`${section.label}-${i}`}
+                className={`rounded-2xl border p-4 ${toneClasses(section.tone)}`}
+              >
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="text-lg">{section.icon}</span>
+                  <p className="text-[11px] font-black uppercase tracking-[0.18em]">
+                    {section.label}
+                  </p>
+                </div>
+                {formatReferenceContent(section)}
+              </div>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );
@@ -428,8 +674,11 @@ function EnglishSectionBlock({
   index: number;
 }) {
   const [open, setOpen] = useState(index === 0);
+  const sectionId = section.title.startsWith("Part ")
+    ? `english-paper-1-part-${index + 1}`
+    : undefined;
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden mb-4 animate-fade-up">
+    <div id={sectionId} className="scroll-mt-24 rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden mb-4 animate-fade-up">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -502,6 +751,203 @@ function ChapterHero({ data }: { data: EnglishChapterData }) {
   );
 }
 
+const PAPER_1_PARTS = [
+  {
+    icon: "📩",
+    part: "Part 1",
+    title: "Short Texts & Visual Materials",
+    topics: "Messages, notices, advertisements, posters, banners, signs, labels",
+    skills: "Purpose, main idea, identifying information",
+  },
+  {
+    icon: "✏️",
+    part: "Part 2",
+    title: "Grammar & Error Correction",
+    topics: "Prepositions, pronouns, articles, tenses, agreement, conjunctions, vocabulary",
+    skills: "Spotting errors, correcting words, grammar usage",
+  },
+  {
+    icon: "📋",
+    part: "Part 3",
+    title: "Information Transfer",
+    topics: "Causes, effects, solutions, table completion, information extraction",
+    skills: "Finding keywords, scanning, no more than three words",
+  },
+  {
+    icon: "📖",
+    part: "Part 4",
+    title: "Reading Comprehension",
+    topics: "True or False, multiple choice, short answers, main ideas, supporting details",
+    skills: "Skimming, scanning, understanding context",
+  },
+  {
+    icon: "🧩",
+    part: "Part 5",
+    title: "Gapped Text",
+    topics: "Missing sentences, sequence, context clues, reference words",
+    skills: "Logical flow, sentence matching, understanding relationships",
+  },
+] as const;
+
+function Paper1Overview({ sections }: { sections: EnglishChapterData["sections"] }) {
+  return (
+    <div className="mb-6 rounded-[2rem] border border-sky-400/20 bg-sky-950/20 p-5 animate-fade-up">
+      <div className="mb-4">
+        <p className="text-[10px] font-black uppercase tracking-[0.24em] text-sky-300/70">
+          Paper 1 Exam Flow
+        </p>
+        <h3 className="mt-1 font-display text-xl font-bold text-white">
+          The 5 UASA Parts
+        </h3>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        {PAPER_1_PARTS.map((part, i) => (
+          <a
+            key={part.part}
+            href={`#english-paper-1-part-${i + 1}`}
+            className="group rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all hover:-translate-y-1 hover:border-sky-300/35 hover:bg-sky-400/[0.08]"
+          >
+            <div className="mb-3 flex items-center justify-between gap-2">
+              <span className="text-2xl">{part.icon}</span>
+              <span className="rounded-full bg-sky-400/15 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-sky-200">
+                {part.part}
+              </span>
+            </div>
+            <h4 className="text-sm font-bold leading-snug text-white">{part.title}</h4>
+            <p className="mt-2 text-xs leading-5 text-white/45">{part.topics}</p>
+            <div className="mt-3 rounded-xl border border-sky-300/15 bg-sky-300/[0.06] px-3 py-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-sky-200/70">
+                Skills
+              </p>
+              <p className="mt-1 text-xs leading-5 text-sky-50/70">{part.skills}</p>
+            </div>
+            <p className="mt-3 text-[11px] font-bold text-sky-300/80">
+              Open {sections[i]?.title ?? part.part}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const PAPER_2_GROUPS = {
+  A: {
+    icon: "✉️",
+    label: "Bahagian A",
+    title: "Short Writing Tasks",
+    description: "Email Writing and Message Writing",
+    sectionIndexes: [0, 1],
+    topics: ["Email Writing", "Message Writing"],
+  },
+  B: {
+    icon: "📝",
+    label: "Bahagian B",
+    title: "Extended Writing Tasks",
+    description: "Essay Writing and Guided Writing",
+    sectionIndexes: [2, 3],
+    topics: ["Essay Writing", "Guided Writing"],
+  },
+} as const;
+
+type Paper2GroupKey = keyof typeof PAPER_2_GROUPS;
+
+function Paper2Overview({
+  activeGroup,
+  onSelect,
+}: {
+  activeGroup: Paper2GroupKey;
+  onSelect: (group: Paper2GroupKey) => void;
+}) {
+  return (
+    <div className="mb-6 rounded-[2rem] border border-purple-400/20 bg-purple-950/20 p-5 animate-fade-up">
+      <div className="mb-4">
+        <p className="text-[10px] font-black uppercase tracking-[0.24em] text-purple-300/70">
+          Paper 2 Exam Flow
+        </p>
+        <h3 className="mt-1 font-display text-xl font-bold text-white">
+          Choose Your Writing Section
+        </h3>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {(Object.keys(PAPER_2_GROUPS) as Paper2GroupKey[]).map((key) => {
+          const group = PAPER_2_GROUPS[key];
+          const isActive = activeGroup === key;
+          return (
+            <button
+              key={key}
+              type="button"
+              onClick={() => onSelect(key)}
+              className={`group rounded-2xl border p-5 text-left transition-all hover:-translate-y-1 ${
+                isActive
+                  ? "border-purple-300/60 bg-purple-400/[0.14] shadow-[0_18px_50px_rgba(168,85,247,0.18)]"
+                  : "border-white/10 bg-white/[0.04] hover:border-purple-300/35 hover:bg-purple-400/[0.08]"
+              }`}
+            >
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <span className="text-3xl">{group.icon}</span>
+                <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${
+                  isActive ? "bg-purple-200 text-purple-950" : "bg-purple-400/15 text-purple-200"
+                }`}>
+                  {group.label}
+                </span>
+              </div>
+              <h4 className="font-display text-xl font-bold text-white">{group.title}</h4>
+              <p className="mt-2 text-sm leading-6 text-white/55">{group.description}</p>
+              <div className="mt-4 grid gap-2">
+                {group.topics.map((topic) => (
+                  <div
+                    key={topic}
+                    className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-bold text-white/75"
+                  >
+                    {topic}
+                  </div>
+                ))}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function Paper2StudySections({ sections }: { sections: EnglishChapterData["sections"] }) {
+  const [activeGroup, setActiveGroup] = useState<Paper2GroupKey>("A");
+  const group = PAPER_2_GROUPS[activeGroup];
+  const cohesiveDevicesBank = sections.find((section) => section.title === "Cohesive Devices Bank");
+  const visibleSections = group.sectionIndexes
+    .map((sectionIndex) => ({ section: sections[sectionIndex], sectionIndex }))
+    .filter((item): item is { section: EnglishChapterData["sections"][number]; sectionIndex: number } => !!item.section);
+
+  return (
+    <>
+      <Paper2Overview activeGroup={activeGroup} onSelect={setActiveGroup} />
+      <div className="mb-4 rounded-2xl border border-purple-300/20 bg-purple-400/[0.08] px-5 py-4">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{group.icon}</span>
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-purple-200/70">
+              {group.label}
+            </p>
+            <h3 className="font-display text-lg font-bold text-white">{group.title}</h3>
+          </div>
+        </div>
+      </div>
+      {visibleSections.map(({ section, sectionIndex }) => (
+        <EnglishSectionBlock key={section.title} section={section} index={sectionIndex} />
+      ))}
+      {cohesiveDevicesBank && (
+        <EnglishSectionBlock
+          key={`${activeGroup}-${cohesiveDevicesBank.title}`}
+          section={cohesiveDevicesBank}
+          index={sections.indexOf(cohesiveDevicesBank)}
+        />
+      )}
+    </>
+  );
+}
+
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
 export function EnglishNotesBlock({
@@ -515,13 +961,20 @@ export function EnglishNotesBlock({
     <div id={id} className="mx-auto mb-8 w-full max-w-5xl scroll-mt-24">
       <ChapterHero data={data} />
       <WordVault words={data.wordVault} />
+      {data.chapterTitle === "Paper 1 - Reading & Language Awareness" && (
+        <Paper1Overview sections={data.sections} />
+      )}
       <div className="mb-2 flex items-center gap-2 px-1">
         <BookOpen className="w-4 h-4 text-violet-400" />
         <h3 className="font-bold text-white/70 text-sm uppercase tracking-wide">Study Sections</h3>
       </div>
-      {data.sections.map((section, i) => (
-        <EnglishSectionBlock key={i} section={section} index={i} />
-      ))}
+      {data.chapterTitle === "Paper 2 - Writing" ? (
+        <Paper2StudySections sections={data.sections} />
+      ) : (
+        data.sections.map((section, i) => (
+          <EnglishSectionBlock key={i} section={section} index={i} />
+        ))
+      )}
       {data.examFacts.length > 0 && <ExamFacts facts={data.examFacts} />}
     </div>
   );

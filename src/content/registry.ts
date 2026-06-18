@@ -2,12 +2,6 @@ import type { ChapterContent } from "./types";
 import type { MindNode } from "@/components/MindMap";
 import { englishF1C1Notes } from "@/data/english-f1-c1-notes";
 import { englishF1C2Notes } from "@/data/english-f1-c2-notes";
-import { englishF1C3Notes } from "@/data/english-f1-c3-notes";
-import { englishF1C4Notes } from "@/data/english-f1-c4-notes";
-import { englishF1C1MindMap } from "@/data/english-f1-c1-mindmap";
-import { englishF1C2MindMap } from "@/data/english-f1-c2-mindmap";
-import { englishF1C3MindMap } from "@/data/english-f1-c3-mindmap";
-import { englishF1C4MindMap } from "@/data/english-f1-c4-mindmap";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,
@@ -716,9 +710,8 @@ export const chapters: ChapterContent[] = [
     subjectId: "english",
     form: "Form 1",
     chapterKey: "Chapter 1",
-    title: "Grammar — Word Wizardry",
+    title: "Paper 1 - Reading & Language Awareness",
     englishData: englishF1C1Notes,
-    mindMap: { data: englishF1C1MindMap, title: "Grammar — Word Wizardry" },
     flashcards: englishFlashcardsFor("Chapter 1"),
     quiz: englishQuizzesFor("Chapter 1"),
   },
@@ -727,33 +720,10 @@ export const chapters: ChapterContent[] = [
     subjectId: "english",
     form: "Form 1",
     chapterKey: "Chapter 2",
-    title: "Vocabulary — Word Treasure Hunt",
+    title: "Paper 2 - Writing",
     englishData: englishF1C2Notes,
-    mindMap: { data: englishF1C2MindMap, title: "Vocabulary — Word Treasure Hunt" },
     flashcards: englishFlashcardsFor("Chapter 2"),
     quiz: englishQuizzesFor("Chapter 2"),
-  },
-  {
-    id: "english-f1-c3",
-    subjectId: "english",
-    form: "Form 1",
-    chapterKey: "Chapter 3",
-    title: "Reading — Unlock Every Text",
-    englishData: englishF1C3Notes,
-    mindMap: { data: englishF1C3MindMap, title: "Reading — Unlock Every Text" },
-    flashcards: englishFlashcardsFor("Chapter 3"),
-    quiz: englishQuizzesFor("Chapter 3"),
-  },
-  {
-    id: "english-f1-c4",
-    subjectId: "english",
-    form: "Form 1",
-    chapterKey: "Chapter 4",
-    title: "Writing — Craft Your Voice",
-    englishData: englishF1C4Notes,
-    mindMap: { data: englishF1C4MindMap, title: "Writing — Craft Your Voice" },
-    flashcards: englishFlashcardsFor("Chapter 4"),
-    quiz: englishQuizzesFor("Chapter 4"),
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
