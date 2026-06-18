@@ -7,12 +7,13 @@ import {
   getRankProgress,
   SPACE_RANKS,
   ALL_BADGES,
-  DAILY_MISSIONS,
   chapterProgressPct,
   totalChaptersCompleted,
   getDueCount,
   getMasteredCount,
   type LastVisited,
+  type MissionProgress,
+  type RecentActivity,
   type SpaceRank,
 } from "@/hooks/use-progress";
 import { subjects, type Subject } from "@/data/content";
@@ -31,6 +32,11 @@ import {
   AlertTriangle,
   BookMarked,
   GraduationCap,
+  Search,
+  Compass,
+  Clock3,
+  ClipboardList,
+  PlayCircle,
 } from "lucide-react";
 import { AcademyPageShell } from "@/components/AcademyPage";
 import { useCikgu } from "@/context/cikgu-context";
@@ -58,6 +64,24 @@ const TYPE_ROUTES = {
 
 const TYPE_ICONS: Record<string, string> = { notes: "📖", flashcards: "🃏", quiz: "🧠" };
 const TYPE_LABELS: Record<string, string> = { notes: "Notes", flashcards: "Flashcards", quiz: "Quiz" };
+
+const STARTER_ACTIONS = [
+  { title: "Explore Notes", subtitle: "Pick a subject and start your first chapter.", to: "/notes" as const, Icon: BookOpen, color: "#60A5FA" },
+  { title: "Try a Quiz", subtitle: "Test what you already know.", to: "/quizzes" as const, Icon: TrendingUp, color: "#FBBF24" },
+  { title: "Review Flashcards", subtitle: "Build memory with quick study cards.", to: "/flashcards" as const, Icon: BookMarked, color: "#A78BFA" },
+];
+
+const CREATURE_STAGES = [
+  { name: "Egg", minXp: 0, description: "A tiny learning spark is waiting to hatch." },
+  { name: "Blobling", minXp: 100, description: "Curious, wobbly, and hungry for knowledge." },
+  { name: "Sprout", minXp: 300, description: "Growing stronger with every study session." },
+  { name: "Cadet", minXp: 700, description: "Ready for missions across the study galaxy." },
+  { name: "Guardian", minXp: 1200, description: "A steady protector of your learning streak." },
+];
+
+function getCreatureStage(xp: number) {
+  return CREATURE_STAGES.reduce((current, stage) => (xp >= stage.minXp ? stage : current), CREATURE_STAGES[0]);
+}
 
 function timeAgo(ts: number) {
   const elapsed = Date.now() - ts;
@@ -89,6 +113,8 @@ function DashboardPage() {
 
   const todayDate = new Date().toISOString().slice(0, 10);
   const missionsActive = progress.missions?.dailyDate === todayDate;
+  const todaysMissions = missionsActive ? progress.missions : undefined;
+  const recentActivity = progress.recentActivity ?? [];
 
   // Weak chapters: started but not fully completed
   const weakChapters = Object.entries(progress.chapterActivity)
@@ -144,8 +170,10 @@ function DashboardPage() {
       </div>
 
       {/* ── Continue Learning (real data only) ────────────────────────── */}
-      {progress.lastVisited && (
+      {progress.lastVisited ? (
         <ContinueLearningBanner lastVisited={progress.lastVisited} />
+      ) : (
+        <StarterCards />
       )}
 
       {/* ── Alert banners ─────────────────────────────────────────────── */}
@@ -320,53 +348,13 @@ function DashboardPage() {
             </div>
           </Card>
 
+          <CreatureXpCard xp={progress.xp} />
+
           {/* Cosmic Companion */}
           <CosmicCompanionCard />
 
-          {/* Daily Missions */}
-          <Card>
-            <div className="mb-4 flex items-center gap-2">
-              <Star className="h-4 w-4 text-[#FBBF24]" />
-              <h2 className="font-bold text-white">Daily Missions</h2>
-              <span className="ml-auto rounded-full bg-[#FBBF24]/20 px-2 py-0.5 text-[10px] font-bold text-[#FBBF24]">
-                {DAILY_MISSIONS.filter((m) =>
-                  missionsActive && progress.missions ? m.current(progress.missions) >= m.target : false
-                ).length}/{DAILY_MISSIONS.length}
-              </span>
-            </div>
-            <div className="space-y-2.5">
-              {DAILY_MISSIONS.map((mission) => {
-                const current = missionsActive && progress.missions ? mission.current(progress.missions) : 0;
-                const done = current >= mission.target;
-                const pct = Math.min(100, Math.round((current / mission.target) * 100));
-                return (
-                  <div
-                    key={mission.id}
-                    className={`rounded-xl border p-3 ${done ? "border-emerald-500/30 bg-emerald-500/10" : "border-white/[0.07] bg-white/[0.03]"}`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      {done
-                        ? <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
-                        : <Circle className="h-4 w-4 shrink-0 text-[#94A3B8]" />}
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-1">
-                          <span className="text-sm font-semibold text-white">{mission.label}</span>
-                          <span className="shrink-0 rounded-full bg-[#FBBF24]/15 px-1.5 py-0.5 text-[10px] font-bold text-[#FBBF24]">
-                            +{mission.xpReward}
-                          </span>
-                        </div>
-                        {!done && (
-                          <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/[0.08]">
-                            <div className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]" style={{ width: `${pct}%` }} />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Card>
+          <DailyMissionsCard missions={todaysMissions} />
+          <RecentActivityCard activity={recentActivity} />
 
           {/* Cikgu AI CTA */}
           <div
@@ -420,25 +408,7 @@ function DashboardPage() {
             </div>
           </div>
 
-          {/* Study links */}
-          <Card className="space-y-2">
-            <SectionLabel className="mb-3">Jump Into</SectionLabel>
-            {[
-              { icon: <BookOpen className="h-4 w-4" />, label: "Notes", to: "/notes" as const, color: "#3B82F6" },
-              { icon: <BookMarked className="h-4 w-4" />, label: "Flashcards", to: "/flashcards" as const, color: "#8B5CF6" },
-              { icon: <TrendingUp className="h-4 w-4" />, label: "Quizzes", to: "/quizzes" as const, color: "#F59E0B" },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 text-sm font-semibold text-white/70 transition-all hover:bg-white/[0.08] hover:text-white"
-              >
-                <span style={{ color: item.color }}>{item.icon}</span>
-                {item.label}
-                <ArrowRight className="h-3.5 w-3.5 ml-auto opacity-40" />
-              </Link>
-            ))}
-          </Card>
+          <QuickActionsCard lastVisited={progress.lastVisited} />
         </div>
       </div>
     </AcademyPageShell>
@@ -472,6 +442,224 @@ function ContinueLearningBanner({ lastVisited }: { lastVisited: LastVisited }) {
 }
 
 // ─── Shared UI pieces ─────────────────────────────────────────────────────────
+
+function ResourceTypeIcon({ type }: { type: LastVisited["type"] }) {
+  if (type === "notes") return <BookOpen className="h-5 w-5" />;
+  if (type === "flashcards") return <BookMarked className="h-5 w-5" />;
+  return <TrendingUp className="h-5 w-5" />;
+}
+
+function StarterCards() {
+  return (
+    <Card className="mb-6">
+      <div className="mb-4 flex items-center gap-2">
+        <Compass className="h-4 w-4 text-cyan-300" />
+        <SectionLabel>Start Your Journey</SectionLabel>
+      </div>
+      <div className="grid gap-3 md:grid-cols-3">
+        {STARTER_ACTIONS.map((item) => (
+          <Link
+            key={item.title}
+            to={item.to}
+            className="group rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 transition-all hover:-translate-y-0.5 hover:bg-white/[0.07]"
+          >
+            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-white/[0.06]" style={{ color: item.color }}>
+              <item.Icon className="h-5 w-5" />
+            </div>
+            <p className="font-bold text-white">{item.title}</p>
+            <p className="mt-1 text-xs leading-5 text-white/45">{item.subtitle}</p>
+            <ArrowRight className="mt-3 h-4 w-4 text-white/30 transition-transform group-hover:translate-x-1 group-hover:text-white/70" />
+          </Link>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function CreatureXpCard({ xp }: { xp: number }) {
+  const stage = getCreatureStage(xp);
+  const currentIndex = CREATURE_STAGES.findIndex((item) => item.name === stage.name);
+  const nextStage = CREATURE_STAGES[currentIndex + 1];
+  const needed = nextStage ? Math.max(0, nextStage.minXp - xp) : 0;
+
+  return (
+    <Card className="relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_15%,rgba(34,211,238,0.20),transparent_48%),radial-gradient(circle_at_80%_0%,rgba(167,139,250,0.16),transparent_45%)]" />
+      <div className="relative z-10">
+        <div className="mb-4 flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-cyan-300" />
+          <h2 className="font-bold text-white">Creature XP</h2>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
+            <div className="absolute inset-0 rounded-full bg-cyan-300/20 blur-xl" />
+            <div className="relative h-16 w-16 rounded-[45%_55%_50%_50%] border border-white/20 bg-gradient-to-br from-cyan-200 via-indigo-300 to-violet-500 shadow-[0_0_36px_rgba(34,211,238,0.35)]" />
+            <div className="absolute bottom-2 h-2 w-12 rounded-full bg-cyan-200/25 blur-sm" />
+          </div>
+          <div className="min-w-0">
+            <p className="text-xs font-bold uppercase tracking-widest text-cyan-200/70">Evolution Stage</p>
+            <p className="font-display text-2xl font-bold text-white">{stage.name}</p>
+            <p className="mt-1 text-sm leading-5 text-white/48">{stage.description}</p>
+          </div>
+        </div>
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.04] p-3">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/35">Current XP</p>
+            <p className="mt-1 font-display text-2xl font-bold text-white">{xp.toLocaleString()}</p>
+          </div>
+          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.04] p-3">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/35">Next Stage</p>
+            <p className="mt-1 text-sm font-bold text-cyan-100">{nextStage ? nextStage.name : "Max Stage"}</p>
+            <p className="mt-1 text-xs text-white/40">{nextStage ? `${needed.toLocaleString()} XP needed` : "Fully evolved"}</p>
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+function DailyMissionsCard({ missions }: { missions?: MissionProgress }) {
+  const missionRows = [
+    { id: "note", label: "Read 1 note", current: Math.min(missions?.readChapters ?? 0, 1), target: 1, Icon: BookOpen, color: "#60A5FA" },
+    { id: "quiz", label: "Complete 1 quiz", current: Math.min(missions?.quizzesDone ?? 0, 1), target: 1, Icon: ClipboardList, color: "#FBBF24" },
+    { id: "cards", label: "Review 10 flashcards", current: Math.min(missions?.flashcardsDone ?? 0, 10), target: 10, Icon: BookMarked, color: "#A78BFA" },
+  ];
+  const doneCount = missionRows.filter((mission) => mission.current >= mission.target).length;
+
+  return (
+    <Card>
+      <div className="mb-4 flex items-center gap-2">
+        <Star className="h-4 w-4 text-[#FBBF24]" />
+        <h2 className="font-bold text-white">Daily Missions</h2>
+        <span className="ml-auto rounded-full bg-[#FBBF24]/20 px-2 py-0.5 text-[10px] font-bold text-[#FBBF24]">
+          {doneCount}/{missionRows.length}
+        </span>
+      </div>
+      <div className="space-y-2.5">
+        {missionRows.map((mission) => {
+          const done = mission.current >= mission.target;
+          const pct = Math.min(100, Math.round((mission.current / mission.target) * 100));
+          return (
+            <div
+              key={mission.id}
+              className={`rounded-xl border p-3 ${done ? "border-emerald-500/30 bg-emerald-500/10" : "border-white/[0.07] bg-white/[0.03]"}`}
+            >
+              <div className="flex items-center gap-2.5">
+                {done ? (
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
+                ) : (
+                  <Circle className="h-4 w-4 shrink-0 text-[#94A3B8]" />
+                )}
+                <mission.Icon className="h-4 w-4 shrink-0" style={{ color: mission.color }} />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-semibold text-white">{mission.label}</span>
+                    <span className="shrink-0 text-xs font-bold text-white/50">
+                      {mission.current}/{mission.target}
+                    </span>
+                  </div>
+                  {!done && (
+                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/[0.08]">
+                      <div className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#22D3EE]" style={{ width: `${pct}%` }} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Card>
+  );
+}
+
+function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
+  const recent = activity.slice(0, 5);
+  return (
+    <Card>
+      <div className="mb-4 flex items-center gap-2">
+        <Clock3 className="h-4 w-4 text-cyan-300" />
+        <h2 className="font-bold text-white">Recent Activity</h2>
+      </div>
+      {recent.length === 0 ? (
+        <p className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-sm leading-6 text-white/45">
+          Your study history will appear here after you open notes, quizzes, or flashcards.
+        </p>
+      ) : (
+        <div className="space-y-2.5">
+          {recent.map((item) => {
+            const subjectName = subjects.find((subject) => subject.id === item.subjectId)?.name ?? item.subjectId;
+            return (
+              <Link
+                key={item.id}
+                to={TYPE_ROUTES[item.type]}
+                search={{ subject: item.subjectId, form: 1, chapter: item.chapterKey } as Record<string, unknown>}
+                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-3 transition-all hover:bg-white/[0.08]"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200">
+                  <ResourceTypeIcon type={item.type} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-bold text-white">{item.label}</span>
+                  <span className="block truncate text-xs text-white/40">
+                    {subjectName} - {TYPE_LABELS[item.type]} - {timeAgo(item.timestamp)}
+                  </span>
+                </span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-white/28" />
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </Card>
+  );
+}
+
+function QuickActionsCard({ lastVisited }: { lastVisited?: LastVisited }) {
+  const continueAction = lastVisited
+    ? { to: TYPE_ROUTES[lastVisited.type], search: { subject: lastVisited.subjectId, form: 1, chapter: lastVisited.chapterKey } as Record<string, unknown> }
+    : { to: "/notes" as const, search: { form: 1 } as Record<string, unknown> };
+
+  return (
+    <Card className="space-y-2">
+      <SectionLabel className="mb-3">Quick Actions</SectionLabel>
+      <Link
+        to={continueAction.to}
+        search={continueAction.search}
+        className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 text-sm font-semibold text-white/70 transition-all hover:bg-white/[0.08] hover:text-white"
+      >
+        <PlayCircle className="h-4 w-4 text-cyan-300" />
+        Continue Learning
+        <ArrowRight className="h-3.5 w-3.5 ml-auto opacity-40" />
+      </Link>
+      <button
+        type="button"
+        onClick={() => window.dispatchEvent(new Event("academy:open-search"))}
+        className="flex w-full items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 text-left text-sm font-semibold text-white/70 transition-all hover:bg-white/[0.08] hover:text-white"
+      >
+        <Search className="h-4 w-4 text-[#60A5FA]" />
+        Search
+        <ArrowRight className="h-3.5 w-3.5 ml-auto opacity-40" />
+      </button>
+      <Link
+        to="/subjects"
+        className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 text-sm font-semibold text-white/70 transition-all hover:bg-white/[0.08] hover:text-white"
+      >
+        <Compass className="h-4 w-4 text-[#A78BFA]" />
+        Choose Subject
+        <ArrowRight className="h-3.5 w-3.5 ml-auto opacity-40" />
+      </Link>
+      <Link
+        to="/quizzes"
+        className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 text-sm font-semibold text-white/70 transition-all hover:bg-white/[0.08] hover:text-white"
+      >
+        <TrendingUp className="h-4 w-4 text-[#F59E0B]" />
+        Start Quiz
+        <ArrowRight className="h-3.5 w-3.5 ml-auto opacity-40" />
+      </Link>
+    </Card>
+  );
+}
 
 function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (

@@ -38,6 +38,7 @@ export function GalaxySearch() {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const index = useMemo(() => buildStudySearchIndex(), []);
   const results = useMemo(() => searchStudyIndex(index, query, 14), [index, query]);
   const hasQuery = query.trim().length > 0;
@@ -51,11 +52,18 @@ export function GalaxySearch() {
       if (event.key === "Escape") setOpen(false);
     }
 
+    function onOpenSearch() {
+      setOpen(true);
+      window.setTimeout(() => inputRef.current?.focus(), 0);
+    }
+
     document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
+    window.addEventListener("academy:open-search", onOpenSearch);
     return () => {
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("academy:open-search", onOpenSearch);
     };
   }, []);
 
@@ -65,6 +73,7 @@ export function GalaxySearch() {
         <span className="sr-only">Search AcadeMy</span>
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/36" />
         <input
+          ref={inputRef}
           value={query}
           onChange={(event) => {
             setQuery(event.target.value);

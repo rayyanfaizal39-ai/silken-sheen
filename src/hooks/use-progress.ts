@@ -50,6 +50,7 @@ export const QUIZ_PASS_PCT = 80;
 export const QUIZ_PASS_TOKENS = 20; // Stardust awarded for an 80%+ quiz
 export const QUIZ_PASS_BONUS_XP = 25; // extra XP on top of per-question XP
 export const QUIZ_HISTORY_CAP = 200; // keep the most recent N results
+export const RECENT_ACTIVITY_CAP = 12;
 
 export interface Progress {
   xp: number;
@@ -64,6 +65,7 @@ export interface Progress {
   missions?: MissionProgress;
   cardMastery?: Record<string, CardMasteryRecord>; // cardId → SM-2 data
   lastVisited?: LastVisited;
+  recentActivity?: RecentActivity[];
   // ── Stardust economy + analytics (local-first) ──
   tokens: number; // "Stardust" — spent in the Market
   avatar: AvatarConfig; // equipped + owned cosmetics
@@ -82,6 +84,11 @@ export interface LastVisited {
   type: "notes" | "flashcards" | "quiz";
   label: string; // human-readable chapter name
   timestamp: number;
+}
+
+export interface RecentActivity extends LastVisited {
+  id: string;
+  detail?: string;
 }
 
 export interface MissionProgress {
@@ -421,6 +428,26 @@ export function chapterActivityKey(subjectId: string, chapterKey: string) {
   return `${subjectId}:${chapterKey}`;
 }
 
+function pushRecentActivity(
+  current: RecentActivity[] | undefined,
+  activity: LastVisited & { detail?: string; id?: string },
+): RecentActivity[] {
+  const timestamp = activity.timestamp || Date.now();
+  const id =
+    activity.id ??
+    `${activity.type}:${activity.subjectId}:${activity.chapterKey}:${timestamp}`;
+  const nextItem: RecentActivity = { ...activity, timestamp, id };
+  const deduped = (current ?? []).filter(
+    (item) =>
+      !(
+        item.subjectId === nextItem.subjectId &&
+        item.chapterKey === nextItem.chapterKey &&
+        item.type === nextItem.type
+      ),
+  );
+  return [nextItem, ...deduped].slice(0, RECENT_ACTIVITY_CAP);
+}
+
 export function chapterProgressPct(activity?: ChapterActivity) {
   if (!activity) return 0;
   const done = (activity.read ? 1 : 0) + (activity.quiz ? 1 : 0) + (activity.cards ? 1 : 0);
@@ -494,6 +521,13 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
   const mergedHistory = Array.from(historyById.values())
     .sort((a, b) => a.date.localeCompare(b.date))
     .slice(-QUIZ_HISTORY_CAP);
+  const recentByKey = new Map<string, RecentActivity>();
+  for (const item of [...(remote.recentActivity ?? []), ...(local.recentActivity ?? [])]) {
+    recentByKey.set(`${item.type}:${item.subjectId}:${item.chapterKey}`, item);
+  }
+  const mergedRecentActivity = Array.from(recentByKey.values())
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .slice(0, RECENT_ACTIVITY_CAP);
 
   return {
     ...base,
@@ -509,6 +543,7 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
         ? (local.avatar ?? DEFAULT_AVATAR)
         : remote.avatar,
     quizHistory: mergedHistory,
+    recentActivity: mergedRecentActivity,
     parentEmail: local.parentEmail ?? remote.parentEmail,
     reportCadence: local.reportCadence ?? remote.reportCadence,
     equippedTitle: local.equippedTitle ?? remote.equippedTitle,
@@ -891,7 +926,11 @@ export function useProgress() {
   const setLastVisited = useCallback(
     (lv: LastVisited) => {
       setProgress((prev) => {
-        const next: Progress = { ...prev, lastVisited: lv };
+        const next: Progress = {
+          ...prev,
+          lastVisited: lv,
+          recentActivity: pushRecentActivity(prev.recentActivity, lv),
+        };
         try {
           localStorage.setItem(KEY, JSON.stringify(next));
         } catch {}
@@ -926,10 +965,19 @@ export function useProgress() {
           date: new Date().toISOString(),
         };
         const quizHistory = [...(prev.quizHistory ?? []), result].slice(-QUIZ_HISTORY_CAP);
+        const timestamp = Date.now();
 
         const next: Progress = {
           ...prev,
           quizHistory,
+          recentActivity: pushRecentActivity(prev.recentActivity, {
+            subjectId: input.subjectId,
+            chapterKey: input.chapterKey,
+            type: "quiz",
+            label: input.chapterKey,
+            timestamp,
+            detail: `${correct}/${total} correct`,
+          }),
           tokens: (prev.tokens ?? 0) + tokensAwarded,
           xp: prev.xp + (passed ? QUIZ_PASS_BONUS_XP : 0),
           subjectXp: passed
