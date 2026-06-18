@@ -20,6 +20,7 @@ import type { ReactNode } from "react";
 import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { Avatar } from "@/components/Avatar";
+import { GalaxySearch } from "@/components/GalaxySearch";
 
 const navItems = [
   {
@@ -177,7 +178,9 @@ function SidebarBottom() {
             <p className="truncate text-xs font-bold" style={{ color: rank.color }}>
               {rank.name}
             </p>
-            <p className="text-[10px] text-white/40">Rating {getChessRating(progress.xp).toLocaleString()}</p>
+            <p className="text-[10px] text-white/40">
+              Rating {getChessRating(progress.xp).toLocaleString()}
+            </p>
           </div>
           {progress.streak > 0 && (
             <div className="flex items-center gap-1 rounded-xl bg-orange-500/15 px-2 py-1">
@@ -278,7 +281,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* ── Main content area ─────────────────────────────────── */}
       <div className="relative z-10 lg:ml-[236px]">
         {/* Top header */}
-        <header className="sticky top-0 z-40 flex items-center justify-between border-b border-white/[0.06] bg-[#050816]/80 px-4 py-3 backdrop-blur-2xl sm:px-6 lg:px-8">
+        <header className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] bg-[#050816]/80 px-4 py-3 backdrop-blur-2xl sm:px-6 lg:flex-nowrap lg:px-8">
           <div className="flex items-center gap-2">
             {/* Mobile brand */}
             <Link to="/" className="flex items-center gap-2 lg:hidden">
@@ -289,6 +292,10 @@ export function AppShell({ children }: { children: ReactNode }) {
                 Acade<span className="text-nova-yellow">MY</span>
               </span>
             </Link>
+          </div>
+
+          <div className="order-3 w-full lg:order-none lg:min-w-[320px] lg:max-w-2xl lg:flex-1">
+            <GalaxySearch />
           </div>
 
           <div className="flex items-center gap-2">

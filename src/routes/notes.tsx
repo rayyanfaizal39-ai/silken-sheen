@@ -51,6 +51,10 @@ const searchSchema = z.object({
     const formNumber = Number(String(value).replaceAll('"', ""));
     return formNumber === 1 || formNumber === 2 || formNumber === 3 ? formNumber : undefined;
   }, z.number().optional()),
+  chapter: z.preprocess(
+    (value) => (value == null || value === "" ? undefined : String(value)),
+    z.string().optional(),
+  ),
 });
 
 export const Route = createFileRoute("/notes")({
@@ -77,7 +81,7 @@ function NotesPage() {
     normalizedSubject && subjects.some((s) => s.id === normalizedSubject)
       ? normalizedSubject
       : null;
-  const [chapter, setChapter] = useState<string | null>(null);
+  const [chapter, setChapter] = useState<string | null>(search.chapter ?? null);
   const form = normalizeFormParam(search.form);
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter, setLastVisited } = useProgress();
@@ -124,9 +128,9 @@ function NotesPage() {
   }, []);
 
   useEffect(() => {
-    setChapter(null);
+    setChapter(search.chapter ?? null);
     setScrollPct(0);
-  }, [subject, form]);
+  }, [subject, form, search.chapter]);
 
   const filtered = useMemo(() => {
     if (!subject || !activeChapterKey) return [];

@@ -6068,11 +6068,12 @@ interface ShuffledQuestion {
 }
 
 function readStudySearch() {
-  if (typeof window === "undefined") return { subject: null, form: "All" };
+  if (typeof window === "undefined") return { subject: null, form: "All", chapter: null };
   const params = new URLSearchParams(window.location.search);
   return {
     subject: normalizeSubjectParam(params.get("subject")),
     form: normalizeFormParam(params.get("form")),
+    chapter: params.get("chapter"),
   };
 }
 
@@ -6081,7 +6082,7 @@ function QuizzesPage() {
   const { openCikgu } = useCikgu();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
-  const [chapter, setChapter] = useState<string | null>(null);
+  const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
   const [form, setForm] = useState<string>(initialSearch.form);
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
   const [idx, setIdx] = useState(0);
