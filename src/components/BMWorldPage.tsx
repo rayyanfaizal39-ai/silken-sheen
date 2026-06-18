@@ -49,6 +49,7 @@ import { ModelKaranganHub } from "@/components/ModelKaranganHub";
 import { getModelKarangan } from "@/data/bm-model-karangan-hub";
 import { PenandaWacanaLengkapHub } from "@/components/PenandaWacanaLengkapHub";
 import { PeribahasaBankLengkapHub } from "@/components/PeribahasaBankLengkapHub";
+import { EssayImprovementPlusSections } from "@/components/EssayImprovementPlusSections";
 import {
   Accordion,
   AccordionContent,
@@ -3445,6 +3446,9 @@ function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: strin
           </ul>
         </div>
       )}
+
+      {/* Added sections only — everything above is original, untouched content */}
+      <EssayImprovementPlusSections color={color} />
     </div>
   );
 }
