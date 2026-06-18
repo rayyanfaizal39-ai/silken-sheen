@@ -46,7 +46,10 @@ const SUBJECT_ALIASES: Record<string, string[]> = {
   geography: ["geography", "geografi", "peta", "arah", "bumi"],
 };
 
-const TYPE_ROUTE: Record<StudyResourceType, "/notes" | "/quizzes" | "/flashcards" | "/subjects"> = {
+const TYPE_ROUTE: Record<
+  StudyResourceType,
+  "/notes" | "/mindmaps" | "/quizzes" | "/flashcards" | "/subjects"
+> = {
   Subject: "/subjects",
   Form: "/subjects",
   Chapter: "/notes",
@@ -54,7 +57,7 @@ const TYPE_ROUTE: Record<StudyResourceType, "/notes" | "/quizzes" | "/flashcards
   Notes: "/notes",
   Quiz: "/quizzes",
   Flashcards: "/flashcards",
-  Mindmap: "/notes",
+  Mindmap: "/mindmaps",
   Video: "/notes",
 };
 

@@ -217,7 +217,7 @@ export function SubjectPlanetLink({
   to = "/notes",
 }: {
   subjectId: SubjectPlanetId;
-  to?: "/notes" | "/flashcards" | "/quizzes";
+  to?: "/notes" | "/mindmaps" | "/flashcards" | "/quizzes";
 }) {
   const planet = subjectPlanetStyles[subjectId];
   return (

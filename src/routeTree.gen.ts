@@ -15,6 +15,7 @@ import { Route as SubjectsRouteImport } from './routes/subjects'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
 import { Route as ParentRouteImport } from './routes/parent'
 import { Route as NotesRouteImport } from './routes/notes'
+import { Route as MindmapsRouteImport } from './routes/mindmaps'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
@@ -52,6 +53,11 @@ const ParentRoute = ParentRouteImport.update({
 const NotesRoute = NotesRouteImport.update({
   id: '/notes',
   path: '/notes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MindmapsRoute = MindmapsRouteImport.update({
+  id: '/mindmaps',
+  path: '/mindmaps',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
+  '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
   '/quizzes': typeof QuizzesRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
+  '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
   '/quizzes': typeof QuizzesRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
+  '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
   '/quizzes': typeof QuizzesRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/flashcards'
     | '/leaderboard'
     | '/login'
+    | '/mindmaps'
     | '/notes'
     | '/parent'
     | '/quizzes'
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/flashcards'
     | '/leaderboard'
     | '/login'
+    | '/mindmaps'
     | '/notes'
     | '/parent'
     | '/quizzes'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/flashcards'
     | '/leaderboard'
     | '/login'
+    | '/mindmaps'
     | '/notes'
     | '/parent'
     | '/quizzes'
@@ -201,6 +213,7 @@ export interface RootRouteChildren {
   FlashcardsRoute: typeof FlashcardsRoute
   LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
+  MindmapsRoute: typeof MindmapsRoute
   NotesRoute: typeof NotesRoute
   ParentRoute: typeof ParentRoute
   QuizzesRoute: typeof QuizzesRoute
@@ -251,6 +264,13 @@ declare module '@tanstack/react-router' {
       path: '/notes'
       fullPath: '/notes'
       preLoaderRoute: typeof NotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mindmaps': {
+      id: '/mindmaps'
+      path: '/mindmaps'
+      fullPath: '/mindmaps'
+      preLoaderRoute: typeof MindmapsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -330,6 +350,7 @@ const rootRouteChildren: RootRouteChildren = {
   FlashcardsRoute: FlashcardsRoute,
   LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
+  MindmapsRoute: MindmapsRoute,
   NotesRoute: NotesRoute,
   ParentRoute: ParentRoute,
   QuizzesRoute: QuizzesRoute,

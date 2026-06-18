@@ -1,10 +1,11 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, BookOpen, Layout, Brain, Sparkles, Star } from "lucide-react";
+import { Home, BookOpen, Layout, Brain, Network, Star } from "lucide-react";
 
 const mobileLinks = [
   { to: "/", label: "Home", icon: Home },
   { to: "/subjects", label: "Subjects", icon: Layout },
   { to: "/notes", label: "Notes", icon: BookOpen },
+  { to: "/mindmaps", label: "Maps", icon: Network },
   { to: "/quizzes", label: "Quizzes", icon: Brain },
   { to: "/upgrade", label: "Upgrade", icon: Star },
 ] as const;

@@ -36,7 +36,7 @@ export function normalizeFormParam(value: unknown) {
 }
 
 export function studyHref(
-  kind: "notes" | "quizzes" | "flashcards",
+  kind: "notes" | "mindmaps" | "quizzes" | "flashcards",
   subjectId: string,
   form?: string,
 ) {

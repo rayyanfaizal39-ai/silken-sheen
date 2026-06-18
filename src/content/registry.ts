@@ -52,6 +52,12 @@ import { mathF1C12NotesDLP } from "@/content/form1/math/chapter-12/notes-dlp";
 import { mathF1C13NotesBM } from "@/content/form1/math/chapter-13/notes-bm";
 import { mathF1C13NotesDLP } from "@/content/form1/math/chapter-13/notes-dlp";
 import { sejarahF2C1Notes } from "@/content/form2/sejarah/chapter-1/notes";
+import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
+import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
+import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
+import { sejarahF2C4MindMap } from "@/content/form2/sejarah/chapter-4/mindmap";
+import { sejarahF2C5MindMap } from "@/content/form2/sejarah/chapter-5/mindmap";
+import { sejarahF2C6MindMap } from "@/content/form2/sejarah/chapter-6/mindmap";
 
 // Geografi F1 mind maps
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
@@ -256,6 +262,53 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Kerajaan Alam Melayu",
     notes: sejarahF2C1Notes,
+    mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu yang Masyhur" },
+  },
+  {
+    id: "sejarah-f2-c2",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Sistem Pemerintahan dan Kegiatan Ekonomi",
+    mindMap: {
+      data: sejarahF2C2MindMap,
+      title: "Sistem Pemerintahan dan Ekonomi Kerajaan Alam Melayu",
+    },
+  },
+  {
+    id: "sejarah-f2-c3",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Sosiobudaya Masyarakat Kerajaan Alam Melayu",
+    mindMap: { data: sejarahF2C3MindMap, title: "Sosiobudaya Kerajaan Alam Melayu" },
+  },
+  {
+    id: "sejarah-f2-c4",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Agama, Kepercayaan dan Keunikan Warisan",
+    mindMap: {
+      data: sejarahF2C4MindMap,
+      title: "Keunikan Warisan Masyarakat Kerajaan Alam Melayu",
+    },
+  },
+  {
+    id: "sejarah-f2-c5",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Kesultanan Melayu Melaka",
+    mindMap: { data: sejarahF2C5MindMap, title: "Kesultanan Melayu Melaka" },
+  },
+  {
+    id: "sejarah-f2-c6",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Kesultanan Johor Riau",
+    mindMap: { data: sejarahF2C6MindMap, title: "Kesultanan Johor Riau" },
   },
 
   // Geography Form 1

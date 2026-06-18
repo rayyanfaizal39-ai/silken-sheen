@@ -63,13 +63,13 @@ type MindMapPalette = {
   edgeEnd?: string;
 };
 
-const H_GAP = 70; // horizontal gap between columns
-const V_GAP = 18; // vertical gap between siblings
+const H_GAP = 96; // horizontal gap between columns
+const V_GAP = 28; // vertical gap between siblings
 const PAD_X = 28; // horizontal padding inside a node
-const MIN_W = 120;
-const MAX_W = 9999;
-const LINE_H = 18;
-const V_PAD = 18; // vertical padding inside a node (total)
+const MIN_W = 132;
+const MAX_W = 280;
+const LINE_H = 19;
+const V_PAD = 20; // vertical padding inside a node (total)
 
 function fontForDepth(depth: number) {
   const size = depth === 0 ? 15 : depth === 1 ? 13.5 : 12.5;

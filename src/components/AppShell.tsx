@@ -8,6 +8,7 @@ import {
   Library,
   LogIn,
   LogOut,
+  Network,
   Radar,
   Rocket,
   Sparkles,
@@ -53,14 +54,14 @@ const navItems = [
     line: "linear-gradient(90deg,#60A5FA,#2563EB)",
   },
   {
-    label: "Flashcards",
-    short: "Cards",
-    to: "/flashcards",
-    icon: Library,
-    accent: "#A855F7",
-    accentGlow: "rgba(168,85,247,0.55)",
-    accentBg: "rgba(168,85,247,0.22)",
-    line: "linear-gradient(90deg,#C084FC,#9333EA)",
+    label: "Mind Maps",
+    short: "Maps",
+    to: "/mindmaps",
+    icon: Network,
+    accent: "#22D3EE",
+    accentGlow: "rgba(34,211,238,0.55)",
+    accentBg: "rgba(34,211,238,0.20)",
+    line: "linear-gradient(90deg,#67E8F9,#0EA5E9)",
   },
   {
     label: "Quizzes",
@@ -71,6 +72,16 @@ const navItems = [
     accentGlow: "rgba(245,158,11,0.55)",
     accentBg: "rgba(245,158,11,0.22)",
     line: "linear-gradient(90deg,#FBBF24,#D97706)",
+  },
+  {
+    label: "Flashcards",
+    short: "Cards",
+    to: "/flashcards",
+    icon: Library,
+    accent: "#A855F7",
+    accentGlow: "rgba(168,85,247,0.55)",
+    accentBg: "rgba(168,85,247,0.22)",
+    line: "linear-gradient(90deg,#C084FC,#9333EA)",
   },
   {
     label: "AI Tracker",
@@ -335,7 +346,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <nav className="space-nav-shell mobile-nav-shell fixed left-3 right-3 z-[80] rounded-[1.25rem] px-1.5 lg:hidden">
         <div className="mx-auto flex h-full max-w-md items-center justify-between gap-0.5">
-          {navItems.slice(0, 5).map((item) => {
+          {navItems.slice(0, 6).map((item) => {
             const Icon = item.icon;
             const active = isActive(pathname, item.to);
             return (

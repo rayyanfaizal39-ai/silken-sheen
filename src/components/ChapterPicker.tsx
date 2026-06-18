@@ -100,7 +100,7 @@ export function SubjectGrid({
   );
 }
 
-type LearningMode = "notes" | "quizzes" | "flashcards";
+type LearningMode = "notes" | "mindmaps" | "quizzes" | "flashcards";
 
 const FORM_CARDS: Array<{
   form: Form;
@@ -133,6 +133,7 @@ const FORM_CARDS: Array<{
 ];
 
 function modeLabel(mode: LearningMode) {
+  if (mode === "mindmaps") return "Mind Maps";
   if (mode === "quizzes") return "Quizzes";
   if (mode === "flashcards") return "Flashcards";
   return "Notes";
@@ -466,6 +467,10 @@ export function ContentHeader({
   const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
     (c) => c.key === chapterKey,
   );
+  const chapterContent = getChapter(subjectId, chapterKey, scienceLang, form === "All" ? "Form 1" : form);
+  const chapterLabel =
+    chapter?.label ??
+    (chapterContent ? `${chapterContent.chapterKey}: ${chapterContent.title}` : chapterKey);
   const accent = getSubjectAccent(subjectId);
 
   return (
@@ -485,7 +490,7 @@ export function ContentHeader({
           </span>
           <span className="text-white/30">•</span>
           <span className="max-w-[180px] truncate text-xs text-white/55">
-            {chapter?.label ?? chapterKey}
+            {chapterLabel}
           </span>
         </div>
       </div>
@@ -516,7 +521,7 @@ export function ContentHeader({
               {subj?.name} • Learning Content
             </p>
             <h2 className="mt-0.5 font-display text-xl font-bold leading-tight text-white">
-              {chapter?.label ?? chapterKey}
+              {chapterLabel}
             </h2>
           </div>
         </div>

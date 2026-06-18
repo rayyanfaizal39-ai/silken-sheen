@@ -80,7 +80,7 @@ export function MindMapBlock({
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2 px-2">
           <p className="text-sm font-semibold text-white">{title}</p>
           <p className="text-xs text-muted-foreground">
-            Click nodes to expand • Scroll or pinch to zoom • Drag to pan
+            Click nodes to expand - Scroll or pinch to zoom - Drag to pan
           </p>
         </div>
         <MindMap data={data} height={640} />

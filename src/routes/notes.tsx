@@ -15,22 +15,12 @@ import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLangu
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
-import { MindMap } from "@/components/MindMap";
-import { zamanAirBatuMindMap } from "@/data/sejarah-f1-c2-mindmap";
-import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
-import { zamanPrasejarahMindMap } from "@/data/zamanPrasejarahMindMap";
-import { tamadunIndiaChinaMindMap } from "@/data/sejarah-f1-c7-mindmap";
-import { tamadunIslamSumbanganMindMap } from "@/data/sejarah-f1-c8-mindmap";
-import { mengenaliTamadunMindMap } from "@/data/sejarah-f1-c4-mindmap";
-import { tamadunAwalDuniaMindMap } from "@/data/sejarah-f1-c5-mindmap";
-import { peningkatanTamadunYunaniRomMindMap } from "@/data/sejarah-f1-c6-mindmap";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { getChapter } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
-import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
@@ -160,6 +150,7 @@ function NotesPage() {
   const visibleFeatures = {
     ...features,
     notes: features.notes || legacyNoteSections.length > 0,
+    mindMap: false,
   };
 
   function jumpTo(key: string) {
@@ -471,14 +462,6 @@ function NotesPage() {
           <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
-          {activeChapter?.mindMap && (
-            <MindMapBlock
-              id="mindMap"
-              data={activeChapter.mindMap.data}
-              title={activeChapter.mindMap.title}
-              storageKey={`notes:${subject}:${activeChapterKey}:mind-map`}
-            />
-          )}
           {subject === "english" && activeChapter?.englishData ? (
             <EnglishNotesBlock
               id="notes"
@@ -500,7 +483,6 @@ function NotesPage() {
           {filtered.length === 0 ? (
             !activeChapter?.englishData &&
             !activeChapter?.notes &&
-            !activeChapter?.mindMap &&
             !activeChapter?.video && (
               <p className="text-center text-muted-foreground py-20">
                 {subject === "math"
@@ -563,7 +545,7 @@ function SubtopicView({
   const subj = subjects.find((s) => s.id === subjectId);
   const chapterLabel =
     getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
-  const features = getChapterFeatures(chapterContent);
+  const features = { ...getChapterFeatures(chapterContent), mindMap: false };
   const subtopicSections = useMemo<NotesAccordionSection[]>(
     () =>
       (Array.isArray(subtopics) ? subtopics : []).map((subtopic) => ({
@@ -597,15 +579,6 @@ function SubtopicView({
       <ChapterFeatureBar features={features} onJump={jumpTo} />
 
       {chapterContent?.video && <VideoBlock id="video" video={chapterContent.video} />}
-      {chapterContent?.mindMap && (
-        <MindMapBlock
-          id="mindMap"
-          data={chapterContent.mindMap.data}
-          title={chapterContent.mindMap.title}
-          storageKey={`notes:${subjectId}:${chapterKey}:mind-map`}
-        />
-      )}
-
       <NotesBlock
         id="notes"
         sections={subtopicSections}

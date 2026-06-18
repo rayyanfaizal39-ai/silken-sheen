@@ -9,7 +9,7 @@ const FEATURE_META: Record<ChapterFeatureKey, { label: string; Icon: typeof Book
   video: { label: "AI Video", Icon: Video },
 };
 
-const ORDER: ChapterFeatureKey[] = ["notes", "flashcards", "quiz", "mindMap", "video"];
+const ORDER: ChapterFeatureKey[] = ["notes", "flashcards", "quiz", "video"];
 
 export function ChapterFeatureBar({
   features,
