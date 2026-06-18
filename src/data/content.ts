@@ -25150,92 +25150,6 @@ export const mathForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp: s
   { num: 13, bm: "Teorem Pythagoras", dlp: "Pythagoras' Theorem" },
 ];
 
-export const scienceForm2ChaptersBilingual: Array<{ num: number; bm: string; dlp: string }> = [
-  { num: 1, bm: "Biodiversiti", dlp: "Biodiversity" },
-  { num: 2, bm: "Ekosistem", dlp: "Ecosystem" },
-  { num: 3, bm: "Nutrisi", dlp: "Nutrition" },
-  { num: 4, bm: "Kesihatan Manusia", dlp: "Human Health" },
-  { num: 5, bm: "Air dan Larutan", dlp: "Water and Solution" },
-  { num: 6, bm: "Asid dan Alkali", dlp: "Acid and Alkali" },
-  { num: 7, bm: "Keelektrikan dan Kemagnetan", dlp: "Electricity and Magnetism" },
-  { num: 8, bm: "Daya dan Gerakan", dlp: "Force and Motion" },
-  { num: 9, bm: "Haba", dlp: "Heat" },
-  { num: 10, bm: "Gelombang Bunyi", dlp: "Sound Waves" },
-  { num: 11, bm: "Bintang dan Galaksi dalam Alam Semesta", dlp: "Stars and Galaxies in the Universe" },
-  { num: 12, bm: "Sistem Suria", dlp: "Solar System" },
-  { num: 13, bm: "Meteoroid, Asteroid dan Komet", dlp: "Meteoroid, Asteroid and Comet" },
-];
-
-export const mathForm2ChaptersBilingual: Array<{ num: number; bm: string; dlp: string }> = [
-  { num: 1, bm: "Pola dan Jujukan", dlp: "Patterns and Sequences" },
-  { num: 2, bm: "Pemfaktoran dan Pecahan Algebra", dlp: "Factorisation and Algebraic Fractions" },
-  { num: 3, bm: "Rumus Algebra", dlp: "Algebraic Formulae" },
-  { num: 4, bm: "Poligon", dlp: "Polygons" },
-  { num: 5, bm: "Bulatan", dlp: "Circles" },
-  { num: 6, bm: "Bentuk Geometri Tiga Dimensi", dlp: "Three-Dimensional Geometrical Shapes" },
-  { num: 7, bm: "Koordinat", dlp: "Coordinates" },
-  { num: 8, bm: "Graf Fungsi", dlp: "Graphs of Functions" },
-  { num: 9, bm: "Laju dan Pecutan", dlp: "Speed and Acceleration" },
-  { num: 10, bm: "Kecerunan Garis Lurus", dlp: "Gradient of a Straight Line" },
-  { num: 11, bm: "Transformasi Isometri", dlp: "Isometric Transformations" },
-  { num: 12, bm: "Sukatan Kecenderungan Memusat", dlp: "Measures of Central Tendencies" },
-  { num: 13, bm: "Kebarangkalian Mudah", dlp: "Simple Probability" },
-];
-
-export const sejarahForm2Chapters: SejarahChapter[] = [
-  { num: 1, title: "Kerajaan Alam Melayu", available: true },
-  { num: 2, title: "Sistem Pemerintahan dan Kegiatan Ekonomi Masyarakat Kerajaan Alam Melayu", available: true },
-  { num: 3, title: "Sosiobudaya Masyarakat Kerajaan Alam Melayu", available: true },
-  { num: 4, title: "Agama, Kepercayaan dan Keunikan Warisan Masyarakat Kerajaan Alam Melayu", available: true },
-  { num: 5, title: "Kesultanan Melayu Melaka", available: true },
-  { num: 6, title: "Kesultanan Johor Riau", available: true },
-  { num: 7, title: "Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor", available: true },
-  { num: 8, title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis", available: true },
-  { num: 9, title: "Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis", available: true },
-  { num: 10, title: "Sarawak dan Sabah", available: true },
-];
-
-const form2SubjectChapters: Record<string, ChapterItem[]> = {
-  bm: [
-    { key: "Kertas 1 - Sistem Bahasa", label: "Kertas 1: Sistem Bahasa", available: true },
-    { key: "Kertas 1 - Pemahaman", label: "Kertas 1: Pemahaman", available: true },
-    { key: "Kertas 1 - Rumusan", label: "Kertas 1: Rumusan", available: true },
-    { key: "Kertas 2 - Karangan Pendek", label: "Kertas 2: Karangan Pendek", available: true },
-    { key: "Kertas 2 - Karangan Panjang", label: "Kertas 2: Karangan Panjang", available: true },
-    { key: "KOMSAS - Novel", label: "KOMSAS: Novel", available: true },
-    { key: "KOMSAS - Cerpen", label: "KOMSAS: Cerpen", available: true },
-    { key: "KOMSAS - Drama", label: "KOMSAS: Drama", available: true },
-    { key: "KOMSAS - Puisi", label: "KOMSAS: Puisi", available: true },
-    { key: "Bengkel Bahasa - Peribahasa", label: "Bengkel Bahasa: Peribahasa", available: true },
-    { key: "Bengkel Bahasa - Simpulan Bahasa", label: "Bengkel Bahasa: Simpulan Bahasa", available: true },
-    { key: "Bengkel Bahasa - Penanda Wacana", label: "Bengkel Bahasa: Penanda Wacana", available: true },
-    { key: "Bengkel Bahasa - Kata Hikmat", label: "Bengkel Bahasa: Kata Hikmat", available: true },
-  ],
-  english: [
-    { key: "Paper 1 - Part 1 Grammar", label: "Paper 1: Part 1 Grammar", available: true },
-    { key: "Paper 1 - Part 2 Vocabulary", label: "Paper 1: Part 2 Vocabulary", available: true },
-    { key: "Paper 1 - Part 3 Short Texts", label: "Paper 1: Part 3 Short Texts", available: true },
-    { key: "Paper 1 - Part 4 Reading Comprehension", label: "Paper 1: Part 4 Reading Comprehension", available: true },
-    { key: "Paper 1 - Part 5 Information Transfer", label: "Paper 1: Part 5 Information Transfer", available: true },
-    { key: "Paper 1 - Cohesive Devices Bank", label: "Paper 1: Cohesive Devices Bank", available: true },
-    { key: "Paper 2 - Section A Guided Writing", label: "Paper 2: Section A Guided Writing", available: true },
-    { key: "Paper 2 - Section B Extended Writing", label: "Paper 2: Section B Extended Writing", available: true },
-  ],
-  geography: [
-    { key: "Chapter 1", label: "Chapter 1: Skala dan Jarak", available: true },
-    { key: "Chapter 2", label: "Chapter 2: Peta Topografi", available: true },
-    { key: "Chapter 3", label: "Chapter 3: Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim", available: true },
-    { key: "Chapter 4", label: "Chapter 4: Cuaca dan Iklim di Malaysia", available: true },
-    { key: "Chapter 5", label: "Chapter 5: Pengangkutan di Malaysia", available: true },
-    { key: "Chapter 6", label: "Chapter 6: Telekomunikasi di Malaysia", available: true },
-    { key: "Chapter 7", label: "Chapter 7: Kepelbagaian Iklim dan Pengaruhnya terhadap Kegiatan Manusia di Asia", available: true },
-    { key: "Chapter 8", label: "Chapter 8: Jenis dan Kemajuan Pengangkutan di Asia", available: true },
-    { key: "Chapter 9", label: "Chapter 9: Pemanasan Global", available: true },
-    { key: "Chapter 10", label: "Chapter 10: Teknologi Hijau", available: true },
-    { key: "Chapter 11", label: "Chapter 11: Panduan Kerja Lapangan", available: true },
-  ],
-};
-
 export const englishCategories = [
   { id: 1, name: "Paper 1: Reading & Language Awareness" },
   { id: 2, name: "Paper 2: Writing" },
@@ -25246,35 +25160,18 @@ export function getSubjectChapters(
   scienceLang?: "bm" | "dlp",
   form: Form | "All" = "Form 1",
 ): ChapterItem[] {
-  if (form === "Form 2") {
-    if (subjectId === "sejarah") {
-      return sejarahForm2Chapters.map((c) => ({
-        key: `Chapter ${c.num}`,
-        label: `Chapter ${c.num}: ${c.title}`,
-        available: c.available,
-        isNew: c.isNew,
-      }));
-    }
-    if (subjectId === "science" && scienceLang) {
-      const prefix = scienceLang === "bm" ? "Bab" : "Chapter";
-      return scienceForm2ChaptersBilingual.map((c) => ({
-        key: `Chapter ${c.num}`,
-        label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
+  if (form === "Form 2" && subjectId === "sejarah") {
+    return [
+      {
+        key: "Chapter 1",
+        label: "Chapter 1: Kerajaan Alam Melayu",
         available: true,
-        isNew: false,
-      }));
-    }
-    if (subjectId === "math" && scienceLang) {
-      const prefix = scienceLang === "bm" ? "Bab" : "Chapter";
-      return mathForm2ChaptersBilingual.map((c) => ({
-        key: `Chapter ${c.num}`,
-        label: `${prefix} ${c.num}: ${scienceLang === "bm" ? c.bm : c.dlp}`,
-        available: true,
-        isNew: false,
-      }));
-    }
-    return form2SubjectChapters[subjectId] ?? [];
+        isNew: true,
+      },
+    ];
   }
+
+  if (form !== "Form 1" && form !== "All") return [];
 
   if (subjectId === "sejarah") {
     return sejarahForm1Chapters.map((c) => ({

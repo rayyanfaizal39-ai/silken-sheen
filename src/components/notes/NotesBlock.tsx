@@ -82,12 +82,14 @@ export function NotesBlock({
   id,
   subjectId,
   storageKey,
+  defaultOpenFirstSection = true,
 }: {
   notes?: StructuredNotes;
   sections?: NotesAccordionSection[];
   id?: string;
   subjectId?: string;
   storageKey?: string;
+  defaultOpenFirstSection?: boolean;
 }) {
   const subjectPalette = SUBJECT_PALETTE[subjectId ?? "_default"] ?? SUBJECT_PALETTE["_default"];
   const [query, setQuery] = useState("");
@@ -145,9 +147,13 @@ export function NotesBlock({
       setOpenValue(undefined);
       return;
     }
+    if (!defaultOpenFirstSection && !query.trim()) {
+      setOpenValue(undefined);
+      return;
+    }
     const values = filteredSections.map((section) => section.id ?? section.title);
     setOpenValue((current) => (current && values.includes(current) ? current : values[0]));
-  }, [filteredSections]);
+  }, [defaultOpenFirstSection, filteredSections, query]);
 
   function jumpToSection(value: string) {
     setOpenValue(value);

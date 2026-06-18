@@ -1,5 +1,17 @@
-import { subjects, getSubjectChapters, flashcards, quizzes } from "@/data/content";
-import { Lock, ArrowLeft, Sparkles, Clock, Gauge, NotebookPen, Brain, Layers, CheckCircle2, BookOpen } from "lucide-react";
+import { subjects, getSubjectChapters, flashcards, quizzes, type Form } from "@/data/content";
+import {
+  Lock,
+  ArrowLeft,
+  Sparkles,
+  Clock,
+  Gauge,
+  NotebookPen,
+  Brain,
+  Layers,
+  CheckCircle2,
+  BookOpen,
+  Rocket,
+} from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import { getChapter } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
@@ -83,6 +95,139 @@ export function SubjectGrid({
             />
           </div>
         ))}
+      </div>
+    </AcademyPanel>
+  );
+}
+
+type LearningMode = "notes" | "quizzes" | "flashcards";
+
+const FORM_CARDS: Array<{
+  form: Form;
+  label: string;
+  badge: string;
+  description: string;
+  available: boolean;
+}> = [
+  {
+    form: "Form 1",
+    label: "Form 1",
+    badge: "Ready",
+    description: "Open the available learning path.",
+    available: true,
+  },
+  {
+    form: "Form 2",
+    label: "Form 2",
+    badge: "Coming Soon",
+    description: "Content is currently being prepared.",
+    available: false,
+  },
+  {
+    form: "Form 3",
+    label: "Form 3",
+    badge: "Coming Soon",
+    description: "Content is currently being prepared.",
+    available: false,
+  },
+];
+
+function modeLabel(mode: LearningMode) {
+  if (mode === "quizzes") return "Quizzes";
+  if (mode === "flashcards") return "Flashcards";
+  return "Notes";
+}
+
+export function FormGrid({
+  subjectId,
+  mode = "notes",
+  onSelect,
+  onBack,
+}: {
+  subjectId: string;
+  mode?: LearningMode;
+  onSelect: (form: Form) => void;
+  onBack: () => void;
+}) {
+  const subj = subjects.find((s) => s.id === subjectId);
+  const accent = getSubjectAccent(subjectId);
+
+  return (
+    <AcademyPanel>
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="button"
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/70 transition-all hover:-translate-x-0.5 hover:bg-white/[0.10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+        >
+          <ArrowLeft className="h-4 w-4" /> All subjects
+        </button>
+        <div className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+          <span className="text-sm font-bold" style={{ color: accent.color }}>
+            {subj?.name}
+          </span>
+          <span className="text-white/30">/</span>
+          <span className="text-xs font-semibold text-white/55">{modeLabel(mode)}</span>
+        </div>
+      </div>
+
+      <AcademySectionHeader
+        eyebrow="Choose Form"
+        title={`${subj?.name ?? "Subject"} ${modeLabel(mode)}`}
+        description="Select a form level to continue."
+      />
+
+      <div className="grid items-stretch gap-4 sm:grid-cols-3">
+        {FORM_CARDS.map((item, index) => {
+          const isReady = item.available || (subjectId === "sejarah" && item.form === "Form 2");
+          return (
+            <button
+              key={item.form}
+              type="button"
+              onClick={() => onSelect(item.form)}
+              className="group relative flex min-h-[190px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.22)] transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-white/[0.16] hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+              style={{ animationDelay: `${index * 60}ms` }}
+            >
+              <div
+                className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full blur-2xl transition-opacity group-hover:opacity-90"
+                style={{
+                  background: isReady
+                    ? `radial-gradient(circle, ${accent.glow}, transparent 68%)`
+                    : "radial-gradient(circle, rgba(148,163,184,0.22), transparent 68%)",
+                }}
+              />
+              <div
+                className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.08]"
+                style={{
+                  background: isReady
+                    ? `linear-gradient(135deg, ${accent.from}2e, ${accent.to}18)`
+                    : "rgba(255,255,255,0.05)",
+                  boxShadow: isReady ? `0 0 24px ${accent.glow}` : "none",
+                }}
+              >
+                {isReady ? (
+                  <BookOpen className="h-5 w-5" style={{ color: accent.color }} />
+                ) : (
+                  <Rocket className="h-5 w-5 text-white/70" />
+                )}
+              </div>
+              <span
+                className="mb-3 inline-flex w-fit rounded-full border px-3 py-1 text-[10px] font-black uppercase tracking-wide"
+                style={{
+                  borderColor: isReady ? `${accent.from}40` : "rgba(255,255,255,0.10)",
+                  color: isReady ? accent.color : "rgba(255,255,255,0.55)",
+                  background: isReady ? `${accent.from}14` : "rgba(255,255,255,0.04)",
+                }}
+              >
+                {isReady ? "Ready" : item.badge}
+              </span>
+              <h3 className="font-display text-xl font-bold text-white">{item.label}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/55">
+                {isReady ? "Open the available learning path." : item.description}
+              </p>
+            </button>
+          );
+        })}
       </div>
     </AcademyPanel>
   );
@@ -377,6 +522,60 @@ export function ContentHeader({
         </div>
       </div>
     </div>
+  );
+}
+
+export function FormComingSoon({
+  subjectId,
+  form,
+  onBack,
+}: {
+  subjectId: string;
+  form: Extract<Form, "Form 2" | "Form 3">;
+  onBack: () => void;
+}) {
+  const subj = subjects.find((s) => s.id === subjectId);
+  const accent = getSubjectAccent(subjectId);
+
+  return (
+    <AcademyPanel>
+      <button
+        type="button"
+        onClick={onBack}
+        className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/70 transition-all hover:-translate-x-0.5 hover:bg-white/[0.10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+      >
+        <ArrowLeft className="h-4 w-4" /> Back to forms
+      </button>
+
+      <div
+        className="relative overflow-hidden rounded-[2rem] border p-8 text-center shadow-[0_18px_70px_rgba(0,0,0,0.25)] sm:p-10"
+        style={{
+          borderColor: `${accent.from}24`,
+          background: `linear-gradient(135deg, ${accent.from}16, rgba(13,21,37,0.88) 48%, ${accent.to}10)`,
+        }}
+      >
+        <div
+          className="pointer-events-none absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+          style={{ background: accent.glow }}
+        />
+        <div
+          className="relative mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-3xl border border-white/[0.10] bg-white/[0.06] animate-float-soft"
+          style={{ boxShadow: `0 0 34px ${accent.glow}` }}
+        >
+          <Rocket className="h-8 w-8" style={{ color: accent.color }} />
+        </div>
+        <p
+          className="relative text-xs font-black uppercase tracking-[0.22em]"
+          style={{ color: accent.color }}
+        >
+          {subj?.name} / {form}
+        </p>
+        <h2 className="relative mt-3 font-display text-3xl font-bold text-white">Coming Soon</h2>
+        <p className="relative mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">
+          {form} content is currently being prepared.
+        </p>
+      </div>
+    </AcademyPanel>
   );
 }
 

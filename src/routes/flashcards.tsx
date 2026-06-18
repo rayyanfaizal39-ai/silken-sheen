@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import {
   SubjectGrid,
+  FormGrid,
+  FormComingSoon,
   ChapterGrid,
   ContentHeader,
   ComingSoonScreen,
@@ -3098,12 +3100,14 @@ function getMathFlashcards(
 }
 
 function readStudySearch() {
-  if (typeof window === "undefined") return { subject: null, form: "All", chapter: null };
+  if (typeof window === "undefined")
+    return { subject: null, form: "Form 1", chapter: null, hasForm: false };
   const params = new URLSearchParams(window.location.search);
   return {
     subject: normalizeSubjectParam(params.get("subject")),
     form: normalizeFormParam(params.get("form")),
     chapter: params.get("chapter"),
+    hasForm: params.has("form"),
   };
 }
 
@@ -3418,6 +3422,7 @@ function FlashcardsPage() {
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
   const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
+  const [formWasChosen, setFormWasChosen] = useState(initialSearch.hasForm);
   const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
   const [mathFlashcardCategory, setMathFlashcardCategory] =
     useState<MathFlashcardCategoryId | null>(null);
@@ -3758,6 +3763,46 @@ function FlashcardsPage() {
   const remaining = queue.length - idx;
 
   // ── Subject World early-return ────────────────────────────────────────────
+  if (subject && !formWasChosen && !chapter) {
+    return (
+      <AcademyPageShell>
+        <FormGrid
+          subjectId={subject}
+          mode="flashcards"
+          onSelect={(selectedForm) => {
+            setForm(selectedForm);
+            setFormWasChosen(true);
+            setChapter(null);
+            resetSession();
+          }}
+          onBack={() => {
+            setSubject(null);
+            setChapter(null);
+            setForm("Form 1");
+            setFormWasChosen(false);
+            resetSession();
+          }}
+        />
+      </AcademyPageShell>
+    );
+  }
+
+  if (subject && (form === "Form 2" || form === "Form 3")) {
+    return (
+      <AcademyPageShell>
+        <FormComingSoon
+          subjectId={subject}
+          form={form}
+          onBack={() => {
+            setChapter(null);
+            setFormWasChosen(false);
+            resetSession();
+          }}
+        />
+      </AcademyPageShell>
+    );
+  }
+
   if (subject && !needsScienceLang && !chapter) {
     if (subject === "english") {
       return (
@@ -3885,6 +3930,8 @@ function FlashcardsPage() {
             onSelect={(id) => {
               setSubject(id);
               setChapter(null);
+              setForm("Form 1");
+              setFormWasChosen(false);
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
               resetSession();

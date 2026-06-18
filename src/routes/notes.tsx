@@ -5,6 +5,8 @@ import { BookOpenCheck, ArrowLeft } from "lucide-react";
 import { z } from "zod";
 import {
   SubjectGrid,
+  FormGrid,
+  FormComingSoon,
   ChapterGrid,
   ContentHeader,
   ComingSoonScreen,
@@ -83,6 +85,7 @@ function NotesPage() {
       : null;
   const [chapter, setChapter] = useState<string | null>(search.chapter ?? null);
   const form = normalizeFormParam(search.form) as Form;
+  const hasSelectedForm = search.form != null;
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter, setLastVisited } = useProgress();
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
@@ -165,6 +168,60 @@ function NotesPage() {
   }
 
   // ── BM has its own hub page ───────────────────────────────────────────────
+  if (subject && !hasSelectedForm && !activeChapterKey) {
+    return (
+      <AcademyPageShell>
+        <FormGrid
+          subjectId={subject}
+          mode="notes"
+          onSelect={(selectedForm) => {
+            setChapter(null);
+            void navigate({
+              search: (previous: Record<string, unknown>) => ({
+                ...previous,
+                subject,
+                form: Number(selectedForm.replace("Form ", "")),
+                chapter: undefined,
+              }),
+            });
+          }}
+          onBack={() => {
+            setChapter(null);
+            void navigate({
+              search: (previous: Record<string, unknown>) => ({
+                ...previous,
+                subject: undefined,
+                form: undefined,
+                chapter: undefined,
+              }),
+            });
+          }}
+        />
+      </AcademyPageShell>
+    );
+  }
+
+  if (subject && (form === "Form 2" || form === "Form 3") && subjectChapters.length === 0) {
+    return (
+      <AcademyPageShell>
+        <FormComingSoon
+          subjectId={subject}
+          form={form}
+          onBack={() => {
+            setChapter(null);
+            void navigate({
+              search: (previous: Record<string, unknown>) => ({
+                ...previous,
+                form: undefined,
+                chapter: undefined,
+              }),
+            });
+          }}
+        />
+      </AcademyPageShell>
+    );
+  }
+
   if (subject === "bm" && form === "Form 1" && !activeChapterKey) {
     return (
       <BMWorldPage
@@ -300,12 +357,14 @@ function NotesPage() {
             onSelect={(id) => {
               setChapter(null);
               void navigate({
-                search: (previous: Record<string, unknown>) => ({
-                  ...previous,
-                  subject: id,
-                }),
-              });
-            }}
+            search: (previous: Record<string, unknown>) => ({
+              ...previous,
+              subject: id,
+              form: undefined,
+              chapter: undefined,
+            }),
+          });
+        }}
           />
         </div>
       ) : needsScienceLang ? (
@@ -433,6 +492,7 @@ function NotesPage() {
                 notes={activeChapter.notes}
                 subjectId={subject ?? undefined}
                 storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                defaultOpenFirstSection={activeChapter.id !== "sejarah-f2-c1"}
               />
             )
           )}

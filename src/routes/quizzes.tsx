@@ -30,6 +30,8 @@ import {
 } from "lucide-react";
 import {
   SubjectGrid,
+  FormGrid,
+  FormComingSoon,
   ChapterGrid,
   ContentHeader,
   ComingSoonScreen,
@@ -6072,12 +6074,14 @@ interface ShuffledQuestion {
 type FormFilter = Form | "All";
 
 function readStudySearch() {
-  if (typeof window === "undefined") return { subject: null, form: "All", chapter: null };
+  if (typeof window === "undefined")
+    return { subject: null, form: "Form 1", chapter: null, hasForm: false };
   const params = new URLSearchParams(window.location.search);
   return {
     subject: normalizeSubjectParam(params.get("subject")),
     form: normalizeFormParam(params.get("form")),
     chapter: params.get("chapter"),
+    hasForm: params.has("form"),
   };
 }
 
@@ -6088,6 +6092,7 @@ function QuizzesPage() {
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
   const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
+  const [formWasChosen, setFormWasChosen] = useState(initialSearch.hasForm);
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -6535,6 +6540,47 @@ function QuizzesPage() {
         : "bg-emerald-400";
 
   // ── BM has its own hub page ───────────────────────────────────────────────
+  if (subject && !formWasChosen && !chapter) {
+    return (
+      <AcademyPageShell>
+        <FormGrid
+          subjectId={subject}
+          mode="quizzes"
+          onSelect={(selectedForm) => {
+            setForm(selectedForm);
+            setFormWasChosen(true);
+            setChapter(null);
+            setDiff("All");
+            reset();
+          }}
+          onBack={() => {
+            setSubject(null);
+            setChapter(null);
+            setForm("Form 1");
+            setFormWasChosen(false);
+            reset();
+          }}
+        />
+      </AcademyPageShell>
+    );
+  }
+
+  if (subject && (form === "Form 2" || form === "Form 3")) {
+    return (
+      <AcademyPageShell>
+        <FormComingSoon
+          subjectId={subject}
+          form={form}
+          onBack={() => {
+            setChapter(null);
+            setFormWasChosen(false);
+            reset();
+          }}
+        />
+      </AcademyPageShell>
+    );
+  }
+
   if (subject === "bm" && !chapter) {
     return <BMWorldPage mode="quiz" onBack={() => setSubject(null)} />;
   }
@@ -6735,7 +6781,8 @@ function QuizzesPage() {
             onSelect={(id) => {
               setSubject(id);
               setChapter(null);
-              setForm("All");
+              setForm("Form 1");
+              setFormWasChosen(false);
               setDiff("All");
               reset();
             }}

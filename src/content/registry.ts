@@ -51,6 +51,7 @@ import { mathF1C12NotesBM } from "@/content/form1/math/chapter-12/notes-bm";
 import { mathF1C12NotesDLP } from "@/content/form1/math/chapter-12/notes-dlp";
 import { mathF1C13NotesBM } from "@/content/form1/math/chapter-13/notes-bm";
 import { mathF1C13NotesDLP } from "@/content/form1/math/chapter-13/notes-dlp";
+import { sejarahF2C1Notes } from "@/content/form2/sejarah/chapter-1/notes";
 
 // Geografi F1 mind maps
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
@@ -246,6 +247,16 @@ export const chapters: ChapterContent[] = [
     tamadunIslamSumbanganMindMap,
     "Tamadun Islam dan Sumbangannya",
   ),
+
+  // Sejarah Form 2
+  {
+    id: "sejarah-f2-c1",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Kerajaan Alam Melayu",
+    notes: sejarahF2C1Notes,
+  },
 
   // Geography Form 1
   geography(1, geoF1C1MindMap, "Arah"),
