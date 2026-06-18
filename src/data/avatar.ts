@@ -41,7 +41,7 @@ export interface AvatarItem {
   id: string;
   slot: AvatarSlot;
   name: string;
-  cost: number; // Stardust; 0 = starter (owned by default)
+  cost: number; // legacy value retained for older saved avatar data
   rarity: Rarity;
   /** Primary / secondary colours consumed by the SVG renderer. */
   colors: { base: string; trim: string };

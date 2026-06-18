@@ -14,7 +14,7 @@ export interface CardMasteryRecord {
   lapses: number; // times rated "Again"
 }
 
-// ─── Stardust economy & quiz analytics ─────────────────────────────────────────
+// Quiz analytics and student progress helpers.
 /** A single completed-quiz result, used by the AI Tracker and Parent Report. */
 export interface QuizResult {
   id: string;
@@ -26,7 +26,7 @@ export interface QuizResult {
   date: string; // ISO timestamp
 }
 
-/** Cosmetic loadout the student buys with Stardust in the Market. */
+/** Legacy avatar loadout used by profile and leaderboard visuals. */
 export interface AvatarConfig {
   helmet: string;
   suit: string;
@@ -45,9 +45,31 @@ export const DEFAULT_AVATAR: AvatarConfig = {
 
 export type ReportCadence = "weekly" | "monthly";
 
+export type CompanionId = "nova" | "luna" | "terra" | "comet" | "nebula";
+export type CompanionStageId = "egg" | "blobling" | "sprout" | "cadet" | "guardian";
+
+export interface CompanionConfig {
+  id: CompanionId;
+  stage: CompanionStageId;
+  level: number;
+  selectedAt: string;
+  evolvedAt?: Partial<Record<CompanionStageId, string>>;
+}
+
+export const COMPANION_STAGES: Array<{
+  id: CompanionStageId;
+  name: string;
+  xpRequired: number;
+}> = [
+  { id: "egg", name: "Egg", xpRequired: 0 },
+  { id: "blobling", name: "Blobling", xpRequired: 500 },
+  { id: "sprout", name: "Sprout", xpRequired: 1000 },
+  { id: "cadet", name: "Cadet", xpRequired: 1750 },
+  { id: "guardian", name: "Guardian", xpRequired: 2750 },
+];
+
 /** Pass threshold + rewards for "passing" a quiz. */
 export const QUIZ_PASS_PCT = 80;
-export const QUIZ_PASS_TOKENS = 20; // Stardust awarded for an 80%+ quiz
 export const QUIZ_PASS_BONUS_XP = 25; // extra XP on top of per-question XP
 export const QUIZ_HISTORY_CAP = 200; // keep the most recent N results
 export const RECENT_ACTIVITY_CAP = 12;
@@ -66,8 +88,9 @@ export interface Progress {
   cardMastery?: Record<string, CardMasteryRecord>; // cardId → SM-2 data
   lastVisited?: LastVisited;
   recentActivity?: RecentActivity[];
-  // ── Stardust economy + analytics (local-first) ──
-  tokens: number; // "Stardust" — spent in the Market
+  companion?: CompanionConfig;
+  // Local-first profile and analytics data.
+  tokens: number;
   avatar: AvatarConfig; // equipped + owned cosmetics
   quizHistory: QuizResult[]; // recent completed quizzes
   parentEmail?: string; // where Mission Reports are sent
@@ -512,7 +535,7 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
       };
     }
   }
-  // Stardust economy + analytics are stored locally only — never let a
+  // Local-only analytics are stored locally first — never let a
   // cloud row (which lacks these columns) wipe them out on merge.
   const historyById = new Map<string, QuizResult>();
   for (const r of [...(remote.quizHistory ?? []), ...(local.quizHistory ?? [])]) {
@@ -538,6 +561,7 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
       ? { ...local.cardMastery, ...remote.cardMastery }
       : { ...remote.cardMastery, ...local.cardMastery },
     tokens: Math.max(local.tokens ?? 0, remote.tokens ?? 0),
+    companion: local.companion ?? remote.companion,
     avatar:
       (local.avatar?.owned?.length ?? 0) >= (remote.avatar?.owned?.length ?? 0)
         ? (local.avatar ?? DEFAULT_AVATAR)
@@ -737,38 +761,12 @@ export function useProgress() {
         if (!newBadges.includes("xp1000") && newXp >= 1000) newBadges.push("xp1000");
         if (!newBadges.includes("xp5000") && newXp >= 5000) newBadges.push("xp5000");
 
-        // Pop Mart character unlock on chess rank-up
-        const prevRankId = getRank(prev.xp).id;
-        const newRankId = getRank(newXp).id;
-        let newAvatar = prev.avatar;
-        if (prevRankId !== newRankId) {
-          const RANK_CHARACTERS: Record<string, string[]> = {
-            knight:     ["suit-labubu", "suit-labubu-pink"],
-            bishop:     ["suit-dimoo", "suit-dimoo-star"],
-            rook:       ["suit-skullpanda", "suit-skullpanda-neon"],
-            king:       ["suit-crybaby", "suit-crybaby-blue"],
-            queen:      ["suit-golden"],
-          };
-          const pool = RANK_CHARACTERS[newRankId] ?? [];
-          const notOwned = pool.filter((id) => !(prev.avatar.owned ?? []).includes(id));
-          const candidates = notOwned.length > 0 ? notOwned : pool;
-          if (candidates.length > 0) {
-            const unlocked = candidates[Math.floor(Math.random() * candidates.length)];
-            newAvatar = {
-              ...prev.avatar,
-              suit: unlocked,
-              owned: [...(prev.avatar.owned ?? []), unlocked],
-            };
-          }
-        }
-
         const next: Progress = {
           ...prev,
           xp: newXp,
           lastActive: t,
           streak,
           badges: newBadges,
-          avatar: newAvatar,
           subjectXp: subjectId
             ? { ...prev.subjectXp, [subjectId]: (prev.subjectXp[subjectId] || 0) + amount }
             : prev.subjectXp,
@@ -941,10 +939,64 @@ export function useProgress() {
     [scheduleSync],
   );
 
+  const chooseCompanion = useCallback(
+    (id: CompanionId) => {
+      setProgress((prev) => {
+        if (prev.companion) return prev;
+        const now = new Date().toISOString();
+        const next: Progress = {
+          ...prev,
+          companion: {
+            id,
+            stage: "egg",
+            level: 1,
+            selectedAt: now,
+            evolvedAt: { egg: now },
+          },
+        };
+        try {
+          localStorage.setItem(KEY, JSON.stringify(next));
+        } catch {}
+        scheduleSync(next);
+        return next;
+      });
+    },
+    [scheduleSync],
+  );
+
+  const evolveCompanion = useCallback((): boolean => {
+    let evolved = false;
+    setProgress((prev) => {
+      const companion = prev.companion;
+      if (!companion) return prev;
+      const stageIndex = COMPANION_STAGES.findIndex((stage) => stage.id === companion.stage);
+      const nextStage = COMPANION_STAGES[stageIndex + 1];
+      if (!nextStage || prev.xp < nextStage.xpRequired) return prev;
+
+      evolved = true;
+      const now = new Date().toISOString();
+      const next: Progress = {
+        ...prev,
+        companion: {
+          ...companion,
+          stage: nextStage.id,
+          level: stageIndex + 2,
+          evolvedAt: { ...(companion.evolvedAt ?? {}), [nextStage.id]: now },
+        },
+      };
+      try {
+        localStorage.setItem(KEY, JSON.stringify(next));
+      } catch {}
+      scheduleSync(next);
+      return next;
+    });
+    return evolved;
+  }, [scheduleSync]);
+
   /**
    * Log a completed quiz for the AI Tracker + Parent Report and, when the
-   * student scores ≥ QUIZ_PASS_PCT, award Stardust tokens + bonus XP.
-   * Returns the tokens awarded (0 if not a pass) so callers can celebrate.
+   * student scores at least QUIZ_PASS_PCT, award the existing bonus XP.
+   * Returns 0 for backwards compatibility with older callers.
    */
   const recordQuizResult = useCallback(
     (input: { subjectId: string; chapterKey: string; correct: number; total: number }): number => {
@@ -952,7 +1004,6 @@ export function useProgress() {
       const correct = Math.max(0, Math.min(input.correct, total));
       const scorePct = Math.round((correct / total) * 100);
       const passed = scorePct >= QUIZ_PASS_PCT;
-      const tokensAwarded = passed ? QUIZ_PASS_TOKENS : 0;
 
       setProgress((prev) => {
         const result: QuizResult = {
@@ -978,7 +1029,6 @@ export function useProgress() {
             timestamp,
             detail: `${correct}/${total} correct`,
           }),
-          tokens: (prev.tokens ?? 0) + tokensAwarded,
           xp: prev.xp + (passed ? QUIZ_PASS_BONUS_XP : 0),
           subjectXp: passed
             ? {
@@ -993,69 +1043,7 @@ export function useProgress() {
         scheduleSync(next);
         return next;
       });
-      return tokensAwarded;
-    },
-    [scheduleSync],
-  );
-
-  /** Spend Stardust. Returns true if the student could afford it. */
-  const spendTokens = useCallback(
-    (amount: number): boolean => {
-      let ok = false;
-      setProgress((prev) => {
-        if ((prev.tokens ?? 0) < amount) return prev;
-        ok = true;
-        const next: Progress = { ...prev, tokens: prev.tokens - amount };
-        try {
-          localStorage.setItem(KEY, JSON.stringify(next));
-        } catch {}
-        scheduleSync(next);
-        return next;
-      });
-      return ok;
-    },
-    [scheduleSync],
-  );
-
-  /** Buy a cosmetic with Stardust and auto-equip it. Returns success. */
-  const buyAvatarItem = useCallback(
-    (slot: keyof Omit<AvatarConfig, "owned">, itemId: string, cost: number): boolean => {
-      let ok = false;
-      setProgress((prev) => {
-        const avatar = prev.avatar ?? DEFAULT_AVATAR;
-        const alreadyOwned = avatar.owned.includes(itemId);
-        if (!alreadyOwned && (prev.tokens ?? 0) < cost) return prev;
-        ok = true;
-        const owned = alreadyOwned ? avatar.owned : [...avatar.owned, itemId];
-        const next: Progress = {
-          ...prev,
-          tokens: alreadyOwned ? prev.tokens : prev.tokens - cost,
-          avatar: { ...avatar, owned, [slot]: itemId },
-        };
-        try {
-          localStorage.setItem(KEY, JSON.stringify(next));
-        } catch {}
-        scheduleSync(next);
-        return next;
-      });
-      return ok;
-    },
-    [scheduleSync],
-  );
-
-  /** Equip an already-owned cosmetic. */
-  const equipAvatar = useCallback(
-    (slot: keyof Omit<AvatarConfig, "owned">, itemId: string) => {
-      setProgress((prev) => {
-        const avatar = prev.avatar ?? DEFAULT_AVATAR;
-        if (!avatar.owned.includes(itemId)) return prev;
-        const next: Progress = { ...prev, avatar: { ...avatar, [slot]: itemId } };
-        try {
-          localStorage.setItem(KEY, JSON.stringify(next));
-        } catch {}
-        scheduleSync(next);
-        return next;
-      });
+      return 0;
     },
     [scheduleSync],
   );
@@ -1064,36 +1052,6 @@ export function useProgress() {
     (email: string | undefined, cadence: ReportCadence) => {
       setProgress((prev) => {
         const next: Progress = { ...prev, parentEmail: email, reportCadence: cadence };
-        try {
-          localStorage.setItem(KEY, JSON.stringify(next));
-        } catch {}
-        scheduleSync(next);
-        return next;
-      });
-    },
-    [scheduleSync],
-  );
-
-  const setTitle = useCallback(
-    (titleId: string) => {
-      setProgress((prev) => {
-        const next: Progress = { ...prev, equippedTitle: titleId };
-        try {
-          localStorage.setItem(KEY, JSON.stringify(next));
-        } catch {}
-        scheduleSync(next);
-        return next;
-      });
-    },
-    [scheduleSync],
-  );
-
-  const markCollectiblesSeen = useCallback(
-    (ids: string[]) => {
-      if (ids.length === 0) return;
-      setProgress((prev) => {
-        const merged = Array.from(new Set([...(prev.seenCollectibles ?? []), ...ids]));
-        const next: Progress = { ...prev, seenCollectibles: merged };
         try {
           localStorage.setItem(KEY, JSON.stringify(next));
         } catch {}
@@ -1130,13 +1088,10 @@ export function useProgress() {
     markChapter,
     rateCard,
     setLastVisited,
+    chooseCompanion,
+    evolveCompanion,
     recordQuizResult,
-    spendTokens,
-    buyAvatarItem,
-    equipAvatar,
     setParentReport,
-    setTitle,
-    markCollectiblesSeen,
     setStudentProfile,
   };
 }

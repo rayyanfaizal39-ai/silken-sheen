@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+﻿import { Link, useRouterState } from "@tanstack/react-router";
 import {
   BookOpen,
   Brain,
@@ -11,7 +11,6 @@ import {
   Radar,
   Rocket,
   Sparkles,
-  Store,
   Trophy,
   Users,
   Zap,
@@ -84,14 +83,14 @@ const navItems = [
     line: "linear-gradient(90deg,#67E8F9,#0EA5E9)",
   },
   {
-    label: "Star Market",
-    short: "Market",
-    to: "/market",
-    icon: Store,
-    accent: "#FBBF24",
-    accentGlow: "rgba(251,191,36,0.55)",
-    accentBg: "rgba(251,191,36,0.20)",
-    line: "linear-gradient(90deg,#FDE68A,#F59E0B)",
+    label: "Cosmic Companion",
+    short: "Buddy",
+    to: "/companion",
+    icon: Sparkles,
+    accent: "#F0ABFC",
+    accentGlow: "rgba(240,171,252,0.55)",
+    accentBg: "rgba(240,171,252,0.20)",
+    line: "linear-gradient(90deg,#F0ABFC,#8B5CF6)",
   },
   {
     label: "Leaderboard",
@@ -219,7 +218,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(99,102,241,0.24),transparent_28%),radial-gradient(circle_at_80%_0%,rgba(139,92,246,0.20),transparent_30%),radial-gradient(circle_at_72%_70%,rgba(16,185,129,0.10),transparent_28%)]" />
       <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.35] [background-image:radial-gradient(circle,rgba(255,255,255,0.72)_1px,transparent_1px)] [background-size:42px_42px]" />
 
-      {/* ── Desktop Sidebar ───────────────────────────────────── */}
+      {/* â”€â”€ Desktop Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <aside className="fixed left-0 top-0 z-[60] hidden h-svh w-[236px] flex-col border-r border-white/[0.07] bg-[#080E1C]/90 px-4 py-6 shadow-[2px_0_40px_rgba(0,0,0,0.4)] backdrop-blur-2xl lg:flex">
         {/* Brand */}
         <Link
@@ -278,7 +277,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <SidebarBottom />
       </aside>
 
-      {/* ── Main content area ─────────────────────────────────── */}
+      {/* â”€â”€ Main content area â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="relative z-10 overflow-x-clip lg:ml-[236px]">
         {/* Top header */}
         <header className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] bg-[#050816]/86 px-4 py-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-2xl sm:px-6 lg:flex-nowrap lg:px-8">
@@ -299,8 +298,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Stardust balance */}
-            <HeaderTokens />
+            <HeaderCompanion />
             {/* Live streak */}
             <HeaderStreak />
             {/* Upgrade button */}
@@ -325,7 +323,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 title="Upgrade to Premium"
                 className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-[#F59E0B] to-[#D97706] text-[9px] shadow-[0_0_8px_rgba(245,158,11,0.6)] transition-transform hover:scale-110"
               >
-                ⭐
+                â­
               </Link>
             </div>
           </div>
@@ -334,7 +332,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <main className="app-main page-content min-h-svh overflow-x-clip">{children}</main>
       </div>
 
-      {/* ── Mobile Bottom Nav — Space Theme ──────────────────── */}
+      {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <nav className="space-nav-shell mobile-nav-shell fixed left-3 right-3 z-[80] rounded-[1.25rem] px-1.5 lg:hidden">
         <div className="mx-auto flex h-full max-w-md items-center justify-between gap-0.5">
           {navItems.slice(0, 5).map((item) => {
@@ -391,17 +389,17 @@ function HeaderStreak() {
   );
 }
 
-function HeaderTokens() {
+function HeaderCompanion() {
   const { progress } = useProgress();
   return (
     <Link
-      to="/market"
-      className="flex items-center gap-1.5 rounded-xl border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-2.5 py-2 transition-colors hover:bg-[#FBBF24]/20"
-      aria-label={`${progress.tokens ?? 0} Stardust — open the Star Market`}
+      to="/companion"
+      className="flex items-center gap-1.5 rounded-xl border border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-2.5 py-2 transition-colors hover:bg-[#F0ABFC]/20"
+      aria-label="Open Cosmic Companion"
     >
-      <Sparkles className="h-4 w-4 text-[#FBBF24]" />
+      <Sparkles className="h-4 w-4 text-[#F0ABFC]" />
       <span className="text-sm font-bold tabular-nums text-white">
-        {(progress.tokens ?? 0).toLocaleString()}
+        {progress.companion ? `Lv ${progress.companion.level}` : "Egg"}
       </span>
     </Link>
   );
