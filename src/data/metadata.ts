@@ -111,11 +111,8 @@ export function geographyChapterFromId(id: string): number | null {
 const otherSubjectChapters: Record<string, ChapterItem[]> = {
   bm: [{ key: "Bab 2", label: "Bab 2: Kata Adjektif", available: true }],
   english: [
-    { key: "Chapter 1", label: "Chapter 1: Grammar", available: true },
-    { key: "Chapter 2", label: "Chapter 2: Vocabulary", available: true },
-    { key: "Chapter 3", label: "Chapter 3: Reading", available: true },
-    { key: "Chapter 4", label: "Chapter 4: Writing", available: true },
-    { key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true },
+    { key: "Chapter 1", label: "Paper 1: Reading & Language Awareness", available: true },
+    { key: "Chapter 2", label: "Paper 2: Writing", available: true },
   ],
   science: [
     {
@@ -172,10 +169,8 @@ export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp
 ];
 
 export const englishCategories = [
-  { id: 1, name: "Grammar" },
-  { id: 2, name: "Vocabulary" },
-  { id: 3, name: "Reading" },
-  { id: 4, name: "Writing" },
+  { id: 1, name: "Paper 1: Reading & Language Awareness" },
+  { id: 2, name: "Paper 2: Writing" },
 ];
 
 export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"): ChapterItem[] {
@@ -192,11 +187,11 @@ export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"
   if (subjectId === "english") {
     const cats = englishCategories.map((c) => ({
       key: `Chapter ${c.id}`,
-      label: `Chapter ${c.id}: ${c.name}`,
+      label: c.name,
       available: true,
       isNew: false,
     }));
-    return [...cats, { key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true }];
+    return cats;
   }
   if (subjectId === "science" && scienceLang) {
     const prefix = scienceLang === "bm" ? "Bab" : "Chapter";

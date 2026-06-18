@@ -25081,7 +25081,10 @@ const otherSubjectChapters: Record<string, ChapterItem[]> = {
     { key: "Frasa Menarik", label: "Frasa Menarik", available: true },
     { key: "Tingkatkan Karangan", label: "Kemahiran Tingkatkan Karangan", available: true },
   ],
-  english: [{ key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true }],
+  english: [
+    { key: "Chapter 1", label: "Paper 1: Reading & Language Awareness", available: true },
+    { key: "Chapter 2", label: "Paper 2: Writing", available: true },
+  ],
   science: [
     { key: "Chapter 2", label: "Chapter 2: Cells & Living Things", available: true },
     { key: "Chapter 5", label: "Chapter 5: Matter", available: true },
@@ -25148,10 +25151,8 @@ export const mathForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp: s
 ];
 
 export const englishCategories = [
-  { id: 1, name: "Grammar" },
-  { id: 2, name: "Vocabulary" },
-  { id: 3, name: "Reading" },
-  { id: 4, name: "Writing" },
+  { id: 1, name: "Paper 1: Reading & Language Awareness" },
+  { id: 2, name: "Paper 2: Writing" },
 ];
 
 export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"): ChapterItem[] {
