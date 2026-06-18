@@ -91,11 +91,11 @@ export interface MissionProgress {
   flashcardsDone: number;
 }
 
-// ─── Chess Rank system (Pawn → Queen, 1000–3000 rating like chess.com) ──────────
+// ─── Cosmic Rank system (Cadet → Cosmic Legend, 1000–3000 rating) ───────────────
 export interface SpaceRank {
   id: string;
   name: string;
-  /** Chess piece symbol shown in emoji slots across the app. */
+  /** Celestial emoji shown in rank slots across the app. */
   emoji: string;
   minXp: number;
   maxXp: number;
@@ -103,88 +103,88 @@ export interface SpaceRank {
   minRating: number;
   maxRating: number;
   color: string;
-  /** CSS color for the bottom glow ring — purple at high rank, dark at low. */
+  /** CSS color for the bottom glow ring — brighter at high rank, dim at low. */
   glowColor: string;
   description: string;
 }
 
-export const CHESS_RANKS: SpaceRank[] = [
+export const SPACE_RANKS: SpaceRank[] = [
   {
-    id: "pawn",
-    name: "Pawn",
-    emoji: "♟",
+    id: "cadet",
+    name: "Cadet",
+    emoji: "🚀",
     minXp: 0,
     maxXp: 199,
     minRating: 1000,
     maxRating: 1199,
-    color: "#6B7280",
-    glowColor: "rgba(75,85,99,0.45)",
-    description: "Every grandmaster starts here",
+    color: "#94A3B8",
+    glowColor: "rgba(148,163,184,0.45)",
+    description: "Every journey begins with a single launch",
   },
   {
-    id: "knight",
-    name: "Knight",
-    emoji: "♞",
+    id: "moon-explorer",
+    name: "Moon Explorer",
+    emoji: "🌙",
     minXp: 200,
     maxXp: 449,
     minRating: 1200,
     maxRating: 1449,
-    color: "#16A34A",
-    glowColor: "rgba(22,163,74,0.55)",
-    description: "Moving in unexpected ways",
+    color: "#7DD3FC",
+    glowColor: "rgba(125,211,252,0.55)",
+    description: "Charting the craters of new knowledge",
   },
   {
-    id: "bishop",
-    name: "Bishop",
-    emoji: "♝",
+    id: "planet-voyager",
+    name: "Planet Voyager",
+    emoji: "🪐",
     minXp: 450,
     maxXp: 749,
     minRating: 1450,
     maxRating: 1749,
-    color: "#2563EB",
-    glowColor: "rgba(37,99,235,0.65)",
-    description: "Commanding the diagonals",
+    color: "#34D399",
+    glowColor: "rgba(52,211,153,0.65)",
+    description: "Orbiting whole worlds of discovery",
   },
   {
-    id: "rook",
-    name: "Rook",
-    emoji: "♜",
+    id: "star-captain",
+    name: "Star Captain",
+    emoji: "⭐",
     minXp: 750,
     maxXp: 1099,
     minRating: 1750,
     maxRating: 2099,
-    color: "#0891B2",
-    glowColor: "rgba(8,145,178,0.7)",
-    description: "Controlling open files",
+    color: "#FBBF24",
+    glowColor: "rgba(251,191,36,0.7)",
+    description: "Commanding constellations of skill",
   },
   {
-    id: "king",
-    name: "King",
-    emoji: "♚",
+    id: "galaxy-guardian",
+    name: "Galaxy Guardian",
+    emoji: "🌌",
     minXp: 1100,
     maxXp: 1599,
     minRating: 2100,
     maxRating: 2599,
-    color: "#CA8A04",
-    glowColor: "rgba(202,138,4,0.75)",
-    description: "Protecting what matters most",
+    color: "#A78BFA",
+    glowColor: "rgba(167,139,250,0.75)",
+    description: "Protector of knowledge across the universe",
   },
   {
-    id: "queen",
-    name: "Queen",
-    emoji: "♛",
+    id: "cosmic-legend",
+    name: "Cosmic Legend",
+    emoji: "🌟",
     minXp: 1600,
     maxXp: Infinity,
     minRating: 2600,
     maxRating: 3000,
-    color: "#7C3AED",
-    glowColor: "rgba(124,58,237,0.88)",
-    description: "The most powerful on the board",
+    color: "#F0ABFC",
+    glowColor: "rgba(240,171,252,0.88)",
+    description: "Among the rarest minds in the universe",
   },
 ];
 
 /** Backwards-compat alias used across the app. */
-export const SPACE_RANKS = CHESS_RANKS;
+export const CHESS_RANKS = SPACE_RANKS;
 
 /** Convert XP to chess.com-style Elo rating (1000 starting, 3000 max). */
 export function getChessRating(xp: number): number {
@@ -192,16 +192,16 @@ export function getChessRating(xp: number): number {
 }
 
 export function getRank(xp: number): SpaceRank {
-  for (let i = CHESS_RANKS.length - 1; i >= 0; i--) {
-    if (xp >= CHESS_RANKS[i].minXp) return CHESS_RANKS[i];
+  for (let i = SPACE_RANKS.length - 1; i >= 0; i--) {
+    if (xp >= SPACE_RANKS[i].minXp) return SPACE_RANKS[i];
   }
-  return CHESS_RANKS[0];
+  return SPACE_RANKS[0];
 }
 
 export function getNextRank(xp: number): SpaceRank | null {
   const current = getRank(xp);
-  const idx = CHESS_RANKS.findIndex((r) => r.id === current.id);
-  return idx < CHESS_RANKS.length - 1 ? CHESS_RANKS[idx + 1] : null;
+  const idx = SPACE_RANKS.findIndex((r) => r.id === current.id);
+  return idx < SPACE_RANKS.length - 1 ? SPACE_RANKS[idx + 1] : null;
 }
 
 export function getRankProgress(xp: number): number {

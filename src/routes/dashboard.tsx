@@ -1,11 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import {
   useProgress,
   getRank,
   getNextRank,
   getRankProgress,
-  getChessRating,
   SPACE_RANKS,
   ALL_BADGES,
   DAILY_MISSIONS,
@@ -14,12 +13,10 @@ import {
   getDueCount,
   getMasteredCount,
   type LastVisited,
+  type SpaceRank,
 } from "@/hooks/use-progress";
-import { subjects } from "@/data/content";
+import { subjects, type Subject } from "@/data/content";
 import {
-  Flame,
-  Trophy,
-  Zap,
   Target,
   Star,
   BookOpen,
@@ -119,6 +116,7 @@ function DashboardPage() {
 
   return (
     <AcademyPageShell>
+      <CosmicDashboardBackdrop />
       {/* ── Welcome header ────────────────────────────────────────────── */}
       <div className="mb-6 flex items-center justify-between gap-4 flex-wrap">
         <div>
@@ -130,12 +128,19 @@ function DashboardPage() {
               : `${completed} chapter${completed !== 1 ? "s" : ""} mastered · ${progress.xp.toLocaleString()} XP earned`}
           </p>
         </div>
-        <Link
-          to="/notes"
-          className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] active:scale-[0.98]"
-        >
-          Study Now <ArrowRight className="h-4 w-4" />
-        </Link>
+        <div className="flex items-center gap-3">
+          {progress.streak > 0 && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-500/20 bg-orange-500/10 px-3.5 py-2 text-xs font-bold text-orange-300">
+              🔥 {progress.streak}-day streak
+            </span>
+          )}
+          <Link
+            to="/notes"
+            className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] active:scale-[0.98]"
+          >
+            Study Now <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
 
       {/* ── Continue Learning (real data only) ────────────────────────── */}
@@ -176,76 +181,26 @@ function DashboardPage() {
         </Link>
       )}
 
-      {/* ── Stats row ─────────────────────────────────────────────────── */}
-      <div className="mb-6 grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <StatCard icon={<Zap className="h-5 w-5" />}       label="Total XP"       value={progress.xp}            color="from-blue-500 to-indigo-500" />
-        <StatCard icon={<Flame className="h-5 w-5" />}     label="Day Streak"     value={progress.streak}        color="from-orange-500 to-rose-500" />
-        <StatCard icon={<Target className="h-5 w-5" />}    label="Quizzes Done"   value={progress.quizzesTaken}  color="from-emerald-500 to-teal-500" />
-        <StatCard icon={<Trophy className="h-5 w-5" />}    label="Cards Mastered" value={masteredCount}          color="from-amber-500 to-yellow-500" />
-      </div>
+      {/* ── Today's Progress ──────────────────────────────────────────── */}
+      <TodayProgressGrid
+        notesStudied={missionsActive && progress.missions ? progress.missions.readChapters : 0}
+        quizzesCompleted={missionsActive && progress.missions ? progress.missions.quizzesDone : 0}
+        flashcardsMastered={missionsActive && progress.missions ? progress.missions.flashcardsDone : 0}
+        totalXp={progress.xp}
+      />
 
       {/* ── Main grid ─────────────────────────────────────────────────── */}
       <div className="grid gap-6 lg:grid-cols-3">
         {/* ── Left column (2/3) ── */}
         <div className="space-y-6 lg:col-span-2">
 
-          {/* Space Rank */}
-          <Card>
-            <SectionLabel>Space Rank</SectionLabel>
-            <div className="flex items-center gap-4">
-              <div
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-3xl"
-                style={{ background: `${rank.color}18`, boxShadow: `0 0 20px ${rank.color}44` }}
-              >
-                {rank.emoji}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-display text-xl font-bold" style={{ color: rank.color }}>{rank.name}</p>
-                <p className="text-xs text-[#94A3B8]">{rank.description} · Rating {getChessRating(progress.xp).toLocaleString()}</p>
-                {nextRank && (
-                  <div className="mt-2">
-                    <div className="mb-1 flex justify-between text-[10px] text-[#94A3B8]">
-                      <span>{rank.name}</span>
-                      <span>{nextRank.emoji} {nextRank.name} at {nextRank.minXp.toLocaleString()} XP</span>
-                    </div>
-                    <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/[0.08]">
-                      <div
-                        className="h-full rounded-full transition-all duration-700"
-                        style={{ width: `${rankPct}%`, background: `linear-gradient(90deg, ${rank.color}, ${nextRank.color})` }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            {/* Rank road-map */}
-            <div className="mt-5 overflow-x-auto">
-              <div className="flex min-w-max items-center gap-1 pb-1">
-                {SPACE_RANKS.map((r, i) => {
-                  const done = progress.xp >= r.minXp;
-                  const isCurrent = r.id === rank.id;
-                  return (
-                    <div key={r.id} className="flex items-center">
-                      <div
-                        title={`${r.name} (${r.minXp.toLocaleString()} XP)`}
-                        className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-base transition-all ${
-                          isCurrent ? "scale-110 border-2 shadow-lg" : done ? "opacity-80" : "opacity-30 grayscale"
-                        }`}
-                        style={isCurrent ? { borderColor: r.color, boxShadow: `0 0 16px ${r.color}66` } : { borderColor: "rgba(255,255,255,0.1)" }}
-                      >
-                        {r.emoji}
-                      </div>
-                      {i < SPACE_RANKS.length - 1 && (
-                        <div className={`h-0.5 w-5 rounded-full ${done ? "bg-white/30" : "bg-white/[0.08]"}`} />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </Card>
+          {/* Cosmic Rank Hero */}
+          <RankHeroCard rank={rank} nextRank={nextRank} xp={progress.xp} rankPct={rankPct} />
 
-          {/* Subject Progress */}
+          {/* Cosmic Journey Path */}
+          <CosmicJourneyPath ranks={SPACE_RANKS} currentId={rank.id} xp={progress.xp} />
+
+          {/* Subject Progress — planetary cards */}
           <Card>
             <div className="mb-4 flex items-center justify-between">
               <SectionLabel>Subject Progress</SectionLabel>
@@ -253,7 +208,7 @@ function DashboardPage() {
                 Study Now →
               </Link>
             </div>
-            <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {subjects.map((s) => {
                 const xp = progress.subjectXp[s.id] ?? 0;
                 const acts = Object.entries(progress.chapterActivity)
@@ -263,27 +218,13 @@ function DashboardPage() {
                 const chapStarted = acts.filter((a) => a.read || a.quiz || a.cards).length;
                 const pct = Math.min(100, Math.round((xp / 500) * 100));
                 return (
-                  <div key={s.id}>
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="flex items-center gap-2 font-medium">
-                        <span>{s.emoji}</span>{s.name}
-                      </span>
-                      <span className="flex items-center gap-2 text-[#94A3B8] text-xs">
-                        {chapStarted > 0 && (
-                          <span className="rounded-full bg-white/[0.06] px-2 py-0.5">
-                            {chapDone}/{chapStarted} chapters
-                          </span>
-                        )}
-                        <span className="font-bold text-white">{xp} XP</span>
-                      </span>
-                    </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-white/[0.08]">
-                      <div
-                        className={`h-full rounded-full bg-gradient-to-r ${s.color} transition-all duration-700`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                  </div>
+                  <SubjectPlanetCard
+                    key={s.id}
+                    subject={s}
+                    chapDone={chapDone}
+                    chapStarted={chapStarted}
+                    pct={pct}
+                  />
                 );
               })}
             </div>
@@ -378,6 +319,9 @@ function DashboardPage() {
               </p>
             </div>
           </Card>
+
+          {/* Cosmic Companion */}
+          <CosmicCompanionCard />
 
           {/* Daily Missions */}
           <Card>
@@ -543,14 +487,400 @@ function SectionLabel({ children, className = "" }: { children: ReactNode; class
   );
 }
 
-function StatCard({ icon, label, value, color }: { icon: ReactNode; label: string; value: number; color: string }) {
+/** Animates a number counting up from 0 to `target` — purely cosmetic, no data changes. */
+function useCountUp(target: number, durationMs = 900) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / durationMs);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setValue(Math.round(target * eased));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, durationMs]);
+  return value;
+}
+
+// ─── Today's Progress — glass cards ────────────────────────────────────────────
+
+function TodayStatGlassCard({
+  icon,
+  label,
+  value,
+  color,
+  glow,
+}: {
+  icon: string;
+  label: string;
+  value: number;
+  color: string;
+  glow: string;
+}) {
+  const count = useCountUp(value);
   return (
-    <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl transition-all hover:-translate-y-1">
-      <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${color} text-white`}>
-        {icon}
+    <div
+      className="cosmic-glass-card relative overflow-hidden rounded-[1.75rem] border border-white/[0.10] p-5"
+      style={{ ["--stat-glow" as string]: glow }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{ background: `radial-gradient(circle at 26% 18%, ${glow}, transparent 62%)` }}
+      />
+      <div className="relative z-10">
+        <span className="text-2xl">{icon}</span>
+        <p className="mt-3 font-display text-3xl font-bold text-white">{count.toLocaleString()}</p>
+        <p className="mt-1 text-xs font-semibold uppercase tracking-wide" style={{ color }}>{label}</p>
       </div>
-      <p className="text-xs font-semibold uppercase tracking-wide text-[#94A3B8]">{label}</p>
-      <p className="mt-1 font-display text-3xl font-bold text-white">{value.toLocaleString()}</p>
+    </div>
+  );
+}
+
+function TodayProgressGrid({
+  notesStudied,
+  quizzesCompleted,
+  flashcardsMastered,
+  totalXp,
+}: {
+  notesStudied: number;
+  quizzesCompleted: number;
+  flashcardsMastered: number;
+  totalXp: number;
+}) {
+  return (
+    <div className="mb-6">
+      <SectionLabel className="mb-3">Today's Progress</SectionLabel>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <TodayStatGlassCard icon="📚" label="Notes Studied" value={notesStudied} color="#60A5FA" glow="rgba(96,165,250,0.45)" />
+        <TodayStatGlassCard icon="📝" label="Quizzes Completed" value={quizzesCompleted} color="#34D399" glow="rgba(52,211,153,0.45)" />
+        <TodayStatGlassCard icon="🎴" label="Flashcards Mastered" value={flashcardsMastered} color="#A78BFA" glow="rgba(167,139,250,0.45)" />
+        <TodayStatGlassCard icon="⭐" label="Total XP Earned" value={totalXp} color="#FBBF24" glow="rgba(251,191,36,0.45)" />
+      </div>
+    </div>
+  );
+}
+
+// ─── Subject Progress — planetary cards ────────────────────────────────────────
+
+const SUBJECT_PLANET_THEME: Record<string, { label: string; color: string; glow: string }> = {
+  bm:        { label: "Green Knowledge Planet",    color: "#22C55E", glow: "rgba(34,197,94,0.55)" },
+  english:   { label: "Blue Communication Planet", color: "#3B82F6", glow: "rgba(59,130,246,0.55)" },
+  math:      { label: "Purple Logic Planet",        color: "#A855F7", glow: "rgba(168,85,247,0.55)" },
+  science:   { label: "Cyan Discovery Planet",       color: "#22D3EE", glow: "rgba(34,211,238,0.55)" },
+  sejarah:   { label: "Amber Heritage Planet",       color: "#F59E0B", glow: "rgba(245,158,11,0.55)" },
+  geography: { label: "Emerald Earth Planet",        color: "#10B981", glow: "rgba(16,185,129,0.55)" },
+};
+
+function SubjectPlanetCard({
+  subject,
+  chapDone,
+  chapStarted,
+  pct,
+}: {
+  subject: Subject;
+  chapDone: number;
+  chapStarted: number;
+  pct: number;
+}) {
+  const theme = SUBJECT_PLANET_THEME[subject.id] ?? { label: "Mystery Planet", color: "#8B5CF6", glow: "rgba(139,92,246,0.5)" };
+  const size = 80;
+  const stroke = 5;
+  const r = (size - stroke) / 2;
+  const circumference = 2 * Math.PI * r;
+  const offset = circumference * (1 - pct / 100);
+
+  return (
+    <Link
+      to="/notes"
+      search={{ subject: subject.id, form: 1 } as Record<string, unknown>}
+      className="cosmic-subject-card group relative flex flex-col items-center overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.18]"
+      style={{ ["--planet-color" as string]: theme.color, ["--planet-glow" as string]: theme.glow }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ background: `radial-gradient(circle at 50% 0%, ${theme.glow}, transparent 70%)` }}
+      />
+      <div className="relative z-10 animate-float-soft" style={{ width: size, height: size }}>
+        <svg width={size} height={size} className="absolute inset-0 -rotate-90">
+          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth={stroke} />
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={r}
+            fill="none"
+            stroke={theme.color}
+            strokeWidth={stroke}
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            style={{ transition: "stroke-dashoffset 0.8s cubic-bezier(.2,.7,.3,1)" }}
+          />
+        </svg>
+        <div className="cosmic-subject-planet-orb absolute inset-[8px] text-2xl">
+          <span>{subject.emoji}</span>
+        </div>
+      </div>
+      <p className="relative z-10 mt-3 text-sm font-bold text-white">{subject.name}</p>
+      <p className="relative z-10 text-[9px] font-bold uppercase tracking-wide" style={{ color: theme.color }}>
+        {theme.label}
+      </p>
+      <p className="relative z-10 mt-2 font-display text-xl font-bold text-white">{pct}%</p>
+      {chapStarted > 0 && (
+        <span className="relative z-10 mt-1 rounded-full bg-white/[0.06] px-2 py-0.5 text-[9px] font-semibold text-white/50">
+          {chapDone}/{chapStarted} chapters
+        </span>
+      )}
+    </Link>
+  );
+}
+
+// ─── Cosmic Companion ───────────────────────────────────────────────────────────
+
+function CosmicCompanionCard() {
+  return (
+    <Card className="relative overflow-hidden text-center">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{ background: "radial-gradient(circle at 50% 15%, rgba(167,139,250,0.32), transparent 65%)" }}
+      />
+      <div className="relative z-10">
+        <SectionLabel className="mb-1">Your Cosmic Companion</SectionLabel>
+        <p className="mb-5 text-[11px] text-white/40">Your companion evolves as you learn.</p>
+        <div className="relative mx-auto flex h-32 w-32 items-end justify-center">
+          <div className="cosmic-companion-pedestal absolute bottom-1 left-1/2 -translate-x-1/2" />
+          <span className="cosmic-companion-egg relative z-10 mb-3 text-6xl">🥚</span>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+// ─── Cosmic Journey Command Center ─────────────────────────────────────────────
+
+/** Fixed scatter positions so the field looks organic without re-randomizing per render. */
+const COSMIC_STAR_SPECKS = [
+  { left: "4%", top: "12%", size: 3, dur: 2.4, delay: 0 },
+  { left: "14%", top: "70%", size: 2, dur: 3.1, delay: 0.4 },
+  { left: "27%", top: "30%", size: 2, dur: 2.7, delay: 1.1 },
+  { left: "41%", top: "82%", size: 3, dur: 3.6, delay: 0.2 },
+  { left: "55%", top: "18%", size: 2, dur: 2.2, delay: 0.8 },
+  { left: "68%", top: "65%", size: 3, dur: 3.3, delay: 1.4 },
+  { left: "79%", top: "24%", size: 2, dur: 2.9, delay: 0.6 },
+  { left: "91%", top: "75%", size: 2, dur: 2.5, delay: 1.0 },
+  { left: "35%", top: "10%", size: 2, dur: 3.4, delay: 0.3 },
+  { left: "85%", top: "12%", size: 3, dur: 2.6, delay: 1.2 },
+];
+
+const COSMIC_PARTICLE_SPECKS = [
+  { left: "10%", top: "45%", size: 4, color: "rgba(167,139,250,0.55)", dur: 5.5, delay: 0 },
+  { left: "32%", top: "60%", size: 3, color: "rgba(125,211,252,0.5)", dur: 6.2, delay: 0.8 },
+  { left: "58%", top: "38%", size: 4, color: "rgba(251,191,36,0.45)", dur: 5.8, delay: 1.5 },
+  { left: "74%", top: "55%", size: 3, color: "rgba(167,139,250,0.5)", dur: 6.6, delay: 0.5 },
+  { left: "88%", top: "40%", size: 3, color: "rgba(52,211,153,0.45)", dur: 5.2, delay: 1.1 },
+];
+
+/** A glowing celestial body representing a single rank. */
+function CosmicPlanet({
+  rank,
+  size = 56,
+  current = false,
+  dim = false,
+}: {
+  rank: SpaceRank;
+  size?: number;
+  current?: boolean;
+  dim?: boolean;
+}) {
+  return (
+    <div
+      title={`${rank.name} · ${rank.minXp.toLocaleString()} XP`}
+      className={`cosmic-planet ${current ? "cosmic-planet-current" : ""}`}
+      style={{
+        width: size,
+        height: size,
+        fontSize: size * 0.42,
+        opacity: dim ? 0.32 : 1,
+        filter: dim ? "grayscale(0.65)" : "none",
+        ["--planet-color" as string]: rank.color,
+        ["--planet-glow" as string]: rank.glowColor,
+      } as CSSProperties}
+    >
+      {current && (
+        <>
+          <span className="cosmic-planet-ring cosmic-planet-ring-outer" />
+          <span className="cosmic-planet-ring cosmic-planet-ring-inner" />
+        </>
+      )}
+      <span className="relative z-10 drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]">{rank.emoji}</span>
+    </div>
+  );
+}
+
+/** Rocket progress bar — rocket position reflects XP progress toward the next rank. */
+function RocketXpBar({ rank, nextRank, pct }: { rank: SpaceRank; nextRank: SpaceRank | null; pct: number }) {
+  return (
+    <div className="mt-6">
+      <div className="mb-2 flex items-center justify-between text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">
+        <span>{rank.emoji} {rank.name}</span>
+        <span>{nextRank ? `${nextRank.name} ${nextRank.emoji}` : "Max Rank"}</span>
+      </div>
+      <div className="cosmic-rocket-bar">
+        <div className="cosmic-rocket-trail" style={{ width: `${pct}%` }} />
+        <span className="cosmic-rocket-icon text-lg" style={{ left: `${pct}%` }}>🚀</span>
+        <span className="cosmic-destination-star absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-base">
+          {nextRank?.emoji ?? "🌟"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/** Large premium hero card for the student's current cosmic rank. */
+function RankHeroCard({
+  rank,
+  nextRank,
+  xp,
+  rankPct,
+}: {
+  rank: SpaceRank;
+  nextRank: SpaceRank | null;
+  xp: number;
+  rankPct: number;
+}) {
+  const xpNeeded = nextRank ? Math.max(0, nextRank.minXp - xp) : 0;
+  return (
+    <Card className="relative overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-80"
+        style={{ background: `radial-gradient(circle at 14% 22%, ${rank.glowColor}, transparent 58%)` }}
+      />
+      <div className="relative z-10">
+        <SectionLabel>Cosmic Rank</SectionLabel>
+        <div className="mt-4 flex flex-col gap-6 sm:flex-row sm:items-center">
+          {/* LEFT — animated glowing planet */}
+          <div className="flex shrink-0 items-center justify-center" style={{ width: 132, height: 132 }}>
+            <CosmicPlanet rank={rank} size={104} current />
+          </div>
+
+          {/* CENTER — rank identity */}
+          <div className="flex-1 min-w-0">
+            <p
+              className="font-display text-2xl font-bold sm:text-3xl"
+              style={{ color: rank.color, textShadow: `0 0 26px ${rank.glowColor}` }}
+            >
+              {rank.emoji} {rank.name}
+            </p>
+            <p className="mt-1 text-sm italic text-[#94A3B8]">"{rank.description}"</p>
+            <p className="mt-3 text-sm font-bold text-white">
+              XP: <span style={{ color: rank.color }}>{xp.toLocaleString()}</span>
+            </p>
+          </div>
+
+          {/* RIGHT — next evolution preview */}
+          {nextRank && (
+            <div className="shrink-0 rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4 text-center sm:min-w-[164px]">
+              <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Next Evolution</p>
+              <p className="mt-1 text-base font-bold" style={{ color: nextRank.color }}>
+                {nextRank.emoji} {nextRank.name}
+              </p>
+              <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">XP Needed</p>
+              <p className="mt-0.5 font-display text-xl font-bold text-white">{xpNeeded.toLocaleString()}</p>
+            </div>
+          )}
+        </div>
+
+        <RocketXpBar rank={rank} nextRank={nextRank} pct={rankPct} />
+      </div>
+    </Card>
+  );
+}
+
+/** Horizontal cosmic journey — orbit-connected planets from Cadet to Cosmic Legend. */
+function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; currentId: string; xp: number }) {
+  return (
+    <Card className="relative overflow-hidden">
+      <SectionLabel>Cosmic Journey</SectionLabel>
+      <div className="relative mt-6 overflow-x-auto pb-2">
+        {/* Scattered stars + floating particles */}
+        <div className="pointer-events-none absolute inset-0">
+          {COSMIC_STAR_SPECKS.map((s, i) => (
+            <span
+              key={i}
+              className="cosmic-star-dot"
+              style={{
+                left: s.left,
+                top: s.top,
+                width: s.size,
+                height: s.size,
+                animationDuration: `${s.dur}s`,
+                animationDelay: `${s.delay}s`,
+              }}
+            />
+          ))}
+          {COSMIC_PARTICLE_SPECKS.map((p, i) => (
+            <span
+              key={i}
+              className="cosmic-particle-dot"
+              style={{
+                left: p.left,
+                top: p.top,
+                width: p.size,
+                height: p.size,
+                background: p.color,
+                animationDuration: `${p.dur}s`,
+                animationDelay: `${p.delay}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 flex min-w-max items-center gap-1 px-2">
+          {ranks.map((r, i) => {
+            const done = xp >= r.minXp;
+            const isCurrent = r.id === currentId;
+            const next = ranks[i + 1];
+            const nextDone = next ? xp >= next.minXp : false;
+            return (
+              <div key={r.id} className="flex items-center">
+                <div className="flex flex-col items-center gap-2">
+                  <CosmicPlanet rank={r} size={isCurrent ? 64 : 44} current={isCurrent} dim={!done} />
+                  <span
+                    className="max-w-[76px] text-center text-[9px] font-bold leading-tight"
+                    style={{ color: isCurrent ? r.color : done ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.28)" }}
+                  >
+                    {r.name}
+                  </span>
+                </div>
+                {next && (
+                  <span
+                    className="cosmic-journey-line mx-1 w-10 shrink-0 sm:w-14"
+                    style={{
+                      ["--from-color" as string]: done ? r.color : "rgba(255,255,255,0.08)",
+                      ["--to-color" as string]: nextDone ? next.color : "rgba(255,255,255,0.08)",
+                    } as CSSProperties}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+/** Lightweight ambient backdrop layer — nebula fog, twinkling stars, particles, rare shooting stars. */
+function CosmicDashboardBackdrop() {
+  return (
+    <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 cosmic-bg-nebula" />
+      <div className="absolute inset-0 cosmic-bg-stars" />
+      <div className="absolute inset-0 cosmic-bg-particles" />
+      <span className="cosmic-shooting-star" style={{ left: "8%", top: "6%", animationDelay: "1.5s" }} />
+      <span className="cosmic-shooting-star" style={{ left: "55%", top: "2%", animationDelay: "6.5s" }} />
     </div>
   );
 }

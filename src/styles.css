@@ -3629,3 +3629,242 @@
   .evo-shake, .evo-rays, .evo-pulse, .evo-particle, .evo-flash,
   .evo-card, .evo-name, .evo-arrow, .evo-sparkle, .evo-ring { animation: none !important; }
 }
+
+/* ─── Cosmic Journey Command Center (Dashboard) ──────────────────────────── */
+
+@keyframes cosmic-planet-glow-pulse {
+  0%, 100% { box-shadow: 0 0 24px 2px var(--planet-glow), inset -10px -10px 20px rgba(0,0,0,0.28); }
+  50%      { box-shadow: 0 0 46px 10px var(--planet-glow), inset -10px -10px 20px rgba(0,0,0,0.2); }
+}
+@keyframes cosmic-planet-pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+@keyframes cosmic-ring-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes cosmic-ring-spin-reverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to   { transform: translate(-50%, -50%) rotate(0deg); }
+}
+@keyframes cosmic-twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.85); }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+@keyframes cosmic-particle-float {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.35; }
+  50%      { transform: translate3d(6px, -10px, 0); opacity: 0.8; }
+}
+@keyframes cosmic-rocket-hover {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(-4deg); }
+  50%      { transform: translate(-50%, -50%) translateY(-5px) rotate(2deg); }
+}
+@keyframes cosmic-destination-glow {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(251,191,36,0.6)); }
+  50%      { filter: drop-shadow(0 0 16px rgba(251,191,36,0.95)); }
+}
+@keyframes cosmic-shooting-star {
+  0%   { transform: translate3d(0, 0, 0) rotate(-35deg); opacity: 0; }
+  3%   { opacity: 1; }
+  12%  { transform: translate3d(160px, 110px, 0) rotate(-35deg); opacity: 0; }
+  100% { transform: translate3d(160px, 110px, 0) rotate(-35deg); opacity: 0; }
+}
+@keyframes cosmic-nebula-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.cosmic-bg-nebula {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(99,102,241,0.16), transparent 32%),
+    radial-gradient(circle at 85% 12%, rgba(139,92,246,0.14), transparent 34%),
+    radial-gradient(circle at 70% 82%, rgba(167,139,250,0.10), transparent 30%);
+  background-size: 160% 160%;
+  animation: cosmic-nebula-drift 22s ease-in-out infinite;
+}
+.cosmic-bg-stars {
+  opacity: 0.55;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-position: 0 0, 24px 30px;
+  background-size: 48px 48px, 70px 70px;
+  animation: star-drift 26s linear infinite;
+}
+.cosmic-bg-particles {
+  opacity: 0.32;
+  background-image:
+    radial-gradient(circle, rgba(167,139,250,0.5) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(125,211,252,0.45) 0 1px, transparent 1.5px);
+  background-position: 16px 22px, 64px 80px;
+  background-size: 110px 110px, 150px 150px;
+  animation: particle-drift 34s linear infinite;
+}
+.cosmic-shooting-star {
+  position: absolute;
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.95), transparent);
+  border-radius: 999px;
+  animation: cosmic-shooting-star 9s ease-in infinite;
+}
+
+.cosmic-planet {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.5), transparent 35%),
+              linear-gradient(135deg, var(--planet-color), color-mix(in srgb, var(--planet-color), #050816 55%));
+  box-shadow: 0 0 18px 1px var(--planet-glow), inset -10px -10px 20px rgba(0,0,0,0.3);
+  transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease, filter .25s ease;
+}
+.cosmic-planet-current {
+  animation: cosmic-planet-glow-pulse 3.4s ease-in-out infinite, cosmic-planet-pulse-scale 3.4s ease-in-out infinite;
+}
+.cosmic-planet-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid color-mix(in srgb, var(--planet-color), transparent 35%);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.cosmic-planet-ring-outer {
+  width: 142%;
+  height: 142%;
+  animation: cosmic-ring-spin 16s linear infinite;
+  border-style: dashed;
+  opacity: 0.65;
+}
+.cosmic-planet-ring-inner {
+  width: 122%;
+  height: 122%;
+  animation: cosmic-ring-spin-reverse 11s linear infinite;
+  opacity: 0.45;
+}
+.cosmic-star-dot {
+  position: absolute;
+  border-radius: 9999px;
+  background: white;
+  animation: cosmic-twinkle ease-in-out infinite;
+}
+.cosmic-particle-dot {
+  position: absolute;
+  border-radius: 9999px;
+  animation: cosmic-particle-float ease-in-out infinite;
+}
+.cosmic-journey-line {
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--from-color), var(--to-color));
+}
+
+.cosmic-rocket-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.10));
+  overflow: visible;
+}
+.cosmic-rocket-bar-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366F1, #8B5CF6, #FBBF24);
+  filter: blur(0.2px);
+  transition: width 0.7s cubic-bezier(.2,.7,.3,1);
+}
+.cosmic-rocket-icon {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: cosmic-rocket-hover 2.6s ease-in-out infinite;
+  transition: left 0.7s cubic-bezier(.2,.7,.3,1);
+  filter: drop-shadow(0 0 10px rgba(99,102,241,0.85));
+}
+.cosmic-rocket-trail {
+  position: absolute;
+  top: 50%;
+  height: 6px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.55));
+  transition: width 0.7s cubic-bezier(.2,.7,.3,1);
+}
+.cosmic-destination-star {
+  animation: cosmic-destination-glow 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-planet-current, .cosmic-planet-ring-outer, .cosmic-planet-ring-inner,
+  .cosmic-star-dot, .cosmic-particle-dot, .cosmic-rocket-icon, .cosmic-destination-star,
+  .cosmic-bg-nebula, .cosmic-bg-stars, .cosmic-bg-particles, .cosmic-shooting-star {
+    animation: none !important;
+  }
+}
+
+/* ─── Today's Progress — glass cards ────────────────────────────────────── */
+
+.cosmic-glass-card {
+  background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 18px 50px -30px var(--stat-glow, rgba(99,102,241,0.4)), inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.cosmic-glass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 26px 64px -28px var(--stat-glow, rgba(99,102,241,0.6)), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* ─── Subject Progress — planetary cards ────────────────────────────────── */
+
+.cosmic-subject-card {
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.cosmic-subject-card:hover {
+  box-shadow: 0 20px 50px -30px var(--planet-glow);
+}
+.cosmic-subject-planet-orb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,0.5), transparent 35%),
+    linear-gradient(135deg, var(--planet-color), color-mix(in srgb, var(--planet-color), #050816 55%));
+  box-shadow: 0 0 14px 1px color-mix(in srgb, var(--planet-color), transparent 40%), inset -6px -6px 12px rgba(0,0,0,0.3);
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+.cosmic-subject-card:hover .cosmic-subject-planet-orb {
+  box-shadow: 0 0 26px 6px color-mix(in srgb, var(--planet-color), transparent 18%), inset -6px -6px 12px rgba(0,0,0,0.3);
+  transform: scale(1.08);
+}
+
+/* ─── Cosmic Companion ───────────────────────────────────────────────────── */
+
+.cosmic-companion-pedestal {
+  width: 150px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(167,139,250,0.55), transparent 72%);
+  filter: blur(3px);
+  animation: cosmic-twinkle 3.6s ease-in-out infinite;
+}
+.cosmic-companion-egg {
+  display: inline-block;
+  animation: float-soft 4.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 22px rgba(167,139,250,0.65));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-glass-card, .cosmic-subject-card, .cosmic-subject-planet-orb,
+  .cosmic-companion-pedestal, .cosmic-companion-egg {
+    animation: none !important;
+    transition: none !important;
+  }
+}
