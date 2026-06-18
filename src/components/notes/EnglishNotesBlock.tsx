@@ -1065,10 +1065,7 @@ function Paper2StudySections({ sections }: { sections: EnglishChapterData["secti
   const cohesiveDevicesBank = sections.find((section) => section.title === "Cohesive Devices Bank");
   const visibleSections = group.sectionIndexes
     .map((sectionIndex) => ({ section: sections[sectionIndex], sectionIndex }))
-    .filter(
-      (item): item is { section: EnglishChapterData["sections"][number]; sectionIndex: number } =>
-        !!item.section,
-    );
+    .filter((item) => !!item.section);
 
   return (
     <>

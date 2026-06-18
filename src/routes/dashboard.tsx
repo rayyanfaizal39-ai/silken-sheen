@@ -663,7 +663,7 @@ function QuickActionsCard({ lastVisited }: { lastVisited?: LastVisited }) {
 
 function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6 ${className}`}>
+    <div className={`academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6 ${className}`}>
       {children}
     </div>
   );

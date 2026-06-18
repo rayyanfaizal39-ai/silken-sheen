@@ -224,7 +224,7 @@ export function SubjectPlanetLink({
     <Link
       to={to}
       search={{ subject: subjectId, form: 1 }}
-      className="group relative block overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+      className="academy-card group relative block h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
       style={{
         boxShadow: `0 0 0 0 ${planet.glow}`,
         transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
@@ -299,7 +299,7 @@ export function SubjectPlanetButton({
     <button
       type="button"
       onClick={onClick}
-      className="group relative w-full overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+      className="academy-card group relative h-full w-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px -15px ${planet.glow}`;
       }}
@@ -441,7 +441,7 @@ export function AcademyPageShell({
   className?: string;
 }) {
   return (
-    <section className="relative isolate min-h-svh overflow-hidden px-4 pb-[calc(var(--mobile-content-bottom)+1rem)] pt-10 text-white sm:px-8 md:py-14">
+    <section className="relative isolate min-h-svh overflow-x-clip px-4 pb-[calc(var(--mobile-content-bottom)+1rem)] pt-7 text-white sm:px-8 sm:pt-10 md:py-14">
       <AcademyBackdrop />
       <div className={`relative z-10 mx-auto w-full ${className}`}>{children}</div>
     </section>
@@ -465,7 +465,7 @@ export function AcademyHero({
   icon?: ComponentType<{ className?: string }>;
 }) {
   return (
-    <div className="mb-7 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-6 shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-2xl md:p-8">
+    <div className="academy-surface mb-7 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:p-6 md:p-8">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.42fr)] lg:items-center">
         <div>
           <p className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
@@ -524,7 +524,7 @@ export function AcademyPanel({
   className?: string;
 }) {
   return (
-    <div className={`rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-6 ${className}`}>
+    <div className={`academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-6 ${className}`}>
       {children}
     </div>
   );
@@ -540,13 +540,13 @@ export function AcademySectionHeader({
   description?: string;
 }) {
   return (
-    <div className="mb-5 flex items-center justify-between gap-4">
+    <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
       <div>
         <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">{eyebrow}</p>
-        <h2 className="font-display text-2xl font-bold">{title}</h2>
+        <h2 className="font-display text-2xl font-bold leading-tight">{title}</h2>
       </div>
       {description && (
-        <p className="hidden max-w-sm text-right text-sm text-[#94A3B8] sm:block">{description}</p>
+        <p className="max-w-sm text-sm leading-6 text-[#94A3B8] sm:text-right">{description}</p>
       )}
     </div>
   );

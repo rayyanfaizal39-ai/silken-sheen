@@ -43,6 +43,7 @@ import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import {
+  ENGLISH_QUIZ_PAPERS,
   ENGLISH_QUIZ_SETS,
   getEnglishQuizSet,
   getEnglishQuizSetsForPaper,
@@ -7689,7 +7690,14 @@ function EnglishQuizScreen({
         </div>
 
         <div className="px-6 pt-4">
-          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
+          <div
+            className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]"
+            role="progressbar"
+            aria-label="Quiz progress"
+            aria-valuemin={0}
+            aria-valuemax={total}
+            aria-valuenow={idx + 1}
+          >
             <div
               className={`h-full rounded-full bg-gradient-to-r ${quizSet.tone} transition-all duration-500`}
               style={{ width: `${((idx + 1) / total) * 100}%` }}
@@ -7712,10 +7720,13 @@ function EnglishQuizScreen({
 
             return (
               <button
+                type="button"
                 key={`${idx}-${option}`}
                 onClick={() => onAnswer(optionIndex)}
                 disabled={reveal}
-                className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 ${
+                aria-pressed={isPicked}
+                aria-label={`Answer ${letter}: ${option}`}
+                className={`quiz-answer-button group relative flex min-h-[4.5rem] items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FBBF24]/70 ${
                   reveal && isAnswer
                     ? "border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
                     : reveal && isPicked && !isAnswer
@@ -8776,8 +8787,9 @@ function MathObjectiveQuizScreen({
         {selected !== null && (
           <div className="border-t border-white/[0.06] px-6 py-4">
             <button
+              type="button"
               onClick={onNext}
-              className="w-full rounded-2xl bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] py-3.5 font-bold text-[#050816] shadow-[0_0_28px_rgba(251,191,36,0.35)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(251,191,36,0.5)] active:scale-[0.99]"
+              className="academy-action w-full rounded-2xl bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] py-3.5 font-bold text-[#050816] shadow-[0_0_28px_rgba(251,191,36,0.35)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(251,191,36,0.5)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FBBF24]/70"
             >
               {idx + 1 >= total
                 ? isDlp ? "See Results ✨" : "Lihat Keputusan ✨"

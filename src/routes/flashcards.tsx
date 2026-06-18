@@ -4205,7 +4205,14 @@ function FlashcardsPage() {
                 </span>
                 <span>{pct}%</span>
               </div>
-              <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden mb-6">
+              <div
+                className="mb-6 h-2 w-full overflow-hidden rounded-full bg-white/10"
+                role="progressbar"
+                aria-label="Flashcard progress"
+                aria-valuemin={0}
+                aria-valuemax={total}
+                aria-valuenow={done + 1}
+              >
                 <div
                   className={`h-full bg-gradient-to-r ${progressColor(pct)} transition-all duration-700 ${(pct >= 25 && pct < 30) || (pct >= 50 && pct < 55) || (pct >= 75 && pct < 80) || pct === 100 ? "animate-pulse" : ""}`}
                   style={{ width: `${pct}%` }}
@@ -4229,11 +4236,21 @@ function FlashcardsPage() {
                 )}
 
                 <div
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={flipped}
+                  aria-label={flipped ? "Flashcard answer shown. Press Enter to show question." : "Flashcard question shown. Press Enter to flip."}
                   onClick={handleFlip}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      handleFlip();
+                    }
+                  }}
                   onTouchStart={onTouchStart}
                   onTouchMove={onTouchMove}
                   onTouchEnd={onTouchEnd}
-                  className={`relative cursor-pointer mx-auto select-none rounded-3xl
+                  className={`flashcard-study-card relative mx-auto cursor-pointer select-none rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]
                     ${dealing ? "animate-deal-in" : ""}
                     ${shake ? "animate-shake" : ""}
                     ${bounce ? "animate-bounce-soft" : ""}
@@ -4270,11 +4287,13 @@ function FlashcardsPage() {
                           {subj?.emoji} {subj?.name} • {current.form}
                         </span>
                         <button
+                          type="button"
+                          aria-label={fav ? "Remove from favorites" : "Add to favorites"}
                           onClick={(e) => {
                             e.stopPropagation();
                             toggleFavorite(current.id);
                           }}
-                          className={`p-2 rounded-full ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
+                          className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
                         >
                           <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
                         </button>
@@ -4321,11 +4340,11 @@ function FlashcardsPage() {
 
               {/* Navigation row */}
               <div className="mt-6 flex items-center justify-center gap-3">
-                <button onClick={() => go(-1)} className="p-3 rounded-full glass hover:bg-white/10">
+                <button type="button" aria-label="Previous card" onClick={() => go(-1)} className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]">
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <span className="text-sm text-muted-foreground">{done + 1} / {total}</span>
-                <button onClick={() => go(1)} className="p-3 rounded-full glass hover:bg-white/10">
+                <button type="button" aria-label="Next card" onClick={() => go(1)} className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]">
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
@@ -4334,32 +4353,40 @@ function FlashcardsPage() {
               {flipped ? (
                 <div className="mt-4 grid grid-cols-4 gap-2">
                   <button
+                    type="button"
+                    aria-label="Rate this card Again"
                     onClick={() => handleResponse(0)}
-                    className="py-3 rounded-2xl bg-rose-500/15 text-rose-200 hover:bg-rose-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-rose-500/15 py-3 text-sm font-bold text-rose-200 transition-all hover:bg-rose-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70"
                   >
                     <X className="w-4 h-4" />
                     <span>Lagi</span>
                     <span className="text-[10px] font-normal opacity-60">Again</span>
                   </button>
                   <button
+                    type="button"
+                    aria-label="Rate this card Almost"
                     onClick={() => handleResponse(1)}
-                    className="py-3 rounded-2xl bg-orange-500/15 text-orange-200 hover:bg-orange-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-orange-500/15 py-3 text-sm font-bold text-orange-200 transition-all hover:bg-orange-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70"
                   >
                     <span className="text-base">😓</span>
                     <span>Hampir</span>
                     <span className="text-[10px] font-normal opacity-60">+5 XP</span>
                   </button>
                   <button
+                    type="button"
+                    aria-label="Rate this card Known"
                     onClick={() => handleResponse(2)}
-                    className="py-3 rounded-2xl bg-emerald-500/15 text-emerald-200 hover:bg-emerald-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-emerald-500/15 py-3 text-sm font-bold text-emerald-200 transition-all hover:bg-emerald-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
                   >
                     <Check className="w-4 h-4" />
                     <span>Tahu</span>
                     <span className="text-[10px] font-normal opacity-60">+10 XP</span>
                   </button>
                   <button
+                    type="button"
+                    aria-label="Rate this card Easy"
                     onClick={() => handleResponse(3)}
-                    className="py-3 rounded-2xl bg-sky-500/15 text-sky-200 hover:bg-sky-500/25 active:scale-95 transition-all flex flex-col items-center gap-0.5 text-sm font-bold"
+                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-sky-500/15 py-3 text-sm font-bold text-sky-200 transition-all hover:bg-sky-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/70"
                   >
                     <span className="text-base">✨</span>
                     <span>Mudah</span>

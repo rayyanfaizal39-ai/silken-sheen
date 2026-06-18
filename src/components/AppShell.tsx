@@ -279,9 +279,9 @@ export function AppShell({ children }: { children: ReactNode }) {
       </aside>
 
       {/* ── Main content area ─────────────────────────────────── */}
-      <div className="relative z-10 lg:ml-[236px]">
+      <div className="relative z-10 overflow-x-clip lg:ml-[236px]">
         {/* Top header */}
-        <header className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] bg-[#050816]/80 px-4 py-3 backdrop-blur-2xl sm:px-6 lg:flex-nowrap lg:px-8">
+        <header className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] bg-[#050816]/86 px-4 py-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-2xl sm:px-6 lg:flex-nowrap lg:px-8">
           <div className="flex items-center gap-2">
             {/* Mobile brand */}
             <Link to="/" className="flex items-center gap-2 lg:hidden">
@@ -331,7 +331,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        <main className="app-main page-content min-h-svh">{children}</main>
+        <main className="app-main page-content min-h-svh overflow-x-clip">{children}</main>
       </div>
 
       {/* ── Mobile Bottom Nav — Space Theme ──────────────────── */}

@@ -1794,11 +1794,78 @@
     min-height: 100svh;
     overflow-x: clip;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0; }
+  img, svg, canvas, video { max-width: 100%; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
 }
 
 .app-main {
   padding-bottom: var(--mobile-content-bottom);
+  overflow-x: clip;
+}
+
+.academy-surface {
+  box-shadow:
+    0 18px 70px -34px rgba(0,0,0,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.academy-card {
+  box-shadow:
+    0 18px 60px -38px rgba(0,0,0,0.72),
+    inset 0 1px 0 rgba(255,255,255,0.055);
+  touch-action: manipulation;
+}
+
+.academy-card:hover {
+  box-shadow:
+    0 24px 76px -36px rgba(99,102,241,0.42),
+    inset 0 1px 0 rgba(255,255,255,0.075);
+}
+
+.academy-action {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.quiz-answer-button {
+  touch-action: manipulation;
+  overflow-wrap: anywhere;
+}
+
+.quiz-answer-button:disabled {
+  cursor: default;
+}
+
+.flashcard-study-card {
+  contain: layout paint;
+}
+
+.academy-readable {
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+@media (max-width: 640px) {
+  .academy-surface,
+  .academy-card {
+    border-radius: 1.5rem;
+  }
+
+  .chapter-chip {
+    max-width: 100%;
+  }
+
+  .study-orbit-ring,
+  .simple-orbit-ring {
+    opacity: 0.55;
+  }
+
+  .planet-art::after,
+  .planet-art::before {
+    transform: scale(0.92);
+    transform-origin: center;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2683,6 +2750,7 @@
     0 -2px 0 rgba(129,140,248,0.06),
     0 16px 48px -12px rgba(99,102,241,0.45),
     0 4px 12px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 .space-nav-item {
   flex: 1 1 0;
@@ -2698,6 +2766,7 @@
   position: relative;
   transition: all 0.2s ease;
   color: rgba(148,163,184,0.7);
+  touch-action: manipulation;
 }
 .space-nav-item:active {
   transform: scale(0.92);
@@ -2729,9 +2798,12 @@
 .space-nav-label {
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   text-transform: uppercase;
   position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2912,6 +2984,7 @@
 }
 .page-content {
   animation: page-in 0.4s ease-out both;
+  overflow-x: clip;
 }
 
 /* ── Hero section breathe ──────────────────────────────────────────────── */
@@ -2937,6 +3010,26 @@
     radial-gradient(circle 3px at 75% 28%, rgba(56,189,248,0.8), transparent 100%),
     radial-gradient(circle 3px at 25% 72%, rgba(14,165,233,0.7), transparent 100%),
     radial-gradient(circle 3px at 80% 70%, rgba(56,189,248,0.6), transparent 100%);
+}
+
+.planet-art {
+  overflow: hidden;
+  border-radius: inherit;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.planet-art::before {
+  pointer-events: none;
+}
+
+.academy-card .planet-art,
+.group .planet-art {
+  transition: opacity .3s ease, filter .3s ease, transform .3s ease;
+}
+
+.academy-card:hover .planet-art,
+.group:hover .planet-art {
+  filter: saturate(1.16) contrast(1.06) brightness(1.03);
 }
 
 /* Math — amber: grid lines + Pi symbol glow */
@@ -3379,6 +3472,33 @@
   font-size: 0.625rem;
   font-weight: 600;
   color: rgba(255,255,255,0.4);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.chapter-card {
+  isolation: isolate;
+  box-shadow:
+    0 18px 64px -42px rgba(0,0,0,0.82),
+    inset 0 1px 0 rgba(255,255,255,0.055);
+}
+
+.chapter-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(255,255,255,0.08), transparent 30%),
+    radial-gradient(circle at 12% 100%, rgba(99,102,241,0.10), transparent 34%);
+  opacity: 0.8;
+}
+
+.chapter-card:hover {
+  box-shadow:
+    0 24px 78px -42px rgba(99,102,241,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.075);
 }
 
 /* =========================================================================

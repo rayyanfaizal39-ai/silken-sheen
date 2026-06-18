@@ -69,7 +69,7 @@ export function SubjectGrid({
             : "Pick a subject and continue your learning path."
         }
       />
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid items-stretch gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {orderedSubjects.map((s, i) => (
           <div key={s.id} className="animate-slide-up" style={{ animationDelay: `${i * 60}ms` }}>
             <SubjectPlanetButton
@@ -107,7 +107,7 @@ export function ChapterGrid({
   return (
     <AcademyPanel>
       {/* Back header with subject accent */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="button"
           onClick={onBack}
@@ -132,7 +132,7 @@ export function ChapterGrid({
           <p className="text-muted-foreground">No chapters available yet for this subject.</p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {chapters.map((c, i) => {
             const pct = chapterProgressPct(
               progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
@@ -156,7 +156,7 @@ export function ChapterGrid({
                 type="button"
                 key={c.key}
                 onClick={() => onSelect(c.key, c.available)}
-                className={`chapter-card group relative overflow-hidden rounded-3xl border bg-[#0D1525]/80 p-0 text-left transition-all duration-300 animate-slide-up backdrop-blur-2xl ${
+                className={`chapter-card group relative flex h-full min-h-[248px] flex-col overflow-hidden rounded-[1.75rem] border bg-[#0D1525]/80 p-0 text-left transition-all duration-300 animate-slide-up backdrop-blur-2xl ${
                   c.available
                     ? "border-white/[0.08] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                     : "border-white/[0.05] opacity-60"
@@ -188,7 +188,7 @@ export function ChapterGrid({
                 />
 
                 {/* Card content */}
-                <div className="p-4">
+                <div className="flex flex-1 flex-col p-4">
                   {/* Header row */}
                   <div className="mb-3 flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -257,7 +257,7 @@ export function ChapterGrid({
 
                   {/* Progress bar */}
                   {c.available && (
-                    <div className="mt-3.5">
+                    <div className="mt-auto pt-4">
                       <div className="mb-1.5 flex justify-between text-[10px] font-semibold">
                         <span
                           className="font-bold uppercase tracking-wide"
@@ -314,7 +314,7 @@ export function ContentHeader({
 
   return (
     <div className="mb-5 animate-fade-up">
-      <div className="mb-4 flex items-center justify-between flex-wrap gap-3">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="button"
           onClick={onBack}
@@ -322,7 +322,7 @@ export function ContentHeader({
         >
           <ArrowLeft className="h-4 w-4" /> Back to chapters
         </button>
-        <div className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+        <div className="flex min-w-0 items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
           <span className="text-sm">{subj?.emoji}</span>
           <span className="text-sm font-bold" style={{ color: accent.color }}>
             {subj?.name}
@@ -342,7 +342,7 @@ export function ContentHeader({
           borderColor: `${accent.from}25`,
         }}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-start gap-4">
           <div
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
             style={{
@@ -352,7 +352,7 @@ export function ContentHeader({
           >
             <BookOpen className="h-5 w-5" style={{ color: accent.color }} />
           </div>
-          <div>
+          <div className="min-w-0">
             <p
               className="text-xs font-bold uppercase tracking-widest"
               style={{ color: accent.color }}

@@ -33,11 +33,11 @@ export function MindMapBlock({
 
   if (!isOpen) {
     return (
-      <div id={id} className="mb-6 animate-fade-up scroll-mt-24">
+      <div id={id} className="mb-5 animate-fade-up scroll-mt-24 sm:mb-6">
         <button
           type="button"
           onClick={openMindMap}
-          className="group w-full overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-[#101827]/84 hover:shadow-[0_24px_80px_rgba(14,165,233,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
+          className="academy-surface group w-full overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-[#101827]/84 hover:shadow-[0_24px_80px_rgba(14,165,233,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 sm:p-6"
         >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
@@ -56,7 +56,7 @@ export function MindMapBlock({
                 </p>
               </div>
             </div>
-            <span className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(14,165,233,0.22)] transition-transform duration-300 group-hover:scale-105">
+            <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(14,165,233,0.22)] transition-transform duration-300 group-hover:scale-105">
               <GitFork className="h-4 w-4" />
               Open Mind Map
             </span>
@@ -76,7 +76,7 @@ export function MindMapBlock({
           Visual learning made easy
         </span>
       </div>
-      <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-3 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl">
+      <div className="academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-3 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-4">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2 px-2">
           <p className="text-sm font-semibold text-white">{title}</p>
           <p className="text-xs text-muted-foreground">

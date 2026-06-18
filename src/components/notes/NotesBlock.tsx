@@ -168,11 +168,11 @@ export function NotesBlock({
 
   if (!isOpen) {
     return (
-      <div id={id} className="mx-auto mb-6 w-full max-w-5xl scroll-mt-24 animate-fade-up">
+      <div id={id} className="mx-auto mb-5 w-full max-w-5xl scroll-mt-24 animate-fade-up sm:mb-6">
         <button
           type="button"
           onClick={openNotes}
-          className="group w-full overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 p-5 text-left shadow-[0_20px_80px_rgba(0,0,0,0.30)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.16] hover:bg-[#101827]/84 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+          className="academy-surface group w-full overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 p-5 text-left shadow-[0_20px_80px_rgba(0,0,0,0.30)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.16] hover:bg-[#101827]/84 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] sm:p-6"
           style={{
             boxShadow: `0 20px 80px rgba(0,0,0,0.30), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06)`,
           }}
@@ -205,7 +205,7 @@ export function NotesBlock({
               </div>
             </div>
             <span
-              className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(139,92,246,0.20)] transition-transform duration-300 group-hover:scale-105"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(139,92,246,0.20)] transition-transform duration-300 group-hover:scale-105"
               style={{
                 background: `linear-gradient(90deg, ${subjectPalette.from}, ${subjectPalette.to})`,
               }}
@@ -222,7 +222,7 @@ export function NotesBlock({
   return (
     <div
       id={id}
-      className="mx-auto mb-8 w-full max-w-5xl scroll-mt-24 rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl animate-fade-up overflow-hidden"
+      className="academy-surface mx-auto mb-8 w-full max-w-5xl scroll-mt-24 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl animate-fade-up"
       style={{
         boxShadow: `0 20px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06)`,
       }}
@@ -270,7 +270,7 @@ export function NotesBlock({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search notes…"
-              className="w-full rounded-2xl border border-white/[0.10] bg-white/[0.05] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/25 focus:bg-white/[0.08] transition-all"
+              className="min-h-11 w-full rounded-2xl border border-white/[0.10] bg-white/[0.05] py-2.5 pl-10 pr-10 text-sm text-white placeholder:text-white/30 transition-all focus:border-white/25 focus:bg-white/[0.08] focus:outline-none"
             />
             {query && (
               <button
@@ -321,7 +321,7 @@ export function NotesBlock({
             No matching notes found. Try a different keyword.
           </div>
         ) : (
-          <div className="grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)]">
+          <div className="grid min-w-0 gap-5 lg:grid-cols-[240px_minmax(0,1fr)]">
             {/* Sticky nav */}
             <nav className="h-fit overflow-hidden rounded-2xl border border-white/[0.07] bg-[#060C1A]/80 lg:sticky lg:top-24">
               {/* Nav header */}
@@ -348,7 +348,7 @@ export function NotesBlock({
                   {filteredSections.length}
                 </span>
               </div>
-              <div className="space-y-0.5 p-2">
+              <div className="max-h-[42vh] space-y-0.5 overflow-y-auto p-2 lg:max-h-none">
                 {filteredSections.map((section, i) => {
                   const value = section.id ?? section.title;
                   const active = openValue === value;
@@ -392,7 +392,7 @@ export function NotesBlock({
                       >
                         {i + 1}
                       </span>
-                      <span className="flex-1 leading-tight">{section.title}</span>
+                      <span className="min-w-0 flex-1 leading-tight">{section.title}</span>
                       {active && (
                         <ChevronRight
                           className="h-3 w-3 shrink-0"
@@ -445,7 +445,7 @@ export function NotesBlock({
                       />
                     )}
                     <AccordionTrigger className="px-4 py-4 text-left hover:no-underline sm:px-5 [&[data-state=open]]:pb-3">
-                      <div className="flex items-center gap-3">
+                      <div className="flex min-w-0 items-center gap-3">
                         <span
                           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-[11px] font-black text-white transition-all"
                           style={
@@ -460,7 +460,7 @@ export function NotesBlock({
                           {i + 1}
                         </span>
                         <span
-                          className={`text-sm font-bold sm:text-base ${isOpen ? "text-white" : "text-white/75"}`}
+                          className={`min-w-0 text-sm font-bold leading-snug sm:text-base ${isOpen ? "text-white" : "text-white/75"}`}
                         >
                           {section.title}
                         </span>
@@ -712,7 +712,7 @@ function SubsectionBlock({
 function ReadableContent({ text, keywords }: { text: string; keywords: string[] }) {
   const paragraphs = getReadableParagraphs(text);
   return (
-    <div className="space-y-3 break-words text-sm leading-7 text-slate-300 sm:text-base sm:leading-8">
+    <div className="academy-readable space-y-3 break-words text-sm leading-7 text-slate-300 sm:text-base sm:leading-8">
       {paragraphs.map((paragraph, index) => (
         <ContentParagraph
           key={`${index}-${paragraph.slice(0, 32)}`}
