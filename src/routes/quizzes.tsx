@@ -6177,7 +6177,7 @@ function QuizzesPage() {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [idx, current, done, timerPref, questionSeconds]);
+  }, [idx, current, done, timerPref, questionSeconds, selected]);
 
   // Build shuffled questions when quiz starts
   useEffect(() => {
