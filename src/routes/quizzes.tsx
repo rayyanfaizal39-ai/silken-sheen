@@ -42,6 +42,15 @@ import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
+import {
+  ENGLISH_QUIZ_PAPERS,
+  ENGLISH_QUIZ_SETS,
+  getEnglishQuizSet,
+  getEnglishQuizSetsForPaper,
+  type EnglishQuizPaperId,
+  type EnglishQuizSetId,
+  type EnglishQuizSetMeta,
+} from "@/data/english-f1-quiz-sets";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -6095,6 +6104,12 @@ function QuizzesPage() {
   const [mathShuffledQuestions, setMathShuffledQuestions] = useState<ShuffledQuestion[] | null>(
     null,
   );
+  const [englishPaperId, setEnglishPaperId] = useState<EnglishQuizPaperId | null>(null);
+  const [englishSetId, setEnglishSetId] = useState<EnglishQuizSetId | null>(null);
+  const [englishPhase, setEnglishPhase] = useState<MathObjectivePhase>("select");
+  const [englishShuffledQuestions, setEnglishShuffledQuestions] = useState<
+    ShuffledQuestion[] | null
+  >(null);
   const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
   const [timeLeft, setTimeLeft] = useState(0);
   const comboTimer = useRef<number | null>(null);
@@ -6133,6 +6148,15 @@ function QuizzesPage() {
     return MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? [];
   }, [chapter, mathObjectiveId, mathQuizLang]);
   const currentMathQuestion = mathShuffledQuestions?.[idx] ?? null;
+  const selectedEnglishSet = useMemo(
+    () => ENGLISH_QUIZ_SETS.find((set) => set.id === englishSetId) ?? null,
+    [englishSetId],
+  );
+  const englishSetQuestions = useMemo(
+    () => (englishSetId ? getEnglishQuizSet(englishSetId) : []),
+    [englishSetId],
+  );
+  const currentEnglishQuestion = englishShuffledQuestions?.[idx] ?? null;
 
   // Countdown timer per question (only when timer mode enabled)
   useEffect(() => {
@@ -6299,6 +6323,10 @@ function QuizzesPage() {
     setMathObjectivePhase("select");
     setMathQuizLang(null);
     setMathShuffledQuestions(null);
+    setEnglishPaperId(null);
+    setEnglishSetId(null);
+    setEnglishPhase("select");
+    setEnglishShuffledQuestions(null);
   }
 
   function resetRegularQuiz() {
@@ -6315,6 +6343,7 @@ function QuizzesPage() {
     setTimerPref(null);
     setShuffledPool(null);
     setMathShuffledQuestions(null);
+    setEnglishShuffledQuestions(null);
   }
 
   function startMathObjectiveQuiz() {
@@ -6397,6 +6426,86 @@ function QuizzesPage() {
     setFeedback(null);
   }
 
+  function startEnglishQuiz() {
+    if (englishSetQuestions.length === 0) return;
+    setIdx(0);
+    setSelected(null);
+    setScore(0);
+    setDone(false);
+    setStreak(0);
+    setCombo(0);
+    setComboShow(null);
+    setFeedback(null);
+    setTimeLeft(0);
+    setAnimatedScore(0);
+    setEnglishShuffledQuestions(buildShuffledPool(englishSetQuestions));
+    setEnglishPhase("quiz");
+  }
+
+  function answerEnglishQuiz(i: number) {
+    if (selected !== null || !currentEnglishQuestion) return;
+
+    setSelected(i);
+    const correct = i === currentEnglishQuestion.answerIndex;
+
+    if (correct) {
+      const gain =
+        currentEnglishQuestion.difficulty === "Hard"
+          ? 30
+          : currentEnglishQuestion.difficulty === "Medium"
+            ? 20
+            : 10;
+      setScore((s) => s + 1);
+      setStreak((s) => s + 1);
+      const newCombo = combo + 1;
+      setCombo(newCombo);
+      addXp(gain, currentEnglishQuestion.subjectId);
+      sfx.success();
+
+      if (newCombo >= 2) {
+        setComboShow(newCombo);
+        sfx.combo(newCombo);
+        if (comboTimer.current) window.clearTimeout(comboTimer.current);
+        comboTimer.current = window.setTimeout(() => setComboShow(null), 1100);
+      }
+
+      setFeedback({
+        kind: "correct",
+        msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+      });
+    } else {
+      setStreak(0);
+      setCombo(0);
+      triggerShake();
+      setFeedback({
+        kind: "wrong",
+        msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+      });
+    }
+  }
+
+  function nextEnglishQuizQuestion() {
+    const total = englishShuffledQuestions?.length ?? englishSetQuestions.length;
+
+    if (idx + 1 >= total) {
+      setDone(true);
+      setEnglishPhase("results");
+      recordQuiz();
+      recordQuizResult({
+        subjectId: "english",
+        chapterKey: selectedEnglishSet?.title ?? "English Form 1",
+        correct: score + (selected === currentEnglishQuestion?.answerIndex ? 1 : 0),
+        total,
+      });
+      if (selectedEnglishSet) markChapter("english", selectedEnglishSet.title, "quiz");
+      return;
+    }
+
+    setIdx((currentIndex) => currentIndex + 1);
+    setSelected(null);
+    setFeedback(null);
+  }
+
   // Animated score count-up + perfect score celebration
   useEffect(() => {
     if (!done) return;
@@ -6427,6 +6536,101 @@ function QuizzesPage() {
   }
 
   // ── Subject World early-return ────────────────────────────────────────────
+  if (subject === "english") {
+    return (
+      <AcademyPageShell className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}>
+        {comboShow !== null && (
+          <div
+            key={comboShow}
+            className="pointer-events-none fixed left-1/2 top-1/3 z-50 -translate-x-1/2 -translate-y-1/2 animate-combo-pop"
+          >
+            <div className="font-display text-7xl sm:text-8xl font-extrabold gradient-text drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.8)]">
+              COMBO x{comboShow}
+            </div>
+          </div>
+        )}
+
+        {!englishPaperId ? (
+          <EnglishPaperSelectionScreen
+            onBack={() => {
+              setSubject(null);
+              reset();
+            }}
+            onSelect={(paperId) => {
+              setEnglishPaperId(paperId);
+              setEnglishSetId(null);
+              setEnglishPhase("select");
+              resetRegularQuiz();
+            }}
+          />
+        ) : englishSetId && selectedEnglishSet && englishPhase !== "select" ? (
+          englishPhase === "intro" ? (
+            <EnglishSetIntroScreen
+              quizSet={selectedEnglishSet}
+              onBack={() => {
+                setEnglishSetId(null);
+                setEnglishPhase("select");
+              }}
+              onStart={startEnglishQuiz}
+            />
+          ) : englishPhase === "results" ? (
+            <EnglishResultsScreen
+              quizSet={selectedEnglishSet}
+              score={score}
+              total={englishShuffledQuestions?.length || englishSetQuestions.length || 30}
+              onBack={() => {
+                setEnglishSetId(null);
+                setEnglishPhase("select");
+              }}
+              onRetry={() => {
+                resetRegularQuiz();
+                setEnglishPhase("intro");
+              }}
+            />
+          ) : (
+            <EnglishQuizScreen
+              quizSet={selectedEnglishSet}
+              questions={
+                englishShuffledQuestions ??
+                englishSetQuestions.map((q) => ({
+                  question: q.question,
+                  options: q.options,
+                  answerIndex: q.answerIndex,
+                  explanation: q.explanation,
+                  difficulty: q.difficulty,
+                  subjectId: q.subjectId,
+                }))
+              }
+              current={currentEnglishQuestion}
+              idx={idx}
+              selected={selected}
+              feedback={feedback}
+              score={score}
+              onAnswer={answerEnglishQuiz}
+              onNext={nextEnglishQuizQuestion}
+              onBack={() => setEnglishPhase("intro")}
+            />
+          )
+        ) : (
+          <EnglishSetSelectionScreen
+            paperId={englishPaperId}
+            onBack={() => {
+              setEnglishPaperId(null);
+              setEnglishSetId(null);
+              setEnglishPhase("select");
+              resetRegularQuiz();
+            }}
+            onSelect={(setId) => {
+              setEnglishSetId(setId);
+              setEnglishPhase("intro");
+              resetRegularQuiz();
+            }}
+          />
+        )}
+      </AcademyPageShell>
+    );
+  }
+
   if (subject && !needsScienceLang && !chapter) {
     return (
       <SubjectWorldPage
@@ -7263,6 +7467,481 @@ function QuizSettingsScreen({
         >
           {mode === "none" ? <TimerOff className="w-5 h-5" /> : <Play className="w-5 h-5" />}
           Start Quiz
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function EnglishPaperSelectionScreen({
+  onBack,
+  onSelect,
+}: {
+  onBack: () => void;
+  onSelect: (paperId: EnglishQuizPaperId) => void;
+}) {
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to subjects
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">English Form 1</span>
+      </div>
+
+      <div className="glass-strong overflow-hidden rounded-3xl p-6 sm:p-8">
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
+            English Form 1
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
+            Choose a <span className="gradient-text">Quiz Paper</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
+            Practice in exam-paper sets. Paper 1 uses objective practice. Paper 2 builds writing
+            skills through format, cohesion, vocabulary, and organisation questions.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {ENGLISH_QUIZ_PAPERS.map((paper, index) => (
+            <button
+              key={paper.id}
+              onClick={() => onSelect(paper.id)}
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
+              style={{ animationDelay: `${index * 70}ms` }}
+            >
+              <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-gradient-to-br from-sky-500 to-fuchsia-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-35" />
+              <div className="relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-4xl shadow-lg">
+                {paper.badge}
+              </div>
+              <h3 className="relative font-display text-2xl font-bold">{paper.title}</h3>
+              <p className="relative mt-2 text-sm leading-7 text-slate-300">{paper.description}</p>
+              <div className="relative mt-5 grid gap-2">
+                {getEnglishQuizSetsForPaper(paper.id).map((set) => (
+                  <div key={set.id} className="rounded-2xl bg-white/5 px-4 py-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="font-bold">{set.title}</span>
+                      <span className="text-xs font-bold text-cyan-200">30 Questions</span>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">{set.level}</p>
+                  </div>
+                ))}
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EnglishSetSelectionScreen({
+  paperId,
+  onBack,
+  onSelect,
+}: {
+  paperId: EnglishQuizPaperId;
+  onBack: () => void;
+  onSelect: (setId: EnglishQuizSetId) => void;
+}) {
+  const paper = ENGLISH_QUIZ_PAPERS.find((item) => item.id === paperId);
+  const sets = getEnglishQuizSetsForPaper(paperId);
+
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to papers
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {paper?.badge} {paper?.title}
+        </span>
+      </div>
+
+      <div className="glass-strong rounded-3xl p-6 sm:p-8">
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
+            {paper?.title}
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
+            Choose Your <span className="gradient-text">Practice Set</span>
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Every set has 30 UASA-style multiple-choice questions with shuffled questions and
+            options.
+          </p>
+        </div>
+
+        <div className={`mt-8 grid gap-4 ${sets.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
+          {sets.map((quizSet, index) => (
+            <button
+              key={quizSet.id}
+              onClick={() => onSelect(quizSet.id)}
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
+              style={{ animationDelay: `${index * 70}ms` }}
+            >
+              <div
+                className={`absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-br ${quizSet.tone} opacity-20 blur-3xl transition-opacity group-hover:opacity-40`}
+              />
+              <div
+                className={`relative mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${quizSet.tone} text-3xl shadow-lg`}
+              >
+                {quizSet.badge}
+              </div>
+              <h3 className="relative font-display text-xl font-bold">{quizSet.title}</h3>
+              <p className="relative mt-1 text-sm font-bold text-cyan-200">{quizSet.level}</p>
+              <p className="relative mt-3 text-sm leading-7 text-slate-300">{quizSet.description}</p>
+              <div className="relative mt-4 space-y-2">
+                {quizSet.coverage.map((item) => (
+                  <p key={item} className="rounded-2xl bg-white/5 px-3 py-2 text-xs text-slate-300">
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EnglishSetIntroScreen({
+  quizSet,
+  onBack,
+  onStart,
+}: {
+  quizSet: EnglishQuizSetMeta;
+  onBack: () => void;
+  onStart: () => void;
+}) {
+  const isPaper1 = quizSet.paperId === "paper-1";
+  const focus =
+    quizSet.id === "objective-c"
+      ? ["Full mixed Paper 1 simulation", "Parts 1, 2, 3, 4 and 5", "Mini UASA exam flow"]
+      : quizSet.coverage.slice(0, 2);
+
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to sets
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          English Form 1 • {quizSet.title}
+        </span>
+      </div>
+
+      <div className="glass-strong relative overflow-hidden rounded-3xl p-8 text-center">
+        <div
+          className={`absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-gradient-to-br ${quizSet.tone} opacity-20 blur-3xl`}
+        />
+        <div className="relative">
+          <div
+            className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${quizSet.tone} text-4xl shadow-lg`}
+          >
+            {quizSet.badge}
+          </div>
+          <p className="text-sm font-bold text-cyan-200">{isPaper1 ? "Paper 1 Quizzes" : "Paper 2 Quizzes"}</p>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">{quizSet.title}</h2>
+          <p className="mt-2 font-semibold text-muted-foreground">{quizSet.level}</p>
+
+          <div className="mx-auto mt-7 max-w-3xl rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left">
+            <h3 className="font-display text-xl font-bold">Quiz Focus</h3>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {focus.map((item) => (
+                <div key={item} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl bg-white/5 p-4 text-center">
+                <div className="text-2xl font-bold text-cyan-200">30</div>
+                <div className="mt-1 text-xs text-muted-foreground">Questions</div>
+              </div>
+              <div className="rounded-2xl bg-white/5 p-4 text-center">
+                <div className="text-2xl font-bold text-cyan-200">A-D</div>
+                <div className="mt-1 text-xs text-muted-foreground">Options</div>
+              </div>
+              <div className="rounded-2xl bg-white/5 p-4 text-center">
+                <div className="text-2xl font-bold text-cyan-200">UASA</div>
+                <div className="mt-1 text-xs text-muted-foreground">Difficulty</div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={onStart}
+            className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent py-3.5 font-display text-lg font-bold text-white shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.45)] transition-all hover:scale-[1.02]"
+          >
+            <Play className="h-5 w-5" /> Start Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EnglishQuizScreen({
+  quizSet,
+  questions,
+  current,
+  idx,
+  selected,
+  feedback,
+  score,
+  onAnswer,
+  onNext,
+  onBack,
+}: {
+  quizSet: EnglishQuizSetMeta;
+  questions: ShuffledQuestion[];
+  current: ShuffledQuestion | null;
+  idx: number;
+  selected: number | null;
+  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  score: number;
+  onAnswer: (index: number) => void;
+  onNext: () => void;
+  onBack: () => void;
+}) {
+  const total = questions.length;
+
+  if (!current || total === 0) {
+    return (
+      <div className="glass-strong rounded-3xl p-8 text-center animate-fade-up">
+        <p className="text-muted-foreground">Questions Coming Soon</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to instructions
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">
+          English Form 1 • {quizSet.title}
+        </span>
+      </div>
+
+      <div
+        key={idx}
+        className={`quiz-q-enter relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 shadow-[0_24px_80px_rgba(0,0,0,0.4)] backdrop-blur-2xl ${
+          feedback?.kind === "wrong"
+            ? "animate-shake"
+            : feedback?.kind === "correct"
+              ? "animate-correct-pulse"
+              : ""
+        }`}
+      >
+        <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-bold text-cyan-200">
+              {quizSet.badge} {quizSet.title}
+            </span>
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5">
+              <span className="text-xs font-bold text-white/50">Q</span>
+              <span className="font-display text-sm font-bold">{idx + 1}</span>
+              <span className="text-xs text-white/30">/ {total}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-3 py-1.5">
+            <Zap className="h-3 w-3 text-[#FBBF24]" />
+            <span className="text-xs font-bold text-[#FBBF24]">{score}</span>
+            <span className="text-[10px] text-white/30">/{total}</span>
+          </div>
+        </div>
+
+        <div className="px-6 pt-4">
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
+            <div
+              className={`h-full rounded-full bg-gradient-to-r ${quizSet.tone} transition-all duration-500`}
+              style={{ width: `${((idx + 1) / total) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        <div className="px-6 pb-4 pt-6">
+          <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
+            {current.question}
+          </h2>
+        </div>
+
+        <div className="grid gap-2.5 px-6 pb-6 sm:grid-cols-2">
+          {current.options.map((option, optionIndex) => {
+            const isAnswer = optionIndex === current.answerIndex;
+            const isPicked = optionIndex === selected;
+            const reveal = selected !== null;
+            const letter = ["A", "B", "C", "D"][optionIndex] ?? String(optionIndex + 1);
+
+            return (
+              <button
+                key={`${idx}-${option}`}
+                onClick={() => onAnswer(optionIndex)}
+                disabled={reveal}
+                className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 ${
+                  reveal && isAnswer
+                    ? "border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
+                    : reveal && isPicked && !isAnswer
+                      ? "border-rose-400/50 bg-rose-500/15 shadow-[0_0_16px_rgba(239,68,68,0.15)]"
+                      : reveal
+                        ? "border-white/[0.05] bg-white/[0.02] opacity-50"
+                        : "border-white/[0.09] bg-white/[0.04] hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-white/[0.08]"
+                }`}
+              >
+                <span
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black transition-all ${
+                    reveal && isAnswer
+                      ? "bg-emerald-400 text-[#050816]"
+                      : reveal && isPicked && !isAnswer
+                        ? "bg-rose-400 text-white"
+                        : "bg-white/[0.08] text-white/60 group-hover:bg-cyan-300/20 group-hover:text-cyan-200"
+                  }`}
+                >
+                  {letter}
+                </span>
+                <span
+                  className={`flex-1 text-sm font-semibold leading-6 ${
+                    reveal && isAnswer
+                      ? "text-emerald-100"
+                      : reveal && isPicked && !isAnswer
+                        ? "text-rose-100"
+                        : "text-white/80 group-hover:text-white"
+                  }`}
+                >
+                  {option}
+                </span>
+                {reveal && isAnswer && <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />}
+                {reveal && isPicked && !isAnswer && <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-400" />}
+              </button>
+            );
+          })}
+        </div>
+
+        {feedback && (
+          <div
+            className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
+              feedback.kind === "correct"
+                ? "border-emerald-400/30 bg-emerald-500/12"
+                : "border-rose-400/30 bg-rose-500/12"
+            }`}
+          >
+            {feedback.kind === "correct" ? (
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
+            ) : (
+              <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
+            )}
+            <span
+              className={`font-display text-lg font-bold ${
+                feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
+              }`}
+            >
+              {feedback.msg}
+            </span>
+          </div>
+        )}
+
+        {selected !== null && current.explanation && (
+          <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">
+            <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-[#A78BFA]" />
+            <p className="text-sm leading-7 text-slate-300">{current.explanation}</p>
+          </div>
+        )}
+
+        {selected !== null && (
+          <div className="border-t border-white/[0.06] px-6 py-4">
+            <button
+              onClick={onNext}
+              className={`w-full rounded-2xl bg-gradient-to-r ${quizSet.tone} py-3.5 font-bold text-white shadow-[0_0_28px_rgba(56,189,248,0.25)] transition-all hover:scale-[1.01] active:scale-[0.99]`}
+            >
+              {idx + 1 >= total ? "See Results" : "Next Question"}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function EnglishResultsScreen({
+  quizSet,
+  score,
+  total,
+  onBack,
+  onRetry,
+}: {
+  quizSet: EnglishQuizSetMeta;
+  score: number;
+  total: number;
+  onBack: () => void;
+  onRetry: () => void;
+}) {
+  const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
+  const message =
+    score >= 27
+      ? "Excellent UASA practice. You are exam-ready for this set."
+      : score >= 21
+        ? "Good work. Review the explanations and aim for a stronger finish."
+        : score >= 15
+          ? "Steady progress. Revise the weak question types and retry."
+          : "Review the notes, then try this set again with a slower pace.";
+
+  return (
+    <div className="glass-strong relative overflow-hidden rounded-3xl p-8 text-center animate-fade-up sm:p-10">
+      {score === total && <Confetti count={160} />}
+      <div
+        className={`absolute left-1/2 top-0 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-gradient-to-br ${quizSet.tone} opacity-20 blur-3xl`}
+      />
+      <Sparkles className="mx-auto mb-4 h-12 w-12 text-nova-yellow animate-pulse" />
+      <p className="text-sm font-bold text-cyan-200">{quizSet.title}</p>
+      <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Quiz Complete</h2>
+      <p className="mt-2 text-muted-foreground">{message}</p>
+
+      <div className="mt-8 grid gap-3 sm:grid-cols-3">
+        <div className="glass rounded-2xl p-4">
+          <div className="text-3xl font-bold gradient-text">
+            {score}/{total}
+          </div>
+          <div className="mt-1 text-xs text-muted-foreground">Score</div>
+        </div>
+        <div className="glass rounded-2xl p-4">
+          <div className="text-3xl font-bold text-emerald-300">{percentage}%</div>
+          <div className="mt-1 text-xs text-muted-foreground">Accuracy</div>
+        </div>
+        <div className="glass rounded-2xl p-4">
+          <div className="text-3xl font-bold text-rose-300">{Math.max(0, total - score)}</div>
+          <div className="mt-1 text-xs text-muted-foreground">Review</div>
+        </div>
+      </div>
+
+      <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <button
+          onClick={onRetry}
+          className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-semibold transition hover:bg-white/10"
+        >
+          <RotateCcw className="h-4 w-4" /> Try Again
+        </button>
+        <button
+          onClick={onBack}
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3 font-semibold text-white transition-transform hover:scale-105"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to sets
         </button>
       </div>
     </div>
