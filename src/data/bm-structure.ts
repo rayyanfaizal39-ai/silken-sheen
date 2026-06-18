@@ -14,7 +14,8 @@ export type BMTopicType =
   | "workshop"
   | "model-karangan"
   | "peribahasa-bank"
-  | "essay-improvement";
+  | "essay-improvement"
+  | "penanda-wacana-lengkap";
 
 export interface BMSubtype {
   name: string;
@@ -841,6 +842,15 @@ const RESPONS_TERBUKA_TOPIC: BMTopic = {
   ],
 };
 
+const PENANDA_WACANA_LENGKAP_TOPIC: BMTopic = {
+  id: "penanda-wacana-lengkap",
+  label: "Penanda Wacana Lengkap (Nota Ultimate)",
+  topicType: "penanda-wacana-lengkap",
+  badge: "Nota Lengkap",
+  description:
+    "Rujukan lengkap semua penanda wacana mengikut 9 kategori — Pendahuluan, Isi, Huraian (Mengapa), Huraian (Bagaimana), Contoh, Kesan, Ungkapan, Penegas, dan Kesimpulan. Setiap frasa disertai penggunaan, contoh ayat, dan kosa kata sukar — lengkap dengan senarai paling selamat untuk UASA dan penanda aras tinggi.",
+};
+
 const WORKSHOP_TOPICS: BMTopic[] = [
   { id: "workshop-keluarga", label: "Kekeluargaan", topicType: "workshop", badge: "Bengkel",
     ideaBank: ["Kasih sayang ibu bapa", "Komunikasi terbuka", "Tanggungjawab ahli keluarga", "Masa bersama keluarga", "Menghormati orang tua"],
@@ -920,41 +930,16 @@ const MODEL_KARANGAN_TOPICS: BMTopic[] = [
     keyFeatures: ["Mulakan dengan sapaan: 'Yang Berbahagia...', 'Hadirin sekalian...'", "Isi: 3 isi utama dengan huraian", "Gunakan perkataan motivasi dan inspirasi", "Akhiri dengan terima kasih dan harapan"] },
 ];
 
-const PERIBAHASA_BANK_TOPICS: BMTopic[] = [
-  { id: "peribahasa-usaha", label: "Usaha & Semangat", topicType: "peribahasa-bank", badge: "Peribahasa",
-    peribuhasaItems: [
-      { text: "Sediakan payung sebelum hujan", maksud: "Bersedia sebelum sesuatu perkara berlaku", contohAyat: "Sebagai pelajar, kita perlu sediakan payung sebelum hujan dengan belajar jauh sebelum peperiksaan.", topikSesuai: ["Pendidikan", "Usaha", "Kejayaan"] },
-      { text: "Biar lambat asalkan selamat", maksud: "Bekerja dengan berhati-hati lebih baik daripada gopoh dan membuat kesilapan", contohAyat: "Dalam menyelesaikan tugasan, biar lambat asalkan selamat agar kualiti kerja terjamin.", topikSesuai: ["Kerja", "Keselamatan"] },
-      { text: "Berakit-rakit ke hulu, berenang-renang ke tepian", maksud: "Bersakit-sakit dahulu, bersenang-senang kemudian", contohAyat: "Pelajar rajin memahami peribahasa ini — berakit-rakit ke hulu, berenang-renang ke tepian.", topikSesuai: ["Pendidikan", "Usaha", "Kesabaran"] },
-    ] },
-  { id: "peribahasa-keluarga", label: "Keluarga & Kasih Sayang", topicType: "peribahasa-bank", badge: "Peribahasa",
-    peribuhasaItems: [
-      { text: "Bapa borek anak rintik", maksud: "Anak akan mengikuti tabiat atau perilaku ibu bapa mereka", contohAyat: "Tidak hairanlah Ahmad berjaya kerana bapa borek anak rintik — ayahnya seorang doktor yang gigih.", topikSesuai: ["Kekeluargaan", "Didikan"] },
-      { text: "Seperti aur dengan tebing", maksud: "Hubungan yang saling bergantung dan sokong-menyokong", contohAyat: "Hubungan antara ibu bapa dan anak-anak seharusnya seperti aur dengan tebing.", topikSesuai: ["Kekeluargaan", "Perpaduan"] },
-    ] },
-  { id: "peribahasa-pendidikan", label: "Pendidikan & Ilmu", topicType: "peribahasa-bank", badge: "Peribahasa",
-    peribuhasaItems: [
-      { text: "Melentur buluh biarlah dari rebungnya", maksud: "Mendidik anak perlu bermula dari kecil", contohAyat: "Guru-guru faham bahawa melentur buluh biarlah dari rebungnya dalam proses mendidik pelajar.", topikSesuai: ["Pendidikan", "Kekeluargaan", "Didikan"] },
-      { text: "Ilmu itu cahaya", maksud: "Ilmu pengetahuan memberi petunjuk dan jalan keluar dari kejahilan", contohAyat: "Ilmu itu cahaya yang menerangi kegelapan dan membawa manusia ke arah kemajuan.", topikSesuai: ["Pendidikan", "Ilmu"] },
-    ] },
-  { id: "peribahasa-kerjasama", label: "Kerjasama & Perpaduan", topicType: "peribahasa-bank", badge: "Peribahasa",
-    peribuhasaItems: [
-      { text: "Bersatu teguh, bercerai roboh", maksud: "Bersama kita kuat, berpisah kita lemah", contohAyat: "Dalam projek kelas, prinsip bersatu teguh bercerai roboh perlu dipegang oleh setiap ahli kumpulan.", topikSesuai: ["Perpaduan", "Kerjasama", "Kepimpinan"] },
-      { text: "Bulat air kerana pembetung, bulat manusia kerana muafakat", maksud: "Perpaduan tercapai melalui muafakat dan perbincangan", contohAyat: "Keputusan dibuat secara muafakat kerana bulat manusia kerana muafakat.", topikSesuai: ["Perpaduan", "Demokrasi"] },
-    ] },
-  { id: "peribahasa-kebersihan", label: "Kebersihan & Kesihatan", topicType: "peribahasa-bank", badge: "Peribahasa",
-    peribuhasaItems: [
-      { text: "Kebersihan itu separuh daripada iman", maksud: "Menjaga kebersihan adalah tuntutan agama dan amalan mulia", contohAyat: "Sekolah kita menjaga kebersihan dengan teliti kerana kebersihan itu separuh daripada iman.", topikSesuai: ["Kebersihan", "Amalan Baik"] },
-    ] },
-  { id: "peribahasa-alam", label: "Alam Sekitar", topicType: "peribahasa-bank", badge: "Peribahasa",
-    peribuhasaItems: [
-      { text: "Jaga alam, alam jaga kita", maksud: "Jika kita menjaga alam, alam juga akan menjaga kebajikan kita", contohAyat: "Petani tua itu sentiasa berpegang pada prinsip jaga alam, alam jaga kita dalam setiap tindakannya.", topikSesuai: ["Alam Sekitar", "Tanggungjawab"] },
-    ] },
-  { id: "peribahasa-kesihatan", label: "Kesihatan", topicType: "peribahasa-bank", badge: "Peribahasa",
-    peribuhasaItems: [
-      { text: "Mencegah lebih baik daripada mengubati", maksud: "Lebih baik mencegah penyakit daripada menunggu sakit untuk diubati", contohAyat: "Doktor mengingatkan pesakit bahawa mencegah lebih baik daripada mengubati.", topikSesuai: ["Kesihatan", "Amalan Baik"] },
-    ] },
-];
+const PERIBAHASA_BANK_LENGKAP_TOPIC: BMTopic = {
+  id: "peribahasa-bank-lengkap",
+  label: "Peribahasa Bank Lengkap (Nota Ultimate)",
+  topicType: "peribahasa-bank",
+  badge: "Nota Lengkap",
+  description:
+    "Rujukan peribahasa paling lengkap merentas 7 kategori — Usaha & Semangat, Keluarga & Kasih Sayang, Pendidikan & Ilmu, Kerjasama & Perpaduan, Kebersihan & Kesihatan, Alam Sekitar, dan Kesihatan. Setiap peribahasa disertai maksud, contoh ayat, tema karangan sesuai, dan tahap kesukaran — lengkap dengan 50 Peribahasa Wajib Hafal, jadual ikut tema karangan, Peribahasa Aras Tinggi, dan panduan penggunaan dalam karangan.",
+};
+
+const PERIBAHASA_BANK_TOPICS: BMTopic[] = [PERIBAHASA_BANK_LENGKAP_TOPIC];
 
 const ESSAY_IMPROVEMENT_TOPIC: BMTopic = {
   id: "essay-improvement",
@@ -1086,7 +1071,7 @@ export const BM_KERTAS: BMKertas[] = [
         bgGradient: "from-violet-500/15 to-purple-500/10",
         borderColor: "rgba(167,139,250,0.25)",
         description: "Formula 5 bahagian — pendahuluan, isi, huraian, contoh, penutup.",
-        topics: [RESPONS_TERBUKA_TOPIC],
+        topics: [RESPONS_TERBUKA_TOPIC, PENANDA_WACANA_LENGKAP_TOPIC],
       },
       {
         id: "workshop",

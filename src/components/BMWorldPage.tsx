@@ -47,6 +47,8 @@ import { BengkelKaranganHub } from "@/components/BengkelKaranganHub";
 import { getWorkshopContent } from "@/data/bm-workshop-hub";
 import { ModelKaranganHub } from "@/components/ModelKaranganHub";
 import { getModelKarangan } from "@/data/bm-model-karangan-hub";
+import { PenandaWacanaLengkapHub } from "@/components/PenandaWacanaLengkapHub";
+import { PeribahasaBankLengkapHub } from "@/components/PeribahasaBankLengkapHub";
 import {
   Accordion,
   AccordionContent,
@@ -1028,6 +1030,7 @@ function TopicCard({
       tatabahasa: "Tatabahasa", pemahaman: "Teknik", komsas: "KOMSAS", novel: "Novel",
       "ringkasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
       workshop: "Bengkel", "model-karangan": "Model", "peribahasa-bank": "Peribahasa", "essay-improvement": "Teknik",
+      "penanda-wacana-lengkap": "Nota Lengkap",
     };
     return map[t] ?? t;
   };
@@ -3494,6 +3497,16 @@ function TopicView({
   // Premium full-page exam prep hub for Karangan Panjang (Respons Terbuka)
   if (topic.id === "respons-terbuka") {
     return <KaranganPanjangHub topic={topic} color={hub.color} onBack={onBack} />;
+  }
+
+  // Ultimate Penanda Wacana reference — colourful collapsible cards
+  if (topic.id === "penanda-wacana-lengkap") {
+    return <PenandaWacanaLengkapHub topic={topic} color={hub.color} onBack={onBack} />;
+  }
+
+  // Ultimate Peribahasa Bank reference — search, filters, badges, collapsible categories
+  if (topic.id === "peribahasa-bank-lengkap") {
+    return <PeribahasaBankLengkapHub topic={topic} color={hub.color} onBack={onBack} />;
   }
 
   // Premium full-page writing workshop for Bengkel Karangan topics
