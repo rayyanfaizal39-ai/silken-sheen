@@ -134,6 +134,10 @@ import { mathF1C13MindMapDLP } from "@/data/math-f1-c13-mindmap-dlp";
 function englishFlashcardsFor(chapterKey: string) {
   return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey);
 }
+
+function bmFlashcardsFor(chapterKey: string) {
+  return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey);
+}
 function englishQuizzesFor(chapterKey: string) {
   return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey);
 }
@@ -750,6 +754,72 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: englishF1C4MindMap, title: "Writing — Craft Your Voice" },
     flashcards: englishFlashcardsFor("Chapter 4"),
     quiz: englishQuizzesFor("Chapter 4"),
+  },
+
+  // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
+  {
+    id: "bm-f1-karangan-pendek",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Karangan Pendek",
+    title: "Karangan Pendek",
+    flashcards: bmFlashcardsFor("Karangan Pendek"),
+  },
+  {
+    id: "bm-f1-karangan-panjang",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Karangan Panjang",
+    title: "Karangan Panjang",
+    flashcards: bmFlashcardsFor("Karangan Panjang"),
+  },
+  {
+    id: "bm-f1-penanda-wacana",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Penanda Wacana",
+    title: "Penanda Wacana",
+    flashcards: bmFlashcardsFor("Penanda Wacana"),
+  },
+  {
+    id: "bm-f1-peribahasa",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Peribahasa",
+    title: "Peribahasa Wajib Hafal",
+    flashcards: bmFlashcardsFor("Peribahasa"),
+  },
+  {
+    id: "bm-f1-komsas",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "KOMSAS",
+    title: "KOMSAS",
+    flashcards: bmFlashcardsFor("KOMSAS"),
+  },
+  {
+    id: "bm-f1-kosa-kata",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kosa Kata Menarik",
+    title: "Kosa Kata Menarik",
+    flashcards: bmFlashcardsFor("Kosa Kata Menarik"),
+  },
+  {
+    id: "bm-f1-frasa-menarik",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Frasa Menarik",
+    title: "Frasa Menarik",
+    flashcards: bmFlashcardsFor("Frasa Menarik"),
+  },
+  {
+    id: "bm-f1-tingkatkan-karangan",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Tingkatkan Karangan",
+    title: "Kemahiran Tingkatkan Karangan",
+    flashcards: bmFlashcardsFor("Tingkatkan Karangan"),
   },
 ];
 

@@ -40,6 +40,14 @@ import { scienceF1C8NotesBM as _scienceF1C8NotesBM } from "./science-f1-c8-notes
 import { scienceF1C8NotesDLP as _scienceF1C8NotesDLP } from "./science-f1-c8-notes-dlp";
 import { scienceF1C9NotesBM as _scienceF1C9NotesBM } from "./science-f1-c9-notes-bm";
 import { scienceF1C9NotesDLP as _scienceF1C9NotesDLP } from "./science-f1-c9-notes-dlp";
+import { bmFlashcardsKaranganPendek } from "./bm-flashcards-karangan-pendek";
+import { bmFlashcardsKaranganPanjang } from "./bm-flashcards-karangan-panjang";
+import { bmFlashcardsPenandaWacana } from "./bm-flashcards-penanda-wacana";
+import { bmFlashcardsPeribahasa } from "./bm-flashcards-peribahasa";
+import { bmFlashcardsKomsas } from "./bm-flashcards-komsas";
+import { bmFlashcardsKosaKata } from "./bm-flashcards-kosa-kata";
+import { bmFlashcardsFrasaMenarik } from "./bm-flashcards-frasa-menarik";
+import { bmFlashcardsTingkatkanKarangan } from "./bm-flashcards-tingkatkan-karangan";
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
 export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
@@ -14628,14 +14636,14 @@ export const flashcards: Flashcard[] = [
     front: "Past participle of 'go'?",
     back: "gone",
   },
-  {
-    id: "f8",
-    subjectId: "bm",
-    form: "Form 3",
-    chapter: "Bab 2",
-    front: "Apakah kata hubung?",
-    back: "Kata yang menghubungkan dua perkataan atau ayat. Contoh: dan, tetapi, atau.",
-  },
+  ...bmFlashcardsKaranganPendek,
+  ...bmFlashcardsKaranganPanjang,
+  ...bmFlashcardsPenandaWacana,
+  ...bmFlashcardsPeribahasa,
+  ...bmFlashcardsKomsas,
+  ...bmFlashcardsKosaKata,
+  ...bmFlashcardsFrasaMenarik,
+  ...bmFlashcardsTingkatkanKarangan,
 
   // Sejarah Form 1 Chapter 1 - Mengenali Sejarah
   {
@@ -25063,7 +25071,16 @@ export interface ChapterItem {
 }
 
 const otherSubjectChapters: Record<string, ChapterItem[]> = {
-  bm: [{ key: "Bab 2", label: "Bab 2: Kata Adjektif", available: true }],
+  bm: [
+    { key: "Karangan Pendek", label: "Karangan Pendek", available: true },
+    { key: "Karangan Panjang", label: "Karangan Panjang", available: true },
+    { key: "Penanda Wacana", label: "Penanda Wacana", available: true },
+    { key: "Peribahasa", label: "Peribahasa Wajib Hafal", available: true },
+    { key: "KOMSAS", label: "KOMSAS", available: true },
+    { key: "Kosa Kata Menarik", label: "Kosa Kata Menarik", available: true },
+    { key: "Frasa Menarik", label: "Frasa Menarik", available: true },
+    { key: "Tingkatkan Karangan", label: "Kemahiran Tingkatkan Karangan", available: true },
+  ],
   english: [{ key: "Unit 3", label: "Unit 3: Present Perfect Tense", available: true }],
   science: [
     { key: "Chapter 2", label: "Chapter 2: Cells & Living Things", available: true },

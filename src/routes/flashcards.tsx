@@ -27,7 +27,6 @@ import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
-import { BMWorldPage } from "@/components/BMWorldPage";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -3583,11 +3582,6 @@ function FlashcardsPage() {
   const fav = current ? progress.favorites.includes(current.id) : false;
   const subj = current ? subjects.find((s) => s.id === current.subjectId) : null;
   const remaining = queue.length - idx;
-
-  // ── BM has its own hub page ───────────────────────────────────────────────
-  if (subject === "bm" && !chapter) {
-    return <BMWorldPage onBack={() => setSubject(null)} />;
-  }
 
   // ── Subject World early-return ────────────────────────────────────────────
   if (subject && !needsScienceLang && !chapter) {
