@@ -1,4 +1,4 @@
-import { subjects, getSubjectChapters } from "@/data/content";
+import { subjects, getSubjectChapters, type Form } from "@/data/content";
 import { Lock, ArrowLeft, Sparkles, Clock, Gauge, NotebookPen, Brain, Layers } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import { getChapter } from "@/content/registry";
@@ -68,14 +68,16 @@ export function ChapterGrid({
   onSelect,
   onBack,
   scienceLang,
+  form = "Form 1",
 }: {
   subjectId: string;
   onSelect: (key: string, available: boolean) => void;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
+  form?: Form | "All";
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapters = getSubjectChapters(subjectId, scienceLang);
+  const chapters = getSubjectChapters(subjectId, scienceLang, form);
   const { progress } = useProgress();
 
   return (
@@ -207,14 +209,16 @@ export function ContentHeader({
   chapterKey,
   onBack,
   scienceLang,
+  form = "Form 1",
 }: {
   subjectId: string;
   chapterKey: string;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
+  form?: Form | "All";
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = getSubjectChapters(subjectId, scienceLang, form).find((c) => c.key === chapterKey);
   return (
     <div className="mb-5 animate-fade-up">
       <div className="mb-5 flex items-center justify-between flex-wrap gap-3">

@@ -3474,10 +3474,11 @@ function FlashcardsPage() {
   const isEnglishFlashcardDeck = subject === "english" && isEnglishFlashcardDeckId(chapter);
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
+  const subjectChaptersForForm = subject
+    ? getSubjectChapters(subject, scienceLang ?? undefined, form)
+    : [];
   const chapterMeta =
-    subject && chapter
-      ? getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === chapter)
-      : null;
+    subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
   const missingChapter = !!(subject && chapter && !chapterMeta && !isEnglishFlashcardDeck);
 
   const rawPool = useMemo(() => {
@@ -3510,6 +3511,11 @@ function FlashcardsPage() {
     mathFlashcardLang,
     mathFlashcardCategory,
   ]);
+  const hasUpperFormFlashcardPath = !!(
+    subject &&
+    (form === "Form 2" || form === "Form 3") &&
+    ((!chapter && subjectChaptersForForm.length > 0) || (chapter && rawPool.length > 0))
+  );
 
   const shouldSplitFlashcards = rawPool.length === FLASHCARD_SPLIT_SIZE;
   const pool = useMemo(() => {
@@ -3787,7 +3793,7 @@ function FlashcardsPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3")) {
+  if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormFlashcardPath) {
     return (
       <AcademyPageShell>
         <FormComingSoon
@@ -3836,6 +3842,7 @@ function FlashcardsPage() {
       <SubjectWorldPage
         subjectId={subject}
         scienceLang={scienceLang ?? undefined}
+        form={form}
         isBilingualSubject={isBilingualSubject}
         onSelectChapter={(key) => setChapter(key)}
         onBack={() => setSubject(null)}

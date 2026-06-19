@@ -57,6 +57,7 @@ import {
 import {
   SEJARAH_F2_CHAPTERS,
   SEJARAH_F2_OBJECTIVES,
+  getSejarahF2ObjectivesForChapter,
   getSejarahF2ObjectiveQuiz,
   type SejarahF2ObjectiveId,
 } from "@/data/sejarah-f2-objective-quizzes";
@@ -6184,8 +6185,13 @@ function QuizzesPage() {
   );
   const currentEnglishQuestion = englishShuffledQuestions?.[idx] ?? null;
   const selectedSejarahF2Objective = useMemo(
-    () => SEJARAH_F2_OBJECTIVES.find((objective) => objective.id === sejarahF2ObjectiveId) ?? null,
-    [sejarahF2ObjectiveId],
+    () =>
+      chapter
+        ? getSejarahF2ObjectivesForChapter(chapter).find(
+            (objective) => objective.id === sejarahF2ObjectiveId,
+          ) ?? null
+        : null,
+    [chapter, sejarahF2ObjectiveId],
   );
   const sejarahF2ObjectiveQuestions = useMemo(() => {
     if (!chapter || !sejarahF2ObjectiveId) return [];
@@ -8175,7 +8181,7 @@ function SejarahF2ObjectiveHub({
               </div>
 
               <div className="grid gap-3 md:grid-cols-3">
-                {SEJARAH_F2_OBJECTIVES.map((objective) => (
+                {getSejarahF2ObjectivesForChapter(chapter.key).map((objective) => (
                   <button
                     key={`${chapter.key}-${objective.id}`}
                     type="button"
@@ -8265,7 +8271,7 @@ function SejarahF2ObjectiveIntroScreen({
               </div>
               <div className="rounded-2xl bg-white/5 p-4 text-center">
                 <div className="text-2xl font-bold text-orange-200">
-                  {objective.id === "objective-3" ? "UASA" : objective.level}
+                  {objective.level}
                 </div>
                 <div className="mt-1 text-xs text-muted-foreground">Difficulty</div>
               </div>
@@ -8378,13 +8384,13 @@ function SejarahF2QuizScreen({
           </div>
         </div>
 
-        <div className="px-6 pb-4 pt-6">
-          <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
-            {current.question}
+        <div className="px-5 pb-3 pt-5 sm:px-6">
+          <h2 className="font-display text-lg font-bold leading-snug text-white sm:text-2xl">
+            {idx + 1}. {current.question.replace(/^\s*\d+\.\s*/, "")}
           </h2>
         </div>
 
-        <div className="grid gap-2.5 px-6 pb-6 sm:grid-cols-2">
+        <div className="grid gap-2 px-4 pb-5 sm:grid-cols-2 sm:px-6">
           {current.options.map((option, optionIndex) => {
             const isAnswer = optionIndex === current.answerIndex;
             const isPicked = optionIndex === selected;
@@ -8399,29 +8405,29 @@ function SejarahF2QuizScreen({
                 disabled={reveal}
                 aria-pressed={isPicked}
                 aria-label={`Answer ${letter}: ${option}`}
-                className={`quiz-answer-button group relative flex min-h-[4.5rem] items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70 ${
+                className={`quiz-answer-button group relative flex min-h-[3.75rem] items-center gap-3 overflow-hidden rounded-xl border p-3 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70 ${
                   reveal && isAnswer
-                    ? "border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
+                    ? "scale-[1.01] border-emerald-300/70 bg-emerald-400/18 shadow-[0_0_26px_rgba(52,211,153,0.24)]"
                     : reveal && isPicked && !isAnswer
-                      ? "border-rose-400/50 bg-rose-500/15 shadow-[0_0_16px_rgba(239,68,68,0.15)]"
+                      ? "scale-[1.01] border-rose-300/70 bg-rose-500/16 shadow-[0_0_22px_rgba(244,63,94,0.2)]"
                       : reveal
                         ? "border-white/[0.05] bg-white/[0.02] opacity-50"
-                        : "border-white/[0.09] bg-white/[0.04] hover:-translate-y-0.5 hover:border-orange-300/40 hover:bg-white/[0.08]"
+                        : "border-white/[0.09] bg-white/[0.04] hover:-translate-y-1 hover:scale-[1.01] hover:border-orange-300/45 hover:bg-white/[0.08] hover:shadow-[0_12px_28px_rgba(251,146,60,0.12)] active:scale-[0.99]"
                 }`}
               >
                 <span
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black transition-all ${
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-black transition-all ${
                     reveal && isAnswer
-                      ? "bg-emerald-400 text-[#050816]"
+                      ? "bg-emerald-300 text-[#050816] shadow-[0_0_18px_rgba(52,211,153,0.45)]"
                       : reveal && isPicked && !isAnswer
-                        ? "bg-rose-400 text-white"
+                        ? "bg-rose-400 text-white shadow-[0_0_18px_rgba(244,63,94,0.35)]"
                         : "bg-white/[0.08] text-white/60 group-hover:bg-orange-300/20 group-hover:text-orange-200"
                   }`}
                 >
                   {letter}
                 </span>
                 <span
-                  className={`flex-1 text-sm font-semibold leading-6 ${
+                  className={`flex-1 text-[13px] font-bold leading-5 sm:text-sm ${
                     reveal && isAnswer
                       ? "text-emerald-100"
                       : reveal && isPicked && !isAnswer
@@ -8501,14 +8507,30 @@ function SejarahF2ResultsScreen({
   const chapter = SEJARAH_F2_CHAPTERS.find((item) => item.key === chapterKey);
   const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
   const passed = percentage >= 50;
-  const message =
+  const chapterOneRating =
     percentage >= 90
-      ? "Cemerlang. Anda sangat bersedia untuk set ini."
+      ? { title: "Cemerlang 🌟", color: "text-yellow-300" }
       : percentage >= 70
-        ? "Bagus. Teruskan ulang kaji untuk kukuhkan fakta."
+        ? { title: "Baik 👍", color: "text-emerald-300" }
         : percentage >= 50
-          ? "Lulus. Semak semula jawapan salah dan cuba lagi."
-          : "Belum lulus. Ulang kaji nota bab ini dan cuba semula.";
+          ? { title: "Memuaskan 📚", color: "text-cyan-300" }
+          : { title: "Perlu Ulang Kaji 🔄", color: "text-rose-300" };
+  const message =
+    chapterKey === "Chapter 1"
+      ? percentage >= 90
+        ? "Cemerlang. Anda sangat menguasai Bab 1."
+        : percentage >= 70
+          ? "Baik. Teruskan ulang kaji untuk kukuhkan kefahaman."
+          : percentage >= 50
+            ? "Memuaskan. Semak semula jawapan salah dan cuba lagi."
+            : "Perlu ulang kaji. Baca semula fakta utama Bab 1 dan cuba lagi."
+      : percentage >= 90
+        ? "Cemerlang. Anda sangat bersedia untuk set ini."
+        : percentage >= 70
+          ? "Bagus. Teruskan ulang kaji untuk kukuhkan fakta."
+          : percentage >= 50
+            ? "Lulus. Semak semula jawapan salah dan cuba lagi."
+            : "Belum lulus. Ulang kaji nota bab ini dan cuba semula.";
 
   return (
     <div className="glass-strong relative overflow-hidden rounded-3xl p-8 text-center animate-fade-up sm:p-10">
@@ -8518,8 +8540,14 @@ function SejarahF2ResultsScreen({
       />
       <Sparkles className="mx-auto mb-4 h-12 w-12 text-nova-yellow animate-pulse" />
       <p className="text-sm font-bold text-orange-200">{chapter?.label ?? chapterKey}</p>
-      <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
-        {passed ? "Pass" : "Fail"} • {objective.title}
+      <h2
+        className={`mt-2 font-display text-3xl font-bold sm:text-4xl ${
+          chapterKey === "Chapter 1" ? chapterOneRating.color : ""
+        }`}
+      >
+        {chapterKey === "Chapter 1"
+          ? `${chapterOneRating.title} • ${objective.title}`
+          : `${passed ? "Pass" : "Fail"} • ${objective.title}`}
       </h2>
       <p className="mt-2 text-muted-foreground">{message}</p>
 

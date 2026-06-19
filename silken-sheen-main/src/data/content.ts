@@ -24750,7 +24750,7 @@ export const sejarahForm1Chapters: SejarahChapter[] = [
 ];
 
 export function sejarahChapterFromId(id: string): number | null {
-  const m = id.match(/^sej-f1-c(\d+)-/);
+  const m = id.match(/^sej-f[123]-c(\d+)-/);
   return m ? parseInt(m[1], 10) : null;
 }
 
@@ -24840,7 +24840,24 @@ export const englishCategories = [
   { id: 4, name: "Writing" },
 ];
 
-export function getSubjectChapters(subjectId: string, scienceLang?: "bm" | "dlp"): ChapterItem[] {
+export function getSubjectChapters(
+  subjectId: string,
+  scienceLang?: "bm" | "dlp",
+  form: Form | "All" = "Form 1",
+): ChapterItem[] {
+  if (form === "Form 2" && subjectId === "sejarah") {
+    return [
+      {
+        key: "Chapter 1",
+        label: "Chapter 1: Kerajaan Alam Melayu",
+        available: true,
+        isNew: true,
+      },
+    ];
+  }
+
+  if (form !== "Form 1" && form !== "All") return [];
+
   if (subjectId === "sejarah") {
     return sejarahForm1Chapters.map((c) => ({
       key: `Chapter ${c.num}`,

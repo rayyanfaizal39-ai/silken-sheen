@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
-import { subjects, forms, flashcards, getItemChapterKey, getSubjectChapters } from "@/data/content";
+import {
+  subjects,
+  forms,
+  flashcards,
+  getItemChapterKey,
+  getSubjectChapters,
+  type Form,
+} from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import {
   Heart,
@@ -29,6 +36,7 @@ import { AcademyHero, AcademyPageShell } from "@/components/AcademyPage";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
+type FormFilter = Form | "All";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -1432,7 +1440,7 @@ function FlashcardsPage() {
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(null);
-  const [form, setForm] = useState(initialSearch.form);
+  const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
   const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
   const [mathFlashcardCategory, setMathFlashcardCategory] =
     useState<MathFlashcardCategoryId | null>(null);
@@ -1479,7 +1487,7 @@ function FlashcardsPage() {
 
   const chapterMeta =
     subject && chapter
-      ? getSubjectChapters(subject, scienceLang ?? undefined).find((c) => c.key === chapter)
+      ? getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === chapter)
       : null;
   const missingChapter = !!(subject && chapter && !chapterMeta);
 
@@ -1854,6 +1862,7 @@ function FlashcardsPage() {
           <ChapterGrid
             subjectId={subject}
             scienceLang={scienceLang ?? undefined}
+            form={form}
             onSelect={(key) => {
               setChapter(key);
               setMathFlashcardLang(null);
@@ -1925,6 +1934,7 @@ function FlashcardsPage() {
             subjectId={subject}
             chapterKey={chapter}
             scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+            form={form}
             onBack={() => {
               if (hasMathFlashcards) {
                 setMathFlashcardCategory(null);
@@ -1991,7 +2001,7 @@ function FlashcardsPage() {
               <select
                 value={form}
                 onChange={(e) => {
-                  setForm(e.target.value);
+                  setForm(e.target.value as FormFilter);
                   resetSession();
                 }}
                 className="px-4 py-2 rounded-full bg-white/5 text-sm"
