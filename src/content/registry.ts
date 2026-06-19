@@ -52,6 +52,7 @@ import { mathF1C12NotesDLP } from "@/content/form1/math/chapter-12/notes-dlp";
 import { mathF1C13NotesBM } from "@/content/form1/math/chapter-13/notes-bm";
 import { mathF1C13NotesDLP } from "@/content/form1/math/chapter-13/notes-dlp";
 import { sejarahF2C1Notes } from "@/content/form2/sejarah/chapter-1/notes";
+import { sejarahF2C2Notes } from "@/content/form2/sejarah/chapter-2/notes";
 import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
 import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
 import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
@@ -207,6 +208,13 @@ function geographyQuizzesFor(chapterNum: number) {
   return allQuizzes.filter((q) => q.subjectId === "geography" && q.chapter === chapterKey);
 }
 
+function sejarahF2FlashcardsFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allFlashcards.filter(
+    (f) => f.subjectId === "sejarah" && f.form === "Form 2" && f.chapter === chapterKey,
+  );
+}
+
 function geography(
   chapterNum: number,
   mindMapData?: MindNode,
@@ -263,6 +271,7 @@ export const chapters: ChapterContent[] = [
     title: "Kerajaan Alam Melayu",
     notes: sejarahF2C1Notes,
     mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu yang Masyhur" },
+    flashcards: sejarahF2FlashcardsFor(1),
   },
   {
     id: "sejarah-f2-c2",
@@ -270,10 +279,12 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 2",
     title: "Sistem Pemerintahan dan Kegiatan Ekonomi",
+    notes: sejarahF2C2Notes,
     mindMap: {
       data: sejarahF2C2MindMap,
       title: "Sistem Pemerintahan dan Ekonomi Kerajaan Alam Melayu",
     },
+    flashcards: sejarahF2FlashcardsFor(2),
   },
   {
     id: "sejarah-f2-c3",

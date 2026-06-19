@@ -24853,6 +24853,12 @@ export function getSubjectChapters(
         available: true,
         isNew: true,
       },
+      {
+        key: "Chapter 2",
+        label: "Chapter 2: Sistem Pemerintahan dan Kegiatan Ekonomi",
+        available: true,
+        isNew: true,
+      },
     ];
   }
 

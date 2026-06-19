@@ -29,6 +29,7 @@ import { mathF1C2NotesBM } from "@/data/math-f1-c2-notes-bm";
 import { mathF1C2NotesDLP } from "@/data/math-f1-c2-notes-dlp";
 import { mathF1C3NotesBM } from "@/data/math-f1-c3-notes-bm";
 import { mathF1C3NotesDLP } from "@/data/math-f1-c3-notes-dlp";
+import { sejarahF2C2Notes } from "@/content/form2/sejarah/chapter-2/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -163,6 +164,16 @@ export const chapters: ChapterContent[] = [
     tamadunIslamSumbanganMindMap,
     "Tamadun Islam dan Sumbangannya",
   ),
+
+  // Sejarah Form 2
+  {
+    id: "sejarah-f2-c2",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Sistem Pemerintahan dan Kegiatan Ekonomi",
+    notes: sejarahF2C2Notes,
+  },
 
   // Geography Form 1
   ...Array.from({ length: 13 }, (_, index) => geography(index + 1)),

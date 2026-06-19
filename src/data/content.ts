@@ -48,6 +48,7 @@ import { bmFlashcardsKomsas } from "./bm-flashcards-komsas";
 import { bmFlashcardsKosaKata } from "./bm-flashcards-kosa-kata";
 import { bmFlashcardsFrasaMenarik } from "./bm-flashcards-frasa-menarik";
 import { bmFlashcardsTingkatkanKarangan } from "./bm-flashcards-tingkatkan-karangan";
+import { sejarahF2C2Flashcards } from "./sejarah-f2-c2-flashcards";
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
 export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
@@ -15131,6 +15132,7 @@ export const flashcards: Flashcard[] = [
     front: "Apakah tujuan Funan berhubung dengan India pada abad ketiga?",
     back: "Memperkukuh hubungan perdagangan dan hubungan keagamaan.",
   },
+  ...sejarahF2C2Flashcards,
 
   // Sejarah Form 1 Chapter 1 - Mengenali Sejarah
   {
@@ -25652,6 +25654,12 @@ export function getSubjectChapters(
       {
         key: "Chapter 1",
         label: "Chapter 1: Kerajaan Alam Melayu",
+        available: true,
+        isNew: true,
+      },
+      {
+        key: "Chapter 2",
+        label: "Chapter 2: Sistem Pemerintahan dan Kegiatan Ekonomi",
         available: true,
         isNew: true,
       },

@@ -79,6 +79,20 @@ const FLASHCARD_SET_OPTIONS: Array<{ index: FlashcardSetIndex; title: string; ra
   { index: 2, title: "Flashcards Set 3", range: "Cards 41-60" },
 ];
 
+const SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS: Array<{
+  index: FlashcardSetIndex;
+  title: string;
+  range: string;
+}> = [
+  { index: 0, title: "Sistem Pemerintahan", range: "Cards 1-20" },
+  { index: 1, title: "Pertanian dan Perdagangan", range: "Cards 21-40" },
+  {
+    index: 2,
+    title: "Hasil Hutan, Laut, Perlombongan dan Pembuatan",
+    range: "Cards 41-60",
+  },
+];
+
 function vibrate(pattern: number | number[], enabled: boolean) {
   if (!enabled) return;
   try {
@@ -3364,10 +3378,12 @@ function EnglishFlashcardDeckPicker({
 
 function FlashcardSetPicker({
   title,
+  setOptions = FLASHCARD_SET_OPTIONS,
   onBack,
   onSelect,
 }: {
   title: string;
+  setOptions?: Array<{ index: FlashcardSetIndex; title: string; range: string }>;
   onBack: () => void;
   onSelect: (setIndex: FlashcardSetIndex) => void;
 }) {
@@ -3392,7 +3408,7 @@ function FlashcardSetPicker({
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {FLASHCARD_SET_OPTIONS.map((set, index) => (
+          {setOptions.map((set, index) => (
             <button
               key={set.index}
               onClick={() => onSelect(set.index)}
@@ -3518,6 +3534,10 @@ function FlashcardsPage() {
   );
 
   const shouldSplitFlashcards = rawPool.length === FLASHCARD_SPLIT_SIZE;
+  const flashcardSetOptions =
+    subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
+      ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
+      : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     const setCards =
       shouldSplitFlashcards && selectedFlashcardSet !== null
@@ -4052,6 +4072,7 @@ function FlashcardsPage() {
       ) : shouldSplitFlashcards && selectedFlashcardSet === null ? (
         <FlashcardSetPicker
           title={flashcardSetTitle}
+          setOptions={flashcardSetOptions}
           onBack={() => {
             if (hasMathFlashcards) {
               setMathFlashcardCategory(null);

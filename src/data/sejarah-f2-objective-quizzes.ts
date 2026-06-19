@@ -74,6 +74,17 @@ export const SEJARAH_F2_OBJECTIVES: Array<{
 ];
 
 export function getSejarahF2ObjectivesForChapter(chapterKey: string) {
+  if (chapterKey === "Chapter 2") {
+    return [
+      {
+        ...SEJARAH_F2_OBJECTIVES[0],
+        title: "Objektif 1",
+        level: "Mudah",
+        purpose: ["Sistem pemerintahan", "Pertanian dan perdagangan", "Hasil ekonomi"],
+      },
+    ];
+  }
+
   if (chapterKey !== "Chapter 1") return SEJARAH_F2_OBJECTIVES;
 
   return [
@@ -212,6 +223,189 @@ const CHAPTER_1_OBJECTIVE_C_QUESTIONS: SejarahF2ObjectiveQuestion[] = [
   question("Mengapakah kerajaan Alam Melayu masyhur?", ["Kerana tidak mempunyai pusat pemerintahan", "Kerana memiliki pentadbiran, ekonomi dan hubungan luar yang berkembang", "Kerana menolak perdagangan", "Kerana semua kerajaan berada di pedalaman sahaja"], 1, "Kerajaan Alam Melayu masyhur kerana pentadbiran, ekonomi dan hubungan luarnya berkembang."),
 ];
 
+const CHAPTER_2_OBJECTIVE_1_QUESTIONS: SejarahF2ObjectiveQuestion[] = [
+  question(
+    "Apakah sistem pemerintahan yang diamalkan oleh kerajaan Alam Melayu?",
+    ["Sistem republik", "Sistem beraja", "Sistem demokrasi", "Sistem pilihan raya"],
+    1,
+    "Kerajaan Alam Melayu mengamalkan sistem pemerintahan beraja.",
+  ),
+  question(
+    "Siapakah yang berada di puncak pemerintahan kerajaan Alam Melayu?",
+    ["Pembesar pusat", "Golongan agama", "Raja", "Ketua kampung"],
+    2,
+    "Raja berada di puncak pemerintahan dan dibantu oleh pembesar.",
+  ),
+  question(
+    "Apakah gelaran raja Funan yang bermaksud Raja Gunung?",
+    ["Kurung Bnam", "Dewaraja", "Sri Bathara", "Rajakumara"],
+    0,
+    "Kurung Bnam ialah gelaran raja Funan yang bermaksud Raja Gunung.",
+  ),
+  question(
+    "Berapakah jumlah wilayah dalam kerajaan Funan?",
+    ["Lima wilayah", "Enam wilayah", "Lapan wilayah", "Tujuh wilayah"],
+    3,
+    "Kerajaan Funan dibahagikan kepada tujuh wilayah.",
+  ),
+  question(
+    "Kerajaan manakah yang menggunakan gelaran Rajadhiraja dan mengaitkan raja dengan Dewa Siva?",
+    ["Majapahit", "Champa", "Kedah Tua", "Gangga Nagara"],
+    1,
+    "Raja Champa menggunakan gelaran Rajadhiraja dan dikaitkan dengan Dewa Siva.",
+  ),
+  question(
+    "Apakah maksud Yuvaraja dalam sistem pemerintahan Srivijaya?",
+    ["Raja Muda", "Putera Raja", "Putera Mahkota", "Ketua wilayah"],
+    2,
+    "Yuvaraja bermaksud Putera Mahkota dalam sistem pemerintahan Srivijaya.",
+  ),
+  question(
+    "Apakah gelaran yang digunakan oleh raja-raja Angkor?",
+    ["Dewaraja", "Rajakumara", "Raja Kecil", "Kurung Bnam"],
+    0,
+    "Raja-raja Angkor menggunakan gelaran Dewaraja.",
+  ),
+  question(
+    "Apakah majlis penasihat diraja dalam kerajaan Majapahit?",
+    ["Pradatuan", "Kedatuan", "Raja Kecil", "Sapta Prabu"],
+    3,
+    "Sapta Prabu ialah Majlis Penasihat Diraja dalam kerajaan Majapahit.",
+  ),
+  question(
+    "Apakah kedudukan Kedah Tua dalam pentadbiran Srivijaya?",
+    ["Sebahagian Pradatuan", "Pusat Dewaraja", "Wilayah Majapahit", "Daerah Angkor"],
+    0,
+    "Kedah Tua menjadi sebahagian Pradatuan Srivijaya.",
+  ),
+  question(
+    "Apakah tanggungjawab raja Gangga Nagara?",
+    ["Membina baray", "Menjaga keselamatan dan memajukan perdagangan", "Mengutip sarang burung", "Menanam bunga cengkih"],
+    1,
+    "Raja Gangga Nagara berperanan memajukan perdagangan dan bertanggungjawab terhadap keselamatan.",
+  ),
+  question(
+    "Apakah tanaman utama masyarakat kerajaan Alam Melayu?",
+    ["Tebu", "Kelapa", "Padi", "Bijan"],
+    2,
+    "Padi ialah tanaman utama masyarakat kerajaan Alam Melayu.",
+  ),
+  question(
+    "Apakah fungsi baray dalam kerajaan Angkor?",
+    ["Menyimpan air", "Menyimpan emas", "Tempat berjual beli", "Tempat membuat tembikar"],
+    0,
+    "Baray digunakan untuk menyimpan air bagi kegiatan pertanian.",
+  ),
+  question(
+    "Tasik manakah yang membekalkan air untuk pertanian di Angkor?",
+    ["Tasik Chini", "Tasik Bera", "Tasik Kenyir", "Tonle Sap"],
+    3,
+    "Tonle Sap membekalkan air untuk kegiatan pertanian di Angkor.",
+  ),
+  question(
+    "Apakah jawatan yang terdapat di Champa bagi mengurus air di kampung?",
+    ["Ketua Air", "Raja Kecil", "Yuvaraja", "Tuhan Vatakvurah"],
+    0,
+    "Champa mempunyai Ketua Air di setiap kampung.",
+  ),
+  question(
+    "Di manakah bunga cengkih ditanam?",
+    ["Pulau Banda", "Kepulauan Maluku", "Sumatera", "Jawa"],
+    1,
+    "Bunga cengkih ditanam di Kepulauan Maluku.",
+  ),
+  question(
+    "Apakah pelabuhan kerajaan Srivijaya?",
+    ["Oc Eo", "Yasodharapura", "Palembang", "Pangkalan Bujang"],
+    2,
+    "Pelabuhan kerajaan Srivijaya ialah Palembang.",
+  ),
+  question(
+    "Apakah pelabuhan kerajaan Funan?",
+    ["Oc Eo", "Tuban", "Sidayu", "Pangkalan"],
+    0,
+    "Pelabuhan kerajaan Funan ialah Oc Eo.",
+  ),
+  question(
+    "Apakah barang dagangan kerajaan Funan?",
+    ["Beras, emas, perak dan gading gajah", "Damar, kapur barus, kayu cendana dan gaharu", "Emas, bijih timah dan rempah-ratus", "Garam, gula, minyak dan mi beras"],
+    1,
+    "Funan memperdagangkan damar, kapur barus, kayu cendana dan gaharu.",
+  ),
+  question(
+    "Kerajaan manakah yang mempunyai pelabuhan Tuban, Sidayu, Gresik dan Surabaya?",
+    ["Champa", "Kedah Tua", "Majapahit", "Gangga Nagara"],
+    2,
+    "Tuban, Sidayu, Gresik dan Surabaya ialah pelabuhan kerajaan Majapahit.",
+  ),
+  question(
+    "Apakah kesan perkembangan perdagangan kepada masyarakat Alam Melayu?",
+    ["Menghapuskan pelabuhan", "Menghentikan pertanian", "Menutup laluan laut", "Pembuatan kapal berkembang"],
+    3,
+    "Perdagangan menyebabkan pembuatan kapal berkembang dan ilmu pelayaran dikuasai.",
+  ),
+  question(
+    "Apakah kegunaan gaharu?",
+    ["Bahan pewangi dan perubatan", "Barang perhiasan", "Bahan makanan laut", "Membuat mi beras"],
+    0,
+    "Gaharu digunakan sebagai bahan pewangi dan perubatan.",
+  ),
+  question(
+    "Di manakah sarang burung layang-layang banyak didapati?",
+    ["Sumatera dan Borneo", "Utara Pulau Borneo", "Lembah Sungai Mekong", "Phnom Dek"],
+    1,
+    "Sarang burung layang-layang banyak didapati di utara Pulau Borneo.",
+  ),
+  question(
+    "Apakah kegunaan rotan?",
+    ["Bahan pewangi", "Barang perhiasan", "Bahan binaan dan barang kraf tangan", "Bahan membuat garam"],
+    2,
+    "Rotan digunakan sebagai bahan binaan dan barang kraf tangan.",
+  ),
+  question(
+    "Di manakah kapur barus banyak ditemukan?",
+    ["Hue dan Indrapura", "Maluku dan Pulau Banda", "Palembang dan Hulu Musi", "Sumatera dan Borneo"],
+    3,
+    "Kapur barus banyak ditemukan di Sumatera dan Borneo.",
+  ),
+  question(
+    "Apakah hasil laut yang dijadikan barang perhiasan?",
+    ["Mutiara", "Gamat", "Rumpai laut", "Rotan"],
+    0,
+    "Mutiara dijadikan barang perhiasan.",
+  ),
+  question(
+    "Apakah kegunaan gamat?",
+    ["Bahan pewangi", "Bahan makanan dan perubatan", "Bahan binaan", "Barang perhiasan"],
+    1,
+    "Gamat dijadikan bahan makanan dan perubatan.",
+  ),
+  question(
+    "Apakah hasil perlombongan masyarakat kerajaan Alam Melayu?",
+    ["Gaharu, rotan dan damar", "Padi, pisang dan tebu", "Emas, perak dan bijih besi", "Gamat, rumpai laut dan mutiara"],
+    2,
+    "Masyarakat kerajaan Alam Melayu menjalankan perlombongan emas, perak dan bijih besi.",
+  ),
+  question(
+    "Di manakah kawasan perlombongan bijih besi yang dinyatakan dalam Bab 2?",
+    ["Pulau Banda", "Tonle Sap", "Sungai Brantas", "Phnom Dek"],
+    3,
+    "Phnom Dek ialah kawasan perlombongan bijih besi.",
+  ),
+  question(
+    "Apakah contoh kegiatan pembuatan masyarakat kerajaan Alam Melayu?",
+    ["Tembikar", "Bunga cengkih", "Sumbu badak", "Lada hitam"],
+    0,
+    "Tembikar ialah antara hasil pembuatan masyarakat kerajaan Alam Melayu.",
+  ),
+  question(
+    "Apakah hasil pembuatan yang berkaitan dengan kelapa?",
+    ["Gaharu", "Cuka kelapa", "Mutiara", "Bijih besi"],
+    1,
+    "Cuka kelapa ialah antara hasil pembuatan masyarakat kerajaan Alam Melayu.",
+  ),
+];
+
 const CHAPTER_FACTS: Record<string, Fact[]> = {
   "Chapter 2": [
     fact("Sistem Pemerintahan Beraja", "Siapakah ketua utama dalam sistem pemerintahan kerajaan Alam Melayu?", "Raja", ["Syahbandar", "Petani", "Pedagang"], "Raja menjadi pemerintah tertinggi dan lambang kuasa kerajaan."),
@@ -301,6 +495,11 @@ export function getSejarahF2ObjectiveQuiz(
     if (objectiveId === "objective-1") return CHAPTER_1_OBJECTIVE_A_QUESTIONS;
     if (objectiveId === "objective-2") return CHAPTER_1_OBJECTIVE_B_QUESTIONS;
     if (objectiveId === "objective-3") return CHAPTER_1_OBJECTIVE_C_QUESTIONS;
+    return [];
+  }
+
+  if (chapterKey === "Chapter 2") {
+    if (objectiveId === "objective-1") return CHAPTER_2_OBJECTIVE_1_QUESTIONS;
     return [];
   }
 

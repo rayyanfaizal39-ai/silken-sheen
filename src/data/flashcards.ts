@@ -25,6 +25,7 @@ import { scienceF1C8FlashcardsBM } from "./science-f1-c8-flashcards-bm";
 import { scienceF1C8FlashcardsDLP } from "./science-f1-c8-flashcards-dlp";
 import { scienceF1C9FlashcardsBM } from "./science-f1-c9-flashcards-bm";
 import { scienceF1C9FlashcardsDLP } from "./science-f1-c9-flashcards-dlp";
+import { sejarahF2C2Flashcards } from "./sejarah-f2-c2-flashcards";
 
 export const flashcards: Flashcard[] = [
   {
@@ -2723,6 +2724,7 @@ export const flashcards: Flashcard[] = [
     front: "Apakah tujuan Funan berhubung dengan India pada abad ketiga?",
     back: "Memperkukuh hubungan perdagangan dan hubungan keagamaan.",
   },
+  ...sejarahF2C2Flashcards,
 
   // Sejarah Form 1 Chapter 1 - Mengenali Sejarah
   {

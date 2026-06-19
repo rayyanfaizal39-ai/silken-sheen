@@ -8154,8 +8154,8 @@ function SejarahF2ObjectiveHub({
             Chapter-Based <span className="gradient-text">Quiz System</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
-            Setiap bab mempunyai Objektif 1, Objektif 2 dan Objektif 3. Setiap set mengandungi
-            30 soalan objektif dengan susunan soalan dan jawapan secara rawak.
+            Pilih objektif yang tersedia untuk setiap bab. Setiap set mengandungi 30 soalan
+            objektif dengan susunan soalan dan jawapan secara rawak.
           </p>
         </div>
 
@@ -8176,7 +8176,7 @@ function SejarahF2ObjectiveHub({
                   </h3>
                 </div>
                 <span className="w-fit rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-xs font-bold text-amber-100">
-                  90 Questions
+                  {getSejarahF2ObjectivesForChapter(chapter.key).length * 30} Questions
                 </span>
               </div>
 
