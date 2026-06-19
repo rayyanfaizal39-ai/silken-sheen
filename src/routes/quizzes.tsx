@@ -54,13 +54,6 @@ import {
   type EnglishQuizSetId,
   type EnglishQuizSetMeta,
 } from "@/data/english-f1-quiz-sets";
-import {
-  SEJARAH_F2_CHAPTERS,
-  SEJARAH_F2_OBJECTIVES,
-  getSejarahF2ObjectivesForChapter,
-  getSejarahF2ObjectiveQuiz,
-  type SejarahF2ObjectiveId,
-} from "@/data/sejarah-f2-objective-quizzes";
 
 export const Route = createFileRoute("/quizzes")({
   head: () => ({
@@ -6126,14 +6119,6 @@ function QuizzesPage() {
   const [englishShuffledQuestions, setEnglishShuffledQuestions] = useState<
     ShuffledQuestion[] | null
   >(null);
-  const [sejarahF2ObjectiveId, setSejarahF2ObjectiveId] = useState<SejarahF2ObjectiveId | null>(
-    null,
-  );
-  const [sejarahF2ObjectivePhase, setSejarahF2ObjectivePhase] =
-    useState<MathObjectivePhase>("select");
-  const [sejarahF2ShuffledQuestions, setSejarahF2ShuffledQuestions] = useState<
-    ShuffledQuestion[] | null
-  >(null);
   const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
   const [timeLeft, setTimeLeft] = useState(0);
   const comboTimer = useRef<number | null>(null);
@@ -6145,9 +6130,7 @@ function QuizzesPage() {
   const isSejarahF2Quiz = subject === "sejarah" && form === "Form 2";
   const chapterMeta =
     subject && chapter
-      ? isSejarahF2Quiz
-        ? SEJARAH_F2_CHAPTERS.find((c) => c.key === chapter)
-        : getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === chapter)
+      ? getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === chapter)
       : null;
   const missingChapter = !!(subject && chapter && !chapterMeta);
 
@@ -6184,20 +6167,6 @@ function QuizzesPage() {
     [englishSetId],
   );
   const currentEnglishQuestion = englishShuffledQuestions?.[idx] ?? null;
-  const selectedSejarahF2Objective = useMemo(
-    () =>
-      chapter
-        ? getSejarahF2ObjectivesForChapter(chapter).find(
-            (objective) => objective.id === sejarahF2ObjectiveId,
-          ) ?? null
-        : null,
-    [chapter, sejarahF2ObjectiveId],
-  );
-  const sejarahF2ObjectiveQuestions = useMemo(() => {
-    if (!chapter || !sejarahF2ObjectiveId) return [];
-    return getSejarahF2ObjectiveQuiz(chapter, sejarahF2ObjectiveId);
-  }, [chapter, sejarahF2ObjectiveId]);
-  const currentSejarahF2Question = sejarahF2ShuffledQuestions?.[idx] ?? null;
 
   // Countdown timer per question (only when timer mode enabled)
   useEffect(() => {
@@ -6368,9 +6337,6 @@ function QuizzesPage() {
     setEnglishSetId(null);
     setEnglishPhase("select");
     setEnglishShuffledQuestions(null);
-    setSejarahF2ObjectiveId(null);
-    setSejarahF2ObjectivePhase("select");
-    setSejarahF2ShuffledQuestions(null);
   }
 
   function resetRegularQuiz() {
@@ -6388,7 +6354,6 @@ function QuizzesPage() {
     setShuffledPool(null);
     setMathShuffledQuestions(null);
     setEnglishShuffledQuestions(null);
-    setSejarahF2ShuffledQuestions(null);
   }
 
   function startMathObjectiveQuiz() {
@@ -6551,86 +6516,6 @@ function QuizzesPage() {
     setFeedback(null);
   }
 
-  function startSejarahF2ObjectiveQuiz() {
-    if (sejarahF2ObjectiveQuestions.length === 0) return;
-    setIdx(0);
-    setSelected(null);
-    setScore(0);
-    setDone(false);
-    setStreak(0);
-    setCombo(0);
-    setComboShow(null);
-    setFeedback(null);
-    setTimeLeft(0);
-    setAnimatedScore(0);
-    setSejarahF2ShuffledQuestions(buildShuffledMathPool(sejarahF2ObjectiveQuestions));
-    setSejarahF2ObjectivePhase("quiz");
-  }
-
-  function answerSejarahF2Objective(i: number) {
-    if (selected !== null || !currentSejarahF2Question) return;
-
-    setSelected(i);
-    const correct = i === currentSejarahF2Question.answerIndex;
-
-    if (correct) {
-      const gain =
-        currentSejarahF2Question.difficulty === "Hard"
-          ? 30
-          : currentSejarahF2Question.difficulty === "Medium"
-            ? 20
-            : 10;
-      setScore((s) => s + 1);
-      setStreak((s) => s + 1);
-      const newCombo = combo + 1;
-      setCombo(newCombo);
-      addXp(gain, currentSejarahF2Question.subjectId);
-      sfx.success();
-
-      if (newCombo >= 2) {
-        setComboShow(newCombo);
-        sfx.combo(newCombo);
-        if (comboTimer.current) window.clearTimeout(comboTimer.current);
-        comboTimer.current = window.setTimeout(() => setComboShow(null), 1100);
-      }
-
-      setFeedback({
-        kind: "correct",
-        msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
-      });
-    } else {
-      setStreak(0);
-      setCombo(0);
-      triggerShake();
-      setFeedback({
-        kind: "wrong",
-        msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
-      });
-    }
-  }
-
-  function nextSejarahF2ObjectiveQuestion() {
-    const total = sejarahF2ShuffledQuestions?.length ?? sejarahF2ObjectiveQuestions.length;
-
-    if (idx + 1 >= total) {
-      setDone(true);
-      setSejarahF2ObjectivePhase("results");
-      recordQuiz();
-      recordQuizResult({
-        subjectId: "sejarah",
-        chapterKey: chapter ?? "Form 2",
-        correct: score + (selected === currentSejarahF2Question?.answerIndex ? 1 : 0),
-        total,
-      });
-      if (chapter) markChapter("sejarah", chapter, "quiz");
-      return;
-    }
-
-    setIdx((currentIndex) => currentIndex + 1);
-    setSelected(null);
-    setFeedback(null);
-  }
-
   // Animated score count-up + perfect score celebration
   useEffect(() => {
     if (!done) return;
@@ -6687,6 +6572,7 @@ function QuizzesPage() {
         <FormComingSoon
           subjectId={subject}
           form={form}
+          mode="quizzes"
           onBack={() => {
             setChapter(null);
             setFormWasChosen(false);
@@ -6784,86 +6670,11 @@ function QuizzesPage() {
     );
   }
 
-  if (isSejarahF2Quiz) {
-    return (
-      <AcademyPageShell className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}>
-        {comboShow !== null && (
-          <div
-            key={comboShow}
-            className="pointer-events-none fixed left-1/2 top-1/3 z-50 -translate-x-1/2 -translate-y-1/2 animate-combo-pop"
-          >
-            <div className="font-display text-7xl sm:text-8xl font-extrabold gradient-text drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.8)]">
-              COMBO x{comboShow}
-            </div>
-          </div>
-        )}
-
-        {chapter && selectedSejarahF2Objective && sejarahF2ObjectivePhase !== "select" ? (
-          sejarahF2ObjectivePhase === "intro" ? (
-            <SejarahF2ObjectiveIntroScreen
-              chapterKey={chapter}
-              objective={selectedSejarahF2Objective}
-              onBack={() => {
-                setSejarahF2ObjectiveId(null);
-                setSejarahF2ObjectivePhase("select");
-              }}
-              onStart={startSejarahF2ObjectiveQuiz}
-            />
-          ) : sejarahF2ObjectivePhase === "results" ? (
-            <SejarahF2ResultsScreen
-              chapterKey={chapter}
-              objective={selectedSejarahF2Objective}
-              score={score}
-              total={sejarahF2ShuffledQuestions?.length || sejarahF2ObjectiveQuestions.length || 30}
-              onBack={() => {
-                setSejarahF2ObjectiveId(null);
-                setSejarahF2ObjectivePhase("select");
-              }}
-              onRetry={() => {
-                resetRegularQuiz();
-                setSejarahF2ObjectivePhase("intro");
-              }}
-            />
-          ) : (
-            <SejarahF2QuizScreen
-              chapterKey={chapter}
-              objective={selectedSejarahF2Objective}
-              questions={sejarahF2ShuffledQuestions ?? sejarahF2ObjectiveQuestions}
-              current={currentSejarahF2Question}
-              idx={idx}
-              selected={selected}
-              feedback={feedback}
-              score={score}
-              onAnswer={answerSejarahF2Objective}
-              onNext={nextSejarahF2ObjectiveQuestion}
-              onBack={() => setSejarahF2ObjectivePhase("intro")}
-            />
-          )
-        ) : (
-          <SejarahF2ObjectiveHub
-            onBack={() => {
-              setChapter(null);
-              setFormWasChosen(false);
-              setSejarahF2ObjectiveId(null);
-              setSejarahF2ObjectivePhase("select");
-              resetRegularQuiz();
-            }}
-            onSelect={(chapterKey, objectiveId) => {
-              setChapter(chapterKey);
-              setSejarahF2ObjectiveId(objectiveId);
-              setSejarahF2ObjectivePhase("intro");
-              resetRegularQuiz();
-            }}
-          />
-        )}
-      </AcademyPageShell>
-    );
-  }
-
   if (subject && !needsScienceLang && !chapter) {
     return (
       <SubjectWorldPage
         subjectId={subject}
+        form={form === "All" ? "Form 1" : form}
         scienceLang={scienceLang ?? undefined}
         isBilingualSubject={isBilingualSubject}
         onSelectChapter={(key) => setChapter(key)}
@@ -7003,26 +6814,22 @@ function QuizzesPage() {
           }}
         />
       ) : !chapter ? (
-        <>
-          <SubjectWorldBanner subjectId={subject as SubjectPlanetId} />
-          {isBilingualSubject && scienceLang && (
-            <ScienceLangBar lang={scienceLang} onChange={() => setScienceLang(null)} />
-          )}
-          <ChapterGrid
-            subjectId={subject}
-            scienceLang={scienceLang ?? undefined}
-            form={form}
-            onSelect={(key) => {
-              setChapter(key);
-              reset();
-            }}
-            onBack={() => {
-              setSubject(null);
-              setChapter(null);
-              reset();
-            }}
-          />
-        </>
+        <SubjectWorldPage
+          subjectId={subject}
+          form={form === "All" ? "Form 1" : form}
+          scienceLang={scienceLang ?? undefined}
+          isBilingualSubject={isBilingualSubject}
+          onSelectChapter={(key) => {
+            setChapter(key);
+            reset();
+          }}
+          onBack={() => {
+            setSubject(null);
+            setChapter(null);
+            reset();
+          }}
+          onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
+        />
       ) : missingChapter ? (
         <div className="text-center py-20 glass rounded-2xl">
           <p className="text-muted-foreground">Chapter not found. Please choose another chapter.</p>
@@ -7043,6 +6850,7 @@ function QuizzesPage() {
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           form={form}
+          mode="quizzes"
           onBack={() => {
             setChapter(null);
             reset();
@@ -8118,474 +7926,6 @@ function EnglishResultsScreen({
           className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3 font-semibold text-white transition-transform hover:scale-105"
         >
           <ArrowLeft className="h-4 w-4" /> Back to sets
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function SejarahF2ObjectiveHub({
-  onBack,
-  onSelect,
-}: {
-  onBack: () => void;
-  onSelect: (chapterKey: string, objectiveId: SejarahF2ObjectiveId) => void;
-}) {
-  return (
-    <div className="animate-fade-up">
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to forms
-        </button>
-        <span className="text-sm font-semibold text-muted-foreground">
-          Sejarah Tingkatan 2 • Objective Quiz System
-        </span>
-      </div>
-
-      <div className="glass-strong rounded-3xl p-6 sm:p-8">
-        <div className="mb-8 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200">
-            Sejarah Tingkatan 2
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
-            Chapter-Based <span className="gradient-text">Quiz System</span>
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
-            Pilih objektif yang tersedia untuk setiap bab. Setiap set mengandungi 30 soalan
-            objektif dengan susunan soalan dan jawapan secara rawak.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {SEJARAH_F2_CHAPTERS.map((chapter, chapterIndex) => (
-            <div
-              key={chapter.key}
-              className="rounded-[1.75rem] border border-white/[0.08] bg-slate-950/70 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.18)] animate-slide-up"
-              style={{ animationDelay: `${chapterIndex * 60}ms` }}
-            >
-              <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-200/70">
-                    📖 {chapter.key.replace("Chapter", "Bab")}
-                  </p>
-                  <h3 className="mt-1 font-display text-xl font-bold text-white">
-                    {chapter.label}
-                  </h3>
-                </div>
-                <span className="w-fit rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-1 text-xs font-bold text-amber-100">
-                  {getSejarahF2ObjectivesForChapter(chapter.key).length * 30} Questions
-                </span>
-              </div>
-
-              <div className="grid gap-3 md:grid-cols-3">
-                {getSejarahF2ObjectivesForChapter(chapter.key).map((objective) => (
-                  <button
-                    key={`${chapter.key}-${objective.id}`}
-                    type="button"
-                    onClick={() => onSelect(chapter.key, objective.id)}
-                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-orange-300/35 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70"
-                  >
-                    <div
-                      className={`absolute -right-10 -top-10 h-28 w-28 rounded-full bg-gradient-to-br ${objective.tone} opacity-20 blur-3xl transition-opacity group-hover:opacity-40`}
-                    />
-                    <p className="relative text-2xl">{objective.badge}</p>
-                    <h4 className="relative mt-2 font-display text-lg font-bold text-white">
-                      {objective.title}
-                    </h4>
-                    <p className="relative text-sm font-semibold text-white/55">{objective.level}</p>
-                    <p className="relative mt-3 text-xs leading-5 text-white/45">
-                      30 MCQ • 4 pilihan jawapan • 1 jawapan betul
-                    </p>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SejarahF2ObjectiveIntroScreen({
-  chapterKey,
-  objective,
-  onBack,
-  onStart,
-}: {
-  chapterKey: string;
-  objective: (typeof SEJARAH_F2_OBJECTIVES)[number];
-  onBack: () => void;
-  onStart: () => void;
-}) {
-  const chapter = SEJARAH_F2_CHAPTERS.find((item) => item.key === chapterKey);
-
-  return (
-    <div className="animate-fade-up">
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to objectives
-        </button>
-        <span className="text-sm font-semibold text-muted-foreground">
-          {chapter?.label ?? chapterKey} • {objective.title}
-        </span>
-      </div>
-
-      <div className="glass-strong relative overflow-hidden rounded-3xl p-8 text-center">
-        <div
-          className={`absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-gradient-to-br ${objective.tone} opacity-20 blur-3xl`}
-        />
-        <div className="relative">
-          <div
-            className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${objective.tone} text-4xl shadow-lg`}
-          >
-            {objective.badge}
-          </div>
-          <p className="text-sm font-bold text-orange-200">Sejarah Tingkatan 2</p>
-          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">{objective.title}</h2>
-          <p className="mt-2 font-semibold text-muted-foreground">{chapter?.label ?? chapterKey}</p>
-
-          <div className="mx-auto mt-7 max-w-3xl rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left">
-            <h3 className="font-display text-xl font-bold">Quiz Focus</h3>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              {objective.purpose.map((item) => (
-                <div key={item} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">
-                  {item}
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl bg-white/5 p-4 text-center">
-                <div className="text-2xl font-bold text-orange-200">30</div>
-                <div className="mt-1 text-xs text-muted-foreground">Questions</div>
-              </div>
-              <div className="rounded-2xl bg-white/5 p-4 text-center">
-                <div className="text-2xl font-bold text-orange-200">A-D</div>
-                <div className="mt-1 text-xs text-muted-foreground">Options</div>
-              </div>
-              <div className="rounded-2xl bg-white/5 p-4 text-center">
-                <div className="text-2xl font-bold text-orange-200">
-                  {objective.level}
-                </div>
-                <div className="mt-1 text-xs text-muted-foreground">Difficulty</div>
-              </div>
-            </div>
-          </div>
-
-          <button
-            onClick={onStart}
-            className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r ${objective.tone} py-3.5 font-display text-lg font-bold text-white shadow-[0_0_30px_rgba(251,146,60,0.35)] transition-all hover:scale-[1.02]`}
-          >
-            <Play className="h-5 w-5" /> Start Quiz
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SejarahF2QuizScreen({
-  chapterKey,
-  objective,
-  questions,
-  current,
-  idx,
-  selected,
-  feedback,
-  score,
-  onAnswer,
-  onNext,
-  onBack,
-}: {
-  chapterKey: string;
-  objective: (typeof SEJARAH_F2_OBJECTIVES)[number];
-  questions: ShuffledQuestion[];
-  current: ShuffledQuestion | null;
-  idx: number;
-  selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
-  score: number;
-  onAnswer: (index: number) => void;
-  onNext: () => void;
-  onBack: () => void;
-}) {
-  const total = questions.length;
-  const chapter = SEJARAH_F2_CHAPTERS.find((item) => item.key === chapterKey);
-
-  if (!current || total === 0) {
-    return (
-      <div className="glass-strong rounded-3xl p-8 text-center animate-fade-up">
-        <p className="text-muted-foreground">Questions Coming Soon</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="animate-fade-up">
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to instructions
-        </button>
-        <span className="text-sm font-semibold text-muted-foreground">
-          {chapter?.label ?? chapterKey} • {objective.title}
-        </span>
-      </div>
-
-      <div
-        key={idx}
-        className={`quiz-q-enter relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 shadow-[0_24px_80px_rgba(0,0,0,0.4)] backdrop-blur-2xl ${
-          feedback?.kind === "wrong"
-            ? "animate-shake"
-            : feedback?.kind === "correct"
-              ? "animate-correct-pulse"
-              : ""
-        }`}
-      >
-        <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-bold text-orange-200">
-              {objective.badge} {objective.title}
-            </span>
-            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5">
-              <span className="text-xs font-bold text-white/50">Q</span>
-              <span className="font-display text-sm font-bold">{idx + 1}</span>
-              <span className="text-xs text-white/30">/ {total}</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-1.5 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-3 py-1.5">
-            <Zap className="h-3 w-3 text-[#FBBF24]" />
-            <span className="text-xs font-bold text-[#FBBF24]">{score}</span>
-            <span className="text-[10px] text-white/30">/{total}</span>
-          </div>
-        </div>
-
-        <div className="px-6 pt-4">
-          <div
-            className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]"
-            role="progressbar"
-            aria-label="Quiz progress"
-            aria-valuemin={0}
-            aria-valuemax={total}
-            aria-valuenow={idx + 1}
-          >
-            <div
-              className={`h-full rounded-full bg-gradient-to-r ${objective.tone} transition-all duration-500`}
-              style={{ width: `${((idx + 1) / total) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        <div className="px-5 pb-3 pt-5 sm:px-6">
-          <h2 className="font-display text-lg font-bold leading-snug text-white sm:text-2xl">
-            {idx + 1}. {current.question.replace(/^\s*\d+\.\s*/, "")}
-          </h2>
-        </div>
-
-        <div className="grid gap-2 px-4 pb-5 sm:grid-cols-2 sm:px-6">
-          {current.options.map((option, optionIndex) => {
-            const isAnswer = optionIndex === current.answerIndex;
-            const isPicked = optionIndex === selected;
-            const reveal = selected !== null;
-            const letter = ["A", "B", "C", "D"][optionIndex] ?? String(optionIndex + 1);
-
-            return (
-              <button
-                type="button"
-                key={`${idx}-${option}`}
-                onClick={() => onAnswer(optionIndex)}
-                disabled={reveal}
-                aria-pressed={isPicked}
-                aria-label={`Answer ${letter}: ${option}`}
-                className={`quiz-answer-button group relative flex min-h-[3.75rem] items-center gap-3 overflow-hidden rounded-xl border p-3 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70 ${
-                  reveal && isAnswer
-                    ? "scale-[1.01] border-emerald-300/70 bg-emerald-400/18 shadow-[0_0_26px_rgba(52,211,153,0.24)]"
-                    : reveal && isPicked && !isAnswer
-                      ? "scale-[1.01] border-rose-300/70 bg-rose-500/16 shadow-[0_0_22px_rgba(244,63,94,0.2)]"
-                      : reveal
-                        ? "border-white/[0.05] bg-white/[0.02] opacity-50"
-                        : "border-white/[0.09] bg-white/[0.04] hover:-translate-y-1 hover:scale-[1.01] hover:border-orange-300/45 hover:bg-white/[0.08] hover:shadow-[0_12px_28px_rgba(251,146,60,0.12)] active:scale-[0.99]"
-                }`}
-              >
-                <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-black transition-all ${
-                    reveal && isAnswer
-                      ? "bg-emerald-300 text-[#050816] shadow-[0_0_18px_rgba(52,211,153,0.45)]"
-                      : reveal && isPicked && !isAnswer
-                        ? "bg-rose-400 text-white shadow-[0_0_18px_rgba(244,63,94,0.35)]"
-                        : "bg-white/[0.08] text-white/60 group-hover:bg-orange-300/20 group-hover:text-orange-200"
-                  }`}
-                >
-                  {letter}
-                </span>
-                <span
-                  className={`flex-1 text-[13px] font-bold leading-5 sm:text-sm ${
-                    reveal && isAnswer
-                      ? "text-emerald-100"
-                      : reveal && isPicked && !isAnswer
-                        ? "text-rose-100"
-                        : "text-white/80 group-hover:text-white"
-                  }`}
-                >
-                  {option}
-                </span>
-                {reveal && isAnswer && <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />}
-                {reveal && isPicked && !isAnswer && <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-400" />}
-              </button>
-            );
-          })}
-        </div>
-
-        {feedback && (
-          <div
-            className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
-              feedback.kind === "correct"
-                ? "border-emerald-400/30 bg-emerald-500/12"
-                : "border-rose-400/30 bg-rose-500/12"
-            }`}
-          >
-            {feedback.kind === "correct" ? (
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
-            ) : (
-              <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
-            )}
-            <span
-              className={`font-display text-lg font-bold ${
-                feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
-              }`}
-            >
-              {feedback.msg}
-            </span>
-          </div>
-        )}
-
-        {selected !== null && current.explanation && (
-          <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-orange-300/20 bg-orange-300/8 p-4 animate-fade-up">
-            <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-orange-200" />
-            <p className="text-sm leading-7 text-slate-300">{current.explanation}</p>
-          </div>
-        )}
-
-        {selected !== null && (
-          <div className="border-t border-white/[0.06] px-6 py-4">
-            <button
-              onClick={onNext}
-              className={`w-full rounded-2xl bg-gradient-to-r ${objective.tone} py-3.5 font-bold text-white shadow-[0_0_28px_rgba(251,146,60,0.25)] transition-all hover:scale-[1.01] active:scale-[0.99]`}
-            >
-              {idx + 1 >= total ? "See Results" : "Next Question"}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function SejarahF2ResultsScreen({
-  chapterKey,
-  objective,
-  score,
-  total,
-  onBack,
-  onRetry,
-}: {
-  chapterKey: string;
-  objective: (typeof SEJARAH_F2_OBJECTIVES)[number];
-  score: number;
-  total: number;
-  onBack: () => void;
-  onRetry: () => void;
-}) {
-  const chapter = SEJARAH_F2_CHAPTERS.find((item) => item.key === chapterKey);
-  const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
-  const passed = percentage >= 50;
-  const chapterOneRating =
-    percentage >= 90
-      ? { title: "Cemerlang 🌟", color: "text-yellow-300" }
-      : percentage >= 70
-        ? { title: "Baik 👍", color: "text-emerald-300" }
-        : percentage >= 50
-          ? { title: "Memuaskan 📚", color: "text-cyan-300" }
-          : { title: "Perlu Ulang Kaji 🔄", color: "text-rose-300" };
-  const message =
-    chapterKey === "Chapter 1"
-      ? percentage >= 90
-        ? "Cemerlang. Anda sangat menguasai Bab 1."
-        : percentage >= 70
-          ? "Baik. Teruskan ulang kaji untuk kukuhkan kefahaman."
-          : percentage >= 50
-            ? "Memuaskan. Semak semula jawapan salah dan cuba lagi."
-            : "Perlu ulang kaji. Baca semula fakta utama Bab 1 dan cuba lagi."
-      : percentage >= 90
-        ? "Cemerlang. Anda sangat bersedia untuk set ini."
-        : percentage >= 70
-          ? "Bagus. Teruskan ulang kaji untuk kukuhkan fakta."
-          : percentage >= 50
-            ? "Lulus. Semak semula jawapan salah dan cuba lagi."
-            : "Belum lulus. Ulang kaji nota bab ini dan cuba semula.";
-
-  return (
-    <div className="glass-strong relative overflow-hidden rounded-3xl p-8 text-center animate-fade-up sm:p-10">
-      {score === total && <Confetti count={160} />}
-      <div
-        className={`absolute left-1/2 top-0 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-gradient-to-br ${objective.tone} opacity-20 blur-3xl`}
-      />
-      <Sparkles className="mx-auto mb-4 h-12 w-12 text-nova-yellow animate-pulse" />
-      <p className="text-sm font-bold text-orange-200">{chapter?.label ?? chapterKey}</p>
-      <h2
-        className={`mt-2 font-display text-3xl font-bold sm:text-4xl ${
-          chapterKey === "Chapter 1" ? chapterOneRating.color : ""
-        }`}
-      >
-        {chapterKey === "Chapter 1"
-          ? `${chapterOneRating.title} • ${objective.title}`
-          : `${passed ? "Pass" : "Fail"} • ${objective.title}`}
-      </h2>
-      <p className="mt-2 text-muted-foreground">{message}</p>
-
-      <div className="mt-8 grid gap-3 sm:grid-cols-4">
-        <div className="glass rounded-2xl p-4">
-          <div className="text-3xl font-bold gradient-text">
-            {score}/{total}
-          </div>
-          <div className="mt-1 text-xs text-muted-foreground">Score</div>
-        </div>
-        <div className="glass rounded-2xl p-4">
-          <div className="text-3xl font-bold text-emerald-300">{score}</div>
-          <div className="mt-1 text-xs text-muted-foreground">Correct</div>
-        </div>
-        <div className="glass rounded-2xl p-4">
-          <div className="text-3xl font-bold text-rose-300">{Math.max(0, total - score)}</div>
-          <div className="mt-1 text-xs text-muted-foreground">Incorrect</div>
-        </div>
-        <div className="glass rounded-2xl p-4">
-          <div className={`text-3xl font-bold ${passed ? "text-emerald-300" : "text-rose-300"}`}>
-            {percentage}%
-          </div>
-          <div className="mt-1 text-xs text-muted-foreground">Percentage</div>
-        </div>
-      </div>
-
-      <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-        <button
-          onClick={onRetry}
-          className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-semibold transition hover:bg-white/10"
-        >
-          <RotateCcw className="h-4 w-4" /> Retry
-        </button>
-        <button
-          onClick={onBack}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3 font-semibold text-white transition-transform hover:scale-105"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to objectives
         </button>
       </div>
     </div>

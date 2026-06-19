@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { subjects, notes, getItemChapterKey, getSubjectChapters, type Form } from "@/data/content";
-import { BookOpenCheck, ArrowLeft } from "lucide-react";
+import { BookOpenCheck, ArrowLeft, ArrowUp, Compass } from "lucide-react";
 import { z } from "zod";
 import {
   SubjectGrid,
@@ -158,6 +158,16 @@ function NotesPage() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function scrollToOverview() {
+    const el = document.getElementById("chapter-overview");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    else scrollToTop();
+  }
+
   // ── BM has its own hub page ───────────────────────────────────────────────
   if (subject && !hasSelectedForm && !activeChapterKey) {
     return (
@@ -269,6 +279,31 @@ function NotesPage() {
             className="h-full bg-gradient-to-r from-primary via-accent to-nova-yellow transition-all"
             style={{ width: `${scrollPct}%` }}
           />
+        </div>
+      )}
+
+      {/* Focus-mode wayfinding: lets a student get back to the top or the
+          chapter overview without hunting for a scrollbar. */}
+      {subject && activeChapterKey && scrollPct > 8 && (
+        <div className="fixed bottom-[calc(var(--mobile-content-bottom)+1rem)] right-4 z-[70] flex flex-col gap-2 sm:bottom-6">
+          <button
+            type="button"
+            onClick={scrollToOverview}
+            title="Back to chapter overview"
+            aria-label="Back to chapter overview"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B1220]/90 text-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:text-white"
+          >
+            <Compass className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            title="Back to top"
+            aria-label="Back to top"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B1220]/90 text-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:text-white"
+          >
+            <ArrowUp className="h-5 w-5" />
+          </button>
         </div>
       )}
 
@@ -431,12 +466,13 @@ function NotesPage() {
             }}
           />
         </>
-      ) : chapterMeta && !chapterMeta.available ? (
+      ) : chapterMeta && !chapterMeta.available && !activeChapter?.notes ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={activeChapterKey}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           form={form}
+          mode="notes"
           onBack={() => setChapter(null)}
         />
       ) : hasSubtopics ? (
@@ -451,15 +487,17 @@ function NotesPage() {
         />
       ) : (
         <>
-          <ContentHeader
-            subjectId={subject}
-            chapterKey={activeChapterKey}
-            scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-            form={form}
-            onBack={() => setChapter(null)}
-          />
+          <div id="chapter-overview">
+            <ContentHeader
+              subjectId={subject}
+              chapterKey={activeChapterKey}
+              scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+              form={form}
+              onBack={() => setChapter(null)}
+            />
 
-          <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
+            <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
+          </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
           {subject === "english" && activeChapter?.englishData ? (
@@ -556,27 +594,69 @@ function SubtopicView({
       })),
     [subtopics],
   );
+  const [showWayfinding, setShowWayfinding] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setShowWayfinding(window.scrollY > 320);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function jumpTo(key: string) {
     const el = document.getElementById(key);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function scrollToOverview() {
+    document.getElementById("chapter-overview")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <div className="animate-fade-up">
-      <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
-        >
-          <ArrowLeft className="w-4 h-4" /> Back to chapters
-        </button>
-        <span className="text-sm font-semibold text-muted-foreground">
-          {subj?.emoji} {subj?.name} • {chapterLabel}
-        </span>
-      </div>
+      {showWayfinding && (
+        <div className="fixed bottom-[calc(var(--mobile-content-bottom)+1rem)] right-4 z-[70] flex flex-col gap-2 sm:bottom-6">
+          <button
+            type="button"
+            onClick={scrollToOverview}
+            title="Back to chapter overview"
+            aria-label="Back to chapter overview"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B1220]/90 text-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:text-white"
+          >
+            <Compass className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            title="Back to top"
+            aria-label="Back to top"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B1220]/90 text-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:text-white"
+          >
+            <ArrowUp className="h-5 w-5" />
+          </button>
+        </div>
+      )}
+      <div id="chapter-overview">
+        <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+          <button
+            onClick={onBack}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm hover:bg-white/10 transition-all hover:-translate-x-0.5"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to chapters
+          </button>
+          <span className="text-sm font-semibold text-muted-foreground">
+            {subj?.emoji} {subj?.name} • {chapterLabel}
+          </span>
+        </div>
 
-      <ChapterFeatureBar features={features} onJump={jumpTo} />
+        <ChapterFeatureBar features={features} onJump={jumpTo} />
+      </div>
 
       {chapterContent?.video && <VideoBlock id="video" video={chapterContent.video} />}
       <NotesBlock

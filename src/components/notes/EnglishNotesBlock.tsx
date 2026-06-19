@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BookOpen, ChevronDown, ChevronUp, FileText, Star } from "lucide-react";
 import type {
   EnglishChapterData,
@@ -809,14 +809,15 @@ function ExamFacts({ facts }: { facts: string[] }) {
 function EnglishSectionBlock({
   section,
   index,
+  open,
+  onToggle,
 }: {
   section: { title: string; emoji: string; cards: EnglishCard[] };
   index: number;
+  open: boolean;
+  onToggle: () => void;
 }) {
-  const [open, setOpen] = useState(index === 0);
-  const sectionId = section.title.startsWith("Part ")
-    ? `english-paper-1-part-${index + 1}`
-    : undefined;
+  const sectionId = `english-section-${index}`;
   return (
     <div
       id={sectionId}
@@ -824,7 +825,7 @@ function EnglishSectionBlock({
     >
       <button
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={onToggle}
         className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-white/5 transition-colors"
       >
         <span className="text-xl">{section.emoji}</span>
@@ -936,7 +937,13 @@ const PAPER_1_PARTS = [
   },
 ] as const;
 
-function Paper1Overview({ sections }: { sections: EnglishChapterData["sections"] }) {
+function Paper1Overview({
+  sections,
+  onSelect,
+}: {
+  sections: EnglishChapterData["sections"];
+  onSelect: (index: number) => void;
+}) {
   return (
     <div className="mb-6 rounded-[2rem] border border-sky-400/20 bg-sky-950/20 p-5 animate-fade-up">
       <div className="mb-4">
@@ -947,10 +954,11 @@ function Paper1Overview({ sections }: { sections: EnglishChapterData["sections"]
       </div>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         {PAPER_1_PARTS.map((part, i) => (
-          <a
+          <button
             key={part.part}
-            href={`#english-paper-1-part-${i + 1}`}
-            className="group rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all hover:-translate-y-1 hover:border-sky-300/35 hover:bg-sky-400/[0.08]"
+            type="button"
+            onClick={() => onSelect(i)}
+            className="group rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left transition-all hover:-translate-y-1 hover:border-sky-300/35 hover:bg-sky-400/[0.08]"
           >
             <div className="mb-3 flex items-center justify-between gap-2">
               <span className="text-2xl">{part.icon}</span>
@@ -969,7 +977,7 @@ function Paper1Overview({ sections }: { sections: EnglishChapterData["sections"]
             <p className="mt-3 text-[11px] font-bold text-sky-300/80">
               Open {sections[i]?.title ?? part.part}
             </p>
-          </a>
+          </button>
         ))}
       </div>
     </div>
@@ -1059,7 +1067,15 @@ function Paper2Overview({
   );
 }
 
-function Paper2StudySections({ sections }: { sections: EnglishChapterData["sections"] }) {
+function Paper2StudySections({
+  sections,
+  openSections,
+  onToggleSection,
+}: {
+  sections: EnglishChapterData["sections"];
+  openSections: Set<number>;
+  onToggleSection: (index: number) => void;
+}) {
   const [activeGroup, setActiveGroup] = useState<Paper2GroupKey>("A");
   const group = PAPER_2_GROUPS[activeGroup];
   const cohesiveDevicesBank = sections.find((section) => section.title === "Cohesive Devices Bank");
@@ -1082,13 +1098,21 @@ function Paper2StudySections({ sections }: { sections: EnglishChapterData["secti
         </div>
       </div>
       {visibleSections.map(({ section, sectionIndex }) => (
-        <EnglishSectionBlock key={section.title} section={section} index={sectionIndex} />
+        <EnglishSectionBlock
+          key={section.title}
+          section={section}
+          index={sectionIndex}
+          open={openSections.has(sectionIndex)}
+          onToggle={() => onToggleSection(sectionIndex)}
+        />
       ))}
       {cohesiveDevicesBank && (
         <EnglishSectionBlock
           key={`${activeGroup}-${cohesiveDevicesBank.title}`}
           section={cohesiveDevicesBank}
           index={sections.indexOf(cohesiveDevicesBank)}
+          open={openSections.has(sections.indexOf(cohesiveDevicesBank))}
+          onToggle={() => onToggleSection(sections.indexOf(cohesiveDevicesBank))}
         />
       )}
     </>
@@ -1111,6 +1135,38 @@ export function EnglishNotesBlock({
     if (typeof window === "undefined") return false;
     return window.sessionStorage.getItem(stateKey) === "open";
   });
+  const [openSections, setOpenSections] = useState<Set<number>>(() => new Set([0]));
+
+  // Re-sync when navigating between chapters: this component may not remount,
+  // so the lazy initial state above would otherwise carry over the previous
+  // chapter's open/closed state and expanded sections.
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsOpen(window.sessionStorage.getItem(stateKey) === "open");
+    }
+    setOpenSections(new Set([0]));
+  }, [stateKey]);
+
+  const toggleSection = useCallback((index: number) => {
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  }, []);
+
+  const openSectionAndScroll = useCallback((index: number) => {
+    setOpenSections((prev) => new Set(prev).add(index));
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.getElementById(`english-section-${index}`)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+  }, []);
 
   function openNotes() {
     setIsOpen(true);
@@ -1158,17 +1214,27 @@ export function EnglishNotesBlock({
       <ChapterHero data={data} />
       <WordVault words={data.wordVault} />
       {data.chapterTitle === "Paper 1 - Reading & Language Awareness" && (
-        <Paper1Overview sections={data.sections} />
+        <Paper1Overview sections={data.sections} onSelect={openSectionAndScroll} />
       )}
       <div className="mb-2 flex items-center gap-2 px-1">
         <BookOpen className="w-4 h-4 text-violet-400" />
         <h3 className="font-bold text-white/70 text-sm uppercase tracking-wide">Study Sections</h3>
       </div>
       {data.chapterTitle === "Paper 2 - Writing" ? (
-        <Paper2StudySections sections={data.sections} />
+        <Paper2StudySections
+          sections={data.sections}
+          openSections={openSections}
+          onToggleSection={toggleSection}
+        />
       ) : (
         data.sections.map((section, i) => (
-          <EnglishSectionBlock key={i} section={section} index={i} />
+          <EnglishSectionBlock
+            key={i}
+            section={section}
+            index={i}
+            open={openSections.has(i)}
+            onToggle={() => toggleSection(i)}
+          />
         ))
       )}
       {data.examFacts.length > 0 && <ExamFacts facts={data.examFacts} />}

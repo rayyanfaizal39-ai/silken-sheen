@@ -93,6 +93,26 @@ const SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS: Array<{
   },
 ];
 
+const SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS: Array<{
+  index: FlashcardSetIndex;
+  title: string;
+  range: string;
+}> = [
+  { index: 0, title: "Bahasa dan Tulisan", range: "Cards 1-20" },
+  { index: 1, title: "Persuratan", range: "Cards 21-40" },
+  { index: 2, title: "Sastera dan Pengaruh", range: "Cards 41-60" },
+];
+
+const SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS: Array<{
+  index: FlashcardSetIndex;
+  title: string;
+  range: string;
+}> = [
+  { index: 0, title: "Agama dan Kepercayaan", range: "Cards 1-20" },
+  { index: 1, title: "Perkembangan Agama Kerajaan Alam Melayu", range: "Cards 21-40" },
+  { index: 2, title: "Keunikan Warisan Masyarakat Kerajaan Alam Melayu", range: "Cards 41-60" },
+];
+
 function vibrate(pattern: number | number[], enabled: boolean) {
   if (!enabled) return;
   try {
@@ -3530,13 +3550,20 @@ function FlashcardsPage() {
   const hasUpperFormFlashcardPath = !!(
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    ((!chapter && subjectChaptersForForm.length > 0) || (chapter && rawPool.length > 0))
+    ((!chapter && subjectChaptersForForm.length > 0) ||
+      (chapter &&
+        (rawPool.length > 0 ||
+          (subject === "sejarah" && form === "Form 2" && chapterMeta != null))))
   );
 
   const shouldSplitFlashcards = rawPool.length === FLASHCARD_SPLIT_SIZE;
   const flashcardSetOptions =
     subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
       ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
+      : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 3"
+        ? SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS
+        : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 4"
+          ? SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS
       : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     const setCards =
@@ -4039,6 +4066,7 @@ function FlashcardsPage() {
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           form={form}
+          mode="flashcards"
           onBack={() => {
             setChapter(null);
             setMathFlashcardLang(null);

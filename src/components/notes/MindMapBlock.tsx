@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GitFork, Network } from "lucide-react";
 import { MindMap, type MindNode } from "@/components/MindMap";
 
@@ -25,6 +25,13 @@ export function MindMapBlock({
 }) {
   const stateKey = storageKey ?? `notes:mind-map:${id ?? title}`;
   const [isOpen, setIsOpen] = useState(() => readStoredOpen(stateKey));
+
+  // Re-sync when navigating between chapters: this component may not remount,
+  // so the lazy initial state above would otherwise carry over the previous
+  // chapter's open/closed state.
+  useEffect(() => {
+    setIsOpen(readStoredOpen(stateKey));
+  }, [stateKey]);
 
   function openMindMap() {
     setIsOpen(true);
@@ -80,7 +87,7 @@ export function MindMapBlock({
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2 px-2">
           <p className="text-sm font-semibold text-white">{title}</p>
           <p className="text-xs text-muted-foreground">
-            Click nodes to expand - Scroll or pinch to zoom - Drag to pan
+            Tap a node to expand • Pinch or scroll to zoom • Drag to pan • Use Prev/Next to step through
           </p>
         </div>
         <MindMap data={data} height={640} />

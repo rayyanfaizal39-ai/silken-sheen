@@ -240,12 +240,14 @@ export function ChapterGrid({
   onBack,
   scienceLang,
   form = "Form 1",
+  mode = "notes",
 }: {
   subjectId: string;
   onSelect: (key: string, available: boolean) => void;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
+  mode?: Extract<LearningMode, "notes" | "quizzes" | "flashcards">;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const chapters = getSubjectChapters(subjectId, scienceLang, form);
@@ -533,10 +535,12 @@ export function ContentHeader({
 export function FormComingSoon({
   subjectId,
   form,
+  mode,
   onBack,
 }: {
   subjectId: string;
   form: Extract<Form, "Form 2" | "Form 3">;
+  mode?: LearningMode;
   onBack: () => void;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
@@ -575,9 +579,13 @@ export function FormComingSoon({
         >
           {subj?.name} / {form}
         </p>
-        <h2 className="relative mt-3 font-display text-3xl font-bold text-white">Coming Soon</h2>
+        <h2 className="relative mt-3 font-display text-3xl font-bold text-white">
+          {mode === "quizzes" ? "Quiz Coming Soon" : "Coming Soon"}
+        </h2>
         <p className="relative mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">
-          {form} content is currently being prepared.
+          {mode === "quizzes"
+            ? "Notes are available first. Quiz content will be added later."
+            : `${form} content is currently being prepared.`}
         </p>
       </div>
     </AcademyPanel>
@@ -601,12 +609,40 @@ export function ComingSoonScreen({
     (c) => c.key === chapterKey,
   );
   const accent = getSubjectAccent(subjectId);
+  const placeholderItems =
+    mode === "quizzes"
+      ? ["Objective Quiz 1"]
+      : mode === "flashcards"
+        ? ["Deck 1", "Deck 2", "Deck 3"]
+        : (chapter?.subtopics ?? []);
 
   return (
-    <div className="animate-fade-up rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 py-20 text-center">
+    <div className="animate-fade-up rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 px-5 py-12 text-center sm:px-8 sm:py-16">
       <div className="mb-6 text-6xl animate-float-soft">🚧</div>
       <h2 className="font-display text-2xl font-bold text-white">{chapter?.label ?? chapterKey}</h2>
       <p className="mt-2 text-sm text-white/50">This chapter is coming soon. Stay tuned!</p>
+      <span className="mt-4 inline-flex rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-amber-300">
+        Available Soon
+      </span>
+
+      {placeholderItems.length > 0 && (
+        <div className="mx-auto mt-8 grid max-w-3xl gap-3 text-left sm:grid-cols-2">
+          {placeholderItems.map((item) => (
+            <div
+              key={item}
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-display text-sm font-bold leading-snug text-white">{item}</h3>
+                <Lock className="h-4 w-4 shrink-0 text-white/30" />
+              </div>
+              <div className="mt-4 min-h-12 rounded-xl border border-dashed border-white/[0.08] bg-black/10 p-3">
+                <p className="text-xs font-semibold text-white/35">Coming Soon</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
       <button
         type="button"
         onClick={onBack}

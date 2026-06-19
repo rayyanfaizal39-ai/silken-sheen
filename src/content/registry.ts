@@ -53,12 +53,15 @@ import { mathF1C13NotesBM } from "@/content/form1/math/chapter-13/notes-bm";
 import { mathF1C13NotesDLP } from "@/content/form1/math/chapter-13/notes-dlp";
 import { sejarahF2C1Notes } from "@/content/form2/sejarah/chapter-1/notes";
 import { sejarahF2C2Notes } from "@/content/form2/sejarah/chapter-2/notes";
+import { sejarahF2C3Notes } from "@/content/form2/sejarah/chapter-3/notes";
+import { sejarahF2C4Notes } from "@/content/form2/sejarah/chapter-4/notes";
 import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
 import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
 import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
 import { sejarahF2C4MindMap } from "@/content/form2/sejarah/chapter-4/mindmap";
 import { sejarahF2C5MindMap } from "@/content/form2/sejarah/chapter-5/mindmap";
 import { sejarahF2C6MindMap } from "@/content/form2/sejarah/chapter-6/mindmap";
+import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
 // Geografi F1 mind maps
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
@@ -215,6 +218,13 @@ function sejarahF2FlashcardsFor(chapterNum: number) {
   );
 }
 
+function sejarahF2QuizzesFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allQuizzes.filter(
+    (q) => q.subjectId === "sejarah" && q.form === "Form 2" && q.chapter === chapterKey,
+  );
+}
+
 function geography(
   chapterNum: number,
   mindMapData?: MindNode,
@@ -292,18 +302,23 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 3",
     title: "Sosiobudaya Masyarakat Kerajaan Alam Melayu",
+    notes: sejarahF2C3Notes,
     mindMap: { data: sejarahF2C3MindMap, title: "Sosiobudaya Kerajaan Alam Melayu" },
+    flashcards: sejarahF2FlashcardsFor(3),
   },
   {
     id: "sejarah-f2-c4",
     subjectId: "sejarah",
     form: "Form 2",
     chapterKey: "Chapter 4",
-    title: "Agama, Kepercayaan dan Keunikan Warisan",
+    title: "Agama, Kepercayaan dan Keunikan Warisan Masyarakat Kerajaan Alam Melayu",
+    notes: sejarahF2C4Notes,
     mindMap: {
       data: sejarahF2C4MindMap,
       title: "Keunikan Warisan Masyarakat Kerajaan Alam Melayu",
     },
+    flashcards: sejarahF2FlashcardsFor(4),
+    quiz: sejarahF2QuizzesFor(4),
   },
   {
     id: "sejarah-f2-c5",
@@ -320,6 +335,34 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Kesultanan Johor Riau",
     mindMap: { data: sejarahF2C6MindMap, title: "Kesultanan Johor Riau" },
+  },
+  {
+    id: "sejarah-f2-c7",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor",
+  },
+  {
+    id: "sejarah-f2-c8",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
+  },
+  {
+    id: "sejarah-f2-c9",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
+  },
+  {
+    id: "sejarah-f2-c10",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Sarawak dan Sabah",
   },
 
   // Geography Form 1
@@ -874,13 +917,17 @@ export function getChapter(
   lang?: "bm" | "dlp",
   form: ChapterContent["form"] = "Form 1",
 ): ChapterContent | undefined {
-  return chapters.find(
+  const chapter = chapters.find(
     (c) =>
       c.subjectId === subjectId &&
       c.form === form &&
       c.chapterKey === chapterKey &&
       (lang ? c.lang === lang : !c.lang || c.lang === lang),
   );
+  if (chapter?.subjectId === "sejarah" && chapter.form === "Form 2" && chapter.notes) {
+    return { ...chapter, notes: organizeSejarahF2Notes(chapter.notes) };
+  }
+  return chapter;
 }
 
 /** All chapter content rows for a given subject (used to surface "available" flags). */

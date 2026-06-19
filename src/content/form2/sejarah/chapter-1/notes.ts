@@ -1,6 +1,7 @@
 import type { StructuredNotes } from "@/data/types";
+import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
-export const sejarahF2C1Notes: StructuredNotes = {
+const sejarahF2C1NotesSource: StructuredNotes = {
   chapterSummary:
     "Bab 1 menerangkan konsep Alam Melayu dari aspek geografi, bahasa dan budaya, kewujudan kerajaan awal, kerajaan Alam Melayu yang masyhur serta hubungan kerajaan Alam Melayu dengan kerajaan luar yang sezaman.",
   quickRevision: [
@@ -572,3 +573,5 @@ export const sejarahF2C1Notes: StructuredNotes = {
     "Hubungan Diplomatik",
   ],
 };
+
+export const sejarahF2C1Notes = organizeSejarahF2Notes(sejarahF2C1NotesSource);

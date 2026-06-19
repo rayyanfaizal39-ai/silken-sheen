@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
+import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 
 // ─── Subject identity system ─────────────────────────────────────────────────
 // Each subject has a fully unique visual identity: palette, art, atmosphere,
@@ -136,6 +137,9 @@ const subjectPlanetStyles = {
 export type SubjectPlanetId = keyof typeof subjectPlanetStyles;
 
 // ─── Planet card inner content ────────────────────────────────────────────────
+// The subject's real shape (its world illustration) is the primary identity here —
+// not an emoji, not floating text. The lucide icon is kept only as a small corner
+// accent so the category still reads at a glance.
 function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; planet: typeof subjectPlanetStyles[SubjectPlanetId] }) {
   const Icon = planet.icon;
   return (
@@ -152,54 +156,19 @@ function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; plan
       {/* Star field */}
       <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px),radial-gradient(circle,rgba(255,255,255,0.6)_1px,transparent_1px)] [background-position:0_0,22px_18px] [background-size:38px_38px,58px_58px]" />
 
-      {/* Science: electron orbit rings */}
-      {subjectId === "science" && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-55">
-          <div className="science-orbit-1" />
-          <div className="science-orbit-2 absolute" />
-        </div>
-      )}
-
-      {/* Floating ambient symbols — unique per subject */}
-      <span
-        className="absolute right-3 top-2 pointer-events-none select-none text-[11px] font-black particle-float-1"
-        style={{ color: planet.color, opacity: 0.22 }}
-      >
-        {planet.symbols[0]}
-      </span>
-      <span
-        className="absolute left-3 bottom-2 pointer-events-none select-none text-[10px] font-black particle-float-2"
-        style={{ color: planet.color, opacity: 0.18 }}
-      >
-        {planet.symbols[1]}
-      </span>
-      <span
-        className="absolute right-[30%] top-3 pointer-events-none select-none text-[10px] font-black particle-float-3"
-        style={{ color: planet.accentTo, opacity: 0.15 }}
-      >
-        {planet.symbols[2]}
-      </span>
-
-      {/* Main icon — large and centered */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div
-          className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 shadow-2xl transition-transform duration-300 group-hover:scale-110"
-          style={{
-            background: `linear-gradient(135deg, ${planet.accentFrom}44, rgba(255,255,255,0.06))`,
-            boxShadow: `0 0 40px ${planet.glow}, 0 0 0 1px rgba(255,255,255,0.12)`,
-          }}
-        >
-          <Icon
-            className="h-8 w-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
-            style={{ color: planet.color }}
-          />
-          {/* Icon inner glow */}
-          <div
-            className="absolute inset-0 rounded-2xl opacity-30"
-            style={{ background: `radial-gradient(circle at 35% 35%, ${planet.accentFrom}, transparent 60%)` }}
-          />
-        </div>
+      {/* World illustration — the subject's actual recognisable shape */}
+      <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+        <SubjectWorldArt subjectId={subjectId} color={planet.color} width={196} height={118} />
       </div>
+
+      {/* Small category icon badge — secondary accent, not the main identity */}
+      <div
+        className="absolute left-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-lg border border-white/15"
+        style={{ background: `${planet.accentFrom}33`, boxShadow: `0 0 14px ${planet.glow}` }}
+      >
+        <Icon className="h-3.5 w-3.5" style={{ color: planet.color }} />
+      </div>
+
       {/* Atmospheric ring */}
       <div
         className="absolute inset-[-4px] rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -379,30 +348,8 @@ export function SubjectWorldBanner({ subjectId }: { subjectId: SubjectPlanetId }
       {/* Fine star field */}
       <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px)] [background-size:40px_40px]" />
 
-      {/* Science orbit rings in banner */}
-      {subjectId === "science" && (
-        <div className="absolute right-20 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden opacity-40 hidden sm:flex items-center justify-center">
-          <div className="science-orbit-1" />
-          <div className="science-orbit-2 absolute" />
-        </div>
-      )}
-
-      {/* Floating ambient symbols in banner */}
-      <span
-        className="absolute left-6 bottom-3 pointer-events-none select-none text-[13px] font-black particle-float-1"
-        style={{ color: planet.color, opacity: 0.2 }}
-      >
-        {planet.symbols[0]}
-      </span>
-      <span
-        className="absolute right-24 bottom-4 pointer-events-none select-none text-[11px] font-black particle-float-3"
-        style={{ color: planet.color, opacity: 0.15 }}
-      >
-        {planet.symbols[2]}
-      </span>
-
-      <div className="relative z-10 flex items-start justify-between p-5 md:p-7">
-        <div>
+      <div className="relative z-10 flex items-center justify-between gap-4 p-5 md:p-7">
+        <div className="min-w-0">
           <p
             className="mb-2 text-[11px] font-black uppercase tracking-[0.2em]"
             style={{ color: planet.color }}
@@ -417,15 +364,24 @@ export function SubjectWorldBanner({ subjectId }: { subjectId: SubjectPlanetId }
           </p>
         </div>
 
-        {/* Icon orb */}
-        <div
-          className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 shadow-2xl md:h-16 md:w-16"
-          style={{
-            background: `linear-gradient(135deg, ${planet.accentFrom}28, rgba(255,255,255,0.05))`,
-            boxShadow: `0 0 32px ${planet.glow}`,
-          }}
-        >
-          <Icon className="h-7 w-7 md:h-8 md:w-8" style={{ color: planet.color }} />
+        {/* World illustration — replaces the plain icon orb as the banner's identity */}
+        <div className="flex shrink-0 items-center gap-3">
+          <SubjectWorldArt
+            subjectId={subjectId}
+            color={planet.color}
+            width={132}
+            height={92}
+            className="hidden sm:block"
+          />
+          <div
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/15 shadow-2xl md:h-14 md:w-14"
+            style={{
+              background: `linear-gradient(135deg, ${planet.accentFrom}28, rgba(255,255,255,0.05))`,
+              boxShadow: `0 0 32px ${planet.glow}`,
+            }}
+          >
+            <Icon className="h-6 w-6 md:h-7 md:w-7" style={{ color: planet.color }} />
+          </div>
         </div>
       </div>
     </div>

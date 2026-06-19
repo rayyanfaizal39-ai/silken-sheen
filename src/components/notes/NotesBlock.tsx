@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Search,
   BookOpen,
@@ -115,6 +115,14 @@ export function NotesBlock({
     return window.sessionStorage.getItem(stateKey) === "open";
   });
 
+  // Re-sync when navigating between chapters: this component may not remount,
+  // so the lazy initial state above would otherwise carry over the previous
+  // chapter's open/closed state and scroll position.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setIsOpen(window.sessionStorage.getItem(stateKey) === "open");
+  }, [stateKey]);
+
   const filteredSections = useMemo(() => {
     if (!query.trim()) return displaySections;
     const q = query.trim().toLowerCase();
@@ -155,14 +163,28 @@ export function NotesBlock({
     setOpenValue((current) => (current && values.includes(current) ? current : values[0]));
   }, [defaultOpenFirstSection, filteredSections, query]);
 
+  const scrollCorrectionTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (scrollCorrectionTimer.current !== null) window.clearTimeout(scrollCorrectionTimer.current);
+    };
+  }, []);
+
   function jumpToSection(value: string) {
     setOpenValue(value);
-    window.requestAnimationFrame(() => {
+    if (scrollCorrectionTimer.current !== null) window.clearTimeout(scrollCorrectionTimer.current);
+    const scrollToTarget = () => {
       document.getElementById(`notes-section-${value}`)?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
-    });
+    };
+    // First pass once the new section exists in the DOM…
+    window.requestAnimationFrame(() => window.requestAnimationFrame(scrollToTarget));
+    // …and a corrective pass once the open/close transition has settled, so a
+    // sibling section collapsing underneath never leaves the target half-hidden.
+    scrollCorrectionTimer.current = window.setTimeout(scrollToTarget, 320);
   }
 
   function openNotes() {
@@ -329,7 +351,7 @@ export function NotesBlock({
         ) : (
           <div className="grid min-w-0 gap-5 lg:grid-cols-[240px_minmax(0,1fr)]">
             {/* Sticky nav */}
-            <nav className="h-fit overflow-hidden rounded-2xl border border-white/[0.07] bg-[#060C1A]/80 lg:sticky lg:top-24">
+            <nav className="sticky top-20 z-10 h-fit overflow-hidden rounded-2xl border border-white/[0.07] bg-[#060C1A]/95 backdrop-blur-md lg:top-24 lg:bg-[#060C1A]/80">
               {/* Nav header */}
               <div
                 className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3"
@@ -363,7 +385,7 @@ export function NotesBlock({
                       key={value}
                       type="button"
                       onClick={() => jumpToSection(value)}
-                      className={`group relative flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-left text-xs font-semibold leading-4 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] ${
+                      className={`group relative flex min-h-11 w-full items-center gap-2.5 rounded-xl px-2.5 py-2.5 text-left text-xs font-semibold leading-4 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] ${
                         active
                           ? "text-white"
                           : "text-white/45 hover:bg-white/[0.05] hover:text-white/80"

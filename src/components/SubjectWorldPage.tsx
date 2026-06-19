@@ -4,6 +4,7 @@ import { getSubjectChapters } from "@/data/content";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import { getChapter } from "@/content/registry";
 import { ScienceLangBar } from "@/components/ScienceLanguagePicker";
+import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -252,251 +253,18 @@ const SLOTS = [
   { top: "20%", left: "48%",   cls: "particle-float-2", op: 0.07, fs: "0.8rem"  },
 ];
 
-// ─── Hero art: Mathematics (coordinate plane + formulas) ──────────────────────
-
-function MathHeroArt({ color }: { color: string }) {
-  const dim = "rgba(251,191,36,";
-  return (
-    <div className="relative hidden h-36 w-52 shrink-0 overflow-hidden rounded-2xl sm:block"
-      style={{ border: `1px solid ${color}28`, background: "rgba(0,0,0,0.3)" }}>
-      {/* Y axis */}
-      <div className="absolute top-0 bottom-0" style={{ left: "50%", width: 1, background: `${dim}0.35)` }} />
-      {/* X axis */}
-      <div className="absolute left-0 right-0" style={{ top: "55%", height: 1, background: `${dim}0.35)` }} />
-      {/* Grid lines vertical */}
-      {[22, 36, 64, 78].map(p => (
-        <div key={`v${p}`} className="absolute top-0 bottom-0" style={{ left: `${p}%`, width: 1, background: `${dim}0.10)` }} />
-      ))}
-      {/* Grid lines horizontal */}
-      {[20, 38, 72, 88].map(p => (
-        <div key={`h${p}`} className="absolute left-0 right-0" style={{ top: `${p}%`, height: 1, background: `${dim}0.10)` }} />
-      ))}
-      {/* Parabola suggestion */}
-      <div className="absolute" style={{
-        bottom: "22%", left: "18%", right: "18%", height: 36,
-        border: `1.5px solid ${color}55`, borderBottom: "none", borderRadius: "50% 50% 0 0",
-      }} />
-      {/* Arrow tips on axes */}
-      <div className="absolute" style={{ left: "50%", top: 4, transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderBottom: `7px solid ${color}55` }} />
-      <div className="absolute" style={{ right: 4, top: "55%", transform: "translateY(-50%)", width: 0, height: 0, borderTop: "4px solid transparent", borderBottom: "4px solid transparent", borderLeft: `7px solid ${color}55` }} />
-      {/* Central π */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-display font-black leading-none" style={{ fontSize: "2.4rem", color, opacity: 0.82 }}>π</span>
-        <span className="mt-1 font-black tracking-[0.25em]" style={{ fontSize: "0.6rem", color, opacity: 0.45 }}>∑ · ∞ · ∫ · √</span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Hero art: Science (atom orbital) ────────────────────────────────────────
-
-function ScienceHeroArt({ color }: { color: string }) {
-  return (
-    <div className="relative hidden h-36 w-52 shrink-0 items-center justify-center sm:flex">
-      {/* Outer orbit ring (tilted ellipse) */}
-      <div className="absolute rounded-[50%]" style={{
-        width: 160, height: 56,
-        border: `1.5px solid ${color}45`,
-        transform: "rotate(-30deg)",
-        animation: "orbit-spin-cw 6s linear infinite",
-      }} />
-      {/* Second orbit ring */}
-      <div className="absolute rounded-[50%]" style={{
-        width: 130, height: 48,
-        border: `1.5px solid ${color}35`,
-        transform: "rotate(30deg)",
-        animation: "orbit-spin-ccw 9s linear infinite",
-      }} />
-      {/* Third orbit ring */}
-      <div className="absolute rounded-[50%]" style={{
-        width: 100, height: 36,
-        border: `1px dashed ${color}28`,
-        transform: "rotate(80deg)",
-        animation: "orbit-spin-cw 12s linear infinite",
-      }} />
-      {/* Nucleus */}
-      <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full"
-        style={{ background: `radial-gradient(circle, ${color}55, ${color}22)`, boxShadow: `0 0 22px ${color}70` }}>
-        <span style={{ fontSize: "0.65rem", fontWeight: 900, color, letterSpacing: "0.05em" }}>⚛</span>
-      </div>
-      {/* Electron dots */}
-      {["H₂O", "O₂", "CO₂"].map((label, i) => (
-        <div key={label} className="absolute rounded-full text-center"
-          style={{
-            width: 28, height: 28,
-            background: `${color}18`,
-            border: `1px solid ${color}35`,
-            top: `${[12, 64, 38][i]}%`,
-            left: `${[8, 18, 72][i]}%`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-          <span style={{ fontSize: "0.45rem", color, fontWeight: 700, opacity: 0.8 }}>{label}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// ─── Hero art: English (open book + quotes) ───────────────────────────────────
-
-function EnglishHeroArt({ color }: { color: string }) {
-  return (
-    <div className="relative hidden h-36 w-52 shrink-0 items-center justify-center sm:flex">
-      {/* Left page */}
-      <div className="absolute rounded-l-xl rounded-r-none"
-        style={{ left: "8%", top: "10%", width: "40%", height: "80%", background: `${color}10`, border: `1px solid ${color}30`, borderRight: "none" }}>
-        {[20, 35, 50, 65, 80].map(p => (
-          <div key={p} className="absolute left-3 right-3" style={{ top: `${p}%`, height: 1, background: `${color}28` }} />
-        ))}
-      </div>
-      {/* Right page */}
-      <div className="absolute rounded-r-xl rounded-l-none"
-        style={{ right: "8%", top: "10%", width: "40%", height: "80%", background: `${color}10`, border: `1px solid ${color}30`, borderLeft: "none" }}>
-        {[20, 35, 50, 65, 80].map(p => (
-          <div key={p} className="absolute left-3 right-3" style={{ top: `${p}%`, height: 1, background: `${color}28` }} />
-        ))}
-      </div>
-      {/* Spine */}
-      <div className="absolute" style={{ left: "48%", top: "10%", width: 4, height: "80%", background: `${color}40` }} />
-      {/* Quote marks overlay */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span style={{ fontSize: "3rem", color, opacity: 0.55, fontFamily: "Georgia, serif", lineHeight: 1 }}>❝</span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Hero art: Geography (topographic + compass) ──────────────────────────────
-
-function GeoHeroArt({ color }: { color: string }) {
-  return (
-    <div className="relative hidden h-36 w-52 shrink-0 items-center justify-center sm:flex">
-      {/* Topographic contour rings */}
-      {[44, 60, 76, 92, 108, 124].map((size, i) => (
-        <div key={size} className="absolute rounded-[50%]"
-          style={{
-            width: size, height: size * 0.65,
-            border: `1px solid ${color}${["55", "44", "38", "2e", "22", "18"][i]}`,
-            bottom: `${5 + i * 3}%`,
-            left: "50%",
-            transform: "translateX(-50%)",
-          }} />
-      ))}
-      {/* Compass rose */}
-      <div className="absolute top-4 right-6 flex h-14 w-14 items-center justify-center">
-        <div className="absolute inset-0 rounded-full" style={{ border: `1px solid ${color}35` }} />
-        {/* Cardinal directions */}
-        {[
-          { label: "N", top: "2px",  left: "50%", transform: "translateX(-50%)" },
-          { label: "S", bottom: "2px", left: "50%", transform: "translateX(-50%)" },
-          { label: "E", right: "4px", top: "50%",  transform: "translateY(-50%)" },
-          { label: "W", left: "4px",  top: "50%",  transform: "translateY(-50%)" },
-        ].map(({ label, ...pos }) => (
-          <span key={label} className="absolute font-black" style={{ fontSize: "0.55rem", color, opacity: label === "N" ? 0.95 : 0.55, ...pos }}>
-            {label}
-          </span>
-        ))}
-        {/* Cross lines */}
-        <div className="absolute" style={{ top: "50%", left: "10%", right: "10%", height: 1, background: `${color}40` }} />
-        <div className="absolute" style={{ left: "50%", top: "10%", bottom: "10%", width: 1, background: `${color}40` }} />
-        <div className="absolute h-1 w-1 rounded-full" style={{ background: color, top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
-      </div>
-    </div>
-  );
-}
-
-// ─── Hero art: Sejarah (timeline) ─────────────────────────────────────────────
-
-function SejarahHeroArt({ color }: { color: string }) {
-  const eras = [
-    { label: "BCE",  year: "5000" },
-    { label: "Prasejarah", year: "500" },
-    { label: "Tamadun", year: "1400" },
-    { label: "Islam",  year: "1957" },
-  ];
-  return (
-    <div className="relative hidden h-36 w-52 shrink-0 items-center justify-center sm:flex">
-      {/* Arch silhouette bottom */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2"
-        style={{ width: 80, height: 52, border: `1.5px solid ${color}40`, borderBottom: "none", borderRadius: "40px 40px 0 0" }} />
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2"
-        style={{ width: 52, height: 36, border: `1px solid ${color}28`, borderBottom: "none", borderRadius: "26px 26px 0 0" }} />
-      {/* Timeline bar */}
-      <div className="absolute" style={{ top: "28%", left: "6%", right: "6%", height: 2, background: `linear-gradient(90deg, ${color}18, ${color}70, ${color}18)` }}>
-        {/* Era dots */}
-        {eras.map((era, i) => (
-          <div key={era.label} className="absolute top-1/2 -translate-y-1/2 flex flex-col items-center"
-            style={{ left: `${(i / (eras.length - 1)) * 100}%`, transform: "translate(-50%, -50%)" }}>
-            <div className="h-2 w-2 rounded-full" style={{ background: color, boxShadow: `0 0 6px ${color}` }} />
-            <span className="absolute font-bold whitespace-nowrap" style={{ fontSize: "0.42rem", color, opacity: 0.7, top: 10 }}>{era.year}</span>
-            <span className="absolute font-semibold whitespace-nowrap" style={{ fontSize: "0.4rem", color: "rgba(255,255,255,0.35)", bottom: 10 }}>{era.label}</span>
-          </div>
-        ))}
-      </div>
-      {/* Decorative scroll year */}
-      <div className="absolute top-2 right-3 text-right">
-        <span className="font-display font-black" style={{ fontSize: "1.6rem", color, opacity: 0.65 }}>1957</span>
-        <span className="block font-bold tracking-widest" style={{ fontSize: "0.45rem", color, opacity: 0.4 }}>MERDEKA</span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Hero art: BM (songket pattern) ──────────────────────────────────────────
-
-function BMHeroArt({ color }: { color: string }) {
-  return (
-    <div className="relative hidden h-36 w-52 shrink-0 overflow-hidden rounded-2xl sm:block"
-      style={{ border: `1px solid ${color}28`, background: "rgba(0,0,0,0.25)" }}>
-      {/* Songket diagonal lines */}
-      {Array.from({ length: 10 }, (_, i) => (
-        <div key={`d1-${i}`} className="absolute" style={{
-          top: 0, bottom: 0, left: `${i * 24 - 40}px`,
-          width: 1, background: `${color}25`,
-          transform: "rotate(45deg) scaleY(3)",
-          transformOrigin: "top center",
-        }} />
-      ))}
-      {Array.from({ length: 10 }, (_, i) => (
-        <div key={`d2-${i}`} className="absolute" style={{
-          top: 0, bottom: 0, left: `${i * 24 - 40}px`,
-          width: 1, background: `${color}18`,
-          transform: "rotate(-45deg) scaleY(3)",
-          transformOrigin: "top center",
-        }} />
-      ))}
-      {/* Border diamonds */}
-      <div className="absolute inset-x-0 top-2 flex justify-around">
-        {["◆", "◆", "◆", "◆", "◆"].map((d, i) => (
-          <span key={i} style={{ fontSize: "0.55rem", color, opacity: 0.35 }}>{d}</span>
-        ))}
-      </div>
-      <div className="absolute inset-x-0 bottom-2 flex justify-around">
-        {["◆", "◆", "◆", "◆", "◆"].map((d, i) => (
-          <span key={i} style={{ fontSize: "0.55rem", color, opacity: 0.35 }}>{d}</span>
-        ))}
-      </div>
-      {/* Central letterform */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-display font-black leading-none" style={{ fontSize: "2rem", color, opacity: 0.75 }}>بـم</span>
-        <span className="mt-1 font-black tracking-[0.3em]" style={{ fontSize: "0.5rem", color, opacity: 0.45 }}>BAHASA · SASTERA · BUDAYA</span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Hero art switcher ────────────────────────────────────────────────────────
+// ─── Hero art — shared per-subject illustrations (see SubjectWorldArt.tsx) ─────
 
 function WorldHeroArt({ config }: { config: WorldConfig }) {
-  switch (config.id) {
-    case "math":      return <MathHeroArt      color={config.color} />;
-    case "science":   return <ScienceHeroArt   color={config.color} />;
-    case "english":   return <EnglishHeroArt   color={config.color} />;
-    case "geography": return <GeoHeroArt       color={config.color} />;
-    case "sejarah":   return <SejarahHeroArt   color={config.color} />;
-    case "bm":        return <BMHeroArt        color={config.color} />;
-    default:          return <MathHeroArt      color={config.color} />;
-  }
+  return (
+    <SubjectWorldArt
+      subjectId={config.id}
+      color={config.color}
+      width={208}
+      height={144}
+      className="hidden sm:block"
+    />
+  );
 }
 
 // ─── Study tools row ──────────────────────────────────────────────────────────
@@ -618,6 +386,10 @@ type MapProps = {
   onSelect: (key: string) => void;
 };
 
+function canOpenChapter(chapter: ChapterEntry) {
+  return chapter.available || chapter.selectable === true;
+}
+
 // ─── Path node (circular marker sitting on the path line) ────────────────────
 
 function PathNode({
@@ -720,15 +492,16 @@ function LocationCard({
   const notesCount = chapterContent?.notes?.sections?.length ?? 0;
   const cardCount  = chapterContent?.flashcards?.length ?? 0;
   const quizCount  = chapterContent?.quiz?.length ?? 0;
+  const canOpen = canOpenChapter(chapter);
 
   return (
     <button
       type="button"
-      onClick={() => chapter.available && onSelect(chapter.key)}
-      disabled={!chapter.available}
+      onClick={() => canOpen && onSelect(chapter.key)}
+      disabled={!canOpen}
       className={[
         "w-full rounded-2xl border transition-all duration-300",
-        chapter.available
+        canOpen
           ? "cursor-pointer hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2"
           : "opacity-38 cursor-not-allowed",
       ].join(" ")}
@@ -738,7 +511,7 @@ function LocationCard({
         "--tw-ring-color": config.color,
       } as CSSProperties}
       onMouseEnter={(e) => {
-        if (!chapter.available) return;
+        if (!canOpen) return;
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = `${config.color}35`;
         el.style.boxShadow   = `0 12px 40px -12px ${config.glow}`;
@@ -772,7 +545,7 @@ function LocationCard({
             ? `${pct}% in progress`
             : chapter.available
             ? "Not started"
-            : "Coming soon"}
+            : "Available Soon"}
         </p>
 
         {/* Content chips */}
@@ -949,19 +722,20 @@ function SejarahTimelineMap({ chapters, config, subjectId, scienceLang, progress
         <div className="flex w-full">
           {chapters.map((c, i) => {
             const pct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
+            const canOpen = canOpenChapter(c);
             return (
               <div key={`card-${c.key}`} className="animate-slide-up px-1.5 pt-3"
                 style={{ width: NODE_W, animationDelay: `${i * 50}ms` }}>
                 <button
                   type="button"
-                  onClick={() => c.available && onSelect(c.key)}
-                  disabled={!c.available}
+                  onClick={() => canOpen && onSelect(c.key)}
+                  disabled={!canOpen}
                   className={[
                     "w-full rounded-2xl border p-2.5 text-center transition-all duration-300",
-                    c.available ? "cursor-pointer hover:border-white/[0.14]" : "opacity-38 cursor-not-allowed",
+                    canOpen ? "cursor-pointer hover:border-white/[0.14]" : "opacity-38 cursor-not-allowed",
                   ].join(" ")}
                   style={{ background: `linear-gradient(180deg, ${config.from}0d, rgba(0,0,0,0.5))`, border: "1px solid rgba(255,255,255,0.06)" }}
-                  onMouseEnter={(e) => { if (c.available) (e.currentTarget as HTMLElement).style.borderColor = `${config.color}35`; }}
+                  onMouseEnter={(e) => { if (canOpen) (e.currentTarget as HTMLElement).style.borderColor = `${config.color}35`; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
                 >
                   {LOCATIONS[subjectId]?.[c.key] && c.available && (
@@ -973,7 +747,7 @@ function SejarahTimelineMap({ chapters, config, subjectId, scienceLang, progress
                   <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
                   <p className="mt-1 text-[9px] font-semibold"
                     style={{ color: pct >= 100 ? config.color : pct > 0 ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
-                    {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : c.available ? "Not started" : "Coming soon"}
+                    {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : c.available ? "Not started" : "Available Soon"}
                   </p>
                 </button>
               </div>
@@ -1029,15 +803,16 @@ function ChapterCard({
   const notesCount  = chapterContent?.notes?.sections?.length ?? 0;
   const cardCount   = chapterContent?.flashcards?.length ?? 0;
   const quizCount   = chapterContent?.quiz?.length ?? 0;
+  const canOpen = canOpenChapter(chapter);
 
   return (
     <button
       type="button"
-      onClick={() => chapter.available && onSelect(chapter.key)}
-      disabled={!chapter.available}
+      onClick={() => canOpen && onSelect(chapter.key)}
+      disabled={!canOpen}
       className={[
         "group relative overflow-hidden rounded-3xl border text-left transition-all duration-300 animate-slide-up backdrop-blur-xl",
-        chapter.available
+        canOpen
           ? "cursor-pointer hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2"
           : "opacity-45 cursor-not-allowed",
       ].join(" ")}
@@ -1048,7 +823,7 @@ function ChapterCard({
         "--tw-ring-color": config.color,
       } as CSSProperties}
       onMouseEnter={(e) => {
-        if (!chapter.available) return;
+        if (!canOpen) return;
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = `${config.color}38`;
         el.style.boxShadow   = `0 18px 55px -18px ${config.glow}`;
@@ -1109,7 +884,7 @@ function ChapterCard({
         )}
 
         {!chapter.available && (
-          <p className="mt-1.5 text-[10px] font-semibold text-amber-400/70">Coming Soon</p>
+          <p className="mt-1.5 text-[10px] font-semibold text-amber-400/70">Available Soon</p>
         )}
 
         {/* Progress bar */}

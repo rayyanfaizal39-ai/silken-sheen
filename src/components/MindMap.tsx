@@ -5,7 +5,10 @@ import {
   Maximize2,
   ChevronsDownUp,
   ChevronsUpDown,
-  RotateCcw,
+  Locate,
+  Home,
+  ChevronLeft,
+  ChevronRight,
   X,
   Map as MapIcon,
 } from "lucide-react";
@@ -754,6 +757,103 @@ export function MindMap({
     [animateCamera, layout.positions],
   );
 
+  // Center the camera on a node without changing zoom or expand state.
+  // Falls back to the main topic if the node can't be found (e.g. stale selection).
+  const centerOnNode = useCallback(
+    (id: string, duration = 620) => {
+      const el = containerRef.current;
+      const p = layout.positions.get(id);
+      if (!el || !p) return false;
+      pendingCamera.current = null;
+      setSelectedId(id);
+      const nextScale = cameraState.current.scale;
+      animateCamera(
+        el.clientWidth / 2 - (p.x + p.w / 2) * nextScale,
+        el.clientHeight / 2 - p.y * nextScale,
+        nextScale,
+        duration,
+      );
+      return true;
+    },
+    [animateCamera, layout.positions],
+  );
+
+  const goToMainTopic = useCallback(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    pendingCamera.current = null;
+    setSelectedId(data.id);
+    const branchIds = new Set<string>([data.id]);
+    function addVisible(id: string) {
+      const entry = treeMaps.nodes.get(id);
+      entry?.node.children?.forEach((child) => {
+        if (!visibleIds.has(child.id)) return;
+        branchIds.add(child.id);
+        addVisible(child.id);
+      });
+    }
+    addVisible(data.id);
+    const bounds = boundsForIds(branchIds, layout.positions);
+    if (!bounds) return;
+    const padding = 110;
+    const width = bounds.maxX - bounds.minX;
+    const height = bounds.maxY - bounds.minY;
+    const currentScale = cameraState.current.scale;
+    const fitScale = Math.min(
+      1.4,
+      (el.clientWidth - padding * 2) / Math.max(1, width),
+      (el.clientHeight - padding * 2) / Math.max(1, height),
+    );
+    const nextScale = Math.max(0.45, Math.min(1.4, Math.max(currentScale, Math.min(1.12, fitScale))));
+    const centerX = (bounds.minX + bounds.maxX) / 2;
+    const centerY = (bounds.minY + bounds.maxY) / 2;
+    animateCamera(
+      el.clientWidth * 0.57 - centerX * nextScale,
+      el.clientHeight / 2 - centerY * nextScale,
+      nextScale,
+    );
+  }, [animateCamera, data.id, layout.positions, treeMaps, visibleIds]);
+
+  // Center on the selected node at the current zoom; falls back to the main
+  // topic so this control can never strand the student on a blank view.
+  const centerSelected = useCallback(() => {
+    if (selectedId && centerOnNode(selectedId)) return;
+    goToMainTopic();
+  }, [centerOnNode, goToMainTopic, selectedId]);
+
+  const orderedVisibleIds = useMemo(
+    () => visibleNodes.map(({ node }) => node.id),
+    [visibleNodes],
+  );
+
+  const stepNode = useCallback(
+    (direction: 1 | -1) => {
+      if (!orderedVisibleIds.length) return;
+      const currentIndex = selectedId ? orderedVisibleIds.indexOf(selectedId) : -1;
+      const fallbackIndex = direction === 1 ? 0 : orderedVisibleIds.length - 1;
+      const nextIndex =
+        currentIndex === -1
+          ? fallbackIndex
+          : (currentIndex + direction + orderedVisibleIds.length) % orderedVisibleIds.length;
+      const nextId = orderedVisibleIds[nextIndex];
+      if (!centerOnNode(nextId, 520)) setSelectedId(nextId);
+    },
+    [centerOnNode, orderedVisibleIds, selectedId],
+  );
+
+  const breadcrumbTrail = useMemo(() => {
+    if (!selectedId) return [];
+    const chain: string[] = [selectedId];
+    let parent = treeMaps.parents.get(selectedId);
+    while (parent) {
+      chain.unshift(parent);
+      parent = treeMaps.parents.get(parent);
+    }
+    return chain
+      .map((nodeId) => treeMaps.nodes.get(nodeId)?.node.label)
+      .filter((label): label is string => !!label);
+  }, [selectedId, treeMaps]);
+
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
@@ -788,35 +888,74 @@ export function MindMap({
         zIndex: 10,
       }}
     >
-      <div className="absolute top-3 right-3 z-20 flex flex-wrap gap-2">
+      {breadcrumbTrail.length > 0 && (
+        <div className="absolute left-3 top-3 z-20 flex max-w-[64%] items-center gap-1.5 overflow-x-auto rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-white/70 backdrop-blur-md sm:max-w-[55%]">
+          {breadcrumbTrail.map((label, index) => (
+            <span key={`${label}-${index}`} className="flex items-center gap-1.5 whitespace-nowrap">
+              {index > 0 && <ChevronRight className="h-3 w-3 shrink-0 text-white/30" />}
+              <span
+                className={
+                  index === breadcrumbTrail.length - 1 ? "text-white" : "text-white/55"
+                }
+              >
+                {label}
+              </span>
+            </span>
+          ))}
+        </div>
+      )}
+      <div className="absolute top-3 right-3 z-20 flex flex-wrap justify-end gap-2">
+        <button
+          onClick={() => stepNode(-1)}
+          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+          title="Previous node"
+          aria-label="Go to previous node"
+        >
+          <ChevronLeft className="w-3.5 h-3.5" /> Prev
+        </button>
+        <button
+          onClick={() => stepNode(1)}
+          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+          title="Next node"
+          aria-label="Go to next node"
+        >
+          Next <ChevronRight className="w-3.5 h-3.5" />
+        </button>
+        <button
+          onClick={goToMainTopic}
+          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+          title="Back to main topic"
+        >
+          <Home className="w-3.5 h-3.5" /> Main topic
+        </button>
         <button
           onClick={expandAll}
-          className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
         >
           <ChevronsUpDown className="w-3.5 h-3.5" /> Expand all
         </button>
         <button
           onClick={collapseAll}
-          className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
         >
           <ChevronsDownUp className="w-3.5 h-3.5" /> Collapse all
         </button>
         <button
           onClick={resetView}
-          className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
         >
           <Maximize2 className="w-3.5 h-3.5" /> Reset
         </button>
         <button
           onClick={() => setShowMinimap((value) => !value)}
-          className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
         >
           <MapIcon className="w-3.5 h-3.5" /> Map
         </button>
         {isMobile && !mobileFullscreen && (
           <button
             onClick={() => setMobileFullscreen(true)}
-            className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
+            className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
           >
             <Maximize2 className="w-3.5 h-3.5" /> Fullscreen
           </button>
@@ -833,7 +972,9 @@ export function MindMap({
                 1.2,
               );
           }}
-          className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+          className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+          title="Zoom in"
+          aria-label="Zoom in"
         >
           <Plus className="w-4 h-4" />
         </button>
@@ -847,16 +988,19 @@ export function MindMap({
                 1 / 1.2,
               );
           }}
-          className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+          className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+          title="Zoom out"
+          aria-label="Zoom out"
         >
           <Minus className="w-4 h-4" />
         </button>
         <button
-          onClick={resetView}
-          className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
-          title="Center"
+          onClick={centerSelected}
+          className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+          title="Center current node"
+          aria-label="Center current node"
         >
-          <RotateCcw className="w-4 h-4" />
+          <Locate className="w-4 h-4" />
         </button>
       </div>
 
@@ -927,7 +1071,7 @@ export function MindMap({
                     opacity: isExiting
                       ? 0
                       : activeIds.size && (!activeIds.has(from) || !activeIds.has(to))
-                        ? 0.2
+                        ? 0.32
                         : 1,
                     transition:
                       "stroke-dashoffset 620ms cubic-bezier(0.22, 1, 0.36, 1), opacity 480ms ease",
@@ -996,7 +1140,7 @@ export function MindMap({
                   cursor: hasChildren ? "pointer" : "default",
                   textAlign: "left",
                   lineHeight: `${LINE_H}px`,
-                  opacity: isEntering || isExiting ? 0 : isDimmed ? 0.32 : 1,
+                  opacity: isEntering || isExiting ? 0 : isDimmed ? 0.45 : 1,
                   transform: isEntering || isExiting ? "scale(0.84)" : "scale(1)",
                   transitionDelay: `${revealDelay}ms`,
                   transition:
@@ -1119,6 +1263,22 @@ export function MindMap({
       `}</style>
     </div>
   );
+
+  const isEmpty = data.id === EMPTY_MIND_NODE.id && !data.children?.length;
+  if (isEmpty) {
+    return (
+      <div
+        className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-slate-950/40 p-10 text-center text-sm text-white/60"
+        style={{
+          height: typeof height === "number" ? `${height}px` : height,
+          minHeight: 240,
+        }}
+      >
+        <MapIcon className="h-6 w-6 text-white/30" />
+        Mind map content isn't available for this chapter yet.
+      </div>
+    );
+  }
 
   if (mobileFullscreen) {
     return (

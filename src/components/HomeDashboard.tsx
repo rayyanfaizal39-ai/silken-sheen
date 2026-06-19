@@ -38,6 +38,7 @@ import {
 } from "@/hooks/use-progress";
 import { analyzeProgress } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
+import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 
 // ─── World portal definitions ─────────────────────────────────────────────────
 
@@ -241,75 +242,43 @@ function WorldPortalCard({
         style={{ boxShadow: `inset 0 0 70px ${world.color}1a, 0 12px 50px ${world.color}40` }}
       />
 
-      {/* Ambient symbols — floating in background corner */}
+      {/* World illustration strip — the subject's real shape, not an emoji */}
       <div
-        className="pointer-events-none absolute right-3 top-3 flex flex-col items-end gap-0.5 opacity-[0.12]"
-        aria-hidden
+        className="relative h-20 w-full shrink-0 overflow-hidden"
+        style={{ background: `linear-gradient(180deg, ${world.color}1c, transparent)` }}
       >
-        {world.symbols.slice(0, 3).map((sym, i) => (
-          <span
-            key={i}
-            className="font-mono font-black"
-            style={{
-              color: world.color,
-              fontSize: `${[10, 8, 7][i]}px`,
-              opacity: [1, 0.7, 0.5][i],
-            }}
-          >
-            {sym}
-          </span>
-        ))}
-      </div>
-
-      <div className="relative z-10 flex flex-col p-5">
-        {/* Current world badge */}
+        <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+          <SubjectWorldArt subjectId={world.id} color={world.color} width={240} height={80} />
+        </div>
         {isCurrentWorld && (
           <span
-            className="mb-3 self-start rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-widest"
-            style={{ background: `${world.color}25`, color: world.color }}
+            className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-widest"
+            style={{ background: `${world.color}30`, color: world.color }}
           >
             ● Current Mission
           </span>
         )}
+      </div>
 
-        {/* Planet orb + identity */}
-        <div className="mb-4 flex items-center gap-3">
-          <div
-            className="relative flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl text-2xl transition-transform duration-300 group-hover:scale-[1.08]"
-            style={{
-              background: `radial-gradient(circle at 35% 30%, ${world.color}45, ${world.color}18 60%, transparent)`,
-              boxShadow: `0 0 20px ${world.color}70, 0 0 6px ${world.color}33`,
-            }}
-          >
-            {world.icon}
-            {/* Orbit ring */}
-            <div
-              className="absolute -inset-2 rounded-full border opacity-25 transition-opacity duration-300 group-hover:opacity-55"
-              style={{ borderColor: world.color }}
-            />
-          </div>
-
-          <div className="min-w-0 flex-1">
-            <p
-              className="text-[9px] font-black uppercase tracking-[0.18em]"
-              style={{ color: world.color, opacity: 0.65 }}
-            >
-              {world.eyebrow}
-            </p>
-            <h3 className="mt-0.5 truncate text-sm font-bold leading-tight text-white">
-              {world.worldName}
-            </h3>
-          </div>
-        </div>
+      <div className="relative z-10 flex flex-1 flex-col p-5 pt-3">
+        <p
+          className="text-[9px] font-black uppercase tracking-[0.18em]"
+          style={{ color: world.color, opacity: 0.65 }}
+        >
+          {world.eyebrow}
+        </p>
+        <h3 className="mt-0.5 truncate font-display text-base font-black leading-tight text-white">
+          {world.worldName}
+        </h3>
 
         {/* Chapter count + enter CTA */}
-        <div className="flex items-center justify-between">
+        <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-1.5">
             <div
               className="h-1.5 w-1.5 rounded-full"
               style={{ background: world.color, opacity: 0.45 }}
             />
-            <span className="text-[11px] font-medium text-white/35">
+            <span className="text-[11px] font-bold text-white/50">
               {world.chapters} chapter{(world.chapters as number) !== 1 ? "s" : ""}
             </span>
           </div>

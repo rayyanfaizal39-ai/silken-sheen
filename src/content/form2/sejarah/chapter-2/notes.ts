@@ -1,6 +1,7 @@
 import type { StructuredNotes } from "@/data/types";
+import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
-export const sejarahF2C2Notes: StructuredNotes = {
+const sejarahF2C2NotesSource: StructuredNotes = {
   chapterSummary:
     "Bab 2 menerangkan sistem pemerintahan beraja dalam kerajaan Alam Melayu serta kegiatan ekonomi masyarakat seperti pertanian, perdagangan, hasil hutan dan laut, perlombongan dan pembuatan.",
   quickRevision: [
@@ -621,3 +622,5 @@ export const sejarahF2C2Notes: StructuredNotes = {
     },
   ],
 };
+
+export const sejarahF2C2Notes = organizeSejarahF2Notes(sejarahF2C2NotesSource);
