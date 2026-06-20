@@ -12,7 +12,7 @@ import {
   Lock,
   Flame,
 } from "lucide-react";
-import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
+import { useProgress, getRank } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { Avatar } from "@/components/Avatar";
 import { buildLeaderboard, nomineesToCsv, type RankedStudent } from "@/lib/leaderboard";
@@ -67,7 +67,7 @@ function LeaderboardPage() {
       `Student: ${name || "—"}`,
       `School: ${school || "—"}`,
       `Hall of Fame rank: #${me?.rank ?? "—"}`,
-      `Chess Rating: ${getChessRating(me?.xp ?? 0)} (${myRank.name})`,
+      `Cosmic Rank: ${myRank.name}`,
       `Total XP: ${(me?.xp ?? 0).toLocaleString()}`,
       `Quiz average: ${insight.overallAvg}%  ·  Pass rate: ${insight.passRate}%`,
       `Study streak: ${progress.streak} day${progress.streak !== 1 ? "s" : ""}`,
@@ -111,13 +111,14 @@ function LeaderboardPage() {
               Hall of Fame · Top 100
             </p>
             <h1 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">
-              The Pop Mart Grandmasters
+              AcadeMy Cosmic Leaderboard
             </h1>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/55">
-              Students are ranked by chess rating (1000–3000). Climb from{" "}
-              <span className="font-bold text-[#6B7280]">Pawn</span> all the way to{" "}
-              <span className="font-bold text-[#7C3AED]">Queen ♛</span> — and the top{" "}
-              {board.topN} are put forward for{" "}
+              Students climb the cosmic ranks by studying notes, completing quizzes, and
+              mastering flashcards. Rise from{" "}
+              <span className="font-bold text-[#94A3B8]">Space Cadet</span> to{" "}
+              <span className="font-bold text-[#F0ABFC]">Cosmic Legend</span> and become one
+              of AcadeMy's top {board.topN} learners — eligible for{" "}
               <span className="font-bold text-[#C4B5FD]">scholarship consideration</span>.
             </p>
           </div>
@@ -135,10 +136,12 @@ function LeaderboardPage() {
         >
           <span className="text-2xl">{myRank.emoji}</span>
           <div className="min-w-0 flex-1">
-            <p className="text-xs font-bold text-white/60">Your chess rating</p>
+            <p className="text-xs font-bold text-white/60">Your Cosmic Rank</p>
             <p className="font-display text-xl font-black" style={{ color: myRank.color }}>
-              {getChessRating(progress.xp).toLocaleString()}{" "}
-              <span className="text-sm font-bold opacity-70">· {myRank.name}</span>
+              {myRank.name}{" "}
+              <span className="text-sm font-bold opacity-70">
+                · {progress.xp.toLocaleString()} XP
+              </span>
             </p>
           </div>
           <div className="text-right">
@@ -172,7 +175,7 @@ function LeaderboardPage() {
                 <p className="max-w-full truncate text-center text-[10px] text-white/40">
                   {s.school}
                 </p>
-                <ChessRankBadge xp={s.xp} small />
+                <CosmicRankBadge xp={s.xp} small />
                 <div
                   className={`mt-2 flex ${heights[hi]} w-full flex-col items-center justify-start rounded-t-xl border-t-2 pt-2`}
                   style={{
@@ -187,7 +190,7 @@ function LeaderboardPage() {
                     #{s.rank}
                   </span>
                   <span className="flex items-center gap-1 text-[11px] font-bold text-white/70">
-                    <Sparkles className="h-3 w-3 text-[#FBBF24]" /> {getChessRating(s.xp).toLocaleString()}
+                    <Sparkles className="h-3 w-3 text-[#FBBF24]" /> {s.xp.toLocaleString()} XP
                   </span>
                 </div>
               </div>
@@ -234,9 +237,9 @@ function LeaderboardPage() {
   );
 }
 
-// ── Chess rank badge ──────────────────────────────────────────────────────────
+// ── Cosmic rank badge ──────────────────────────────────────────────────────────
 
-function ChessRankBadge({ xp, small = false }: { xp: number; small?: boolean }) {
+function CosmicRankBadge({ xp, small = false }: { xp: number; small?: boolean }) {
   const r = getRank(xp);
   return (
     <span
@@ -337,7 +340,7 @@ function RankRow({
       )}
       <div className="flex shrink-0 flex-col items-end gap-0.5">
         <span className="flex items-center gap-1 text-xs font-black tabular-nums" style={{ color: r.color }}>
-          {r.emoji} {getChessRating(student.xp).toLocaleString()}
+          {r.emoji} {r.name}
         </span>
         <span className="text-[9px] text-white/35 tabular-nums">{student.xp.toLocaleString()} XP</span>
       </div>

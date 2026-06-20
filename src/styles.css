@@ -4014,9 +4014,25 @@
   animation: companionGlowPulse 3.2s ease-in-out infinite;
 }
 
+/* Astronaut rank companion — gentle float + breathing scale, no spin */
+@keyframes rankCompanionFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.035);
+  }
+}
+
+.rank-companion-float {
+  animation: rankCompanionFloat 4.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(167,139,250,0.6)) drop-shadow(0 0 36px rgba(139,92,246,0.35));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cosmic-glass-card, .cosmic-subject-card, .cosmic-subject-planet-orb,
-  .cosmic-companion-pedestal, .cosmic-companion-egg, .cosmic-companion-glow {
+  .cosmic-companion-pedestal, .cosmic-companion-egg, .cosmic-companion-glow,
+  .rank-companion-float {
     animation: none !important;
     transition: none !important;
   }
