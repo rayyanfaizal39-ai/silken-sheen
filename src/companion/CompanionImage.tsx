@@ -6,7 +6,7 @@ import { getCompanionSpecies } from "./species";
 export function CompanionImage({
   speciesId,
   stage,
-  size = 96,
+  size = 220,
   className = "",
 }: {
   speciesId: CompanionId;
