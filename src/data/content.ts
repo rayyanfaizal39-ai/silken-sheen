@@ -53,6 +53,8 @@ import { sejarahF2C3Flashcards } from "./sejarah-f2-c3-flashcards";
 import { sejarahF2C3Quizzes } from "./sejarah-f2-c3-quizzes";
 import { sejarahF2C4Flashcards } from "./sejarah-f2-c4-flashcards";
 import { sejarahF2C4Quizzes } from "./sejarah-f2-c4-quizzes";
+import { sejarahF2C5Flashcards } from "./sejarah-f2-c5-flashcards";
+import { sejarahF2C5Quizzes } from "./sejarah-f2-c5-quizzes";
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
 export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
@@ -7013,6 +7015,7 @@ export const quizzes: QuizQuestion[] = [
   },
   ...sejarahF2C3Quizzes,
   ...sejarahF2C4Quizzes,
+  ...sejarahF2C5Quizzes,
 
   // Geografi form 1 Chapter 1 - Arah
   {
@@ -15806,6 +15809,7 @@ export const flashcards: Flashcard[] = [
   ...sejarahF2C2Flashcards,
   ...sejarahF2C3Flashcards,
   ...sejarahF2C4Flashcards,
+  ...sejarahF2C5Flashcards,
 
   // Sejarah Form 1 Chapter 1 - Mengenali Sejarah
   {
@@ -26359,7 +26363,7 @@ export function getSubjectChapters(
       {
         key: "Chapter 5",
         label: "Chapter 5: Kesultanan Melayu Melaka",
-        available: false,
+        available: true,
         selectable: true,
         subtopics: [
           "5.1 Pengasasan Kesultanan Melayu Melaka",
