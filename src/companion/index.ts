@@ -1,0 +1,9 @@
+export { CompanionWidget } from "./CompanionWidget";
+export { CompanionPanel } from "./CompanionPanel";
+export { CompanionImage } from "./CompanionImage";
+export { getCompanionSpecies, getCompanionDisplayName, COMPANION_SPECIES } from "./species";
+export type { CompanionSpeciesDef } from "./species";
+export { getCompanionMood, getCompanionMoodMessage, MOOD_EMOJI, MOOD_LABEL } from "./mood";
+export type { CompanionMood } from "./mood";
+export { getRandomCompanionMessage, COMPANION_MESSAGES } from "./messages";
+export { useCompanionMessage } from "./useCompanionMessage";

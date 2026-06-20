@@ -3999,9 +3999,24 @@
   }
 }
 
+/* Soft glow pulse behind the companion artwork — subtle "alive" breathing cue. */
+@keyframes companionGlowPulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+.cosmic-companion-glow {
+  animation: companionGlowPulse 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cosmic-glass-card, .cosmic-subject-card, .cosmic-subject-planet-orb,
-  .cosmic-companion-pedestal, .cosmic-companion-egg {
+  .cosmic-companion-pedestal, .cosmic-companion-egg, .cosmic-companion-glow {
     animation: none !important;
     transition: none !important;
   }
