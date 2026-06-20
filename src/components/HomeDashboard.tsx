@@ -18,8 +18,6 @@ import {
   Rocket,
   Trophy,
   GraduationCap,
-  Egg,
-  Shield,
 } from "lucide-react";
 import { useMemo, type CSSProperties } from "react";
 import { AstronautScene } from "@/components/AstronautScene";
@@ -27,6 +25,7 @@ import { Avatar } from "@/components/Avatar";
 import {
   useProgress,
   COMPANION_STAGES,
+  getCompanionStageForXp,
   getRank,
   getNextRank,
   getRankProgress,
@@ -36,6 +35,7 @@ import {
   DAILY_MISSIONS,
   type LastVisited,
 } from "@/hooks/use-progress";
+import { CompanionImage, getCompanionDisplayName, useCompanionMessage } from "@/companion";
 import { analyzeProgress } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
 
@@ -111,14 +111,6 @@ const WORLD_PORTALS = [
 ] as const;
 
 type WorldPortal = (typeof WORLD_PORTALS)[number];
-
-const COMPANION_NAMES: Record<string, string> = {
-  nova: "Nova",
-  luna: "Luna",
-  terra: "Terra",
-  comet: "Comet",
-  nebula: "Nebula",
-};
 
 // ─── Quick access tiles ───────────────────────────────────────────────────────
 const QUICK_ACCESS = [
@@ -510,16 +502,12 @@ export function HomeDashboard() {
   const missionsComplete = missionState.reduce((n, m) => n + (m.done >= m.target ? 1 : 0), 0);
   const companionStageIndex = Math.max(
     0,
-    COMPANION_STAGES.findIndex((stage) => stage.id === (progress.companion?.stage ?? "egg")),
+    COMPANION_STAGES.findIndex((stage) => stage.id === getCompanionStageForXp(progress.xp)),
   );
   const companionStage = COMPANION_STAGES[companionStageIndex] ?? COMPANION_STAGES[0];
   const nextCompanionStage = COMPANION_STAGES[companionStageIndex + 1] ?? null;
-  const companionName = progress.companion
-    ? COMPANION_NAMES[progress.companion.id] ?? "Companion"
-    : "Nova";
-  const companionXpNeeded = nextCompanionStage
-    ? Math.max(0, nextCompanionStage.xpRequired - progress.xp)
-    : 0;
+  const companionName = progress.companion ? getCompanionDisplayName(progress.companion) : "Nova";
+  const companionDailyMessage = useCompanionMessage();
 
   return (
     <section className="px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10 space-y-6">
@@ -811,21 +799,28 @@ export function HomeDashboard() {
         <div className="relative flex flex-col items-center overflow-hidden rounded-[2rem] border border-[#F0ABFC]/20 bg-gradient-to-b from-[#312E81]/42 to-[#0B1220]/76 p-5 text-center backdrop-blur-2xl">
           <div className="pointer-events-none absolute -top-16 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(240,171,252,0.32),transparent_65%)] blur-xl" />
           <div className="relative mb-3 flex h-32 w-32 items-center justify-center">
-            <div className="absolute inset-0 rounded-full bg-[#F0ABFC]/20 blur-2xl" />
+            <div className="cosmic-companion-glow absolute inset-0 rounded-full bg-[#F0ABFC]/20 blur-2xl" />
             <div className="absolute inset-3 rounded-full border border-white/15 shadow-[0_0_36px_rgba(240,171,252,0.35)]" />
-            <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-[radial-gradient(circle_at_32%_24%,rgba(255,255,255,0.9),#F0ABFC_18%,#8B5CF6_62%,#22D3EE_100%)] text-4xl shadow-[inset_-12px_-14px_24px_rgba(5,8,22,0.34),0_0_32px_rgba(240,171,252,0.55)]">
-              {progress.companion ? <Shield className="h-9 w-9 text-white" /> : <Egg className="h-9 w-9 text-white" />}
+            <div className="relative flex h-24 w-24 animate-[companionFloat_4.6s_ease-in-out_infinite] items-center justify-center rounded-full">
+              <CompanionImage
+                speciesId={progress.companion?.id ?? "nova"}
+                stage={companionStage.id}
+                size={84}
+              />
             </div>
           </div>
           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#F0ABFC]/70">
             Cosmic Companion
           </p>
           <h3 className="mt-1 font-display text-xl font-black text-white">
-            {progress.companion ? `${companionName} ${companionStage.name}` : "Choose Your Egg"}
+            {companionName} {companionStage.name}
           </h3>
-          <p className="mt-2 text-xs leading-5 text-white/45">
+          <p className="mt-2 max-w-[220px] text-xs italic leading-5 text-white/55">
+            "{companionDailyMessage}"
+          </p>
+          <p className="mt-2 text-xs font-bold text-white/45">
             {nextCompanionStage
-              ? `${companionXpNeeded.toLocaleString()} XP to ${nextCompanionStage.name}`
+              ? `${progress.xp.toLocaleString()} / ${nextCompanionStage.xpRequired.toLocaleString()} XP`
               : "Guardian evolution complete"}
           </p>
           <Link

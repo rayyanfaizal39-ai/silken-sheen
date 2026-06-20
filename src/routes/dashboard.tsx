@@ -15,7 +15,10 @@ import {
   type MissionProgress,
   type RecentActivity,
   type SpaceRank,
+  type CompanionId,
+  getCompanionStageForXp,
 } from "@/hooks/use-progress";
+import { CompanionImage } from "@/companion";
 import { subjects, type Subject } from "@/data/content";
 import {
   Target,
@@ -351,7 +354,7 @@ function DashboardPage() {
           <CreatureXpCard xp={progress.xp} />
 
           {/* Cosmic Companion */}
-          <CosmicCompanionCard />
+          <CosmicCompanionCard xp={progress.xp} companionId={progress.companion?.id ?? "nova"} />
 
           <DailyMissionsCard missions={todaysMissions} />
           <RecentActivityCard activity={recentActivity} />
@@ -827,7 +830,14 @@ function SubjectPlanetCard({
 
 // ─── Cosmic Companion ───────────────────────────────────────────────────────────
 
-function CosmicCompanionCard() {
+function CosmicCompanionCard({
+  xp,
+  companionId,
+}: {
+  xp: number;
+  companionId: CompanionId;
+}) {
+  const stage = getCompanionStageForXp(xp);
   return (
     <Card className="relative overflow-hidden text-center">
       <div
@@ -839,7 +849,9 @@ function CosmicCompanionCard() {
         <p className="mb-5 text-[11px] text-white/40">Your companion evolves as you learn.</p>
         <div className="relative mx-auto flex h-32 w-32 items-end justify-center">
           <div className="cosmic-companion-pedestal absolute bottom-1 left-1/2 -translate-x-1/2" />
-          <span className="cosmic-companion-egg relative z-10 mb-3 text-6xl">🥚</span>
+          <div className="cosmic-companion-egg relative z-10 mb-3">
+            <CompanionImage speciesId={companionId} stage={stage} size={72} />
+          </div>
         </div>
       </div>
     </Card>

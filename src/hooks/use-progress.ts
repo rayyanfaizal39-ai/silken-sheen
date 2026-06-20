@@ -50,10 +50,20 @@ export type CompanionStageId = "egg" | "blobling" | "sprout" | "cadet" | "guardi
 
 export interface CompanionConfig {
   id: CompanionId;
+  /** Custom nickname the student gave their companion. Falls back to the species name when unset. */
+  name?: string;
   stage: CompanionStageId;
   level: number;
   selectedAt: string;
   evolvedAt?: Partial<Record<CompanionStageId, string>>;
+}
+
+/** Whole days since the companion was selected — used for the "Days Together" stat. */
+export function getCompanionDaysTogether(companion: CompanionConfig): number {
+  const selected = new Date(companion.selectedAt).getTime();
+  if (Number.isNaN(selected)) return 1;
+  const days = Math.floor((Date.now() - selected) / (1000 * 60 * 60 * 24));
+  return Math.max(1, days + 1);
 }
 
 export const COMPANION_STAGES: Array<{
@@ -63,10 +73,19 @@ export const COMPANION_STAGES: Array<{
 }> = [
   { id: "egg", name: "Egg", xpRequired: 0 },
   { id: "blobling", name: "Blobling", xpRequired: 500 },
-  { id: "sprout", name: "Sprout", xpRequired: 1000 },
-  { id: "cadet", name: "Cadet", xpRequired: 1750 },
-  { id: "guardian", name: "Guardian", xpRequired: 2750 },
+  { id: "sprout", name: "Sprout", xpRequired: 1500 },
+  { id: "cadet", name: "Cadet", xpRequired: 3000 },
+  { id: "guardian", name: "Guardian", xpRequired: 6000 },
 ];
+
+/** The companion's display stage is always derived from XP, so its image updates automatically. */
+export function getCompanionStageForXp(xp: number): CompanionStageId {
+  let stage = COMPANION_STAGES[0];
+  for (const s of COMPANION_STAGES) {
+    if (xp >= s.xpRequired) stage = s;
+  }
+  return stage.id;
+}
 
 /** Pass threshold + rewards for "passing" a quiz. */
 export const QUIZ_PASS_PCT = 80;
@@ -418,6 +437,8 @@ export const DAILY_MISSIONS: DailyMission[] = [
 ];
 
 // ─── Persistence helpers ──────────────────────────────────────────────────────
+const COMPANION_SENTINEL_DATE = new Date(0).toISOString();
+
 const initial: Progress = {
   xp: 0,
   streak: 0,
@@ -430,6 +451,10 @@ const initial: Progress = {
   tokens: 0,
   avatar: DEFAULT_AVATAR,
   quizHistory: [],
+  // Nova is the only companion in V1 — active by default, no selection step.
+  // selectedAt is a sentinel here; load() stamps the real "today" on first read
+  // so "Days Together" starts at 1 instead of decades.
+  companion: { id: "nova", stage: "egg", level: 1, selectedAt: COMPANION_SENTINEL_DATE },
 };
 
 function today() {
@@ -440,11 +465,27 @@ function load(): Progress {
   if (typeof window === "undefined") return initial;
   try {
     const raw = localStorage.getItem(KEY);
-    if (!raw) return initial;
-    return { ...initial, ...JSON.parse(raw) };
+    if (!raw) return stampCompanionSelectedAt(initial);
+    const merged: Progress = { ...initial, ...JSON.parse(raw) };
+    return stampCompanionSelectedAt(merged);
   } catch {
     return initial;
   }
+}
+
+/** Replaces the epoch sentinel with "now" the first time a companion is actually loaded. */
+function stampCompanionSelectedAt(progress: Progress): Progress {
+  if (!progress.companion || progress.companion.selectedAt !== COMPANION_SENTINEL_DATE) {
+    return progress;
+  }
+  const next: Progress = {
+    ...progress,
+    companion: { ...progress.companion, selectedAt: new Date().toISOString() },
+  };
+  try {
+    localStorage.setItem(KEY, JSON.stringify(next));
+  } catch {}
+  return next;
 }
 
 export function chapterActivityKey(subjectId: string, chapterKey: string) {
@@ -993,6 +1034,26 @@ export function useProgress() {
     return evolved;
   }, [scheduleSync]);
 
+  /** Give the companion a custom nickname (e.g. "Nova" → "Blaze"). */
+  const renameCompanion = useCallback(
+    (name: string) => {
+      const trimmed = name.trim().slice(0, 24);
+      setProgress((prev) => {
+        if (!prev.companion || !trimmed) return prev;
+        const next: Progress = {
+          ...prev,
+          companion: { ...prev.companion, name: trimmed },
+        };
+        try {
+          localStorage.setItem(KEY, JSON.stringify(next));
+        } catch {}
+        scheduleSync(next);
+        return next;
+      });
+    },
+    [scheduleSync],
+  );
+
   /**
    * Log a completed quiz for the AI Tracker + Parent Report and, when the
    * student scores at least QUIZ_PASS_PCT, award the existing bonus XP.
@@ -1090,6 +1151,7 @@ export function useProgress() {
     setLastVisited,
     chooseCompanion,
     evolveCompanion,
+    renameCompanion,
     recordQuizResult,
     setParentReport,
     setStudentProfile,
