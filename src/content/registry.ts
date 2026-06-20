@@ -55,6 +55,7 @@ import { sejarahF2C1Notes } from "@/content/form2/sejarah/chapter-1/notes";
 import { sejarahF2C2Notes } from "@/content/form2/sejarah/chapter-2/notes";
 import { sejarahF2C3Notes } from "@/content/form2/sejarah/chapter-3/notes";
 import { sejarahF2C4Notes } from "@/content/form2/sejarah/chapter-4/notes";
+import { sejarahF2C5Notes } from "@/content/form2/sejarah/chapter-5/notes";
 import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
 import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
 import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
@@ -326,7 +327,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 5",
     title: "Kesultanan Melayu Melaka",
+    notes: sejarahF2C5Notes,
     mindMap: { data: sejarahF2C5MindMap, title: "Kesultanan Melayu Melaka" },
+    flashcards: sejarahF2FlashcardsFor(5),
+    quiz: sejarahF2QuizzesFor(5),
   },
   {
     id: "sejarah-f2-c6",

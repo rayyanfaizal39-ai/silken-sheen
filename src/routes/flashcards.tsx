@@ -113,6 +113,16 @@ const SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS: Array<{
   { index: 2, title: "Keunikan Warisan Masyarakat Kerajaan Alam Melayu", range: "Cards 41-60" },
 ];
 
+const SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS: Array<{
+  index: FlashcardSetIndex;
+  title: string;
+  range: string;
+}> = [
+  { index: 0, title: "Pengasasan Melaka", range: "Cards 1-20" },
+  { index: 1, title: "Kegemilangan Melaka", range: "Cards 21-40" },
+  { index: 2, title: "Perdagangan dan Pengakhiran Melaka", range: "Cards 41-60" },
+];
+
 function vibrate(pattern: number | number[], enabled: boolean) {
   if (!enabled) return;
   try {
@@ -3564,6 +3574,8 @@ function FlashcardsPage() {
         ? SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS
         : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 4"
           ? SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS
+          : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 5"
+            ? SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS
       : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     const setCards =
