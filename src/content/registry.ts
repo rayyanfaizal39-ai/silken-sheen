@@ -56,6 +56,8 @@ import { sejarahF2C2Notes } from "@/content/form2/sejarah/chapter-2/notes";
 import { sejarahF2C3Notes } from "@/content/form2/sejarah/chapter-3/notes";
 import { sejarahF2C4Notes } from "@/content/form2/sejarah/chapter-4/notes";
 import { sejarahF2C5Notes } from "@/content/form2/sejarah/chapter-5/notes";
+import { sejarahF2C6Notes } from "@/content/form2/sejarah/chapter-6/notes";
+import { sejarahF2C7Notes } from "@/content/form2/sejarah/chapter-7/notes";
 import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
 import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
 import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
@@ -338,7 +340,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 6",
     title: "Kesultanan Johor Riau",
+    notes: sejarahF2C6Notes,
     mindMap: { data: sejarahF2C6MindMap, title: "Kesultanan Johor Riau" },
+    flashcards: sejarahF2FlashcardsFor(6),
+    quiz: sejarahF2QuizzesFor(6),
   },
   {
     id: "sejarah-f2-c7",
@@ -346,6 +351,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 7",
     title: "Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor",
+    notes: sejarahF2C7Notes,
   },
   {
     id: "sejarah-f2-c8",
