@@ -59,7 +59,12 @@ import { sejarahF2C6Flashcards } from "./sejarah-f2-c6-flashcards";
 import { sejarahF2C6Quizzes } from "./sejarah-f2-c6-quizzes";
 import { sejarahF2C7Flashcards } from "./sejarah-f2-c7-flashcards";
 import { sejarahF2C7Quizzes } from "./sejarah-f2-c7-quizzes";
+import { sejarahF2C8Flashcards } from "./sejarah-f2-c8-flashcards";
 import { sejarahF2C8Quizzes } from "./sejarah-f2-c8-quizzes";
+import { sejarahF2C9Flashcards } from "./sejarah-f2-c9-flashcards";
+import { sejarahF2C9Quizzes } from "./sejarah-f2-c9-quizzes";
+import { sejarahF2C10Flashcards } from "./sejarah-f2-c10-flashcards";
+import { sejarahF2C10Quizzes } from "./sejarah-f2-c10-quizzes";
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
 export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
@@ -7024,6 +7029,8 @@ export const quizzes: QuizQuestion[] = [
   ...sejarahF2C6Quizzes,
   ...sejarahF2C7Quizzes,
   ...sejarahF2C8Quizzes,
+  ...sejarahF2C9Quizzes,
+  ...sejarahF2C10Quizzes,
 
   // Geografi form 1 Chapter 1 - Arah
   {
@@ -15820,6 +15827,9 @@ export const flashcards: Flashcard[] = [
   ...sejarahF2C5Flashcards,
   ...sejarahF2C6Flashcards,
   ...sejarahF2C7Flashcards,
+  ...sejarahF2C8Flashcards,
+  ...sejarahF2C9Flashcards,
+  ...sejarahF2C10Flashcards,
 
   // Sejarah Form 1 Chapter 1 - Mengenali Sejarah
   {
@@ -26414,7 +26424,7 @@ export function getSubjectChapters(
       {
         key: "Chapter 9",
         label: "Chapter 9: Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
-        available: false,
+        available: true,
         selectable: true,
         subtopics: [
           "9.1 Warisan Kerajaan Kedah, Kelantan dan Perlis",
@@ -26424,7 +26434,7 @@ export function getSubjectChapters(
       {
         key: "Chapter 10",
         label: "Chapter 10: Sarawak dan Sabah",
-        available: false,
+        available: true,
         selectable: true,
         subtopics: [
           "10.1 Sarawak dan Sabah dalam Alam Melayu",
