@@ -91,6 +91,8 @@ import { geoF2C2MindMap } from "@/content/form2/geography/chapter-2/mindmap";
 import { geographyF2C2Notes } from "@/content/form2/geography/chapter-2/notes";
 import { geoF2C3MindMap } from "@/content/form2/geography/chapter-3/mindmap";
 import { geographyF2C3Notes } from "@/content/form2/geography/chapter-3/notes";
+import { geoF2C4MindMap } from "@/content/form2/geography/chapter-4/mindmap";
+import { geographyF2C4Notes } from "@/content/form2/geography/chapter-4/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -458,6 +460,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 4",
     title: "Cuaca dan Iklim di Malaysia",
+    notes: geographyF2C4Notes,
+    mindMap: { data: geoF2C4MindMap, title: "Cuaca dan Iklim di Malaysia" },
+    flashcards: geographyF2FlashcardsFor(4),
+    quiz: geographyF2QuizzesFor(4),
   },
   {
     id: "geography-f2-c5",
