@@ -21,6 +21,9 @@ import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { Avatar } from "@/components/Avatar";
 import { GalaxySearch } from "@/components/GalaxySearch";
+import { AICompanionButton } from "@/companion";
+import { RankUpModal } from "@/components/progression/RankUpModal";
+import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
 
 const navItems = [
   {
@@ -221,6 +224,7 @@ function SidebarBottom() {
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { lastRankUp } = useProgress();
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">
@@ -342,6 +346,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         <main className="app-main page-content min-h-svh overflow-x-clip">{children}</main>
       </div>
+
+      <AICompanionButton />
+      {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
 
       {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <nav className="space-nav-shell mobile-nav-shell fixed left-3 right-3 z-[80] rounded-[1.25rem] px-1.5 lg:hidden">

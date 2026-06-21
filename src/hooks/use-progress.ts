@@ -87,6 +87,23 @@ export function getCompanionStageForXp(xp: number): CompanionStageId {
   return stage.id;
 }
 
+// ─── Transient progression-loop events (rank up / companion evolution) ─────────
+// These are NOT persisted to localStorage or Supabase — they only exist in memory
+// for the current session so a celebration UI can react to them, then clear.
+export interface RankUpEvent {
+  fromRank: string; // SpaceRank id
+  toRank: string; // SpaceRank id
+  xpGained: number;
+  timestamp: number;
+}
+
+export interface CompanionEvolutionEvent {
+  fromStage: CompanionStageId;
+  toStage: CompanionStageId;
+  companionId: CompanionId;
+  timestamp: number;
+}
+
 /** Pass threshold + rewards for "passing" a quiz. */
 export const QUIZ_PASS_PCT = 80;
 export const QUIZ_PASS_BONUS_XP = 25; // extra XP on top of per-question XP
@@ -160,27 +177,15 @@ export interface SpaceRank {
 export const SPACE_RANKS: SpaceRank[] = [
   {
     id: "cadet",
-    name: "Cadet",
+    name: "Space Cadet",
     emoji: "🚀",
     minXp: 0,
-    maxXp: 199,
+    maxXp: 449,
     minRating: 1000,
-    maxRating: 1199,
+    maxRating: 1449,
     color: "#94A3B8",
     glowColor: "rgba(148,163,184,0.45)",
     description: "Every journey begins with a single launch",
-  },
-  {
-    id: "moon-explorer",
-    name: "Moon Explorer",
-    emoji: "🌙",
-    minXp: 200,
-    maxXp: 449,
-    minRating: 1200,
-    maxRating: 1449,
-    color: "#7DD3FC",
-    glowColor: "rgba(125,211,252,0.55)",
-    description: "Charting the craters of new knowledge",
   },
   {
     id: "planet-voyager",
@@ -219,12 +224,24 @@ export const SPACE_RANKS: SpaceRank[] = [
     description: "Protector of knowledge across the universe",
   },
   {
+    id: "celestial-master",
+    name: "Celestial Master",
+    emoji: "🔮",
+    minXp: 1600,
+    maxXp: 2199,
+    minRating: 2600,
+    maxRating: 2899,
+    color: "#F472B6",
+    glowColor: "rgba(244,114,182,0.8)",
+    description: "Master of the celestial arts and sciences",
+  },
+  {
     id: "cosmic-legend",
     name: "Cosmic Legend",
     emoji: "🌟",
-    minXp: 1600,
+    minXp: 2200,
     maxXp: Infinity,
-    minRating: 2600,
+    minRating: 2900,
     maxRating: 3000,
     color: "#F0ABFC",
     glowColor: "rgba(240,171,252,0.88)",
@@ -705,8 +722,50 @@ export function getMasteredCount(cardMastery: Record<string, CardMasteryRecord> 
 export function useProgress() {
   const [progress, setProgress] = useState<Progress>(initial);
   const [cloudSynced, setCloudSynced] = useState(false);
+  const [lastRankUp, setLastRankUp] = useState<RankUpEvent | null>(null);
+  const [lastCompanionEvolution, setLastCompanionEvolution] =
+    useState<CompanionEvolutionEvent | null>(null);
   const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const userIdRef = useRef<string | null>(null);
+
+  /** Compares XP before/after an update and raises transient celebration events. Does not touch persisted state. */
+  const detectProgressionEvents = useCallback(
+    (prev: Progress, next: Progress) => {
+      if (next.xp === prev.xp) return;
+
+      const prevRank = getRank(prev.xp);
+      const nextRank = getRank(next.xp);
+      if (prevRank.id !== nextRank.id) {
+        setLastRankUp({
+          fromRank: prevRank.id,
+          toRank: nextRank.id,
+          xpGained: next.xp - prev.xp,
+          timestamp: Date.now(),
+        });
+      }
+
+      const companion = next.companion ?? prev.companion;
+      if (companion) {
+        const prevStage = getCompanionStageForXp(prev.xp);
+        const nextStage = getCompanionStageForXp(next.xp);
+        if (prevStage !== nextStage) {
+          setLastCompanionEvolution({
+            fromStage: prevStage,
+            toStage: nextStage,
+            companionId: companion.id,
+            timestamp: Date.now(),
+          });
+        }
+      }
+    },
+    [],
+  );
+
+  const clearRankUpEvent = useCallback(() => setLastRankUp(null), []);
+  const clearCompanionEvolutionEvent = useCallback(
+    () => setLastCompanionEvolution(null),
+    [],
+  );
 
   // On mount: load localStorage then optionally merge Supabase data
   useEffect(() => {
@@ -816,10 +875,11 @@ export function useProgress() {
           localStorage.setItem(KEY, JSON.stringify(next));
         } catch {}
         scheduleSync(next);
+        detectProgressionEvents(prev, next);
         return next;
       });
     },
-    [scheduleSync],
+    [scheduleSync, detectProgressionEvents],
   );
 
   const recordQuiz = useCallback(
@@ -848,10 +908,11 @@ export function useProgress() {
           localStorage.setItem(KEY, JSON.stringify(next));
         } catch {}
         scheduleSync(next);
+        detectProgressionEvents(prev, next);
         return next;
       });
     },
-    [scheduleSync],
+    [scheduleSync, detectProgressionEvents],
   );
 
   const awardBadge = useCallback(
@@ -931,10 +992,11 @@ export function useProgress() {
           localStorage.setItem(KEY, JSON.stringify(next));
         } catch {}
         scheduleSync(next);
+        detectProgressionEvents(prev, next);
         return next;
       });
     },
-    [scheduleSync],
+    [scheduleSync, detectProgressionEvents],
   );
 
   const rateCard = useCallback(
@@ -1102,11 +1164,12 @@ export function useProgress() {
           localStorage.setItem(KEY, JSON.stringify(next));
         } catch {}
         scheduleSync(next);
+        detectProgressionEvents(prev, next);
         return next;
       });
       return 0;
     },
-    [scheduleSync],
+    [scheduleSync, detectProgressionEvents],
   );
 
   const setParentReport = useCallback(
@@ -1155,6 +1218,10 @@ export function useProgress() {
     recordQuizResult,
     setParentReport,
     setStudentProfile,
+    lastRankUp,
+    lastCompanionEvolution,
+    clearRankUpEvent,
+    clearCompanionEvolutionEvent,
   };
 }
 

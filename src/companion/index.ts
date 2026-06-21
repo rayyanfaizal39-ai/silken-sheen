@@ -1,4 +1,5 @@
 export { CompanionWidget } from "./CompanionWidget";
+export { AICompanionButton } from "./AICompanionButton";
 export { CompanionPanel } from "./CompanionPanel";
 export { CompanionImage } from "./CompanionImage";
 export { getCompanionSpecies, getCompanionDisplayName, COMPANION_SPECIES } from "./species";
