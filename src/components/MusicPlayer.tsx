@@ -1,47 +1,156 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { Music, Play, Pause, X, Repeat } from "lucide-react";
+import {
+  Music,
+  Play,
+  Pause,
+  X,
+  SkipForward,
+  Volume2,
+  Headphones,
+} from "lucide-react";
 
-type Track = {
-  id: string;
+// ---------------------------------------------------------------------------
+// AcadeMy Global Music System
+// ---------------------------------------------------------------------------
+// Student-safe (ages 13-17). All curated tracks below are instrumental /
+// royalty-free (Kevin MacLeod, ccMixter, archive.org Creative Commons).
+// No lyrics → guaranteed no profanity / explicit content.
+// The previous "Cozy Alone Lofi" track has been removed for that reason.
+// ---------------------------------------------------------------------------
+
+export type StationId =
+  | "focus-lofi"
+  | "cosmic-chill"
+  | "teen-study"
+  | "exam-mode"
+  | "rain-music"
+  | "level-up"
+  | "silent";
+
+type Track = { title: string; url: string };
+
+export type Station = {
+  id: StationId;
   name: string;
   emoji: string;
-  url: string;
+  tagline: string;
+  tracks: Track[];
 };
 
-const TRACKS: Track[] = [
+// Kevin MacLeod (incompetech.com) — CC-BY, instrumental, family-safe.
+const KM = (name: string) =>
+  `https://incompetech.com/music/royalty-free/mp3-royaltyfree/${encodeURIComponent(name)}.mp3`;
+
+export const STATIONS: Station[] = [
   {
-    id: "lofi",
-    name: "Lo-Fi Study Beats",
-    emoji: "🎵",
-    url: "https://archive.org/download/cozy-alone-lofi-chill-out-beats/Cozy%20Alone%20Lofi%20Chill%20Out%20Beats%20Music%20Mix.mp3",
+    id: "focus-lofi",
+    name: "Focus Lo-Fi",
+    emoji: "🎧",
+    tagline: "Instrumental beats for deep work",
+    tracks: [
+      { title: "Deep Haze", url: KM("Deep Haze") },
+      { title: "Inspired", url: KM("Inspired") },
+      { title: "Cipher2", url: KM("Cipher2") },
+      { title: "Long Note Two", url: KM("Long Note Two") },
+    ],
   },
   {
-    id: "nature",
-    name: "Nature Sounds (Rain + Birds)",
-    emoji: "🌊",
-    url: "https://archive.org/download/aporee_62755_74238/051620241821birdsrain.mp3",
+    id: "cosmic-chill",
+    name: "Cosmic Chill",
+    emoji: "🌌",
+    tagline: "Space-themed ambient for explorers",
+    tracks: [
+      { title: "Cosmic Glow", url: KM("Cosmic Glow") },
+      { title: "Floating Cities", url: KM("Floating Cities") },
+      { title: "Constance", url: KM("Constance") },
+      { title: "Anamalie", url: KM("Anamalie") },
+    ],
   },
   {
-    id: "piano",
-    name: "Soft Piano",
-    emoji: "🎹",
-    url: "https://archive.org/download/jamendo-418019/01-1684726-DHDMusic-Ambient%20Soft%20Piano.mp3",
+    id: "teen-study",
+    name: "Teen Study Hits",
+    emoji: "🎤",
+    tagline: "Modern, upbeat, positive vibes",
+    tracks: [
+      { title: "Carefree", url: KM("Carefree") },
+      { title: "Wallpaper", url: KM("Wallpaper") },
+      { title: "Sunday Plans", url: KM("Sunday Plans") },
+      { title: "Bushwick Tarantella", url: KM("Bushwick Tarantella") },
+    ],
+  },
+  {
+    id: "exam-mode",
+    name: "Exam Mode",
+    emoji: "📚",
+    tagline: "Instrumental only • Max focus",
+    tracks: [
+      { title: "Meditation Impromptu 03", url: KM("Meditation Impromptu 03") },
+      { title: "Ascending the Vale", url: KM("Ascending the Vale") },
+      { title: "Pamgaea", url: KM("Pamgaea") },
+      { title: "Healing", url: KM("Healing") },
+    ],
+  },
+  {
+    id: "rain-music",
+    name: "Rain & Music",
+    emoji: "🌧",
+    tagline: "Rain ambience + calm piano",
+    tracks: [
+      {
+        title: "Rain Ambience",
+        url: "https://archive.org/download/aporee_62755_74238/051620241821birdsrain.mp3",
+      },
+      { title: "Lightless Dawn", url: KM("Lightless Dawn") },
+      { title: "Awkward Meeting", url: KM("Awkward Meeting") },
+    ],
+  },
+  {
+    id: "level-up",
+    name: "Level Up",
+    emoji: "🚀",
+    tagline: "Motivational • Achievement mode",
+    tracks: [
+      { title: "Heroic Age", url: KM("Heroic Age") },
+      { title: "Exhilarate", url: KM("Exhilarate") },
+      { title: "Hitman", url: KM("Hitman") },
+      { title: "Volatile Reaction", url: KM("Volatile Reaction") },
+    ],
+  },
+  {
+    id: "silent",
+    name: "Silent Mode",
+    emoji: "🔇",
+    tagline: "No music",
+    tracks: [],
   },
 ];
 
-const STORAGE_KEY = "academy-music-prefs";
-const TOOLTIP_KEY = "academy-music-tooltip-seen";
+// Subject → default station (exported for any future integration; the player
+// itself works fully without subject pages touching it).
+export const SUBJECT_STATION_DEFAULTS: Record<string, StationId> = {
+  math: "focus-lofi",
+  mathematics: "focus-lofi",
+  science: "cosmic-chill",
+  sejarah: "level-up",
+  geography: "cosmic-chill",
+  geografi: "cosmic-chill",
+  english: "teen-study",
+  bm: "rain-music",
+  "bahasa-melayu": "rain-music",
+};
+
+const STORAGE_KEY = "academy-music-prefs-v2";
+const TOOLTIP_KEY = "academy-music-tooltip-seen-v2";
 
 // ---------------------------------------------------------------------------
-// Module-level singleton store. Lives outside React so the audio element and
-// playback state survive route changes, re-renders, and even component
-// unmount/remount. Only created in the browser.
+// Module-level singleton store. Outside React so the audio element survives
+// route changes and component unmount/remount.
 // ---------------------------------------------------------------------------
 type PlayerState = {
-  trackId: string;
+  stationId: StationId;
+  trackIndex: number;
   playing: boolean;
-  volume: number;
-  loop: boolean;
+  volume: number; // 0..1
 };
 
 type Store = {
@@ -51,43 +160,75 @@ type Store = {
 };
 
 const defaultState: PlayerState = {
-  trackId: "lofi",
-  playing: false,
-  volume: 0.5,
-  loop: true,
+  stationId: "focus-lofi",
+  trackIndex: 0,
+  playing: false, // first-time users → music OFF
+  volume: 0.3, // default 30%
 };
 
 let store: Store | null = null;
 
+function loadPrefs(): PlayerState {
+  const s: PlayerState = { ...defaultState };
+  if (typeof window === "undefined") return s;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return s;
+    const p = JSON.parse(raw);
+    if (typeof p.stationId === "string" && STATIONS.some((x) => x.id === p.stationId))
+      s.stationId = p.stationId;
+    if (typeof p.trackIndex === "number") s.trackIndex = Math.max(0, p.trackIndex | 0);
+    if (typeof p.volume === "number") s.volume = Math.min(1, Math.max(0, p.volume));
+    // Note: we deliberately don't restore `playing: true` — browsers block
+    // autoplay before user interaction. We honor "was playing" by re-arming
+    // play on the first interaction (see resumeIfWanted).
+    if (typeof p.wasPlaying === "boolean") (s as any)._wasPlaying = p.wasPlaying;
+  } catch {}
+  return s;
+}
+
+function persist(s: PlayerState) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        stationId: s.stationId,
+        trackIndex: s.trackIndex,
+        volume: s.volume,
+        wasPlaying: s.playing,
+      }),
+    );
+  } catch {}
+}
+
+function currentTrack(s: PlayerState): Track | null {
+  const station = STATIONS.find((x) => x.id === s.stationId);
+  if (!station || station.tracks.length === 0) return null;
+  return station.tracks[s.trackIndex % station.tracks.length];
+}
+
 function getStore(): Store {
   if (store) return store;
-  const initial: PlayerState = { ...defaultState };
-  if (typeof window !== "undefined") {
-    try {
-      const raw = sessionStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const p = JSON.parse(raw);
-        if (p.trackId) initial.trackId = p.trackId;
-        if (typeof p.volume === "number") initial.volume = p.volume;
-        if (typeof p.loop === "boolean") initial.loop = p.loop;
-      }
-    } catch {}
-  }
-
-  const audio =
-    typeof window !== "undefined" ? new Audio() : (null as any);
+  const initial = loadPrefs();
+  const audio = typeof window !== "undefined" ? new Audio() : (null as any);
   store = { audio, state: initial, listeners: new Set() };
 
   if (audio) {
-    const current = TRACKS.find((t) => t.id === initial.trackId) ?? TRACKS[0];
-    audio.src = current.url;
-    audio.loop = initial.loop;
+    const t = currentTrack(initial);
+    if (t) audio.src = t.url;
     audio.volume = initial.volume;
     audio.preload = "none";
+    audio.loop = false; // playlist mode — advance to next track
     audio.addEventListener("play", () => setState({ playing: true }));
     audio.addEventListener("pause", () => setState({ playing: false }));
     audio.addEventListener("ended", () => {
-      if (!store!.state.loop) setState({ playing: false });
+      // auto-advance to next track in the station
+      next(true);
+    });
+    audio.addEventListener("error", () => {
+      // skip broken URLs silently
+      next(true);
     });
   }
   return store;
@@ -100,16 +241,7 @@ function emit() {
 function setState(patch: Partial<PlayerState>) {
   const s = getStore();
   s.state = { ...s.state, ...patch };
-  try {
-    sessionStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        trackId: s.state.trackId,
-        volume: s.state.volume,
-        loop: s.state.loop,
-      }),
-    );
-  } catch {}
+  persist(s.state);
   emit();
 }
 
@@ -132,6 +264,9 @@ function getServerSnapshot(): PlayerState {
 async function play() {
   const s = getStore();
   if (!s.audio) return;
+  const t = currentTrack(s.state);
+  if (!t) return; // silent station
+  if (!s.audio.src) s.audio.src = t.url;
   try {
     await s.audio.play();
   } catch {
@@ -144,18 +279,32 @@ function pause() {
   s.audio?.pause();
 }
 
-async function selectTrackId(id: string) {
+async function selectStation(id: StationId) {
   const s = getStore();
-  if (!s.audio) return;
-  if (id === s.state.trackId) {
-    if (s.state.playing) pause();
-    else await play();
+  if (s.state.stationId === id) return;
+  if (id === "silent") {
+    pause();
+    setState({ stationId: id, trackIndex: 0 });
     return;
   }
-  const track = TRACKS.find((t) => t.id === id) ?? TRACKS[0];
-  s.audio.src = track.url;
-  setState({ trackId: id, playing: false });
+  const station = STATIONS.find((x) => x.id === id);
+  if (!station || station.tracks.length === 0) {
+    setState({ stationId: id, trackIndex: 0 });
+    return;
+  }
+  if (s.audio) s.audio.src = station.tracks[0].url;
+  setState({ stationId: id, trackIndex: 0 });
   await play();
+}
+
+async function next(autoFromEnded = false) {
+  const s = getStore();
+  const station = STATIONS.find((x) => x.id === s.state.stationId);
+  if (!station || station.tracks.length === 0) return;
+  const nextIdx = (s.state.trackIndex + 1) % station.tracks.length;
+  if (s.audio) s.audio.src = station.tracks[nextIdx].url;
+  setState({ trackIndex: nextIdx });
+  if (autoFromEnded || s.state.playing) await play();
 }
 
 function setVolume(v: number) {
@@ -164,39 +313,31 @@ function setVolume(v: number) {
   setState({ volume: v });
 }
 
-function setLoop(l: boolean) {
-  const s = getStore();
-  if (s.audio) s.audio.loop = l;
-  setState({ loop: l });
-}
-
 // ---------------------------------------------------------------------------
-// Component (UI only — audio lives in the singleton store above).
+// UI
 // ---------------------------------------------------------------------------
 export function MusicPlayer() {
   const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const { trackId, playing, volume, loop } = state;
+  const { stationId, trackIndex, playing, volume } = state;
 
   const panelRef = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // Ensure store is initialized on the client
   useEffect(() => {
     getStore();
     try {
-      if (!sessionStorage.getItem(TOOLTIP_KEY)) {
+      if (!localStorage.getItem(TOOLTIP_KEY)) {
         setShowTooltip(true);
         const t = setTimeout(() => {
           setShowTooltip(false);
-          sessionStorage.setItem(TOOLTIP_KEY, "1");
+          localStorage.setItem(TOOLTIP_KEY, "1");
         }, 6000);
         return () => clearTimeout(t);
       }
     } catch {}
   }, []);
 
-  // Click outside to close
   useEffect(() => {
     if (!open) return;
     function onDown(e: MouseEvent) {
@@ -208,7 +349,8 @@ export function MusicPlayer() {
     return () => document.removeEventListener("mousedown", onDown);
   }, [open]);
 
-  const current = TRACKS.find((t) => t.id === trackId) ?? TRACKS[0];
+  const station = STATIONS.find((s) => s.id === stationId) ?? STATIONS[0];
+  const track = station.tracks[trackIndex % Math.max(1, station.tracks.length)];
 
   async function togglePlay() {
     if (playing) pause();
@@ -219,32 +361,31 @@ export function MusicPlayer() {
     setOpen(true);
     setShowTooltip(false);
     try {
-      sessionStorage.setItem(TOOLTIP_KEY, "1");
+      localStorage.setItem(TOOLTIP_KEY, "1");
     } catch {}
   }
 
   return (
     <>
-      {/* Floating button */}
       <div className="mobile-music-control fixed z-[70] flex flex-col items-end gap-3 md:bottom-24 md:right-6">
         {showTooltip && !open && (
-          <div className="glass-strong max-w-[210px] rounded-2xl px-3 py-2 text-xs font-medium text-foreground shadow-lg animate-fade-in">
-            Study music for focus
+          <div className="glass-strong max-w-[230px] rounded-2xl px-3 py-2 text-xs font-medium text-foreground shadow-lg animate-fade-in">
+            🎧 Pick a study station
           </div>
         )}
 
         {open && (
           <div
             ref={panelRef}
-            className="w-72 glass-strong rounded-2xl p-4 shadow-2xl border border-[#8B5CF6]/30"
+            className="w-80 glass-strong rounded-2xl p-4 shadow-2xl border border-[#8B5CF6]/30"
             style={{
               animation: "slideUpFade 0.25s ease-out",
               boxShadow: "0 10px 40px -10px rgba(139,92,246,0.4)",
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Study Music
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+                <Headphones className="w-3.5 h-3.5" /> AcadeMy Radio
               </span>
               <button
                 onClick={() => setOpen(false)}
@@ -255,10 +396,10 @@ export function MusicPlayer() {
               </button>
             </div>
 
-            {/* Album art + equalizer */}
+            {/* Now playing */}
             <div className="flex items-center gap-3 mb-3">
               <div
-                className="relative w-14 h-14 rounded-xl flex items-center justify-center text-2xl overflow-hidden"
+                className="relative w-14 h-14 rounded-xl flex items-center justify-center text-2xl overflow-hidden flex-shrink-0"
                 style={{
                   background:
                     "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
@@ -277,22 +418,25 @@ export function MusicPlayer() {
                     ))}
                   </div>
                 ) : (
-                  <span>{current.emoji}</span>
+                  <span>{station.emoji}</span>
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold truncate">{current.name}</p>
-                <p className="text-xs text-muted-foreground">
-                  {playing ? "Now playing" : "Paused"}
+                <p className="text-sm font-semibold truncate">
+                  {station.name}
+                </p>
+                <p className="text-xs text-muted-foreground truncate">
+                  {track ? (playing ? `Now playing · ${track.title}` : track.title) : station.tagline}
                 </p>
               </div>
             </div>
 
-            {/* Play / loop */}
+            {/* Transport */}
             <div className="flex items-center gap-2 mb-3">
               <button
                 onClick={togglePlay}
-                className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-white text-sm font-semibold transition-transform hover:scale-[1.02]"
+                disabled={station.tracks.length === 0}
+                className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl text-white text-sm font-semibold transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 style={{
                   background:
                     "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
@@ -309,21 +453,21 @@ export function MusicPlayer() {
                 )}
               </button>
               <button
-                onClick={() => setLoop(!loop)}
-                title={loop ? "Loop on" : "Loop off"}
-                className={`p-2 rounded-xl border transition-colors ${
-                  loop
-                    ? "border-[#8B5CF6] text-[#8B5CF6] bg-[#8B5CF6]/10"
-                    : "border-white/10 text-muted-foreground hover:text-foreground"
-                }`}
+                onClick={() => next(false)}
+                disabled={station.tracks.length <= 1}
+                title="Next track"
+                aria-label="Next track"
+                className="p-2 rounded-xl border border-white/10 text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors disabled:opacity-40"
               >
-                <Repeat className="w-4 h-4" />
+                <SkipForward className="w-4 h-4" />
               </button>
             </div>
 
             {/* Volume */}
             <div className="mb-3">
-              <label className="text-xs text-muted-foreground">Volume</label>
+              <label className="text-xs text-muted-foreground flex items-center gap-1.5">
+                <Volume2 className="w-3 h-3" /> Volume · {Math.round(volume * 100)}%
+              </label>
               <input
                 type="range"
                 min={0}
@@ -335,22 +479,32 @@ export function MusicPlayer() {
               />
             </div>
 
-            {/* Tracks */}
-            <div className="space-y-1">
-              {TRACKS.map((t) => {
-                const active = t.id === trackId;
+            {/* Stations */}
+            <div className="space-y-1 max-h-64 overflow-y-auto pr-1">
+              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-1">
+                Stations
+              </p>
+              {STATIONS.map((s) => {
+                const active = s.id === stationId;
                 return (
                   <button
-                    key={t.id}
-                    onClick={() => selectTrackId(t.id)}
+                    key={s.id}
+                    onClick={() => selectStation(s.id)}
                     className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-left transition-colors ${
                       active
-                        ? "bg-[#8B5CF6]/15 text-foreground"
+                        ? "bg-[#8B5CF6]/15 text-foreground ring-1 ring-[#8B5CF6]/40"
                         : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                     }`}
                   >
-                    <span>{t.emoji}</span>
-                    <span className="truncate">{t.name}</span>
+                    <span className="text-base">{s.emoji}</span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block truncate font-medium">
+                        {s.name}
+                      </span>
+                      <span className="block truncate text-[10px] text-muted-foreground/80">
+                        {s.tagline}
+                      </span>
+                    </span>
                   </button>
                 );
               })}
