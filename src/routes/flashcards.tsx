@@ -3889,6 +3889,7 @@ function FlashcardsPage() {
                   type: "flashcards",
                   label: deck?.title ?? deckId,
                   timestamp: Date.now(),
+                  form: form === "All" ? "Form 1" : form,
                 });
               }
             }}
@@ -4045,7 +4046,14 @@ function FlashcardsPage() {
               resetSession();
               if (subject && setLastVisited) {
                 const chapMeta = getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === key);
-                setLastVisited({ subjectId: subject, chapterKey: key, type: "flashcards", label: chapMeta?.label ?? key, timestamp: Date.now() });
+                setLastVisited({
+                  subjectId: subject,
+                  chapterKey: key,
+                  type: "flashcards",
+                  label: chapMeta?.label ?? key,
+                  timestamp: Date.now(),
+                  form: form === "All" ? "Form 1" : form,
+                });
               }
             }}
             onBack={() => {

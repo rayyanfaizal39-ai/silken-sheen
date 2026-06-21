@@ -256,6 +256,7 @@ function NotesPage() {
               type: "notes",
               label: chapMeta?.label ?? key,
               timestamp: Date.now(),
+              form,
             });
           }
         }}
@@ -452,6 +453,7 @@ function NotesPage() {
                   type: "notes",
                   label: chapMeta?.label ?? key,
                   timestamp: Date.now(),
+                  form,
                 });
               }
             }}

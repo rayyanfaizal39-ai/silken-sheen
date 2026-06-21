@@ -6127,11 +6127,11 @@ function QuizzesPage() {
   const isBilingualSubject = subject === "science" || subject === "math";
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
-  const isSejarahF2Quiz = subject === "sejarah" && form === "Form 2";
+  const subjectChaptersForForm = subject
+    ? getSubjectChapters(subject, scienceLang ?? undefined, form)
+    : [];
   const chapterMeta =
-    subject && chapter
-      ? getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === chapter)
-      : null;
+    subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
   const missingChapter = !!(subject && chapter && !chapterMeta);
 
   const pool = useMemo(() => {
@@ -6145,6 +6145,16 @@ function QuizzesPage() {
       return true;
     });
   }, [subject, chapter, form, diff, scienceLang, isBilingualSubject]);
+
+  // Data-driven readiness check for Form 2/3 quizzes: a subject/form is ready
+  // once real chapters/questions exist for it, rather than hardcoding one subject.
+  const hasUpperFormQuizPath = !!(
+    subject &&
+    (form === "Form 2" || form === "Form 3") &&
+    ((!chapter && subjectChaptersForForm.length > 0) ||
+      (chapter &&
+        (pool.length > 0 || (subject === "sejarah" && form === "Form 2" && chapterMeta != null))))
+  );
 
   const activeQuiz = shuffledPool ?? pool;
   const current = shuffledPool?.[idx] ?? null;
@@ -6566,7 +6576,7 @@ function QuizzesPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3") && !isSejarahF2Quiz) {
+  if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormQuizPath) {
     return (
       <AcademyPageShell>
         <FormComingSoon

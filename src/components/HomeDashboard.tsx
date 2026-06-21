@@ -996,10 +996,11 @@ export function HomeDashboard() {
 
 function ResumeBanner({ lastVisited }: { lastVisited: LastVisited }) {
   const world = WORLD_PORTALS.find((w) => w.id === lastVisited.subjectId);
+  const formNumber = Number(lastVisited.form?.match(/\d/)?.[0] ?? 1);
   return (
     <Link
       to={TYPE_ROUTES[lastVisited.type]}
-      search={{ subject: lastVisited.subjectId, form: 1 } as Record<string, unknown>}
+      search={{ subject: lastVisited.subjectId, form: formNumber } as Record<string, unknown>}
       className="group flex items-center gap-4 rounded-[2rem] border border-[#6366F1]/30 bg-[#6366F1]/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#6366F1]/50 hover:bg-[#6366F1]/15"
     >
       <div

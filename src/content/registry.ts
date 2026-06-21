@@ -84,6 +84,28 @@ import { geoF1C11MindMap } from "@/content/form1/geography/chapter-11/mindmap";
 import { geoF1C12MindMap } from "@/content/form1/geography/chapter-12/mindmap";
 import { geoF1C13MindMap } from "@/content/form1/geography/chapter-13/mindmap";
 
+// Geografi F2
+import { geoF2C1MindMap } from "@/content/form2/geography/chapter-1/mindmap";
+import { geographyF2C1Notes } from "@/content/form2/geography/chapter-1/notes";
+import { geoF2C2MindMap } from "@/content/form2/geography/chapter-2/mindmap";
+import { geographyF2C2Notes } from "@/content/form2/geography/chapter-2/notes";
+import { geoF2C3MindMap } from "@/content/form2/geography/chapter-3/mindmap";
+import { geographyF2C3Notes } from "@/content/form2/geography/chapter-3/notes";
+import { geoF2C4MindMap } from "@/content/form2/geography/chapter-4/mindmap";
+import { geographyF2C4Notes } from "@/content/form2/geography/chapter-4/notes";
+import { geoF2C5MindMap } from "@/content/form2/geography/chapter-5/mindmap";
+import { geographyF2C5Notes } from "@/content/form2/geography/chapter-5/notes";
+import { geoF2C6MindMap } from "@/content/form2/geography/chapter-6/mindmap";
+import { geographyF2C6Notes } from "@/content/form2/geography/chapter-6/notes";
+import { geoF2C7MindMap } from "@/content/form2/geography/chapter-7/mindmap";
+import { geographyF2C7Notes } from "@/content/form2/geography/chapter-7/notes";
+import { geoF2C8MindMap } from "@/content/form2/geography/chapter-8/mindmap";
+import { geographyF2C8Notes } from "@/content/form2/geography/chapter-8/notes";
+import { geoF2C9MindMap } from "@/content/form2/geography/chapter-9/mindmap";
+import { geographyF2C9Notes } from "@/content/form2/geography/chapter-9/notes";
+import { geoF2C10MindMap } from "@/content/form2/geography/chapter-10/mindmap";
+import { geographyF2C10Notes } from "@/content/form2/geography/chapter-10/notes";
+
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { zamanAirBatuMindMap } from "@/content/form1/sejarah/chapter-2/mindmap";
@@ -215,6 +237,20 @@ function geographyFlashcardsFor(chapterNum: number) {
 function geographyQuizzesFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
   return allQuizzes.filter((q) => q.subjectId === "geography" && q.chapter === chapterKey);
+}
+
+function geographyF2FlashcardsFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allFlashcards.filter(
+    (f) => f.subjectId === "geography" && f.form === "Form 2" && f.chapter === chapterKey,
+  );
+}
+
+function geographyF2QuizzesFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allQuizzes.filter(
+    (q) => q.subjectId === "geography" && q.form === "Form 2" && q.chapter === chapterKey,
+  );
 }
 
 function sejarahF2FlashcardsFor(chapterNum: number) {
@@ -395,6 +431,118 @@ export const chapters: ChapterContent[] = [
   geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"),
   geography(12, geoF1C12MindMap, "Sumber Air"),
   geography(13, geoF1C13MindMap, "Sisa Domestik"),
+
+  // Geography Form 2
+  {
+    id: "geography-f2-c1",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Skala dan Jarak",
+    notes: geographyF2C1Notes,
+    mindMap: { data: geoF2C1MindMap, title: "Skala dan Jarak" },
+    flashcards: geographyF2FlashcardsFor(1),
+    quiz: geographyF2QuizzesFor(1),
+  },
+  {
+    id: "geography-f2-c2",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Peta Topografi",
+    notes: geographyF2C2Notes,
+    mindMap: { data: geoF2C2MindMap, title: "Peta Topografi" },
+    flashcards: geographyF2FlashcardsFor(2),
+    quiz: geographyF2QuizzesFor(2),
+  },
+  {
+    id: "geography-f2-c3",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim",
+    notes: geographyF2C3Notes,
+    mindMap: { data: geoF2C3MindMap, title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim" },
+    flashcards: geographyF2FlashcardsFor(3),
+    quiz: geographyF2QuizzesFor(3),
+  },
+  {
+    id: "geography-f2-c4",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Cuaca dan Iklim di Malaysia",
+    notes: geographyF2C4Notes,
+    mindMap: { data: geoF2C4MindMap, title: "Cuaca dan Iklim di Malaysia" },
+    flashcards: geographyF2FlashcardsFor(4),
+    quiz: geographyF2QuizzesFor(4),
+  },
+  {
+    id: "geography-f2-c5",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Pengangkutan di Malaysia",
+    notes: geographyF2C5Notes,
+    mindMap: { data: geoF2C5MindMap, title: "Pengangkutan di Malaysia" },
+    flashcards: geographyF2FlashcardsFor(5),
+    quiz: geographyF2QuizzesFor(5),
+  },
+  {
+    id: "geography-f2-c6",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Telekomunikasi di Malaysia",
+    notes: geographyF2C6Notes,
+    mindMap: { data: geoF2C6MindMap, title: "Telekomunikasi di Malaysia" },
+    flashcards: geographyF2FlashcardsFor(6),
+    quiz: geographyF2QuizzesFor(6),
+  },
+  {
+    id: "geography-f2-c7",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Kepelbagaian Iklim dan Pengaruhnya terhadap Kegiatan Manusia di Asia",
+    notes: geographyF2C7Notes,
+    mindMap: { data: geoF2C7MindMap, title: "Kepelbagaian Iklim di Asia" },
+    flashcards: geographyF2FlashcardsFor(7),
+    quiz: geographyF2QuizzesFor(7),
+  },
+  {
+    id: "geography-f2-c8",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Jenis dan Kemajuan Pengangkutan di Asia",
+    notes: geographyF2C8Notes,
+    mindMap: { data: geoF2C8MindMap, title: "Jenis dan Kemajuan Pengangkutan di Asia" },
+    flashcards: geographyF2FlashcardsFor(8),
+    quiz: geographyF2QuizzesFor(8),
+  },
+  {
+    id: "geography-f2-c9",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Pemanasan Global",
+    notes: geographyF2C9Notes,
+    mindMap: { data: geoF2C9MindMap, title: "Pemanasan Global" },
+    flashcards: geographyF2FlashcardsFor(9),
+    quiz: geographyF2QuizzesFor(9),
+  },
+  {
+    id: "geography-f2-c10",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Teknologi Hijau",
+    notes: geographyF2C10Notes,
+    mindMap: { data: geoF2C10MindMap, title: "Teknologi Hijau" },
+    flashcards: geographyF2FlashcardsFor(10),
+    quiz: geographyF2QuizzesFor(10),
+  },
 
   // Mathematics Form 1
   {
