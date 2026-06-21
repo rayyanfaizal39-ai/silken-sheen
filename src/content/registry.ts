@@ -89,6 +89,8 @@ import { geoF2C1MindMap } from "@/content/form2/geography/chapter-1/mindmap";
 import { geographyF2C1Notes } from "@/content/form2/geography/chapter-1/notes";
 import { geoF2C2MindMap } from "@/content/form2/geography/chapter-2/mindmap";
 import { geographyF2C2Notes } from "@/content/form2/geography/chapter-2/notes";
+import { geoF2C3MindMap } from "@/content/form2/geography/chapter-3/mindmap";
+import { geographyF2C3Notes } from "@/content/form2/geography/chapter-3/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -445,6 +447,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 3",
     title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim",
+    notes: geographyF2C3Notes,
+    mindMap: { data: geoF2C3MindMap, title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim" },
+    flashcards: geographyF2FlashcardsFor(3),
+    quiz: geographyF2QuizzesFor(3),
   },
   {
     id: "geography-f2-c4",
