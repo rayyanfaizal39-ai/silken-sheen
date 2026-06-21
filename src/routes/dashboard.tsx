@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { rankArtwork } from "@/data/rankArtwork";
+import { rankArtwork, rankImageScale } from "@/data/rankArtwork";
 import {
   useProgress,
   getRank,
@@ -1300,7 +1300,12 @@ function CosmicPlanet({
         </>
       )}
       {spotlight && <RankSparkles />}
-      <img src={rankArtwork[rank.id]} alt={rank.name} className="cosmic-planet-img" />
+      <img
+        src={rankArtwork[rank.id]}
+        alt={rank.name}
+        className="cosmic-planet-img"
+        style={{ transform: `scale(${rankImageScale[rank.id] ?? 1})` }}
+      />
     </div>
   );
 }
