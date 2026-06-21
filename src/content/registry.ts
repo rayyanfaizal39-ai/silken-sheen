@@ -84,6 +84,10 @@ import { geoF1C11MindMap } from "@/content/form1/geography/chapter-11/mindmap";
 import { geoF1C12MindMap } from "@/content/form1/geography/chapter-12/mindmap";
 import { geoF1C13MindMap } from "@/content/form1/geography/chapter-13/mindmap";
 
+// Geografi F2
+import { geoF2C1MindMap } from "@/content/form2/geography/chapter-1/mindmap";
+import { geographyF2C1Notes } from "@/content/form2/geography/chapter-1/notes";
+
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
 import { zamanAirBatuMindMap } from "@/content/form1/sejarah/chapter-2/mindmap";
@@ -215,6 +219,20 @@ function geographyFlashcardsFor(chapterNum: number) {
 function geographyQuizzesFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
   return allQuizzes.filter((q) => q.subjectId === "geography" && q.chapter === chapterKey);
+}
+
+function geographyF2FlashcardsFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allFlashcards.filter(
+    (f) => f.subjectId === "geography" && f.form === "Form 2" && f.chapter === chapterKey,
+  );
+}
+
+function geographyF2QuizzesFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allQuizzes.filter(
+    (q) => q.subjectId === "geography" && q.form === "Form 2" && q.chapter === chapterKey,
+  );
 }
 
 function sejarahF2FlashcardsFor(chapterNum: number) {
@@ -395,6 +413,82 @@ export const chapters: ChapterContent[] = [
   geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"),
   geography(12, geoF1C12MindMap, "Sumber Air"),
   geography(13, geoF1C13MindMap, "Sisa Domestik"),
+
+  // Geography Form 2
+  {
+    id: "geography-f2-c1",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Skala dan Jarak",
+    notes: geographyF2C1Notes,
+    mindMap: { data: geoF2C1MindMap, title: "Skala dan Jarak" },
+    flashcards: geographyF2FlashcardsFor(1),
+    quiz: geographyF2QuizzesFor(1),
+  },
+  {
+    id: "geography-f2-c2",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Peta Topografi",
+  },
+  {
+    id: "geography-f2-c3",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim",
+  },
+  {
+    id: "geography-f2-c4",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Cuaca dan Iklim di Malaysia",
+  },
+  {
+    id: "geography-f2-c5",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Pengangkutan di Malaysia",
+  },
+  {
+    id: "geography-f2-c6",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Telekomunikasi di Malaysia",
+  },
+  {
+    id: "geography-f2-c7",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Kepelbagaian Iklim dan Pengaruhnya terhadap Kegiatan Manusia di Asia",
+  },
+  {
+    id: "geography-f2-c8",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Jenis dan Kemajuan Pengangkutan di Asia",
+  },
+  {
+    id: "geography-f2-c9",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Pemanasan Global",
+  },
+  {
+    id: "geography-f2-c10",
+    subjectId: "geography",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Teknologi Hijau",
+  },
 
   // Mathematics Form 1
   {

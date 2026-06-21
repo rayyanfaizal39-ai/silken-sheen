@@ -180,7 +180,9 @@ export function FormGrid({
 
       <div className="grid items-stretch gap-4 sm:grid-cols-3">
         {FORM_CARDS.map((item, index) => {
-          const isReady = item.available || (subjectId === "sejarah" && item.form === "Form 2");
+          const isReady =
+            item.available ||
+            ((subjectId === "sejarah" || subjectId === "geography") && item.form === "Form 2");
           return (
             <button
               key={item.form}

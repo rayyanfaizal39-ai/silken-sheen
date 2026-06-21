@@ -558,10 +558,11 @@ function NextGoalHeroCard({
 // ─── Continue Learning — compact "resume where you left off" card ─────────────
 
 function ContinueLearningCard({ lastVisited }: { lastVisited: LastVisited }) {
+  const formNumber = Number(lastVisited.form?.match(/\d/)?.[0] ?? 1);
   return (
     <Link
       to={TYPE_ROUTES[lastVisited.type]}
-      search={{ subject: lastVisited.subjectId, form: 1 } as Record<string, unknown>}
+      search={{ subject: lastVisited.subjectId, form: formNumber } as Record<string, unknown>}
       className="academy-surface group flex flex-col rounded-[2rem] border border-[#6366F1]/30 bg-gradient-to-br from-[#6366F1]/10 to-[#8B5CF6]/10 p-4 backdrop-blur-2xl transition-all hover:border-[#6366F1]/50 hover:from-[#6366F1]/15 hover:to-[#8B5CF6]/15"
     >
       <div className="flex items-center gap-3">
@@ -809,7 +810,13 @@ function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
               <Link
                 key={item.id}
                 to={TYPE_ROUTES[item.type]}
-                search={{ subject: item.subjectId, form: 1, chapter: item.chapterKey } as Record<string, unknown>}
+                search={
+                  {
+                    subject: item.subjectId,
+                    form: Number(item.form?.match(/\d/)?.[0] ?? 1),
+                    chapter: item.chapterKey,
+                  } as Record<string, unknown>
+                }
                 className="relative flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-3 transition-all hover:bg-white/[0.08]"
               >
                 <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
@@ -836,7 +843,14 @@ function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
 
 function QuickActionsCard({ lastVisited }: { lastVisited?: LastVisited }) {
   const continueAction = lastVisited
-    ? { to: TYPE_ROUTES[lastVisited.type], search: { subject: lastVisited.subjectId, form: 1, chapter: lastVisited.chapterKey } as Record<string, unknown> }
+    ? {
+        to: TYPE_ROUTES[lastVisited.type],
+        search: {
+          subject: lastVisited.subjectId,
+          form: Number(lastVisited.form?.match(/\d/)?.[0] ?? 1),
+          chapter: lastVisited.chapterKey,
+        } as Record<string, unknown>,
+      }
     : { to: "/notes" as const, search: { form: 1 } as Record<string, unknown> };
 
   return (

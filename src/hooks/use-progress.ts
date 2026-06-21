@@ -143,6 +143,8 @@ export interface LastVisited {
   type: "notes" | "flashcards" | "quiz";
   label: string; // human-readable chapter name
   timestamp: number;
+  /** Which form the chapter belongs to. Older saved records predate this field — treat missing as "Form 1". */
+  form?: "Form 1" | "Form 2" | "Form 3";
 }
 
 export interface RecentActivity extends LastVisited {
