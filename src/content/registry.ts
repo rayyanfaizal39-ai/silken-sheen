@@ -95,6 +95,16 @@ import { geoF2C4MindMap } from "@/content/form2/geography/chapter-4/mindmap";
 import { geographyF2C4Notes } from "@/content/form2/geography/chapter-4/notes";
 import { geoF2C5MindMap } from "@/content/form2/geography/chapter-5/mindmap";
 import { geographyF2C5Notes } from "@/content/form2/geography/chapter-5/notes";
+import { geoF2C6MindMap } from "@/content/form2/geography/chapter-6/mindmap";
+import { geographyF2C6Notes } from "@/content/form2/geography/chapter-6/notes";
+import { geoF2C7MindMap } from "@/content/form2/geography/chapter-7/mindmap";
+import { geographyF2C7Notes } from "@/content/form2/geography/chapter-7/notes";
+import { geoF2C8MindMap } from "@/content/form2/geography/chapter-8/mindmap";
+import { geographyF2C8Notes } from "@/content/form2/geography/chapter-8/notes";
+import { geoF2C9MindMap } from "@/content/form2/geography/chapter-9/mindmap";
+import { geographyF2C9Notes } from "@/content/form2/geography/chapter-9/notes";
+import { geoF2C10MindMap } from "@/content/form2/geography/chapter-10/mindmap";
+import { geographyF2C10Notes } from "@/content/form2/geography/chapter-10/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -484,6 +494,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 6",
     title: "Telekomunikasi di Malaysia",
+    notes: geographyF2C6Notes,
+    mindMap: { data: geoF2C6MindMap, title: "Telekomunikasi di Malaysia" },
+    flashcards: geographyF2FlashcardsFor(6),
+    quiz: geographyF2QuizzesFor(6),
   },
   {
     id: "geography-f2-c7",
@@ -491,6 +505,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 7",
     title: "Kepelbagaian Iklim dan Pengaruhnya terhadap Kegiatan Manusia di Asia",
+    notes: geographyF2C7Notes,
+    mindMap: { data: geoF2C7MindMap, title: "Kepelbagaian Iklim di Asia" },
+    flashcards: geographyF2FlashcardsFor(7),
+    quiz: geographyF2QuizzesFor(7),
   },
   {
     id: "geography-f2-c8",
@@ -498,6 +516,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 8",
     title: "Jenis dan Kemajuan Pengangkutan di Asia",
+    notes: geographyF2C8Notes,
+    mindMap: { data: geoF2C8MindMap, title: "Jenis dan Kemajuan Pengangkutan di Asia" },
+    flashcards: geographyF2FlashcardsFor(8),
+    quiz: geographyF2QuizzesFor(8),
   },
   {
     id: "geography-f2-c9",
@@ -505,6 +527,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 9",
     title: "Pemanasan Global",
+    notes: geographyF2C9Notes,
+    mindMap: { data: geoF2C9MindMap, title: "Pemanasan Global" },
+    flashcards: geographyF2FlashcardsFor(9),
+    quiz: geographyF2QuizzesFor(9),
   },
   {
     id: "geography-f2-c10",
@@ -512,6 +538,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 10",
     title: "Teknologi Hijau",
+    notes: geographyF2C10Notes,
+    mindMap: { data: geoF2C10MindMap, title: "Teknologi Hijau" },
+    flashcards: geographyF2FlashcardsFor(10),
+    quiz: geographyF2QuizzesFor(10),
   },
 
   // Mathematics Form 1
