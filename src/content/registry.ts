@@ -87,6 +87,8 @@ import { geoF1C13MindMap } from "@/content/form1/geography/chapter-13/mindmap";
 // Geografi F2
 import { geoF2C1MindMap } from "@/content/form2/geography/chapter-1/mindmap";
 import { geographyF2C1Notes } from "@/content/form2/geography/chapter-1/notes";
+import { geoF2C2MindMap } from "@/content/form2/geography/chapter-2/mindmap";
+import { geographyF2C2Notes } from "@/content/form2/geography/chapter-2/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -432,6 +434,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 2",
     title: "Peta Topografi",
+    notes: geographyF2C2Notes,
+    mindMap: { data: geoF2C2MindMap, title: "Peta Topografi" },
+    flashcards: geographyF2FlashcardsFor(2),
+    quiz: geographyF2QuizzesFor(2),
   },
   {
     id: "geography-f2-c3",
