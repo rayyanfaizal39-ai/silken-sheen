@@ -58,6 +58,7 @@ import { sejarahF2C4Notes } from "@/content/form2/sejarah/chapter-4/notes";
 import { sejarahF2C5Notes } from "@/content/form2/sejarah/chapter-5/notes";
 import { sejarahF2C6Notes } from "@/content/form2/sejarah/chapter-6/notes";
 import { sejarahF2C7Notes } from "@/content/form2/sejarah/chapter-7/notes";
+import { sejarahF2C8Notes } from "@/content/form2/sejarah/chapter-8/notes";
 import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
 import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
 import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
@@ -359,6 +360,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 8",
     title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
+    notes: sejarahF2C8Notes,
   },
   {
     id: "sejarah-f2-c9",
