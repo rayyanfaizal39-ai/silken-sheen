@@ -600,14 +600,12 @@ export function ComingSoonScreen({
   onBack,
   scienceLang,
   form = "Form 1",
-  mode,
 }: {
   subjectId: string;
   chapterKey: string;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
-  mode?: "notes" | "quizzes" | "flashcards";
 }) {
   const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
     (c) => c.key === chapterKey,
