@@ -93,6 +93,8 @@ import { geoF2C3MindMap } from "@/content/form2/geography/chapter-3/mindmap";
 import { geographyF2C3Notes } from "@/content/form2/geography/chapter-3/notes";
 import { geoF2C4MindMap } from "@/content/form2/geography/chapter-4/mindmap";
 import { geographyF2C4Notes } from "@/content/form2/geography/chapter-4/notes";
+import { geoF2C5MindMap } from "@/content/form2/geography/chapter-5/mindmap";
+import { geographyF2C5Notes } from "@/content/form2/geography/chapter-5/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -471,6 +473,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 5",
     title: "Pengangkutan di Malaysia",
+    notes: geographyF2C5Notes,
+    mindMap: { data: geoF2C5MindMap, title: "Pengangkutan di Malaysia" },
+    flashcards: geographyF2FlashcardsFor(5),
+    quiz: geographyF2QuizzesFor(5),
   },
   {
     id: "geography-f2-c6",
