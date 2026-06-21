@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { rankArtwork } from "@/data/rankArtwork";
+import { rankArtwork, rankImageScale } from "@/data/rankArtwork";
 import {
   useProgress,
   getRank,
@@ -19,11 +19,12 @@ import {
   type RecentActivity,
   type SpaceRank,
   type CompanionId,
+  type CompanionStageId,
   type BadgeDef,
   type Progress,
   getCompanionStageForXp,
 } from "@/hooks/use-progress";
-import { CompanionImage, getCompanionSpecies, getCompanionDisplayName } from "@/companion";
+import { CompanionImage, getCompanionSpecies } from "@/companion";
 import { subjects, type Subject } from "@/data/content";
 import {
   Target,
@@ -78,18 +79,6 @@ const STARTER_ACTIONS = [
   { title: "Try a Quiz", subtitle: "Test what you already know.", to: "/quizzes" as const, Icon: TrendingUp, color: "#FBBF24" },
   { title: "Review Flashcards", subtitle: "Build memory with quick study cards.", to: "/flashcards" as const, Icon: BookMarked, color: "#A78BFA" },
 ];
-
-const CREATURE_STAGES = [
-  { name: "Egg", minXp: 0, description: "A tiny learning spark is waiting to hatch." },
-  { name: "Blobling", minXp: 100, description: "Curious, wobbly, and hungry for knowledge." },
-  { name: "Sprout", minXp: 300, description: "Growing stronger with every study session." },
-  { name: "Cadet", minXp: 700, description: "Ready for missions across the study galaxy." },
-  { name: "Guardian", minXp: 1200, description: "A steady protector of your learning streak." },
-];
-
-function getCreatureStage(xp: number) {
-  return CREATURE_STAGES.reduce((current, stage) => (xp >= stage.minXp ? stage : current), CREATURE_STAGES[0]);
-}
 
 function timeAgo(ts: number) {
   const elapsed = Date.now() - ts;
@@ -196,40 +185,44 @@ function DashboardPage() {
     return `Good Evening, ${firstName}`;
   })();
   const companionId = progress.companion?.id ?? "nova";
-  const companionStageId = getCompanionStageForXp(progress.xp);
-  const companionStageIndex = Math.max(
-    0,
-    COMPANION_STAGES.findIndex((s) => s.id === companionStageId),
-  );
-  const companionStage = COMPANION_STAGES[companionStageIndex] ?? COMPANION_STAGES[0];
-  const companionSpecies = getCompanionSpecies(companionId);
   const nextGoalLabel = getNextGoalLabel(todaysMissions);
 
   return (
     <AcademyPageShell>
       <CosmicDashboardBackdrop />
 
-      {/* ── Hero — who am I, what rank, what's next (answer in 3 seconds) ── */}
-      <HeroSection
-        greeting={greeting}
+      {/* ── Slim header — greeting / streak / CTA ─────────────────────── */}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#6366F1]">Your Space Journey</p>
+          <h1 className="font-display text-xl font-black text-white sm:text-2xl">{greeting}</h1>
+        </div>
+        <div className="flex items-center gap-3">
+          {progress.streak > 0 && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-500/20 bg-orange-500/10 px-3.5 py-2 text-xs font-bold text-orange-300">
+              🔥 {progress.streak}-day streak
+            </span>
+          )}
+          <Link
+            to="/notes"
+            className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] active:scale-[0.98]"
+          >
+            Study Now <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+
+      {/* ── ROW 1 — Hero: Rank / Companion / Next Goal (answer in 3 seconds) ── */}
+      <HeroRow
         rank={rank}
         nextRank={nextRank}
         xp={progress.xp}
         rankPct={rankPct}
-        streak={progress.streak}
-        companionEmoji={companionSpecies.fallbackEmoji[companionStageId]}
-        companionLabel={`${companionSpecies.name} ${companionStage.name}`}
+        companionId={companionId}
         nextGoalLabel={nextGoalLabel}
       />
 
-      {/* ── Continue Learning (real data only) ────────────────────────── */}
-      {progress.lastVisited ? (
-        <ContinueLearningBanner lastVisited={progress.lastVisited} />
-      ) : (
-        <StarterCards />
-      )}
-
-      {/* ── Alert banners ─────────────────────────────────────────────── */}
+      {/* ── Urgent streak alert (kept near top — time-sensitive) ───────── */}
       {streakUrgent && (
         <Link
           to="/flashcards"
@@ -246,126 +239,63 @@ function DashboardPage() {
         </Link>
       )}
 
-      {dueCount > 0 && (
-        <Link
-          to="/flashcards"
-          className="mb-4 flex items-center gap-4 rounded-[2rem] border border-sky-500/30 bg-sky-500/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-sky-500/50 hover:bg-sky-500/15"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sky-500/20">
-            <RotateCcw className="h-5 w-5 text-sky-400" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-bold text-sky-200">{dueCount} flashcard{dueCount !== 1 ? "s" : ""} due for review</p>
-            <p className="text-sm text-sky-300/70">{masteredCount} cards mastered · Keep your streak going</p>
-          </div>
-          <ArrowRight className="h-4 w-4 shrink-0 text-sky-400" />
-        </Link>
-      )}
+      {/* ── ROW 2 — Cosmic Journey (65%) / Today's Progress (35%) — equal heights ── */}
+      <div className="mb-6 grid gap-6 lg:grid-cols-[65%_1fr] lg:items-stretch">
+        <CosmicJourneyPath ranks={SPACE_RANKS} currentId={rank.id} xp={progress.xp} />
+        <TodayProgressGrid
+          compact
+          notesStudied={missionsActive && progress.missions ? progress.missions.readChapters : 0}
+          quizzesCompleted={missionsActive && progress.missions ? progress.missions.quizzesDone : 0}
+          flashcardsMastered={missionsActive && progress.missions ? progress.missions.flashcardsDone : 0}
+          totalXp={progress.xp}
+        />
+      </div>
 
-      {/* ── Main grid ─────────────────────────────────────────────────── */}
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* ── Left column (2/3) — primary progression flow ── */}
-        <div className="space-y-6 lg:col-span-2">
-
-          {/* Cosmic Rank */}
-          <RankHeroCard rank={rank} nextRank={nextRank} xp={progress.xp} rankPct={rankPct} />
-
-          {/* Cosmic Companion */}
-          <CosmicCompanionCard xp={progress.xp} companionId={companionId} />
-
-          {/* Daily Missions */}
-          <DailyMissionsCard missions={todaysMissions} />
-
-          {/* Subject Progress — planetary cards */}
-          <Card>
-            <div className="mb-4 flex items-center justify-between">
-              <SectionLabel>Subject Progress</SectionLabel>
-              <Link to="/notes" className="text-xs font-bold text-[#94A3B8] hover:text-white transition-colors">
-                Study Now →
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {subjects.map((s) => {
-                const xp = progress.subjectXp[s.id] ?? 0;
-                const acts = Object.entries(progress.chapterActivity)
-                  .filter(([k]) => k.startsWith(`${s.id}:`))
-                  .map(([, v]) => v);
-                const chapDone = acts.filter((a) => a.read && a.quiz && a.cards).length;
-                const chapStarted = acts.filter((a) => a.read || a.quiz || a.cards).length;
-                const pct = Math.min(100, Math.round((xp / 500) * 100));
-                return (
-                  <SubjectPlanetCard
-                    key={s.id}
-                    subject={s}
-                    chapDone={chapDone}
-                    chapStarted={chapStarted}
-                    pct={pct}
-                  />
-                );
-              })}
-            </div>
-          </Card>
-
-          {/* Achievement Showcase — recent + next, not the full locked grid */}
-          <AchievementShowcase progress={progress} />
-
-          {/* Cosmic Journey — full rank map, bonus visual below the main flow */}
-          <CosmicJourneyPath ranks={SPACE_RANKS} currentId={rank.id} xp={progress.xp} />
-
-          {/* Weak Chapters */}
-          {weakChapters.length > 0 && (
-            <Card>
-              <div className="mb-4 flex items-center gap-2">
-                <AlertTriangle className="h-4 w-4 text-amber-400" />
-                <SectionLabel>Needs Attention</SectionLabel>
-                <span className="ml-auto rounded-full bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                  {weakChapters.length} chapter{weakChapters.length !== 1 ? "s" : ""}
-                </span>
-              </div>
-              <div className="space-y-2">
-                {weakChapters.map((ch) => (
-                  <div
-                    key={ch.key}
-                    className="flex items-center gap-3 rounded-2xl border border-amber-400/10 bg-amber-400/5 px-4 py-3"
-                  >
-                    <span className="text-lg">{ch.subject?.emoji ?? "📚"}</span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-white capitalize truncate">
-                        {ch.subject?.name ?? ch.subjectId} · {ch.chapterKey}
-                      </p>
-                      <p className="text-xs text-amber-300/70">
-                        Still needed: {ch.missing.join(", ")}
-                      </p>
-                    </div>
-                    <div className="shrink-0 text-right">
-                      <p className="text-sm font-bold text-amber-300">{ch.pct}%</p>
-                      <p className="text-[10px] text-white/30">done</p>
-                    </div>
-                    <Link
-                      to="/notes"
-                      search={{ subject: ch.subjectId } as Record<string, unknown>}
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-400/10 text-amber-300 transition-all hover:bg-amber-400/20"
-                    >
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          )}
+      {/* ── ROW 3 — Subject Worlds ────────────────────────────────────── */}
+      <Card className="mb-6">
+        <div className="mb-4 flex items-center justify-between">
+          <SectionLabel>Subject Worlds</SectionLabel>
+          <Link to="/notes" className="text-xs font-bold text-[#94A3B8] hover:text-white transition-colors">
+            Study Now →
+          </Link>
         </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {subjects.map((s) => {
+            const xp = progress.subjectXp[s.id] ?? 0;
+            const acts = Object.entries(progress.chapterActivity)
+              .filter(([k]) => k.startsWith(`${s.id}:`))
+              .map(([, v]) => v);
+            const chapDone = acts.filter((a) => a.read && a.quiz && a.cards).length;
+            const chapStarted = acts.filter((a) => a.read || a.quiz || a.cards).length;
+            const pct = Math.min(100, Math.round((xp / 500) * 100));
+            return (
+              <SubjectWorldCard
+                key={s.id}
+                subject={s}
+                chapDone={chapDone}
+                chapStarted={chapStarted}
+                pct={pct}
+              />
+            );
+          })}
+        </div>
+      </Card>
 
-        {/* ── Right column (1/3) — supporting stats & shortcuts ── */}
-        <div className="space-y-6">
+      {/* ── ROW 4 — Continue Learning / Flashcards Due / Quick Actions (compact "next action" row) ── */}
+      <div className="mb-6 grid gap-4 sm:grid-cols-3">
+        {progress.lastVisited ? (
+          <ContinueLearningCard lastVisited={progress.lastVisited} />
+        ) : (
+          <StarterCards compact />
+        )}
+        <FlashcardsDueCard dueCount={dueCount} masteredCount={masteredCount} />
+        <QuickActionsCard lastVisited={progress.lastVisited} />
+      </div>
 
-          {/* Today's Progress */}
-          <TodayProgressGrid
-            notesStudied={missionsActive && progress.missions ? progress.missions.readChapters : 0}
-            quizzesCompleted={missionsActive && progress.missions ? progress.missions.quizzesDone : 0}
-            flashcardsMastered={missionsActive && progress.missions ? progress.missions.flashcardsDone : 0}
-            totalXp={progress.xp}
-          />
-
+      {/* ── ROW 5 — Companion Evolution / Mastery & Cikgu AI ──────────── */}
+      <div className="mb-6 grid gap-6 lg:grid-cols-2">
+        <CosmicCompanionCard xp={progress.xp} companionId={companionId} />
+        <div className="space-y-4">
           {/* Chapters mastered stat */}
           <Card className="flex items-center gap-4">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#8B5CF6]/20">
@@ -378,8 +308,6 @@ function DashboardPage() {
               </p>
             </div>
           </Card>
-
-          <RecentActivityCard activity={recentActivity} />
 
           {/* Cikgu AI CTA */}
           <div
@@ -432,133 +360,252 @@ function DashboardPage() {
               )}
             </div>
           </div>
-
-          <QuickActionsCard lastVisited={progress.lastVisited} />
         </div>
       </div>
+
+      {/* ── ROW 6 — Daily Missions ──────────────────────────────────────── */}
+      <Card className="mb-6">
+        <DailyMissionsSection missions={todaysMissions} />
+      </Card>
+
+      {/* ── ROW 7 — Achievements / Recent Activity ──────────────────────── */}
+      <div className="mb-6 grid gap-6 lg:grid-cols-2">
+        <AchievementShowcase progress={progress} />
+        <RecentActivityCard activity={recentActivity} />
+      </div>
+
+      {/* ── Needs Attention (weak chapters) ─────────────────────────────── */}
+      {weakChapters.length > 0 && (
+        <Card>
+          <div className="mb-4 flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4 text-amber-400" />
+            <SectionLabel>Needs Attention</SectionLabel>
+            <span className="ml-auto rounded-full bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+              {weakChapters.length} chapter{weakChapters.length !== 1 ? "s" : ""}
+            </span>
+          </div>
+          <div className="space-y-2">
+            {weakChapters.map((ch) => (
+              <div
+                key={ch.key}
+                className="flex items-center gap-3 rounded-2xl border border-amber-400/10 bg-amber-400/5 px-4 py-3"
+              >
+                <span className="text-lg">{ch.subject?.emoji ?? "📚"}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-white capitalize truncate">
+                    {ch.subject?.name ?? ch.subjectId} · {ch.chapterKey}
+                  </p>
+                  <p className="text-xs text-amber-300/70">
+                    Still needed: {ch.missing.join(", ")}
+                  </p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className="text-sm font-bold text-amber-300">{ch.pct}%</p>
+                  <p className="text-[10px] text-white/30">done</p>
+                </div>
+                <Link
+                  to="/notes"
+                  search={{ subject: ch.subjectId } as Record<string, unknown>}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-400/10 text-amber-300 transition-all hover:bg-amber-400/20"
+                >
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
     </AcademyPageShell>
   );
 }
 
-// ─── Hero — answers "who am I / what rank / what's next" in 3 seconds ─────────
+// ─── Hero Row — Rank / Companion / Next Goal (3 equal columns, answers "who am I / what's next") ─────
 
-function HeroSection({
-  greeting,
+function HeroRow({
   rank,
   nextRank,
   xp,
   rankPct,
-  streak,
-  companionEmoji,
-  companionLabel,
+  companionId,
   nextGoalLabel,
 }: {
-  greeting: string;
   rank: SpaceRank;
   nextRank: SpaceRank | null;
   xp: number;
   rankPct: number;
-  streak: number;
-  companionEmoji: string;
-  companionLabel: string;
+  companionId: CompanionId;
   nextGoalLabel: string;
 }) {
+  return (
+    <div className="mb-6 grid gap-4 sm:grid-cols-3">
+      <RankHeroCard rank={rank} nextRank={nextRank} xp={xp} rankPct={rankPct} />
+      <CompanionHeroCard xp={xp} companionId={companionId} />
+      <NextGoalHeroCard nextGoalLabel={nextGoalLabel} nextRank={nextRank} xp={xp} />
+    </div>
+  );
+}
+
+function RankHeroCard({
+  rank,
+  nextRank,
+  xp,
+  rankPct,
+}: {
+  rank: SpaceRank;
+  nextRank: SpaceRank | null;
+  xp: number;
+  rankPct: number;
+}) {
   const xpRemaining = nextRank ? Math.max(0, nextRank.minXp - xp) : 0;
+  const theme = getRankTheme(rank.id);
 
   return (
-    <Card className="relative mb-6 overflow-hidden">
+    <Card className="relative flex h-[280px] flex-col overflow-hidden sm:h-[300px]">
       <div
         className="pointer-events-none absolute inset-0 opacity-80"
-        style={{ background: `radial-gradient(circle at 12% 18%, ${rank.glowColor}, transparent 60%)` }}
+        style={{ background: `radial-gradient(circle at 20% 18%, ${theme.soft}, transparent 60%)` }}
       />
-      <div className="relative z-10">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-[#6366F1]">Your Space Journey</p>
-            <h1 className="font-display text-2xl font-black text-white sm:text-3xl">{greeting}</h1>
-          </div>
-          <div className="flex items-center gap-3">
-            {streak > 0 && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-500/20 bg-orange-500/10 px-3.5 py-2 text-xs font-bold text-orange-300">
-                🔥 {streak}-day streak
-              </span>
-            )}
-            <Link
-              to="/notes"
-              className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] active:scale-[0.98]"
-            >
-              Study Now <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Who am I / what rank / what's next — at a glance */}
-        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] px-4 py-3">
-            <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Current Rank</p>
-            <p className="mt-1 flex items-center gap-1.5 text-base font-black" style={{ color: rank.color }}>
-              <img src={rankArtwork[rank.id]} alt={rank.name} className="h-5 w-5 rounded-full object-cover" /> {rank.name}
-            </p>
-          </div>
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] px-4 py-3">
-            <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Companion</p>
-            <p className="mt-1 text-base font-black text-white">
-              {companionEmoji} {companionLabel}
-            </p>
-          </div>
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] px-4 py-3">
-            <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Next Goal</p>
-            <p className="mt-1 text-base font-black text-white">{nextGoalLabel}</p>
-          </div>
-        </div>
-
-        {/* Large visual progress bar toward the next rank */}
-        <div className="mt-5">
-          <div className="mb-2 flex items-center justify-between text-xs font-bold text-white/60">
-            <span>
-              {nextRank
-                ? `${xpRemaining.toLocaleString()} XP until ${nextRank.name}`
-                : "Highest rank reached! 🌟"}
-            </span>
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center text-center">
+        <SectionLabel className="mb-3">Current Rank</SectionLabel>
+        <CosmicPlanet rank={rank} size={88} current spotlight />
+        <p
+          className="mt-3 font-display text-2xl font-black"
+          style={{ color: theme.glow, textShadow: `0 0 24px ${theme.soft}` }}
+        >
+          {rank.name}
+        </p>
+        <div className="mt-4 w-full">
+          <div className="mb-1.5 flex items-center justify-between text-xs font-bold text-white/60">
+            <span>{xp.toLocaleString()} XP</span>
             <span>{rankPct}%</span>
           </div>
-          <div className="h-4 w-full overflow-hidden rounded-full bg-white/[0.08]">
+          <div className="h-3 w-full overflow-hidden rounded-full bg-white/[0.08]">
             <div
               className="h-full rounded-full transition-all duration-700"
               style={{
                 width: `${rankPct}%`,
                 background: `linear-gradient(90deg, ${rank.color}, #8B5CF6)`,
-                boxShadow: `0 0 18px ${rank.glowColor}`,
+                boxShadow: `0 0 16px ${theme.soft}`,
               }}
             />
           </div>
+          <p className="mt-2 text-xs font-bold text-white/50">
+            {nextRank ? `${xpRemaining.toLocaleString()} XP to ${nextRank.name}` : "Highest rank reached! 🌟"}
+          </p>
         </div>
       </div>
     </Card>
   );
 }
 
-// ─── Continue Learning Banner ─────────────────────────────────────────────────
+function CompanionHeroCard({ xp, companionId }: { xp: number; companionId: CompanionId }) {
+  const stageId = getCompanionStageForXp(xp);
+  const stageIndex = Math.max(0, COMPANION_STAGES.findIndex((s) => s.id === stageId));
+  const stage = COMPANION_STAGES[stageIndex] ?? COMPANION_STAGES[0];
+  const species = getCompanionSpecies(companionId);
 
-function ContinueLearningBanner({ lastVisited }: { lastVisited: LastVisited }) {
+  return (
+    <Card className="relative flex h-[280px] flex-col overflow-hidden text-center sm:h-[300px]">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{ background: "radial-gradient(circle at 50% 10%, rgba(167,139,250,0.32), transparent 65%)" }}
+      />
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center">
+        <SectionLabel className="mb-3">Companion</SectionLabel>
+        <CompanionImage speciesId={companionId} stage={stageId} size={104} />
+        <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-[#C4B5FD]/70">{species.name}</p>
+        <p className="font-display text-xl font-black text-white">
+          {species.fallbackEmoji[stageId]} {stage.name}
+        </p>
+        <p className="mt-2 text-sm font-bold text-white">
+          XP: <span className="text-[#A78BFA]">{xp.toLocaleString()}</span>
+        </p>
+      </div>
+    </Card>
+  );
+}
+
+function NextGoalHeroCard({
+  nextGoalLabel,
+  nextRank,
+  xp,
+}: {
+  nextGoalLabel: string;
+  nextRank: SpaceRank | null;
+  xp: number;
+}) {
+  const xpRemaining = nextRank ? Math.max(0, nextRank.minXp - xp) : 0;
+
+  return (
+    <Card className="flex h-[280px] flex-col items-center justify-center text-center sm:h-[300px]">
+      <SectionLabel className="mb-3">Next Goal</SectionLabel>
+      <Target className="h-9 w-9 text-[#A78BFA]" />
+      <p className="mt-3 text-base font-black text-white">{nextGoalLabel}</p>
+      <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">XP Needed</p>
+      <p className="font-display text-2xl font-black text-[#FBBF24]">
+        {nextRank ? xpRemaining.toLocaleString() : "—"}
+      </p>
+      <Link
+        to="/notes"
+        className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-4 py-2 text-xs font-bold text-white transition-all hover:scale-[1.03] active:scale-[0.98]"
+      >
+        Study Now <ArrowRight className="h-3.5 w-3.5" />
+      </Link>
+    </Card>
+  );
+}
+
+// ─── Continue Learning — compact "resume where you left off" card ─────────────
+
+function ContinueLearningCard({ lastVisited }: { lastVisited: LastVisited }) {
   return (
     <Link
       to={TYPE_ROUTES[lastVisited.type]}
       search={{ subject: lastVisited.subjectId, form: 1 } as Record<string, unknown>}
-      className="group mb-6 flex items-center gap-4 rounded-[2rem] border border-[#6366F1]/30 bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#6366F1]/50 hover:from-[#6366F1]/15 hover:to-[#8B5CF6]/15"
+      className="academy-surface group flex flex-col rounded-[2rem] border border-[#6366F1]/30 bg-gradient-to-br from-[#6366F1]/10 to-[#8B5CF6]/10 p-4 backdrop-blur-2xl transition-all hover:border-[#6366F1]/50 hover:from-[#6366F1]/15 hover:to-[#8B5CF6]/15"
     >
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#6366F1]/20 text-2xl">
-        {TYPE_ICONS[lastVisited.type]}
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#6366F1]/20 text-xl">
+          {TYPE_ICONS[lastVisited.type]}
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8]">Continue Learning</p>
+          <p className="text-sm font-bold text-white capitalize truncate">{lastVisited.label}</p>
+        </div>
       </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8]">Continue Learning</p>
-        <p className="font-bold text-white capitalize truncate">{lastVisited.label}</p>
-        <p className="text-xs text-white/40 capitalize">
-          {lastVisited.subjectId} · {TYPE_LABELS[lastVisited.type]} · {timeAgo(lastVisited.timestamp)}
-        </p>
-      </div>
-      <div className="flex items-center gap-1.5 rounded-2xl bg-[#6366F1]/20 px-4 py-2 text-sm font-bold text-[#818CF8] transition-transform group-hover:translate-x-0.5 shrink-0">
+      <p className="mt-2 text-xs text-white/40 capitalize">
+        {lastVisited.subjectId} · {TYPE_LABELS[lastVisited.type]} · {timeAgo(lastVisited.timestamp)}
+      </p>
+      <div className="mt-auto flex items-center gap-1.5 pt-3 text-sm font-bold text-[#818CF8] transition-transform group-hover:translate-x-0.5">
         Resume <ArrowRight className="h-4 w-4" />
+      </div>
+    </Link>
+  );
+}
+
+// ─── Flashcards Due — compact alert/status card ────────────────────────────────
+
+function FlashcardsDueCard({ dueCount, masteredCount }: { dueCount: number; masteredCount: number }) {
+  const due = dueCount > 0;
+  return (
+    <Link
+      to="/flashcards"
+      className={`academy-surface group flex flex-col rounded-[2rem] border p-4 backdrop-blur-2xl transition-all ${due ? "border-sky-500/30 bg-sky-500/10 hover:border-sky-500/50 hover:bg-sky-500/15" : "border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06]"}`}
+    >
+      <div className="flex items-center gap-3">
+        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${due ? "bg-sky-500/20" : "bg-white/[0.06]"}`}>
+          <RotateCcw className={`h-5 w-5 ${due ? "text-sky-400" : "text-white/40"}`} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className={`text-[10px] font-bold uppercase tracking-widest ${due ? "text-sky-300" : "text-[#94A3B8]"}`}>Flashcards Due</p>
+          <p className="text-sm font-bold text-white">
+            {due ? `${dueCount} card${dueCount !== 1 ? "s" : ""} to review` : "All caught up!"}
+          </p>
+        </div>
+      </div>
+      <p className="mt-2 text-xs text-white/40">{masteredCount} card{masteredCount !== 1 ? "s" : ""} mastered</p>
+      <div className={`mt-auto flex items-center gap-1.5 pt-3 text-sm font-bold transition-transform group-hover:translate-x-0.5 ${due ? "text-sky-300" : "text-white/50"}`}>
+        Review <ArrowRight className="h-4 w-4" />
       </div>
     </Link>
   );
@@ -566,20 +613,14 @@ function ContinueLearningBanner({ lastVisited }: { lastVisited: LastVisited }) {
 
 // ─── Shared UI pieces ─────────────────────────────────────────────────────────
 
-function ResourceTypeIcon({ type }: { type: LastVisited["type"] }) {
-  if (type === "notes") return <BookOpen className="h-5 w-5" />;
-  if (type === "flashcards") return <BookMarked className="h-5 w-5" />;
-  return <TrendingUp className="h-5 w-5" />;
-}
-
-function StarterCards() {
+function StarterCards({ compact = false }: { compact?: boolean }) {
   return (
-    <Card className="mb-6">
+    <Card className={compact ? "" : "mb-6"}>
       <div className="mb-4 flex items-center gap-2">
         <Compass className="h-4 w-4 text-cyan-300" />
         <SectionLabel>Start Your Journey</SectionLabel>
       </div>
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className={compact ? "grid gap-3" : "grid gap-3 md:grid-cols-3"}>
         {STARTER_ACTIONS.map((item) => (
           <Link
             key={item.title}
@@ -599,47 +640,7 @@ function StarterCards() {
   );
 }
 
-function CreatureXpCard({ xp }: { xp: number }) {
-  const stage = getCreatureStage(xp);
-  const currentIndex = CREATURE_STAGES.findIndex((item) => item.name === stage.name);
-  const nextStage = CREATURE_STAGES[currentIndex + 1];
-  const needed = nextStage ? Math.max(0, nextStage.minXp - xp) : 0;
-
-  return (
-    <Card className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_15%,rgba(34,211,238,0.20),transparent_48%),radial-gradient(circle_at_80%_0%,rgba(167,139,250,0.16),transparent_45%)]" />
-      <div className="relative z-10">
-        <div className="mb-4 flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-cyan-300" />
-          <h2 className="font-bold text-white">Creature XP</h2>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
-            <div className="absolute inset-0 rounded-full bg-cyan-300/20 blur-xl" />
-            <div className="relative h-16 w-16 rounded-[45%_55%_50%_50%] border border-white/20 bg-gradient-to-br from-cyan-200 via-indigo-300 to-violet-500 shadow-[0_0_36px_rgba(34,211,238,0.35)]" />
-            <div className="absolute bottom-2 h-2 w-12 rounded-full bg-cyan-200/25 blur-sm" />
-          </div>
-          <div className="min-w-0">
-            <p className="text-xs font-bold uppercase tracking-widest text-cyan-200/70">Evolution Stage</p>
-            <p className="font-display text-2xl font-bold text-white">{stage.name}</p>
-            <p className="mt-1 text-sm leading-5 text-white/48">{stage.description}</p>
-          </div>
-        </div>
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.04] p-3">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/35">Current XP</p>
-            <p className="mt-1 font-display text-2xl font-bold text-white">{xp.toLocaleString()}</p>
-          </div>
-          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.04] p-3">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/35">Next Stage</p>
-            <p className="mt-1 text-sm font-bold text-cyan-100">{nextStage ? nextStage.name : "Max Stage"}</p>
-            <p className="mt-1 text-xs text-white/40">{nextStage ? `${needed.toLocaleString()} XP needed` : "Fully evolved"}</p>
-          </div>
-        </div>
-      </div>
-    </Card>
-  );
-}
+// ─── Daily Missions — 3 individual mission cards ───────────────────────────────
 
 const MISSION_ICONS: Record<string, { Icon: typeof BookOpen; color: string }> = {
   read2: { Icon: BookOpen, color: "#60A5FA" },
@@ -647,7 +648,7 @@ const MISSION_ICONS: Record<string, { Icon: typeof BookOpen; color: string }> = 
   cards1: { Icon: BookMarked, color: "#A78BFA" },
 };
 
-function DailyMissionsCard({ missions }: { missions?: MissionProgress }) {
+function DailyMissionsSection({ missions }: { missions?: MissionProgress }) {
   const missionRows = DAILY_MISSIONS.map((m) => ({
     id: m.id,
     label: m.label,
@@ -659,52 +660,57 @@ function DailyMissionsCard({ missions }: { missions?: MissionProgress }) {
   const doneCount = missionRows.filter((mission) => mission.current >= mission.target).length;
 
   return (
-    <Card>
+    <div>
       <div className="mb-4 flex items-center gap-2">
         <Star className="h-4 w-4 text-[#FBBF24]" />
-        <h2 className="font-bold text-white">⭐ Daily Missions</h2>
-        <span className="ml-auto rounded-full bg-[#FBBF24]/20 px-2 py-0.5 text-[10px] font-bold text-[#FBBF24]">
+        <SectionLabel>Daily Missions</SectionLabel>
+        <span className="rounded-full bg-[#FBBF24]/20 px-2 py-0.5 text-[10px] font-bold text-[#FBBF24]">
           {doneCount}/{missionRows.length}
         </span>
       </div>
-      <div className="space-y-2.5">
+      <div className="grid gap-4 sm:grid-cols-3">
         {missionRows.map((mission) => {
           const done = mission.current >= mission.target;
           const pct = Math.min(100, Math.round((mission.current / mission.target) * 100));
           return (
             <div
               key={mission.id}
-              className={`rounded-xl border p-3 transition-all ${done ? "border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_18px_rgba(16,185,129,0.18)]" : "border-white/[0.07] bg-white/[0.03]"}`}
+              className={`rounded-[1.75rem] border p-5 backdrop-blur-2xl transition-all ${done ? "border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.18)]" : "border-white/[0.08] bg-[#0B1220]/62"}`}
             >
               <div className="flex items-center gap-2.5">
-                {done ? (
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
-                ) : (
-                  <Circle className="h-4 w-4 shrink-0 text-[#94A3B8]" />
-                )}
-                <mission.Icon className="h-4 w-4 shrink-0" style={{ color: mission.color }} />
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-semibold text-white">{mission.label}</span>
-                    <span className="shrink-0 text-xs font-bold text-white/50">
-                      {mission.current}/{mission.target}
-                    </span>
-                  </div>
-                  <p className={`mt-0.5 text-[11px] font-bold ${done ? "text-emerald-300" : "text-[#FBBF24]/70"}`}>
-                    {done ? `✓ Earned +${mission.xpReward} XP` : `Reward: ${mission.xpReward} XP`}
-                  </p>
-                  {!done && (
-                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/[0.08]">
-                      <div className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#22D3EE]" style={{ width: `${pct}%` }} />
-                    </div>
-                  )}
+                <div
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl"
+                  style={{ background: `${mission.color}1f` }}
+                >
+                  <mission.Icon className="h-5 w-5" style={{ color: mission.color }} />
                 </div>
+                {done ? (
+                  <CheckCircle2 className="ml-auto h-5 w-5 shrink-0 text-emerald-400" />
+                ) : (
+                  <Circle className="ml-auto h-5 w-5 shrink-0 text-[#94A3B8]" />
+                )}
               </div>
+              <p className="mt-3 text-sm font-bold text-white">{mission.label}</p>
+              <div className="mt-2 flex items-center justify-between text-xs font-bold text-white/50">
+                <span>{mission.current}/{mission.target}</span>
+                <span className={done ? "text-emerald-300" : "text-[#FBBF24]/80"}>
+                  {done ? `✓ +${mission.xpReward} XP` : `+${mission.xpReward} XP`}
+                </span>
+              </div>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/[0.08]">
+                <div
+                  className={`h-full rounded-full ${done ? "bg-emerald-400" : "bg-gradient-to-r from-[#6366F1] to-[#22D3EE]"}`}
+                  style={{ width: `${pct}%` }}
+                />
+              </div>
+              <p className={`mt-3 text-[10px] font-bold uppercase tracking-wide ${done ? "text-emerald-300" : "text-white/35"}`}>
+                {done ? "Claimed" : "In progress"}
+              </p>
             </div>
           );
         })}
       </div>
-    </Card>
+    </div>
   );
 }
 
@@ -785,7 +791,7 @@ function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
     <Card>
       <div className="mb-4 flex items-center gap-2">
         <Clock3 className="h-4 w-4 text-cyan-300" />
-        <h2 className="font-bold text-white">Recent Activity</h2>
+        <SectionLabel>Recent Activity</SectionLabel>
       </div>
       {recent.length === 0 ? (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 text-center">
@@ -796,7 +802,7 @@ function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
           </p>
         </div>
       ) : (
-        <div className="space-y-2.5">
+        <div className="relative space-y-2.5 before:absolute before:bottom-2 before:left-[18px] before:top-2 before:w-px before:bg-white/[0.08] before:content-['']">
           {recent.map((item) => {
             const subjectName = subjects.find((subject) => subject.id === item.subjectId)?.name ?? item.subjectId;
             return (
@@ -804,9 +810,9 @@ function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
                 key={item.id}
                 to={TYPE_ROUTES[item.type]}
                 search={{ subject: item.subjectId, form: 1, chapter: item.chapterKey } as Record<string, unknown>}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-3 transition-all hover:bg-white/[0.08]"
+                className="relative flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-3 transition-all hover:bg-white/[0.08]"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
+                <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
                   <CheckCircle2 className="h-4 w-4" />
                 </span>
                 <span className="min-w-0 flex-1">
@@ -870,6 +876,14 @@ function QuickActionsCard({ lastVisited }: { lastVisited?: LastVisited }) {
         Start Quiz
         <ArrowRight className="h-3.5 w-3.5 ml-auto opacity-40" />
       </Link>
+      <Link
+        to="/flashcards"
+        className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 text-sm font-semibold text-white/70 transition-all hover:bg-white/[0.08] hover:text-white"
+      >
+        <BookMarked className="h-4 w-4 text-[#A78BFA]" />
+        Review Flashcards
+        <ArrowRight className="h-3.5 w-3.5 ml-auto opacity-40" />
+      </Link>
     </Card>
   );
 }
@@ -914,17 +928,19 @@ function TodayStatGlassCard({
   value,
   color,
   glow,
+  compact = false,
 }: {
   icon: string;
   label: string;
   value: number;
   color: string;
   glow: string;
+  compact?: boolean;
 }) {
   const count = useCountUp(value);
   return (
     <div
-      className="cosmic-glass-card relative overflow-hidden rounded-[1.75rem] border border-white/[0.10] p-5"
+      className={`cosmic-glass-card relative overflow-hidden rounded-[1.75rem] border border-white/[0.10] ${compact ? "p-3" : "p-5"}`}
       style={{ ["--stat-glow" as string]: glow }}
     >
       <div
@@ -932,9 +948,9 @@ function TodayStatGlassCard({
         style={{ background: `radial-gradient(circle at 26% 18%, ${glow}, transparent 62%)` }}
       />
       <div className="relative z-10">
-        <span className="text-2xl">{icon}</span>
-        <p className="mt-3 font-display text-3xl font-bold text-white">{count.toLocaleString()}</p>
-        <p className="mt-1 text-xs font-semibold uppercase tracking-wide" style={{ color }}>{label}</p>
+        <span className={compact ? "text-lg" : "text-2xl"}>{icon}</span>
+        <p className={`font-display font-bold text-white ${compact ? "mt-2 text-xl" : "mt-3 text-3xl"}`}>{count.toLocaleString()}</p>
+        <p className={`mt-1 font-semibold uppercase tracking-wide ${compact ? "text-[10px]" : "text-xs"}`} style={{ color }}>{label}</p>
       </div>
     </div>
   );
@@ -945,28 +961,30 @@ function TodayProgressGrid({
   quizzesCompleted,
   flashcardsMastered,
   totalXp,
+  compact = false,
 }: {
   notesStudied: number;
   quizzesCompleted: number;
   flashcardsMastered: number;
   totalXp: number;
+  compact?: boolean;
 }) {
   return (
-    <div className="mb-6">
+    <Card className={compact ? "flex h-[380px] flex-col justify-center p-4" : undefined}>
       <SectionLabel className="mb-3">Today's Progress</SectionLabel>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        <TodayStatGlassCard icon="📚" label="Notes Studied" value={notesStudied} color="#60A5FA" glow="rgba(96,165,250,0.45)" />
-        <TodayStatGlassCard icon="📝" label="Quizzes Completed" value={quizzesCompleted} color="#34D399" glow="rgba(52,211,153,0.45)" />
-        <TodayStatGlassCard icon="🎴" label="Flashcards Mastered" value={flashcardsMastered} color="#A78BFA" glow="rgba(167,139,250,0.45)" />
-        <TodayStatGlassCard icon="⭐" label="Total XP Earned" value={totalXp} color="#FBBF24" glow="rgba(251,191,36,0.45)" />
+      <div className={compact ? "grid grid-cols-2 gap-3" : "grid grid-cols-2 gap-4 md:grid-cols-4"}>
+        <TodayStatGlassCard compact={compact} icon="📚" label="Notes Studied" value={notesStudied} color="#60A5FA" glow="rgba(96,165,250,0.45)" />
+        <TodayStatGlassCard compact={compact} icon="📝" label="Quizzes Completed" value={quizzesCompleted} color="#34D399" glow="rgba(52,211,153,0.45)" />
+        <TodayStatGlassCard compact={compact} icon="🎴" label="Flashcards Mastered" value={flashcardsMastered} color="#A78BFA" glow="rgba(167,139,250,0.45)" />
+        <TodayStatGlassCard compact={compact} icon="⭐" label="XP Earned" value={totalXp} color="#FBBF24" glow="rgba(251,191,36,0.45)" />
       </div>
-    </div>
+    </Card>
   );
 }
 
-// ─── Subject Progress — planetary cards ────────────────────────────────────────
+// ─── Subject Worlds — placeholder planet cards (artwork added manually later) ──
 
-const SUBJECT_PLANET_THEME: Record<string, { label: string; color: string; glow: string }> = {
+const SUBJECT_WORLD_THEME: Record<string, { label: string; color: string; glow: string }> = {
   bm:        { label: "Green Knowledge Planet",    color: "#22C55E", glow: "rgba(34,197,94,0.55)" },
   english:   { label: "Blue Communication Planet", color: "#3B82F6", glow: "rgba(59,130,246,0.55)" },
   math:      { label: "Purple Logic Planet",        color: "#A855F7", glow: "rgba(168,85,247,0.55)" },
@@ -975,7 +993,8 @@ const SUBJECT_PLANET_THEME: Record<string, { label: string; color: string; glow:
   geography: { label: "Emerald Earth Planet",        color: "#10B981", glow: "rgba(16,185,129,0.55)" },
 };
 
-function SubjectPlanetCard({
+/** Subject card with a reserved (~70%) artwork area — placeholder only, real planet art added manually. */
+function SubjectWorldCard({
   subject,
   chapDone,
   chapStarted,
@@ -986,65 +1005,109 @@ function SubjectPlanetCard({
   chapStarted: number;
   pct: number;
 }) {
-  const theme = SUBJECT_PLANET_THEME[subject.id] ?? { label: "Mystery Planet", color: "#8B5CF6", glow: "rgba(139,92,246,0.5)" };
-  const size = 80;
-  const stroke = 5;
-  const r = (size - stroke) / 2;
-  const circumference = 2 * Math.PI * r;
-  const offset = circumference * (1 - pct / 100);
+  const theme = SUBJECT_WORLD_THEME[subject.id] ?? { label: "Mystery Planet", color: "#8B5CF6", glow: "rgba(139,92,246,0.5)" };
 
   return (
-    <Link
-      to="/notes"
-      search={{ subject: subject.id, form: 1 } as Record<string, unknown>}
-      className="cosmic-subject-card group relative flex flex-col items-center overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.18]"
-      style={{ ["--planet-color" as string]: theme.color, ["--planet-glow" as string]: theme.glow }}
+    <div
+      className="group relative flex h-[220px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.18]"
     >
+      {/* Artwork area — ~70% of card height, placeholder container for manually-added planet art */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{ background: `radial-gradient(circle at 50% 0%, ${theme.glow}, transparent 70%)` }}
-      />
-      <div className="relative z-10 animate-float-soft" style={{ width: size, height: size }}>
-        <svg width={size} height={size} className="absolute inset-0 -rotate-90">
-          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth={stroke} />
-          <circle
-            cx={size / 2}
-            cy={size / 2}
-            r={r}
-            fill="none"
-            stroke={theme.color}
-            strokeWidth={stroke}
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={offset}
-            style={{ transition: "stroke-dashoffset 0.8s cubic-bezier(.2,.7,.3,1)" }}
-          />
-        </svg>
-        <div className="cosmic-subject-planet-orb absolute inset-[8px] text-2xl">
+        className="relative flex h-[70%] w-full items-center justify-center overflow-hidden"
+        style={{ background: `radial-gradient(circle at 50% 30%, ${theme.glow}, transparent 70%)` }}
+      >
+        <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:26px_26px]" />
+        <div
+          className="cosmic-subject-planet-orb relative z-10 flex h-20 w-20 items-center justify-center rounded-full text-4xl animate-float-soft"
+          style={{ background: `${theme.color}22`, boxShadow: `0 0 32px ${theme.glow}` }}
+        >
           <span>{subject.emoji}</span>
         </div>
+        <span
+          className="absolute right-3 top-3 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
+          style={{ background: `${theme.color}22`, color: theme.color }}
+        >
+          {pct}%
+        </span>
       </div>
-      <p className="relative z-10 mt-3 text-sm font-bold text-white">{subject.name}</p>
-      <p className="relative z-10 text-[9px] font-bold uppercase tracking-wide" style={{ color: theme.color }}>
-        {theme.label}
-      </p>
-      <p className="relative z-10 mt-2 font-display text-xl font-bold text-white">{pct}%</p>
-      <span className="relative z-10 mt-1 rounded-full bg-white/[0.06] px-2 py-0.5 text-[9px] font-semibold text-white/50">
-        {chapStarted > 0 ? `${chapDone}/${chapStarted} chapters` : "Not started"}
-      </span>
-      <span
-        className="relative z-10 mt-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{ background: `${theme.color}22`, color: theme.color }}
-      >
-        Continue <ArrowRight className="h-2.5 w-2.5" />
-      </span>
-    </Link>
+
+      {/* Info area — name, chapter count, progress bar, continue button */}
+      <div className="flex flex-1 flex-col justify-between p-2.5">
+        <div>
+          <p className="text-sm font-bold text-white">{subject.name}</p>
+          <p className="text-[9px] font-bold uppercase tracking-wide" style={{ color: theme.color }}>
+            {chapStarted > 0 ? `${chapDone}/${chapStarted} chapters` : "Not started"}
+          </p>
+          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/[0.08]">
+            <div className="h-full rounded-full" style={{ width: `${pct}%`, background: theme.color }} />
+          </div>
+        </div>
+        <Link
+          to="/notes"
+          search={{ subject: subject.id, form: 1 } as Record<string, unknown>}
+          className="mt-2 flex items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-[11px] font-bold text-white transition-transform group-hover:scale-[1.02]"
+          style={{ background: `${theme.color}30`, color: theme.color }}
+        >
+          Continue <ArrowRight className="h-3 w-3" />
+        </Link>
+      </div>
+    </div>
   );
 }
 
 // ─── Cosmic Companion ───────────────────────────────────────────────────────────
 
-/** Large, prominent companion card — current stage, next evolution, and XP remaining. */
+const COMPANION_TIMELINE_EMOJI: Record<CompanionStageId, string> = {
+  egg: "🥚",
+  blobling: "🫧",
+  sprout: "🌱",
+  cadet: "🚀",
+  guardian: "🛡️",
+};
+
+/** Horizontal evolution path — Egg → Blobling → Sprout → Cadet → Guardian. */
+function CompanionEvolutionPath({ currentStageId }: { currentStageId: CompanionStageId }) {
+  const currentIndex = COMPANION_STAGES.findIndex((s) => s.id === currentStageId);
+  return (
+    <div className="mt-6 flex items-center justify-between gap-1 overflow-x-auto rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+      {COMPANION_STAGES.map((stage, i) => {
+        const done = i <= currentIndex;
+        const isCurrent = i === currentIndex;
+        return (
+          <div key={stage.id} className="flex min-w-0 flex-1 items-center">
+            <div className="flex flex-1 flex-col items-center gap-1.5">
+              <span
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg transition-all ${isCurrent ? "scale-110 ring-2 ring-[#A78BFA]" : ""}`}
+                style={{
+                  background: done ? "rgba(167,139,250,0.18)" : "rgba(255,255,255,0.05)",
+                  filter: done ? "none" : "grayscale(1)",
+                  opacity: done ? 1 : 0.45,
+                  boxShadow: isCurrent ? "0 0 18px rgba(167,139,250,0.55)" : "none",
+                }}
+              >
+                {COMPANION_TIMELINE_EMOJI[stage.id]}
+              </span>
+              <span
+                className="text-[10px] font-bold"
+                style={{ color: isCurrent ? "#C4B5FD" : done ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.3)" }}
+              >
+                {stage.name}
+              </span>
+            </div>
+            {i < COMPANION_STAGES.length - 1 && (
+              <span
+                className="mx-1 h-px flex-1 shrink-0"
+                style={{ background: done ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)", minWidth: 16 }}
+              />
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Large, prominent companion card — current stage, next evolution, and the full evolution path. */
 function CosmicCompanionCard({
   xp,
   companionId,
@@ -1066,7 +1129,7 @@ function CosmicCompanionCard({
         style={{ background: "radial-gradient(circle at 50% 10%, rgba(167,139,250,0.32), transparent 65%)" }}
       />
       <div className="relative z-10">
-        <SectionLabel>Your Cosmic Companion</SectionLabel>
+        <SectionLabel>Cosmic Companion</SectionLabel>
         <div className="mt-4 flex flex-col items-center gap-5 sm:flex-row sm:items-center">
           {/* LEFT — large companion artwork */}
           <div className="relative flex shrink-0 items-end justify-center" style={{ width: 168, height: 168 }}>
@@ -1104,6 +1167,9 @@ function CosmicCompanionCard({
             </div>
           )}
         </div>
+
+        {/* Evolution path timeline */}
+        <CompanionEvolutionPath currentStageId={stageId} />
       </div>
     </Card>
   );
@@ -1214,7 +1280,7 @@ function CosmicPlanet({
       style={{
         width: size,
         height: size,
-        opacity: dim ? 0.5 : 1,
+        opacity: dim ? 0.4 : 1,
         filter: dim ? "grayscale(1)" : "none",
         ["--planet-color" as string]: rank.color,
         ["--planet-glow" as string]: theme.glow,
@@ -1234,213 +1300,107 @@ function CosmicPlanet({
         </>
       )}
       {spotlight && <RankSparkles />}
-      <img src={rankArtwork[rank.id]} alt={rank.name} className="cosmic-planet-img" />
-    </div>
-  );
-}
-
-/** Rocket progress bar — rocket position reflects XP progress toward the next rank. */
-function RocketXpBar({ rank, nextRank, pct }: { rank: SpaceRank; nextRank: SpaceRank | null; pct: number }) {
-  return (
-    <div className="mt-6">
-      <div className="mb-2 flex items-center justify-between text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">
-        <span className="inline-flex items-center gap-1">
-          <img src={rankArtwork[rank.id]} alt={rank.name} className="h-4 w-4 rounded-full object-cover" /> {rank.name}
-        </span>
-        <span className="inline-flex items-center gap-1">
-          {nextRank ? (
-            <>
-              {nextRank.name}{" "}
-              <img
-                src={rankArtwork[nextRank.id]}
-                alt={nextRank.name}
-                className="h-4 w-4 rounded-full object-cover opacity-40 grayscale"
-              />
-            </>
-          ) : (
-            "Max Rank"
-          )}
-        </span>
-      </div>
-      <div className="cosmic-rocket-bar">
-        <div className="cosmic-rocket-trail" style={{ width: `${pct}%` }} />
-        <span className="cosmic-rocket-icon text-lg" style={{ left: `${pct}%` }}>🚀</span>
-        <span className="cosmic-destination-star absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2">
-          {nextRank ? (
-            <img
-              src={rankArtwork[nextRank.id]}
-              alt={nextRank.name}
-              className="h-4 w-4 rounded-full object-cover opacity-40 grayscale"
-            />
-          ) : (
-            <img
-              src={rankArtwork["cosmic-legend"]}
-              alt="Cosmic Legend"
-              className="h-4 w-4 rounded-full object-cover"
-            />
-          )}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/** Large premium hero card for the student's current cosmic rank. */
-function RankHeroCard({
-  rank,
-  nextRank,
-  xp,
-  rankPct,
-}: {
-  rank: SpaceRank;
-  nextRank: SpaceRank | null;
-  xp: number;
-  rankPct: number;
-}) {
-  const xpNeeded = nextRank ? Math.max(0, nextRank.minXp - xp) : 0;
-  const theme = getRankTheme(rank.id);
-  return (
-    <Card className="relative overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-80"
-        style={{ background: `radial-gradient(circle at 14% 22%, ${theme.soft}, transparent 58%)` }}
+      <img
+        src={rankArtwork[rank.id]}
+        alt={rank.name}
+        className="cosmic-planet-img"
+        style={{ transform: `scale(${rankImageScale[rank.id] ?? 1})` }}
       />
-      <div className="relative z-10">
-        <SectionLabel>Cosmic Rank</SectionLabel>
-        <div className="mt-5 flex flex-col gap-7 sm:flex-row sm:items-center">
-          {/* LEFT — the centerpiece: a spotlighted, glowing portrait */}
-          <div
-            className="flex shrink-0 items-center justify-center"
-            style={{ width: "clamp(150px, 38vw, 200px)", height: "clamp(150px, 38vw, 200px)" }}
-          >
-            <CosmicPlanet rank={rank} size="clamp(150px, 36vw, 180px)" current spotlight />
-          </div>
-
-          {/* CENTER — rank identity */}
-          <div className="flex-1 min-w-0">
-            <p
-              className="font-display text-3xl font-black sm:text-4xl"
-              style={{ color: theme.glow, textShadow: `0 0 28px ${theme.soft}` }}
-            >
-              {rank.name}
-            </p>
-            <p className="mt-1 text-sm italic text-[#94A3B8]">"{rank.description}"</p>
-            <p className="mt-3 text-sm font-bold text-white">
-              XP: <span style={{ color: theme.glow }}>{xp.toLocaleString()}</span>
-            </p>
-          </div>
-
-          {/* RIGHT — next evolution preview, shown as a real (dimmed) portrait */}
-          {nextRank && (
-            <div className="shrink-0 rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4 text-center sm:min-w-[176px]">
-              <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Next Evolution</p>
-              <div className="mt-2 flex justify-center">
-                <CosmicPlanet rank={nextRank} size={64} glowSmall />
-              </div>
-              <p className="mt-2 text-base font-bold" style={{ color: getRankTheme(nextRank.id).glow }}>
-                {nextRank.name}
-              </p>
-              <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">XP Remaining</p>
-              <p
-                className="mt-0.5 font-display text-2xl font-black"
-                style={{ color: getRankTheme(nextRank.id).glow, textShadow: `0 0 18px ${getRankTheme(nextRank.id).soft}` }}
-              >
-                {xpNeeded.toLocaleString()}
-              </p>
-            </div>
-          )}
-        </div>
-
-        <RocketXpBar rank={rank} nextRank={nextRank} pct={rankPct} />
-      </div>
-    </Card>
+    </div>
   );
 }
 
-/** Horizontal cosmic journey — orbit-connected planets from Cadet to Cosmic Legend. */
+/** Compact cosmic journey — orbit-connected planets arranged 3-per-row across two rows
+ *  (Cadet → Voyager → Captain / Guardian → Master → Legend). Current rank renders 25%
+ *  larger than the shared base size, with a glow; completed ranks stay full color,
+ *  locked ranks render grayscale. */
 function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; currentId: string; xp: number }) {
-  return (
-    <Card className="relative min-h-[240px] overflow-hidden">
-      <SectionLabel>Cosmic Journey</SectionLabel>
-      <div className="relative mt-8 flex min-h-[176px] items-center overflow-x-auto pb-4 pt-2">
-        {/* Scattered stars + floating particles */}
-        <div className="pointer-events-none absolute inset-0">
-          {COSMIC_STAR_SPECKS.map((s, i) => (
-            <span
-              key={i}
-              className="cosmic-star-dot"
-              style={{
-                left: s.left,
-                top: s.top,
-                width: s.size,
-                height: s.size,
-                animationDuration: `${s.dur}s`,
-                animationDelay: `${s.delay}s`,
-              }}
-            />
-          ))}
-          {COSMIC_PARTICLE_SPECKS.map((p, i) => (
-            <span
-              key={i}
-              className="cosmic-particle-dot"
-              style={{
-                left: p.left,
-                top: p.top,
-                width: p.size,
-                height: p.size,
-                background: p.color,
-                animationDuration: `${p.dur}s`,
-                animationDelay: `${p.delay}s`,
-              }}
-            />
-          ))}
-        </div>
+  const BASE_SIZE = 96;
+  const CURRENT_SIZE = 124;
+  const rows = [ranks.slice(0, 3), ranks.slice(3, 6)];
 
-        <div className="relative z-10 flex min-w-max items-center gap-4 px-4 sm:gap-6">
-          {ranks.map((r, i) => {
-            const done = xp >= r.minXp;
-            const isCurrent = r.id === currentId;
-            const theme = getRankTheme(r.id);
-            const next = ranks[i + 1];
-            const nextDone = next ? xp >= next.minXp : false;
-            const nextTheme = next ? getRankTheme(next.id) : null;
-            return (
-              <div key={r.id} className="flex items-center">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="flex h-[100px] w-[100px] shrink-0 items-center justify-center">
-                    <CosmicPlanet
-                      rank={r}
-                      size={isCurrent ? 100 : 80}
-                      current={isCurrent}
-                      dim={!done}
-                      floaty={isCurrent}
-                      glowSmall={done && !isCurrent}
-                    />
+  return (
+    <Card className="relative flex h-[380px] flex-col overflow-hidden">
+      <SectionLabel>Cosmic Journey</SectionLabel>
+      {/* Scattered stars + floating particles */}
+      <div className="pointer-events-none absolute inset-0">
+        {COSMIC_STAR_SPECKS.map((s, i) => (
+          <span
+            key={i}
+            className="cosmic-star-dot"
+            style={{
+              left: s.left,
+              top: s.top,
+              width: s.size,
+              height: s.size,
+              animationDuration: `${s.dur}s`,
+              animationDelay: `${s.delay}s`,
+            }}
+          />
+        ))}
+        {COSMIC_PARTICLE_SPECKS.map((p, i) => (
+          <span
+            key={i}
+            className="cosmic-particle-dot"
+            style={{
+              left: p.left,
+              top: p.top,
+              width: p.size,
+              height: p.size,
+              background: p.color,
+              animationDuration: `${p.dur}s`,
+              animationDelay: `${p.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 mt-2 flex flex-1 flex-col items-center justify-center gap-3">
+        {rows.map((row, rowIdx) => (
+          <div key={rowIdx} className="flex items-center justify-center gap-1">
+            {row.map((r, i) => {
+              const done = xp >= r.minXp;
+              const isCurrent = r.id === currentId;
+              const theme = getRankTheme(r.id);
+              const next = row[i + 1];
+              const nextDone = next ? xp >= next.minXp : false;
+              const nextTheme = next ? getRankTheme(next.id) : null;
+              return (
+                <div key={r.id} className="flex shrink-0 items-center">
+                  <div className="flex w-[108px] shrink-0 flex-col items-center gap-1">
+                    <div className="flex h-[134px] w-[134px] shrink-0 items-center justify-center">
+                      <CosmicPlanet
+                        rank={r}
+                        size={isCurrent ? CURRENT_SIZE : BASE_SIZE}
+                        current={isCurrent}
+                        dim={!done}
+                        floaty={isCurrent}
+                        glowSmall={done && !isCurrent}
+                      />
+                    </div>
+                    <span
+                      className="max-w-[96px] truncate text-center text-[11px] font-bold leading-tight"
+                      style={{ color: isCurrent ? theme.glow : done ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.3)" }}
+                    >
+                      {r.name}
+                    </span>
                   </div>
-                  <span
-                    className="max-w-[96px] text-center text-sm font-bold leading-tight"
-                    style={{ color: isCurrent ? theme.glow : done ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.3)" }}
-                  >
-                    {r.name}
-                  </span>
+                  {next && (
+                    <span
+                      className="cosmic-journey-line mx-1 w-6 shrink-0 sm:w-9"
+                      style={{
+                        ["--from-color" as string]: done ? theme.glow : "rgba(255,255,255,0.08)",
+                        ["--to-color" as string]: nextDone && nextTheme ? nextTheme.glow : "rgba(255,255,255,0.08)",
+                      } as CSSProperties}
+                    >
+                      {done && <span className="cosmic-journey-line-energy" />}
+                    </span>
+                  )}
                 </div>
-                {next && (
-                  <span
-                    className={`cosmic-journey-line mx-2 w-12 shrink-0 sm:w-16 ${
-                      next.id === "cosmic-legend" && nextDone ? "cosmic-journey-line-rainbow" : ""
-                    }`}
-                    style={{
-                      ["--from-color" as string]: done ? theme.glow : "rgba(255,255,255,0.08)",
-                      ["--to-color" as string]: nextDone && nextTheme ? nextTheme.glow : "rgba(255,255,255,0.08)",
-                    } as CSSProperties}
-                  >
-                    {done && <span className="cosmic-journey-line-energy" />}
-                  </span>
-                )}
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ))}
       </div>
     </Card>
   );
