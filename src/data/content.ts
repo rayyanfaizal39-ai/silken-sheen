@@ -35458,12 +35458,27 @@ export function getSubjectChapters(
   }
 
   if (form === "Form 2" && subjectId === "science" && scienceLang) {
+    const titles: Array<{ bm: string; dlp: string }> = [
+      { bm: "Biodiversiti", dlp: "Biodiversity" },
+      { bm: "Ekosistem", dlp: "Ecosystem" },
+      { bm: "Nutrisi", dlp: "Nutrition" },
+      { bm: "Kesihatan Manusia", dlp: "Human Health" },
+      { bm: "Air dan Larutan", dlp: "Water and Solution" },
+      { bm: "Asid dan Alkali", dlp: "Acids and Alkalis" },
+      { bm: "Keelektrikan dan Kemagnetan", dlp: "Electricity and Magnetism" },
+      { bm: "Daya dan Gerakan", dlp: "Force and Motion" },
+      { bm: "Haba", dlp: "Heat" },
+      { bm: "Gelombang Bunyi", dlp: "Sound Waves" },
+      { bm: "Bintang dan Galaksi dalam Alam Semesta", dlp: "Stars and Galaxies in the Universe" },
+      { bm: "Sistem Suria", dlp: "Solar System" },
+      { bm: "Meteoroid, Asteroid, Komet", dlp: "Meteoroids, Asteroids, Comets" },
+    ];
     const prefix = scienceLang === "bm" ? "Bab" : "Chapter";
-    return Array.from({ length: 13 }, (_, i) => {
+    return titles.map((t, i) => {
       const n = i + 1;
       return {
         key: `Chapter ${n}`,
-        label: `${prefix} ${n}`,
+        label: `${prefix} ${n}: ${scienceLang === "bm" ? t.bm : t.dlp}`,
         available: true,
       };
     });
