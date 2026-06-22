@@ -6576,7 +6576,7 @@ function QuizzesPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormQuizPath) {
+  if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormQuizPath && !needsScienceLang) {
     return (
       <AcademyPageShell>
         <FormComingSoon
