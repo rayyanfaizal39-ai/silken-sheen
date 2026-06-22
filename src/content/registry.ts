@@ -1073,6 +1073,30 @@ export const chapters: ChapterContent[] = [
     title: "Kemahiran Tingkatkan Karangan",
     flashcards: bmFlashcardsFor("Tingkatkan Karangan"),
   },
+
+  // Science Form 2 (bilingual) — empty containers, structure-only
+  ...Array.from({ length: 13 }, (_, i): ChapterContent => {
+    const n = i + 1;
+    return {
+      id: `science-f2-c${n}-bm`,
+      subjectId: "science",
+      form: "Form 2",
+      chapterKey: `Chapter ${n}`,
+      title: `Bab ${n}`,
+      lang: "bm",
+    };
+  }),
+  ...Array.from({ length: 13 }, (_, i): ChapterContent => {
+    const n = i + 1;
+    return {
+      id: `science-f2-c${n}-dlp`,
+      subjectId: "science",
+      form: "Form 2",
+      chapterKey: `Chapter ${n}`,
+      title: `Chapter ${n}`,
+      lang: "dlp",
+    };
+  }),
 ];
 
 export function getChapter(
