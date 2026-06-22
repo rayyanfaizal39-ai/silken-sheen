@@ -3852,7 +3852,7 @@ function FlashcardsPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormFlashcardPath) {
+  if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormFlashcardPath && !needsScienceLang) {
     return (
       <AcademyPageShell>
         <FormComingSoon
