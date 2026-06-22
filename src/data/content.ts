@@ -35457,6 +35457,18 @@ export function getSubjectChapters(
     ];
   }
 
+  if (form === "Form 2" && subjectId === "science" && scienceLang) {
+    const prefix = scienceLang === "bm" ? "Bab" : "Chapter";
+    return Array.from({ length: 13 }, (_, i) => {
+      const n = i + 1;
+      return {
+        key: `Chapter ${n}`,
+        label: `${prefix} ${n}`,
+        available: true,
+      };
+    });
+  }
+
   if (form !== "Form 1" && form !== "All") return [];
 
   if (subjectId === "sejarah") {
