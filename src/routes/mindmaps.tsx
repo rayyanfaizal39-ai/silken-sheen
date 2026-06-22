@@ -158,7 +158,7 @@ function MindMapsPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3") && subjectChapters.length === 0) {
+  if (subject && (form === "Form 2" || form === "Form 3") && subjectChapters.length === 0 && !needsScienceLang) {
     return (
       <AcademyPageShell>
         <FormComingSoon subjectId={subject} form={form} onBack={backToForms} />
