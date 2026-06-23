@@ -149,6 +149,16 @@ import { mathF1C11MindMapBM } from "@/content/form1/math/chapter-11/mindmap-bm";
 import { mathF1C12MindMapBM } from "@/content/form1/math/chapter-12/mindmap-bm";
 import { mathF1C13MindMapBM } from "@/content/form1/math/chapter-13/mindmap-bm";
 
+// Sains F2 Bab 1 (Biodiversiti / Biodiversity)
+import { scienceF2C1NotesBM } from "@/content/form2/science/chapter-1/notes-bm";
+import { scienceF2C1NotesDLP } from "@/content/form2/science/chapter-1/notes-dlp";
+import { scienceF2C1MindMapBM } from "@/content/form2/science/chapter-1/mindmap-bm";
+import { scienceF2C1MindMapDLP } from "@/content/form2/science/chapter-1/mindmap-dlp";
+import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-bm";
+import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
+import { scienceF2C1FlashcardsBM } from "@/content/form2/science/chapter-1/flashcards-bm";
+import { scienceF2C1FlashcardsDLP } from "@/content/form2/science/chapter-1/flashcards-dlp";
+
 // Mathematics F1 mind maps (DLP)
 import { mathF1C1MindMapDLP } from "@/content/form1/math/chapter-1/mindmap-dlp";
 import { mathF1C2MindMapDLP } from "@/content/form1/math/chapter-2/mindmap-dlp";
@@ -1074,9 +1084,35 @@ export const chapters: ChapterContent[] = [
     flashcards: bmFlashcardsFor("Tingkatkan Karangan"),
   },
 
-  // Science Form 2 (bilingual) — empty containers, structure-only
-  ...Array.from({ length: 13 }, (_, i): ChapterContent => {
-    const n = i + 1;
+  // Science Form 2 — Chapter 1 (Biodiversiti / Biodiversity), fully populated
+  {
+    id: "science-f2-c1-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Bab 1: Biodiversiti",
+    lang: "bm",
+    mindMap: { data: scienceF2C1MindMapBM, title: "Biodiversiti" },
+    notes: scienceF2C1NotesBM,
+    flashcards: scienceF2C1FlashcardsBM,
+    quiz: scienceF2C1QuizzesBM,
+  },
+  {
+    id: "science-f2-c1-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Chapter 1: Biodiversity",
+    lang: "dlp",
+    mindMap: { data: scienceF2C1MindMapDLP, title: "Biodiversity" },
+    notes: scienceF2C1NotesDLP,
+    flashcards: scienceF2C1FlashcardsDLP,
+    quiz: scienceF2C1QuizzesDLP,
+  },
+
+  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 2-13)
+  ...Array.from({ length: 12 }, (_, i): ChapterContent => {
+    const n = i + 2;
     return {
       id: `science-f2-c${n}-bm`,
       subjectId: "science",
@@ -1086,8 +1122,8 @@ export const chapters: ChapterContent[] = [
       lang: "bm",
     };
   }),
-  ...Array.from({ length: 13 }, (_, i): ChapterContent => {
-    const n = i + 1;
+  ...Array.from({ length: 12 }, (_, i): ChapterContent => {
+    const n = i + 2;
     return {
       id: `science-f2-c${n}-dlp`,
       subjectId: "science",
