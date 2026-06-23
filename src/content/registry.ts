@@ -159,6 +159,16 @@ import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes
 import { scienceF2C1FlashcardsBM } from "@/content/form2/science/chapter-1/flashcards-bm";
 import { scienceF2C1FlashcardsDLP } from "@/content/form2/science/chapter-1/flashcards-dlp";
 
+// Sains F2 Bab 2 (Ekosistem / Ecosystem)
+import { scienceF2C2NotesBM } from "@/content/form2/science/chapter-2/notes-bm";
+import { scienceF2C2NotesDLP } from "@/content/form2/science/chapter-2/notes-dlp";
+import { scienceF2C2MindMapBM } from "@/content/form2/science/chapter-2/mindmap-bm";
+import { scienceF2C2MindMapDLP } from "@/content/form2/science/chapter-2/mindmap-dlp";
+import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
+import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
+import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
+import { scienceF2C2FlashcardsDLP } from "@/content/form2/science/chapter-2/flashcards-dlp";
+
 // Mathematics F1 mind maps (DLP)
 import { mathF1C1MindMapDLP } from "@/content/form1/math/chapter-1/mindmap-dlp";
 import { mathF1C2MindMapDLP } from "@/content/form1/math/chapter-2/mindmap-dlp";
@@ -1110,9 +1120,35 @@ export const chapters: ChapterContent[] = [
     quiz: scienceF2C1QuizzesDLP,
   },
 
-  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 2-13)
-  ...Array.from({ length: 12 }, (_, i): ChapterContent => {
-    const n = i + 2;
+  // Science Form 2 — Chapter 2 (Ekosistem / Ecosystem), fully populated
+  {
+    id: "science-f2-c2-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Bab 2: Ekosistem",
+    lang: "bm",
+    mindMap: { data: scienceF2C2MindMapBM, title: "Ekosistem" },
+    notes: scienceF2C2NotesBM,
+    flashcards: scienceF2C2FlashcardsBM,
+    quiz: scienceF2C2QuizzesBM,
+  },
+  {
+    id: "science-f2-c2-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Chapter 2: Ecosystem",
+    lang: "dlp",
+    mindMap: { data: scienceF2C2MindMapDLP, title: "Ecosystem" },
+    notes: scienceF2C2NotesDLP,
+    flashcards: scienceF2C2FlashcardsDLP,
+    quiz: scienceF2C2QuizzesDLP,
+  },
+
+  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 3-13)
+  ...Array.from({ length: 11 }, (_, i): ChapterContent => {
+    const n = i + 3;
     return {
       id: `science-f2-c${n}-bm`,
       subjectId: "science",
@@ -1122,8 +1158,8 @@ export const chapters: ChapterContent[] = [
       lang: "bm",
     };
   }),
-  ...Array.from({ length: 12 }, (_, i): ChapterContent => {
-    const n = i + 2;
+  ...Array.from({ length: 11 }, (_, i): ChapterContent => {
+    const n = i + 3;
     return {
       id: `science-f2-c${n}-dlp`,
       subjectId: "science",

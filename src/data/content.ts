@@ -1,3 +1,11 @@
+import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-bm";
+import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
+import { scienceF2C1FlashcardsBM } from "@/content/form2/science/chapter-1/flashcards-bm";
+import { scienceF2C1FlashcardsDLP } from "@/content/form2/science/chapter-1/flashcards-dlp";
+import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
+import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
+import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
+import { scienceF2C2FlashcardsDLP } from "@/content/form2/science/chapter-2/flashcards-dlp";
 import { scienceF1C3QuizzesBM as scienceF1C3HomeostasisQuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP as scienceF1C3HomeostasisQuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
@@ -14185,6 +14193,10 @@ export const quizzes: QuizQuestion[] = [
     answerIndex: 2,
     explanation: "The main weaknesses: (1) Weak vocabulary — 'nice', 'fun' instead of 'vibrant', 'exhilarating'. (2) Short, choppy sentences with no variety. (3) No linking words to connect ideas. Improved: 'The colourful festival was an exhilarating experience. Moreover, the variety of delicious food attracted enormous crowds.'",
   },
+  ...scienceF2C1QuizzesBM,
+  ...scienceF2C1QuizzesDLP,
+  ...scienceF2C2QuizzesBM,
+  ...scienceF2C2QuizzesDLP,
   ...scienceF1C3HomeostasisQuizzesBM,
   ...scienceF1C3HomeostasisQuizzesDLP,
   ...scienceF1C4QuizzesDLP,
@@ -30363,6 +30375,10 @@ export const flashcards: Flashcard[] = [
     front: "What are the features of a good paragraph?",
     back: "A topic sentence, supporting sentences, and a closing sentence all focused on one main idea.",
   },
+  ...scienceF2C1FlashcardsBM,
+  ...scienceF2C1FlashcardsDLP,
+  ...scienceF2C2FlashcardsBM,
+  ...scienceF2C2FlashcardsDLP,
   ...scienceF1C3FlashcardsBM,
   ...scienceF1C3FlashcardsDLP,
   ...scienceF1C4FlashcardsBM,
