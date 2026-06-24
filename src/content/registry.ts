@@ -194,6 +194,22 @@ import { scienceF2C5QuizzesBM } from "@/content/form2/science/chapter-5/quizzes-
 import { scienceF2C5QuizzesDLP } from "@/content/form2/science/chapter-5/quizzes-dlp";
 import { scienceF2C5FlashcardsBM } from "@/content/form2/science/chapter-5/flashcards-bm";
 import { scienceF2C5FlashcardsDLP } from "@/content/form2/science/chapter-5/flashcards-dlp";
+import { scienceF2C6NotesBM } from "@/content/form2/science/chapter-6/notes-bm";
+import { scienceF2C6NotesDLP } from "@/content/form2/science/chapter-6/notes-dlp";
+import { scienceF2C7NotesBM } from "@/content/form2/science/chapter-7/notes-bm";
+import { scienceF2C7NotesDLP } from "@/content/form2/science/chapter-7/notes-dlp";
+import { scienceF2C8NotesBM } from "@/content/form2/science/chapter-8/notes-bm";
+import { scienceF2C8NotesDLP } from "@/content/form2/science/chapter-8/notes-dlp";
+import { scienceF2C9NotesBM } from "@/content/form2/science/chapter-9/notes-bm";
+import { scienceF2C9NotesDLP } from "@/content/form2/science/chapter-9/notes-dlp";
+import { scienceF2C10NotesBM } from "@/content/form2/science/chapter-10/notes-bm";
+import { scienceF2C10NotesDLP } from "@/content/form2/science/chapter-10/notes-dlp";
+import { scienceF2C11NotesBM } from "@/content/form2/science/chapter-11/notes-bm";
+import { scienceF2C11NotesDLP } from "@/content/form2/science/chapter-11/notes-dlp";
+import { scienceF2C12NotesBM } from "@/content/form2/science/chapter-12/notes-bm";
+import { scienceF2C12NotesDLP } from "@/content/form2/science/chapter-12/notes-dlp";
+import { scienceF2C13NotesBM } from "@/content/form2/science/chapter-13/notes-bm";
+import { scienceF2C13NotesDLP } from "@/content/form2/science/chapter-13/notes-dlp";
 
 // Mathematics F1 mind maps (DLP)
 import { mathF1C1MindMapDLP } from "@/content/form1/math/chapter-1/mindmap-dlp";
@@ -1250,29 +1266,165 @@ export const chapters: ChapterContent[] = [
     quiz: scienceF2C5QuizzesDLP,
   },
 
-  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 6-13)
-  ...Array.from({ length: 8 }, (_, i): ChapterContent => {
-    const n = i + 6;
-    return {
-      id: `science-f2-c${n}-bm`,
-      subjectId: "science",
-      form: "Form 2",
-      chapterKey: `Chapter ${n}`,
-      title: `Bab ${n}`,
-      lang: "bm",
-    };
-  }),
-  ...Array.from({ length: 8 }, (_, i): ChapterContent => {
-    const n = i + 6;
-    return {
-      id: `science-f2-c${n}-dlp`,
-      subjectId: "science",
-      form: "Form 2",
-      chapterKey: `Chapter ${n}`,
-      title: `Chapter ${n}`,
-      lang: "dlp",
-    };
-  }),
+  // Science Form 2 — Chapter 6 (Asid dan Alkali / Acid and Alkali), notes populated
+  {
+    id: "science-f2-c6-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Bab 6: Asid dan Alkali",
+    lang: "bm",
+    notes: scienceF2C6NotesBM,
+  },
+  {
+    id: "science-f2-c6-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Chapter 6: Acid and Alkali",
+    lang: "dlp",
+    notes: scienceF2C6NotesDLP,
+  },
+
+  // Science Form 2 — Chapter 7 (Elektrik dan Kemagnetan / Electricity and Magnetism), notes populated
+  {
+    id: "science-f2-c7-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Bab 7: Elektrik dan Kemagnetan",
+    lang: "bm",
+    notes: scienceF2C7NotesBM,
+  },
+  {
+    id: "science-f2-c7-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Chapter 7: Electricity and Magnetism",
+    lang: "dlp",
+    notes: scienceF2C7NotesDLP,
+  },
+
+  // Science Form 2 — Chapter 8 (Daya dan Gerakan / Force and Motion), notes populated
+  {
+    id: "science-f2-c8-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Bab 8: Daya dan Gerakan",
+    lang: "bm",
+    notes: scienceF2C8NotesBM,
+  },
+  {
+    id: "science-f2-c8-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Chapter 8: Force and Motion",
+    lang: "dlp",
+    notes: scienceF2C8NotesDLP,
+  },
+
+  // Science Form 2 — Chapter 9 (Haba / Heat), notes populated
+  {
+    id: "science-f2-c9-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Bab 9: Haba",
+    lang: "bm",
+    notes: scienceF2C9NotesBM,
+  },
+  {
+    id: "science-f2-c9-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Chapter 9: Heat",
+    lang: "dlp",
+    notes: scienceF2C9NotesDLP,
+  },
+
+  // Science Form 2 — Chapter 10 (Gelombang Bunyi / Sound Waves), notes populated
+  {
+    id: "science-f2-c10-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Bab 10: Gelombang Bunyi",
+    lang: "bm",
+    notes: scienceF2C10NotesBM,
+  },
+  {
+    id: "science-f2-c10-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Chapter 10: Sound Waves",
+    lang: "dlp",
+    notes: scienceF2C10NotesDLP,
+  },
+
+  // Science Form 2 — Chapter 11 (Bintang dan Galaksi dalam Alam Semesta / Stars and Galaxies in the Universe), notes populated
+  {
+    id: "science-f2-c11-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 11",
+    title: "Bab 11: Bintang dan Galaksi dalam Alam Semesta",
+    lang: "bm",
+    notes: scienceF2C11NotesBM,
+  },
+  {
+    id: "science-f2-c11-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 11",
+    title: "Chapter 11: Stars and Galaxies in the Universe",
+    lang: "dlp",
+    notes: scienceF2C11NotesDLP,
+  },
+
+  // Science Form 2 — Chapter 12 (Sistem Suria / Solar System), notes populated
+  {
+    id: "science-f2-c12-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 12",
+    title: "Bab 12: Sistem Suria",
+    lang: "bm",
+    notes: scienceF2C12NotesBM,
+  },
+  {
+    id: "science-f2-c12-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 12",
+    title: "Chapter 12: Solar System",
+    lang: "dlp",
+    notes: scienceF2C12NotesDLP,
+  },
+
+  // Science Form 2 — Chapter 13 (Meteoroid, Asteroid, Komet / Meteoroid, Asteroid, Comet), notes populated
+  {
+    id: "science-f2-c13-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 13",
+    title: "Bab 13: Meteoroid, Asteroid, Komet",
+    lang: "bm",
+    notes: scienceF2C13NotesBM,
+  },
+  {
+    id: "science-f2-c13-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 13",
+    title: "Chapter 13: Meteoroid, Asteroid, Comet",
+    lang: "dlp",
+    notes: scienceF2C13NotesDLP,
+  },
 ];
 
 export function getChapter(
