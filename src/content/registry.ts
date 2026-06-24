@@ -169,6 +169,24 @@ import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes
 import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
 import { scienceF2C2FlashcardsDLP } from "@/content/form2/science/chapter-2/flashcards-dlp";
 
+// Sains F2 Bab 3 (Nutrisi / Nutrition)
+import { scienceF2C3NotesBM } from "@/content/form2/science/chapter-3/notes-bm";
+import { scienceF2C3NotesDLP } from "@/content/form2/science/chapter-3/notes-dlp";
+import { scienceF2C3MindMapBM } from "@/content/form2/science/chapter-3/mindmap-bm";
+import { scienceF2C3MindMapDLP } from "@/content/form2/science/chapter-3/mindmap-dlp";
+import { scienceF2C3QuizzesBM } from "@/content/form2/science/chapter-3/quizzes-bm";
+import { scienceF2C3QuizzesDLP } from "@/content/form2/science/chapter-3/quizzes-dlp";
+import { scienceF2C3FlashcardsBM } from "@/content/form2/science/chapter-3/flashcards-bm";
+import { scienceF2C3FlashcardsDLP } from "@/content/form2/science/chapter-3/flashcards-dlp";
+import { scienceF2C4NotesBM } from "@/content/form2/science/chapter-4/notes-bm";
+import { scienceF2C4NotesDLP } from "@/content/form2/science/chapter-4/notes-dlp";
+import { scienceF2C4MindMapBM } from "@/content/form2/science/chapter-4/mindmap-bm";
+import { scienceF2C4MindMapDLP } from "@/content/form2/science/chapter-4/mindmap-dlp";
+import { scienceF2C4QuizzesBM } from "@/content/form2/science/chapter-4/quizzes-bm";
+import { scienceF2C4QuizzesDLP } from "@/content/form2/science/chapter-4/quizzes-dlp";
+import { scienceF2C4FlashcardsBM } from "@/content/form2/science/chapter-4/flashcards-bm";
+import { scienceF2C4FlashcardsDLP } from "@/content/form2/science/chapter-4/flashcards-dlp";
+
 // Mathematics F1 mind maps (DLP)
 import { mathF1C1MindMapDLP } from "@/content/form1/math/chapter-1/mindmap-dlp";
 import { mathF1C2MindMapDLP } from "@/content/form1/math/chapter-2/mindmap-dlp";
@@ -1146,9 +1164,61 @@ export const chapters: ChapterContent[] = [
     quiz: scienceF2C2QuizzesDLP,
   },
 
-  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 3-13)
-  ...Array.from({ length: 11 }, (_, i): ChapterContent => {
-    const n = i + 3;
+  // Science Form 2 — Chapter 3 (Nutrisi / Nutrition), fully populated
+  {
+    id: "science-f2-c3-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Bab 3: Nutrisi",
+    lang: "bm",
+    mindMap: { data: scienceF2C3MindMapBM, title: "Nutrisi" },
+    notes: scienceF2C3NotesBM,
+    flashcards: scienceF2C3FlashcardsBM,
+    quiz: scienceF2C3QuizzesBM,
+  },
+  {
+    id: "science-f2-c3-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Chapter 3: Nutrition",
+    lang: "dlp",
+    mindMap: { data: scienceF2C3MindMapDLP, title: "Nutrition" },
+    notes: scienceF2C3NotesDLP,
+    flashcards: scienceF2C3FlashcardsDLP,
+    quiz: scienceF2C3QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 4 (Kesihatan Manusia / Human Health), fully populated
+  {
+    id: "science-f2-c4-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Bab 4: Kesihatan Manusia",
+    lang: "bm",
+    mindMap: { data: scienceF2C4MindMapBM, title: "Kesihatan Manusia" },
+    notes: scienceF2C4NotesBM,
+    flashcards: scienceF2C4FlashcardsBM,
+    quiz: scienceF2C4QuizzesBM,
+  },
+  {
+    id: "science-f2-c4-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Chapter 4: Human Health",
+    lang: "dlp",
+    mindMap: { data: scienceF2C4MindMapDLP, title: "Human Health" },
+    notes: scienceF2C4NotesDLP,
+    flashcards: scienceF2C4FlashcardsDLP,
+    quiz: scienceF2C4QuizzesDLP,
+  },
+
+  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 5-13)
+  ...Array.from({ length: 9 }, (_, i): ChapterContent => {
+    const n = i + 5;
     return {
       id: `science-f2-c${n}-bm`,
       subjectId: "science",
@@ -1158,8 +1228,8 @@ export const chapters: ChapterContent[] = [
       lang: "bm",
     };
   }),
-  ...Array.from({ length: 11 }, (_, i): ChapterContent => {
-    const n = i + 3;
+  ...Array.from({ length: 9 }, (_, i): ChapterContent => {
+    const n = i + 5;
     return {
       id: `science-f2-c${n}-dlp`,
       subjectId: "science",

@@ -6,6 +6,14 @@ import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-
 import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
 import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
 import { scienceF2C2FlashcardsDLP } from "@/content/form2/science/chapter-2/flashcards-dlp";
+import { scienceF2C3QuizzesBM } from "@/content/form2/science/chapter-3/quizzes-bm";
+import { scienceF2C3QuizzesDLP } from "@/content/form2/science/chapter-3/quizzes-dlp";
+import { scienceF2C3FlashcardsBM } from "@/content/form2/science/chapter-3/flashcards-bm";
+import { scienceF2C3FlashcardsDLP } from "@/content/form2/science/chapter-3/flashcards-dlp";
+import { scienceF2C4QuizzesBM } from "@/content/form2/science/chapter-4/quizzes-bm";
+import { scienceF2C4QuizzesDLP } from "@/content/form2/science/chapter-4/quizzes-dlp";
+import { scienceF2C4FlashcardsBM } from "@/content/form2/science/chapter-4/flashcards-bm";
+import { scienceF2C4FlashcardsDLP } from "@/content/form2/science/chapter-4/flashcards-dlp";
 import { scienceF1C3QuizzesBM as scienceF1C3HomeostasisQuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP as scienceF1C3HomeostasisQuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
@@ -14197,6 +14205,10 @@ export const quizzes: QuizQuestion[] = [
   ...scienceF2C1QuizzesDLP,
   ...scienceF2C2QuizzesBM,
   ...scienceF2C2QuizzesDLP,
+  ...scienceF2C3QuizzesBM,
+  ...scienceF2C3QuizzesDLP,
+  ...scienceF2C4QuizzesBM,
+  ...scienceF2C4QuizzesDLP,
   ...scienceF1C3HomeostasisQuizzesBM,
   ...scienceF1C3HomeostasisQuizzesDLP,
   ...scienceF1C4QuizzesDLP,
@@ -30379,6 +30391,10 @@ export const flashcards: Flashcard[] = [
   ...scienceF2C1FlashcardsDLP,
   ...scienceF2C2FlashcardsBM,
   ...scienceF2C2FlashcardsDLP,
+  ...scienceF2C3FlashcardsBM,
+  ...scienceF2C3FlashcardsDLP,
+  ...scienceF2C4FlashcardsBM,
+  ...scienceF2C4FlashcardsDLP,
   ...scienceF1C3FlashcardsBM,
   ...scienceF1C3FlashcardsDLP,
   ...scienceF1C4FlashcardsBM,
