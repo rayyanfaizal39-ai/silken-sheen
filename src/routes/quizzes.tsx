@@ -6220,9 +6220,23 @@ function QuizzesPage() {
     window.setTimeout(() => setScreenShake(false), 600);
   }
 
+  function shuffleQuestions(arr: QuizQuestion[]): QuizQuestion[] {
+    return [...arr].sort(() => Math.random() - 0.5);
+  }
+
   function buildShuffledPool(rawPool: QuizQuestion[]): ShuffledQuestion[] {
-    const shuffled = [...rawPool].sort(() => Math.random() - 0.5);
-    return shuffled.map((q) => {
+    // When no specific difficulty is chosen, progress the learner through
+    // every Easy question first, then Medium, then Hard — shuffled within
+    // each tier — instead of mixing all difficulties together.
+    const ordered =
+      diff === "All"
+        ? [
+            ...shuffleQuestions(rawPool.filter((q) => q.difficulty === "Easy")),
+            ...shuffleQuestions(rawPool.filter((q) => q.difficulty === "Medium")),
+            ...shuffleQuestions(rawPool.filter((q) => q.difficulty === "Hard")),
+          ]
+        : shuffleQuestions(rawPool);
+    return ordered.map((q) => {
       const correctOption = q.options[q.answerIndex];
       const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
       const newAnswerIndex = shuffledOptions.indexOf(correctOption);
