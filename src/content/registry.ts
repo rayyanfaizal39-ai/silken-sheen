@@ -186,6 +186,14 @@ import { scienceF2C4QuizzesBM } from "@/content/form2/science/chapter-4/quizzes-
 import { scienceF2C4QuizzesDLP } from "@/content/form2/science/chapter-4/quizzes-dlp";
 import { scienceF2C4FlashcardsBM } from "@/content/form2/science/chapter-4/flashcards-bm";
 import { scienceF2C4FlashcardsDLP } from "@/content/form2/science/chapter-4/flashcards-dlp";
+import { scienceF2C5NotesBM } from "@/content/form2/science/chapter-5/notes-bm";
+import { scienceF2C5NotesDLP } from "@/content/form2/science/chapter-5/notes-dlp";
+import { scienceF2C5MindMapBM } from "@/content/form2/science/chapter-5/mindmap-bm";
+import { scienceF2C5MindMapDLP } from "@/content/form2/science/chapter-5/mindmap-dlp";
+import { scienceF2C5QuizzesBM } from "@/content/form2/science/chapter-5/quizzes-bm";
+import { scienceF2C5QuizzesDLP } from "@/content/form2/science/chapter-5/quizzes-dlp";
+import { scienceF2C5FlashcardsBM } from "@/content/form2/science/chapter-5/flashcards-bm";
+import { scienceF2C5FlashcardsDLP } from "@/content/form2/science/chapter-5/flashcards-dlp";
 
 // Mathematics F1 mind maps (DLP)
 import { mathF1C1MindMapDLP } from "@/content/form1/math/chapter-1/mindmap-dlp";
@@ -1216,9 +1224,35 @@ export const chapters: ChapterContent[] = [
     quiz: scienceF2C4QuizzesDLP,
   },
 
-  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 5-13)
-  ...Array.from({ length: 9 }, (_, i): ChapterContent => {
-    const n = i + 5;
+  // Science Form 2 — Chapter 5 (Air dan Larutan / Water and Solution), fully populated
+  {
+    id: "science-f2-c5-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Bab 5: Air dan Larutan",
+    lang: "bm",
+    mindMap: { data: scienceF2C5MindMapBM, title: "Air dan Larutan" },
+    notes: scienceF2C5NotesBM,
+    flashcards: scienceF2C5FlashcardsBM,
+    quiz: scienceF2C5QuizzesBM,
+  },
+  {
+    id: "science-f2-c5-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Chapter 5: Water and Solution",
+    lang: "dlp",
+    mindMap: { data: scienceF2C5MindMapDLP, title: "Water and Solution" },
+    notes: scienceF2C5NotesDLP,
+    flashcards: scienceF2C5FlashcardsDLP,
+    quiz: scienceF2C5QuizzesDLP,
+  },
+
+  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 6-13)
+  ...Array.from({ length: 8 }, (_, i): ChapterContent => {
+    const n = i + 6;
     return {
       id: `science-f2-c${n}-bm`,
       subjectId: "science",
@@ -1228,8 +1262,8 @@ export const chapters: ChapterContent[] = [
       lang: "bm",
     };
   }),
-  ...Array.from({ length: 9 }, (_, i): ChapterContent => {
-    const n = i + 5;
+  ...Array.from({ length: 8 }, (_, i): ChapterContent => {
+    const n = i + 6;
     return {
       id: `science-f2-c${n}-dlp`,
       subjectId: "science",
