@@ -159,6 +159,90 @@ import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes
 import { scienceF2C1FlashcardsBM } from "@/content/form2/science/chapter-1/flashcards-bm";
 import { scienceF2C1FlashcardsDLP } from "@/content/form2/science/chapter-1/flashcards-dlp";
 
+// Sains F2 Bab 2 (Ekosistem / Ecosystem)
+import { scienceF2C2NotesBM } from "@/content/form2/science/chapter-2/notes-bm";
+import { scienceF2C2NotesDLP } from "@/content/form2/science/chapter-2/notes-dlp";
+import { scienceF2C2MindMapBM } from "@/content/form2/science/chapter-2/mindmap-bm";
+import { scienceF2C2MindMapDLP } from "@/content/form2/science/chapter-2/mindmap-dlp";
+import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
+import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
+import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
+import { scienceF2C2FlashcardsDLP } from "@/content/form2/science/chapter-2/flashcards-dlp";
+
+// Sains F2 Bab 3 (Nutrisi / Nutrition)
+import { scienceF2C3NotesBM } from "@/content/form2/science/chapter-3/notes-bm";
+import { scienceF2C3NotesDLP } from "@/content/form2/science/chapter-3/notes-dlp";
+import { scienceF2C3MindMapBM } from "@/content/form2/science/chapter-3/mindmap-bm";
+import { scienceF2C3MindMapDLP } from "@/content/form2/science/chapter-3/mindmap-dlp";
+import { scienceF2C3QuizzesBM } from "@/content/form2/science/chapter-3/quizzes-bm";
+import { scienceF2C3QuizzesDLP } from "@/content/form2/science/chapter-3/quizzes-dlp";
+import { scienceF2C3FlashcardsBM } from "@/content/form2/science/chapter-3/flashcards-bm";
+import { scienceF2C3FlashcardsDLP } from "@/content/form2/science/chapter-3/flashcards-dlp";
+import { scienceF2C4NotesBM } from "@/content/form2/science/chapter-4/notes-bm";
+import { scienceF2C4NotesDLP } from "@/content/form2/science/chapter-4/notes-dlp";
+import { scienceF2C4MindMapBM } from "@/content/form2/science/chapter-4/mindmap-bm";
+import { scienceF2C4MindMapDLP } from "@/content/form2/science/chapter-4/mindmap-dlp";
+import { scienceF2C4QuizzesBM } from "@/content/form2/science/chapter-4/quizzes-bm";
+import { scienceF2C4QuizzesDLP } from "@/content/form2/science/chapter-4/quizzes-dlp";
+import { scienceF2C4FlashcardsBM } from "@/content/form2/science/chapter-4/flashcards-bm";
+import { scienceF2C4FlashcardsDLP } from "@/content/form2/science/chapter-4/flashcards-dlp";
+import { scienceF2C5NotesBM } from "@/content/form2/science/chapter-5/notes-bm";
+import { scienceF2C5NotesDLP } from "@/content/form2/science/chapter-5/notes-dlp";
+import { scienceF2C5MindMapBM } from "@/content/form2/science/chapter-5/mindmap-bm";
+import { scienceF2C5MindMapDLP } from "@/content/form2/science/chapter-5/mindmap-dlp";
+import { scienceF2C5QuizzesBM } from "@/content/form2/science/chapter-5/quizzes-bm";
+import { scienceF2C5QuizzesDLP } from "@/content/form2/science/chapter-5/quizzes-dlp";
+import { scienceF2C5FlashcardsBM } from "@/content/form2/science/chapter-5/flashcards-bm";
+import { scienceF2C5FlashcardsDLP } from "@/content/form2/science/chapter-5/flashcards-dlp";
+import { scienceF2C6NotesBM } from "@/content/form2/science/chapter-6/notes-bm";
+import { scienceF2C6NotesDLP } from "@/content/form2/science/chapter-6/notes-dlp";
+import { scienceF2C6QuizzesBM } from "@/content/form2/science/chapter-6/quizzes-bm";
+import { scienceF2C6QuizzesDLP } from "@/content/form2/science/chapter-6/quizzes-dlp";
+import { scienceF2C6FlashcardsBM } from "@/content/form2/science/chapter-6/flashcards-bm";
+import { scienceF2C6FlashcardsDLP } from "@/content/form2/science/chapter-6/flashcards-dlp";
+import { scienceF2C7NotesBM } from "@/content/form2/science/chapter-7/notes-bm";
+import { scienceF2C7NotesDLP } from "@/content/form2/science/chapter-7/notes-dlp";
+import { scienceF2C7QuizzesBM } from "@/content/form2/science/chapter-7/quizzes-bm";
+import { scienceF2C7QuizzesDLP } from "@/content/form2/science/chapter-7/quizzes-dlp";
+import { scienceF2C7FlashcardsBM } from "@/content/form2/science/chapter-7/flashcards-bm";
+import { scienceF2C7FlashcardsDLP } from "@/content/form2/science/chapter-7/flashcards-dlp";
+import { scienceF2C8NotesBM } from "@/content/form2/science/chapter-8/notes-bm";
+import { scienceF2C8NotesDLP } from "@/content/form2/science/chapter-8/notes-dlp";
+import { scienceF2C8QuizzesBM } from "@/content/form2/science/chapter-8/quizzes-bm";
+import { scienceF2C8QuizzesDLP } from "@/content/form2/science/chapter-8/quizzes-dlp";
+import { scienceF2C8FlashcardsBM } from "@/content/form2/science/chapter-8/flashcards-bm";
+import { scienceF2C8FlashcardsDLP } from "@/content/form2/science/chapter-8/flashcards-dlp";
+import { scienceF2C9NotesBM } from "@/content/form2/science/chapter-9/notes-bm";
+import { scienceF2C9NotesDLP } from "@/content/form2/science/chapter-9/notes-dlp";
+import { scienceF2C9QuizzesBM } from "@/content/form2/science/chapter-9/quizzes-bm";
+import { scienceF2C9QuizzesDLP } from "@/content/form2/science/chapter-9/quizzes-dlp";
+import { scienceF2C9FlashcardsBM } from "@/content/form2/science/chapter-9/flashcards-bm";
+import { scienceF2C9FlashcardsDLP } from "@/content/form2/science/chapter-9/flashcards-dlp";
+import { scienceF2C10NotesBM } from "@/content/form2/science/chapter-10/notes-bm";
+import { scienceF2C10NotesDLP } from "@/content/form2/science/chapter-10/notes-dlp";
+import { scienceF2C10QuizzesBM } from "@/content/form2/science/chapter-10/quizzes-bm";
+import { scienceF2C10QuizzesDLP } from "@/content/form2/science/chapter-10/quizzes-dlp";
+import { scienceF2C10FlashcardsBM } from "@/content/form2/science/chapter-10/flashcards-bm";
+import { scienceF2C10FlashcardsDLP } from "@/content/form2/science/chapter-10/flashcards-dlp";
+import { scienceF2C11NotesBM } from "@/content/form2/science/chapter-11/notes-bm";
+import { scienceF2C11NotesDLP } from "@/content/form2/science/chapter-11/notes-dlp";
+import { scienceF2C11QuizzesBM } from "@/content/form2/science/chapter-11/quizzes-bm";
+import { scienceF2C11QuizzesDLP } from "@/content/form2/science/chapter-11/quizzes-dlp";
+import { scienceF2C11FlashcardsBM } from "@/content/form2/science/chapter-11/flashcards-bm";
+import { scienceF2C11FlashcardsDLP } from "@/content/form2/science/chapter-11/flashcards-dlp";
+import { scienceF2C12NotesBM } from "@/content/form2/science/chapter-12/notes-bm";
+import { scienceF2C12NotesDLP } from "@/content/form2/science/chapter-12/notes-dlp";
+import { scienceF2C12QuizzesBM } from "@/content/form2/science/chapter-12/quizzes-bm";
+import { scienceF2C12QuizzesDLP } from "@/content/form2/science/chapter-12/quizzes-dlp";
+import { scienceF2C12FlashcardsBM } from "@/content/form2/science/chapter-12/flashcards-bm";
+import { scienceF2C12FlashcardsDLP } from "@/content/form2/science/chapter-12/flashcards-dlp";
+import { scienceF2C13NotesBM } from "@/content/form2/science/chapter-13/notes-bm";
+import { scienceF2C13NotesDLP } from "@/content/form2/science/chapter-13/notes-dlp";
+import { scienceF2C13QuizzesBM } from "@/content/form2/science/chapter-13/quizzes-bm";
+import { scienceF2C13QuizzesDLP } from "@/content/form2/science/chapter-13/quizzes-dlp";
+import { scienceF2C13FlashcardsBM } from "@/content/form2/science/chapter-13/flashcards-bm";
+import { scienceF2C13FlashcardsDLP } from "@/content/form2/science/chapter-13/flashcards-dlp";
+
 // Mathematics F1 mind maps (DLP)
 import { mathF1C1MindMapDLP } from "@/content/form1/math/chapter-1/mindmap-dlp";
 import { mathF1C2MindMapDLP } from "@/content/form1/math/chapter-2/mindmap-dlp";
@@ -1110,29 +1194,301 @@ export const chapters: ChapterContent[] = [
     quiz: scienceF2C1QuizzesDLP,
   },
 
-  // Science Form 2 (bilingual) — empty containers, structure-only (Chapters 2-13)
-  ...Array.from({ length: 12 }, (_, i): ChapterContent => {
-    const n = i + 2;
-    return {
-      id: `science-f2-c${n}-bm`,
-      subjectId: "science",
-      form: "Form 2",
-      chapterKey: `Chapter ${n}`,
-      title: `Bab ${n}`,
-      lang: "bm",
-    };
-  }),
-  ...Array.from({ length: 12 }, (_, i): ChapterContent => {
-    const n = i + 2;
-    return {
-      id: `science-f2-c${n}-dlp`,
-      subjectId: "science",
-      form: "Form 2",
-      chapterKey: `Chapter ${n}`,
-      title: `Chapter ${n}`,
-      lang: "dlp",
-    };
-  }),
+  // Science Form 2 — Chapter 2 (Ekosistem / Ecosystem), fully populated
+  {
+    id: "science-f2-c2-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Bab 2: Ekosistem",
+    lang: "bm",
+    mindMap: { data: scienceF2C2MindMapBM, title: "Ekosistem" },
+    notes: scienceF2C2NotesBM,
+    flashcards: scienceF2C2FlashcardsBM,
+    quiz: scienceF2C2QuizzesBM,
+  },
+  {
+    id: "science-f2-c2-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Chapter 2: Ecosystem",
+    lang: "dlp",
+    mindMap: { data: scienceF2C2MindMapDLP, title: "Ecosystem" },
+    notes: scienceF2C2NotesDLP,
+    flashcards: scienceF2C2FlashcardsDLP,
+    quiz: scienceF2C2QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 3 (Nutrisi / Nutrition), fully populated
+  {
+    id: "science-f2-c3-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Bab 3: Nutrisi",
+    lang: "bm",
+    mindMap: { data: scienceF2C3MindMapBM, title: "Nutrisi" },
+    notes: scienceF2C3NotesBM,
+    flashcards: scienceF2C3FlashcardsBM,
+    quiz: scienceF2C3QuizzesBM,
+  },
+  {
+    id: "science-f2-c3-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Chapter 3: Nutrition",
+    lang: "dlp",
+    mindMap: { data: scienceF2C3MindMapDLP, title: "Nutrition" },
+    notes: scienceF2C3NotesDLP,
+    flashcards: scienceF2C3FlashcardsDLP,
+    quiz: scienceF2C3QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 4 (Kesihatan Manusia / Human Health), fully populated
+  {
+    id: "science-f2-c4-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Bab 4: Kesihatan Manusia",
+    lang: "bm",
+    mindMap: { data: scienceF2C4MindMapBM, title: "Kesihatan Manusia" },
+    notes: scienceF2C4NotesBM,
+    flashcards: scienceF2C4FlashcardsBM,
+    quiz: scienceF2C4QuizzesBM,
+  },
+  {
+    id: "science-f2-c4-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Chapter 4: Human Health",
+    lang: "dlp",
+    mindMap: { data: scienceF2C4MindMapDLP, title: "Human Health" },
+    notes: scienceF2C4NotesDLP,
+    flashcards: scienceF2C4FlashcardsDLP,
+    quiz: scienceF2C4QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 5 (Air dan Larutan / Water and Solution), fully populated
+  {
+    id: "science-f2-c5-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Bab 5: Air dan Larutan",
+    lang: "bm",
+    mindMap: { data: scienceF2C5MindMapBM, title: "Air dan Larutan" },
+    notes: scienceF2C5NotesBM,
+    flashcards: scienceF2C5FlashcardsBM,
+    quiz: scienceF2C5QuizzesBM,
+  },
+  {
+    id: "science-f2-c5-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Chapter 5: Water and Solution",
+    lang: "dlp",
+    mindMap: { data: scienceF2C5MindMapDLP, title: "Water and Solution" },
+    notes: scienceF2C5NotesDLP,
+    flashcards: scienceF2C5FlashcardsDLP,
+    quiz: scienceF2C5QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 6 (Asid dan Alkali / Acid and Alkali), FULLY POPULATED
+  {
+    id: "science-f2-c6-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Bab 6: Asid dan Alkali",
+    lang: "bm",
+    notes: scienceF2C6NotesBM,
+    flashcards: scienceF2C6FlashcardsBM,
+    quiz: scienceF2C6QuizzesBM,
+  },
+  {
+    id: "science-f2-c6-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Chapter 6: Acid and Alkali",
+    lang: "dlp",
+    notes: scienceF2C6NotesDLP,
+    flashcards: scienceF2C6FlashcardsDLP,
+    quiz: scienceF2C6QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 7 (Elektrik dan Kemagnetan / Electricity and Magnetism), FULLY POPULATED
+  {
+    id: "science-f2-c7-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Bab 7: Elektrik dan Kemagnetan",
+    lang: "bm",
+    notes: scienceF2C7NotesBM,
+    flashcards: scienceF2C7FlashcardsBM,
+    quiz: scienceF2C7QuizzesBM,
+  },
+  {
+    id: "science-f2-c7-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Chapter 7: Electricity and Magnetism",
+    lang: "dlp",
+    notes: scienceF2C7NotesDLP,
+    flashcards: scienceF2C7FlashcardsDLP,
+    quiz: scienceF2C7QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 8 (Daya dan Gerakan / Force and Motion), FULLY POPULATED
+  {
+    id: "science-f2-c8-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Bab 8: Daya dan Gerakan",
+    lang: "bm",
+    notes: scienceF2C8NotesBM,
+    flashcards: scienceF2C8FlashcardsBM,
+    quiz: scienceF2C8QuizzesBM,
+  },
+  {
+    id: "science-f2-c8-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Chapter 8: Force and Motion",
+    lang: "dlp",
+    notes: scienceF2C8NotesDLP,
+    flashcards: scienceF2C8FlashcardsDLP,
+    quiz: scienceF2C8QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 9 (Haba / Heat), FULLY POPULATED
+  {
+    id: "science-f2-c9-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Bab 9: Haba",
+    lang: "bm",
+    notes: scienceF2C9NotesBM,
+    flashcards: scienceF2C9FlashcardsBM,
+    quiz: scienceF2C9QuizzesBM,
+  },
+  {
+    id: "science-f2-c9-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Chapter 9: Heat",
+    lang: "dlp",
+    notes: scienceF2C9NotesDLP,
+    flashcards: scienceF2C9FlashcardsDLP,
+    quiz: scienceF2C9QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 10 (Gelombang Bunyi / Sound Waves), FULLY POPULATED
+  {
+    id: "science-f2-c10-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Bab 10: Gelombang Bunyi",
+    lang: "bm",
+    notes: scienceF2C10NotesBM,
+    flashcards: scienceF2C10FlashcardsBM,
+    quiz: scienceF2C10QuizzesBM,
+  },
+  {
+    id: "science-f2-c10-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Chapter 10: Sound Waves",
+    lang: "dlp",
+    notes: scienceF2C10NotesDLP,
+    flashcards: scienceF2C10FlashcardsDLP,
+    quiz: scienceF2C10QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 11 (Bintang dan Galaksi dalam Alam Semesta / Stars and Galaxies in the Universe), FULLY POPULATED
+  {
+    id: "science-f2-c11-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 11",
+    title: "Bab 11: Bintang dan Galaksi dalam Alam Semesta",
+    lang: "bm",
+    notes: scienceF2C11NotesBM,
+    flashcards: scienceF2C11FlashcardsBM,
+    quiz: scienceF2C11QuizzesBM,
+  },
+  {
+    id: "science-f2-c11-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 11",
+    title: "Chapter 11: Stars and Galaxies in the Universe",
+    lang: "dlp",
+    notes: scienceF2C11NotesDLP,
+    flashcards: scienceF2C11FlashcardsDLP,
+    quiz: scienceF2C11QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 12 (Sistem Suria / Solar System), FULLY POPULATED
+  {
+    id: "science-f2-c12-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 12",
+    title: "Bab 12: Sistem Suria",
+    lang: "bm",
+    notes: scienceF2C12NotesBM,
+    flashcards: scienceF2C12FlashcardsBM,
+    quiz: scienceF2C12QuizzesBM,
+  },
+  {
+    id: "science-f2-c12-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 12",
+    title: "Chapter 12: Solar System",
+    lang: "dlp",
+    notes: scienceF2C12NotesDLP,
+    flashcards: scienceF2C12FlashcardsDLP,
+    quiz: scienceF2C12QuizzesDLP,
+  },
+
+  // Science Form 2 — Chapter 13 (Meteoroid, Asteroid, Komet / Meteoroid, Asteroid, Comet), FULLY POPULATED
+  {
+    id: "science-f2-c13-bm",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 13",
+    title: "Bab 13: Meteoroid, Asteroid, Komet",
+    lang: "bm",
+    notes: scienceF2C13NotesBM,
+    flashcards: scienceF2C13FlashcardsBM,
+    quiz: scienceF2C13QuizzesBM,
+  },
+  {
+    id: "science-f2-c13-dlp",
+    subjectId: "science",
+    form: "Form 2",
+    chapterKey: "Chapter 13",
+    title: "Chapter 13: Meteoroid, Asteroid, Comet",
+    lang: "dlp",
+    notes: scienceF2C13NotesDLP,
+    flashcards: scienceF2C13FlashcardsDLP,
+    quiz: scienceF2C13QuizzesDLP,
+  },
 ];
 
 export function getChapter(
