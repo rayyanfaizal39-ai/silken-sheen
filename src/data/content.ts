@@ -18,6 +18,38 @@ import { scienceF2C5QuizzesBM } from "@/content/form2/science/chapter-5/quizzes-
 import { scienceF2C5QuizzesDLP } from "@/content/form2/science/chapter-5/quizzes-dlp";
 import { scienceF2C5FlashcardsBM } from "@/content/form2/science/chapter-5/flashcards-bm";
 import { scienceF2C5FlashcardsDLP } from "@/content/form2/science/chapter-5/flashcards-dlp";
+import { scienceF2C6QuizzesBM } from "@/content/form2/science/chapter-6/quizzes-bm";
+import { scienceF2C6QuizzesDLP } from "@/content/form2/science/chapter-6/quizzes-dlp";
+import { scienceF2C6FlashcardsBM } from "@/content/form2/science/chapter-6/flashcards-bm";
+import { scienceF2C6FlashcardsDLP } from "@/content/form2/science/chapter-6/flashcards-dlp";
+import { scienceF2C7QuizzesBM } from "@/content/form2/science/chapter-7/quizzes-bm";
+import { scienceF2C7QuizzesDLP } from "@/content/form2/science/chapter-7/quizzes-dlp";
+import { scienceF2C7FlashcardsBM } from "@/content/form2/science/chapter-7/flashcards-bm";
+import { scienceF2C7FlashcardsDLP } from "@/content/form2/science/chapter-7/flashcards-dlp";
+import { scienceF2C8QuizzesBM } from "@/content/form2/science/chapter-8/quizzes-bm";
+import { scienceF2C8QuizzesDLP } from "@/content/form2/science/chapter-8/quizzes-dlp";
+import { scienceF2C8FlashcardsBM } from "@/content/form2/science/chapter-8/flashcards-bm";
+import { scienceF2C8FlashcardsDLP } from "@/content/form2/science/chapter-8/flashcards-dlp";
+import { scienceF2C9QuizzesBM } from "@/content/form2/science/chapter-9/quizzes-bm";
+import { scienceF2C9QuizzesDLP } from "@/content/form2/science/chapter-9/quizzes-dlp";
+import { scienceF2C9FlashcardsBM } from "@/content/form2/science/chapter-9/flashcards-bm";
+import { scienceF2C9FlashcardsDLP } from "@/content/form2/science/chapter-9/flashcards-dlp";
+import { scienceF2C10QuizzesBM } from "@/content/form2/science/chapter-10/quizzes-bm";
+import { scienceF2C10QuizzesDLP } from "@/content/form2/science/chapter-10/quizzes-dlp";
+import { scienceF2C10FlashcardsBM } from "@/content/form2/science/chapter-10/flashcards-bm";
+import { scienceF2C10FlashcardsDLP } from "@/content/form2/science/chapter-10/flashcards-dlp";
+import { scienceF2C11QuizzesBM } from "@/content/form2/science/chapter-11/quizzes-bm";
+import { scienceF2C11QuizzesDLP } from "@/content/form2/science/chapter-11/quizzes-dlp";
+import { scienceF2C11FlashcardsBM } from "@/content/form2/science/chapter-11/flashcards-bm";
+import { scienceF2C11FlashcardsDLP } from "@/content/form2/science/chapter-11/flashcards-dlp";
+import { scienceF2C12QuizzesBM } from "@/content/form2/science/chapter-12/quizzes-bm";
+import { scienceF2C12QuizzesDLP } from "@/content/form2/science/chapter-12/quizzes-dlp";
+import { scienceF2C12FlashcardsBM } from "@/content/form2/science/chapter-12/flashcards-bm";
+import { scienceF2C12FlashcardsDLP } from "@/content/form2/science/chapter-12/flashcards-dlp";
+import { scienceF2C13QuizzesBM } from "@/content/form2/science/chapter-13/quizzes-bm";
+import { scienceF2C13QuizzesDLP } from "@/content/form2/science/chapter-13/quizzes-dlp";
+import { scienceF2C13FlashcardsBM } from "@/content/form2/science/chapter-13/flashcards-bm";
+import { scienceF2C13FlashcardsDLP } from "@/content/form2/science/chapter-13/flashcards-dlp";
 import { scienceF1C3QuizzesBM as scienceF1C3HomeostasisQuizzesBM } from "./science-f1-c3-quizzes-bm";
 import { scienceF1C3QuizzesDLP as scienceF1C3HomeostasisQuizzesDLP } from "./science-f1-c3-quizzes-dlp";
 import { scienceF1C4QuizzesDLP } from "./science-f1-c4-quizzes-dlp";
@@ -14215,6 +14247,22 @@ export const quizzes: QuizQuestion[] = [
   ...scienceF2C4QuizzesDLP,
   ...scienceF2C5QuizzesBM,
   ...scienceF2C5QuizzesDLP,
+  ...scienceF2C6QuizzesBM,
+  ...scienceF2C6QuizzesDLP,
+  ...scienceF2C7QuizzesBM,
+  ...scienceF2C7QuizzesDLP,
+  ...scienceF2C8QuizzesBM,
+  ...scienceF2C8QuizzesDLP,
+  ...scienceF2C9QuizzesBM,
+  ...scienceF2C9QuizzesDLP,
+  ...scienceF2C10QuizzesBM,
+  ...scienceF2C10QuizzesDLP,
+  ...scienceF2C11QuizzesBM,
+  ...scienceF2C11QuizzesDLP,
+  ...scienceF2C12QuizzesBM,
+  ...scienceF2C12QuizzesDLP,
+  ...scienceF2C13QuizzesBM,
+  ...scienceF2C13QuizzesDLP,
   ...scienceF1C3HomeostasisQuizzesBM,
   ...scienceF1C3HomeostasisQuizzesDLP,
   ...scienceF1C4QuizzesDLP,
@@ -30403,6 +30451,22 @@ export const flashcards: Flashcard[] = [
   ...scienceF2C4FlashcardsDLP,
   ...scienceF2C5FlashcardsBM,
   ...scienceF2C5FlashcardsDLP,
+  ...scienceF2C6FlashcardsBM,
+  ...scienceF2C6FlashcardsDLP,
+  ...scienceF2C7FlashcardsBM,
+  ...scienceF2C7FlashcardsDLP,
+  ...scienceF2C8FlashcardsBM,
+  ...scienceF2C8FlashcardsDLP,
+  ...scienceF2C9FlashcardsBM,
+  ...scienceF2C9FlashcardsDLP,
+  ...scienceF2C10FlashcardsBM,
+  ...scienceF2C10FlashcardsDLP,
+  ...scienceF2C11FlashcardsBM,
+  ...scienceF2C11FlashcardsDLP,
+  ...scienceF2C12FlashcardsBM,
+  ...scienceF2C12FlashcardsDLP,
+  ...scienceF2C13FlashcardsBM,
+  ...scienceF2C13FlashcardsDLP,
   ...scienceF1C3FlashcardsBM,
   ...scienceF1C3FlashcardsDLP,
   ...scienceF1C4FlashcardsBM,
