@@ -196,48 +196,64 @@ import { scienceF2C5FlashcardsBM } from "@/content/form2/science/chapter-5/flash
 import { scienceF2C5FlashcardsDLP } from "@/content/form2/science/chapter-5/flashcards-dlp";
 import { scienceF2C6NotesBM } from "@/content/form2/science/chapter-6/notes-bm";
 import { scienceF2C6NotesDLP } from "@/content/form2/science/chapter-6/notes-dlp";
+import { scienceF2C6MindMapBM } from "@/content/form2/science/chapter-6/mindmap-bm";
+import { scienceF2C6MindMapDLP } from "@/content/form2/science/chapter-6/mindmap-dlp";
 import { scienceF2C6QuizzesBM } from "@/content/form2/science/chapter-6/quizzes-bm";
 import { scienceF2C6QuizzesDLP } from "@/content/form2/science/chapter-6/quizzes-dlp";
 import { scienceF2C6FlashcardsBM } from "@/content/form2/science/chapter-6/flashcards-bm";
 import { scienceF2C6FlashcardsDLP } from "@/content/form2/science/chapter-6/flashcards-dlp";
 import { scienceF2C7NotesBM } from "@/content/form2/science/chapter-7/notes-bm";
 import { scienceF2C7NotesDLP } from "@/content/form2/science/chapter-7/notes-dlp";
+import { scienceF2C7MindMapBM } from "@/content/form2/science/chapter-7/mindmap-bm";
+import { scienceF2C7MindMapDLP } from "@/content/form2/science/chapter-7/mindmap-dlp";
 import { scienceF2C7QuizzesBM } from "@/content/form2/science/chapter-7/quizzes-bm";
 import { scienceF2C7QuizzesDLP } from "@/content/form2/science/chapter-7/quizzes-dlp";
 import { scienceF2C7FlashcardsBM } from "@/content/form2/science/chapter-7/flashcards-bm";
 import { scienceF2C7FlashcardsDLP } from "@/content/form2/science/chapter-7/flashcards-dlp";
 import { scienceF2C8NotesBM } from "@/content/form2/science/chapter-8/notes-bm";
 import { scienceF2C8NotesDLP } from "@/content/form2/science/chapter-8/notes-dlp";
+import { scienceF2C8MindMapBM } from "@/content/form2/science/chapter-8/mindmap-bm";
+import { scienceF2C8MindMapDLP } from "@/content/form2/science/chapter-8/mindmap-dlp";
 import { scienceF2C8QuizzesBM } from "@/content/form2/science/chapter-8/quizzes-bm";
 import { scienceF2C8QuizzesDLP } from "@/content/form2/science/chapter-8/quizzes-dlp";
 import { scienceF2C8FlashcardsBM } from "@/content/form2/science/chapter-8/flashcards-bm";
 import { scienceF2C8FlashcardsDLP } from "@/content/form2/science/chapter-8/flashcards-dlp";
 import { scienceF2C9NotesBM } from "@/content/form2/science/chapter-9/notes-bm";
 import { scienceF2C9NotesDLP } from "@/content/form2/science/chapter-9/notes-dlp";
+import { scienceF2C9MindMapBM } from "@/content/form2/science/chapter-9/mindmap-bm";
+import { scienceF2C9MindMapDLP } from "@/content/form2/science/chapter-9/mindmap-dlp";
 import { scienceF2C9QuizzesBM } from "@/content/form2/science/chapter-9/quizzes-bm";
 import { scienceF2C9QuizzesDLP } from "@/content/form2/science/chapter-9/quizzes-dlp";
 import { scienceF2C9FlashcardsBM } from "@/content/form2/science/chapter-9/flashcards-bm";
 import { scienceF2C9FlashcardsDLP } from "@/content/form2/science/chapter-9/flashcards-dlp";
 import { scienceF2C10NotesBM } from "@/content/form2/science/chapter-10/notes-bm";
 import { scienceF2C10NotesDLP } from "@/content/form2/science/chapter-10/notes-dlp";
+import { scienceF2C10MindMapBM } from "@/content/form2/science/chapter-10/mindmap-bm";
+import { scienceF2C10MindMapDLP } from "@/content/form2/science/chapter-10/mindmap-dlp";
 import { scienceF2C10QuizzesBM } from "@/content/form2/science/chapter-10/quizzes-bm";
 import { scienceF2C10QuizzesDLP } from "@/content/form2/science/chapter-10/quizzes-dlp";
 import { scienceF2C10FlashcardsBM } from "@/content/form2/science/chapter-10/flashcards-bm";
 import { scienceF2C10FlashcardsDLP } from "@/content/form2/science/chapter-10/flashcards-dlp";
 import { scienceF2C11NotesBM } from "@/content/form2/science/chapter-11/notes-bm";
 import { scienceF2C11NotesDLP } from "@/content/form2/science/chapter-11/notes-dlp";
+import { scienceF2C11MindMapBM } from "@/content/form2/science/chapter-11/mindmap-bm";
+import { scienceF2C11MindMapDLP } from "@/content/form2/science/chapter-11/mindmap-dlp";
 import { scienceF2C11QuizzesBM } from "@/content/form2/science/chapter-11/quizzes-bm";
 import { scienceF2C11QuizzesDLP } from "@/content/form2/science/chapter-11/quizzes-dlp";
 import { scienceF2C11FlashcardsBM } from "@/content/form2/science/chapter-11/flashcards-bm";
 import { scienceF2C11FlashcardsDLP } from "@/content/form2/science/chapter-11/flashcards-dlp";
 import { scienceF2C12NotesBM } from "@/content/form2/science/chapter-12/notes-bm";
 import { scienceF2C12NotesDLP } from "@/content/form2/science/chapter-12/notes-dlp";
+import { scienceF2C12MindMapBM } from "@/content/form2/science/chapter-12/mindmap-bm";
+import { scienceF2C12MindMapDLP } from "@/content/form2/science/chapter-12/mindmap-dlp";
 import { scienceF2C12QuizzesBM } from "@/content/form2/science/chapter-12/quizzes-bm";
 import { scienceF2C12QuizzesDLP } from "@/content/form2/science/chapter-12/quizzes-dlp";
 import { scienceF2C12FlashcardsBM } from "@/content/form2/science/chapter-12/flashcards-bm";
 import { scienceF2C12FlashcardsDLP } from "@/content/form2/science/chapter-12/flashcards-dlp";
 import { scienceF2C13NotesBM } from "@/content/form2/science/chapter-13/notes-bm";
 import { scienceF2C13NotesDLP } from "@/content/form2/science/chapter-13/notes-dlp";
+import { scienceF2C13MindMapBM } from "@/content/form2/science/chapter-13/mindmap-bm";
+import { scienceF2C13MindMapDLP } from "@/content/form2/science/chapter-13/mindmap-dlp";
 import { scienceF2C13QuizzesBM } from "@/content/form2/science/chapter-13/quizzes-bm";
 import { scienceF2C13QuizzesDLP } from "@/content/form2/science/chapter-13/quizzes-dlp";
 import { scienceF2C13FlashcardsBM } from "@/content/form2/science/chapter-13/flashcards-bm";
@@ -1306,6 +1322,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Bab 6: Asid dan Alkali",
     lang: "bm",
+    mindMap: { data: scienceF2C6MindMapBM, title: "Asid dan Alkali" },
     notes: scienceF2C6NotesBM,
     flashcards: scienceF2C6FlashcardsBM,
     quiz: scienceF2C6QuizzesBM,
@@ -1317,6 +1334,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Chapter 6: Acid and Alkali",
     lang: "dlp",
+    mindMap: { data: scienceF2C6MindMapDLP, title: "Acid and Alkali" },
     notes: scienceF2C6NotesDLP,
     flashcards: scienceF2C6FlashcardsDLP,
     quiz: scienceF2C6QuizzesDLP,
@@ -1330,6 +1348,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Bab 7: Elektrik dan Kemagnetan",
     lang: "bm",
+    mindMap: { data: scienceF2C7MindMapBM, title: "Elektrik dan Kemagnetan" },
     notes: scienceF2C7NotesBM,
     flashcards: scienceF2C7FlashcardsBM,
     quiz: scienceF2C7QuizzesBM,
@@ -1341,6 +1360,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Chapter 7: Electricity and Magnetism",
     lang: "dlp",
+    mindMap: { data: scienceF2C7MindMapDLP, title: "Electricity and Magnetism" },
     notes: scienceF2C7NotesDLP,
     flashcards: scienceF2C7FlashcardsDLP,
     quiz: scienceF2C7QuizzesDLP,
@@ -1354,6 +1374,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Bab 8: Daya dan Gerakan",
     lang: "bm",
+    mindMap: { data: scienceF2C8MindMapBM, title: "Daya dan Gerakan" },
     notes: scienceF2C8NotesBM,
     flashcards: scienceF2C8FlashcardsBM,
     quiz: scienceF2C8QuizzesBM,
@@ -1365,6 +1386,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Chapter 8: Force and Motion",
     lang: "dlp",
+    mindMap: { data: scienceF2C8MindMapDLP, title: "Force and Motion" },
     notes: scienceF2C8NotesDLP,
     flashcards: scienceF2C8FlashcardsDLP,
     quiz: scienceF2C8QuizzesDLP,
@@ -1378,6 +1400,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Bab 9: Haba",
     lang: "bm",
+    mindMap: { data: scienceF2C9MindMapBM, title: "Haba" },
     notes: scienceF2C9NotesBM,
     flashcards: scienceF2C9FlashcardsBM,
     quiz: scienceF2C9QuizzesBM,
@@ -1389,6 +1412,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Chapter 9: Heat",
     lang: "dlp",
+    mindMap: { data: scienceF2C9MindMapDLP, title: "Heat" },
     notes: scienceF2C9NotesDLP,
     flashcards: scienceF2C9FlashcardsDLP,
     quiz: scienceF2C9QuizzesDLP,
@@ -1402,6 +1426,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Bab 10: Gelombang Bunyi",
     lang: "bm",
+    mindMap: { data: scienceF2C10MindMapBM, title: "Gelombang Bunyi" },
     notes: scienceF2C10NotesBM,
     flashcards: scienceF2C10FlashcardsBM,
     quiz: scienceF2C10QuizzesBM,
@@ -1413,6 +1438,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Chapter 10: Sound Waves",
     lang: "dlp",
+    mindMap: { data: scienceF2C10MindMapDLP, title: "Sound Waves" },
     notes: scienceF2C10NotesDLP,
     flashcards: scienceF2C10FlashcardsDLP,
     quiz: scienceF2C10QuizzesDLP,
@@ -1426,6 +1452,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Bab 11: Bintang dan Galaksi dalam Alam Semesta",
     lang: "bm",
+    mindMap: { data: scienceF2C11MindMapBM, title: "Bintang dan Galaksi dalam Alam Semesta" },
     notes: scienceF2C11NotesBM,
     flashcards: scienceF2C11FlashcardsBM,
     quiz: scienceF2C11QuizzesBM,
@@ -1437,6 +1464,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Chapter 11: Stars and Galaxies in the Universe",
     lang: "dlp",
+    mindMap: { data: scienceF2C11MindMapDLP, title: "Stars and Galaxies in the Universe" },
     notes: scienceF2C11NotesDLP,
     flashcards: scienceF2C11FlashcardsDLP,
     quiz: scienceF2C11QuizzesDLP,
@@ -1450,6 +1478,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Bab 12: Sistem Suria",
     lang: "bm",
+    mindMap: { data: scienceF2C12MindMapBM, title: "Sistem Suria" },
     notes: scienceF2C12NotesBM,
     flashcards: scienceF2C12FlashcardsBM,
     quiz: scienceF2C12QuizzesBM,
@@ -1461,6 +1490,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Chapter 12: Solar System",
     lang: "dlp",
+    mindMap: { data: scienceF2C12MindMapDLP, title: "Solar System" },
     notes: scienceF2C12NotesDLP,
     flashcards: scienceF2C12FlashcardsDLP,
     quiz: scienceF2C12QuizzesDLP,
@@ -1474,6 +1504,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 13",
     title: "Bab 13: Meteoroid, Asteroid, Komet",
     lang: "bm",
+    mindMap: { data: scienceF2C13MindMapBM, title: "Meteoroid, Asteroid, Komet" },
     notes: scienceF2C13NotesBM,
     flashcards: scienceF2C13FlashcardsBM,
     quiz: scienceF2C13QuizzesBM,
@@ -1485,6 +1516,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 13",
     title: "Chapter 13: Meteoroid, Asteroid, Comet",
     lang: "dlp",
+    mindMap: { data: scienceF2C13MindMapDLP, title: "Meteoroid, Asteroid, Comet" },
     notes: scienceF2C13NotesDLP,
     flashcards: scienceF2C13FlashcardsDLP,
     quiz: scienceF2C13QuizzesDLP,
