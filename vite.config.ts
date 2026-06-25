@@ -7,12 +7,41 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-// @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
+// Used by both the Vercel SSR deploy path (dist/server/server.js) and the
+// Cloudflare Worker deploy path (dist/server/index.mjs) below.
 export default defineConfig({
+  // Cloudflare deploy target: a single Worker serves dist/client as static
+  // assets and dist/server/index.mjs as the User Worker (admin/auth server
+  // functions, e.g. -admin.server.ts). The wrapper's `cloudflare` option type
+  // only allows nodeCompat/deployConfig (no `wrangler` passthrough), so the
+  // extra `assets.not_found_handling`/`run_worker_first` fields needed for
+  // SPA-fallback + server-fn routing are patched onto the generated
+  // dist/server/wrangler.json by scripts/patch-wrangler-assets.js instead —
+  // see that script for why. Deploy with `wrangler deploy` from dist/server
+  // (NOT the Cloudflare Pages dashboard — see commit history for why Pages'
+  // _routes.json model doesn't fit this dist/client-as-root setup).
+  nitro: {
+    preset: "cloudflare-module",
+    output: { dir: "dist", serverDir: "dist/server", publicDir: "dist/client" },
+    cloudflare: { nodeCompat: true, deployConfig: true },
+  },
   tanstackStart: {
     server: { entry: "server" },
+    // Override the default client entry (which calls hydrateRoot and expects an
+    // SSR payload) with our SPA mount in src/client.tsx. not_found_handling:
+    // "single-page-application" (see patch-wrangler-assets.js) serves the static
+    // index.html for most navigation with no SSR HTML to hydrate — so we
+    // createRoot + render <RouterProvider /> directly instead.
+    client: { entry: "client" },
   },
   vite: {
+    // Emit dist/client/.vite/manifest.json so scripts/generate-static-shell.js can
+    // reliably find the true client entry chunk (there are multiple "index-*.js"
+    // chunks in the assets dir — only the manifest disambiguates which one is the
+    // real entry vs. a route chunk that happens to share the "index" name).
+    build: {
+      manifest: true,
+    },
     // @tanstack/start-server-core@1.169+ uses dynamic '#' package-subpath imports
     // (#tanstack-router-entry, #tanstack-start-entry) that esbuild cannot resolve during
     // optimizeDeps scanning because they are missing from the package's own "imports" map.

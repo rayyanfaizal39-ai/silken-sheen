@@ -1,6 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check, Sparkles, ArrowRight, Star, Brain, BarChart2, TrendingUp, GraduationCap, Shield, Ban, BookOpen, Bot } from "lucide-react";
+import { useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Check, Sparkles, ArrowRight, Star, Brain, BarChart2, TrendingUp, GraduationCap, Shield, Ban, BookOpen, Bot, Loader2 } from "lucide-react";
 import { AcademyPageShell } from "@/components/AcademyPage";
+import { useAuth } from "@/context/auth-context";
+import { createAndConfirmStubCheckout, type UpgradePlan } from "./-upgrade.server";
 
 export const Route = createFileRoute("/upgrade")({
   head: () => ({
@@ -62,6 +65,67 @@ function PlanFeatureList({ premium = false }: { premium?: boolean }) {
   );
 }
 
+type CheckoutStatus = "idle" | "loading" | "error";
+
+// STUB: redirects to login if logged out, otherwise immediately runs the stub
+// checkout (see -upgrade.server.ts) and routes to the dashboard on success.
+// There is no real payment gateway yet — see that file for what to swap in.
+function UpgradeButton({
+  plan,
+  label,
+  className,
+}: {
+  plan: UpgradePlan;
+  label: string;
+  className: string;
+}) {
+  const { user, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
+  const [status, setStatus] = useState<CheckoutStatus>("idle");
+
+  if (!authLoading && !user) {
+    return (
+      <div className="mt-auto">
+        <Link to="/login" className={className}>
+          {label} <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    );
+  }
+
+  async function handleClick() {
+    setStatus("loading");
+    try {
+      await createAndConfirmStubCheckout({ data: { plan } });
+      navigate({ to: "/dashboard" });
+    } catch (err) {
+      console.error("[upgrade] checkout failed:", err);
+      setStatus("error");
+    }
+  }
+
+  return (
+    <div className="mt-auto">
+      <button type="button" onClick={handleClick} disabled={status === "loading"} className={className}>
+        {status === "loading" ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" /> Processing...
+          </>
+        ) : (
+          <>
+            {label} <ArrowRight className="h-4 w-4" />
+          </>
+        )}
+      </button>
+      {status === "error" && (
+        <p className="mt-2 text-center text-xs text-red-400">
+          Something went wrong. Please try again.
+        </p>
+      )}
+    </div>
+  );
+}
+
 function UpgradePage() {
   return (
     <AcademyPageShell>
@@ -115,12 +179,11 @@ function UpgradePage() {
           <div className="mb-6 flex-1">
             <PlanFeatureList premium />
           </div>
-          <Link
-            to="/login"
-            className="mt-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Upgrade Now <ArrowRight className="h-4 w-4" />
-          </Link>
+          <UpgradeButton
+            plan="monthly"
+            label="Upgrade Now"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
+          />
         </div>
 
         {/* Annual */}
@@ -146,12 +209,11 @@ function UpgradePage() {
           <div className="mb-6 mt-4 flex-1">
             <PlanFeatureList premium />
           </div>
-          <Link
-            to="/login"
-            className="mt-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#F59E0B] to-[#D97706] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(245,158,11,0.35)] transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Get Annual Plan <ArrowRight className="h-4 w-4" />
-          </Link>
+          <UpgradeButton
+            plan="annual"
+            label="Get Annual Plan"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#F59E0B] to-[#D97706] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(245,158,11,0.35)] transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
+          />
         </div>
       </div>
 
