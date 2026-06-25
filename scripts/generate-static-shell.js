@@ -1,15 +1,23 @@
 #!/usr/bin/env node
-// Generates dist/client/index.html and dist/client/_redirects after `vite build`.
+// Generates dist/client/index.html after `vite build`.
 //
 // WHY: this TanStack Start app has no source index.html — the framework injects
-// the HTML document itself, but only when the nitro deploy plugin runs (which
-// only happens automatically inside a Lovable sandbox; see
-// @lovable.dev/vite-tanstack-config). A plain `vite build` anywhere else
-// (local machine, Cloudflare Pages' own CI) produces dist/client/assets with
-// no index.html at all, which 404s on every route once deployed as a static
-// site. This script makes the static SPA shell deterministic and
-// environment-independent by reading the real entry chunk from Vite's
-// build manifest (dist/client/.vite/manifest.json) instead of guessing.
+// the HTML document itself, but only when the nitro deploy plugin runs with a
+// preset that renders pages dynamically per-request. We deploy as a Cloudflare
+// Worker with static assets (see vite.config.ts + patch-wrangler-assets.js),
+// where `assets.not_found_handling: "single-page-application"` is what serves
+// this file for any non-matching path — so it still needs to exist and be
+// correct independent of how nitro's own SSR rendering behaves. This script
+// makes that deterministic and environment-independent by reading the real
+// entry chunk from Vite's build manifest (dist/client/.vite/manifest.json)
+// instead of guessing (there are multiple "index-*.js" chunks in assets/, only
+// one of which is the actual entry).
+//
+// NOTE: this intentionally does NOT write a _redirects file — that's a
+// Cloudflare *Pages*-only convention. On Workers, wrangler.json's
+// `assets.not_found_handling` is the equivalent mechanism (patched in by
+// scripts/patch-wrangler-assets.js), and a stray _redirects file with a
+// `/* /index.html 200` rule trips wrangler's infinite-redirect-loop guard.
 
 import { readFileSync, writeFileSync, rmSync, existsSync } from "fs";
 import { join, dirname } from "path";
@@ -61,12 +69,6 @@ ${cssLinks}
 
 writeFileSync(join(clientDir, "index.html"), html);
 console.log(`[generate-static-shell] Wrote dist/client/index.html (entry: ${entry.file})`);
-
-const redirects = `/assets/* /assets/:splat 200
-/* /index.html 200
-`;
-writeFileSync(join(clientDir, "_redirects"), redirects);
-console.log("[generate-static-shell] Wrote dist/client/_redirects");
 
 // Don't ship the build manifest as a public static asset.
 rmSync(join(clientDir, ".vite"), { recursive: true, force: true });

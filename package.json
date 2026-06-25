@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && node scripts/generate-static-shell.js",
-    "build:dev": "vite build --mode development && node scripts/generate-static-shell.js",
+    "build": "vite build && node scripts/generate-static-shell.js && node scripts/patch-wrangler-assets.js",
+    "build:dev": "vite build --mode development && node scripts/generate-static-shell.js && node scripts/patch-wrangler-assets.js",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",

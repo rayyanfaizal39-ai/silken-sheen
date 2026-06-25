@@ -7,9 +7,24 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-// Used by the Vercel SSR deploy path (dist/server/server.js); unrelated to the
-// Cloudflare Pages static deploy, which only ever consumes dist/client.
+// Used by both the Vercel SSR deploy path (dist/server/server.js) and the
+// Cloudflare Worker deploy path (dist/server/index.mjs) below.
 export default defineConfig({
+  // Cloudflare deploy target: a single Worker serves dist/client as static
+  // assets and dist/server/index.mjs as the User Worker (admin/auth server
+  // functions, e.g. -admin.server.ts). The wrapper's `cloudflare` option type
+  // only allows nodeCompat/deployConfig (no `wrangler` passthrough), so the
+  // extra `assets.not_found_handling`/`run_worker_first` fields needed for
+  // SPA-fallback + server-fn routing are patched onto the generated
+  // dist/server/wrangler.json by scripts/patch-wrangler-assets.js instead —
+  // see that script for why. Deploy with `wrangler deploy` from dist/server
+  // (NOT the Cloudflare Pages dashboard — see commit history for why Pages'
+  // _routes.json model doesn't fit this dist/client-as-root setup).
+  nitro: {
+    preset: "cloudflare-module",
+    output: { dir: "dist", serverDir: "dist/server", publicDir: "dist/client" },
+    cloudflare: { nodeCompat: true, deployConfig: true },
+  },
   tanstackStart: {
     server: { entry: "server" },
   },
