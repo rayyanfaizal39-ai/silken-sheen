@@ -20,7 +20,16 @@ export default defineConfig({
     // real entry vs. a route chunk that happens to share the "index" name).
     build: {
       manifest: true,
+      // Force the client build's entry chunk to be our SPA mount (src/client.tsx),
+      // not @tanstack/react-start's default-entry/client.tsx which expects an SSR
+      // payload to hydrate. Cloudflare Pages serves dist/client as a pure static
+      // site — see scripts/generate-static-shell.js, which reads isEntry from the
+      // manifest.
+      rollupOptions: {
+        input: { main: "src/client.tsx" },
+      },
     },
+
     // @tanstack/start-server-core@1.169+ uses dynamic '#' package-subpath imports
     // (#tanstack-router-entry, #tanstack-start-entry) that esbuild cannot resolve during
     // optimizeDeps scanning because they are missing from the package's own "imports" map.
