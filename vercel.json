@@ -1,5 +1,16 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/client",
-  "framework": null
+  "outputDirectory": "dist/server",
+  "framework": null,
+  "functions": {
+    "dist/server/server.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/server/server.js"
+    }
+  ]
 }
