@@ -274,6 +274,52 @@ import { mathF1C11MindMapDLP } from "@/content/form1/math/chapter-11/mindmap-dlp
 import { mathF1C12MindMapDLP } from "@/content/form1/math/chapter-12/mindmap-dlp";
 import { mathF1C13MindMapDLP } from "@/content/form1/math/chapter-13/mindmap-dlp";
 
+// Mathematics Form 2 notes and mind maps
+import { mathF2C1NotesBM } from "@/content/form2/math/chapter-1/notes-bm";
+import { mathF2C1NotesDLP } from "@/content/form2/math/chapter-1/notes-dlp";
+import { mathF2C1MindMapBM } from "@/content/form2/math/chapter-1/mindmap-bm";
+import { mathF2C1MindMapDLP } from "@/content/form2/math/chapter-1/mindmap-dlp";
+import { mathF2C2NotesBM } from "@/content/form2/math/chapter-2/notes-bm";
+import { mathF2C2NotesDLP } from "@/content/form2/math/chapter-2/notes-dlp";
+import { mathF2C2MindMapBM } from "@/content/form2/math/chapter-2/mindmap-bm";
+import { mathF2C2MindMapDLP } from "@/content/form2/math/chapter-2/mindmap-dlp";
+import { mathF2C3NotesBM } from "@/content/form2/math/chapter-3/notes-bm";
+import { mathF2C3NotesDLP } from "@/content/form2/math/chapter-3/notes-dlp";
+import { mathF2C3MindMapBM } from "@/content/form2/math/chapter-3/mindmap-bm";
+import { mathF2C3MindMapDLP } from "@/content/form2/math/chapter-3/mindmap-dlp";
+import { mathF2C4NotesBM } from "@/content/form2/math/chapter-4/notes-bm";
+import { mathF2C4NotesDLP } from "@/content/form2/math/chapter-4/notes-dlp";
+import { mathF2C4MindMapBM } from "@/content/form2/math/chapter-4/mindmap-bm";
+import { mathF2C4MindMapDLP } from "@/content/form2/math/chapter-4/mindmap-dlp";
+import { mathF2C5NotesBM } from "@/content/form2/math/chapter-5/notes-bm";
+import { mathF2C5NotesDLP } from "@/content/form2/math/chapter-5/notes-dlp";
+import { mathF2C5MindMapBM } from "@/content/form2/math/chapter-5/mindmap-bm";
+import { mathF2C5MindMapDLP } from "@/content/form2/math/chapter-5/mindmap-dlp";
+import { mathF2C6NotesBM } from "@/content/form2/math/chapter-6/notes-bm";
+import { mathF2C6NotesDLP } from "@/content/form2/math/chapter-6/notes-dlp";
+import { mathF2C6MindMapBM } from "@/content/form2/math/chapter-6/mindmap-bm";
+import { mathF2C6MindMapDLP } from "@/content/form2/math/chapter-6/mindmap-dlp";
+import { mathF2C7NotesBM } from "@/content/form2/math/chapter-7/notes-bm";
+import { mathF2C7NotesDLP } from "@/content/form2/math/chapter-7/notes-dlp";
+import { mathF2C7MindMapBM } from "@/content/form2/math/chapter-7/mindmap-bm";
+import { mathF2C7MindMapDLP } from "@/content/form2/math/chapter-7/mindmap-dlp";
+import { mathF2C8NotesBM } from "@/content/form2/math/chapter-8/notes-bm";
+import { mathF2C8NotesDLP } from "@/content/form2/math/chapter-8/notes-dlp";
+import { mathF2C8MindMapBM } from "@/content/form2/math/chapter-8/mindmap-bm";
+import { mathF2C8MindMapDLP } from "@/content/form2/math/chapter-8/mindmap-dlp";
+import { mathF2C9NotesBM } from "@/content/form2/math/chapter-9/notes-bm";
+import { mathF2C9NotesDLP } from "@/content/form2/math/chapter-9/notes-dlp";
+import { mathF2C9MindMapBM } from "@/content/form2/math/chapter-9/mindmap-bm";
+import { mathF2C9MindMapDLP } from "@/content/form2/math/chapter-9/mindmap-dlp";
+import { mathF2C10NotesBM } from "@/content/form2/math/chapter-10/notes-bm";
+import { mathF2C10NotesDLP } from "@/content/form2/math/chapter-10/notes-dlp";
+import { mathF2C10MindMapBM } from "@/content/form2/math/chapter-10/mindmap-bm";
+import { mathF2C10MindMapDLP } from "@/content/form2/math/chapter-10/mindmap-dlp";
+import { mathF2C11NotesBM } from "@/content/form2/math/chapter-11/notes-bm";
+import { mathF2C11NotesDLP } from "@/content/form2/math/chapter-11/notes-dlp";
+import { mathF2C11MindMapBM } from "@/content/form2/math/chapter-11/mindmap-bm";
+import { mathF2C11MindMapDLP } from "@/content/form2/math/chapter-11/mindmap-dlp";
+
 function englishFlashcardsFor(chapterKey: string) {
   return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey);
 }
@@ -916,6 +962,228 @@ export const chapters: ChapterContent[] = [
     notes: mathF1C13NotesDLP,
   },
 
+  // Mathematics Form 2
+  {
+    id: "math-f2-c1-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Corak dan Jujukan",
+    lang: "bm",
+    mindMap: { data: mathF2C1MindMapBM, title: "Corak dan Jujukan" },
+    notes: mathF2C1NotesBM,
+  },
+  {
+    id: "math-f2-c1-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Patterns and Sequences",
+    lang: "dlp",
+    mindMap: { data: mathF2C1MindMapDLP, title: "Patterns and Sequences" },
+    notes: mathF2C1NotesDLP,
+  },
+  {
+    id: "math-f2-c2-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Pemfaktoran dan Pecahan Algebra",
+    lang: "bm",
+    mindMap: { data: mathF2C2MindMapBM, title: "Pemfaktoran dan Pecahan Algebra" },
+    notes: mathF2C2NotesBM,
+  },
+  {
+    id: "math-f2-c2-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Factorisation and Algebraic Fractions",
+    lang: "dlp",
+    mindMap: { data: mathF2C2MindMapDLP, title: "Factorisation and Algebraic Fractions" },
+    notes: mathF2C2NotesDLP,
+  },
+  {
+    id: "math-f2-c3-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Rumus Algebra",
+    lang: "bm",
+    mindMap: { data: mathF2C3MindMapBM, title: "Rumus Algebra" },
+    notes: mathF2C3NotesBM,
+  },
+  {
+    id: "math-f2-c3-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 3",
+    title: "Algebraic Formulae",
+    lang: "dlp",
+    mindMap: { data: mathF2C3MindMapDLP, title: "Algebraic Formulae" },
+    notes: mathF2C3NotesDLP,
+  },
+  {
+    id: "math-f2-c4-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Poligon",
+    lang: "bm",
+    mindMap: { data: mathF2C4MindMapBM, title: "Poligon" },
+    notes: mathF2C4NotesBM,
+  },
+  {
+    id: "math-f2-c4-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 4",
+    title: "Polygons",
+    lang: "dlp",
+    mindMap: { data: mathF2C4MindMapDLP, title: "Polygons" },
+    notes: mathF2C4NotesDLP,
+  },
+  {
+    id: "math-f2-c5-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Bulatan",
+    lang: "bm",
+    mindMap: { data: mathF2C5MindMapBM, title: "Bulatan" },
+    notes: mathF2C5NotesBM,
+  },
+  {
+    id: "math-f2-c5-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 5",
+    title: "Circles",
+    lang: "dlp",
+    mindMap: { data: mathF2C5MindMapDLP, title: "Circles" },
+    notes: mathF2C5NotesDLP,
+  },
+  {
+    id: "math-f2-c6-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Bentuk Geometri Tiga Dimensi",
+    lang: "bm",
+    mindMap: { data: mathF2C6MindMapBM, title: "Bentuk Geometri Tiga Dimensi" },
+    notes: mathF2C6NotesBM,
+  },
+  {
+    id: "math-f2-c6-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 6",
+    title: "Three-Dimensional Geometrical Shapes",
+    lang: "dlp",
+    mindMap: { data: mathF2C6MindMapDLP, title: "Three-Dimensional Geometrical Shapes" },
+    notes: mathF2C6NotesDLP,
+  },
+  {
+    id: "math-f2-c7-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Koordinat",
+    lang: "bm",
+    mindMap: { data: mathF2C7MindMapBM, title: "Koordinat" },
+    notes: mathF2C7NotesBM,
+  },
+  {
+    id: "math-f2-c7-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 7",
+    title: "Coordinates",
+    lang: "dlp",
+    mindMap: { data: mathF2C7MindMapDLP, title: "Coordinates" },
+    notes: mathF2C7NotesDLP,
+  },
+  {
+    id: "math-f2-c8-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Graf Fungsi",
+    lang: "bm",
+    mindMap: { data: mathF2C8MindMapBM, title: "Graf Fungsi" },
+    notes: mathF2C8NotesBM,
+  },
+  {
+    id: "math-f2-c8-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 8",
+    title: "Graphs of Functions",
+    lang: "dlp",
+    mindMap: { data: mathF2C8MindMapDLP, title: "Graphs of Functions" },
+    notes: mathF2C8NotesDLP,
+  },
+  {
+    id: "math-f2-c9-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Laju dan Pecutan",
+    lang: "bm",
+    mindMap: { data: mathF2C9MindMapBM, title: "Laju dan Pecutan" },
+    notes: mathF2C9NotesBM,
+  },
+  {
+    id: "math-f2-c9-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 9",
+    title: "Speed and Acceleration",
+    lang: "dlp",
+    mindMap: { data: mathF2C9MindMapDLP, title: "Speed and Acceleration" },
+    notes: mathF2C9NotesDLP,
+  },
+  {
+    id: "math-f2-c10-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Kecerunan Garis Lurus",
+    lang: "bm",
+    mindMap: { data: mathF2C10MindMapBM, title: "Kecerunan Garis Lurus" },
+    notes: mathF2C10NotesBM,
+  },
+  {
+    id: "math-f2-c10-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 10",
+    title: "Gradient of a Straight Line",
+    lang: "dlp",
+    mindMap: { data: mathF2C10MindMapDLP, title: "Gradient of a Straight Line" },
+    notes: mathF2C10NotesDLP,
+  },
+  {
+    id: "math-f2-c11-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 11",
+    title: "Transformasi Isometri",
+    lang: "bm",
+    mindMap: { data: mathF2C11MindMapBM, title: "Transformasi Isometri" },
+    notes: mathF2C11NotesBM,
+  },
+  {
+    id: "math-f2-c11-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 11",
+    title: "Isometric Transformations",
+    lang: "dlp",
+    mindMap: { data: mathF2C11MindMapDLP, title: "Isometric Transformations" },
+    notes: mathF2C11NotesDLP,
+  },
+
   // Science Form 1 (bilingual)
   {
     id: "science-f1-c1-bm",
@@ -1543,8 +1811,79 @@ export function getChapter(
 }
 
 /** All chapter content rows for a given subject (used to surface "available" flags). */
-export function getChaptersForSubject(subjectId: string, lang?: "bm" | "dlp"): ChapterContent[] {
+export function getChaptersForSubject(
+  subjectId: string,
+  lang?: "bm" | "dlp",
+  form?: ChapterContent["form"] | "All",
+): ChapterContent[] {
   return chapters.filter(
-    (c) => c.subjectId === subjectId && (lang ? !c.lang || c.lang === lang : true),
+    (c) =>
+      c.subjectId === subjectId &&
+      (form && form !== "All" ? c.form === form : true) &&
+      (lang ? !c.lang || c.lang === lang : true),
   );
+}
+
+export type RegisteredSubjectChapter = {
+  key: string;
+  label: string;
+  available: boolean;
+  selectable: boolean;
+  subtopics?: string[];
+  isNew?: boolean;
+};
+
+function chapterNumberFromKey(chapterKey: string) {
+  const match = chapterKey.match(/\d+/);
+  return match ? Number(match[0]) : Number.MAX_SAFE_INTEGER;
+}
+
+function chapterHasContent(chapter: ChapterContent) {
+  return Boolean(
+    chapter.notes ||
+      chapter.englishData ||
+      chapter.subtopics?.length ||
+      chapter.mindMap ||
+      chapter.video ||
+      chapter.flashcards?.length ||
+      chapter.quiz?.length,
+  );
+}
+
+function chapterLabel(chapter: ChapterContent, lang?: "bm" | "dlp") {
+  const chapterNumber = chapterNumberFromKey(chapter.chapterKey);
+  if (!Number.isFinite(chapterNumber) || chapterNumber === Number.MAX_SAFE_INTEGER) {
+    return chapter.title;
+  }
+  const prefix = lang === "bm" ? "Bab" : "Chapter";
+  return `${prefix} ${chapterNumber}: ${chapter.title}`;
+}
+
+export function getRegisteredSubjectChapters(
+  subjectId: string,
+  lang?: "bm" | "dlp",
+  form: ChapterContent["form"] | "All" = "Form 1",
+): RegisteredSubjectChapter[] {
+  const rows = getChaptersForSubject(subjectId, lang, form);
+  const byChapter = new Map<string, ChapterContent[]>();
+
+  for (const row of rows) {
+    const group = byChapter.get(row.chapterKey) ?? [];
+    group.push(row);
+    byChapter.set(row.chapterKey, group);
+  }
+
+  return Array.from(byChapter.entries())
+    .sort(([a], [b]) => chapterNumberFromKey(a) - chapterNumberFromKey(b))
+    .map(([key, group]) => {
+      const preferred = (lang ? group.find((chapter) => chapter.lang === lang) : undefined) ?? group[0];
+      const available = group.some(chapterHasContent);
+      return {
+        key,
+        label: chapterLabel(preferred, lang),
+        available,
+        selectable: available,
+        subtopics: preferred.subtopics?.map((subtopic) => subtopic.title),
+      };
+    });
 }

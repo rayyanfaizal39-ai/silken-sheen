@@ -1,8 +1,7 @@
 import type { CSSProperties } from "react";
 import { ArrowLeft, CheckCircle2, Lock, Sparkles } from "lucide-react";
-import { getSubjectChapters } from "@/data/content";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
-import { getChapter } from "@/content/registry";
+import { getChapter, getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
 import { ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 

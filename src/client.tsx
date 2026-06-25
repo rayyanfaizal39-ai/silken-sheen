@@ -1,29 +1,33 @@
-// SPA client entry used by the Cloudflare Pages static deploy.
-//
-// The TanStack Start default client entry calls hydrateRoot and expects an
-// SSR-rendered DOM + dehydrated router state. Static Pages has no SSR pass,
-// so hydrating throws "Invariant failed" immediately. Instead we mount the
-// router as a plain SPA via createRoot + RouterProvider.
-//
-// SSR/Vercel deploys do NOT use this file — they go through src/server.ts
-// and @tanstack/react-start's server entry.
+// Client entry that supports both:
+//  - Dev / SSR builds: TanStack Start renders full HTML, we hydrate the document.
+//  - Static Cloudflare Pages shell: empty <div id="root">, mount as SPA.
 
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode, startTransition } from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { RouterProvider } from "@tanstack/react-router";
+import { StartClient } from "@tanstack/react-start/client";
 
 import "./styles.css";
 import { getRouter } from "./router";
 
-const router = getRouter();
-
 const container = document.getElementById("root");
-if (!container) {
-  throw new Error('Missing #root element in the static shell');
-}
 
-createRoot(container).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-);
+if (container) {
+  // Static SPA mount (Cloudflare Pages).
+  const router = getRouter();
+  createRoot(container).render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
+  );
+} else {
+  // Dev / SSR: hydrate TanStack Start's SSR-rendered document.
+  startTransition(() => {
+    hydrateRoot(
+      document,
+      <StrictMode>
+        <StartClient />
+      </StrictMode>,
+    );
+  });
+}
