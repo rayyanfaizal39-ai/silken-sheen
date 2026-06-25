@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { ArrowLeft, GitFork, Network, Rocket } from "lucide-react";
-import { subjects, getSubjectChapters, type Form } from "@/data/content";
+import { subjects, type Form } from "@/data/content";
 import {
   SubjectGrid,
   FormGrid,
@@ -12,7 +12,11 @@ import {
 } from "@/components/ChapterPicker";
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
-import { getChapter, getChaptersForSubject } from "@/content/registry";
+import {
+  getChapter,
+  getChaptersForSubject,
+  getRegisteredSubjectChapters as getSubjectChapters,
+} from "@/content/registry";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {

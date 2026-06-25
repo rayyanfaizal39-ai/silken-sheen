@@ -1,4 +1,4 @@
-import { subjects, getSubjectChapters, flashcards, quizzes, type Form } from "@/data/content";
+import { subjects, flashcards, quizzes, type Form } from "@/data/content";
 import {
   Lock,
   ArrowLeft,
@@ -13,7 +13,7 @@ import {
   Rocket,
 } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
-import { getChapter } from "@/content/registry";
+import { getChapter, getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
 
@@ -182,7 +182,8 @@ export function FormGrid({
         {FORM_CARDS.map((item, index) => {
           const isReady =
             item.available ||
-            ((subjectId === "sejarah" || subjectId === "geography" || subjectId === "science") && item.form === "Form 2");
+            ((subjectId === "sejarah" || subjectId === "geography" || subjectId === "science") && item.form === "Form 2") ||
+            (subjectId === "bm" && item.form === "Form 2");
           return (
             <button
               key={item.form}
