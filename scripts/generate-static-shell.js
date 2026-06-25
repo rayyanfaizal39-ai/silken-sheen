@@ -29,6 +29,14 @@ const clientDir = join(root, "dist/client");
 const manifestPath = join(clientDir, ".vite/manifest.json");
 
 if (!existsSync(manifestPath)) {
+  const indexPath = join(clientDir, "index.html");
+  if (existsSync(indexPath)) {
+    console.log(
+      `[generate-static-shell] No manifest at ${manifestPath}; dist/client/index.html already exists. Nothing to do.`,
+    );
+    process.exit(0);
+  }
+
   console.error(
     `[generate-static-shell] No manifest at ${manifestPath} — did "vite build" run first? Skipping.`,
   );

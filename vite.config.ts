@@ -27,6 +27,12 @@ export default defineConfig({
   },
   tanstackStart: {
     server: { entry: "server" },
+    // Override the default client entry (which calls hydrateRoot and expects an
+    // SSR payload) with our SPA mount in src/client.tsx. not_found_handling:
+    // "single-page-application" (see patch-wrangler-assets.js) serves the static
+    // index.html for most navigation with no SSR HTML to hydrate — so we
+    // createRoot + render <RouterProvider /> directly instead.
+    client: { entry: "client" },
   },
   vite: {
     // Emit dist/client/.vite/manifest.json so scripts/generate-static-shell.js can
