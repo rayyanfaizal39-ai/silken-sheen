@@ -279,6 +279,8 @@ import { mathF2C1NotesBM } from "@/content/form2/math/chapter-1/notes-bm";
 import { mathF2C1NotesDLP } from "@/content/form2/math/chapter-1/notes-dlp";
 import { mathF2C1MindMapBM } from "@/content/form2/math/chapter-1/mindmap-bm";
 import { mathF2C1MindMapDLP } from "@/content/form2/math/chapter-1/mindmap-dlp";
+import { mathF2C1QuizzesBM } from "@/content/form2/math/chapter-1/quizzes-bm";
+import { mathF2C1QuizzesDLP } from "@/content/form2/math/chapter-1/quizzes-dlp";
 import { mathF2C2NotesBM } from "@/content/form2/math/chapter-2/notes-bm";
 import { mathF2C2NotesDLP } from "@/content/form2/math/chapter-2/notes-dlp";
 import { mathF2C2MindMapBM } from "@/content/form2/math/chapter-2/mindmap-bm";
@@ -972,6 +974,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C1MindMapBM, title: "Corak dan Jujukan" },
     notes: mathF2C1NotesBM,
+    quiz: mathF2C1QuizzesBM,
   },
   {
     id: "math-f2-c1-dlp",
@@ -982,6 +985,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C1MindMapDLP, title: "Patterns and Sequences" },
     notes: mathF2C1NotesDLP,
+    quiz: mathF2C1QuizzesDLP,
   },
   {
     id: "math-f2-c2-bm",

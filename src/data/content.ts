@@ -1,5 +1,7 @@
 import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-bm";
 import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
+import { mathF2C1QuizzesBM } from "@/content/form2/math/chapter-1/quizzes-bm";
+import { mathF2C1QuizzesDLP } from "@/content/form2/math/chapter-1/quizzes-dlp";
 import { scienceF2C1FlashcardsBM } from "@/content/form2/science/chapter-1/flashcards-bm";
 import { scienceF2C1FlashcardsDLP } from "@/content/form2/science/chapter-1/flashcards-dlp";
 import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
@@ -14239,6 +14241,8 @@ export const quizzes: QuizQuestion[] = [
   },
   ...scienceF2C1QuizzesBM,
   ...scienceF2C1QuizzesDLP,
+  ...mathF2C1QuizzesBM,
+  ...mathF2C1QuizzesDLP,
   ...scienceF2C2QuizzesBM,
   ...scienceF2C2QuizzesDLP,
   ...scienceF2C3QuizzesBM,
