@@ -1,85 +1,33 @@
-## Goal
+## Problem
 
-Make every chapter render through one consistent layout, and make adding a new chapter a single-file operation.
+After the Cloudflare Pages static deploy, the bundled entry chunk crashes with `Invariant failed` and the app never mounts.
 
-## What's wrong today
+Root cause: the static shell (`scripts/generate-static-shell.js`) injects `@tanstack/react-start`'s default client entry (`.../default-entry/client.tsx`). That entry calls `hydrateRoot` and expects an SSR-rendered HTML tree plus a serialized router/dehydrated state script. Our static shell only ships an empty `<div id="root"></div>`, so TanStack Start's hydration invariants fire immediately — exactly the `Invariant failed` from `index-D_XDOVAn.js`.
 
-- `src/routes/notes.tsx` (1,175 lines) hardcodes per-chapter blocks: Sejarah Ch1/Ch2 videos + mind maps, Science Ch2 BM/DLP tabs, sejarah subtopics — each as its own JSX branch.
-- Mind maps, flashcards, quizzes, and notes live in different files with different shapes and are wired up by ad-hoc imports.
-- Indicators for what a chapter has (Notes / Flashcards / Quiz / MindMap / AI Video) are inconsistent across subjects.
-- Adding a new chapter currently touches 4–5 files plus a route branch.
+Local dev and Vercel SSR work because both have a real SSR pass that produces the markup the Start client expects. Cloudflare Pages here is a pure static deploy with no SSR, so we must bootstrap as a plain SPA — not an SSR hydration.
 
-## New shape
+## Fix
 
-### 1. Chapter schema (`src/content/types.ts`)
+Stop hydrating Start's SSR entry and mount the router as a SPA on the client.
 
-```ts
-type ChapterContent = {
-  id: string;                  // "sejarah-f1-c1"
-  subjectId: string;
-  form: "Form 1" | "Form 2" | "Form 3";
-  chapterKey: string;          // "Chapter 1"
-  title: string;
-  lang?: "bm" | "dlp";         // optional, for Science
-  video?: { youtubeId: string; title: string; captionLang?: string };
-  mindMap?: MindNode;          // existing MindNode type
-  notes?: StructuredNotes;     // reused ScienceChapter2Notes shape, renamed
-  flashcards?: Flashcard[];    // existing
-  quiz?: QuizQuestion[];       // existing
-  subtopics?: Subtopic[];      // existing
-};
-```
+1. Add `src/client.tsx` — a tiny SPA entry that:
+   - imports `./styles.css` (so the manifest treats it as the real entry chunk and emits the CSS link),
+   - calls `getRouter()` from `src/router.tsx`,
+   - renders `<RouterProvider router={router} />` via `createRoot(document.getElementById("root")!).render(...)`.
+   - No `hydrateRoot`, no Start server-entry imports.
 
-`StructuredNotes` reuses the existing `ScienceChapter2Notes` shape (quickRevision / sections / keyExamFacts) — already general-purpose.
+2. Register that file as the Rollup entry for the client build in `vite.config.ts` (`vite.build.rollupOptions.input = { main: "src/client.tsx" }`). This is what makes it appear in `dist/client/.vite/manifest.json` as `isEntry`, so `scripts/generate-static-shell.js` picks it instead of Start's default-entry client. Server entry (`src/server.ts`) and SSR/Vercel paths stay untouched — those don't read the client manifest.
 
-### 2. Registry (`src/content/registry.ts`)
+3. No changes to routes, providers, UI, styles, or content. `__root.tsx` still owns providers (QueryClientProvider, AuthProvider, CikguProvider, AppShell) because `RouterProvider` renders the route tree, so the existing provider chain runs unchanged.
 
-```ts
-export const chapters: ChapterContent[] = [
-  sejarahF1C1, sejarahF1C2, ..., scienceF1C2BM, scienceF1C2DLP, ...
-];
-export function getChapter(subjectId, chapterKey, lang?): ChapterContent | undefined;
-export function getChapterFeatures(c): { notes; flashcards; quiz; mindMap; video };
-```
-
-Each chapter lives in its own file under `src/content/<subject>/<id>.ts`. Existing mindmap/notes/flashcard/quiz data is re-exported from there — no data rewrites, just wrapping.
-
-### 3. Unified notes page
-
-Replace the giant branch tree in `notes.tsx` with one renderer:
-
-```
-<ChapterHeader />
-<ChapterFeatureBar />     // pill indicators: Notes • Flashcards • Quiz • MindMap • AI Video (greyed when missing)
-<VideoBlock />            // if chapter.video
-<MindMapBlock />          // if chapter.mindMap
-<NotesBlock />            // if chapter.notes (with search + accordion)
-<ComingSoon />            // fallback if nothing present
-```
-
-Sejarah subtopic flow stays (it's already generic), but driven off `chapter.subtopics`.
-
-### 4. Wire-up
-
-- `flashcards.tsx` and `quizzes.tsx` already look up by subject+chapter — point them at `getChapter().flashcards / .quiz` so the indicator on notes and the actual deck stay in sync.
-- ChapterPicker continues to use existing `getSubjectChapters` but the `available` flag is computed from the registry (any feature present → available).
-
-## Out of scope (this pass)
-
-- P1 content audit, P3 fake stats, P4 broad QA — separate passes.
-- No data migrations: existing `src/data/*` files stay; the registry imports them.
-
-## Files
-
-- New: `src/content/types.ts`, `src/content/registry.ts`, `src/content/<subject>/*.ts` (thin wrappers)
-- New: `src/components/notes/ChapterFeatureBar.tsx`, `VideoBlock.tsx`, `MindMapBlock.tsx`, `NotesBlock.tsx`
-- Edit: `src/routes/notes.tsx` (collapse to ~250 lines using registry)
-- Edit: `src/routes/flashcards.tsx`, `src/routes/quizzes.tsx` (registry lookup)
-- Edit: `src/components/ChapterPicker.tsx` (`available` from registry)
+4. Leave `scripts/generate-static-shell.js` as-is — it already reads whichever chunk is marked `isEntry` in the manifest, so swapping the entry is enough.
 
 ## Verification
 
-- Build passes.
-- Visit each currently-working chapter (Sejarah 1–8, Science F1 C2 BM/DLP) and confirm video + mind map + notes still render.
-- Confirm feature-bar indicators match what's defined.
-- New chapter test: drop a stub file into `src/content/`, add to registry, confirm it appears in the chapter picker and renders without further edits.
+- `npm run build && node scripts/generate-static-shell.js`
+- Confirm `dist/client/index.html` references the new `client-*.js` chunk (not `index-*.js` from Start's default-entry).
+- Serve `dist/client/` statically (`npx serve dist/client`) and confirm `/`, `/dashboard`, and a deep-link route load without `Invariant failed` in the console.
+
+## Out of scope
+
+UI, styling, content, routes, SSR/Vercel entry, and the existing error-capture wrapper in `src/server.ts` are not touched.
