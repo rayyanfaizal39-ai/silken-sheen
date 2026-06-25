@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { subjects, notes, getItemChapterKey, getSubjectChapters, type Form } from "@/data/content";
+import { subjects, notes, getItemChapterKey, type Form } from "@/data/content";
 import { BookOpenCheck, ArrowLeft, ArrowUp, Compass } from "lucide-react";
 import { z } from "zod";
 import {
@@ -17,7 +17,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
-import { getChapter } from "@/content/registry";
+import { getChapter, getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
