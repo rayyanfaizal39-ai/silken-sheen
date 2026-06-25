@@ -13,6 +13,13 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    // Emit dist/client/.vite/manifest.json so scripts/postbuild-static-spa.js can
+    // reliably find the true client entry chunk (there are multiple "index-*.js"
+    // chunks in the assets dir — only the manifest disambiguates which one is the
+    // real entry vs. a route chunk that happens to share the "index" name).
+    build: {
+      manifest: true,
+    },
     // @tanstack/start-server-core@1.169+ uses dynamic '#' package-subpath imports
     // (#tanstack-router-entry, #tanstack-start-entry) that esbuild cannot resolve during
     // optimizeDeps scanning because they are missing from the package's own "imports" map.
