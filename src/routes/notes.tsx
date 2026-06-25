@@ -32,6 +32,7 @@ import {
 } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
+import { BMForm2Kertas1Page } from "@/components/BMForm2Kertas1Page";
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -199,6 +200,19 @@ function NotesPage() {
           }}
         />
       </AcademyPageShell>
+    );
+  }
+
+  if (subject === "bm" && form === "Form 2" && !activeChapterKey) {
+    return (
+      <BMForm2Kertas1Page
+        onBack={() => {
+          setChapter(null);
+          void navigate({
+            search: (previous: Record<string, unknown>) => ({ ...previous, subject: undefined }),
+          });
+        }}
+      />
     );
   }
 

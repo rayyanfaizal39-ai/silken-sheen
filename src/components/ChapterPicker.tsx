@@ -182,7 +182,8 @@ export function FormGrid({
         {FORM_CARDS.map((item, index) => {
           const isReady =
             item.available ||
-            ((subjectId === "sejarah" || subjectId === "geography" || subjectId === "science") && item.form === "Form 2");
+            ((subjectId === "sejarah" || subjectId === "geography" || subjectId === "science") && item.form === "Form 2") ||
+            (subjectId === "bm" && item.form === "Form 2");
           return (
             <button
               key={item.form}
