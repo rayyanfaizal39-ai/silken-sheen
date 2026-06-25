@@ -7,13 +7,14 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-// @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
+// Used by the Vercel SSR deploy path (dist/server/server.js); unrelated to the
+// Cloudflare Pages static deploy, which only ever consumes dist/client.
 export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
   vite: {
-    // Emit dist/client/.vite/manifest.json so scripts/postbuild-static-spa.js can
+    // Emit dist/client/.vite/manifest.json so scripts/generate-static-shell.js can
     // reliably find the true client entry chunk (there are multiple "index-*.js"
     // chunks in the assets dir — only the manifest disambiguates which one is the
     // real entry vs. a route chunk that happens to share the "index" name).
