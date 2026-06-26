@@ -36,6 +36,7 @@ import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
+import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
   ENGLISH_FLASHCARD_DECKS,
   getEnglishFlashcardsForDeck,
@@ -3826,11 +3827,13 @@ function FlashcardsPage() {
   const fav = current ? progress.favorites.includes(current.id) : false;
   const subj = current ? subjects.find((s) => s.id === current.subjectId) : null;
   const remaining = queue.length - idx;
+  const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
+  const planetTheme = getPlanetTheme(subject);
 
   // ── Subject World early-return ────────────────────────────────────────────
   if (subject && !formWasChosen && !chapter) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
           subjectId={subject}
           mode="flashcards"
@@ -3854,7 +3857,7 @@ function FlashcardsPage() {
 
   if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormFlashcardPath && !needsScienceLang) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormComingSoon
           subjectId={subject}
           form={form}
@@ -3871,7 +3874,7 @@ function FlashcardsPage() {
   if (subject && !needsScienceLang && !chapter) {
     if (subject === "english") {
       return (
-        <AcademyPageShell>
+        <AcademyPageShell subjectId={planetSubjectId}>
           <EnglishFlashcardDeckPicker
             onBack={() => {
               setSubject(null);
@@ -3912,7 +3915,7 @@ function FlashcardsPage() {
   }
 
   return (
-    <AcademyPageShell>
+    <AcademyPageShell subjectId={planetSubjectId}>
       <AcademyHero
         eyebrow="Active recall"
         title=""
@@ -4418,9 +4421,22 @@ function FlashcardsPage() {
                     {/* front */}
                     <div
                       className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col overflow-hidden"
-                      style={{ backfaceVisibility: "hidden" }}
+                      style={{
+                        backfaceVisibility: "hidden",
+                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                        boxShadow: planetTheme ? `0 24px 70px -30px ${planetTheme.glow}` : undefined,
+                      }}
                     >
                       {shimmer && <div className="card-shimmer-overlay" />}
+                      {planetTheme && (
+                        <span
+                          aria-hidden
+                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
+                        >
+                          {planetTheme.decor[0]}
+                        </span>
+                      )}
                       <div className="flex justify-between items-start">
                         <span className="text-xs font-semibold text-muted-foreground">
                           {subj?.emoji} {subj?.name} • {current.form}
@@ -4449,9 +4465,26 @@ function FlashcardsPage() {
                     {/* back */}
                     <div
                       className="absolute inset-0 glass-strong rounded-3xl p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
-                      style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                      style={{
+                        backfaceVisibility: "hidden",
+                        transform: "rotateY(180deg)",
+                        background: planetTheme
+                          ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
+                          : undefined,
+                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                        boxShadow: planetTheme ? `0 24px 70px -30px ${planetTheme.glow}` : undefined,
+                      }}
                     >
                       {shimmer && <div className="card-shimmer-overlay" />}
+                      {planetTheme && (
+                        <span
+                          aria-hidden
+                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
+                        >
+                          {planetTheme.decor[1] ?? planetTheme.decor[0]}
+                        </span>
+                      )}
                       <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">
                         {current.back}
                       </p>

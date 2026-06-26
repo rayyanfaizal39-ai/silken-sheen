@@ -52,7 +52,7 @@ type LayoutResult = {
   edges: { from: string; to: string }[];
 };
 
-type MindMapPalette = {
+export type MindMapPalette = {
   root?: string;
   branchYunani?: string;
   branchRom?: string;
@@ -64,6 +64,9 @@ type MindMapPalette = {
   leafText?: string;
   edgeStart?: string;
   edgeEnd?: string;
+  /** Generic accent border/glow for the root node and any unbranded branch node. */
+  accentBorder?: string;
+  accentGlow?: string;
 };
 
 const H_GAP = 96; // horizontal gap between columns
@@ -564,8 +567,8 @@ export function MindMap({
       return {
         bg: palette.root,
         text: "#ffffff",
-        border: "rgba(139,92,246,0.6)",
-        glow: "0 0 28px rgba(139,92,246,0.55)",
+        border: palette.accentBorder ?? "rgba(139,92,246,0.6)",
+        glow: palette.accentGlow ?? "0 0 28px rgba(139,92,246,0.55)",
       };
     if (depth === 1) {
       const label = node.label.toLowerCase();
@@ -594,7 +597,7 @@ export function MindMap({
             ? "rgba(250,204,21,0.7)"
             : isRom
               ? "rgba(250,204,21,0.7)"
-              : "rgba(59,130,246,0.6)";
+              : palette.accentBorder ?? "rgba(59,130,246,0.6)";
       const glow = isMesir
         ? "0 0 22px rgba(16,185,129,0.35)"
         : isIndus
@@ -603,7 +606,7 @@ export function MindMap({
             ? "0 0 22px rgba(250,204,21,0.35)"
             : isRom
               ? "0 0 22px rgba(250,204,21,0.35)"
-              : "0 0 22px rgba(59,130,246,0.5)";
+              : palette.accentGlow ?? "0 0 22px rgba(59,130,246,0.5)";
       return {
         bg,
         text,

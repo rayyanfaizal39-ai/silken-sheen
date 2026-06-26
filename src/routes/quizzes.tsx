@@ -45,6 +45,7 @@ import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
+import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
   ENGLISH_QUIZ_PAPERS,
   ENGLISH_QUIZ_SETS,
@@ -6564,10 +6565,13 @@ function QuizzesPage() {
         ? "bg-nova-yellow"
         : "bg-emerald-400";
 
+  const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
+  const planetTheme = getPlanetTheme(subject);
+
   // ── BM has its own hub page ───────────────────────────────────────────────
   if (subject && !formWasChosen && !chapter) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
           subjectId={subject}
           mode="quizzes"
@@ -6592,7 +6596,7 @@ function QuizzesPage() {
 
   if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormQuizPath && !needsScienceLang) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormComingSoon
           subjectId={subject}
           form={form}
@@ -6614,7 +6618,10 @@ function QuizzesPage() {
   // ── Subject World early-return ────────────────────────────────────────────
   if (subject === "english") {
     return (
-      <AcademyPageShell className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}>
+      <AcademyPageShell
+        subjectId={planetSubjectId}
+        className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}
+      >
         {comboShow !== null && (
           <div
             key={comboShow}
@@ -6709,7 +6716,10 @@ function QuizzesPage() {
   }
 
   return (
-    <AcademyPageShell className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}>
+    <AcademyPageShell
+      subjectId={planetSubjectId}
+      className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}
+    >
       {/* Combo overlay */}
       {comboShow !== null && (
         <div
@@ -7198,10 +7208,17 @@ function QuizzesPage() {
                       ? "animate-correct-pulse"
                       : ""
                 }`}
-                style={{ boxShadow: "0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)" }}
+                style={{
+                  boxShadow: planetTheme
+                    ? `0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 1px ${planetTheme.color}30`
+                    : "0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
+                }}
               >
                 {/* Ambient glow behind the card */}
-                <div className="pointer-events-none absolute -top-20 left-1/2 h-40 w-80 -translate-x-1/2 rounded-full bg-indigo-600/15 blur-3xl" />
+                <div
+                  className={`pointer-events-none absolute -top-20 left-1/2 h-40 w-80 -translate-x-1/2 rounded-full blur-3xl ${planetTheme ? "" : "bg-indigo-600/15"}`}
+                  style={{ background: planetTheme ? `${planetTheme.color}26` : undefined }}
+                />
 
                 {/* ── Card header ── */}
                 <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
@@ -7276,19 +7293,47 @@ function QuizzesPage() {
                     const isPicked = i === selected;
                     const reveal = selected !== null;
                     const letter = ["A", "B", "C", "D"][i] ?? String(i + 1);
+                    const optionThemeColor = planetTheme?.color ?? "#8B5CF6";
+                    const optionThemeGlow = planetTheme?.glow ?? "rgba(139,92,246,0.4)";
                     return (
                       <button
                         key={i}
                         onClick={() => answer(i)}
                         disabled={reveal}
-                        className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 ${
+                        onMouseEnter={(e) => {
+                          if (reveal) return;
+                          const el = e.currentTarget;
+                          el.style.borderColor = `${optionThemeColor}80`;
+                          el.style.backgroundColor = "rgba(255,255,255,0.08)";
+                          el.style.boxShadow = `0 4px 20px -2px ${optionThemeGlow}`;
+                          el.style.transform = "translateY(-2px)";
+                        }}
+                        onMouseLeave={(e) => {
+                          const el = e.currentTarget;
+                          el.style.borderColor = "";
+                          el.style.backgroundColor = "";
+                          el.style.boxShadow = "";
+                          el.style.transform = "";
+                        }}
+                        onFocus={(e) => {
+                          if (reveal) return;
+                          const el = e.currentTarget;
+                          el.style.borderColor = `${optionThemeColor}80`;
+                          el.style.boxShadow = `0 0 0 2px ${optionThemeColor}55`;
+                        }}
+                        onBlur={(e) => {
+                          const el = e.currentTarget;
+                          el.style.borderColor = "";
+                          el.style.boxShadow = "";
+                        }}
+                        className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 focus-visible:outline-none ${
                           reveal && isAnswer
                             ? "border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
                             : reveal && isPicked && !isAnswer
                               ? "border-rose-400/50 bg-rose-500/15 shadow-[0_0_16px_rgba(239,68,68,0.15)]"
                               : reveal
                                 ? "border-white/[0.05] bg-white/[0.02] opacity-50"
-                                : "border-white/[0.09] bg-white/[0.04] hover:border-[#8B5CF6]/50 hover:bg-white/[0.08] hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(139,92,246,0.15)]"
+                                : "border-white/[0.09] bg-white/[0.04]"
                         }`}
                       >
                         {/* Letter badge */}

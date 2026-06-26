@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
+import { PlanetEnvironment, type PlanetSubjectId } from "@/components/PlanetEnvironment";
 
 // ─── Subject identity system ─────────────────────────────────────────────────
 // Each subject has a fully unique visual identity: palette, art, atmosphere,
@@ -392,13 +393,16 @@ export function SubjectWorldBanner({ subjectId }: { subjectId: SubjectPlanetId }
 export function AcademyPageShell({
   children,
   className = "max-w-7xl",
+  subjectId,
 }: {
   children: ReactNode;
   className?: string;
+  /** When set, the page keeps that subject's planet atmosphere instead of the generic backdrop. */
+  subjectId?: PlanetSubjectId;
 }) {
   return (
     <section className="relative isolate min-h-svh overflow-x-clip px-4 pb-[calc(var(--mobile-content-bottom)+1rem)] pt-7 text-white sm:px-8 sm:pt-10 md:py-14">
-      <AcademyBackdrop />
+      {subjectId ? <PlanetEnvironment subjectId={subjectId} /> : <AcademyBackdrop />}
       <div className={`relative z-10 mx-auto w-full ${className}`}>{children}</div>
     </section>
   );

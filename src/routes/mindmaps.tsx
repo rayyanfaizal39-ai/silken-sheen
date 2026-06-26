@@ -19,6 +19,7 @@ import {
 } from "@/content/registry";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
   AcademyHero,
   AcademyPageShell,
@@ -90,6 +91,16 @@ function MindMapsPage() {
     subject && activeChapterKey
       ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
       : undefined;
+  const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
+  const planetTheme = getPlanetTheme(subject);
+  const mindMapPalette = planetTheme
+    ? {
+        edgeStart: planetTheme.color,
+        edgeEnd: planetTheme.color,
+        accentBorder: `${planetTheme.color}99`,
+        accentGlow: `0 0 24px ${planetTheme.glow}`,
+      }
+    : undefined;
 
   useEffect(() => {
     setChapter(search.chapter ?? null);
@@ -151,7 +162,7 @@ function MindMapsPage() {
 
   if (subject && !hasSelectedForm && !activeChapterKey) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
           subjectId={subject}
           mode="mindmaps"
@@ -164,14 +175,14 @@ function MindMapsPage() {
 
   if (subject && (form === "Form 2" || form === "Form 3") && subjectChapters.length === 0 && !needsScienceLang) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormComingSoon subjectId={subject} form={form} onBack={backToForms} />
       </AcademyPageShell>
     );
   }
 
   return (
-    <AcademyPageShell>
+    <AcademyPageShell subjectId={planetSubjectId}>
       {!subject ? (
         <>
           <AcademyHero
@@ -232,6 +243,7 @@ function MindMapsPage() {
               data={activeChapter.mindMap.data}
               title={activeChapter.mindMap.title}
               storageKey={`mindmaps:${subject}:${form}:${activeChapterKey}`}
+              palette={mindMapPalette}
             />
           ) : (
             <MindMapComingSoon onBack={backToChapters} />

@@ -3524,6 +3524,10 @@
 .particle-float-2 { animation: particle-float-2 4.8s ease-in-out infinite 0.8s; }
 .particle-float-3 { animation: particle-float-3 6.2s ease-in-out infinite 1.6s; }
 
+/* ── Pause planet ambience while the browser tab is hidden ─────────────── */
+.planet-paused,
+.planet-paused * { animation-play-state: paused !important; }
+
 /* ── Science: electron orbit rings ──────────────────────────────────────── */
 @keyframes orbit-spin-cw  { to { transform: rotate(360deg);  } }
 @keyframes orbit-spin-ccw { to { transform: rotate(-360deg); } }
@@ -3650,7 +3654,9 @@
   .planet-art-sejarah::before,
   .planet-art-geo::before,
   .planet-art-english::before,
-  .planet-art-bm::before { animation: none !important; }
+  .planet-art-bm::before,
+  .world-scene-science::before,
+  .world-scene-science::after { animation: none !important; }
 }
 
 /* ── Explorer Chamber + collection animations ─────────────────────────── */

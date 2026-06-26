@@ -109,6 +109,7 @@ function NotesPage() {
       ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
       : undefined;
   const features = getChapterFeatures(activeChapter);
+  const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
 
   // Reading progress bar
   useEffect(() => {
@@ -172,7 +173,7 @@ function NotesPage() {
   // ── BM has its own hub page ───────────────────────────────────────────────
   if (subject && !hasSelectedForm && !activeChapterKey) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
           subjectId={subject}
           mode="notes"
@@ -218,7 +219,7 @@ function NotesPage() {
 
   if (subject && (form === "Form 2" || form === "Form 3") && subjectChapters.length === 0 && !needsScienceLang) {
     return (
-      <AcademyPageShell>
+      <AcademyPageShell subjectId={planetSubjectId}>
         <FormComingSoon
           subjectId={subject}
           form={form}
@@ -286,7 +287,7 @@ function NotesPage() {
   }
 
   return (
-    <AcademyPageShell>
+    <AcademyPageShell subjectId={planetSubjectId}>
       {/* Reading progress bar */}
       {subject && activeChapterKey && (
         <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">

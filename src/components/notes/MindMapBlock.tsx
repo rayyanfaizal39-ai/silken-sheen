@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GitFork, Network } from "lucide-react";
-import { MindMap, type MindNode } from "@/components/MindMap";
+import { MindMap, type MindNode, type MindMapPalette } from "@/components/MindMap";
 
 function readStoredOpen(key: string) {
   if (typeof window === "undefined") return false;
@@ -17,11 +17,13 @@ export function MindMapBlock({
   title,
   id,
   storageKey,
+  palette,
 }: {
   data: MindNode;
   title: string;
   id?: string;
   storageKey?: string;
+  palette?: MindMapPalette;
 }) {
   const stateKey = storageKey ?? `notes:mind-map:${id ?? title}`;
   const [isOpen, setIsOpen] = useState(() => readStoredOpen(stateKey));
@@ -90,7 +92,7 @@ export function MindMapBlock({
             Tap a node to expand • Pinch or scroll to zoom • Drag to pan • Use Prev/Next to step through
           </p>
         </div>
-        <MindMap data={data} height={640} />
+        <MindMap data={data} height={640} palette={palette} />
       </div>
     </div>
   );
