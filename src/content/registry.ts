@@ -2115,15 +2115,55 @@ function chapterNumberFromKey(chapterKey: string) {
   return match ? Number(match[0]) : Number.MAX_SAFE_INTEGER;
 }
 
+// Most subjects' flashcards/quizzes are authored as Flashcard[]/QuizQuestion[]
+// and mirrored onto the chapter row above, so chapter.flashcards/chapter.quiz is
+// a reliable "does content exist" signal. Math Form 1 is the one exception: its
+// flashcards/quizzes were authored as standalone category/objective banks inside
+// the flashcards/quizzes routes (MATH_FLASHCARD_BANKS / MATH_QUIZ_BANKS, keyed by
+// the same "Chapter N" chapterKey) and were never mirrored onto these rows. Without
+// this registration, readiness checks would report that content as missing even
+// though learners can open it, leaving the form/chapter marked "Coming Soon" and
+// disabled. Register any other externally-stored content here rather than
+// special-casing a subject in the UI layer.
+const EXTERNALLY_STORED_RESOURCES: Partial<
+  Record<ResourceType, Array<{ subjectId: string; form: ChapterContent["form"]; chapterKeys: string[] }>>
+> = {
+  flashcards: [
+    {
+      subjectId: "math",
+      form: "Form 1",
+      chapterKeys: Array.from({ length: 13 }, (_, i) => `Chapter ${i + 1}`),
+    },
+  ],
+  quiz: [
+    {
+      subjectId: "math",
+      form: "Form 1",
+      chapterKeys: Array.from({ length: 13 }, (_, i) => `Chapter ${i + 1}`),
+    },
+  ],
+};
+
+function hasExternallyStoredResource(chapter: ChapterContent, resourceType: ResourceType) {
+  return Boolean(
+    EXTERNALLY_STORED_RESOURCES[resourceType]?.some(
+      (entry) =>
+        entry.subjectId === chapter.subjectId &&
+        entry.form === chapter.form &&
+        entry.chapterKeys.includes(chapter.chapterKey),
+    ),
+  );
+}
+
 function chapterHasResourceContent(chapter: ChapterContent, resourceType: ResourceType) {
   if (resourceType === "notes") {
     return Boolean(chapter.notes || chapter.englishData || chapter.subtopics?.length);
   }
   if (resourceType === "quiz") {
-    return Boolean(chapter.quiz?.length);
+    return Boolean(chapter.quiz?.length) || hasExternallyStoredResource(chapter, "quiz");
   }
   if (resourceType === "flashcards") {
-    return Boolean(chapter.flashcards?.length);
+    return Boolean(chapter.flashcards?.length) || hasExternallyStoredResource(chapter, "flashcards");
   }
   return Boolean(chapter.mindMap);
 }

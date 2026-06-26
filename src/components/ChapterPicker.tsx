@@ -108,33 +108,34 @@ export function SubjectGrid({
 
 type LearningMode = "notes" | "mindmaps" | "quizzes" | "flashcards";
 
+// `badge`/`description` here are only the fallback shown when a form's content
+// isn't ready yet — actual readiness (and therefore the "Ready" badge, glow, and
+// clickability) is always computed from real content via `isReady` below, never
+// from a per-form default. Don't hardcode an "available"/"Ready" default per form;
+// that previously made Form 1 cards show "Ready" text even when isReady was false.
 const FORM_CARDS: Array<{
   form: Form;
   label: string;
   badge: string;
   description: string;
-  available: boolean;
 }> = [
   {
     form: "Form 1",
     label: "Form 1",
-    badge: "Ready",
-    description: "Open the available learning path.",
-    available: true,
+    badge: "Coming Soon",
+    description: "Content is currently being prepared.",
   },
   {
     form: "Form 2",
     label: "Form 2",
     badge: "Coming Soon",
     description: "Content is currently being prepared.",
-    available: false,
   },
   {
     form: "Form 3",
     label: "Form 3",
     badge: "Coming Soon",
     description: "Content is currently being prepared.",
-    available: false,
   },
 ];
 
