@@ -5,7 +5,6 @@ import {
   forms,
   quizzes,
   getItemChapterKey,
-  getSubjectChapters,
   type Difficulty,
   type Form,
   type QuizQuestion,
@@ -42,6 +41,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
@@ -6153,8 +6153,7 @@ function QuizzesPage() {
     subject &&
     (form === "Form 2" || form === "Form 3") &&
     ((!chapter && subjectChaptersForForm.length > 0) ||
-      (chapter &&
-        (pool.length > 0 || (subject === "sejarah" && form === "Form 2" && chapterMeta != null))))
+      (chapter && pool.length > 0))
   );
 
   const activeQuiz = shuffledPool ?? pool;
