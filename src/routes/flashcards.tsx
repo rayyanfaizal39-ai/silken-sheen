@@ -3029,6 +3029,17 @@ const MATH_FLASHCARD_BANKS: Partial<
   "Chapter 13": MATH_F1_C13_FLASHCARD_PAIRS,
 };
 
+// Math Form 1 flashcards aren't mirrored onto the content registry (they live
+// here as MATH_FLASHCARD_BANKS), so the registry can't report an exact count
+// for them. Compute the real total from the same bank the player itself reads
+// from, and hand it to FormGrid as an override (see formResourceCountOverride
+// on the <FormGrid mode="flashcards" /> call below).
+const MATH_FORM1_FLASHCARD_TOTAL = Object.values(MATH_FLASHCARD_BANKS).reduce(
+  (chapterSum, categories) =>
+    chapterSum + Object.values(categories ?? {}).reduce((sum, cards) => sum + (cards?.length ?? 0), 0),
+  0,
+);
+
 const MATH_FLASHCARD_CHAPTER_TITLES: Record<
   string,
   { bm: string; dlp: string; headerBm: string; headerDlp: string }
@@ -3845,6 +3856,9 @@ function FlashcardsPage() {
         <FormGrid
           subjectId={subject}
           mode="flashcards"
+          formResourceCountOverride={
+            subject === "math" ? { "Form 1": MATH_FORM1_FLASHCARD_TOTAL } : undefined
+          }
           onSelect={(selectedForm) => {
             setForm(selectedForm);
             setFormWasChosen(true);

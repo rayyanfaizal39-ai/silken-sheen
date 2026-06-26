@@ -6067,6 +6067,23 @@ const MATH_QUIZ_BANKS: Partial<
   },
 };
 
+// Math Form 1 quizzes aren't mirrored onto the content registry (they live
+// here as MATH_QUIZ_BANKS), so the registry can't report an exact count for
+// them. Compute the real total from the same bank the quiz player reads from,
+// and hand it to FormGrid as an override (see formResourceCountOverride on
+// the <FormGrid mode="quizzes" /> call below).
+const MATH_FORM1_QUIZ_TOTAL = Object.values(MATH_QUIZ_BANKS).reduce(
+  (chapterSum, objectives) =>
+    chapterSum +
+    Object.values(objectives ?? {}).reduce(
+      (objectiveSum, langs) =>
+        objectiveSum +
+        Object.values(langs ?? {}).reduce((sum, questions) => sum + (questions?.length ?? 0), 0),
+      0,
+    ),
+  0,
+);
+
 interface ShuffledQuestion {
   question: string;
   options: string[];
@@ -6584,6 +6601,9 @@ function QuizzesPage() {
         <FormGrid
           subjectId={subject}
           mode="quizzes"
+          formResourceCountOverride={
+            subject === "math" ? { "Form 1": MATH_FORM1_QUIZ_TOTAL } : undefined
+          }
           onSelect={(selectedForm) => {
             setForm(selectedForm);
             setFormWasChosen(true);

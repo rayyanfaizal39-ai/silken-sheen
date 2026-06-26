@@ -2241,3 +2241,62 @@ export function getRegisteredSubjectChapters(
       };
     });
 }
+
+// ─── Per-form content stats ──────────────────────────────────────────────────
+// Bilingual subjects (science/math) register a separate bm + dlp row per
+// chapter; pass lang="bm" when counting chapters so each chapter is counted
+// once instead of twice. This mirrors the convention already used by
+// ChapterPicker's chapterCountFor().
+const BILINGUAL_SUBJECTS = new Set(["science", "math"]);
+
+export function getFormChapterCount(subjectId: string, form: ChapterContent["form"]): number {
+  const lang = BILINGUAL_SUBJECTS.has(subjectId) ? "bm" : undefined;
+  return getRegisteredSubjectChapters(subjectId, lang, form).length;
+}
+
+export type FormStat = {
+  form: ChapterContent["form"];
+  chapterCount: number;
+  notesReady: boolean;
+  notesChapters: number;
+  mindMapReady: boolean;
+  mindMapChapters: number;
+  flashcardsReady: boolean;
+  // Sums of chapter.flashcards/chapter.quiz across the registry. Accurate for
+  // every subject except Math Form 1, whose flashcards/quizzes live outside
+  // this registry (see EXTERNALLY_STORED_RESOURCES above) — *Ready reflects
+  // real availability there even though the raw count cannot. Callers that
+  // need an exact Math Form 1 number must supply it themselves from the data
+  // they already hold (see flashcards.tsx/quizzes.tsx).
+  flashcardCount: number;
+  quizReady: boolean;
+  quizCount: number;
+};
+
+const ALL_FORMS: ChapterContent["form"][] = ["Form 1", "Form 2", "Form 3"];
+
+export function getSubjectFormStats(subjectId: string): FormStat[] {
+  const lang = BILINGUAL_SUBJECTS.has(subjectId) ? "bm" : undefined;
+
+  return ALL_FORMS.map((form) => {
+    const registeredChapters = getRegisteredSubjectChapters(subjectId, lang, form);
+    const rawChapters = getChaptersForSubject(subjectId, undefined, form);
+
+    return {
+      form,
+      chapterCount: registeredChapters.length,
+      notesReady: hasFormResourceContent(subjectId, form, "notes", lang),
+      notesChapters: registeredChapters.filter((c) =>
+        hasResourceContent(subjectId, form, c.key, "notes", lang),
+      ).length,
+      mindMapReady: hasFormResourceContent(subjectId, form, "mindMap", lang),
+      mindMapChapters: registeredChapters.filter((c) =>
+        hasResourceContent(subjectId, form, c.key, "mindMap", lang),
+      ).length,
+      flashcardsReady: hasFormResourceContent(subjectId, form, "flashcards", lang),
+      flashcardCount: rawChapters.reduce((sum, c) => sum + (c.flashcards?.length ?? 0), 0),
+      quizReady: hasFormResourceContent(subjectId, form, "quiz", lang),
+      quizCount: rawChapters.reduce((sum, c) => sum + (c.quiz?.length ?? 0), 0),
+    };
+  });
+}

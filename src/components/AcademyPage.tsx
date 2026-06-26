@@ -14,6 +14,7 @@ import {
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { PlanetEnvironment, type PlanetSubjectId } from "@/components/PlanetEnvironment";
+import { getSubjectFormStats } from "@/content/registry";
 
 // ─── Subject identity system ─────────────────────────────────────────────────
 // Each subject has a fully unique visual identity: palette, art, atmosphere,
@@ -31,7 +32,6 @@ const subjectPlanetStyles = {
     accentTo: "#0EA5E9",
     ring: "rgba(56,189,248,0.25)",
     tagline: "Explore the universe of life & matter",
-    chapters: 9,
     worldName: "Science Laboratory Planet",
     worldEyebrow: "🧪 Lab in Space",
     cta: "Run Experiment",
@@ -50,7 +50,6 @@ const subjectPlanetStyles = {
     accentTo: "#F97316",
     ring: "rgba(251,146,60,0.25)",
     tagline: "Journey through Malaysia's rich past",
-    chapters: 8,
     worldName: "Time Traveller Realm",
     worldEyebrow: "🏛️ History Vault",
     cta: "Travel Through Time",
@@ -69,7 +68,6 @@ const subjectPlanetStyles = {
     accentTo: "#10B981",
     ring: "rgba(52,211,153,0.25)",
     tagline: "Discover landscapes and peoples of Earth",
-    chapters: 13,
     worldName: "Explorer Planet",
     worldEyebrow: "🌍 Field Expedition",
     cta: "Begin Expedition",
@@ -88,7 +86,6 @@ const subjectPlanetStyles = {
     accentTo: "#A855F7",
     ring: "rgba(192,132,252,0.25)",
     tagline: "Master the language of the world",
-    chapters: 4,
     worldName: "Language Universe",
     worldEyebrow: "📖 Story Archive",
     cta: "Begin Your Story",
@@ -107,7 +104,6 @@ const subjectPlanetStyles = {
     accentTo: "#F59E0B",
     ring: "rgba(251,191,36,0.25)",
     tagline: "Solve problems with precision & logic",
-    chapters: 13,
     worldName: "Mathematics Galaxy",
     worldEyebrow: "🧮 Mission Control",
     cta: "Launch Mission",
@@ -126,7 +122,6 @@ const subjectPlanetStyles = {
     accentTo: "#EC4899",
     ring: "rgba(244,114,182,0.25)",
     tagline: "Kuasai bahasa dan kesusasteraan Melayu",
-    chapters: 1,
     worldName: "Nusantara Language Realm",
     worldEyebrow: "📝 Dewan Sastera",
     cta: "Mula Belajar",
@@ -181,6 +176,53 @@ function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; plan
   );
 }
 
+// ─── Form coverage pills — shown on every subject card so Form 1/2/3 read as
+// equal parts of the subject before it's even opened, instead of implying
+// the subject is just "Form 1 + N chapters". Chapter counts come straight
+// from the content registry (real per-form data, never a hardcoded number);
+// a form with zero registered chapters reads "Soon" rather than "0".
+function FormChapterPills({
+  subjectId,
+  planet,
+}: {
+  subjectId: string;
+  planet: (typeof subjectPlanetStyles)[SubjectPlanetId];
+}) {
+  const formStats = getSubjectFormStats(subjectId);
+  return (
+    <div className="mt-3">
+      <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">
+        Learning Journey · {formStats.length} Forms
+      </p>
+      <div className="flex items-stretch gap-1.5">
+        {formStats.map((stat) => {
+          const ready = stat.chapterCount > 0;
+          return (
+            <div
+              key={stat.form}
+              className="flex-1 rounded-lg border px-1.5 py-1.5 text-center"
+              style={{
+                borderColor: ready ? `${planet.accentFrom}30` : "rgba(255,255,255,0.06)",
+                background: ready ? `${planet.accentFrom}12` : "rgba(255,255,255,0.03)",
+              }}
+            >
+              <span className="block text-[9px] font-bold uppercase tracking-wide text-white/40">
+                {stat.form.replace("Form ", "F")}
+              </span>
+              <span
+                className="block text-xs font-bold"
+                style={{ color: ready ? planet.color : "rgba(255,255,255,0.35)" }}
+              >
+                {ready ? `${stat.chapterCount} Ch` : "Soon"}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ─── SubjectPlanetLink (used on Home, Subjects pages) ────────────────────────
 export function SubjectPlanetLink({
   subjectId,
@@ -213,19 +255,12 @@ export function SubjectPlanetLink({
 
       {/* Info section */}
       <div className="p-4 pt-3">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <h3 className="font-display text-lg font-bold leading-tight text-white">{planet.name}</h3>
-            <p className="mt-0.5 text-xs font-medium text-white/45">{planet.tagline}</p>
-          </div>
-          <div
-            className="shrink-0 rounded-xl px-2 py-1 text-center"
-            style={{ background: `${planet.accentFrom}18` }}
-          >
-            <span className="block text-sm font-bold" style={{ color: planet.color }}>{planet.chapters}</span>
-            <span className="block text-[9px] font-bold uppercase tracking-wide text-white/40">Ch</span>
-          </div>
+        <div>
+          <h3 className="font-display text-lg font-bold leading-tight text-white">{planet.name}</h3>
+          <p className="mt-0.5 text-xs font-medium text-white/45">{planet.tagline}</p>
         </div>
+
+        <FormChapterPills subjectId={subjectId} planet={planet} />
 
         {/* CTA — subject-specific label */}
         <div
@@ -248,7 +283,6 @@ export function SubjectPlanetButton({
   subjectId,
   title,
   subtitle,
-  counts,
   ctaLabel,
   emphasis = "default",
   onClick,
@@ -256,14 +290,12 @@ export function SubjectPlanetButton({
   subjectId: string;
   title?: string;
   subtitle?: string;
-  counts?: { chapters: number; flashcards: number; quizzes: number };
   ctaLabel?: string;
   emphasis?: "default" | "learning";
   onClick: () => void;
 }) {
   const planet = subjectPlanetStyles[subjectId as SubjectPlanetId] ?? subjectPlanetStyles.science;
   const pid = subjectId as SubjectPlanetId;
-  const contentTotal = (counts?.flashcards ?? 0) + (counts?.quizzes ?? 0);
 
   return (
     <button
@@ -293,23 +325,7 @@ export function SubjectPlanetButton({
           </div>
         </div>
 
-        {counts && (
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            {[
-              ["Chapters", counts.chapters],
-              ["Cards & Qs", contentTotal],
-            ].map(([label, value]) => (
-              <div
-                key={label as string}
-                className="rounded-xl border border-white/[0.06] px-3 py-2"
-                style={{ background: `${planet.accentFrom}10` }}
-              >
-                <span className="block text-base font-bold" style={{ color: planet.color }}>{value}</span>
-                <span className="block text-[10px] font-semibold uppercase tracking-wide text-white/40">{label}</span>
-              </div>
-            ))}
-          </div>
-        )}
+        <FormChapterPills subjectId={subjectId} planet={planet} />
 
         {ctaLabel && (
           <div

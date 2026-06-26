@@ -1,4 +1,4 @@
-import { subjects, flashcards, quizzes, type Form } from "@/data/content";
+import { subjects, type Form } from "@/data/content";
 import {
   Lock,
   ArrowLeft,
@@ -16,8 +16,10 @@ import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use
 import {
   getChapter,
   getRegisteredSubjectChapters as getSubjectChapters,
+  getSubjectFormStats,
   hasFormResourceContent,
   hasResourceContent,
+  type FormStat,
   type ResourceType,
 } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
@@ -35,21 +37,6 @@ const SUBJECT_COLORS: Record<string, { color: string; glow: string; from: string
 
 function getSubjectAccent(subjectId: string) {
   return SUBJECT_COLORS[subjectId] ?? SUBJECT_COLORS.science;
-}
-
-function chapterCountFor(subjectId: string) {
-  if (subjectId === "science" || subjectId === "math") {
-    return getSubjectChapters(subjectId, "bm").length;
-  }
-  return getSubjectChapters(subjectId).length;
-}
-
-function subjectCounts(subjectId: string) {
-  return {
-    chapters: chapterCountFor(subjectId),
-    flashcards: flashcards.filter((card) => card.subjectId === subjectId).length,
-    quizzes: quizzes.filter((quiz) => quiz.subjectId === subjectId).length,
-  };
 }
 
 function difficultyFor(index: number): { label: string; tone: string } {
@@ -94,7 +81,6 @@ export function SubjectGrid({
               subjectId={s.id}
               title={s.name}
               subtitle={s.id === "bm" ? "BM" : s.id === "math" ? "Matematik" : undefined}
-              counts={subjectCounts(s.id)}
               ctaLabel={mode === "flashcards" ? "Start Learning" : "Open Subject"}
               emphasis={mode === "flashcards" ? "learning" : "default"}
               onClick={() => onSelect(s.id)}
@@ -157,19 +143,49 @@ function hasCustomFormResourceContent(subjectId: string, form: Form, mode: Learn
   return subjectId === "bm" && mode === "notes" && (form === "Form 1" || form === "Form 2");
 }
 
+// Real per-form stat line shown under a Ready badge — never a generic
+// placeholder, so Form 1/2/3 always communicate their own real coverage
+// instead of implying the whole subject is one size. `override` lets a page
+// supply an exact count for content that lives outside the registry (e.g.
+// Math Form 1 flashcards/quizzes — see flashcards.tsx/quizzes.tsx). If a form
+// is ready but no chapter/item number is available (e.g. BM's notes hub,
+// which isn't backed by registry chapter rows), fall back to a plain
+// "Available" instead of a misleading zero.
+function formStatLabel(mode: LearningMode, stat: FormStat, isReady: boolean, override?: number): string {
+  if (!isReady) return "Coming Soon";
+
+  if (mode === "quizzes" || mode === "flashcards") {
+    const count = override ?? (mode === "quizzes" ? stat.quizCount : stat.flashcardCount);
+    if (count > 0) return `${count} ${mode === "quizzes" ? "Questions" : "Cards"}`;
+    return "✔ Available";
+  }
+
+  const chaptersWithResource = mode === "mindmaps" ? stat.mindMapChapters : stat.notesChapters;
+  if (chaptersWithResource > 0 && chaptersWithResource === stat.chapterCount) return "✔ Complete";
+  if (chaptersWithResource > 0) return `✔ ${chaptersWithResource}/${stat.chapterCount} Chapters`;
+  return "✔ Available";
+}
+
 export function FormGrid({
   subjectId,
   mode = "notes",
+  formResourceCountOverride,
   onSelect,
   onBack,
 }: {
   subjectId: string;
   mode?: LearningMode;
+  // Exact count for content stored outside the chapter registry (currently
+  // only Math Form 1 flashcards/quizzes need this — see flashcards.tsx /
+  // quizzes.tsx). Replaces the registry-derived count for that form, it does
+  // not add to it.
+  formResourceCountOverride?: Partial<Record<Form, number>>;
   onSelect: (form: Form) => void;
   onBack: () => void;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const accent = getSubjectAccent(subjectId);
+  const formStats = getSubjectFormStats(subjectId);
 
   return (
     <AcademyPanel>
@@ -191,9 +207,9 @@ export function FormGrid({
       </div>
 
       <AcademySectionHeader
-        eyebrow="Choose Form"
+        eyebrow="Learning Journey"
         title={`${subj?.name ?? "Subject"} ${modeLabel(mode)}`}
-        description="Select a form level to continue."
+        description="Form 1, Form 2 and Form 3 — select a form level to continue."
       />
 
       <div className="grid items-stretch gap-4 sm:grid-cols-3">
@@ -203,6 +219,10 @@ export function FormGrid({
             item.form,
             resourceTypeForMode(mode),
           ) || hasCustomFormResourceContent(subjectId, item.form, mode);
+          const stat = formStats.find((s) => s.form === item.form);
+          const statLabel = stat
+            ? formStatLabel(mode, stat, isReady, formResourceCountOverride?.[item.form])
+            : item.description;
           return (
             <button
               key={item.form}
@@ -247,7 +267,7 @@ export function FormGrid({
               </span>
               <h3 className="font-display text-xl font-bold text-white">{item.label}</h3>
               <p className="mt-2 text-sm leading-relaxed text-white/55">
-                {isReady ? "Open the available learning path." : item.description}
+                {isReady ? statLabel : item.description}
               </p>
             </button>
           );

@@ -39,6 +39,7 @@ import { CompanionImage, getCompanionDisplayName, useCompanionMessage } from "@/
 import { analyzeProgress } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
+import { getSubjectFormStats } from "@/content/registry";
 
 // ─── World portal definitions ─────────────────────────────────────────────────
 
@@ -50,7 +51,6 @@ const WORLD_PORTALS = [
     icon: "🧪",
     color: "#38BDF8",
     glow: "rgba(56,189,248,0.55)",
-    chapters: 9,
     ctaLabel: "Enter Lab",
     symbols: ["⚛", "🔬", "⚗", "🧫"],
   },
@@ -61,7 +61,6 @@ const WORLD_PORTALS = [
     icon: "🧮",
     color: "#FBBF24",
     glow: "rgba(251,191,36,0.55)",
-    chapters: 13,
     ctaLabel: "Launch Mission",
     symbols: ["π", "∑", "∞", "√"],
   },
@@ -72,7 +71,6 @@ const WORLD_PORTALS = [
     icon: "📖",
     color: "#C084FC",
     glow: "rgba(192,132,252,0.55)",
-    chapters: 4,
     ctaLabel: "Open the Book",
     symbols: ["A", "❝", "B", "Z"],
   },
@@ -83,7 +81,6 @@ const WORLD_PORTALS = [
     icon: "🌍",
     color: "#34D399",
     glow: "rgba(52,211,153,0.55)",
-    chapters: 13,
     ctaLabel: "Start Expedition",
     symbols: ["🧭", "N", "S", "E"],
   },
@@ -94,7 +91,6 @@ const WORLD_PORTALS = [
     icon: "🏛️",
     color: "#FB923C",
     glow: "rgba(251,146,60,0.55)",
-    chapters: 8,
     ctaLabel: "Enter the Era",
     symbols: ["⏳", "📜", "⚔", "🏛"],
   },
@@ -105,7 +101,6 @@ const WORLD_PORTALS = [
     icon: "📝",
     color: "#F472B6",
     glow: "rgba(244,114,182,0.55)",
-    chapters: 38,
     ctaLabel: "Masuk Dunia",
     symbols: ["ا", "بـم", "ث", "ج"],
   },
@@ -215,6 +210,7 @@ function WorldPortalCard({
   world: WorldPortal;
   isCurrentWorld: boolean;
 }) {
+  const formStats = getSubjectFormStats(world.id);
   return (
     <Link
       to="/notes"
@@ -263,18 +259,35 @@ function WorldPortalCard({
           {world.worldName}
         </h3>
 
-        {/* Chapter count + enter CTA */}
-        <div className="mt-3 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <div
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ background: world.color, opacity: 0.45 }}
-            />
-            <span className="text-[11px] font-bold text-white/50">
-              {world.chapters} chapter{(world.chapters as number) !== 1 ? "s" : ""}
-            </span>
-          </div>
+        {/* Form 1/2/3 coverage — real per-form chapter counts, so the card
+            never implies the subject is just one form deep */}
+        <div className="mt-3 flex items-stretch gap-1">
+          {formStats.map((stat) => {
+            const ready = stat.chapterCount > 0;
+            return (
+              <div
+                key={stat.form}
+                className="flex-1 rounded-md px-1 py-1 text-center"
+                style={{
+                  background: ready ? `${world.color}16` : "rgba(255,255,255,0.04)",
+                }}
+              >
+                <span
+                  className="block text-[9px] font-bold leading-tight"
+                  style={{ color: ready ? world.color : "rgba(255,255,255,0.35)" }}
+                >
+                  {stat.form.replace("Form ", "F")}
+                </span>
+                <span className="block text-[9px] font-semibold leading-tight text-white/50">
+                  {ready ? `${stat.chapterCount} Ch` : "Soon"}
+                </span>
+              </div>
+            );
+          })}
+        </div>
 
+        {/* Enter CTA */}
+        <div className="mt-2 flex items-center justify-end">
           <span
             className="flex translate-x-[-4px] items-center gap-1 text-[11px] font-bold opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
             style={{ color: world.color }}
