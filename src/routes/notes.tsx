@@ -32,7 +32,7 @@ import {
 } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
-import { BMForm2Kertas1Page } from "@/components/BMForm2Kertas1Page";
+import { BMForm2WorldPage } from "@/components/BMForm2WorldPage";
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -205,7 +205,7 @@ function NotesPage() {
 
   if (subject === "bm" && form === "Form 2" && !activeChapterKey) {
     return (
-      <BMForm2Kertas1Page
+      <BMForm2WorldPage
         onBack={() => {
           setChapter(null);
           void navigate({

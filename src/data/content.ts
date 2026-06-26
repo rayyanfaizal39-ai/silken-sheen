@@ -1,7 +1,59 @@
 import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-bm";
 import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
+import { mathF2C1QuizzesBM } from "@/content/form2/math/chapter-1/quizzes-bm";
+import { mathF2C1QuizzesDLP } from "@/content/form2/math/chapter-1/quizzes-dlp";
 import { scienceF2C1FlashcardsBM } from "@/content/form2/science/chapter-1/flashcards-bm";
 import { scienceF2C1FlashcardsDLP } from "@/content/form2/science/chapter-1/flashcards-dlp";
+import { mathF2C1FlashcardsBM } from "@/content/form2/math/chapter-1/flashcards-bm";
+import { mathF2C1FlashcardsDLP } from "@/content/form2/math/chapter-1/flashcards-dlp";
+import { mathF2C2QuizzesBM } from "@/content/form2/math/chapter-2/quizzes-bm";
+import { mathF2C2QuizzesDLP } from "@/content/form2/math/chapter-2/quizzes-dlp";
+import { mathF2C2FlashcardsBM } from "@/content/form2/math/chapter-2/flashcards-bm";
+import { mathF2C2FlashcardsDLP } from "@/content/form2/math/chapter-2/flashcards-dlp";
+import { mathF2C3QuizzesBM } from "@/content/form2/math/chapter-3/quizzes-bm";
+import { mathF2C3QuizzesDLP } from "@/content/form2/math/chapter-3/quizzes-dlp";
+import { mathF2C3FlashcardsBM } from "@/content/form2/math/chapter-3/flashcards-bm";
+import { mathF2C3FlashcardsDLP } from "@/content/form2/math/chapter-3/flashcards-dlp";
+import { mathF2C4QuizzesBM } from "@/content/form2/math/chapter-4/quizzes-bm";
+import { mathF2C4QuizzesDLP } from "@/content/form2/math/chapter-4/quizzes-dlp";
+import { mathF2C4FlashcardsBM } from "@/content/form2/math/chapter-4/flashcards-bm";
+import { mathF2C4FlashcardsDLP } from "@/content/form2/math/chapter-4/flashcards-dlp";
+import { mathF2C5QuizzesBM } from "@/content/form2/math/chapter-5/quizzes-bm";
+import { mathF2C5QuizzesDLP } from "@/content/form2/math/chapter-5/quizzes-dlp";
+import { mathF2C5FlashcardsBM } from "@/content/form2/math/chapter-5/flashcards-bm";
+import { mathF2C5FlashcardsDLP } from "@/content/form2/math/chapter-5/flashcards-dlp";
+import { mathF2C6QuizzesBM } from "@/content/form2/math/chapter-6/quizzes-bm";
+import { mathF2C6QuizzesDLP } from "@/content/form2/math/chapter-6/quizzes-dlp";
+import { mathF2C6FlashcardsBM } from "@/content/form2/math/chapter-6/flashcards-bm";
+import { mathF2C6FlashcardsDLP } from "@/content/form2/math/chapter-6/flashcards-dlp";
+import { mathF2C7QuizzesBM } from "@/content/form2/math/chapter-7/quizzes-bm";
+import { mathF2C7QuizzesDLP } from "@/content/form2/math/chapter-7/quizzes-dlp";
+import { mathF2C7FlashcardsBM } from "@/content/form2/math/chapter-7/flashcards-bm";
+import { mathF2C7FlashcardsDLP } from "@/content/form2/math/chapter-7/flashcards-dlp";
+import { mathF2C8QuizzesBM } from "@/content/form2/math/chapter-8/quizzes-bm";
+import { mathF2C8QuizzesDLP } from "@/content/form2/math/chapter-8/quizzes-dlp";
+import { mathF2C8FlashcardsBM } from "@/content/form2/math/chapter-8/flashcards-bm";
+import { mathF2C8FlashcardsDLP } from "@/content/form2/math/chapter-8/flashcards-dlp";
+import { mathF2C9QuizzesBM } from "@/content/form2/math/chapter-9/quizzes-bm";
+import { mathF2C9QuizzesDLP } from "@/content/form2/math/chapter-9/quizzes-dlp";
+import { mathF2C9FlashcardsBM } from "@/content/form2/math/chapter-9/flashcards-bm";
+import { mathF2C9FlashcardsDLP } from "@/content/form2/math/chapter-9/flashcards-dlp";
+import { mathF2C10QuizzesBM } from "@/content/form2/math/chapter-10/quizzes-bm";
+import { mathF2C10QuizzesDLP } from "@/content/form2/math/chapter-10/quizzes-dlp";
+import { mathF2C10FlashcardsBM } from "@/content/form2/math/chapter-10/flashcards-bm";
+import { mathF2C10FlashcardsDLP } from "@/content/form2/math/chapter-10/flashcards-dlp";
+import { mathF2C11QuizzesBM } from "@/content/form2/math/chapter-11/quizzes-bm";
+import { mathF2C11QuizzesDLP } from "@/content/form2/math/chapter-11/quizzes-dlp";
+import { mathF2C11FlashcardsBM } from "@/content/form2/math/chapter-11/flashcards-bm";
+import { mathF2C11FlashcardsDLP } from "@/content/form2/math/chapter-11/flashcards-dlp";
+import { mathF2C12QuizzesBM } from "@/content/form2/math/chapter-12/quizzes-bm";
+import { mathF2C12QuizzesDLP } from "@/content/form2/math/chapter-12/quizzes-dlp";
+import { mathF2C12FlashcardsBM } from "@/content/form2/math/chapter-12/flashcards-bm";
+import { mathF2C12FlashcardsDLP } from "@/content/form2/math/chapter-12/flashcards-dlp";
+import { mathF2C13QuizzesBM } from "@/content/form2/math/chapter-13/quizzes-bm";
+import { mathF2C13QuizzesDLP } from "@/content/form2/math/chapter-13/quizzes-dlp";
+import { mathF2C13FlashcardsBM } from "@/content/form2/math/chapter-13/flashcards-bm";
+import { mathF2C13FlashcardsDLP } from "@/content/form2/math/chapter-13/flashcards-dlp";
 import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
 import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
 import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
@@ -117,6 +169,22 @@ import { sejarahF2C9Flashcards } from "./sejarah-f2-c9-flashcards";
 import { sejarahF2C9Quizzes } from "./sejarah-f2-c9-quizzes";
 import { sejarahF2C10Flashcards } from "./sejarah-f2-c10-flashcards";
 import { sejarahF2C10Quizzes } from "./sejarah-f2-c10-quizzes";
+import { sejarahF3C1Quizzes } from "./sejarah-f3-c1-quizzes";
+import { sejarahF3C1Flashcards } from "./sejarah-f3-c1-flashcards";
+import { sejarahF3C2Quizzes } from "./sejarah-f3-c2-quizzes";
+import { sejarahF3C2Flashcards } from "./sejarah-f3-c2-flashcards";
+import { sejarahF3C3Quizzes } from "./sejarah-f3-c3-quizzes";
+import { sejarahF3C3Flashcards } from "./sejarah-f3-c3-flashcards";
+import { sejarahF3C4Quizzes } from "./sejarah-f3-c4-quizzes";
+import { sejarahF3C4Flashcards } from "./sejarah-f3-c4-flashcards";
+import { sejarahF3C5Quizzes } from "./sejarah-f3-c5-quizzes";
+import { sejarahF3C5Flashcards } from "./sejarah-f3-c5-flashcards";
+import { sejarahF3C6Quizzes } from "./sejarah-f3-c6-quizzes";
+import { sejarahF3C6Flashcards } from "./sejarah-f3-c6-flashcards";
+import { sejarahF3C7Quizzes } from "./sejarah-f3-c7-quizzes";
+import { sejarahF3C7Flashcards } from "./sejarah-f3-c7-flashcards";
+import { sejarahF3C8Quizzes } from "./sejarah-f3-c8-quizzes";
+import { sejarahF3C8Flashcards } from "./sejarah-f3-c8-flashcards";
 export const scienceF1C3NotesBM = _scienceF1C3NotesBM;
 export const scienceF1C3NotesDLP = _scienceF1C3NotesDLP;
 export const scienceF1C4NotesBM = _scienceF1C4NotesBM;
@@ -7084,6 +7152,14 @@ export const quizzes: QuizQuestion[] = [
   ...sejarahF2C9Quizzes,
   ...sejarahF2C10Quizzes,
 
+  ...sejarahF3C1Quizzes,
+  ...sejarahF3C2Quizzes,
+  ...sejarahF3C3Quizzes,
+  ...sejarahF3C4Quizzes,
+  ...sejarahF3C5Quizzes,
+  ...sejarahF3C6Quizzes,
+  ...sejarahF3C7Quizzes,
+  ...sejarahF3C8Quizzes,
   // Geografi form 1 Chapter 1 - Arah
   {
     id: "geo-f1-c1-q1",
@@ -14239,6 +14315,40 @@ export const quizzes: QuizQuestion[] = [
   },
   ...scienceF2C1QuizzesBM,
   ...scienceF2C1QuizzesDLP,
+  ...mathF2C1QuizzesBM,
+  ...mathF2C1QuizzesDLP,
+
+
+
+
+
+
+
+
+  ...mathF2C2QuizzesBM,
+  ...mathF2C2QuizzesDLP,
+  ...mathF2C3QuizzesBM,
+  ...mathF2C3QuizzesDLP,
+  ...mathF2C4QuizzesBM,
+  ...mathF2C4QuizzesDLP,
+  ...mathF2C5QuizzesBM,
+  ...mathF2C5QuizzesDLP,
+  ...mathF2C6QuizzesBM,
+  ...mathF2C6QuizzesDLP,
+  ...mathF2C7QuizzesBM,
+  ...mathF2C7QuizzesDLP,
+  ...mathF2C8QuizzesBM,
+  ...mathF2C8QuizzesDLP,
+  ...mathF2C9QuizzesBM,
+  ...mathF2C9QuizzesDLP,
+  ...mathF2C10QuizzesBM,
+  ...mathF2C10QuizzesDLP,
+  ...mathF2C11QuizzesBM,
+  ...mathF2C11QuizzesDLP,
+  ...mathF2C12QuizzesBM,
+  ...mathF2C12QuizzesDLP,
+  ...mathF2C13QuizzesBM,
+  ...mathF2C13QuizzesDLP,
   ...scienceF2C2QuizzesBM,
   ...scienceF2C2QuizzesDLP,
   ...scienceF2C3QuizzesBM,
@@ -20065,6 +20175,14 @@ export const flashcards: Flashcard[] = [
   ...sejarahF2C9Flashcards,
   ...sejarahF2C10Flashcards,
 
+  ...sejarahF3C1Flashcards,
+  ...sejarahF3C2Flashcards,
+  ...sejarahF3C3Flashcards,
+  ...sejarahF3C4Flashcards,
+  ...sejarahF3C5Flashcards,
+  ...sejarahF3C6Flashcards,
+  ...sejarahF3C7Flashcards,
+  ...sejarahF3C8Flashcards,
   // Sejarah Form 1 Chapter 1 - Mengenali Sejarah
   {
     id: "sej-f1-c1-fc1",
@@ -30443,6 +30561,40 @@ export const flashcards: Flashcard[] = [
   },
   ...scienceF2C1FlashcardsBM,
   ...scienceF2C1FlashcardsDLP,
+  ...mathF2C1FlashcardsBM,
+  ...mathF2C1FlashcardsDLP,
+
+
+
+
+
+
+
+
+  ...mathF2C2FlashcardsBM,
+  ...mathF2C2FlashcardsDLP,
+  ...mathF2C3FlashcardsBM,
+  ...mathF2C3FlashcardsDLP,
+  ...mathF2C4FlashcardsBM,
+  ...mathF2C4FlashcardsDLP,
+  ...mathF2C5FlashcardsBM,
+  ...mathF2C5FlashcardsDLP,
+  ...mathF2C6FlashcardsBM,
+  ...mathF2C6FlashcardsDLP,
+  ...mathF2C7FlashcardsBM,
+  ...mathF2C7FlashcardsDLP,
+  ...mathF2C8FlashcardsBM,
+  ...mathF2C8FlashcardsDLP,
+  ...mathF2C9FlashcardsBM,
+  ...mathF2C9FlashcardsDLP,
+  ...mathF2C10FlashcardsBM,
+  ...mathF2C10FlashcardsDLP,
+  ...mathF2C11FlashcardsBM,
+  ...mathF2C11FlashcardsDLP,
+  ...mathF2C12FlashcardsBM,
+  ...mathF2C12FlashcardsDLP,
+  ...mathF2C13FlashcardsBM,
+  ...mathF2C13FlashcardsDLP,
   ...scienceF2C2FlashcardsBM,
   ...scienceF2C2FlashcardsDLP,
   ...scienceF2C3FlashcardsBM,

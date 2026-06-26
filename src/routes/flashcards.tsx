@@ -5,7 +5,6 @@ import {
   forms,
   flashcards,
   getItemChapterKey,
-  getSubjectChapters,
   type Form,
 } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
@@ -34,6 +33,7 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import {
@@ -3561,9 +3561,7 @@ function FlashcardsPage() {
     subject &&
     (form === "Form 2" || form === "Form 3") &&
     ((!chapter && subjectChaptersForForm.length > 0) ||
-      (chapter &&
-        (rawPool.length > 0 ||
-          (subject === "sejarah" && form === "Form 2" && chapterMeta != null))))
+      (chapter && rawPool.length > 0))
   );
 
   const shouldSplitFlashcards = rawPool.length === FLASHCARD_SPLIT_SIZE;

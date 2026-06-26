@@ -70,6 +70,22 @@ import { sejarahF2C6MindMap } from "@/content/form2/sejarah/chapter-6/mindmap";
 import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
 // Geografi F1 mind maps
+import { sejarahF3C1Notes } from "@/content/form3/sejarah/chapter-1/notes";
+import { sejarahF3C1MindMap } from "@/content/form3/sejarah/chapter-1/mindmap";
+import { sejarahF3C2Notes } from "@/content/form3/sejarah/chapter-2/notes";
+import { sejarahF3C2MindMap } from "@/content/form3/sejarah/chapter-2/mindmap";
+import { sejarahF3C3Notes } from "@/content/form3/sejarah/chapter-3/notes";
+import { sejarahF3C3MindMap } from "@/content/form3/sejarah/chapter-3/mindmap";
+import { sejarahF3C4Notes } from "@/content/form3/sejarah/chapter-4/notes";
+import { sejarahF3C4MindMap } from "@/content/form3/sejarah/chapter-4/mindmap";
+import { sejarahF3C5Notes } from "@/content/form3/sejarah/chapter-5/notes";
+import { sejarahF3C5MindMap } from "@/content/form3/sejarah/chapter-5/mindmap";
+import { sejarahF3C6Notes } from "@/content/form3/sejarah/chapter-6/notes";
+import { sejarahF3C6MindMap } from "@/content/form3/sejarah/chapter-6/mindmap";
+import { sejarahF3C7Notes } from "@/content/form3/sejarah/chapter-7/notes";
+import { sejarahF3C7MindMap } from "@/content/form3/sejarah/chapter-7/mindmap";
+import { sejarahF3C8Notes } from "@/content/form3/sejarah/chapter-8/notes";
+import { sejarahF3C8MindMap } from "@/content/form3/sejarah/chapter-8/mindmap";
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
 import { geoF1C2MindMap } from "@/content/form1/geography/chapter-2/mindmap";
 import { geoF1C3MindMap } from "@/content/form1/geography/chapter-3/mindmap";
@@ -279,6 +295,10 @@ import { mathF2C1NotesBM } from "@/content/form2/math/chapter-1/notes-bm";
 import { mathF2C1NotesDLP } from "@/content/form2/math/chapter-1/notes-dlp";
 import { mathF2C1MindMapBM } from "@/content/form2/math/chapter-1/mindmap-bm";
 import { mathF2C1MindMapDLP } from "@/content/form2/math/chapter-1/mindmap-dlp";
+import { mathF2C1QuizzesBM } from "@/content/form2/math/chapter-1/quizzes-bm";
+import { mathF2C1QuizzesDLP } from "@/content/form2/math/chapter-1/quizzes-dlp";
+import { mathF2C1FlashcardsBM } from "@/content/form2/math/chapter-1/flashcards-bm";
+import { mathF2C1FlashcardsDLP } from "@/content/form2/math/chapter-1/flashcards-dlp";
 import { mathF2C2NotesBM } from "@/content/form2/math/chapter-2/notes-bm";
 import { mathF2C2NotesDLP } from "@/content/form2/math/chapter-2/notes-dlp";
 import { mathF2C2MindMapBM } from "@/content/form2/math/chapter-2/mindmap-bm";
@@ -319,6 +339,65 @@ import { mathF2C11NotesBM } from "@/content/form2/math/chapter-11/notes-bm";
 import { mathF2C11NotesDLP } from "@/content/form2/math/chapter-11/notes-dlp";
 import { mathF2C11MindMapBM } from "@/content/form2/math/chapter-11/mindmap-bm";
 import { mathF2C11MindMapDLP } from "@/content/form2/math/chapter-11/mindmap-dlp";
+
+
+import { mathF2C2QuizzesBM } from "@/content/form2/math/chapter-2/quizzes-bm";
+import { mathF2C2QuizzesDLP } from "@/content/form2/math/chapter-2/quizzes-dlp";
+import { mathF2C2FlashcardsBM } from "@/content/form2/math/chapter-2/flashcards-bm";
+import { mathF2C2FlashcardsDLP } from "@/content/form2/math/chapter-2/flashcards-dlp";
+import { mathF2C3QuizzesBM } from "@/content/form2/math/chapter-3/quizzes-bm";
+import { mathF2C3QuizzesDLP } from "@/content/form2/math/chapter-3/quizzes-dlp";
+import { mathF2C3FlashcardsBM } from "@/content/form2/math/chapter-3/flashcards-bm";
+import { mathF2C3FlashcardsDLP } from "@/content/form2/math/chapter-3/flashcards-dlp";
+import { mathF2C4QuizzesBM } from "@/content/form2/math/chapter-4/quizzes-bm";
+import { mathF2C4QuizzesDLP } from "@/content/form2/math/chapter-4/quizzes-dlp";
+import { mathF2C4FlashcardsBM } from "@/content/form2/math/chapter-4/flashcards-bm";
+import { mathF2C4FlashcardsDLP } from "@/content/form2/math/chapter-4/flashcards-dlp";
+import { mathF2C5QuizzesBM } from "@/content/form2/math/chapter-5/quizzes-bm";
+import { mathF2C5QuizzesDLP } from "@/content/form2/math/chapter-5/quizzes-dlp";
+import { mathF2C5FlashcardsBM } from "@/content/form2/math/chapter-5/flashcards-bm";
+import { mathF2C5FlashcardsDLP } from "@/content/form2/math/chapter-5/flashcards-dlp";
+import { mathF2C6QuizzesBM } from "@/content/form2/math/chapter-6/quizzes-bm";
+import { mathF2C6QuizzesDLP } from "@/content/form2/math/chapter-6/quizzes-dlp";
+import { mathF2C6FlashcardsBM } from "@/content/form2/math/chapter-6/flashcards-bm";
+import { mathF2C6FlashcardsDLP } from "@/content/form2/math/chapter-6/flashcards-dlp";
+import { mathF2C7QuizzesBM } from "@/content/form2/math/chapter-7/quizzes-bm";
+import { mathF2C7QuizzesDLP } from "@/content/form2/math/chapter-7/quizzes-dlp";
+import { mathF2C7FlashcardsBM } from "@/content/form2/math/chapter-7/flashcards-bm";
+import { mathF2C7FlashcardsDLP } from "@/content/form2/math/chapter-7/flashcards-dlp";
+import { mathF2C8QuizzesBM } from "@/content/form2/math/chapter-8/quizzes-bm";
+import { mathF2C8QuizzesDLP } from "@/content/form2/math/chapter-8/quizzes-dlp";
+import { mathF2C8FlashcardsBM } from "@/content/form2/math/chapter-8/flashcards-bm";
+import { mathF2C8FlashcardsDLP } from "@/content/form2/math/chapter-8/flashcards-dlp";
+import { mathF2C9QuizzesBM } from "@/content/form2/math/chapter-9/quizzes-bm";
+import { mathF2C9QuizzesDLP } from "@/content/form2/math/chapter-9/quizzes-dlp";
+import { mathF2C9FlashcardsBM } from "@/content/form2/math/chapter-9/flashcards-bm";
+import { mathF2C9FlashcardsDLP } from "@/content/form2/math/chapter-9/flashcards-dlp";
+import { mathF2C10QuizzesBM } from "@/content/form2/math/chapter-10/quizzes-bm";
+import { mathF2C10QuizzesDLP } from "@/content/form2/math/chapter-10/quizzes-dlp";
+import { mathF2C10FlashcardsBM } from "@/content/form2/math/chapter-10/flashcards-bm";
+import { mathF2C10FlashcardsDLP } from "@/content/form2/math/chapter-10/flashcards-dlp";
+import { mathF2C11QuizzesBM } from "@/content/form2/math/chapter-11/quizzes-bm";
+import { mathF2C11QuizzesDLP } from "@/content/form2/math/chapter-11/quizzes-dlp";
+import { mathF2C11FlashcardsBM } from "@/content/form2/math/chapter-11/flashcards-bm";
+import { mathF2C11FlashcardsDLP } from "@/content/form2/math/chapter-11/flashcards-dlp";
+import { mathF2C12QuizzesBM } from "@/content/form2/math/chapter-12/quizzes-bm";
+import { mathF2C12QuizzesDLP } from "@/content/form2/math/chapter-12/quizzes-dlp";
+import { mathF2C12FlashcardsBM } from "@/content/form2/math/chapter-12/flashcards-bm";
+import { mathF2C12FlashcardsDLP } from "@/content/form2/math/chapter-12/flashcards-dlp";
+import { mathF2C12NotesBM } from "@/content/form2/math/chapter-12/notes-bm";
+import { mathF2C12NotesDLP } from "@/content/form2/math/chapter-12/notes-dlp";
+import { mathF2C12MindMapBM } from "@/content/form2/math/chapter-12/mindmap-bm";
+import { mathF2C12MindMapDLP } from "@/content/form2/math/chapter-12/mindmap-dlp";
+import { mathF2C13QuizzesBM } from "@/content/form2/math/chapter-13/quizzes-bm";
+import { mathF2C13QuizzesDLP } from "@/content/form2/math/chapter-13/quizzes-dlp";
+import { mathF2C13FlashcardsBM } from "@/content/form2/math/chapter-13/flashcards-bm";
+import { mathF2C13FlashcardsDLP } from "@/content/form2/math/chapter-13/flashcards-dlp";
+import { mathF2C13NotesBM } from "@/content/form2/math/chapter-13/notes-bm";
+import { mathF2C13NotesDLP } from "@/content/form2/math/chapter-13/notes-dlp";
+import { mathF2C13MindMapBM } from "@/content/form2/math/chapter-13/mindmap-bm";
+import { mathF2C13MindMapDLP } from "@/content/form2/math/chapter-13/mindmap-dlp";
+
 
 function englishFlashcardsFor(chapterKey: string) {
   return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey);
@@ -420,6 +499,20 @@ function sejarahF2QuizzesFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
   return allQuizzes.filter(
     (q) => q.subjectId === "sejarah" && q.form === "Form 2" && q.chapter === chapterKey,
+  );
+}
+
+function sejarahF3FlashcardsFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allFlashcards.filter(
+    (f) => f.subjectId === "sejarah" && f.form === "Form 3" && f.chapter === chapterKey,
+  );
+}
+
+function sejarahF3QuizzesFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allQuizzes.filter(
+    (q) => q.subjectId === "sejarah" && q.form === "Form 3" && q.chapter === chapterKey,
   );
 }
 
@@ -571,6 +664,96 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Sarawak dan Sabah",
     notes: sejarahF2C10Notes,
+  },
+
+  // Sejarah Form 3
+  {
+    id: "sejarah-f3-c1",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 1",
+    title: "Kedatangan Kuasa Barat",
+    notes: sejarahF3C1Notes,
+    mindMap: { data: sejarahF3C1MindMap, title: "Kedatangan Kuasa Barat" },
+    flashcards: sejarahF3FlashcardsFor(1),
+    quiz: sejarahF3QuizzesFor(1),
+  },
+  {
+    id: "sejarah-f3-c2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 2",
+    title: "Pentadbiran Negeri-negeri Selat",
+    notes: sejarahF3C2Notes,
+    mindMap: { data: sejarahF3C2MindMap, title: "Pentadbiran Negeri-negeri Selat" },
+    flashcards: sejarahF3FlashcardsFor(2),
+    quiz: sejarahF3QuizzesFor(2),
+  },
+  {
+    id: "sejarah-f3-c3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 3",
+    title: "Pentadbiran Negeri-negeri Melayu Bersekutu",
+    notes: sejarahF3C3Notes,
+    mindMap: { data: sejarahF3C3MindMap, title: "Pentadbiran Negeri-negeri Melayu Bersekutu" },
+    flashcards: sejarahF3FlashcardsFor(3),
+    quiz: sejarahF3QuizzesFor(3),
+  },
+  {
+    id: "sejarah-f3-c4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 4",
+    title: "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+    notes: sejarahF3C4Notes,
+    mindMap: { data: sejarahF3C4MindMap, title: "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu" },
+    flashcards: sejarahF3FlashcardsFor(4),
+    quiz: sejarahF3QuizzesFor(4),
+  },
+  {
+    id: "sejarah-f3-c5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 5",
+    title: "Pentadbiran Barat di Sarawak dan Sabah",
+    notes: sejarahF3C5Notes,
+    mindMap: { data: sejarahF3C5MindMap, title: "Pentadbiran Barat di Sarawak dan Sabah" },
+    flashcards: sejarahF3FlashcardsFor(5),
+    quiz: sejarahF3QuizzesFor(5),
+  },
+  {
+    id: "sejarah-f3-c6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 6",
+    title: "Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial",
+    notes: sejarahF3C6Notes,
+    mindMap: { data: sejarahF3C6MindMap, title: "Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial" },
+    flashcards: sejarahF3FlashcardsFor(6),
+    quiz: sejarahF3QuizzesFor(6),
+  },
+  {
+    id: "sejarah-f3-c7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 7",
+    title: "Penentangan Masyarakat Tempatan",
+    notes: sejarahF3C7Notes,
+    mindMap: { data: sejarahF3C7MindMap, title: "Penentangan Masyarakat Tempatan" },
+    flashcards: sejarahF3FlashcardsFor(7),
+    quiz: sejarahF3QuizzesFor(7),
+  },
+  {
+    id: "sejarah-f3-c8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapterKey: "Chapter 8",
+    title: "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat",
+    notes: sejarahF3C8Notes,
+    mindMap: { data: sejarahF3C8MindMap, title: "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat" },
+    flashcards: sejarahF3FlashcardsFor(8),
+    quiz: sejarahF3QuizzesFor(8),
   },
 
   // Geography Form 1
@@ -972,6 +1155,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C1MindMapBM, title: "Corak dan Jujukan" },
     notes: mathF2C1NotesBM,
+    flashcards: mathF2C1FlashcardsBM,
+    quiz: mathF2C1QuizzesBM,
   },
   {
     id: "math-f2-c1-dlp",
@@ -982,6 +1167,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C1MindMapDLP, title: "Patterns and Sequences" },
     notes: mathF2C1NotesDLP,
+    flashcards: mathF2C1FlashcardsDLP,
+    quiz: mathF2C1QuizzesDLP,
   },
   {
     id: "math-f2-c2-bm",
@@ -992,6 +1179,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C2MindMapBM, title: "Pemfaktoran dan Pecahan Algebra" },
     notes: mathF2C2NotesBM,
+    flashcards: mathF2C2FlashcardsBM,
+    quiz: mathF2C2QuizzesBM,
   },
   {
     id: "math-f2-c2-dlp",
@@ -1002,6 +1191,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C2MindMapDLP, title: "Factorisation and Algebraic Fractions" },
     notes: mathF2C2NotesDLP,
+    flashcards: mathF2C2FlashcardsDLP,
+    quiz: mathF2C2QuizzesDLP,
   },
   {
     id: "math-f2-c3-bm",
@@ -1012,6 +1203,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C3MindMapBM, title: "Rumus Algebra" },
     notes: mathF2C3NotesBM,
+    flashcards: mathF2C3FlashcardsBM,
+    quiz: mathF2C3QuizzesBM,
   },
   {
     id: "math-f2-c3-dlp",
@@ -1022,6 +1215,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C3MindMapDLP, title: "Algebraic Formulae" },
     notes: mathF2C3NotesDLP,
+    flashcards: mathF2C3FlashcardsDLP,
+    quiz: mathF2C3QuizzesDLP,
   },
   {
     id: "math-f2-c4-bm",
@@ -1032,6 +1227,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C4MindMapBM, title: "Poligon" },
     notes: mathF2C4NotesBM,
+    flashcards: mathF2C4FlashcardsBM,
+    quiz: mathF2C4QuizzesBM,
   },
   {
     id: "math-f2-c4-dlp",
@@ -1042,6 +1239,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C4MindMapDLP, title: "Polygons" },
     notes: mathF2C4NotesDLP,
+    flashcards: mathF2C4FlashcardsDLP,
+    quiz: mathF2C4QuizzesDLP,
   },
   {
     id: "math-f2-c5-bm",
@@ -1052,6 +1251,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C5MindMapBM, title: "Bulatan" },
     notes: mathF2C5NotesBM,
+    flashcards: mathF2C5FlashcardsBM,
+    quiz: mathF2C5QuizzesBM,
   },
   {
     id: "math-f2-c5-dlp",
@@ -1062,6 +1263,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C5MindMapDLP, title: "Circles" },
     notes: mathF2C5NotesDLP,
+    flashcards: mathF2C5FlashcardsDLP,
+    quiz: mathF2C5QuizzesDLP,
   },
   {
     id: "math-f2-c6-bm",
@@ -1072,6 +1275,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C6MindMapBM, title: "Bentuk Geometri Tiga Dimensi" },
     notes: mathF2C6NotesBM,
+    flashcards: mathF2C6FlashcardsBM,
+    quiz: mathF2C6QuizzesBM,
   },
   {
     id: "math-f2-c6-dlp",
@@ -1082,6 +1287,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C6MindMapDLP, title: "Three-Dimensional Geometrical Shapes" },
     notes: mathF2C6NotesDLP,
+    flashcards: mathF2C6FlashcardsDLP,
+    quiz: mathF2C6QuizzesDLP,
   },
   {
     id: "math-f2-c7-bm",
@@ -1092,6 +1299,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C7MindMapBM, title: "Koordinat" },
     notes: mathF2C7NotesBM,
+    flashcards: mathF2C7FlashcardsBM,
+    quiz: mathF2C7QuizzesBM,
   },
   {
     id: "math-f2-c7-dlp",
@@ -1102,6 +1311,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C7MindMapDLP, title: "Coordinates" },
     notes: mathF2C7NotesDLP,
+    flashcards: mathF2C7FlashcardsDLP,
+    quiz: mathF2C7QuizzesDLP,
   },
   {
     id: "math-f2-c8-bm",
@@ -1112,6 +1323,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C8MindMapBM, title: "Graf Fungsi" },
     notes: mathF2C8NotesBM,
+    flashcards: mathF2C8FlashcardsBM,
+    quiz: mathF2C8QuizzesBM,
   },
   {
     id: "math-f2-c8-dlp",
@@ -1122,6 +1335,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C8MindMapDLP, title: "Graphs of Functions" },
     notes: mathF2C8NotesDLP,
+    flashcards: mathF2C8FlashcardsDLP,
+    quiz: mathF2C8QuizzesDLP,
   },
   {
     id: "math-f2-c9-bm",
@@ -1132,6 +1347,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C9MindMapBM, title: "Laju dan Pecutan" },
     notes: mathF2C9NotesBM,
+    flashcards: mathF2C9FlashcardsBM,
+    quiz: mathF2C9QuizzesBM,
   },
   {
     id: "math-f2-c9-dlp",
@@ -1142,6 +1359,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C9MindMapDLP, title: "Speed and Acceleration" },
     notes: mathF2C9NotesDLP,
+    flashcards: mathF2C9FlashcardsDLP,
+    quiz: mathF2C9QuizzesDLP,
   },
   {
     id: "math-f2-c10-bm",
@@ -1152,6 +1371,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C10MindMapBM, title: "Kecerunan Garis Lurus" },
     notes: mathF2C10NotesBM,
+    flashcards: mathF2C10FlashcardsBM,
+    quiz: mathF2C10QuizzesBM,
   },
   {
     id: "math-f2-c10-dlp",
@@ -1162,6 +1383,8 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C10MindMapDLP, title: "Gradient of a Straight Line" },
     notes: mathF2C10NotesDLP,
+    flashcards: mathF2C10FlashcardsDLP,
+    quiz: mathF2C10QuizzesDLP,
   },
   {
     id: "math-f2-c11-bm",
@@ -1172,6 +1395,8 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C11MindMapBM, title: "Transformasi Isometri" },
     notes: mathF2C11NotesBM,
+    flashcards: mathF2C11FlashcardsBM,
+    quiz: mathF2C11QuizzesBM,
   },
   {
     id: "math-f2-c11-dlp",
@@ -1182,6 +1407,56 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C11MindMapDLP, title: "Isometric Transformations" },
     notes: mathF2C11NotesDLP,
+    flashcards: mathF2C11FlashcardsDLP,
+    quiz: mathF2C11QuizzesDLP,
+  },
+  {
+    id: "math-f2-c12-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 12",
+    title: "Sukatan Kecenderungan Memusat",
+    lang: "bm",
+    mindMap: { data: mathF2C12MindMapBM, title: "Sukatan Kecenderungan Memusat" },
+    notes: mathF2C12NotesBM,
+    flashcards: mathF2C12FlashcardsBM,
+    quiz: mathF2C12QuizzesBM,
+  },
+  {
+    id: "math-f2-c12-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 12",
+    title: "Measures of Central Tendencies",
+    lang: "dlp",
+    mindMap: { data: mathF2C12MindMapDLP, title: "Measures of Central Tendencies" },
+    notes: mathF2C12NotesDLP,
+    flashcards: mathF2C12FlashcardsDLP,
+    quiz: mathF2C12QuizzesDLP,
+  },
+  {
+    id: "math-f2-c13-bm",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 13",
+    title: "Kebarangkalian Mudah",
+    lang: "bm",
+    mindMap: { data: mathF2C13MindMapBM, title: "Kebarangkalian Mudah" },
+    notes: mathF2C13NotesBM,
+    flashcards: mathF2C13FlashcardsBM,
+    quiz: mathF2C13QuizzesBM,
+  },
+  {
+    id: "math-f2-c13-dlp",
+    subjectId: "math",
+    form: "Form 2",
+    chapterKey: "Chapter 13",
+    title: "Simple Probability",
+    lang: "dlp",
+    mindMap: { data: mathF2C13MindMapDLP, title: "Simple Probability" },
+    notes: mathF2C13NotesDLP,
+    flashcards: mathF2C13FlashcardsDLP,
+    quiz: mathF2C13QuizzesDLP,
   },
 
   // Science Form 1 (bilingual)
