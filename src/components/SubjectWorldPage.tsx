@@ -1,7 +1,12 @@
 import type { CSSProperties } from "react";
 import { ArrowLeft, CheckCircle2, Lock, Sparkles } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
-import { getChapter, getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
+import {
+  getChapter,
+  getRegisteredSubjectChapters as getSubjectChapters,
+  hasResourceContent,
+  type ResourceType,
+} from "@/content/registry";
 import { ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 
@@ -381,12 +386,19 @@ type MapProps = {
   subjectId: string;
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
   scienceLang?: "bm" | "dlp";
+  resourceType?: ResourceType;
   progress: ProgressMap;
   onSelect: (key: string) => void;
 };
 
-function canOpenChapter(chapter: ChapterEntry) {
-  return chapter.available || chapter.selectable === true;
+function canOpenChapter(
+  chapter: ChapterEntry,
+  subjectId: string,
+  form: "Form 1" | "Form 2" | "Form 3" | "All",
+  scienceLang: "bm" | "dlp" | undefined,
+  resourceType: ResourceType,
+) {
+  return hasResourceContent(subjectId, form, chapter.key, resourceType, scienceLang);
 }
 
 // ─── Path node (circular marker sitting on the path line) ────────────────────
@@ -465,7 +477,16 @@ function PathNode({
 // ─── Location card (compact info card extending from each path node) ──────────
 
 function LocationCard({
-  chapter, index, config, subjectId, form = "Form 1", scienceLang, progress, onSelect, align,
+  chapter,
+  index,
+  config,
+  subjectId,
+  form = "Form 1",
+  scienceLang,
+  resourceType = "notes",
+  progress,
+  onSelect,
+  align,
 }: {
   chapter: ChapterEntry;
   index: number;
@@ -473,6 +494,7 @@ function LocationCard({
   subjectId: string;
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
   scienceLang?: "bm" | "dlp";
+  resourceType?: ResourceType;
   progress: ProgressMap;
   onSelect: (key: string) => void;
   align: "left" | "right";
@@ -491,7 +513,7 @@ function LocationCard({
   const notesCount = chapterContent?.notes?.sections?.length ?? 0;
   const cardCount  = chapterContent?.flashcards?.length ?? 0;
   const quizCount  = chapterContent?.quiz?.length ?? 0;
-  const canOpen = canOpenChapter(chapter);
+  const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType);
 
   return (
     <button
@@ -523,7 +545,7 @@ function LocationCard({
     >
       <div className={`p-3 md:p-4 ${align === "right" ? "text-right" : "text-left"}`}>
         {/* World location name */}
-        {location && chapter.available && (
+        {location && canOpen && (
           <p className="mb-0.5 text-[9px] font-black uppercase tracking-[0.18em]"
             style={{ color: config.color, opacity: 0.6 }}>
             {location}
@@ -542,13 +564,13 @@ function LocationCard({
             ? "✓ Complete"
             : isStarted
             ? `${pct}% in progress`
-            : chapter.available
+            : canOpen
             ? "Not started"
             : "Available Soon"}
         </p>
 
         {/* Content chips */}
-        {chapter.available && (notesCount > 0 || cardCount > 0 || quizCount > 0) && (
+        {canOpen && (notesCount > 0 || cardCount > 0 || quizCount > 0) && (
           <div className={`mt-1.5 flex flex-wrap gap-1 ${align === "right" ? "justify-end" : "justify-start"}`}>
             {notesCount > 0 && <span className="chapter-chip">📄 {notesCount}</span>}
             {cardCount  > 0 && <span className="chapter-chip">🃏 {cardCount}</span>}
@@ -557,7 +579,7 @@ function LocationCard({
         )}
 
         {/* Mini progress fill */}
-        {chapter.available && isStarted && (
+        {canOpen && isStarted && (
           <div
             className={`mt-2 h-[2px] overflow-hidden rounded-full bg-white/[0.07] ${align === "right" ? "ml-auto" : ""}`}
             style={{ width: "72%" }}
@@ -587,7 +609,7 @@ const PATH_DASH: Record<string, string> = {
   bm:        "7px,  5px",
 };
 
-function VerticalPathMap({ chapters, config, subjectId, form, scienceLang, progress, onSelect }: MapProps) {
+function VerticalPathMap({ chapters, config, subjectId, form, scienceLang, resourceType, progress, onSelect }: MapProps) {
   const [dashOn, dashOff] = (PATH_DASH[config.id] ?? "5px, 9px").split(",").map((s) => s.trim());
   const pathLine = `repeating-linear-gradient(to bottom, ${config.color}60 0px, ${config.color}60 ${dashOn}, transparent ${dashOn}, transparent calc(${dashOn} + ${dashOff}))`;
 
@@ -615,7 +637,7 @@ function VerticalPathMap({ chapters, config, subjectId, form, scienceLang, progr
                 <PathNode chapter={chapter} index={i} config={config} pct={pct} isComplete={isComplete} isStarted={isStarted} />
                 <div className="flex-1">
                   <LocationCard chapter={chapter} index={i} config={config} subjectId={subjectId}
-                    form={form} scienceLang={scienceLang} progress={progress} onSelect={onSelect} align="left" />
+                    form={form} scienceLang={scienceLang} resourceType={resourceType} progress={progress} onSelect={onSelect} align="left" />
                 </div>
               </div>
 
@@ -625,7 +647,7 @@ function VerticalPathMap({ chapters, config, subjectId, form, scienceLang, progr
                   <>
                     <div className="w-[calc(50%-28px)] pr-5">
                       <LocationCard chapter={chapter} index={i} config={config} subjectId={subjectId}
-                        form={form} scienceLang={scienceLang} progress={progress} onSelect={onSelect} align="right" />
+                        form={form} scienceLang={scienceLang} resourceType={resourceType} progress={progress} onSelect={onSelect} align="right" />
                     </div>
                     <PathNode chapter={chapter} index={i} config={config} pct={pct} isComplete={isComplete} isStarted={isStarted} />
                     <div className="w-[calc(50%-28px)]" />
@@ -636,7 +658,7 @@ function VerticalPathMap({ chapters, config, subjectId, form, scienceLang, progr
                     <PathNode chapter={chapter} index={i} config={config} pct={pct} isComplete={isComplete} isStarted={isStarted} />
                     <div className="w-[calc(50%-28px)] pl-5">
                       <LocationCard chapter={chapter} index={i} config={config} subjectId={subjectId}
-                        form={form} scienceLang={scienceLang} progress={progress} onSelect={onSelect} align="left" />
+                        form={form} scienceLang={scienceLang} resourceType={resourceType} progress={progress} onSelect={onSelect} align="left" />
                     </div>
                   </>
                 )}
@@ -658,7 +680,7 @@ const SEJARAH_ERA_LABELS = [
   "Tamadun Dunia", "Zaman Klasik", "Zaman Pertengahan", "Tamadun Islam",
 ];
 
-function SejarahTimelineMap({ chapters, config, subjectId, scienceLang, progress, onSelect }: MapProps) {
+function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scienceLang, resourceType = "notes", progress, onSelect }: MapProps) {
   const NODE_W   = 164;
   const totalW   = Math.max(chapters.length * NODE_W, 640);
 
@@ -721,7 +743,7 @@ function SejarahTimelineMap({ chapters, config, subjectId, scienceLang, progress
         <div className="flex w-full">
           {chapters.map((c, i) => {
             const pct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
-            const canOpen = canOpenChapter(c);
+            const canOpen = canOpenChapter(c, subjectId, form, scienceLang, resourceType);
             return (
               <div key={`card-${c.key}`} className="animate-slide-up px-1.5 pt-3"
                 style={{ width: NODE_W, animationDelay: `${i * 50}ms` }}>
@@ -737,7 +759,7 @@ function SejarahTimelineMap({ chapters, config, subjectId, scienceLang, progress
                   onMouseEnter={(e) => { if (canOpen) (e.currentTarget as HTMLElement).style.borderColor = `${config.color}35`; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
                 >
-                  {LOCATIONS[subjectId]?.[c.key] && c.available && (
+                  {LOCATIONS[subjectId]?.[c.key] && canOpen && (
                     <p className="mb-0.5 text-[7.5px] font-black uppercase tracking-widest"
                       style={{ color: config.color, opacity: 0.55 }}>
                       {LOCATIONS[subjectId][c.key]}
@@ -746,7 +768,7 @@ function SejarahTimelineMap({ chapters, config, subjectId, scienceLang, progress
                   <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
                   <p className="mt-1 text-[9px] font-semibold"
                     style={{ color: pct >= 100 ? config.color : pct > 0 ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
-                    {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : c.available ? "Not started" : "Available Soon"}
+                    {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : canOpen ? "Not started" : "Available Soon"}
                   </p>
                 </button>
               </div>
@@ -776,6 +798,7 @@ function ChapterCard({
   subjectId,
   form = "Form 1",
   scienceLang,
+  resourceType = "notes",
   progress,
   onSelect,
 }: {
@@ -785,6 +808,7 @@ function ChapterCard({
   subjectId: string;
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
   scienceLang?: "bm" | "dlp";
+  resourceType?: ResourceType;
   progress: ProgressMap;
   onSelect: (key: string) => void;
 }) {
@@ -802,7 +826,7 @@ function ChapterCard({
   const notesCount  = chapterContent?.notes?.sections?.length ?? 0;
   const cardCount   = chapterContent?.flashcards?.length ?? 0;
   const quizCount   = chapterContent?.quiz?.length ?? 0;
-  const canOpen = canOpenChapter(chapter);
+  const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType ?? "notes");
 
   return (
     <button
@@ -917,6 +941,7 @@ export function SubjectWorldPage({
   form = "Form 1",
   scienceLang,
   isBilingualSubject,
+  resourceType = "notes",
   onSelectChapter,
   onBack,
   onChangeLang,
@@ -925,6 +950,7 @@ export function SubjectWorldPage({
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
   scienceLang?: "bm" | "dlp";
   isBilingualSubject?: boolean;
+  resourceType?: ResourceType;
   onSelectChapter: (key: string) => void;
   onBack: () => void;
   onChangeLang?: () => void;
@@ -938,7 +964,9 @@ export function SubjectWorldPage({
   ).length;
 
   // Average progress across all available chapters
-  const availableChapters = chapters.filter((c) => c.available);
+  const availableChapters = chapters.filter((c) =>
+    hasResourceContent(subjectId, form, c.key, resourceType, scienceLang),
+  );
   const overallPct = availableChapters.length > 0
     ? Math.round(
         availableChapters.reduce((sum, c) => sum + chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]), 0)
@@ -1087,6 +1115,7 @@ export function SubjectWorldPage({
             subjectId={subjectId}
             form={form}
             scienceLang={scienceLang}
+            resourceType={resourceType}
             progress={progress}
             onSelect={onSelectChapter}
           />

@@ -17,7 +17,12 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
-import { getChapter, getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
+import {
+  getChapter,
+  getRegisteredSubjectChapters as getSubjectChapters,
+  hasFormResourceContent,
+  hasResourceContent,
+} from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
@@ -149,6 +154,11 @@ function NotesPage() {
       })),
     [filtered],
   );
+  const hasNotesContent =
+    !!subject &&
+    !!activeChapterKey &&
+    (hasResourceContent(subject, form, activeChapterKey, "notes", activeScienceLang) ||
+      legacyNoteSections.length > 0);
   const visibleFeatures = {
     ...features,
     notes: features.notes || legacyNoteSections.length > 0,
@@ -217,7 +227,12 @@ function NotesPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3") && subjectChapters.length === 0 && !needsScienceLang) {
+  if (
+    subject &&
+    (form === "Form 2" || form === "Form 3") &&
+    !hasFormResourceContent(subject, form, "notes", activeScienceLang) &&
+    !needsScienceLang
+  ) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormComingSoon
@@ -483,7 +498,7 @@ function NotesPage() {
             }}
           />
         </>
-      ) : chapterMeta && !chapterMeta.available && !activeChapter?.notes ? (
+      ) : chapterMeta && !hasNotesContent ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={activeChapterKey}

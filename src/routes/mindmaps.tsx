@@ -16,6 +16,8 @@ import {
   getChapter,
   getChaptersForSubject,
   getRegisteredSubjectChapters as getSubjectChapters,
+  hasFormResourceContent,
+  hasResourceContent,
 } from "@/content/registry";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
@@ -173,7 +175,12 @@ function MindMapsPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3") && subjectChapters.length === 0 && !needsScienceLang) {
+  if (
+    subject &&
+    (form === "Form 2" || form === "Form 3") &&
+    !hasFormResourceContent(subject, form, "mindMap", activeScienceLang) &&
+    !needsScienceLang
+  ) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormComingSoon subjectId={subject} form={form} onBack={backToForms} />
@@ -220,7 +227,7 @@ function MindMapsPage() {
             onBack={backToForms}
           />
         </>
-      ) : chapterMeta && !chapterMeta.available ? (
+      ) : chapterMeta && !hasResourceContent(subject, form, activeChapterKey, "mindMap", activeScienceLang) ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={activeChapterKey}
@@ -304,12 +311,19 @@ function MindMapChapterGrid({
         <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {chapters.map((chapter, index) => {
             const chapterContent = getChapter(subjectId, chapter.key, scienceLang, form);
-            const hasMindMap = !!chapterContent?.mindMap;
+            const hasMindMap = hasResourceContent(
+              subjectId,
+              form,
+              chapter.key,
+              "mindMap",
+              scienceLang,
+            );
             return (
               <button
                 key={chapter.key}
                 type="button"
-                onClick={() => onSelect(chapter.key)}
+                onClick={() => hasMindMap && onSelect(chapter.key)}
+                disabled={!hasMindMap}
                 className="group relative flex min-h-[210px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.20)] backdrop-blur-2xl transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_24px_80px_rgba(14,165,233,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
                 style={{ animationDelay: `${index * 55}ms` }}
               >

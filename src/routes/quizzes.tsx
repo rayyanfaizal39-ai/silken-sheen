@@ -41,7 +41,11 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx, music } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
+import {
+  getRegisteredSubjectChapters as getSubjectChapters,
+  hasFormResourceContent,
+  hasResourceContent,
+} from "@/content/registry";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
@@ -6146,14 +6150,20 @@ function QuizzesPage() {
       return true;
     });
   }, [subject, chapter, form, diff, scienceLang, isBilingualSubject]);
+  const hasSelectedChapterQuiz =
+    !!subject &&
+    !!chapter &&
+    ((subject === "math" && form === "Form 1" && !!MATH_QUIZ_BANKS[chapter]) ||
+      hasResourceContent(subject, form, chapter, "quiz", scienceLang ?? undefined) ||
+      pool.length > 0);
 
   // Data-driven readiness check for Form 2/3 quizzes: a subject/form is ready
   // once real chapters/questions exist for it, rather than hardcoding one subject.
   const hasUpperFormQuizPath = !!(
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    ((!chapter && subjectChaptersForForm.length > 0) ||
-      (chapter && pool.length > 0))
+    ((!chapter && hasFormResourceContent(subject, form, "quiz", scienceLang ?? undefined)) ||
+      (chapter && hasSelectedChapterQuiz))
   );
 
   const activeQuiz = shuffledPool ?? pool;
@@ -6707,6 +6717,7 @@ function QuizzesPage() {
         form={form === "All" ? "Form 1" : form}
         scienceLang={scienceLang ?? undefined}
         isBilingualSubject={isBilingualSubject}
+        resourceType="quiz"
         onSelectChapter={(key) => setChapter(key)}
         onBack={() => setSubject(null)}
         onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
@@ -6852,6 +6863,7 @@ function QuizzesPage() {
           form={form === "All" ? "Form 1" : form}
           scienceLang={scienceLang ?? undefined}
           isBilingualSubject={isBilingualSubject}
+          resourceType="quiz"
           onSelectChapter={(key) => {
             setChapter(key);
             reset();
@@ -6877,7 +6889,7 @@ function QuizzesPage() {
             <ArrowLeft className="w-4 h-4" /> Back to chapters
           </button>
         </div>
-      ) : chapterMeta && !chapterMeta.available ? (
+      ) : chapterMeta && !hasSelectedChapterQuiz ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={chapter}

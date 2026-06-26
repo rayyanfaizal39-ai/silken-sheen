@@ -33,7 +33,11 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
+import {
+  getRegisteredSubjectChapters as getSubjectChapters,
+  hasFormResourceContent,
+  hasResourceContent,
+} from "@/content/registry";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
@@ -3527,7 +3531,6 @@ function FlashcardsPage() {
   const chapterMeta =
     subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
   const missingChapter = !!(subject && chapter && !chapterMeta && !isEnglishFlashcardDeck);
-
   const rawPool = useMemo(() => {
     if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
       return getEnglishFlashcardsForDeck(chapter);
@@ -3558,11 +3561,18 @@ function FlashcardsPage() {
     mathFlashcardLang,
     mathFlashcardCategory,
   ]);
+  const hasSelectedChapterFlashcards =
+    !!subject &&
+    !!chapter &&
+    (hasMathFlashcards ||
+      hasResourceContent(subject, form, chapter, "flashcards", scienceLang ?? undefined) ||
+      rawPool.length > 0);
   const hasUpperFormFlashcardPath = !!(
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    ((!chapter && subjectChaptersForForm.length > 0) ||
-      (chapter && rawPool.length > 0))
+    ((!chapter &&
+      hasFormResourceContent(subject, form, "flashcards", scienceLang ?? undefined)) ||
+      (chapter && hasSelectedChapterFlashcards))
   );
 
   const shouldSplitFlashcards = rawPool.length === FLASHCARD_SPLIT_SIZE;
@@ -3905,6 +3915,7 @@ function FlashcardsPage() {
         scienceLang={scienceLang ?? undefined}
         form={form}
         isBilingualSubject={isBilingualSubject}
+        resourceType="flashcards"
         onSelectChapter={(key) => setChapter(key)}
         onBack={() => setSubject(null)}
         onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
@@ -4040,6 +4051,7 @@ function FlashcardsPage() {
             subjectId={subject}
             scienceLang={scienceLang ?? undefined}
             form={form}
+            mode="flashcards"
             onSelect={(key) => {
               setChapter(key);
               setMathFlashcardLang(null);
@@ -4081,7 +4093,7 @@ function FlashcardsPage() {
             <ArrowLeft className="w-4 h-4" /> Back to chapters
           </button>
         </div>
-      ) : chapterMeta && !chapterMeta.available ? (
+      ) : chapterMeta && !hasSelectedChapterFlashcards ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={chapter}

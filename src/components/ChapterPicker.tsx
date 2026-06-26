@@ -13,7 +13,13 @@ import {
   Rocket,
 } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
-import { getChapter, getRegisteredSubjectChapters as getSubjectChapters } from "@/content/registry";
+import {
+  getChapter,
+  getRegisteredSubjectChapters as getSubjectChapters,
+  hasFormResourceContent,
+  hasResourceContent,
+  type ResourceType,
+} from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
 
@@ -139,6 +145,17 @@ function modeLabel(mode: LearningMode) {
   return "Notes";
 }
 
+function resourceTypeForMode(mode: LearningMode): ResourceType {
+  if (mode === "mindmaps") return "mindMap";
+  if (mode === "quizzes") return "quiz";
+  if (mode === "flashcards") return "flashcards";
+  return "notes";
+}
+
+function hasCustomFormResourceContent(subjectId: string, form: Form, mode: LearningMode) {
+  return subjectId === "bm" && mode === "notes" && (form === "Form 1" || form === "Form 2");
+}
+
 export function FormGrid({
   subjectId,
   mode = "notes",
@@ -180,15 +197,17 @@ export function FormGrid({
 
       <div className="grid items-stretch gap-4 sm:grid-cols-3">
         {FORM_CARDS.map((item, index) => {
-          const isReady =
-            item.available ||
-            ((subjectId === "sejarah" || subjectId === "geography" || subjectId === "science") && item.form === "Form 2") ||
-            (subjectId === "bm" && item.form === "Form 2");
+          const isReady = hasFormResourceContent(
+            subjectId,
+            item.form,
+            resourceTypeForMode(mode),
+          ) || hasCustomFormResourceContent(subjectId, item.form, mode);
           return (
             <button
               key={item.form}
               type="button"
-              onClick={() => onSelect(item.form)}
+              onClick={() => isReady && onSelect(item.form)}
+              disabled={!isReady}
               className="group relative flex min-h-[190px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.22)] transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-white/[0.16] hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
               style={{ animationDelay: `${index * 60}ms` }}
             >
@@ -287,6 +306,13 @@ export function ChapterGrid({
       ) : (
         <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {chapters.map((c, i) => {
+            const resourceAvailable = hasResourceContent(
+              subjectId,
+              form,
+              c.key,
+              resourceTypeForMode(mode),
+              scienceLang,
+            );
             const pct = chapterProgressPct(
               progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
             );
@@ -313,18 +339,19 @@ export function ChapterGrid({
               <button
                 type="button"
                 key={c.key}
-                onClick={() => onSelect(c.key, c.available)}
+                onClick={() => resourceAvailable && onSelect(c.key, resourceAvailable)}
+                disabled={!resourceAvailable}
                 className={`chapter-card group relative flex h-full min-h-[248px] flex-col overflow-hidden rounded-[1.75rem] border bg-[#0D1525]/80 p-0 text-left transition-all duration-300 animate-slide-up backdrop-blur-2xl ${
-                  c.available
+                  resourceAvailable
                     ? "border-white/[0.08] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                     : "border-white/[0.05] opacity-60"
                 }`}
                 style={{
                   animationDelay: `${i * 55}ms`,
-                  ...(c.available ? {} : {}),
+                  ...(resourceAvailable ? {} : {}),
                 }}
                 onMouseEnter={(e) => {
-                  if (c.available) {
+                  if (resourceAvailable) {
                     (e.currentTarget as HTMLElement).style.borderColor = `${accent.color}45`;
                     (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px -20px ${accent.glow}`;
                   }
@@ -338,7 +365,7 @@ export function ChapterGrid({
                 <div
                   className="h-1 w-full rounded-t-[inherit]"
                   style={{
-                    background: c.available
+                    background: resourceAvailable
                       ? `linear-gradient(90deg, ${accent.from}, ${accent.to})`
                       : "rgba(255,255,255,0.06)",
                     opacity: isComplete ? 1 : isStarted ? 0.7 : 0.3,
@@ -366,7 +393,7 @@ export function ChapterGrid({
                       </span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      {c.isNew && c.available && (
+                      {c.isNew && resourceAvailable && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-nova-yellow to-orange-400 px-2 py-0.5 text-[9px] font-bold text-black">
                           <Sparkles className="h-2.5 w-2.5" /> NEW
                         </span>
@@ -374,7 +401,7 @@ export function ChapterGrid({
                       {isComplete && (
                         <CheckCircle2 className="h-4 w-4" style={{ color: accent.color }} />
                       )}
-                      {!c.available && <Lock className="h-4 w-4 text-white/30" />}
+                      {!resourceAvailable && <Lock className="h-4 w-4 text-white/30" />}
                     </div>
                   </div>
 
@@ -384,7 +411,7 @@ export function ChapterGrid({
                   </h3>
 
                   {/* Feature chips */}
-                  {c.available && (
+                  {resourceAvailable && (
                     <div className="mt-2.5 flex flex-wrap gap-1.5">
                       <span className="chapter-chip">
                         <Clock className="h-3 w-3" /> {readMins} min
@@ -409,12 +436,12 @@ export function ChapterGrid({
                       )}
                     </div>
                   )}
-                  {!c.available && (
+                  {!resourceAvailable && (
                     <p className="mt-2 text-xs font-semibold text-amber-400/80">Coming Soon</p>
                   )}
 
                   {/* Progress bar */}
-                  {c.available && (
+                  {resourceAvailable && (
                     <div className="mt-auto pt-4">
                       <div className="mb-1.5 flex justify-between text-[10px] font-semibold">
                         <span

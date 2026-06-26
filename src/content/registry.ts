@@ -2108,9 +2108,24 @@ export type RegisteredSubjectChapter = {
   isNew?: boolean;
 };
 
+export type ResourceType = "notes" | "quiz" | "flashcards" | "mindMap";
+
 function chapterNumberFromKey(chapterKey: string) {
   const match = chapterKey.match(/\d+/);
   return match ? Number(match[0]) : Number.MAX_SAFE_INTEGER;
+}
+
+function chapterHasResourceContent(chapter: ChapterContent, resourceType: ResourceType) {
+  if (resourceType === "notes") {
+    return Boolean(chapter.notes || chapter.englishData || chapter.subtopics?.length);
+  }
+  if (resourceType === "quiz") {
+    return Boolean(chapter.quiz?.length);
+  }
+  if (resourceType === "flashcards") {
+    return Boolean(chapter.flashcards?.length);
+  }
+  return Boolean(chapter.mindMap);
 }
 
 function chapterHasContent(chapter: ChapterContent) {
@@ -2132,6 +2147,30 @@ function chapterLabel(chapter: ChapterContent, lang?: "bm" | "dlp") {
   }
   const prefix = lang === "bm" ? "Bab" : "Chapter";
   return `${prefix} ${chapterNumber}: ${chapter.title}`;
+}
+
+export function hasResourceContent(
+  subjectId: string,
+  form: ChapterContent["form"] | "All",
+  chapterKey: string,
+  resourceType: ResourceType,
+  lang?: "bm" | "dlp",
+) {
+  return getChaptersForSubject(subjectId, lang, form).some(
+    (chapter) =>
+      chapter.chapterKey === chapterKey && chapterHasResourceContent(chapter, resourceType),
+  );
+}
+
+export function hasFormResourceContent(
+  subjectId: string,
+  form: ChapterContent["form"] | "All",
+  resourceType: ResourceType,
+  lang?: "bm" | "dlp",
+) {
+  return getChaptersForSubject(subjectId, lang, form).some((chapter) =>
+    chapterHasResourceContent(chapter, resourceType),
+  );
 }
 
 export function getRegisteredSubjectChapters(
