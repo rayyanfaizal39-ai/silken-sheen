@@ -1,16 +1,16 @@
 import type { StructuredNotes } from "@/data/types";
 
-export const mathF2C11NotesBM: StructuredNotes = {
-  chapterSummary: "Bab 11 Transformasi Isometri merumuskan konsep utama, formula dan kaedah penyelesaian masalah untuk semua subtopik bab ini.",
+export const mathF2C13NotesBM: StructuredNotes = {
+  chapterSummary: "Bab 13 Kebarangkalian Mudah merumuskan konsep utama, formula dan kaedah penyelesaian masalah untuk semua subtopik bab ini.",
   quickRevision: [
-      "11.1 Pantulan: gunakan garis cermin dan jarak serenjang yang sama.",
-      "object and image are the same distance from mirror line.",
-      "11.2 Putaran: nyatakan pusat, sudut dan arah.",
-      "rotation needs centre, angle and direction.",
-      "11.3 Translasi: gerakkan setiap titik dengan vektor yang sama.",
-      "translation vector = (movement in x, movement in y).",
-      "11.4 Kekongruenan: semak bentuk sama dan saiz sama.",
-      "isometry preserves shape and size."
+      "13.1 Kebarangkalian Eksperimen: gunakan keputusan sebenar daripada percubaan.",
+      "experimental probability = event frequency / total trials.",
+      "13.2 Ruang Sampel dan Peristiwa: senaraikan semua keputusan tanpa ulangan.",
+      "S = set of all possible outcomes.",
+      "13.3 Kebarangkalian Teori: kira keputusan memihak dan jumlah keputusan.",
+      "P(A) = n(A) / n(S).",
+      "13.4 Peristiwa Pelengkap: tolak daripada 1.",
+      "P(A') = 1 - P(A)."
   ],
   sections: [
     {
@@ -19,28 +19,28 @@ export const mathF2C11NotesBM: StructuredNotes = {
         {
           content: "Pada akhir bab ini, murid sepatutnya boleh:",
           bulletPoints: [
-                    "Menguasai pantulan dan menggunakannya untuk menyelesaikan masalah.",
-                    "Menguasai putaran dan menggunakannya untuk menyelesaikan masalah.",
-                    "Menguasai translasi dan menggunakannya untuk menyelesaikan masalah.",
-                    "Menguasai kekongruenan dan menggunakannya untuk menyelesaikan masalah."
+                    "Menguasai kebarangkalian eksperimen dan menggunakannya untuk menyelesaikan masalah.",
+                    "Menguasai ruang sampel dan peristiwa dan menggunakannya untuk menyelesaikan masalah.",
+                    "Menguasai kebarangkalian teori dan menggunakannya untuk menyelesaikan masalah.",
+                    "Menguasai peristiwa pelengkap dan menggunakannya untuk menyelesaikan masalah."
           ],
         },
       ],
     },
     {
-      title: "11.1 Pantulan",
+      title: "13.1 Kebarangkalian Eksperimen",
       subsections: [
         {
           title: "Definisi",
-          content: "Pantulan menumpukan kemahiran untuk gunakan garis cermin dan jarak serenjang yang sama. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Kebarangkalian Eksperimen menumpukan kemahiran untuk gunakan keputusan sebenar daripada percubaan. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "object and image are the same distance from mirror line",
+          formula: "experimental probability = event frequency / total trials",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Pantulan.\\nPenyelesaian: reflection in x-axis maps (x, y) to (x, -y).\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Kebarangkalian Eksperimen.\\nPenyelesaian: 28 heads in 50 tosses gives 14/25.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -69,19 +69,19 @@ export const mathF2C11NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "11.2 Putaran",
+      title: "13.2 Ruang Sampel dan Peristiwa",
       subsections: [
         {
           title: "Definisi",
-          content: "Putaran menumpukan kemahiran untuk nyatakan pusat, sudut dan arah. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Ruang Sampel dan Peristiwa menumpukan kemahiran untuk senaraikan semua keputusan tanpa ulangan. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "rotation needs centre, angle and direction",
+          formula: "S = set of all possible outcomes",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Putaran.\\nPenyelesaian: 90° clockwise about O changes orientation but not size.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Ruang Sampel dan Peristiwa.\\nPenyelesaian: dice sample space is {1,2,3,4,5,6}.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -110,19 +110,19 @@ export const mathF2C11NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "11.3 Translasi",
+      title: "13.3 Kebarangkalian Teori",
       subsections: [
         {
           title: "Definisi",
-          content: "Translasi menumpukan kemahiran untuk gerakkan setiap titik dengan vektor yang sama. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Kebarangkalian Teori menumpukan kemahiran untuk kira keputusan memihak dan jumlah keputusan. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "translation vector = (movement in x, movement in y)",
+          formula: "P(A) = n(A) / n(S)",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Translasi.\\nPenyelesaian: vector (3, -2) moves 3 right and 2 down.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Kebarangkalian Teori.\\nPenyelesaian: even number on a dice has probability 3/6 = 1/2.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -151,19 +151,19 @@ export const mathF2C11NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "11.4 Kekongruenan",
+      title: "13.4 Peristiwa Pelengkap",
       subsections: [
         {
           title: "Definisi",
-          content: "Kekongruenan menumpukan kemahiran untuk semak bentuk sama dan saiz sama. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Peristiwa Pelengkap menumpukan kemahiran untuk tolak daripada 1. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "isometry preserves shape and size",
+          formula: "P(A') = 1 - P(A)",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Kekongruenan.\\nPenyelesaian: object and image are congruent after reflection, rotation or translation.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Peristiwa Pelengkap.\\nPenyelesaian: if P(win)=1/5, P(not win)=4/5.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -197,29 +197,29 @@ export const mathF2C11NotesBM: StructuredNotes = {
         {
           title: "Mesti Tahu",
           bulletPoints: [
-                    "11.1 Pantulan: gunakan garis cermin dan jarak serenjang yang sama.",
-                    "11.2 Putaran: nyatakan pusat, sudut dan arah.",
-                    "11.3 Translasi: gerakkan setiap titik dengan vektor yang sama.",
-                    "11.4 Kekongruenan: semak bentuk sama dan saiz sama."
+                    "13.1 Kebarangkalian Eksperimen: gunakan keputusan sebenar daripada percubaan.",
+                    "13.2 Ruang Sampel dan Peristiwa: senaraikan semua keputusan tanpa ulangan.",
+                    "13.3 Kebarangkalian Teori: kira keputusan memihak dan jumlah keputusan.",
+                    "13.4 Peristiwa Pelengkap: tolak daripada 1."
           ],
         },
         {
           title: "Formula Penting",
-          formula: "object and image are the same distance from mirror line\\nrotation needs centre, angle and direction\\ntranslation vector = (movement in x, movement in y)\\nisometry preserves shape and size",
+          formula: "experimental probability = event frequency / total trials\\nS = set of all possible outcomes\\nP(A) = n(A) / n(S)\\nP(A') = 1 - P(A)",
         },
       ],
     },
   ],
   keyExamFacts: [
-      "Pantulan: object and image are the same distance from mirror line.",
-      "Putaran: rotation needs centre, angle and direction.",
-      "Translasi: translation vector = (movement in x, movement in y).",
-      "Kekongruenan: isometry preserves shape and size."
+      "Kebarangkalian Eksperimen: experimental probability = event frequency / total trials.",
+      "Ruang Sampel dan Peristiwa: S = set of all possible outcomes.",
+      "Kebarangkalian Teori: P(A) = n(A) / n(S).",
+      "Peristiwa Pelengkap: P(A') = 1 - P(A)."
   ],
   keyTerms: [
-      "Pantulan",
-      "Putaran",
-      "Translasi",
-      "Kekongruenan"
+      "Kebarangkalian Eksperimen",
+      "Ruang Sampel dan Peristiwa",
+      "Kebarangkalian Teori",
+      "Peristiwa Pelengkap"
   ],
 };

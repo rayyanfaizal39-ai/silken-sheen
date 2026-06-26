@@ -1,16 +1,16 @@
 import type { StructuredNotes } from "@/data/types";
 
-export const mathF2C11NotesDLP: StructuredNotes = {
-  chapterSummary: "Chapter 11 Isometric Transformations summarises the key concepts, formulae and problem-solving methods for all subtopics in this chapter.",
+export const mathF2C12NotesDLP: StructuredNotes = {
+  chapterSummary: "Chapter 12 Measures of Central Tendencies summarises the key concepts, formulae and problem-solving methods for all subtopics in this chapter.",
   quickRevision: [
-      "11.1 Reflection: use a mirror line and equal perpendicular distances.",
-      "object and image are the same distance from mirror line.",
-      "11.2 Rotation: state centre, angle and direction.",
-      "rotation needs centre, angle and direction.",
-      "11.3 Translation: move every point by the same vector.",
-      "translation vector = (movement in x, movement in y).",
-      "11.4 Congruence: check same shape and same size.",
-      "isometry preserves shape and size."
+      "12.1 Mean: add all values before dividing.",
+      "mean = sum of data / number of data.",
+      "12.2 Median: arrange data first.",
+      "median = middle value after data is arranged.",
+      "12.3 Mode: count frequencies carefully.",
+      "mode = value with highest frequency.",
+      "12.4 Choosing a Suitable Measure: choose mean, median or mode based on context.",
+      "outliers affect mean strongly."
   ],
   sections: [
     {
@@ -19,28 +19,28 @@ export const mathF2C11NotesDLP: StructuredNotes = {
         {
           content: "By the end of this chapter, students should be able to:",
           bulletPoints: [
-                    "Master reflection and use it to solve problems.",
-                    "Master rotation and use it to solve problems.",
-                    "Master translation and use it to solve problems.",
-                    "Master congruence and use it to solve problems."
+                    "Master mean and use it to solve problems.",
+                    "Master median and use it to solve problems.",
+                    "Master mode and use it to solve problems.",
+                    "Master choosing a suitable measure and use it to solve problems."
           ],
         },
       ],
     },
     {
-      title: "11.1 Reflection",
+      title: "12.1 Mean",
       subsections: [
         {
           title: "Definition",
-          content: "Reflection focuses on the skill to use a mirror line and equal perpendicular distances. Use the concept together with the information given in the question.",
+          content: "Mean focuses on the skill to add all values before dividing. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "object and image are the same distance from mirror line",
+          formula: "mean = sum of data / number of data",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Reflection.\\nSolution: reflection in x-axis maps (x, y) to (x, -y).\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Mean.\\nSolution: 2, 4, 9 has mean 5.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -69,19 +69,19 @@ export const mathF2C11NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "11.2 Rotation",
+      title: "12.2 Median",
       subsections: [
         {
           title: "Definition",
-          content: "Rotation focuses on the skill to state centre, angle and direction. Use the concept together with the information given in the question.",
+          content: "Median focuses on the skill to arrange data first. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "rotation needs centre, angle and direction",
+          formula: "median = middle value after data is arranged",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Rotation.\\nSolution: 90° clockwise about O changes orientation but not size.\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Median.\\nSolution: 3, 5, 8 has median 5.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -110,19 +110,19 @@ export const mathF2C11NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "11.3 Translation",
+      title: "12.3 Mode",
       subsections: [
         {
           title: "Definition",
-          content: "Translation focuses on the skill to move every point by the same vector. Use the concept together with the information given in the question.",
+          content: "Mode focuses on the skill to count frequencies carefully. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "translation vector = (movement in x, movement in y)",
+          formula: "mode = value with highest frequency",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Translation.\\nSolution: vector (3, -2) moves 3 right and 2 down.\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Mode.\\nSolution: 2, 4, 4, 7 has mode 4.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -151,19 +151,19 @@ export const mathF2C11NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "11.4 Congruence",
+      title: "12.4 Choosing a Suitable Measure",
       subsections: [
         {
           title: "Definition",
-          content: "Congruence focuses on the skill to check same shape and same size. Use the concept together with the information given in the question.",
+          content: "Choosing a Suitable Measure focuses on the skill to choose mean, median or mode based on context. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "isometry preserves shape and size",
+          formula: "outliers affect mean strongly",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Congruence.\\nSolution: object and image are congruent after reflection, rotation or translation.\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Choosing a Suitable Measure.\\nSolution: median may be better when data has an extreme value.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -197,29 +197,29 @@ export const mathF2C11NotesDLP: StructuredNotes = {
         {
           title: "Must Know",
           bulletPoints: [
-                    "11.1 Reflection: use a mirror line and equal perpendicular distances.",
-                    "11.2 Rotation: state centre, angle and direction.",
-                    "11.3 Translation: move every point by the same vector.",
-                    "11.4 Congruence: check same shape and same size."
+                    "12.1 Mean: add all values before dividing.",
+                    "12.2 Median: arrange data first.",
+                    "12.3 Mode: count frequencies carefully.",
+                    "12.4 Choosing a Suitable Measure: choose mean, median or mode based on context."
           ],
         },
         {
           title: "Key Formula",
-          formula: "object and image are the same distance from mirror line\\nrotation needs centre, angle and direction\\ntranslation vector = (movement in x, movement in y)\\nisometry preserves shape and size",
+          formula: "mean = sum of data / number of data\\nmedian = middle value after data is arranged\\nmode = value with highest frequency\\noutliers affect mean strongly",
         },
       ],
     },
   ],
   keyExamFacts: [
-      "Reflection: object and image are the same distance from mirror line.",
-      "Rotation: rotation needs centre, angle and direction.",
-      "Translation: translation vector = (movement in x, movement in y).",
-      "Congruence: isometry preserves shape and size."
+      "Mean: mean = sum of data / number of data.",
+      "Median: median = middle value after data is arranged.",
+      "Mode: mode = value with highest frequency.",
+      "Choosing a Suitable Measure: outliers affect mean strongly."
   ],
   keyTerms: [
-      "Reflection",
-      "Rotation",
-      "Translation",
-      "Congruence"
+      "Mean",
+      "Median",
+      "Mode",
+      "Choosing a Suitable Measure"
   ],
 };

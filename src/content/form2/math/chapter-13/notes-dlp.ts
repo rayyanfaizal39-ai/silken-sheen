@@ -1,16 +1,16 @@
 import type { StructuredNotes } from "@/data/types";
 
-export const mathF2C11NotesDLP: StructuredNotes = {
-  chapterSummary: "Chapter 11 Isometric Transformations summarises the key concepts, formulae and problem-solving methods for all subtopics in this chapter.",
+export const mathF2C13NotesDLP: StructuredNotes = {
+  chapterSummary: "Chapter 13 Simple Probability summarises the key concepts, formulae and problem-solving methods for all subtopics in this chapter.",
   quickRevision: [
-      "11.1 Reflection: use a mirror line and equal perpendicular distances.",
-      "object and image are the same distance from mirror line.",
-      "11.2 Rotation: state centre, angle and direction.",
-      "rotation needs centre, angle and direction.",
-      "11.3 Translation: move every point by the same vector.",
-      "translation vector = (movement in x, movement in y).",
-      "11.4 Congruence: check same shape and same size.",
-      "isometry preserves shape and size."
+      "13.1 Experimental Probability: use actual results from trials.",
+      "experimental probability = event frequency / total trials.",
+      "13.2 Sample Space and Events: list all outcomes without repeats.",
+      "S = set of all possible outcomes.",
+      "13.3 Theoretical Probability: count favourable outcomes and total outcomes.",
+      "P(A) = n(A) / n(S).",
+      "13.4 Complement of an Event: subtract from 1.",
+      "P(A') = 1 - P(A)."
   ],
   sections: [
     {
@@ -19,28 +19,28 @@ export const mathF2C11NotesDLP: StructuredNotes = {
         {
           content: "By the end of this chapter, students should be able to:",
           bulletPoints: [
-                    "Master reflection and use it to solve problems.",
-                    "Master rotation and use it to solve problems.",
-                    "Master translation and use it to solve problems.",
-                    "Master congruence and use it to solve problems."
+                    "Master experimental probability and use it to solve problems.",
+                    "Master sample space and events and use it to solve problems.",
+                    "Master theoretical probability and use it to solve problems.",
+                    "Master complement of an event and use it to solve problems."
           ],
         },
       ],
     },
     {
-      title: "11.1 Reflection",
+      title: "13.1 Experimental Probability",
       subsections: [
         {
           title: "Definition",
-          content: "Reflection focuses on the skill to use a mirror line and equal perpendicular distances. Use the concept together with the information given in the question.",
+          content: "Experimental Probability focuses on the skill to use actual results from trials. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "object and image are the same distance from mirror line",
+          formula: "experimental probability = event frequency / total trials",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Reflection.\\nSolution: reflection in x-axis maps (x, y) to (x, -y).\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Experimental Probability.\\nSolution: 28 heads in 50 tosses gives 14/25.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -69,19 +69,19 @@ export const mathF2C11NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "11.2 Rotation",
+      title: "13.2 Sample Space and Events",
       subsections: [
         {
           title: "Definition",
-          content: "Rotation focuses on the skill to state centre, angle and direction. Use the concept together with the information given in the question.",
+          content: "Sample Space and Events focuses on the skill to list all outcomes without repeats. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "rotation needs centre, angle and direction",
+          formula: "S = set of all possible outcomes",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Rotation.\\nSolution: 90° clockwise about O changes orientation but not size.\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Sample Space and Events.\\nSolution: dice sample space is {1,2,3,4,5,6}.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -110,19 +110,19 @@ export const mathF2C11NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "11.3 Translation",
+      title: "13.3 Theoretical Probability",
       subsections: [
         {
           title: "Definition",
-          content: "Translation focuses on the skill to move every point by the same vector. Use the concept together with the information given in the question.",
+          content: "Theoretical Probability focuses on the skill to count favourable outcomes and total outcomes. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "translation vector = (movement in x, movement in y)",
+          formula: "P(A) = n(A) / n(S)",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Translation.\\nSolution: vector (3, -2) moves 3 right and 2 down.\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Theoretical Probability.\\nSolution: even number on a dice has probability 3/6 = 1/2.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -151,19 +151,19 @@ export const mathF2C11NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "11.4 Congruence",
+      title: "13.4 Complement of an Event",
       subsections: [
         {
           title: "Definition",
-          content: "Congruence focuses on the skill to check same shape and same size. Use the concept together with the information given in the question.",
+          content: "Complement of an Event focuses on the skill to subtract from 1. Use the concept together with the information given in the question.",
         },
         {
           title: "Formula",
-          formula: "isometry preserves shape and size",
+          formula: "P(A') = 1 - P(A)",
         },
         {
           title: "Worked Example",
-          content: "Question: Use the concept of Congruence.\\nSolution: object and image are congruent after reflection, rotation or translation.\\nAnswer: Check the steps and write units when needed.",
+          content: "Question: Use the concept of Complement of an Event.\\nSolution: if P(win)=1/5, P(not win)=4/5.\\nAnswer: Check the steps and write units when needed.",
         },
         {
           title: "Important Notes",
@@ -197,29 +197,29 @@ export const mathF2C11NotesDLP: StructuredNotes = {
         {
           title: "Must Know",
           bulletPoints: [
-                    "11.1 Reflection: use a mirror line and equal perpendicular distances.",
-                    "11.2 Rotation: state centre, angle and direction.",
-                    "11.3 Translation: move every point by the same vector.",
-                    "11.4 Congruence: check same shape and same size."
+                    "13.1 Experimental Probability: use actual results from trials.",
+                    "13.2 Sample Space and Events: list all outcomes without repeats.",
+                    "13.3 Theoretical Probability: count favourable outcomes and total outcomes.",
+                    "13.4 Complement of an Event: subtract from 1."
           ],
         },
         {
           title: "Key Formula",
-          formula: "object and image are the same distance from mirror line\\nrotation needs centre, angle and direction\\ntranslation vector = (movement in x, movement in y)\\nisometry preserves shape and size",
+          formula: "experimental probability = event frequency / total trials\\nS = set of all possible outcomes\\nP(A) = n(A) / n(S)\\nP(A') = 1 - P(A)",
         },
       ],
     },
   ],
   keyExamFacts: [
-      "Reflection: object and image are the same distance from mirror line.",
-      "Rotation: rotation needs centre, angle and direction.",
-      "Translation: translation vector = (movement in x, movement in y).",
-      "Congruence: isometry preserves shape and size."
+      "Experimental Probability: experimental probability = event frequency / total trials.",
+      "Sample Space and Events: S = set of all possible outcomes.",
+      "Theoretical Probability: P(A) = n(A) / n(S).",
+      "Complement of an Event: P(A') = 1 - P(A)."
   ],
   keyTerms: [
-      "Reflection",
-      "Rotation",
-      "Translation",
-      "Congruence"
+      "Experimental Probability",
+      "Sample Space and Events",
+      "Theoretical Probability",
+      "Complement of an Event"
   ],
 };

@@ -1,16 +1,16 @@
 import type { StructuredNotes } from "@/data/types";
 
-export const mathF2C11NotesBM: StructuredNotes = {
-  chapterSummary: "Bab 11 Transformasi Isometri merumuskan konsep utama, formula dan kaedah penyelesaian masalah untuk semua subtopik bab ini.",
+export const mathF2C12NotesBM: StructuredNotes = {
+  chapterSummary: "Bab 12 Sukatan Kecenderungan Memusat merumuskan konsep utama, formula dan kaedah penyelesaian masalah untuk semua subtopik bab ini.",
   quickRevision: [
-      "11.1 Pantulan: gunakan garis cermin dan jarak serenjang yang sama.",
-      "object and image are the same distance from mirror line.",
-      "11.2 Putaran: nyatakan pusat, sudut dan arah.",
-      "rotation needs centre, angle and direction.",
-      "11.3 Translasi: gerakkan setiap titik dengan vektor yang sama.",
-      "translation vector = (movement in x, movement in y).",
-      "11.4 Kekongruenan: semak bentuk sama dan saiz sama.",
-      "isometry preserves shape and size."
+      "12.1 Min: jumlahkan semua nilai sebelum membahagi.",
+      "mean = sum of data / number of data.",
+      "12.2 Median: susun data dahulu.",
+      "median = middle value after data is arranged.",
+      "12.3 Mod: kira kekerapan dengan teliti.",
+      "mode = value with highest frequency.",
+      "12.4 Memilih Sukatan yang Sesuai: pilih min, median atau mod mengikut konteks.",
+      "outliers affect mean strongly."
   ],
   sections: [
     {
@@ -19,28 +19,28 @@ export const mathF2C11NotesBM: StructuredNotes = {
         {
           content: "Pada akhir bab ini, murid sepatutnya boleh:",
           bulletPoints: [
-                    "Menguasai pantulan dan menggunakannya untuk menyelesaikan masalah.",
-                    "Menguasai putaran dan menggunakannya untuk menyelesaikan masalah.",
-                    "Menguasai translasi dan menggunakannya untuk menyelesaikan masalah.",
-                    "Menguasai kekongruenan dan menggunakannya untuk menyelesaikan masalah."
+                    "Menguasai min dan menggunakannya untuk menyelesaikan masalah.",
+                    "Menguasai median dan menggunakannya untuk menyelesaikan masalah.",
+                    "Menguasai mod dan menggunakannya untuk menyelesaikan masalah.",
+                    "Menguasai memilih sukatan yang sesuai dan menggunakannya untuk menyelesaikan masalah."
           ],
         },
       ],
     },
     {
-      title: "11.1 Pantulan",
+      title: "12.1 Min",
       subsections: [
         {
           title: "Definisi",
-          content: "Pantulan menumpukan kemahiran untuk gunakan garis cermin dan jarak serenjang yang sama. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Min menumpukan kemahiran untuk jumlahkan semua nilai sebelum membahagi. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "object and image are the same distance from mirror line",
+          formula: "mean = sum of data / number of data",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Pantulan.\\nPenyelesaian: reflection in x-axis maps (x, y) to (x, -y).\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Min.\\nPenyelesaian: 2, 4, 9 has mean 5.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -69,19 +69,19 @@ export const mathF2C11NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "11.2 Putaran",
+      title: "12.2 Median",
       subsections: [
         {
           title: "Definisi",
-          content: "Putaran menumpukan kemahiran untuk nyatakan pusat, sudut dan arah. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Median menumpukan kemahiran untuk susun data dahulu. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "rotation needs centre, angle and direction",
+          formula: "median = middle value after data is arranged",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Putaran.\\nPenyelesaian: 90° clockwise about O changes orientation but not size.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Median.\\nPenyelesaian: 3, 5, 8 has median 5.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -110,19 +110,19 @@ export const mathF2C11NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "11.3 Translasi",
+      title: "12.3 Mod",
       subsections: [
         {
           title: "Definisi",
-          content: "Translasi menumpukan kemahiran untuk gerakkan setiap titik dengan vektor yang sama. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Mod menumpukan kemahiran untuk kira kekerapan dengan teliti. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "translation vector = (movement in x, movement in y)",
+          formula: "mode = value with highest frequency",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Translasi.\\nPenyelesaian: vector (3, -2) moves 3 right and 2 down.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Mod.\\nPenyelesaian: 2, 4, 4, 7 has mode 4.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -151,19 +151,19 @@ export const mathF2C11NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "11.4 Kekongruenan",
+      title: "12.4 Memilih Sukatan yang Sesuai",
       subsections: [
         {
           title: "Definisi",
-          content: "Kekongruenan menumpukan kemahiran untuk semak bentuk sama dan saiz sama. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
+          content: "Memilih Sukatan yang Sesuai menumpukan kemahiran untuk pilih min, median atau mod mengikut konteks. Konsep ini perlu digunakan bersama maklumat yang diberi dalam soalan.",
         },
         {
           title: "Formula",
-          formula: "isometry preserves shape and size",
+          formula: "outliers affect mean strongly",
         },
         {
           title: "Contoh Berpandu",
-          content: "Soalan: Gunakan konsep Kekongruenan.\\nPenyelesaian: object and image are congruent after reflection, rotation or translation.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
+          content: "Soalan: Gunakan konsep Memilih Sukatan yang Sesuai.\\nPenyelesaian: median may be better when data has an extreme value.\\nJawapan: Semak langkah dan tulis unit jika berkaitan.",
         },
         {
           title: "Nota Penting",
@@ -197,29 +197,29 @@ export const mathF2C11NotesBM: StructuredNotes = {
         {
           title: "Mesti Tahu",
           bulletPoints: [
-                    "11.1 Pantulan: gunakan garis cermin dan jarak serenjang yang sama.",
-                    "11.2 Putaran: nyatakan pusat, sudut dan arah.",
-                    "11.3 Translasi: gerakkan setiap titik dengan vektor yang sama.",
-                    "11.4 Kekongruenan: semak bentuk sama dan saiz sama."
+                    "12.1 Min: jumlahkan semua nilai sebelum membahagi.",
+                    "12.2 Median: susun data dahulu.",
+                    "12.3 Mod: kira kekerapan dengan teliti.",
+                    "12.4 Memilih Sukatan yang Sesuai: pilih min, median atau mod mengikut konteks."
           ],
         },
         {
           title: "Formula Penting",
-          formula: "object and image are the same distance from mirror line\\nrotation needs centre, angle and direction\\ntranslation vector = (movement in x, movement in y)\\nisometry preserves shape and size",
+          formula: "mean = sum of data / number of data\\nmedian = middle value after data is arranged\\nmode = value with highest frequency\\noutliers affect mean strongly",
         },
       ],
     },
   ],
   keyExamFacts: [
-      "Pantulan: object and image are the same distance from mirror line.",
-      "Putaran: rotation needs centre, angle and direction.",
-      "Translasi: translation vector = (movement in x, movement in y).",
-      "Kekongruenan: isometry preserves shape and size."
+      "Min: mean = sum of data / number of data.",
+      "Median: median = middle value after data is arranged.",
+      "Mod: mode = value with highest frequency.",
+      "Memilih Sukatan yang Sesuai: outliers affect mean strongly."
   ],
   keyTerms: [
-      "Pantulan",
-      "Putaran",
-      "Translasi",
-      "Kekongruenan"
+      "Min",
+      "Median",
+      "Mod",
+      "Memilih Sukatan yang Sesuai"
   ],
 };
