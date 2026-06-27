@@ -15,6 +15,7 @@ import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { AuthProvider } from "@/context/auth-context";
+import { SignInModalProvider } from "@/context/sign-in-modal";
 import { CikguProvider } from "@/context/cikgu-context";
 
 function NotFoundComponent() {
@@ -155,14 +156,16 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <CikguProvider>
-          <ParticleBg />
-          <SoundFx />
-          <MusicPlayer />
-          <AppShell>
-            <Outlet />
-          </AppShell>
-        </CikguProvider>
+        <SignInModalProvider>
+          <CikguProvider>
+            <ParticleBg />
+            <SoundFx />
+            <MusicPlayer />
+            <AppShell>
+              <Outlet />
+            </AppShell>
+          </CikguProvider>
+        </SignInModalProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
