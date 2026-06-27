@@ -229,6 +229,7 @@ function CollapsibleSection({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
         className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition-colors hover:bg-white/[0.03]"
       >
         <span className="flex flex-wrap items-center gap-2.5">
@@ -250,6 +251,29 @@ function CollapsibleSection({
         </div>
       </div>
     </section>
+  );
+}
+
+function LearningFolder({
+  icon,
+  title,
+  description,
+  accent,
+  defaultOpen = false,
+  children,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  accent: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <CollapsibleSection icon={icon} title={title} accent={accent} defaultOpen={defaultOpen}>
+      <p className="mb-4 text-xs leading-5 text-white/45">{description}</p>
+      <div className="space-y-3 border-l border-white/10 pl-3 sm:pl-4">{children}</div>
+    </CollapsibleSection>
   );
 }
 
@@ -1326,8 +1350,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           )}
 
           {isStory && Array.isArray(work.timeline) && work.timeline.length > 0 && (
-            <div>
-              <SectionLabel>Jalan Cerita</SectionLabel>
+            <LearningFolder icon={<Map className="h-4 w-4" />} title="📚 Jalan Cerita" description="Urutan cerita daripada permulaan hingga peleraian" accent={color}>
               <div className="grid gap-3 md:grid-cols-5">
                 {work.timeline.map((item, index) => (
                   <div key={item.stage} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1341,12 +1364,11 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                   </div>
                 ))}
               </div>
-            </div>
+            </LearningFolder>
           )}
 
           {isStory && Array.isArray(work.characters) && work.characters.length > 0 && (
-            <div>
-              <SectionLabel>Watak Utama</SectionLabel>
+            <LearningFolder icon={<Heart className="h-4 w-4" />} title="👥 Analisis Watak" description="Watak, perwatakan, bukti dan kepentingan" accent={color}>
               <div className="grid gap-3 md:grid-cols-3">
                 {work.characters.map((character) => (
                   <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1360,12 +1382,11 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                   </div>
                 ))}
               </div>
-            </div>
+            </LearningFolder>
           )}
 
           {isStory && Array.isArray(work.events) && work.events.length > 0 && (
-            <div>
-              <SectionLabel>Peristiwa Penting</SectionLabel>
+            <LearningFolder icon={<Zap className="h-4 w-4" />} title="📖 Peristiwa Penting" description="Semua peristiwa utama dalam satu urutan" accent={color}>
               <Accordion type="single" collapsible className="space-y-3">
                 {work.events.map((event, index) => (
                   <AccordionItem key={event.event} value={`event-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
@@ -1387,10 +1408,16 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                   </AccordionItem>
                 ))}
               </Accordion>
-            </div>
+            </LearningFolder>
           )}
 
-          <SectionLabel>{isStory ? "Bahasa Mudah" : work.id === "pantun-dua-kerat" ? "Pantun Dalam Bahasa Mudah" : "Peneroka Rangkap"}</SectionLabel>
+          <LearningFolder
+            icon={<BookOpen className="h-4 w-4" />}
+            title={isStory ? "📖 Bahagian & Bahasa Mudah" : "📖 Rangkap & Bahasa Mudah"}
+            description={isStory ? "Setiap bahagian cerita bersama maksud mudahnya" : "Setiap rangkap bersama bahasa dan maksud mudahnya"}
+            accent={color}
+            defaultOpen
+          >
           <Accordion type="single" collapsible className="space-y-3">
             {(Array.isArray(work.decoder) ? work.decoder : []).map((item, index) => (
               <AccordionItem key={item.rangkap} value={`rangkap-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
@@ -1413,6 +1440,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
               </AccordionItem>
             ))}
           </Accordion>
+          </LearningFolder>
 
           <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
             <div className="mb-3 flex items-center gap-2 text-cyan-300">
@@ -1704,6 +1732,7 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
 
   return (
     <div className="space-y-4">
+      <LearningFolder icon={<Heart className="h-4 w-4" />} title="👥 Analisis Watak & Jalan Cerita" description="Watak, hubungan dan perkembangan plot" accent={color}>
       {characters.length > 0 && (
         <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Watak & Perwatakan" accent={color} badge={<ImportanceBadge level="Penting" />}>
           <div className="grid gap-3 md:grid-cols-2">
@@ -1775,7 +1804,9 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
           </Accordion>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
+      <LearningFolder icon={<Brain className="h-4 w-4" />} title="💭 Tema, Persoalan & Peristiwa" description="Maksud karya, persoalan dan peristiwa yang membina cerita" accent="#A78BFA">
       {work.story90 && (
         <CollapsibleSection icon={<Clapperboard className="h-5 w-5" />} title="Cerita Dalam 90 Saat" accent="#E879F9">
           <p className="text-sm leading-7 text-white/75">{work.story90}</p>
@@ -1840,7 +1871,9 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
           <p className="text-sm leading-7 text-white/75">{work.authorPurpose}</p>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
+      <LearningFolder icon={<Target className="h-4 w-4" />} title="🎯 Fokus UASA" description="Soalan, analisis watak dan bahan hafalan peperiksaan" accent="#FBBF24">
       {uasaQuestions.length > 0 && (
         <CollapsibleSection icon={<GraduationCap className="h-4 w-4" />} title="Soalan Popular UASA - Skema Penuh" accent={color}>
           <Accordion type="single" collapsible className="space-y-3">
@@ -1927,6 +1960,7 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
           <p className="text-sm text-white/75">{bmText(work.examFocus) || "Jawab dengan bukti karya dan ayat yang lengkap."}</p>
         </div>
       </CollapsibleSection>
+      </LearningFolder>
     </div>
   );
 }
@@ -1941,6 +1975,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
 
   return (
     <div className="space-y-4">
+      <LearningFolder icon={<GraduationCap className="h-4 w-4" />} title="🎯 Latihan & Skema UASA" description="Soalan popular, cara pemeriksa berfikir dan jawapan lengkap" accent={color}>
       {spotterItems.length > 0 && (
         <CollapsibleSection icon={<Target className="h-4 w-4" />} title="Soalan Popular UASA" accent={color}>
           <div className="grid gap-3 md:grid-cols-4">
@@ -2010,7 +2045,9 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
           </div>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
+      <LearningFolder icon={<Zap className="h-4 w-4" />} title="⚡ Ulang Kaji Pantas" description="Ringkasan, refleksi, hafalan dan cabaran KBAT" accent="#FBBF24">
       <CollapsibleSection icon={<Clapperboard className="h-5 w-5" />} title="Ringkasan Cerita" accent="#E879F9">
         <p className="text-sm leading-7 text-white/75">{getTrailerSummary(work)}</p>
       </CollapsibleSection>
@@ -2043,7 +2080,9 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
       <CollapsibleSection icon={<Brain className="h-5 w-5" />} title="Cabaran KBAT" accent="#A78BFA">
         <DecoderCell label={getKbatChallenge(work).question} value={getKbatChallenge(work).answer} accent="#C084FC" />
       </CollapsibleSection>
+      </LearningFolder>
 
+      <LearningFolder icon={<CheckCircle className="h-4 w-4" />} title="✅ Semakan Akhir" description="Hubungan, kesalahan lazim dan persediaan sebelum peperiksaan" accent="#34D399">
       {work.kind === "story" && relationships.length > 0 && (
         <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Hubungan Watak" accent={color}>
           <div className="grid gap-3 md:grid-cols-3">
@@ -2076,6 +2115,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
           ))}
         </div>
       </CollapsibleSection>
+      </LearningFolder>
     </div>
   );
 }
@@ -2311,6 +2351,13 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
 function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
     <div className="space-y-4">
+      <LearningFolder
+        icon={<BookOpen className="h-4 w-4" />}
+        title="📖 Faham & Ikut Langkah"
+        description="Pengenalan topik dan urutan menjawab"
+        accent={color}
+        defaultOpen
+      >
       {topic.description && (
         <CollapsibleSection icon={<BookOpen className="h-4 w-4" />} title="Pengenalan" accent={color}>
           <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
@@ -2334,7 +2381,14 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
           </div>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
+      <LearningFolder
+        icon={<Target className="h-4 w-4" />}
+        title="🎯 Isi Penting & UASA"
+        description="Perkara wajib tahu dan fokus peperiksaan"
+        accent="#FBBF24"
+      >
       {topic.keyPoints && topic.keyPoints.length > 0 && (
         <CollapsibleSection icon={<Star className="h-4 w-4" />} title="⭐ Wajib Hafal — Perkara Utama" accent="#818CF8">
           <ul className="space-y-2">
@@ -2360,7 +2414,14 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
           </ul>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
+      <LearningFolder
+        icon={<Zap className="h-4 w-4" />}
+        title="⚡ Ulang Kaji Pantas"
+        description="Penerangan cikgu dan ringkasan satu minit"
+        accent="#34D399"
+      >
       {(topic.description || (topic.steps && topic.steps.length > 0)) && (
         <CollapsibleSection icon={<MessageCircle className="h-4 w-4" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
           {topic.description && <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>}
@@ -2391,6 +2452,7 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
           </ul>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
       <div className="flex gap-3">
         <PlaceholderChip label="Petikan Latihan" />
@@ -3108,6 +3170,7 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
 function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
     <div className="space-y-4">
+      <LearningFolder icon={<BookOpen className="h-4 w-4" />} title="📖 Asas Ringkasan" description="Pengenalan, formula dan cara menulis" accent={color} defaultOpen>
       {topic.description && (
         <CollapsibleSection icon={<BookOpen className="h-4 w-4" />} title="Pengenalan" accent={color}>
           <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
@@ -3143,7 +3206,9 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
           </div>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
+      <LearningFolder icon={<Target className="h-4 w-4" />} title="🎯 Semak & Kuasai UASA" description="Kesalahan lazim dan petua peperiksaan" accent="#FBBF24">
       {topic.commonMistakes && (
         <CollapsibleSection icon={<XCircle className="h-4 w-4" />} title="⚠ Kesalahan Lazim" accent="#FB7185">
           <ul className="space-y-2">
@@ -3169,7 +3234,9 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
           </ul>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
+      <LearningFolder icon={<Zap className="h-4 w-4" />} title="⚡ Ulang Kaji Pantas" description="Penerangan cikgu dan ringkasan satu minit" accent="#34D399">
       {(topic.description || (topic.formula && topic.formula.length > 0)) && (
         <CollapsibleSection icon={<MessageCircle className="h-4 w-4" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
           {topic.description && <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>}
@@ -3200,6 +3267,7 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
           </ul>
         </CollapsibleSection>
       )}
+      </LearningFolder>
 
       <div className="flex gap-3">
         <PlaceholderChip label="Petikan Latihan" />

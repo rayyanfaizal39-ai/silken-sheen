@@ -103,6 +103,56 @@ function Accordion({
   );
 }
 
+function LearningFolder({
+  title,
+  description,
+  accent,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  description: string;
+  accent: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <section
+      className="mb-4 overflow-hidden rounded-3xl border bg-white/[0.025]"
+      style={{ borderColor: open ? accent + "55" : "rgba(255,255,255,0.1)" }}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex min-h-16 w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-white/[0.04]"
+        aria-expanded={open}
+      >
+        <span className="min-w-0">
+          <span className="block font-bold text-white">{title}</span>
+          <span className="mt-1 block text-xs leading-5 text-white/45">{description}</span>
+        </span>
+        <span
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm transition-transform duration-300"
+          style={{ background: accent + "20", color: accent, transform: open ? "rotate(180deg)" : undefined }}
+          aria-hidden
+        >
+          ▾
+        </span>
+      </button>
+      <div
+        className="grid transition-[grid-template-rows,opacity] duration-300 ease-out"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-white/[0.07] px-3 pb-1 pt-3 sm:px-4">{children}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Section components ───────────────────────────────────────
 
 function HeroSection({ topic }: { topic: SistemBahasaTopic }) {
@@ -646,19 +696,44 @@ export function SistemBahasaTopicDetail({ topic, onBack }: Props) {
       {/* Content */}
       <div className="max-w-2xl mx-auto px-4 pt-6">
         <HeroSection topic={topic} />
-        <PengenalanSection topic={topic} />
-        <DefinisiSection topic={topic} />
-        <CikguTerangSection topic={topic} />
-        <JenisSection topic={topic} />
-        <ContohHarianSection topic={topic} />
-        <TipsUASASection topic={topic} />
-        <KesalahanSection topic={topic} />
-        <WajibHafalSection topic={topic} />
-        <CaraMudahSection topic={topic} />
-        <KBATSection topic={topic} />
-        <MiniKuizSection topic={topic} />
-        <ExamBoosterSection topic={topic} />
-        <RingkasanSatuMinitSection topic={topic} />
+        <LearningFolder
+          title="📖 Kenali Topik"
+          description="Pengenalan, definisi dan jenis-jenis"
+          accent={topic.warna}
+          defaultOpen
+        >
+          <PengenalanSection topic={topic} />
+          <DefinisiSection topic={topic} />
+          <JenisSection topic={topic} />
+        </LearningFolder>
+        <LearningFolder
+          title="💡 Faham & Gunakan"
+          description="Penerangan mudah, contoh dan teknik ingatan"
+          accent="#10B981"
+        >
+          <CikguTerangSection topic={topic} />
+          <ContohHarianSection topic={topic} />
+          <CaraMudahSection topic={topic} />
+        </LearningFolder>
+        <LearningFolder
+          title="🎯 Penguasaan UASA"
+          description="Fokus peperiksaan, kesalahan, hafalan dan latihan"
+          accent="#F59E0B"
+        >
+          <TipsUASASection topic={topic} />
+          <KesalahanSection topic={topic} />
+          <WajibHafalSection topic={topic} />
+          <KBATSection topic={topic} />
+          <MiniKuizSection topic={topic} />
+        </LearningFolder>
+        <LearningFolder
+          title="⚡ Ulang Kaji Pantas"
+          description="Fokus akhir dan ringkasan satu minit"
+          accent="#F472B6"
+        >
+          <ExamBoosterSection topic={topic} />
+          <RingkasanSatuMinitSection topic={topic} />
+        </LearningFolder>
       </div>
     </div>
   );
