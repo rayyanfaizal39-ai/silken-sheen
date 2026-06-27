@@ -18,7 +18,9 @@ import {
   Rocket,
   Trophy,
   GraduationCap,
+  LogIn,
 } from "lucide-react";
+import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
 import { AstronautScene } from "@/components/AstronautScene";
 import { Avatar } from "@/components/Avatar";
