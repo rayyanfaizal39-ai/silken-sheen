@@ -23,6 +23,7 @@ import {
 import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
 import { AstronautScene } from "@/components/AstronautScene";
+import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import {
   useProgress,
