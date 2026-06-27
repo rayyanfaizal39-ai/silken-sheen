@@ -40,6 +40,8 @@ const AuthContext = createContext<AuthContextValue>({
   loading: true,
   isConfigured: false,
   signInWithGoogle: async () => {},
+  signInWithEmail: async () => {},
+  signUpWithEmail: async () => ({ needsConfirmation: false }),
   signOut: async () => {},
 });
 
