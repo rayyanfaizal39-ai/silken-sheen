@@ -72,6 +72,30 @@ import { mathF3C8FlashcardsBM } from "@/content/form3/math/chapter-8/flashcards-
 import { mathF3C8FlashcardsDLP } from "@/content/form3/math/chapter-8/flashcards-dlp";
 import { mathF3C9FlashcardsBM } from "@/content/form3/math/chapter-9/flashcards-bm";
 import { mathF3C9FlashcardsDLP } from "@/content/form3/math/chapter-9/flashcards-dlp";
+import { geographyF3C1Quizzes } from "@/content/form3/geography/chapter-1/quizzes";
+import { geographyF3C1Flashcards } from "@/content/form3/geography/chapter-1/flashcards";
+import { geographyF3C2Quizzes } from "@/content/form3/geography/chapter-2/quizzes";
+import { geographyF3C2Flashcards } from "@/content/form3/geography/chapter-2/flashcards";
+import { geographyF3C3Quizzes } from "@/content/form3/geography/chapter-3/quizzes";
+import { geographyF3C3Flashcards } from "@/content/form3/geography/chapter-3/flashcards";
+import { geographyF3C4Quizzes } from "@/content/form3/geography/chapter-4/quizzes";
+import { geographyF3C4Flashcards } from "@/content/form3/geography/chapter-4/flashcards";
+import { geographyF3C5Quizzes } from "@/content/form3/geography/chapter-5/quizzes";
+import { geographyF3C5Flashcards } from "@/content/form3/geography/chapter-5/flashcards";
+import { geographyF3C6Quizzes } from "@/content/form3/geography/chapter-6/quizzes";
+import { geographyF3C6Flashcards } from "@/content/form3/geography/chapter-6/flashcards";
+import { geographyF3C7Quizzes } from "@/content/form3/geography/chapter-7/quizzes";
+import { geographyF3C7Flashcards } from "@/content/form3/geography/chapter-7/flashcards";
+import { geographyF3C8Quizzes } from "@/content/form3/geography/chapter-8/quizzes";
+import { geographyF3C8Flashcards } from "@/content/form3/geography/chapter-8/flashcards";
+import { geographyF3C9Quizzes } from "@/content/form3/geography/chapter-9/quizzes";
+import { geographyF3C9Flashcards } from "@/content/form3/geography/chapter-9/flashcards";
+import { geographyF3C10Quizzes } from "@/content/form3/geography/chapter-10/quizzes";
+import { geographyF3C10Flashcards } from "@/content/form3/geography/chapter-10/flashcards";
+import { geographyF3C11Quizzes } from "@/content/form3/geography/chapter-11/quizzes";
+import { geographyF3C11Flashcards } from "@/content/form3/geography/chapter-11/flashcards";
+import { geographyF3C12Quizzes } from "@/content/form3/geography/chapter-12/quizzes";
+import { geographyF3C12Flashcards } from "@/content/form3/geography/chapter-12/flashcards";
 import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
 import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
 import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
@@ -1800,6 +1824,18 @@ export interface QuizQuestion {
 }
 
 export const quizzes: QuizQuestion[] = [
+  ...geographyF3C1Quizzes,
+  ...geographyF3C2Quizzes,
+  ...geographyF3C3Quizzes,
+  ...geographyF3C4Quizzes,
+  ...geographyF3C5Quizzes,
+  ...geographyF3C6Quizzes,
+  ...geographyF3C7Quizzes,
+  ...geographyF3C8Quizzes,
+  ...geographyF3C9Quizzes,
+  ...geographyF3C10Quizzes,
+  ...geographyF3C11Quizzes,
+  ...geographyF3C12Quizzes,
   {
     id: "q3",
     subjectId: "science",
@@ -18573,6 +18609,18 @@ export interface Flashcard {
 }
 
 export const flashcards: Flashcard[] = [
+  ...geographyF3C1Flashcards,
+  ...geographyF3C2Flashcards,
+  ...geographyF3C3Flashcards,
+  ...geographyF3C4Flashcards,
+  ...geographyF3C5Flashcards,
+  ...geographyF3C6Flashcards,
+  ...geographyF3C7Flashcards,
+  ...geographyF3C8Flashcards,
+  ...geographyF3C9Flashcards,
+  ...geographyF3C10Flashcards,
+  ...geographyF3C11Flashcards,
+  ...geographyF3C12Flashcards,
   {
     id: "f3",
     subjectId: "science",

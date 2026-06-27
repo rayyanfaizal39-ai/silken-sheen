@@ -133,6 +133,18 @@ import { geographyF3C9Notes } from "@/content/form3/geography/chapter-9/notes";
 import { geographyF3C10Notes } from "@/content/form3/geography/chapter-10/notes";
 import { geographyF3C11Notes } from "@/content/form3/geography/chapter-11/notes";
 import { geographyF3C12Notes } from "@/content/form3/geography/chapter-12/notes";
+import { geoF3C1MindMap } from "@/content/form3/geography/chapter-1/mindmap";
+import { geoF3C2MindMap } from "@/content/form3/geography/chapter-2/mindmap";
+import { geoF3C3MindMap } from "@/content/form3/geography/chapter-3/mindmap";
+import { geoF3C4MindMap } from "@/content/form3/geography/chapter-4/mindmap";
+import { geoF3C5MindMap } from "@/content/form3/geography/chapter-5/mindmap";
+import { geoF3C6MindMap } from "@/content/form3/geography/chapter-6/mindmap";
+import { geoF3C7MindMap } from "@/content/form3/geography/chapter-7/mindmap";
+import { geoF3C8MindMap } from "@/content/form3/geography/chapter-8/mindmap";
+import { geoF3C9MindMap } from "@/content/form3/geography/chapter-9/mindmap";
+import { geoF3C10MindMap } from "@/content/form3/geography/chapter-10/mindmap";
+import { geoF3C11MindMap } from "@/content/form3/geography/chapter-11/mindmap";
+import { geoF3C12MindMap } from "@/content/form3/geography/chapter-12/mindmap";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -574,6 +586,20 @@ function geographyF2QuizzesFor(chapterNum: number) {
   );
 }
 
+function geographyF3FlashcardsFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allFlashcards.filter(
+    (f) => f.subjectId === "geography" && f.form === "Form 3" && f.chapter === chapterKey,
+  );
+}
+
+function geographyF3QuizzesFor(chapterNum: number) {
+  const chapterKey = `Chapter ${chapterNum}`;
+  return allQuizzes.filter(
+    (q) => q.subjectId === "geography" && q.form === "Form 3" && q.chapter === chapterKey,
+  );
+}
+
 function sejarahF2FlashcardsFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
   return allFlashcards.filter(
@@ -977,6 +1003,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Jadual dan Graf",
     notes: geographyF3C1Notes,
+    mindMap: { data: geoF3C1MindMap, title: "Jadual dan Graf" },
+    flashcards: geographyF3FlashcardsFor(1),
+    quiz: geographyF3QuizzesFor(1),
   },
   {
     id: "geography-f3-c2",
@@ -985,6 +1014,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Carta Pai",
     notes: geographyF3C2Notes,
+    mindMap: { data: geoF3C2MindMap, title: "Carta Pai" },
+    flashcards: geographyF3FlashcardsFor(2),
+    quiz: geographyF3QuizzesFor(2),
   },
   {
     id: "geography-f3-c3",
@@ -993,6 +1025,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
     notes: geographyF3C3Notes,
+    mindMap: { data: geoF3C3MindMap, title: "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar" },
+    flashcards: geographyF3FlashcardsFor(3),
+    quiz: geographyF3QuizzesFor(3),
   },
   {
     id: "geography-f3-c4",
@@ -1001,6 +1036,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Tumbuh-tumbuhan Semula Jadi di Malaysia",
     notes: geographyF3C4Notes,
+    mindMap: { data: geoF3C4MindMap, title: "Tumbuh-tumbuhan Semula Jadi di Malaysia" },
+    flashcards: geographyF3FlashcardsFor(4),
+    quiz: geographyF3QuizzesFor(4),
   },
   {
     id: "geography-f3-c5",
@@ -1009,6 +1047,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Hidupan Liar di Malaysia",
     notes: geographyF3C5Notes,
+    mindMap: { data: geoF3C5MindMap, title: "Hidupan Liar di Malaysia" },
+    flashcards: geographyF3FlashcardsFor(5),
+    quiz: geographyF3QuizzesFor(5),
   },
   {
     id: "geography-f3-c6",
@@ -1017,6 +1058,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Sumber Semula Jadi di Malaysia",
     notes: geographyF3C6Notes,
+    mindMap: { data: geoF3C6MindMap, title: "Sumber Semula Jadi di Malaysia" },
+    flashcards: geographyF3FlashcardsFor(6),
+    quiz: geographyF3QuizzesFor(6),
   },
   {
     id: "geography-f3-c7",
@@ -1025,6 +1069,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Kegiatan Ekonomi di Malaysia",
     notes: geographyF3C7Notes,
+    mindMap: { data: geoF3C7MindMap, title: "Kegiatan Ekonomi di Malaysia" },
+    flashcards: geographyF3FlashcardsFor(7),
+    quiz: geographyF3QuizzesFor(7),
   },
   {
     id: "geography-f3-c8",
@@ -1033,6 +1080,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
     notes: geographyF3C8Notes,
+    mindMap: { data: geoF3C8MindMap, title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia" },
+    flashcards: geographyF3FlashcardsFor(8),
+    quiz: geographyF3QuizzesFor(8),
   },
   {
     id: "geography-f3-c9",
@@ -1041,6 +1091,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
     notes: geographyF3C9Notes,
+    mindMap: { data: geoF3C9MindMap, title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia" },
+    flashcards: geographyF3FlashcardsFor(9),
+    quiz: geographyF3QuizzesFor(9),
   },
   {
     id: "geography-f3-c10",
@@ -1049,6 +1102,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Sumber Hutan",
     notes: geographyF3C10Notes,
+    mindMap: { data: geoF3C10MindMap, title: "Sumber Hutan" },
+    flashcards: geographyF3FlashcardsFor(10),
+    quiz: geographyF3QuizzesFor(10),
   },
   {
     id: "geography-f3-c11",
@@ -1057,6 +1113,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Kitar Semula",
     notes: geographyF3C11Notes,
+    mindMap: { data: geoF3C11MindMap, title: "Kitar Semula" },
+    flashcards: geographyF3FlashcardsFor(11),
+    quiz: geographyF3QuizzesFor(11),
   },
   {
     id: "geography-f3-c12",
@@ -1065,6 +1124,9 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Panduan Kerja Lapangan",
     notes: geographyF3C12Notes,
+    mindMap: { data: geoF3C12MindMap, title: "Panduan Kerja Lapangan" },
+    flashcards: geographyF3FlashcardsFor(12),
+    quiz: geographyF3QuizzesFor(12),
   },
 
   // Mathematics Form 1
