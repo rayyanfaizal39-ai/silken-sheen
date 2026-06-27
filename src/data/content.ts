@@ -54,6 +54,24 @@ import { mathF2C13QuizzesBM } from "@/content/form2/math/chapter-13/quizzes-bm";
 import { mathF2C13QuizzesDLP } from "@/content/form2/math/chapter-13/quizzes-dlp";
 import { mathF2C13FlashcardsBM } from "@/content/form2/math/chapter-13/flashcards-bm";
 import { mathF2C13FlashcardsDLP } from "@/content/form2/math/chapter-13/flashcards-dlp";
+import { mathF3C1FlashcardsBM } from "@/content/form3/math/chapter-1/flashcards-bm";
+import { mathF3C1FlashcardsDLP } from "@/content/form3/math/chapter-1/flashcards-dlp";
+import { mathF3C2FlashcardsBM } from "@/content/form3/math/chapter-2/flashcards-bm";
+import { mathF3C2FlashcardsDLP } from "@/content/form3/math/chapter-2/flashcards-dlp";
+import { mathF3C3FlashcardsBM } from "@/content/form3/math/chapter-3/flashcards-bm";
+import { mathF3C3FlashcardsDLP } from "@/content/form3/math/chapter-3/flashcards-dlp";
+import { mathF3C4FlashcardsBM } from "@/content/form3/math/chapter-4/flashcards-bm";
+import { mathF3C4FlashcardsDLP } from "@/content/form3/math/chapter-4/flashcards-dlp";
+import { mathF3C5FlashcardsBM } from "@/content/form3/math/chapter-5/flashcards-bm";
+import { mathF3C5FlashcardsDLP } from "@/content/form3/math/chapter-5/flashcards-dlp";
+import { mathF3C6FlashcardsBM } from "@/content/form3/math/chapter-6/flashcards-bm";
+import { mathF3C6FlashcardsDLP } from "@/content/form3/math/chapter-6/flashcards-dlp";
+import { mathF3C7FlashcardsBM } from "@/content/form3/math/chapter-7/flashcards-bm";
+import { mathF3C7FlashcardsDLP } from "@/content/form3/math/chapter-7/flashcards-dlp";
+import { mathF3C8FlashcardsBM } from "@/content/form3/math/chapter-8/flashcards-bm";
+import { mathF3C8FlashcardsDLP } from "@/content/form3/math/chapter-8/flashcards-dlp";
+import { mathF3C9FlashcardsBM } from "@/content/form3/math/chapter-9/flashcards-bm";
+import { mathF3C9FlashcardsDLP } from "@/content/form3/math/chapter-9/flashcards-dlp";
 import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
 import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
 import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
@@ -30595,6 +30613,24 @@ export const flashcards: Flashcard[] = [
   ...mathF2C12FlashcardsDLP,
   ...mathF2C13FlashcardsBM,
   ...mathF2C13FlashcardsDLP,
+  ...mathF3C1FlashcardsBM,
+  ...mathF3C1FlashcardsDLP,
+  ...mathF3C2FlashcardsBM,
+  ...mathF3C2FlashcardsDLP,
+  ...mathF3C3FlashcardsBM,
+  ...mathF3C3FlashcardsDLP,
+  ...mathF3C4FlashcardsBM,
+  ...mathF3C4FlashcardsDLP,
+  ...mathF3C5FlashcardsBM,
+  ...mathF3C5FlashcardsDLP,
+  ...mathF3C6FlashcardsBM,
+  ...mathF3C6FlashcardsDLP,
+  ...mathF3C7FlashcardsBM,
+  ...mathF3C7FlashcardsDLP,
+  ...mathF3C8FlashcardsBM,
+  ...mathF3C8FlashcardsDLP,
+  ...mathF3C9FlashcardsBM,
+  ...mathF3C9FlashcardsDLP,
   ...scienceF2C2FlashcardsBM,
   ...scienceF2C2FlashcardsDLP,
   ...scienceF2C3FlashcardsBM,
