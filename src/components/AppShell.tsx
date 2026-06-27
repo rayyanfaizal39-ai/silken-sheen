@@ -171,13 +171,14 @@ function SidebarBottom() {
           </button>
         </div>
       ) : isConfigured ? (
-        <Link
-          to="/login"
+        <button
+          type="button"
+          onClick={openSignIn}
           className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.09] bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white"
         >
           <LogIn className="h-3.5 w-3.5" />
           Sign in to sync progress
-        </Link>
+        </button>
       ) : null}
 
       {/* Live rank chip */}
