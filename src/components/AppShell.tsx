@@ -19,6 +19,7 @@ import {
 import type { ReactNode } from "react";
 import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
+import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
@@ -135,6 +136,7 @@ function isActive(pathname: string, to: string) {
 function SidebarBottom() {
   const { progress } = useProgress();
   const { user, signOut, isConfigured } = useAuth();
+  const { open: openSignIn } = useSignInModal();
   const rank = getRank(progress.xp);
 
   return (
@@ -169,13 +171,14 @@ function SidebarBottom() {
           </button>
         </div>
       ) : isConfigured ? (
-        <Link
-          to="/login"
+        <button
+          type="button"
+          onClick={openSignIn}
           className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.09] bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white"
         >
           <LogIn className="h-3.5 w-3.5" />
           Sign in to sync progress
-        </Link>
+        </button>
       ) : null}
 
       {/* Live rank chip */}
@@ -324,6 +327,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Sparkles className="h-3.5 w-3.5" />
               Upgrade
             </Link>
+            <HeaderAuthAction />
             {/* Profile / avatar link with upgrade pip */}
             <div className="relative">
               <Link
@@ -404,6 +408,22 @@ function HeaderStreak() {
       <span className="text-sm font-bold">{progress.streak}</span>
       <span className="text-xs text-white/40">day{progress.streak !== 1 ? "s" : ""}</span>
     </div>
+  );
+}
+
+function HeaderAuthAction() {
+  const { user, isConfigured, loading } = useAuth();
+  const { open } = useSignInModal();
+  if (!isConfigured || loading || user) return null;
+  return (
+    <button
+      type="button"
+      onClick={open}
+      className="flex items-center gap-1.5 rounded-xl border border-[#8B5CF6]/40 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-3 py-1.5 text-xs font-bold text-white shadow-[0_0_18px_rgba(139,92,246,0.45)] transition-transform hover:scale-105"
+    >
+      <LogIn className="h-3.5 w-3.5" />
+      Sign In
+    </button>
   );
 }
 
