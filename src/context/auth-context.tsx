@@ -96,7 +96,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw new Error("Supabase is not configured");
     }
 
-    const redirectTo = window.location.origin + "/auth/callback";
+    const redirectTo = `${window.location.origin}/auth/callback`;
     console.info("[Auth] Google OAuth request started", { redirectTo });
 
     const oauthRequest = supabase.auth.signInWithOAuth({
