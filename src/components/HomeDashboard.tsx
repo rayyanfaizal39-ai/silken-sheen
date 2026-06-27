@@ -467,6 +467,7 @@ function HeroRankCard() {
 export function HomeDashboard() {
   const { progress } = useProgress();
   const { user, isConfigured } = useAuth();
+  const { open: openSignIn } = useSignInModal();
   const rank = getRank(progress.xp);
   const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
   const dueCount = getDueCount(progress.cardMastery);
