@@ -25,10 +25,10 @@ interface AuthContextValue {
   loading: boolean;
   isConfigured: boolean;
   signInWithGoogle: () => Promise<void>;
+  signInWithEmail: (email: string, password: string) => Promise<void>;
+  signUpWithEmail: (email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
   signOut: () => Promise<void>;
 }
-
-const OAUTH_REQUEST_TIMEOUT_MS = 15_000;
 
 // ─── Context ──────────────────────────────────────────────────────────────────
 
@@ -38,6 +38,8 @@ const AuthContext = createContext<AuthContextValue>({
   loading: true,
   isConfigured: false,
   signInWithGoogle: async () => {},
+  signInWithEmail: async () => {},
+  signUpWithEmail: async () => ({ needsConfirmation: false }),
   signOut: async () => {},
 });
 
@@ -99,34 +101,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const redirectTo = `${window.location.origin}/auth/callback`;
     console.info("[Auth] Google OAuth request started", { redirectTo });
 
-    const oauthRequest = supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo,
         queryParams: { prompt: "select_account" },
-        // Redirect explicitly after validating Supabase's response. This prevents a
-        // resolved `{ error }` response from leaving the login spinner running forever.
-        skipBrowserRedirect: true,
       },
     });
 
-    const timeout = new Promise<never>((_, reject) => {
-      window.setTimeout(
-        () => reject(new Error("Google OAuth request timed out")),
-        OAUTH_REQUEST_TIMEOUT_MS,
-      );
-    });
-    const { data, error } = await Promise.race([oauthRequest, timeout]);
+    if (error) throw error;
+  }, []);
 
-    console.info("[Auth] Google OAuth response received", {
-      hasUrl: !!data.url,
-      hasError: !!error,
+  const signInWithEmail = useCallback(async (email: string, password: string) => {
+    if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+  }, []);
+
+  const signUpWithEmail = useCallback(async (email: string, password: string) => {
+    if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
     });
     if (error) throw error;
-    if (!data.url) throw new Error("Supabase did not return a Google OAuth URL");
-
-    console.info("[Auth] Redirecting browser to Google");
-    window.location.assign(data.url);
+    return { needsConfirmation: !data.session };
   }, []);
 
   const signOut = useCallback(async () => {
@@ -136,7 +136,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, session, loading, isConfigured: isSupabaseConfigured, signInWithGoogle, signOut }}
+      value={{
+        user,
+        session,
+        loading,
+        isConfigured: isSupabaseConfigured,
+        signInWithGoogle,
+        signInWithEmail,
+        signUpWithEmail,
+        signOut,
+      }}
     >
       {children}
     </AuthContext.Provider>

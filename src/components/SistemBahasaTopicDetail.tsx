@@ -54,22 +54,51 @@ function Accordion({
 }: {
   title: string;
   children: React.ReactNode;
+  /** @deprecated All sections start collapsed by design to reduce cognitive load. */
   defaultOpen?: boolean;
   accent?: string;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
+  // All sections start collapsed by design — students expand only what they want to study.
+  void defaultOpen;
+  const [open, setOpen] = useState(false);
+  const accentColor = accent ?? "#A78BFA";
   return (
-    <div className="rounded-xl mb-3 overflow-hidden border border-white/10">
+    <div
+      className="group rounded-2xl mb-3 overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] hover:-translate-y-0.5"
+      style={{
+        boxShadow: open
+          ? `0 12px 32px -16px ${accentColor}55, 0 2px 8px rgba(0,0,0,0.25)`
+          : "0 4px 14px -8px rgba(0,0,0,0.35)",
+      }}
+    >
       <button
         onClick={() => setOpen((o) => !o)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-white/5 hover:bg-white/10 transition-colors text-left"
+        className="w-full flex items-center justify-between gap-3 px-4 py-3.5 text-left transition-colors duration-200 hover:bg-white/[0.04]"
+        aria-expanded={open}
       >
-        <span className="font-semibold text-white text-sm" style={accent ? { color: accent } : {}}>
+        <span className="font-semibold text-white text-sm tracking-tight" style={{ color: accentColor }}>
           {title}
         </span>
-        <span className="text-white/50 text-lg">{open ? "▲" : "▼"}</span>
+        <span
+          className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold transition-transform duration-300"
+          style={{
+            background: accentColor + "22",
+            color: accentColor,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+          aria-hidden
+        >
+          ▾
+        </span>
       </button>
-      {open && <div className="px-4 pb-4 pt-2 bg-white/3">{children}</div>}
+      <div
+        className="grid transition-[grid-template-rows,opacity] duration-300 ease-out"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
+      >
+        <div className="overflow-hidden">
+          <div className="px-4 pb-4 pt-1">{children}</div>
+        </div>
+      </div>
     </div>
   );
 }
