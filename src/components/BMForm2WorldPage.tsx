@@ -1,6 +1,16 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { ArrowRight, ChevronLeft, Clock } from "lucide-react";
+import { BMForm2SistemBahasaLibrary } from "@/components/BMForm2SistemBahasaLibrary";
+import {
+  ArrowRight,
+  BookOpen,
+  ChevronDown,
+  ChevronLeft,
+  Lightbulb,
+  MessageCircle,
+  Target,
+  Zap,
+} from "lucide-react";
 
 type PaperId = "k1" | "k2";
 
@@ -84,7 +94,7 @@ const FORM2_PAPERS: PaperItem[] = [
       },
       {
         id: "pemahaman",
-        label: "Pemahaman",
+        label: "Pemahaman Petikan",
         shortLabel: "Pemahaman",
         icon: "P",
         color: "#34D399",
@@ -92,7 +102,7 @@ const FORM2_PAPERS: PaperItem[] = [
       },
       {
         id: "komsas",
-        label: "KOMSAS",
+        label: "Antologi KOMSAS",
         shortLabel: "KOMSAS",
         icon: "KS",
         color: "#C084FC",
@@ -113,6 +123,14 @@ const FORM2_PAPERS: PaperItem[] = [
         icon: "RR",
         color: "#FBBF24",
         description: "Bahagian C - pemindahan maklumat, isi tersurat, kesimpulan dan bahasa.",
+      },
+      {
+        id: "latihan-uasa",
+        label: "Latihan Berformat UASA",
+        shortLabel: "Latihan UASA",
+        icon: "LU",
+        color: "#F472B6",
+        description: "Ruang latihan mengikut format UASA Bahasa Melayu Tingkatan 2.",
       },
     ],
   },
@@ -174,11 +192,19 @@ const FORM2_PAPERS: PaperItem[] = [
       },
       {
         id: "peribahasa-bank",
-        label: "Peribahasa Bank",
+        label: "Bank Peribahasa",
         shortLabel: "Peribahasa",
         icon: "PB",
         color: "#F472B6",
         description: "Peribahasa mengikut tema, maksud, contoh ayat dan wajib hafal.",
+      },
+      {
+        id: "penanda-wacana",
+        label: "Penanda Wacana",
+        shortLabel: "Penanda Wacana",
+        icon: "PW",
+        color: "#22D3EE",
+        description: "Ruang pembelajaran penanda wacana untuk menyusun idea dan perenggan.",
       },
       {
         id: "tingkatkan-karangan",
@@ -187,6 +213,14 @@ const FORM2_PAPERS: PaperItem[] = [
         icon: "TK",
         color: "#818CF8",
         description: "Teknik menukar ayat biasa kepada ayat cemerlang, kaya dan bernas.",
+      },
+      {
+        id: "latihan-uasa",
+        label: "Latihan Berformat UASA",
+        shortLabel: "Latihan UASA",
+        icon: "LU",
+        color: "#FB7185",
+        description: "Ruang latihan penulisan mengikut format UASA Bahasa Melayu Tingkatan 2.",
       },
     ],
   },
@@ -475,7 +509,7 @@ function HubCard({ hub, onSelect }: { hub: HubItem; onSelect: () => void }) {
         <p className="mb-4 text-xs leading-relaxed text-white/45">{hub.description}</p>
         <div className="flex items-center justify-between">
           <span className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ background: `${hub.color}18`, color: hub.color }}>
-            Placeholder
+            Struktur Sedia
           </span>
           <ArrowRight
             className="h-3.5 w-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
@@ -484,6 +518,119 @@ function HubCard({ hub, onSelect }: { hub: HubItem; onSelect: () => void }) {
         </div>
       </div>
     </button>
+  );
+}
+
+type StudyMode = "learn" | "quick" | "exam" | "cikgu";
+
+const STUDY_MODES: Array<{
+  id: StudyMode;
+  label: string;
+  icon: ReactNode;
+}> = [
+  { id: "learn", label: "Learn", icon: <BookOpen className="h-4 w-4" /> },
+  { id: "quick", label: "Quick Revision", icon: <Zap className="h-4 w-4" /> },
+  { id: "exam", label: "Exam Focus", icon: <Target className="h-4 w-4" /> },
+  { id: "cikgu", label: "Cikgu AcadeMY", icon: <MessageCircle className="h-4 w-4" /> },
+];
+
+const LEARNING_FOLDERS: Array<{
+  id: string;
+  title: string;
+  description: string;
+  mode: Exclude<StudyMode, "learn"> | "foundation" | "examples";
+  icon: ReactNode;
+  accent: string;
+}> = [
+  {
+    id: "fahami",
+    title: "📘 Fahami Dahulu",
+    description: "Ruang asas untuk definisi, konsep dan perkara yang perlu difahami dahulu.",
+    mode: "foundation",
+    icon: <BookOpen className="h-4 w-4" />,
+    accent: "#60A5FA",
+  },
+  {
+    id: "contoh",
+    title: "💡 Contoh & Situasi",
+    description: "Ruang contoh, situasi dan aplikasi yang berkaitan.",
+    mode: "examples",
+    icon: <Lightbulb className="h-4 w-4" />,
+    accent: "#A78BFA",
+  },
+  {
+    id: "uasa",
+    title: "🎯 Fokus UASA",
+    description: "Ruang soalan lazim, kesalahan biasa dan teknik menjawab.",
+    mode: "exam",
+    icon: <Target className="h-4 w-4" />,
+    accent: "#FBBF24",
+  },
+  {
+    id: "pantas",
+    title: "⚡ Ulang Kaji Pantas",
+    description: "Ruang kata kunci, isi penting dan ringkasan pantas.",
+    mode: "quick",
+    icon: <Zap className="h-4 w-4" />,
+    accent: "#34D399",
+  },
+  {
+    id: "cikgu",
+    title: "🤖 Cikgu AcadeMY",
+    description: "Ruang penerangan mesra dan panduan mudah.",
+    mode: "cikgu",
+    icon: <MessageCircle className="h-4 w-4" />,
+    accent: "#F472B6",
+  },
+];
+
+function LearningFolderPlaceholder({
+  folder,
+  hub,
+}: {
+  folder: (typeof LEARNING_FOLDERS)[number];
+  hub: HubItem;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <section
+      className="overflow-hidden rounded-2xl border bg-white/[0.03] transition-all duration-300"
+      style={open ? { borderColor: `${folder.accent}45`, boxShadow: `0 14px 40px ${folder.accent}10` } : { borderColor: "rgba(255,255,255,0.08)" }}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+        className="flex min-h-16 w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-white/[0.04]"
+      >
+        <span className="flex min-w-0 items-start gap-3">
+          <span className="mt-0.5 shrink-0" style={{ color: folder.accent }}>{folder.icon}</span>
+          <span>
+            <span className="block font-display text-sm font-bold text-white sm:text-base">{folder.title}</span>
+            <span className="mt-1 block text-xs leading-5 text-white/45">{folder.description}</span>
+          </span>
+        </span>
+        <ChevronDown
+          className="h-4 w-4 shrink-0 transition-transform duration-300"
+          style={{ color: folder.accent, transform: open ? "rotate(180deg)" : undefined }}
+        />
+      </button>
+      <div
+        className="grid transition-[grid-template-rows,opacity] duration-300 ease-out"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-white/[0.06] px-5 py-4">
+            <div className="rounded-xl border border-dashed border-white/10 bg-black/10 px-4 py-5 text-center">
+              <p className="text-xs leading-5 text-white/40">
+                Struktur {folder.title.replace(/^\S+\s/, "")} untuk {hub.label} telah disediakan. Kandungan akan ditambah kemudian.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -496,6 +643,11 @@ function HubView({
   hub: HubItem;
   onBack: () => void;
 }) {
+  const [studyMode, setStudyMode] = useState<StudyMode>("learn");
+  const visibleFolders = studyMode === "learn"
+    ? LEARNING_FOLDERS
+    : LEARNING_FOLDERS.filter((folder) => folder.mode === studyMode);
+
   return (
     <div>
       <PageHeader
@@ -517,16 +669,45 @@ function HubView({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-        <div className="mb-3 flex items-center gap-2">
-          <Clock className="h-4 w-4" style={{ color: hub.color }} />
-          <SectionLabel>Struktur Placeholder</SectionLabel>
+      {paper.id === "k1" && hub.id === "sistem-bahasa" ? (
+        <BMForm2SistemBahasaLibrary />
+      ) : (
+      <>
+      <div className="mb-6">
+        <SectionLabel>Study Modes</SectionLabel>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="tablist" aria-label="Cara belajar">
+          {STUDY_MODES.map((mode) => {
+            const active = studyMode === mode.id;
+            return (
+              <button
+                key={mode.id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setStudyMode(mode.id)}
+                className="flex min-h-12 items-center justify-center gap-2 rounded-xl border px-3 py-2 text-xs font-bold transition-all"
+                style={active
+                  ? { borderColor: `${hub.color}60`, background: `${hub.color}20`, color: hub.color, boxShadow: `0 8px 24px ${hub.color}12` }
+                  : { borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.48)" }}
+              >
+                {mode.icon}
+                <span>{mode.label}</span>
+              </button>
+            );
+          })}
         </div>
-        <p className="text-sm leading-relaxed text-white/60">
-          Ruang nota penuh untuk {hub.label} Tingkatan 2 akan ditambah kemudian.
-          Halaman ini disediakan sebagai struktur awal sahaja.
-        </p>
       </div>
+
+      <div>
+        <SectionLabel>Learning Folders</SectionLabel>
+        <div className="space-y-3">
+          {visibleFolders.map((folder) => (
+            <LearningFolderPlaceholder key={folder.id} folder={folder} hub={hub} />
+          ))}
+        </div>
+      </div>
+      </>
+      )}
     </div>
   );
 }
