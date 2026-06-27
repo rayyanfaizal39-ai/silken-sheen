@@ -76,12 +76,14 @@ function LoginPage() {
   }, [user, loading, navigate]);
 
   async function handleGoogle() {
+    console.info("[Auth] Google login button clicked");
     setError(null);
     setSigning(true);
     try {
       await signInWithGoogle();
       // Page will redirect to Google — spinner stays
-    } catch {
+    } catch (cause) {
+      console.error("[Auth] Google login failed before redirect", cause);
       setError("Couldn't connect to Google. Please try again.");
       setSigning(false);
     }

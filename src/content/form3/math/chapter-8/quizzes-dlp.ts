@@ -1,0 +1,72 @@
+import type { Difficulty, QuizQuestion } from "@/data/content";
+
+type QuizSeed = [Difficulty, string, [string, string, string, string], number];
+
+function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
+  return items.map(([difficulty, question, options, answerIndex], index) => ({
+    id: `math-f3-c8-dlp-q${index + 1}`,
+    subjectId: "math",
+    form: "Form 3",
+    difficulty,
+    chapter: "Chapter 8",
+    lang: "dlp",
+    question,
+    options,
+    answerIndex,
+  }));
+}
+
+export const mathF3C8QuizzesDLP: QuizQuestion[] = buildQuiz([
+  ["Easy", "What does locus mean?", ["A path/trace of a set of points satisfying certain conditions", "A single fixed point only", "Any straight line", "The area of a shape"], 0],
+  ["Easy", "What is the locus of a point on a rotating fan blade?", ["Circle", "Straight line", "Triangle", "Rectangle"], 0],
+  ["Easy", "What is the locus of a point on a vertically launched rocket?", ["Straight line", "Circle", "Arc", "Sphere"], 0],
+  ["Easy", "What is the locus of a point at a fixed distance from a fixed point?", ["A circle centred at that fixed point", "A straight line", "An angle bisector", "Parallel lines"], 0],
+  ["Easy", "What is the locus of a point equidistant from two fixed points?", ["Perpendicular bisector", "A circle", "Parallel lines", "Angle bisector"], 0],
+  ["Easy", "What is the locus of a point at a fixed distance from a straight line?", ["A pair of lines parallel to that line", "A single circle", "Just one line", "An angle bisector"], 0],
+  ["Easy", "What is the locus of a point equidistant from two parallel lines?", ["A straight line parallel midway between them", "A circle", "An angle bisector", "An arc"], 0],
+  ["Easy", "What is the locus of a point equidistant from two intersecting lines?", ["Angle bisector", "Perpendicular bisector", "A circle", "Parallel lines"], 0],
+  ["Easy", "Construct the locus of P at 3cm from point O. What shape is it?", ["A circle of radius 3cm centred at O", "A straight line of 3cm", "A triangle", "An angle bisector"], 0],
+  ["Easy", "What 3D shape results when a rectangle is rotated 360° about a pole?", ["Right cylinder", "Sphere", "Cone", "Cube"], 0],
+  ["Easy", "What 3D shape results when a semicircle is rotated 360° about a pole?", ["Sphere", "Cylinder", "Cone", "Pyramid"], 0],
+  ["Easy", "What tool is used to accurately construct a circle?", ["A compass", "A protractor only", "A ruler only", "A pencil only"], 0],
+  ["Easy", "What tool is used to construct an angle bisector?", ["Compass and ruler", "A protractor only", "A calculator", "No tool needed"], 0],
+  ["Easy", "What is the locus of a point on a swinging pendulum?", ["Arc", "Straight line", "Full circle", "Sphere"], 0],
+  ["Easy", "How many lines result from the locus at a fixed distance from a straight line?", ["Two (a pair)", "Just one", "Three", "Four"], 0],
+  ["Easy", "What is the name of the line bisecting the angle between two intersecting lines?", ["Angle bisector", "Perpendicular bisector", "Normal line", "Tangent line"], 0],
+  ["Easy", "What is the name of the line perpendicular through the midpoint of two points?", ["Perpendicular bisector", "Angle bisector", "Tangent line", "Normal line"], 0],
+  ["Easy", "T is 1.5cm from line CD. What is the locus of T?", ["A pair of lines parallel to CD, 1.5cm away", "A circle of radius 1.5cm", "Just one line", "An angle bisector"], 0],
+  ["Easy", "Which fields use the concept of locus?", ["Construction, engineering, aviation, satellites", "Only fine art", "Only music", "Only football"], 0],
+  ["Easy", "Which Greek mathematicians studied locus?", ["Apollonius and Pappus", "Pythagoras only", "Euclid only", "Archimedes only"], 0],
+
+  ["Medium", "X is equidistant from points P and R (equilateral triangle PQR). What is the locus of X?", ["The perpendicular bisector of PR", "A circle centred at P", "A line parallel to PR", "The angle bisector at P"], 0],
+  ["Medium", "Draw the locus of X moving 3 units from line AB. What is the result?", ["A pair of lines parallel to AB, 3 units away", "A single circle of radius 3 units", "Just one line", "An angle bisector"], 0],
+  ["Medium", "Locus of X equidistant from AB and DC (rectangle ABCD). What is the locus?", ["A straight line parallel to AB & DC, midway between them", "A circle", "An angle bisector", "An arc"], 0],
+  ["Medium", "X is equidistant from PQ and PN (intersecting at P). What is the locus of X?", ["A straight line bisecting ∠QPN", "The perpendicular bisector of PQ", "A circle centred at P", "A line parallel to PQ"], 0],
+  ["Medium", "Y is equidistant from AB and AD (square ABCD). What is the locus of Y?", ["A straight line bisecting ∠BAD", "The perpendicular bisector of AB", "A circle centred at A", "A line parallel to AD"], 0],
+  ["Medium", "X is 7 units from A; Y is equidistant from AB and CD. How do you find the intersection of X and Y?", ["Draw both loci on the same diagram, identify where they meet", "Only draw locus X", "Only draw locus Y", "Estimate without drawing"], 0],
+  ["Medium", "Line MN, point P is equidistant from M and N. How do you construct the locus of P?", ["Draw the perpendicular bisector of MN", "Draw a circle of radius MN", "Draw a line parallel to MN", "Draw the angle bisector at M"], 0],
+  ["Medium", "On the Cartesian plane, coordinate pairs (0,0),(-2,-2),(4,4) are connected. What is this locus?", ["The line bisecting the angle between the x-axis and y-axis (45°)", "A circle centred at O", "A line parallel to the x-axis", "A line parallel to the y-axis"], 0],
+  ["Medium", "From the above, what is the value of ∠a=∠b=∠c=∠d formed?", ["45°", "90°", "60°", "30°"], 0],
+  ["Medium", "Faruk is equidistant from the x-axis and y-axis, and less than 5 units from O. What locus type is relevant?", ["The angle bisector (45° line) within a range of <5 units from O", "Only a circle of radius 5 units", "A line parallel to the x-axis", "A line parallel to the y-axis"], 0],
+  ["Medium", "Square ABCD, P moves equidistant from A and D. What is the locus of P?", ["The perpendicular bisector of AD", "A circle centred at A", "The angle bisector at A", "A line parallel to AD"], 0],
+  ["Medium", "Q moves equidistant from B and D (square ABCD). What is the locus of Q?", ["The perpendicular bisector of BD", "A circle centred at B", "A line parallel to BD", "The angle bisector at B"], 0],
+  ["Medium", "R moves 4 units from straight line BC. What is the locus of R?", ["A pair of lines parallel to BC, 4 units away", "A circle of radius 4 units", "The angle bisector at BC", "Just one line"], 0],
+  ["Medium", "S moves equidistant from lines AB and BC. What is the locus of S?", ["The bisector of ∠ABC", "The perpendicular bisector of AB", "A circle centred at B", "A line parallel to AB"], 0],
+  ["Medium", "Straight line PQ is 5cm, X is 3cm from P. Describe the locus of X.", ["A circle of radius 3cm centred at P", "A straight line 3cm from P", "The perpendicular bisector of PQ", "A circle of radius 5cm centred at P"], 0],
+  ["Medium", "From the above, Y is 4cm from Q. Describe the locus of Y.", ["A circle of radius 4cm centred at Q", "A straight line 4cm from Q", "The perpendicular bisector of PQ", "A circle of radius 5cm centred at Q"], 0],
+  ["Medium", "Straight line CD is 6cm, T is 1.5cm from CD. How many lines form the locus of T?", ["Two lines parallel to CD", "Just one line", "A single circle", "Three lines"], 0],
+  ["Medium", "Quadrilateral ABCD represents a lake. Boat V moves 5 units from D, boat W is 3 units from BC. How do you find where the paths intersect?", ["Draw both loci (circle and parallel lines) on the same diagram and identify where they meet", "Just calculate distance without drawing", "Assume the paths never meet", "Draw only one locus"], 0],
+  ["Medium", "Four 2cm squares are combined; X moves 2cm from M. What is the locus of X?", ["A circle of radius 2cm centred at M", "A straight line 2cm from M", "The angle bisector at M", "A line parallel to any side"], 0],
+  ["Medium", "Y moves equidistant from lines PR and PV (quadrilateral PRTV). What is the locus of Y?", ["The bisector of ∠RPV", "The perpendicular bisector of PR", "A circle centred at P", "A line parallel to PR"], 0],
+
+  ["Hard", "On the Cartesian plane, points E(2,4), F(4,2), G(4,6), H(6,4) (estimated positions). Faruk is equidistant from the x,y axes and <5 units from O. Which point represents Faruk?", ["The point lying on the line y=x (or y=-x) with distance from O <5 units", "Any point in the list", "The point furthest from O", "No point fits"], 0],
+  ["Hard", "How do you confirm a given point lies on the axis angle bisector locus (45°)?", ["Check if the x and y coordinates have equal magnitude (same sign or opposite sign for y=x or y=-x)", "Check if x=0 only", "Check if y=0 only", "Check if x+y=0 only for all quadrants"], 0],
+  ["Hard", "Square ABCD, draw locus X (7 units from A, restricted within ABCD) and locus Y (equidistant from AB,CD). What is the main challenge of drawing a restricted locus?", ["Only draw the part of the locus within the square's boundary, not a full circle/line", "Draw a full circle without boundary", "Draw an unrestricted line", "Boundaries don't need to be considered"], 0],
+  ["Hard", "Why does the locus at a fixed distance from a straight line produce TWO lines, not one?", ["Because a point can be on either side of the original line at the same distance", "Because the original line has two ends", "It's an error in the locus definition", "Only applies to horizontal lines"], 0],
+  ["Hard", "What is the key difference between a perpendicular bisector and an angle bisector as a locus?", ["Perpendicular bisector is for two fixed POINTS; angle bisector is for two intersecting LINES", "They mean the same thing", "Perpendicular bisector is for parallel lines", "Angle bisector is for fixed points"], 0],
+  ["Hard", "Is the locus of a point equidistant from two circles (not points/lines) covered in this chapter?", ["Not directly; this chapter focuses on points, parallel and intersecting straight lines", "Yes, all locus cases are the same", "Yes, because a circle is a set of points", "Depends on the circles' size"], 0],
+  ["Hard", "What is the best strategy for solving a locus problem with many simultaneous conditions (3 or more)?", ["Draw each locus separately on the same diagram, then find the region/point satisfying ALL conditions", "Only consider the first condition", "Estimate without precise drawing", "Combine all conditions into one single formula"], 0],
+  ["Hard", "Why is compass and ruler precision important when constructing a geometric locus?", ["The locus must be geometrically exact, not estimated, to avoid errors in the intersection point's location", "Precision doesn't matter for locus", "Only for the drawing's appearance", "Only needed for circular loci"], 0],
+  ["Hard", "How is a 3D locus (cylinder/sphere) related to the 2D loci studied in this chapter?", ["A 3D locus is produced when a 2D shape (rectangle/semicircle) is rotated 360° about an axis", "There is no relationship between the two", "A 3D locus is simply a magnified 2D locus", "A 3D locus only occurs for circles"], 0],
+  ["Hard", "What is the conceptual error if someone assumes the locus equidistant from two parallel lines is two lines (not one)?", ["Incorrect; that locus is only ONE line midway between them, not a pair", "Correct, always two lines", "Depends on the distance between the parallel lines", "Only one line if the parallel lines are very far apart"], 0],
+]);

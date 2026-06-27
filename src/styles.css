@@ -4130,10 +4130,37 @@
   filter: drop-shadow(0 0 18px rgba(167,139,250,0.6)) drop-shadow(0 0 36px rgba(139,92,246,0.35));
 }
 
+@keyframes cikguBreatheFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.02);
+  }
+}
+
+.cikgu-float {
+  animation: cikguBreatheFloat 5.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 16px rgba(167,139,250,0.55)) drop-shadow(0 0 32px rgba(139,92,246,0.3));
+}
+
+@keyframes cikguButtonPulse {
+  0%, 100% {
+    box-shadow: 0 16px 38px -24px rgba(0,0,0,0.75), 0 0 18px rgba(139,92,246,0.35);
+  }
+  50% {
+    box-shadow: 0 16px 38px -24px rgba(0,0,0,0.75), 0 0 28px rgba(139,92,246,0.55);
+  }
+}
+
+.cikgu-button-pulse {
+  animation: cikguButtonPulse 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cosmic-glass-card, .cosmic-subject-card, .cosmic-subject-planet-orb,
   .cosmic-companion-pedestal, .cosmic-companion-egg, .cosmic-companion-glow,
-  .rank-companion-float {
+  .rank-companion-float, .cikgu-float, .cikgu-button-pulse {
     animation: none !important;
     transition: none !important;
   }

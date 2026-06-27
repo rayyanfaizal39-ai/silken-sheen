@@ -121,6 +121,18 @@ import { geoF2C9MindMap } from "@/content/form2/geography/chapter-9/mindmap";
 import { geographyF2C9Notes } from "@/content/form2/geography/chapter-9/notes";
 import { geoF2C10MindMap } from "@/content/form2/geography/chapter-10/mindmap";
 import { geographyF2C10Notes } from "@/content/form2/geography/chapter-10/notes";
+import { geographyF3C1Notes } from "@/content/form3/geography/chapter-1/notes";
+import { geographyF3C2Notes } from "@/content/form3/geography/chapter-2/notes";
+import { geographyF3C3Notes } from "@/content/form3/geography/chapter-3/notes";
+import { geographyF3C4Notes } from "@/content/form3/geography/chapter-4/notes";
+import { geographyF3C5Notes } from "@/content/form3/geography/chapter-5/notes";
+import { geographyF3C6Notes } from "@/content/form3/geography/chapter-6/notes";
+import { geographyF3C7Notes } from "@/content/form3/geography/chapter-7/notes";
+import { geographyF3C8Notes } from "@/content/form3/geography/chapter-8/notes";
+import { geographyF3C9Notes } from "@/content/form3/geography/chapter-9/notes";
+import { geographyF3C10Notes } from "@/content/form3/geography/chapter-10/notes";
+import { geographyF3C11Notes } from "@/content/form3/geography/chapter-11/notes";
+import { geographyF3C12Notes } from "@/content/form3/geography/chapter-12/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -397,6 +409,80 @@ import { mathF2C13NotesBM } from "@/content/form2/math/chapter-13/notes-bm";
 import { mathF2C13NotesDLP } from "@/content/form2/math/chapter-13/notes-dlp";
 import { mathF2C13MindMapBM } from "@/content/form2/math/chapter-13/mindmap-bm";
 import { mathF2C13MindMapDLP } from "@/content/form2/math/chapter-13/mindmap-dlp";
+
+// Mathematics Form 3
+import { mathF3C1NotesBM } from "@/content/form3/math/chapter-1/notes-bm";
+import { mathF3C1NotesDLP } from "@/content/form3/math/chapter-1/notes-dlp";
+import { mathF3C1MindMapBM } from "@/content/form3/math/chapter-1/mindmap-bm";
+import { mathF3C1MindMapDLP } from "@/content/form3/math/chapter-1/mindmap-dlp";
+import { mathF3C1QuizzesBM } from "@/content/form3/math/chapter-1/quizzes-bm";
+import { mathF3C1QuizzesDLP } from "@/content/form3/math/chapter-1/quizzes-dlp";
+import { mathF3C1FlashcardsBM } from "@/content/form3/math/chapter-1/flashcards-bm";
+import { mathF3C1FlashcardsDLP } from "@/content/form3/math/chapter-1/flashcards-dlp";
+import { mathF3C2NotesBM } from "@/content/form3/math/chapter-2/notes-bm";
+import { mathF3C2NotesDLP } from "@/content/form3/math/chapter-2/notes-dlp";
+import { mathF3C2MindMapBM } from "@/content/form3/math/chapter-2/mindmap-bm";
+import { mathF3C2MindMapDLP } from "@/content/form3/math/chapter-2/mindmap-dlp";
+import { mathF3C2QuizzesBM } from "@/content/form3/math/chapter-2/quizzes-bm";
+import { mathF3C2QuizzesDLP } from "@/content/form3/math/chapter-2/quizzes-dlp";
+import { mathF3C2FlashcardsBM } from "@/content/form3/math/chapter-2/flashcards-bm";
+import { mathF3C2FlashcardsDLP } from "@/content/form3/math/chapter-2/flashcards-dlp";
+import { mathF3C3NotesBM } from "@/content/form3/math/chapter-3/notes-bm";
+import { mathF3C3NotesDLP } from "@/content/form3/math/chapter-3/notes-dlp";
+import { mathF3C3MindMapBM } from "@/content/form3/math/chapter-3/mindmap-bm";
+import { mathF3C3MindMapDLP } from "@/content/form3/math/chapter-3/mindmap-dlp";
+import { mathF3C3QuizzesBM } from "@/content/form3/math/chapter-3/quizzes-bm";
+import { mathF3C3QuizzesDLP } from "@/content/form3/math/chapter-3/quizzes-dlp";
+import { mathF3C3FlashcardsBM } from "@/content/form3/math/chapter-3/flashcards-bm";
+import { mathF3C3FlashcardsDLP } from "@/content/form3/math/chapter-3/flashcards-dlp";
+import { mathF3C4NotesBM } from "@/content/form3/math/chapter-4/notes-bm";
+import { mathF3C4NotesDLP } from "@/content/form3/math/chapter-4/notes-dlp";
+import { mathF3C4MindMapBM } from "@/content/form3/math/chapter-4/mindmap-bm";
+import { mathF3C4MindMapDLP } from "@/content/form3/math/chapter-4/mindmap-dlp";
+import { mathF3C4QuizzesBM } from "@/content/form3/math/chapter-4/quizzes-bm";
+import { mathF3C4QuizzesDLP } from "@/content/form3/math/chapter-4/quizzes-dlp";
+import { mathF3C4FlashcardsBM } from "@/content/form3/math/chapter-4/flashcards-bm";
+import { mathF3C4FlashcardsDLP } from "@/content/form3/math/chapter-4/flashcards-dlp";
+import { mathF3C5NotesBM } from "@/content/form3/math/chapter-5/notes-bm";
+import { mathF3C5NotesDLP } from "@/content/form3/math/chapter-5/notes-dlp";
+import { mathF3C5MindMapBM } from "@/content/form3/math/chapter-5/mindmap-bm";
+import { mathF3C5MindMapDLP } from "@/content/form3/math/chapter-5/mindmap-dlp";
+import { mathF3C5QuizzesBM } from "@/content/form3/math/chapter-5/quizzes-bm";
+import { mathF3C5QuizzesDLP } from "@/content/form3/math/chapter-5/quizzes-dlp";
+import { mathF3C5FlashcardsBM } from "@/content/form3/math/chapter-5/flashcards-bm";
+import { mathF3C5FlashcardsDLP } from "@/content/form3/math/chapter-5/flashcards-dlp";
+import { mathF3C6NotesBM } from "@/content/form3/math/chapter-6/notes-bm";
+import { mathF3C6NotesDLP } from "@/content/form3/math/chapter-6/notes-dlp";
+import { mathF3C6MindMapBM } from "@/content/form3/math/chapter-6/mindmap-bm";
+import { mathF3C6MindMapDLP } from "@/content/form3/math/chapter-6/mindmap-dlp";
+import { mathF3C6QuizzesBM } from "@/content/form3/math/chapter-6/quizzes-bm";
+import { mathF3C6QuizzesDLP } from "@/content/form3/math/chapter-6/quizzes-dlp";
+import { mathF3C6FlashcardsBM } from "@/content/form3/math/chapter-6/flashcards-bm";
+import { mathF3C6FlashcardsDLP } from "@/content/form3/math/chapter-6/flashcards-dlp";
+import { mathF3C7NotesBM } from "@/content/form3/math/chapter-7/notes-bm";
+import { mathF3C7NotesDLP } from "@/content/form3/math/chapter-7/notes-dlp";
+import { mathF3C7MindMapBM } from "@/content/form3/math/chapter-7/mindmap-bm";
+import { mathF3C7MindMapDLP } from "@/content/form3/math/chapter-7/mindmap-dlp";
+import { mathF3C7QuizzesBM } from "@/content/form3/math/chapter-7/quizzes-bm";
+import { mathF3C7QuizzesDLP } from "@/content/form3/math/chapter-7/quizzes-dlp";
+import { mathF3C7FlashcardsBM } from "@/content/form3/math/chapter-7/flashcards-bm";
+import { mathF3C7FlashcardsDLP } from "@/content/form3/math/chapter-7/flashcards-dlp";
+import { mathF3C8NotesBM } from "@/content/form3/math/chapter-8/notes-bm";
+import { mathF3C8NotesDLP } from "@/content/form3/math/chapter-8/notes-dlp";
+import { mathF3C8MindMapBM } from "@/content/form3/math/chapter-8/mindmap-bm";
+import { mathF3C8MindMapDLP } from "@/content/form3/math/chapter-8/mindmap-dlp";
+import { mathF3C8QuizzesBM } from "@/content/form3/math/chapter-8/quizzes-bm";
+import { mathF3C8QuizzesDLP } from "@/content/form3/math/chapter-8/quizzes-dlp";
+import { mathF3C8FlashcardsBM } from "@/content/form3/math/chapter-8/flashcards-bm";
+import { mathF3C8FlashcardsDLP } from "@/content/form3/math/chapter-8/flashcards-dlp";
+import { mathF3C9NotesBM } from "@/content/form3/math/chapter-9/notes-bm";
+import { mathF3C9NotesDLP } from "@/content/form3/math/chapter-9/notes-dlp";
+import { mathF3C9MindMapBM } from "@/content/form3/math/chapter-9/mindmap-bm";
+import { mathF3C9MindMapDLP } from "@/content/form3/math/chapter-9/mindmap-dlp";
+import { mathF3C9QuizzesBM } from "@/content/form3/math/chapter-9/quizzes-bm";
+import { mathF3C9QuizzesDLP } from "@/content/form3/math/chapter-9/quizzes-dlp";
+import { mathF3C9FlashcardsBM } from "@/content/form3/math/chapter-9/flashcards-bm";
+import { mathF3C9FlashcardsDLP } from "@/content/form3/math/chapter-9/flashcards-dlp";
 
 
 function englishFlashcardsFor(chapterKey: string) {
@@ -881,6 +967,104 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: geoF2C10MindMap, title: "Teknologi Hijau" },
     flashcards: geographyF2FlashcardsFor(10),
     quiz: geographyF2QuizzesFor(10),
+  },
+
+  // Geography Form 3
+  {
+    id: "geography-f3-c1",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 1",
+    title: "Jadual dan Graf",
+    notes: geographyF3C1Notes,
+  },
+  {
+    id: "geography-f3-c2",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 2",
+    title: "Carta Pai",
+    notes: geographyF3C2Notes,
+  },
+  {
+    id: "geography-f3-c3",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 3",
+    title: "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
+    notes: geographyF3C3Notes,
+  },
+  {
+    id: "geography-f3-c4",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 4",
+    title: "Tumbuh-tumbuhan Semula Jadi di Malaysia",
+    notes: geographyF3C4Notes,
+  },
+  {
+    id: "geography-f3-c5",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 5",
+    title: "Hidupan Liar di Malaysia",
+    notes: geographyF3C5Notes,
+  },
+  {
+    id: "geography-f3-c6",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 6",
+    title: "Sumber Semula Jadi di Malaysia",
+    notes: geographyF3C6Notes,
+  },
+  {
+    id: "geography-f3-c7",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 7",
+    title: "Kegiatan Ekonomi di Malaysia",
+    notes: geographyF3C7Notes,
+  },
+  {
+    id: "geography-f3-c8",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 8",
+    title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
+    notes: geographyF3C8Notes,
+  },
+  {
+    id: "geography-f3-c9",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 9",
+    title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
+    notes: geographyF3C9Notes,
+  },
+  {
+    id: "geography-f3-c10",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 10",
+    title: "Sumber Hutan",
+    notes: geographyF3C10Notes,
+  },
+  {
+    id: "geography-f3-c11",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 11",
+    title: "Kitar Semula",
+    notes: geographyF3C11Notes,
+  },
+  {
+    id: "geography-f3-c12",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 12",
+    title: "Panduan Kerja Lapangan",
+    notes: geographyF3C12Notes,
   },
 
   // Mathematics Form 1
@@ -1457,6 +1641,224 @@ export const chapters: ChapterContent[] = [
     notes: mathF2C13NotesDLP,
     flashcards: mathF2C13FlashcardsDLP,
     quiz: mathF2C13QuizzesDLP,
+  },
+
+  // Mathematics Form 3
+  {
+    id: "math-f3-c1-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 1",
+    title: "Indeks",
+    lang: "bm",
+    mindMap: { data: mathF3C1MindMapBM, title: "Indeks" },
+    notes: mathF3C1NotesBM,
+    flashcards: mathF3C1FlashcardsBM,
+    quiz: mathF3C1QuizzesBM,
+  },
+  {
+    id: "math-f3-c1-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 1",
+    title: "Index",
+    lang: "dlp",
+    mindMap: { data: mathF3C1MindMapDLP, title: "Index" },
+    notes: mathF3C1NotesDLP,
+    flashcards: mathF3C1FlashcardsDLP,
+    quiz: mathF3C1QuizzesDLP,
+  },
+  {
+    id: "math-f3-c2-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 2",
+    title: "Bentuk Piawai",
+    lang: "bm",
+    mindMap: { data: mathF3C2MindMapBM, title: "Bentuk Piawai" },
+    notes: mathF3C2NotesBM,
+    flashcards: mathF3C2FlashcardsBM,
+    quiz: mathF3C2QuizzesBM,
+  },
+  {
+    id: "math-f3-c2-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 2",
+    title: "Standard Form",
+    lang: "dlp",
+    mindMap: { data: mathF3C2MindMapDLP, title: "Standard Form" },
+    notes: mathF3C2NotesDLP,
+    flashcards: mathF3C2FlashcardsDLP,
+    quiz: mathF3C2QuizzesDLP,
+  },
+  {
+    id: "math-f3-c3-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 3",
+    title: "Matematik Pengguna: Simpanan dan Pelaburan, Kredit dan Hutang",
+    lang: "bm",
+    mindMap: { data: mathF3C3MindMapBM, title: "Simpanan, Pelaburan, Kredit dan Hutang" },
+    notes: mathF3C3NotesBM,
+    flashcards: mathF3C3FlashcardsBM,
+    quiz: mathF3C3QuizzesBM,
+  },
+  {
+    id: "math-f3-c3-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 3",
+    title: "Consumer Mathematics: Savings and Investment, Credit and Debt",
+    lang: "dlp",
+    mindMap: { data: mathF3C3MindMapDLP, title: "Savings, Investment, Credit and Debt" },
+    notes: mathF3C3NotesDLP,
+    flashcards: mathF3C3FlashcardsDLP,
+    quiz: mathF3C3QuizzesDLP,
+  },
+  {
+    id: "math-f3-c4-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 4",
+    title: "Lukisan Berskala",
+    lang: "bm",
+    mindMap: { data: mathF3C4MindMapBM, title: "Lukisan Berskala" },
+    notes: mathF3C4NotesBM,
+    flashcards: mathF3C4FlashcardsBM,
+    quiz: mathF3C4QuizzesBM,
+  },
+  {
+    id: "math-f3-c4-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 4",
+    title: "Scale Drawings",
+    lang: "dlp",
+    mindMap: { data: mathF3C4MindMapDLP, title: "Scale Drawings" },
+    notes: mathF3C4NotesDLP,
+    flashcards: mathF3C4FlashcardsDLP,
+    quiz: mathF3C4QuizzesDLP,
+  },
+  {
+    id: "math-f3-c5-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 5",
+    title: "Nisbah Trigonometri",
+    lang: "bm",
+    mindMap: { data: mathF3C5MindMapBM, title: "Nisbah Trigonometri" },
+    notes: mathF3C5NotesBM,
+    flashcards: mathF3C5FlashcardsBM,
+    quiz: mathF3C5QuizzesBM,
+  },
+  {
+    id: "math-f3-c5-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 5",
+    title: "Trigonometric Ratios",
+    lang: "dlp",
+    mindMap: { data: mathF3C5MindMapDLP, title: "Trigonometric Ratios" },
+    notes: mathF3C5NotesDLP,
+    flashcards: mathF3C5FlashcardsDLP,
+    quiz: mathF3C5QuizzesDLP,
+  },
+  {
+    id: "math-f3-c6-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 6",
+    title: "Sudut dan Tangen bagi Bulatan",
+    lang: "bm",
+    mindMap: { data: mathF3C6MindMapBM, title: "Sudut dan Tangen bagi Bulatan" },
+    notes: mathF3C6NotesBM,
+    flashcards: mathF3C6FlashcardsBM,
+    quiz: mathF3C6QuizzesBM,
+  },
+  {
+    id: "math-f3-c6-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 6",
+    title: "Angles and Tangents of Circles",
+    lang: "dlp",
+    mindMap: { data: mathF3C6MindMapDLP, title: "Angles and Tangents of Circles" },
+    notes: mathF3C6NotesDLP,
+    flashcards: mathF3C6FlashcardsDLP,
+    quiz: mathF3C6QuizzesDLP,
+  },
+  {
+    id: "math-f3-c7-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 7",
+    title: "Pelan dan Dongakan",
+    lang: "bm",
+    mindMap: { data: mathF3C7MindMapBM, title: "Pelan dan Dongakan" },
+    notes: mathF3C7NotesBM,
+    flashcards: mathF3C7FlashcardsBM,
+    quiz: mathF3C7QuizzesBM,
+  },
+  {
+    id: "math-f3-c7-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 7",
+    title: "Plan and Elevation",
+    lang: "dlp",
+    mindMap: { data: mathF3C7MindMapDLP, title: "Plan and Elevation" },
+    notes: mathF3C7NotesDLP,
+    flashcards: mathF3C7FlashcardsDLP,
+    quiz: mathF3C7QuizzesDLP,
+  },
+  {
+    id: "math-f3-c8-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 8",
+    title: "Lokus dalam Dua Dimensi",
+    lang: "bm",
+    mindMap: { data: mathF3C8MindMapBM, title: "Lokus dalam Dua Dimensi" },
+    notes: mathF3C8NotesBM,
+    flashcards: mathF3C8FlashcardsBM,
+    quiz: mathF3C8QuizzesBM,
+  },
+  {
+    id: "math-f3-c8-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 8",
+    title: "Locus in Two Dimensions",
+    lang: "dlp",
+    mindMap: { data: mathF3C8MindMapDLP, title: "Locus in Two Dimensions" },
+    notes: mathF3C8NotesDLP,
+    flashcards: mathF3C8FlashcardsDLP,
+    quiz: mathF3C8QuizzesDLP,
+  },
+  {
+    id: "math-f3-c9-bm",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 9",
+    title: "Garis Lurus",
+    lang: "bm",
+    mindMap: { data: mathF3C9MindMapBM, title: "Garis Lurus" },
+    notes: mathF3C9NotesBM,
+    flashcards: mathF3C9FlashcardsBM,
+    quiz: mathF3C9QuizzesBM,
+  },
+  {
+    id: "math-f3-c9-dlp",
+    subjectId: "math",
+    form: "Form 3",
+    chapterKey: "Chapter 9",
+    title: "Straight Lines",
+    lang: "dlp",
+    mindMap: { data: mathF3C9MindMapDLP, title: "Straight Lines" },
+    notes: mathF3C9NotesDLP,
+    flashcards: mathF3C9FlashcardsDLP,
+    quiz: mathF3C9QuizzesDLP,
   },
 
   // Science Form 1 (bilingual)

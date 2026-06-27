@@ -1,0 +1,72 @@
+import type { Difficulty, QuizQuestion } from "@/data/content";
+
+type QuizSeed = [Difficulty, string, [string, string, string, string], number];
+
+function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
+  return items.map(([difficulty, question, options, answerIndex], index) => ({
+    id: `math-f3-c8-bm-q${index + 1}`,
+    subjectId: "math",
+    form: "Form 3",
+    difficulty,
+    chapter: "Chapter 8",
+    lang: "bm",
+    question,
+    options,
+    answerIndex,
+  }));
+}
+
+export const mathF3C8QuizzesBM: QuizQuestion[] = buildQuiz([
+  ["Easy", "Apakah maksud lokus?", ["Surihan/lintasan satu set titik yang memenuhi syarat tertentu", "Satu titik tetap sahaja", "Sebarang garis lurus", "Luas sesuatu bentuk"], 0],
+  ["Easy", "Apakah lokus titik pada sayap kipas berputar?", ["Bulatan", "Garis lurus", "Segi tiga", "Segi empat"], 0],
+  ["Easy", "Apakah lokus titik pada roket dilancarkan menegak?", ["Garis lurus", "Bulatan", "Lengkok", "Sfera"], 0],
+  ["Easy", "Apakah lokus titik berjarak tetap dari satu titik tetap?", ["Bulatan berpusat titik tetap itu", "Garis lurus", "Pembahagi dua sudut", "Garis selari"], 0],
+  ["Easy", "Apakah lokus titik berjarak sama dari dua titik tetap?", ["Pembahagi dua sama serenjang", "Bulatan", "Garis selari", "Pembahagi dua sudut"], 0],
+  ["Easy", "Apakah lokus titik berjarak tetap dari satu garis lurus?", ["Sepasang garis selari dengan garis itu", "Satu bulatan", "Satu garis sahaja", "Pembahagi dua sudut"], 0],
+  ["Easy", "Apakah lokus titik berjarak sama dari dua garis selari?", ["Satu garis lurus selari di tengah-tengah", "Bulatan", "Pembahagi dua sudut", "Lengkok"], 0],
+  ["Easy", "Apakah lokus titik berjarak sama dari dua garis bersilang?", ["Pembahagi dua sama sudut", "Pembahagi dua sama serenjang", "Bulatan", "Garis selari"], 0],
+  ["Easy", "Bina lokus P berjarak 3cm dari titik O. Apakah bentuknya?", ["Bulatan jejari 3cm berpusat O", "Garis lurus 3cm", "Segi tiga", "Pembahagi dua sudut"], 0],
+  ["Easy", "Bagaimana bentuk lokus 3D apabila segi empat tepat diputar 360° mengeliling tiang?", ["Silinder tegak", "Sfera", "Kon", "Kubus"], 0],
+  ["Easy", "Bagaimana bentuk lokus 3D apabila semi bulatan diputar 360° mengeliling tiang?", ["Sfera", "Silinder", "Kon", "Piramid"], 0],
+  ["Easy", "Apakah alat yang digunakan untuk membina bulatan secara tepat?", ["Jangka lukis", "Protraktor sahaja", "Pembaris sahaja", "Pensel sahaja"], 0],
+  ["Easy", "Apakah alat yang digunakan untuk membina pembahagi dua sudut?", ["Jangka lukis dan pembaris", "Protraktor sahaja", "Kalkulator", "Tidak perlu alat"], 0],
+  ["Easy", "Apakah lokus bagi titik pada bandul yang berayun?", ["Lengkok", "Garis lurus", "Bulatan penuh", "Sfera"], 0],
+  ["Easy", "Berapa garis terhasil daripada lokus jarak tetap dari satu garis lurus?", ["Dua (sepasang)", "Satu sahaja", "Tiga", "Empat"], 0],
+  ["Easy", "Apakah nama garis yang membahagi dua sama sudut antara dua garis bersilang?", ["Pembahagi dua sudut (angle bisector)", "Pembahagi dua serenjang", "Garis normal", "Garis tangen"], 0],
+  ["Easy", "Apakah nama garis yang berserenjang melalui titik tengah dua titik?", ["Pembahagi dua sama serenjang", "Pembahagi dua sudut", "Garis tangen", "Garis normal"], 0],
+  ["Easy", "T berjarak 1.5cm dari garis CD. Apakah lokus T?", ["Sepasang garis selari CD, jarak 1.5cm", "Bulatan jejari 1.5cm", "Satu garis sahaja", "Pembahagi dua sudut"], 0],
+  ["Easy", "Apakah bidang yang menggunakan konsep lokus?", ["Pembinaan, kejuruteraan, penerbangan, satelit", "Hanya seni lukis", "Hanya muzik", "Hanya sukan bola"], 0],
+  ["Easy", "Siapakah ahli matematik Yunani yang mengkaji lokus?", ["Apollonius dan Pappus", "Pythagoras sahaja", "Euclid sahaja", "Archimedes sahaja"], 0],
+
+  ["Medium", "X berjarak sama dari titik P dan R (segi tiga sama sisi PQR). Apakah lokus X?", ["Pembahagi dua sama serenjang PR", "Bulatan berpusat P", "Garis selari PR", "Pembahagi dua sudut P"], 0],
+  ["Medium", "Lukis lokus X bergerak 3 unit dari garis AB. Apakah hasilnya?", ["Sepasang garis selari AB, berjarak 3 unit", "Satu bulatan jejari 3 unit", "Satu garis sahaja", "Pembahagi dua sudut"], 0],
+  ["Medium", "Lokus X berjarak sama dari AB dan DC (segi empat tepat ABCD). Apakah lokus?", ["Satu garis lurus selari AB & DC, di tengah-tengah", "Bulatan", "Pembahagi dua sudut", "Lengkok"], 0],
+  ["Medium", "X berjarak sama dari PQ dan PN (bersilang di P). Apakah lokus X?", ["Garis lurus membahagi dua sama ∠QPN", "Pembahagi dua serenjang PQ", "Bulatan berpusat P", "Garis selari PQ"], 0],
+  ["Medium", "Y berjarak sama dari AB dan AD (segi empat sama ABCD). Apakah lokus Y?", ["Garis lurus membahagi dua sama ∠BAD", "Pembahagi dua serenjang AB", "Bulatan berpusat A", "Garis selari AD"], 0],
+  ["Medium", "X berjarak 7 unit dari A; Y berjarak sama dari AB dan CD. Bagaimana cari persilangan X dan Y?", ["Lukis kedua-dua lokus pada rajah sama, kenal pasti titik bertemu", "Hanya lukis lokus X", "Hanya lukis lokus Y", "Anggar tanpa lukisan"], 0],
+  ["Medium", "Garis MN, titik P berjarak sama dari M dan N. Bagaimana bina lokus P?", ["Lukis pembahagi dua sama serenjang MN", "Lukis bulatan jejari MN", "Lukis garis selari MN", "Lukis pembahagi dua sudut M"], 0],
+  ["Medium", "Pada satah Cartes, pasangan koordinat (0,0),(-2,-2),(4,4) disambung. Apakah lokus ini?", ["Garis yang membahagi dua sama sudut antara paksi-x dan paksi-y (45°)", "Bulatan berpusat O", "Garis selari paksi-x", "Garis selari paksi-y"], 0],
+  ["Medium", "Daripada soalan di atas, berapakah nilai ∠a=∠b=∠c=∠d yang terbentuk?", ["45°", "90°", "60°", "30°"], 0],
+  ["Medium", "Faruk berjarak sama dari paksi-x dan paksi-y, dan kurang dari 5 unit dari O. Apakah jenis lokus yang relevan?", ["Pembahagi dua sudut (garis 45°) dalam julat jarak <5 unit dari O", "Bulatan jejari 5 unit sahaja", "Garis selari paksi-x", "Garis selari paksi-y"], 0],
+  ["Medium", "Segi empat sama ABCD, P bergerak sama jarak dari A dan D. Apakah lokus P?", ["Pembahagi dua sama serenjang AD", "Bulatan berpusat A", "Pembahagi dua sudut A", "Garis selari AD"], 0],
+  ["Medium", "Q bergerak sama jarak dari B dan D (segi empat sama ABCD). Apakah lokus Q?", ["Pembahagi dua sama serenjang BD", "Bulatan berpusat B", "Garis selari BD", "Pembahagi dua sudut B"], 0],
+  ["Medium", "R bergerak 4 unit dari garis lurus BC. Apakah lokus R?", ["Sepasang garis selari BC, jarak 4 unit", "Bulatan jejari 4 unit", "Pembahagi dua sudut BC", "Satu garis sahaja"], 0],
+  ["Medium", "S bergerak sama jarak dari garis AB dan BC. Apakah lokus S?", ["Pembahagi dua sama sudut ABC", "Pembahagi dua serenjang AB", "Bulatan berpusat B", "Garis selari AB"], 0],
+  ["Medium", "Garis lurus PQ 5cm, X berjarak 3cm dari P. Huraikan lokus X.", ["Bulatan jejari 3cm berpusat P", "Garis lurus 3cm dari P", "Pembahagi dua serenjang PQ", "Bulatan jejari 5cm berpusat P"], 0],
+  ["Medium", "Daripada soalan di atas, Y berjarak 4cm dari Q. Huraikan lokus Y.", ["Bulatan jejari 4cm berpusat Q", "Garis lurus 4cm dari Q", "Pembahagi dua serenjang PQ", "Bulatan jejari 5cm berpusat Q"], 0],
+  ["Medium", "Garis lurus CD 6cm, T berjarak 1.5cm dari CD. Berapa garis terbentuk dalam lokus T?", ["Dua garis selari CD", "Satu garis sahaja", "Satu bulatan", "Tiga garis"], 0],
+  ["Medium", "Segi empat ABCD mewakili tasik. Bot V bergerak 5 unit dari D, Bot W berjarak 3 unit dari BC. Bagaimana cari persilangan laluan?", ["Lukis kedua lokus (bulatan dan garis selari) pada rajah sama dan kenal pasti titik bertemu", "Hanya kira jarak tanpa lukisan", "Anggap kedua laluan tidak bertemu", "Lukis hanya satu lokus"], 0],
+  ["Medium", "Empat segi empat sama 2cm digabung; X bergerak 2cm dari M. Apakah lokus X?", ["Bulatan jejari 2cm berpusat M", "Garis lurus 2cm dari M", "Pembahagi dua sudut M", "Garis selari sebarang sisi"], 0],
+  ["Medium", "Y bergerak sama jarak dari garis PR dan PV (segi empat PRTV). Apakah lokus Y?", ["Pembahagi dua sama sudut RPV", "Pembahagi dua serenjang PR", "Bulatan berpusat P", "Garis selari PR"], 0],
+
+  ["Hard", "Dalam satah Cartes, titik E(2,4), F(4,2), G(4,6), H(6,4) (anggaran kedudukan). Faruk berjarak sama dari paksi-x,y dan <5 unit dari O. Titik manakah mewakili Faruk?", ["Titik yang terletak pada garis y=x (atau y=-x) dan jaraknya dari O <5 unit", "Sebarang titik dalam senarai", "Titik yang paling jauh dari O", "Tidak ada titik yang sesuai"], 0],
+  ["Hard", "Bagaimana mengesahkan titik tertentu berada pada lokus pembahagi dua sudut paksi (45°)?", ["Semak jika koordinat x dan y bernilai sama (atau bertentangan tanda dan sama magnitud)", "Semak jika x=0 sahaja", "Semak jika y=0 sahaja", "Semak jika x+y=0 sahaja untuk semua kuadran"], 0],
+  ["Hard", "Segi empat sama ABCD, lukis lokus X (jarak 7 unit dari A, terhad dalam ABCD) dan lokus Y (jarak sama dari AB,CD). Apakah cabaran utama melukis lokus terhad pada kawasan?", ["Hanya lukis bahagian lokus yang berada di dalam sempadan segi empat sama, bukan bulatan/garis penuh", "Lukis bulatan penuh tanpa sempadan", "Lukis garis tanpa had panjang", "Tidak perlu pertimbangkan sempadan"], 0],
+  ["Hard", "Mengapa lokus jarak tetap dari garis lurus menghasilkan DUA garis, bukan satu?", ["Kerana titik boleh berada pada kedua-dua belah garis asal pada jarak yang sama", "Kerana garis asal mempunyai dua hujung", "Kerana kesilapan dalam definisi lokus", "Hanya berlaku untuk garis mendatar"], 0],
+  ["Hard", "Apakah perbezaan utama antara pembahagi dua serenjang dan pembahagi dua sudut sebagai lokus?", ["Pembahagi dua serenjang untuk dua TITIK tetap; pembahagi dua sudut untuk dua GARIS bersilang", "Kedua-duanya sama maksud", "Pembahagi dua serenjang untuk garis selari", "Pembahagi dua sudut untuk titik tetap"], 0],
+  ["Hard", "Lokus bagi titik berjarak sama dari dua bulatan (bukan titik/garis) — adakah ini termasuk dalam topik bab ini?", ["Tidak secara langsung; bab ini fokus pada titik, garis lurus selari dan bersilang", "Ya, semua kes lokus sama", "Ya, kerana bulatan ialah set titik", "Bergantung saiz bulatan"], 0],
+  ["Hard", "Apakah strategi terbaik menyelesaikan masalah lokus dengan banyak syarat serentak (3 syarat atau lebih)?", ["Lukis setiap lokus secara berasingan pada rajah sama, kemudian cari kawasan/titik yang memenuhi SEMUA syarat", "Hanya pertimbangkan syarat pertama", "Anggar tanpa lukisan tepat", "Gabungkan semua syarat menjadi satu formula tunggal"], 0],
+  ["Hard", "Mengapa ketepatan jangka lukis dan pembaris penting dalam membina lokus geometri?", ["Lokus mesti tepat secara geometri, bukan anggaran, untuk mengelakkan kesilapan kedudukan titik persilangan", "Ketepatan tidak penting untuk lokus", "Hanya untuk kecantikan lukisan", "Hanya diperlukan untuk lokus bulatan"], 0],
+  ["Hard", "Bagaimana lokus tiga dimensi (silinder/sfera) berkait dengan lokus dua dimensi yang dipelajari dalam bab ini?", ["Lokus 3D dihasilkan apabila bentuk 2D (segi empat tepat/semi bulatan) diputar 360° mengeliling paksi", "Tiada kaitan antara kedua-duanya", "Lokus 3D adalah lokus 2D yang diperbesarkan", "Lokus 3D hanya berlaku untuk bulatan"], 0],
+  ["Hard", "Apakah kesilapan konsep jika seseorang menganggap lokus jarak sama dari dua garis selari ialah dua garis (bukan satu)?", ["Salah; lokus tersebut hanya SATU garis di tengah-tengah, bukan sepasang", "Betul, sentiasa dua garis", "Bergantung jarak antara dua garis selari", "Hanya satu garis jika garis selari sangat jauh"], 0],
+]);
