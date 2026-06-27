@@ -136,6 +136,7 @@ function isActive(pathname: string, to: string) {
 function SidebarBottom() {
   const { progress } = useProgress();
   const { user, signOut, isConfigured } = useAuth();
+  const { open: openSignIn } = useSignInModal();
   const rank = getRank(progress.xp);
 
   return (
