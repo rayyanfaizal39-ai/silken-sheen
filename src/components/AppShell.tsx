@@ -410,15 +410,17 @@ function HeaderStreak() {
 
 function HeaderAuthAction() {
   const { user, isConfigured, loading } = useAuth();
+  const { open } = useSignInModal();
   if (!isConfigured || loading || user) return null;
   return (
-    <Link
-      to="/login"
+    <button
+      type="button"
+      onClick={open}
       className="flex items-center gap-1.5 rounded-xl border border-[#8B5CF6]/40 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-3 py-1.5 text-xs font-bold text-white shadow-[0_0_18px_rgba(139,92,246,0.45)] transition-transform hover:scale-105"
     >
       <LogIn className="h-3.5 w-3.5" />
       Sign In
-    </Link>
+    </button>
   );
 }
 
