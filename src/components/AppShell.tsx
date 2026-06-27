@@ -19,6 +19,7 @@ import {
 import type { ReactNode } from "react";
 import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
+import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
