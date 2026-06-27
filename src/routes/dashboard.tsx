@@ -50,6 +50,12 @@ import {
 import { AcademyPageShell } from "@/components/AcademyPage";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
+import geographyArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 10_59_37 AM.png";
+import bmArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_15 AM.png";
+import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_47 AM.png";
+import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
+import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
+import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -996,18 +1002,17 @@ function TodayProgressGrid({
   );
 }
 
-// ─── Subject Worlds — placeholder planet cards (artwork added manually later) ──
+// ─── Subject Worlds ───────────────────────────────────────────────────────────
 
-const SUBJECT_WORLD_THEME: Record<string, { label: string; color: string; glow: string }> = {
-  bm:        { label: "Green Knowledge Planet",    color: "#22C55E", glow: "rgba(34,197,94,0.55)" },
-  english:   { label: "Blue Communication Planet", color: "#3B82F6", glow: "rgba(59,130,246,0.55)" },
-  math:      { label: "Purple Logic Planet",        color: "#A855F7", glow: "rgba(168,85,247,0.55)" },
-  science:   { label: "Cyan Discovery Planet",       color: "#22D3EE", glow: "rgba(34,211,238,0.55)" },
-  sejarah:   { label: "Amber Heritage Planet",       color: "#F59E0B", glow: "rgba(245,158,11,0.55)" },
-  geography: { label: "Emerald Earth Planet",        color: "#10B981", glow: "rgba(16,185,129,0.55)" },
+const SUBJECT_WORLD_THEME: Record<string, { color: string; artwork: string }> = {
+  bm:        { color: "#C458A3", artwork: bmArtwork },
+  english:   { color: "#8E5ACF", artwork: englishArtwork },
+  math:      { color: "#C89B2C", artwork: mathArtwork },
+  science:   { color: "#1D5F9F", artwork: scienceArtwork },
+  sejarah:   { color: "#C97A3A", artwork: sejarahArtwork },
+  geography: { color: "#1FAE8B", artwork: geographyArtwork },
 };
 
-/** Subject card with a reserved (~70%) artwork area — placeholder only, real planet art added manually. */
 function SubjectWorldCard({
   subject,
   chapDone,
@@ -1019,34 +1024,29 @@ function SubjectWorldCard({
   chapStarted: number;
   pct: number;
 }) {
-  const theme = SUBJECT_WORLD_THEME[subject.id] ?? { label: "Mystery Planet", color: "#8B5CF6", glow: "rgba(139,92,246,0.5)" };
+  const theme = SUBJECT_WORLD_THEME[subject.id];
 
   return (
     <div
-      className="group relative flex h-[220px] flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.18]"
+      className="group relative flex h-[280px] flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#0B1220] transition-[border-color,background-color] duration-200 hover:border-white/[0.16] hover:bg-[#0E1727]"
     >
-      {/* Artwork area — ~70% of card height, placeholder container for manually-added planet art */}
-      <div
-        className="relative flex h-[70%] w-full items-center justify-center overflow-hidden"
-        style={{ background: `radial-gradient(circle at 50% 30%, ${theme.glow}, transparent 70%)` }}
-      >
-        <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:26px_26px]" />
-        <div
-          className="cosmic-subject-planet-orb relative z-10 flex h-20 w-20 items-center justify-center rounded-full text-4xl animate-float-soft"
-          style={{ background: `${theme.color}22`, boxShadow: `0 0 32px ${theme.glow}` }}
-        >
-          <span>{subject.emoji}</span>
-        </div>
+      {/* Artwork area */}
+      <div className="relative h-[52%] w-full shrink-0 overflow-hidden">
+        <img
+          src={theme.artwork}
+          alt=""
+          className="h-full w-full object-cover brightness-[0.72] transition-[filter] duration-200 group-hover:brightness-[0.8]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220] via-black/25 to-black/15" />
         <span
-          className="absolute right-3 top-3 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
-          style={{ background: `${theme.color}22`, color: theme.color }}
+          className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/55 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white"
         >
           {pct}%
         </span>
       </div>
 
       {/* Info area — name, chapter count, progress bar, continue button */}
-      <div className="flex flex-1 flex-col justify-between p-2.5">
+      <div className="flex min-h-0 flex-1 flex-col justify-between p-3">
         <div>
           <p className="text-sm font-bold text-white">{subject.name}</p>
           <p className="text-[9px] font-bold uppercase tracking-wide" style={{ color: theme.color }}>
@@ -1059,7 +1059,7 @@ function SubjectWorldCard({
         <Link
           to="/notes"
           search={{ subject: subject.id, form: 1 } as Record<string, unknown>}
-          className="mt-2 flex items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 text-[11px] font-bold text-white transition-transform group-hover:scale-[1.02]"
+          className="mt-2 flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-[11px] font-bold transition-[filter] hover:brightness-110"
           style={{ background: `${theme.color}30`, color: theme.color }}
         >
           Continue <ArrowRight className="h-3 w-3" />
