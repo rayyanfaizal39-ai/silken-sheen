@@ -324,6 +324,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Sparkles className="h-3.5 w-3.5" />
               Upgrade
             </Link>
+            <HeaderAuthAction />
             {/* Profile / avatar link with upgrade pip */}
             <div className="relative">
               <Link
