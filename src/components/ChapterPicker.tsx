@@ -140,7 +140,10 @@ function resourceTypeForMode(mode: LearningMode): ResourceType {
 }
 
 function hasCustomFormResourceContent(subjectId: string, form: Form, mode: LearningMode) {
-  return subjectId === "bm" && mode === "notes" && (form === "Form 1" || form === "Form 2");
+  if (subjectId !== "bm") return false;
+
+  if (mode === "notes") return form === "Form 1" || form === "Form 2";
+  return mode === "quizzes" && form === "Form 1";
 }
 
 // Real per-form stat line shown under a Ready badge — never a generic
