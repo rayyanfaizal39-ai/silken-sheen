@@ -156,14 +156,16 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <CikguProvider>
-          <ParticleBg />
-          <SoundFx />
-          <MusicPlayer />
-          <AppShell>
-            <Outlet />
-          </AppShell>
-        </CikguProvider>
+        <SignInModalProvider>
+          <CikguProvider>
+            <ParticleBg />
+            <SoundFx />
+            <MusicPlayer />
+            <AppShell>
+              <Outlet />
+            </AppShell>
+          </CikguProvider>
+        </SignInModalProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
