@@ -121,6 +121,18 @@ import { geoF2C9MindMap } from "@/content/form2/geography/chapter-9/mindmap";
 import { geographyF2C9Notes } from "@/content/form2/geography/chapter-9/notes";
 import { geoF2C10MindMap } from "@/content/form2/geography/chapter-10/mindmap";
 import { geographyF2C10Notes } from "@/content/form2/geography/chapter-10/notes";
+import { geographyF3C1Notes } from "@/content/form3/geography/chapter-1/notes";
+import { geographyF3C2Notes } from "@/content/form3/geography/chapter-2/notes";
+import { geographyF3C3Notes } from "@/content/form3/geography/chapter-3/notes";
+import { geographyF3C4Notes } from "@/content/form3/geography/chapter-4/notes";
+import { geographyF3C5Notes } from "@/content/form3/geography/chapter-5/notes";
+import { geographyF3C6Notes } from "@/content/form3/geography/chapter-6/notes";
+import { geographyF3C7Notes } from "@/content/form3/geography/chapter-7/notes";
+import { geographyF3C8Notes } from "@/content/form3/geography/chapter-8/notes";
+import { geographyF3C9Notes } from "@/content/form3/geography/chapter-9/notes";
+import { geographyF3C10Notes } from "@/content/form3/geography/chapter-10/notes";
+import { geographyF3C11Notes } from "@/content/form3/geography/chapter-11/notes";
+import { geographyF3C12Notes } from "@/content/form3/geography/chapter-12/notes";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -881,6 +893,104 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: geoF2C10MindMap, title: "Teknologi Hijau" },
     flashcards: geographyF2FlashcardsFor(10),
     quiz: geographyF2QuizzesFor(10),
+  },
+
+  // Geography Form 3
+  {
+    id: "geography-f3-c1",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 1",
+    title: "Jadual dan Graf",
+    notes: geographyF3C1Notes,
+  },
+  {
+    id: "geography-f3-c2",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 2",
+    title: "Carta Pai",
+    notes: geographyF3C2Notes,
+  },
+  {
+    id: "geography-f3-c3",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 3",
+    title: "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
+    notes: geographyF3C3Notes,
+  },
+  {
+    id: "geography-f3-c4",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 4",
+    title: "Tumbuh-tumbuhan Semula Jadi di Malaysia",
+    notes: geographyF3C4Notes,
+  },
+  {
+    id: "geography-f3-c5",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 5",
+    title: "Hidupan Liar di Malaysia",
+    notes: geographyF3C5Notes,
+  },
+  {
+    id: "geography-f3-c6",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 6",
+    title: "Sumber Semula Jadi di Malaysia",
+    notes: geographyF3C6Notes,
+  },
+  {
+    id: "geography-f3-c7",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 7",
+    title: "Kegiatan Ekonomi di Malaysia",
+    notes: geographyF3C7Notes,
+  },
+  {
+    id: "geography-f3-c8",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 8",
+    title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
+    notes: geographyF3C8Notes,
+  },
+  {
+    id: "geography-f3-c9",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 9",
+    title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
+    notes: geographyF3C9Notes,
+  },
+  {
+    id: "geography-f3-c10",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 10",
+    title: "Sumber Hutan",
+    notes: geographyF3C10Notes,
+  },
+  {
+    id: "geography-f3-c11",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 11",
+    title: "Kitar Semula",
+    notes: geographyF3C11Notes,
+  },
+  {
+    id: "geography-f3-c12",
+    subjectId: "geography",
+    form: "Form 3",
+    chapterKey: "Chapter 12",
+    title: "Panduan Kerja Lapangan",
+    notes: geographyF3C12Notes,
   },
 
   // Mathematics Form 1
