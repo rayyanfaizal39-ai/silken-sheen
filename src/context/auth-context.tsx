@@ -28,6 +28,8 @@ interface AuthContextValue {
   signOut: () => Promise<void>;
 }
 
+const OAUTH_REQUEST_TIMEOUT_MS = 15_000;
+
 // ─── Context ──────────────────────────────────────────────────────────────────
 
 const AuthContext = createContext<AuthContextValue>({
@@ -65,14 +67,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     // Retrieve the initial session (handles post-OAuth redirects too)
-    supabase.auth.getSession().then(({ data: { session: s } }) => {
-      setSession(s);
-      setUser(s?.user ? supabaseUserToAuthUser(s.user) : null);
-      setLoading(false);
-    });
+    console.info("[Auth] Initial session check started", { path: window.location.pathname });
+    void supabase.auth.getSession()
+      .then(({ data: { session: s }, error }) => {
+        if (error) console.error("[Auth] Initial session check failed", error);
+        else console.info("[Auth] Initial session check completed", { hasSession: !!s });
+        setSession(s);
+        setUser(s?.user ? supabaseUserToAuthUser(s.user) : null);
+      })
+      .catch((error: unknown) => {
+        console.error("[Auth] Initial session check threw", error);
+      })
+      .finally(() => setLoading(false));
 
     // Subscribe to auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, s) => {
+      console.info("[Auth] State changed", { event, hasSession: !!s });
       setSession(s);
       setUser(s?.user ? supabaseUserToAuthUser(s.user) : null);
       setLoading(false);
@@ -82,14 +92,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithGoogle = useCallback(async () => {
-    if (!isSupabaseConfigured) return;
-    await supabase.auth.signInWithOAuth({
+    if (!isSupabaseConfigured) {
+      throw new Error("Supabase is not configured");
+    }
+
+    const redirectTo = window.location.origin + "/auth/callback";
+    console.info("[Auth] Google OAuth request started", { redirectTo });
+
+    const oauthRequest = supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: typeof window !== "undefined" ? window.location.origin : undefined,
+        redirectTo,
         queryParams: { prompt: "select_account" },
+        // Redirect explicitly after validating Supabase's response. This prevents a
+        // resolved `{ error }` response from leaving the login spinner running forever.
+        skipBrowserRedirect: true,
       },
     });
+
+    const timeout = new Promise<never>((_, reject) => {
+      window.setTimeout(
+        () => reject(new Error("Google OAuth request timed out")),
+        OAUTH_REQUEST_TIMEOUT_MS,
+      );
+    });
+    const { data, error } = await Promise.race([oauthRequest, timeout]);
+
+    console.info("[Auth] Google OAuth response received", {
+      hasUrl: !!data.url,
+      hasError: !!error,
+    });
+    if (error) throw error;
+    if (!data.url) throw new Error("Supabase did not return a Google OAuth URL");
+
+    console.info("[Auth] Redirecting browser to Google");
+    window.location.assign(data.url);
   }, []);
 
   const signOut = useCallback(async () => {

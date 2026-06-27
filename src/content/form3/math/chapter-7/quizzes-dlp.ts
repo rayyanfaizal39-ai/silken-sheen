@@ -1,0 +1,72 @@
+import type { Difficulty, QuizQuestion } from "@/data/content";
+
+type QuizSeed = [Difficulty, string, [string, string, string, string], number];
+
+function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
+  return items.map(([difficulty, question, options, answerIndex], index) => ({
+    id: `math-f3-c7-dlp-q${index + 1}`,
+    subjectId: "math",
+    form: "Form 3",
+    difficulty,
+    chapter: "Chapter 7",
+    lang: "dlp",
+    question,
+    options,
+    answerIndex,
+  }));
+}
+
+export const mathF3C7QuizzesDLP: QuizQuestion[] = buildQuiz([
+  ["Easy", "What is a plane?", ["A flat surface on an object", "Only a straight line", "An angle on an object", "A point on an object"], 0],
+  ["Easy", "What are the three types of planes?", ["Horizontal, vertical, inclined", "Round, triangular, square", "Tall, short, medium", "Red, blue, green"], 0],
+  ["Easy", "What is a normal to a plane?", ["A straight line perpendicular to the plane", "A line parallel to the plane", "An inclined line only", "Any line on the plane"], 0],
+  ["Easy", "What is an orthogonal projection?", ["An image formed on a plane with projection lines perpendicular to it", "Any drawing of an object", "A drawing without scale", "Only a straight line"], 0],
+  ["Easy", "What is a plan?", ["The orthogonal projection on a horizontal plane (top view)", "A projection on a vertical plane", "Any side drawing", "A scale drawing"], 0],
+  ["Easy", "What is an elevation?", ["The orthogonal projection on a vertical plane (front/side view)", "A projection on a horizontal plane", "A drawing from above", "A full 3D drawing"], 0],
+  ["Easy", "What is a thick solid line used for?", ["Visible edges", "Hidden edges", "Construction lines", "Axis lines"], 0],
+  ["Easy", "What is a dashed line used for?", ["Hidden/concealed edges", "Visible edges", "Measurement lines", "Paper edge lines"], 0],
+  ["Easy", "What is a thin solid line used for?", ["Construction/projection lines", "Visible edges", "Hidden edges", "The object's frame"], 0],
+  ["Easy", "Where is the plan usually drawn in the standard quadrant layout?", ["Fourth quadrant", "First quadrant", "Second quadrant", "Third quadrant"], 0],
+  ["Easy", "Where is the front elevation usually drawn?", ["First quadrant (above the plan)", "Fourth quadrant", "Third quadrant", "Any quadrant"], 0],
+  ["Easy", "What is the valid angle for a normal to a plane?", ["90°", "45°", "60°", "180°"], 0],
+  ["Easy", "Are all projections orthogonal projections?", ["No, only if the projection line is perpendicular to the plane", "Yes, all projections are orthogonal", "Only circular projections", "Only square projections"], 0],
+  ["Easy", "What does a horizontal plane mean?", ["A flat/level plane", "A vertical plane", "An inclined plane", "A curved plane"], 0],
+  ["Easy", "What does a vertical plane mean?", ["An upright plane", "A flat/level plane", "An inclined plane", "A round plane"], 0],
+  ["Easy", "What scale is used to draw a plan and elevation?", ["Full scale (1:1) unless stated otherwise", "Always scale 1:2", "Always scale 1:10", "No scale"], 0],
+  ["Easy", "How many views are usually drawn together (plan + elevations)?", ["Three (plan, front elevation, side elevation)", "Only one", "Only two", "Four"], 0],
+  ["Easy", "What is the function of a normal in drawing an orthogonal projection?", ["Determines the direction of projection perpendicular to the plane", "Determines the drawing colour", "Determines the paper size", "Determines the object's type"], 0],
+  ["Easy", "What does synthesising the plan and elevations mean?", ["Combining the three projections to sketch the object's 3D shape", "Erasing all projections", "Redrawing the object without scale", "Calculating the object's area"], 0],
+  ["Easy", "Which fields use plan and elevation?", ["Engineering, construction, architecture", "Music and abstract art", "Sports and games", "Cooking"], 0],
+
+  ["Medium", "Cube PQRSTUVW, state the normal to plane PQRS.", ["UP, VQ, WR, TS", "PQ, QR, RS, SP", "UV, VW, WT, TU", "PT, QU, RV, SW"], 0],
+  ["Medium", "A right prism with horizontal ABCD, FM⊥AB, EN⊥CD. What are FM and EN?", ["Normals to plane ABCD", "Orthogonal projections of ABCD", "Vertical sides of the prism", "Dashed lines"], 0],
+  ["Medium", "If the projection line is not perpendicular to the plane, what is the result?", ["Not an orthogonal projection", "A valid orthogonal projection", "A valid plan", "A valid elevation"], 0],
+  ["Medium", "A cylinder with diameter 4cm, height 6cm, on a horizontal plane. What is the shape of the plan (top view)?", ["A circle of diameter 4cm", "A rectangle 4cm x 6cm", "A triangle", "A straight line of 6cm"], 0],
+  ["Medium", "From the above, what is the shape of the elevation (side view)?", ["A rectangle 4cm x 6cm", "A circle of diameter 4cm", "A triangle", "A circle of diameter 6cm"], 0],
+  ["Medium", "For an orthogonal projection on the horizontal plane from direction Z, what stays unchanged?", ["Side lengths and angles that are parallel/on that plane", "All side lengths of the object", "All angles of the object", "Nothing stays the same"], 0],
+  ["Medium", "Why do side lengths in a projection differ depending on the viewing direction?", ["Because sides inclined/vertical to the plane change length in the projection", "Because the object changes shape", "Because the scale changes", "Due to drawing mistakes"], 0],
+  ["Medium", "A right prism with base PQRS, URQ as the cross-section. What is the first step in drawing the plan?", ["Project each vertex of the object onto the horizontal plane", "Project directly onto the vertical plane", "Draw the elevation first", "Only measure angles"], 0],
+  ["Medium", "In method 1, the side viewing direction is right-to-left. Where is the side elevation placed?", ["To the left of the front elevation", "To the right of the front elevation", "Above the front elevation", "Below the plan"], 0],
+  ["Medium", "In method 2, the side viewing direction is left-to-right. Where is the side elevation placed?", ["To the right of the front elevation", "To the left of the front elevation", "Above the plan", "In the centre"], 0],
+  ["Medium", "What line type is used for hidden sides GP, HI in Example 7?", ["Dashed line", "Thick solid line", "Thin solid line", "Dotted line"], 0],
+  ["Medium", "What is the function of a thin solid line in drawing an elevation?", ["A projection/construction guide line", "For the main visible edge", "For hidden edges", "For angle labels"], 0],
+  ["Medium", "An object with a 60° angle on a triangular surface needs to be constructed using what?", ["A protractor or precise geometric method", "A rough estimate", "A ruler only", "A compass only without a protractor"], 0],
+  ["Medium", "What is the step after drawing the three orthogonal projections (plan, front elevation, side elevation) to sketch the 3D object?", ["Project the surfaces to meet, then connect the vertices", "Erase all the projections", "Re-measure from scratch", "Change the projection scale"], 0],
+  ["Medium", "Why is consistent labelling important when synthesising projections?", ["To ensure vertices correspond across all three views", "Only for the drawing's appearance", "It's not important", "Only for the plan"], 0],
+  ["Medium", "A cuboid block is removed from a prism; what needs to be labelled in the projections?", ["The surfaces of the removed block (e.g. surfaces I, II, III)", "Only the drawing's colour", "Only the paper size", "Nothing needs to be labelled"], 0],
+  ["Medium", "What is the side elevation's viewing direction if it is in the second quadrant?", ["The side view is from the right", "The side view is from the left", "Not relevant to viewing direction", "Always in the first quadrant"], 0],
+  ["Medium", "What is the side elevation's viewing direction if it is in the first quadrant?", ["The side view is from left to right", "The side view is from right to left", "Always in the fourth quadrant", "No particular viewing direction"], 0],
+  ["Medium", "What does 'uniform cross-section' mean for a prism?", ["The same cross-sectional shape throughout the prism", "A shape that changes along the prism", "Only the prism's ends", "Only the middle of the prism"], 0],
+  ["Medium", "Why are overlapping vertex labels (e.g. E/D, F/A) used in a projection?", ["To show two object vertices coinciding at the same projected point", "A labelling mistake", "To show vertices of different colours", "They have no meaning"], 0],
+
+  ["Hard", "An object with AC=14cm, ∠VCB=60° (object), projection from direction Z gives ∠VCB=45°. What does this change mean?", ["The projected angle differs from the actual object angle depending on viewing direction", "A measurement error", "The object changed shape", "The projection is invalid"], 0],
+  ["Hard", "From the above, if AC=14cm stays unchanged in the projection from direction Z, why?", ["AC lies on/parallel to the projection plane (horizontal), so its length is preserved", "AC is a vertical side", "AC is the longest side", "It's purely coincidental"], 0],
+  ["Hard", "For the projection on the vertical plane from direction Y, VC changes from 19.8cm to 14cm. Why?", ["VC is not parallel to the vertical plane in direction Y, so its projected length differs", "VC is a side that always stays the same", "It's a textbook error", "VC is a horizontal side"], 0],
+  ["Hard", "A right prism with base PQRS, plane URQ as cross-section. Draw the plan from Z and elevation from X — what is the key difference between these two views?", ["The plan shows the top view (base layout), the elevation shows the front view (vertical profile)", "Both are the same", "The plan is always bigger than the elevation", "The elevation has no dashed lines"], 0],
+  ["Hard", "When sketching a 3D shape from a plan+elevations with a cuboid block removed, what is the main challenge?", ["Accurately identifying the surfaces that form the cuboid hole/notch across all three views", "No challenge, just connect the lines directly", "Only need to draw a large box", "Scale doesn't matter"], 0],
+  ["Hard", "A combined cuboid and prism object has a 60° angle on a triangular surface; why must this angle be constructed precisely when sketching the 3D shape?", ["An imprecise angle changes the shape and position of the inclined surface, affecting the 3D object's accuracy", "The angle doesn't matter in a 3D sketch", "All angles default to 90°", "The angle is purely decorative"], 0],
+  ["Hard", "Why is the order of letters in a normal (e.g. TS, not ST) important in an answer?", ["The order shows the correct direction and sequence of points by projection convention", "Not important, any order is accepted", "Just a habit with no meaning", "It changes the line's length"], 0],
+  ["Hard", "How do you determine whether the side elevation is placed in quadrant 1 or 2?", ["Based on the actual side viewing direction (left-to-right = quadrant 1; right-to-left = quadrant 2)", "Always quadrant 1 with no exceptions", "Always quadrant 2 with no exceptions", "Depends on the object's size"], 0],
+  ["Hard", "What happens if the normal line is not exactly 90° when drawing an orthogonal projection?", ["The resulting projection is not a valid orthogonal projection and measurements become inaccurate", "No effect, the projection remains valid", "The projection becomes more accurate", "Only affects the drawing's colour"], 0],
+  ["Hard", "What is the best strategy to check the accuracy of a drawn orthogonal projection?", ["Compare the projection's side lengths and angles with the actual object according to the correct viewing direction", "Assume all projections are automatically correct", "No need to check", "Only check the line colour"], 0],
+]);

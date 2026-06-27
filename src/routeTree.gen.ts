@@ -24,6 +24,7 @@ import { Route as CompanionRouteImport } from './routes/companion'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 
 const UpgradeRoute = UpgradeRouteImport.update({
   id: '/upgrade',
@@ -100,6 +101,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/auth/callback',
+  path: '/auth/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/subjects': typeof SubjectsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/subjects': typeof SubjectsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -150,6 +158,7 @@ export interface FileRoutesById {
   '/subjects': typeof SubjectsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/subjects'
     | '/tracker'
     | '/upgrade'
+    | '/auth/callback'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/subjects'
     | '/tracker'
     | '/upgrade'
+    | '/auth/callback'
     | '/admin'
   id:
     | '__root__'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/subjects'
     | '/tracker'
     | '/upgrade'
+    | '/auth/callback'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -220,6 +232,7 @@ export interface RootRouteChildren {
   SubjectsRoute: typeof SubjectsRoute
   TrackerRoute: typeof TrackerRoute
   UpgradeRoute: typeof UpgradeRoute
+  AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -329,6 +342,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/auth/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -357,6 +377,7 @@ const rootRouteChildren: RootRouteChildren = {
   SubjectsRoute: SubjectsRoute,
   TrackerRoute: TrackerRoute,
   UpgradeRoute: UpgradeRoute,
+  AuthCallbackRoute: AuthCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,72 @@
+import type { Difficulty, QuizQuestion } from "@/data/content";
+
+type QuizSeed = [Difficulty, string, [string, string, string, string], number];
+
+function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
+  return items.map(([difficulty, question, options, answerIndex], index) => ({
+    id: `math-f3-c7-bm-q${index + 1}`,
+    subjectId: "math",
+    form: "Form 3",
+    difficulty,
+    chapter: "Chapter 7",
+    lang: "bm",
+    question,
+    options,
+    answerIndex,
+  }));
+}
+
+export const mathF3C7QuizzesBM: QuizQuestion[] = buildQuiz([
+  ["Easy", "Apakah satah?", ["Permukaan rata pada objek", "Garis lurus sahaja", "Sudut pada objek", "Titik pada objek"], 0],
+  ["Easy", "Apakah tiga jenis satah?", ["Mengufuk, mencancang, condong", "Bulat, segi tiga, segi empat", "Tinggi, rendah, sederhana", "Merah, biru, hijau"], 0],
+  ["Easy", "Apakah normal kepada satah?", ["Garis lurus berserenjang dengan satah", "Garis selari dengan satah", "Garis condong sahaja", "Sebarang garis pada satah"], 0],
+  ["Easy", "Apakah unjuran ortogon?", ["Imej terbentuk pada satah dengan garis unjuran berserenjang satah", "Sebarang lukisan objek", "Lukisan tanpa skala", "Garis lurus sahaja"], 0],
+  ["Easy", "Apakah pelan?", ["Unjuran ortogon pada satah mengufuk (pandangan atas)", "Unjuran pada satah mencancang", "Sebarang lukisan sisi", "Lukisan berskala"], 0],
+  ["Easy", "Apakah dongakan?", ["Unjuran ortogon pada satah mencancang (pandangan depan/sisi)", "Unjuran pada satah mengufuk", "Lukisan dari atas", "Lukisan tiga dimensi penuh"], 0],
+  ["Easy", "Apakah garis padu tebal digunakan untuk?", ["Sisi yang nampak", "Sisi tersembunyi", "Garis binaan", "Garis paksi"], 0],
+  ["Easy", "Apakah garis sempang digunakan untuk?", ["Sisi tersembunyi/terlindung", "Sisi yang nampak", "Garis ukur", "Garis tepi kertas"], 0],
+  ["Easy", "Apakah garis padu halus digunakan untuk?", ["Garis binaan/unjuran", "Sisi nampak", "Sisi tersembunyi", "Rangka objek"], 0],
+  ["Easy", "Di manakah pelan biasanya dilukis dalam susunan sukuan standard?", ["Sukuan keempat", "Sukuan pertama", "Sukuan kedua", "Sukuan ketiga"], 0],
+  ["Easy", "Di manakah dongakan depan biasanya dilukis?", ["Sukuan pertama (atas pelan)", "Sukuan keempat", "Sukuan ketiga", "Sebarang sukuan"], 0],
+  ["Easy", "Apakah sudut normal yang sah terhadap satah?", ["90°", "45°", "60°", "180°"], 0],
+  ["Easy", "Adakah semua unjuran adalah unjuran ortogon?", ["Tidak, hanya jika garis unjuran berserenjang satah", "Ya, semua unjuran ortogon", "Hanya unjuran bulat", "Hanya unjuran segi empat"], 0],
+  ["Easy", "Apakah maksud satah mengufuk?", ["Satah mendatar (horizontal)", "Satah tegak", "Satah condong", "Satah melengkung"], 0],
+  ["Easy", "Apakah maksud satah mencancang?", ["Satah tegak (vertical)", "Satah mendatar", "Satah condong", "Satah bulat"], 0],
+  ["Easy", "Apakah skala yang digunakan melukis pelan dan dongakan?", ["Skala penuh (1:1) melainkan dinyatakan", "Skala 1:2 sentiasa", "Skala 1:10 sentiasa", "Tanpa skala"], 0],
+  ["Easy", "Berapa pandangan biasa dilukis bersama (pelan + dongakan)?", ["Tiga (pelan, dongakan depan, dongakan sisi)", "Satu sahaja", "Dua sahaja", "Empat"], 0],
+  ["Easy", "Apakah fungsi normal dalam melukis unjuran ortogon?", ["Menentukan arah unjuran yang tegak terhadap satah", "Menentukan warna lukisan", "Menentukan saiz kertas", "Menentukan jenis objek"], 0],
+  ["Easy", "Apakah maksud mensintesis pelan dan dongakan?", ["Menggabungkan tiga unjuran untuk melakar bentuk 3D objek", "Memadam semua unjuran", "Melukis semula objek tanpa skala", "Mengira luas objek"], 0],
+  ["Easy", "Apakah bidang yang menggunakan pelan dan dongakan?", ["Kejuruteraan, pembinaan, arkitek", "Muzik dan seni abstrak", "Sukan dan permainan", "Memasak"], 0],
+
+  ["Medium", "Kubus PQRSTUVW, nyatakan normal kepada satah PQRS.", ["UP, VQ, WR, TS", "PQ, QR, RS, SP", "UV, VW, WT, TU", "PT, QU, RV, SW"], 0],
+  ["Medium", "Prisma tegak ABCD mengufuk, FM⊥AB, EN⊥CD. Apakah FM dan EN?", ["Normal kepada satah ABCD", "Unjuran ortogon ABCD", "Sisi tegak prisma", "Garis sempang"], 0],
+  ["Medium", "Jika garis unjuran tidak berserenjang satah, apakah hasilnya?", ["Bukan unjuran ortogon", "Unjuran ortogon sah", "Pelan yang sah", "Dongakan yang sah"], 0],
+  ["Medium", "Silinder diameter 4cm, tinggi 6cm di atas satah mengufuk. Apakah bentuk pelan (pandangan atas)?", ["Bulatan diameter 4cm", "Segi empat 4cmx6cm", "Segi tiga", "Garis lurus 6cm"], 0],
+  ["Medium", "Daripada soalan di atas, apakah bentuk dongakan (pandangan sisi)?", ["Segi empat tepat 4cm x 6cm", "Bulatan diameter 4cm", "Segi tiga", "Bulatan diameter 6cm"], 0],
+  ["Medium", "Bagi unjuran ortogon pada satah mengufuk dari arah Z, apakah yang tidak berubah?", ["Panjang sisi dan sudut yang selari/pada satah itu", "Semua panjang sisi objek", "Semua sudut objek", "Tiada yang kekal sama"], 0],
+  ["Medium", "Mengapa panjang sisi unjuran berbeza mengikut arah pandangan?", ["Kerana sisi condong/tegak terhadap satah berubah panjang dalam unjuran", "Kerana objek berubah bentuk", "Kerana skala berubah", "Kerana kesilapan lukisan"], 0],
+  ["Medium", "Prisma tegak tapak PQRS, URQ keratan rentas. Apakah langkah pertama melukis pelan?", ["Unjurkan setiap bucu objek kepada satah mengufuk", "Unjurkan terus ke satah mencancang", "Lukis dongakan dahulu", "Ukur sudut sahaja"], 0],
+  ["Medium", "Dalam kaedah 1, arah pandangan sisi dari kanan ke kiri. Di manakah dongakan sisi diletakkan?", ["Sebelah kiri dongakan depan", "Sebelah kanan dongakan depan", "Di atas dongakan depan", "Di bawah pelan"], 0],
+  ["Medium", "Dalam kaedah 2, arah pandangan sisi dari kiri ke kanan. Di manakah dongakan sisi diletakkan?", ["Sebelah kanan dongakan depan", "Sebelah kiri dongakan depan", "Di atas pelan", "Di tengah"], 0],
+  ["Medium", "Apakah garis yang digunakan untuk sisi GP, HI dalam Contoh 7 yang tersembunyi?", ["Garis sempang", "Garis padu tebal", "Garis padu halus", "Garis berbintik"], 0],
+  ["Medium", "Apakah fungsi garis padu halus dalam melukis dongakan?", ["Sebagai garis unjuran/binaan panduan", "Untuk sisi nampak utama", "Untuk sisi tersembunyi", "Untuk label sudut"], 0],
+  ["Medium", "Objek bersudut 60° pada permukaan segi tiga perlu dibina menggunakan apa?", ["Protraktor atau kaedah geometri tepat", "Anggaran kasar", "Pembaris sahaja", "Jangka lukis sahaja tanpa protraktor"], 0],
+  ["Medium", "Apakah langkah selepas melukis tiga unjuran ortogon (pelan, dongakan depan, dongakan sisi) untuk melakar objek 3D?", ["Unjurkan permukaan untuk bertemu, kemudian sambungkan bucu", "Padam semua unjuran", "Ukur semula dari awal", "Tukar skala unjuran"], 0],
+  ["Medium", "Apakah label yang konsisten penting semasa mensintesis unjuran?", ["Memastikan bucu sepadan merentasi ketiga-tiga pandangan", "Untuk kecantikan lukisan sahaja", "Tidak penting", "Hanya untuk pelan"], 0],
+  ["Medium", "Bongkah kuboid dikeluarkan daripada prisma; apakah perlu dilabel dalam unjuran?", ["Permukaan bongkah yang dikeluarkan (cth permukaan I, II, III)", "Hanya warna lukisan", "Hanya saiz kertas", "Tiada yang perlu dilabel"], 0],
+  ["Medium", "Apakah kedudukan dongakan sisi jika ia berada di sukuan kedua?", ["Pandangan sisi adalah dari arah kanan", "Pandangan sisi dari kiri", "Tidak releven dengan arah pandangan", "Selalu di sukuan pertama"], 0],
+  ["Medium", "Apakah kedudukan dongakan sisi jika ia berada di sukuan pertama?", ["Pandangan sisi adalah dari kiri ke kanan", "Pandangan sisi dari kanan ke kiri", "Sentiasa di sukuan keempat", "Tiada arah pandangan tertentu"], 0],
+  ["Medium", "Apakah maksud 'keratan rentas seragam' bagi sebuah prisma?", ["Bentuk keratan yang sama di sepanjang prisma", "Bentuk yang berubah sepanjang prisma", "Hanya bahagian hujung prisma", "Bahagian tengah prisma sahaja"], 0],
+  ["Medium", "Mengapa label bucu objek (contoh E/D, F/A) digunakan dalam unjuran bertindih?", ["Menunjukkan dua bucu objek bertindih pada titik unjuran yang sama", "Kesilapan pelabelan", "Menunjukkan bucu berlainan warna", "Tidak bermakna apa-apa"], 0],
+
+  ["Hard", "Objek dengan AC=14cm, ∠VCB=60° (objek), unjuran dari arah Z memberi ∠VCB=45°. Apakah maksud perubahan ini?", ["Sudut unjuran berbeza dari sudut objek sebenar mengikut arah pandangan", "Kesilapan pengukuran", "Objek berubah bentuk", "Unjuran tidak sah"], 0],
+  ["Hard", "Daripada data di atas, jika AC=14cm tidak berubah dalam unjuran dari arah Z, apakah sebabnya?", ["AC terletak/selari dengan satah unjuran (mengufuk) sehingga panjang dikekalkan", "AC ialah sisi tegak", "AC ialah sisi terpanjang", "Kebetulan sahaja"], 0],
+  ["Hard", "Bagi unjuran pada satah mencancang dari arah Y, VC berubah daripada 19.8cm kepada 14cm. Apakah sebabnya?", ["VC tidak selari dengan satah mencancang arah Y, jadi panjang unjurannya berbeza", "VC ialah sisi yang sentiasa kekal", "Kesilapan dalam buku teks", "VC ialah sisi mengufuk"], 0],
+  ["Hard", "Prisma tegak tapak PQRS, satah URQ keratan rentas. Lukis pelan dari arah Z dan dongakan dari arah X — apakah perbezaan utama antara dua pandangan ini?", ["Pelan menunjukkan pandangan atas (susun atur tapak), dongakan menunjukkan pandangan depan (profil tegak)", "Kedua-duanya sama", "Pelan lebih besar daripada dongakan", "Dongakan tidak mempunyai garis sempang"], 0],
+  ["Hard", "Dalam melakar bentuk 3D daripada pelan+dongakan dengan bongkah kuboid dikeluarkan, apakah cabaran utama?", ["Mengenal pasti permukaan yang membentuk lubang/lekukan kuboid dengan tepat dalam ketiga-tiga pandangan", "Tiada cabaran, terus sambung garis", "Hanya perlu lukis kotak besar", "Skala tidak penting"], 0],
+  ["Hard", "Objek gabungan kuboid dan prisma dengan sudut 60° pada permukaan segi tiga; mengapa sudut ini perlu dibina tepat semasa melakar 3D?", ["Sudut yang tidak tepat akan mengubah bentuk dan kedudukan permukaan condong, menjejaskan ketepatan objek 3D", "Sudut tidak penting dalam lakaran 3D", "Semua sudut automatik 90°", "Sudut hanya untuk hiasan"], 0],
+  ["Hard", "Mengapa susunan huruf normal (contoh TS, bukan ST) penting dalam jawapan?", ["Susunan menunjukkan arah dan urutan titik yang betul mengikut konvensyen unjuran", "Tidak penting, sebarang susunan diterima", "Hanya kebiasaan tanpa makna", "Mengubah panjang garis"], 0],
+  ["Hard", "Bagaimana menentukan sama ada dongakan sisi diletakkan di sukuan 1 atau 2?", ["Berdasarkan arah pandangan sisi sebenar (kiri-ke-kanan = sukuan 1; kanan-ke-kiri = sukuan 2)", "Sentiasa sukuan 1 tanpa pengecualian", "Sentiasa sukuan 2 tanpa pengecualian", "Bergantung saiz objek"], 0],
+  ["Hard", "Apakah kesan jika garis normal tidak tepat 90° semasa melukis unjuran ortogon?", ["Unjuran terhasil bukan unjuran ortogon yang sah dan ukuran menjadi tidak tepat", "Tiada kesan, unjuran tetap sah", "Unjuran menjadi lebih tepat", "Hanya menjejaskan warna lukisan"], 0],
+  ["Hard", "Apakah strategi terbaik untuk menyemak ketepatan unjuran ortogon yang dilukis?", ["Bandingkan ukuran panjang sisi dan sudut unjuran dengan objek sebenar mengikut arah pandangan yang betul", "Anggap semua unjuran automatik betul", "Tidak perlu semak", "Hanya semak warna garis"], 0],
+]);
