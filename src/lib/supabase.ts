@@ -17,6 +17,7 @@ function createStubClient() {
 export const supabase = isSupabaseConfigured
   ? createClient(supabaseUrl!, supabaseAnonKey!, {
       auth: {
+        flowType: "pkce",
         persistSession: isBrowser,
         autoRefreshToken: isBrowser,
         detectSessionInUrl: isBrowser,
