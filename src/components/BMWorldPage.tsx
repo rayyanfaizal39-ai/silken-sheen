@@ -5,6 +5,7 @@ import {
   Brain,
   CheckCircle,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   Clapperboard,
   Clock,
@@ -199,6 +200,56 @@ function PlaceholderChip({ label }: { label: string }) {
       <Clock className="h-3 w-3" />
       {label} - Akan Datang
     </span>
+  );
+}
+
+// ─── Collapsible learning section (premium accordion card) ────────────────────
+
+function CollapsibleSection({
+  icon,
+  title,
+  accent = "#818CF8",
+  defaultOpen = false,
+  badge,
+  children,
+}: {
+  icon?: React.ReactNode;
+  title: string;
+  accent?: string;
+  defaultOpen?: boolean;
+  badge?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <section
+      className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 hover:border-white/[0.16]"
+      style={open ? { borderColor: `${accent}40`, boxShadow: `0 0 28px ${accent}14` } : undefined}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition-colors hover:bg-white/[0.03]"
+      >
+        <span className="flex flex-wrap items-center gap-2.5">
+          {icon && <span className="shrink-0" style={{ color: accent }}>{icon}</span>}
+          <span className="font-display text-sm font-bold text-white/90 sm:text-base">{title}</span>
+          {badge}
+        </span>
+        <ChevronDown
+          className="h-4 w-4 shrink-0 text-white/40 transition-transform duration-300"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+        />
+      </button>
+      <div
+        className="grid transition-all duration-300 ease-in-out"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
+      >
+        <div className="overflow-hidden">
+          <div className="px-5 pb-5 pt-1">{children}</div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1315,7 +1366,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           {isStory && Array.isArray(work.events) && work.events.length > 0 && (
             <div>
               <SectionLabel>Peristiwa Penting</SectionLabel>
-              <Accordion type="single" collapsible defaultValue="event-0" className="space-y-3">
+              <Accordion type="single" collapsible className="space-y-3">
                 {work.events.map((event, index) => (
                   <AccordionItem key={event.event} value={`event-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                     <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
@@ -1340,7 +1391,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           )}
 
           <SectionLabel>{isStory ? "Bahasa Mudah" : work.id === "pantun-dua-kerat" ? "Pantun Dalam Bahasa Mudah" : "Peneroka Rangkap"}</SectionLabel>
-          <Accordion type="single" collapsible defaultValue="rangkap-0" className="space-y-3">
+          <Accordion type="single" collapsible className="space-y-3">
             {(Array.isArray(work.decoder) ? work.decoder : []).map((item, index) => (
               <AccordionItem key={item.rangkap} value={`rangkap-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
@@ -1439,7 +1490,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             </div>
           </div>
 
-          <Accordion type="single" collapsible defaultValue="common-0" className="space-y-3">
+          <Accordion type="single" collapsible className="space-y-3">
             {(Array.isArray(work.examBooster?.commonQuestions) ? work.examBooster.commonQuestions : []).map((item, index) => (
               <AccordionItem key={item.question} value={`common-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
@@ -1652,13 +1703,9 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
   const memory = work.memory60;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {characters.length > 0 && (
-        <section>
-          <div className="flex items-center justify-between gap-3">
-            <SectionLabel>Watak & Perwatakan</SectionLabel>
-            <ImportanceBadge level="Penting" />
-          </div>
+        <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Watak & Perwatakan" accent={color} badge={<ImportanceBadge level="Penting" />}>
           <div className="grid gap-3 md:grid-cols-2">
             {characters.map((character) => (
               <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1685,12 +1732,11 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleSection>
       )}
 
       {relationships.length > 0 && (
-        <section>
-          <SectionLabel>Hubungan Watak</SectionLabel>
+        <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Hubungan Watak" accent={color}>
           <div className="grid gap-3 md:grid-cols-3">
             {relationships.map((relationship) => (
               <div key={`${relationship.from}-${relationship.to}-${relationship.relation}`} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1701,13 +1747,12 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleSection>
       )}
 
       {plot.length > 0 && (
-        <section>
-          <SectionLabel>Jalan Cerita Lengkap</SectionLabel>
-          <Accordion type="single" collapsible defaultValue="plot-0" className="space-y-3">
+        <CollapsibleSection icon={<Map className="h-4 w-4" />} title="Jalan Cerita Lengkap" accent={color}>
+          <Accordion type="single" collapsible className="space-y-3">
             {plot.map((item, index) => (
               <AccordionItem key={item.stage} value={`plot-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
@@ -1728,32 +1773,23 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               </AccordionItem>
             ))}
           </Accordion>
-        </section>
+        </CollapsibleSection>
       )}
 
       {work.story90 && (
-        <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
-          <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
-            <Clapperboard className="h-5 w-5" />
-            <h3 className="font-display text-lg font-bold">Cerita Dalam 90 Saat</h3>
-          </div>
+        <CollapsibleSection icon={<Clapperboard className="h-5 w-5" />} title="Cerita Dalam 90 Saat" accent="#E879F9">
           <p className="text-sm leading-7 text-white/75">{work.story90}</p>
-        </section>
+        </CollapsibleSection>
       )}
 
       {work.retelling3Min && (
-        <section className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
-          <div className="mb-3 flex items-center gap-2 text-cyan-300">
-            <BookOpen className="h-5 w-5" />
-            <h3 className="font-display text-lg font-bold">{work.kind === "story" ? "Cerita Dalam 3 Minit" : "Karya Dalam 3 Minit"}</h3>
-          </div>
+        <CollapsibleSection icon={<BookOpen className="h-5 w-5" />} title={work.kind === "story" ? "Cerita Dalam 3 Minit" : "Karya Dalam 3 Minit"} accent="#22D3EE">
           <p className="text-sm leading-7 text-white/75">{work.retelling3Min}</p>
-        </section>
+        </CollapsibleSection>
       )}
 
       {issues.length > 0 && (
-        <section>
-          <SectionLabel>Persoalan</SectionLabel>
+        <CollapsibleSection icon={<Brain className="h-4 w-4" />} title="Persoalan" accent={color}>
           <div className="grid gap-3 md:grid-cols-2">
             {issues.map((issue) => (
               <div key={issue.issue} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1765,15 +1801,11 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleSection>
       )}
 
       {events.length > 0 && (
-        <section>
-          <div className="flex items-center justify-between gap-3">
-            <SectionLabel>Peristiwa Penting</SectionLabel>
-            <ImportanceBadge level="Penting" />
-          </div>
+        <CollapsibleSection icon={<Zap className="h-4 w-4" />} title="Peristiwa Penting" accent={color} badge={<ImportanceBadge level="Penting" />}>
           <div className="grid gap-3 md:grid-cols-2">
             {events.map((event, index) => (
               <div key={`${event.event}-${index}`} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1789,38 +1821,29 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleSection>
       )}
 
       {focus && (
-        <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
-          <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
-            <Target className="h-5 w-5" />
-            <h3 className="font-display text-lg font-bold">Watak Paling Penting: {focus.name}</h3>
-          </div>
+        <CollapsibleSection icon={<Target className="h-5 w-5" />} title={`Watak Paling Penting: ${focus.name}`} accent="#E879F9">
           <div className="grid gap-3 md:grid-cols-2">
             <DecoderCell label="Mengapa penting" value={focus.whyMatters ?? "Watak ini membawa mesej utama karya."} accent="#F0ABFC" />
             <DecoderCell label="Tema" value={focus.supportsTheme ?? "Menyokong tema utama."} accent={color} />
             <DecoderCell label="Persoalan" value={focus.supportsIssues ?? "Membantu persoalan karya."} accent="#60A5FA" />
             <DecoderCell label="Nilai & Pengajaran" value={`${focus.supportsValues ?? "Menonjolkan nilai."} ${focus.supportsLessons ?? "Menguatkan pengajaran."}`} accent="#FBBF24" />
           </div>
-        </section>
+        </CollapsibleSection>
       )}
 
       {work.authorPurpose && (
-        <section className="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-5">
-          <div className="mb-3 flex items-center gap-2 text-violet-300">
-            <Brain className="h-5 w-5" />
-            <h3 className="font-display text-lg font-bold">Mengapa Cerita Ini Ditulis</h3>
-          </div>
+        <CollapsibleSection icon={<Brain className="h-5 w-5" />} title="Mengapa Cerita Ini Ditulis" accent="#A78BFA">
           <p className="text-sm leading-7 text-white/75">{work.authorPurpose}</p>
-        </section>
+        </CollapsibleSection>
       )}
 
       {uasaQuestions.length > 0 && (
-        <section>
-          <SectionLabel>Soalan Popular UASA - Skema Penuh</SectionLabel>
-          <Accordion type="single" collapsible defaultValue="uasa-0" className="space-y-3">
+        <CollapsibleSection icon={<GraduationCap className="h-4 w-4" />} title="Soalan Popular UASA - Skema Penuh" accent={color}>
+          <Accordion type="single" collapsible className="space-y-3">
             {uasaQuestions.map((item, index) => (
               <AccordionItem key={`${item.type}-${item.question}`} value={`uasa-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
@@ -1840,13 +1863,12 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               </AccordionItem>
             ))}
           </Accordion>
-        </section>
+        </CollapsibleSection>
       )}
 
       {examCharacters.length > 0 && (
-        <section>
-          <SectionLabel>Analisis Watak UASA</SectionLabel>
-          <Accordion type="single" collapsible defaultValue="exam-char-0" className="space-y-3">
+        <CollapsibleSection icon={<FileQuestion className="h-4 w-4" />} title="Analisis Watak UASA" accent={color}>
+          <Accordion type="single" collapsible className="space-y-3">
             {examCharacters.map((item, index) => (
               <AccordionItem key={`${item.character}-${item.trait}`} value={`exam-char-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
@@ -1865,21 +1887,11 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
               </AccordionItem>
             ))}
           </Accordion>
-        </section>
+        </CollapsibleSection>
       )}
 
       {memory && (
-        <section
-          className="rounded-[1.75rem] border p-5"
-          style={{
-            borderColor: `${color}35`,
-            background: `linear-gradient(135deg, ${color}16, rgba(52,211,153,0.08), rgba(255,255,255,0.03))`,
-          }}
-        >
-          <div className="mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5" style={{ color }} />
-            <h3 className="font-display text-lg font-bold text-white">Hafal Dalam 60 Saat</h3>
-          </div>
+        <CollapsibleSection icon={<Zap className="h-5 w-5" />} title="Hafal Dalam 60 Saat" accent={color}>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             <MemoryChip label="Tema" value={memory.theme ?? "Tema utama"} color={color} />
             <MemoryChip label="Persoalan" value={memory.issues ?? "Persoalan utama"} color="#60A5FA" />
@@ -1888,8 +1900,33 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
             <MemoryChip label="Nilai" value={memory.values ?? "Nilai utama"} color="#34D399" />
             <MemoryChip label="Pengajaran" value={memory.lessons ?? "Pengajaran utama"} color="#FBBF24" />
           </div>
-        </section>
+        </CollapsibleSection>
       )}
+
+      <CollapsibleSection icon={<MessageCircle className="h-5 w-5" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
+        {work.intro && <p className="mb-3 text-sm italic leading-7 text-white/75">{work.intro}</p>}
+        <div className="mb-3 space-y-2">
+          <MiniExplain
+            label="Dalam kata mudah, tema ialah"
+            text={memory?.theme ?? work.revision?.theme ?? "tema utama karya ini."}
+            accent={color}
+          />
+          <MiniExplain
+            label="Nilai yang perlu kamu faham"
+            text={memory?.values ?? work.revision?.values ?? "nilai murni dalam karya ini."}
+            accent="#34D399"
+          />
+          <MiniExplain
+            label="Pengajaran yang boleh diamalkan"
+            text={memory?.lessons ?? work.revision?.lessons ?? "pengajaran daripada karya ini."}
+            accent="#FBBF24"
+          />
+        </div>
+        <div className="rounded-xl border border-emerald-400/25 bg-emerald-400/8 px-4 py-3">
+          <p className="mb-1 text-[10px] font-black tracking-wide text-emerald-300">⭐ Petua Cikgu</p>
+          <p className="text-sm text-white/75">{bmText(work.examFocus) || "Jawab dengan bukti karya dan ayat yang lengkap."}</p>
+        </div>
+      </CollapsibleSection>
     </div>
   );
 }
@@ -1903,10 +1940,9 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
   const mistakes = getCommonMistakes(work);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {spotterItems.length > 0 && (
-        <section>
-          <SectionLabel>Soalan Popular UASA</SectionLabel>
+        <CollapsibleSection icon={<Target className="h-4 w-4" />} title="Soalan Popular UASA" accent={color}>
           <div className="grid gap-3 md:grid-cols-4">
             {spotterItems.map((item) => (
               <div key={item.label} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -1921,16 +1957,12 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleSection>
       )}
 
       {examinerQuestions.length > 0 && (
-        <section className="rounded-2xl border border-sky-400/20 bg-sky-400/5 p-5">
-          <div className="mb-4 flex items-center gap-2 text-sky-300">
-            <GraduationCap className="h-5 w-5" />
-            <h3 className="font-display text-lg font-bold">Jika Saya Pemeriksa</h3>
-          </div>
-          <Accordion type="single" collapsible defaultValue="examiner-0" className="space-y-3">
+        <CollapsibleSection icon={<GraduationCap className="h-5 w-5" />} title="Jika Saya Pemeriksa" accent="#38BDF8">
+          <Accordion type="single" collapsible className="space-y-3">
             {examinerQuestions.map((item, index) => (
               <AccordionItem key={item.question} value={`examiner-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-black/10">
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
@@ -1945,51 +1977,45 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
               </AccordionItem>
             ))}
           </Accordion>
-        </section>
+        </CollapsibleSection>
       )}
 
       {examinerQuestions.length > 0 && (
-        <section>
-        <SectionLabel>Jawapan Skema Penuh</SectionLabel>
-        <div className="grid gap-3 md:grid-cols-2">
-          {examinerQuestions.map((item) => (
-            <div key={item.question} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-              <div className="border-b border-white/[0.06] p-4">
-                <p className="text-sm font-bold leading-6 text-white">{item.question}</p>
-              </div>
-              <div className="grid gap-0 sm:grid-cols-2">
-                <div className="border-b border-rose-400/10 bg-rose-400/8 p-4 sm:border-b-0 sm:border-r sm:border-rose-400/10">
-                  <div className="mb-2 flex items-center gap-2 text-rose-300">
-                    <XCircle className="h-4 w-4" />
-                    <p className="text-xs font-black tracking-wide">Jawapan Lemah</p>
-                  </div>
-                  <p className="text-sm text-white/65">{getWeakAnswer(item)}</p>
+        <CollapsibleSection icon={<FileQuestion className="h-4 w-4" />} title="Jawapan Skema Penuh" accent={color}>
+          <div className="grid gap-3 md:grid-cols-2">
+            {examinerQuestions.map((item) => (
+              <div key={item.question} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                <div className="border-b border-white/[0.06] p-4">
+                  <p className="text-sm font-bold leading-6 text-white">{item.question}</p>
                 </div>
-                <div className="bg-emerald-400/8 p-4">
-                  <div className="mb-2 flex items-center gap-2 text-emerald-300">
-                    <CheckCircle className="h-4 w-4" />
-                    <p className="text-xs font-black tracking-wide">Jawapan Skor Penuh</p>
+                <div className="grid gap-0 sm:grid-cols-2">
+                  <div className="border-b border-rose-400/10 bg-rose-400/8 p-4 sm:border-b-0 sm:border-r sm:border-rose-400/10">
+                    <div className="mb-2 flex items-center gap-2 text-rose-300">
+                      <XCircle className="h-4 w-4" />
+                      <p className="text-xs font-black tracking-wide">Jawapan Lemah</p>
+                    </div>
+                    <p className="text-sm text-white/65">{getWeakAnswer(item)}</p>
                   </div>
-                  <p className="text-sm leading-6 text-white/70">{item.modelAnswer ?? item.answerHint}</p>
-                  <p className="mt-2 text-xs leading-5 text-emerald-100/55">{item.examTip ?? "Tambah bukti atau contoh supaya jawapan tidak terlalu umum."}</p>
+                  <div className="bg-emerald-400/8 p-4">
+                    <div className="mb-2 flex items-center gap-2 text-emerald-300">
+                      <CheckCircle className="h-4 w-4" />
+                      <p className="text-xs font-black tracking-wide">Jawapan Skor Penuh</p>
+                    </div>
+                    <p className="text-sm leading-6 text-white/70">{item.modelAnswer ?? item.answerHint}</p>
+                    <p className="mt-2 text-xs leading-5 text-emerald-100/55">{item.examTip ?? "Tambah bukti atau contoh supaya jawapan tidak terlalu umum."}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-        </section>
+            ))}
+          </div>
+        </CollapsibleSection>
       )}
 
-      <section className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/5 p-5">
-        <div className="mb-3 flex items-center gap-2 text-fuchsia-300">
-          <Clapperboard className="h-5 w-5" />
-          <h3 className="font-display text-lg font-bold">Ringkasan Cerita</h3>
-        </div>
+      <CollapsibleSection icon={<Clapperboard className="h-5 w-5" />} title="Ringkasan Cerita" accent="#E879F9">
         <p className="text-sm leading-7 text-white/75">{getTrailerSummary(work)}</p>
-      </section>
+      </CollapsibleSection>
 
-      <section>
-        <SectionLabel>Jika Ini Berlaku Kepada Anda</SectionLabel>
+      <CollapsibleSection icon={<Globe2 className="h-4 w-4" />} title="Jika Ini Berlaku Kepada Anda" accent="#22D3EE">
         <div className="grid gap-3 md:grid-cols-3">
           {reflections.map((question) => (
             <div key={question} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -2001,13 +2027,9 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
             </div>
           ))}
         </div>
-      </section>
+      </CollapsibleSection>
 
-      <section className="rounded-2xl border border-yellow-400/20 bg-yellow-400/5 p-5">
-        <div className="mb-4 flex items-center gap-2 text-yellow-300">
-          <Zap className="h-5 w-5" />
-          <h3 className="font-display text-lg font-bold">Hafal Dalam 60 Saat</h3>
-        </div>
+      <CollapsibleSection icon={<Zap className="h-5 w-5" />} title="Hafal Dalam 60 Saat" accent="#FBBF24">
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           <MemoryChip label="Tema" value={work.revision?.theme ?? "Tema belum tersedia."} color={color} />
           <MemoryChip label="Nilai" value={work.revision?.values ?? "Nilai belum tersedia."} color="#34D399" />
@@ -2016,19 +2038,14 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
           <MemoryChip label="Peristiwa Penting" value={getMemoryEvent(work)} color="#60A5FA" />
           <MemoryChip label="Peringatan UASA" value={bmText(work.revision?.examTips ?? "Jawab dengan bukti karya.")} color="#FB923C" />
         </div>
-      </section>
+      </CollapsibleSection>
 
-      <section className="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-5">
-        <div className="mb-3 flex items-center gap-2 text-violet-300">
-          <Brain className="h-5 w-5" />
-          <h3 className="font-display text-lg font-bold">Cabaran KBAT</h3>
-        </div>
+      <CollapsibleSection icon={<Brain className="h-5 w-5" />} title="Cabaran KBAT" accent="#A78BFA">
         <DecoderCell label={getKbatChallenge(work).question} value={getKbatChallenge(work).answer} accent="#C084FC" />
-      </section>
+      </CollapsibleSection>
 
       {work.kind === "story" && relationships.length > 0 && (
-        <section>
-          <SectionLabel>Hubungan Watak</SectionLabel>
+        <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Hubungan Watak" accent={color}>
           <div className="grid gap-3 md:grid-cols-3">
             {relationships.map((relationship) => (
               <div key={relationship} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 text-center">
@@ -2036,11 +2053,10 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleSection>
       )}
 
-      <section>
-        <SectionLabel>Kesalahan Murid Yang Selalu Berlaku</SectionLabel>
+      <CollapsibleSection icon={<XCircle className="h-4 w-4" />} title="Kesalahan Murid Yang Selalu Berlaku" accent="#FB7185">
         <div className="grid gap-3 md:grid-cols-3">
           {mistakes.map((mistake) => (
             <div key={mistake.wrong} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
@@ -2049,20 +2065,9 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
             </div>
           ))}
         </div>
-      </section>
+      </CollapsibleSection>
 
-      <section
-        className="rounded-[1.75rem] border p-5"
-        style={{
-          borderColor: `${color}35`,
-          background: `linear-gradient(135deg, ${color}18, rgba(251,191,36,0.08), rgba(255,255,255,0.03))`,
-          boxShadow: `0 0 40px ${color}16`,
-        }}
-      >
-        <div className="mb-4 flex items-center gap-2">
-          <Target className="h-5 w-5" style={{ color }} />
-          <h3 className="font-display text-lg font-bold text-white">Sebelum Masuk Dewan</h3>
-        </div>
+      <CollapsibleSection icon={<Target className="h-5 w-5" />} title="Sebelum Masuk Dewan" accent={color}>
         <div className="grid gap-2 sm:grid-cols-5">
           {survival.map((item) => (
             <div key={item} className="rounded-xl border border-white/[0.08] bg-black/10 p-3 text-xs font-bold leading-5 text-white/70">
@@ -2070,7 +2075,7 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
             </div>
           ))}
         </div>
-      </section>
+      </CollapsibleSection>
     </div>
   );
 }
@@ -2305,16 +2310,15 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
 function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {topic.description && (
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+        <CollapsibleSection icon={<BookOpen className="h-4 w-4" />} title="Pengenalan" accent={color}>
           <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
-        </div>
+        </CollapsibleSection>
       )}
 
       {topic.steps && topic.steps.length > 0 && (
-        <div>
-          <SectionLabel>Langkah-langkah</SectionLabel>
+        <CollapsibleSection icon={<Map className="h-4 w-4" />} title="Langkah-langkah" accent={color}>
           <div className="space-y-2.5">
             {topic.steps.map((step, i) => (
               <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
@@ -2328,12 +2332,11 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
               </div>
             ))}
           </div>
-        </div>
+        </CollapsibleSection>
       )}
 
       {topic.keyPoints && topic.keyPoints.length > 0 && (
-        <div className="rounded-2xl border border-[#818CF8]/20 bg-[#818CF8]/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-[#818CF8]">📌 Perkara Utama</p>
+        <CollapsibleSection icon={<Star className="h-4 w-4" />} title="⭐ Wajib Hafal — Perkara Utama" accent="#818CF8">
           <ul className="space-y-2">
             {topic.keyPoints.map((pt, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -2342,12 +2345,11 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
               </li>
             ))}
           </ul>
-        </div>
+        </CollapsibleSection>
       )}
 
       {topic.uasaTips && (
-        <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">★ Tips UASA</p>
+        <CollapsibleSection icon={<Trophy className="h-4 w-4" />} title="🎯 Fokus UASA — Tips UASA" accent="#FBBF24">
           <ul className="space-y-2">
             {topic.uasaTips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -2356,7 +2358,38 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
               </li>
             ))}
           </ul>
-        </div>
+        </CollapsibleSection>
+      )}
+
+      {(topic.description || (topic.steps && topic.steps.length > 0)) && (
+        <CollapsibleSection icon={<MessageCircle className="h-4 w-4" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
+          {topic.description && <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>}
+          {topic.steps && topic.steps.length > 0 && (
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+              <p className="mb-1 text-[10px] font-black tracking-wide" style={{ color }}>Mula dengan langkah pertama</p>
+              <p className="text-sm text-white/75">{topic.steps[0]}</p>
+            </div>
+          )}
+        </CollapsibleSection>
+      )}
+
+      {((topic.keyPoints && topic.keyPoints.length > 0) || topic.uasaTips) && (
+        <CollapsibleSection icon={<Lightbulb className="h-4 w-4" />} title="📝 Ringkasan 1 Minit" accent="#34D399">
+          <ul className="space-y-2">
+            {topic.keyPoints?.slice(0, 2).map((pt, i) => (
+              <li key={`kp-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                {pt}
+              </li>
+            ))}
+            {topic.uasaTips?.slice(0, 1).map((tip, i) => (
+              <li key={`tip-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </CollapsibleSection>
       )}
 
       <div className="flex gap-3">
@@ -3074,16 +3107,15 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
 
 function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {topic.description && (
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+        <CollapsibleSection icon={<BookOpen className="h-4 w-4" />} title="Pengenalan" accent={color}>
           <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
-        </div>
+        </CollapsibleSection>
       )}
 
       {topic.formula && (
-        <div>
-          <SectionLabel>Formula / Langkah</SectionLabel>
+        <CollapsibleSection icon={<Map className="h-4 w-4" />} title="Formula / Langkah" accent={color}>
           <div className="space-y-2">
             {topic.formula.map((step, i) => (
               <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
@@ -3094,12 +3126,11 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
               </div>
             ))}
           </div>
-        </div>
+        </CollapsibleSection>
       )}
 
       {topic.steps && topic.steps.length > 0 && (
-        <div>
-          <SectionLabel>Cara Menulis</SectionLabel>
+        <CollapsibleSection icon={<PenTool className="h-4 w-4" />} title="Cara Menulis" accent={color}>
           <div className="space-y-2">
             {topic.steps.map((step, i) => (
               <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
@@ -3110,12 +3141,11 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
               </div>
             ))}
           </div>
-        </div>
+        </CollapsibleSection>
       )}
 
       {topic.commonMistakes && (
-        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Lazim</p>
+        <CollapsibleSection icon={<XCircle className="h-4 w-4" />} title="⚠ Kesalahan Lazim" accent="#FB7185">
           <ul className="space-y-2">
             {topic.commonMistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -3124,12 +3154,11 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
               </li>
             ))}
           </ul>
-        </div>
+        </CollapsibleSection>
       )}
 
       {topic.uasaTips && (
-        <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">★ Tips UASA</p>
+        <CollapsibleSection icon={<Trophy className="h-4 w-4" />} title="🎯 Fokus UASA — Tips UASA" accent="#FBBF24">
           <ul className="space-y-2">
             {topic.uasaTips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -3138,7 +3167,38 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
               </li>
             ))}
           </ul>
-        </div>
+        </CollapsibleSection>
+      )}
+
+      {(topic.description || (topic.formula && topic.formula.length > 0)) && (
+        <CollapsibleSection icon={<MessageCircle className="h-4 w-4" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
+          {topic.description && <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>}
+          {topic.formula && topic.formula.length > 0 && (
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+              <p className="mb-1 text-[10px] font-black tracking-wide" style={{ color }}>Mula dengan langkah pertama</p>
+              <p className="text-sm text-white/75">{topic.formula[0]}</p>
+            </div>
+          )}
+        </CollapsibleSection>
+      )}
+
+      {(topic.commonMistakes || topic.uasaTips) && (
+        <CollapsibleSection icon={<Lightbulb className="h-4 w-4" />} title="📝 Ringkasan 1 Minit" accent="#34D399">
+          <ul className="space-y-2">
+            {topic.commonMistakes?.slice(0, 2).map((m, i) => (
+              <li key={`m-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                <XCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-rose-400" />
+                {m}
+              </li>
+            ))}
+            {topic.uasaTips?.slice(0, 1).map((tip, i) => (
+              <li key={`tip-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </CollapsibleSection>
       )}
 
       <div className="flex gap-3">

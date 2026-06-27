@@ -322,6 +322,32 @@ function KesalahanSection({ topic }: { topic: SistemBahasaTopic }) {
   );
 }
 
+function WajibHafalSection({ topic }: { topic: SistemBahasaTopic }) {
+  return (
+    <Accordion title="⭐ Wajib Hafal" accent="#FBBF24">
+      <CalloutBox icon="💡" title="Ringkasan Mudah" color={topic.warna}>
+        {topic.definisi.ringkasan}
+      </CalloutBox>
+      {topic.caraMudahIngat.akronim && (
+        <div
+          className="rounded-xl p-4 mb-3 text-center"
+          style={{ background: topic.warna + "18", border: `1px solid ${topic.warna}44` }}
+        >
+          <div className="text-2xl font-black mb-1" style={{ color: topic.warna }}>
+            {topic.caraMudahIngat.akronim.kata}
+          </div>
+          <div className="text-sm text-white/70">{topic.caraMudahIngat.akronim.makna}</div>
+        </div>
+      )}
+      {topic.caraMudahIngat.petua[0] && (
+        <CalloutBox icon="★" title="Petua Paling Penting" color="#10B981">
+          {topic.caraMudahIngat.petua[0]}
+        </CalloutBox>
+      )}
+    </Accordion>
+  );
+}
+
 function CaraMudahSection({ topic }: { topic: SistemBahasaTopic }) {
   return (
     <Accordion title="🧠 Cara Mudah Ingat" accent="#10B981">
@@ -554,6 +580,21 @@ function ExamBoosterSection({ topic }: { topic: SistemBahasaTopic }) {
   );
 }
 
+function RingkasanSatuMinitSection({ topic }: { topic: SistemBahasaTopic }) {
+  return (
+    <Accordion title="📝 Ringkasan 1 Minit" accent="#34D399">
+      <p className="text-white/80 text-sm leading-relaxed mb-3">{topic.definisi.ringkasan}</p>
+      <ul className="space-y-1.5">
+        {topic.examBooster.rumusan.map((r, i) => (
+          <li key={i} className="flex items-start gap-2 text-sm text-white/75">
+            <span style={{ color: topic.warna }}>✦</span> {r}
+          </li>
+        ))}
+      </ul>
+    </Accordion>
+  );
+}
+
 // ── Main export ──────────────────────────────────────────────
 
 export function SistemBahasaTopicDetail({ topic, onBack }: Props) {
@@ -583,10 +624,12 @@ export function SistemBahasaTopicDetail({ topic, onBack }: Props) {
         <ContohHarianSection topic={topic} />
         <TipsUASASection topic={topic} />
         <KesalahanSection topic={topic} />
+        <WajibHafalSection topic={topic} />
         <CaraMudahSection topic={topic} />
         <KBATSection topic={topic} />
         <MiniKuizSection topic={topic} />
         <ExamBoosterSection topic={topic} />
+        <RingkasanSatuMinitSection topic={topic} />
       </div>
     </div>
   );
