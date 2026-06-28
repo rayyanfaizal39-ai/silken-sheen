@@ -708,6 +708,7 @@ export const chapters: ChapterContent[] = [
     notes: sejarahF2C3Notes,
     mindMap: { data: sejarahF2C3MindMap, title: "Sosiobudaya Kerajaan Alam Melayu" },
     flashcards: sejarahF2FlashcardsFor(3),
+    quiz: sejarahF2QuizzesFor(3),
   },
   {
     id: "sejarah-f2-c4",
@@ -752,6 +753,8 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor",
     notes: sejarahF2C7Notes,
+    flashcards: sejarahF2FlashcardsFor(7),
+    quiz: sejarahF2QuizzesFor(7),
   },
   {
     id: "sejarah-f2-c8",
@@ -760,6 +763,8 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
     notes: sejarahF2C8Notes,
+    flashcards: sejarahF2FlashcardsFor(8),
+    quiz: sejarahF2QuizzesFor(8),
   },
   {
     id: "sejarah-f2-c9",
@@ -768,6 +773,8 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
     notes: sejarahF2C9Notes,
+    flashcards: sejarahF2FlashcardsFor(9),
+    quiz: sejarahF2QuizzesFor(9),
   },
   {
     id: "sejarah-f2-c10",
@@ -776,6 +783,8 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Sarawak dan Sabah",
     notes: sejarahF2C10Notes,
+    flashcards: sejarahF2FlashcardsFor(10),
+    quiz: sejarahF2QuizzesFor(10),
   },
 
   // Sejarah Form 3

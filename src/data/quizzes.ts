@@ -26,8 +26,24 @@ import { scienceF1C8QuizzesDLP } from "./science-f1-c8-quizzes-dlp";
 import { scienceF1C9QuizzesBM } from "./science-f1-c9-quizzes-bm";
 import { scienceF1C9QuizzesDLP } from "./science-f1-c9-quizzes-dlp";
 import { bmF1ObjektifKuiz1, bmF1ObjektifKuiz2, bmF1ObjektifKuiz3 } from "./bm-f1-objektif-quizzes";
+import { sejarahF2C3Quizzes } from "./sejarah-f2-c3-quizzes";
+import { sejarahF2C4Quizzes } from "./sejarah-f2-c4-quizzes";
+import { sejarahF2C5Quizzes } from "./sejarah-f2-c5-quizzes";
+import { sejarahF2C6Quizzes } from "./sejarah-f2-c6-quizzes";
+import { sejarahF2C7Quizzes } from "./sejarah-f2-c7-quizzes";
+import { sejarahF2C8Quizzes } from "./sejarah-f2-c8-quizzes";
+import { sejarahF2C9Quizzes } from "./sejarah-f2-c9-quizzes";
+import { sejarahF2C10Quizzes } from "./sejarah-f2-c10-quizzes";
 
 export const quizzes: QuizQuestion[] = [
+  ...sejarahF2C3Quizzes,
+  ...sejarahF2C4Quizzes,
+  ...sejarahF2C5Quizzes,
+  ...sejarahF2C6Quizzes,
+  ...sejarahF2C7Quizzes,
+  ...sejarahF2C8Quizzes,
+  ...sejarahF2C9Quizzes,
+  ...sejarahF2C10Quizzes,
   {
     id: "sci-f1-c1-dlp-q1",
     subjectId: "science",

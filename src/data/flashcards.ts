@@ -26,6 +26,14 @@ import { scienceF1C8FlashcardsDLP } from "./science-f1-c8-flashcards-dlp";
 import { scienceF1C9FlashcardsBM } from "./science-f1-c9-flashcards-bm";
 import { scienceF1C9FlashcardsDLP } from "./science-f1-c9-flashcards-dlp";
 import { sejarahF2C2Flashcards } from "./sejarah-f2-c2-flashcards";
+import { sejarahF2C3Flashcards } from "./sejarah-f2-c3-flashcards";
+import { sejarahF2C4Flashcards } from "./sejarah-f2-c4-flashcards";
+import { sejarahF2C5Flashcards } from "./sejarah-f2-c5-flashcards";
+import { sejarahF2C6Flashcards } from "./sejarah-f2-c6-flashcards";
+import { sejarahF2C7Flashcards } from "./sejarah-f2-c7-flashcards";
+import { sejarahF2C8Flashcards } from "./sejarah-f2-c8-flashcards";
+import { sejarahF2C9Flashcards } from "./sejarah-f2-c9-flashcards";
+import { sejarahF2C10Flashcards } from "./sejarah-f2-c10-flashcards";
 
 export const flashcards: Flashcard[] = [
   {
@@ -2725,6 +2733,14 @@ export const flashcards: Flashcard[] = [
     back: "Memperkukuh hubungan perdagangan dan hubungan keagamaan.",
   },
   ...sejarahF2C2Flashcards,
+  ...sejarahF2C3Flashcards,
+  ...sejarahF2C4Flashcards,
+  ...sejarahF2C5Flashcards,
+  ...sejarahF2C6Flashcards,
+  ...sejarahF2C7Flashcards,
+  ...sejarahF2C8Flashcards,
+  ...sejarahF2C9Flashcards,
+  ...sejarahF2C10Flashcards,
 
   // Sejarah Form 1 Chapter 1 - Mengenali Sejarah
   {

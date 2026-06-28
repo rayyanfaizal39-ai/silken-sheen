@@ -1,7 +1,8 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { BMForm2SistemBahasaLibrary } from "@/components/BMForm2SistemBahasaLibrary";
-import { BMForm2KomsasStructure } from "@/components/BMForm2KomsasStructure";
+import { BMForm2KomsasStructure, BMForm2KomsasWorkStructure } from "@/components/BMForm2KomsasStructure";
+import { getBMForm2KomsasWork } from "@/data/bm-form2-komsas-structure";
 import {
   ArrowRight,
   BookOpen,
@@ -43,7 +44,8 @@ interface PaperItem {
 type Screen =
   | { type: "landing" }
   | { type: "paper"; paperId: PaperId }
-  | { type: "hub"; paperId: PaperId; hubId: string };
+  | { type: "hub"; paperId: PaperId; hubId: string }
+  | { type: "komsas-work"; paperId: "k1"; hubId: "komsas"; workId: string };
 
 const FORM2_PAPERS: PaperItem[] = [
   {
@@ -638,10 +640,12 @@ function LearningFolderPlaceholder({
 function HubView({
   paper,
   hub,
+  onSelectKomsasWork,
   onBack,
 }: {
   paper: PaperItem;
   hub: HubItem;
+  onSelectKomsasWork: (workId: string) => void;
   onBack: () => void;
 }) {
   const [studyMode, setStudyMode] = useState<StudyMode>("learn");
@@ -673,7 +677,7 @@ function HubView({
       {paper.id === "k1" && hub.id === "sistem-bahasa" ? (
         <BMForm2SistemBahasaLibrary />
       ) : paper.id === "k1" && hub.id === "komsas" ? (
-        <BMForm2KomsasStructure />
+        <BMForm2KomsasStructure onSelectWork={onSelectKomsasWork} />
       ) : (
       <>
       <div className="mb-6">
@@ -732,10 +736,13 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
   }
 
   const paper =
-    screen.type === "paper" || screen.type === "hub"
+    screen.type === "paper" || screen.type === "hub" || screen.type === "komsas-work"
       ? getPaper(screen.paperId)
       : undefined;
-  const hub = screen.type === "hub" ? getHub(screen.paperId, screen.hubId) : undefined;
+  const hub = screen.type === "hub" || screen.type === "komsas-work"
+    ? getHub(screen.paperId, screen.hubId)
+    : undefined;
+  const komsasWork = screen.type === "komsas-work" ? getBMForm2KomsasWork(screen.workId) : undefined;
 
   return (
     <div
@@ -759,7 +766,23 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
         )}
 
         {screen.type === "hub" && paper && hub && (
-          <HubView paper={paper} hub={hub} onBack={pop} />
+          <HubView
+            paper={paper}
+            hub={hub}
+            onSelectKomsasWork={(workId) => push({ type: "komsas-work", paperId: "k1", hubId: "komsas", workId })}
+            onBack={pop}
+          />
+        )}
+
+        {screen.type === "komsas-work" && paper && hub && komsasWork && (
+          <div>
+            <PageHeader
+              breadcrumb={["Bahasa Melayu", "Tingkatan 2", paper.shortLabel, hub.shortLabel, komsasWork.title]}
+              onBack={pop}
+              accent={hub.color}
+            />
+            <BMForm2KomsasWorkStructure work={komsasWork} />
+          </div>
         )}
       </div>
     </div>
