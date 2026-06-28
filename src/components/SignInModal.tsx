@@ -83,11 +83,16 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     try {
       if (mode === "signin") {
         await signInWithEmail(email, password);
+        // Auth state change will close the modal, but close immediately too
+        // so the spinner can't appear stuck on slow auth-state propagation.
+        onClose();
       } else {
         const { needsConfirmation } = await signUpWithEmail(email, password);
         if (needsConfirmation) {
           setNotice("Check your inbox to confirm your email, then sign in.");
           setMode("signin");
+        } else {
+          onClose();
         }
       }
     } catch (e) {
