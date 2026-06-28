@@ -59,9 +59,18 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     setError(null);
     setNotice(null);
     setBusy("google");
+    // Safety: if the redirect never happens (popup blocked, iframe restriction),
+    // clear the spinner after 6s so the modal isn't stuck.
+    const safety = window.setTimeout(() => {
+      setBusy((b) => (b === "google" ? null : b));
+      setError((prev) =>
+        prev ?? "Couldn't reach Google. Check that pop-ups are allowed and try again.",
+      );
+    }, 6000);
     try {
       await signInWithGoogle();
     } catch (e) {
+      window.clearTimeout(safety);
       setError(e instanceof Error ? e.message : "Couldn't connect to Google.");
       setBusy(null);
     }
