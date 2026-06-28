@@ -23,6 +23,8 @@ import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
+import { OnboardingWizard } from "@/components/onboarding/OnboardingWizard";
+import { CompanionTip } from "@/components/CompanionTip";
 import { RankUpModal } from "@/components/progression/RankUpModal";
 import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -355,6 +357,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       <SiteFooter />
 
       <AICompanionButton />
+      <OnboardingWizard />
+      <CompanionTip />
       {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
 
       {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
