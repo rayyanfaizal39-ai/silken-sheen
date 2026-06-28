@@ -48,6 +48,7 @@ import { analyzeProgress } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { getSubjectFormStats } from "@/content/registry";
+import { NextMissionCard } from "@/components/NextMissionCard";
 
 // ─── World portal definitions ─────────────────────────────────────────────────
 
