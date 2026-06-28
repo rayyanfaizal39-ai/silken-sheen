@@ -23,8 +23,12 @@ import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
+import { OnboardingWizard } from "@/components/onboarding/OnboardingWizard";
+import { CompanionTip } from "@/components/CompanionTip";
+import { NextMissionCard } from "@/components/NextMissionCard";
 import { RankUpModal } from "@/components/progression/RankUpModal";
 import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const navItems = [
   {
@@ -348,10 +352,25 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        <main className="app-main page-content min-h-svh overflow-x-clip">{children}</main>
+        <main className="app-main page-content overflow-x-clip">
+          {(() => {
+            const studyPaths = ["/notes", "/quizzes", "/flashcards", "/mindmaps"];
+            const onStudy = studyPaths.some((p) => pathname.startsWith(p));
+            return onStudy ? (
+              <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6">
+                <NextMissionCard compact />
+              </div>
+            ) : null;
+          })()}
+          {children}
+        </main>
       </div>
 
+      <SiteFooter />
+
       <AICompanionButton />
+      <OnboardingWizard />
+      <CompanionTip />
       {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
 
       {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}

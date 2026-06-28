@@ -665,6 +665,66 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
   }
 }
 
+// ─── Singleton auth sync ──────────────────────────────────────────────────────
+// `useProgress()` is called from ~10 components on a single page (header,
+// sidebar, hero card, companion widgets, etc). Each one used to run its own
+// independent `supabase.auth.getUser()` call AND its own `onAuthStateChange`
+// subscription — so every sign-in event fired ~10 simultaneous network
+// round-trips, merges, and localStorage/Supabase writes, all cascading into
+// ~10 separate re-renders at once. That burst of synchronous work is what
+// froze the tab when clicking Sign In. This module-level singleton ensures
+// the actual Supabase auth listener and fetch/merge/save logic run exactly
+// once per page load, no matter how many components call useProgress().
+let authSyncStarted = false;
+let sharedUserId: string | null = null;
+let sharedProgress: Progress | null = null;
+const progressListeners = new Set<(p: Progress) => void>();
+
+function broadcastProgress(p: Progress) {
+  sharedProgress = p;
+  progressListeners.forEach((listen) => listen(p));
+}
+
+function ensureAuthSync() {
+  if (authSyncStarted || !isSupabaseConfigured) return;
+  authSyncStarted = true;
+
+  supabase.auth.getUser().then(async ({ data: { user } }) => {
+    if (!user) return;
+    sharedUserId = user.id;
+    const local = sharedProgress ?? load();
+    const remote = await loadFromSupabase(user.id);
+    if (!remote) {
+      await saveToSupabase(user.id, local);
+      return;
+    }
+    const merged = mergeProgress(local, remote);
+    broadcastProgress(merged);
+    try {
+      localStorage.setItem(KEY, JSON.stringify(merged));
+    } catch {}
+  });
+
+  supabase.auth.onAuthStateChange(async (event, session) => {
+    // Supabase re-fires SIGNED_IN on tab focus/visibility even when the
+    // session is unchanged — skip the redundant fetch/merge/write.
+    if (event === "SIGNED_IN" && session?.user) {
+      if (sharedUserId === session.user.id) return;
+      sharedUserId = session.user.id;
+      const local2 = sharedProgress ?? load();
+      const remote2 = await loadFromSupabase(session.user.id);
+      const merged2 = remote2 ? mergeProgress(local2, remote2) : local2;
+      broadcastProgress(merged2);
+      try {
+        localStorage.setItem(KEY, JSON.stringify(merged2));
+      } catch {}
+      await saveToSupabase(session.user.id, merged2);
+    } else if (event === "SIGNED_OUT") {
+      sharedUserId = null;
+    }
+  });
+}
+
 // ─── SM-2 Spaced Repetition ───────────────────────────────────────────────────
 // rating: 0=Again, 1=Hard, 2=Good, 3=Easy
 function sm2(record: CardMasteryRecord | undefined, rating: 0 | 1 | 2 | 3): CardMasteryRecord {
@@ -728,7 +788,6 @@ export function useProgress() {
   const [lastCompanionEvolution, setLastCompanionEvolution] =
     useState<CompanionEvolutionEvent | null>(null);
   const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const userIdRef = useRef<string | null>(null);
 
   /** Compares XP before/after an update and raises transient celebration events. Does not touch persisted state. */
   const detectProgressionEvents = useCallback(
@@ -769,62 +828,29 @@ export function useProgress() {
     [],
   );
 
-  // On mount: load localStorage then optionally merge Supabase data
+  // On mount: load localStorage immediately, subscribe to the shared
+  // singleton's broadcasts, and kick off auth sync (a no-op if some other
+  // already-mounted useProgress() instance started it first).
   useEffect(() => {
-    const local = load();
+    const local = sharedProgress ?? load();
+    if (sharedProgress === null) sharedProgress = local;
     setProgress(local);
 
-    if (!isSupabaseConfigured) return;
+    progressListeners.add(setProgress);
+    ensureAuthSync();
+    if (sharedUserId) setCloudSynced(true);
 
-    // Get current user and sync
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) return;
-      userIdRef.current = user.id;
-      const remote = await loadFromSupabase(user.id);
-      if (!remote) {
-        // No cloud record yet — push local to cloud
-        await saveToSupabase(user.id, local);
-        setCloudSynced(true);
-        return;
-      }
-      const merged = mergeProgress(local, remote);
-      setProgress(merged);
-      try {
-        localStorage.setItem(KEY, JSON.stringify(merged));
-      } catch {}
-      setCloudSynced(true);
-    });
-
-    // Listen for auth changes (login / logout)
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === "SIGNED_IN" && session?.user) {
-        userIdRef.current = session.user.id;
-        const local2 = load();
-        const remote2 = await loadFromSupabase(session.user.id);
-        const merged2 = remote2 ? mergeProgress(local2, remote2) : local2;
-        setProgress(merged2);
-        try {
-          localStorage.setItem(KEY, JSON.stringify(merged2));
-        } catch {}
-        await saveToSupabase(session.user.id, merged2);
-        setCloudSynced(true);
-      } else if (event === "SIGNED_OUT") {
-        userIdRef.current = null;
-        setCloudSynced(false);
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    return () => {
+      progressListeners.delete(setProgress);
+    };
   }, []);
 
   // Debounced sync to Supabase after every progress change
   const scheduleSync = useCallback((p: Progress) => {
-    if (!isSupabaseConfigured || !userIdRef.current) return;
+    if (!isSupabaseConfigured || !sharedUserId) return;
     if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
     syncTimerRef.current = setTimeout(() => {
-      void saveToSupabase(userIdRef.current!, p);
+      void saveToSupabase(sharedUserId!, p);
     }, SYNC_DEBOUNCE_MS);
   }, []);
 

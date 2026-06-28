@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UpgradeRouteImport } from './routes/upgrade'
 import { Route as TrackerRouteImport } from './routes/tracker'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SubjectsRouteImport } from './routes/subjects'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ParentRouteImport } from './routes/parent'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as MindmapsRouteImport } from './routes/mindmaps'
@@ -20,6 +22,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
@@ -36,6 +39,11 @@ const TrackerRoute = TrackerRouteImport.update({
   path: '/tracker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SubjectsRoute = SubjectsRouteImport.update({
   id: '/subjects',
   path: '/subjects',
@@ -44,6 +52,11 @@ const SubjectsRoute = SubjectsRouteImport.update({
 const QuizzesRoute = QuizzesRouteImport.update({
   id: '/quizzes',
   path: '/quizzes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParentRoute = ParentRouteImport.update({
@@ -81,6 +94,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CompanionRoute = CompanionRouteImport.update({
   id: '/companion',
   path: '/companion',
@@ -111,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/companion': typeof CompanionRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
@@ -118,8 +137,10 @@ export interface FileRoutesByFullPath {
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
+  '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
+  '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -128,6 +149,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/companion': typeof CompanionRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
@@ -135,8 +157,10 @@ export interface FileRoutesByTo {
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
+  '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
+  '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -147,6 +171,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/companion': typeof CompanionRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
   '/leaderboard': typeof LeaderboardRoute
@@ -154,8 +179,10 @@ export interface FileRoutesById {
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
+  '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
+  '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -167,6 +194,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/companion'
+    | '/contact'
     | '/dashboard'
     | '/flashcards'
     | '/leaderboard'
@@ -174,8 +202,10 @@ export interface FileRouteTypes {
     | '/mindmaps'
     | '/notes'
     | '/parent'
+    | '/privacy'
     | '/quizzes'
     | '/subjects'
+    | '/terms'
     | '/tracker'
     | '/upgrade'
     | '/auth/callback'
@@ -184,6 +214,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/companion'
+    | '/contact'
     | '/dashboard'
     | '/flashcards'
     | '/leaderboard'
@@ -191,8 +222,10 @@ export interface FileRouteTypes {
     | '/mindmaps'
     | '/notes'
     | '/parent'
+    | '/privacy'
     | '/quizzes'
     | '/subjects'
+    | '/terms'
     | '/tracker'
     | '/upgrade'
     | '/auth/callback'
@@ -202,6 +235,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/companion'
+    | '/contact'
     | '/dashboard'
     | '/flashcards'
     | '/leaderboard'
@@ -209,8 +243,10 @@ export interface FileRouteTypes {
     | '/mindmaps'
     | '/notes'
     | '/parent'
+    | '/privacy'
     | '/quizzes'
     | '/subjects'
+    | '/terms'
     | '/tracker'
     | '/upgrade'
     | '/auth/callback'
@@ -221,6 +257,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
   CompanionRoute: typeof CompanionRoute
+  ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   FlashcardsRoute: typeof FlashcardsRoute
   LeaderboardRoute: typeof LeaderboardRoute
@@ -228,8 +265,10 @@ export interface RootRouteChildren {
   MindmapsRoute: typeof MindmapsRoute
   NotesRoute: typeof NotesRoute
   ParentRoute: typeof ParentRoute
+  PrivacyRoute: typeof PrivacyRoute
   QuizzesRoute: typeof QuizzesRoute
   SubjectsRoute: typeof SubjectsRoute
+  TermsRoute: typeof TermsRoute
   TrackerRoute: typeof TrackerRoute
   UpgradeRoute: typeof UpgradeRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
@@ -251,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrackerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/subjects': {
       id: '/subjects'
       path: '/subjects'
@@ -263,6 +309,13 @@ declare module '@tanstack/react-router' {
       path: '/quizzes'
       fullPath: '/quizzes'
       preLoaderRoute: typeof QuizzesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parent': {
@@ -312,6 +365,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/companion': {
@@ -366,6 +426,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   CompanionRoute: CompanionRoute,
+  ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   FlashcardsRoute: FlashcardsRoute,
   LeaderboardRoute: LeaderboardRoute,
@@ -373,8 +434,10 @@ const rootRouteChildren: RootRouteChildren = {
   MindmapsRoute: MindmapsRoute,
   NotesRoute: NotesRoute,
   ParentRoute: ParentRoute,
+  PrivacyRoute: PrivacyRoute,
   QuizzesRoute: QuizzesRoute,
   SubjectsRoute: SubjectsRoute,
+  TermsRoute: TermsRoute,
   TrackerRoute: TrackerRoute,
   UpgradeRoute: UpgradeRoute,
   AuthCallbackRoute: AuthCallbackRoute,

@@ -59,9 +59,18 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     setError(null);
     setNotice(null);
     setBusy("google");
+    // Safety: if the redirect never happens (popup blocked, iframe restriction),
+    // clear the spinner after 6s so the modal isn't stuck.
+    const safety = window.setTimeout(() => {
+      setBusy((b) => (b === "google" ? null : b));
+      setError((prev) =>
+        prev ?? "Couldn't reach Google. Check that pop-ups are allowed and try again.",
+      );
+    }, 6000);
     try {
       await signInWithGoogle();
     } catch (e) {
+      window.clearTimeout(safety);
       setError(e instanceof Error ? e.message : "Couldn't connect to Google.");
       setBusy(null);
     }
@@ -83,11 +92,16 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     try {
       if (mode === "signin") {
         await signInWithEmail(email, password);
+        // Auth state change will close the modal, but close immediately too
+        // so the spinner can't appear stuck on slow auth-state propagation.
+        onClose();
       } else {
         const { needsConfirmation } = await signUpWithEmail(email, password);
         if (needsConfirmation) {
           setNotice("Check your inbox to confirm your email, then sign in.");
           setMode("signin");
+        } else {
+          onClose();
         }
       }
     } catch (e) {

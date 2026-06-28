@@ -19,6 +19,11 @@ import {
   Trophy,
   GraduationCap,
   LogIn,
+  ShieldCheck,
+  NotebookPen,
+  BrainCircuit,
+  Layers,
+  LineChart,
 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
@@ -43,6 +48,7 @@ import { analyzeProgress } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { getSubjectFormStats } from "@/content/registry";
+import { NextMissionCard } from "@/components/NextMissionCard";
 
 // ─── World portal definitions ─────────────────────────────────────────────────
 
@@ -677,6 +683,49 @@ export function HomeDashboard() {
         {/* Rank progression card */}
         <HeroRankCard />
       </div>
+
+      {/* ── ABOUT ACADEMY — visible to every visitor, signed in or not ─── */}
+      <section
+        aria-labelledby="about-academy-heading"
+        className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6"
+      >
+        <h2 id="about-academy-heading" className="font-display text-lg font-bold text-white sm:text-xl">
+          What is AcadeMY?
+        </h2>
+        <p className="mt-2 max-w-3xl text-sm leading-7 text-white/60">
+          AcadeMY is a free educational platform built for Malaysian KSSM students in Form 1–3.
+          Here, students can:
+        </p>
+        <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+          <li className="flex items-center gap-2.5 text-sm text-white/70">
+            <NotebookPen className="h-4 w-4 shrink-0 text-[#60A5FA]" /> Study interactive, KSSM-aligned notes
+          </li>
+          <li className="flex items-center gap-2.5 text-sm text-white/70">
+            <BrainCircuit className="h-4 w-4 shrink-0 text-[#FBBF24]" /> Complete quizzes with instant feedback
+          </li>
+          <li className="flex items-center gap-2.5 text-sm text-white/70">
+            <Layers className="h-4 w-4 shrink-0 text-[#A855F7]" /> Review flashcards with spaced repetition
+          </li>
+          <li className="flex items-center gap-2.5 text-sm text-white/70">
+            <LineChart className="h-4 w-4 shrink-0 text-[#34D399]" /> Track learning progress, XP, and streaks
+          </li>
+        </ul>
+        <div className="mt-4 flex items-start gap-2.5 rounded-2xl border border-white/[0.07] bg-white/[0.03] px-4 py-3">
+          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#818CF8]" />
+          <p className="text-xs leading-6 text-white/50">
+            Students can optionally sign in with Google to securely save their learning progress
+            and sync it across devices. We use Google Sign-In only to authenticate your account
+            and save your progress — we do not request unnecessary Google data. See our{" "}
+            <a href="/privacy" className="text-white/75 underline underline-offset-2 hover:text-white">
+              Privacy Policy
+            </a>{" "}
+            for details.
+          </p>
+        </div>
+      </section>
+
+      {/* ── NEXT MISSION ──────────────────────────────────────────────── */}
+      <NextMissionCard />
 
       {/* ── RESUME BANNER ─────────────────────────────────────────────── */}
       {progress.lastVisited && <ResumeBanner lastVisited={progress.lastVisited} />}
