@@ -106,8 +106,55 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw new Error("Supabase is not configured");
     }
 
-    const redirectTo = `${window.location.origin}/auth/callback`;
-    console.info("[Auth] Google OAuth request started", { redirectTo });
+    // Detect iframe (Lovable preview). Google blocks OAuth inside iframes,
+    // so we need to break out to the top window or open a new tab.
+    let inIframe = false;
+    try {
+      inIframe = window.self !== window.top;
+    } catch {
+      inIframe = true; // cross-origin access throws → we're in an iframe
+    }
+
+    const origin =
+      inIframe && window.top
+        ? // Best-effort: use the top window's origin when accessible
+          (() => {
+            try {
+              return window.top!.location.origin;
+            } catch {
+              return window.location.origin;
+            }
+          })()
+        : window.location.origin;
+
+    const redirectTo = `${origin}/auth/callback`;
+    console.info("[Auth] Google OAuth request started", { redirectTo, inIframe });
+
+    if (inIframe) {
+      // Get the URL from Supabase without auto-redirecting, then navigate the
+      // top frame (or open a new tab if we can't reach top).
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo,
+          queryParams: { prompt: "select_account" },
+          skipBrowserRedirect: true,
+        },
+      });
+      if (error) throw error;
+      const url = data?.url;
+      if (!url) throw new Error("Couldn't start Google sign-in.");
+      try {
+        if (window.top) {
+          window.top.location.href = url;
+          return;
+        }
+      } catch {
+        /* fall through to popup */
+      }
+      window.open(url, "_blank", "noopener");
+      return;
+    }
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
