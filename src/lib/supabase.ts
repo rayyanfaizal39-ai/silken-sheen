@@ -1,4 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
+import { type SupabaseClient as SupabaseClientClass } from "@supabase/supabase-js";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
@@ -11,11 +12,11 @@ const isBrowser = typeof window !== "undefined";
 
 // Create a no-op stub when env vars are missing so the app still loads
 function createStubClient() {
-  return null as unknown as ReturnType<typeof createClient>;
+  return null as unknown as SupabaseClientClass;
 }
 
 export const supabase = isSupabaseConfigured
-  ? createClient(supabaseUrl!, supabaseAnonKey!, {
+  ? createBrowserClient(supabaseUrl!, supabaseAnonKey!, {
       auth: {
         flowType: "pkce",
         persistSession: isBrowser,
