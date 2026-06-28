@@ -723,6 +723,9 @@ export function HomeDashboard() {
         </div>
       </section>
 
+      {/* ── NEXT MISSION ──────────────────────────────────────────────── */}
+      <NextMissionCard />
+
       {/* ── RESUME BANNER ─────────────────────────────────────────────── */}
       {progress.lastVisited && <ResumeBanner lastVisited={progress.lastVisited} />}
 
