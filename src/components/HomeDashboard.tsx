@@ -48,6 +48,7 @@ import { analyzeProgress } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { getSubjectFormStats } from "@/content/registry";
+import { NextMissionCard } from "@/components/NextMissionCard";
 
 // ─── World portal definitions ─────────────────────────────────────────────────
 
@@ -722,6 +723,9 @@ export function HomeDashboard() {
           </p>
         </div>
       </section>
+
+      {/* ── NEXT MISSION ──────────────────────────────────────────────── */}
+      <NextMissionCard />
 
       {/* ── RESUME BANNER ─────────────────────────────────────────────── */}
       {progress.lastVisited && <ResumeBanner lastVisited={progress.lastVisited} />}
