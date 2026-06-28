@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
+
+const LAYER_DEPTHS = [-30, -22, -18, -14, -10, -6, 3, 5, 8, 10, 20];
 
 export function AstronautScene() {
   const ref = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const layerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const el = ref.current;
@@ -14,6 +16,7 @@ export function AstronautScene() {
     let raf = 0;
     let targetX = 0, targetY = 0;
     let currentX = 0, currentY = 0;
+    let visible = true;
 
     const onMove = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
@@ -21,27 +24,46 @@ export function AstronautScene() {
       targetY = (e.clientY - r.top - r.height / 2) / (window.innerHeight / 2);
     };
 
+    // Pure DOM writes (no React state/re-render) so this 60fps loop never
+    // forces React to re-render HomeDashboard's huge tree on every frame —
+    // that compounding cost is what made the UI freeze whenever something
+    // else (e.g. opening the sign-in modal) also triggered work on top of it.
     const tick = () => {
       currentX += (targetX - currentX) * 0.055;
       currentY += (targetY - currentY) * 0.055;
-      setTilt({ x: currentX, y: currentY });
-      raf = requestAnimationFrame(tick);
+      for (let i = 0; i < layerRefs.current.length; i++) {
+        const node = layerRefs.current[i];
+        if (!node) continue;
+        const depth = LAYER_DEPTHS[i];
+        node.style.transform = `translate3d(${currentX * depth}px, ${currentY * depth}px, 0)`;
+      }
+      if (visible) raf = requestAnimationFrame(tick);
+    };
+
+    const onVisibility = () => {
+      visible = document.visibilityState === "visible";
+      if (visible && !raf) raf = requestAnimationFrame(tick);
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("visibilitychange", onVisibility);
     raf = requestAnimationFrame(tick);
-    return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("visibilitychange", onVisibility);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
-  const layer = (depth: number) => ({
-    transform: `translate3d(${tilt.x * depth}px, ${tilt.y * depth}px, 0)`,
-  });
+  const setLayerRef = (i: number) => (node: HTMLDivElement | null) => {
+    layerRefs.current[i] = node;
+  };
 
   return (
     <div ref={ref} className="astronaut-scene pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
 
       {/* ── Layer –30: Dense far-field star fabric ─────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-30)}>
+      <div ref={setLayerRef(0)} className="absolute inset-0 will-change-transform">
         <div
           className="absolute inset-0"
           style={{
@@ -70,7 +92,7 @@ export function AstronautScene() {
       </div>
 
       {/* ── Layer –22: Deep nebula — fills the FULL hero ───────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-22)}>
+      <div ref={setLayerRef(1)} className="absolute inset-0 will-change-transform">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(99,102,241,0.30),transparent_45%),radial-gradient(circle_at_82%_22%,rgba(59,130,246,0.22),transparent_40%)]" />
         <div
           className="absolute inset-0"
@@ -83,7 +105,7 @@ export function AstronautScene() {
       </div>
 
       {/* ── Layer –18: Orbit arc rings ────────────────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-18)}>
+      <div ref={setLayerRef(2)} className="absolute inset-0 will-change-transform">
         <div
           className="absolute"
           style={{
@@ -99,19 +121,19 @@ export function AstronautScene() {
       </div>
 
       {/* ── Layer –14: Mid-depth star field ──────────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-14)}>
+      <div ref={setLayerRef(3)} className="absolute inset-0 will-change-transform">
         <div className="astronaut-stars" />
       </div>
 
       {/* ── Layer –10: Satellites ──────────────────────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-10)}>
+      <div ref={setLayerRef(4)} className="absolute inset-0 will-change-transform">
         <span className="hero-satellite hero-satellite--a" />
         <span className="hero-satellite hero-satellite--b" />
         <span className="hero-satellite hero-satellite--c" />
       </div>
 
       {/* ── Layer –6: Background planets — some BEHIND text zone ─── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(-6)}>
+      <div ref={setLayerRef(5)} className="absolute inset-0 will-change-transform">
         <span className="astronaut-planet astronaut-planet--a" />
         <span className="astronaut-planet astronaut-planet--b" />
         <span className="astronaut-planet astronaut-planet--c" />
@@ -120,12 +142,12 @@ export function AstronautScene() {
       </div>
 
       {/* ── Layer 3: Scene-wide rocket trail ─────────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(3)}>
+      <div ref={setLayerRef(6)} className="absolute inset-0 will-change-transform">
         <div className="astronaut-rocket-trail-scene" />
       </div>
 
       {/* ── Layer 5: Atmosphere bridge ───────────────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(5)}>
+      <div ref={setLayerRef(7)} className="absolute inset-0 will-change-transform">
         <div className="astronaut-atmosphere-bridge absolute bottom-0 left-[-8%] right-[-8%] top-0" />
         <div
           className="pointer-events-none absolute"
@@ -140,7 +162,7 @@ export function AstronautScene() {
       </div>
 
       {/* ── Layer 8: Space debris ─────────────────────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(8)}>
+      <div ref={setLayerRef(8)} className="absolute inset-0 will-change-transform">
         <span className="hero-debris hero-debris--1" />
         <span className="hero-debris hero-debris--2" />
         <span className="hero-debris hero-debris--3" />
@@ -149,7 +171,7 @@ export function AstronautScene() {
       </div>
 
       {/* ── Layer 10: Rocket exhaust particles ───────────────────── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(10)}>
+      <div ref={setLayerRef(9)} className="absolute inset-0 will-change-transform">
         <span className="astronaut-particle astronaut-particle--1" />
         <span className="astronaut-particle astronaut-particle--2" />
         <span className="astronaut-particle astronaut-particle--3" />
@@ -158,7 +180,7 @@ export function AstronautScene() {
       </div>
 
       {/* ── Layer 20: Astronaut — max parallax, bleeds into text ─── */}
-      <div className="absolute inset-0 will-change-transform" style={layer(20)}>
+      <div ref={setLayerRef(10)} className="absolute inset-0 will-change-transform">
         {/*
           Pushed further left vs previous (right -12%, w 82%) so the
           astronaut's center mass bleeds more into the headline zone.

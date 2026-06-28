@@ -4,6 +4,7 @@ import {
   useEffect,
   useState,
   useCallback,
+  useMemo,
   type ReactNode,
 } from "react";
 import type { User, Session } from "@supabase/supabase-js";
@@ -85,8 +86,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Subscribe to auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, s) => {
       console.info("[Auth] State changed", { event, hasSession: !!s });
-      setSession(s);
-      setUser(s?.user ? supabaseUserToAuthUser(s.user) : null);
+      // Supabase re-fires SIGNED_IN/INITIAL_SESSION on tab focus even when
+      // the session hasn't actually changed — skip the state update (and the
+      // re-render it triggers in every useAuth() consumer) when it's a no-op.
+      setSession((prev) => (prev?.access_token === s?.access_token ? prev : s));
+      setUser((prev) => {
+        const nextId = s?.user?.id ?? null;
+        if (prev?.id === nextId) return prev;
+        return s?.user ? supabaseUserToAuthUser(s.user) : null;
+      });
       setLoading(false);
     });
 
@@ -134,22 +142,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
   }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        session,
-        loading,
-        isConfigured: isSupabaseConfigured,
-        signInWithGoogle,
-        signInWithEmail,
-        signUpWithEmail,
-        signOut,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      session,
+      loading,
+      isConfigured: isSupabaseConfigured,
+      signInWithGoogle,
+      signInWithEmail,
+      signUpWithEmail,
+      signOut,
+    }),
+    [user, session, loading, signInWithGoogle, signInWithEmail, signUpWithEmail, signOut],
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────

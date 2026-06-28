@@ -799,6 +799,13 @@ export function useProgress() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
+      // Supabase re-fires SIGNED_IN on every tab focus/visibility change even
+      // when the session is unchanged. Without this guard, every mounted
+      // useProgress() instance (there are several per page) would redo a
+      // full Supabase fetch + merge + write each time, all at once.
+      if (event === "SIGNED_IN" && session?.user && userIdRef.current === session.user.id) {
+        return;
+      }
       if (event === "SIGNED_IN" && session?.user) {
         userIdRef.current = session.user.id;
         const local2 = load();
