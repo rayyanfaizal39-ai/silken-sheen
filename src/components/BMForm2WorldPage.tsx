@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { BMForm2SistemBahasaLibrary } from "@/components/BMForm2SistemBahasaLibrary";
+import { BMForm2KomsasStructure } from "@/components/BMForm2KomsasStructure";
 import {
   ArrowRight,
   BookOpen,
@@ -671,6 +672,8 @@ function HubView({
 
       {paper.id === "k1" && hub.id === "sistem-bahasa" ? (
         <BMForm2SistemBahasaLibrary />
+      ) : paper.id === "k1" && hub.id === "komsas" ? (
+        <BMForm2KomsasStructure />
       ) : (
       <>
       <div className="mb-6">
