@@ -25,6 +25,7 @@ import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
 import { RankUpModal } from "@/components/progression/RankUpModal";
 import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const navItems = [
   {
@@ -348,8 +349,10 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        <main className="app-main page-content min-h-svh overflow-x-clip">{children}</main>
+        <main className="app-main page-content overflow-x-clip">{children}</main>
       </div>
+
+      <SiteFooter />
 
       <AICompanionButton />
       {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
