@@ -244,6 +244,26 @@ const LOCATIONS: Record<string, Record<string, string>> = {
   },
 };
 
+// ─── Geography Form 1 chapter card backgrounds ───────────────────────────────
+// Drop cropped chapter images into src/assets/geography/form1/ named
+// "ch{N}-anything.ext" (see the README in that folder) — picked up
+// automatically, no further code changes needed.
+const geographyF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/geography/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+
+const GEOGRAPHY_F1_BACKGROUNDS: Record<string, string> = (() => {
+  const map: Record<string, string> = {};
+  for (const [path, mod] of Object.entries(geographyF1BgModules)) {
+    const filename = path.split("/").pop() ?? "";
+    const match = filename.match(/^ch(\d{1,2})-/i);
+    if (!match) continue;
+    map[`Chapter ${match[1]}`] = mod.default;
+  }
+  return map;
+})();
+
 // ─── Ambient symbol positions ─────────────────────────────────────────────────
 
 const SLOTS = [
@@ -515,19 +535,31 @@ function LocationCard({
   const quizCount  = chapterContent?.quiz?.length ?? 0;
   const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType);
 
+  // Form 1 Geography chapters get their concept-art photo in a fixed-size
+  // strip pinned to the card's right edge — same width on every card,
+  // regardless of each image's own aspect ratio, so the cards stay visually
+  // consistent. (An earlier version sized the image to the image; that made
+  // some cards look small and others tall.) object-fit: cover fills that
+  // fixed strip without distortion; a left-to-right gradient blends the
+  // strip into the card so the text side stays readable.
+  const bgImage = subjectId === "geography" && form === "Form 1" ? GEOGRAPHY_F1_BACKGROUNDS[chapter.key] : undefined;
+  const fallbackGradient = `linear-gradient(${align === "left" ? "135deg" : "225deg"}, ${config.from}0d, rgba(0,0,0,0.50))`;
+  const IMAGE_STRIP_CLASS = "w-[clamp(84px,28vw,130px)] sm:w-[clamp(96px,24vw,160px)]";
+  const TEXT_PADDING_CLASS = "pr-[138px] sm:pr-[168px]";
+
   return (
     <button
       type="button"
       onClick={() => canOpen && onSelect(chapter.key)}
       disabled={!canOpen}
       className={[
-        "w-full rounded-2xl border transition-all duration-300",
+        "relative w-full overflow-hidden rounded-2xl border transition-all duration-300",
         canOpen
           ? "cursor-pointer hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2"
           : "opacity-38 cursor-not-allowed",
       ].join(" ")}
       style={{
-        background: `linear-gradient(${align === "left" ? "135deg" : "225deg"}, ${config.from}0d, rgba(0,0,0,0.50))`,
+        background: fallbackGradient,
         border: "1px solid rgba(255,255,255,0.06)",
         "--tw-ring-color": config.color,
       } as CSSProperties}
@@ -543,7 +575,30 @@ function LocationCard({
         el.style.boxShadow   = "";
       }}
     >
-      <div className={`p-3 md:p-4 ${align === "right" ? "text-right" : "text-left"}`}>
+      {bgImage && (
+        <div
+          className={`absolute right-0 top-0 h-full overflow-hidden ${IMAGE_STRIP_CLASS}`}
+          style={{ borderRadius: "inherit" }}
+        >
+          <img
+            src={bgImage}
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover object-center"
+            style={{ opacity: 0.65 }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(5,8,22,0.85) 0%, rgba(5,8,22,0.35) 45%, rgba(5,8,22,0.05) 100%)",
+            }}
+          />
+        </div>
+      )}
+      <div
+        className={`relative z-10 p-3 md:p-4 ${align === "right" ? "text-right" : "text-left"} ${bgImage ? TEXT_PADDING_CLASS : ""}`}
+      >
         {/* World location name */}
         {location && canOpen && (
           <p className="mb-0.5 text-[9px] font-black uppercase tracking-[0.18em]"
