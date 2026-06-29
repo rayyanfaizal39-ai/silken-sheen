@@ -597,7 +597,11 @@ function LocationCard({
         </div>
       )}
       <div
-        className={`relative z-10 p-3 md:p-4 ${align === "right" ? "text-right" : "text-left"} ${bgImage ? TEXT_PADDING_CLASS : ""}`}
+        className={[
+          "relative z-10 pb-3 pl-3 pt-3 md:pb-4 md:pl-4 md:pt-4",
+          align === "right" ? "text-right" : "text-left",
+          bgImage ? TEXT_PADDING_CLASS : "pr-3 md:pr-4",
+        ].join(" ")}
       >
         {/* World location name */}
         {location && canOpen && (
