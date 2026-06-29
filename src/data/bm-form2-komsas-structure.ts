@@ -37,3 +37,7 @@ export const BM_FORM2_KOMSAS_WORKS: Form2KomsasWork[] = [
   { id: "jejak-monpus", title: "Jejak Monpus", category: "Novel", kind: "novel" },
   { id: "jalan-ke-puncak", title: "Jalan ke Puncak", category: "Novel", kind: "novel" },
 ];
+
+export function getBMForm2KomsasWork(id: string) {
+  return BM_FORM2_KOMSAS_WORKS.find((work) => work.id === id);
+}
