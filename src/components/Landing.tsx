@@ -814,7 +814,7 @@ function FinalCta() {
 
 /* ---------------- Page ---------------- */
 
-export function HomeDashboard() {
+export function Landing() {
   return (
     <div className="relative min-h-screen bg-[#050816] text-white overflow-hidden">
       {/* starfield base */}
