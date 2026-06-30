@@ -20,6 +20,7 @@ import { Route as NotesRouteImport } from './routes/notes'
 import { Route as MindmapsRouteImport } from './routes/mindmaps'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as LandingRouteImport } from './routes/landing'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -84,6 +85,11 @@ const LeaderboardRoute = LeaderboardRouteImport.update({
   path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FlashcardsRoute = FlashcardsRouteImport.update({
   id: '/flashcards',
   path: '/flashcards',
@@ -132,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
+  '/landing': typeof LandingRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
+  '/landing': typeof LandingRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/flashcards': typeof FlashcardsRoute
+  '/landing': typeof LandingRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard'
     | '/flashcards'
+    | '/landing'
     | '/leaderboard'
     | '/login'
     | '/mindmaps'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard'
     | '/flashcards'
+    | '/landing'
     | '/leaderboard'
     | '/login'
     | '/mindmaps'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard'
     | '/flashcards'
+    | '/landing'
     | '/leaderboard'
     | '/login'
     | '/mindmaps'
@@ -260,6 +272,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   FlashcardsRoute: typeof FlashcardsRoute
+  LandingRoute: typeof LandingRoute
   LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
   MindmapsRoute: typeof MindmapsRoute
@@ -353,6 +366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/flashcards': {
       id: '/flashcards'
       path: '/flashcards'
@@ -429,6 +449,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   FlashcardsRoute: FlashcardsRoute,
+  LandingRoute: LandingRoute,
   LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
   MindmapsRoute: MindmapsRoute,
