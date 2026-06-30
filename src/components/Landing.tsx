@@ -868,6 +868,7 @@ export function Landing() {
             "radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,0.18), transparent 60%), radial-gradient(900px 500px at -10% 30%, rgba(59,130,246,0.12), transparent 60%), #050816",
         }}
       />
+      <CinematicStars />
       <LandingNav />
       <Hero />
       <WhyAcademy />
