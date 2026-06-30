@@ -28,6 +28,7 @@ export const createAndConfirmStubCheckout = createServerFn({ method: 'POST' })
   .inputValidator((data: { plan: UpgradePlan }) => data)
   .handler(async ({ data }): Promise<CheckoutResult> => {
     const supabase = getSupabaseServerClient();
+    if (!supabase) throw new Error('Supabase is not configured');
     const {
       data: { user },
     } = await supabase.auth.getUser();

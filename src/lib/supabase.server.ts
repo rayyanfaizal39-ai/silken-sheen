@@ -14,9 +14,16 @@
 import { createServerClient } from '@supabase/ssr';
 import { getCookies } from '@tanstack/start-server-core';
 
+export function isSupabaseServerConfigured() {
+  const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? '';
+  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? '';
+  return !!(url && key);
+}
+
 export function getSupabaseServerClient() {
   const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? '';
   const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? '';
+  if (!url || !key) return null;
   return createServerClient(
     url,
     key,
@@ -25,7 +32,6 @@ export function getSupabaseServerClient() {
         getAll() {
           return Object.entries(getCookies()).map(([name, value]) => ({ name, value: value ?? '' }));
         },
-        // Read-only dashboard: session cookie refresh is intentionally skipped.
         setAll() {},
       },
     },
