@@ -78,6 +78,44 @@ export const Route = createFileRoute("/notes")({
   component: NotesPage,
 });
 
+const SUBJECT_ARTWORK: Record<string, string> = {
+  geography: geographyArtwork,
+  bm: bmArtwork,
+  english: englishArtwork,
+  science: scienceArtwork,
+  sejarah: sejarahArtwork,
+  math: mathArtwork,
+};
+
+function getSubjectArtwork(subjectId: string) {
+  return SUBJECT_ARTWORK[subjectId] ?? null;
+}
+
+function SubjectFeatureArtwork({
+  subjectId,
+  src,
+}: {
+  subjectId: string;
+  src: string | null;
+}) {
+  if (!src) return null;
+
+  const subjectName = subjects.find((item) => item.id === subjectId)?.name ?? subjectId;
+
+  return (
+    <div className="mb-4 overflow-hidden rounded-[1.6rem] border border-white/10 bg-card/55 shadow-[0_20px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl animate-fade-up">
+      <div className="pointer-events-none absolute inset-x-6 top-4 h-20 rounded-full bg-gradient-to-r from-primary/16 via-accent/14 to-primary/10 blur-3xl" />
+      <img
+        src={src}
+        alt={`${subjectName} chapter artwork`}
+        className="relative block h-32 w-full object-cover object-center sm:h-40"
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
+
 function NotesPage() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
