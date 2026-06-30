@@ -21,10 +21,13 @@ import {
   Star,
 } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
-import { AstronautScene } from "@/components/AstronautScene";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { SiteFooter } from "@/components/SiteFooter";
+import { CinematicStars } from "@/components/landing/CinematicStars";
+import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
+import starCaptain from "@/assets/star-captain.jpg.asset.json";
+import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
 
 /* ---------------- Shared bits ---------------- */
 
