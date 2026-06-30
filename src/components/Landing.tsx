@@ -182,6 +182,9 @@ function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
         <div>
           <SectionLabel>KSSM-aligned · Form 1–3</SectionLabel>
+          <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
+            Form 4–5 (Coming Soon)
+          </p>
           <h1 className="mt-6 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.02] tracking-tight text-white">
             Malaysia's
             <br />
