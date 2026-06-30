@@ -106,26 +106,51 @@ export function CinematicStars() {
       for (let i = meteors.length - 1; i >= 0; i--) {
         const m = meteors[i];
         m.life++;
-        m.a = Math.sin((m.life / m.max) * Math.PI) * 0.9;
+        m.a = Math.sin((m.life / m.max) * Math.PI) * 1;
         m.x += Math.cos(m.ang) * m.speed;
         m.y += Math.sin(m.ang) * m.speed;
         const tx = m.x - Math.cos(m.ang) * m.len;
         const ty = m.y - Math.sin(m.ang) * m.len;
-        const grad = ctx.createLinearGradient(m.x, m.y, tx, ty);
-        grad.addColorStop(0, `rgba(255,255,255,${m.a})`);
-        grad.addColorStop(0.4, `rgba(196,181,253,${m.a * 0.7})`);
-        grad.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.6;
+
+        // outer glow trail
+        const glow = ctx.createLinearGradient(m.x, m.y, tx, ty);
+        glow.addColorStop(0, `rgba(196,181,253,${m.a * 0.45})`);
+        glow.addColorStop(0.5, `rgba(125,211,252,${m.a * 0.25})`);
+        glow.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.strokeStyle = glow;
+        ctx.lineWidth = 6;
+        ctx.lineCap = "round";
         ctx.beginPath();
         ctx.moveTo(m.x, m.y);
         ctx.lineTo(tx, ty);
         ctx.stroke();
-        // head
+
+        // bright core trail
+        const grad = ctx.createLinearGradient(m.x, m.y, tx, ty);
+        grad.addColorStop(0, `rgba(255,255,255,${m.a})`);
+        grad.addColorStop(0.35, `rgba(196,181,253,${m.a * 0.85})`);
+        grad.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(tx, ty);
+        ctx.stroke();
+
+        // glowing head
+        const headGrad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 10);
+        headGrad.addColorStop(0, `rgba(255,255,255,${m.a})`);
+        headGrad.addColorStop(0.4, `rgba(196,181,253,${m.a * 0.6})`);
+        headGrad.addColorStop(1, "rgba(196,181,253,0)");
+        ctx.fillStyle = headGrad;
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, 10, 0, Math.PI * 2);
+        ctx.fill();
         ctx.beginPath();
         ctx.fillStyle = `rgba(255,255,255,${m.a})`;
-        ctx.arc(m.x, m.y, 1.6, 0, Math.PI * 2);
+        ctx.arc(m.x, m.y, 2.2, 0, Math.PI * 2);
         ctx.fill();
+
         if (m.life > m.max) meteors.splice(i, 1);
       }
 
