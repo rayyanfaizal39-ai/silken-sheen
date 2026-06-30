@@ -233,6 +233,12 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lastRankUp } = useProgress();
 
+  // Standalone marketing page renders chromeless (no sidebar / top bar / mobile nav)
+  if (pathname === "/landing") {
+    return <>{children}</>;
+  }
+
+
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">
       {/* Space background */}
