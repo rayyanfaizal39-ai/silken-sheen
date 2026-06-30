@@ -28,6 +28,7 @@ import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import starCaptain from "@/assets/star-captain.jpg.asset.json";
 import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
+import cikguAiImage from "@/assets/cikgu-ai.png.asset.json";
 
 /* ---------------- Shared bits ---------------- */
 
