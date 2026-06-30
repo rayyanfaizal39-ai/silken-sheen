@@ -9,9 +9,26 @@ import type {
   QuizRow,
 } from '../lib/admin.types';
 
+const EMPTY_STATS: AdminStats = {
+  total_users: 0,
+  total_students: 0,
+  total_teachers: 0,
+  total_admins: 0,
+  total_paid: 0,
+  total_free: 0,
+  total_quiz_attempts: 0,
+  avg_quiz_score: 0,
+  most_popular_subject: null,
+  most_attempted_chapter: null,
+  revenue_total: 0,
+  subject_distribution: [],
+  signups_by_day: [],
+};
+
 export const getAdminProfile = createServerFn({ method: 'GET' }).handler(
   async (): Promise<AdminProfile | null> => {
     const supabase = getSupabaseServerClient();
+    if (!supabase) return null;
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -30,6 +47,7 @@ export const getAdminProfile = createServerFn({ method: 'GET' }).handler(
 export const getDashboardStats = createServerFn({ method: 'GET' }).handler(
   async (): Promise<AdminStats> => {
     const supabase = getSupabaseServerClient();
+    if (!supabase) return EMPTY_STATS;
     const { data, error } = await supabase.rpc('admin_dashboard_stats');
     if (error) throw error;
     return data as AdminStats;
@@ -40,6 +58,7 @@ export const getUsers = createServerFn({ method: 'POST' })
   .inputValidator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<UserRow[]> => {
     const supabase = getSupabaseServerClient();
+    if (!supabase) return [];
     let q = supabase
       .from('admin_users_overview')
       .select('*')
@@ -62,6 +81,7 @@ export const getPayments = createServerFn({ method: 'POST' })
   .inputValidator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<PaymentRow[]> => {
     const supabase = getSupabaseServerClient();
+    if (!supabase) return [];
     let q = supabase
       .from('payments')
       .select('id, created_at, amount, currency, method, status, profiles(full_name, email)')
@@ -80,6 +100,7 @@ export const getQuizActivity = createServerFn({ method: 'POST' })
   .inputValidator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<QuizRow[]> => {
     const supabase = getSupabaseServerClient();
+    if (!supabase) return [];
     let q = supabase
       .from('quiz_attempts')
       .select('id, created_at, subject, form, chapter, score, profiles(full_name, email)')
