@@ -233,6 +233,18 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lastRankUp } = useProgress();
 
+  // Marketing landing renders its own chrome (nav + footer) — bypass AppShell.
+  if (pathname === "/") {
+    return (
+      <>
+        {children}
+        <OnboardingWizard />
+        {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
+      </>
+    );
+  }
+
+
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">
       {/* Space background */}
