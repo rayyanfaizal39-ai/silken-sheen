@@ -48,17 +48,18 @@ export function CinematicStars() {
       });
     };
 
-    const spawnMeteor = () => {
+    const spawnMeteor = (hero = false) => {
       const fromLeft = Math.random() > 0.5;
+      const ang = fromLeft ? Math.PI / 7 + Math.random() * 0.15 : Math.PI - Math.PI / 7 - Math.random() * 0.15;
       meteors.push({
-        x: fromLeft ? -40 : w + 40,
-        y: Math.random() * h * 0.6,
-        len: 80 + Math.random() * 140,
-        speed: 3 + Math.random() * 3,
-        ang: fromLeft ? Math.PI / 5 : Math.PI - Math.PI / 5,
+        x: fromLeft ? -60 : w + 60,
+        y: hero ? h * (0.18 + Math.random() * 0.3) : Math.random() * h * 0.7,
+        len: hero ? 320 + Math.random() * 220 : 140 + Math.random() * 180,
+        speed: hero ? 9 + Math.random() * 4 : 4.5 + Math.random() * 3.5,
+        ang,
         a: 0,
         life: 0,
-        max: 140 + Math.random() * 80,
+        max: hero ? 200 + Math.random() * 80 : 140 + Math.random() * 80,
       });
     };
 
@@ -105,26 +106,51 @@ export function CinematicStars() {
       for (let i = meteors.length - 1; i >= 0; i--) {
         const m = meteors[i];
         m.life++;
-        m.a = Math.sin((m.life / m.max) * Math.PI) * 0.9;
+        m.a = Math.sin((m.life / m.max) * Math.PI) * 1;
         m.x += Math.cos(m.ang) * m.speed;
         m.y += Math.sin(m.ang) * m.speed;
         const tx = m.x - Math.cos(m.ang) * m.len;
         const ty = m.y - Math.sin(m.ang) * m.len;
-        const grad = ctx.createLinearGradient(m.x, m.y, tx, ty);
-        grad.addColorStop(0, `rgba(255,255,255,${m.a})`);
-        grad.addColorStop(0.4, `rgba(196,181,253,${m.a * 0.7})`);
-        grad.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.6;
+
+        // outer glow trail
+        const glow = ctx.createLinearGradient(m.x, m.y, tx, ty);
+        glow.addColorStop(0, `rgba(196,181,253,${m.a * 0.45})`);
+        glow.addColorStop(0.5, `rgba(125,211,252,${m.a * 0.25})`);
+        glow.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.strokeStyle = glow;
+        ctx.lineWidth = 6;
+        ctx.lineCap = "round";
         ctx.beginPath();
         ctx.moveTo(m.x, m.y);
         ctx.lineTo(tx, ty);
         ctx.stroke();
-        // head
+
+        // bright core trail
+        const grad = ctx.createLinearGradient(m.x, m.y, tx, ty);
+        grad.addColorStop(0, `rgba(255,255,255,${m.a})`);
+        grad.addColorStop(0.35, `rgba(196,181,253,${m.a * 0.85})`);
+        grad.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(tx, ty);
+        ctx.stroke();
+
+        // glowing head
+        const headGrad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 10);
+        headGrad.addColorStop(0, `rgba(255,255,255,${m.a})`);
+        headGrad.addColorStop(0.4, `rgba(196,181,253,${m.a * 0.6})`);
+        headGrad.addColorStop(1, "rgba(196,181,253,0)");
+        ctx.fillStyle = headGrad;
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, 10, 0, Math.PI * 2);
+        ctx.fill();
         ctx.beginPath();
         ctx.fillStyle = `rgba(255,255,255,${m.a})`;
-        ctx.arc(m.x, m.y, 1.6, 0, Math.PI * 2);
+        ctx.arc(m.x, m.y, 2.2, 0, Math.PI * 2);
         ctx.fill();
+
         if (m.life > m.max) meteors.splice(i, 1);
       }
 
@@ -140,10 +166,12 @@ export function CinematicStars() {
       draw(0);
       cancelAnimationFrame(raf);
     } else {
-      const meteorInt = window.setInterval(spawnMeteor, 2300);
+      const meteorInt = window.setInterval(spawnMeteor, 900);
+      const heroInt = window.setInterval(() => spawnMeteor(true), 4200);
       raf = requestAnimationFrame(draw);
       return () => {
         clearInterval(meteorInt);
+        clearInterval(heroInt);
         cancelAnimationFrame(raf);
         window.removeEventListener("resize", resize);
         window.removeEventListener("scroll", onScroll);
