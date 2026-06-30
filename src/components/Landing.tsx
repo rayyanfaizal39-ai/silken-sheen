@@ -649,23 +649,28 @@ function ParentsSection() {
           </ul>
         </div>
 
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-indigo-900/40 via-purple-900/30 to-rose-900/30">
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-white/10">
+          <img
+            src={parentsDashboard.url}
+            alt="Parent watching their child's learning dashboard among the clouds"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            draggable={false}
+          />
           <div
             aria-hidden
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(60% 60% at 70% 40%, rgba(168,85,247,0.45), transparent 70%), radial-gradient(50% 50% at 30% 80%, rgba(244,114,182,0.3), transparent 70%)",
+                "linear-gradient(to top, rgba(5,8,22,0.85) 0%, rgba(5,8,22,0.1) 45%, rgba(5,8,22,0) 70%)",
             }}
           />
-          <div className="absolute inset-0 flex items-end p-6">
-            <div className="text-white/80 text-sm">
-              <div className="text-xs uppercase tracking-[0.2em] text-white/50">
-                Parent dashboard
-              </div>
-              <div className="mt-1 font-semibold text-white">
-                Confidence, at a glance.
-              </div>
+          <div className="absolute inset-x-0 bottom-0 p-6">
+            <div className="text-xs uppercase tracking-[0.2em] text-nova-yellow/90">
+              Parent dashboard
+            </div>
+            <div className="mt-1 font-semibold text-white text-lg">
+              Confidence, at a glance.
             </div>
           </div>
         </div>
