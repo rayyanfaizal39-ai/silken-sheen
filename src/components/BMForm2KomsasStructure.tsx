@@ -18,6 +18,9 @@ import {
   Target,
   Trophy,
   Users,
+  GraduationCap,
+  Landmark,
+  Scale,
 } from "lucide-react";
 import {
   BM_FORM2_KOMSAS_CATEGORIES,
@@ -28,6 +31,7 @@ import { PANTUN_ALAM_REMAJA } from "@/data/bm-form2-pantun-alam-remaja";
 import { PANTUN_KIASAN } from "@/data/bm-form2-pantun-kiasan";
 import { PANTUN_BUDI } from "@/data/bm-form2-pantun-budi";
 import { PANTUN_NASIHAT } from "@/data/bm-form2-pantun-nasihat";
+import { SYAIR_NASIHAT } from "@/data/bm-form2-syair-nasihat";
 
 const ACCENT = "#C084FC";
 const FOCUS_ITEMS = ["Maksud setiap rangkap", "Tema", "Persoalan", "Gaya bahasa", "Nilai murni", "Pengajaran", "Persediaan UASA"];
@@ -58,13 +62,16 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
   const isKiasan = work.id === "pantun-kiasan";
   const isBudi = work.id === "pantun-budi";
   const isNasihat = work.id === "pantun-nasihat";
-  const populated = isAlamRemaja || isKiasan || isBudi || isNasihat;
+  const isSyairNasihat = work.id === "syair-nasihat-penghujung-thamarat-al-muhimmah";
+  const populated = isAlamRemaja || isKiasan || isBudi || isNasihat || isSyairNasihat;
   const introduction = isKiasan
     ? "Pantun yang menyindir pelbagai ragam manusia melalui bahasa kiasan serta mengajak pembaca menilai sikap dalam kehidupan."
     : isNasihat
       ? "Pantun yang menyampaikan nasihat sebagai panduan dalam menjalani kehidupan seharian."
     : isBudi
       ? "Pantun yang menonjolkan kepentingan budi bahasa, mengenang jasa dan kebijaksanaan dalam kehidupan."
+    : isSyairNasihat
+      ? "Syair nasihat tentang ilmu, agama, amanah dan kebijaksanaan dalam menjalankan pemerintahan."
     : "Sebuah pantun tentang kegembiraan anak-anak menyambut kepulangan ibu bapa serta kasih sayang yang menyatukan keluarga.";
   return (
     <section className="relative mb-7 overflow-hidden rounded-2xl border border-purple-300/15 bg-[#111226] p-5 sm:p-7">
@@ -73,7 +80,7 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
         <div className="mb-4 flex flex-wrap gap-2"><Pill>{work.category}</Pill><Pill color="#FBBF24"><Trophy className="h-3 w-3" /> Fokus UASA</Pill></div>
         <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-white/35">Bahasa Melayu · Tingkatan 2</p>
         <h1 className="font-display text-2xl font-black text-white sm:text-3xl">{work.title}</h1>
-        {populated && <><p className="mt-2 text-xs font-semibold text-purple-200/70">{isKiasan ? `Penyelenggara: ${PANTUN_KIASAN.editor}` : isNasihat ? `Penyelenggara: ${PANTUN_NASIHAT.editor}` : isBudi ? `Penyelenggara: ${PANTUN_BUDI.editor}` : "Pengarang tidak diketahui"}</p><p className="mt-3 max-w-xl text-sm leading-6 text-white/60">{introduction}</p></>}
+        {populated && <><p className="mt-2 text-xs font-semibold text-purple-200/70">{isKiasan ? `Penyelenggara: ${PANTUN_KIASAN.editor}` : isNasihat ? `Penyelenggara: ${PANTUN_NASIHAT.editor}` : isSyairNasihat ? `Penyelenggara: ${SYAIR_NASIHAT.editor}` : isBudi ? `Penyelenggara: ${PANTUN_BUDI.editor}` : "Pengarang tidak diketahui"}</p><p className="mt-3 max-w-xl text-sm leading-6 text-white/60">{introduction}</p></>}
         <div className="mt-5 flex flex-wrap gap-2">
           {populated && <><Pill color="#60A5FA"><BookOpen className="h-3 w-3" /> Puisi tradisional</Pill>{!isBudi && !isNasihat && <><Pill color="#34D399"><Clock3 className="h-3 w-3" /> {isKiasan ? "25 minit" : "12 minit"}</Pill><Pill color="#FB7185"><Star className="h-3 w-3" /> {isKiasan ? "Sederhana" : "Mudah"}</Pill></>}</>}
         </div>
@@ -232,8 +239,17 @@ function PantunBudiContent() {
   );
 }
 
-function PantunNasihatContent() {
-  const note = PANTUN_NASIHAT;
+function AdvicePoemContent({
+  note,
+  illustrationTitle,
+  focusTitle,
+  focusItems,
+}: {
+  note: typeof PANTUN_NASIHAT | typeof SYAIR_NASIHAT;
+  illustrationTitle: string;
+  focusTitle: string;
+  focusItems: readonly string[];
+}) {
   const illustrationIcons = [
     <Lightbulb className="h-6 w-6" />,
     <ShieldAlert className="h-6 w-6" />,
@@ -242,20 +258,32 @@ function PantunNasihatContent() {
     <Users className="h-6 w-6" />,
     <Star className="h-6 w-6" />,
     <Target className="h-6 w-6" />,
+    <GraduationCap className="h-6 w-6" />,
+    <Scale className="h-6 w-6" />,
+    <Landmark className="h-6 w-6" />,
+    <BookOpen className="h-6 w-6" />,
+    <CheckCircle2 className="h-6 w-6" />,
+    <Users className="h-6 w-6" />,
+    <Quote className="h-6 w-6" />,
+    <Heart className="h-6 w-6" />,
+    <Sparkles className="h-6 w-6" />,
+    <ListChecks className="h-6 w-6" />,
+    <Music2 className="h-6 w-6" />,
+    <Trophy className="h-6 w-6" />,
   ];
 
   return (
     <div className="divide-y divide-white/[0.06]">
       <StudySection>
         <div className="rounded-2xl border border-sky-300/15 bg-sky-300/[0.06] p-5 sm:p-6">
-          <SectionTitle icon={<Target className="h-5 w-5" />} eyebrow="Fokus Pembelajaran" title="Nasihat difahami, kehidupan dipandu" color="#60A5FA" />
+          <SectionTitle icon={<Target className="h-5 w-5" />} eyebrow="Fokus Pembelajaran" title={focusTitle} color="#60A5FA" />
           <p className="mb-4 max-w-2xl text-sm leading-7 text-white/65">{note.focus}</p>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{["Panduan kehidupan", "Keharmonian rumah tangga", "Budi bahasa", "Ketabahan", "Kebijaksanaan", "Kosa kata"].map((item) => <div key={item} className="flex items-center gap-2 rounded-xl bg-black/15 px-3 py-2.5 text-xs font-semibold text-white/75"><Check className="h-3.5 w-3.5 text-emerald-400" />{item}</div>)}</div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{focusItems.map((item) => <div key={item} className="flex items-center gap-2 rounded-xl bg-black/15 px-3 py-2.5 text-xs font-semibold text-white/75"><Check className="h-3.5 w-3.5 text-emerald-400" />{item}</div>)}</div>
         </div>
       </StudySection>
 
       <StudySection>
-        <SectionTitle icon={<BookOpen className="h-5 w-5" />} eyebrow="Lihat dan Fahami" title="Pantun dalam Ilustrasi" color="#A78BFA" />
+        <SectionTitle icon={<BookOpen className="h-5 w-5" />} eyebrow="Lihat dan Fahami" title={illustrationTitle} color="#A78BFA" />
         <div className="grid gap-3 md:grid-cols-2">
           {note.illustrations.map((explanation, index) => <article key={explanation} className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.035] transition-all hover:-translate-y-0.5 hover:border-purple-300/20 hover:bg-white/[0.055]"><div className="flex min-h-28 items-center justify-center border-b border-white/[0.06] bg-[radial-gradient(circle_at_center,rgba(192,132,252,0.14),transparent_65%)] text-purple-300 transition-transform duration-300 group-hover:scale-105">{illustrationIcons[index]}</div><div className="p-4"><Pill>Rangkap {index + 1}</Pill><p className="mt-3 text-sm leading-6 text-white/75">{explanation}</p></div></article>)}
         </div>
@@ -293,7 +321,7 @@ function PantunNasihatContent() {
 
       <StudySection>
         <SectionTitle icon={<BookOpen className="h-5 w-5" />} eyebrow="Kamus Mini" title="Kosa Kata" color="#C084FC" />
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{note.vocabulary.map((item) => <article key={item.word} className="rounded-2xl border border-purple-300/10 bg-purple-300/[0.05] p-4 transition-all hover:-translate-y-0.5 hover:border-purple-300/20"><h3 className="font-display text-base font-bold text-purple-200">{item.word}</h3><p className="mt-2 text-xs leading-5 text-white/55">{item.meaning}</p></article>)}</div>
+        {note.vocabulary.length > 0 ? <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{note.vocabulary.map((item) => <article key={item.word} className="rounded-2xl border border-purple-300/10 bg-purple-300/[0.05] p-4 transition-all hover:-translate-y-0.5 hover:border-purple-300/20"><h3 className="font-display text-base font-bold text-purple-200">{item.word}</h3><p className="mt-2 text-xs leading-5 text-white/55">{item.meaning}</p></article>)}</div> : <div className="rounded-2xl border border-purple-300/10 bg-purple-300/[0.05] p-4 text-sm leading-6 text-white/55">Tiada entri kosa kata dipaparkan pada halaman rujukan yang dilampirkan.</div>}
       </StudySection>
     </div>
   );
@@ -399,7 +427,7 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
         <ChevronDown className="h-5 w-5 shrink-0 text-purple-300 transition-transform duration-300" style={{ transform: open ? "rotate(180deg)" : undefined }} />
       </button>
       <div className="grid transition-[grid-template-rows,opacity] duration-300 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}>
-        <div className="overflow-hidden">{work.id === "pantun-budi" || work.id === "pantun-nasihat" ? (open ? <div className="border-t border-white/[0.07] p-3 sm:p-5"><WorkHero work={work} />{work.id === "pantun-budi" ? <PantunBudiContent /> : <PantunNasihatContent />}</div> : null) : <div className="border-t border-white/[0.07] p-3 sm:p-5"><WorkHero work={work} />{work.id === "pantun-alam-remaja" && <PantunAlamRemajaContent />}{work.id === "pantun-kiasan" && <PantunKiasanContent />}</div>}</div>
+        <div className="overflow-hidden">{work.id === "pantun-budi" || work.id === "pantun-nasihat" || work.id === "syair-nasihat-penghujung-thamarat-al-muhimmah" ? (open ? <div className="border-t border-white/[0.07] p-3 sm:p-5"><WorkHero work={work} />{work.id === "pantun-budi" ? <PantunBudiContent /> : work.id === "pantun-nasihat" ? <AdvicePoemContent note={PANTUN_NASIHAT} illustrationTitle="Pantun dalam Ilustrasi" focusTitle="Nasihat difahami, kehidupan dipandu" focusItems={["Panduan kehidupan", "Keharmonian rumah tangga", "Budi bahasa", "Ketabahan", "Kebijaksanaan", "Kosa kata"]} /> : <AdvicePoemContent note={SYAIR_NASIHAT} illustrationTitle="Syair dalam Ilustrasi" focusTitle="Ilmu memandu kepimpinan" focusItems={["18 rangkap", "Tema dan persoalan", "Unsur bunyi", "Nada dan gaya bahasa", "Nilai dan pengajaran", "Kosa kata"]} />}</div> : null) : <div className="border-t border-white/[0.07] p-3 sm:p-5"><WorkHero work={work} />{work.id === "pantun-alam-remaja" && <PantunAlamRemajaContent />}{work.id === "pantun-kiasan" && <PantunKiasanContent />}</div>}</div>
       </div>
     </section>
   );

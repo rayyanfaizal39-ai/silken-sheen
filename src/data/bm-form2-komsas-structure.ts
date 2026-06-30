@@ -22,7 +22,7 @@ export const BM_FORM2_KOMSAS_WORKS: Form2KomsasWork[] = [
   { id: "pantun-budi", title: "Pantun Budi", category: "Puisi Tradisional", kind: "poem" },
   { id: "pantun-nasihat", title: "Pantun Nasihat", category: "Puisi Tradisional", kind: "poem" },
   { id: "pantun-kasih-sayang", title: "Pantun Kasih Sayang", category: "Puisi Tradisional", kind: "poem" },
-  { id: "syair-nasihat-penghujung-thamarat-al-muhimmah", title: "Syair Nasihat Penghujung Thamarat Al-Muhimmah", category: "Puisi Tradisional", kind: "poem" },
+  { id: "syair-nasihat-penghujung-thamarat-al-muhimmah", title: "Syair Nasihat (Penghujung Thamarat al-Muhimmah)", category: "Puisi Tradisional", kind: "poem" },
   { id: "dalam-persekitaran-kata-kata", title: "Dalam Persekitaran Kata-kata", category: "Puisi Moden", kind: "sajak" },
   { id: "roti", title: "Roti", category: "Puisi Moden", kind: "sajak" },
   { id: "kucari-damai-di-sini", title: "Kucari Damai di Sini", category: "Puisi Moden", kind: "sajak" },

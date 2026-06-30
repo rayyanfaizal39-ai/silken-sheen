@@ -1,0 +1,57 @@
+export const SYAIR_NASIHAT = {
+  editor: "Abu Hassan Sham",
+  focus:
+    "Teliti nasihat seorang ayah tentang kepentingan ilmu, agama, amanah dan kebijaksanaan supaya seorang pemimpin dapat menjalankan pemerintahan dengan jujur, adil dan ikhlas.",
+  illustrations: [
+    "Seorang ayah memberitahu bahawa dia sudah siap mengarang buku panduan untuk anaknya. Dia mengakui bahawa buku itu ada banyak kekurangan namun boleh dijadikan panduan hidup anaknya.",
+    "Ayah menasihati anaknya agar menjaga tingkah laku. Bagi ayah, peribadi yang baik dan mulia harus menjadi pegangan selalu.",
+    "Ayah berpesan kepada anak-anak agar mengikut nasihatnya. Dia juga menasihatinya agar tidak bersikap malas dan penakut.",
+    "Jika kita menjadi pemimpin, kita mestilah memiliki hati yang mulia dan komited terhadap tugas yang diamanahkan.",
+    "Kerja kebajikan yang dilakukan perlulah ikhlas dan jangan mengharapkan sebarang balasan.",
+    "Ilmu yang baik hendaklah rajin dituntut. Elakkan daripada menuntut ajaran yang salah. Semua itu telah tercatat dalam buku tersebut.",
+    "Kewajiban agama hendaklah didahulukan lebih daripada perkara lain. Kewajiban ini tidak boleh sengaja dilewatkan agar tidak mendapat malu.",
+    "Setiap perbuatan yang dilakukan haruslah berpandukan ilmu pengetahuan yang dalam. Jangan mengambil sebarang tindakan dengan pengetahuan yang cetek kerana hanya akan membawa kemudaratan.",
+    "Ilmu yang baik akan menjurus kepada keadilan dan kebenaran. Hal ini akan dapat membezakan perkara yang benar dengan yang salah.",
+    "Jika tidak menuntut ilmu dengan bersungguh-sungguh, kita tidak dapat menangani masalah yang dilaporkan oleh orang bawahan atau rakyat jelata.",
+    "Perasaan serba salah apabila berhadapan dengan hal berbangkit, tidak tahu cara untuk mengadili. Hal ini menyebabkan kita mengeluh dan mengharapkan petunjuk daripada Tuhan.",
+    "Hal yang ditimbulkan menyebabkan semuanya menjadi tidak kena. Kita tidak tahu jalan yang harus diambil dan hanya mendiamkan diri serta duduk termenung.",
+    "Orang yang mengadu sesuatu masalah akan berasa sakit hati kerana sikap pemimpin yang tidak pandai membuat keputusan tentang perkara yang diadukan kepada pemimpin mereka.",
+    "Ada masanya sesuatu keputusan yang diambil hanya mengikut jalan mudah dan membelakangkan hukum agama kerana tidak mahu perkara itu menyusahkan dirinya.",
+    "Jika sesuatu perkara dilakukan tanpa mengikut hukum agama pasti orang lain akan mengata di belakang kita walaupun di hadapan kita mereka tidak berkata apa-apa.",
+    "Jika kita telah melakukan perkara yang benar, kita tidak perlu menghiraukan kata-kata pujian atau cacian orang lain kerana Tuhan sentiasa menjadi saksi atas segala perbuatan kita.",
+    "Jika kita menjadi menteri, dampingilah mereka yang berilmu dan berpengalaman. Setiap perkara yang timbul harus dibincang dan mencapai kata muafakat agar semuanya berjalan dengan lancar.",
+    "Pemimpin harus mengambil tahu setiap pergerakan para pegawainya. Para pemimpin diminta menghindarkan rasuah dan perbuatan yang bertentangan dengan amanah agar penyelewengan tidak berlaku.",
+  ],
+  theme: {
+    title: "Nasihat kepada pemimpin agar memimpin negara dengan jujur dan ikhlas",
+    example:
+      "Pesanan seorang ayah kepada anaknya agar memerintah negara dengan berpandukan hukum syarak kerana setiap sesuatu yang dilakukan disaksikan oleh Allah.",
+    reference: "Rangkap 4, baris 1–4",
+  },
+  issues: [
+    { title: "Kepentingan ilmu agama dalam kehidupan", example: "Didikan agama harus diberikan keutamaan dalam kehidupan seharian.", reference: "Rangkap 7, baris 1–4" },
+    { title: "Kepentingan ilmu dalam menjalankan tampuk pemerintahan", example: "Pemimpin mempunyai ilmu dapat memanfaatkan ilmu tersebut untuk kemajuan rakyat dan negara.", reference: "Rangkap 6, baris 1–4" },
+    { title: "Kepentingan bersikap amanah dan jujur demi kesejahteraan", example: "Hindari perbuatan rasuah dan bertentangan dengan agama agar tidak terjerumus ke lembah kegagalan.", reference: "Rangkap 18, baris 3 & 4" },
+    { title: "Sikap pemimpin yang bijak dalam membuat keputusan", example: "Seorang pemerintah yang cerdik akan menjalankan tugasan dengan adil.", reference: "Rangkap 9, baris 1–4" },
+  ],
+  sound: [
+    { title: "Asonansi", detail: "Perulangan vokal “a”", example: "Tamatlah kitab dikarang orang", reference: "Rangkap 1, baris 1" },
+    { title: "Aliterasi", detail: "Perulangan konsonan “k”", example: "hendaklah jauhkan pekerjaan mungkir", reference: "Rangkap 18, baris 3" },
+  ],
+  tone: { title: "Romantik", explanation: "Menggambarkan suasana hati atau perasaan yang tenang dan mendamaikan." },
+  language: [
+    { title: "Sinkope", examples: ["hukum tak betul dengan jalannya"] },
+    { title: "Bahasa sastera lama", examples: ["puri, ugahari, wazir"] },
+    { title: "Kata ganda", examples: ["sebarang-barang, mudah-mudahan, budak-budak"] },
+    { title: "Inversi", examples: ["amalkan jangan malas dan ngeri"] },
+    { title: "Responsi", examples: ["Ayuhai anakanda muda remaja,", "jika anakanda menjadi raja;"] },
+    { title: "Simile", examples: ["jernihkan hati hendaklah ikhlas,", "seperti air di dalam gelas."] },
+  ],
+  values: [
+    { title: "Hemah Tinggi", lesson: "Kita mestilah mendengar nasihat ayah agar kehidupan kita lebih diberkati.", example: "Mendengar nasihat orang yang berpengalaman untuk kesejahteraan masa hadapan.", reference: "Rangkap 1, baris 3 & 4" },
+    { title: "Kerajinan", lesson: "Kita hendaklah rajin menimba ilmu agar tidak ketinggalan.", example: "Rajin menuntut ilmu dan menjalankan tugas yang diberikan.", reference: "Rangkap 4, baris 2–4" },
+    { title: "Rasional", lesson: "Kita perlulah menyiasat sesuatu perkara dan berfikir secara rasional sebelum menjatuhkan hukuman.", example: "Membuat pertimbangan yang rasional sebelum mengambil tindakan.", reference: "Rangkap 9, baris 3 & 4" },
+    { title: "Tanggungjawab", lesson: "Kita hendaklah bertanggungjawab dalam menjalankan amanah.", example: "Seorang pemimpin perlulah bertanggungjawab dalam semua perbuatan dan tindak-tanduknya.", reference: "Buku teks" },
+  ],
+  vocabulary: [],
+} as const;
