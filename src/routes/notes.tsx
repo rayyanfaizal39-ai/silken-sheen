@@ -122,6 +122,8 @@ function NotesPage() {
       : undefined;
   const features = getChapterFeatures(activeChapter);
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
+  const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
+
 
   // Reading progress bar
   useEffect(() => {
@@ -535,7 +537,11 @@ function NotesPage() {
               onBack={() => setChapter(null)}
             />
 
+            {subject && chapterArtwork && (
+              <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} />
+            )}
             <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
+
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
@@ -694,7 +700,9 @@ function SubtopicView({
           </span>
         </div>
 
+        {subj && <SubjectFeatureArtwork subjectId={subjectId} src={getSubjectArtwork(subjectId)} />}
         <ChapterFeatureBar features={features} onJump={jumpTo} />
+
       </div>
 
       {chapterContent?.video && <VideoBlock id="video" video={chapterContent.video} />}
