@@ -77,7 +77,7 @@ function SecondaryCta({ to, children }: { to: string; children: ReactNode }) {
 /* ---------------- Top nav ---------------- */
 
 function LandingNav() {
-  const { openSignInModal } = useSignInModal();
+  const { open } = useSignInModal();
   const { user } = useAuth();
   const links = [
     { to: "/subjects", label: "Subjects" },
@@ -140,7 +140,7 @@ function LandingNav() {
           </Link>
         ) : (
           <button
-            onClick={() => openSignInModal()}
+            onClick={() => open()}
             className="px-4 py-2 rounded-full bg-white text-[#0b0a1f] text-sm font-semibold hover:scale-[1.03] transition-transform"
           >
             Sign in
@@ -154,7 +154,7 @@ function LandingNav() {
 /* ---------------- Hero ---------------- */
 
 function Hero() {
-  const { openSignInModal } = useSignInModal();
+  const { open } = useSignInModal();
   return (
     <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
       {/* glow blobs */}
@@ -192,7 +192,7 @@ function Hero() {
             by your own AI cikgu. Level up like a game, master KSSM like a pro.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <PrimaryCta onClick={() => openSignInModal()}>
+            <PrimaryCta onClick={() => open()}>
               Start your mission
             </PrimaryCta>
             <SecondaryCta to="/subjects">Explore subjects</SecondaryCta>
@@ -716,7 +716,7 @@ const PLANS = [
 ];
 
 function PricingSection() {
-  const { openSignInModal } = useSignInModal();
+  const { open } = useSignInModal();
   return (
     <section id="pricing" className="relative py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
@@ -764,7 +764,7 @@ function PricingSection() {
                 ))}
               </ul>
               <button
-                onClick={() => openSignInModal()}
+                onClick={() => open()}
                 className={`mt-7 w-full px-4 py-2.5 rounded-full text-sm font-semibold transition-transform hover:scale-[1.02] ${
                   p.highlighted
                     ? "bg-gradient-to-r from-primary to-accent text-white"
@@ -784,7 +784,7 @@ function PricingSection() {
 /* ---------------- Final CTA ---------------- */
 
 function FinalCta() {
-  const { openSignInModal } = useSignInModal();
+  const { open } = useSignInModal();
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
       <div
@@ -803,7 +803,7 @@ function FinalCta() {
           Free to start. No card needed. Your AI cikgu is ready when you are.
         </p>
         <div className="mt-8 flex justify-center">
-          <PrimaryCta onClick={() => openSignInModal()}>
+          <PrimaryCta onClick={() => open()}>
             Launch AcadeMY
           </PrimaryCta>
         </div>
