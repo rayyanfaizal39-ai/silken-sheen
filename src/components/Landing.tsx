@@ -28,6 +28,7 @@ import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import starCaptain from "@/assets/star-captain.jpg.asset.json";
 import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
+import cikguAiImage from "@/assets/cikgu-ai.png.asset.json";
 
 /* ---------------- Shared bits ---------------- */
 
@@ -446,32 +447,35 @@ function LearningTools() {
 /* ---------------- Cikgu AI ---------------- */
 
 const CIKGU = [
-  "Asks questions in BM or English",
-  "Explains hard concepts step-by-step",
-  "Generates practice questions on demand",
-  "Stays on-topic — no off-syllabus drift",
+  "Explains concepts in simple language",
+  "Gives instant feedback on answers",
+  "Adapts to your learning style",
+  "Available 24/7 across all devices",
 ];
 
 function CikguSection() {
   return (
     <section className="relative py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
-        {/* Orb */}
-        <div className="relative aspect-square max-w-[420px] mx-auto w-full">
+        {/* Cikgu AI character */}
+        <div className="relative aspect-square max-w-[460px] mx-auto w-full">
           <div
             aria-hidden
             className="absolute inset-0 rounded-full blur-3xl"
             style={{
               background:
-                "radial-gradient(closest-side, rgba(168,85,247,0.65), transparent 70%)",
+                "radial-gradient(closest-side, rgba(168,85,247,0.55), transparent 70%)",
             }}
           />
-          <div className="absolute inset-6 rounded-full ring-2 ring-primary/40 animate-[spin_30s_linear_infinite]" />
-          <div className="absolute inset-12 rounded-full ring-1 ring-accent/30 animate-[spin_45s_linear_infinite_reverse]" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-40 h-40 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-primary to-accent ring-4 ring-white/10 flex items-center justify-center shadow-[0_0_80px_rgba(139,92,246,0.6)]">
-              <Bot className="w-20 h-20 text-white" />
-            </div>
+          <div className="absolute inset-6 rounded-full ring-2 ring-primary/30 animate-[spin_30s_linear_infinite]" />
+          <div className="absolute inset-12 rounded-full ring-1 ring-accent/25 animate-[spin_45s_linear_infinite_reverse]" />
+          <div className="relative h-full w-full flex items-center justify-center">
+            <img
+              src={cikguAiImage.url}
+              alt="Cikgu AI — your friendly study companion"
+              className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_60px_rgba(139,92,246,0.55)] animate-[float_6s_ease-in-out_infinite]"
+              loading="lazy"
+            />
           </div>
         </div>
 
