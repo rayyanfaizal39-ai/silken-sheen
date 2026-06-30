@@ -21,10 +21,13 @@ import {
   Star,
 } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
-import { AstronautScene } from "@/components/AstronautScene";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { SiteFooter } from "@/components/SiteFooter";
+import { CinematicStars } from "@/components/landing/CinematicStars";
+import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
+import starCaptain from "@/assets/star-captain.jpg.asset.json";
+import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
 
 /* ---------------- Shared bits ---------------- */
 
@@ -196,6 +199,7 @@ function Hero() {
               Start your mission
             </PrimaryCta>
             <SecondaryCta to="/subjects">Explore subjects</SecondaryCta>
+            <WatchIntroVideo />
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-6 text-xs text-white/50">
             <div className="flex items-center gap-2">
@@ -210,24 +214,57 @@ function Hero() {
           </div>
         </div>
 
-        {/* Astronaut card */}
-        <div className="relative">
+        {/* Star Captain hero card */}
+        <div className="relative group">
           <div
             aria-hidden
-            className="absolute inset-0 rounded-[2rem] blur-2xl opacity-70"
+            className="absolute -inset-6 rounded-[2.5rem] blur-3xl opacity-80"
             style={{
               background:
-                "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%)",
+                "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%), radial-gradient(40% 40% at 70% 80%, rgba(250,204,21,0.35), transparent 70%)",
             }}
           />
-          <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] backdrop-blur-xl aspect-[4/5]">
-            <AstronautScene />
-            <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
-              <div className="text-xs uppercase tracking-[0.2em] text-white/60">
-                AcadeMY · Companion
+          <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] aspect-[4/5]">
+            <img
+              src={starCaptain.url}
+              alt="AcadeMY Star Captain — your cosmic learning hero"
+              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1800ms] ease-out group-hover:scale-[1.04]"
+              draggable={false}
+            />
+            {/* top vignette */}
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(5,8,22,0.0) 40%, rgba(5,8,22,0.65) 100%)",
+              }}
+            />
+
+            {/* Level badge */}
+            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5">
+              <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
+                18
+              </span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-nova-yellow">
+                Star Captain
+              </span>
+            </div>
+
+            {/* XP bar */}
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-white/70">
+                <span>Nova · Lvl 18</span>
+                <span className="text-nova-yellow">12,480 XP</span>
               </div>
-              <div className="mt-1 text-white font-semibold">
-                Your AI cikgu is online
+              <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-nova-yellow via-amber-300 to-nova-yellow shadow-[0_0_14px_rgba(250,204,21,0.7)]"
+                  style={{ width: "72%" }}
+                />
+              </div>
+              <div className="mt-3 text-white font-semibold">
+                Every Legend Starts With Learning.
               </div>
             </div>
           </div>
@@ -612,23 +649,28 @@ function ParentsSection() {
           </ul>
         </div>
 
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-indigo-900/40 via-purple-900/30 to-rose-900/30">
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-white/10">
+          <img
+            src={parentsDashboard.url}
+            alt="Parent watching their child's learning dashboard among the clouds"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            draggable={false}
+          />
           <div
             aria-hidden
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(60% 60% at 70% 40%, rgba(168,85,247,0.45), transparent 70%), radial-gradient(50% 50% at 30% 80%, rgba(244,114,182,0.3), transparent 70%)",
+                "linear-gradient(to top, rgba(5,8,22,0.85) 0%, rgba(5,8,22,0.1) 45%, rgba(5,8,22,0) 70%)",
             }}
           />
-          <div className="absolute inset-0 flex items-end p-6">
-            <div className="text-white/80 text-sm">
-              <div className="text-xs uppercase tracking-[0.2em] text-white/50">
-                Parent dashboard
-              </div>
-              <div className="mt-1 font-semibold text-white">
-                Confidence, at a glance.
-              </div>
+          <div className="absolute inset-x-0 bottom-0 p-6">
+            <div className="text-xs uppercase tracking-[0.2em] text-nova-yellow/90">
+              Parent dashboard
+            </div>
+            <div className="mt-1 font-semibold text-white text-lg">
+              Confidence, at a glance.
             </div>
           </div>
         </div>
@@ -826,6 +868,7 @@ export function Landing() {
             "radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,0.18), transparent 60%), radial-gradient(900px 500px at -10% 30%, rgba(59,130,246,0.12), transparent 60%), #050816",
         }}
       />
+      <CinematicStars />
       <LandingNav />
       <Hero />
       <WhyAcademy />
