@@ -166,10 +166,12 @@ export function CinematicStars() {
       draw(0);
       cancelAnimationFrame(raf);
     } else {
-      const meteorInt = window.setInterval(spawnMeteor, 2300);
+      const meteorInt = window.setInterval(spawnMeteor, 900);
+      const heroInt = window.setInterval(() => spawnMeteor(true), 4200);
       raf = requestAnimationFrame(draw);
       return () => {
         clearInterval(meteorInt);
+        clearInterval(heroInt);
         cancelAnimationFrame(raf);
         window.removeEventListener("resize", resize);
         window.removeEventListener("scroll", onScroll);
