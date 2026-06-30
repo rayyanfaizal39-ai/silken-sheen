@@ -1,1109 +1,841 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  Brain,
-  Library,
-  NotebookTabs,
-  PlayCircle,
-  Compass,
-  Zap,
-  Flame,
-  RotateCcw,
-  Bell,
-  Radar,
-  Users,
-  Target,
   Sparkles,
-  TrendingUp,
+  Check,
   Rocket,
-  Trophy,
   GraduationCap,
-  LogIn,
-  ShieldCheck,
+  Languages,
+  Bot,
+  Trophy,
   NotebookPen,
-  BrainCircuit,
   Layers,
+  BrainCircuit,
+  ClipboardCheck,
+  Compass,
+  Flame,
+  Target,
+  TrendingUp,
   LineChart,
+  ShieldCheck,
+  Star,
 } from "lucide-react";
-import { useAuth } from "@/context/auth-context";
-import { useMemo, type CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { AstronautScene } from "@/components/AstronautScene";
 import { useSignInModal } from "@/context/sign-in-modal";
-import { Avatar } from "@/components/Avatar";
-import {
-  useProgress,
-  COMPANION_STAGES,
-  getCompanionStageForXp,
-  getRank,
-  getNextRank,
-  getRankProgress,
-  getChessRating,
-  getDueCount,
-  getMasteredCount,
-  DAILY_MISSIONS,
-  type LastVisited,
-} from "@/hooks/use-progress";
-import { CompanionImage, getCompanionDisplayName, useCompanionMessage } from "@/companion";
-import { analyzeProgress } from "@/lib/tracker";
-import { buildLeaderboard } from "@/lib/leaderboard";
-import { SubjectWorldArt } from "@/components/SubjectWorldArt";
-import { getSubjectFormStats } from "@/content/registry";
-import { NextMissionCard } from "@/components/NextMissionCard";
+import { useAuth } from "@/context/auth-context";
+import { SiteFooter } from "@/components/SiteFooter";
 
-// ─── World portal definitions ─────────────────────────────────────────────────
+/* ---------------- Shared bits ---------------- */
 
-const WORLD_PORTALS = [
-  {
-    id: "science" as const,
-    worldName: "Science Frontier",
-    eyebrow: "Research Station",
-    icon: "🧪",
-    color: "#38BDF8",
-    glow: "rgba(56,189,248,0.55)",
-    ctaLabel: "Enter Lab",
-    symbols: ["⚛", "🔬", "⚗", "🧫"],
-  },
-  {
-    id: "math" as const,
-    worldName: "Mathematics Galaxy",
-    eyebrow: "Mission Control",
-    icon: "🧮",
-    color: "#FBBF24",
-    glow: "rgba(251,191,36,0.55)",
-    ctaLabel: "Launch Mission",
-    symbols: ["π", "∑", "∞", "√"],
-  },
-  {
-    id: "english" as const,
-    worldName: "English Realm",
-    eyebrow: "Literary District",
-    icon: "📖",
-    color: "#C084FC",
-    glow: "rgba(192,132,252,0.55)",
-    ctaLabel: "Open the Book",
-    symbols: ["A", "❝", "B", "Z"],
-  },
-  {
-    id: "geography" as const,
-    worldName: "Geography Expedition",
-    eyebrow: "Exploration Base",
-    icon: "🌍",
-    color: "#34D399",
-    glow: "rgba(52,211,153,0.55)",
-    ctaLabel: "Start Expedition",
-    symbols: ["🧭", "N", "S", "E"],
-  },
-  {
-    id: "sejarah" as const,
-    worldName: "Sejarah Chronicles",
-    eyebrow: "History Archives",
-    icon: "🏛️",
-    color: "#FB923C",
-    glow: "rgba(251,146,60,0.55)",
-    ctaLabel: "Enter the Era",
-    symbols: ["⏳", "📜", "⚔", "🏛"],
-  },
-  {
-    id: "bm" as const,
-    worldName: "Nusantara Realm",
-    eyebrow: "Dewan Sastera",
-    icon: "📝",
-    color: "#F472B6",
-    glow: "rgba(244,114,182,0.55)",
-    ctaLabel: "Masuk Dunia",
-    symbols: ["ا", "بـم", "ث", "ج"],
-  },
-] as const;
-
-type WorldPortal = (typeof WORLD_PORTALS)[number];
-
-// ─── Quick access tiles ───────────────────────────────────────────────────────
-const QUICK_ACCESS = [
-  {
-    title: "Notes",
-    description: "Smart KSSM chapter summaries",
-    to: "/notes" as const,
-    icon: NotebookTabs,
-    color: "#3B82F6",
-    gradient: "from-blue-500/20 to-indigo-500/20",
-  },
-  {
-    title: "Flashcards",
-    description: "Active recall with spaced repetition",
-    to: "/flashcards" as const,
-    icon: Library,
-    color: "#8B5CF6",
-    gradient: "from-purple-500/20 to-violet-500/20",
-  },
-  {
-    title: "Quizzes",
-    description: "Instant feedback, XP rewards",
-    to: "/quizzes" as const,
-    icon: Brain,
-    color: "#F59E0B",
-    gradient: "from-amber-500/20 to-orange-500/20",
-  },
-  {
-    title: "Mind Maps",
-    description: "Visual concept connections",
-    to: "/notes" as const,
-    icon: Compass,
-    color: "#10B981",
-    gradient: "from-emerald-500/20 to-teal-500/20",
-  },
-  {
-    title: "Videos",
-    description: "Chapter by chapter walkthroughs",
-    to: "/notes" as const,
-    icon: PlayCircle,
-    color: "#EC4899",
-    gradient: "from-pink-500/20 to-rose-500/20",
-  },
-] as const;
-
-// ─── Feature highlights ───────────────────────────────────────────────────────
-const FEATURES = [
-  {
-    icon: Radar,
-    color: "#22D3EE",
-    title: "AI Study Tracker",
-    desc: "Watches every quiz and pinpoints your weak chapters — so study time goes where it counts.",
-    badge: "New",
-  },
-  {
-    icon: Brain,
-    color: "#F59E0B",
-    title: "Smart Quizzes",
-    desc: "XP rewards, streaks, combo multipliers, and instant explanations for every question.",
-    badge: null,
-  },
-  {
-    icon: Sparkles,
-    color: "#34D399",
-    title: "Spaced Repetition",
-    desc: "Science-backed flashcards scheduled exactly when you're about to forget.",
-    badge: null,
-  },
-] as const;
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-const TYPE_ROUTES = { notes: "/notes", flashcards: "/flashcards", quiz: "/quizzes" } as const;
-const TYPE_ICONS: Record<string, string> = { notes: "📖", flashcards: "🃏", quiz: "🧠" };
-const TYPE_LABELS: Record<string, string> = {
-  notes: "Notes",
-  flashcards: "Flashcards",
-  quiz: "Quiz",
-};
-
-function timeAgo(ts: number) {
-  const h = Math.floor((Date.now() - ts) / 3600000);
-  if (h < 1) return "Just now";
-  if (h < 24) return `${h}h ago`;
-  return `${Math.floor(h / 24)}d ago`;
-}
-
-function useStreakUrgent(lastActive: string, streak: number) {
+function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    streak > 0 &&
-    lastActive !== new Date().toISOString().slice(0, 10) &&
-    new Date().getHours() >= 15
+    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/90 bg-primary/10 ring-1 ring-primary/30">
+      <Sparkles className="w-3 h-3" />
+      {children}
+    </span>
   );
 }
 
-// ─── World Portal Card ────────────────────────────────────────────────────────
-
-function WorldPortalCard({
-  world,
-  isCurrentWorld,
+function PrimaryCta({
+  to,
+  onClick,
+  children,
 }: {
-  world: WorldPortal;
-  isCurrentWorld: boolean;
+  to?: string;
+  onClick?: () => void;
+  children: ReactNode;
 }) {
-  const formStats = getSubjectFormStats(world.id);
+  const cls =
+    "inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold shadow-[0_10px_40px_-10px_rgba(139,92,246,0.7)] hover:scale-[1.03] transition-transform";
+  if (to)
+    return (
+      <Link to={to} className={cls}>
+        {children}
+        <ArrowRight className="w-4 h-4" />
+      </Link>
+    );
+  return (
+    <button onClick={onClick} className={cls}>
+      {children}
+      <ArrowRight className="w-4 h-4" />
+    </button>
+  );
+}
+
+function SecondaryCta({ to, children }: { to: string; children: ReactNode }) {
   return (
     <Link
-      to="/notes"
-      search={{ subject: world.id, form: 1 } as Record<string, unknown>}
-      className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border transition-all duration-300 hover:-translate-y-1.5"
-      style={
-        {
-          borderColor: `${world.color}28`,
-          background: `linear-gradient(135deg, ${world.color}14 0%, ${world.color}07 60%, transparent 100%)`,
-          boxShadow: `0 4px 24px ${world.color}1e`,
-        } as CSSProperties
-      }
+      to={to}
+      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white text-sm font-semibold ring-1 ring-white/10 transition-colors"
     >
-      {/* Hover atmosphere ring */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{ boxShadow: `inset 0 0 70px ${world.color}1a, 0 12px 50px ${world.color}40` }}
-      />
-
-      {/* World illustration strip — the subject's real shape, not an emoji */}
-      <div
-        className="relative h-20 w-full shrink-0 overflow-hidden"
-        style={{ background: `linear-gradient(180deg, ${world.color}1c, transparent)` }}
-      >
-        <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-          <SubjectWorldArt subjectId={world.id} color={world.color} width={240} height={80} />
-        </div>
-        {isCurrentWorld && (
-          <span
-            className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-widest"
-            style={{ background: `${world.color}30`, color: world.color }}
-          >
-            ● Current Mission
-          </span>
-        )}
-      </div>
-
-      <div className="relative z-10 flex flex-1 flex-col p-5 pt-3">
-        <p
-          className="text-[9px] font-black uppercase tracking-[0.18em]"
-          style={{ color: world.color, opacity: 0.65 }}
-        >
-          {world.eyebrow}
-        </p>
-        <h3 className="mt-0.5 truncate font-display text-base font-black leading-tight text-white">
-          {world.worldName}
-        </h3>
-
-        {/* Form 1/2/3 coverage — real per-form chapter counts, so the card
-            never implies the subject is just one form deep */}
-        <div className="mt-3 flex items-stretch gap-1">
-          {formStats.map((stat) => {
-            const ready = stat.chapterCount > 0;
-            return (
-              <div
-                key={stat.form}
-                className="flex-1 rounded-md px-1 py-1 text-center"
-                style={{
-                  background: ready ? `${world.color}16` : "rgba(255,255,255,0.04)",
-                }}
-              >
-                <span
-                  className="block text-[9px] font-bold leading-tight"
-                  style={{ color: ready ? world.color : "rgba(255,255,255,0.35)" }}
-                >
-                  {stat.form.replace("Form ", "F")}
-                </span>
-                <span className="block text-[9px] font-semibold leading-tight text-white/50">
-                  {ready ? `${stat.chapterCount} Ch` : "Soon"}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Enter CTA */}
-        <div className="mt-2 flex items-center justify-end">
-          <span
-            className="flex translate-x-[-4px] items-center gap-1 text-[11px] font-bold opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
-            style={{ color: world.color }}
-          >
-            {world.ctaLabel}
-            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-          </span>
-        </div>
-
-        {/* Bottom atmosphere line */}
-        <div
-          className="mt-3.5 h-px w-full opacity-20 transition-opacity duration-300 group-hover:opacity-60"
-          style={{
-            background: `linear-gradient(to right, transparent, ${world.color}, transparent)`,
-          }}
-        />
-      </div>
+      {children}
     </Link>
   );
 }
 
-// ─── Universe section header ──────────────────────────────────────────────────
+/* ---------------- Top nav ---------------- */
 
-function UniverseHeader() {
+function LandingNav() {
+  const { open } = useSignInModal();
+  const { user } = useAuth();
+  const links = [
+    { to: "/subjects", label: "Subjects" },
+    { to: "/notes", label: "Cikgu AI" },
+    { to: "#parents", label: "Parents", anchor: true },
+    { to: "#pricing", label: "Pricing", anchor: true },
+  ];
   return (
-    <div className="mb-6">
-      {/* Constellation dot-line decoration */}
-      <div className="pointer-events-none mb-4 flex items-center gap-2" aria-hidden>
-        {WORLD_PORTALS.map((w, i) => (
-          <span key={w.id} className="flex items-center gap-2">
+    <header className="absolute top-0 inset-x-0 z-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="relative">
+            <div className="absolute inset-0 bg-primary blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
+            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
+          </div>
+          <span className="font-display text-xl font-bold tracking-tight">
+            <span className="text-white">Acade</span>
             <span
-              className="block h-2 w-2 rounded-full"
-              style={{ background: w.color, boxShadow: `0 0 8px ${w.color}b3` }}
-            />
-            {i < WORLD_PORTALS.length - 1 && (
-              <span className="block h-px w-4 rounded-full bg-white/10" />
-            )}
-          </span>
-        ))}
-      </div>
-
-      <div className="flex items-end justify-between gap-4">
-        <div>
-          <p className="text-[9px] font-black uppercase tracking-[0.28em] text-[#6366F1]">
-            ✦ Explore
-          </p>
-          <h2 className="font-display text-2xl font-bold text-white">Academy Universe</h2>
-          <p className="mt-1 text-sm text-white/40">
-            Six worlds. Choose your destination and begin.
-          </p>
-        </div>
-        <div className="shrink-0 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-center">
-          <p className="text-xl font-black tabular-nums text-white">
-            6 <span className="text-sm font-bold text-white/30">Worlds</span>
-          </p>
-          <p className="text-[8px] font-bold uppercase tracking-widest text-white/25">
-            KSSM Form 1
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Hero world mini-strip ────────────────────────────────────────────────────
-
-function HeroWorldStrip() {
-  return (
-    <div className="mt-8 flex flex-wrap items-center gap-2">
-      <span className="mr-1 hidden self-center text-[9px] font-black uppercase tracking-[0.22em] text-white/20 sm:block">
-        6 Worlds
-      </span>
-      {WORLD_PORTALS.map((w) => (
-        <Link
-          key={w.id}
-          to="/notes"
-          search={{ subject: w.id, form: 1 } as Record<string, unknown>}
-          className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold backdrop-blur-xl transition-all duration-200 hover:scale-[1.06]"
-          style={
-            {
-              borderColor: `${w.color}35`,
-              background: `${w.color}14`,
-              color: w.color,
-            } as CSSProperties
-          }
-        >
-          <span className="text-sm leading-none">{w.icon}</span>
-          <span className="font-black">
-            {w.id === "bm" ? "BM" : w.id.charAt(0).toUpperCase() + w.id.slice(1)}
-          </span>
-        </Link>
-      ))}
-    </div>
-  );
-}
-
-// ─── Rank progression card (desktop hero overlay) ────────────────────────────
-
-function HeroRankCard() {
-  const { progress } = useProgress();
-  const rank = getRank(progress.xp);
-  const nextRank = getNextRank(progress.xp);
-  const rankPct = getRankProgress(progress.xp);
-
-  return (
-    <div className="hero-rank-card pointer-events-auto absolute bottom-24 right-4 z-30 hidden w-56 md:right-8 md:block lg:bottom-28 lg:right-12">
-      <div className="rounded-[1.5rem] border border-white/[0.12] bg-[#050816]/80 p-4 shadow-[0_24px_64px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
-        <div className="mb-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2.5">
-            <div
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl"
-              style={{ background: `${rank.color}1A`, boxShadow: `0 0 16px ${rank.color}55` }}
-            >
-              {rank.emoji}
-            </div>
-            <div>
-              <p className="text-[9px] font-black uppercase tracking-[0.18em] text-white/30">
-                Your Rank
-              </p>
-              <p className="text-sm font-bold leading-tight" style={{ color: rank.color }}>
-                {rank.name}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-1 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-2 py-1">
-            <Zap className="h-3 w-3 text-yellow-400" />
-            <span className="text-[11px] font-bold text-yellow-300">
-              {getChessRating(progress.xp).toLocaleString()}
-            </span>
-          </div>
-        </div>
-
-        {nextRank ? (
-          <>
-            <div className="mb-1 flex justify-between text-[9px] text-white/25">
-              <span>{rankPct}% to next</span>
-              <span>{nextRank.minXp.toLocaleString()} XP</span>
-            </div>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-white/[0.07]">
-              <div
-                className="hero-rank-bar-fill h-full rounded-full"
-                style={
-                  {
-                    width: `${rankPct}%`,
-                    "--bar-from": rank.color,
-                    "--bar-to": nextRank.color,
-                  } as CSSProperties
-                }
-              />
-            </div>
-            <div className="mt-3 flex items-center gap-2.5 rounded-xl border border-white/[0.07] bg-white/[0.04] p-2">
-              <span className="text-base">{nextRank.emoji}</span>
-              <div className="min-w-0">
-                <p className="text-[9px] font-black uppercase tracking-[0.16em] text-white/25">
-                  Next Rank
-                </p>
-                <p className="text-xs font-bold text-white">{nextRank.name}</p>
-              </div>
-              <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-white/20" />
-            </div>
-          </>
-        ) : (
-          <p className="mt-2 text-center text-[10px] font-bold text-white/30">
-            ✨ Maximum rank achieved
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ─── Main component ───────────────────────────────────────────────────────────
-
-export function HomeDashboard() {
-  const { progress } = useProgress();
-  const { user, isConfigured } = useAuth();
-  const { open: openSignIn } = useSignInModal();
-  const rank = getRank(progress.xp);
-  const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
-  const dueCount = getDueCount(progress.cardMastery);
-  const masteredCount = getMasteredCount(progress.cardMastery);
-  const hasProgress = progress.xp > 0 || !!progress.lastVisited;
-  const insight = useMemo(
-    () => analyzeProgress(progress.quizHistory ?? []),
-    [progress.quizHistory],
-  );
-  const topWeakSpot = insight.weakSpots[0] ?? null;
-  const board = useMemo(() => buildLeaderboard(progress), [progress]);
-  const myRank = board.currentUser?.rank ?? null;
-  const scholarshipEligible = board.currentUser?.scholarshipEligible ?? false;
-  const mission = progress.missions;
-  const missionState = DAILY_MISSIONS.map((m) => ({
-    ...m,
-    done: mission ? Math.min(m.current(mission), m.target) : 0,
-  }));
-  const missionsComplete = missionState.reduce((n, m) => n + (m.done >= m.target ? 1 : 0), 0);
-  const companionStageIndex = Math.max(
-    0,
-    COMPANION_STAGES.findIndex((stage) => stage.id === getCompanionStageForXp(progress.xp)),
-  );
-  const companionStage = COMPANION_STAGES[companionStageIndex] ?? COMPANION_STAGES[0];
-  const nextCompanionStage = COMPANION_STAGES[companionStageIndex + 1] ?? null;
-  const companionName = progress.companion ? getCompanionDisplayName(progress.companion) : "Nova";
-  const companionDailyMessage = useCompanionMessage();
-
-  return (
-    <section className="px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10 space-y-6">
-      {/* ════════════════════════════════════════════════════════════
-          HERO — Universe gateway
-          ════════════════════════════════════════════════════════════ */}
-      <div className="hero-section relative isolate -mx-4 -mt-6 overflow-hidden px-4 pb-20 pt-10 sm:-mx-6 sm:px-6 md:pb-24 md:pt-14 lg:-mx-8 lg:min-h-[820px] lg:px-8">
-        {/* Living space scene */}
-        <AstronautScene />
-
-        {/* Nebula orbs */}
-        <div className="pointer-events-none absolute inset-0" aria-hidden>
-          <div className="absolute -left-[20%] top-[0%] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.48),transparent_55%)] blur-3xl" />
-          <div className="absolute left-[8%] top-[30%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.32),transparent_58%)] blur-3xl" />
-          <div className="absolute right-[-5%] top-[-8%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.28),transparent_58%)] blur-3xl" />
-          <div className="absolute left-[30%] bottom-[-8%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(244,114,182,0.16),transparent_62%)] blur-3xl" />
-          <div className="absolute left-[3%] top-[15%] h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.11),transparent_65%)] blur-2xl" />
-        </div>
-
-        {/* Left atmosphere veil — keeps text readable */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 62% 82% at 18% 50%, rgba(5,8,22,0.92) 0%, rgba(5,8,22,0.74) 30%, rgba(5,8,22,0.38) 55%, rgba(5,8,22,0.10) 72%, transparent 86%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#050816] to-transparent"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#050816]/35 to-transparent"
-          aria-hidden
-        />
-
-        {/* Star accent particles */}
-        <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
-          <span className="absolute left-[8%]  top-[24%] h-[6px] w-[6px] rounded-full bg-white/90 shadow-[0_0_18px_6px_rgba(167,139,250,1)]   animate-pulse" />
-          <span className="absolute left-[22%] top-[64%] h-[5px] w-[5px] rounded-full bg-white/80 shadow-[0_0_14px_4px_rgba(99,102,241,0.9)]  animate-pulse [animation-delay:700ms]" />
-          <span className="absolute left-[40%] top-[32%] h-[4px] w-[4px] rounded-full bg-white/75 shadow-[0_0_14px_5px_rgba(244,114,182,0.88)] animate-pulse [animation-delay:1100ms]" />
-          <span className="absolute left-[46%] top-[68%] h-[3px] w-[3px] rounded-full bg-white/65 shadow-[0_0_12px_4px_rgba(59,130,246,0.9)]  animate-pulse [animation-delay:1900ms]" />
-          <span className="absolute left-[60%] top-[18%] h-[4px] w-[4px] rounded-full bg-white/90 shadow-[0_0_16px_5px_rgba(255,255,255,0.75)] animate-pulse [animation-delay:850ms]" />
-          <span className="absolute left-[72%] top-[55%] h-[3px] w-[3px] rounded-full bg-white/70 shadow-[0_0_12px_3px_rgba(250,204,21,0.65)]  animate-pulse [animation-delay:350ms]" />
-          <span className="absolute left-[82%] top-[30%] h-[2px] w-[2px] rounded-full bg-white/55 shadow-[0_0_8px_3px_rgba(99,102,241,0.7)]   animate-pulse [animation-delay:2200ms]" />
-        </div>
-
-        {/* ── Headline + CTAs + World strip ───────────────────────── */}
-        <div className="hero-copy-arrive relative z-20 flex min-h-[640px] flex-col justify-center lg:min-h-[820px]">
-          <div className="relative max-w-[560px]">
-            {/* Subtle text-zone backing */}
-            <div
-              className="pointer-events-none absolute -inset-10 -z-10 rounded-[3rem]"
+              className="text-nova-yellow"
               style={{
-                background:
-                  "radial-gradient(ellipse at 38% 50%, rgba(5,8,22,0.60) 0%, rgba(5,8,22,0.28) 50%, transparent 78%)",
-                filter: "blur(20px)",
-              }}
-            />
-
-            {/* Live rank badge */}
-            <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.14] bg-[#050816]/52 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(99,102,241,0.15)]">
-              <Avatar config={progress.avatar} size={22} glow={false} />
-              <span className="font-black" style={{ color: rank.color }}>
-                {rank.name}
-              </span>
-              {progress.xp > 0 && (
-                <>
-                  <span className="h-3 w-px bg-white/20" />
-                  <Zap className="h-3 w-3 text-yellow-400" />
-                  <span className="text-[10px] font-bold text-white/60">
-                    {progress.xp.toLocaleString()} XP
-                  </span>
-                </>
-              )}
-              <span className="h-3 w-px bg-white/20" />
-              <Sparkles className="h-3 w-3 text-[#F0ABFC]" />
-              <span className="text-[10px] font-bold text-[#F0ABFC]">
-                {progress.companion ? `Lv ${progress.companion.level}` : "Egg"}
-              </span>
-            </div>
-
-            {/* Universe eyebrow */}
-            <p className="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-[#818CF8]/60">
-              ✦ ACADEMY UNIVERSE ✦
-            </p>
-
-            {/* Universe-first headline */}
-            <h1
-              className="font-display font-extrabold leading-[0.93] tracking-tight text-white"
-              style={{
-                fontSize: "clamp(2.8rem, 5.5vw, 4.8rem)",
                 textShadow:
-                  "0 0 60px rgba(99,102,241,0.5), 0 0 120px rgba(139,92,246,0.25), 0 2px 4px rgba(0,0,0,0.7)",
+                  "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)",
               }}
             >
-              <span className="block">Choose Your</span>
-              <span
-                className="mt-1 block bg-gradient-to-r from-[#818CF8] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent"
-                style={{ filter: "drop-shadow(0 0 30px rgba(167,139,250,0.6))" }}
-              >
-                World.
-              </span>
-              <span className="mt-1 block text-white/90">
-                Begin Your{" "}
-                <span
-                  className="bg-gradient-to-r from-[#FBBF24] to-[#F97316] bg-clip-text text-transparent"
-                  style={{ filter: "drop-shadow(0 0 22px rgba(251,191,36,0.55))" }}
-                >
-                  Mission.
-                </span>
-              </span>
-            </h1>
-
-            <p className="mt-5 max-w-[420px] text-sm leading-[1.9] text-white/50">
-              Six learning worlds. One universe. Complete KSSM Form 1 through notes, flashcards,
-              quizzes, mind maps, and AI tutoring — all in one place.
-            </p>
-
-            {/* CTA row */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/notes"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-7 py-3.5 text-sm font-bold text-white shadow-[0_16px_48px_-8px_rgba(99,102,241,0.70)] transition-all hover:scale-[1.04] hover:shadow-[0_20px_60px_-8px_rgba(99,102,241,0.85)] active:scale-[0.98]"
-              >
-                🚀 Enter the Universe
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-
-              {hasProgress ? (
-                <Link
-                  to="/dashboard"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.12] hover:border-white/[0.25]"
-                >
-                  <TrendingUp className="h-4 w-4" />
-                  Continue Journey
-                </Link>
-              ) : (
-                <Link
-                  to="/subjects"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:bg-white/[0.12] hover:border-white/[0.25]"
-                >
-                  🌍 Explore Worlds
-                </Link>
-              )}
-
-              {isConfigured && !user && (
-                <button
-                  type="button"
-                  onClick={openSignIn}
-                  className="group inline-flex items-center justify-center gap-2.5 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:scale-[1.02] hover:border-[#8B5CF6]/50 hover:bg-white/[0.12] hover:shadow-[0_16px_48px_-8px_rgba(139,92,246,0.55)] active:scale-[0.98]"
-                >
-                  <LogIn className="h-4 w-4" />
-                  Sign in to sync progress
-                </button>
-              )}
-            </div>
-
-            {/* World portal mini-strip */}
-            <HeroWorldStrip />
-          </div>
-        </div>
-
-        {/* Live streak chip */}
-        {progress.streak > 0 && (
-          <div className="pointer-events-none absolute right-5 top-10 z-30 hidden items-center gap-2.5 rounded-2xl border border-orange-500/30 bg-[#0F0805]/72 p-2.5 shadow-[0_4px_28px_rgba(249,115,22,0.24)] backdrop-blur-2xl md:right-8 md:flex lg:right-12">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/20">
-              <Flame className="h-4 w-4 text-orange-400" />
-            </div>
-            <div>
-              <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-orange-300/60">
-                Streak
-              </p>
-              <p className="text-sm font-extrabold text-white">{progress.streak}d 🔥</p>
-            </div>
-          </div>
-        )}
-
-        {/* Rank progression card */}
-        <HeroRankCard />
-      </div>
-
-      {/* ── ABOUT ACADEMY — visible to every visitor, signed in or not ─── */}
-      <section
-        aria-labelledby="about-academy-heading"
-        className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6"
-      >
-        <h2 id="about-academy-heading" className="font-display text-lg font-bold text-white sm:text-xl">
-          What is AcadeMY?
-        </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-7 text-white/60">
-          AcadeMY is a free educational platform built for Malaysian KSSM students in Form 1–3.
-          Here, students can:
-        </p>
-        <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
-          <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <NotebookPen className="h-4 w-4 shrink-0 text-[#60A5FA]" /> Study interactive, KSSM-aligned notes
-          </li>
-          <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <BrainCircuit className="h-4 w-4 shrink-0 text-[#FBBF24]" /> Complete quizzes with instant feedback
-          </li>
-          <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <Layers className="h-4 w-4 shrink-0 text-[#A855F7]" /> Review flashcards with spaced repetition
-          </li>
-          <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <LineChart className="h-4 w-4 shrink-0 text-[#34D399]" /> Track learning progress, XP, and streaks
-          </li>
-        </ul>
-        <div className="mt-4 flex items-start gap-2.5 rounded-2xl border border-white/[0.07] bg-white/[0.03] px-4 py-3">
-          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#818CF8]" />
-          <p className="text-xs leading-6 text-white/50">
-            Students can optionally sign in with Google to securely save their learning progress
-            and sync it across devices. We use Google Sign-In only to authenticate your account
-            and save your progress — we do not request unnecessary Google data. See our{" "}
-            <a href="/privacy" className="text-white/75 underline underline-offset-2 hover:text-white">
-              Privacy Policy
-            </a>{" "}
-            for details.
-          </p>
-        </div>
-      </section>
-
-      {/* ── NEXT MISSION ──────────────────────────────────────────────── */}
-      <NextMissionCard />
-
-      {/* ── RESUME BANNER ─────────────────────────────────────────────── */}
-      {progress.lastVisited && <ResumeBanner lastVisited={progress.lastVisited} />}
-
-      {/* ── STREAK URGENCY ────────────────────────────────────────────── */}
-      {streakUrgent && (
-        <Link
-          to="/flashcards"
-          className="flex items-center gap-4 rounded-[2rem] border border-orange-500/30 bg-orange-500/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-orange-500/50 hover:bg-orange-500/15"
-        >
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-500/20">
-            <Bell className="h-5 w-5 text-orange-400" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-bold text-orange-200">
-              Don't break your {progress.streak}-day streak! 🔥
-            </p>
-            <p className="text-sm text-orange-300/70">
-              Study any chapter before midnight to keep it alive.
-            </p>
-          </div>
-          <ArrowRight className="h-4 w-4 shrink-0 text-orange-400" />
-        </Link>
-      )}
-
-      {/* ── DUE CARDS BANNER ──────────────────────────────────────────── */}
-      {dueCount > 0 && (
-        <Link
-          to="/flashcards"
-          className="flex items-center gap-4 rounded-[2rem] border border-sky-500/30 bg-sky-500/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-sky-500/50 hover:bg-sky-500/15"
-        >
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500/20">
-            <RotateCcw className="h-5 w-5 text-sky-400" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-bold text-sky-200">
-              {dueCount} flashcard{dueCount !== 1 ? "s" : ""} due for review today
-            </p>
-            <p className="text-sm text-sky-300/70">
-              {masteredCount} cards mastered · Spaced repetition active
-            </p>
-          </div>
-          <ArrowRight className="h-4 w-4 shrink-0 text-sky-400" />
-        </Link>
-      )}
-
-      {/* ════════════════════════════════════════════════════════════
-          TODAY'S MISSION + AVATAR COMMAND
-          ════════════════════════════════════════════════════════════ */}
-      <section className="grid gap-4 lg:grid-cols-[1fr_300px]">
-        {/* Today's Mission */}
-        <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#818CF8]">
-                Today's Mission
-              </p>
-              <h2 className="mt-0.5 font-display text-xl font-bold text-white">
-                {missionsComplete >= DAILY_MISSIONS.length
-                  ? "Mission complete! 🎉"
-                  : "Keep your orbit steady"}
-              </h2>
-            </div>
-            <span className="shrink-0 rounded-full border border-white/[0.1] bg-white/[0.05] px-3 py-1.5 text-xs font-black tabular-nums text-white">
-              {missionsComplete}/{DAILY_MISSIONS.length}
+              MY
             </span>
-          </div>
-          <div className="space-y-2.5">
-            {missionState.map((m) => {
-              const pct = Math.round((m.done / m.target) * 100);
-              const complete = m.done >= m.target;
-              return (
-                <div
-                  key={m.id}
-                  className={`flex items-center gap-3 rounded-2xl border p-3 ${
-                    complete
-                      ? "border-emerald-400/30 bg-emerald-500/[0.08]"
-                      : "border-white/[0.07] bg-white/[0.03]"
-                  }`}
-                >
-                  <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-black tabular-nums ${
-                      complete ? "bg-emerald-400 text-[#04130C]" : "bg-white/[0.08] text-white/60"
-                    }`}
-                  >
-                    {m.done}/{m.target}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-bold text-white">{m.label}</p>
-                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-white/[0.07]">
-                      <div
-                        className="h-full rounded-full transition-all duration-500"
-                        style={{
-                          width: `${pct}%`,
-                          background: complete
-                            ? "#34D399"
-                            : "linear-gradient(90deg,#818CF8,#C084FC)",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <span className="flex shrink-0 items-center gap-1 text-[11px] font-black text-[#FBBF24]">
-                    <Zap className="h-3.5 w-3.5" /> {m.xpReward}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-          <Link
-            to="/quizzes"
-            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-2.5 text-sm font-bold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <Rocket className="h-4 w-4" /> Continue mission
-          </Link>
-        </div>
-
-        {/* Cosmic Companion card */}
-        <div className="relative flex flex-col items-center overflow-hidden rounded-[2rem] border border-[#F0ABFC]/20 bg-gradient-to-b from-[#312E81]/42 to-[#0B1220]/76 p-5 text-center backdrop-blur-2xl">
-          <div className="pointer-events-none absolute -top-16 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(240,171,252,0.32),transparent_65%)] blur-xl" />
-          <div className="relative mb-3 flex h-32 w-32 items-center justify-center">
-            <div className="cosmic-companion-glow absolute inset-0 rounded-full bg-[#F0ABFC]/20 blur-2xl" />
-            <div className="absolute inset-3 rounded-full border border-white/15 shadow-[0_0_36px_rgba(240,171,252,0.35)]" />
-            <div className="relative flex h-24 w-24 animate-[companionFloat_4.6s_ease-in-out_infinite] items-center justify-center rounded-full">
-              <CompanionImage
-                speciesId={progress.companion?.id ?? "nova"}
-                stage={companionStage.id}
-                size={84}
-              />
-            </div>
-          </div>
-          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#F0ABFC]/70">
-            Cosmic Companion
-          </p>
-          <h3 className="mt-1 font-display text-xl font-black text-white">
-            {companionName} {companionStage.name}
-          </h3>
-          <p className="mt-2 max-w-[220px] text-xs italic leading-5 text-white/55">
-            "{companionDailyMessage}"
-          </p>
-          <p className="mt-2 text-xs font-bold text-white/45">
-            {nextCompanionStage
-              ? `${progress.xp.toLocaleString()} / ${nextCompanionStage.xpRequired.toLocaleString()} XP`
-              : "Guardian evolution complete"}
-          </p>
-          <Link
-            to="/companion"
-            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#F0ABFC]/30 bg-[#F0ABFC]/10 px-4 py-2.5 text-xs font-bold text-[#F5D0FE] transition-colors hover:bg-[#F0ABFC]/20"
-          >
-            <Sparkles className="h-4 w-4" /> Open Companion
-          </Link>
-        </div>
-      </section>
-
-      {/* ── WEAKNESS TEASER (AI Tracker) ──────────────────────────────── */}
-      {topWeakSpot && (
-        <Link
-          to="/tracker"
-          className="group flex items-center gap-4 rounded-[2rem] border border-[#22D3EE]/25 bg-[#22D3EE]/[0.08] px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#22D3EE]/45 hover:bg-[#22D3EE]/[0.14]"
-        >
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#22D3EE]/20">
-            <Target className="h-5 w-5 text-[#67E8F9]" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-[#67E8F9]">
-              AI Tracker · Focus next
-            </p>
-            <p className="truncate font-bold text-white">
-              {topWeakSpot.subjectName}: {topWeakSpot.chapterLabel}
-            </p>
-            <p className="text-sm text-white/45">
-              Averaging {topWeakSpot.avgScore}% — let's push past 80%.
-            </p>
-          </div>
-          <ArrowRight className="h-4 w-4 shrink-0 text-[#67E8F9] transition-transform group-hover:translate-x-0.5" />
+          </span>
         </Link>
-      )}
 
-      {/* ── PARENT REPORT TEASER ──────────────────────────────────────── */}
-      <Link
-        to="/parent"
-        className="group flex items-center gap-4 rounded-[2rem] border border-[#34D399]/25 bg-[#34D399]/[0.08] px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#34D399]/45 hover:bg-[#34D399]/[0.14]"
-      >
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#34D399]/20">
-          <Users className="h-5 w-5 text-[#6EE7B7]" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#6EE7B7]">
-            For parents
-          </p>
-          <p className="font-bold text-white">Send a weekly or monthly Mission Report</p>
-          <p className="text-sm text-white/45">
-            Keep parents in the loop with a clear, syllabus-aligned summary.
-          </p>
-        </div>
-        <ArrowRight className="h-4 w-4 shrink-0 text-[#6EE7B7] transition-transform group-hover:translate-x-0.5" />
-      </Link>
-
-      {/* ── HALL OF FAME / SCHOLARSHIP TEASER ──────────────────────────── */}
-      <Link
-        to="/leaderboard"
-        className="group flex items-center gap-4 rounded-[2rem] border border-[#FBBF24]/25 bg-[#FBBF24]/[0.08] px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#FBBF24]/45 hover:bg-[#FBBF24]/[0.14]"
-      >
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#FBBF24]/20">
-          {scholarshipEligible ? (
-            <GraduationCap className="h-5 w-5 text-[#FCD34D]" />
-          ) : (
-            <Trophy className="h-5 w-5 text-[#FCD34D]" />
-          )}
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#FCD34D]">
-            Hall of Fame{myRank ? ` · You're #${myRank}` : ""}
-          </p>
-          <p className="font-bold text-white">
-            {scholarshipEligible
-              ? "You're scholarship-eligible — submit your nomination 🎓"
-              : "Climb the ranking to earn scholarship recognition"}
-          </p>
-          <p className="text-sm text-white/45">
-            Top students are recognised and put forward for scholarships.
-          </p>
-        </div>
-        <ArrowRight className="h-4 w-4 shrink-0 text-[#FCD34D] transition-transform group-hover:translate-x-0.5" />
-      </Link>
-
-      {/* ════════════════════════════════════════════════════════════
-          ACADEMY UNIVERSE — World portal grid
-          ════════════════════════════════════════════════════════════ */}
-      <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
-        <UniverseHeader />
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {WORLD_PORTALS.map((world) => (
-            <WorldPortalCard
-              key={world.id}
-              world={world}
-              isCurrentWorld={progress.lastVisited?.subjectId === world.id}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* ── FEATURES ──────────────────────────────────────────────────── */}
-      <section>
-        <div className="mb-4 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#6366F1]">
-            Built Different
-          </p>
-          <h2 className="mt-1 font-display text-2xl font-bold text-white">Why AcadeMY?</h2>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {FEATURES.map((f) => {
-            const Icon = f.icon;
-            return (
-              <div
-                key={f.title}
-                className="relative rounded-3xl border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl"
+        <nav className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/[0.04] ring-1 ring-white/10 backdrop-blur">
+          {links.map((l) =>
+            l.anchor ? (
+              <a
+                key={l.to}
+                href={l.to}
+                className="px-4 py-1.5 rounded-full text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors"
               >
-                {f.badge && (
-                  <span
-                    className="absolute right-4 top-4 rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide"
-                    style={{ background: `${f.color}25`, color: f.color }}
-                  >
-                    {f.badge}
-                  </span>
-                )}
-                <div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl"
-                  style={{ background: `${f.color}18`, color: f.color }}
-                >
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="font-bold text-white">{f.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#94A3B8]">{f.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ── QUICK ACCESS ──────────────────────────────────────────────── */}
-      <section>
-        <div className="mb-4">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#94A3B8]">Jump Into</p>
-          <h2 className="mt-1 font-display text-xl font-bold text-white">Quick Access</h2>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-          {QUICK_ACCESS.map((item) => {
-            const Icon = item.icon;
-            return (
+                {l.label}
+              </a>
+            ) : (
               <Link
-                key={item.title}
-                to={item.to}
-                className={`group rounded-3xl border border-white/[0.08] bg-gradient-to-br ${item.gradient} p-5 backdrop-blur-2xl transition-all hover:-translate-y-1 hover:border-white/[0.16]`}
+                key={l.to}
+                to={l.to}
+                className="px-4 py-1.5 rounded-full text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors"
               >
-                <span
-                  className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl transition-transform group-hover:scale-110"
-                  style={{ background: `${item.color}22`, color: item.color }}
-                >
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h3 className="font-bold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#94A3B8]">{item.description}</p>
+                {l.label}
               </Link>
-            );
-          })}
-        </div>
-      </section>
+            )
+          )}
+        </nav>
 
-      {/* ── AI TRACKER CTA ────────────────────────────────────────────── */}
-      <section className="rounded-[2rem] border border-[#22D3EE]/25 bg-gradient-to-br from-[#0E7490]/15 to-[#6366F1]/10 p-6 backdrop-blur-2xl sm:p-8">
-        <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
-          <div
-            className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl"
-            style={{
-              background: "linear-gradient(135deg, #22D3EE, #6366F1)",
-              boxShadow: "0 0 32px rgba(34,211,238,0.4)",
-            }}
-          >
-            <Radar className="h-8 w-8 text-white" />
-          </div>
-          <div className="flex-1">
-            <div className="flex items-center justify-center gap-2 sm:justify-start">
-              <h2 className="font-display text-xl font-bold text-white">Your AI Study Tracker</h2>
-              <Sparkles className="h-4 w-4 text-[#FBBF24]" />
-            </div>
-            <p className="mt-1.5 text-sm leading-6 text-white/60">
-              {topWeakSpot
-                ? `Right now your weakest spot is ${topWeakSpot.subjectName} — "${topWeakSpot.chapterLabel}" at ${topWeakSpot.avgScore}%. The Tracker shows exactly what to study next.`
-                : "Take a few quizzes and the Tracker maps your strengths and weak chapters automatically."}
-            </p>
-          </div>
+        {user ? (
           <Link
-            to="/tracker"
-            className="shrink-0 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#22D3EE] to-[#6366F1] px-6 py-3 text-sm font-bold text-white transition-all hover:scale-[1.03] active:scale-[0.98]"
+            to="/dashboard"
+            className="px-4 py-2 rounded-full bg-white text-[#0b0a1f] text-sm font-semibold hover:scale-[1.03] transition-transform"
           >
-            <Radar className="h-4 w-4" />
-            Open Tracker
+            Dashboard
           </Link>
+        ) : (
+          <button
+            onClick={() => open()}
+            className="px-4 py-2 rounded-full bg-white text-[#0b0a1f] text-sm font-semibold hover:scale-[1.03] transition-transform"
+          >
+            Sign in
+          </button>
+        )}
+      </div>
+    </header>
+  );
+}
+
+/* ---------------- Hero ---------------- */
+
+function Hero() {
+  const { open } = useSignInModal();
+  return (
+    <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
+      {/* glow blobs */}
+      <div
+        aria-hidden
+        className="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(168,85,247,0.35), transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute top-1/2 -left-40 w-[420px] h-[420px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(59,130,246,0.25), transparent 70%)",
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
+        <div>
+          <SectionLabel>KSSM-aligned · Form 1–3</SectionLabel>
+          <h1 className="mt-6 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.02] tracking-tight text-white">
+            Malaysia's
+            <br />
+            <span className="bg-gradient-to-r from-white via-[#c9b8ff] to-accent bg-clip-text text-transparent">
+              Interstellar
+            </span>
+            <br />
+            Learning Platform
+          </h1>
+          <p className="mt-6 max-w-xl text-base md:text-lg text-white/65 leading-relaxed">
+            Notes, flashcards, quizzes and mind maps in BM &amp; DLP — powered
+            by your own AI cikgu. Level up like a game, master KSSM like a pro.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <PrimaryCta onClick={() => open()}>
+              Start your mission
+            </PrimaryCta>
+            <SecondaryCta to="/subjects">Explore subjects</SecondaryCta>
+          </div>
+          <div className="mt-10 flex flex-wrap items-center gap-6 text-xs text-white/50">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" /> KSSM aligned
+            </div>
+            <div className="flex items-center gap-2">
+              <Languages className="w-4 h-4 text-sky-400" /> BM &amp; DLP
+            </div>
+            <div className="flex items-center gap-2">
+              <Star className="w-4 h-4 text-nova-yellow" /> Free to start
+            </div>
+          </div>
         </div>
-      </section>
+
+        {/* Astronaut card */}
+        <div className="relative">
+          <div
+            aria-hidden
+            className="absolute inset-0 rounded-[2rem] blur-2xl opacity-70"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%)",
+            }}
+          />
+          <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] backdrop-blur-xl aspect-[4/5]">
+            <AstronautScene />
+            <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+              <div className="text-xs uppercase tracking-[0.2em] text-white/60">
+                AcadeMY · Companion
+              </div>
+              <div className="mt-1 text-white font-semibold">
+                Your AI cikgu is online
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
-// ─── Resume Banner ────────────────────────────────────────────────────────────
+/* ---------------- Why AcadeMY ---------------- */
 
-function ResumeBanner({ lastVisited }: { lastVisited: LastVisited }) {
-  const world = WORLD_PORTALS.find((w) => w.id === lastVisited.subjectId);
-  const formNumber = Number(lastVisited.form?.match(/\d/)?.[0] ?? 1);
+const WHY = [
+  {
+    icon: GraduationCap,
+    title: "KSSM Aligned",
+    body: "Every note, quiz and mind map maps directly to the latest DSKP syllabus.",
+  },
+  {
+    icon: Languages,
+    title: "BM & DLP",
+    body: "Toggle Bahasa Melayu or DLP per topic — same quality, your language.",
+  },
+  {
+    icon: Bot,
+    title: "AI Cikgu",
+    body: "Stuck on a concept? Ask Cikgu AI for a friendly, on-topic explanation.",
+  },
+  {
+    icon: Trophy,
+    title: "Gamified XP",
+    body: "Earn XP, evolve your companion, climb ranks — studying that actually sticks.",
+  },
+];
+
+function WhyAcademy() {
+  return (
+    <section className="relative py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="text-center max-w-2xl mx-auto">
+          <SectionLabel>Why AcadeMY?</SectionLabel>
+          <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+            Built for Malaysian students
+          </h2>
+          <p className="mt-4 text-white/60">
+            A study platform that feels like a game, with content teachers
+            actually trust.
+          </p>
+        </div>
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {WHY.map((w) => (
+            <div
+              key={w.title}
+              className="group relative rounded-2xl p-6 bg-white/[0.03] ring-1 ring-white/10 hover:ring-primary/40 hover:bg-white/[0.05] transition-all"
+            >
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/30 to-accent/30 ring-1 ring-white/10 flex items-center justify-center mb-4">
+                <w.icon className="w-5 h-5 text-white" />
+              </div>
+              <div className="font-display text-lg font-semibold text-white">
+                {w.title}
+              </div>
+              <p className="mt-2 text-sm text-white/60 leading-relaxed">
+                {w.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Powerful Learning Tools (planet arc) ---------------- */
+
+const TOOLS = [
+  {
+    icon: NotebookPen,
+    label: "Notes",
+    to: "/notes",
+    color: "from-amber-400 to-orange-600",
+  },
+  {
+    icon: Layers,
+    label: "Flashcards",
+    to: "/flashcards",
+    color: "from-sky-400 to-indigo-600",
+  },
+  {
+    icon: ClipboardCheck,
+    label: "Quizzes",
+    to: "/quizzes",
+    color: "from-emerald-400 to-teal-600",
+  },
+  {
+    icon: BrainCircuit,
+    label: "Mind Maps",
+    to: "/mindmaps",
+    color: "from-fuchsia-400 to-purple-600",
+  },
+  {
+    icon: Rocket,
+    label: "Missions",
+    to: "/dashboard",
+    color: "from-rose-400 to-red-600",
+  },
+];
+
+function Planet({
+  icon: Icon,
+  label,
+  to,
+  color,
+  style,
+}: {
+  icon: typeof NotebookPen;
+  label: string;
+  to: string;
+  color: string;
+  style?: CSSProperties;
+}) {
   return (
     <Link
-      to={TYPE_ROUTES[lastVisited.type]}
-      search={{ subject: lastVisited.subjectId, form: formNumber } as Record<string, unknown>}
-      className="group flex items-center gap-4 rounded-[2rem] border border-[#6366F1]/30 bg-[#6366F1]/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#6366F1]/50 hover:bg-[#6366F1]/15"
+      to={to}
+      className="group flex flex-col items-center text-center"
+      style={style}
     >
-      <div
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-xl"
-        style={
-          world
-            ? { background: `${world.color}20`, boxShadow: `0 0 16px ${world.color}4d` }
-            : { background: "rgba(99,102,241,0.2)" }
-        }
-      >
-        {world ? world.icon : TYPE_ICONS[lastVisited.type]}
+      <div className="relative">
+        <div
+          aria-hidden
+          className={`absolute inset-0 rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${color}`}
+        />
+        <div
+          className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br ${color} ring-2 ring-white/20 shadow-[inset_0_-8px_20px_rgba(0,0,0,0.35)] flex items-center justify-center group-hover:scale-110 transition-transform`}
+        >
+          <Icon className="w-8 h-8 md:w-9 md:h-9 text-white drop-shadow" />
+        </div>
       </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8]">
-          Continue Mission
-        </p>
-        <p className="font-bold text-white capitalize truncate">{lastVisited.label}</p>
-        <p className="text-xs text-white/40 capitalize">
-          {world?.worldName ?? lastVisited.subjectId} · {TYPE_LABELS[lastVisited.type]} ·{" "}
-          {timeAgo(lastVisited.timestamp)}
-        </p>
-      </div>
-      <div className="flex items-center gap-1.5 rounded-2xl bg-[#6366F1]/20 px-3 py-1.5 text-xs font-bold text-[#818CF8] transition-transform group-hover:translate-x-0.5">
-        Resume <ArrowRight className="h-3.5 w-3.5" />
-      </div>
+      <div className="mt-3 text-sm font-semibold text-white">{label}</div>
+      <div className="text-[11px] text-white/50">Tap to explore</div>
     </Link>
+  );
+}
+
+function LearningTools() {
+  return (
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(800px 400px at 50% 50%, rgba(124,58,237,0.18), transparent 70%)",
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 text-center">
+        <SectionLabel>Toolkit</SectionLabel>
+        <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          Powerful Learning Tools
+        </h2>
+        <p className="mt-4 max-w-xl mx-auto text-white/60">
+          Five orbiting study modes — pick one and launch.
+        </p>
+
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 justify-items-center max-w-4xl mx-auto">
+          {TOOLS.map((t, i) => (
+            <Planet
+              key={t.label}
+              {...t}
+              style={{
+                transform: `translateY(${i % 2 === 0 ? "-12px" : "12px"})`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Cikgu AI ---------------- */
+
+const CIKGU = [
+  "Asks questions in BM or English",
+  "Explains hard concepts step-by-step",
+  "Generates practice questions on demand",
+  "Stays on-topic — no off-syllabus drift",
+];
+
+function CikguSection() {
+  return (
+    <section className="relative py-20 md:py-28">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
+        {/* Orb */}
+        <div className="relative aspect-square max-w-[420px] mx-auto w-full">
+          <div
+            aria-hidden
+            className="absolute inset-0 rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(168,85,247,0.65), transparent 70%)",
+            }}
+          />
+          <div className="absolute inset-6 rounded-full ring-2 ring-primary/40 animate-[spin_30s_linear_infinite]" />
+          <div className="absolute inset-12 rounded-full ring-1 ring-accent/30 animate-[spin_45s_linear_infinite_reverse]" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-40 h-40 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-primary to-accent ring-4 ring-white/10 flex items-center justify-center shadow-[0_0_80px_rgba(139,92,246,0.6)]">
+              <Bot className="w-20 h-20 text-white" />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <SectionLabel>Meet your companion</SectionLabel>
+          <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+            Cikgu AI
+          </h2>
+          <p className="mt-4 text-white/65 max-w-md">
+            A patient, on-syllabus AI tutor that lives inside every note,
+            flashcard and quiz.
+          </p>
+          <ul className="mt-6 space-y-3">
+            {CIKGU.map((c) => (
+              <li key={c} className="flex items-start gap-3 text-white/80">
+                <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/20 ring-1 ring-primary/40 flex items-center justify-center">
+                  <Check className="w-3 h-3 text-primary" />
+                </span>
+                <span className="text-sm">{c}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8">
+            <PrimaryCta to="/notes">Try Cikgu AI</PrimaryCta>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Progress preview ---------------- */
+
+function StatCell({
+  icon: Icon,
+  label,
+  value,
+  tint,
+}: {
+  icon: typeof Flame;
+  label: string;
+  value: string;
+  tint: string;
+}) {
+  return (
+    <div className="rounded-2xl p-4 bg-white/[0.03] ring-1 ring-white/10">
+      <div className="flex items-center gap-2 text-xs text-white/60">
+        <Icon className={`w-4 h-4 ${tint}`} />
+        {label}
+      </div>
+      <div className="mt-2 text-2xl font-bold text-white tabular-nums">
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function ProgressPreview() {
+  return (
+    <section className="relative py-20 md:py-28">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 text-center">
+        <SectionLabel>Track Your Progress</SectionLabel>
+        <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          See yourself level up
+        </h2>
+        <p className="mt-4 text-white/60 max-w-xl mx-auto">
+          XP, streaks and mastery in one cockpit — designed to keep students
+          coming back daily.
+        </p>
+
+        <div className="mt-10 rounded-3xl p-6 md:p-8 bg-gradient-to-br from-white/[0.06] to-white/[0.02] ring-1 ring-white/10 backdrop-blur text-left">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <div className="text-white font-semibold">Mission cockpit</div>
+                <div className="text-xs text-white/50">Form 2 · Science</div>
+              </div>
+            </div>
+            <div className="text-xs text-white/50">Last 7 days</div>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-3">
+            <StatCell
+              icon={Flame}
+              label="Streak"
+              value="12 days"
+              tint="text-orange-400"
+            />
+            <StatCell
+              icon={Target}
+              label="XP this week"
+              value="1,840"
+              tint="text-primary"
+            />
+            <StatCell
+              icon={TrendingUp}
+              label="Mastery"
+              value="78%"
+              tint="text-emerald-400"
+            />
+          </div>
+
+          <div className="mt-4 grid sm:grid-cols-2 gap-3">
+            <div className="rounded-2xl p-4 bg-white/[0.03] ring-1 ring-white/10">
+              <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                <span>Chapter 3 · Cells</span>
+                <span>82%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10 overflow-hidden">
+                <div className="h-full w-[82%] bg-gradient-to-r from-primary to-accent" />
+              </div>
+            </div>
+            <div className="rounded-2xl p-4 bg-white/[0.03] ring-1 ring-white/10">
+              <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                <span>Chapter 4 · Coordination</span>
+                <span>46%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white/10 overflow-hidden">
+                <div className="h-full w-[46%] bg-gradient-to-r from-emerald-400 to-teal-500" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Parents ---------------- */
+
+const PARENT_FEATURES = [
+  {
+    title: "Weekly progress digest",
+    body: "Email summary every Sunday — XP, mastery and trouble spots.",
+  },
+  {
+    title: "See what they're studying",
+    body: "Live view of subjects, chapters and time on task.",
+  },
+];
+
+function ParentsSection() {
+  return (
+    <section id="parents" className="relative py-20 md:py-28">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div
+            className="font-display text-5xl md:text-7xl font-bold text-nova-yellow"
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+              textShadow:
+                "0 0 30px rgba(250,204,21,0.35), 0 0 60px rgba(250,204,21,0.18)",
+            }}
+          >
+            Parents
+          </div>
+          <p className="mt-3 text-white/65 max-w-md">
+            Stay in the loop without becoming the homework police.
+          </p>
+          <ul className="mt-8 space-y-5">
+            {PARENT_FEATURES.map((f) => (
+              <li key={f.title} className="flex items-start gap-3">
+                <span className="mt-1 w-6 h-6 rounded-full bg-nova-yellow/15 ring-1 ring-nova-yellow/40 flex items-center justify-center">
+                  <Check className="w-3.5 h-3.5 text-nova-yellow" />
+                </span>
+                <div>
+                  <div className="text-white font-semibold">{f.title}</div>
+                  <div className="text-sm text-white/60 mt-0.5">{f.body}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-indigo-900/40 via-purple-900/30 to-rose-900/30">
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 70% 40%, rgba(168,85,247,0.45), transparent 70%), radial-gradient(50% 50% at 30% 80%, rgba(244,114,182,0.3), transparent 70%)",
+            }}
+          />
+          <div className="absolute inset-0 flex items-end p-6">
+            <div className="text-white/80 text-sm">
+              <div className="text-xs uppercase tracking-[0.2em] text-white/50">
+                Parent dashboard
+              </div>
+              <div className="mt-1 font-semibold text-white">
+                Confidence, at a glance.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Analytics band */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 mt-10">
+        <div className="rounded-3xl p-5 md:p-7 bg-gradient-to-br from-indigo-950/60 to-purple-950/40 ring-1 ring-white/10 backdrop-blur">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <StatCell
+              icon={LineChart}
+              label="Weekly XP"
+              value="3,210"
+              tint="text-primary"
+            />
+            <StatCell
+              icon={Compass}
+              label="Subjects active"
+              value="4"
+              tint="text-sky-400"
+            />
+            <StatCell
+              icon={Flame}
+              label="Best streak"
+              value="21 days"
+              tint="text-orange-400"
+            />
+            <StatCell
+              icon={Trophy}
+              label="Badges"
+              value="14"
+              tint="text-nova-yellow"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Pricing ---------------- */
+
+const PLANS = [
+  {
+    name: "Free",
+    price: "RM0",
+    period: "forever",
+    cta: "Start free",
+    highlighted: false,
+    features: [
+      "All Form 1 subjects",
+      "Notes, flashcards & quizzes",
+      "Basic AI cikgu",
+      "Progress tracking",
+    ],
+  },
+  {
+    name: "Cadet",
+    price: "RM28",
+    period: "/month",
+    cta: "Go Cadet",
+    highlighted: true,
+    badge: "Most popular",
+    features: [
+      "All Form 1–3 subjects",
+      "Unlimited AI cikgu",
+      "Mind maps & mock tests",
+      "Parent dashboard",
+      "Priority support",
+    ],
+  },
+  {
+    name: "Captain",
+    price: "RM68",
+    period: "/month",
+    cta: "Go Captain",
+    highlighted: false,
+    features: [
+      "Everything in Cadet",
+      "1-on-1 study coach",
+      "Personalised study plan",
+      "Early access to new content",
+    ],
+  },
+];
+
+function PricingSection() {
+  const { open } = useSignInModal();
+  return (
+    <section id="pricing" className="relative py-20 md:py-28">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
+        <SectionLabel>Choose Your Mission Plan</SectionLabel>
+        <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          Simple, student-friendly pricing
+        </h2>
+        <p className="mt-4 text-white/60">
+          Cancel anytime. Built for Malaysian families.
+        </p>
+
+        <div className="mt-12 grid md:grid-cols-3 gap-5 text-left">
+          {PLANS.map((p) => (
+            <div
+              key={p.name}
+              className={`relative rounded-3xl p-7 ring-1 backdrop-blur ${
+                p.highlighted
+                  ? "bg-gradient-to-b from-primary/20 to-accent/10 ring-primary/50 shadow-[0_30px_80px_-20px_rgba(139,92,246,0.5)]"
+                  : "bg-white/[0.03] ring-white/10"
+              }`}
+            >
+              {p.badge && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-primary to-accent text-white text-[11px] font-semibold uppercase tracking-wider">
+                  {p.badge}
+                </div>
+              )}
+              <div className="text-sm uppercase tracking-[0.18em] text-white/50">
+                {p.name}
+              </div>
+              <div className="mt-3 flex items-baseline gap-1">
+                <span className="font-display text-4xl font-bold text-white">
+                  {p.price}
+                </span>
+                <span className="text-sm text-white/50">{p.period}</span>
+              </div>
+              <ul className="mt-6 space-y-2.5">
+                {p.features.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-2 text-sm text-white/75"
+                  >
+                    <Check className="w-4 h-4 mt-0.5 text-primary shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={() => open()}
+                className={`mt-7 w-full px-4 py-2.5 rounded-full text-sm font-semibold transition-transform hover:scale-[1.02] ${
+                  p.highlighted
+                    ? "bg-gradient-to-r from-primary to-accent text-white"
+                    : "bg-white/10 text-white ring-1 ring-white/15"
+                }`}
+              >
+                {p.cta}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Final CTA ---------------- */
+
+function FinalCta() {
+  const { open } = useSignInModal();
+  return (
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(600px 300px at 50% 50%, rgba(168,85,247,0.3), transparent 70%)",
+        }}
+      />
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-8 text-center">
+        <h2 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight">
+          Ready to launch your mission?
+        </h2>
+        <p className="mt-5 text-white/65 max-w-xl mx-auto">
+          Free to start. No card needed. Your AI cikgu is ready when you are.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <PrimaryCta onClick={() => open()}>
+            Launch AcadeMY
+          </PrimaryCta>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Page ---------------- */
+
+export function HomeDashboard() {
+  return (
+    <div className="relative min-h-screen bg-[#050816] text-white overflow-hidden">
+      {/* starfield base */}
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,0.18), transparent 60%), radial-gradient(900px 500px at -10% 30%, rgba(59,130,246,0.12), transparent 60%), #050816",
+        }}
+      />
+      <LandingNav />
+      <Hero />
+      <WhyAcademy />
+      <LearningTools />
+      <CikguSection />
+      <ProgressPreview />
+      <ParentsSection />
+      <PricingSection />
+      <FinalCta />
+      <SiteFooter />
+    </div>
   );
 }
