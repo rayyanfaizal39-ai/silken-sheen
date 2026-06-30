@@ -199,6 +199,7 @@ function Hero() {
               Start your mission
             </PrimaryCta>
             <SecondaryCta to="/subjects">Explore subjects</SecondaryCta>
+            <WatchIntroVideo />
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-6 text-xs text-white/50">
             <div className="flex items-center gap-2">
@@ -213,24 +214,57 @@ function Hero() {
           </div>
         </div>
 
-        {/* Astronaut card */}
-        <div className="relative">
+        {/* Star Captain hero card */}
+        <div className="relative group">
           <div
             aria-hidden
-            className="absolute inset-0 rounded-[2rem] blur-2xl opacity-70"
+            className="absolute -inset-6 rounded-[2.5rem] blur-3xl opacity-80"
             style={{
               background:
-                "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%)",
+                "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%), radial-gradient(40% 40% at 70% 80%, rgba(250,204,21,0.35), transparent 70%)",
             }}
           />
-          <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] backdrop-blur-xl aspect-[4/5]">
-            <AstronautScene />
-            <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
-              <div className="text-xs uppercase tracking-[0.2em] text-white/60">
-                AcadeMY · Companion
+          <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] aspect-[4/5]">
+            <img
+              src={starCaptain.url}
+              alt="AcadeMY Star Captain — your cosmic learning hero"
+              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1800ms] ease-out group-hover:scale-[1.04]"
+              draggable={false}
+            />
+            {/* top vignette */}
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(5,8,22,0.0) 40%, rgba(5,8,22,0.65) 100%)",
+              }}
+            />
+
+            {/* Level badge */}
+            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5">
+              <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
+                18
+              </span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-nova-yellow">
+                Star Captain
+              </span>
+            </div>
+
+            {/* XP bar */}
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-white/70">
+                <span>Nova · Lvl 18</span>
+                <span className="text-nova-yellow">12,480 XP</span>
               </div>
-              <div className="mt-1 text-white font-semibold">
-                Your AI cikgu is online
+              <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-nova-yellow via-amber-300 to-nova-yellow shadow-[0_0_14px_rgba(250,204,21,0.7)]"
+                  style={{ width: "72%" }}
+                />
+              </div>
+              <div className="mt-3 text-white font-semibold">
+                Every Legend Starts With Learning.
               </div>
             </div>
           </div>
