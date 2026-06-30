@@ -48,17 +48,18 @@ export function CinematicStars() {
       });
     };
 
-    const spawnMeteor = () => {
+    const spawnMeteor = (hero = false) => {
       const fromLeft = Math.random() > 0.5;
+      const ang = fromLeft ? Math.PI / 7 + Math.random() * 0.15 : Math.PI - Math.PI / 7 - Math.random() * 0.15;
       meteors.push({
-        x: fromLeft ? -40 : w + 40,
-        y: Math.random() * h * 0.6,
-        len: 80 + Math.random() * 140,
-        speed: 3 + Math.random() * 3,
-        ang: fromLeft ? Math.PI / 5 : Math.PI - Math.PI / 5,
+        x: fromLeft ? -60 : w + 60,
+        y: hero ? h * (0.18 + Math.random() * 0.3) : Math.random() * h * 0.7,
+        len: hero ? 320 + Math.random() * 220 : 140 + Math.random() * 180,
+        speed: hero ? 9 + Math.random() * 4 : 4.5 + Math.random() * 3.5,
+        ang,
         a: 0,
         life: 0,
-        max: 140 + Math.random() * 80,
+        max: hero ? 200 + Math.random() * 80 : 140 + Math.random() * 80,
       });
     };
 
