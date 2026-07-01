@@ -20,7 +20,8 @@ import {
   ShieldCheck,
   Star,
 } from "lucide-react";
-import { useState, type CSSProperties, type ReactNode } from "react";
+import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { SiteFooter } from "@/components/SiteFooter";
