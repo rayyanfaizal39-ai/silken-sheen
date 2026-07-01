@@ -1147,15 +1147,17 @@ function FinalCta() {
 
 export function Landing() {
   return (
-    <div className="relative min-h-screen bg-[#050816] text-white overflow-hidden">
-      {/* starfield base */}
+    <div className="relative min-h-screen text-white overflow-hidden">
+      {/* uploaded space background */}
       <div
         aria-hidden
-        className="fixed inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,0.18), transparent 60%), radial-gradient(900px 500px at -10% 30%, rgba(59,130,246,0.12), transparent 60%), #050816",
-        }}
+        className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${backGround.url})` }}
+      />
+      {/* dark scrim for readability */}
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10 bg-black/45"
       />
       <CinematicStars />
       <LandingNav />
