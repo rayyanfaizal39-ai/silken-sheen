@@ -169,10 +169,26 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     definition:
       "Kata adjektif ialah perkataan yang menerangkan sifat, keadaan, atau ciri-ciri sesuatu kata nama.",
     subtypes: [
-      { name: "Sifatan", description: "Menerangkan sifat fizikal atau perasaan.", examples: ["cantik", "tinggi", "marah", "sedih"] },
-      { name: "Ukuran", description: "Menerangkan saiz atau jarak.", examples: ["besar", "kecil", "panjang", "pendek"] },
-      { name: "Warna", description: "Menerangkan warna sesuatu benda.", examples: ["merah", "biru", "hijau", "hitam"] },
-      { name: "Cara", description: "Menerangkan cara atau gaya.", examples: ["laju", "perlahan", "cermat", "berhati-hati"] },
+      {
+        name: "Sifatan",
+        description: "Menerangkan sifat fizikal atau perasaan.",
+        examples: ["cantik", "tinggi", "marah", "sedih"],
+      },
+      {
+        name: "Ukuran",
+        description: "Menerangkan saiz atau jarak.",
+        examples: ["besar", "kecil", "panjang", "pendek"],
+      },
+      {
+        name: "Warna",
+        description: "Menerangkan warna sesuatu benda.",
+        examples: ["merah", "biru", "hijau", "hitam"],
+      },
+      {
+        name: "Cara",
+        description: "Menerangkan cara atau gaya.",
+        examples: ["laju", "perlahan", "cermat", "berhati-hati"],
+      },
     ],
     commonMistakes: [
       "Meletakkan kata adjektif sebelum kata nama (BM: 'budak pandai' bukan 'pandai budak')",
@@ -192,10 +208,26 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     definition:
       "Kata tugas ialah kata yang tidak berfungsi sebagai inti frasa tetapi menjalankan tugas nahu tertentu dalam ayat.",
     subtypes: [
-      { name: "Kata Penyambung Ayat", description: "Menyambung dua klausa.", examples: ["dan", "atau", "tetapi", "kerana", "supaya"] },
-      { name: "Kata Sendi Nama", description: "Mendahului frasa nama.", examples: ["di", "ke", "dari", "daripada", "kepada"] },
-      { name: "Kata Bantu", description: "Membantu predikat.", examples: ["akan", "telah", "sedang", "boleh", "mesti"] },
-      { name: "Kata Tanya", description: "Membentuk soalan.", examples: ["apa", "siapa", "bila", "di mana", "mengapa"] },
+      {
+        name: "Kata Penyambung Ayat",
+        description: "Menyambung dua klausa.",
+        examples: ["dan", "atau", "tetapi", "kerana", "supaya"],
+      },
+      {
+        name: "Kata Sendi Nama",
+        description: "Mendahului frasa nama.",
+        examples: ["di", "ke", "dari", "daripada", "kepada"],
+      },
+      {
+        name: "Kata Bantu",
+        description: "Membantu predikat.",
+        examples: ["akan", "telah", "sedang", "boleh", "mesti"],
+      },
+      {
+        name: "Kata Tanya",
+        description: "Membentuk soalan.",
+        examples: ["apa", "siapa", "bila", "di mana", "mengapa"],
+      },
     ],
     commonMistakes: [
       "Keliru antara 'di' (kata sendi) dan 'di-' (imbuhan): 'di sekolah' vs 'diambil'",
@@ -214,8 +246,16 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     definition:
       "Kata kerja tak transitif ialah kata kerja yang tidak memerlukan objek untuk melengkapkan maknanya.",
     subtypes: [
-      { name: "Tanpa Pelengkap", description: "Bermakna dengan sendiri.", examples: ["tidur", "berlari", "menangis", "terbang"] },
-      { name: "Dengan Pelengkap", description: "Memerlukan unsur penerang.", examples: ["berjalan ke sekolah", "tinggal di sini"] },
+      {
+        name: "Tanpa Pelengkap",
+        description: "Bermakna dengan sendiri.",
+        examples: ["tidur", "berlari", "menangis", "terbang"],
+      },
+      {
+        name: "Dengan Pelengkap",
+        description: "Memerlukan unsur penerang.",
+        examples: ["berjalan ke sekolah", "tinggal di sini"],
+      },
     ],
     commonMistakes: [
       "Menambah objek selepas kata kerja tak transitif (contoh: 'tidur katil' adalah salah)",
@@ -234,9 +274,21 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     definition:
       "Kata ganda ialah proses menggandakan kata dasar untuk menghasilkan makna tertentu.",
     subtypes: [
-      { name: "Kata Ganda Penuh", description: "Ulang kata dasar sepenuhnya.", examples: ["kanak-kanak", "sayur-sayuran", "buah-buahan"] },
-      { name: "Kata Ganda Separa", description: "Gandakan suku pertama sahaja.", examples: ["lelaki", "tetamu", "pepohon", "sesisir"] },
-      { name: "Kata Ganda Berentak", description: "Gandakan dengan perubahan bunyi.", examples: ["selok-belok", "ramah-tamah", "lauk-pauk"] },
+      {
+        name: "Kata Ganda Penuh",
+        description: "Ulang kata dasar sepenuhnya.",
+        examples: ["kanak-kanak", "sayur-sayuran", "buah-buahan"],
+      },
+      {
+        name: "Kata Ganda Separa",
+        description: "Gandakan suku pertama sahaja.",
+        examples: ["lelaki", "tetamu", "pepohon", "sesisir"],
+      },
+      {
+        name: "Kata Ganda Berentak",
+        description: "Gandakan dengan perubahan bunyi.",
+        examples: ["selok-belok", "ramah-tamah", "lauk-pauk"],
+      },
     ],
     commonMistakes: [
       "Menggunakan kata ganda untuk bermaksud banyak (dalam BM formal, 'buku-buku' ≠ sekadar banyak buku)",
@@ -255,10 +307,26 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     definition:
       "Pola ayat inti ialah ayat mudah yang terdiri daripada subjek dan predikat tanpa unsur keterangan.",
     subtypes: [
-      { name: "FN + FN", description: "Frasa nama + frasa nama.", examples: ["Ali murid", "Dia doktor"] },
-      { name: "FN + FK", description: "Frasa nama + frasa kerja.", examples: ["Ali berlari", "Mereka membaca buku"] },
-      { name: "FN + FA", description: "Frasa nama + frasa adjektif.", examples: ["Bunga itu cantik", "Budak ini pandai"] },
-      { name: "FN + FS", description: "Frasa nama + frasa sendi.", examples: ["Buku itu di meja", "Mereka dari Johor"] },
+      {
+        name: "FN + FN",
+        description: "Frasa nama + frasa nama.",
+        examples: ["Ali murid", "Dia doktor"],
+      },
+      {
+        name: "FN + FK",
+        description: "Frasa nama + frasa kerja.",
+        examples: ["Ali berlari", "Mereka membaca buku"],
+      },
+      {
+        name: "FN + FA",
+        description: "Frasa nama + frasa adjektif.",
+        examples: ["Bunga itu cantik", "Budak ini pandai"],
+      },
+      {
+        name: "FN + FS",
+        description: "Frasa nama + frasa sendi.",
+        examples: ["Buku itu di meja", "Mereka dari Johor"],
+      },
     ],
     commonMistakes: [
       "Mengelirukan subjek dan predikat dalam ayat",
@@ -277,9 +345,21 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     definition:
       "Kesalahan ayat merujuk kepada penggunaan bahasa yang menyimpang daripada tatabahasa Bahasa Melayu baku.",
     subtypes: [
-      { name: "Kesalahan Ejaan", description: "Perkataan ditulis dengan cara yang salah.", examples: ["'saye' (salah) → 'saya' (betul)", "'perlu' vs 'perlu'"] },
-      { name: "Kesalahan Tanda Baca", description: "Penggunaan tanda baca yang tidak tepat.", examples: ["Tiada koma sebelum 'tetapi'", "Tiada titik di hujung ayat"] },
-      { name: "Pengaruh Bahasa Lain", description: "Ayat yang dipengaruhi struktur bahasa asing.", examples: ["'Dia ada pergi' (bahasa pasar) → 'Dia telah pergi'"] },
+      {
+        name: "Kesalahan Ejaan",
+        description: "Perkataan ditulis dengan cara yang salah.",
+        examples: ["'saye' (salah) → 'saya' (betul)", "'perlu' vs 'perlu'"],
+      },
+      {
+        name: "Kesalahan Tanda Baca",
+        description: "Penggunaan tanda baca yang tidak tepat.",
+        examples: ["Tiada koma sebelum 'tetapi'", "Tiada titik di hujung ayat"],
+      },
+      {
+        name: "Pengaruh Bahasa Lain",
+        description: "Ayat yang dipengaruhi struktur bahasa asing.",
+        examples: ["'Dia ada pergi' (bahasa pasar) → 'Dia telah pergi'"],
+      },
     ],
     commonMistakes: [
       "Menggunakan kata 'sangat' dua kali: 'sangat cantik sekali'",
@@ -299,9 +379,25 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     definition:
       "Peribahasa ialah ungkapan kata-kata yang mempunyai makna kiasan atau tersirat, biasanya dalam bentuk simpulan bahasa, pepatah, atau perumpamaan.",
     subtypes: [
-      { name: "Simpulan Bahasa", description: "Gabungan dua perkataan atau lebih dengan makna kiasan.", examples: ["naik angin (marah)", "buah tangan (hadiah)", "kaki bangku (tidak pandai bersukan)"] },
-      { name: "Pepatah", description: "Ayat pendek yang mengandungi pengajaran.", examples: ["Sediakan payung sebelum hujan", "Bersatu teguh, bercerai roboh"] },
-      { name: "Perumpamaan", description: "Membandingkan sesuatu menggunakan kata 'seperti' atau 'bagai'.", examples: ["Seperti aur dengan tebing", "Bagai pungguk rindukan bulan"] },
+      {
+        name: "Simpulan Bahasa",
+        description: "Gabungan dua perkataan atau lebih dengan makna kiasan.",
+        examples: [
+          "naik angin (marah)",
+          "buah tangan (hadiah)",
+          "kaki bangku (tidak pandai bersukan)",
+        ],
+      },
+      {
+        name: "Pepatah",
+        description: "Ayat pendek yang mengandungi pengajaran.",
+        examples: ["Sediakan payung sebelum hujan", "Bersatu teguh, bercerai roboh"],
+      },
+      {
+        name: "Perumpamaan",
+        description: "Membandingkan sesuatu menggunakan kata 'seperti' atau 'bagai'.",
+        examples: ["Seperti aur dengan tebing", "Bagai pungguk rindukan bulan"],
+      },
     ],
     commonMistakes: [
       "Menyalah tafsir makna peribahasa secara literal",
@@ -320,7 +416,8 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     label: "Pemahaman Petikan",
     topicType: "pemahaman",
     badge: "Pemahaman",
-    description: "Kemahiran menjawab soalan berdasarkan petikan teks yang diberikan dalam peperiksaan.",
+    description:
+      "Kemahiran menjawab soalan berdasarkan petikan teks yang diberikan dalam peperiksaan.",
     steps: [
       "Baca soalan dahulu sebelum membaca petikan",
       "Baca petikan sekali lalu — faham idea umum",
@@ -344,7 +441,8 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     label: "Soalan KBAT",
     topicType: "pemahaman",
     badge: "Pemahaman",
-    description: "Kemahiran Berfikir Aras Tinggi (KBAT) — soalan yang menguji analisis, penilaian, dan kreativiti pelajar.",
+    description:
+      "Kemahiran Berfikir Aras Tinggi (KBAT) — soalan yang menguji analisis, penilaian, dan kreativiti pelajar.",
     steps: [
       "Kenal pasti kata arahan: 'jelaskan', 'nilaikan', 'bandingkan', 'huraikan'",
       "Berikan pendapat peribadi dengan justifikasi",
@@ -366,7 +464,8 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     label: "Cara Cari Isi",
     topicType: "pemahaman",
     badge: "Pemahaman",
-    description: "Teknik mengenal pasti isi penting dalam petikan untuk menjawab soalan pemahaman dan ringkasan.",
+    description:
+      "Teknik mengenal pasti isi penting dalam petikan untuk menjawab soalan pemahaman dan ringkasan.",
     steps: [
       "Baca soalan — kenal pasti kata kunci soalan",
       "Cari bahagian petikan yang berkaitan dengan kata kunci",
@@ -389,7 +488,8 @@ const PEMAHAMAN_TOPICS: BMTopic[] = [
     label: "Cara Jawab Soalan Pemahaman",
     topicType: "pemahaman",
     badge: "Pemahaman",
-    description: "Panduan lengkap cara menjawab pelbagai jenis soalan pemahaman dalam UASA dan peperiksaan lain.",
+    description:
+      "Panduan lengkap cara menjawab pelbagai jenis soalan pemahaman dalam UASA dan peperiksaan lain.",
     steps: [
       "Baca soalan dengan teliti — berapa markah? apa yang ditanya?",
       "Tentukan jenis soalan: fakta, inferens, kosa kata, atau soalan KBAT",
@@ -417,7 +517,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Pantun",
     genre: "Pantun",
-    sinopsis: "Pantun dua kerat mengandungi dua baris — satu baris pembayang dan satu baris maksud.",
+    sinopsis:
+      "Pantun dua kerat mengandungi dua baris — satu baris pembayang dan satu baris maksud.",
     tema: "Kecekalan hati dan semangat dalam kehidupan seharian.",
     persoalan: ["Persoalan kegigihan dalam mencapai kejayaan", "Persoalan kepentingan akal budi"],
     nilai: ["Ketekunan", "Kesabaran", "Semangat juang"],
@@ -433,7 +534,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Syair",
     genre: "Syair",
-    sinopsis: "Syair ini menggunakan pohon buluh sebagai simbolisme untuk menyampaikan mesej tentang kehidupan dan ketabahan.",
+    sinopsis:
+      "Syair ini menggunakan pohon buluh sebagai simbolisme untuk menyampaikan mesej tentang kehidupan dan ketabahan.",
     tema: "Ketabahan dalam menghadapi cabaran hidup.",
     persoalan: ["Persoalan ketabahan menghadapi dugaan", "Persoalan kekuatan dalaman manusia"],
     nilai: ["Ketabahan", "Keberanian", "Keyakinan diri"],
@@ -449,7 +551,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Sajak",
     genre: "Sajak",
-    sinopsis: "Sajak ini mengumpamakan manusia seperti sehelai daun yang bergantung pada alam dan kodrat.",
+    sinopsis:
+      "Sajak ini mengumpamakan manusia seperti sehelai daun yang bergantung pada alam dan kodrat.",
     tema: "Kehidupan manusia yang terikat dengan alam dan ketentuan Ilahi.",
     persoalan: ["Persoalan hubungan manusia dengan alam", "Persoalan ketentuan hidup dan mati"],
     nilai: ["Kesyukuran", "Kerendahan hati", "Rasa hormat terhadap alam"],
@@ -465,7 +568,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Sajak",
     genre: "Sajak",
-    sinopsis: "Sajak ungkapan rasa syukur dan terima kasih kepada mereka yang berjasa dalam kehidupan.",
+    sinopsis:
+      "Sajak ungkapan rasa syukur dan terima kasih kepada mereka yang berjasa dalam kehidupan.",
     tema: "Rasa syukur dan penghargaan terhadap jasa orang lain.",
     persoalan: ["Persoalan penghargaan terhadap ibu bapa dan guru", "Persoalan hutang budi"],
     nilai: ["Rasa syukur", "Mengenang jasa", "Taat kepada ibu bapa"],
@@ -481,7 +585,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Sajak",
     genre: "Sajak",
-    sinopsis: "Sajak 'Aku' karya Chairil Anwar — ekspresi jiwa yang bebas, berani, dan penuh semangat.",
+    sinopsis:
+      "Sajak 'Aku' karya Chairil Anwar — ekspresi jiwa yang bebas, berani, dan penuh semangat.",
     tema: "Kebebasan jiwa dan semangat hidup yang membara.",
     persoalan: ["Persoalan kebebasan berfikir", "Persoalan semangat untuk terus berjuang"],
     nilai: ["Keberanian", "Kebebasan", "Semangat hidup"],
@@ -497,9 +602,13 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Sajak",
     genre: "Sajak",
-    sinopsis: "Sajak ini memuliakan bahasa sebagai kunci kepada ilmu, identiti, dan peradaban bangsa.",
+    sinopsis:
+      "Sajak ini memuliakan bahasa sebagai kunci kepada ilmu, identiti, dan peradaban bangsa.",
     tema: "Kepentingan bahasa dalam membentuk jati diri dan peradaban bangsa.",
-    persoalan: ["Persoalan tanggungjawab menjaga bahasa", "Persoalan bahasa sebagai warisan bangsa"],
+    persoalan: [
+      "Persoalan tanggungjawab menjaga bahasa",
+      "Persoalan bahasa sebagai warisan bangsa",
+    ],
     nilai: ["Cinta bahasa", "Semangat kebangsaan", "Menghargai warisan"],
     pengajaran: [
       "Bahasa adalah khazanah bangsa yang wajib dijaga dan dipelihara",
@@ -513,9 +622,13 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Prosa Tradisional",
     genre: "Prosa Tradisional",
-    sinopsis: "Kisah asal usul padi yang menjelaskan bagaimana padi menjadi makanan asasi manusia melalui pengorbanan.",
+    sinopsis:
+      "Kisah asal usul padi yang menjelaskan bagaimana padi menjadi makanan asasi manusia melalui pengorbanan.",
     tema: "Pengorbanan untuk kebaikan bersama.",
-    persoalan: ["Persoalan pengorbanan demi kesejahteraan manusia", "Persoalan asal usul sesuatu perkara"],
+    persoalan: [
+      "Persoalan pengorbanan demi kesejahteraan manusia",
+      "Persoalan asal usul sesuatu perkara",
+    ],
     nilai: ["Pengorbanan", "Kasih sayang", "Bersyukur dengan rezeki"],
     pengajaran: [
       "Kita perlu bersyukur dengan nikmat makanan yang ada",
@@ -529,7 +642,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Cerpen",
     genre: "Cerpen",
-    sinopsis: "Cerpen tentang seorang kanak-kanak dan buah oren yang menjadi simbol kasih sayang ibu bapa.",
+    sinopsis:
+      "Cerpen tentang seorang kanak-kanak dan buah oren yang menjadi simbol kasih sayang ibu bapa.",
     tema: "Kasih sayang ibu bapa yang tidak ternilai.",
     persoalan: ["Persoalan pengorbanan ibu bapa", "Persoalan menghargai kasih sayang keluarga"],
     nilai: ["Kasih sayang", "Berterima kasih", "Menghargai keluarga"],
@@ -545,7 +659,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Cerpen",
     genre: "Cerpen",
-    sinopsis: "Cerpen tentang makna sebuah hadiah yang melebihi nilai material — menjadi lambang persahabatan dan keikhlasan.",
+    sinopsis:
+      "Cerpen tentang makna sebuah hadiah yang melebihi nilai material — menjadi lambang persahabatan dan keikhlasan.",
     tema: "Keikhlasan dalam memberi dan nilai persahabatan sejati.",
     persoalan: ["Persoalan keikhlasan dalam persahabatan", "Persoalan nilai sebuah hadiah"],
     nilai: ["Keikhlasan", "Persahabatan", "Kerendahan hati"],
@@ -561,7 +676,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Cerpen",
     genre: "Cerpen",
-    sinopsis: "Cerpen bertema perpaduan kaum melalui tradisi perayaan bersama kejiranan berbilang kaum.",
+    sinopsis:
+      "Cerpen bertema perpaduan kaum melalui tradisi perayaan bersama kejiranan berbilang kaum.",
     tema: "Perpaduan kaum dan semangat kejiranan yang harmoni.",
     persoalan: ["Persoalan kepentingan perpaduan kaum", "Persoalan menghormati budaya lain"],
     nilai: ["Perpaduan", "Toleransi", "Menghormati budaya lain"],
@@ -577,7 +693,8 @@ const KOMSAS_TOPICS: BMTopic[] = [
     topicType: "komsas",
     badge: "Drama",
     genre: "Drama",
-    sinopsis: "Drama satu babak tentang konflik dalam keluarga yang diselesaikan melalui dialog dan kefahaman.",
+    sinopsis:
+      "Drama satu babak tentang konflik dalam keluarga yang diselesaikan melalui dialog dan kefahaman.",
     tema: "Kepentingan komunikasi dan kefahaman dalam keluarga.",
     persoalan: ["Persoalan kerapuhan hubungan keluarga", "Persoalan penyelesaian konflik"],
     nilai: ["Komunikasi terbuka", "Kasih sayang keluarga", "Pemaafan"],
@@ -597,9 +714,16 @@ const NOVEL_TOPICS: BMTopic[] = [
     badge: "Novel",
     zon: "Zon Utara (Kedah, Perlis, Pulau Pinang, Perak)",
     penulis: "Novel KSSM Tingkatan 1",
-    sinopsis: "Kamarul seorang atlet lari berbakat yang menjadi terkenal dan mula bersikap sombong serta mengabaikan latihan. Beliau bersikap kasar terhadap Saridah dan bertengkar dengan jurulatihnya Encik Kadir. Sebuah kemalangan jalan raya mengubah segala-galanya — Kamarul insaf, kembali berlatih dengan disiplin, dan akhirnya menjadi juara Sukan SEA sambil memecahkan rekod.",
+    sinopsis:
+      "Kamarul seorang atlet lari berbakat yang menjadi terkenal dan mula bersikap sombong serta mengabaikan latihan. Beliau bersikap kasar terhadap Saridah dan bertengkar dengan jurulatihnya Encik Kadir. Sebuah kemalangan jalan raya mengubah segala-galanya — Kamarul insaf, kembali berlatih dengan disiplin, dan akhirnya menjadi juara Sukan SEA sambil memecahkan rekod.",
     tema: "Keinsafan membawa kejayaan.",
-    persoalan: ["Kepentingan disiplin", "Kesan kesombongan", "Persahabatan sejati", "Tanggungjawab jurulatih", "Keberanian berubah"],
+    persoalan: [
+      "Kepentingan disiplin",
+      "Kesan kesombongan",
+      "Persahabatan sejati",
+      "Tanggungjawab jurulatih",
+      "Keberanian berubah",
+    ],
     nilai: ["Disiplin", "Keinsafan", "Bertanggungjawab", "Kasih sayang", "Ketabahan"],
     pengajaran: [
       "Kita hendaklah sentiasa berdisiplin dalam apa jua bidang yang diceburi",
@@ -610,10 +734,26 @@ const NOVEL_TOPICS: BMTopic[] = [
       "Kita hendaklah bersyukur dengan bakat yang dikurniakan",
     ],
     watak: [
-      { nama: "Kamarul", peranan: "Watak utama", perwatakan: ["Berbakat", "Sombong", "Angkuh", "Berani mengakui kesilapan", "Gigih"] },
-      { nama: "Encik Kadir", peranan: "Jurulatih", perwatakan: ["Penyabar", "Bertanggungjawab", "Berdedikasi"] },
-      { nama: "Saridah", peranan: "Watak sampingan", perwatakan: ["Prihatin", "Setia berkawan", "Pemaaf"] },
-      { nama: "De Wega", peranan: "Atlet berpengalaman", perwatakan: ["Berdisiplin", "Merendah diri", "Memberi nasihat"] },
+      {
+        nama: "Kamarul",
+        peranan: "Watak utama",
+        perwatakan: ["Berbakat", "Sombong", "Angkuh", "Berani mengakui kesilapan", "Gigih"],
+      },
+      {
+        nama: "Encik Kadir",
+        peranan: "Jurulatih",
+        perwatakan: ["Penyabar", "Bertanggungjawab", "Berdedikasi"],
+      },
+      {
+        nama: "Saridah",
+        peranan: "Watak sampingan",
+        perwatakan: ["Prihatin", "Setia berkawan", "Pemaaf"],
+      },
+      {
+        nama: "De Wega",
+        peranan: "Atlet berpengalaman",
+        perwatakan: ["Berdisiplin", "Merendah diri", "Memberi nasihat"],
+      },
     ],
   },
   {
@@ -623,9 +763,16 @@ const NOVEL_TOPICS: BMTopic[] = [
     badge: "Novel",
     zon: "Zon Timur (Pahang, Terengganu, Kelantan)",
     penulis: "Novel KSSM Tingkatan 1",
-    sinopsis: "Datuk mencabar Firdaus dan rakan-rakannya menjalankan ekspedisi berbasikal ke Pantai Morib. Firdaus yang manja dan mudah berputus asa terpaksa menghadapi pelbagai cabaran sepanjang perjalanan bersama Azlina dan Johari. Firdaus terjatuh, meminta berhenti, dan kemudian berbohong kepada Mazlinda tentang pencapaiannya. Apabila Firdaus hampir lemas di laut, beliau diselamatkan dan akhirnya insaf — berjanji untuk berubah menjadi lebih jujur dan berani.",
+    sinopsis:
+      "Datuk mencabar Firdaus dan rakan-rakannya menjalankan ekspedisi berbasikal ke Pantai Morib. Firdaus yang manja dan mudah berputus asa terpaksa menghadapi pelbagai cabaran sepanjang perjalanan bersama Azlina dan Johari. Firdaus terjatuh, meminta berhenti, dan kemudian berbohong kepada Mazlinda tentang pencapaiannya. Apabila Firdaus hampir lemas di laut, beliau diselamatkan dan akhirnya insaf — berjanji untuk berubah menjadi lebih jujur dan berani.",
     tema: "Cabaran dan konflik remaja dalam membentuk jati diri.",
-    persoalan: ["Kepentingan kejujuran", "Semangat tidak berputus asa", "Persahabatan", "Cabaran remaja", "Kepentingan berfikir sebelum bertindak"],
+    persoalan: [
+      "Kepentingan kejujuran",
+      "Semangat tidak berputus asa",
+      "Persahabatan",
+      "Cabaran remaja",
+      "Kepentingan berfikir sebelum bertindak",
+    ],
     nilai: ["Keberanian", "Kesabaran", "Kejujuran", "Bertanggungjawab", "Ketabahan"],
     pengajaran: [
       "Kita hendaklah jujur dalam setiap keadaan walaupun kebenaran itu pahit",
@@ -636,9 +783,17 @@ const NOVEL_TOPICS: BMTopic[] = [
       "Kita hendaklah berani mengakui kesilapan dan berubah menjadi lebih baik",
     ],
     watak: [
-      { nama: "Firdaus", peranan: "Watak utama", perwatakan: ["Manja", "Mudah berputus asa", "Tidak jujur", "Berani berubah"] },
+      {
+        nama: "Firdaus",
+        peranan: "Watak utama",
+        perwatakan: ["Manja", "Mudah berputus asa", "Tidak jujur", "Berani berubah"],
+      },
       { nama: "Azlina", peranan: "Watak sampingan", perwatakan: ["Cergas", "Berani", "Tegas"] },
-      { nama: "Johari", peranan: "Watak sampingan", perwatakan: ["Matang", "Bertanggungjawab", "Penyabar"] },
+      {
+        nama: "Johari",
+        peranan: "Watak sampingan",
+        perwatakan: ["Matang", "Bertanggungjawab", "Penyabar"],
+      },
       { nama: "Datuk", peranan: "Pemberi cabaran", perwatakan: ["Tegas", "Prihatin"] },
       { nama: "Mazlinda", peranan: "Penguji kejujuran", perwatakan: ["Bijak", "Berani"] },
     ],
@@ -650,9 +805,17 @@ const NOVEL_TOPICS: BMTopic[] = [
     badge: "Novel",
     zon: "Zon Selatan (Johor, Melaka, Negeri Sembilan)",
     penulis: "Novel KSSM Tingkatan 1",
-    sinopsis: "Razali dilantik menjadi penolong setiausaha koperasi sekolah. Beliau bersama Cikgu Zulkifli dan rakan-rakan membawa koperasi ke tahap kejayaan. Namun Munir yang berasa cemburu melancarkan pelbagai gangguan sehingga menyebabkan Razali dipukul, koperasi diceroboh, dan Razali difitnah. Setelah kebenaran terungkap, Munir insaf, koperasi menjadi johan, dan Razali menemui Pak Ramli — bapanya yang dicari.",
+    sinopsis:
+      "Razali dilantik menjadi penolong setiausaha koperasi sekolah. Beliau bersama Cikgu Zulkifli dan rakan-rakan membawa koperasi ke tahap kejayaan. Namun Munir yang berasa cemburu melancarkan pelbagai gangguan sehingga menyebabkan Razali dipukul, koperasi diceroboh, dan Razali difitnah. Setelah kebenaran terungkap, Munir insaf, koperasi menjadi johan, dan Razali menemui Pak Ramli — bapanya yang dicari.",
     tema: "Kegigihan murid dan guru memajukan koperasi sekolah.",
-    persoalan: ["Kesan iri hati", "Kepentingan amanah", "Semangat kerjasama", "Kepentingan memaafkan", "Ketabahan menghadapi dugaan", "Peranan guru membimbing murid"],
+    persoalan: [
+      "Kesan iri hati",
+      "Kepentingan amanah",
+      "Semangat kerjasama",
+      "Kepentingan memaafkan",
+      "Ketabahan menghadapi dugaan",
+      "Peranan guru membimbing murid",
+    ],
     nilai: ["Amanah", "Kerajinan", "Kerjasama", "Ketabahan", "Kejujuran", "Kemaafan"],
     pengajaran: [
       "Kita hendaklah bersikap amanah dalam melaksanakan tanggungjawab yang diberikan",
@@ -663,10 +826,26 @@ const NOVEL_TOPICS: BMTopic[] = [
       "Kita hendaklah menghormati guru yang membimbing kita",
     ],
     watak: [
-      { nama: "Razali", peranan: "Watak utama", perwatakan: ["Rajin", "Amanah", "Tabah", "Bertanggungjawab", "Pemaaf"] },
-      { nama: "Munir", peranan: "Antagonis", perwatakan: ["Iri hati", "Pendendam", "Tidak amanah", "Insaf akan kesilapan"] },
-      { nama: "Ramlah", peranan: "Watak sampingan", perwatakan: ["Rajin", "Setia kawan", "Prihatin"] },
-      { nama: "Cikgu Zulkifli", peranan: "Penasihat koperasi", perwatakan: ["Bijak", "Bertanggungjawab", "Berdedikasi"] },
+      {
+        nama: "Razali",
+        peranan: "Watak utama",
+        perwatakan: ["Rajin", "Amanah", "Tabah", "Bertanggungjawab", "Pemaaf"],
+      },
+      {
+        nama: "Munir",
+        peranan: "Antagonis",
+        perwatakan: ["Iri hati", "Pendendam", "Tidak amanah", "Insaf akan kesilapan"],
+      },
+      {
+        nama: "Ramlah",
+        peranan: "Watak sampingan",
+        perwatakan: ["Rajin", "Setia kawan", "Prihatin"],
+      },
+      {
+        nama: "Cikgu Zulkifli",
+        peranan: "Penasihat koperasi",
+        perwatakan: ["Bijak", "Bertanggungjawab", "Berdedikasi"],
+      },
     ],
   },
   {
@@ -687,7 +866,15 @@ const NOVEL_TOPICS: BMTopic[] = [
       "Penggunaan teknologi secara beretika",
       "Ketabahan menghadapi cabaran dan dugaan",
     ],
-    nilai: ["Kerjasama", "Keberanian", "Keinsafan", "Kegigihan", "Kasih sayang", "Pemaaf", "Bertanggungjawab"],
+    nilai: [
+      "Kerjasama",
+      "Keberanian",
+      "Keinsafan",
+      "Kegigihan",
+      "Kasih sayang",
+      "Pemaaf",
+      "Bertanggungjawab",
+    ],
     pengajaran: [
       "Kita hendaklah menggunakan ilmu untuk memberi manfaat kepada masyarakat",
       "Kita hendaklah bekerjasama untuk mencapai matlamat yang lebih besar",
@@ -697,35 +884,53 @@ const NOVEL_TOPICS: BMTopic[] = [
       "Kita hendaklah sentiasa bersedia untuk memaafkan walaupun pernah disakiti",
     ],
     watak: [
-      { nama: "Amir", peranan: "Watak utama / Protagonis", perwatakan: ["Kreatif", "Bijaksana", "Gigih", "Pemaaf", "Bertanggungjawab"] },
-      { nama: "Usamah", peranan: "Rakan setia Amir", perwatakan: ["Mahir teknologi", "Rajin", "Setia kawan"] },
-      { nama: "Aswan", peranan: "Antagonis yang insaf", perwatakan: ["Iri hati", "Sombong", "Tidak berfikir panjang", "Insaf"] },
-      { nama: "Asma", peranan: "Watak sampingan emosi", perwatakan: ["Lemah lembut", "Tegas", "Prihatin"] },
+      {
+        nama: "Amir",
+        peranan: "Watak utama / Protagonis",
+        perwatakan: ["Kreatif", "Bijaksana", "Gigih", "Pemaaf", "Bertanggungjawab"],
+      },
+      {
+        nama: "Usamah",
+        peranan: "Rakan setia Amir",
+        perwatakan: ["Mahir teknologi", "Rajin", "Setia kawan"],
+      },
+      {
+        nama: "Aswan",
+        peranan: "Antagonis yang insaf",
+        perwatakan: ["Iri hati", "Sombong", "Tidak berfikir panjang", "Insaf"],
+      },
+      {
+        nama: "Asma",
+        peranan: "Watak sampingan emosi",
+        perwatakan: ["Lemah lembut", "Tegas", "Prihatin"],
+      },
     ],
   },
 ];
 
 const RINGKASAN_TOPICS: BMTopic[] = [
   {
-    id: "rangka-ringkasan-markah-tinggi",
-    label: "Rangka Ringkasan Markah Tinggi",
+    id: "rangka-rumusan-markah-tinggi",
+    label: "Rangka Rumusan Markah Tinggi",
     topicType: "rangka-ringkasan",
     badge: "Premium",
-    description: "Formula langkah demi langkah untuk menulis ringkasan markah tinggi — kata kunci, rangka isi, contoh jawapan lengkap, dan senarai semakan.",
+    description:
+      "Formula langkah demi langkah untuk menulis rumusan markah tinggi — kata kunci, rangka isi, contoh jawapan lengkap dan senarai semakan.",
   },
   {
-    id: "teknik-ringkasan-bahagian-c",
-    label: "Teknik Menjawab Ringkasan",
+    id: "teknik-rumusan-bahagian-c",
+    label: "Teknik Menjawab Rumusan",
     topicType: "ringkasan-premium",
     badge: "Premium",
-    description: "Panduan lengkap menjawab soalan Ringkasan Bahagian C — fakta penting, formula emas, penanda wacana, contoh jawapan, dan cabaran interaktif.",
+    description:
+      "Panduan lengkap menjawab soalan Rumusan Bahagian C — fakta penting, formula emas, penanda wacana, contoh jawapan dan cabaran interaktif.",
   },
   {
-    id: "ringkasan-mastery",
-    label: "Penguasaan Ringkasan",
+    id: "rumusan-mastery",
+    label: "Penguasaan Rumusan",
     topicType: "ringkasan",
-    badge: "Ringkasan",
-    description: "Cara menulis ringkasan yang tepat dan padat berdasarkan teks yang diberikan.",
+    badge: "Rumusan",
+    description: "Cara menulis rumusan yang tepat dan padat berdasarkan teks yang diberikan.",
     formula: [
       "Baca teks sekali lalu untuk faham idea umum",
       "Baca kali kedua — kenal pasti dan gariskan isi penting sahaja",
@@ -760,7 +965,8 @@ const KARANGAN_PENDEK_TOPIC: BMTopic = {
   label: "Karangan Pendek (50–80 Patah Perkataan)",
   topicType: "karangan-pendek",
   badge: "Kertas 2",
-  description: "Karangan pendek berdasarkan bahan grafik (jadual, gambar rajah, carta, atau gambar).",
+  description:
+    "Karangan pendek berdasarkan bahan grafik (jadual, gambar rajah, carta, atau gambar).",
   formula: [
     "Baca arahan dengan teliti — berapa patah perkataan? Apa yang perlu ditulis?",
     "Perhatikan bahan grafik — kenal pasti maklumat penting sahaja",
@@ -792,32 +998,38 @@ const RESPONS_TERBUKA_TOPIC: BMTopic = {
   label: "Karangan Respons Terbuka",
   topicType: "respons-terbuka",
   badge: "Kertas 2",
-  description: "Karangan panjang berstruktur — formula tetap untuk pendahuluan, isi, huraian, contoh, dan penutup.",
+  description:
+    "Karangan panjang berstruktur — formula tetap untuk pendahuluan, isi, huraian, contoh, dan penutup.",
   formulae: [
     {
       part: "Pendahuluan",
       formula: "Kenyataan umum (2 ayat) + Kenyataan khusus (1 ayat)",
-      example: "Pada masa kini, teknologi telah menjadi sebahagian daripada kehidupan seharian manusia. Hampir setiap aspek kehidupan melibatkan penggunaan teknologi canggih. Oleh itu, adalah penting kita menguasai penggunaan teknologi dalam pendidikan.",
+      example:
+        "Pada masa kini, teknologi telah menjadi sebahagian daripada kehidupan seharian manusia. Hampir setiap aspek kehidupan melibatkan penggunaan teknologi canggih. Oleh itu, adalah penting kita menguasai penggunaan teknologi dalam pendidikan.",
     },
     {
       part: "Isi Pertama",
       formula: "Ayat isi (1 ayat) + Huraian (1-2 ayat) + Contoh (1 ayat)",
-      example: "Pertama, penggunaan teknologi dapat meningkatkan minat pelajar terhadap pembelajaran. Dengan adanya aplikasi interaktif dan video pembelajaran, pelajar dapat belajar dengan cara yang lebih menyeronokkan. Contohnya, aplikasi matematik interaktif terbukti meningkatkan pencapaian pelajar.",
+      example:
+        "Pertama, penggunaan teknologi dapat meningkatkan minat pelajar terhadap pembelajaran. Dengan adanya aplikasi interaktif dan video pembelajaran, pelajar dapat belajar dengan cara yang lebih menyeronokkan. Contohnya, aplikasi matematik interaktif terbukti meningkatkan pencapaian pelajar.",
     },
     {
       part: "Isi Kedua",
       formula: "Ayat isi + Huraian + Contoh",
-      example: "Selain itu, teknologi membolehkan pembelajaran berlaku tanpa had masa dan tempat. Pelajar boleh mengakses bahan pembelajaran pada bila-bila masa dan di mana sahaja. Misalnya, platform e-pembelajaran membenarkan pelajar mengulang kaji pelajaran dari rumah.",
+      example:
+        "Selain itu, teknologi membolehkan pembelajaran berlaku tanpa had masa dan tempat. Pelajar boleh mengakses bahan pembelajaran pada bila-bila masa dan di mana sahaja. Misalnya, platform e-pembelajaran membenarkan pelajar mengulang kaji pelajaran dari rumah.",
     },
     {
       part: "Isi Ketiga",
       formula: "Ayat isi + Huraian + Contoh",
-      example: "Tambahan pula, teknologi membantu guru menyampaikan pengajaran dengan lebih berkesan. Penggunaan tayangan slaid dan video menjadikan konsep yang kompleks mudah difahami. Hal ini terbukti apabila pencapaian pelajar meningkat selepas guru menggunakan teknologi dalam pengajaran.",
+      example:
+        "Tambahan pula, teknologi membantu guru menyampaikan pengajaran dengan lebih berkesan. Penggunaan tayangan slaid dan video menjadikan konsep yang kompleks mudah difahami. Hal ini terbukti apabila pencapaian pelajar meningkat selepas guru menggunakan teknologi dalam pengajaran.",
     },
     {
       part: "Penutup",
       formula: "Rumusan (1 ayat) + Saranan (1 ayat) + Harapan (1 ayat)",
-      example: "Kesimpulannya, teknologi amat penting dalam sistem pendidikan masa kini. Semua pihak perlu bekerjasama untuk memastikan penggunaan teknologi yang bermanfaat dan bertanggungjawab. Adalah diharapkan generasi muda dapat memanfaatkan teknologi demi masa depan yang lebih cerah.",
+      example:
+        "Kesimpulannya, teknologi amat penting dalam sistem pendidikan masa kini. Semua pihak perlu bekerjasama untuk memastikan penggunaan teknologi yang bermanfaat dan bertanggungjawab. Adalah diharapkan generasi muda dapat memanfaatkan teknologi demi masa depan yang lebih cerah.",
     },
   ],
   steps: [
@@ -852,82 +1064,291 @@ const PENANDA_WACANA_LENGKAP_TOPIC: BMTopic = {
 };
 
 const WORKSHOP_TOPICS: BMTopic[] = [
-  { id: "workshop-keluarga", label: "Kekeluargaan", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Kasih sayang ibu bapa", "Komunikasi terbuka", "Tanggungjawab ahli keluarga", "Masa bersama keluarga", "Menghormati orang tua"],
-    pendahuluan: "Keluarga merupakan institusi terpenting dalam masyarakat. Ia menjadi asas pembentukan peribadi seseorang. Oleh itu, perlu ada usaha untuk memastikan keharmonian keluarga terpelihara.",
-    isi: ["Komunikasi terbuka mengeratkan hubungan keluarga", "Ibu bapa perlu meluangkan masa bersama anak-anak", "Setiap ahli keluarga perlu menunaikan tanggungjawab masing-masing"],
-    penutup: "Kesimpulannya, keluarga bahagia adalah asas masyarakat yang sejahtera. Semua pihak perlu berusaha memupuk nilai-nilai kekeluargaan. Adalah diharapkan institusi keluarga akan terus kukuh dan harmoni.",
-    peribahasa: ["Seperti aur dengan tebing (kerjasama)", "Bersatu teguh bercerai roboh (perpaduan)"] },
+  {
+    id: "workshop-keluarga",
+    label: "Kekeluargaan",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Kasih sayang ibu bapa",
+      "Komunikasi terbuka",
+      "Tanggungjawab ahli keluarga",
+      "Masa bersama keluarga",
+      "Menghormati orang tua",
+    ],
+    pendahuluan:
+      "Keluarga merupakan institusi terpenting dalam masyarakat. Ia menjadi asas pembentukan peribadi seseorang. Oleh itu, perlu ada usaha untuk memastikan keharmonian keluarga terpelihara.",
+    isi: [
+      "Komunikasi terbuka mengeratkan hubungan keluarga",
+      "Ibu bapa perlu meluangkan masa bersama anak-anak",
+      "Setiap ahli keluarga perlu menunaikan tanggungjawab masing-masing",
+    ],
+    penutup:
+      "Kesimpulannya, keluarga bahagia adalah asas masyarakat yang sejahtera. Semua pihak perlu berusaha memupuk nilai-nilai kekeluargaan. Adalah diharapkan institusi keluarga akan terus kukuh dan harmoni.",
+    peribahasa: [
+      "Seperti aur dengan tebing (kerjasama)",
+      "Bersatu teguh bercerai roboh (perpaduan)",
+    ],
+  },
 
-  { id: "workshop-sekolah", label: "Sekolah", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Kepentingan hadir sekolah", "Persahabatan di sekolah", "Peranan guru", "Aktiviti kokurikulum", "Disiplin pelajar"],
-    pendahuluan: "Sekolah merupakan tempat menimba ilmu dan membentuk sahsiah pelajar. Di sinilah generasi muda dipersiapkan untuk menghadapi cabaran masa hadapan. Justeru, suasana sekolah yang kondusif amat penting.",
-    isi: ["Guru memainkan peranan penting dalam membentuk sahsiah pelajar", "Aktiviti kokurikulum membantu perkembangan bakat pelajar", "Disiplin di sekolah membentuk karakter yang kuat"],
-    penutup: "Kesimpulannya, sekolah bukan hanya tempat belajar tetapi juga tempat membentuk diri. Semua pihak perlu bekerjasama mewujudkan suasana sekolah yang terbaik. Diharapkan setiap pelajar dapat memanfaatkan masa di sekolah sepenuhnya.",
-    peribahasa: ["Guru ibarat lilin (pengorbanan guru)", "Melentur buluh biarlah dari rebungnya (didikan awal)"] },
+  {
+    id: "workshop-sekolah",
+    label: "Sekolah",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Kepentingan hadir sekolah",
+      "Persahabatan di sekolah",
+      "Peranan guru",
+      "Aktiviti kokurikulum",
+      "Disiplin pelajar",
+    ],
+    pendahuluan:
+      "Sekolah merupakan tempat menimba ilmu dan membentuk sahsiah pelajar. Di sinilah generasi muda dipersiapkan untuk menghadapi cabaran masa hadapan. Justeru, suasana sekolah yang kondusif amat penting.",
+    isi: [
+      "Guru memainkan peranan penting dalam membentuk sahsiah pelajar",
+      "Aktiviti kokurikulum membantu perkembangan bakat pelajar",
+      "Disiplin di sekolah membentuk karakter yang kuat",
+    ],
+    penutup:
+      "Kesimpulannya, sekolah bukan hanya tempat belajar tetapi juga tempat membentuk diri. Semua pihak perlu bekerjasama mewujudkan suasana sekolah yang terbaik. Diharapkan setiap pelajar dapat memanfaatkan masa di sekolah sepenuhnya.",
+    peribahasa: [
+      "Guru ibarat lilin (pengorbanan guru)",
+      "Melentur buluh biarlah dari rebungnya (didikan awal)",
+    ],
+  },
 
-  { id: "workshop-kebersihan", label: "Kebersihan", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Kebersihan diri", "Kebersihan alam sekitar", "Amalan buang sampah", "Penyelenggaraan tandas awam", "Gotong-royong"],
-    pendahuluan: "Kebersihan adalah amalan murni yang mencerminkan peribadi seseorang dan tahap ketamadunan sesebuah masyarakat. Sekolah dan rumah yang bersih menciptakan persekitaran yang sihat dan selesa. Justeru, budaya kebersihan perlu dipupuk sejak awal lagi.",
-    isi: ["Kebersihan diri menjamin kesihatan fizikal dan mental", "Menjaga kebersihan alam sekitar adalah tanggungjawab bersama", "Gotong-royong memupuk semangat kerjasama dalam menjaga kebersihan"],
-    penutup: "Kebersihan bukan hanya tanggungjawab individu tetapi juga tanggungjawab bersama. Setiap orang perlu memainkan peranan masing-masing demi alam sekitar yang bersih. Marilah kita jadikan kebersihan sebagai gaya hidup yang berterusan.",
-    peribahasa: ["Kebersihan itu separuh daripada iman", "Bersih pangkal sihat"] },
+  {
+    id: "workshop-kebersihan",
+    label: "Kebersihan",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Kebersihan diri",
+      "Kebersihan alam sekitar",
+      "Amalan buang sampah",
+      "Penyelenggaraan tandas awam",
+      "Gotong-royong",
+    ],
+    pendahuluan:
+      "Kebersihan adalah amalan murni yang mencerminkan peribadi seseorang dan tahap ketamadunan sesebuah masyarakat. Sekolah dan rumah yang bersih menciptakan persekitaran yang sihat dan selesa. Justeru, budaya kebersihan perlu dipupuk sejak awal lagi.",
+    isi: [
+      "Kebersihan diri menjamin kesihatan fizikal dan mental",
+      "Menjaga kebersihan alam sekitar adalah tanggungjawab bersama",
+      "Gotong-royong memupuk semangat kerjasama dalam menjaga kebersihan",
+    ],
+    penutup:
+      "Kebersihan bukan hanya tanggungjawab individu tetapi juga tanggungjawab bersama. Setiap orang perlu memainkan peranan masing-masing demi alam sekitar yang bersih. Marilah kita jadikan kebersihan sebagai gaya hidup yang berterusan.",
+    peribahasa: ["Kebersihan itu separuh daripada iman", "Bersih pangkal sihat"],
+  },
 
-  { id: "workshop-kesihatan", label: "Kesihatan", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Pemakanan sihat", "Senaman berkala", "Tidur yang cukup", "Mengelak tekanan", "Pemeriksaan kesihatan"],
-    pendahuluan: "Kesihatan adalah aset paling berharga dalam kehidupan manusia. Tanpa kesihatan yang baik, semua pencapaian lain tidak bererti. Oleh itu, setiap individu perlu mengambil langkah proaktif untuk menjaga kesihatan mereka.",
-    isi: ["Pemakanan seimbang adalah asas kesihatan yang baik", "Senaman berkala meningkatkan kecergasan fizikal dan mental", "Pemeriksaan kesihatan berkala membantu mengesan penyakit awal"],
-    penutup: "Kesihatan yang baik bukan berlaku secara kebetulan tetapi hasil daripada gaya hidup yang sihat. Setiap individu bertanggungjawab menjaga kesihatan diri. Marilah kita mulakan langkah kecil hari ini untuk kesihatan yang lebih baik.",
-    peribahasa: ["Mencegah lebih baik daripada mengubati", "Badan sihat jiwa kuat"] },
+  {
+    id: "workshop-kesihatan",
+    label: "Kesihatan",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Pemakanan sihat",
+      "Senaman berkala",
+      "Tidur yang cukup",
+      "Mengelak tekanan",
+      "Pemeriksaan kesihatan",
+    ],
+    pendahuluan:
+      "Kesihatan adalah aset paling berharga dalam kehidupan manusia. Tanpa kesihatan yang baik, semua pencapaian lain tidak bererti. Oleh itu, setiap individu perlu mengambil langkah proaktif untuk menjaga kesihatan mereka.",
+    isi: [
+      "Pemakanan seimbang adalah asas kesihatan yang baik",
+      "Senaman berkala meningkatkan kecergasan fizikal dan mental",
+      "Pemeriksaan kesihatan berkala membantu mengesan penyakit awal",
+    ],
+    penutup:
+      "Kesihatan yang baik bukan berlaku secara kebetulan tetapi hasil daripada gaya hidup yang sihat. Setiap individu bertanggungjawab menjaga kesihatan diri. Marilah kita mulakan langkah kecil hari ini untuk kesihatan yang lebih baik.",
+    peribahasa: ["Mencegah lebih baik daripada mengubati", "Badan sihat jiwa kuat"],
+  },
 
-  { id: "workshop-alam-sekitar", label: "Alam Sekitar", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Pencemaran alam", "Pemanasan global", "Pemeliharaan hutan", "Kitar semula", "Tanggungjawab terhadap alam"],
-    pendahuluan: "Alam sekitar adalah warisan yang perlu dijaga untuk generasi akan datang. Namun, pembangunan pesat telah memberi impak negatif kepada alam semula jadi. Kesedaran dan tindakan segera amat diperlukan untuk memelihara alam sekitar.",
-    isi: ["Pencemaran alam memberi kesan buruk kepada kesihatan manusia", "Pemeliharaan hutan penting untuk mengekalkan biodiversiti", "Amalan kitar semula dapat mengurangkan sisa buangan"],
-    penutup: "Alam sekitar yang sihat adalah tanggungjawab bersama kita semua. Setiap tindakan kecil seperti mengurangkan penggunaan plastik boleh memberi impak besar. Jadilah agen perubahan untuk alam sekitar yang lebih baik.",
-    peribahasa: ["Jaga alam, alam jaga kita", "Bumi dipinjam, bukan diwarisi"] },
+  {
+    id: "workshop-alam-sekitar",
+    label: "Alam Sekitar",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Pencemaran alam",
+      "Pemanasan global",
+      "Pemeliharaan hutan",
+      "Kitar semula",
+      "Tanggungjawab terhadap alam",
+    ],
+    pendahuluan:
+      "Alam sekitar adalah warisan yang perlu dijaga untuk generasi akan datang. Namun, pembangunan pesat telah memberi impak negatif kepada alam semula jadi. Kesedaran dan tindakan segera amat diperlukan untuk memelihara alam sekitar.",
+    isi: [
+      "Pencemaran alam memberi kesan buruk kepada kesihatan manusia",
+      "Pemeliharaan hutan penting untuk mengekalkan biodiversiti",
+      "Amalan kitar semula dapat mengurangkan sisa buangan",
+    ],
+    penutup:
+      "Alam sekitar yang sihat adalah tanggungjawab bersama kita semua. Setiap tindakan kecil seperti mengurangkan penggunaan plastik boleh memberi impak besar. Jadilah agen perubahan untuk alam sekitar yang lebih baik.",
+    peribahasa: ["Jaga alam, alam jaga kita", "Bumi dipinjam, bukan diwarisi"],
+  },
 
-  { id: "workshop-sukan", label: "Sukan", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Faedah sukan", "Semangat kesukanan", "Perpaduan melalui sukan", "Disiplin atlet", "Sukan untuk kesihatan"],
-    pendahuluan: "Sukan bukan sekadar aktiviti fizikal tetapi juga wadah membina sahsiah dan memupuk perpaduan. Malaysia telah melahirkan ramai atlet cemerlang di peringkat antarabangsa. Sokongan semua pihak amat penting untuk melestarikan kecemerlangan sukan negara.",
-    isi: ["Sukan membina disiplin dan semangat juang yang tinggi", "Sukan memupuk perpaduan antara kaum dan peringkat umur", "Penglibatan aktif dalam sukan meningkatkan kesihatan fizikal dan mental"],
-    penutup: "Sukan adalah medium yang berkesan untuk membentuk individu yang seimbang dari segi jasmani, emosi, rohani, dan intelek. Semua pihak perlu menyokong budaya sukan di peringkat akar umbi. Jadilah rakyat yang aktif dan cergas melalui penglibatan dalam sukan.",
-    peribahasa: ["Melentur buluh biarlah dari rebungnya", "Sihat fizikal, sihat minda"] },
+  {
+    id: "workshop-sukan",
+    label: "Sukan",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Faedah sukan",
+      "Semangat kesukanan",
+      "Perpaduan melalui sukan",
+      "Disiplin atlet",
+      "Sukan untuk kesihatan",
+    ],
+    pendahuluan:
+      "Sukan bukan sekadar aktiviti fizikal tetapi juga wadah membina sahsiah dan memupuk perpaduan. Malaysia telah melahirkan ramai atlet cemerlang di peringkat antarabangsa. Sokongan semua pihak amat penting untuk melestarikan kecemerlangan sukan negara.",
+    isi: [
+      "Sukan membina disiplin dan semangat juang yang tinggi",
+      "Sukan memupuk perpaduan antara kaum dan peringkat umur",
+      "Penglibatan aktif dalam sukan meningkatkan kesihatan fizikal dan mental",
+    ],
+    penutup:
+      "Sukan adalah medium yang berkesan untuk membentuk individu yang seimbang dari segi jasmani, emosi, rohani, dan intelek. Semua pihak perlu menyokong budaya sukan di peringkat akar umbi. Jadilah rakyat yang aktif dan cergas melalui penglibatan dalam sukan.",
+    peribahasa: ["Melentur buluh biarlah dari rebungnya", "Sihat fizikal, sihat minda"],
+  },
 
-  { id: "workshop-amalan-baik", label: "Amalan Baik", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Hormat orang tua", "Tolong-menolong", "Bersikap jujur", "Menepati masa", "Bersyukur"],
-    pendahuluan: "Amalan baik adalah teras pembentukan masyarakat yang beradab dan bertamadun. Individu yang mengamalkan nilai-nilai murni akan disanjungi oleh masyarakat. Justeru, penanaman amalan baik perlu bermula dari peringkat awal kehidupan.",
-    isi: ["Menghormati orang tua mencerminkan budi pekerti yang mulia", "Sikap tolong-menolong memupuk semangat perpaduan dalam masyarakat", "Kejujuran adalah asas kepercayaan dalam hubungan sesama manusia"],
-    penutup: "Amalan baik bukan hanya memberi manfaat kepada diri sendiri tetapi juga kepada masyarakat. Marilah kita tanamkan nilai-nilai murni dalam diri sejak hari ini. Dengan budaya amalan baik yang kuat, masyarakat kita akan lebih harmoni dan sejahtera.",
-    peribahasa: ["Budi bahasa cermin jiwa", "Seperti padi, makin berisi makin tunduk"] },
+  {
+    id: "workshop-amalan-baik",
+    label: "Amalan Baik",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Hormat orang tua",
+      "Tolong-menolong",
+      "Bersikap jujur",
+      "Menepati masa",
+      "Bersyukur",
+    ],
+    pendahuluan:
+      "Amalan baik adalah teras pembentukan masyarakat yang beradab dan bertamadun. Individu yang mengamalkan nilai-nilai murni akan disanjungi oleh masyarakat. Justeru, penanaman amalan baik perlu bermula dari peringkat awal kehidupan.",
+    isi: [
+      "Menghormati orang tua mencerminkan budi pekerti yang mulia",
+      "Sikap tolong-menolong memupuk semangat perpaduan dalam masyarakat",
+      "Kejujuran adalah asas kepercayaan dalam hubungan sesama manusia",
+    ],
+    penutup:
+      "Amalan baik bukan hanya memberi manfaat kepada diri sendiri tetapi juga kepada masyarakat. Marilah kita tanamkan nilai-nilai murni dalam diri sejak hari ini. Dengan budaya amalan baik yang kuat, masyarakat kita akan lebih harmoni dan sejahtera.",
+    peribahasa: ["Budi bahasa cermin jiwa", "Seperti padi, makin berisi makin tunduk"],
+  },
 
-  { id: "workshop-teknologi", label: "Teknologi", topicType: "workshop", badge: "Bengkel",
-    ideaBank: ["Manfaat teknologi", "Risiko media sosial", "Keselamatan siber", "Teknologi dalam pendidikan", "Teknologi hijau"],
-    pendahuluan: "Teknologi telah mengubah cara manusia hidup, bekerja, dan berkomunikasi. Di era revolusi industri 4.0, penguasaan teknologi adalah kemestian. Walau bagaimanapun, penggunaan teknologi perlu bijaksana dan bertanggungjawab.",
-    isi: ["Teknologi mempercepatkan proses kerja dan meningkatkan produktiviti", "Media sosial membolehkan komunikasi tanpa batasan geografi", "Teknologi hijau membantu mengurangkan kerosakan alam sekitar"],
-    penutup: "Teknologi adalah alat yang hebat jika digunakan dengan bijaksana. Setiap individu bertanggungjawab menggunakan teknologi secara positif dan beretika. Marilah kita jadikan teknologi sebagai rakan kongsi dalam membina masa depan yang lebih cerah.",
-    peribahasa: ["Berakit-rakit ke hulu (usaha untuk mahir teknologi)", "Ilmu tidak ada penghujungnya"] },
+  {
+    id: "workshop-teknologi",
+    label: "Teknologi",
+    topicType: "workshop",
+    badge: "Bengkel",
+    ideaBank: [
+      "Manfaat teknologi",
+      "Risiko media sosial",
+      "Keselamatan siber",
+      "Teknologi dalam pendidikan",
+      "Teknologi hijau",
+    ],
+    pendahuluan:
+      "Teknologi telah mengubah cara manusia hidup, bekerja, dan berkomunikasi. Di era revolusi industri 4.0, penguasaan teknologi adalah kemestian. Walau bagaimanapun, penggunaan teknologi perlu bijaksana dan bertanggungjawab.",
+    isi: [
+      "Teknologi mempercepatkan proses kerja dan meningkatkan produktiviti",
+      "Media sosial membolehkan komunikasi tanpa batasan geografi",
+      "Teknologi hijau membantu mengurangkan kerosakan alam sekitar",
+    ],
+    penutup:
+      "Teknologi adalah alat yang hebat jika digunakan dengan bijaksana. Setiap individu bertanggungjawab menggunakan teknologi secara positif dan beretika. Marilah kita jadikan teknologi sebagai rakan kongsi dalam membina masa depan yang lebih cerah.",
+    peribahasa: [
+      "Berakit-rakit ke hulu (usaha untuk mahir teknologi)",
+      "Ilmu tidak ada penghujungnya",
+    ],
+  },
 ];
 
 const MODEL_KARANGAN_TOPICS: BMTopic[] = [
-  { id: "model-fakta", label: "Karangan Fakta", topicType: "model-karangan", badge: "Model",
-    description: "Karangan yang menyampaikan maklumat, fakta, dan penjelasan tentang sesuatu topik secara objektif.",
-    keyFeatures: ["Bahasa formal dan objektif", "Menggunakan fakta dan data", "Tiada pendapat peribadi yang emosional", "Struktur: Pendahuluan → Isi berfakta → Penutup"] },
-  { id: "model-perbincangan", label: "Karangan Perbincangan", topicType: "model-karangan", badge: "Model",
-    description: "Karangan yang membincangkan sesuatu isu dari pelbagai sudut pandang sebelum membuat kesimpulan.",
-    keyFeatures: ["Bincang pro dan kontra", "Bahasa neutral tapi akhirnya berpihak", "Gunakan frasa: 'sebaliknya', 'di satu pihak', 'namun begitu'", "Penutup: cadangan atau pendirian akhir"] },
-  { id: "model-pengalaman", label: "Karangan Pengalaman", topicType: "model-karangan", badge: "Model",
-    description: "Karangan berdasarkan pengalaman peribadi — ditulis dalam gaya naratif orang pertama.",
-    keyFeatures: ["Guna kata ganti nama 'saya/aku'", "Bahasa naratif dan deskriptif", "Aliran masa: latar → konflik → penyelesaian", "Akhiri dengan pengajaran/refleksi"] },
-  { id: "model-surat", label: "Karangan Surat Tidak Rasmi", topicType: "model-karangan", badge: "Model",
+  {
+    id: "model-fakta",
+    label: "Karangan Fakta",
+    topicType: "model-karangan",
+    badge: "Model",
+    description:
+      "Karangan yang menyampaikan maklumat, fakta, dan penjelasan tentang sesuatu topik secara objektif.",
+    keyFeatures: [
+      "Bahasa formal dan objektif",
+      "Menggunakan fakta dan data",
+      "Tiada pendapat peribadi yang emosional",
+      "Struktur: Pendahuluan → Isi berfakta → Penutup",
+    ],
+  },
+  {
+    id: "model-perbincangan",
+    label: "Karangan Perbincangan",
+    topicType: "model-karangan",
+    badge: "Model",
+    description:
+      "Karangan yang membincangkan sesuatu isu dari pelbagai sudut pandang sebelum membuat kesimpulan.",
+    keyFeatures: [
+      "Bincang pro dan kontra",
+      "Bahasa neutral tapi akhirnya berpihak",
+      "Gunakan frasa: 'sebaliknya', 'di satu pihak', 'namun begitu'",
+      "Penutup: cadangan atau pendirian akhir",
+    ],
+  },
+  {
+    id: "model-pengalaman",
+    label: "Karangan Pengalaman",
+    topicType: "model-karangan",
+    badge: "Model",
+    description:
+      "Karangan berdasarkan pengalaman peribadi — ditulis dalam gaya naratif orang pertama.",
+    keyFeatures: [
+      "Guna kata ganti nama 'saya/aku'",
+      "Bahasa naratif dan deskriptif",
+      "Aliran masa: latar → konflik → penyelesaian",
+      "Akhiri dengan pengajaran/refleksi",
+    ],
+  },
+  {
+    id: "model-surat",
+    label: "Karangan Surat Tidak Rasmi",
+    topicType: "model-karangan",
+    badge: "Model",
     description: "Surat kepada rakan, saudara, atau kenalan — format tidak formal.",
-    keyFeatures: ["Format: Tarikh, Salam, Isi (3 perenggan), Penutup, Nama", "Bahasa mesra tapi masih baku", "Menyentuh perasaan dan hubungan peribadi", "Jangan gunakan format surat rasmi"] },
-  { id: "model-laporan", label: "Karangan Laporan", topicType: "model-karangan", badge: "Model",
-    description: "Laporan tentang sesuatu aktiviti atau kejadian — format berita atau laporan rasmi.",
-    keyFeatures: ["Format: Tajuk, Tarikh/Masa/Tempat, Kronologi, Penutup", "Bahasa formal dan ringkas", "Fakta sahaja — tiada pendapat", "Ditulis seperti wartawan melaporkan berita"] },
-  { id: "model-ucapan", label: "Karangan Ucapan", topicType: "model-karangan", badge: "Model",
+    keyFeatures: [
+      "Format: Tarikh, Salam, Isi (3 perenggan), Penutup, Nama",
+      "Bahasa mesra tapi masih baku",
+      "Menyentuh perasaan dan hubungan peribadi",
+      "Jangan gunakan format surat rasmi",
+    ],
+  },
+  {
+    id: "model-laporan",
+    label: "Karangan Laporan",
+    topicType: "model-karangan",
+    badge: "Model",
+    description:
+      "Laporan tentang sesuatu aktiviti atau kejadian — format berita atau laporan rasmi.",
+    keyFeatures: [
+      "Format: Tajuk, Tarikh/Masa/Tempat, Kronologi, Penutup",
+      "Bahasa formal dan ringkas",
+      "Fakta sahaja — tiada pendapat",
+      "Ditulis seperti wartawan melaporkan berita",
+    ],
+  },
+  {
+    id: "model-ucapan",
+    label: "Karangan Ucapan",
+    topicType: "model-karangan",
+    badge: "Model",
     description: "Teks ucapan untuk pelbagai majlis — format formal dengan sapaan khas.",
-    keyFeatures: ["Mulakan dengan sapaan: 'Yang Berbahagia...', 'Hadirin sekalian...'", "Isi: 3 isi utama dengan huraian", "Gunakan perkataan motivasi dan inspirasi", "Akhiri dengan terima kasih dan harapan"] },
+    keyFeatures: [
+      "Mulakan dengan sapaan: 'Yang Berbahagia...', 'Hadirin sekalian...'",
+      "Isi: 3 isi utama dengan huraian",
+      "Gunakan perkataan motivasi dan inspirasi",
+      "Akhiri dengan terima kasih dan harapan",
+    ],
+  },
 ];
 
 const PERIBAHASA_BANK_LENGKAP_TOPIC: BMTopic = {
@@ -948,9 +1369,24 @@ const ESSAY_IMPROVEMENT_TOPIC: BMTopic = {
   badge: "Teknik",
   description: "Kemahiran menukar ayat biasa menjadi ayat yang lebih menarik, kaya, dan bernas.",
   beforeAfter: [
-    { lemah: "Budak itu rajin belajar.", cemerlang: "Anak muda berjiwa waja itu menekuni pelajarannya dengan penuh dedikasi dan ketekunan.", tip: "Guna kata adjektif kaya dan frasa yang lebih deskriptif" },
-    { lemah: "Alam sekitar kita kotor.", cemerlang: "Alam sekitar yang pernah menghijau kini semakin tercemar akibat sikap tidak bertanggungjawab segelintir pihak.", tip: "Tambah konteks perbandingan dan punca" },
-    { lemah: "Sukan itu bagus.", cemerlang: "Penglibatan aktif dalam sukan bukan sahaja meningkatkan kesihatan fizikal, malah turut menggilap disiplin dan semangat juang.", tip: "Tambah 'bukan sahaja... malah' untuk huraian dua dimensi" },
+    {
+      lemah: "Budak itu rajin belajar.",
+      cemerlang:
+        "Anak muda berjiwa waja itu menekuni pelajarannya dengan penuh dedikasi dan ketekunan.",
+      tip: "Guna kata adjektif kaya dan frasa yang lebih deskriptif",
+    },
+    {
+      lemah: "Alam sekitar kita kotor.",
+      cemerlang:
+        "Alam sekitar yang pernah menghijau kini semakin tercemar akibat sikap tidak bertanggungjawab segelintir pihak.",
+      tip: "Tambah konteks perbandingan dan punca",
+    },
+    {
+      lemah: "Sukan itu bagus.",
+      cemerlang:
+        "Penglibatan aktif dalam sukan bukan sahaja meningkatkan kesihatan fizikal, malah turut menggilap disiplin dan semangat juang.",
+      tip: "Tambah 'bukan sahaja... malah' untuk huraian dua dimensi",
+    },
   ],
   kosaKata: [
     { biasa: "bagus", menarik: "cemerlang / berprestasi tinggi / unggul" },
@@ -979,7 +1415,7 @@ export const BM_KERTAS: BMKertas[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "📝",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan",
+    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Rumusan",
     examDetails: "Masa: 1 jam 45 minit · Soalan berstruktur · Teks + KOMSAS",
     color: "#818CF8",
     gradient: "from-indigo-500/20 to-violet-500/20",
@@ -992,7 +1428,7 @@ export const BM_KERTAS: BMKertas[] = [
         color: "#60A5FA",
         bgGradient: "from-blue-500/15 to-sky-500/10",
         borderColor: "rgba(96,165,250,0.25)",
-        description: "Kata nama, adjektif, kerja, tatabahasa, pola ayat, dan peribahasa asas.",
+        description: "Kata nama, adjektif, kerja, tatabahasa, pola ayat dan peribahasa asas.",
         topics: SISTEM_BAHASA_TOPICS,
       },
       {
@@ -1003,7 +1439,7 @@ export const BM_KERTAS: BMKertas[] = [
         color: "#34D399",
         bgGradient: "from-emerald-500/15 to-teal-500/10",
         borderColor: "rgba(52,211,153,0.25)",
-        description: "Teknik menjawab soalan pemahaman, KBAT, dan cara mencari isi penting.",
+        description: "Teknik menjawab soalan pemahaman, KBAT dan cara mencari isi penting.",
         topics: PEMAHAMAN_TOPICS,
       },
       {
@@ -1014,7 +1450,7 @@ export const BM_KERTAS: BMKertas[] = [
         color: "#C084FC",
         bgGradient: "from-purple-500/15 to-violet-500/10",
         borderColor: "rgba(192,132,252,0.25)",
-        description: "Pantun, syair, sajak, prosa tradisional, cerpen, dan drama Tingkatan 1.",
+        description: "Pantun, syair, sajak, prosa tradisional, cerpen dan drama Tingkatan 1.",
         topics: KOMSAS_TOPICS,
       },
       {
@@ -1025,18 +1461,19 @@ export const BM_KERTAS: BMKertas[] = [
         color: "#FB923C",
         bgGradient: "from-orange-500/15 to-amber-500/10",
         borderColor: "rgba(251,146,60,0.25)",
-        description: "Empat novel zon — sinopsis, watak, tema, persoalan, nilai, dan pengajaran.",
+        description: "Empat novel KOMSAS — sinopsis, watak, tema, persoalan, nilai dan pengajaran.",
         topics: NOVEL_TOPICS,
       },
       {
-        id: "ringkasan",
-        label: "Ringkasan",
-        shortLabel: "Ringkasan",
-        icon: "✏️",
+        id: "rumusan",
+        label: "Rumusan",
+        shortLabel: "Rumusan",
+        icon: "📝",
         color: "#FBBF24",
         bgGradient: "from-yellow-500/15 to-amber-500/10",
         borderColor: "rgba(251,191,36,0.25)",
-        description: "Bahagian C: Ringkasan — kata kunci, isi penting, penanda wacana, dan had 100 patah perkataan.",
+        description:
+          "Bahagian C: Rumusan — isi penting, penanda wacana dan teknik menulis mengikut format UASA.",
         topics: RINGKASAN_TOPICS,
       },
     ],
@@ -1114,7 +1551,8 @@ export const BM_KERTAS: BMKertas[] = [
         color: "#818CF8",
         bgGradient: "from-indigo-500/15 to-blue-500/10",
         borderColor: "rgba(129,140,248,0.25)",
-        description: "Ubah ayat biasa jadi ayat cemerlang — kosa kata menarik dan teknik penulisan.",
+        description:
+          "Ubah ayat biasa jadi ayat cemerlang — kosa kata menarik dan teknik penulisan.",
         topics: [ESSAY_IMPROVEMENT_TOPIC],
       },
     ],
@@ -1126,11 +1564,23 @@ export function getBMKertas(id: "k1" | "k2"): BMKertas | undefined {
 }
 
 export function getBMHub(kertasId: "k1" | "k2", hubId: string): BMHub | undefined {
-  return getBMKertas(kertasId)?.hubs.find((h) => h.id === hubId);
+  const normalizedHubId = kertasId === "k1" && hubId === "ringkasan" ? "rumusan" : hubId;
+  return getBMKertas(kertasId)?.hubs.find((h) => h.id === normalizedHubId);
 }
 
-export function getBMTopic(kertasId: "k1" | "k2", hubId: string, topicId: string): BMTopic | undefined {
-  return getBMHub(kertasId, hubId)?.topics.find((t) => t.id === topicId);
+export function getBMTopic(
+  kertasId: "k1" | "k2",
+  hubId: string,
+  topicId: string,
+): BMTopic | undefined {
+  const legacyTopicIds: Record<string, string> = {
+    "rangka-ringkasan-markah-tinggi": "rangka-rumusan-markah-tinggi",
+    "teknik-ringkasan-bahagian-c": "teknik-rumusan-bahagian-c",
+    "ringkasan-mastery": "rumusan-mastery",
+  };
+  return getBMHub(kertasId, hubId)?.topics.find(
+    (t) => t.id === (legacyTopicIds[topicId] ?? topicId),
+  );
 }
 
 export const BM_TOTAL_TOPICS = BM_KERTAS.reduce(

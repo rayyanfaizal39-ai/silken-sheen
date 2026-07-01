@@ -44,6 +44,8 @@ import { TALIA_DAN_RAKSASA_QADQAD } from "@/data/bm-form2-talia-dan-raksasa-qadq
 import { BMForm2TaliaContent } from "@/components/BMForm2TaliaContent";
 import { MENUAI_EMAS } from "@/data/bm-form2-menuai-emas";
 import { BMForm2MenuaiEmasContent } from "@/components/BMForm2MenuaiEmasContent";
+import { MAHKAMAH } from "@/data/bm-form2-mahkamah";
+import { BMForm2MahkamahContent } from "@/components/BMForm2MahkamahContent";
 
 const ACCENT = "#C084FC";
 const FOCUS_ITEMS = [
@@ -139,6 +141,7 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
   const isBanjir = work.id === "banjir-di-mata-emak";
   const isTalia = work.id === "talia-dan-raksasa-qadqad";
   const isMenuaiEmas = work.id === "menuai-emas";
+  const isMahkamah = work.id === "mahkamah";
   const populated =
     isAlamRemaja ||
     isKiasan ||
@@ -152,7 +155,8 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
     isPelanduk ||
     isBanjir ||
     isTalia ||
-    isMenuaiEmas;
+    isMenuaiEmas ||
+    isMahkamah;
   const introduction = isKiasan
     ? "Pantun yang menyindir pelbagai ragam manusia melalui bahasa kiasan serta mengajak pembaca menilai sikap dalam kehidupan."
     : isNasihat
@@ -177,7 +181,9 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
                         ? "Cerpen tentang kebaikan yang dibalas dengan kebaikan serta perjuangan mempertahankan keluarga dan alam."
                         : isMenuaiEmas
                           ? "Cerpen tentang kegigihan dan ketabahan seorang belia membangunkan pertanian moden hingga berjaya."
-                          : "Sebuah pantun tentang kegembiraan anak-anak menyambut kepulangan ibu bapa serta kasih sayang yang menyatukan keluarga.";
+                          : isMahkamah
+                            ? "Drama tentang keadilan, pembelaan dan pertimbangan bukti dalam perbicaraan mahkamah."
+                            : "Sebuah pantun tentang kegembiraan anak-anak menyambut kepulangan ibu bapa serta kasih sayang yang menyatukan keluarga.";
   return (
     <section className="relative mb-7 overflow-hidden rounded-2xl border border-purple-300/15 bg-[#111226] p-5 sm:p-7">
       <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_20%,rgba(192,132,252,0.16),transparent_65%)]" />
@@ -217,9 +223,11 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
                                   ? `Pengarang: ${TALIA_DAN_RAKSASA_QADQAD.editor}`
                                   : isMenuaiEmas
                                     ? `Pengarang: ${MENUAI_EMAS.editor}`
-                                    : isBudi
-                                      ? `Penyelenggara: ${PANTUN_BUDI.editor}`
-                                      : "Pengarang tidak diketahui"}
+                                    : isMahkamah
+                                      ? `Pengarang: ${MAHKAMAH.editor}`
+                                      : isBudi
+                                        ? `Penyelenggara: ${PANTUN_BUDI.editor}`
+                                        : "Pengarang tidak diketahui"}
             </p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/60">{introduction}</p>
           </>
@@ -1478,11 +1486,14 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
           work.id === "pelanduk-mengajar-memerang" ||
           work.id === "banjir-di-mata-emak" ||
           work.id === "talia-dan-raksasa-qadqad" ||
-          work.id === "menuai-emas" ? (
+          work.id === "menuai-emas" ||
+          work.id === "mahkamah" ? (
             open ? (
               <div className="border-t border-white/[0.07] p-3 sm:p-5">
                 <WorkHero work={work} />
-                {work.id === "menuai-emas" ? (
+                {work.id === "mahkamah" ? (
+                  <BMForm2MahkamahContent />
+                ) : work.id === "menuai-emas" ? (
                   <BMForm2MenuaiEmasContent />
                 ) : work.id === "talia-dan-raksasa-qadqad" ? (
                   <BMForm2TaliaContent />

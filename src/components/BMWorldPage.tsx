@@ -36,8 +36,16 @@ import {
   type BMTopic,
 } from "@/data/bm-structure";
 import { getSistemBahasaContent } from "@/data/bm-k1-sistem-bahasa";
-import { getPremiumKomsasWork, type KomsasWork, type KomsasExamQuestion } from "@/data/bm-komsas-premium";
-import { bmF1ObjektifKuiz1, bmF1ObjektifKuiz2, bmF1ObjektifKuiz3 } from "@/data/bm-f1-objektif-quizzes";
+import {
+  getPremiumKomsasWork,
+  type KomsasWork,
+  type KomsasExamQuestion,
+} from "@/data/bm-komsas-premium";
+import {
+  bmF1ObjektifKuiz1,
+  bmF1ObjektifKuiz2,
+  bmF1ObjektifKuiz3,
+} from "@/data/bm-f1-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { sfx } from "@/lib/sounds";
@@ -105,7 +113,11 @@ function shuffleItems<T>(items: T[]): T[] {
 }
 
 function shuffleObjectiveQuestions(questions: QuizQuestion[]): QuizQuestion[] {
-  const groups = [shuffleItems(questions.slice(0, 5)), shuffleItems(questions.slice(5, 10)), questions.slice(10, 15)];
+  const groups = [
+    shuffleItems(questions.slice(0, 5)),
+    shuffleItems(questions.slice(5, 10)),
+    questions.slice(10, 15),
+  ];
   return groups.flatMap((group) =>
     group.map((question) => {
       const correctAnswer = question.options[question.answerIndex];
@@ -137,11 +149,7 @@ function Badge({ label, color }: { label: string; color: string }) {
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="mb-3 text-[11px] font-black tracking-wide text-[#818CF8]">
-      {children}
-    </p>
-  );
+  return <p className="mb-3 text-[11px] font-black tracking-wide text-[#818CF8]">{children}</p>;
 }
 
 function bmText(value: string | undefined) {
@@ -233,7 +241,11 @@ function CollapsibleSection({
         className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition-colors hover:bg-white/[0.03]"
       >
         <span className="flex flex-wrap items-center gap-2.5">
-          {icon && <span className="shrink-0" style={{ color: accent }}>{icon}</span>}
+          {icon && (
+            <span className="shrink-0" style={{ color: accent }}>
+              {icon}
+            </span>
+          )}
           <span className="font-display text-sm font-bold text-white/90 sm:text-base">{title}</span>
           {badge}
         </span>
@@ -338,7 +350,10 @@ function LandingView({
         <div className="flex items-center gap-4">
           <div
             className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl"
-            style={{ background: "radial-gradient(circle at 35% 30%, #F472B640, #F472B618)", boxShadow: "0 0 24px rgba(244,114,182,0.4)" }}
+            style={{
+              background: "radial-gradient(circle at 35% 30%, #F472B640, #F472B618)",
+              boxShadow: "0 0 24px rgba(244,114,182,0.4)",
+            }}
           >
             📝
           </div>
@@ -354,7 +369,7 @@ function LandingView({
         {/* Identity ticker */}
         <div className="mt-5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] py-2">
           <p className="text-center text-[9px] font-bold uppercase tracking-[0.3em] text-[#F472B6]/40">
-            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RINGKASAN
+            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RUMUSAN
           </p>
         </div>
       </div>
@@ -363,8 +378,8 @@ function LandingView({
       <div className="mb-6">
         <SectionLabel>Laluan Peperiksaan</SectionLabel>
         <p className="text-sm text-white/50">
-          Pilih kertas untuk mula belajar. Setiap kertas mempunyai hub tersendiri dengan
-          modul yang tersusun dari asas hingga peringkat cemerlang.
+          Pilih kertas untuk mula belajar. Setiap kertas mempunyai hub tersendiri dengan modul yang
+          tersusun dari asas hingga peringkat cemerlang.
         </p>
       </div>
 
@@ -379,10 +394,16 @@ function LandingView({
       <div className="mt-6 grid grid-cols-3 gap-3">
         {[
           { label: "Hub Belajar", value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.length, 0)}` },
-          { label: "Jumlah Topik", value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.reduce((s2, h) => s2 + h.topics.length, 0), 0)}` },
+          {
+            label: "Jumlah Topik",
+            value: `${BM_KERTAS.reduce((s, k) => s + k.hubs.reduce((s2, h) => s2 + h.topics.length, 0), 0)}`,
+          },
           { label: "Kertas UASA", value: "2" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
+          <div
+            key={stat.label}
+            className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center"
+          >
             <p className="text-xl font-black text-white">{stat.value}</p>
             <p className="mt-0.5 text-[9px] font-bold tracking-wide text-white/30">{stat.label}</p>
           </div>
@@ -474,7 +495,9 @@ function ObjektifKuizView({
 
   type Phase = "intro" | "quiz" | "results";
   const [phase, setPhase] = useState<Phase>("intro");
-  const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(() => shuffleObjectiveQuestions(questions));
+  const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(() =>
+    shuffleObjectiveQuestions(questions),
+  );
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
@@ -518,7 +541,12 @@ function ObjektifKuizView({
       setTimeLeft(totalSeconds);
     } else {
       recordQuiz(pct === 100);
-      recordQuizResult({ subjectId: "bm", chapterKey: set.id, correct, total: quizQuestions.length });
+      recordQuizResult({
+        subjectId: "bm",
+        chapterKey: set.id,
+        correct,
+        total: quizQuestions.length,
+      });
       const xpReward = pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10;
       addXp(xpReward, "bm");
       setEarnedXp(xpReward);
@@ -562,7 +590,9 @@ function ObjektifKuizView({
             {set.badge}
           </div>
           <h2 className="font-display text-2xl font-bold text-white">Kuiz Objektif {set.label}</h2>
-          <p className="mt-1 text-sm text-white/50">Kertas 1 Bahagian A — Format UASA Tingkatan 1</p>
+          <p className="mt-1 text-sm text-white/50">
+            Kertas 1 Bahagian A — Format UASA Tingkatan 1
+          </p>
           <div className="mx-auto mt-6 grid max-w-xs grid-cols-3 gap-3">
             {[
               { icon: "📝", label: "15 Soalan" },
@@ -586,7 +616,10 @@ function ObjektifKuizView({
           <button
             onClick={handleStart}
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-bold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
-            style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}bb)`, boxShadow: `0 8px 24px ${set.color}40` }}
+            style={{
+              background: `linear-gradient(135deg, ${set.color}, ${set.color}bb)`,
+              boxShadow: `0 8px 24px ${set.color}40`,
+            }}
           >
             Mula Kuiz <ArrowRight className="h-4 w-4" />
           </button>
@@ -615,7 +648,11 @@ function ObjektifKuizView({
                 <span
                   key={`${star}-${i}`}
                   className="absolute animate-xp-burst text-xl text-sky-200"
-                  style={{ left: `${18 + i * 12}%`, top: `${16 + (i % 3) * 14}%`, animationDelay: `${i * 80}ms` }}
+                  style={{
+                    left: `${18 + i * 12}%`,
+                    top: `${16 + (i % 3) * 14}%`,
+                    animationDelay: `${i * 80}ms`,
+                  }}
                 >
                   {star}
                 </span>
@@ -628,9 +665,15 @@ function ObjektifKuizView({
 
           <div
             className="mx-auto mt-6 flex h-28 w-28 items-center justify-center rounded-full text-3xl font-black text-white animate-score-reveal"
-            style={{ background: `conic-gradient(${grade.tone} ${pct}%, rgba(255,255,255,0.06) 0%)`, boxShadow: `0 0 40px ${grade.tone}40` }}
+            style={{
+              background: `conic-gradient(${grade.tone} ${pct}%, rgba(255,255,255,0.06) 0%)`,
+              boxShadow: `0 0 40px ${grade.tone}40`,
+            }}
           >
-            <div className="flex h-20 w-20 items-center justify-center rounded-full" style={{ background: "#080c1a" }}>
+            <div
+              className="flex h-20 w-20 items-center justify-center rounded-full"
+              style={{ background: "#080c1a" }}
+            >
               {pct}%
             </div>
           </div>
@@ -638,14 +681,20 @@ function ObjektifKuizView({
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-3">
               <p className="text-[10px] font-black uppercase tracking-wide text-white/35">Betul</p>
-              <p className="mt-1 text-lg font-black text-white">{correct}/{quizQuestions.length}</p>
+              <p className="mt-1 text-lg font-black text-white">
+                {correct}/{quizQuestions.length}
+              </p>
             </div>
             <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-3">
               <p className="text-[10px] font-black uppercase tracking-wide text-white/35">Gred</p>
-              <p className="mt-1 text-lg font-black" style={{ color: grade.tone }}>{grade.label}</p>
+              <p className="mt-1 text-lg font-black" style={{ color: grade.tone }}>
+                {grade.label}
+              </p>
             </div>
             <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-3">
-              <p className="text-[10px] font-black uppercase tracking-wide text-white/35">Ganjaran</p>
+              <p className="text-[10px] font-black uppercase tracking-wide text-white/35">
+                Ganjaran
+              </p>
               <p className="mt-1 text-lg font-black text-sky-200">+{earnedXp} XP</p>
             </div>
           </div>
@@ -663,11 +712,15 @@ function ObjektifKuizView({
                     background: isCorrect ? "rgba(52,211,153,0.06)" : "rgba(248,113,113,0.06)",
                   }}
                 >
-                  {isCorrect
-                    ? <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                    : <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />}
+                  {isCorrect ? (
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                  ) : (
+                    <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
+                  )}
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-white/80 line-clamp-1">S{i + 1}. {question.question.split("\n")[0]}</p>
+                    <p className="text-xs font-semibold text-white/80 line-clamp-1">
+                      S{i + 1}. {question.question.split("\n")[0]}
+                    </p>
                     {!isCorrect && (
                       <p className="mt-0.5 text-[10px] text-white/40">
                         Jawapan: {question.options[question.answerIndex]}
@@ -714,15 +767,23 @@ function ObjektifKuizView({
       {/* Progress bar */}
       <div className="mb-5">
         <div className="mb-1.5 flex items-center justify-between">
-          <span className="text-xs font-bold text-white/40">Soalan {current + 1} / {quizQuestions.length}</span>
-          <span className="inline-flex items-center gap-1 text-xs font-bold" style={{ color: timeLeft <= 10 ? "#FB7185" : set.color }}>
+          <span className="text-xs font-bold text-white/40">
+            Soalan {current + 1} / {quizQuestions.length}
+          </span>
+          <span
+            className="inline-flex items-center gap-1 text-xs font-bold"
+            style={{ color: timeLeft <= 10 ? "#FB7185" : set.color }}
+          >
             <Clock className="h-3.5 w-3.5" /> {timeLeft}s
           </span>
         </div>
         <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
           <div
             className="h-full rounded-full transition-all duration-500"
-            style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${set.color}, ${set.color}cc)` }}
+            style={{
+              width: `${progressPct}%`,
+              background: `linear-gradient(90deg, ${set.color}, ${set.color}cc)`,
+            }}
           />
         </div>
         <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/[0.06]">
@@ -745,7 +806,9 @@ function ObjektifKuizView({
         >
           Soalan {current + 1}
         </span>
-        <p className="text-sm font-semibold leading-relaxed text-white whitespace-pre-line">{q.question}</p>
+        <p className="text-sm font-semibold leading-relaxed text-white whitespace-pre-line">
+          {q.question}
+        </p>
       </div>
 
       {/* Options */}
@@ -788,8 +851,12 @@ function ObjektifKuizView({
                 {letter}
               </span>
               <span className={`text-sm font-medium leading-snug ${textColor}`}>{opt}</span>
-              {revealed && i === q.answerIndex && <CheckCircle2 className="ml-auto h-4 w-4 shrink-0 text-emerald-400" />}
-              {revealed && i === selected && i !== q.answerIndex && <XCircle className="ml-auto h-4 w-4 shrink-0 text-rose-400" />}
+              {revealed && i === q.answerIndex && (
+                <CheckCircle2 className="ml-auto h-4 w-4 shrink-0 text-emerald-400" />
+              )}
+              {revealed && i === selected && i !== q.answerIndex && (
+                <XCircle className="ml-auto h-4 w-4 shrink-0 text-rose-400" />
+              )}
             </button>
           );
         })}
@@ -807,16 +874,26 @@ function ObjektifKuizView({
       {revealed && (
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            {isCorrect
-              ? <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-400">Betul! ✓</span>
-              : <span className="rounded-full bg-rose-500/12 px-3 py-1 text-xs font-bold text-rose-400">{selected === null ? "Masa Tamat" : "Salah ✗"}</span>}
+            {isCorrect ? (
+              <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-400">
+                Betul! ✓
+              </span>
+            ) : (
+              <span className="rounded-full bg-rose-500/12 px-3 py-1 text-xs font-bold text-rose-400">
+                {selected === null ? "Masa Tamat" : "Salah ✗"}
+              </span>
+            )}
           </div>
           <button
             onClick={handleNext}
             className="inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-bold text-white transition-all hover:scale-[1.02]"
-            style={{ background: `linear-gradient(135deg, ${set.color}, ${set.color}cc)`, boxShadow: `0 4px 16px ${set.color}35` }}
+            style={{
+              background: `linear-gradient(135deg, ${set.color}, ${set.color}cc)`,
+              boxShadow: `0 4px 16px ${set.color}35`,
+            }}
           >
-            {current < quizQuestions.length - 1 ? "Soalan Seterusnya" : "Lihat Keputusan"} <ArrowRight className="h-4 w-4" />
+            {current < quizQuestions.length - 1 ? "Soalan Seterusnya" : "Lihat Keputusan"}{" "}
+            <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       )}
@@ -844,9 +921,27 @@ function K1QuizView({
   });
 
   const setMeta = [
-    { title: "Set A", subtitle: "Latihan Asas", difficulty: "Mudah", color: "#8B5CF6", glow: "rgba(139,92,246,0.28)" },
-    { title: "Set B", subtitle: "Latihan Pertengahan", difficulty: "Sederhana", color: "#22C55E", glow: "rgba(34,197,94,0.24)" },
-    { title: "Set C", subtitle: "Latihan Cabaran", difficulty: "Sukar", color: "#F97316", glow: "rgba(249,115,22,0.25)" },
+    {
+      title: "Set A",
+      subtitle: "Latihan Asas",
+      difficulty: "Mudah",
+      color: "#8B5CF6",
+      glow: "rgba(139,92,246,0.28)",
+    },
+    {
+      title: "Set B",
+      subtitle: "Latihan Pertengahan",
+      difficulty: "Sederhana",
+      color: "#22C55E",
+      glow: "rgba(34,197,94,0.24)",
+    },
+    {
+      title: "Set C",
+      subtitle: "Latihan Cabaran",
+      difficulty: "Sukar",
+      color: "#F97316",
+      glow: "rgba(249,115,22,0.25)",
+    },
   ] as const;
 
   return (
@@ -861,97 +956,120 @@ function K1QuizView({
       </div>
 
       <div className="relative z-10">
-      <PageHeader
-        breadcrumb={["Bahasa Melayu", "Kertas 1"]}
-        onBack={onBack}
-        accent={kertas.color}
-      />
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", "Kertas 1"]}
+          onBack={onBack}
+          accent={kertas.color}
+        />
 
-      <div className="mb-7 text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/50 to-sky-500/30 text-3xl shadow-[0_0_34px_rgba(96,165,250,0.28)] animate-float-soft">
-          📘
+        <div className="mb-7 text-center">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/50 to-sky-500/30 text-3xl shadow-[0_0_34px_rgba(96,165,250,0.28)] animate-float-soft">
+            📘
+          </div>
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-200/70">
+            Bahasa Melayu Form 1
+          </p>
+          <h2 className="mt-2 font-display text-2xl font-bold text-white sm:text-3xl">
+            Kertas 1 Objektif
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/52">
+            Pilih Set A, Set B atau Set C. Setiap misi mengandungi 15 soalan mengikut format
+            objektif UASA Tingkatan 1.
+          </p>
         </div>
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-200/70">Bahasa Melayu Form 1</p>
-        <h2 className="mt-2 font-display text-2xl font-bold text-white sm:text-3xl">Kertas 1 Objektif</h2>
-        <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/52">
-          Pilih Set A, Set B atau Set C. Setiap misi mengandungi 15 soalan mengikut format objektif UASA Tingkatan 1.
-        </p>
-      </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        {([0, 1, 2] as const).map((i) => {
-          const best = bestScores[i];
-          const meta = setMeta[i];
-          const completed = best !== null;
-          const status = completed ? "Selesai" : "Belum Bermula";
+        <div className="grid gap-4 sm:grid-cols-3">
+          {([0, 1, 2] as const).map((i) => {
+            const best = bestScores[i];
+            const meta = setMeta[i];
+            const completed = best !== null;
+            const status = completed ? "Selesai" : "Belum Bermula";
 
-          return (
-            <button
-              key={meta.title}
-              onClick={() => onSelectObjektif(i)}
-              onMouseEnter={() => sfx.hover()}
-              className="group relative flex min-h-[245px] flex-col overflow-hidden rounded-[1.5rem] border bg-[#0B1220]/78 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] animate-slide-up"
-              style={{
-                borderColor: completed ? `${meta.color}55` : `${meta.color}26`,
-                boxShadow: `0 18px 44px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.02)`,
-                animationDelay: `${i * 80}ms`,
-              }}
-            >
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                style={{ boxShadow: `inset 0 0 42px ${meta.glow}, 0 18px 52px ${meta.glow}` }}
-              />
-              <div className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full blur-3xl transition-opacity duration-300 group-hover:opacity-100" style={{ background: meta.glow }} />
-
-              <div className="relative z-10 flex h-full flex-col">
-                <div className="mb-5 flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.18em]" style={{ color: meta.color }}>{meta.title}</p>
-                    <h3 className="mt-1 font-display text-xl font-bold text-white">{meta.subtitle}</h3>
-                  </div>
-                  <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-lg font-black text-white"
-                    style={{ background: `${meta.color}22`, color: meta.color }}
-                  >
-                    {OBJEKTIF_SETS[i].badge}
-                  </div>
-                </div>
-
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
-                    <span className="text-white/48">15 Soalan</span>
-                    <FileQuestion className="h-4 w-4" style={{ color: meta.color }} />
-                  </div>
-                  <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
-                    <span className="text-white/48">Tahap Kesukaran</span>
-                    <span className="font-bold text-white/78">{meta.difficulty}</span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
-                    <span className="text-white/48">Skor Tertinggi</span>
-                    <span className="font-bold text-white/78">{best !== null ? `${best}%` : "-"}</span>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex items-center justify-between">
-                  <span
-                    className="rounded-full px-2.5 py-1 text-[10px] font-black"
-                    style={{ background: `${completed ? "#34D399" : meta.color}18`, color: completed ? "#34D399" : meta.color }}
-                  >
-                    {status}
-                  </span>
-                </div>
-
+            return (
+              <button
+                key={meta.title}
+                onClick={() => onSelectObjektif(i)}
+                onMouseEnter={() => sfx.hover()}
+                className="group relative flex min-h-[245px] flex-col overflow-hidden rounded-[1.5rem] border bg-[#0B1220]/78 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] animate-slide-up"
+                style={{
+                  borderColor: completed ? `${meta.color}55` : `${meta.color}26`,
+                  boxShadow: `0 18px 44px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.02)`,
+                  animationDelay: `${i * 80}ms`,
+                }}
+              >
                 <div
-                  className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-black text-white transition-all duration-200 group-hover:shadow-lg"
-                  style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.color}aa)` }}
-                >
-                  Mulakan <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ boxShadow: `inset 0 0 42px ${meta.glow}, 0 18px 52px ${meta.glow}` }}
+                />
+                <div
+                  className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full blur-3xl transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ background: meta.glow }}
+                />
+
+                <div className="relative z-10 flex h-full flex-col">
+                  <div className="mb-5 flex items-start justify-between gap-3">
+                    <div>
+                      <p
+                        className="text-xs font-black uppercase tracking-[0.18em]"
+                        style={{ color: meta.color }}
+                      >
+                        {meta.title}
+                      </p>
+                      <h3 className="mt-1 font-display text-xl font-bold text-white">
+                        {meta.subtitle}
+                      </h3>
+                    </div>
+                    <div
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-lg font-black text-white"
+                      style={{ background: `${meta.color}22`, color: meta.color }}
+                    >
+                      {OBJEKTIF_SETS[i].badge}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
+                      <span className="text-white/48">15 Soalan</span>
+                      <FileQuestion className="h-4 w-4" style={{ color: meta.color }} />
+                    </div>
+                    <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
+                      <span className="text-white/48">Tahap Kesukaran</span>
+                      <span className="font-bold text-white/78">{meta.difficulty}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
+                      <span className="text-white/48">Skor Tertinggi</span>
+                      <span className="font-bold text-white/78">
+                        {best !== null ? `${best}%` : "-"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between">
+                    <span
+                      className="rounded-full px-2.5 py-1 text-[10px] font-black"
+                      style={{
+                        background: `${completed ? "#34D399" : meta.color}18`,
+                        color: completed ? "#34D399" : meta.color,
+                      }}
+                    >
+                      {status}
+                    </span>
+                  </div>
+
+                  <div
+                    className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-black text-white transition-all duration-200 group-hover:shadow-lg"
+                    style={{
+                      background: `linear-gradient(135deg, ${meta.color}, ${meta.color}aa)`,
+                    }}
+                  >
+                    Mulakan{" "}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </div>
                 </div>
-              </div>
-            </button>
-          );
-        })}
-      </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -988,9 +1106,14 @@ function KertasView({
       </div>
 
       <SectionLabel>Hub Pembelajaran</SectionLabel>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {kertas.hubs.map((hub) => (
-          <HubCard key={hub.id} hub={hub} onSelect={() => onSelectHub(hub.id)} />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        {kertas.hubs.map((hub, index) => (
+          <div
+            key={hub.id}
+            className={`lg:col-span-2 ${kertas.id === "k1" && index === 3 ? "lg:col-start-2" : ""}`}
+          >
+            <HubCard hub={hub} onSelect={() => onSelectHub(hub.id)} />
+          </div>
         ))}
       </div>
     </div>
@@ -1001,7 +1124,7 @@ function HubCard({ hub, onSelect }: { hub: BMHub; onSelect: () => void }) {
   return (
     <button
       onClick={onSelect}
-      className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border p-5 text-left transition-all duration-200 hover:-translate-y-1"
+      className="group relative flex h-full min-h-52 w-full flex-col overflow-hidden rounded-[1.5rem] border p-5 text-left transition-all duration-200 hover:-translate-y-1"
       style={{
         borderColor: hub.borderColor,
         background: `linear-gradient(135deg, ${hub.color}12 0%, transparent 80%)`,
@@ -1103,9 +1226,17 @@ function TopicCard({
 }) {
   const getTopicTypeLabel = (t: string) => {
     const map: Record<string, string> = {
-      tatabahasa: "Tatabahasa", pemahaman: "Teknik", komsas: "KOMSAS", novel: "Novel",
-      "ringkasan": "Kemahiran", "karangan-pendek": "Karangan", "respons-terbuka": "Karangan",
-      workshop: "Bengkel", "model-karangan": "Model", "peribahasa-bank": "Peribahasa", "essay-improvement": "Teknik",
+      tatabahasa: "Tatabahasa",
+      pemahaman: "Teknik",
+      komsas: "KOMSAS",
+      novel: "Novel",
+      ringkasan: "Rumusan",
+      "karangan-pendek": "Karangan",
+      "respons-terbuka": "Karangan",
+      workshop: "Bengkel",
+      "model-karangan": "Model",
+      "peribahasa-bank": "Peribahasa",
+      "essay-improvement": "Teknik",
       "penanda-wacana-lengkap": "Nota Lengkap",
     };
     return map[t] ?? t;
@@ -1134,12 +1265,17 @@ function TopicCard({
             <span className="text-[9px] text-white/30">{topic.genre}</span>
           )}
           {topic.zon && (
-            <span className="text-[9px] text-white/30">{topic.zon.split(" ").slice(0, 2).join(" ")}</span>
+            <span className="text-[9px] text-white/30">
+              {topic.zon.split(" ").slice(0, 2).join(" ")}
+            </span>
           )}
         </div>
         <p className="truncate text-sm font-semibold text-white">{topic.label}</p>
       </div>
-      <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-60" style={{ color: hubColor }} />
+      <ArrowRight
+        className="h-3.5 w-3.5 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-60"
+        style={{ color: hubColor }}
+      />
     </button>
   );
 }
@@ -1152,7 +1288,9 @@ function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Definition */}
       {topic.definition && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Definisi</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>
+            Definisi
+          </p>
           <p className="text-sm leading-relaxed text-white/80">{topic.definition}</p>
         </div>
       )}
@@ -1163,12 +1301,18 @@ function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
           <SectionLabel>Jenis-jenis</SectionLabel>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {topic.subtypes.map((sub) => (
-              <div key={sub.name} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+              <div
+                key={sub.name}
+                className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4"
+              >
                 <p className="mb-1 text-sm font-bold text-white">{sub.name}</p>
                 <p className="mb-3 text-xs text-white/45">{sub.description}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {sub.examples.map((ex) => (
-                    <span key={ex} className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-white/60">
+                    <span
+                      key={ex}
+                      className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-white/60"
+                    >
                       {ex}
                     </span>
                   ))}
@@ -1182,7 +1326,9 @@ function TatabahasaDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Common Mistakes */}
       {topic.commonMistakes && (
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Lazim</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">
+            ⚠ Kesalahan Lazim
+          </p>
           <ul className="space-y-2">
             {topic.commonMistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -1239,14 +1385,18 @@ function LegacyKOMSASDetail({ topic, color }: { topic: BMTopic; color: string })
 
       {topic.sinopsis && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Sinopsis</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>
+            Sinopsis
+          </p>
           <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
         </div>
       )}
 
       {topic.tema && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Tema</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>
+            Tema
+          </p>
           <p className="text-sm font-medium text-white/80">{topic.tema}</p>
         </div>
       )}
@@ -1265,7 +1415,10 @@ function LegacyKOMSASDetail({ topic, color }: { topic: BMTopic; color: string })
             <ul className="space-y-1.5">
               {items.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
+                  <span
+                    className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ background: accent }}
+                  />
                   {item}
                 </li>
               ))}
@@ -1310,9 +1463,24 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <h3 className="font-display text-2xl font-black text-white sm:text-3xl">{work.title}</h3>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-white/70">{work.intro}</p>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <KomsasHeroStat icon={<Target className="h-4 w-4" />} label="Tahap Kesukaran" value={work.difficulty} color="#34D399" />
-            <KomsasHeroStat icon={<Clock className="h-4 w-4" />} label="Tempoh Pembelajaran" value={work.studyTime} color={color} />
-            <KomsasHeroStat icon={<Trophy className="h-4 w-4" />} label="Fokus UASA" value={bmText(work.examFocus)} color="#FBBF24" />
+            <KomsasHeroStat
+              icon={<Target className="h-4 w-4" />}
+              label="Tahap Kesukaran"
+              value={work.difficulty}
+              color="#34D399"
+            />
+            <KomsasHeroStat
+              icon={<Clock className="h-4 w-4" />}
+              label="Tempoh Pembelajaran"
+              value={work.studyTime}
+              color={color}
+            />
+            <KomsasHeroStat
+              icon={<Trophy className="h-4 w-4" />}
+              label="Fokus UASA"
+              value={bmText(work.examFocus)}
+              color="#FBBF24"
+            />
           </div>
         </div>
       </section>
@@ -1321,19 +1489,34 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
 
       <Tabs defaultValue="maksud" className="w-full">
         <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-2 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-2">
-          <TabsTrigger value="maksud" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          <TabsTrigger
+            value="maksud"
+            className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white"
+          >
             <PenTool className="mr-1.5 h-3.5 w-3.5" /> {isStory ? "Cerita" : "Maksud"}
           </TabsTrigger>
-          <TabsTrigger value="tema" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          <TabsTrigger
+            value="tema"
+            className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white"
+          >
             <Target className="mr-1.5 h-3.5 w-3.5" /> Tema
           </TabsTrigger>
-          <TabsTrigger value="nilai" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          <TabsTrigger
+            value="nilai"
+            className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white"
+          >
             <Heart className="mr-1.5 h-3.5 w-3.5" /> Nilai
           </TabsTrigger>
-          <TabsTrigger value="exam" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          <TabsTrigger
+            value="exam"
+            className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white"
+          >
             <Flame className="mr-1.5 h-3.5 w-3.5" /> UASA
           </TabsTrigger>
-          <TabsTrigger value="quiz" className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white">
+          <TabsTrigger
+            value="quiz"
+            className="rounded-xl data-[state=active]:bg-white/10 data-[state=active]:text-white"
+          >
             <FileQuestion className="mr-1.5 h-3.5 w-3.5" /> Kuiz
           </TabsTrigger>
         </TabsList>
@@ -1350,12 +1533,26 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           )}
 
           {isStory && Array.isArray(work.timeline) && work.timeline.length > 0 && (
-            <LearningFolder icon={<Map className="h-4 w-4" />} title="📚 Jalan Cerita" description="Urutan cerita daripada permulaan hingga peleraian" accent={color}>
+            <LearningFolder
+              icon={<Map className="h-4 w-4" />}
+              title="📚 Jalan Cerita"
+              description="Urutan cerita daripada permulaan hingga peleraian"
+              accent={color}
+            >
               <div className="grid gap-3 md:grid-cols-5">
                 {work.timeline.map((item, index) => (
-                  <div key={item.stage} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                  <div
+                    key={item.stage}
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+                  >
                     <div className="mb-2 flex items-center gap-2">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${storyTimelineColors[index]}25`, color: storyTimelineColors[index] }}>
+                      <span
+                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                        style={{
+                          background: `${storyTimelineColors[index]}25`,
+                          color: storyTimelineColors[index],
+                        }}
+                      >
                         {index + 1}
                       </span>
                       <p className="text-sm font-bold text-white">{item.stage}</p>
@@ -1368,10 +1565,18 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           )}
 
           {isStory && Array.isArray(work.characters) && work.characters.length > 0 && (
-            <LearningFolder icon={<Heart className="h-4 w-4" />} title="👥 Analisis Watak" description="Watak, perwatakan, bukti dan kepentingan" accent={color}>
+            <LearningFolder
+              icon={<Heart className="h-4 w-4" />}
+              title="👥 Analisis Watak"
+              description="Watak, perwatakan, bukti dan kepentingan"
+              accent={color}
+            >
               <div className="grid gap-3 md:grid-cols-3">
                 {work.characters.map((character) => (
-                  <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
+                  <div
+                    key={character.name}
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+                  >
                     <div className="mb-3 flex items-center gap-2" style={{ color }}>
                       <Heart className="h-4 w-4" />
                       <p className="font-bold">{character.name}</p>
@@ -1386,13 +1591,25 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           )}
 
           {isStory && Array.isArray(work.events) && work.events.length > 0 && (
-            <LearningFolder icon={<Zap className="h-4 w-4" />} title="📖 Peristiwa Penting" description="Semua peristiwa utama dalam satu urutan" accent={color}>
+            <LearningFolder
+              icon={<Zap className="h-4 w-4" />}
+              title="📖 Peristiwa Penting"
+              description="Semua peristiwa utama dalam satu urutan"
+              accent={color}
+            >
               <Accordion type="single" collapsible className="space-y-3">
                 {work.events.map((event, index) => (
-                  <AccordionItem key={event.event} value={`event-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                  <AccordionItem
+                    key={event.event}
+                    value={`event-${index}`}
+                    className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+                  >
                     <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
                       <span className="flex items-center gap-3">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${color}20`, color }}>
+                        <span
+                          className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black"
+                          style={{ background: `${color}20`, color }}
+                        >
                           E{index + 1}
                         </span>
                         <span className="font-bold text-white/85">{event.event}</span>
@@ -1400,9 +1617,21 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                     </AccordionTrigger>
                     <AccordionContent className="px-4 pb-4">
                       <div className="grid gap-3 md:grid-cols-3">
-                        <DecoderCell label="Apa berlaku" value={event.whatHappened} accent={color} />
-                        <DecoderCell label="Mengapa penting" value={event.whyItMatters} accent="#FBBF24" />
-                        <DecoderCell label="Fokus UASA" value={bmText(event.examFocus)} accent="#60A5FA" />
+                        <DecoderCell
+                          label="Apa berlaku"
+                          value={event.whatHappened}
+                          accent={color}
+                        />
+                        <DecoderCell
+                          label="Mengapa penting"
+                          value={event.whyItMatters}
+                          accent="#FBBF24"
+                        />
+                        <DecoderCell
+                          label="Fokus UASA"
+                          value={bmText(event.examFocus)}
+                          accent="#60A5FA"
+                        />
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -1414,32 +1643,55 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <LearningFolder
             icon={<BookOpen className="h-4 w-4" />}
             title={isStory ? "📖 Bahagian & Bahasa Mudah" : "📖 Rangkap & Bahasa Mudah"}
-            description={isStory ? "Setiap bahagian cerita bersama maksud mudahnya" : "Setiap rangkap bersama bahasa dan maksud mudahnya"}
+            description={
+              isStory
+                ? "Setiap bahagian cerita bersama maksud mudahnya"
+                : "Setiap rangkap bersama bahasa dan maksud mudahnya"
+            }
             accent={color}
             defaultOpen
           >
-          <Accordion type="single" collapsible className="space-y-3">
-            {(Array.isArray(work.decoder) ? work.decoder : []).map((item, index) => (
-              <AccordionItem key={item.rangkap} value={`rangkap-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
-                  <span className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${color}20`, color }}>
-                      R{index + 1}
+            <Accordion type="single" collapsible className="space-y-3">
+              {(Array.isArray(work.decoder) ? work.decoder : []).map((item, index) => (
+                <AccordionItem
+                  key={item.rangkap}
+                  value={`rangkap-${index}`}
+                  className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+                >
+                  <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                    <span className="flex items-center gap-3">
+                      <span
+                        className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black"
+                        style={{ background: `${color}20`, color }}
+                      >
+                        R{index + 1}
+                      </span>
+                      <span className="font-bold text-white/85">{item.rangkap}</span>
                     </span>
-                    <span className="font-bold text-white/85">{item.rangkap}</span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-4 pb-4">
-                  <div className="grid gap-3 md:grid-cols-2">
-                    <DecoderCell label={isStory ? "Bahasa Mudah" : "Bahasa Mudah"} value={item.pantunMudah} accent={color} />
-                    <DecoderCell label="Maksud Mudah" value={item.maksud} accent="#60A5FA" />
-                    <DecoderCell label={isStory ? "Fokus Bahagian" : "Tema Rangkap"} value={item.tema} accent="#C084FC" />
-                    <DecoderCell label="Nilai + Pengajaran" value={`${item.nilai} ${item.pengajaran}`} accent="#34D399" />
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4">
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <DecoderCell
+                        label={isStory ? "Bahasa Mudah" : "Bahasa Mudah"}
+                        value={item.pantunMudah}
+                        accent={color}
+                      />
+                      <DecoderCell label="Maksud Mudah" value={item.maksud} accent="#60A5FA" />
+                      <DecoderCell
+                        label={isStory ? "Fokus Bahagian" : "Tema Rangkap"}
+                        value={item.tema}
+                        accent="#C084FC"
+                      />
+                      <DecoderCell
+                        label="Nilai + Pengajaran"
+                        value={`${item.nilai} ${item.pengajaran}`}
+                        accent="#34D399"
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </LearningFolder>
 
           <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
@@ -1449,7 +1701,10 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
             </div>
             <div className="space-y-3">
               {(Array.isArray(work.teacherExplains) ? work.teacherExplains : []).map((explain) => (
-                <p key={explain} className="rounded-xl border border-cyan-400/10 bg-black/10 p-3 text-sm leading-7 text-white/70">
+                <p
+                  key={explain}
+                  className="rounded-xl border border-cyan-400/10 bg-black/10 p-3 text-sm leading-7 text-white/70"
+                >
                   {explain}
                 </p>
               ))}
@@ -1465,11 +1720,21 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
             <div className="mb-3 flex items-center gap-2">
               <Target className="h-5 w-5" style={{ color }} />
-              <h3 className="font-display text-lg font-bold text-white">{work.theme?.title ?? "Tema utama"}</h3>
+              <h3 className="font-display text-lg font-bold text-white">
+                {work.theme?.title ?? "Tema utama"}
+              </h3>
             </div>
             <div className="grid gap-3 md:grid-cols-2">
-              <DecoderCell label="Penjelasan" value={work.theme?.explanation ?? "Penerangan tema belum tersedia."} accent={color} />
-              <DecoderCell label="Mengapa penting" value={work.theme?.whyItMatters ?? "Tema ini membantu murid memahami mesej karya."} accent="#FBBF24" />
+              <DecoderCell
+                label="Penjelasan"
+                value={work.theme?.explanation ?? "Penerangan tema belum tersedia."}
+                accent={color}
+              />
+              <DecoderCell
+                label="Mengapa penting"
+                value={work.theme?.whyItMatters ?? "Tema ini membantu murid memahami mesej karya."}
+                accent="#FBBF24"
+              />
             </div>
           </div>
 
@@ -1479,7 +1744,12 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           </div>
           <div className="grid gap-3 md:grid-cols-3">
             {(Array.isArray(work.lessons) ? work.lessons : []).map((lesson) => (
-              <LearningCard key={lesson.value} icon={<Lightbulb className="h-4 w-4" />} item={lesson} accent="#FBBF24" />
+              <LearningCard
+                key={lesson.value}
+                icon={<Lightbulb className="h-4 w-4" />}
+                item={lesson}
+                accent="#FBBF24"
+              />
             ))}
           </div>
         </TabsContent>
@@ -1491,7 +1761,12 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           </div>
           <div className="grid gap-3 md:grid-cols-3">
             {(Array.isArray(work.values) ? work.values : []).map((value) => (
-              <LearningCard key={value.value} icon={<Star className="h-4 w-4" />} item={value} accent="#34D399" />
+              <LearningCard
+                key={value.value}
+                icon={<Star className="h-4 w-4" />}
+                item={value}
+                accent="#34D399"
+              />
             ))}
           </div>
         </TabsContent>
@@ -1507,8 +1782,14 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
               <h3 className="font-display text-lg font-bold">Perkara Kerap Ditanya</h3>
             </div>
             <div className="grid gap-2 sm:grid-cols-2">
-              {(Array.isArray(work.examBooster?.frequentPoints) ? work.examBooster.frequentPoints : []).map((point, index) => (
-                <div key={point} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-black/10 p-3">
+              {(Array.isArray(work.examBooster?.frequentPoints)
+                ? work.examBooster.frequentPoints
+                : []
+              ).map((point, index) => (
+                <div
+                  key={point}
+                  className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-black/10 p-3"
+                >
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-400/20 text-[10px] font-black text-orange-300">
                     {index + 1}
                   </span>
@@ -1519,8 +1800,15 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           </div>
 
           <Accordion type="single" collapsible className="space-y-3">
-            {(Array.isArray(work.examBooster?.commonQuestions) ? work.examBooster.commonQuestions : []).map((item, index) => (
-              <AccordionItem key={item.question} value={`common-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+            {(Array.isArray(work.examBooster?.commonQuestions)
+              ? work.examBooster.commonQuestions
+              : []
+            ).map((item, index) => (
+              <AccordionItem
+                key={item.question}
+                value={`common-${index}`}
+                className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+              >
                 <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
                   <span className="flex items-center gap-3">
                     <FileQuestion className="h-4 w-4" style={{ color }} />
@@ -1529,9 +1817,27 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-4">
                   <div className="grid gap-3 md:grid-cols-3">
-                    <DecoderCell label="Jawapan Contoh" value={bmText(item.modelAnswer ?? item.answerHint)} accent="#60A5FA" />
-                    <DecoderCell label="Penjelasan" value={bmText(item.explanation ?? "Jawapan perlu disokong dengan bukti karya dan contoh yang sesuai.")} accent="#34D399" />
-                    <DecoderCell label="Petua UASA" value={bmText(item.examTip ?? "Jawab dengan ayat lengkap dan terus kepada kehendak soalan.")} accent="#FBBF24" />
+                    <DecoderCell
+                      label="Jawapan Contoh"
+                      value={bmText(item.modelAnswer ?? item.answerHint)}
+                      accent="#60A5FA"
+                    />
+                    <DecoderCell
+                      label="Penjelasan"
+                      value={bmText(
+                        item.explanation ??
+                          "Jawapan perlu disokong dengan bukti karya dan contoh yang sesuai.",
+                      )}
+                      accent="#34D399"
+                    />
+                    <DecoderCell
+                      label="Petua UASA"
+                      value={bmText(
+                        item.examTip ??
+                          "Jawab dengan ayat lengkap dan terus kepada kehendak soalan.",
+                      )}
+                      accent="#FBBF24"
+                    />
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -1544,10 +1850,26 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
               <h3 className="font-display text-lg font-bold text-white">Kad Ulang Kaji Pantas</h3>
             </div>
             <div className="grid gap-3 md:grid-cols-4">
-              <DecoderCell label="Tema" value={work.revision?.theme ?? "Tema belum tersedia."} accent={color} />
-              <DecoderCell label="Nilai" value={work.revision?.values ?? "Nilai belum tersedia."} accent="#34D399" />
-              <DecoderCell label="Pengajaran" value={work.revision?.lessons ?? "Pengajaran belum tersedia."} accent="#FBBF24" />
-              <DecoderCell label="Petua UASA" value={bmText(work.revision?.examTips ?? "Jawab dengan bukti karya.")} accent="#60A5FA" />
+              <DecoderCell
+                label="Tema"
+                value={work.revision?.theme ?? "Tema belum tersedia."}
+                accent={color}
+              />
+              <DecoderCell
+                label="Nilai"
+                value={work.revision?.values ?? "Nilai belum tersedia."}
+                accent="#34D399"
+              />
+              <DecoderCell
+                label="Pengajaran"
+                value={work.revision?.lessons ?? "Pengajaran belum tersedia."}
+                accent="#FBBF24"
+              />
+              <DecoderCell
+                label="Petua UASA"
+                value={bmText(work.revision?.examTips ?? "Jawab dengan bukti karya.")}
+                accent="#60A5FA"
+              />
             </div>
           </div>
         </TabsContent>
@@ -1563,7 +1885,17 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
   );
 }
 
-function KomsasHeroStat({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
+function KomsasHeroStat({
+  icon,
+  label,
+  value,
+  color,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  color: string;
+}) {
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-white/[0.05] p-3">
       <div className="mb-1 flex items-center gap-2 text-[10px] font-black tracking-wide text-white/35">
@@ -1578,7 +1910,9 @@ function KomsasHeroStat({ icon, label, value, color }: { icon: React.ReactNode; 
 function DecoderCell({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
     <div className="rounded-xl border border-white/[0.06] bg-black/10 p-3">
-      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color: accent }}>{label}</p>
+      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color: accent }}>
+        {label}
+      </p>
       <p className="text-sm leading-6 text-white/70">{value}</p>
     </div>
   );
@@ -1587,7 +1921,9 @@ function DecoderCell({ label, value, accent }: { label: string; value: string; a
 function MiniExplain({ label, text, accent }: { label: string; text: string; accent: string }) {
   return (
     <div className="mb-3 rounded-xl border border-white/[0.06] bg-black/10 p-3">
-      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color: accent }}>{label}</p>
+      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color: accent }}>
+        {label}
+      </p>
       <p className="text-xs leading-6 text-white/60">{text}</p>
     </div>
   );
@@ -1612,7 +1948,9 @@ function LearningCard({
       </div>
       <MiniExplain label="Penjelasan" text={item.explanation} accent={accent} />
       <MiniExplain label="Contoh kehidupan sebenar" text={item.realLife} accent="#60A5FA" />
-      {item.schoolLife && <MiniExplain label="Contoh di sekolah" text={item.schoolLife} accent="#C084FC" />}
+      {item.schoolLife && (
+        <MiniExplain label="Contoh di sekolah" text={item.schoolLife} accent="#C084FC" />
+      )}
     </div>
   );
 }
@@ -1624,7 +1962,9 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
     <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
-          <p className="text-[9px] font-black tracking-wide" style={{ color }}>Makmal Kuiz Mini</p>
+          <p className="text-[9px] font-black tracking-wide" style={{ color }}>
+            Makmal Kuiz Mini
+          </p>
           <h3 className="font-display text-lg font-bold text-white">Ruang kuiz mini tersedia</h3>
         </div>
         <div className="rounded-xl border border-white/[0.08] bg-black/20 px-3 py-2 text-right">
@@ -1634,9 +1974,18 @@ function MiniQuizPlaceholder({ work, color }: { work: KomsasWork; color: string 
       </div>
       <div className="grid gap-3 md:grid-cols-3">
         {quizItems.map((quiz, index) => (
-          <div key={quiz.question} className="rounded-2xl border border-white/[0.08] bg-black/10 p-4">
+          <div
+            key={quiz.question}
+            className="rounded-2xl border border-white/[0.08] bg-black/10 p-4"
+          >
             <div className="mb-2 flex items-center gap-2 font-bold" style={{ color }}>
-              {index === 0 ? <FileQuestion className="h-4 w-4" /> : index === 1 ? <Map className="h-4 w-4" /> : <Brain className="h-4 w-4" />}
+              {index === 0 ? (
+                <FileQuestion className="h-4 w-4" />
+              ) : index === 1 ? (
+                <Map className="h-4 w-4" />
+              ) : (
+                <Brain className="h-4 w-4" />
+              )}
               Ruang Latihan {index + 1}
             </div>
             <p className="text-sm font-semibold leading-6 text-white/75">{bmText(quiz.question)}</p>
@@ -1696,7 +2045,11 @@ function ImportanceBadge({ level }: { level: "Sangat Penting" | "Penting" | "Per
   return (
     <span
       className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-black tracking-wide"
-      style={{ borderColor: `${styles.color}35`, background: `${styles.color}18`, color: styles.color }}
+      style={{
+        borderColor: `${styles.color}35`,
+        background: `${styles.color}18`,
+        color: styles.color,
+      }}
     >
       <span>{styles.icon}</span>
       {level}
@@ -1707,14 +2060,18 @@ function ImportanceBadge({ level }: { level: "Sangat Penting" | "Penting" | "Per
 function getKeywordTags(work: KomsasWork) {
   const values = Array.isArray(work.values) ? work.values.map((item) => item.value) : [];
   const characters = Array.isArray(work.characters) ? work.characters.map((item) => item.name) : [];
-  const masterCharacters = Array.isArray(work.masterCharacters) ? work.masterCharacters.map((item) => item.name) : [];
+  const masterCharacters = Array.isArray(work.masterCharacters)
+    ? work.masterCharacters.map((item) => item.name)
+    : [];
   const events = Array.isArray(work.events) ? work.events.map((item) => item.event) : [];
   const themeWords = (work.theme?.title ?? "")
     .split(/\s+/)
     .filter((word) => word.length > 5)
     .slice(0, 3);
 
-  return Array.from(new Set([...values, ...characters, ...masterCharacters, ...themeWords, ...events]))
+  return Array.from(
+    new Set([...values, ...characters, ...masterCharacters, ...themeWords, ...events]),
+  )
     .filter(Boolean)
     .slice(0, 12);
 }
@@ -1724,7 +2081,9 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
   const relationships = Array.isArray(work.relationshipMap) ? work.relationshipMap : [];
   const plot = Array.isArray(work.detailedPlot) ? work.detailedPlot : [];
   const events = Array.isArray(work.importantEvents) ? work.importantEvents : [];
-  const examCharacters = Array.isArray(work.examCharacterAnalysis) ? work.examCharacterAnalysis : [];
+  const examCharacters = Array.isArray(work.examCharacterAnalysis)
+    ? work.examCharacterAnalysis
+    : [];
   const issues = Array.isArray(work.issues) ? work.issues : [];
   const uasaQuestions = Array.isArray(work.uasaQuestions) ? work.uasaQuestions : [];
   const focus = work.keyCharacterFocus;
@@ -1732,234 +2091,437 @@ function KomsasKssmMasterSections({ work, color }: { work: KomsasWork; color: st
 
   return (
     <div className="space-y-4">
-      <LearningFolder icon={<Heart className="h-4 w-4" />} title="👥 Analisis Watak & Jalan Cerita" description="Watak, hubungan dan perkembangan plot" accent={color}>
-      {characters.length > 0 && (
-        <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Watak & Perwatakan" accent={color} badge={<ImportanceBadge level="Penting" />}>
-          <div className="grid gap-3 md:grid-cols-2">
-            {characters.map((character) => (
-              <div key={character.name} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-                <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex items-center gap-2" style={{ color }}>
-                    <Heart className="h-4 w-4" />
-                    <p className="font-display text-lg font-bold">{character.name}</p>
+      <LearningFolder
+        icon={<Heart className="h-4 w-4" />}
+        title="👥 Analisis Watak & Jalan Cerita"
+        description="Watak, hubungan dan perkembangan plot"
+        accent={color}
+      >
+        {characters.length > 0 && (
+          <CollapsibleSection
+            icon={<Heart className="h-4 w-4" />}
+            title="Watak & Perwatakan"
+            accent={color}
+            badge={<ImportanceBadge level="Penting" />}
+          >
+            <div className="grid gap-3 md:grid-cols-2">
+              {characters.map((character) => (
+                <div
+                  key={character.name}
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+                >
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2" style={{ color }}>
+                      <Heart className="h-4 w-4" />
+                      <p className="font-display text-lg font-bold">{character.name}</p>
+                    </div>
+                    <Badge label="Fail Lengkap" color={color} />
                   </div>
-                  <Badge label="Fail Lengkap" color={color} />
+                  <div className="mb-3 flex flex-wrap gap-1.5">
+                    {(Array.isArray(character.traits) ? character.traits : []).map((trait) => (
+                      <span
+                        key={trait}
+                        className="rounded-lg border border-emerald-400/15 bg-emerald-400/10 px-2 py-1 text-[10px] font-bold text-emerald-200"
+                      >
+                        {trait}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <MiniExplain
+                      label="Peranan"
+                      text={character.role ?? "Peranan belum tersedia."}
+                      accent={color}
+                    />
+                    <MiniExplain
+                      label="Bukti Perwatakan"
+                      text={character.evidence ?? "Bukti umum daripada karya."}
+                      accent="#60A5FA"
+                    />
+                    <MiniExplain
+                      label="Hubungan"
+                      text={character.relationships ?? "Hubungan watak membantu mesej karya."}
+                      accent="#C084FC"
+                    />
+                    <MiniExplain
+                      label="Kepentingan"
+                      text={
+                        character.importance ?? "Watak ini membantu membawa tema dan pengajaran."
+                      }
+                      accent="#FBBF24"
+                    />
+                  </div>
                 </div>
-                <div className="mb-3 flex flex-wrap gap-1.5">
-                  {(Array.isArray(character.traits) ? character.traits : []).map((trait) => (
-                    <span key={trait} className="rounded-lg border border-emerald-400/15 bg-emerald-400/10 px-2 py-1 text-[10px] font-bold text-emerald-200">
-                      {trait}
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
+
+        {relationships.length > 0 && (
+          <CollapsibleSection
+            icon={<Heart className="h-4 w-4" />}
+            title="Hubungan Watak"
+            accent={color}
+          >
+            <div className="grid gap-3 md:grid-cols-3">
+              {relationships.map((relationship) => (
+                <div
+                  key={`${relationship.from}-${relationship.to}-${relationship.relation}`}
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+                >
+                  <div className="mb-3 rounded-xl border border-white/[0.06] bg-black/10 p-3 text-center text-sm font-black text-white">
+                    {relationship.from} <span style={{ color }}>{relationship.relation}</span>{" "}
+                    {relationship.to}
+                  </div>
+                  <p className="text-xs leading-6 text-white/55">{relationship.explanation}</p>
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
+
+        {plot.length > 0 && (
+          <CollapsibleSection
+            icon={<Map className="h-4 w-4" />}
+            title="Jalan Cerita Lengkap"
+            accent={color}
+          >
+            <Accordion type="single" collapsible className="space-y-3">
+              {plot.map((item, index) => (
+                <AccordionItem
+                  key={item.stage}
+                  value={`plot-${index}`}
+                  className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+                >
+                  <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                    <span className="flex items-center gap-3">
+                      <span
+                        className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black"
+                        style={{
+                          background: `${storyTimelineColors[index] ?? color}22`,
+                          color: storyTimelineColors[index] ?? color,
+                        }}
+                      >
+                        {index + 1}
+                      </span>
+                      <span className="font-bold text-white/85">{item.stage}</span>
                     </span>
-                  ))}
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <MiniExplain label="Peranan" text={character.role ?? "Peranan belum tersedia."} accent={color} />
-                  <MiniExplain label="Bukti Perwatakan" text={character.evidence ?? "Bukti umum daripada karya."} accent="#60A5FA" />
-                  <MiniExplain label="Hubungan" text={character.relationships ?? "Hubungan watak membantu mesej karya."} accent="#C084FC" />
-                  <MiniExplain label="Kepentingan" text={character.importance ?? "Watak ini membantu membawa tema dan pengajaran."} accent="#FBBF24" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4">
+                    <div className="grid gap-3 md:grid-cols-3">
+                      <DecoderCell
+                        label="Apa berlaku"
+                        value={item.what ?? "Isi belum tersedia."}
+                        accent={color}
+                      />
+                      <DecoderCell
+                        label="Mengapa berlaku"
+                        value={item.why ?? "Sebab belum tersedia."}
+                        accent="#FBBF24"
+                      />
+                      <DecoderCell
+                        label="Kesan kepada cerita"
+                        value={item.effect ?? "Kesan belum tersedia."}
+                        accent="#60A5FA"
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CollapsibleSection>
+        )}
+      </LearningFolder>
 
-      {relationships.length > 0 && (
-        <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Hubungan Watak" accent={color}>
-          <div className="grid gap-3 md:grid-cols-3">
-            {relationships.map((relationship) => (
-              <div key={`${relationship.from}-${relationship.to}-${relationship.relation}`} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-                <div className="mb-3 rounded-xl border border-white/[0.06] bg-black/10 p-3 text-center text-sm font-black text-white">
-                  {relationship.from} <span style={{ color }}>{relationship.relation}</span> {relationship.to}
-                </div>
-                <p className="text-xs leading-6 text-white/55">{relationship.explanation}</p>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
+      <LearningFolder
+        icon={<Brain className="h-4 w-4" />}
+        title="💭 Tema, Persoalan & Peristiwa"
+        description="Maksud karya, persoalan dan peristiwa yang membina cerita"
+        accent="#A78BFA"
+      >
+        {work.story90 && (
+          <CollapsibleSection
+            icon={<Clapperboard className="h-5 w-5" />}
+            title="Cerita Dalam 90 Saat"
+            accent="#E879F9"
+          >
+            <p className="text-sm leading-7 text-white/75">{work.story90}</p>
+          </CollapsibleSection>
+        )}
 
-      {plot.length > 0 && (
-        <CollapsibleSection icon={<Map className="h-4 w-4" />} title="Jalan Cerita Lengkap" accent={color}>
-          <Accordion type="single" collapsible className="space-y-3">
-            {plot.map((item, index) => (
-              <AccordionItem key={item.stage} value={`plot-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
-                  <span className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${storyTimelineColors[index] ?? color}22`, color: storyTimelineColors[index] ?? color }}>
+        {work.retelling3Min && (
+          <CollapsibleSection
+            icon={<BookOpen className="h-5 w-5" />}
+            title={work.kind === "story" ? "Cerita Dalam 3 Minit" : "Karya Dalam 3 Minit"}
+            accent="#22D3EE"
+          >
+            <p className="text-sm leading-7 text-white/75">{work.retelling3Min}</p>
+          </CollapsibleSection>
+        )}
+
+        {issues.length > 0 && (
+          <CollapsibleSection icon={<Brain className="h-4 w-4" />} title="Persoalan" accent={color}>
+            <div className="grid gap-3 md:grid-cols-2">
+              {issues.map((issue) => (
+                <div
+                  key={issue.issue}
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+                >
+                  <div className="mb-2 flex items-center gap-2" style={{ color }}>
+                    <Brain className="h-4 w-4" />
+                    <p className="font-bold text-white">{issue.issue}</p>
+                  </div>
+                  <p className="text-sm leading-6 text-white/60">{issue.explanation}</p>
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
+
+        {events.length > 0 && (
+          <CollapsibleSection
+            icon={<Zap className="h-4 w-4" />}
+            title="Peristiwa Penting"
+            accent={color}
+            badge={<ImportanceBadge level="Penting" />}
+          >
+            <div className="grid gap-3 md:grid-cols-2">
+              {events.map((event, index) => (
+                <div
+                  key={`${event.event}-${index}`}
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+                >
+                  <div className="mb-3 flex items-center gap-2">
+                    <span
+                      className="flex h-7 w-7 items-center justify-center rounded-xl text-[10px] font-black"
+                      style={{ background: `${color}20`, color }}
+                    >
                       {index + 1}
                     </span>
-                    <span className="font-bold text-white/85">{item.stage}</span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-4 pb-4">
-                  <div className="grid gap-3 md:grid-cols-3">
-                    <DecoderCell label="Apa berlaku" value={item.what ?? "Isi belum tersedia."} accent={color} />
-                    <DecoderCell label="Mengapa berlaku" value={item.why ?? "Sebab belum tersedia."} accent="#FBBF24" />
-                    <DecoderCell label="Kesan kepada cerita" value={item.effect ?? "Kesan belum tersedia."} accent="#60A5FA" />
+                    <p className="font-bold text-white">{event.event}</p>
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </CollapsibleSection>
-      )}
+                  <MiniExplain
+                    label="Apa berlaku"
+                    text={event.what ?? "Peristiwa utama karya."}
+                    accent={color}
+                  />
+                  <MiniExplain
+                    label="Mengapa penting"
+                    text={event.whyImportant ?? "Peristiwa ini membantu membina tema."}
+                    accent="#FBBF24"
+                  />
+                  <MiniExplain
+                    label="Soalan mungkin keluar"
+                    text={event.possibleQuestion ?? "Jelaskan kepentingan peristiwa ini."}
+                    accent="#60A5FA"
+                  />
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
+
+        {focus && (
+          <CollapsibleSection
+            icon={<Target className="h-5 w-5" />}
+            title={`Watak Paling Penting: ${focus.name}`}
+            accent="#E879F9"
+          >
+            <div className="grid gap-3 md:grid-cols-2">
+              <DecoderCell
+                label="Mengapa penting"
+                value={focus.whyMatters ?? "Watak ini membawa mesej utama karya."}
+                accent="#F0ABFC"
+              />
+              <DecoderCell
+                label="Tema"
+                value={focus.supportsTheme ?? "Menyokong tema utama."}
+                accent={color}
+              />
+              <DecoderCell
+                label="Persoalan"
+                value={focus.supportsIssues ?? "Membantu persoalan karya."}
+                accent="#60A5FA"
+              />
+              <DecoderCell
+                label="Nilai & Pengajaran"
+                value={`${focus.supportsValues ?? "Menonjolkan nilai."} ${focus.supportsLessons ?? "Menguatkan pengajaran."}`}
+                accent="#FBBF24"
+              />
+            </div>
+          </CollapsibleSection>
+        )}
+
+        {work.authorPurpose && (
+          <CollapsibleSection
+            icon={<Brain className="h-5 w-5" />}
+            title="Mengapa Cerita Ini Ditulis"
+            accent="#A78BFA"
+          >
+            <p className="text-sm leading-7 text-white/75">{work.authorPurpose}</p>
+          </CollapsibleSection>
+        )}
       </LearningFolder>
 
-      <LearningFolder icon={<Brain className="h-4 w-4" />} title="💭 Tema, Persoalan & Peristiwa" description="Maksud karya, persoalan dan peristiwa yang membina cerita" accent="#A78BFA">
-      {work.story90 && (
-        <CollapsibleSection icon={<Clapperboard className="h-5 w-5" />} title="Cerita Dalam 90 Saat" accent="#E879F9">
-          <p className="text-sm leading-7 text-white/75">{work.story90}</p>
-        </CollapsibleSection>
-      )}
-
-      {work.retelling3Min && (
-        <CollapsibleSection icon={<BookOpen className="h-5 w-5" />} title={work.kind === "story" ? "Cerita Dalam 3 Minit" : "Karya Dalam 3 Minit"} accent="#22D3EE">
-          <p className="text-sm leading-7 text-white/75">{work.retelling3Min}</p>
-        </CollapsibleSection>
-      )}
-
-      {issues.length > 0 && (
-        <CollapsibleSection icon={<Brain className="h-4 w-4" />} title="Persoalan" accent={color}>
-          <div className="grid gap-3 md:grid-cols-2">
-            {issues.map((issue) => (
-              <div key={issue.issue} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-                <div className="mb-2 flex items-center gap-2" style={{ color }}>
-                  <Brain className="h-4 w-4" />
-                  <p className="font-bold text-white">{issue.issue}</p>
-                </div>
-                <p className="text-sm leading-6 text-white/60">{issue.explanation}</p>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
-
-      {events.length > 0 && (
-        <CollapsibleSection icon={<Zap className="h-4 w-4" />} title="Peristiwa Penting" accent={color} badge={<ImportanceBadge level="Penting" />}>
-          <div className="grid gap-3 md:grid-cols-2">
-            {events.map((event, index) => (
-              <div key={`${event.event}-${index}`} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-xl text-[10px] font-black" style={{ background: `${color}20`, color }}>
-                    {index + 1}
-                  </span>
-                  <p className="font-bold text-white">{event.event}</p>
-                </div>
-                <MiniExplain label="Apa berlaku" text={event.what ?? "Peristiwa utama karya."} accent={color} />
-                <MiniExplain label="Mengapa penting" text={event.whyImportant ?? "Peristiwa ini membantu membina tema."} accent="#FBBF24" />
-                <MiniExplain label="Soalan mungkin keluar" text={event.possibleQuestion ?? "Jelaskan kepentingan peristiwa ini."} accent="#60A5FA" />
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
-
-      {focus && (
-        <CollapsibleSection icon={<Target className="h-5 w-5" />} title={`Watak Paling Penting: ${focus.name}`} accent="#E879F9">
-          <div className="grid gap-3 md:grid-cols-2">
-            <DecoderCell label="Mengapa penting" value={focus.whyMatters ?? "Watak ini membawa mesej utama karya."} accent="#F0ABFC" />
-            <DecoderCell label="Tema" value={focus.supportsTheme ?? "Menyokong tema utama."} accent={color} />
-            <DecoderCell label="Persoalan" value={focus.supportsIssues ?? "Membantu persoalan karya."} accent="#60A5FA" />
-            <DecoderCell label="Nilai & Pengajaran" value={`${focus.supportsValues ?? "Menonjolkan nilai."} ${focus.supportsLessons ?? "Menguatkan pengajaran."}`} accent="#FBBF24" />
-          </div>
-        </CollapsibleSection>
-      )}
-
-      {work.authorPurpose && (
-        <CollapsibleSection icon={<Brain className="h-5 w-5" />} title="Mengapa Cerita Ini Ditulis" accent="#A78BFA">
-          <p className="text-sm leading-7 text-white/75">{work.authorPurpose}</p>
-        </CollapsibleSection>
-      )}
-      </LearningFolder>
-
-      <LearningFolder icon={<Target className="h-4 w-4" />} title="🎯 Fokus UASA" description="Soalan, analisis watak dan bahan hafalan peperiksaan" accent="#FBBF24">
-      {uasaQuestions.length > 0 && (
-        <CollapsibleSection icon={<GraduationCap className="h-4 w-4" />} title="Soalan Popular UASA - Skema Penuh" accent={color}>
-          <Accordion type="single" collapsible className="space-y-3">
-            {uasaQuestions.map((item, index) => (
-              <AccordionItem key={`${item.type}-${item.question}`} value={`uasa-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
-                  <span className="flex items-center gap-3">
-                    <span className="rounded-lg px-2 py-1 text-[10px] font-black tracking-wide" style={{ background: `${color}20`, color }}>
-                      {item.type === "MCQ" ? "Aneka Pilihan" : item.type}
-                    </span>
-                    <span className="font-bold text-white/85">{item.question}</span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-4 pb-4">
-                  <div className="grid gap-3 md:grid-cols-2">
-                    <DecoderCell label="Skema Jawapan" value={item.answer ?? "Jawapan belum tersedia."} accent="#34D399" />
-                    <DecoderCell label="Cara fikir" value={item.explanation ?? "Jawab dengan bukti karya dan ayat lengkap."} accent="#60A5FA" />
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </CollapsibleSection>
-      )}
-
-      {examCharacters.length > 0 && (
-        <CollapsibleSection icon={<FileQuestion className="h-4 w-4" />} title="Analisis Watak UASA" accent={color}>
-          <Accordion type="single" collapsible className="space-y-3">
-            {examCharacters.map((item, index) => (
-              <AccordionItem key={`${item.character}-${item.trait}`} value={`exam-char-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
-                  <span className="flex items-center gap-3">
-                    <FileQuestion className="h-4 w-4" style={{ color }} />
-                    <span className="font-bold text-white/85">{item.character}: {item.trait}</span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-4 pb-4">
-                  <div className="grid gap-3 md:grid-cols-3">
-                    <DecoderCell label="Watak" value={item.character} accent={color} />
-                    <DecoderCell label="Bukti" value={item.evidence ?? "Bukti umum daripada karya."} accent="#60A5FA" />
-                    <DecoderCell label="Jawapan Contoh" value={item.modelAnswer ?? "Jawab dengan watak, perwatakan dan bukti."} accent="#34D399" />
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </CollapsibleSection>
-      )}
-
-      {memory && (
-        <CollapsibleSection icon={<Zap className="h-5 w-5" />} title="Hafal Dalam 60 Saat" accent={color}>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            <MemoryChip label="Tema" value={memory.theme ?? "Tema utama"} color={color} />
-            <MemoryChip label="Persoalan" value={memory.issues ?? "Persoalan utama"} color="#60A5FA" />
-            <MemoryChip label="Watak Utama" value={memory.mainCharacters ?? "Watak utama"} color="#C084FC" />
-            <MemoryChip label="Peristiwa Penting" value={memory.importantEvents ?? "Peristiwa utama"} color="#FB923C" />
-            <MemoryChip label="Nilai" value={memory.values ?? "Nilai utama"} color="#34D399" />
-            <MemoryChip label="Pengajaran" value={memory.lessons ?? "Pengajaran utama"} color="#FBBF24" />
-          </div>
-        </CollapsibleSection>
-      )}
-
-      <CollapsibleSection icon={<MessageCircle className="h-5 w-5" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
-        {work.intro && <p className="mb-3 text-sm italic leading-7 text-white/75">{work.intro}</p>}
-        <div className="mb-3 space-y-2">
-          <MiniExplain
-            label="Dalam kata mudah, tema ialah"
-            text={memory?.theme ?? work.revision?.theme ?? "tema utama karya ini."}
+      <LearningFolder
+        icon={<Target className="h-4 w-4" />}
+        title="🎯 Fokus UASA"
+        description="Soalan, analisis watak dan bahan hafalan peperiksaan"
+        accent="#FBBF24"
+      >
+        {uasaQuestions.length > 0 && (
+          <CollapsibleSection
+            icon={<GraduationCap className="h-4 w-4" />}
+            title="Soalan Popular UASA - Skema Penuh"
             accent={color}
-          />
-          <MiniExplain
-            label="Nilai yang perlu kamu faham"
-            text={memory?.values ?? work.revision?.values ?? "nilai murni dalam karya ini."}
-            accent="#34D399"
-          />
-          <MiniExplain
-            label="Pengajaran yang boleh diamalkan"
-            text={memory?.lessons ?? work.revision?.lessons ?? "pengajaran daripada karya ini."}
-            accent="#FBBF24"
-          />
-        </div>
-        <div className="rounded-xl border border-emerald-400/25 bg-emerald-400/8 px-4 py-3">
-          <p className="mb-1 text-[10px] font-black tracking-wide text-emerald-300">⭐ Petua Cikgu</p>
-          <p className="text-sm text-white/75">{bmText(work.examFocus) || "Jawab dengan bukti karya dan ayat yang lengkap."}</p>
-        </div>
-      </CollapsibleSection>
+          >
+            <Accordion type="single" collapsible className="space-y-3">
+              {uasaQuestions.map((item, index) => (
+                <AccordionItem
+                  key={`${item.type}-${item.question}`}
+                  value={`uasa-${index}`}
+                  className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+                >
+                  <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                    <span className="flex items-center gap-3">
+                      <span
+                        className="rounded-lg px-2 py-1 text-[10px] font-black tracking-wide"
+                        style={{ background: `${color}20`, color }}
+                      >
+                        {item.type === "MCQ" ? "Aneka Pilihan" : item.type}
+                      </span>
+                      <span className="font-bold text-white/85">{item.question}</span>
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4">
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <DecoderCell
+                        label="Skema Jawapan"
+                        value={item.answer ?? "Jawapan belum tersedia."}
+                        accent="#34D399"
+                      />
+                      <DecoderCell
+                        label="Cara fikir"
+                        value={item.explanation ?? "Jawab dengan bukti karya dan ayat lengkap."}
+                        accent="#60A5FA"
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CollapsibleSection>
+        )}
+
+        {examCharacters.length > 0 && (
+          <CollapsibleSection
+            icon={<FileQuestion className="h-4 w-4" />}
+            title="Analisis Watak UASA"
+            accent={color}
+          >
+            <Accordion type="single" collapsible className="space-y-3">
+              {examCharacters.map((item, index) => (
+                <AccordionItem
+                  key={`${item.character}-${item.trait}`}
+                  value={`exam-char-${index}`}
+                  className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+                >
+                  <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                    <span className="flex items-center gap-3">
+                      <FileQuestion className="h-4 w-4" style={{ color }} />
+                      <span className="font-bold text-white/85">
+                        {item.character}: {item.trait}
+                      </span>
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4">
+                    <div className="grid gap-3 md:grid-cols-3">
+                      <DecoderCell label="Watak" value={item.character} accent={color} />
+                      <DecoderCell
+                        label="Bukti"
+                        value={item.evidence ?? "Bukti umum daripada karya."}
+                        accent="#60A5FA"
+                      />
+                      <DecoderCell
+                        label="Jawapan Contoh"
+                        value={item.modelAnswer ?? "Jawab dengan watak, perwatakan dan bukti."}
+                        accent="#34D399"
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CollapsibleSection>
+        )}
+
+        {memory && (
+          <CollapsibleSection
+            icon={<Zap className="h-5 w-5" />}
+            title="Hafal Dalam 60 Saat"
+            accent={color}
+          >
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              <MemoryChip label="Tema" value={memory.theme ?? "Tema utama"} color={color} />
+              <MemoryChip
+                label="Persoalan"
+                value={memory.issues ?? "Persoalan utama"}
+                color="#60A5FA"
+              />
+              <MemoryChip
+                label="Watak Utama"
+                value={memory.mainCharacters ?? "Watak utama"}
+                color="#C084FC"
+              />
+              <MemoryChip
+                label="Peristiwa Penting"
+                value={memory.importantEvents ?? "Peristiwa utama"}
+                color="#FB923C"
+              />
+              <MemoryChip label="Nilai" value={memory.values ?? "Nilai utama"} color="#34D399" />
+              <MemoryChip
+                label="Pengajaran"
+                value={memory.lessons ?? "Pengajaran utama"}
+                color="#FBBF24"
+              />
+            </div>
+          </CollapsibleSection>
+        )}
+
+        <CollapsibleSection
+          icon={<MessageCircle className="h-5 w-5" />}
+          title="🤖 Cikgu AcadeMY Terangkan"
+          accent={color}
+        >
+          {work.intro && (
+            <p className="mb-3 text-sm italic leading-7 text-white/75">{work.intro}</p>
+          )}
+          <div className="mb-3 space-y-2">
+            <MiniExplain
+              label="Dalam kata mudah, tema ialah"
+              text={memory?.theme ?? work.revision?.theme ?? "tema utama karya ini."}
+              accent={color}
+            />
+            <MiniExplain
+              label="Nilai yang perlu kamu faham"
+              text={memory?.values ?? work.revision?.values ?? "nilai murni dalam karya ini."}
+              accent="#34D399"
+            />
+            <MiniExplain
+              label="Pengajaran yang boleh diamalkan"
+              text={memory?.lessons ?? work.revision?.lessons ?? "pengajaran daripada karya ini."}
+              accent="#FBBF24"
+            />
+          </div>
+          <div className="rounded-xl border border-emerald-400/25 bg-emerald-400/8 px-4 py-3">
+            <p className="mb-1 text-[10px] font-black tracking-wide text-emerald-300">
+              ⭐ Petua Cikgu
+            </p>
+            <p className="text-sm text-white/75">
+              {bmText(work.examFocus) || "Jawab dengan bukti karya dan ayat yang lengkap."}
+            </p>
+          </div>
+        </CollapsibleSection>
       </LearningFolder>
     </div>
   );
@@ -1975,146 +2537,258 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
 
   return (
     <div className="space-y-4">
-      <LearningFolder icon={<GraduationCap className="h-4 w-4" />} title="🎯 Latihan & Skema UASA" description="Soalan popular, cara pemeriksa berfikir dan jawapan lengkap" accent={color}>
-      {spotterItems.length > 0 && (
-        <CollapsibleSection icon={<Target className="h-4 w-4" />} title="Soalan Popular UASA" accent={color}>
-          <div className="grid gap-3 md:grid-cols-4">
-            {spotterItems.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-                <p className="mb-2 text-sm font-bold text-white">{item.label}</p>
-                <span
-                  className="inline-flex rounded-full px-2.5 py-1 text-[10px] font-black tracking-wide"
-                  style={{ background: `${item.color}20`, color: item.color }}
+      <LearningFolder
+        icon={<GraduationCap className="h-4 w-4" />}
+        title="🎯 Latihan & Skema UASA"
+        description="Soalan popular, cara pemeriksa berfikir dan jawapan lengkap"
+        accent={color}
+      >
+        {spotterItems.length > 0 && (
+          <CollapsibleSection
+            icon={<Target className="h-4 w-4" />}
+            title="Soalan Popular UASA"
+            accent={color}
+          >
+            <div className="grid gap-3 md:grid-cols-4">
+              {spotterItems.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
                 >
-                  {item.frequency}
-                </span>
-                <p className="mt-3 text-xs leading-5 text-white/45">{item.focus}</p>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
-
-      {examinerQuestions.length > 0 && (
-        <CollapsibleSection icon={<GraduationCap className="h-5 w-5" />} title="Jika Saya Pemeriksa" accent="#38BDF8">
-          <Accordion type="single" collapsible className="space-y-3">
-            {examinerQuestions.map((item, index) => (
-              <AccordionItem key={item.question} value={`examiner-${index}`} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-black/10">
-                <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
-                  <span className="flex items-center gap-3">
-                    <FileQuestion className="h-4 w-4" style={{ color }} />
-                    <span className="font-bold text-white/85">{item.question}</span>
+                  <p className="mb-2 text-sm font-bold text-white">{item.label}</p>
+                  <span
+                    className="inline-flex rounded-full px-2.5 py-1 text-[10px] font-black tracking-wide"
+                    style={{ background: `${item.color}20`, color: item.color }}
+                  >
+                    {item.frequency}
                   </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-4 pb-4">
-                  <DecoderCell label="Tekan untuk lihat jawapan" value={bmText(item.modelAnswer ?? item.answerHint ?? "Jawapan belum tersedia.")} accent="#60A5FA" />
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </CollapsibleSection>
-      )}
-
-      {examinerQuestions.length > 0 && (
-        <CollapsibleSection icon={<FileQuestion className="h-4 w-4" />} title="Jawapan Skema Penuh" accent={color}>
-          <div className="grid gap-3 md:grid-cols-2">
-            {examinerQuestions.map((item) => (
-              <div key={item.question} className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-                <div className="border-b border-white/[0.06] p-4">
-                  <p className="text-sm font-bold leading-6 text-white">{item.question}</p>
+                  <p className="mt-3 text-xs leading-5 text-white/45">{item.focus}</p>
                 </div>
-                <div className="grid gap-0 sm:grid-cols-2">
-                  <div className="border-b border-rose-400/10 bg-rose-400/8 p-4 sm:border-b-0 sm:border-r sm:border-rose-400/10">
-                    <div className="mb-2 flex items-center gap-2 text-rose-300">
-                      <XCircle className="h-4 w-4" />
-                      <p className="text-xs font-black tracking-wide">Jawapan Lemah</p>
-                    </div>
-                    <p className="text-sm text-white/65">{getWeakAnswer(item)}</p>
-                  </div>
-                  <div className="bg-emerald-400/8 p-4">
-                    <div className="mb-2 flex items-center gap-2 text-emerald-300">
-                      <CheckCircle className="h-4 w-4" />
-                      <p className="text-xs font-black tracking-wide">Jawapan Skor Penuh</p>
-                    </div>
-                    <p className="text-sm leading-6 text-white/70">{item.modelAnswer ?? item.answerHint}</p>
-                    <p className="mt-2 text-xs leading-5 text-emerald-100/55">{item.examTip ?? "Tambah bukti atau contoh supaya jawapan tidak terlalu umum."}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
-      </LearningFolder>
-
-      <LearningFolder icon={<Zap className="h-4 w-4" />} title="⚡ Ulang Kaji Pantas" description="Ringkasan, refleksi, hafalan dan cabaran KBAT" accent="#FBBF24">
-      <CollapsibleSection icon={<Clapperboard className="h-5 w-5" />} title="Ringkasan Cerita" accent="#E879F9">
-        <p className="text-sm leading-7 text-white/75">{getTrailerSummary(work)}</p>
-      </CollapsibleSection>
-
-      <CollapsibleSection icon={<Globe2 className="h-4 w-4" />} title="Jika Ini Berlaku Kepada Anda" accent="#22D3EE">
-        <div className="grid gap-3 md:grid-cols-3">
-          {reflections.map((question) => (
-            <div key={question} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-              <div className="mb-2 flex items-center gap-2 text-cyan-300">
-                <Globe2 className="h-4 w-4" />
-                <p className="text-[10px] font-black tracking-wide">Renung</p>
-              </div>
-              <p className="text-sm leading-6 text-white/70">{question}</p>
+              ))}
             </div>
-          ))}
-        </div>
-      </CollapsibleSection>
+          </CollapsibleSection>
+        )}
 
-      <CollapsibleSection icon={<Zap className="h-5 w-5" />} title="Hafal Dalam 60 Saat" accent="#FBBF24">
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          <MemoryChip label="Tema" value={work.revision?.theme ?? "Tema belum tersedia."} color={color} />
-          <MemoryChip label="Nilai" value={work.revision?.values ?? "Nilai belum tersedia."} color="#34D399" />
-          <MemoryChip label="Pengajaran" value={work.revision?.lessons ?? "Pengajaran belum tersedia."} color="#FBBF24" />
-          <MemoryChip label={work.kind === "story" ? "Watak" : "Fokus"} value={getMemoryCharacter(work)} color="#C084FC" />
-          <MemoryChip label="Peristiwa Penting" value={getMemoryEvent(work)} color="#60A5FA" />
-          <MemoryChip label="Peringatan UASA" value={bmText(work.revision?.examTips ?? "Jawab dengan bukti karya.")} color="#FB923C" />
-        </div>
-      </CollapsibleSection>
+        {examinerQuestions.length > 0 && (
+          <CollapsibleSection
+            icon={<GraduationCap className="h-5 w-5" />}
+            title="Jika Saya Pemeriksa"
+            accent="#38BDF8"
+          >
+            <Accordion type="single" collapsible className="space-y-3">
+              {examinerQuestions.map((item, index) => (
+                <AccordionItem
+                  key={item.question}
+                  value={`examiner-${index}`}
+                  className="overflow-hidden rounded-2xl border border-white/[0.08] bg-black/10"
+                >
+                  <AccordionTrigger className="px-4 py-4 text-left hover:no-underline">
+                    <span className="flex items-center gap-3">
+                      <FileQuestion className="h-4 w-4" style={{ color }} />
+                      <span className="font-bold text-white/85">{item.question}</span>
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4">
+                    <DecoderCell
+                      label="Tekan untuk lihat jawapan"
+                      value={bmText(
+                        item.modelAnswer ?? item.answerHint ?? "Jawapan belum tersedia.",
+                      )}
+                      accent="#60A5FA"
+                    />
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CollapsibleSection>
+        )}
 
-      <CollapsibleSection icon={<Brain className="h-5 w-5" />} title="Cabaran KBAT" accent="#A78BFA">
-        <DecoderCell label={getKbatChallenge(work).question} value={getKbatChallenge(work).answer} accent="#C084FC" />
-      </CollapsibleSection>
+        {examinerQuestions.length > 0 && (
+          <CollapsibleSection
+            icon={<FileQuestion className="h-4 w-4" />}
+            title="Jawapan Skema Penuh"
+            accent={color}
+          >
+            <div className="grid gap-3 md:grid-cols-2">
+              {examinerQuestions.map((item) => (
+                <div
+                  key={item.question}
+                  className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+                >
+                  <div className="border-b border-white/[0.06] p-4">
+                    <p className="text-sm font-bold leading-6 text-white">{item.question}</p>
+                  </div>
+                  <div className="grid gap-0 sm:grid-cols-2">
+                    <div className="border-b border-rose-400/10 bg-rose-400/8 p-4 sm:border-b-0 sm:border-r sm:border-rose-400/10">
+                      <div className="mb-2 flex items-center gap-2 text-rose-300">
+                        <XCircle className="h-4 w-4" />
+                        <p className="text-xs font-black tracking-wide">Jawapan Lemah</p>
+                      </div>
+                      <p className="text-sm text-white/65">{getWeakAnswer(item)}</p>
+                    </div>
+                    <div className="bg-emerald-400/8 p-4">
+                      <div className="mb-2 flex items-center gap-2 text-emerald-300">
+                        <CheckCircle className="h-4 w-4" />
+                        <p className="text-xs font-black tracking-wide">Jawapan Skor Penuh</p>
+                      </div>
+                      <p className="text-sm leading-6 text-white/70">
+                        {item.modelAnswer ?? item.answerHint}
+                      </p>
+                      <p className="mt-2 text-xs leading-5 text-emerald-100/55">
+                        {item.examTip ??
+                          "Tambah bukti atau contoh supaya jawapan tidak terlalu umum."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
       </LearningFolder>
 
-      <LearningFolder icon={<CheckCircle className="h-4 w-4" />} title="✅ Semakan Akhir" description="Hubungan, kesalahan lazim dan persediaan sebelum peperiksaan" accent="#34D399">
-      {work.kind === "story" && relationships.length > 0 && (
-        <CollapsibleSection icon={<Heart className="h-4 w-4" />} title="Hubungan Watak" accent={color}>
+      <LearningFolder
+        icon={<Zap className="h-4 w-4" />}
+        title="⚡ Ulang Kaji Pantas"
+        description="Ringkasan, refleksi, hafalan dan cabaran KBAT"
+        accent="#FBBF24"
+      >
+        <CollapsibleSection
+          icon={<Clapperboard className="h-5 w-5" />}
+          title="Ringkasan Cerita"
+          accent="#E879F9"
+        >
+          <p className="text-sm leading-7 text-white/75">{getTrailerSummary(work)}</p>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          icon={<Globe2 className="h-4 w-4" />}
+          title="Jika Ini Berlaku Kepada Anda"
+          accent="#22D3EE"
+        >
           <div className="grid gap-3 md:grid-cols-3">
-            {relationships.map((relationship) => (
-              <div key={relationship} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 text-center">
-                <p className="text-sm font-black text-white">{relationship}</p>
+            {reflections.map((question) => (
+              <div
+                key={question}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+              >
+                <div className="mb-2 flex items-center gap-2 text-cyan-300">
+                  <Globe2 className="h-4 w-4" />
+                  <p className="text-[10px] font-black tracking-wide">Renung</p>
+                </div>
+                <p className="text-sm leading-6 text-white/70">{question}</p>
               </div>
             ))}
           </div>
         </CollapsibleSection>
-      )}
 
-      <CollapsibleSection icon={<XCircle className="h-4 w-4" />} title="Kesalahan Murid Yang Selalu Berlaku" accent="#FB7185">
-        <div className="grid gap-3 md:grid-cols-3">
-          {mistakes.map((mistake) => (
-            <div key={mistake.wrong} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
-              <p className="mb-2 text-sm font-bold text-rose-300">{mistake.wrong}</p>
-              <p className="text-xs leading-5 text-white/45">{mistake.fix}</p>
-            </div>
-          ))}
-        </div>
-      </CollapsibleSection>
+        <CollapsibleSection
+          icon={<Zap className="h-5 w-5" />}
+          title="Hafal Dalam 60 Saat"
+          accent="#FBBF24"
+        >
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            <MemoryChip
+              label="Tema"
+              value={work.revision?.theme ?? "Tema belum tersedia."}
+              color={color}
+            />
+            <MemoryChip
+              label="Nilai"
+              value={work.revision?.values ?? "Nilai belum tersedia."}
+              color="#34D399"
+            />
+            <MemoryChip
+              label="Pengajaran"
+              value={work.revision?.lessons ?? "Pengajaran belum tersedia."}
+              color="#FBBF24"
+            />
+            <MemoryChip
+              label={work.kind === "story" ? "Watak" : "Fokus"}
+              value={getMemoryCharacter(work)}
+              color="#C084FC"
+            />
+            <MemoryChip label="Peristiwa Penting" value={getMemoryEvent(work)} color="#60A5FA" />
+            <MemoryChip
+              label="Peringatan UASA"
+              value={bmText(work.revision?.examTips ?? "Jawab dengan bukti karya.")}
+              color="#FB923C"
+            />
+          </div>
+        </CollapsibleSection>
 
-      <CollapsibleSection icon={<Target className="h-5 w-5" />} title="Sebelum Masuk Dewan" accent={color}>
-        <div className="grid gap-2 sm:grid-cols-5">
-          {survival.map((item) => (
-            <div key={item} className="rounded-xl border border-white/[0.08] bg-black/10 p-3 text-xs font-bold leading-5 text-white/70">
-              {item}
+        <CollapsibleSection
+          icon={<Brain className="h-5 w-5" />}
+          title="Cabaran KBAT"
+          accent="#A78BFA"
+        >
+          <DecoderCell
+            label={getKbatChallenge(work).question}
+            value={getKbatChallenge(work).answer}
+            accent="#C084FC"
+          />
+        </CollapsibleSection>
+      </LearningFolder>
+
+      <LearningFolder
+        icon={<CheckCircle className="h-4 w-4" />}
+        title="✅ Semakan Akhir"
+        description="Hubungan, kesalahan lazim dan persediaan sebelum peperiksaan"
+        accent="#34D399"
+      >
+        {work.kind === "story" && relationships.length > 0 && (
+          <CollapsibleSection
+            icon={<Heart className="h-4 w-4" />}
+            title="Hubungan Watak"
+            accent={color}
+          >
+            <div className="grid gap-3 md:grid-cols-3">
+              {relationships.map((relationship) => (
+                <div
+                  key={relationship}
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 text-center"
+                >
+                  <p className="text-sm font-black text-white">{relationship}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </CollapsibleSection>
+          </CollapsibleSection>
+        )}
+
+        <CollapsibleSection
+          icon={<XCircle className="h-4 w-4" />}
+          title="Kesalahan Murid Yang Selalu Berlaku"
+          accent="#FB7185"
+        >
+          <div className="grid gap-3 md:grid-cols-3">
+            {mistakes.map((mistake) => (
+              <div
+                key={mistake.wrong}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4"
+              >
+                <p className="mb-2 text-sm font-bold text-rose-300">{mistake.wrong}</p>
+                <p className="text-xs leading-5 text-white/45">{mistake.fix}</p>
+              </div>
+            ))}
+          </div>
+        </CollapsibleSection>
+
+        <CollapsibleSection
+          icon={<Target className="h-5 w-5" />}
+          title="Sebelum Masuk Dewan"
+          accent={color}
+        >
+          <div className="grid gap-2 sm:grid-cols-5">
+            {survival.map((item) => (
+              <div
+                key={item}
+                className="rounded-xl border border-white/[0.08] bg-black/10 p-3 text-xs font-bold leading-5 text-white/70"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </CollapsibleSection>
       </LearningFolder>
     </div>
   );
@@ -2123,7 +2797,9 @@ function KomsasExamPrepAddOns({ work, color }: { work: KomsasWork; color: string
 function MemoryChip({ label, value, color }: { label: string; value: string; color: string }) {
   return (
     <div className="rounded-xl border border-white/[0.08] bg-black/10 p-3">
-      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>{label}</p>
+      <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>
+        {label}
+      </p>
       <p className="text-xs leading-5 text-white/70">{value}</p>
     </div>
   );
@@ -2137,26 +2813,64 @@ function getSpotterItems(work: KomsasWork) {
   const base = [
     { label: "Tema", focus: revision?.theme ?? "Tema utama karya.", ...high },
     { label: "Nilai", focus: revision?.values ?? "Nilai penting dalam karya.", ...high },
-    { label: "Pengajaran", focus: revision?.lessons ?? "Pengajaran yang boleh diamalkan.", ...high },
-    { label: work.kind === "story" ? "Watak dan Perwatakan" : "Maksud Rangkap", focus: work.kind === "story" ? getMemoryCharacter(work) : "Bahasa mudah dan maksud tersirat.", ...mid },
+    {
+      label: "Pengajaran",
+      focus: revision?.lessons ?? "Pengajaran yang boleh diamalkan.",
+      ...high,
+    },
+    {
+      label: work.kind === "story" ? "Watak dan Perwatakan" : "Maksud Rangkap",
+      focus: work.kind === "story" ? getMemoryCharacter(work) : "Bahasa mudah dan maksud tersirat.",
+      ...mid,
+    },
   ];
   return work.kind === "story"
-    ? [...base, { label: "Peristiwa Penting", focus: getMemoryEvent(work), ...mid }, { label: "Latar / Konflik", focus: "Fahami punca konflik dan peleraian.", ...low }]
-    : [...base, { label: "Gaya Bahasa", focus: "Fokus simbol, metafora atau perbandingan utama.", ...low }];
+    ? [
+        ...base,
+        { label: "Peristiwa Penting", focus: getMemoryEvent(work), ...mid },
+        { label: "Latar / Konflik", focus: "Fahami punca konflik dan peleraian.", ...low },
+      ]
+    : [
+        ...base,
+        { label: "Gaya Bahasa", focus: "Fokus simbol, metafora atau perbandingan utama.", ...low },
+      ];
 }
 
 function getExaminerQuestions(work: KomsasWork): KomsasExamQuestion[] {
   const revision = work.revision;
-  const extras = work.kind === "story"
-    ? [
-        makeExamQuestion("Apakah konflik utama yang berlaku dalam karya ini?", `Konflik utama berkaitan ${(work.examFocus ?? "peristiwa penting").toLowerCase()} dan perlu dihuraikan dengan peristiwa penting.`, "Konflik ialah masalah yang menggerakkan cerita.", "Sebut punca konflik dan kesannya."),
-        makeExamQuestion("Bagaimanakah karya ini boleh dikaitkan dengan kehidupan murid?", `${work.title ?? "Karya ini"} mengajar murid supaya mengamalkan pengajaran seperti ${(revision?.lessons ?? "nilai baik").toLowerCase()}.`, "Soalan KBAT mahu kaitan dengan diri murid.", "Berikan contoh sekolah atau keluarga."),
-      ]
-    : [
-        makeExamQuestion("Apakah maksud rangkap penting dalam karya ini?", `Rangkap penting menyampaikan ${(work.theme?.title ?? "mesej utama").toLowerCase()} secara mudah dan dekat dengan kehidupan.`, "Puisi perlu difahami melalui maksud tersirat.", "Jangan salin semula rangkap."),
-        makeExamQuestion("Bagaimanakah karya ini sesuai untuk remaja?", `${work.title ?? "Karya ini"} sesuai kerana mengajar remaja tentang ${(revision?.values ?? "nilai murni").toLowerCase()}.`, "KBAT mahu hubungan dengan kehidupan murid.", "Beri contoh sekolah."),
-      ];
-  const baseQuestions = Array.isArray(work.examBooster?.commonQuestions) ? work.examBooster.commonQuestions : [];
+  const extras =
+    work.kind === "story"
+      ? [
+          makeExamQuestion(
+            "Apakah konflik utama yang berlaku dalam karya ini?",
+            `Konflik utama berkaitan ${(work.examFocus ?? "peristiwa penting").toLowerCase()} dan perlu dihuraikan dengan peristiwa penting.`,
+            "Konflik ialah masalah yang menggerakkan cerita.",
+            "Sebut punca konflik dan kesannya.",
+          ),
+          makeExamQuestion(
+            "Bagaimanakah karya ini boleh dikaitkan dengan kehidupan murid?",
+            `${work.title ?? "Karya ini"} mengajar murid supaya mengamalkan pengajaran seperti ${(revision?.lessons ?? "nilai baik").toLowerCase()}.`,
+            "Soalan KBAT mahu kaitan dengan diri murid.",
+            "Berikan contoh sekolah atau keluarga.",
+          ),
+        ]
+      : [
+          makeExamQuestion(
+            "Apakah maksud rangkap penting dalam karya ini?",
+            `Rangkap penting menyampaikan ${(work.theme?.title ?? "mesej utama").toLowerCase()} secara mudah dan dekat dengan kehidupan.`,
+            "Puisi perlu difahami melalui maksud tersirat.",
+            "Jangan salin semula rangkap.",
+          ),
+          makeExamQuestion(
+            "Bagaimanakah karya ini sesuai untuk remaja?",
+            `${work.title ?? "Karya ini"} sesuai kerana mengajar remaja tentang ${(revision?.values ?? "nilai murni").toLowerCase()}.`,
+            "KBAT mahu hubungan dengan kehidupan murid.",
+            "Beri contoh sekolah.",
+          ),
+        ];
+  const baseQuestions = Array.isArray(work.examBooster?.commonQuestions)
+    ? work.examBooster.commonQuestions
+    : [];
   return [...baseQuestions, ...extras].filter((item) => item?.question).slice(0, 5);
 }
 
@@ -2197,17 +2911,19 @@ function getReflectionQuestions(work: KomsasWork) {
   }
   return [
     `Pernah tak anda berada dalam situasi yang sama dengan mesej ${title}?`,
-      `Nilai manakah yang paling susah anda amalkan: ${work.revision?.values ?? "nilai dalam karya"}?`,
+    `Nilai manakah yang paling susah anda amalkan: ${work.revision?.values ?? "nilai dalam karya"}?`,
     `Bagaimanakah karya ini boleh mengubah cara anda bercakap atau bertindak?`,
   ];
 }
 
 function getMemoryCharacter(work: KomsasWork) {
-  return (Array.isArray(work.characters) ? work.characters : [])
-    .map((c) => c?.name)
-    .filter(Boolean)
-    .slice(0, 3)
-    .join(", ") || (work.kind === "poem" ? "Aku lirik / mesej penyair" : "Watak utama");
+  return (
+    (Array.isArray(work.characters) ? work.characters : [])
+      .map((c) => c?.name)
+      .filter(Boolean)
+      .slice(0, 3)
+      .join(", ") || (work.kind === "poem" ? "Aku lirik / mesej penyair" : "Watak utama")
+  );
 }
 
 function getMemoryEvent(work: KomsasWork) {
@@ -2245,22 +2961,55 @@ function getRelationshipCards(work: KomsasWork) {
 function getCommonMistakes(work: KomsasWork) {
   if (work.id === "cerpen-oren") {
     return [
-      { wrong: "Menganggap Kelabu ialah watak jahat.", fix: "Betulkan: Kelabu bukan jahat. Kelabu hanya kucing baharu yang manja; konflik berlaku kerana perhatian keluarga tidak seimbang." },
-      { wrong: "Menganggap Oren marah tanpa sebab.", fix: "Betulkan: Oren terasa tersisih kerana layanan keluarga berubah selepas Kelabu hadir." },
-      { wrong: "Tidak memahami maksud penyesalan Ayah.", fix: "Betulkan: Penyesalan Ayah menunjukkan kesedaran bahawa kasih sayang terhadap Oren telah diabaikan." },
+      {
+        wrong: "Menganggap Kelabu ialah watak jahat.",
+        fix: "Betulkan: Kelabu bukan jahat. Kelabu hanya kucing baharu yang manja; konflik berlaku kerana perhatian keluarga tidak seimbang.",
+      },
+      {
+        wrong: "Menganggap Oren marah tanpa sebab.",
+        fix: "Betulkan: Oren terasa tersisih kerana layanan keluarga berubah selepas Kelabu hadir.",
+      },
+      {
+        wrong: "Tidak memahami maksud penyesalan Ayah.",
+        fix: "Betulkan: Penyesalan Ayah menunjukkan kesedaran bahawa kasih sayang terhadap Oren telah diabaikan.",
+      },
     ];
   }
   if (work.id === "cerpen-kuih-bakul") {
     return [
-      { wrong: "Menyamakan tema dengan pengajaran.", fix: "Betulkan: tema ialah idea besar, iaitu kebenaran dan kasih sayang keluarga. Pengajaran ialah ayat tindakan seperti kita hendaklah bercakap benar." },
-      { wrong: "Menganggap Lim Meng punca sebenar masalah.", fix: "Betulkan: Lim Meng ialah mangsa tuduhan. Punca sebenar berkaitan perbuatan Lim Foong dan prasangka Lim Pooi." },
-      { wrong: "Tidak memahami peranan Sim Pau.", fix: "Betulkan: Sim Pau ialah watak penting yang mendedahkan kebenaran dan membantu menyatukan semula keluarga." },
+      {
+        wrong: "Menyamakan tema dengan pengajaran.",
+        fix: "Betulkan: tema ialah idea besar, iaitu kebenaran dan kasih sayang keluarga. Pengajaran ialah ayat tindakan seperti kita hendaklah bercakap benar.",
+      },
+      {
+        wrong: "Menganggap Lim Meng punca sebenar masalah.",
+        fix: "Betulkan: Lim Meng ialah mangsa tuduhan. Punca sebenar berkaitan perbuatan Lim Foong dan prasangka Lim Pooi.",
+      },
+      {
+        wrong: "Tidak memahami peranan Sim Pau.",
+        fix: "Betulkan: Sim Pau ialah watak penting yang mendedahkan kebenaran dan membantu menyatukan semula keluarga.",
+      },
     ];
   }
   return [
-    { wrong: "Menyamakan tema dengan pengajaran.", fix: `Betulkan: tema ialah idea besar seperti "${work.revision?.theme ?? "tema utama"}". Pengajaran ialah ayat tindakan.` },
-    { wrong: "Menulis nilai tanpa contoh.", fix: "Betulkan: tulis nilai + bukti ringkas daripada karya." },
-    { wrong: work.kind === "story" ? "Menulis watak tanpa perwatakan." : "Menyalin maksud tanpa huraian.", fix: work.kind === "story" ? "Betulkan: nyatakan watak, sifat dan bukti." : "Betulkan: jelaskan maksud dengan bahasa sendiri." },
+    {
+      wrong: "Menyamakan tema dengan pengajaran.",
+      fix: `Betulkan: tema ialah idea besar seperti "${work.revision?.theme ?? "tema utama"}". Pengajaran ialah ayat tindakan.`,
+    },
+    {
+      wrong: "Menulis nilai tanpa contoh.",
+      fix: "Betulkan: tulis nilai + bukti ringkas daripada karya.",
+    },
+    {
+      wrong:
+        work.kind === "story"
+          ? "Menulis watak tanpa perwatakan."
+          : "Menyalin maksud tanpa huraian.",
+      fix:
+        work.kind === "story"
+          ? "Betulkan: nyatakan watak, sifat dan bukti."
+          : "Betulkan: jelaskan maksud dengan bahasa sendiri.",
+    },
   ];
 }
 
@@ -2291,7 +3040,9 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.sinopsis && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>Sinopsis</p>
+          <p className="mb-1 text-[9px] font-black tracking-wide" style={{ color }}>
+            Sinopsis
+          </p>
           <p className="text-sm leading-relaxed text-white/70">{topic.sinopsis}</p>
         </div>
       )}
@@ -2301,14 +3052,20 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
           <SectionLabel>Watak & Perwatakan</SectionLabel>
           <div className="grid gap-3 sm:grid-cols-2">
             {topic.watak.map((w) => (
-              <div key={w.nama} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+              <div
+                key={w.nama}
+                className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4"
+              >
                 <div className="mb-1 flex items-center justify-between">
                   <p className="font-bold text-white">{w.nama}</p>
                   <span className="text-[9px] font-bold text-white/30">{w.peranan}</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {w.perwatakan.map((p) => (
-                    <span key={p} className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white/55">
+                    <span
+                      key={p}
+                      className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white/55"
+                    >
                       {p}
                     </span>
                   ))}
@@ -2327,11 +3084,16 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
       ].map(({ label, value, accent }) =>
         value && value.length > 0 ? (
           <div key={label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
-            <p className="mb-3 text-[9px] font-black tracking-wide" style={{ color: accent }}>{label}</p>
+            <p className="mb-3 text-[9px] font-black tracking-wide" style={{ color: accent }}>
+              {label}
+            </p>
             <ul className="space-y-1.5">
               {value.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
+                  <span
+                    className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ background: accent }}
+                  />
                   {item}
                 </li>
               ))}
@@ -2358,29 +3120,40 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
         accent={color}
         defaultOpen
       >
-      {topic.description && (
-        <CollapsibleSection icon={<BookOpen className="h-4 w-4" />} title="Pengenalan" accent={color}>
-          <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
-        </CollapsibleSection>
-      )}
+        {topic.description && (
+          <CollapsibleSection
+            icon={<BookOpen className="h-4 w-4" />}
+            title="Pengenalan"
+            accent={color}
+          >
+            <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
+          </CollapsibleSection>
+        )}
 
-      {topic.steps && topic.steps.length > 0 && (
-        <CollapsibleSection icon={<Map className="h-4 w-4" />} title="Langkah-langkah" accent={color}>
-          <div className="space-y-2.5">
-            {topic.steps.map((step, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
-                <span
-                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
-                  style={{ background: `${color}25`, color }}
+        {topic.steps && topic.steps.length > 0 && (
+          <CollapsibleSection
+            icon={<Map className="h-4 w-4" />}
+            title="Langkah-langkah"
+            accent={color}
+          >
+            <div className="space-y-2.5">
+              {topic.steps.map((step, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
                 >
-                  {i + 1}
-                </span>
-                <p className="text-sm text-white/70">{step}</p>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
+                  <span
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                    style={{ background: `${color}25`, color }}
+                  >
+                    {i + 1}
+                  </span>
+                  <p className="text-sm text-white/70">{step}</p>
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
       </LearningFolder>
 
       <LearningFolder
@@ -2389,31 +3162,39 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
         description="Perkara wajib tahu dan fokus peperiksaan"
         accent="#FBBF24"
       >
-      {topic.keyPoints && topic.keyPoints.length > 0 && (
-        <CollapsibleSection icon={<Star className="h-4 w-4" />} title="⭐ Wajib Hafal — Perkara Utama" accent="#818CF8">
-          <ul className="space-y-2">
-            {topic.keyPoints.map((pt, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#818CF8]" />
-                {pt}
-              </li>
-            ))}
-          </ul>
-        </CollapsibleSection>
-      )}
+        {topic.keyPoints && topic.keyPoints.length > 0 && (
+          <CollapsibleSection
+            icon={<Star className="h-4 w-4" />}
+            title="⭐ Wajib Hafal — Perkara Utama"
+            accent="#818CF8"
+          >
+            <ul className="space-y-2">
+              {topic.keyPoints.map((pt, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                  <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#818CF8]" />
+                  {pt}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleSection>
+        )}
 
-      {topic.uasaTips && (
-        <CollapsibleSection icon={<Trophy className="h-4 w-4" />} title="🎯 Fokus UASA — Tips UASA" accent="#FBBF24">
-          <ul className="space-y-2">
-            {topic.uasaTips.map((tip, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
-                {tip}
-              </li>
-            ))}
-          </ul>
-        </CollapsibleSection>
-      )}
+        {topic.uasaTips && (
+          <CollapsibleSection
+            icon={<Trophy className="h-4 w-4" />}
+            title="🎯 Fokus UASA — Tips UASA"
+            accent="#FBBF24"
+          >
+            <ul className="space-y-2">
+              {topic.uasaTips.map((tip, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                  <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleSection>
+        )}
       </LearningFolder>
 
       <LearningFolder
@@ -2422,36 +3203,48 @@ function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
         description="Penerangan cikgu dan ringkasan satu minit"
         accent="#34D399"
       >
-      {(topic.description || (topic.steps && topic.steps.length > 0)) && (
-        <CollapsibleSection icon={<MessageCircle className="h-4 w-4" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
-          {topic.description && <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>}
-          {topic.steps && topic.steps.length > 0 && (
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-              <p className="mb-1 text-[10px] font-black tracking-wide" style={{ color }}>Mula dengan langkah pertama</p>
-              <p className="text-sm text-white/75">{topic.steps[0]}</p>
-            </div>
-          )}
-        </CollapsibleSection>
-      )}
+        {(topic.description || (topic.steps && topic.steps.length > 0)) && (
+          <CollapsibleSection
+            icon={<MessageCircle className="h-4 w-4" />}
+            title="🤖 Cikgu AcadeMY Terangkan"
+            accent={color}
+          >
+            {topic.description && (
+              <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>
+            )}
+            {topic.steps && topic.steps.length > 0 && (
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                <p className="mb-1 text-[10px] font-black tracking-wide" style={{ color }}>
+                  Mula dengan langkah pertama
+                </p>
+                <p className="text-sm text-white/75">{topic.steps[0]}</p>
+              </div>
+            )}
+          </CollapsibleSection>
+        )}
 
-      {((topic.keyPoints && topic.keyPoints.length > 0) || topic.uasaTips) && (
-        <CollapsibleSection icon={<Lightbulb className="h-4 w-4" />} title="📝 Ringkasan 1 Minit" accent="#34D399">
-          <ul className="space-y-2">
-            {topic.keyPoints?.slice(0, 2).map((pt, i) => (
-              <li key={`kp-${i}`} className="flex items-start gap-2 text-sm text-white/70">
-                <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
-                {pt}
-              </li>
-            ))}
-            {topic.uasaTips?.slice(0, 1).map((tip, i) => (
-              <li key={`tip-${i}`} className="flex items-start gap-2 text-sm text-white/70">
-                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
-                {tip}
-              </li>
-            ))}
-          </ul>
-        </CollapsibleSection>
-      )}
+        {((topic.keyPoints && topic.keyPoints.length > 0) || topic.uasaTips) && (
+          <CollapsibleSection
+            icon={<Lightbulb className="h-4 w-4" />}
+            title="📝 Ringkasan 1 Minit"
+            accent="#34D399"
+          >
+            <ul className="space-y-2">
+              {topic.keyPoints?.slice(0, 2).map((pt, i) => (
+                <li key={`kp-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                  <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                  {pt}
+                </li>
+              ))}
+              {topic.uasaTips?.slice(0, 1).map((tip, i) => (
+                <li key={`tip-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                  <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleSection>
+        )}
       </LearningFolder>
 
       <div className="flex gap-3">
@@ -2492,41 +3285,53 @@ const RANGKA_ISI_CUACA = [
 ];
 
 const RANGKA_JAWAPAN_CUACA = [
-  { pw: "Antara",          isi: "kesan cuaca panas ialah membahayakan kesihatan manusia." },
-  { pw: "Selain itu,",     isi: "aktiviti harian turut terjejas." },
-  { pw: "Seterusnya,",     isi: "sumber air semakin berkurangan." },
+  { pw: "Antara", isi: "kesan cuaca panas ialah membahayakan kesihatan manusia." },
+  { pw: "Selain itu,", isi: "aktiviti harian turut terjejas." },
+  { pw: "Seterusnya,", isi: "sumber air semakin berkurangan." },
   { pw: "Di samping itu,", isi: "tanaman pertanian boleh rosak." },
-  { pw: "Tambahan pula,",  isi: "risiko kebakaran meningkat." },
-  { pw: "Akhir sekali,",   isi: "cuaca panas boleh menyebabkan strok haba." },
+  { pw: "Tambahan pula,", isi: "risiko kebakaran meningkat." },
+  { pw: "Akhir sekali,", isi: "cuaca panas boleh menyebabkan strok haba." },
 ];
 
 function RangkaRingkasanDetail({ color }: { color: string }) {
   return (
     <div className="space-y-6">
-
       {/* Header */}
       <div className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
         <span className="text-2xl">📖</span>
         <div>
-          <p className="text-[10px] font-black tracking-wide mb-0.5" style={{ color }}>Formula Ringkasan UASA</p>
-          <p className="text-sm text-white/70">Ikuti tiga langkah ini untuk mendapat markah penuh dalam soalan ringkasan.</p>
+          <p className="text-[10px] font-black tracking-wide mb-0.5" style={{ color }}>
+            Formula Rumusan UASA
+          </p>
+          <p className="text-sm text-white/70">
+            Ikuti tiga langkah ini untuk mendapat markah penuh dalam soalan ringkasan.
+          </p>
         </div>
       </div>
 
       {/* Langkah 1 */}
       <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
         <div className="flex items-center gap-3">
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black" style={{ background: `${color}30`, color }}>1</span>
+          <span
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black"
+            style={{ background: `${color}30`, color }}
+          >
+            1
+          </span>
           <p className="text-sm font-bold text-white">Kenal Pasti Kata Kunci Soalan</p>
         </div>
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
           <p className="text-[10px] font-black tracking-wide text-white/35 mb-1">Contoh</p>
-          <p className="text-sm text-white/65 italic">"Tulis ringkasan tentang kesan cuaca panas."</p>
+          <p className="text-sm text-white/65 italic">
+            "Tulis ringkasan tentang kesan cuaca panas."
+          </p>
         </div>
         <div className="flex items-start gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/8 px-4 py-3">
           <span className="text-base mt-0.5">✅</span>
           <div>
-            <p className="text-[10px] font-black tracking-wide text-emerald-400 mb-0.5">Kata Kunci Soalan</p>
+            <p className="text-[10px] font-black tracking-wide text-emerald-400 mb-0.5">
+              Kata Kunci Soalan
+            </p>
             <p className="text-base font-black text-white">Kesan Cuaca Panas</p>
           </div>
         </div>
@@ -2535,13 +3340,26 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
       {/* Langkah 2 */}
       <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 space-y-3">
         <div className="flex items-center gap-3">
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black" style={{ background: `${color}30`, color }}>2</span>
+          <span
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black"
+            style={{ background: `${color}30`, color }}
+          >
+            2
+          </span>
           <p className="text-sm font-bold text-white">Kenal Pasti Isi Penting Daripada Petikan</p>
         </div>
         <div className="space-y-2">
           {Array.from({ length: 6 }, (_, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}20`, color }}>{i + 1}</span>
+            <div
+              key={i}
+              className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3"
+            >
+              <span
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                style={{ background: `${color}20`, color }}
+              >
+                {i + 1}
+              </span>
               <p className="text-[11px] font-bold text-white/35 mr-2 shrink-0">Isi {i + 1} →</p>
               <div className="flex-1 border-b border-dashed border-white/[0.15] pb-1" />
             </div>
@@ -2552,20 +3370,31 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
       {/* Langkah 3 */}
       <div className="rounded-2xl border border-[#6366F1]/20 bg-[#6366F1]/8 p-5 space-y-3">
         <div className="flex items-center gap-3">
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black" style={{ background: `${color}30`, color }}>3</span>
-          <p className="text-sm font-bold text-white">Masukkan semua isi dalam <span className="font-bold text-white underline decoration-dotted">satu perenggan</span></p>
+          <span
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black"
+            style={{ background: `${color}30`, color }}
+          >
+            3
+          </span>
+          <p className="text-sm font-bold text-white">
+            Masukkan semua isi dalam{" "}
+            <span className="font-bold text-white underline decoration-dotted">satu perenggan</span>
+          </p>
         </div>
-        <p className="text-[10px] font-black tracking-wide text-[#A78BFA]">📌 Rangka Ringkasan</p>
+        <p className="text-[10px] font-black tracking-wide text-[#A78BFA]">📌 Rangka Rumusan</p>
         <div className="space-y-2">
           {[
-            ["Antara",          "Isi 1"],
-            ["Selain itu,",     "Isi 2"],
-            ["Seterusnya,",     "Isi 3"],
+            ["Antara", "Isi 1"],
+            ["Selain itu,", "Isi 2"],
+            ["Seterusnya,", "Isi 3"],
             ["Di samping itu,", "Isi 4"],
-            ["Tambahan pula,",  "Isi 5"],
-            ["Akhir sekali,",   "Isi 6"],
+            ["Tambahan pula,", "Isi 5"],
+            ["Akhir sekali,", "Isi 6"],
           ].map(([pw, slot], i) => (
-            <div key={i} className="flex items-baseline gap-2 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-2.5">
+            <div
+              key={i}
+              className="flex items-baseline gap-2 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-2.5"
+            >
               <span className="font-bold text-white shrink-0 text-sm">{pw}</span>
               <div className="flex-1 border-b border-dashed border-white/[0.15] pb-0.5" />
               <span className="text-[10px] text-white/30 shrink-0">({slot})</span>
@@ -2576,13 +3405,14 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
 
       {/* Contoh Ringkasan Lengkap */}
       <div>
-        <SectionLabel>Contoh Ringkasan Lengkap</SectionLabel>
+        <SectionLabel>Contoh Rumusan Lengkap</SectionLabel>
         <div className="space-y-4">
-
           <div className="flex items-center gap-3 rounded-2xl border border-[#FBBF24]/25 bg-[#FBBF24]/8 px-5 py-4">
             <span className="text-xl">📌</span>
             <div>
-              <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-0.5">Kata Kunci Soalan</p>
+              <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-0.5">
+                Kata Kunci Soalan
+              </p>
               <p className="text-base font-black text-white">Kesan Cuaca Panas</p>
             </div>
           </div>
@@ -2594,8 +3424,16 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
             </div>
             <div className="space-y-2">
               {RANGKA_ISI_CUACA.map((isi, i) => (
-                <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-black" style={{ background: `${color}20`, color }}>{i + 1}</span>
+                <div
+                  key={i}
+                  className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5"
+                >
+                  <span
+                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-black"
+                    style={{ background: `${color}20`, color }}
+                  >
+                    {i + 1}
+                  </span>
                   <p className="text-sm text-white/75">{isi}</p>
                 </div>
               ))}
@@ -2605,13 +3443,13 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
           <div>
             <div className="mb-2 flex items-center gap-2">
               <span className="text-base">📌</span>
-              <p className="text-[10px] font-black tracking-wide text-white/40">Jawapan Ringkasan</p>
+              <p className="text-[10px] font-black tracking-wide text-white/40">Jawapan Rumusan</p>
             </div>
             <div className="rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/8 p-5">
               <p className="text-sm leading-relaxed text-white/80">
                 {RANGKA_JAWAPAN_CUACA.map((j, i) => (
                   <span key={i}>
-                    <span className="font-bold text-white">{j.pw}</span>{" "}{j.isi}{" "}
+                    <span className="font-bold text-white">{j.pw}</span> {j.isi}{" "}
                   </span>
                 ))}
               </p>
@@ -2623,10 +3461,15 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
 
       {/* Kesalahan Lazim */}
       <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-        <p className="mb-4 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Yang Sering Dilakukan Murid</p>
+        <p className="mb-4 text-[9px] font-black tracking-wide text-rose-400">
+          ⚠ Kesalahan Yang Sering Dilakukan Murid
+        </p>
         <div className="space-y-2">
           {RANGKA_KESALAHAN.map((k, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-xl border border-rose-500/10 bg-rose-500/5 px-4 py-2.5">
+            <div
+              key={i}
+              className="flex items-center gap-3 rounded-xl border border-rose-500/10 bg-rose-500/5 px-4 py-2.5"
+            >
               <span className="text-base shrink-0">❌</span>
               <p className="text-sm text-white/70">{k}</p>
             </div>
@@ -2641,7 +3484,10 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
           <div className="flex flex-wrap items-center gap-2">
             {HAFALAN_LANGKAH.map((langkah, i) => (
               <div key={i} className="flex items-center gap-2">
-                <div className="rounded-xl border px-3 py-2 text-center" style={{ borderColor: `${color}40`, background: `${color}12` }}>
+                <div
+                  className="rounded-xl border px-3 py-2 text-center"
+                  style={{ borderColor: `${color}40`, background: `${color}12` }}
+                >
                   <p className="text-[10px] font-black text-white/40 mb-0.5">Langkah {i + 1}</p>
                   <p className="text-xs font-bold text-white">{langkah}</p>
                 </div>
@@ -2653,11 +3499,13 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
           </div>
           <div className="flex items-start gap-2 rounded-xl border border-[#FBBF24]/20 bg-[#FBBF24]/8 px-4 py-3 mt-1">
             <span className="shrink-0">🎯</span>
-            <p className="text-sm text-white/80 italic">Ringkasan yang mendapat markah tinggi bukan kerana ayat yang panjang, tetapi kerana isi yang tepat dan menepati kehendak soalan.</p>
+            <p className="text-sm text-white/80 italic">
+              Ringkasan yang mendapat markah tinggi bukan kerana ayat yang panjang, tetapi kerana
+              isi yang tepat dan menepati kehendak soalan.
+            </p>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
@@ -2675,9 +3523,12 @@ const LATIHAN_RINGKASAN = [
       "Aktiviti berbasikal semakin mendapat tempat dalam kalangan masyarakat di negara kita. Berbasikal secara berkala dapat menjaga kesihatan fizikal seseorang kerana ia melibatkan pergerakan aktif seluruh anggota badan. Selain itu, penggunaan basikal sebagai kenderaan harian dapat mengurangkan kebergantungan kepada kenderaan bermotor, justeru membantu mengawal kadar pencemaran udara di kawasan bandar. Aktiviti ini juga membantu menjimatkan kos pengangkutan harian terutamanya bagi golongan yang tinggal berhampiran tempat kerja atau sekolah. Di samping itu, berbasikal secara berkumpulan dapat memupuk semangat kerjasama dan mewujudkan ikatan sosial yang erat dalam kalangan ahli masyarakat. Penggunaan basikal yang meluas turut menyumbang kepada pengurangan kesesakan lalu lintas di jalan raya. Akhirnya, amalan berbasikal secara tidak langsung membantu memelihara alam sekitar kerana basikal tidak melepaskan gas karbon dioksida ke udara.",
     fokus: "Kebaikan aktiviti berbasikal kepada masyarakat.",
     kataKunci: [
-      { kata: "Kebaikan",           warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
-      { kata: "Aktiviti Berbasikal", warna: "bg-[#0EA5E9]/20 text-[#38BDF8] border border-[#0EA5E9]/35" },
-      { kata: "Masyarakat",          warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+      { kata: "Kebaikan", warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
+      {
+        kata: "Aktiviti Berbasikal",
+        warna: "bg-[#0EA5E9]/20 text-[#38BDF8] border border-[#0EA5E9]/35",
+      },
+      { kata: "Masyarakat", warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
     ],
     isiPenting: [
       "Menjaga kesihatan fizikal penunggang basikal.",
@@ -2688,12 +3539,36 @@ const LATIHAN_RINGKASAN = [
       "Membantu memelihara alam sekitar.",
     ],
     struktur: [
-      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "kebaikan aktiviti berbasikal ialah ia dapat menjaga kesihatan fizikal penunggang." },
-      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "berbasikal membantu mengurangkan pencemaran udara kerana ia tidak menggunakan bahan api." },
-      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "aktiviti ini menjimatkan kos pengangkutan harian seseorang." },
-      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "berbasikal secara berkumpulan dapat memupuk semangat kerjasama dalam kalangan masyarakat." },
-      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "penggunaan basikal turut mengurangkan kesesakan lalu lintas di jalan raya." },
-      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "berbasikal secara tidak langsung membantu memelihara alam sekitar." },
+      {
+        penanda: "Antara",
+        warna: "text-[#A78BFA]",
+        isi: "kebaikan aktiviti berbasikal ialah ia dapat menjaga kesihatan fizikal penunggang.",
+      },
+      {
+        penanda: "Selain itu,",
+        warna: "text-[#38BDF8]",
+        isi: "berbasikal membantu mengurangkan pencemaran udara kerana ia tidak menggunakan bahan api.",
+      },
+      {
+        penanda: "Seterusnya,",
+        warna: "text-[#34D399]",
+        isi: "aktiviti ini menjimatkan kos pengangkutan harian seseorang.",
+      },
+      {
+        penanda: "Di samping itu,",
+        warna: "text-[#FBBF24]",
+        isi: "berbasikal secara berkumpulan dapat memupuk semangat kerjasama dalam kalangan masyarakat.",
+      },
+      {
+        penanda: "Tambahan pula,",
+        warna: "text-[#F472B6]",
+        isi: "penggunaan basikal turut mengurangkan kesesakan lalu lintas di jalan raya.",
+      },
+      {
+        penanda: "Akhir sekali,",
+        warna: "text-[#FB923C]",
+        isi: "berbasikal secara tidak langsung membantu memelihara alam sekitar.",
+      },
     ],
     jawapanLengkap:
       "Antara kebaikan aktiviti berbasikal kepada masyarakat ialah ia dapat menjaga kesihatan fizikal penunggang. Selain itu, berbasikal membantu mengurangkan pencemaran udara kerana ia tidak menggunakan bahan api. Seterusnya, aktiviti ini menjimatkan kos pengangkutan harian seseorang. Di samping itu, berbasikal secara berkumpulan dapat memupuk semangat kerjasama dalam kalangan masyarakat. Tambahan pula, penggunaan basikal turut mengurangkan kesesakan lalu lintas di jalan raya. Akhir sekali, berbasikal secara tidak langsung membantu memelihara alam sekitar.",
@@ -2716,7 +3591,7 @@ const LATIHAN_RINGKASAN = [
       "Cuaca panas yang melampau membawa pelbagai kesan buruk kepada kehidupan manusia dan alam sekitar. Kesihatan manusia terancam apabila suhu yang terlalu tinggi boleh menyebabkan seseorang mengalami strok haba, terutamanya bagi golongan warga emas dan kanak-kanak. Aktiviti harian turut terjejas apabila cuaca yang panas menyukarkan orang ramai menjalankan kerja luar. Di samping itu, cuaca panas yang berpanjangan menyebabkan sumber air semakin berkurangan akibat kadar penyejatan yang tinggi. Tanaman pertanian juga turut terjejas kerana kekurangan air dan suhu yang melampau boleh menyebabkan tanaman mati sebelum musim tuaian. Cuaca panas yang kering juga meningkatkan risiko kebakaran hutan dan kebun, yang boleh memusnahkan harta benda dan nyawa. Selain itu, penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin, menyebabkan beban sistem elektrik negara bertambah.",
     fokus: "Kesan cuaca panas kepada manusia dan alam sekitar.",
     kataKunci: [
-      { kata: "Kesan",       warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      { kata: "Kesan", warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
       { kata: "Cuaca Panas", warna: "bg-[#F59E0B]/20 text-[#FBBF24] border border-[#F59E0B]/35" },
     ],
     isiPenting: [
@@ -2728,12 +3603,36 @@ const LATIHAN_RINGKASAN = [
       "Meningkatkan penggunaan elektrik sehingga membebankan sistem bekalan.",
     ],
     struktur: [
-      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba." },
-      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "cuaca panas turut menjejaskan aktiviti harian orang ramai." },
-      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "sumber air semakin berkurangan akibat kadar penyejatan yang tinggi." },
-      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian." },
-      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun." },
-      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin." },
+      {
+        penanda: "Antara",
+        warna: "text-[#A78BFA]",
+        isi: "kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba.",
+      },
+      {
+        penanda: "Selain itu,",
+        warna: "text-[#38BDF8]",
+        isi: "cuaca panas turut menjejaskan aktiviti harian orang ramai.",
+      },
+      {
+        penanda: "Seterusnya,",
+        warna: "text-[#34D399]",
+        isi: "sumber air semakin berkurangan akibat kadar penyejatan yang tinggi.",
+      },
+      {
+        penanda: "Di samping itu,",
+        warna: "text-[#FBBF24]",
+        isi: "tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian.",
+      },
+      {
+        penanda: "Tambahan pula,",
+        warna: "text-[#F472B6]",
+        isi: "cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun.",
+      },
+      {
+        penanda: "Akhir sekali,",
+        warna: "text-[#FB923C]",
+        isi: "penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin.",
+      },
     ],
     jawapanLengkap:
       "Antara kesan cuaca panas ialah ia mengancam kesihatan manusia dengan menyebabkan strok haba. Selain itu, cuaca panas turut menjejaskan aktiviti harian orang ramai. Seterusnya, sumber air semakin berkurangan akibat kadar penyejatan yang tinggi. Di samping itu, tanaman pertanian turut terjejas dan boleh mati sebelum musim tuaian. Tambahan pula, cuaca panas yang kering meningkatkan risiko kebakaran hutan dan kebun. Akhir sekali, penggunaan elektrik meningkat kerana pengguna terpaksa menghidupkan penghawa dingin.",
@@ -2756,9 +3655,12 @@ const LATIHAN_RINGKASAN = [
       "Penipuan berkaitan skim cepat kaya semakin berleluasa dan memerlukan orang ramai bersikap berhati-hati. Antara cara mengesan penipuan sedemikian ialah dengan memerhati tawaran yang menjanjikan pulangan wang yang luar biasa tinggi dalam masa yang sangat singkat, kerana ini adalah tanda amaran yang jelas. Selain itu, skim yang memerlukan pembayaran wang pendahuluan sebelum sebarang keuntungan diterima wajar disyaki dengan serius. Orang ramai juga perlu menyemak sama ada syarikat berkenaan mempunyai pendaftaran yang sah dengan pihak berkuasa seperti Bank Negara Malaysia atau Suruhanjaya Sekuriti. Teknik menekan mangsa supaya segera membuat keputusan tanpa masa untuk berfikir juga merupakan petanda penipuan. Di samping itu, penggunaan testimoni yang tidak boleh disahkan daripada individu yang tidak dikenali harus diwaspadai. Maklumat tentang syarikat yang kabur dan alamat atau nombor telefon yang tidak dapat disahkan turut menjadi petanda sesebuah skim itu adalah penipuan.",
     fokus: "Cara mengesan penipuan skim cepat kaya.",
     kataKunci: [
-      { kata: "Cara Mengesan",   warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
-      { kata: "Penipuan",         warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
-      { kata: "Skim Cepat Kaya",  warna: "bg-[#F59E0B]/20 text-[#FBBF24] border border-[#F59E0B]/35" },
+      { kata: "Cara Mengesan", warna: "bg-[#6366F1]/20 text-[#A78BFA] border border-[#6366F1]/35" },
+      { kata: "Penipuan", warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
+      {
+        kata: "Skim Cepat Kaya",
+        warna: "bg-[#F59E0B]/20 text-[#FBBF24] border border-[#F59E0B]/35",
+      },
     ],
     isiPenting: [
       "Tawaran menjanjikan pulangan wang luar biasa tinggi dalam masa singkat.",
@@ -2769,12 +3671,36 @@ const LATIHAN_RINGKASAN = [
       "Maklumat syarikat yang kabur dan tidak dapat disahkan.",
     ],
     struktur: [
-      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat." },
-      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki." },
-      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan." },
-      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan." },
-      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "penggunaan testimoni yang tidak boleh disahkan harus diwaspadai." },
-      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan." },
+      {
+        penanda: "Antara",
+        warna: "text-[#A78BFA]",
+        isi: "cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat.",
+      },
+      {
+        penanda: "Selain itu,",
+        warna: "text-[#38BDF8]",
+        isi: "skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki.",
+      },
+      {
+        penanda: "Seterusnya,",
+        warna: "text-[#34D399]",
+        isi: "syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan.",
+      },
+      {
+        penanda: "Di samping itu,",
+        warna: "text-[#FBBF24]",
+        isi: "teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan.",
+      },
+      {
+        penanda: "Tambahan pula,",
+        warna: "text-[#F472B6]",
+        isi: "penggunaan testimoni yang tidak boleh disahkan harus diwaspadai.",
+      },
+      {
+        penanda: "Akhir sekali,",
+        warna: "text-[#FB923C]",
+        isi: "maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan.",
+      },
     ],
     jawapanLengkap:
       "Antara cara mengesan penipuan skim cepat kaya ialah tawaran yang menjanjikan pulangan wang luar biasa tinggi dalam masa singkat. Selain itu, skim yang memerlukan bayaran pendahuluan sebelum sebarang keuntungan diterima wajar disyaki. Seterusnya, syarikat yang tidak mempunyai pendaftaran sah dengan pihak berkuasa adalah petanda penipuan. Di samping itu, teknik menekan mangsa supaya membuat keputusan segera juga merupakan petanda penipuan. Tambahan pula, penggunaan testimoni yang tidak boleh disahkan harus diwaspadai. Akhir sekali, maklumat syarikat yang kabur dan alamat yang tidak dapat disahkan turut menjadi petanda penipuan.",
@@ -2797,9 +3723,15 @@ const LATIHAN_RINGKASAN = [
       "Masalah sosial dalam kalangan remaja memerlukan penyelesaian yang menyeluruh daripada pelbagai pihak. Ibu bapa memainkan peranan utama dalam mengatasi isu ini dengan sentiasa memantau pergaulan dan aktiviti anak-anak mereka agar tidak terlibat dengan pengaruh negatif. Pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil supaya remaja mempunyai benteng dalaman yang kuat untuk menolak ajakan kepada perkara yang salah. Pihak sekolah pula perlu menyediakan lebih banyak aktiviti kokurikulum yang berfaedah bagi mengisi masa lapang remaja dengan perkara yang positif. Kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang menunjukkan tanda-tanda bermasalah. Pihak berkuasa turut bertanggungjawab menguatkuasakan undang-undang yang berkaitan supaya terdapat kesan jera kepada mereka yang melanggar. Selain itu, masyarakat perlu berganding bahu memastikan persekitaran kejiranan yang selamat dan sihat untuk perkembangan remaja.",
     fokus: "Cara menangani masalah sosial dalam kalangan remaja.",
     kataKunci: [
-      { kata: "Cara Menangani", warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
-      { kata: "Masalah Sosial",  warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35" },
-      { kata: "Remaja",           warna: "bg-[#8B5CF6]/20 text-[#C4B5FD] border border-[#8B5CF6]/35" },
+      {
+        kata: "Cara Menangani",
+        warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35",
+      },
+      {
+        kata: "Masalah Sosial",
+        warna: "bg-[#EF4444]/20 text-[#FCA5A5] border border-[#EF4444]/35",
+      },
+      { kata: "Remaja", warna: "bg-[#8B5CF6]/20 text-[#C4B5FD] border border-[#8B5CF6]/35" },
     ],
     isiPenting: [
       "Ibu bapa memantau pergaulan dan aktiviti anak-anak.",
@@ -2810,12 +3742,36 @@ const LATIHAN_RINGKASAN = [
       "Masyarakat mewujudkan persekitaran kejiranan yang selamat.",
     ],
     struktur: [
-      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak." },
-      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil." },
-      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja." },
-      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah." },
-      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera." },
-      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat." },
+      {
+        penanda: "Antara",
+        warna: "text-[#A78BFA]",
+        isi: "cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak.",
+      },
+      {
+        penanda: "Selain itu,",
+        warna: "text-[#38BDF8]",
+        isi: "pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil.",
+      },
+      {
+        penanda: "Seterusnya,",
+        warna: "text-[#34D399]",
+        isi: "pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja.",
+      },
+      {
+        penanda: "Di samping itu,",
+        warna: "text-[#FBBF24]",
+        isi: "kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah.",
+      },
+      {
+        penanda: "Tambahan pula,",
+        warna: "text-[#F472B6]",
+        isi: "pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera.",
+      },
+      {
+        penanda: "Akhir sekali,",
+        warna: "text-[#FB923C]",
+        isi: "masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat.",
+      },
     ],
     jawapanLengkap:
       "Antara cara menangani masalah sosial remaja ialah ibu bapa perlu sentiasa memantau pergaulan dan aktiviti anak-anak. Selain itu, pendidikan agama dan moral yang kukuh perlu diterapkan sejak kecil. Seterusnya, pihak sekolah perlu menyediakan aktiviti kokurikulum yang berfaedah untuk mengisi masa lapang remaja. Di samping itu, kaunseling dan bimbingan yang berterusan perlu diberikan kepada remaja yang bermasalah. Tambahan pula, pihak berkuasa perlu menguatkuasakan undang-undang yang berkaitan bagi memberi kesan jera. Akhir sekali, masyarakat perlu berganding bahu mewujudkan persekitaran kejiranan yang selamat dan sihat.",
@@ -2838,8 +3794,11 @@ const LATIHAN_RINGKASAN = [
       "Gaya hidup sihat perlu diamalkan sejak awal usia bagi memastikan kualiti kehidupan yang baik sepanjang hayat. Langkah pertama ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu bagi mengekalkan kecergasan fizikal dan meningkatkan daya tahan badan. Selain itu, seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil pelbagai jenis makanan berkhasiat dan mengelakkan makanan yang tinggi lemak serta gula. Mendapatkan waktu tidur yang cukup iaitu antara tujuh hingga lapan jam sehari juga penting untuk memulihkan tenaga badan dan minda. Di samping itu, mengelakkan tabiat buruk seperti merokok dan mengambil minuman beralkohol dapat melindungi kesihatan dalam jangka masa panjang. Pemeriksaan kesihatan secara berkala pula membolehkan sebarang penyakit dikesan lebih awal sebelum menjadi parah. Akhirnya, mengurangkan tahap tekanan atau stres melalui aktiviti rekreasi dan masa bersama keluarga juga penting untuk kesihatan mental.",
     fokus: "Langkah mengamalkan gaya hidup sihat.",
     kataKunci: [
-      { kata: "Langkah",          warna: "bg-[#06B6D4]/20 text-[#22D3EE] border border-[#06B6D4]/35" },
-      { kata: "Gaya Hidup Sihat", warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35" },
+      { kata: "Langkah", warna: "bg-[#06B6D4]/20 text-[#22D3EE] border border-[#06B6D4]/35" },
+      {
+        kata: "Gaya Hidup Sihat",
+        warna: "bg-[#10B981]/20 text-[#34D399] border border-[#10B981]/35",
+      },
     ],
     isiPenting: [
       "Bersenam secara berkala sekurang-kurangnya tiga kali seminggu.",
@@ -2850,12 +3809,36 @@ const LATIHAN_RINGKASAN = [
       "Mengurangkan tekanan atau stres melalui aktiviti rekreasi.",
     ],
     struktur: [
-      { penanda: "Antara",          warna: "text-[#A78BFA]", isi: "langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu." },
-      { penanda: "Selain itu,",     warna: "text-[#38BDF8]", isi: "seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat." },
-      { penanda: "Seterusnya,",     warna: "text-[#34D399]", isi: "mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting." },
-      { penanda: "Di samping itu,", warna: "text-[#FBBF24]", isi: "mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang." },
-      { penanda: "Tambahan pula,",  warna: "text-[#F472B6]", isi: "pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal." },
-      { penanda: "Akhir sekali,",   warna: "text-[#FB923C]", isi: "mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental." },
+      {
+        penanda: "Antara",
+        warna: "text-[#A78BFA]",
+        isi: "langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu.",
+      },
+      {
+        penanda: "Selain itu,",
+        warna: "text-[#38BDF8]",
+        isi: "seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat.",
+      },
+      {
+        penanda: "Seterusnya,",
+        warna: "text-[#34D399]",
+        isi: "mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting.",
+      },
+      {
+        penanda: "Di samping itu,",
+        warna: "text-[#FBBF24]",
+        isi: "mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang.",
+      },
+      {
+        penanda: "Tambahan pula,",
+        warna: "text-[#F472B6]",
+        isi: "pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal.",
+      },
+      {
+        penanda: "Akhir sekali,",
+        warna: "text-[#FB923C]",
+        isi: "mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental.",
+      },
     ],
     jawapanLengkap:
       "Antara langkah mengamalkan gaya hidup sihat ialah bersenam secara berkala sekurang-kurangnya tiga kali seminggu. Selain itu, seseorang perlu mengamalkan pemakanan yang seimbang dengan mengambil makanan berkhasiat. Seterusnya, mendapatkan waktu tidur yang cukup antara tujuh hingga lapan jam sehari juga penting. Di samping itu, mengelakkan tabiat buruk seperti merokok dapat melindungi kesihatan jangka panjang. Tambahan pula, pemeriksaan kesihatan secara berkala membolehkan penyakit dikesan lebih awal. Akhir sekali, mengurangkan tekanan atau stres melalui aktiviti rekreasi penting untuk kesihatan mental.",
@@ -2886,7 +3869,6 @@ function LatihanKadRingkasan({
 
   return (
     <div className="space-y-7">
-
       {/* 1. Petikan */}
       <div>
         <div className="flex items-center gap-2 mb-3">
@@ -2905,7 +3887,9 @@ function LatihanKadRingkasan({
           <p className="text-sm font-black tracking-wide text-white">Fokus Soalan</p>
         </div>
         <div className="rounded-2xl border border-[#FBBF24]/35 bg-gradient-to-r from-[#FBBF24]/12 to-[#F59E0B]/8 p-4">
-          <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-1.5">Soalan Peperiksaan</p>
+          <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-1.5">
+            Soalan Peperiksaan
+          </p>
           <p className="text-base font-bold text-white leading-snug">{latihan.fokus}</p>
           <p className="mt-2 text-[11px] text-white/45 leading-relaxed">
             Cari isi yang menjawab fokus ini sahaja. Buang semua maklumat yang tidak berkaitan.
@@ -2935,7 +3919,9 @@ function LatihanKadRingkasan({
       <div>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-base">✏️</span>
-          <p className="text-sm font-black tracking-wide text-white">Isi Penting Yang Perlu Dicari</p>
+          <p className="text-sm font-black tracking-wide text-white">
+            Isi Penting Yang Perlu Dicari
+          </p>
         </div>
         {!isiDedah && (
           <p className="mb-3 text-[11px] text-white/40 px-1">
@@ -2986,7 +3972,9 @@ function LatihanKadRingkasan({
       <div>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-base">📚</span>
-          <p className="text-sm font-black tracking-wide text-white">Jawapan Contoh — Struktur Ringkasan</p>
+          <p className="text-sm font-black tracking-wide text-white">
+            Jawapan Contoh — Struktur Ringkasan
+          </p>
         </div>
         <div className="rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/[0.07] p-5">
           <p className="text-[10px] font-black tracking-wide text-[#A78BFA] mb-4">
@@ -3027,7 +4015,8 @@ function LatihanKadRingkasan({
         ) : (
           <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
             <p className="text-[11px] text-white/40 mb-4 leading-relaxed">
-              Cuba tulis jawapan ringkasan kamu sendiri dahulu menggunakan struktur di atas, kemudian semak dengan jawapan lengkap.
+              Cuba tulis jawapan ringkasan kamu sendiri dahulu menggunakan struktur di atas,
+              kemudian semak dengan jawapan lengkap.
             </p>
             <button
               onClick={() => setJawapanDedah(true)}
@@ -3047,7 +4036,10 @@ function LatihanKadRingkasan({
         </div>
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/[0.05] p-5 space-y-2">
           {latihan.kesalahanLazim.map((k, i) => (
-            <div key={i} className="flex items-start gap-2.5 rounded-xl border border-rose-500/12 bg-rose-500/[0.04] px-3 py-2.5">
+            <div
+              key={i}
+              className="flex items-start gap-2.5 rounded-xl border border-rose-500/12 bg-rose-500/[0.04] px-3 py-2.5"
+            >
               <span className="shrink-0 text-base mt-0.5">❌</span>
               <p className="text-sm text-white/70 leading-relaxed">{k}</p>
             </div>
@@ -3065,12 +4057,13 @@ function LatihanKadRingkasan({
             🧑‍🏫
           </div>
           <div>
-            <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-2">Tip Cikgu AcadeMy</p>
+            <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-2">
+              Tip Cikgu AcadeMy
+            </p>
             <p className="text-sm leading-relaxed text-white/80 italic">"{latihan.tipCikgu}"</p>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
@@ -3080,18 +4073,18 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
 
   return (
     <div className="space-y-6">
-
       {/* Pengenalan + fakta penting */}
       <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
         <p className="text-sm leading-relaxed text-white/75">
           Ringkasan ialah soalan{" "}
-          <span className="font-bold text-white">Bahagian C (15 markah)</span> yang memerlukan
-          murid mengenal pasti isi penting daripada petikan dan menulis semula dalam bentuk ringkas
+          <span className="font-bold text-white">Bahagian C (15 markah)</span> yang memerlukan murid
+          mengenal pasti isi penting daripada petikan dan menulis semula dalam bentuk ringkas
           menggunakan ayat gramatis.{" "}
-          <span className="font-semibold text-white">Tidak lebih daripada 100 patah perkataan.</span>{" "}
-          Tulis dalam{" "}
-          <span className="font-semibold text-white">satu perenggan.</span>{" "}
-          Tiada pendahuluan. Tiada penutup.
+          <span className="font-semibold text-white">
+            Tidak lebih daripada 100 patah perkataan.
+          </span>{" "}
+          Tulis dalam <span className="font-semibold text-white">satu perenggan.</span> Tiada
+          pendahuluan. Tiada penutup.
         </p>
       </div>
 
@@ -3102,7 +4095,10 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
           { icon: "📝", label: "Maks. 100 Patah Perkataan" },
           { icon: "📄", label: "Satu Perenggan Sahaja" },
         ].map((f, i) => (
-          <div key={i} className="flex items-center gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-3 py-3">
+          <div
+            key={i}
+            className="flex items-center gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-3 py-3"
+          >
             <span className="text-base shrink-0">{f.icon}</span>
             <p className="text-xs font-semibold text-white/85 leading-tight">{f.label}</p>
           </div>
@@ -3112,7 +4108,7 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
       {/* Tab navigasi */}
       <div>
         <p className="mb-3 text-[10px] font-black tracking-wide text-white/40">
-          5 Latihan Ringkasan Interaktif
+          5 Latihan Rumusan Interaktif
         </p>
         <div className="flex flex-wrap gap-2">
           {LATIHAN_RINGKASAN.map((l, i) => (
@@ -3125,9 +4121,7 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
                   : "border-white/[0.08] bg-white/[0.03] text-white/45 hover:text-white/70"
               }`}
               style={
-                aktif === i
-                  ? { background: `${color}28`, borderColor: `${color}45`, color }
-                  : {}
+                aktif === i ? { background: `${color}28`, borderColor: `${color}45`, color } : {}
               }
             >
               <span>{l.emoji}</span>
@@ -3151,18 +4145,11 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
             <p className="text-[10px] font-black tracking-wide text-white/30 mb-0.5">
               Latihan {LATIHAN_RINGKASAN[aktif].id} daripada 5
             </p>
-            <p className="text-base font-bold text-white">
-              {LATIHAN_RINGKASAN[aktif].tajuk}
-            </p>
+            <p className="text-base font-bold text-white">{LATIHAN_RINGKASAN[aktif].tajuk}</p>
           </div>
         </div>
-        <LatihanKadRingkasan
-          key={aktif}
-          latihan={LATIHAN_RINGKASAN[aktif]}
-          color={color}
-        />
+        <LatihanKadRingkasan key={aktif} latihan={LATIHAN_RINGKASAN[aktif]} color={color} />
       </div>
-
     </div>
   );
 }
@@ -3170,103 +4157,163 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
 function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
     <div className="space-y-4">
-      <LearningFolder icon={<BookOpen className="h-4 w-4" />} title="📖 Asas Ringkasan" description="Pengenalan, formula dan cara menulis" accent={color} defaultOpen>
-      {topic.description && (
-        <CollapsibleSection icon={<BookOpen className="h-4 w-4" />} title="Pengenalan" accent={color}>
-          <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
-        </CollapsibleSection>
-      )}
+      <LearningFolder
+        icon={<BookOpen className="h-4 w-4" />}
+        title="📖 Asas Rumusan"
+        description="Pengenalan, formula dan cara menulis"
+        accent={color}
+        defaultOpen
+      >
+        {topic.description && (
+          <CollapsibleSection
+            icon={<BookOpen className="h-4 w-4" />}
+            title="Pengenalan"
+            accent={color}
+          >
+            <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
+          </CollapsibleSection>
+        )}
 
-      {topic.formula && (
-        <CollapsibleSection icon={<Map className="h-4 w-4" />} title="Formula / Langkah" accent={color}>
-          <div className="space-y-2">
-            {topic.formula.map((step, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
-                  {i + 1}
-                </span>
-                <p className="text-sm text-white/70">{step}</p>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
-
-      {topic.steps && topic.steps.length > 0 && (
-        <CollapsibleSection icon={<PenTool className="h-4 w-4" />} title="Cara Menulis" accent={color}>
-          <div className="space-y-2">
-            {topic.steps.map((step, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
-                  {i + 1}
-                </span>
-                <p className="text-sm text-white/70">{step}</p>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
-      </LearningFolder>
-
-      <LearningFolder icon={<Target className="h-4 w-4" />} title="🎯 Semak & Kuasai UASA" description="Kesalahan lazim dan petua peperiksaan" accent="#FBBF24">
-      {topic.commonMistakes && (
-        <CollapsibleSection icon={<XCircle className="h-4 w-4" />} title="⚠ Kesalahan Lazim" accent="#FB7185">
-          <ul className="space-y-2">
-            {topic.commonMistakes.map((m, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                <span className="mt-0.5 shrink-0 text-rose-400">×</span>
-                {m}
-              </li>
-            ))}
-          </ul>
-        </CollapsibleSection>
-      )}
-
-      {topic.uasaTips && (
-        <CollapsibleSection icon={<Trophy className="h-4 w-4" />} title="🎯 Fokus UASA — Tips UASA" accent="#FBBF24">
-          <ul className="space-y-2">
-            {topic.uasaTips.map((tip, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
-                {tip}
-              </li>
-            ))}
-          </ul>
-        </CollapsibleSection>
-      )}
-      </LearningFolder>
-
-      <LearningFolder icon={<Zap className="h-4 w-4" />} title="⚡ Ulang Kaji Pantas" description="Penerangan cikgu dan ringkasan satu minit" accent="#34D399">
-      {(topic.description || (topic.formula && topic.formula.length > 0)) && (
-        <CollapsibleSection icon={<MessageCircle className="h-4 w-4" />} title="🤖 Cikgu AcadeMY Terangkan" accent={color}>
-          {topic.description && <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>}
-          {topic.formula && topic.formula.length > 0 && (
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-              <p className="mb-1 text-[10px] font-black tracking-wide" style={{ color }}>Mula dengan langkah pertama</p>
-              <p className="text-sm text-white/75">{topic.formula[0]}</p>
+        {topic.formula && (
+          <CollapsibleSection
+            icon={<Map className="h-4 w-4" />}
+            title="Formula / Langkah"
+            accent={color}
+          >
+            <div className="space-y-2">
+              {topic.formula.map((step, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+                >
+                  <span
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                    style={{ background: `${color}25`, color }}
+                  >
+                    {i + 1}
+                  </span>
+                  <p className="text-sm text-white/70">{step}</p>
+                </div>
+              ))}
             </div>
-          )}
-        </CollapsibleSection>
-      )}
+          </CollapsibleSection>
+        )}
 
-      {(topic.commonMistakes || topic.uasaTips) && (
-        <CollapsibleSection icon={<Lightbulb className="h-4 w-4" />} title="📝 Ringkasan 1 Minit" accent="#34D399">
-          <ul className="space-y-2">
-            {topic.commonMistakes?.slice(0, 2).map((m, i) => (
-              <li key={`m-${i}`} className="flex items-start gap-2 text-sm text-white/70">
-                <XCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-rose-400" />
-                {m}
-              </li>
-            ))}
-            {topic.uasaTips?.slice(0, 1).map((tip, i) => (
-              <li key={`tip-${i}`} className="flex items-start gap-2 text-sm text-white/70">
-                <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
-                {tip}
-              </li>
-            ))}
-          </ul>
-        </CollapsibleSection>
-      )}
+        {topic.steps && topic.steps.length > 0 && (
+          <CollapsibleSection
+            icon={<PenTool className="h-4 w-4" />}
+            title="Cara Menulis"
+            accent={color}
+          >
+            <div className="space-y-2">
+              {topic.steps.map((step, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+                >
+                  <span
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                    style={{ background: `${color}25`, color }}
+                  >
+                    {i + 1}
+                  </span>
+                  <p className="text-sm text-white/70">{step}</p>
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        )}
+      </LearningFolder>
+
+      <LearningFolder
+        icon={<Target className="h-4 w-4" />}
+        title="🎯 Semak & Kuasai UASA"
+        description="Kesalahan lazim dan petua peperiksaan"
+        accent="#FBBF24"
+      >
+        {topic.commonMistakes && (
+          <CollapsibleSection
+            icon={<XCircle className="h-4 w-4" />}
+            title="⚠ Kesalahan Lazim"
+            accent="#FB7185"
+          >
+            <ul className="space-y-2">
+              {topic.commonMistakes.map((m, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                  <span className="mt-0.5 shrink-0 text-rose-400">×</span>
+                  {m}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleSection>
+        )}
+
+        {topic.uasaTips && (
+          <CollapsibleSection
+            icon={<Trophy className="h-4 w-4" />}
+            title="🎯 Fokus UASA — Tips UASA"
+            accent="#FBBF24"
+          >
+            <ul className="space-y-2">
+              {topic.uasaTips.map((tip, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
+                  <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleSection>
+        )}
+      </LearningFolder>
+
+      <LearningFolder
+        icon={<Zap className="h-4 w-4" />}
+        title="⚡ Ulang Kaji Pantas"
+        description="Penerangan cikgu dan ringkasan satu minit"
+        accent="#34D399"
+      >
+        {(topic.description || (topic.formula && topic.formula.length > 0)) && (
+          <CollapsibleSection
+            icon={<MessageCircle className="h-4 w-4" />}
+            title="🤖 Cikgu AcadeMY Terangkan"
+            accent={color}
+          >
+            {topic.description && (
+              <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>
+            )}
+            {topic.formula && topic.formula.length > 0 && (
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                <p className="mb-1 text-[10px] font-black tracking-wide" style={{ color }}>
+                  Mula dengan langkah pertama
+                </p>
+                <p className="text-sm text-white/75">{topic.formula[0]}</p>
+              </div>
+            )}
+          </CollapsibleSection>
+        )}
+
+        {(topic.commonMistakes || topic.uasaTips) && (
+          <CollapsibleSection
+            icon={<Lightbulb className="h-4 w-4" />}
+            title="📝 Ringkasan 1 Minit"
+            accent="#34D399"
+          >
+            <ul className="space-y-2">
+              {topic.commonMistakes?.slice(0, 2).map((m, i) => (
+                <li key={`m-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                  <XCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-rose-400" />
+                  {m}
+                </li>
+              ))}
+              {topic.uasaTips?.slice(0, 1).map((tip, i) => (
+                <li key={`tip-${i}`} className="flex items-start gap-2 text-sm text-white/70">
+                  <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleSection>
+        )}
       </LearningFolder>
 
       <div className="flex gap-3">
@@ -3294,7 +4341,10 @@ function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
             {topic.formulae.map((f, i) => (
               <div key={i} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
                 <div className="mb-2 flex items-center gap-2">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+                  <span
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                    style={{ background: `${color}25`, color }}
+                  >
                     {i + 1}
                   </span>
                   <p className="text-sm font-bold text-white">{f.part}</p>
@@ -3315,8 +4365,14 @@ function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
           <SectionLabel>Langkah-langkah</SectionLabel>
           <div className="space-y-2">
             {topic.formula.map((step, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+              <div
+                key={i}
+                className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+              >
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                  style={{ background: `${color}25`, color }}
+                >
                   {i + 1}
                 </span>
                 <p className="text-sm text-white/70">{step}</p>
@@ -3331,8 +4387,14 @@ function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
           <SectionLabel>Cara Baca & Cara Tulis</SectionLabel>
           <div className="space-y-2">
             {topic.steps.map((step, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+              <div
+                key={i}
+                className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+              >
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                  style={{ background: `${color}25`, color }}
+                >
                   {i + 1}
                 </span>
                 <p className="text-sm text-white/70">{step}</p>
@@ -3344,7 +4406,9 @@ function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.commonMistakes && (
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesalahan Lazim</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">
+            ⚠ Kesalahan Lazim
+          </p>
           <ul className="space-y-2">
             {topic.commonMistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -3358,7 +4422,9 @@ function KaranganDetail({ topic, color }: { topic: BMTopic; color: string }) {
 
       {topic.uasaTips && (
         <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">★ Tips Markah Penuh</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-yellow-400">
+            ★ Tips Markah Penuh
+          </p>
           <ul className="space-y-2">
             {topic.uasaTips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -3384,10 +4450,15 @@ function WorkshopDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Idea Bank */}
       {topic.ideaBank && (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide" style={{ color }}>💡 Idea Bank</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide" style={{ color }}>
+            💡 Idea Bank
+          </p>
           <div className="flex flex-wrap gap-2">
             {topic.ideaBank.map((idea) => (
-              <span key={idea} className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/60">
+              <span
+                key={idea}
+                className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/60"
+              >
                 {idea}
               </span>
             ))}
@@ -3411,8 +4482,14 @@ function WorkshopDetail({ topic, color }: { topic: BMTopic; color: string }) {
           <SectionLabel>Cadangan Isi</SectionLabel>
           <div className="space-y-2">
             {topic.isi.map((isi, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>
+              <div
+                key={i}
+                className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+              >
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
+                  style={{ background: `${color}25`, color }}
+                >
                   {i + 1}
                 </span>
                 <p className="text-sm text-white/70">{isi}</p>
@@ -3435,10 +4512,14 @@ function WorkshopDetail({ topic, color }: { topic: BMTopic; color: string }) {
       {/* Peribahasa */}
       {topic.peribahasa && topic.peribahasa.length > 0 && (
         <div className="rounded-2xl border border-[#F472B6]/20 bg-[#F472B6]/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-[#F472B6]">💎 Peribahasa Sesuai</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-[#F472B6]">
+            💎 Peribahasa Sesuai
+          </p>
           <div className="space-y-2">
             {topic.peribahasa.map((p, i) => (
-              <p key={i} className="text-sm italic text-white/65">"{p}"</p>
+              <p key={i} className="text-sm italic text-white/65">
+                "{p}"
+              </p>
             ))}
           </div>
         </div>
@@ -3466,7 +4547,10 @@ function ModelKaranganDetail({ topic, color }: { topic: BMTopic; color: string }
           <SectionLabel>Ciri-ciri Utama</SectionLabel>
           <div className="grid gap-2 sm:grid-cols-2">
             {topic.keyFeatures.map((f, i) => (
-              <div key={i} className="flex items-start gap-2 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+              <div
+                key={i}
+                className="flex items-start gap-2 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+              >
                 <CheckCircle className="mt-0.5 h-4 w-4 shrink-0" style={{ color }} />
                 <p className="text-sm text-white/65">{f}</p>
               </div>
@@ -3486,27 +4570,34 @@ function ModelKaranganDetail({ topic, color }: { topic: BMTopic; color: string }
 function PeribahsaBankDetail({ topic, color }: { topic: BMTopic; color: string }) {
   return (
     <div className="space-y-4">
-      {topic.peribuhasaItems && topic.peribuhasaItems.map((p, i) => (
-        <div key={i} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
-          <p className="mb-2 text-base font-bold italic text-white">{p.text}</p>
-          <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
-            <p className="text-[9px] font-black tracking-wide text-white/30 mb-1">Maksud</p>
-            <p className="text-sm text-white/70">{p.maksud}</p>
+      {topic.peribuhasaItems &&
+        topic.peribuhasaItems.map((p, i) => (
+          <div key={i} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
+            <p className="mb-2 text-base font-bold italic text-white">{p.text}</p>
+            <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
+              <p className="text-[9px] font-black tracking-wide text-white/30 mb-1">Maksud</p>
+              <p className="text-sm text-white/70">{p.maksud}</p>
+            </div>
+            <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
+              <p className="text-[9px] font-black tracking-wide text-white/30 mb-1">Contoh Ayat</p>
+              <p className="text-sm italic text-white/60">{p.contohAyat}</p>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              <p className="w-full text-[9px] font-bold tracking-wide text-white/30 mb-1">
+                Sesuai untuk topik:
+              </p>
+              {p.topikSesuai.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-medium"
+                  style={{ color }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="mb-3 rounded-xl border border-white/5 bg-white/5 p-3">
-            <p className="text-[9px] font-black tracking-wide text-white/30 mb-1">Contoh Ayat</p>
-            <p className="text-sm italic text-white/60">{p.contohAyat}</p>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            <p className="w-full text-[9px] font-bold tracking-wide text-white/30 mb-1">Sesuai untuk topik:</p>
-            {p.topikSesuai.map((t) => (
-              <span key={t} className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-medium" style={{ color }}>
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))}
 
       <PlaceholderChip label="Lebih Banyak Peribahasa" />
     </div>
@@ -3530,11 +4621,15 @@ function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: strin
             {topic.beforeAfter.map((ba, i) => (
               <div key={i} className="overflow-hidden rounded-2xl border border-white/[0.07]">
                 <div className="bg-rose-500/10 p-4 border-b border-white/[0.05]">
-                  <p className="mb-1 text-[9px] font-black tracking-wide text-rose-400">✗ Ayat Lemah</p>
+                  <p className="mb-1 text-[9px] font-black tracking-wide text-rose-400">
+                    ✗ Ayat Lemah
+                  </p>
                   <p className="text-sm text-white/60">{ba.lemah}</p>
                 </div>
                 <div className="bg-emerald-500/10 p-4">
-                  <p className="mb-1 text-[9px] font-black tracking-wide text-emerald-400">✓ Ayat Cemerlang</p>
+                  <p className="mb-1 text-[9px] font-black tracking-wide text-emerald-400">
+                    ✓ Ayat Cemerlang
+                  </p>
                   <p className="text-sm text-white/75">{ba.cemerlang}</p>
                   <p className="mt-2 text-[10px] italic text-white/35">Teknik: {ba.tip}</p>
                 </div>
@@ -3550,10 +4645,15 @@ function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: strin
           <SectionLabel>Kosa Kata: Biasa → Menarik</SectionLabel>
           <div className="grid gap-2 sm:grid-cols-2">
             {topic.kosaKata.map((k, i) => (
-              <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+              <div
+                key={i}
+                className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+              >
                 <span className="text-sm text-white/40 line-through">{k.biasa}</span>
                 <ArrowRight className="h-3 w-3 shrink-0 text-white/20" />
-                <span className="text-sm font-semibold" style={{ color }}>{k.menarik}</span>
+                <span className="text-sm font-semibold" style={{ color }}>
+                  {k.menarik}
+                </span>
               </div>
             ))}
           </div>
@@ -3563,7 +4663,9 @@ function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: strin
       {/* Mistakes */}
       {topic.mistakes && (
         <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
-          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">⚠ Kesilapan Biasa dalam Karangan</p>
+          <p className="mb-3 text-[9px] font-black tracking-wide text-rose-400">
+            ⚠ Kesilapan Biasa dalam Karangan
+          </p>
           <ul className="space-y-2">
             {topic.mistakes.map((m, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-white/65">
@@ -3583,20 +4685,33 @@ function EssayImprovementDetail({ topic, color }: { topic: BMTopic; color: strin
 
 function TopicDetailRenderer({ topic, hubColor }: { topic: BMTopic; hubColor: string }) {
   switch (topic.topicType) {
-    case "tatabahasa":     return <TatabahasaDetail topic={topic} color={hubColor} />;
-    case "komsas":         return <KOMSASDetail topic={topic} color={hubColor} />;
-    case "novel":          return <NovelDetail topic={topic} color={hubColor} />;
-    case "pemahaman":      return <PemahamanDetail topic={topic} color={hubColor} />;
-    case "rangka-ringkasan":  return <RangkaRingkasanDetail color={hubColor} />;
-    case "ringkasan-premium": return <RingkasanPremiumDetail color={hubColor} />;
-    case "ringkasan": return <RingkasanDetail topic={topic} color={hubColor} />;
+    case "tatabahasa":
+      return <TatabahasaDetail topic={topic} color={hubColor} />;
+    case "komsas":
+      return <KOMSASDetail topic={topic} color={hubColor} />;
+    case "novel":
+      return <NovelDetail topic={topic} color={hubColor} />;
+    case "pemahaman":
+      return <PemahamanDetail topic={topic} color={hubColor} />;
+    case "rangka-ringkasan":
+      return <RangkaRingkasanDetail color={hubColor} />;
+    case "ringkasan-premium":
+      return <RingkasanPremiumDetail color={hubColor} />;
+    case "ringkasan":
+      return <RingkasanDetail topic={topic} color={hubColor} />;
     case "karangan-pendek":
-    case "respons-terbuka": return <KaranganDetail topic={topic} color={hubColor} />;
-    case "workshop":       return <WorkshopDetail topic={topic} color={hubColor} />;
-    case "model-karangan": return <ModelKaranganDetail topic={topic} color={hubColor} />;
-    case "peribahasa-bank": return <PeribahsaBankDetail topic={topic} color={hubColor} />;
-    case "essay-improvement": return <EssayImprovementDetail topic={topic} color={hubColor} />;
-    default:               return null;
+    case "respons-terbuka":
+      return <KaranganDetail topic={topic} color={hubColor} />;
+    case "workshop":
+      return <WorkshopDetail topic={topic} color={hubColor} />;
+    case "model-karangan":
+      return <ModelKaranganDetail topic={topic} color={hubColor} />;
+    case "peribahasa-bank":
+      return <PeribahsaBankDetail topic={topic} color={hubColor} />;
+    case "essay-improvement":
+      return <EssayImprovementDetail topic={topic} color={hubColor} />;
+    default:
+      return null;
   }
 }
 
@@ -3645,7 +4760,14 @@ function TopicView({
   if (topic.topicType === "workshop") {
     const workshopContent = getWorkshopContent(topic.id);
     if (workshopContent) {
-      return <BengkelKaranganHub topic={topic} content={workshopContent} color={hub.color} onBack={onBack} />;
+      return (
+        <BengkelKaranganHub
+          topic={topic}
+          content={workshopContent}
+          color={hub.color}
+          onBack={onBack}
+        />
+      );
     }
   }
 
@@ -3706,7 +4828,9 @@ export function BMWorldPage({
   onBack: () => void;
   mode?: "default" | "quiz";
 }) {
-  const [history, setHistory] = useState<BMScreen[]>([mode === "quiz" ? { type: "k1-quiz" } : { type: "landing" }]);
+  const [history, setHistory] = useState<BMScreen[]>([
+    mode === "quiz" ? { type: "k1-quiz" } : { type: "landing" },
+  ]);
   const screen = history[history.length - 1];
 
   function push(next: BMScreen) {
@@ -3725,9 +4849,9 @@ export function BMWorldPage({
   const kertas =
     screen.type === "k1-quiz"
       ? getBMKertas("k1")
-      : (screen.type !== "landing" && screen.type !== "objektif-quiz")
-      ? getBMKertas(screen.kertasId)
-      : undefined;
+      : screen.type !== "landing" && screen.type !== "objektif-quiz"
+        ? getBMKertas(screen.kertasId)
+        : undefined;
 
   const hub =
     (screen.type === "hub" || screen.type === "topic") && kertas
@@ -3765,9 +4889,7 @@ export function BMWorldPage({
         {screen.type === "kertas" && kertas && (
           <KertasView
             kertas={kertas}
-            onSelectHub={(hubId) =>
-              push({ type: "hub", kertasId: screen.kertasId, hubId })
-            }
+            onSelectHub={(hubId) => push({ type: "hub", kertasId: screen.kertasId, hubId })}
             onBack={pop}
           />
         )}
@@ -3778,7 +4900,12 @@ export function BMWorldPage({
             key={screen.setIndex}
             setIndex={screen.setIndex}
             onBack={pop}
-            onNextSet={screen.setIndex < 2 ? () => push({ type: "objektif-quiz", setIndex: (screen.setIndex + 1) as 0 | 1 | 2 }) : undefined}
+            onNextSet={
+              screen.setIndex < 2
+                ? () =>
+                    push({ type: "objektif-quiz", setIndex: (screen.setIndex + 1) as 0 | 1 | 2 })
+                : undefined
+            }
           />
         )}
 
