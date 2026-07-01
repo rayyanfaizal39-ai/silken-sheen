@@ -18,19 +18,11 @@ import gsap from "gsap";
 import { motion } from "framer-motion";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
-import { SiteFooter } from "@/components/SiteFooter";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import starCaptain from "@/assets/hero-astronaut.webp.asset.json";
-import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
-import cikguAiImage from "@/assets/academy-robot.webp.asset.json";
-import heroIntro from "@/assets/hero-intro.mp4.asset.json";
-import backGround from "@/assets/back-ground.webp.asset.json";
-import toolNotes from "@/assets/tool-notes.png";
-import toolFlashcards from "@/assets/tool-flashcards.png";
-import toolQuizzes from "@/assets/tool-quizzes.png";
-import toolMindmaps from "@/assets/tool-mindmaps.png";
-import toolMissions from "@/assets/tool-missions.png";
+import backGround from "@/components/../assets/back-ground.webp.asset.json";
+
 import {
   Dialog,
   DialogContent,
