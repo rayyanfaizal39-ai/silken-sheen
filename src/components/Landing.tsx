@@ -190,7 +190,7 @@ function Hero() {
     if (!card || !img) return;
 
     const ctx = gsap.context(() => {
-      // Entrance
+      // Entrance — card fades in
       gsap.from(card, {
         y: 40,
         opacity: 0,
@@ -198,6 +198,16 @@ function Hero() {
         duration: 1.1,
         ease: "power3.out",
       });
+
+      // Astronaut zoom-in from tiny to full size
+      gsap.from(img, {
+        scale: 0.15,
+        opacity: 0,
+        duration: 1.6,
+        ease: "power4.out",
+        delay: 0.2,
+      });
+
       if (badge) {
         gsap.from(badge, {
           y: -20,
@@ -217,18 +227,17 @@ function Hero() {
         });
       }
 
-      // Continuous float
-      // Cinematic floating — long arc + gentle sway
+      // Continuous float — more dramatic
       gsap.to(img, {
-        y: -28,
-        duration: 4.5,
+        y: -40,
+        duration: 3.5,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
       });
       gsap.to(img, {
-        rotation: 1.4,
-        duration: 6,
+        rotation: 2.5,
+        duration: 5,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
