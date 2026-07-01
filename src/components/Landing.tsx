@@ -21,7 +21,7 @@ import { useAuth } from "@/context/auth-context";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import starCaptain from "@/assets/hero-astronaut.webp.asset.json";
-import backGround from "@/components/../assets/back-ground.webp.asset.json";
+import backGround from "@/assets/back-ground.webp.asset.json";
 
 import {
   Dialog,
