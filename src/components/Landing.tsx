@@ -391,7 +391,7 @@ function Hero() {
             />
 
             {/* Level badge */}
-            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5">
+            <div ref={badgeRef} className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5">
               <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
                 18
               </span>
