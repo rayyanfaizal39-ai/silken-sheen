@@ -169,6 +169,104 @@ function LandingNav() {
 function Hero() {
   const { open } = useSignInModal();
   const [comingSoonOpen, setComingSoonOpen] = useState(false);
+  const heroCardRef = useRef<HTMLDivElement>(null);
+  const heroImgRef = useRef<HTMLImageElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const xpBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = heroCardRef.current;
+    const img = heroImgRef.current;
+    const glow = glowRef.current;
+    const badge = badgeRef.current;
+    const xp = xpBarRef.current;
+    if (!card || !img) return;
+
+    const ctx = gsap.context(() => {
+      // Entrance
+      gsap.from(card, {
+        y: 40,
+        opacity: 0,
+        scale: 0.96,
+        duration: 1.1,
+        ease: "power3.out",
+      });
+      if (badge) {
+        gsap.from(badge, {
+          y: -20,
+          opacity: 0,
+          duration: 0.8,
+          delay: 0.6,
+          ease: "back.out(2)",
+        });
+      }
+      if (xp) {
+        gsap.from(xp, {
+          scaleX: 0,
+          transformOrigin: "left center",
+          duration: 1.2,
+          delay: 0.9,
+          ease: "power2.out",
+        });
+      }
+
+      // Continuous float
+      gsap.to(img, {
+        y: -14,
+        duration: 3.2,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+
+      // Glow pulse
+      if (glow) {
+        gsap.to(glow, {
+          opacity: 0.55,
+          scale: 1.06,
+          duration: 2.6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      }
+
+      // Mouse parallax
+      const onMove = (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(img, {
+          x: x * 24,
+          rotateY: x * 6,
+          rotateX: -y * 6,
+          duration: 0.8,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      };
+      const onLeave = () => {
+        gsap.to(img, {
+          x: 0,
+          rotateX: 0,
+          rotateY: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+      };
+      card.addEventListener("mousemove", onMove);
+      card.addEventListener("mouseleave", onLeave);
+      return () => {
+        card.removeEventListener("mousemove", onMove);
+        card.removeEventListener("mouseleave", onLeave);
+      };
+    }, card);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
       {/* glow blobs */}
