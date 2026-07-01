@@ -191,9 +191,44 @@ function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
         <div>
           <SectionLabel>KSSM-aligned · Form 1–3</SectionLabel>
-          <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.18em] text-white/40">
-            Form 4–5 (Coming Soon)
-          </p>
+          <Dialog open={comingSoonOpen} onOpenChange={setComingSoonOpen}>
+            <DialogTrigger asChild>
+              <button
+                type="button"
+                className="mt-2 text-[11px] font-medium uppercase tracking-[0.18em] text-white/40 hover:text-white/70 cursor-pointer transition-colors bg-transparent border-0 p-0"
+              >
+                Form 4–5 (Coming Soon)
+              </button>
+            </DialogTrigger>
+            <DialogContent className="bg-[#0b0a1f] border-white/10 text-white max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-white text-lg font-semibold">
+                  Form 4 &amp; 5 — Coming Soon
+                </DialogTitle>
+                <DialogDescription className="text-white/60 text-sm">
+                  We are expanding AcadeMY to cover upper secondary KSSM
+                  subjects.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-3 text-sm text-white/70">
+                <p>Planned subjects include:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Sains / Science (BM &amp; DLP)</li>
+                  <li>Sejarah</li>
+                  <li>Geografi</li>
+                  <li>Matematik / Mathematics</li>
+                  <li>Bahasa Melayu &amp; English</li>
+                </ul>
+                <p className="pt-2">
+                  Target release:{" "}
+                  <span className="text-white font-medium">Q4 2025</span>
+                </p>
+                <p className="text-xs text-white/40">
+                  Sign up and we will notify you the moment Form 4–5 goes live.
+                </p>
+              </div>
+            </DialogContent>
+          </Dialog>
           <h1 className="mt-6 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.02] tracking-tight text-white">
             Malaysia's
             <br />
