@@ -4,22 +4,15 @@ import {
   Sparkles,
   Check,
   Rocket,
-  GraduationCap,
   Languages,
-  Bot,
-  Trophy,
   NotebookPen,
   Layers,
   BrainCircuit,
   ClipboardCheck,
-  Compass,
-  Flame,
-  Target,
-  TrendingUp,
-  LineChart,
   ShieldCheck,
   Star,
 } from "lucide-react";
+
 import { useState, useEffect, useRef, lazy, Suspense, type CSSProperties, type ReactNode } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
