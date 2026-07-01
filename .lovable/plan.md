@@ -1,40 +1,40 @@
-# Rebuild landing page to match Figma
 
-I read the Figma frame from the screenshot you attached. Rebuilding the homepage as a true marketing landing page that mirrors the Figma section order, while keeping the existing dashboard available for signed-in users.
+## What's heavy on `/landing`
 
-## Section order (matches Figma top→bottom)
+Total asset payload ~**19 MB** before JS. Biggest offenders:
 
-1. **Sticky nav** — logo, links (Subjects, Cikgu AI, Parents, Pricing), Sign in pill.
-2. **Hero** — split layout. Left: eyebrow chip, "Malaysia's Interstellar Learning Platform" (large display), subline, primary + secondary CTA. Right: astronaut card with purple glow halo (reuse `AstronautScene`).
-3. **Why AcadeMY?** — 4 dark feature cards in a single row (KSSM-aligned, BM + DLP, AI Companion, Gamified XP).
-4. **Powerful Learning Tools** — starfield band with 5 glowing planet icons (Notes, Flashcards, Quizzes, Mind Maps, Mock Tests) floating in an arc.
-5. **Cikgu AI** — split: orbiting astronaut orb left, checklist of capabilities + "Try Cikgu" CTA right.
-6. **Track Your Progress** — dashboard preview card (XP, streak, mastery, recent missions) — static styled mock, not the real dashboard.
-7. **Parents** — gold serif "Parents" heading, cinematic image right, checklist left, then a wider parent analytics preview band underneath.
-8. **Choose Your Mission Plan** — 3 pricing cards: Free, RM28 (highlighted/Popular), RM68. Feature lists + CTA per card.
-9. **Ready to Launch Your Mission?** — centered final CTA with glow.
-10. **Footer** — keep existing `SiteFooter`.
+### 1. Oversized PNGs (~14 MB — the main problem)
+All shipped as unoptimized PNGs at ~2000×2000:
+- `cikgu-ai.png` — **2.98 MB** (unused now — replaced by robot but still imported? actually only robot is imported, cikgu-ai.png can be deleted)
+- `hero-astronaut.png` — **2.80 MB**
+- `academy-astronaut-core.png` — **2.22 MB** (unused after intro-video swap)
+- `back-ground.png` — **2.17 MB** (full-page background, LCP-blocking)
+- `academy-robot.png` — **1.55 MB**
+- `tool-flashcards.png` — **1.20 MB** (5× bigger than the other 4 tool icons)
 
-## Implementation
+### 2. Video (~2.6 MB)
+- `hero-intro.mp4` — 2.6 MB. Currently `preload="none"` so it only downloads on click — this one is fine.
 
-- Rewrite `src/components/HomeDashboard.tsx` into a marketing composition. Split into section components under `src/components/landing/`:
-  - `LandingHero.tsx`, `WhyAcademy.tsx`, `LearningTools.tsx`, `CikguAISection.tsx`, `ProgressPreview.tsx`, `ParentsSection.tsx`, `PricingSection.tsx`, `FinalCta.tsx`.
-- `src/routes/index.tsx` renders these in order, then `SiteFooter`, then `CompanionWidget`.
-- The current "logged-in dashboard" view is preserved as `src/routes/dashboard.tsx` (already exists); the home route becomes marketing-only regardless of auth state to match the Figma intent.
-- Reuse existing tokens in `src/styles/theme.css` (deep navy bg, purple primary, gold accent). Add a `--accent-gold` token if missing for the "Parents" serif heading. No new fonts — use existing display/serif/sans pairing.
-- Reuse `AstronautScene`, `ParticleBg`, `PlanetEnvironment` for hero + tools band. Planets in section 4 use existing planet sprites/illustrations already in `src/assets`.
-- Pricing values: Free / RM28 / RM68 with placeholder feature bullets I'll write to match the Figma intent (you can edit copy after).
-- Responsive: stacks to single column on mobile; hero astronaut moves above text on <md.
-- No backend/business-logic changes. No new packages.
+### 3. JavaScript
+- `gsap` (~70 KB gz) + `framer-motion` (~50 KB gz) both loaded on landing.
+- `Landing.tsx` is **1,209 lines** in a single chunk — no code splitting between hero / tools orbit / pricing / FAQ.
+- `CinematicStars` renders a canvas with many particles on mount.
 
-## What I'm NOT changing
+### 4. Dead imports
+- `cikgu-ai.png` and `academy-astronaut-core.png` are no longer used but still on disk. Not shipped to browser, but wasted CDN + repo weight.
 
-- Notes / quizzes / flashcards / mind map content.
-- `/dashboard`, `/subjects`, `/auth/callback`, admin routes.
-- Auth flow, Supabase wiring, sign-in modal.
+---
 
-## Open question
+## Proposed fix (biggest wins first)
 
-The Figma shows pricing at RM28 and RM68 — confirm these are the real prices to ship, or should I render them as placeholder "From RMxx" until you finalize? Default if you don't reply: render RM28 / RM68 exactly as shown.
+1. **Convert the 6 large PNGs to WebP** (regenerate at ~1200px, quality ~78). Expected: ~14 MB → ~1.5 MB (~90% cut). Visually identical.
+2. **Preload the LCP hero image** via `head().links` in `src/routes/landing.tsx` with `fetchpriority: "high"`.
+3. **Delete unused assets**: `cikgu-ai.png`, `academy-astronaut-core.png`.
+4. **Re-export `tool-flashcards.png`** at the same dimensions as the other 4 (should be ~250 KB not 1.2 MB).
+5. **Lazy-load below-the-fold sections** (tools orbit, pricing, FAQ, parents dashboard) with `React.lazy` + `Suspense` so the hero renders first.
+6. **Reduce `CinematicStars` particle count** on mobile (or gate with `prefers-reduced-motion`).
+7. **(Optional) Drop `framer-motion`** from `/landing` if only used for one or two simple animations — GSAP can cover them.
 
-Approve and I'll build it.
+Expected result: LCP asset ~200 KB instead of ~3 MB, total transfer ~2–3 MB instead of ~19 MB.
+
+Say the word and I'll switch to build mode and execute steps 1–5 (safest, highest impact). Steps 6–7 are optional polish.
