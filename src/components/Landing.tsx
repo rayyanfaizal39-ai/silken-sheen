@@ -30,7 +30,7 @@ import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import starCaptain from "@/assets/hero-astronaut.png.asset.json";
 import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
-import cikguAiImage from "@/assets/cikgu-ai.png.asset.json";
+import cikguAiImage from "@/assets/academy-robot.png.asset.json";
 import heroIntro from "@/assets/hero-intro.mp4.asset.json";
 import backGround from "@/assets/back-ground.png.asset.json";
 import toolNotes from "@/assets/tool-notes.png";
@@ -767,6 +767,15 @@ function CikguSection() {
     <section className="relative py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
         {/* Cikgu AI character */}
+        <style>{`
+          @keyframes cikguOrbit {
+            0%   { transform: translate(0, 0) rotate(0deg); }
+            25%  { transform: translate(28px, -22px) rotate(4deg); }
+            50%  { transform: translate(0, -40px) rotate(0deg); }
+            75%  { transform: translate(-28px, -22px) rotate(-4deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+          }
+        `}</style>
         <div className="relative aspect-square max-w-[460px] mx-auto w-full">
           <div
             aria-hidden
@@ -782,7 +791,8 @@ function CikguSection() {
             <img
               src={cikguAiImage.url}
               alt="Cikgu AI — your friendly study companion"
-              className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_60px_rgba(139,92,246,0.55)] animate-[float_6s_ease-in-out_infinite]"
+              className="relative z-10 w-[85%] h-[85%] object-contain drop-shadow-[0_0_60px_rgba(139,92,246,0.55)]"
+              style={{ animation: "cikguOrbit 8s ease-in-out infinite" }}
               loading="lazy"
             />
           </div>
