@@ -17,7 +17,7 @@ import { useState, useEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { SiteFooter } from "@/components/SiteFooter";
-import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
+import parentsDashboard from "@/assets/parents-dashboard.png.asset.json";
 import cikguAiImage from "@/assets/academy-robot.webp.asset.json";
 import heroIntro from "@/assets/hero-intro.mp4.asset.json";
 import toolNotes from "@/assets/tool-notes.png";
