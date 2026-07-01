@@ -624,59 +624,9 @@ function LearningTools() {
             }}
           />
 
-          {/* Center: AcadeMY astronaut core */}
+          {/* Center: Intro video (click-to-play) */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
-            <div className="relative w-40 h-40 md:w-56 md:h-56">
-              <div
-                aria-hidden
-                className="absolute inset-0 rounded-full blur-3xl opacity-70 animate-pulse"
-                style={{
-                  background:
-                    "radial-gradient(closest-side, rgba(59,130,246,0.55), rgba(139,92,246,0.25) 55%, transparent 75%)",
-                }}
-              />
-              <img
-                src={academyCore.url}
-                alt="AcadeMY astronaut core"
-                loading="lazy"
-                width={320}
-                height={320}
-                className="relative w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(59,130,246,0.55)]"
-              />
-            </div>
-            {/* Cinematic floating AcadeMY Core label */}
-            <div className="relative mt-3 flex flex-col items-center">
-              <motion.div
-                aria-hidden
-                className="absolute -inset-4 rounded-full blur-2xl"
-                style={{
-                  background:
-                    "radial-gradient(closest-side, rgba(59,130,246,0.45), transparent 70%)",
-                }}
-                animate={{ opacity: [0.4, 0.9, 0.4], scale: [0.95, 1.05, 0.95] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.div
-                className="relative text-xs font-semibold uppercase tracking-[0.2em] text-white/90"
-                style={{
-                  textShadow:
-                    "0 0 14px rgba(59,130,246,0.8), 0 0 28px rgba(139,92,246,0.5)",
-                }}
-                initial={{ opacity: 0, y: 12, scale: 0.85 }}
-                animate={{
-                  opacity: 1,
-                  y: [0, -5, 0],
-                  scale: [1, 1.04, 1],
-                }}
-                transition={{
-                  opacity: { duration: 1, ease: "easeOut" },
-                  y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-                  scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-                }}
-              >
-                AcadeMY Core
-              </motion.div>
-            </div>
+            <CenterIntroVideo />
           </div>
 
 
