@@ -25,6 +25,7 @@ import {
 import {
   BM_FORM2_KOMSAS_CATEGORIES,
   BM_FORM2_KOMSAS_WORKS,
+  BM_FORM2_NOVEL_WORKS,
   type Form2KomsasWork,
 } from "@/data/bm-form2-komsas-structure";
 import { PANTUN_ALAM_REMAJA } from "@/data/bm-form2-pantun-alam-remaja";
@@ -82,10 +83,12 @@ function WorkCard({
   work,
   index,
   onSelect,
+  color = ACCENT,
 }: {
   work: Form2KomsasWork;
   index: number;
   onSelect: () => void;
+  color?: string;
 }) {
   return (
     <button
@@ -95,14 +98,14 @@ function WorkCard({
     >
       <span
         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-black text-white/60"
-        style={{ background: `${ACCENT}15` }}
+        style={{ background: `${color}15` }}
       >
         {String(index).padStart(2, "0")}
       </span>
       <span className="min-w-0 flex-1">
         <span
           className="mb-1 block text-[9px] font-black tracking-wide"
-          style={{ color: ACCENT, opacity: 0.7 }}
+          style={{ color, opacity: 0.7 }}
         >
           {work.category}
         </span>
@@ -110,7 +113,7 @@ function WorkCard({
       </span>
       <ArrowRight
         className="h-3.5 w-3.5 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-60"
-        style={{ color: ACCENT }}
+        style={{ color }}
       />
     </button>
   );
@@ -1639,6 +1642,27 @@ export function BMForm2KomsasStructure({
           </section>
         );
       })}
+    </div>
+  );
+}
+
+export function BMForm2NovelStructure({
+  onSelectWork,
+}: {
+  onSelectWork: (workId: string) => void;
+}) {
+  const color = "#FB923C";
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      {BM_FORM2_NOVEL_WORKS.map((work, index) => (
+        <WorkCard
+          key={work.id}
+          work={work}
+          index={index + 1}
+          color={color}
+          onSelect={() => onSelectWork(work.id)}
+        />
+      ))}
     </div>
   );
 }

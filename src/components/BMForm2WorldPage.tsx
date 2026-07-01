@@ -1,7 +1,11 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { BMForm2SistemBahasaLibrary } from "@/components/BMForm2SistemBahasaLibrary";
-import { BMForm2KomsasStructure, BMForm2KomsasWorkStructure } from "@/components/BMForm2KomsasStructure";
+import {
+  BMForm2KomsasStructure,
+  BMForm2KomsasWorkStructure,
+  BMForm2NovelStructure,
+} from "@/components/BMForm2KomsasStructure";
 import { getBMForm2KomsasWork } from "@/data/bm-form2-komsas-structure";
 import {
   ArrowRight,
@@ -45,7 +49,7 @@ type Screen =
   | { type: "landing" }
   | { type: "paper"; paperId: PaperId }
   | { type: "hub"; paperId: PaperId; hubId: string }
-  | { type: "komsas-work"; paperId: "k1"; hubId: "komsas"; workId: string };
+  | { type: "komsas-work"; paperId: "k1"; hubId: "komsas" | "novel"; workId: string };
 
 const FORM2_PAPERS: PaperItem[] = [
   {
@@ -155,9 +159,8 @@ const FORM2_PAPERS: PaperItem[] = [
     ],
     explanation: (
       <p className="text-sm leading-relaxed text-white/70">
-        Kertas 2 menguji kemahiran menulis karangan dengan ayat gramatis, isi yang
-        jelas, huraian yang matang, penanda wacana, kosa kata menarik dan penutup
-        yang lengkap.
+        Kertas 2 menguji kemahiran menulis karangan dengan ayat gramatis, isi yang jelas, huraian
+        yang matang, penanda wacana, kosa kata menarik dan penutup yang lengkap.
       </p>
     ),
     hubs: [
@@ -175,7 +178,8 @@ const FORM2_PAPERS: PaperItem[] = [
         shortLabel: "Panjang",
         icon: "KJ",
         color: "#A78BFA",
-        description: "Melebihi 180 patah perkataan dengan 5 isi atau lebih menggunakan formula IMBAK.",
+        description:
+          "Melebihi 180 patah perkataan dengan 5 isi atau lebih menggunakan formula IMBAK.",
       },
       {
         id: "bengkel-karangan",
@@ -191,7 +195,8 @@ const FORM2_PAPERS: PaperItem[] = [
         shortLabel: "Model",
         icon: "MK",
         color: "#FBBF24",
-        description: "Contoh karangan mengikut jenis seperti fakta, perbincangan, pengalaman, laporan dan ucapan.",
+        description:
+          "Contoh karangan mengikut jenis seperti fakta, perbincangan, pengalaman, laporan dan ucapan.",
       },
       {
         id: "peribahasa-bank",
@@ -238,11 +243,7 @@ function getHub(paperId: PaperId, hubId: string) {
 }
 
 function SectionLabel({ children }: { children: ReactNode }) {
-  return (
-    <p className="mb-3 text-[11px] font-black tracking-wide text-[#818CF8]">
-      {children}
-    </p>
-  );
+  return <p className="mb-3 text-[11px] font-black tracking-wide text-[#818CF8]">{children}</p>;
 }
 
 function PageHeader({
@@ -292,7 +293,10 @@ function FormatBlock({
   color: string;
 }) {
   return (
-    <div className="rounded-2xl border p-4" style={{ borderColor: `${color}30`, background: `${color}0a` }}>
+    <div
+      className="rounded-2xl border p-4"
+      style={{ borderColor: `${color}30`, background: `${color}0a` }}
+    >
       <p className="text-sm font-bold" style={{ color }}>
         {title}
       </p>
@@ -300,7 +304,10 @@ function FormatBlock({
       <ul className="mt-3 space-y-1.5">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-2 text-sm text-white/65">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />
+            <span
+              className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+              style={{ background: color }}
+            />
             {item}
           </li>
         ))}
@@ -339,9 +346,7 @@ function LandingView({
             BM
           </div>
           <div>
-            <p className="text-[9px] font-black tracking-wide text-[#F472B6]/60">
-              DEWAN SASTERA
-            </p>
+            <p className="text-[9px] font-black tracking-wide text-[#F472B6]/60">DEWAN SASTERA</p>
             <h1 className="font-display text-2xl font-bold text-white">Bahasa Melayu</h1>
             <p className="mt-0.5 text-sm text-white/40">Dunia Nusantara - Tingkatan 2</p>
           </div>
@@ -357,8 +362,8 @@ function LandingView({
       <div className="mb-6">
         <SectionLabel>Laluan Peperiksaan</SectionLabel>
         <p className="text-sm text-white/50">
-          Pilih kertas untuk mula belajar. Setiap kertas mempunyai hub tersendiri
-          dengan struktur Tingkatan 2 yang sedia diisi kemudian.
+          Pilih kertas untuk mula belajar. Setiap kertas mempunyai hub tersendiri dengan struktur
+          Tingkatan 2 yang sedia diisi kemudian.
         </p>
       </div>
 
@@ -370,11 +375,17 @@ function LandingView({
 
       <div className="mt-6 grid grid-cols-3 gap-3">
         {[
-          { label: "Hub Belajar", value: `${FORM2_PAPERS.reduce((sum, paper) => sum + paper.hubs.length, 0)}` },
+          {
+            label: "Hub Belajar",
+            value: `${FORM2_PAPERS.reduce((sum, paper) => sum + paper.hubs.length, 0)}`,
+          },
           { label: "Format Ringkas", value: "Ready" },
           { label: "Kertas UASA", value: "2" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
+          <div
+            key={stat.label}
+            className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center"
+          >
             <p className="text-xl font-black text-white">{stat.value}</p>
             <p className="mt-0.5 text-[9px] font-bold tracking-wide text-white/30">{stat.label}</p>
           </div>
@@ -424,7 +435,10 @@ function PaperCard({ paper, onSelect }: { paper: PaperItem; onSelect: () => void
         </div>
         <div className="flex items-center justify-between">
           <span className="text-xs text-white/30">{paper.hubs.length} hub</span>
-          <span className="flex items-center gap-1 text-xs font-bold" style={{ color: paper.color }}>
+          <span
+            className="flex items-center gap-1 text-xs font-bold"
+            style={{ color: paper.color }}
+          >
             Mula Belajar
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </span>
@@ -464,9 +478,14 @@ function PaperView({
 
       <div className="mb-6 grid gap-3 sm:grid-cols-3">
         {paper.infoCards.map((card) => (
-          <div key={card.label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
+          <div
+            key={card.label}
+            className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center"
+          >
             <p className="text-base font-black text-white">{card.value}</p>
-            <p className="mt-0.5 text-[9px] font-bold uppercase tracking-wide text-white/30">{card.label}</p>
+            <p className="mt-0.5 text-[9px] font-bold uppercase tracking-wide text-white/30">
+              {card.label}
+            </p>
           </div>
         ))}
       </div>
@@ -511,7 +530,10 @@ function HubCard({ hub, onSelect }: { hub: HubItem; onSelect: () => void }) {
         <h3 className="mb-1 font-bold text-white">{hub.label}</h3>
         <p className="mb-4 text-xs leading-relaxed text-white/45">{hub.description}</p>
         <div className="flex items-center justify-between">
-          <span className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ background: `${hub.color}18`, color: hub.color }}>
+          <span
+            className="rounded-full px-2 py-0.5 text-[10px] font-bold"
+            style={{ background: `${hub.color}18`, color: hub.color }}
+          >
             Struktur Sedia
           </span>
           <ArrowRight
@@ -599,7 +621,11 @@ function LearningFolderPlaceholder({
   return (
     <section
       className="overflow-hidden rounded-2xl border bg-white/[0.03] transition-all duration-300"
-      style={open ? { borderColor: `${folder.accent}45`, boxShadow: `0 14px 40px ${folder.accent}10` } : { borderColor: "rgba(255,255,255,0.08)" }}
+      style={
+        open
+          ? { borderColor: `${folder.accent}45`, boxShadow: `0 14px 40px ${folder.accent}10` }
+          : { borderColor: "rgba(255,255,255,0.08)" }
+      }
     >
       <button
         type="button"
@@ -608,9 +634,13 @@ function LearningFolderPlaceholder({
         className="flex min-h-16 w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-white/[0.04]"
       >
         <span className="flex min-w-0 items-start gap-3">
-          <span className="mt-0.5 shrink-0" style={{ color: folder.accent }}>{folder.icon}</span>
+          <span className="mt-0.5 shrink-0" style={{ color: folder.accent }}>
+            {folder.icon}
+          </span>
           <span>
-            <span className="block font-display text-sm font-bold text-white sm:text-base">{folder.title}</span>
+            <span className="block font-display text-sm font-bold text-white sm:text-base">
+              {folder.title}
+            </span>
             <span className="mt-1 block text-xs leading-5 text-white/45">{folder.description}</span>
           </span>
         </span>
@@ -627,7 +657,8 @@ function LearningFolderPlaceholder({
           <div className="border-t border-white/[0.06] px-5 py-4">
             <div className="rounded-xl border border-dashed border-white/10 bg-black/10 px-4 py-5 text-center">
               <p className="text-xs leading-5 text-white/40">
-                Struktur {folder.title.replace(/^\S+\s/, "")} untuk {hub.label} telah disediakan. Kandungan akan ditambah kemudian.
+                Struktur {folder.title.replace(/^\S+\s/, "")} untuk {hub.label} telah disediakan.
+                Kandungan akan ditambah kemudian.
               </p>
             </div>
           </div>
@@ -649,9 +680,10 @@ function HubView({
   onBack: () => void;
 }) {
   const [studyMode, setStudyMode] = useState<StudyMode>("learn");
-  const visibleFolders = studyMode === "learn"
-    ? LEARNING_FOLDERS
-    : LEARNING_FOLDERS.filter((folder) => folder.mode === studyMode);
+  const visibleFolders =
+    studyMode === "learn"
+      ? LEARNING_FOLDERS
+      : LEARNING_FOLDERS.filter((folder) => folder.mode === studyMode);
 
   return (
     <div>
@@ -664,7 +696,11 @@ function HubView({
       <div className="mb-6 flex items-center gap-4">
         <div
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-black"
-          style={{ background: `${hub.color}20`, boxShadow: `0 0 20px ${hub.color}40`, color: hub.color }}
+          style={{
+            background: `${hub.color}20`,
+            boxShadow: `0 0 20px ${hub.color}40`,
+            color: hub.color,
+          }}
         >
           {hub.icon}
         </div>
@@ -678,42 +714,59 @@ function HubView({
         <BMForm2SistemBahasaLibrary />
       ) : paper.id === "k1" && hub.id === "komsas" ? (
         <BMForm2KomsasStructure onSelectWork={onSelectKomsasWork} />
+      ) : paper.id === "k1" && hub.id === "novel" ? (
+        <BMForm2NovelStructure onSelectWork={onSelectKomsasWork} />
       ) : (
-      <>
-      <div className="mb-6">
-        <SectionLabel>Study Modes</SectionLabel>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="tablist" aria-label="Cara belajar">
-          {STUDY_MODES.map((mode) => {
-            const active = studyMode === mode.id;
-            return (
-              <button
-                key={mode.id}
-                type="button"
-                role="tab"
-                aria-selected={active}
-                onClick={() => setStudyMode(mode.id)}
-                className="flex min-h-12 items-center justify-center gap-2 rounded-xl border px-3 py-2 text-xs font-bold transition-all"
-                style={active
-                  ? { borderColor: `${hub.color}60`, background: `${hub.color}20`, color: hub.color, boxShadow: `0 8px 24px ${hub.color}12` }
-                  : { borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.48)" }}
-              >
-                {mode.icon}
-                <span>{mode.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+        <>
+          <div className="mb-6">
+            <SectionLabel>Study Modes</SectionLabel>
+            <div
+              className="grid grid-cols-2 gap-2 sm:grid-cols-4"
+              role="tablist"
+              aria-label="Cara belajar"
+            >
+              {STUDY_MODES.map((mode) => {
+                const active = studyMode === mode.id;
+                return (
+                  <button
+                    key={mode.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={active}
+                    onClick={() => setStudyMode(mode.id)}
+                    className="flex min-h-12 items-center justify-center gap-2 rounded-xl border px-3 py-2 text-xs font-bold transition-all"
+                    style={
+                      active
+                        ? {
+                            borderColor: `${hub.color}60`,
+                            background: `${hub.color}20`,
+                            color: hub.color,
+                            boxShadow: `0 8px 24px ${hub.color}12`,
+                          }
+                        : {
+                            borderColor: "rgba(255,255,255,0.08)",
+                            background: "rgba(255,255,255,0.03)",
+                            color: "rgba(255,255,255,0.48)",
+                          }
+                    }
+                  >
+                    {mode.icon}
+                    <span>{mode.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
 
-      <div>
-        <SectionLabel>Learning Folders</SectionLabel>
-        <div className="space-y-3">
-          {visibleFolders.map((folder) => (
-            <LearningFolderPlaceholder key={folder.id} folder={folder} hub={hub} />
-          ))}
-        </div>
-      </div>
-      </>
+          <div>
+            <SectionLabel>Learning Folders</SectionLabel>
+            <div className="space-y-3">
+              {visibleFolders.map((folder) => (
+                <LearningFolderPlaceholder key={folder.id} folder={folder} hub={hub} />
+              ))}
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
@@ -739,10 +792,12 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
     screen.type === "paper" || screen.type === "hub" || screen.type === "komsas-work"
       ? getPaper(screen.paperId)
       : undefined;
-  const hub = screen.type === "hub" || screen.type === "komsas-work"
-    ? getHub(screen.paperId, screen.hubId)
-    : undefined;
-  const komsasWork = screen.type === "komsas-work" ? getBMForm2KomsasWork(screen.workId) : undefined;
+  const hub =
+    screen.type === "hub" || screen.type === "komsas-work"
+      ? getHub(screen.paperId, screen.hubId)
+      : undefined;
+  const komsasWork =
+    screen.type === "komsas-work" ? getBMForm2KomsasWork(screen.workId) : undefined;
 
   return (
     <div
@@ -769,7 +824,14 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
           <HubView
             paper={paper}
             hub={hub}
-            onSelectKomsasWork={(workId) => push({ type: "komsas-work", paperId: "k1", hubId: "komsas", workId })}
+            onSelectKomsasWork={(workId) =>
+              push({
+                type: "komsas-work",
+                paperId: "k1",
+                hubId: hub.id === "novel" ? "novel" : "komsas",
+                workId,
+              })
+            }
             onBack={pop}
           />
         )}
@@ -777,7 +839,13 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
         {screen.type === "komsas-work" && paper && hub && komsasWork && (
           <div>
             <PageHeader
-              breadcrumb={["Bahasa Melayu", "Tingkatan 2", paper.shortLabel, hub.shortLabel, komsasWork.title]}
+              breadcrumb={[
+                "Bahasa Melayu",
+                "Tingkatan 2",
+                paper.shortLabel,
+                hub.shortLabel,
+                komsasWork.title,
+              ]}
               onBack={pop}
               accent={hub.color}
             />
