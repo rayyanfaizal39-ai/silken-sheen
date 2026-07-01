@@ -511,112 +511,166 @@ function WhyAcademy() {
   );
 }
 
-/* ---------------- Powerful Learning Tools (planet arc) ---------------- */
+/* ---------------- Powerful Learning Tools (orbiting planets) ---------------- */
 
 const TOOLS = [
-  {
-    icon: NotebookPen,
-    label: "Notes",
-    to: "/notes",
-    color: "from-amber-400 to-orange-600",
-  },
-  {
-    icon: Layers,
-    label: "Flashcards",
-    to: "/flashcards",
-    color: "from-sky-400 to-indigo-600",
-  },
-  {
-    icon: ClipboardCheck,
-    label: "Quizzes",
-    to: "/quizzes",
-    color: "from-emerald-400 to-teal-600",
-  },
-  {
-    icon: BrainCircuit,
-    label: "Mind Maps",
-    to: "/mindmaps",
-    color: "from-fuchsia-400 to-purple-600",
-  },
-  {
-    icon: Rocket,
-    label: "Missions",
-    to: "/dashboard",
-    color: "from-rose-400 to-red-600",
-  },
-];
-
-function Planet({
-  icon: Icon,
-  label,
-  to,
-  color,
-  style,
-}: {
-  icon: typeof NotebookPen;
-  label: string;
-  to: string;
-  color: string;
-  style?: CSSProperties;
-}) {
-  return (
-    <Link
-      to={to}
-      className="group flex flex-col items-center text-center"
-      style={style}
-    >
-      <div className="relative">
-        <div
-          aria-hidden
-          className={`absolute inset-0 rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${color}`}
-        />
-        <div
-          className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br ${color} ring-2 ring-white/20 shadow-[inset_0_-8px_20px_rgba(0,0,0,0.35)] flex items-center justify-center group-hover:scale-110 transition-transform`}
-        >
-          <Icon className="w-8 h-8 md:w-9 md:h-9 text-white drop-shadow" />
-        </div>
-      </div>
-      <div className="mt-3 text-sm font-semibold text-white">{label}</div>
-      <div className="text-[11px] text-white/50">Tap to explore</div>
-    </Link>
-  );
-}
+  { img: toolNotes, label: "Notes", desc: "Study with clear notes", to: "/notes", glow: "rgba(251,146,60,0.55)" },
+  { img: toolFlashcards, label: "Flashcards", desc: "Memorize & recall", to: "/flashcards", glow: "rgba(96,165,250,0.55)" },
+  { img: toolQuizzes, label: "Quizzes", desc: "Test your knowledge", to: "/quizzes", glow: "rgba(52,211,153,0.55)" },
+  { img: toolMindmaps, label: "Mind Maps", desc: "Visualize concepts", to: "/mindmaps", glow: "rgba(168,85,247,0.55)" },
+  { img: toolMissions, label: "Missions", desc: "Earn rewards", to: "/dashboard", glow: "rgba(248,113,113,0.55)" },
+] as const;
 
 function LearningTools() {
+  const orbitRef = useRef<HTMLDivElement>(null);
+  const planetRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  useEffect(() => {
+    const orbit = orbitRef.current;
+    if (!orbit) return;
+    // Rotate the whole orbit ring
+    const orbitTween = gsap.to(orbit, {
+      rotation: 360,
+      duration: 40,
+      ease: "none",
+      repeat: -1,
+      transformOrigin: "50% 50%",
+    });
+    // Counter-rotate each planet so icons stay upright + add float
+    const counterTweens = planetRefs.current.map((el, i) => {
+      if (!el) return null;
+      const t = gsap.to(el, {
+        rotation: -360,
+        duration: 40,
+        ease: "none",
+        repeat: -1,
+        transformOrigin: "50% 50%",
+      });
+      gsap.to(el, {
+        y: "+=10",
+        duration: 2.2 + (i % 3) * 0.4,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+        delay: i * 0.15,
+      });
+      return t;
+    });
+    return () => {
+      orbitTween.kill();
+      counterTweens.forEach((t) => t?.kill());
+    };
+  }, []);
+
+  useEffect(() => {
+    // Pause/resume orbit rotation on hover
+    const orbit = orbitRef.current;
+    if (!orbit) return;
+    const tweens = gsap.getTweensOf(orbit);
+    tweens.forEach((t) => (hovered !== null ? t.pause() : t.resume()));
+    planetRefs.current.forEach((el) => {
+      if (!el) return;
+      gsap.getTweensOf(el).forEach((t) => {
+        if ((t.vars as { rotation?: number }).rotation === -360) {
+          hovered !== null ? t.pause() : t.resume();
+        }
+      });
+    });
+  }, [hovered]);
+
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-24 md:py-36 overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(800px 400px at 50% 50%, rgba(124,58,237,0.18), transparent 70%)",
+            "radial-gradient(900px 500px at 50% 50%, rgba(124,58,237,0.22), transparent 70%)",
         }}
       />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-8 text-center">
-        <SectionLabel>Toolkit</SectionLabel>
+        <SectionLabel>Your Learning Universe</SectionLabel>
         <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
-          Powerful Learning Tools
+          What would you like to do today?
         </h2>
         <p className="mt-4 max-w-xl mx-auto text-white/60">
-          Five orbiting study modes — pick one and launch.
+          Choose your mission — five worlds orbit around your journey.
         </p>
 
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 justify-items-center max-w-4xl mx-auto">
-          {TOOLS.map((t, i) => (
-            <Planet
-              key={t.label}
-              {...t}
-              style={{
-                transform: `translateY(${i % 2 === 0 ? "-12px" : "12px"})`,
-              }}
-            />
-          ))}
+        {/* Orbit stage */}
+        <div className="relative mx-auto mt-16 aspect-square w-full max-w-[720px]">
+          {/* Orbit rings */}
+          <div aria-hidden className="absolute inset-0 rounded-full border border-white/10" />
+          <div aria-hidden className="absolute inset-[8%] rounded-full border border-white/5" />
+          <div
+            aria-hidden
+            className="absolute inset-[18%] rounded-full"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(139,92,246,0.35), rgba(139,92,246,0.05) 60%, transparent 70%)",
+            }}
+          />
+
+          {/* Center sun */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+            <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-amber-300 via-orange-500 to-fuchsia-600 shadow-[0_0_80px_rgba(251,146,60,0.6)] flex items-center justify-center">
+              <Star className="w-10 h-10 text-white drop-shadow" />
+              <div className="absolute inset-0 rounded-full ring-2 ring-white/20 animate-pulse" />
+            </div>
+            <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+              AcadeMY Core
+            </div>
+          </div>
+
+          {/* Rotating orbit with planets */}
+          <div ref={orbitRef} className="absolute inset-0">
+            {TOOLS.map((t, i) => {
+              const angle = (i / TOOLS.length) * Math.PI * 2 - Math.PI / 2;
+              const radiusPct = 42; // % of half-container
+              const x = 50 + Math.cos(angle) * radiusPct;
+              const y = 50 + Math.sin(angle) * radiusPct;
+              return (
+                <div
+                  key={t.label}
+                  ref={(el) => (planetRefs.current[i] = el)}
+                  className="absolute -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: `${x}%`, top: `${y}%` }}
+                >
+                  <Link
+                    to={t.to}
+                    onMouseEnter={() => setHovered(i)}
+                    onMouseLeave={() => setHovered(null)}
+                    className="group relative flex flex-col items-center"
+                  >
+                    <div
+                      aria-hidden
+                      className="absolute -inset-6 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity"
+                      style={{ background: `radial-gradient(closest-side, ${t.glow}, transparent 70%)` }}
+                    />
+                    <img
+                      src={t.img}
+                      alt={t.label}
+                      loading="lazy"
+                      width={160}
+                      height={160}
+                      className="relative w-24 h-24 md:w-32 md:h-32 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)] transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="relative mt-2 text-sm md:text-base font-bold text-white">
+                      {t.label}
+                    </div>
+                    <div className="relative text-[11px] text-white/60">{t.desc}</div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ---------------- Cikgu AI ---------------- */
 
