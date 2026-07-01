@@ -496,7 +496,7 @@ function ParentsSection() {
                 "0 0 30px rgba(250,204,21,0.35), 0 0 60px rgba(250,204,21,0.18)",
             }}
           >
-            Parents
+            Parents <span className="text-white/90">Dashboard</span>
           </div>
           <p className="mt-3 text-white/65">
             Stay in the loop without becoming the homework police.
