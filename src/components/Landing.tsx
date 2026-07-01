@@ -47,81 +47,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-/* ---------------- Center Intro Video (click-to-play) ---------------- */
-
-function CenterIntroVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-
-  const handlePlay = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) {
-      void v.play();
-      setPlaying(true);
-    } else {
-      v.pause();
-      setPlaying(false);
-    }
-  };
-
-  return (
-    <div className="relative w-56 h-56 md:w-80 md:h-80">
-      <div
-        aria-hidden
-        className="absolute -inset-4 rounded-full blur-3xl opacity-70"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(59,130,246,0.55), rgba(139,92,246,0.25) 55%, transparent 75%)",
-        }}
-      />
-      <div className="relative w-full h-full rounded-full overflow-hidden ring-1 ring-white/15 shadow-[0_20px_60px_rgba(59,130,246,0.45)] bg-black">
-        <video
-          ref={videoRef}
-          src={heroIntro.url}
-          className="w-full h-full object-cover"
-          playsInline
-          preload="none"
-          onEnded={() => setPlaying(false)}
-          onPause={() => setPlaying(false)}
-          onPlay={() => setPlaying(true)}
-        />
-        {!playing && (
-          <button
-            type="button"
-            onClick={handlePlay}
-            aria-label="Play intro video"
-            className="absolute inset-0 flex items-center justify-center group focus:outline-none"
-          >
-            <span
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40"
-            />
-            <span className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/95 shadow-[0_10px_40px_rgba(59,130,246,0.6)] transition-transform duration-300 group-hover:scale-110">
-              <svg viewBox="0 0 24 24" className="w-9 h-9 md:w-11 md:h-11 text-slate-900 translate-x-[2px]" fill="currentColor" aria-hidden>
-                <path d="M8 5.14v13.72c0 .79.87 1.27 1.54.84l10.8-6.86a1 1 0 000-1.69L9.54 4.29A1 1 0 008 5.14z" />
-              </svg>
-            </span>
-          </button>
-        )}
-        {playing && (
-          <button
-            type="button"
-            onClick={handlePlay}
-            aria-label="Pause intro video"
-            className="absolute bottom-3 right-3 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center ring-1 ring-white/20 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity"
-          >
-            <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor" aria-hidden>
-              <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
-            </svg>
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
-
 /* ---------------- Shared bits ---------------- */
+
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
