@@ -443,7 +443,6 @@ function Hero() {
             </span>
           </div>
         </div>
-        </div>
       </div>
     </section>
   );
