@@ -10,7 +10,8 @@
       "Bash(npm run *)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
       "Bash(npx tsc *)",
-      "Bash(git status *)"
+      "Bash(git status *)",
+      "mcp__claude_ai_Figma__get_design_context"
     ]
   }
 }

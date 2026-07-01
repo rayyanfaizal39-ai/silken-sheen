@@ -1,4 +1,5 @@
 import type { ChapterContent } from "./types";
+import { scienceF3ChapterContent } from "@/content/form3/science/registration";
 import type { MindNode } from "@/components/MindMap";
 import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
 import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
@@ -647,6 +648,7 @@ function geography(
   };
 }
 export const chapters: ChapterContent[] = [
+  ...scienceF3ChapterContent,
   // Sejarah Form 1
   sejarah(1, "Mengenali Sejarah", "dZuhYNHdQ7U", mengenaliSejarahMindMap, "Mengenali Sejarah"),
   sejarah(2, "Zaman Air Batu", "cLgCMnVoJ5g", zamanAirBatuMindMap, "Zaman Air Batu"),
@@ -2594,10 +2596,11 @@ function chapterNumberFromKey(chapterKey: string) {
 // flashcards/quizzes were authored as standalone category/objective banks inside
 // the flashcards/quizzes routes (MATH_FLASHCARD_BANKS / MATH_QUIZ_BANKS, keyed by
 // the same "Chapter N" chapterKey) and were never mirrored onto these rows. Without
-// this registration, readiness checks would report that content as missing even
-// though learners can open it, leaving the form/chapter marked "Coming Soon" and
-// disabled. Register any other externally-stored content here rather than
-// special-casing a subject in the UI layer.
+// Science Form 1 quizzes use the same route-level storage pattern. Without this
+// registration, readiness checks report that content as missing even though
+// learners can open it, leaving the form/chapter marked "Coming Soon" and
+// disabled. Register externally-stored content here rather than special-casing
+// a subject in the UI layer.
 const EXTERNALLY_STORED_RESOURCES: Partial<
   Record<ResourceType, Array<{ subjectId: string; form: ChapterContent["form"]; chapterKeys: string[] }>>
 > = {
@@ -2613,6 +2616,11 @@ const EXTERNALLY_STORED_RESOURCES: Partial<
       subjectId: "math",
       form: "Form 1",
       chapterKeys: Array.from({ length: 13 }, (_, i) => `Chapter ${i + 1}`),
+    },
+    {
+      subjectId: "science",
+      form: "Form 1",
+      chapterKeys: Array.from({ length: 9 }, (_, i) => `Chapter ${i + 1}`),
     },
   ],
 };

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Brain,
   Globe2,
@@ -14,6 +14,7 @@ import {
   Landmark,
   FlaskConical,
   Sigma,
+  Telescope,
 } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -26,8 +27,21 @@ import {
   DISCOVERY_TOPICS,
   DISCOVERY_CONTENT,
 } from "./cikguMockData";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
-type View = "home" | "fact" | "challenge" | "mission" | "chat" | "discovery";
+type View = "home" | "fact" | "challenge" | "mission" | "chat" | "discovery" | "knowledge";
+
+interface KnowledgeCard {
+  id: string;
+  title: string;
+  category: string | null;
+  content: string;
+  reflection: string | null;
+  subject: string | null;
+  form: string | null;
+  chapter: string | null;
+  reading_time: number | null;
+}
 
 const DISCOVERY_ICON = {
   rocket: Rocket,
@@ -118,6 +132,8 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
           {view === "discovery" && (
             <DiscoveryView topicId={discoveryTopic} onBack={goHome} />
           )}
+
+          {view === "knowledge" && <KnowledgeView onBack={goHome} />}
         </div>
       </SheetContent>
     </Sheet>
@@ -202,6 +218,7 @@ function HomeView({
           onClick={() => onSelect("mission")}
         />
         <ActionCard icon={MessageCircle} label="Ask Me Anything" onClick={() => onSelect("chat")} />
+        <ActionCard icon={Telescope} label="Mission Intel" onClick={() => onSelect("knowledge")} />
       </div>
 
       <p className="mb-2.5 mt-6 text-xs font-semibold uppercase tracking-wider text-white/45">
@@ -447,6 +464,118 @@ function DiscoveryView({ topicId, onBack }: { topicId: string; onBack: () => voi
         <p className="text-sm font-bold text-white">{content.title}</p>
         <p className="mt-2 text-xs leading-relaxed text-white/65">{content.body}</p>
       </div>
+    </div>
+  );
+}
+
+function KnowledgeView({ onBack }: { onBack: () => void }) {
+  const [card, setCard] = useState<KnowledgeCard | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [empty, setEmpty] = useState(false);
+
+  const fetchCard = useCallback(async () => {
+    if (!isSupabaseConfigured) {
+      setEmpty(true);
+      return;
+    }
+    setLoading(true);
+    setEmpty(false);
+    try {
+      const { data, error } = await supabase
+        .from("knowledge_engine")
+        .select("id, title, category, content, reflection, subject, form, chapter, reading_time")
+        .eq("published", true);
+
+      if (error || !data || data.length === 0) {
+        setCard(null);
+        setEmpty(true);
+      } else {
+        const pick = data[Math.floor(Math.random() * data.length)] as KnowledgeCard;
+        setCard(pick);
+      }
+    } catch {
+      setCard(null);
+      setEmpty(true);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCard();
+  }, [fetchCard]);
+
+  return (
+    <div className="flex flex-1 flex-col">
+      <BackButton onBack={onBack} />
+
+      {loading && (
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 py-12">
+          <span className="relative flex h-8 w-8">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B5CF6] opacity-50" />
+            <span className="relative inline-flex h-8 w-8 rounded-full bg-[#8B5CF6]/30" />
+          </span>
+          <p className="text-sm text-white/60">Cikgu AI is thinking…</p>
+        </div>
+      )}
+
+      {!loading && empty && (
+        <div className="flex flex-1 flex-col items-center justify-center py-12 text-center">
+          <Telescope className="mb-3 h-8 w-8 text-white/20" aria-hidden />
+          <p className="text-sm font-semibold text-white/60">Mission Intel coming soon.</p>
+          <p className="mt-1 text-xs text-white/35">Check back after your next mission.</p>
+        </div>
+      )}
+
+      {!loading && card && (
+        <>
+          <div className="glass-strong rounded-2xl border border-white/10 p-5">
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              {card.subject && (
+                <span className="rounded-full bg-[#8B5CF6]/20 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#C4B5FD]">
+                  {card.subject}
+                </span>
+              )}
+              {card.form && (
+                <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/60">
+                  {card.form}
+                </span>
+              )}
+              {card.category && (
+                <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/60">
+                  {card.category}
+                </span>
+              )}
+              {card.reading_time && (
+                <span className="ml-auto text-[10px] text-white/40">{card.reading_time} min read</span>
+              )}
+            </div>
+
+            <p className="text-sm font-bold text-white">{card.title}</p>
+            {card.chapter && (
+              <p className="mt-0.5 text-xs text-white/45">{card.chapter}</p>
+            )}
+            <p className="mt-3 text-xs leading-relaxed text-white/70">{card.content}</p>
+
+            {card.reflection && (
+              <div className="mt-4 rounded-xl border border-[#8B5CF6]/25 bg-[#8B5CF6]/10 px-4 py-3">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-[#C4B5FD]">
+                  Reflect
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-white/65">{card.reflection}</p>
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={fetchCard}
+            className="mt-4 flex items-center justify-center gap-2 rounded-2xl border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#8B5CF6]/25 active:scale-[0.98]"
+          >
+            <Sparkles className="h-4 w-4" aria-hidden />
+            Next Discovery
+          </button>
+        </>
+      )}
     </div>
   );
 }

@@ -28,6 +28,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
 
 const UpgradeRoute = UpgradeRouteImport.update({
   id: '/upgrade',
@@ -124,6 +125,11 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
+  id: '/academy/landingpage3',
+  path: '/academy/landingpage3',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -208,6 +217,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tracker'
     | '/upgrade'
+    | '/academy/landingpage3'
     | '/auth/callback'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tracker'
     | '/upgrade'
+    | '/academy/landingpage3'
     | '/auth/callback'
     | '/admin'
   id:
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tracker'
     | '/upgrade'
+    | '/academy/landingpage3'
     | '/auth/callback'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -271,6 +283,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TrackerRoute: typeof TrackerRoute
   UpgradeRoute: typeof UpgradeRoute
+  AcademyLandingpage3Route: typeof AcademyLandingpage3Route
   AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
@@ -409,6 +422,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/academy/landingpage3': {
+      id: '/academy/landingpage3'
+      path: '/academy/landingpage3'
+      fullPath: '/academy/landingpage3'
+      preLoaderRoute: typeof AcademyLandingpage3RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -440,6 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TrackerRoute: TrackerRoute,
   UpgradeRoute: UpgradeRoute,
+  AcademyLandingpage3Route: AcademyLandingpage3Route,
   AuthCallbackRoute: AuthCallbackRoute,
 }
 export const routeTree = rootRouteImport
