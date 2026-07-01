@@ -212,20 +212,29 @@ function Hero() {
       }
 
       // Continuous float
+      // Cinematic floating — long arc + gentle sway
       gsap.to(img, {
-        y: -14,
-        duration: 3.2,
+        y: -28,
+        duration: 4.5,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
       });
+      gsap.to(img, {
+        rotation: 1.4,
+        duration: 6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        transformOrigin: "50% 60%",
+      });
 
-      // Glow pulse
+      // Glow breathing
       if (glow) {
         gsap.to(glow, {
-          opacity: 0.55,
-          scale: 1.06,
-          duration: 2.6,
+          opacity: 1,
+          scale: 1.08,
+          duration: 3.6,
           ease: "sine.inOut",
           yoyo: true,
           repeat: -1,
