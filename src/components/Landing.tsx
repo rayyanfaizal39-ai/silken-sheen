@@ -612,16 +612,31 @@ function LearningTools() {
             }}
           />
 
-          {/* Center sun */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-amber-300 via-orange-500 to-fuchsia-600 shadow-[0_0_80px_rgba(251,146,60,0.6)] flex items-center justify-center">
-              <Star className="w-10 h-10 text-white drop-shadow" />
-              <div className="absolute inset-0 rounded-full ring-2 ring-white/20 animate-pulse" />
+          {/* Center: AcadeMY astronaut core */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
+            <div className="relative w-40 h-40 md:w-56 md:h-56">
+              <div
+                aria-hidden
+                className="absolute inset-0 rounded-full blur-3xl opacity-70 animate-pulse"
+                style={{
+                  background:
+                    "radial-gradient(closest-side, rgba(59,130,246,0.55), rgba(139,92,246,0.25) 55%, transparent 75%)",
+                }}
+              />
+              <img
+                src={academyCore.url}
+                alt="AcadeMY astronaut core"
+                loading="lazy"
+                width={320}
+                height={320}
+                className="relative w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(59,130,246,0.55)]"
+              />
             </div>
-            <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+            <div className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
               AcadeMY Core
             </div>
           </div>
+
 
           {/* Rotating orbit with planets */}
           <div ref={orbitRef} className="absolute inset-0">
