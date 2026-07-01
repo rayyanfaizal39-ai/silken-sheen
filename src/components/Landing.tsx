@@ -362,8 +362,9 @@ function Hero() {
         </div>
 
         {/* Star Captain hero card */}
-        <div className="relative group">
+        <div className="relative group [perspective:1200px]">
           <div
+            ref={glowRef}
             aria-hidden
             className="absolute -inset-6 rounded-[2.5rem] blur-3xl opacity-80"
             style={{
@@ -371,11 +372,12 @@ function Hero() {
                 "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%), radial-gradient(40% 40% at 70% 80%, rgba(250,204,21,0.35), transparent 70%)",
             }}
           />
-          <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] aspect-[4/5]">
+          <div ref={heroCardRef} className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] aspect-[4/5] [transform-style:preserve-3d]">
             <img
+              ref={heroImgRef}
               src={starCaptain.url}
-              alt="AcadeMY Star Captain — your cosmic learning hero"
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1800ms] ease-out group-hover:scale-[1.04]"
+              alt="AcadeMY astronaut — every legend starts with learning"
+              className="absolute inset-0 w-full h-full object-cover object-center will-change-transform"
               draggable={false}
             />
             {/* top vignette */}
