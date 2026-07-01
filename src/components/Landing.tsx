@@ -167,6 +167,7 @@ function LandingNav() {
 
 function Hero() {
   const { open } = useSignInModal();
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
   return (
     <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
       {/* glow blobs */}
