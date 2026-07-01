@@ -408,6 +408,7 @@ function Hero() {
               </div>
               <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <div
+                  ref={xpBarRef}
                   className="h-full rounded-full bg-gradient-to-r from-nova-yellow via-amber-300 to-nova-yellow shadow-[0_0_14px_rgba(250,204,21,0.7)]"
                   style={{ width: "72%" }}
                 />
