@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import gsap from "gsap";
+import { motion } from "framer-motion";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -642,8 +643,38 @@ function LearningTools() {
                 className="relative w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(59,130,246,0.55)]"
               />
             </div>
-            <div className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-              AcadeMY Core
+            {/* Cinematic floating AcadeMY Core label */}
+            <div className="relative mt-3 flex flex-col items-center">
+              <motion.div
+                aria-hidden
+                className="absolute -inset-4 rounded-full blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(closest-side, rgba(59,130,246,0.45), transparent 70%)",
+                }}
+                animate={{ opacity: [0.4, 0.9, 0.4], scale: [0.95, 1.05, 0.95] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div
+                className="relative text-xs font-semibold uppercase tracking-[0.2em] text-white/90"
+                style={{
+                  textShadow:
+                    "0 0 14px rgba(59,130,246,0.8), 0 0 28px rgba(139,92,246,0.5)",
+                }}
+                initial={{ opacity: 0, y: 12, scale: 0.85 }}
+                animate={{
+                  opacity: 1,
+                  y: [0, -5, 0],
+                  scale: [1, 1.04, 1],
+                }}
+                transition={{
+                  opacity: { duration: 1, ease: "easeOut" },
+                  y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+                  scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+                }}
+              >
+                AcadeMY Core
+              </motion.div>
             </div>
           </div>
 
