@@ -633,7 +633,7 @@ function LearningTools() {
               return (
                 <div
                   key={t.label}
-                  ref={(el) => (planetRefs.current[i] = el)}
+                  ref={(el) => { planetRefs.current[i] = el; }}
                   className="absolute -translate-x-1/2 -translate-y-1/2"
                   style={{ left: `${x}%`, top: `${y}%` }}
                 >
