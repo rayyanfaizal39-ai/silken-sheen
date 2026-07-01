@@ -414,6 +414,19 @@ function Hero() {
             />
 
 
+            {/* Level badge */}
+            <div
+              ref={badgeRef}
+              className="absolute left-1/2 -translate-x-1/2 bottom-16 flex items-center gap-2 rounded-full bg-black/45 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5 w-fit z-10"
+            >
+              <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
+                18
+              </span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-nova-yellow">
+                Star Captain
+              </span>
+            </div>
+
             {/* XP bar */}
             <div className="absolute inset-x-0 bottom-2 px-6">
               <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-white/70">
@@ -428,19 +441,6 @@ function Hero() {
                 />
               </div>
             </div>
-          </div>
-
-          {/* Level badge */}
-          <div
-            ref={badgeRef}
-            className="mt-4 mx-auto flex items-center gap-2 rounded-full bg-black/45 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5 w-fit"
-          >
-            <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
-              18
-            </span>
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-nova-yellow">
-              Star Captain
-            </span>
           </div>
         </div>
       </div>
