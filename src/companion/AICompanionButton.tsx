@@ -1,22 +1,13 @@
 import { useState } from "react";
 import { useProgress, getRank } from "@/hooks/use-progress";
 import { CikguAIPanel } from "./CikguAIPanel";
+import robotAsset from "@/assets/academy-robot-2.png.asset.json";
 
-const RANK_IMAGE: Record<string, string> = {
-  cadet: "/companions/Astrounaut/cadet.png",
-  "planet-voyager": "/companions/Astrounaut/planet-voyager.png",
-  "star-captain": "/companions/Astrounaut/star-captain.png",
-  "galaxy-guardian": "/companions/Astrounaut/galaxy-guardian.png",
-  "celestial-master": "/companions/Astrounaut/celestial-master.png",
-  "cosmic-legend": "/companions/Astrounaut/cosmic-legend.png",
-};
-
-/** Floating Cikgu AI button — shows the student's current rank avatar and opens the companion panel. */
+/** Floating Cikgu AI button — shows the AcadeMY robot and opens the companion panel. */
 export function AICompanionButton() {
   const { progress } = useProgress();
   const [open, setOpen] = useState(false);
   const rank = getRank(progress.xp);
-  const image = RANK_IMAGE[rank.id] ?? RANK_IMAGE.cadet;
 
   return (
     <>
@@ -29,14 +20,14 @@ export function AICompanionButton() {
         }}
       >
         <img
-          src={image}
-          alt={rank.name}
+          src={robotAsset.url}
+          alt="Cikgu AI"
           draggable={false}
           className="h-11 w-11 object-contain md:h-12 md:w-12"
         />
       </button>
 
-      <CikguAIPanel open={open} onOpenChange={setOpen} rankImage={image} rank={rank} />
+      <CikguAIPanel open={open} onOpenChange={setOpen} rankImage={robotAsset.url} rank={rank} />
     </>
   );
 }
