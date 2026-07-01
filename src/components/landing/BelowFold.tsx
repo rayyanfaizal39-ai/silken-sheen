@@ -486,8 +486,8 @@ const PARENT_FEATURES = [
 function ParentsSection() {
   return (
     <section id="parents" className="relative py-20 md:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
-        <div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <div
             className="font-display text-5xl md:text-7xl font-bold text-nova-yellow"
             style={{
@@ -498,10 +498,23 @@ function ParentsSection() {
           >
             Parents
           </div>
-          <p className="mt-3 text-white/65 max-w-md">
+          <p className="mt-3 text-white/65">
             Stay in the loop without becoming the homework police.
           </p>
-          <ul className="mt-8 space-y-5">
+        </div>
+
+        <div className="relative w-full rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_28px_90px_rgba(0,0,0,0.45)]">
+          <img
+            src={parentsDashboard.url}
+            alt="Parent dashboard preview showing student progress, subject performance and recent activity"
+            className="w-full h-auto object-contain"
+            loading="lazy"
+            draggable={false}
+          />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-start mt-12">
+          <ul className="space-y-5">
             {PARENT_FEATURES.map((f) => (
               <li key={f.title} className="flex items-start gap-3">
                 <span className="mt-1 w-6 h-6 rounded-full bg-nova-yellow/15 ring-1 ring-nova-yellow/40 flex items-center justify-center">
@@ -514,38 +527,14 @@ function ParentsSection() {
               </li>
             ))}
           </ul>
-        </div>
 
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-white/10">
-          <img
-            src={parentsDashboard.url}
-            alt="Parent watching their child's learning dashboard among the clouds"
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-            draggable={false}
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(5,8,22,0.85) 0%, rgba(5,8,22,0.1) 45%, rgba(5,8,22,0) 70%)",
-            }}
-          />
-          <div className="absolute inset-x-0 bottom-0 p-6">
-            <div className="text-xs uppercase tracking-[0.2em] text-nova-yellow/90">Parent dashboard</div>
-            <div className="mt-1 font-semibold text-white text-lg">Confidence, at a glance.</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 mt-10">
-        <div className="rounded-3xl p-5 md:p-7 bg-gradient-to-br from-indigo-950/60 to-purple-950/40 ring-1 ring-white/10 backdrop-blur">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <StatCell icon={LineChart} label="Weekly XP" value="3,210" tint="text-primary" />
-            <StatCell icon={Compass} label="Subjects active" value="4" tint="text-sky-400" />
-            <StatCell icon={Flame} label="Best streak" value="21 days" tint="text-orange-400" />
-            <StatCell icon={Trophy} label="Badges" value="14" tint="text-nova-yellow" />
+          <div className="rounded-3xl p-5 md:p-7 bg-gradient-to-br from-indigo-950/60 to-purple-950/40 ring-1 ring-white/10 backdrop-blur">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <StatCell icon={LineChart} label="Weekly XP" value="3,210" tint="text-primary" />
+              <StatCell icon={Compass} label="Subjects active" value="4" tint="text-sky-400" />
+              <StatCell icon={Flame} label="Best streak" value="21 days" tint="text-orange-400" />
+              <StatCell icon={Trophy} label="Badges" value="14" tint="text-nova-yellow" />
+            </div>
           </div>
         </div>
       </div>
