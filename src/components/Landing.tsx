@@ -30,6 +30,11 @@ import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import starCaptain from "@/assets/hero-astronaut.png.asset.json";
 import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
 import cikguAiImage from "@/assets/cikgu-ai.png.asset.json";
+import toolNotes from "@/assets/tool-notes.png";
+import toolFlashcards from "@/assets/tool-flashcards.png";
+import toolQuizzes from "@/assets/tool-quizzes.png";
+import toolMindmaps from "@/assets/tool-mindmaps.png";
+import toolMissions from "@/assets/tool-missions.png";
 import {
   Dialog,
   DialogContent,
