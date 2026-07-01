@@ -32,6 +32,7 @@ import starCaptain from "@/assets/hero-astronaut.png.asset.json";
 import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
 import cikguAiImage from "@/assets/cikgu-ai.png.asset.json";
 import academyCore from "@/assets/academy-astronaut-core.png.asset.json";
+import backGround from "@/assets/back-ground.png.asset.json";
 import toolNotes from "@/assets/tool-notes.png";
 import toolFlashcards from "@/assets/tool-flashcards.png";
 import toolQuizzes from "@/assets/tool-quizzes.png";
