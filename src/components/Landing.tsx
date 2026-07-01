@@ -20,13 +20,14 @@ import {
   ShieldCheck,
   Star,
 } from "lucide-react";
-import { useState, type CSSProperties, type ReactNode } from "react";
+import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
-import starCaptain from "@/assets/star-captain.jpg.asset.json";
+import starCaptain from "@/assets/hero-astronaut.png.asset.json";
 import parentsDashboard from "@/assets/parents-dashboard.jpg.asset.json";
 import cikguAiImage from "@/assets/cikgu-ai.png.asset.json";
 import {
@@ -168,6 +169,104 @@ function LandingNav() {
 function Hero() {
   const { open } = useSignInModal();
   const [comingSoonOpen, setComingSoonOpen] = useState(false);
+  const heroCardRef = useRef<HTMLDivElement>(null);
+  const heroImgRef = useRef<HTMLImageElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const xpBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = heroCardRef.current;
+    const img = heroImgRef.current;
+    const glow = glowRef.current;
+    const badge = badgeRef.current;
+    const xp = xpBarRef.current;
+    if (!card || !img) return;
+
+    const ctx = gsap.context(() => {
+      // Entrance
+      gsap.from(card, {
+        y: 40,
+        opacity: 0,
+        scale: 0.96,
+        duration: 1.1,
+        ease: "power3.out",
+      });
+      if (badge) {
+        gsap.from(badge, {
+          y: -20,
+          opacity: 0,
+          duration: 0.8,
+          delay: 0.6,
+          ease: "back.out(2)",
+        });
+      }
+      if (xp) {
+        gsap.from(xp, {
+          scaleX: 0,
+          transformOrigin: "left center",
+          duration: 1.2,
+          delay: 0.9,
+          ease: "power2.out",
+        });
+      }
+
+      // Continuous float
+      gsap.to(img, {
+        y: -14,
+        duration: 3.2,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+
+      // Glow pulse
+      if (glow) {
+        gsap.to(glow, {
+          opacity: 0.55,
+          scale: 1.06,
+          duration: 2.6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      }
+
+      // Mouse parallax
+      const onMove = (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(img, {
+          x: x * 24,
+          rotateY: x * 6,
+          rotateX: -y * 6,
+          duration: 0.8,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      };
+      const onLeave = () => {
+        gsap.to(img, {
+          x: 0,
+          rotateX: 0,
+          rotateY: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+      };
+      card.addEventListener("mousemove", onMove);
+      card.addEventListener("mouseleave", onLeave);
+      return () => {
+        card.removeEventListener("mousemove", onMove);
+        card.removeEventListener("mouseleave", onLeave);
+      };
+    }, card);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
       {/* glow blobs */}
@@ -263,8 +362,9 @@ function Hero() {
         </div>
 
         {/* Star Captain hero card */}
-        <div className="relative group">
+        <div className="relative group [perspective:1200px]">
           <div
+            ref={glowRef}
             aria-hidden
             className="absolute -inset-6 rounded-[2.5rem] blur-3xl opacity-80"
             style={{
@@ -272,11 +372,12 @@ function Hero() {
                 "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%), radial-gradient(40% 40% at 70% 80%, rgba(250,204,21,0.35), transparent 70%)",
             }}
           />
-          <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] aspect-[4/5]">
+          <div ref={heroCardRef} className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] aspect-[4/5] [transform-style:preserve-3d]">
             <img
+              ref={heroImgRef}
               src={starCaptain.url}
-              alt="AcadeMY Star Captain — your cosmic learning hero"
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1800ms] ease-out group-hover:scale-[1.04]"
+              alt="AcadeMY astronaut — every legend starts with learning"
+              className="absolute inset-0 w-full h-full object-cover object-center will-change-transform"
               draggable={false}
             />
             {/* top vignette */}
@@ -290,7 +391,7 @@ function Hero() {
             />
 
             {/* Level badge */}
-            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5">
+            <div ref={badgeRef} className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5">
               <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
                 18
               </span>
@@ -307,6 +408,7 @@ function Hero() {
               </div>
               <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <div
+                  ref={xpBarRef}
                   className="h-full rounded-full bg-gradient-to-r from-nova-yellow via-amber-300 to-nova-yellow shadow-[0_0_14px_rgba(250,204,21,0.7)]"
                   style={{ width: "72%" }}
                 />
