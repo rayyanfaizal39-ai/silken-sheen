@@ -430,7 +430,7 @@ function Hero() {
             {/* XP bar */}
             <div className="absolute inset-x-0 bottom-2 px-6">
               <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-white/70">
-                <span>Nova · Lvl 18</span>
+                <span>Lvl 18</span>
                 <span className="text-nova-yellow">12,480 XP</span>
               </div>
               <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
