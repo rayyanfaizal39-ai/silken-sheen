@@ -361,37 +361,51 @@ function Hero() {
           </div>
         </div>
 
-        {/* Star Captain hero card */}
-        <div className="relative group [perspective:1200px]">
+        {/* Cinematic floating astronaut — blended into background */}
+        <div className="relative group [perspective:1400px]">
+          {/* atmospheric glow behind */}
           <div
             ref={glowRef}
             aria-hidden
-            className="absolute -inset-6 rounded-[2.5rem] blur-3xl opacity-80"
+            className="absolute -inset-10 blur-3xl opacity-90 pointer-events-none"
             style={{
               background:
-                "radial-gradient(60% 60% at 50% 40%, rgba(168,85,247,0.55), transparent 70%), radial-gradient(40% 40% at 70% 80%, rgba(250,204,21,0.35), transparent 70%)",
+                "radial-gradient(50% 55% at 50% 55%, rgba(255,140,60,0.45), transparent 70%), radial-gradient(45% 45% at 30% 30%, rgba(168,85,247,0.35), transparent 70%), radial-gradient(40% 40% at 75% 75%, rgba(250,204,21,0.28), transparent 70%)",
             }}
           />
-          <div ref={heroCardRef} className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] aspect-[4/5] [transform-style:preserve-3d]">
+          {/* soft ground haze */}
+          <div
+            aria-hidden
+            className="absolute inset-x-[-10%] bottom-[-6%] h-40 blur-2xl opacity-70 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(60% 100% at 50% 100%, rgba(255,120,40,0.55), transparent 70%)",
+            }}
+          />
+
+          <div
+            ref={heroCardRef}
+            className="relative aspect-[4/5] [transform-style:preserve-3d]"
+          >
             <img
               ref={heroImgRef}
               src={starCaptain.url}
-              alt="AcadeMY astronaut — every legend starts with learning"
-              className="absolute inset-0 w-full h-full object-cover object-center will-change-transform"
+              alt="AcadeMY astronaut floating on an alien world"
+              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_60px_rgba(255,110,40,0.35)]"
               draggable={false}
-            />
-            {/* top vignette */}
-            <div
-              aria-hidden
-              className="absolute inset-0"
               style={{
-                background:
-                  "linear-gradient(to bottom, rgba(5,8,22,0.0) 40%, rgba(5,8,22,0.65) 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
+                maskImage:
+                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
               }}
             />
 
             {/* Level badge */}
-            <div ref={badgeRef} className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/55 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5">
+            <div
+              ref={badgeRef}
+              className="absolute top-6 left-2 flex items-center gap-2 rounded-full bg-black/45 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5"
+            >
               <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
                 18
               </span>
@@ -401,7 +415,7 @@ function Hero() {
             </div>
 
             {/* XP bar */}
-            <div className="absolute inset-x-0 bottom-0 p-5">
+            <div className="absolute inset-x-0 bottom-2 px-6">
               <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-white/70">
                 <span>Nova · Lvl 18</span>
                 <span className="text-nova-yellow">12,480 XP</span>
@@ -412,9 +426,6 @@ function Hero() {
                   className="h-full rounded-full bg-gradient-to-r from-nova-yellow via-amber-300 to-nova-yellow shadow-[0_0_14px_rgba(250,204,21,0.7)]"
                   style={{ width: "72%" }}
                 />
-              </div>
-              <div className="mt-3 text-white font-semibold">
-                Every Legend Starts With Learning.
               </div>
             </div>
           </div>
