@@ -651,7 +651,13 @@ function FinalCta() {
           Free to start. No card needed. Your AI cikgu is ready when you are.
         </p>
         <div className="mt-8 flex justify-center">
-          <PrimaryCta onClick={() => open()}>Launch AcadeMY</PrimaryCta>
+          <button
+            onClick={() => open()}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-nova-yellow text-[#1a0f2e] text-base font-bold shadow-[0_12px_40px_-8px_rgba(250,204,21,0.8)] hover:scale-[1.05] transition-transform"
+          >
+            Launch AcadeMY
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>
