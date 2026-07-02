@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Landing } from "@/components/Landing";
-import heroAsset from "@/assets/hero-astronaut.webp.asset.json";
+import heroAsset from "@/assets/rocket-hero.png.asset.json";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
