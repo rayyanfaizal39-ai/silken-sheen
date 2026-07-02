@@ -3,7 +3,6 @@ import { HomeDashboard } from "@/components/HomeDashboard";
 import { CompanionWidget } from "@/companion";
 import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
 import { HudStatusBar } from "@/components/home/HudStatusBar";
-import { HudWidgets } from "@/components/home/HudWidgets";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,7 +16,6 @@ function Index() {
     <>
       <OrbitalBackdrop />
       <HomeDashboard />
-      <HudWidgets />
       <HudStatusBar />
       <CompanionWidget />
     </>
