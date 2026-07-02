@@ -20,7 +20,7 @@ import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
-import starCaptain from "@/assets/hero-astronaut.webp.asset.json";
+import starCaptain from "@/assets/rocket-hero.png.asset.json";
 import backGround from "@/assets/back-ground.webp.asset.json";
 
 import {
@@ -215,21 +215,29 @@ function Hero() {
         });
       }
 
-      // Continuous float — more dramatic
+      // Continuous float — rocket rising and banking
       gsap.to(img, {
-        y: -40,
-        duration: 3.5,
+        y: -55,
+        duration: 3.2,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
       });
       gsap.to(img, {
-        rotation: 2.5,
-        duration: 5,
+        rotation: 4,
+        duration: 4.5,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
         transformOrigin: "50% 60%",
+      });
+      // Thrust pulse — subtle scale to feel like engine boost
+      gsap.to(img, {
+        scale: 1.03,
+        duration: 1.6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
       });
 
       // Glow breathing
@@ -402,14 +410,14 @@ function Hero() {
             <img
               ref={heroImgRef}
               src={starCaptain.url}
-              alt="AcadeMY astronaut floating on an alien world"
-              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_60px_rgba(255,110,40,0.35)]"
+              alt="AcadeMY astronaut riding a rocket through space"
+              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_80px_rgba(255,110,40,0.55)]"
               draggable={false}
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
+                  "radial-gradient(ellipse 85% 90% at 50% 50%, #000 70%, rgba(0,0,0,0.9) 85%, transparent 100%)",
                 maskImage:
-                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
+                  "radial-gradient(ellipse 85% 90% at 50% 50%, #000 70%, rgba(0,0,0,0.9) 85%, transparent 100%)",
               }}
             />
 
