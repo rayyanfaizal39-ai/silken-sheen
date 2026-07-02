@@ -562,27 +562,6 @@ export function HomeDashboard() {
               }}
             />
 
-            {/* Live rank badge */}
-            <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.14] bg-[#050816]/52 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(99,102,241,0.15)]">
-              <Avatar config={progress.avatar} size={22} glow={false} />
-              <span className="font-black" style={{ color: rank.color }}>
-                {rank.name}
-              </span>
-              {progress.xp > 0 && (
-                <>
-                  <span className="h-3 w-px bg-white/20" />
-                  <Zap className="h-3 w-3 text-yellow-400" />
-                  <span className="text-[10px] font-bold text-white/60">
-                    {progress.xp.toLocaleString()} XP
-                  </span>
-                </>
-              )}
-              <span className="h-3 w-px bg-white/20" />
-              <Sparkles className="h-3 w-3 text-[#F0ABFC]" />
-              <span className="text-[10px] font-bold text-[#F0ABFC]">
-                {progress.companion ? `Lv ${progress.companion.level}` : "Egg"}
-              </span>
-            </div>
 
             {/* Universe eyebrow */}
             <p className="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-[#818CF8]/60">
