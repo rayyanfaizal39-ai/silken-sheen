@@ -20,7 +20,7 @@ import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
-import starCaptain from "@/assets/hero-astronaut.webp.asset.json";
+import starCaptain from "@/assets/rocket-hero.png.asset.json";
 import backGround from "@/assets/back-ground.webp.asset.json";
 
 import {
