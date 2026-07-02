@@ -13,5 +13,9 @@
       "Bash(git status *)",
       "mcp__claude_ai_Figma__get_design_context"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "supabase"
+  ],
+  "enableAllProjectMcpServers": true
 }

@@ -123,11 +123,11 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
         type="button"
         aria-label="Close"
         onClick={onClose}
-        className="absolute inset-0 bg-[#020410]/80 backdrop-blur-md"
+        className="absolute inset-0 bg-[#020410]/95"
       />
 
       {/* Card */}
-      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/[0.09] bg-[#080E1C]/95 p-7 shadow-[0_32px_80px_rgba(0,0,0,0.6)] backdrop-blur-2xl animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/[0.09] bg-[#080E1C] p-7 shadow-[0_32px_80px_rgba(0,0,0,0.6)] animate-in zoom-in-95 duration-200">
         {/* Ambient glows */}
         <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[#6366F1]/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-[#8B5CF6]/20 blur-3xl" />

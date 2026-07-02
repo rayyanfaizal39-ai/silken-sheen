@@ -18,7 +18,6 @@ import {
   Rocket,
   Trophy,
   GraduationCap,
-  LogIn,
   ShieldCheck,
   NotebookPen,
   BrainCircuit,
@@ -28,7 +27,6 @@ import {
 import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
 import { AstronautScene } from "@/components/AstronautScene";
-import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import {
   useProgress,
@@ -472,8 +470,7 @@ function HeroRankCard() {
 
 export function HomeDashboard() {
   const { progress } = useProgress();
-  const { user, isConfigured } = useAuth();
-  const { open: openSignIn } = useSignInModal();
+  const { user } = useAuth();
   const rank = getRank(progress.xp);
   const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
   const dueCount = getDueCount(progress.cardMastery);
@@ -627,16 +624,6 @@ export function HomeDashboard() {
                 </Link>
               )}
 
-              {isConfigured && !user && (
-                <button
-                  type="button"
-                  onClick={openSignIn}
-                  className="group inline-flex items-center justify-center gap-2.5 rounded-2xl border border-white/[0.15] bg-white/[0.07] px-7 py-3.5 text-sm font-bold text-white backdrop-blur-xl transition-all hover:scale-[1.02] hover:border-[#8B5CF6]/50 hover:bg-white/[0.12] hover:shadow-[0_16px_48px_-8px_rgba(139,92,246,0.55)] active:scale-[0.98]"
-                >
-                  <LogIn className="h-4 w-4" />
-                  Sign in to sync progress
-                </button>
-              )}
             </div>
 
             {/* World portal mini-strip */}
