@@ -215,21 +215,29 @@ function Hero() {
         });
       }
 
-      // Continuous float — more dramatic
+      // Continuous float — rocket rising and banking
       gsap.to(img, {
-        y: -40,
-        duration: 3.5,
+        y: -55,
+        duration: 3.2,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
       });
       gsap.to(img, {
-        rotation: 2.5,
-        duration: 5,
+        rotation: 4,
+        duration: 4.5,
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
         transformOrigin: "50% 60%",
+      });
+      // Thrust pulse — subtle scale to feel like engine boost
+      gsap.to(img, {
+        scale: 1.03,
+        duration: 1.6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
       });
 
       // Glow breathing
