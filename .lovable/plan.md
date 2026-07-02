@@ -1,80 +1,40 @@
-# AcadeMY UX & Polish Sprint
 
-Scope: product UX, visual polish, navigation, and guidance only. **Notes, quizzes, flashcards, mind map data, and chapter content are not touched.** No DB schema changes.
+## What's heavy on `/landing`
 
-Work is grouped into 4 shippable phases so you can review progress between each.
+Total asset payload ~**19 MB** before JS. Biggest offenders:
 
----
+### 1. Oversized PNGs (~14 MB — the main problem)
+All shipped as unoptimized PNGs at ~2000×2000:
+- `cikgu-ai.png` — **2.98 MB** (unused now — replaced by robot but still imported? actually only robot is imported, cikgu-ai.png can be deleted)
+- `hero-astronaut.png` — **2.80 MB**
+- `academy-astronaut-core.png` — **2.22 MB** (unused after intro-video swap)
+- `back-ground.png` — **2.17 MB** (full-page background, LCP-blocking)
+- `academy-robot.png` — **1.55 MB**
+- `tool-flashcards.png` — **1.20 MB** (5× bigger than the other 4 tool icons)
 
-## Phase 1 — Guidance & Onboarding
+### 2. Video (~2.6 MB)
+- `hero-intro.mp4` — 2.6 MB. Currently `preload="none"` so it only downloads on click — this one is fine.
 
-**1. First-time onboarding flow** (`src/components/onboarding/OnboardingWizard.tsx`)
-- 3 steps: Pick Form (1/2/3) → Pick subject → Start first mission.
-- Triggered on first visit (localStorage flag `academy-onboarded-v1`). Skippable.
-- Writes choice into existing `use-progress` preferences (no schema change).
-- Animated cosmic intro reusing existing `AstronautScene` assets.
+### 3. JavaScript
+- `gsap` (~70 KB gz) + `framer-motion` (~50 KB gz) both loaded on landing.
+- `Landing.tsx` is **1,209 lines** in a single chunk — no code splitting between hero / tools orbit / pricing / FAQ.
+- `CinematicStars` renders a canvas with many particles on mount.
 
-**2. Global "Next Mission" card** (`src/components/NextMissionCard.tsx`)
-- Derives next action from `useProgress` chapter activity: unread chapter → Read Notes; read but no quiz → Take Quiz; etc.
-- Mounted in Home hero, Notes sidebar, Flashcards top bar, Quizzes top bar, Mind Map header.
-- One-tap CTA, shows subject planet color + XP reward preview.
-
-**6. Recurring Companion guide**
-- Extend existing `CompanionWidget` to surface contextual tips per route (notes/quiz/flashcard/mindmap) using existing `companion/banks/*` messages.
-- Add a small "Companion says…" speech bubble that appears once per session per route.
-
----
-
-## Phase 2 — Mind Map & Mobile
-
-**3. Mind map navigation upgrade** (`src/components/MindMap.tsx`)
-- Floating control cluster: Zoom In / Out / Reset / Center on root.
-- Smooth camera follow when a node is selected (animated transform with cubic easing).
-- Keyboard shortcuts (+/- / 0). Pinch-zoom retained.
-- No data changes.
-
-**4. Mobile responsiveness pass**
-- Audit & fix overflow on `HomeDashboard`, subject cards, `notes.tsx`, quiz/flashcard headers.
-- Polish `MobileNav` bottom bar: larger touch targets, active glow, safe-area insets.
-- Apply the grid+min-w-0+shrink-0 pattern to header rows that currently wrap badly.
+### 4. Dead imports
+- `cikgu-ai.png` and `academy-astronaut-core.png` are no longer used but still on disk. Not shipped to browser, but wasted CDN + repo weight.
 
 ---
 
-## Phase 3 — Identity, Search, Rewards
+## Proposed fix (biggest wins first)
 
-**5. Subject "worlds" visual identity**
-- Lean on existing `PlanetEnvironment` + `world-scene-*` CSS. Extend to ALL study routes (notes/quiz/flashcard/mindmap) so the subject's atmosphere persists.
-- Add subject-tinted accent on buttons, progress bars, and chapter chips via CSS variable from `PLANET_THEMES`.
+1. **Convert the 6 large PNGs to WebP** (regenerate at ~1200px, quality ~78). Expected: ~14 MB → ~1.5 MB (~90% cut). Visually identical.
+2. **Preload the LCP hero image** via `head().links` in `src/routes/landing.tsx` with `fetchpriority: "high"`.
+3. **Delete unused assets**: `cikgu-ai.png`, `academy-astronaut-core.png`.
+4. **Re-export `tool-flashcards.png`** at the same dimensions as the other 4 (should be ~250 KB not 1.2 MB).
+5. **Lazy-load below-the-fold sections** (tools orbit, pricing, FAQ, parents dashboard) with `React.lazy` + `Suspense` so the hero renders first.
+6. **Reduce `CinematicStars` particle count** on mobile (or gate with `prefers-reduced-motion`).
+7. **(Optional) Drop `framer-motion`** from `/landing` if only used for one or two simple animations — GSAP can cover them.
 
-**7. Reward micro-celebrations**
-- Lightweight toast + confetti burst on: finishing a chapter section, completing a flashcard deck, finishing a quiz, unlocking a badge.
-- Reuse existing `Confetti.tsx` and `UnlockCelebration` (smaller variant for micro-events).
+Expected result: LCP asset ~200 KB instead of ~3 MB, total transfer ~2–3 MB instead of ~19 MB.
 
-**8. Global search upgrade** (`src/components/GalaxySearch.tsx` + `src/lib/study-search.ts`)
-- Unified index across notes titles, quiz topics, flashcard decks, mind map nodes.
-- Grouped results with type badges, keyboard nav, recent searches.
-- ⌘K / Ctrl+K shortcut.
-
----
-
-## Phase 4 — Parent Dashboard & Landing
-
-**9. Parent preview dashboard** (`src/routes/parent.tsx`)
-- Read-only view of the current student's progress derived from `useProgress` (XP, streak, per-subject completion, recent activity).
-- Print-friendly layout. No new auth, no schema change — just a dedicated route + share link.
-
-**10. Landing page conversion polish** (`src/components/HomeDashboard.tsx` hero region only when signed-out)
-- Tighter value proposition headline, social proof strip (subject count, chapters covered — computed from existing registry, not fabricated), clearer primary CTA, secondary "See a sample chapter" link.
-- Sticky sign-in CTA on scroll for signed-out visitors.
-
----
-
-## Out of scope (explicit)
-- No edits to chapter notes, quiz questions, flashcard pairs, or mind map data files.
-- No DB / Supabase schema changes.
-- No new dependencies unless a control absolutely requires one (will flag before adding).
-
-## Suggested review checkpoints
-After Phase 1, Phase 2, Phase 3, Phase 4 — so you can redirect before the next batch.
-
-Shall I start with **Phase 1**?
+Say the word and I'll switch to build mode and execute steps 1–5 (safest, highest impact). Steps 6–7 are optional polish.

@@ -38,7 +38,7 @@ export interface StudySearchResult {
 const MAX_FIELD_LENGTH = 420;
 
 const SUBJECT_ALIASES: Record<string, string[]> = {
-  bm: ["bm", "bahasa", "malay", "karangan", "komsas", "peribahasa"],
+  bm: ["bm", "bahasa", "malay", "karangan", "komsas", "peribahasa", "rumusan", "ringkasan"],
   english: ["english", "grammar", "writing", "reading"],
   math: ["math", "mathematics", "matematik", "algebra", "geometry"],
   science: ["science", "sains", "fotosintesis", "photosynthesis", "experiment"],

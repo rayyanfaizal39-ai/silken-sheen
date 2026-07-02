@@ -233,9 +233,10 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lastRankUp } = useProgress();
 
-  if (pathname.startsWith("/academy/")) {
+  if (pathname.startsWith("/academy/") || pathname === "/landing") {
     return <>{children}</>;
   }
+
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">

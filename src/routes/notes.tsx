@@ -38,6 +38,13 @@ import {
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { BMForm2WorldPage } from "@/components/BMForm2WorldPage";
+import geographyArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 10_59_37 AM.png";
+import bmArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_15 AM.png";
+import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_47 AM.png";
+import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
+import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
+import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
+
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -70,6 +77,44 @@ export const Route = createFileRoute("/notes")({
   }),
   component: NotesPage,
 });
+
+const SUBJECT_ARTWORK: Record<string, string> = {
+  geography: geographyArtwork,
+  bm: bmArtwork,
+  english: englishArtwork,
+  science: scienceArtwork,
+  sejarah: sejarahArtwork,
+  math: mathArtwork,
+};
+
+function getSubjectArtwork(subjectId: string) {
+  return SUBJECT_ARTWORK[subjectId] ?? null;
+}
+
+function SubjectFeatureArtwork({
+  subjectId,
+  src,
+}: {
+  subjectId: string;
+  src: string | null;
+}) {
+  if (!src) return null;
+
+  const subjectName = subjects.find((item) => item.id === subjectId)?.name ?? subjectId;
+
+  return (
+    <div className="mb-4 overflow-hidden rounded-[1.6rem] border border-white/10 bg-card/55 shadow-[0_20px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl animate-fade-up">
+      <div className="pointer-events-none absolute inset-x-6 top-4 h-20 rounded-full bg-gradient-to-r from-primary/16 via-accent/14 to-primary/10 blur-3xl" />
+      <img
+        src={src}
+        alt={`${subjectName} chapter artwork`}
+        className="relative block h-32 w-full object-cover object-center sm:h-40"
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
 
 function NotesPage() {
   const search = Route.useSearch();
@@ -115,6 +160,8 @@ function NotesPage() {
       : undefined;
   const features = getChapterFeatures(activeChapter);
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
+  const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
+
 
   // Reading progress bar
   useEffect(() => {
@@ -528,7 +575,11 @@ function NotesPage() {
               onBack={() => setChapter(null)}
             />
 
+            {subject && chapterArtwork && (
+              <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} />
+            )}
             <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
+
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
@@ -687,7 +738,9 @@ function SubtopicView({
           </span>
         </div>
 
+        {subj && <SubjectFeatureArtwork subjectId={subjectId} src={getSubjectArtwork(subjectId)} />}
         <ChapterFeatureBar features={features} onJump={jumpTo} />
+
       </div>
 
       {chapterContent?.video && <VideoBlock id="video" video={chapterContent.video} />}

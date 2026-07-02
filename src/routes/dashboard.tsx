@@ -194,7 +194,7 @@ function DashboardPage() {
   const nextGoalLabel = getNextGoalLabel(todaysMissions);
 
   return (
-    <AcademyPageShell>
+    <AcademyPageShell className="max-w-none">
       <CosmicDashboardBackdrop />
 
       {/* ── Slim header — greeting / streak / CTA ─────────────────────── */}
