@@ -4194,6 +4194,8 @@
 @media (prefers-reduced-motion: reduce) {
   .cosmic-glass-card, .cosmic-subject-card, .cosmic-subject-planet-orb,
   .cosmic-companion-pedestal, .cosmic-companion-egg, .cosmic-companion-glow,
+  .cosmic-companion-egg-anim, .cosmic-companion-ring, .cosmic-companion-ring-reverse,
+  .cosmic-companion-sparkle,
   .rank-companion-float, .cikgu-float, .cikgu-button-pulse {
     animation: none !important;
     transition: none !important;
