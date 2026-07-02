@@ -35,6 +35,18 @@ export default defineConfig({
     client: { entry: "client" },
   },
   vite: {
+    // Dev-only proxy: /__l5e/* is served by Lovable's hosting edge in preview
+    // and production, but not by raw `vite dev`. Without this, images uploaded
+    // via `lovable-assets create` appear as broken images on localhost:8080.
+    server: {
+      proxy: {
+        "/__l5e": {
+          target: "https://acade-my.lovable.app",
+          changeOrigin: true,
+          secure: true,
+        },
+      },
+    },
     // Emit dist/client/.vite/manifest.json so scripts/generate-static-shell.js can
     // reliably find the true client entry chunk (there are multiple "index-*.js"
     // chunks in the assets dir — only the manifest disambiguates which one is the
@@ -42,6 +54,7 @@ export default defineConfig({
     build: {
       manifest: true,
     },
+
     // @tanstack/start-server-core@1.169+ uses dynamic '#' package-subpath imports
     // (#tanstack-router-entry, #tanstack-start-entry) that esbuild cannot resolve during
     // optimizeDeps scanning because they are missing from the package's own "imports" map.
