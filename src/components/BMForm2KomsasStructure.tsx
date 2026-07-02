@@ -47,6 +47,8 @@ import { MENUAI_EMAS } from "@/data/bm-form2-menuai-emas";
 import { BMForm2MenuaiEmasContent } from "@/components/BMForm2MenuaiEmasContent";
 import { MAHKAMAH } from "@/data/bm-form2-mahkamah";
 import { BMForm2MahkamahContent } from "@/components/BMForm2MahkamahContent";
+import { BMForm2MenitiImpianContent } from "@/components/BMForm2MenitiImpianContent";
+import { BMForm2NovelPlaceholderContent } from "@/components/BMForm2NovelPlaceholderContent";
 
 const ACCENT = "#C084FC";
 const FOCUS_ITEMS = [
@@ -1448,6 +1450,7 @@ function TeacherTip({
 
 export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) {
   const [open, setOpen] = useState(false);
+  const folderColor = work.kind === "novel" ? "#FB923C" : ACCENT;
   return (
     <section className="overflow-hidden rounded-2xl border border-white/[0.09] bg-white/[0.025]">
       <button
@@ -1457,11 +1460,17 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
         className="flex min-h-20 w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-white/[0.04] sm:px-6"
       >
         <span className="flex min-w-0 items-center gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-300/10 text-purple-300">
+          <span
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+            style={{ background: `${folderColor}18`, color: folderColor }}
+          >
             <BookOpen className="h-5 w-5" />
           </span>
           <span>
-            <span className="block text-[9px] font-black uppercase tracking-widest text-purple-300/65">
+            <span
+              className="block text-[9px] font-black uppercase tracking-widest"
+              style={{ color: `${folderColor}A6` }}
+            >
               Folder Pembelajaran
             </span>
             <span className="mt-1 block font-display text-base font-bold text-white sm:text-lg">
@@ -1470,8 +1479,8 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
           </span>
         </span>
         <ChevronDown
-          className="h-5 w-5 shrink-0 text-purple-300 transition-transform duration-300"
-          style={{ transform: open ? "rotate(180deg)" : undefined }}
+          className="h-5 w-5 shrink-0 transition-transform duration-300"
+          style={{ color: folderColor, transform: open ? "rotate(180deg)" : undefined }}
         />
       </button>
       <div
@@ -1490,11 +1499,21 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
           work.id === "banjir-di-mata-emak" ||
           work.id === "talia-dan-raksasa-qadqad" ||
           work.id === "menuai-emas" ||
-          work.id === "mahkamah" ? (
+          work.id === "mahkamah" ||
+          work.id === "meniti-impian" ||
+          work.id === "darah-titik-di-semantan" ||
+          work.id === "jejak-monpus" ||
+          work.id === "jalan-ke-puncak" ? (
             open ? (
               <div className="border-t border-white/[0.07] p-3 sm:p-5">
                 <WorkHero work={work} />
-                {work.id === "mahkamah" ? (
+                {work.id === "darah-titik-di-semantan" ||
+                work.id === "jejak-monpus" ||
+                work.id === "jalan-ke-puncak" ? (
+                  <BMForm2NovelPlaceholderContent />
+                ) : work.id === "meniti-impian" ? (
+                  <BMForm2MenitiImpianContent />
+                ) : work.id === "mahkamah" ? (
                   <BMForm2MahkamahContent />
                 ) : work.id === "menuai-emas" ? (
                   <BMForm2MenuaiEmasContent />
