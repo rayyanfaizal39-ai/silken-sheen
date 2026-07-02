@@ -4082,38 +4082,72 @@
   filter: drop-shadow(0 0 22px rgba(167,139,250,0.65));
 }
 
+/* Egg breathing float — arc + squash/stretch, preserving volume */
 @keyframes companionFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%   { transform: translateY(0) translateX(0) scale(1, 1); }
+  20%  { transform: translateY(-6px) translateX(-3px) scale(0.98, 1.02); }
+  50%  { transform: translateY(-14px) translateX(0) scale(1.03, 0.97); }
+  80%  { transform: translateY(-6px) translateX(3px) scale(0.98, 1.02); }
+  100% { transform: translateY(0) translateX(0) scale(1, 1); }
+}
+
+/* Tiny wobble anticipation — the egg is "about to hatch" */
+@keyframes companionWobble {
+  0%, 92%, 100% { transform: rotate(0deg); }
+  94% { transform: rotate(-3.5deg); }
+  96% { transform: rotate(3.5deg); }
+  98% { transform: rotate(-1.5deg); }
 }
 
 @keyframes companionOrbit {
-  from {
-    transform: rotate(0deg) scaleX(1.18) scaleY(0.82);
-  }
-  to {
-    transform: rotate(360deg) scaleX(1.18) scaleY(0.82);
-  }
+  from { transform: rotate(0deg) scaleX(1.18) scaleY(0.82); }
+  to   { transform: rotate(360deg) scaleX(1.18) scaleY(0.82); }
 }
 
-/* Soft glow pulse behind the companion artwork — subtle "alive" breathing cue. */
+/* Halo pulse — staged secondary action */
 @keyframes companionGlowPulse {
-  0%, 100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.06);
-  }
+  0%, 100% { opacity: 0.5;  transform: scale(1);     filter: blur(22px); }
+  50%      { opacity: 0.95; transform: scale(1.12);  filter: blur(28px); }
 }
 .cosmic-companion-glow {
-  animation: companionGlowPulse 3.2s ease-in-out infinite;
+  animation: companionGlowPulse 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
+
+/* Slow ring rotation — arc principle */
+@keyframes companionRingSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.cosmic-companion-ring {
+  animation: companionRingSpin 22s linear infinite;
+}
+@keyframes companionRingSpinReverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+.cosmic-companion-ring-reverse {
+  animation: companionRingSpinReverse 34s linear infinite;
+}
+
+/* Orbiting sparkles around the egg */
+@keyframes companionSparkleOrbit {
+  from { transform: rotate(var(--sparkle-start, 0deg)) translateX(var(--sparkle-radius, 62px)) rotate(calc(var(--sparkle-start, 0deg) * -1)); }
+  to   { transform: rotate(calc(var(--sparkle-start, 0deg) + 360deg)) translateX(var(--sparkle-radius, 62px)) rotate(calc((var(--sparkle-start, 0deg) + 360deg) * -1)); }
+}
+.cosmic-companion-sparkle {
+  animation: companionSparkleOrbit var(--sparkle-duration, 9s) linear infinite,
+             companionGlowPulse 2.4s ease-in-out infinite;
+}
+
+.cosmic-companion-egg-anim {
+  animation: companionFloat 5.2s cubic-bezier(0.65, 0, 0.35, 1) infinite,
+             companionWobble 6.4s ease-in-out infinite;
+  transform-origin: 50% 80%;
+  filter: drop-shadow(0 12px 18px rgba(88,28,135,0.55))
+          drop-shadow(0 0 22px rgba(240,171,252,0.55));
+  will-change: transform;
+}
+
 
 /* Astronaut rank companion — gentle float + breathing scale, no spin */
 @keyframes rankCompanionFloat {
@@ -4160,8 +4194,71 @@
 @media (prefers-reduced-motion: reduce) {
   .cosmic-glass-card, .cosmic-subject-card, .cosmic-subject-planet-orb,
   .cosmic-companion-pedestal, .cosmic-companion-egg, .cosmic-companion-glow,
+  .cosmic-companion-egg-anim, .cosmic-companion-ring, .cosmic-companion-ring-reverse,
+  .cosmic-companion-sparkle,
   .rank-companion-float, .cikgu-float, .cikgu-button-pulse {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* ─── Orbital Command Deck (cinematic home) ──────────────────────────────── */
+
+.font-orbitron {
+  font-family: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  letter-spacing: 0.06em;
+}
+
+@keyframes orbitalScan {
+  0% { transform: translateY(0); opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+.orbital-scanline {
+  animation: orbitalScan 9s linear infinite;
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+.animate-pulse-slow {
+  animation: pulseSlow 3.4s ease-in-out infinite;
+}
+
+/* Cinematic HUD corner brackets — use on relative container */
+.hud-corners::before,
+.hud-corners::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid rgba(103,232,249,0.55);
+  pointer-events: none;
+}
+.hud-corners::before {
+  top: 10px; left: 10px;
+  border-right: 0; border-bottom: 0;
+  border-top-left-radius: 6px;
+}
+.hud-corners::after {
+  bottom: 10px; right: 10px;
+  border-left: 0; border-top: 0;
+  border-bottom-right-radius: 6px;
+}
+
+/* Cinematic glass frame for the hero band */
+.hud-frame {
+  background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(59,130,246,0.03) 60%, transparent);
+  border: 1px solid rgba(148,163,184,0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 30px 80px -40px rgba(0,0,0,0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbital-scanline, .animate-pulse-slow {
+    animation: none !important;
   }
 }
