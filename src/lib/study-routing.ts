@@ -2,6 +2,7 @@ export const subjectSlugToId: Record<string, string> = {
   mathematics: "math",
   math: "math",
   science: "science",
+  sains: "science",
   sejarah: "sejarah",
   geografi: "geography",
   geography: "geography",
@@ -33,6 +34,23 @@ export function normalizeFormParam(value: unknown) {
     .replace(/^form\s*/, "");
   if (cleaned === "1" || cleaned === "2" || cleaned === "3") return `Form ${cleaned}`;
   return "Form 1";
+}
+
+export function normalizeChapterParam(value: unknown) {
+  if (!value) return null;
+
+  const cleaned = String(value)
+    .trim()
+    .replaceAll('"', "")
+    .replace(/\s+/g, " ");
+
+  const explicitMatch = cleaned.match(/^(?:bab|chapter)\s*(\d+)(?::.*)?$/i);
+  if (explicitMatch) return `Chapter ${explicitMatch[1]}`;
+
+  const numberMatch = cleaned.match(/\b(\d+)\b/);
+  if (numberMatch) return `Chapter ${numberMatch[1]}`;
+
+  return cleaned;
 }
 
 export function studyHref(

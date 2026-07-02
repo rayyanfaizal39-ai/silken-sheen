@@ -6,6 +6,7 @@ import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,
+  notes as allNotes,
   scienceF1C2NotesBM,
   scienceF1C2NotesDLP,
   scienceF1C3NotesBM,
@@ -2610,6 +2611,11 @@ const EXTERNALLY_STORED_RESOURCES: Partial<
       form: "Form 1",
       chapterKeys: Array.from({ length: 13 }, (_, i) => `Chapter ${i + 1}`),
     },
+    {
+      subjectId: "science",
+      form: "Form 1",
+      chapterKeys: ["Chapter 1"],
+    },
   ],
   quiz: [
     {
@@ -2638,7 +2644,17 @@ function hasExternallyStoredResource(chapter: ChapterContent, resourceType: Reso
 
 function chapterHasResourceContent(chapter: ChapterContent, resourceType: ResourceType) {
   if (resourceType === "notes") {
-    return Boolean(chapter.notes || chapter.englishData || chapter.subtopics?.length);
+    if (chapter.notes || chapter.englishData || chapter.subtopics?.length) return true;
+    if (chapter.subjectId === "science" && chapter.form === "Form 1" && chapter.chapterKey === "Chapter 1") {
+      return allNotes.some(
+        (note) =>
+          note.subjectId === "science" &&
+          note.form === "Form 1" &&
+          note.chapter === "Chapter 1" &&
+          (!chapter.lang || !note.lang || note.lang === chapter.lang),
+      );
+    }
+    return false;
   }
   if (resourceType === "quiz") {
     return Boolean(chapter.quiz?.length) || hasExternallyStoredResource(chapter, "quiz");
