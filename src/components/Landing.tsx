@@ -402,14 +402,14 @@ function Hero() {
             <img
               ref={heroImgRef}
               src={starCaptain.url}
-              alt="AcadeMY astronaut floating on an alien world"
-              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_60px_rgba(255,110,40,0.35)]"
+              alt="AcadeMY astronaut riding a rocket through space"
+              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_80px_rgba(255,110,40,0.55)]"
               draggable={false}
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
+                  "radial-gradient(ellipse 85% 90% at 50% 50%, #000 70%, rgba(0,0,0,0.9) 85%, transparent 100%)",
                 maskImage:
-                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
+                  "radial-gradient(ellipse 85% 90% at 50% 50%, #000 70%, rgba(0,0,0,0.9) 85%, transparent 100%)",
               }}
             />
 
