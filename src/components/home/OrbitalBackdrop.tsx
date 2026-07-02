@@ -21,12 +21,12 @@ export function OrbitalBackdrop() {
         alt=""
         loading="eager"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover opacity-[0.55] mix-blend-screen"
-        style={{ objectPosition: "center 30%" }}
+        className="absolute inset-x-0 top-0 h-[92vh] w-full object-cover opacity-90"
+        style={{ objectPosition: "center 35%" }}
       />
 
-      {/* Cinematic top-fade + bottom-fade so content stays legible */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/70 via-[#020617]/30 to-[#020617]" />
+      {/* Cinematic top-fade + strong bottom-fade so content stays legible */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/25 via-[#020617]/70 to-[#020617]" />
 
       {/* Soft cyan bloom near the horizon */}
       <div
