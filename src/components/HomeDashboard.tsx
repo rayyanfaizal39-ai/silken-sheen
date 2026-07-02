@@ -823,18 +823,35 @@ export function HomeDashboard() {
 
         {/* Cosmic Companion card */}
         <div className="relative flex flex-col items-center overflow-hidden rounded-[2rem] border border-[#F0ABFC]/20 bg-gradient-to-b from-[#312E81]/42 to-[#0B1220]/76 p-5 text-center backdrop-blur-2xl">
-          <div className="pointer-events-none absolute -top-16 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(240,171,252,0.32),transparent_65%)] blur-xl" />
-          <div className="relative mb-3 flex h-32 w-32 items-center justify-center">
-            <div className="cosmic-companion-glow absolute inset-0 rounded-full bg-[#F0ABFC]/20 blur-2xl" />
-            <div className="absolute inset-3 rounded-full border border-white/15 shadow-[0_0_36px_rgba(240,171,252,0.35)]" />
-            <div className="relative flex h-24 w-24 animate-[companionFloat_4.6s_ease-in-out_infinite] items-center justify-center rounded-full">
+          <div className="pointer-events-none absolute -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(240,171,252,0.32),transparent_65%)] blur-xl" />
+          <div className="relative mb-3 flex h-52 w-52 items-center justify-center">
+            <div className="cosmic-companion-glow absolute inset-0 rounded-full bg-[#F0ABFC]/25 blur-2xl" />
+            <div className="cosmic-companion-ring absolute inset-1 rounded-full border border-dashed border-white/15" />
+            <div className="cosmic-companion-ring-reverse absolute inset-5 rounded-full border border-white/10 shadow-[0_0_48px_rgba(240,171,252,0.35)_inset]" />
+
+            {/* Orbiting sparkles */}
+            <span
+              className="cosmic-companion-sparkle absolute h-1.5 w-1.5 rounded-full bg-[#F0ABFC] shadow-[0_0_10px_rgba(240,171,252,0.9)]"
+              style={{ ["--sparkle-start" as any]: "0deg", ["--sparkle-radius" as any]: "88px", ["--sparkle-duration" as any]: "9s" }}
+            />
+            <span
+              className="cosmic-companion-sparkle absolute h-1 w-1 rounded-full bg-[#A5B4FC] shadow-[0_0_10px_rgba(165,180,252,0.9)]"
+              style={{ ["--sparkle-start" as any]: "140deg", ["--sparkle-radius" as any]: "78px", ["--sparkle-duration" as any]: "12s" }}
+            />
+            <span
+              className="cosmic-companion-sparkle absolute h-1 w-1 rounded-full bg-[#67E8F9] shadow-[0_0_10px_rgba(103,232,249,0.9)]"
+              style={{ ["--sparkle-start" as any]: "245deg", ["--sparkle-radius" as any]: "92px", ["--sparkle-duration" as any]: "14s" }}
+            />
+
+            <div className="cosmic-companion-egg-anim relative flex h-40 w-40 items-center justify-center">
               <CompanionImage
                 speciesId={progress.companion?.id ?? "nova"}
                 stage={companionStage.id}
-                size={84}
+                size={148}
               />
             </div>
           </div>
+
           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#F0ABFC]/70">
             Cosmic Companion
           </p>
