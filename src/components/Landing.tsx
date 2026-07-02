@@ -280,7 +280,7 @@ function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
+    <section className="relative overflow-hidden pt-20 pb-24 md:pt-24 md:pb-32">
       {/* glow blobs */}
       <div
         aria-hidden
