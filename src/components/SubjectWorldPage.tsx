@@ -264,6 +264,87 @@ const GEOGRAPHY_F1_BACKGROUNDS: Record<string, string> = (() => {
   return map;
 })();
 
+// ─── Science chapter card backgrounds ─────────────────────────────────────────
+// Drop chapter images into src/assets/science/form{1,2,3}/ named
+// "ch{N}-anything.ext" — picked up automatically, no further code changes
+// needed. Source art is wide landscape banners, so each chapter can define an
+// object-position (in SCIENCE_BG_POSITION below) to keep its focal subject
+// inside Geography's narrow vertical strip instead of the crop landing on
+// empty background.
+const scienceF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/science/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const scienceF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/science/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const scienceF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/science/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+
+function buildChapterBackgroundMap(modules: Record<string, { default: string }>): Record<string, string> {
+  const map: Record<string, string> = {};
+  for (const [path, mod] of Object.entries(modules)) {
+    const filename = path.split("/").pop() ?? "";
+    const match = filename.match(/^ch(\d{1,2})-/i);
+    if (!match) continue;
+    map[`Chapter ${match[1]}`] = mod.default;
+  }
+  return map;
+}
+
+const SCIENCE_F1_BACKGROUNDS = buildChapterBackgroundMap(scienceF1BgModules);
+const SCIENCE_F2_BACKGROUNDS = buildChapterBackgroundMap(scienceF2BgModules);
+const SCIENCE_F3_BACKGROUNDS = buildChapterBackgroundMap(scienceF3BgModules);
+
+// Focal point (as a CSS object-position) for each Form 1 Science chapter's
+// banner art, so the right-edge strip crop lands on the subject that best
+// represents the chapter instead of an arbitrary center slice.
+const SCIENCE_F1_BG_POSITION: Record<string, string> = {
+  "Chapter 1": "44% center",  // holographic scan circle, between the microscope and monitors
+  "Chapter 2": "30% center",  // paired animal cells
+  "Chapter 3": "18% center",  // hero neuron
+  "Chapter 4": "68% center",  // embryo in womb
+  "Chapter 5": "50% center",  // molecule cluster, evenly spread
+  "Chapter 6": "50% center",  // periodic table grid, evenly spread
+  "Chapter 7": "30% center",  // O2 molecule cluster over Earth's curve
+  "Chapter 8": "26% center",  // glass prism splitting light
+  "Chapter 9": "38% center",  // glowing Earth core
+};
+
+// Focal point for each Form 3 Science chapter's banner art.
+const SCIENCE_F3_BG_POSITION: Record<string, string> = {
+  "Chapter 1":  "78% center",  // glowing brain
+  "Chapter 2":  "55% center",  // alveoli / O2 gas exchange cluster
+  "Chapter 3":  "55% center",  // red blood cells in vessel
+  "Chapter 4":  "72% center",  // welding torch spark on reactive metal
+  "Chapter 5":  "35% center",  // reaction-energy molecule
+  "Chapter 6":  "62% center",  // lightning arc between pylon and plant
+  "Chapter 7":  "50% center",  // turbines/solar/dam/storage, evenly spread
+  "Chapter 8":  "50% center",  // radioactivity trefoil symbol
+  "Chapter 9":  "55% center",  // aurora + satellite
+  "Chapter 10": "54% center",  // rocket launch
+};
+
+// Focal point for each Form 2 Science chapter's banner art.
+const SCIENCE_F2_BG_POSITION: Record<string, string> = {
+  "Chapter 1":  "45% center",  // tiger in the rainforest
+  "Chapter 2":  "30% center",  // deer by the stream
+  "Chapter 3":  "55% center",  // food-group icon ring
+  "Chapter 4":  "60% center",  // heartbeat + blood cells
+  "Chapter 5":  "40% center",  // molecule dissolving into water
+  "Chapter 6":  "50% center",  // pH scale between ASID/ALKALI flasks
+  "Chapter 7":  "55% center",  // magnet coil sparking
+  "Chapter 8":  "45% center",  // football with force arrows
+  "Chapter 9":  "50% center",  // pot over fire, thermal-camera face
+  "Chapter 10": "35% center",  // speaker emitting sound wave
+  "Chapter 11": "40% center",  // spiral galaxy
+  "Chapter 12": "45% center",  // sun and planets in orbit
+  "Chapter 13": "80% center",  // comet approaching Earth
+};
+
 // ─── Ambient symbol positions ─────────────────────────────────────────────────
 
 const SLOTS = [
@@ -535,14 +616,25 @@ function LocationCard({
   const quizCount  = chapterContent?.quiz?.length ?? 0;
   const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType);
 
-  // Form 1 Geography chapters get their concept-art photo in a fixed-size
-  // strip pinned to the card's right edge — same width on every card,
-  // regardless of each image's own aspect ratio, so the cards stay visually
-  // consistent. (An earlier version sized the image to the image; that made
-  // some cards look small and others tall.) object-fit: cover fills that
-  // fixed strip without distortion; a left-to-right gradient blends the
-  // strip into the card so the text side stays readable.
-  const bgImage = subjectId === "geography" && form === "Form 1" ? GEOGRAPHY_F1_BACKGROUNDS[chapter.key] : undefined;
+  // Form 1 Geography chapters — and Science chapters across all three forms —
+  // get their concept-art photo in a fixed-size strip pinned to the card's
+  // right edge, same width on every card, regardless of each image's own
+  // aspect ratio, so the cards stay visually consistent. (An earlier version
+  // sized the image to the image; that made some cards look small and others
+  // tall.) object-fit: cover fills that fixed strip without distortion; a
+  // left-to-right gradient blends the strip into the card so the text side
+  // stays readable.
+  const scienceBackgrounds =
+    form === "Form 1" ? SCIENCE_F1_BACKGROUNDS :
+    form === "Form 2" ? SCIENCE_F2_BACKGROUNDS :
+    form === "Form 3" ? SCIENCE_F3_BACKGROUNDS : undefined;
+  const bgImage =
+    subjectId === "geography" && form === "Form 1" ? GEOGRAPHY_F1_BACKGROUNDS[chapter.key] :
+    subjectId === "science" ? scienceBackgrounds?.[chapter.key] : undefined;
+  const bgImagePosition =
+    subjectId === "science" && form === "Form 1" ? SCIENCE_F1_BG_POSITION[chapter.key] ?? "center" :
+    subjectId === "science" && form === "Form 2" ? SCIENCE_F2_BG_POSITION[chapter.key] ?? "center" :
+    subjectId === "science" && form === "Form 3" ? SCIENCE_F3_BG_POSITION[chapter.key] ?? "center" : "center";
   const fallbackGradient = `linear-gradient(${align === "left" ? "135deg" : "225deg"}, ${config.from}0d, rgba(0,0,0,0.50))`;
   const IMAGE_STRIP_CLASS = "w-[clamp(84px,28vw,130px)] sm:w-[clamp(96px,24vw,160px)]";
   const TEXT_PADDING_CLASS = "pr-[138px] sm:pr-[168px]";
@@ -584,8 +676,8 @@ function LocationCard({
             src={bgImage}
             alt=""
             aria-hidden="true"
-            className="h-full w-full object-cover object-center"
-            style={{ opacity: 0.65 }}
+            className="h-full w-full object-cover"
+            style={{ opacity: 0.65, objectPosition: bgImagePosition }}
           />
           <div
             className="absolute inset-0"
