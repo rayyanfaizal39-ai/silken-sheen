@@ -509,8 +509,35 @@ export function HomeDashboard() {
           HERO — Universe gateway
           ════════════════════════════════════════════════════════════ */}
       <div className="hero-section relative isolate -mx-4 -mt-6 overflow-hidden px-4 pb-20 pt-10 sm:-mx-6 sm:px-6 md:pb-24 md:pt-14 lg:-mx-8 lg:min-h-[820px] lg:px-8">
-        {/* Living space scene */}
-        <AstronautScene />
+        {/* Hero image — KSSM graduates */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-[5] hidden w-[62%] lg:block" aria-hidden>
+          <img
+            src={heroGraduates.url}
+            alt=""
+            className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-bottom"
+            style={{
+              filter: "drop-shadow(0 30px 60px rgba(99,102,241,0.35))",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 90% 90% at 70% 60%, #000 55%, transparent 88%)",
+              maskImage:
+                "radial-gradient(ellipse 90% 90% at 70% 60%, #000 55%, transparent 88%)",
+            }}
+          />
+        </div>
+        {/* Mobile hero image */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] flex justify-center lg:hidden" aria-hidden>
+          <img
+            src={heroGraduates.url}
+            alt=""
+            className="h-[380px] w-auto max-w-none object-contain object-bottom opacity-90"
+            style={{
+              WebkitMaskImage:
+                "radial-gradient(ellipse 80% 85% at 50% 65%, #000 55%, transparent 88%)",
+              maskImage:
+                "radial-gradient(ellipse 80% 85% at 50% 65%, #000 55%, transparent 88%)",
+            }}
+          />
+        </div>
 
         {/* Nebula orbs */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
