@@ -665,6 +665,33 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
   }
 }
 
+/**
+ * Inserts one immutable row into `quiz_history` for a completed quiz.
+ * Fire-and-forget: this is purely a learning-history log for
+ * getStudentAnalytics() (src/lib/analytics.ts) — it never affects XP,
+ * streak, rank, or the local `quizHistory` array, which are already
+ * handled by `recordQuizResult` regardless of whether this insert
+ * succeeds. Only runs for a signed-in user with Supabase configured.
+ */
+async function insertQuizHistoryRow(
+  userId: string,
+  result: { subjectId: string; chapterKey: string; scorePct: number; correct: number; total: number },
+): Promise<void> {
+  if (!isSupabaseConfigured) return;
+  try {
+    await supabase.from("quiz_history").insert({
+      user_id: userId,
+      subject_id: result.subjectId,
+      chapter_key: result.chapterKey,
+      score_pct: result.scorePct,
+      correct: result.correct,
+      total: result.total,
+    });
+  } catch {
+    // Silent — this is a supplementary analytics log, not the source of truth
+  }
+}
+
 // ─── Singleton auth sync ──────────────────────────────────────────────────────
 // `useProgress()` is called from ~10 components on a single page (header,
 // sidebar, hero card, companion widgets, etc). Each one used to run its own
@@ -1168,6 +1195,12 @@ export function useProgress() {
         };
         const quizHistory = [...(prev.quizHistory ?? []), result].slice(-QUIZ_HISTORY_CAP);
         const timestamp = Date.now();
+
+        // Learning-history log for getStudentAnalytics() — additive only,
+        // does not replace or alter the local quizHistory/XP handling below.
+        if (sharedUserId) {
+          void insertQuizHistoryRow(sharedUserId, { subjectId: input.subjectId, chapterKey: input.chapterKey, scorePct, correct, total });
+        }
 
         const next: Progress = {
           ...prev,

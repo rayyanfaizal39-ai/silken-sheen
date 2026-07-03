@@ -15,6 +15,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SubjectsRouteImport } from './routes/subjects'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ParentDashboardRouteImport } from './routes/parent-dashboard'
 import { Route as ParentRouteImport } from './routes/parent'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as MindmapsRouteImport } from './routes/mindmaps'
@@ -59,6 +60,11 @@ const QuizzesRoute = QuizzesRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParentDashboardRoute = ParentDashboardRouteImport.update({
+  id: '/parent-dashboard',
+  path: '/parent-dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParentRoute = ParentRouteImport.update({
@@ -150,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
+  '/parent-dashboard': typeof ParentDashboardRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
@@ -172,6 +179,7 @@ export interface FileRoutesByTo {
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
+  '/parent-dashboard': typeof ParentDashboardRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
@@ -196,6 +204,7 @@ export interface FileRoutesById {
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
+  '/parent-dashboard': typeof ParentDashboardRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
@@ -221,6 +230,7 @@ export interface FileRouteTypes {
     | '/mindmaps'
     | '/notes'
     | '/parent'
+    | '/parent-dashboard'
     | '/privacy'
     | '/quizzes'
     | '/subjects'
@@ -243,6 +253,7 @@ export interface FileRouteTypes {
     | '/mindmaps'
     | '/notes'
     | '/parent'
+    | '/parent-dashboard'
     | '/privacy'
     | '/quizzes'
     | '/subjects'
@@ -266,6 +277,7 @@ export interface FileRouteTypes {
     | '/mindmaps'
     | '/notes'
     | '/parent'
+    | '/parent-dashboard'
     | '/privacy'
     | '/quizzes'
     | '/subjects'
@@ -290,6 +302,7 @@ export interface RootRouteChildren {
   MindmapsRoute: typeof MindmapsRoute
   NotesRoute: typeof NotesRoute
   ParentRoute: typeof ParentRoute
+  ParentDashboardRoute: typeof ParentDashboardRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizzesRoute: typeof QuizzesRoute
   SubjectsRoute: typeof SubjectsRoute
@@ -342,6 +355,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parent-dashboard': {
+      id: '/parent-dashboard'
+      path: '/parent-dashboard'
+      fullPath: '/parent-dashboard'
+      preLoaderRoute: typeof ParentDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parent': {
@@ -475,6 +495,7 @@ const rootRouteChildren: RootRouteChildren = {
   MindmapsRoute: MindmapsRoute,
   NotesRoute: NotesRoute,
   ParentRoute: ParentRoute,
+  ParentDashboardRoute: ParentDashboardRoute,
   PrivacyRoute: PrivacyRoute,
   QuizzesRoute: QuizzesRoute,
   SubjectsRoute: SubjectsRoute,

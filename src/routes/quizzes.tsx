@@ -6251,6 +6251,22 @@ function QuizzesPage() {
     return [...arr].sort(() => Math.random() - 0.5);
   }
 
+  // TODO(smart-quiz-memory): this is where question selection happens today
+  // — `rawPool` is the fixed, hand-authored question set for a chapter
+  // (from src/content/**), shuffled with no memory of what a student has
+  // already seen. Planned future architecture (see also src/lib/analytics.ts
+  // weak-topic TODO and src/lib/feature-access.ts admin_upload_center TODO):
+  //   - question_bank: a Supabase table of quiz questions, seeded from
+  //     hand-authored content AND from AI-generated questions derived from
+  //     admin-uploaded sources (see content_sources below), tagged with
+  //     subject_id/chapter_key/topic_id/difficulty.
+  //   - question_attempts: a Supabase table logging (user_id, question_id,
+  //     created_at) per question shown/answered, so this function can
+  //     prefer question_bank rows the student hasn't seen recently instead
+  //     of (or blended with) the static rawPool — i.e. avoid repeating the
+  //     exact same question too often.
+  // None of this is implemented yet — rawPool/shuffleQuestions stay exactly
+  // as they are; this comment documents where that logic will plug in.
   function buildShuffledPool(rawPool: QuizQuestion[]): ShuffledQuestion[] {
     // When no specific difficulty is chosen, progress the learner through
     // every Easy question first, then Medium, then Hard — shuffled within
