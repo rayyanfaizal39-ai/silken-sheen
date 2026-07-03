@@ -48,6 +48,7 @@ import { BMForm2MenuaiEmasContent } from "@/components/BMForm2MenuaiEmasContent"
 import { MAHKAMAH } from "@/data/bm-form2-mahkamah";
 import { BMForm2MahkamahContent } from "@/components/BMForm2MahkamahContent";
 import { BMForm2MenitiImpianContent } from "@/components/BMForm2MenitiImpianContent";
+import { BMForm2JejakMonpusContent } from "@/components/BMForm2JejakMonpusContent";
 import { BMForm2NovelPlaceholderContent } from "@/components/BMForm2NovelPlaceholderContent";
 
 const ACCENT = "#C084FC";
@@ -1506,11 +1507,12 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
           work.id === "jalan-ke-puncak" ? (
             open ? (
               <div className="border-t border-white/[0.07] p-3 sm:p-5">
-                <WorkHero work={work} />
+                {work.id !== "meniti-impian" && work.id !== "jejak-monpus" && <WorkHero work={work} />}
                 {work.id === "darah-titik-di-semantan" ||
-                work.id === "jejak-monpus" ||
                 work.id === "jalan-ke-puncak" ? (
                   <BMForm2NovelPlaceholderContent />
+                ) : work.id === "jejak-monpus" ? (
+                  <BMForm2JejakMonpusContent />
                 ) : work.id === "meniti-impian" ? (
                   <BMForm2MenitiImpianContent />
                 ) : work.id === "mahkamah" ? (
