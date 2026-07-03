@@ -28,6 +28,7 @@ import {
 import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
 import { AstronautScene } from "@/components/AstronautScene";
+import heroGraduates from "@/assets/hero-graduates.png.asset.json";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import {
