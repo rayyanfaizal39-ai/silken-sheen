@@ -65,7 +65,7 @@ function Label({ children, tone = "sky" }: { children: ReactNode; tone?: "sky" |
 function AnswerParts({ point, event, answer }: { point: string; event: string; answer?: string }) {
   return (
     <div className="space-y-3 text-sm leading-6">
-      <div><Label>Poin</Label><p className="mt-1.5 font-semibold text-white/80">{point}</p></div>
+      <div><Label>Isi</Label><p className="mt-1.5 font-semibold text-white/80">{point}</p></div>
       <div className="rounded-xl border border-amber-300/15 bg-amber-300/[0.055] p-3"><Label tone="amber">Peristiwa</Label><p className="mt-1.5 text-white/70">{event}</p></div>
       {answer && <div className="rounded-xl border border-emerald-300/15 bg-emerald-300/[0.055] p-3"><Label tone="emerald">Ayat jawapan siap guna</Label><p className="mt-1.5 text-white/75">{answer}</p></div>}
     </div>
@@ -113,7 +113,7 @@ export function BMForm2MenitiImpianContent() {
             <div className="mb-3 flex flex-wrap gap-2"><span className="rounded-full border border-orange-300/25 bg-orange-300/[0.08] px-3 py-1 text-[10px] font-black uppercase tracking-wider text-orange-200">KOMSAS Novel</span><span className="rounded-full border border-amber-300/25 bg-amber-300/[0.08] px-3 py-1 text-[10px] font-black uppercase tracking-wider text-amber-200">Fokus UASA</span></div>
             <h1 className="font-display text-3xl font-black text-white sm:text-4xl">Meniti Impian</h1>
             <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-white/50"><span className="inline-flex items-center gap-1.5"><UserRound className="h-3.5 w-3.5" /> Penulis: Tidak dinyatakan</span><span className="inline-flex items-center gap-1.5"><GraduationCap className="h-3.5 w-3.5" /> Tingkatan 2</span></div>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/65">Hafal poin, kaitkan dengan peristiwa dan bina jawapan lengkap untuk mendapatkan markah penuh.</p>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/65">Hafal isi, kaitkan dengan peristiwa dan bina jawapan lengkap untuk mendapatkan markah penuh.</p>
           </div>
         </div>
       </section>
@@ -123,10 +123,10 @@ export function BMForm2MenitiImpianContent() {
       </Section>
 
       <Section title="Tema Wajib Hafal" eyebrow="Wajib hafal" color="#F472B6" icon="theme">
-        <div className="rounded-2xl border border-pink-300/20 bg-pink-300/[0.065] p-5"><Label>Poin</Label><p className="mt-2 font-display text-lg font-bold leading-8 text-white">{note.theme}</p><div className="mt-4 rounded-xl border border-amber-300/15 bg-amber-300/[0.055] p-3"><Label tone="amber">Peristiwa</Label><p className="mt-2 text-sm leading-6 text-white/70">Zahar mengikuti kursus Pertukangan Perabot di IKM dan berjaya membuka bengkel perabot sendiri.</p></div></div>
+        <div className="rounded-2xl border border-pink-300/20 bg-pink-300/[0.065] p-5"><Label>Isi</Label><p className="mt-2 font-display text-lg font-bold leading-8 text-white">{note.theme}</p><div className="mt-4 rounded-xl border border-amber-300/15 bg-amber-300/[0.055] p-3"><Label tone="amber">Peristiwa</Label><p className="mt-2 text-sm leading-6 text-white/70">Zahar mengikuti kursus Pertukangan Perabot di IKM dan berjaya membuka bengkel perabot sendiri.</p></div></div>
       </Section>
 
-      <Section title="Persoalan Wajib Hafal" eyebrow="5 poin pilihan" color="#60A5FA" icon="issues">
+      <Section title="Persoalan Wajib Hafal" eyebrow="5 isi pilihan" color="#60A5FA" icon="issues">
         <div className="space-y-3">{issues.map((item) => <Fold key={item.title} title={item.title} color="#60A5FA"><AnswerParts point={item.title} event={item.example} answer={item.answer} /></Fold>)}</div>
       </Section>
 
@@ -141,13 +141,13 @@ export function BMForm2MenitiImpianContent() {
         </div>
       </Section>
 
-      <Section title="Nilai & Pengajaran Wajib Hafal" eyebrow="Poin lengkap dengan bukti" color="#34D399" icon="values">
+      <Section title="Nilai & Pengajaran Wajib Hafal" eyebrow="Isi lengkap dengan bukti" color="#34D399" icon="values">
         <div className="mb-5"><h3 className="mb-3 flex items-center gap-2 font-bold text-white"><Heart className="h-4 w-4 text-rose-300" />Nilai</h3><div className="space-y-3">{note.values.map((item) => <Fold key={item.title} title={item.title} color="#FB7185"><AnswerParts point={item.title} event={item.example} answer={`Antara nilai yang terdapat dalam novel ini ialah nilai ${item.title.toLowerCase()}. Buktinya, ${item.example.charAt(0).toLowerCase() + item.example.slice(1)}`} /></Fold>)}</div></div>
         <div><h3 className="mb-3 flex items-center gap-2 font-bold text-white"><CheckCircle2 className="h-4 w-4 text-emerald-300" />Pengajaran</h3><div className="space-y-3">{lessons.map((item) => <Fold key={item.point} title={item.point} color="#34D399"><AnswerParts point={item.point} event={item.event} answer={`${item.point} Contohnya, ${item.event.charAt(0).toLowerCase() + item.event.slice(1)}`} /></Fold>)}</div></div>
       </Section>
 
       <Section title="Teknik Menjawab Markah Penuh" eyebrow="Formula UASA" color="#FB923C" icon="technique">
-        <div className="rounded-2xl border border-orange-300/20 bg-orange-300/[0.06] p-5"><div className="grid gap-2 text-center sm:grid-cols-[1fr_auto_1fr_auto_1fr]"><div className="rounded-xl bg-sky-300/[0.1] p-3 font-black text-sky-200">Poin</div><span className="self-center text-white/30">+</span><div className="rounded-xl bg-amber-300/[0.1] p-3 font-black text-amber-200">Peristiwa</div><span className="self-center text-white/30">+</span><div className="rounded-xl bg-emerald-300/[0.1] p-3 font-black text-emerald-200">Huraian</div></div><div className="mt-5 rounded-xl border border-white/[0.08] bg-black/10 p-4"><p className="text-[10px] font-black uppercase tracking-widest text-orange-200">Contoh jawapan lengkap</p><p className="mt-3 text-sm leading-7 text-white/75">Antara nilai yang terdapat dalam novel ini ialah nilai kegigihan. Buktinya, Zahar gigih mengikuti kursus Pertukangan Perabot di IKM Sungai Petani walaupun pernah dihina oleh Suhaili. Hal ini menunjukkan bahawa usaha yang berterusan mampu membawa seseorang kepada kejayaan.</p></div></div>
+        <div className="rounded-2xl border border-orange-300/20 bg-orange-300/[0.06] p-5"><div className="grid gap-2 text-center sm:grid-cols-[1fr_auto_1fr_auto_1fr]"><div className="rounded-xl bg-sky-300/[0.1] p-3 font-black text-sky-200">Isi</div><span className="self-center text-white/30">+</span><div className="rounded-xl bg-amber-300/[0.1] p-3 font-black text-amber-200">Peristiwa</div><span className="self-center text-white/30">+</span><div className="rounded-xl bg-emerald-300/[0.1] p-3 font-black text-emerald-200">Huraian</div></div><div className="mt-5 rounded-xl border border-white/[0.08] bg-black/10 p-4"><p className="text-[10px] font-black uppercase tracking-widest text-orange-200">Contoh jawapan lengkap</p><p className="mt-3 text-sm leading-7 text-white/75">Antara nilai yang terdapat dalam novel ini ialah nilai kegigihan. Buktinya, Zahar gigih mengikuti kursus Pertukangan Perabot di IKM Sungai Petani walaupun pernah dihina oleh Suhaili. Hal ini menunjukkan bahawa usaha yang berterusan mampu membawa seseorang kepada kejayaan.</p></div></div>
       </Section>
 
       <Section title="Soalan Ramalan UASA" eyebrow="Jenis soalan lazim" color="#C084FC" icon="questions">
