@@ -397,7 +397,7 @@ function Hero() {
 
           <div
             ref={heroCardRef}
-            className="relative aspect-[4/5] [transform-style:preserve-3d]"
+            className="relative aspect-[4/5] [transform-style:preserve-3d] rounded-[2rem] bg-gradient-to-br from-[#2a1a4a] via-[#1b1030] to-[#0d0a1a]"
           >
             <motion.img
               ref={heroImgRef}

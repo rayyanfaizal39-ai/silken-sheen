@@ -19,7 +19,7 @@ import { getSubjectFormStats } from "@/content/registry";
 // ─── Subject identity system ─────────────────────────────────────────────────
 // Each subject has a fully unique visual identity: palette, art, atmosphere,
 // world name, floating symbols, and subject-specific CTAs.
-const subjectPlanetStyles = {
+export const subjectPlanetStyles = {
   science: {
     name: "Science",
     label: "Sains",
@@ -136,7 +136,7 @@ export type SubjectPlanetId = keyof typeof subjectPlanetStyles;
 // The subject's real shape (its world illustration) is the primary identity here —
 // not an emoji, not floating text. The lucide icon is kept only as a small corner
 // accent so the category still reads at a glance.
-function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; planet: typeof subjectPlanetStyles[SubjectPlanetId] }) {
+export function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; planet: typeof subjectPlanetStyles[SubjectPlanetId] }) {
   const Icon = planet.icon;
   return (
     <div className={`relative h-[130px] w-full overflow-hidden rounded-2xl bg-gradient-to-br ${planet.gradient}`}>

@@ -33,6 +33,7 @@ import { PANTUN_ALAM_REMAJA } from "@/data/bm-form2-pantun-alam-remaja";
 import { PANTUN_KIASAN } from "@/data/bm-form2-pantun-kiasan";
 import { PANTUN_BUDI } from "@/data/bm-form2-pantun-budi";
 import { PANTUN_NASIHAT } from "@/data/bm-form2-pantun-nasihat";
+import { PANTUN_KASIH_SAYANG } from "@/data/bm-form2-pantun-kasih-sayang";
 import { SYAIR_NASIHAT } from "@/data/bm-form2-syair-nasihat";
 import { DALAM_PERSEKITARAN_KATA_KATA } from "@/data/bm-form2-dalam-persekitaran-kata-kata";
 import { ROTI } from "@/data/bm-form2-roti";
@@ -153,6 +154,7 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
   const isKiasan = work.id === "pantun-kiasan";
   const isBudi = work.id === "pantun-budi";
   const isNasihat = work.id === "pantun-nasihat";
+  const isKasihSayang = work.id === "pantun-kasih-sayang";
   const isSyairNasihat = work.id === "syair-nasihat-penghujung-thamarat-al-muhimmah";
   const isDalamPersekitaran = work.id === "dalam-persekitaran-kata-kata";
   const isRoti = work.id === "roti";
@@ -168,6 +170,7 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
     isKiasan ||
     isBudi ||
     isNasihat ||
+    isKasihSayang ||
     isSyairNasihat ||
     isDalamPersekitaran ||
     isRoti ||
@@ -178,7 +181,9 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
     isTalia ||
     isMenuaiEmas ||
     isMahkamah;
-  const introduction = isKiasan
+  const introduction = isKasihSayang
+    ? "Pantun yang menggambarkan perasaan cinta dan kasih sayang yang mendalam terhadap seseorang."
+    : isKiasan
     ? "Pantun yang menyindir pelbagai ragam manusia melalui bahasa kiasan serta mengajak pembaca menilai sikap dalam kehidupan."
     : isNasihat
       ? "Pantun yang menyampaikan nasihat sebagai panduan dalam menjalani kehidupan seharian."
@@ -222,33 +227,35 @@ function WorkHero({ work }: { work: Form2KomsasWork }) {
         {populated && (
           <>
             <p className="mt-2 text-xs font-semibold text-purple-200/70">
-              {isKiasan
-                ? `Penyelenggara: ${PANTUN_KIASAN.editor}`
-                : isNasihat
-                  ? `Penyelenggara: ${PANTUN_NASIHAT.editor}`
-                  : isSyairNasihat
-                    ? `Penyelenggara: ${SYAIR_NASIHAT.editor}`
-                    : isDalamPersekitaran
-                      ? `Pengarang: ${DALAM_PERSEKITARAN_KATA_KATA.editor}`
-                      : isRoti
-                        ? `Pengarang: ${ROTI.editor}`
-                        : isKucariDamai
-                          ? `Pengarang: ${KUCARI_DAMAI_DI_SINI.editor}`
-                          : isPadaSekuntumMawar
-                            ? `Pengarang: ${PADA_SEKUNTUM_MAWAR.editor}`
-                            : isPelanduk
-                              ? `Penyelenggara: ${PELANDUK_MENGAJAR_MEMERANG.editor}`
-                              : isBanjir
-                                ? `Pengarang: ${BANJIR_DI_MATA_EMAK.editor}`
-                                : isTalia
-                                  ? `Pengarang: ${TALIA_DAN_RAKSASA_QADQAD.editor}`
-                                  : isMenuaiEmas
-                                    ? `Pengarang: ${MENUAI_EMAS.editor}`
-                                    : isMahkamah
-                                      ? `Pengarang: ${MAHKAMAH.editor}`
-                                      : isBudi
-                                        ? `Penyelenggara: ${PANTUN_BUDI.editor}`
-                                        : "Pengarang tidak diketahui"}
+              {isKasihSayang
+                ? `Penyelenggara: ${PANTUN_KASIH_SAYANG.editor}`
+                : isKiasan
+                  ? `Penyelenggara: ${PANTUN_KIASAN.editor}`
+                  : isNasihat
+                    ? `Penyelenggara: ${PANTUN_NASIHAT.editor}`
+                    : isSyairNasihat
+                      ? `Penyelenggara: ${SYAIR_NASIHAT.editor}`
+                      : isDalamPersekitaran
+                        ? `Pengarang: ${DALAM_PERSEKITARAN_KATA_KATA.editor}`
+                        : isRoti
+                          ? `Pengarang: ${ROTI.editor}`
+                          : isKucariDamai
+                            ? `Pengarang: ${KUCARI_DAMAI_DI_SINI.editor}`
+                            : isPadaSekuntumMawar
+                              ? `Pengarang: ${PADA_SEKUNTUM_MAWAR.editor}`
+                              : isPelanduk
+                                ? `Penyelenggara: ${PELANDUK_MENGAJAR_MEMERANG.editor}`
+                                : isBanjir
+                                  ? `Pengarang: ${BANJIR_DI_MATA_EMAK.editor}`
+                                  : isTalia
+                                    ? `Pengarang: ${TALIA_DAN_RAKSASA_QADQAD.editor}`
+                                    : isMenuaiEmas
+                                      ? `Pengarang: ${MENUAI_EMAS.editor}`
+                                      : isMahkamah
+                                        ? `Pengarang: ${MAHKAMAH.editor}`
+                                        : isBudi
+                                          ? `Penyelenggara: ${PANTUN_BUDI.editor}`
+                                          : "Pengarang tidak diketahui"}
             </p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/60">{introduction}</p>
           </>
@@ -400,7 +407,7 @@ function PantunKiasanContent() {
                     key={example}
                     className="rounded-xl bg-amber-300/[0.07] px-3 py-2.5 text-xs italic leading-5 text-amber-100/80"
                   >
-                    “{example}”
+                    "{example}"
                   </p>
                 ))}
               </div>
@@ -425,7 +432,7 @@ function PantunKiasanContent() {
               <Pill color="#22D3EE">{item.title}</Pill>
               <p className="mt-3 text-sm leading-6 text-white/60">{item.definition}</p>
               <p className="mt-2 text-sm font-semibold italic leading-6 text-white/80">
-                “{item.example}”
+                "{item.example}"
               </p>
               <p className="mt-2 text-[10px] font-bold text-cyan-200/55">{item.reference}</p>
             </article>
@@ -688,7 +695,7 @@ function PantunBudiContent() {
               <Pill color="#22D3EE">{item.title}</Pill>
               <p className="mt-3 text-sm leading-6 text-white/60">{item.detail}</p>
               <p className="mt-2 text-sm font-semibold italic leading-6 text-white/80">
-                “{item.example}”
+                "{item.example}"
               </p>
               <p className="mt-2 text-[10px] font-bold text-cyan-200/55">{item.reference}</p>
             </article>
@@ -731,7 +738,7 @@ function PantunBudiContent() {
                     key={example}
                     className="rounded-xl bg-amber-300/[0.07] px-3 py-2.5 text-xs italic leading-5 text-amber-100/80"
                   >
-                    “{example}”
+                    "{example}"
                   </p>
                 ))}
               </div>
@@ -1019,7 +1026,7 @@ function AdvicePoemContent({
               <Pill color="#22D3EE">{item.title}</Pill>
               <p className="mt-3 text-sm leading-6 text-white/60">{item.detail}</p>
               <p className="mt-2 text-sm font-semibold italic leading-6 text-white/80">
-                “{item.example}”
+                "{item.example}"
               </p>
               <p className="mt-2 text-[10px] font-bold text-cyan-200/55">{item.reference}</p>
             </article>
@@ -1062,7 +1069,7 @@ function AdvicePoemContent({
                     key={example}
                     className="rounded-xl bg-amber-300/[0.07] px-3 py-2.5 text-xs italic leading-5 text-amber-100/80"
                   >
-                    “{example}”
+                    "{example}"
                   </p>
                 ))}
               </div>
@@ -1163,6 +1170,72 @@ function AdvicePoemContent({
           )}
         </StudySection>
       )}
+    </div>
+  );
+}
+
+function PantunKasihSayangContent() {
+  const note = PANTUN_KASIH_SAYANG;
+  const illustrationIcons = [
+    <Heart className={"h-7 w-7"} />,
+    <Users className={"h-7 w-7"} />,
+    <Sparkles className={"h-7 w-7"} />,
+    <Quote className={"h-7 w-7"} />,
+    <Star className={"h-7 w-7"} />,
+  ];
+  const focusItems = ["Ilustrasi lima rangkap", "Tema dan persoalan", "Unsur bunyi", "Nada romantik", "Gaya bahasa", "Nilai, pengajaran dan kosa kata"];
+
+  return (
+    <div className="divide-y divide-white/[0.06]">
+      <StudySection>
+        <div className="rounded-2xl border border-sky-300/15 bg-sky-300/[0.06] p-5 sm:p-6">
+          <SectionTitle icon={<Target className="h-5 w-5" />} eyebrow="Fokus Pembelajaran" title="Kasih difahami, mesej dikuasai" color="#60A5FA" />
+          <p className="mb-4 max-w-2xl text-sm leading-7 text-white/65">{note.focus}</p>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{focusItems.map((item) => <div key={item} className="flex items-center gap-2 rounded-xl bg-black/15 px-3 py-2.5 text-xs font-semibold text-white/75"><Check className="h-3.5 w-3.5 text-emerald-400" />{item}</div>)}</div>
+        </div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<BookOpen className="h-5 w-5" />} eyebrow="Lihat dan Fahami" title="Pantun dalam Ilustrasi" color="#A78BFA" />
+        <div className="grid gap-3 md:grid-cols-2">
+          {note.illustrations.map((explanation, index) => <article key={explanation} className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.035] transition-all hover:-translate-y-0.5 hover:border-purple-300/20 hover:bg-white/[0.055]"><div className="flex min-h-28 items-center justify-center border-b border-white/[0.06] bg-[radial-gradient(circle_at_center,rgba(192,132,252,0.14),transparent_65%)] text-purple-300"><span className="transition-transform duration-300 group-hover:scale-110">{illustrationIcons[index]}</span></div><div className="p-4"><Pill>Rangkap {index + 1}</Pill><p className="mt-3 text-sm leading-6 text-white/75">{explanation}</p></div></article>)}
+        </div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<Sparkles className="h-5 w-5" />} eyebrow="Idea Utama" title="Tema" color="#F472B6" />
+        <div className="rounded-2xl border border-pink-300/20 bg-pink-300/[0.08] p-5 sm:p-6"><Pill color="#F472B6">Tema Utama</Pill><h3 className="mt-4 font-display text-lg font-bold leading-7 text-white">{note.theme.title}</h3><p className="mt-3 text-sm leading-6 text-white/65">{note.theme.example}</p><div className="mt-3"><Pill color="#F472B6">{note.theme.reference}</Pill></div></div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<ListChecks className="h-5 w-5" />} eyebrow="Kupas Karya" title="Persoalan" color="#60A5FA" />
+        <div className="grid gap-3 sm:grid-cols-2">{note.issues.map((item, index) => <article key={item.title} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]"><div className="mb-3 flex items-start gap-3"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-xs font-black text-sky-300">{index + 1}</span><h3 className="text-sm font-bold leading-6 text-white">{item.title}</h3></div><p className="text-xs leading-5 text-white/60">{item.example}</p><div className="mt-3"><Pill color="#60A5FA">{item.reference}</Pill></div></article>)}</div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<Music2 className="h-5 w-5" />} eyebrow="Dengar Irama" title="Unsur Bunyi" color="#22D3EE" />
+        <div className="grid gap-3 sm:grid-cols-2">{note.sound.map((item) => <article key={item.title} className="rounded-2xl border border-cyan-300/10 bg-cyan-300/[0.05] p-5"><Pill color="#22D3EE">{item.title}</Pill><p className="mt-3 text-sm leading-6 text-white/60">{item.detail}</p><p className="mt-2 text-sm font-semibold italic leading-6 text-white/80">"{item.example}"</p><p className="mt-2 text-[10px] font-bold text-cyan-200/55">{item.reference}</p></article>)}</div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<Music2 className="h-5 w-5" />} eyebrow="Suasana Karya" title="Nada" color="#FB7185" />
+        <div className="rounded-2xl border border-rose-300/20 bg-rose-300/[0.07] p-5"><Pill color="#FB7185">{note.tone.title}</Pill><p className="mt-4 text-sm font-semibold leading-6 text-white/75">{note.tone.explanation}</p></div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<Palette className="h-5 w-5" />} eyebrow="Bahasa Berirama" title="Gaya Bahasa" color="#FBBF24" />
+        <div className="grid gap-3 sm:grid-cols-2">{note.language.map((item) => <article key={item.title} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]"><h3 className="mb-3 font-bold text-white">{item.title}</h3><div className="space-y-2">{item.examples.map((example) => <p key={example} className="rounded-xl bg-amber-300/[0.07] px-3 py-2.5 text-xs italic leading-5 text-amber-100/80">"{example}"</p>)}</div></article>)}</div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<Heart className="h-5 w-5" />} eyebrow="Bina Peribadi" title="Nilai Murni & Pengajaran" color="#FB7185" />
+        <div className="grid gap-3 sm:grid-cols-2">{note.values.map((item, index) => { const color = VALUE_COLORS[index % VALUE_COLORS.length]; return <article key={item.title} className="rounded-2xl border bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]" style={{ borderColor: `${color}25` }}><div className="mb-3 flex items-center gap-2"><Heart className="h-4 w-4" style={{ color }} /><h3 className="font-bold text-white">{item.title}</h3></div><div className="space-y-3"><div><p className="text-[9px] font-black uppercase tracking-widest text-white/35">Pengajaran</p><p className="mt-1 text-sm leading-6 text-white/65">{item.lesson}</p></div><div className="rounded-xl bg-black/15 p-3"><p className="text-[9px] font-black uppercase tracking-widest text-white/35">Contoh daripada buku teks</p><p className="mt-1 text-xs leading-5 text-white/70">{item.example}</p></div></div><div className="mt-3"><Pill color={color}>{item.reference}</Pill></div></article>; })}</div>
+      </StudySection>
+
+      <StudySection>
+        <SectionTitle icon={<BookOpen className="h-5 w-5" />} eyebrow="Kamus Mini" title="Kosa Kata" color="#C084FC" />
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{note.vocabulary.map((item) => <article key={item.word} className="rounded-2xl border border-purple-300/10 bg-purple-300/[0.05] p-4 transition-all hover:-translate-y-0.5 hover:border-purple-300/20"><h3 className="font-display text-base font-bold text-purple-200">{item.word}</h3><p className="mt-2 text-xs leading-5 text-white/55">{item.meaning}</p></article>)}</div>
+      </StudySection>
     </div>
   );
 }
@@ -1512,6 +1585,7 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
         <div className="overflow-hidden">
           {work.id === "pantun-budi" ||
           work.id === "pantun-nasihat" ||
+          work.id === "pantun-kasih-sayang" ||
           work.id === "syair-nasihat-penghujung-thamarat-al-muhimmah" ||
           work.id === "dalam-persekitaran-kata-kata" ||
           work.id === "roti" ||
@@ -1547,6 +1621,8 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
                   <BMForm2BanjirContent />
                 ) : work.id === "pelanduk-mengajar-memerang" ? (
                   <BMForm2PelandukContent />
+                ) : work.id === "pantun-kasih-sayang" ? (
+                  <PantunKasihSayangContent />
                 ) : work.id === "pantun-budi" ? (
                   <PantunBudiContent />
                 ) : work.id === "pantun-nasihat" ? (

@@ -28,7 +28,7 @@ import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
-import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { normalizeChapterParam, normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
   AcademyHero,
   AcademyPageShell,
@@ -120,11 +120,12 @@ function NotesPage() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const normalizedSubject = normalizeSubjectParam(search.subject);
+  const normalizedChapter = normalizeChapterParam(search.chapter);
   const subject =
     normalizedSubject && subjects.some((s) => s.id === normalizedSubject)
       ? normalizedSubject
       : null;
-  const [chapter, setChapter] = useState<string | null>(search.chapter ?? null);
+  const [chapter, setChapter] = useState<string | null>(normalizedChapter);
   const form = normalizeFormParam(search.form) as Form;
   const hasSelectedForm = search.form != null;
   const [scrollPct, setScrollPct] = useState(0);
@@ -176,9 +177,9 @@ function NotesPage() {
   }, []);
 
   useEffect(() => {
-    setChapter(search.chapter ?? null);
+    setChapter(normalizedChapter);
     setScrollPct(0);
-  }, [subject, form, search.chapter]);
+  }, [subject, form, normalizedChapter]);
 
   const filtered = useMemo(() => {
     if (!subject || !activeChapterKey) return [];

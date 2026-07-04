@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useProgress, getRank } from "@/hooks/use-progress";
 import { CikguAIPanel } from "./CikguAIPanel";
-import robotAsset from "@/assets/academy-robot-2.png.asset.json";
+import robotImage from "@/assets/cikgu-ai-robot.png";
 
 /** Floating Cikgu AI button — shows the AcadeMY robot and opens the companion panel. */
 export function AICompanionButton() {
@@ -20,14 +20,14 @@ export function AICompanionButton() {
         }}
       >
         <img
-          src={robotAsset.url}
+          src={robotImage}
           alt="Cikgu AI"
           draggable={false}
           className="h-11 w-11 object-contain md:h-12 md:w-12"
         />
       </button>
 
-      <CikguAIPanel open={open} onOpenChange={setOpen} rankImage={robotAsset.url} rank={rank} />
+      <CikguAIPanel open={open} onOpenChange={setOpen} rankImage={robotImage} rank={rank} />
     </>
   );
 }

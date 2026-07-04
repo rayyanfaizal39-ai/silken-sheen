@@ -153,14 +153,21 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const isMarketingPage = router.state.location.pathname.startsWith("/academy/");
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <SignInModalProvider>
           <CikguProvider>
-            <ParticleBg />
-            <SoundFx />
-            <MusicPlayer />
+            {!isMarketingPage && (
+              <>
+                <ParticleBg />
+                <SoundFx />
+                <MusicPlayer />
+              </>
+            )}
             <AppShell>
               <Outlet />
             </AppShell>

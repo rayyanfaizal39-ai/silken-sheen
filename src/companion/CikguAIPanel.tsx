@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Brain,
   Globe2,
@@ -14,6 +14,9 @@ import {
   Landmark,
   FlaskConical,
   Sigma,
+  Telescope,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -26,8 +29,22 @@ import {
   DISCOVERY_TOPICS,
   DISCOVERY_CONTENT,
 } from "./cikguMockData";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { useReadAloud, type ReadAloudChunk } from "@/hooks/use-read-aloud";
 
-type View = "home" | "fact" | "challenge" | "mission" | "chat" | "discovery";
+type View = "home" | "fact" | "challenge" | "mission" | "chat" | "discovery" | "knowledge";
+
+interface KnowledgeCard {
+  id: string;
+  title: string;
+  category: string | null;
+  content: string;
+  reflection: string | null;
+  subject: string | null;
+  form: string | null;
+  chapter: string | null;
+  reading_time: number | null;
+}
 
 const DISCOVERY_ICON = {
   rocket: Rocket,
@@ -50,16 +67,69 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
   const [factIndex, setFactIndex] = useState(0);
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
   const [discoveryTopic, setDiscoveryTopic] = useState<string>("space");
+  const [voiceOn, setVoiceOn] = useState(true);
+  const readAloud = useReadAloud();
+
+  const speak = useCallback(
+    (lines: (string | null | undefined)[]) => {
+      if (!voiceOn || !readAloud.supported) return;
+      const chunks: ReadAloudChunk[] = lines
+        .filter((line): line is string => !!line)
+        .map((text, i) => ({ id: `cikgu-${i}`, text }));
+      readAloud.play(chunks, "en");
+    },
+    [voiceOn, readAloud],
+  );
+
+  const toggleVoice = () => {
+    setVoiceOn((was) => {
+      if (was) readAloud.stop();
+      return !was;
+    });
+  };
 
   const goHome = () => setView("home");
 
   const handleOpenChange = (next: boolean) => {
     onOpenChange(next);
     if (!next) {
+      readAloud.stop();
       setView("home");
       setSelectedChoice(null);
     }
   };
+
+  // Cikgu "speaks" its own dialogue as the student moves through the panel —
+  // a short acknowledgment plus the view's content, like a voice assistant.
+  // Manual browser TTS only (no paid voice API), and only ever triggered by
+  // the student's own navigation, never on a timer.
+  useEffect(() => {
+    if (!open) return;
+    if (view === "home") {
+      speak([
+        "Welcome back, Commander!",
+        "I'm Cikgu AI. I'm here to make learning more exciting.",
+        "What would you like to explore today?",
+      ]);
+    } else if (view === "fact") {
+      const fact = AMAZING_FACTS[factIndex];
+      speak(["Here's something amazing!", fact.title, fact.body]);
+    } else if (view === "challenge") {
+      speak(["On it.", CHALLENGE_QUESTION.question]);
+    } else if (view === "mission") {
+      const m = MISSION_PROGRESS;
+      speak(["Let's check your mission progress.", `${m.subject}, ${m.form}, ${m.chapter}.`]);
+    } else if (view === "chat") {
+      speak(["Sure, let's chat.", "Full conversations are coming soon — here's a preview."]);
+    } else if (view === "discovery") {
+      const content = DISCOVERY_CONTENT[discoveryTopic] ?? DISCOVERY_CONTENT.space;
+      speak(["Great choice!", content.title, content.body]);
+    }
+    // "knowledge" is intentionally not spoken here — KnowledgeView owns its
+    // own speech once the (async) card actually loads, so the student never
+    // hears a placeholder line get cut off mid-sentence by the real content.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view, factIndex, discoveryTopic, open]);
 
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
@@ -77,7 +147,7 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
         }}
       >
         <div className="flex h-full flex-col overflow-y-auto px-5 pb-8 pt-6 sm:px-6">
-          <Header rank={rank} />
+          <Header rank={rank} voiceOn={voiceOn} voiceSupported={readAloud.supported} onToggleVoice={toggleVoice} />
 
           {view === "home" && (
             <HomeView
@@ -118,16 +188,28 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
           {view === "discovery" && (
             <DiscoveryView topicId={discoveryTopic} onBack={goHome} />
           )}
+
+          {view === "knowledge" && <KnowledgeView onBack={goHome} speak={speak} />}
         </div>
       </SheetContent>
     </Sheet>
   );
 }
 
-function Header({ rank }: { rank: SpaceRank }) {
+function Header({
+  rank,
+  voiceOn,
+  voiceSupported,
+  onToggleVoice,
+}: {
+  rank: SpaceRank;
+  voiceOn: boolean;
+  voiceSupported: boolean;
+  onToggleVoice: () => void;
+}) {
   return (
-    <div className="mb-4 flex items-center justify-between">
-      <div>
+    <div className="mb-4 flex items-center justify-between gap-2">
+      <div className="min-w-0">
         <div className="flex items-center gap-2">
           <Rocket className="h-4 w-4 text-[#A78BFA]" aria-hidden />
           <span className="text-base font-bold text-white">Cikgu AI</span>
@@ -138,12 +220,31 @@ function Header({ rank }: { rank: SpaceRank }) {
         </div>
         <p className="mt-0.5 text-xs text-white/55">Personal Learning Companion</p>
       </div>
-      <span
-        className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white/80"
-        style={{ background: `${rank.color}26`, border: `1px solid ${rank.color}55` }}
-      >
-        {rank.name}
-      </span>
+      <div className="flex shrink-0 items-center gap-2">
+        {voiceSupported && (
+          <button
+            type="button"
+            onClick={onToggleVoice}
+            aria-label={voiceOn ? "Mute Cikgu AI's voice" : "Unmute Cikgu AI's voice"}
+            aria-pressed={voiceOn}
+            title={voiceOn ? "Voice on" : "Voice off"}
+            className={cn(
+              "flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border transition-colors",
+              voiceOn
+                ? "border-[#8B5CF6]/40 bg-[#8B5CF6]/15 text-[#C4B5FD]"
+                : "border-white/10 bg-white/[0.04] text-white/40",
+            )}
+          >
+            {voiceOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+          </button>
+        )}
+        <span
+          className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white/80"
+          style={{ background: `${rank.color}26`, border: `1px solid ${rank.color}55` }}
+        >
+          {rank.name}
+        </span>
+      </div>
     </div>
   );
 }
@@ -202,6 +303,7 @@ function HomeView({
           onClick={() => onSelect("mission")}
         />
         <ActionCard icon={MessageCircle} label="Ask Me Anything" onClick={() => onSelect("chat")} />
+        <ActionCard icon={Telescope} label="Mission Intel" onClick={() => onSelect("knowledge")} />
       </div>
 
       <p className="mb-2.5 mt-6 text-xs font-semibold uppercase tracking-wider text-white/45">
@@ -447,6 +549,129 @@ function DiscoveryView({ topicId, onBack }: { topicId: string; onBack: () => voi
         <p className="text-sm font-bold text-white">{content.title}</p>
         <p className="mt-2 text-xs leading-relaxed text-white/65">{content.body}</p>
       </div>
+    </div>
+  );
+}
+
+function KnowledgeView({
+  onBack,
+  speak,
+}: {
+  onBack: () => void;
+  speak: (lines: (string | null | undefined)[]) => void;
+}) {
+  const [card, setCard] = useState<KnowledgeCard | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [empty, setEmpty] = useState(false);
+
+  const fetchCard = useCallback(async () => {
+    if (!isSupabaseConfigured) {
+      setEmpty(true);
+      speak(["Mission intel isn't ready yet. Check back after your next mission."]);
+      return;
+    }
+    setLoading(true);
+    setEmpty(false);
+    try {
+      const { data, error } = await supabase
+        .from("knowledge_engine")
+        .select("id, title, category, content, reflection, subject, form, chapter, reading_time")
+        .eq("published", true);
+
+      if (error || !data || data.length === 0) {
+        setCard(null);
+        setEmpty(true);
+        speak(["Mission intel isn't ready yet. Check back after your next mission."]);
+      } else {
+        const pick = data[Math.floor(Math.random() * data.length)] as KnowledgeCard;
+        setCard(pick);
+        speak(["Here's your mission intel.", pick.title, pick.content]);
+      }
+    } catch {
+      setCard(null);
+      setEmpty(true);
+      speak(["Mission intel isn't ready yet. Check back after your next mission."]);
+    } finally {
+      setLoading(false);
+    }
+  }, [speak]);
+
+  useEffect(() => {
+    fetchCard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div className="flex flex-1 flex-col">
+      <BackButton onBack={onBack} />
+
+      {loading && (
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 py-12">
+          <span className="relative flex h-8 w-8">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B5CF6] opacity-50" />
+            <span className="relative inline-flex h-8 w-8 rounded-full bg-[#8B5CF6]/30" />
+          </span>
+          <p className="text-sm text-white/60">Cikgu AI is thinking…</p>
+        </div>
+      )}
+
+      {!loading && empty && (
+        <div className="flex flex-1 flex-col items-center justify-center py-12 text-center">
+          <Telescope className="mb-3 h-8 w-8 text-white/20" aria-hidden />
+          <p className="text-sm font-semibold text-white/60">Mission Intel coming soon.</p>
+          <p className="mt-1 text-xs text-white/35">Check back after your next mission.</p>
+        </div>
+      )}
+
+      {!loading && card && (
+        <>
+          <div className="glass-strong rounded-2xl border border-white/10 p-5">
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              {card.subject && (
+                <span className="rounded-full bg-[#8B5CF6]/20 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#C4B5FD]">
+                  {card.subject}
+                </span>
+              )}
+              {card.form && (
+                <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/60">
+                  {card.form}
+                </span>
+              )}
+              {card.category && (
+                <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/60">
+                  {card.category}
+                </span>
+              )}
+              {card.reading_time && (
+                <span className="ml-auto text-[10px] text-white/40">{card.reading_time} min read</span>
+              )}
+            </div>
+
+            <p className="text-sm font-bold text-white">{card.title}</p>
+            {card.chapter && (
+              <p className="mt-0.5 text-xs text-white/45">{card.chapter}</p>
+            )}
+            <p className="mt-3 text-xs leading-relaxed text-white/70">{card.content}</p>
+
+            {card.reflection && (
+              <div className="mt-4 rounded-xl border border-[#8B5CF6]/25 bg-[#8B5CF6]/10 px-4 py-3">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-[#C4B5FD]">
+                  Reflect
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-white/65">{card.reflection}</p>
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={fetchCard}
+            className="mt-4 flex items-center justify-center gap-2 rounded-2xl border border-[#8B5CF6]/40 bg-[#8B5CF6]/15 px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#8B5CF6]/25 active:scale-[0.98]"
+          >
+            <Sparkles className="h-4 w-4" aria-hidden />
+            Next Discovery
+          </button>
+        </>
+      )}
     </div>
   );
 }

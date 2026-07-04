@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Landing } from "@/components/Landing";
-import heroAsset from "@/assets/hero-astronaut.webp.asset.json";
+import heroAsset from "@/assets/hero-astronaut-mars.png";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/landing")({
     ],
     links: [
       { rel: "canonical", href: "https://www.myacademy.my/landing" },
-      { rel: "preload", as: "image", href: heroAsset.url, fetchpriority: "high" } as unknown as { rel: string; as: string; href: string },
+      { rel: "preload", as: "image", href: heroAsset, fetchpriority: "high" } as unknown as { rel: string; as: string; href: string },
     ],
   }),
   component: LandingRoute,
