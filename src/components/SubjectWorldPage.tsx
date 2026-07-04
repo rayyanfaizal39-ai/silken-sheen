@@ -264,6 +264,26 @@ const GEOGRAPHY_F1_BACKGROUNDS: Record<string, string> = (() => {
   return map;
 })();
 
+// ─── Geography Form 2 chapter card backgrounds ───────────────────────────────
+// Drop cropped chapter images into src/assets/geography/form2/ named
+// "ch{N}-anything.ext" (see the README in that folder) — picked up
+// automatically, no further code changes needed.
+const geographyF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/geography/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+
+const GEOGRAPHY_F2_BACKGROUNDS: Record<string, string> = (() => {
+  const map: Record<string, string> = {};
+  for (const [path, mod] of Object.entries(geographyF2BgModules)) {
+    const filename = path.split("/").pop() ?? "";
+    const match = filename.match(/^ch(\d{1,2})-/i);
+    if (!match) continue;
+    map[`Chapter ${match[1]}`] = mod.default;
+  }
+  return map;
+})();
+
 // ─── Science chapter card backgrounds ─────────────────────────────────────────
 // Drop chapter images into src/assets/science/form{1,2,3}/ named
 // "ch{N}-anything.ext" — picked up automatically, no further code changes
@@ -630,6 +650,7 @@ function LocationCard({
     form === "Form 3" ? SCIENCE_F3_BACKGROUNDS : undefined;
   const bgImage =
     subjectId === "geography" && form === "Form 1" ? GEOGRAPHY_F1_BACKGROUNDS[chapter.key] :
+    subjectId === "geography" && form === "Form 2" ? GEOGRAPHY_F2_BACKGROUNDS[chapter.key] :
     subjectId === "science" ? scienceBackgrounds?.[chapter.key] : undefined;
   const bgImagePosition =
     subjectId === "science" && form === "Form 1" ? SCIENCE_F1_BG_POSITION[chapter.key] ?? "center" :

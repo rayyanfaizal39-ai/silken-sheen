@@ -7,6 +7,8 @@ import type {
   UserRow,
   PaymentRow,
   QuizRow,
+  KnowledgeEngineRow,
+  KnowledgeEngineFilters,
 } from '../lib/admin.types';
 
 const EMPTY_STATS: AdminStats = {
@@ -116,3 +118,38 @@ export const getQuizActivity = createServerFn({ method: 'POST' })
     if (error) throw error;
     return (data ?? []) as unknown as QuizRow[];
   });
+
+// Read-only for now — no insert/update/delete server functions yet.
+// See CikguIntelPage (routes/admin.cikgu-intel.tsx) for the consuming UI.
+export const getKnowledgeEngineEntries = createServerFn({ method: 'POST' })
+  .inputValidator((f: KnowledgeEngineFilters) => f)
+  .handler(async ({ data: f }): Promise<KnowledgeEngineRow[]> => {
+    const supabase = getSupabaseServerClient();
+    if (!supabase) return [];
+    let q = supabase
+      .from('knowledge_engine')
+      .select('id, title, category, content, reflection, created_at')
+      .order('created_at', { ascending: false })
+      .limit(f.limit ?? 200);
+
+    if (f.category) q = q.eq('category', f.category);
+    if (f.search) q = q.or(`title.ilike.%${f.search}%,content.ilike.%${f.search}%`);
+
+    const { data, error } = await q;
+    if (error) throw error;
+    return (data ?? []) as KnowledgeEngineRow[];
+  });
+
+// Distinct category list for the filter dropdown — queried separately so the
+// dropdown's options don't shrink to whatever the current filter/search
+// happens to match.
+export const getKnowledgeEngineCategories = createServerFn({ method: 'GET' }).handler(
+  async (): Promise<string[]> => {
+    const supabase = getSupabaseServerClient();
+    if (!supabase) return [];
+    const { data, error } = await supabase.from('knowledge_engine').select('category');
+    if (error) throw error;
+    const unique = new Set((data ?? []).map((r) => r.category).filter(Boolean));
+    return Array.from(unique).sort();
+  },
+);

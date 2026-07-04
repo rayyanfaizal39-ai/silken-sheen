@@ -1,7 +1,15 @@
 import { useState, type ReactNode } from 'react';
+import { Link, useRouterState } from '@tanstack/react-router';
 import type { AdminProfile } from '../../lib/admin.types';
 
-const NAV = [
+interface NavItem {
+  icon: string;
+  label: string;
+  active?: boolean;
+  to?: '/admin/cikgu-intel';
+}
+
+const NAV: { group: string; items: NavItem[] }[] = [
   {
     group: 'Overview',
     items: [
@@ -16,6 +24,7 @@ const NAV = [
     items: [
       { icon: '📚', label: 'Subjects' },
       { icon: '🧩', label: 'Chapters' },
+      { icon: '🧠', label: 'Cikgu AI Intel', to: '/admin/cikgu-intel' },
     ],
   },
   {
@@ -32,6 +41,7 @@ export function AdminShell({
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
     <div className="admin-root">
@@ -48,12 +58,23 @@ export function AdminShell({
           {NAV.map((g) => (
             <div className="admin-navgroup" key={g.group}>
               <div className="label">{g.group}</div>
-              {g.items.map((it) => (
-                <a className={`admin-nav ${it.active ? 'active' : ''}`} key={it.label}>
-                  <span className="ico">{it.icon}</span>
-                  {it.label}
-                </a>
-              ))}
+              {g.items.map((it) =>
+                it.to ? (
+                  <Link
+                    className={`admin-nav ${pathname === it.to ? 'active' : ''}`}
+                    key={it.label}
+                    to={it.to}
+                  >
+                    <span className="ico">{it.icon}</span>
+                    {it.label}
+                  </Link>
+                ) : (
+                  <a className={`admin-nav ${it.active ? 'active' : ''}`} key={it.label}>
+                    <span className="ico">{it.icon}</span>
+                    {it.label}
+                  </a>
+                ),
+              )}
             </div>
           ))}
 

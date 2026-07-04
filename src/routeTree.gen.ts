@@ -30,6 +30,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
 
 const UpgradeRoute = UpgradeRouteImport.update({
@@ -137,6 +138,11 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminCikguIntelRoute = AdminCikguIntelRouteImport.update({
+  id: '/cikgu-intel',
+  path: '/cikgu-intel',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
   id: '/academy/landingpage3',
   path: '/academy/landingpage3',
@@ -164,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
+  '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -187,6 +194,7 @@ export interface FileRoutesByTo {
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
+  '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -212,6 +220,7 @@ export interface FileRoutesById {
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
+  '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -238,6 +247,7 @@ export interface FileRouteTypes {
     | '/tracker'
     | '/upgrade'
     | '/academy/landingpage3'
+    | '/admin/cikgu-intel'
     | '/auth/callback'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -261,6 +271,7 @@ export interface FileRouteTypes {
     | '/tracker'
     | '/upgrade'
     | '/academy/landingpage3'
+    | '/admin/cikgu-intel'
     | '/auth/callback'
     | '/admin'
   id:
@@ -285,6 +296,7 @@ export interface FileRouteTypes {
     | '/tracker'
     | '/upgrade'
     | '/academy/landingpage3'
+    | '/admin/cikgu-intel'
     | '/auth/callback'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -462,6 +474,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/cikgu-intel': {
+      id: '/admin/cikgu-intel'
+      path: '/cikgu-intel'
+      fullPath: '/admin/cikgu-intel'
+      preLoaderRoute: typeof AdminCikguIntelRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/academy/landingpage3': {
       id: '/academy/landingpage3'
       path: '/academy/landingpage3'
@@ -473,10 +492,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminCikguIntelRoute: typeof AdminCikguIntelRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminCikguIntelRoute: AdminCikguIntelRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 

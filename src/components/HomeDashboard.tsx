@@ -44,7 +44,7 @@ import {
 import { CompanionImage, getCompanionDisplayName, useCompanionMessage } from "@/companion";
 import { analyzeProgress } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
-import { SubjectWorldArt } from "@/components/SubjectWorldArt";
+import { PlanetCardArt, subjectPlanetStyles, type SubjectPlanetId } from "@/components/AcademyPage";
 import { getSubjectFormStats } from "@/content/registry";
 import { NextMissionCard } from "@/components/NextMissionCard";
 
@@ -237,17 +237,15 @@ function WorldPortalCard({
         style={{ boxShadow: `inset 0 0 70px ${world.color}1a, 0 12px 50px ${world.color}40` }}
       />
 
-      {/* World illustration strip — the subject's real shape, not an emoji */}
-      <div
-        className="relative h-20 w-full shrink-0 overflow-hidden"
-        style={{ background: `linear-gradient(180deg, ${world.color}1c, transparent)` }}
-      >
-        <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-          <SubjectWorldArt subjectId={world.id} color={world.color} width={240} height={80} />
-        </div>
+      {/* World illustration — same full planet-card art as the Notes subject
+          cards (AcademyPage's PlanetCardArt), so Home and Notes read as one
+          consistent visual system instead of Home showing a thinner, flatter
+          version of the same subject identity. */}
+      <div className="relative w-full shrink-0 p-3 pb-0">
+        <PlanetCardArt subjectId={world.id as SubjectPlanetId} planet={subjectPlanetStyles[world.id as SubjectPlanetId]} />
         {isCurrentWorld && (
           <span
-            className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-widest"
+            className="absolute left-5 top-5 rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-widest"
             style={{ background: `${world.color}30`, color: world.color }}
           >
             ● Current Mission
