@@ -27,8 +27,8 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { AstronautScene } from "@/components/AstronautScene";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { useEffect } from "react";
 import heroAstronaut from "@/assets/home-astronaut-rocket.png.asset.json";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
@@ -395,10 +395,53 @@ function HeroWorldStrip() {
   );
 }
 
-// ─── Hero astronaut on rocket (cinematic floating subject) ───────────────────
+// ─── Hero astronaut on rocket (cinematic floating + parallax tilt) ──────────
 
 function HeroAstronautRocket() {
   const prefersReduced = useReducedMotion();
+
+  // Pointer position, normalised -1..1 across the viewport
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+
+  // Smooth springs for a weighty, dampened feel
+  const sx = useSpring(px, { stiffness: 80, damping: 18, mass: 0.7 });
+  const sy = useSpring(py, { stiffness: 80, damping: 18, mass: 0.7 });
+
+  // Depth planes — background streaks move less than the subject
+  const bgX = useTransform(sx, [-1, 1], [-16, 16]);
+  const bgY = useTransform(sy, [-1, 1], [-10, 10]);
+  const glowX = useTransform(sx, [-1, 1], [-30, 30]);
+  const glowY = useTransform(sy, [-1, 1], [-18, 18]);
+
+  // Subject plane — larger parallax + 3D tilt (inverted so it feels
+  // like the light/camera moves with the pointer)
+  const subjX = useTransform(sx, [-1, 1], [-46, 46]);
+  const subjY = useTransform(sy, [-1, 1], [-28, 28]);
+  const rotY = useTransform(sx, [-1, 1], [14, -14]); // deg
+  const rotX = useTransform(sy, [-1, 1], [-10, 10]); // deg
+
+  useEffect(() => {
+    if (prefersReduced) return;
+
+    const handle = (clientX: number, clientY: number) => {
+      const w = window.innerWidth || 1;
+      const h = window.innerHeight || 1;
+      px.set((clientX / w) * 2 - 1);
+      py.set((clientY / h) * 2 - 1);
+    };
+    const onPointer = (e: PointerEvent) => handle(e.clientX, e.clientY);
+    const onTouch = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (t) handle(t.clientX, t.clientY);
+    };
+    window.addEventListener("pointermove", onPointer, { passive: true });
+    window.addEventListener("touchmove", onTouch, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onPointer);
+      window.removeEventListener("touchmove", onTouch);
+    };
+  }, [px, py, prefersReduced]);
 
   const float = prefersReduced
     ? {}
@@ -413,10 +456,14 @@ function HeroAstronautRocket() {
       {/* Desktop */}
       <div
         className="pointer-events-none absolute inset-y-0 right-[-4%] z-[6] hidden w-[68%] lg:block"
+        style={{ perspective: 1200 }}
         aria-hidden
       >
-        {/* Warp streaks behind subject */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Warp streaks behind subject — furthest plane */}
+        <motion.div
+          className="absolute inset-0 overflow-hidden"
+          style={{ x: bgX, y: bgY }}
+        >
           <motion.div
             className="absolute left-[10%] top-[38%] h-[3px] w-40 rounded-full bg-gradient-to-r from-transparent via-[#C084FC]/70 to-transparent blur-[1px]"
             animate={prefersReduced ? {} : { x: ["-40%", "160%"], opacity: [0, 1, 0] }}
@@ -432,78 +479,110 @@ function HeroAstronautRocket() {
             animate={prefersReduced ? {} : { x: ["-30%", "200%"], opacity: [0, 1, 0] }}
             transition={{ duration: 3.7, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
           />
-        </div>
+        </motion.div>
 
-        {/* Pulsing thruster glow anchor */}
+        {/* Pulsing thruster glow — mid plane */}
         <motion.div
           className="absolute bottom-[22%] right-[38%] h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(251,146,60,0.55),rgba(244,114,182,0.25)_45%,transparent_70%)] blur-2xl"
+          style={{ x: glowX, y: glowY }}
           animate={prefersReduced ? {} : { scale: [1, 1.25, 0.95, 1.15, 1], opacity: [0.6, 1, 0.7, 0.95, 0.6] }}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <motion.img
-          src={heroAstronaut.url}
-          alt=""
-          draggable={false}
-          className="absolute bottom-[6%] right-[2%] h-[92%] w-auto max-w-none select-none object-contain"
+        {/* Subject plane — parallax + 3D tilt wrapper (no float here) */}
+        <motion.div
+          className="absolute inset-0"
           style={{
-            filter:
-              "drop-shadow(0 40px 60px rgba(99,102,241,0.55)) drop-shadow(0 12px 22px rgba(244,114,182,0.35))",
-            transformOrigin: "60% 60%",
+            x: subjX,
+            y: subjY,
+            rotateX: rotX,
+            rotateY: rotY,
+            transformPerspective: 1200,
+            transformStyle: "preserve-3d",
             willChange: "transform",
           }}
-          initial={{ opacity: 0, scale: 0.92, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0, ...float }}
-          transition={{
-            opacity: { duration: 0.9, ease: "easeOut" },
-            scale: { duration: 0.9, ease: "easeOut" },
-            y: prefersReduced
-              ? { duration: 0.9, ease: "easeOut" }
-              : { duration: 9, repeat: Infinity, ease: "easeInOut" },
-            x: { duration: 11, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 10, repeat: Infinity, ease: "easeInOut" },
-          }}
-        />
+        >
+          <motion.img
+            src={heroAstronaut.url}
+            alt=""
+            draggable={false}
+            className="absolute bottom-[6%] right-[2%] h-[92%] w-auto max-w-none select-none object-contain"
+            style={{
+              filter:
+                "drop-shadow(0 40px 60px rgba(99,102,241,0.55)) drop-shadow(0 12px 22px rgba(244,114,182,0.35))",
+              transformOrigin: "60% 60%",
+              willChange: "transform",
+            }}
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0, ...float }}
+            transition={{
+              opacity: { duration: 0.9, ease: "easeOut" },
+              scale: { duration: 0.9, ease: "easeOut" },
+              y: prefersReduced
+                ? { duration: 0.9, ease: "easeOut" }
+                : { duration: 9, repeat: Infinity, ease: "easeInOut" },
+              x: { duration: 11, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+            }}
+          />
+        </motion.div>
       </div>
 
       {/* Mobile */}
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[6] flex justify-center lg:hidden"
+        style={{ perspective: 900 }}
         aria-hidden
       >
         <motion.div
           className="absolute bottom-6 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(251,146,60,0.5),rgba(244,114,182,0.2)_50%,transparent_75%)] blur-2xl"
+          style={{ x: glowX, y: glowY }}
           animate={prefersReduced ? {} : { scale: [1, 1.2, 1], opacity: [0.55, 0.9, 0.55] }}
           transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.img
-          src={heroAstronaut.url}
-          alt=""
-          draggable={false}
-          className="relative h-[400px] w-auto max-w-none select-none object-contain"
+        <motion.div
+          className="relative"
           style={{
-            filter: "drop-shadow(0 30px 50px rgba(99,102,241,0.55))",
+            x: subjX,
+            y: subjY,
+            rotateX: rotX,
+            rotateY: rotY,
+            transformPerspective: 900,
+            transformStyle: "preserve-3d",
             willChange: "transform",
           }}
-          initial={{ opacity: 0, y: 40, scale: 0.94 }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            ...(prefersReduced ? { y: 0 } : { y: [0, -14, 0, -8, 0], rotate: [-1, 1.5, -0.5, 1, -1] }),
-          }}
-          transition={{
-            opacity: { duration: 0.9, ease: "easeOut" },
-            scale: { duration: 0.9, ease: "easeOut" },
-            y: prefersReduced
-              ? { duration: 0.9 }
-              : { duration: 8, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 9, repeat: Infinity, ease: "easeInOut" },
-          }}
-        />
+        >
+          <motion.img
+            src={heroAstronaut.url}
+            alt=""
+            draggable={false}
+            className="relative h-[400px] w-auto max-w-none select-none object-contain"
+            style={{
+              filter: "drop-shadow(0 30px 50px rgba(99,102,241,0.55))",
+              willChange: "transform",
+            }}
+            initial={{ opacity: 0, y: 40, scale: 0.94 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              ...(prefersReduced ? { y: 0 } : { y: [0, -14, 0, -8, 0], rotate: [-1, 1.5, -0.5, 1, -1] }),
+            }}
+            transition={{
+              opacity: { duration: 0.9, ease: "easeOut" },
+              scale: { duration: 0.9, ease: "easeOut" },
+              y: prefersReduced
+                ? { duration: 0.9 }
+                : { duration: 8, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 9, repeat: Infinity, ease: "easeInOut" },
+            }}
+          />
+        </motion.div>
       </div>
     </>
   );
 }
+
+
 
 // ─── Rank progression card (desktop hero overlay) ────────────────────────────
 
