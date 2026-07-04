@@ -27,8 +27,9 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { AstronautScene } from "@/components/AstronautScene";
-import heroGraduates from "@/assets/hero-graduates.png.asset.json";
+import heroAstronaut from "@/assets/home-astronaut-rocket.png.asset.json";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import {
@@ -394,7 +395,118 @@ function HeroWorldStrip() {
   );
 }
 
+// ─── Hero astronaut on rocket (cinematic floating subject) ───────────────────
+
+function HeroAstronautRocket() {
+  const prefersReduced = useReducedMotion();
+
+  const float = prefersReduced
+    ? {}
+    : {
+        y: [0, -18, 4, -12, 0],
+        x: [0, 8, -6, 4, 0],
+        rotate: [-1.5, 1.5, -1, 2, -1.5],
+      };
+
+  return (
+    <>
+      {/* Desktop */}
+      <div
+        className="pointer-events-none absolute inset-y-0 right-[-4%] z-[6] hidden w-[68%] lg:block"
+        aria-hidden
+      >
+        {/* Warp streaks behind subject */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute left-[10%] top-[38%] h-[3px] w-40 rounded-full bg-gradient-to-r from-transparent via-[#C084FC]/70 to-transparent blur-[1px]"
+            animate={prefersReduced ? {} : { x: ["-40%", "160%"], opacity: [0, 1, 0] }}
+            transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute left-[6%] top-[60%] h-[2px] w-28 rounded-full bg-gradient-to-r from-transparent via-[#818CF8]/60 to-transparent"
+            animate={prefersReduced ? {} : { x: ["-30%", "180%"], opacity: [0, 1, 0] }}
+            transition={{ duration: 4.1, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          />
+          <motion.div
+            className="absolute left-[18%] top-[72%] h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#F472B6]/50 to-transparent"
+            animate={prefersReduced ? {} : { x: ["-30%", "200%"], opacity: [0, 1, 0] }}
+            transition={{ duration: 3.7, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
+          />
+        </div>
+
+        {/* Pulsing thruster glow anchor */}
+        <motion.div
+          className="absolute bottom-[22%] right-[38%] h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(251,146,60,0.55),rgba(244,114,182,0.25)_45%,transparent_70%)] blur-2xl"
+          animate={prefersReduced ? {} : { scale: [1, 1.25, 0.95, 1.15, 1], opacity: [0.6, 1, 0.7, 0.95, 0.6] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <motion.img
+          src={heroAstronaut.url}
+          alt=""
+          draggable={false}
+          className="absolute bottom-[6%] right-[2%] h-[92%] w-auto max-w-none select-none object-contain"
+          style={{
+            filter:
+              "drop-shadow(0 40px 60px rgba(99,102,241,0.55)) drop-shadow(0 12px 22px rgba(244,114,182,0.35))",
+            transformOrigin: "60% 60%",
+            willChange: "transform",
+          }}
+          initial={{ opacity: 0, scale: 0.92, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0, ...float }}
+          transition={{
+            opacity: { duration: 0.9, ease: "easeOut" },
+            scale: { duration: 0.9, ease: "easeOut" },
+            y: prefersReduced
+              ? { duration: 0.9, ease: "easeOut" }
+              : { duration: 9, repeat: Infinity, ease: "easeInOut" },
+            x: { duration: 11, repeat: Infinity, ease: "easeInOut" },
+            rotate: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+          }}
+        />
+      </div>
+
+      {/* Mobile */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[6] flex justify-center lg:hidden"
+        aria-hidden
+      >
+        <motion.div
+          className="absolute bottom-6 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(251,146,60,0.5),rgba(244,114,182,0.2)_50%,transparent_75%)] blur-2xl"
+          animate={prefersReduced ? {} : { scale: [1, 1.2, 1], opacity: [0.55, 0.9, 0.55] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img
+          src={heroAstronaut.url}
+          alt=""
+          draggable={false}
+          className="relative h-[400px] w-auto max-w-none select-none object-contain"
+          style={{
+            filter: "drop-shadow(0 30px 50px rgba(99,102,241,0.55))",
+            willChange: "transform",
+          }}
+          initial={{ opacity: 0, y: 40, scale: 0.94 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            ...(prefersReduced ? { y: 0 } : { y: [0, -14, 0, -8, 0], rotate: [-1, 1.5, -0.5, 1, -1] }),
+          }}
+          transition={{
+            opacity: { duration: 0.9, ease: "easeOut" },
+            scale: { duration: 0.9, ease: "easeOut" },
+            y: prefersReduced
+              ? { duration: 0.9 }
+              : { duration: 8, repeat: Infinity, ease: "easeInOut" },
+            rotate: { duration: 9, repeat: Infinity, ease: "easeInOut" },
+          }}
+        />
+      </div>
+    </>
+  );
+}
+
 // ─── Rank progression card (desktop hero overlay) ────────────────────────────
+
 
 function HeroRankCard() {
   const { progress } = useProgress();
@@ -509,35 +621,9 @@ export function HomeDashboard() {
           HERO — Universe gateway
           ════════════════════════════════════════════════════════════ */}
       <div className="hero-section relative isolate -mx-4 -mt-6 overflow-hidden px-4 pb-20 pt-10 sm:-mx-6 sm:px-6 md:pb-24 md:pt-14 lg:-mx-8 lg:min-h-[820px] lg:px-8">
-        {/* Hero image — KSSM graduates */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-[5] hidden w-[62%] lg:block" aria-hidden>
-          <img
-            src={heroGraduates.url}
-            alt=""
-            className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-bottom"
-            style={{
-              filter: "drop-shadow(0 30px 60px rgba(99,102,241,0.35))",
-              WebkitMaskImage:
-                "radial-gradient(ellipse 90% 90% at 70% 60%, #000 55%, transparent 88%)",
-              maskImage:
-                "radial-gradient(ellipse 90% 90% at 70% 60%, #000 55%, transparent 88%)",
-            }}
-          />
-        </div>
-        {/* Mobile hero image */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] flex justify-center lg:hidden" aria-hidden>
-          <img
-            src={heroGraduates.url}
-            alt=""
-            className="h-[380px] w-auto max-w-none object-contain object-bottom opacity-90"
-            style={{
-              WebkitMaskImage:
-                "radial-gradient(ellipse 80% 85% at 50% 65%, #000 55%, transparent 88%)",
-              maskImage:
-                "radial-gradient(ellipse 80% 85% at 50% 65%, #000 55%, transparent 88%)",
-            }}
-          />
-        </div>
+        {/* Hero image — cinematic astronaut on rocket */}
+        <HeroAstronautRocket />
+
 
         {/* Nebula orbs */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
