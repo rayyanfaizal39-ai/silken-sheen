@@ -123,7 +123,7 @@ const BAHAGIAN_C_STEPS = [
   {
     title: "Cara menulis kesimpulan",
     detail:
-      "Ringkasan/rumusan Bahagian C tidak memerlukan kesimpulan berasingan — isi terakhir yang ditulis hendaklah melengkapkan keseluruhan idea petikan secara semula jadi.",
+      "Rumusan Bahagian C tidak memerlukan kesimpulan berasingan — isi terakhir yang ditulis hendaklah melengkapkan keseluruhan idea petikan secara semula jadi.",
   },
 ];
 
@@ -429,7 +429,7 @@ export function BMForm2Kertas1Page({ onBack }: { onBack: () => void }) {
               <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
                 <p className="text-sm leading-relaxed text-white/75">
                   Bahagian C ialah{" "}
-                  <span className="font-bold text-white">tugasan ringkasan atau rumusan</span>{" "}
+                  <span className="font-bold text-white">tugasan rumusan</span>{" "}
                   mengikut format dan sukatan Tingkatan 2 yang digunakan. Murid perlu mengenal
                   pasti isi penting daripada petikan dan menulis semula dalam bentuk ringkas
                   menggunakan ayat gramatis.

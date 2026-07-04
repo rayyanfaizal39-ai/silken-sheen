@@ -911,26 +911,26 @@ const NOVEL_TOPICS: BMTopic[] = [
 const RINGKASAN_TOPICS: BMTopic[] = [
   {
     id: "rangka-rumusan-markah-tinggi",
-    label: "Rangka Rumusan Markah Tinggi",
+    label: "Rangka Ringkasan Markah Tinggi",
     topicType: "rangka-ringkasan",
     badge: "Premium",
     description:
-      "Formula langkah demi langkah untuk menulis rumusan markah tinggi — kata kunci, rangka isi, contoh jawapan lengkap dan senarai semakan.",
+      "Formula langkah demi langkah untuk menulis ringkasan markah tinggi — kata kunci, rangka isi, contoh jawapan lengkap dan senarai semakan.",
   },
   {
     id: "teknik-rumusan-bahagian-c",
-    label: "Teknik Menjawab Rumusan",
+    label: "Teknik Menjawab Ringkasan",
     topicType: "ringkasan-premium",
     badge: "Premium",
     description:
-      "Panduan lengkap menjawab soalan Rumusan Bahagian C — fakta penting, formula emas, penanda wacana, contoh jawapan dan cabaran interaktif.",
+      "Panduan lengkap menjawab soalan Ringkasan Bahagian C — fakta penting, formula emas, penanda wacana, contoh jawapan dan cabaran interaktif.",
   },
   {
     id: "rumusan-mastery",
-    label: "Penguasaan Rumusan",
+    label: "Penguasaan Ringkasan",
     topicType: "ringkasan",
-    badge: "Rumusan",
-    description: "Cara menulis rumusan yang tepat dan padat berdasarkan teks yang diberikan.",
+    badge: "Ringkasan",
+    description: "Cara menulis ringkasan yang tepat dan padat berdasarkan teks yang diberikan.",
     formula: [
       "Baca teks sekali lalu untuk faham idea umum",
       "Baca kali kedua — kenal pasti dan gariskan isi penting sahaja",
@@ -1415,7 +1415,7 @@ export const BM_KERTAS: BMKertas[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "📝",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Rumusan",
+    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan",
     examDetails: "Masa: 1 jam 45 minit · Soalan berstruktur · Teks + KOMSAS",
     color: "#818CF8",
     gradient: "from-indigo-500/20 to-violet-500/20",
@@ -1466,14 +1466,14 @@ export const BM_KERTAS: BMKertas[] = [
       },
       {
         id: "rumusan",
-        label: "Rumusan",
-        shortLabel: "Rumusan",
+        label: "Ringkasan",
+        shortLabel: "Ringkasan",
         icon: "📝",
         color: "#FBBF24",
         bgGradient: "from-yellow-500/15 to-amber-500/10",
         borderColor: "rgba(251,191,36,0.25)",
         description:
-          "Bahagian C: Rumusan — isi penting, penanda wacana dan teknik menulis mengikut format UASA.",
+          "Bahagian C: Ringkasan — isi penting, penanda wacana dan teknik menulis mengikut format UASA.",
         topics: RINGKASAN_TOPICS,
       },
     ],

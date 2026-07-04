@@ -369,7 +369,7 @@ function LandingView({
         {/* Identity ticker */}
         <div className="mt-5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] py-2">
           <p className="text-center text-[9px] font-bold uppercase tracking-[0.3em] text-[#F472B6]/40">
-            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RUMUSAN
+            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RINGKASAN
           </p>
         </div>
       </div>
@@ -1230,7 +1230,7 @@ function TopicCard({
       pemahaman: "Teknik",
       komsas: "KOMSAS",
       novel: "Novel",
-      ringkasan: "Rumusan",
+      ringkasan: "Ringkasan",
       "karangan-pendek": "Karangan",
       "respons-terbuka": "Karangan",
       workshop: "Bengkel",
@@ -3301,7 +3301,7 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
         <span className="text-2xl">📖</span>
         <div>
           <p className="text-[10px] font-black tracking-wide mb-0.5" style={{ color }}>
-            Formula Rumusan UASA
+            Formula Ringkasan UASA
           </p>
           <p className="text-sm text-white/70">
             Ikuti tiga langkah ini untuk mendapat markah penuh dalam soalan ringkasan.
@@ -3381,7 +3381,7 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
             <span className="font-bold text-white underline decoration-dotted">satu perenggan</span>
           </p>
         </div>
-        <p className="text-[10px] font-black tracking-wide text-[#A78BFA]">📌 Rangka Rumusan</p>
+        <p className="text-[10px] font-black tracking-wide text-[#A78BFA]">📌 Rangka Ringkasan</p>
         <div className="space-y-2">
           {[
             ["Antara", "Isi 1"],
@@ -3405,7 +3405,7 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
 
       {/* Contoh Ringkasan Lengkap */}
       <div>
-        <SectionLabel>Contoh Rumusan Lengkap</SectionLabel>
+        <SectionLabel>Contoh Ringkasan Lengkap</SectionLabel>
         <div className="space-y-4">
           <div className="flex items-center gap-3 rounded-2xl border border-[#FBBF24]/25 bg-[#FBBF24]/8 px-5 py-4">
             <span className="text-xl">📌</span>
@@ -3443,7 +3443,7 @@ function RangkaRingkasanDetail({ color }: { color: string }) {
           <div>
             <div className="mb-2 flex items-center gap-2">
               <span className="text-base">📌</span>
-              <p className="text-[10px] font-black tracking-wide text-white/40">Jawapan Rumusan</p>
+              <p className="text-[10px] font-black tracking-wide text-white/40">Jawapan Ringkasan</p>
             </div>
             <div className="rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/8 p-5">
               <p className="text-sm leading-relaxed text-white/80">
@@ -4108,7 +4108,7 @@ function RingkasanPremiumDetail({ color }: { color: string }) {
       {/* Tab navigasi */}
       <div>
         <p className="mb-3 text-[10px] font-black tracking-wide text-white/40">
-          5 Latihan Rumusan Interaktif
+          5 Latihan Ringkasan Interaktif
         </p>
         <div className="flex flex-wrap gap-2">
           {LATIHAN_RINGKASAN.map((l, i) => (
@@ -4159,7 +4159,7 @@ function RingkasanDetail({ topic, color }: { topic: BMTopic; color: string }) {
     <div className="space-y-4">
       <LearningFolder
         icon={<BookOpen className="h-4 w-4" />}
-        title="📖 Asas Rumusan"
+        title="📖 Asas Ringkasan"
         description="Pengenalan, formula dan cara menulis"
         accent={color}
         defaultOpen

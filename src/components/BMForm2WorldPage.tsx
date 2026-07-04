@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { BMForm2SistemBahasaLibrary } from "@/components/BMForm2SistemBahasaLibrary";
+import { BMForm2RumusanContent } from "@/components/BMForm2RumusanContent";
 import {
   BMForm2KomsasStructure,
   BMForm2KomsasWorkStructure,
@@ -62,10 +63,10 @@ const FORM2_PAPERS: PaperItem[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "K1",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan & Rumusan",
+    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Rumusan",
     examDetails: "Masa: 1 jam 30 minit · 60 markah · Pemahaman + KOMSAS",
     color: "#818CF8",
-    tags: ["Tatabahasa", "Pemahaman", "KOMSAS", "Novel", "Ringkasan", "Rumusan"],
+    tags: ["Tatabahasa", "Pemahaman", "KOMSAS", "Novel", "Rumusan"],
     title: "Kertas 1 Bahasa Melayu Tingkatan 2",
     subtitle: "UASA Bahasa Melayu Kertas 1 (02/1)",
     infoCards: [
@@ -90,7 +91,7 @@ const FORM2_PAPERS: PaperItem[] = [
         <FormatBlock
           title="Bahagian C - 15 Markah"
           subtitle="Pemindahan Maklumat"
-          items={["Ringkasan", "Rumusan"]}
+          items={["Rumusan"]}
           color="#FBBF24"
         />
       </div>
@@ -130,8 +131,8 @@ const FORM2_PAPERS: PaperItem[] = [
       },
       {
         id: "ringkasan-rumusan",
-        label: "Ringkasan & Rumusan",
-        shortLabel: "Ringkasan",
+        label: "Rumusan",
+        shortLabel: "Rumusan",
         icon: "RR",
         color: "#FBBF24",
         description: "Bahagian C - pemindahan maklumat, isi tersurat, kesimpulan dan bahasa.",
@@ -359,7 +360,7 @@ function LandingView({
 
         <div className="mt-5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] py-2">
           <p className="text-center text-[9px] font-bold uppercase tracking-[0.3em] text-[#F472B6]/40">
-            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RINGKASAN
+            TATABAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · RUMUSAN
           </p>
         </div>
       </div>
@@ -689,7 +690,7 @@ const LEARNING_FOLDERS: Array<{
   {
     id: "pantas",
     title: "⚡ Ulang Kaji Pantas",
-    description: "Ruang kata kunci, isi penting dan ringkasan pantas.",
+    description: "Ruang kata kunci, isi penting dan ulang kaji pantas.",
     mode: "quick",
     icon: <Zap className="h-4 w-4" />,
     accent: "#34D399",
@@ -788,7 +789,7 @@ function HubView({
         accent={hub.color}
       />
 
-      <div className="mb-6 flex items-center gap-4">
+      {!(paper.id === "k1" && hub.id === "ringkasan-rumusan") && <div className="mb-6 flex items-center gap-4">
         <div
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-black"
           style={{
@@ -803,7 +804,7 @@ function HubView({
           <h2 className="font-display text-xl font-bold text-white">{hub.label}</h2>
           <p className="text-sm text-white/40">{hub.description}</p>
         </div>
-      </div>
+      </div>}
 
       {paper.id === "k1" && hub.id === "sistem-bahasa" ? (
         <BMForm2SistemBahasaLibrary />
@@ -811,6 +812,8 @@ function HubView({
         <BMForm2KomsasStructure onSelectWork={onSelectKomsasWork} />
       ) : paper.id === "k1" && hub.id === "novel" ? (
         <BMForm2NovelStructure onSelectWork={onSelectKomsasWork} />
+      ) : paper.id === "k1" && hub.id === "ringkasan-rumusan" ? (
+        <BMForm2RumusanContent />
       ) : (
         <>
           <div className="mb-6">
