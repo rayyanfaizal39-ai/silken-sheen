@@ -304,11 +304,14 @@ const scienceF3BgModules = import.meta.glob<{ default: string }>(
   { eager: true },
 );
 
-function buildChapterBackgroundMap(modules: Record<string, { default: string }>): Record<string, string> {
+function buildChapterBackgroundMap(
+  modules: Record<string, { default: string }>,
+  pattern: RegExp = /^ch(\d{1,2})-/i,
+): Record<string, string> {
   const map: Record<string, string> = {};
   for (const [path, mod] of Object.entries(modules)) {
     const filename = path.split("/").pop() ?? "";
-    const match = filename.match(/^ch(\d{1,2})-/i);
+    const match = filename.match(pattern);
     if (!match) continue;
     map[`Chapter ${match[1]}`] = mod.default;
   }
@@ -318,6 +321,40 @@ function buildChapterBackgroundMap(modules: Record<string, { default: string }>)
 const SCIENCE_F1_BACKGROUNDS = buildChapterBackgroundMap(scienceF1BgModules);
 const SCIENCE_F2_BACKGROUNDS = buildChapterBackgroundMap(scienceF2BgModules);
 const SCIENCE_F3_BACKGROUNDS = buildChapterBackgroundMap(scienceF3BgModules);
+
+// ─── Geography Form 3 chapter card backgrounds ────────────────────────────────
+// Drop chapter images into src/assets/geography/form3/ named "ch{N}-anything.ext"
+// — picked up automatically, no further code changes needed.
+const geographyF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/geography/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const GEOGRAPHY_F3_BACKGROUNDS = buildChapterBackgroundMap(geographyF3BgModules);
+
+// ─── Mathematics chapter card backgrounds (Form 1/2/3) ───────────────────────
+// Drop chapter images into src/assets/math/form{1,2,3}/ — picked up
+// automatically, no further code changes needed. Unlike geography/science,
+// these keep their original "math_f{form}_chapter{N}[_suffix].png" filenames
+// rather than a "ch{N}-slug" prefix, so this uses its own pattern (the digit
+// capture stops at the first non-digit, so "...chapter13_fixed.png" still
+// matches "Chapter 13" fine).
+// Form 3 only has chapters 1-9 registered (math-f3-c1..c9 in registry.ts);
+// any math_f3_chapter10-13.png files exist but won't match a real chapter.
+const mathF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/math/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const mathF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/math/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const mathF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/math/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const MATH_F1_BACKGROUNDS = buildChapterBackgroundMap(mathF1BgModules, /^math_f1_chapter(\d{1,2})/i);
+const MATH_F2_BACKGROUNDS = buildChapterBackgroundMap(mathF2BgModules, /^math_f2_chapter(\d{1,2})/i);
+const MATH_F3_BACKGROUNDS = buildChapterBackgroundMap(mathF3BgModules, /^math_f3_chapter(\d{1,2})/i);
 
 // Focal point (as a CSS object-position) for each Form 1 Science chapter's
 // banner art, so the right-edge strip crop lands on the subject that best
@@ -651,6 +688,10 @@ function LocationCard({
   const bgImage =
     subjectId === "geography" && form === "Form 1" ? GEOGRAPHY_F1_BACKGROUNDS[chapter.key] :
     subjectId === "geography" && form === "Form 2" ? GEOGRAPHY_F2_BACKGROUNDS[chapter.key] :
+    subjectId === "geography" && form === "Form 3" ? GEOGRAPHY_F3_BACKGROUNDS[chapter.key] :
+    subjectId === "math" && form === "Form 1" ? MATH_F1_BACKGROUNDS[chapter.key] :
+    subjectId === "math" && form === "Form 2" ? MATH_F2_BACKGROUNDS[chapter.key] :
+    subjectId === "math" && form === "Form 3" ? MATH_F3_BACKGROUNDS[chapter.key] :
     subjectId === "science" ? scienceBackgrounds?.[chapter.key] : undefined;
   const bgImagePosition =
     subjectId === "science" && form === "Form 1" ? SCIENCE_F1_BG_POSITION[chapter.key] ?? "center" :
