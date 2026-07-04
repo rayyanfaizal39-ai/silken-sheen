@@ -20,6 +20,7 @@ import {
   Users,
   GraduationCap,
   Landmark,
+  MapPin,
   Scale,
 } from "lucide-react";
 import {
@@ -82,6 +83,12 @@ const RANGKAP_VALUES = [
   "Hormat",
 ];
 const VALUE_COLORS = ["#FB7185", "#FBBF24", "#34D399", "#60A5FA"];
+const NOVEL_ZONES: Record<string, string> = {
+  "meniti-impian": "Selangor · Kuala Lumpur · Putrajaya · Negeri Sembilan",
+  "darah-titik-di-semantan": "Johor · Sabah · Sarawak · Labuan",
+  "jejak-monpus": "Melaka · Pahang · Terengganu · Kelantan",
+  "jalan-ke-puncak": "Perlis · Kedah · Pulau Pinang · Perak",
+};
 const LANGUAGE_ICONS = ["🌿", "💬", "↔", "🎵", "🔁", "✨"];
 
 function WorkCard({
@@ -115,6 +122,12 @@ function WorkCard({
           {work.category}
         </span>
         <span className="block truncate text-sm font-semibold text-white">{work.title}</span>
+        {work.kind === "novel" && NOVEL_ZONES[work.id] && (
+          <span className="mt-2 flex items-start gap-1.5 rounded-lg border border-sky-300/15 bg-sky-300/[0.06] px-2.5 py-2 text-[10px] leading-4 text-sky-100/70">
+            <MapPin className="mt-0.5 h-3 w-3 shrink-0 text-sky-300" />
+            <span><strong className="text-sky-200">Zon:</strong> {NOVEL_ZONES[work.id]}</span>
+          </span>
+        )}
       </span>
       <ArrowRight
         className="h-3.5 w-3.5 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-60"
@@ -1479,6 +1492,12 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
             <span className="mt-1 block font-display text-base font-bold text-white sm:text-lg">
               {work.title}
             </span>
+            {work.kind === "novel" && NOVEL_ZONES[work.id] && (
+              <span className="mt-2 flex max-w-xl items-start gap-1.5 rounded-lg border border-sky-300/15 bg-sky-300/[0.06] px-2.5 py-2 text-[10px] leading-4 text-sky-100/70">
+                <MapPin className="mt-0.5 h-3 w-3 shrink-0 text-sky-300" />
+                <span><strong className="text-sky-200">Zon:</strong> {NOVEL_ZONES[work.id]}</span>
+              </span>
+            )}
           </span>
         </span>
         <ChevronDown

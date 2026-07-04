@@ -10,10 +10,15 @@ import { getBMForm2KomsasWork } from "@/data/bm-form2-komsas-structure";
 import {
   ArrowRight,
   BookOpen,
+  BookText,
   ChevronDown,
   ChevronLeft,
+  FileText,
   Lightbulb,
   MessageCircle,
+  NotebookText,
+  Search,
+  Sparkles,
   Target,
   Zap,
 } from "lucide-react";
@@ -457,6 +462,96 @@ function PaperView({
   onSelectHub: (hubId: string) => void;
   onBack: () => void;
 }) {
+  if (paper.id === "k1") {
+    const primaryHubs = paper.hubs.filter((hub) => hub.id !== "latihan-uasa");
+    const practiceHub = paper.hubs.find((hub) => hub.id === "latihan-uasa");
+    const hubMeta: Record<string, { count: string; icon: ReactNode }> = {
+      "sistem-bahasa": { count: "5 topik", icon: <BookText className="h-7 w-7" /> },
+      pemahaman: { count: "2 fokus", icon: <Search className="h-7 w-7" /> },
+      komsas: { count: "5 genre", icon: <Sparkles className="h-7 w-7" /> },
+      novel: { count: "4 novel", icon: <NotebookText className="h-7 w-7" /> },
+      "ringkasan-rumusan": { count: "4 fokus", icon: <FileText className="h-7 w-7" /> },
+    };
+
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", "Tingkatan 2", paper.label]}
+          onBack={onBack}
+          accent={paper.color}
+        />
+
+        <section className="relative mb-8 overflow-hidden rounded-[2rem] border border-indigo-300/20 bg-[#101126] px-5 py-7 sm:px-8 sm:py-9">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(129,140,248,0.24),transparent_42%),radial-gradient(circle_at_8%_100%,rgba(192,132,252,0.13),transparent_38%)]" />
+          <div className="pointer-events-none absolute -right-10 -top-12 h-48 w-48 rounded-full border border-indigo-300/10" />
+          <div className="relative max-w-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-indigo-300/20 bg-indigo-300/[0.08] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-indigo-200">
+              <BookOpen className="h-3.5 w-3.5" /> Kertas 1
+            </div>
+            <h1 className="font-display text-3xl font-black leading-tight text-white sm:text-4xl">
+              Bahasa Melayu Tingkatan 2
+            </h1>
+            <p className="mt-3 text-sm leading-7 text-white/65 sm:text-base">
+              Kertas 1 — Kuasai setiap bahagian langkah demi langkah.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["5 Bahagian", "UASA", "Nota Interaktif"].map((label, index) => (
+                <span key={label} className="inline-flex min-h-9 items-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-3 text-xs font-bold text-white/70">
+                  {index === 0 ? <BookOpen className="h-3.5 w-3.5 text-sky-300" /> : index === 1 ? <Target className="h-3.5 w-3.5 text-amber-300" /> : <Sparkles className="h-3.5 w-3.5 text-purple-300" />}
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-9">
+          <div className="mb-5 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-300">Mula di sini</p>
+              <h2 className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">Apa yang mahu dipelajari?</h2>
+              <p className="mt-1 text-sm text-white/45">Pilih satu bahagian untuk membuka nota dan aktiviti pembelajaran.</p>
+            </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+            {primaryHubs.map((hub, index) => {
+              const meta = hubMeta[hub.id];
+              const featured = index < 2;
+              return (
+                <button
+                  key={hub.id}
+                  type="button"
+                  onClick={() => onSelectHub(hub.id)}
+                  className={`group relative min-h-48 overflow-hidden rounded-[1.65rem] border p-5 text-left transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 active:translate-y-0 motion-reduce:transition-none ${featured ? "lg:col-span-3" : "lg:col-span-2"}`}
+                  style={{ borderColor: `${hub.color}38`, background: `linear-gradient(145deg, ${hub.color}1f 0%, ${hub.color}09 55%, rgba(8,12,26,.82) 100%)`, boxShadow: `0 14px 38px ${hub.color}0c` }}
+                >
+                  <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none" style={{ boxShadow: `inset 0 0 60px ${hub.color}16, 0 18px 48px ${hub.color}22` }} />
+                  <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl border transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none" style={{ color: hub.color, borderColor: `${hub.color}30`, background: `${hub.color}18` }}>{meta.icon}</span>
+                  <span className="relative mt-5 block font-display text-lg font-bold text-white">{hub.label}</span>
+                  <span className="relative mt-1.5 line-clamp-2 block text-xs leading-5 text-white/50">{hub.description}</span>
+                  <span className="relative mt-5 flex items-center justify-between">
+                    <span className="rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wide" style={{ color: hub.color, background: `${hub.color}18` }}>{meta.count}</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" style={{ color: hub.color }} />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        {practiceHub && (
+          <section className="mb-9">
+            <button type="button" onClick={() => onSelectHub(practiceHub.id)} className="group flex w-full items-center justify-between gap-4 overflow-hidden rounded-[1.5rem] border border-pink-300/20 bg-gradient-to-r from-pink-400/[0.12] via-purple-400/[0.08] to-transparent p-5 text-left transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_16px_44px_rgba(244,114,182,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-300/60 active:translate-y-0 motion-reduce:transition-none sm:p-6">
+              <span className="flex items-center gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-pink-300/[0.12] text-pink-300"><Target className="h-6 w-6" /></span><span><span className="block text-[10px] font-black uppercase tracking-[0.18em] text-pink-300">Selepas belajar</span><span className="mt-1 block font-display text-lg font-bold text-white">{practiceHub.label}</span><span className="mt-1 block text-xs text-white/45">{practiceHub.description}</span></span></span>
+              <ArrowRight className="h-5 w-5 shrink-0 text-pink-300 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" />
+            </button>
+          </section>
+        )}
+
+      </div>
+    );
+  }
+
   return (
     <div>
       <PageHeader
