@@ -399,19 +399,25 @@ function Hero() {
             ref={heroCardRef}
             className="relative aspect-[4/5] [transform-style:preserve-3d]"
           >
-            <img
+            <motion.img
               ref={heroImgRef}
               src={starCaptain.url}
-              alt="AcadeMY astronaut floating on an alien world"
-              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_60px_rgba(255,110,40,0.35)]"
+              alt="AcadeMY astronaut floating in deep space"
+              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_60px_rgba(120,80,255,0.45)]"
               draggable={false}
-              style={{
-                WebkitMaskImage:
-                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
-                maskImage:
-                  "radial-gradient(ellipse 70% 78% at 50% 48%, #000 55%, rgba(0,0,0,0.85) 70%, transparent 92%)",
+              animate={{
+                y: [0, -22, 0, 14, 0],
+                x: [0, 10, 0, -8, 0],
+                rotate: [0, 2.5, 0, -2, 0],
+              }}
+              transition={{
+                duration: 9,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "loop",
               }}
             />
+
 
 
             {/* Level badge */}
