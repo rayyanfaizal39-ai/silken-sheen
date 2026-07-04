@@ -27,8 +27,8 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { useMemo, type CSSProperties } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { AstronautScene } from "@/components/AstronautScene";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { useEffect } from "react";
 import heroAstronaut from "@/assets/home-astronaut-rocket.png.asset.json";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
