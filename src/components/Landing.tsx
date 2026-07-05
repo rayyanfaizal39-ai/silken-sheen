@@ -165,7 +165,7 @@ function LandingNav() {
     return () => io.disconnect();
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent, id: string) => {
+  const handleNavClick = (e: ReactMouseEvent, id: string) => {
     e.preventDefault();
     const scrolled = smoothScrollToId(id);
     if (scrolled) {
