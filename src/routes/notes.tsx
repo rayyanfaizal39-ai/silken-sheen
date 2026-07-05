@@ -588,6 +588,7 @@ function NotesPage() {
               id="notes"
               data={activeChapter.englishData}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              form={form}
             />
           ) : (
             activeChapter?.notes && (
