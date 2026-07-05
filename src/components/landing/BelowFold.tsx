@@ -244,7 +244,7 @@ function LearningTools() {
   }, [hovered]);
 
   return (
-    <section className="relative py-24 md:py-36 overflow-hidden">
+    <section id="subjects" className="relative scroll-mt-24 py-24 md:py-36 overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0"
@@ -334,7 +334,8 @@ const CIKGU = [
 
 function CikguSection() {
   return (
-    <section className="relative py-20 md:py-28">
+    <section id="cikgu-ai" className="relative scroll-mt-24 py-20 md:py-28">
+
       <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
         <style>{`
           @keyframes cikguOrbit {
@@ -485,7 +486,7 @@ const PARENT_FEATURES = [
 
 function ParentsSection() {
   return (
-    <section id="parents" className="relative py-20 md:py-28">
+    <section id="parents" className="relative scroll-mt-24 py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div
@@ -575,7 +576,7 @@ const PLANS = [
 function PricingSection() {
   const { open } = useSignInModal();
   return (
-    <section id="pricing" className="relative py-20 md:py-28">
+    <section id="pricing" className="relative scroll-mt-24 py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
         <SectionLabel>Choose Your Mission Plan</SectionLabel>
         <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
