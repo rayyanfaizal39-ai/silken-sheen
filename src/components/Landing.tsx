@@ -244,36 +244,44 @@ function Hero() {
         });
       }
 
-      // Mouse parallax
-      const onMove = (e: MouseEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
+      // Mouse + touch parallax (window-level, works even outside the card)
+      let targetX = 0;
+      let targetY = 0;
+      const updateFromPoint = (clientX: number, clientY: number) => {
+        targetX = (clientX / window.innerWidth) - 0.5;
+        targetY = (clientY / window.innerHeight) - 0.5;
         gsap.to(img, {
-          x: x * 24,
-          rotateY: x * 6,
-          rotateX: -y * 6,
-          duration: 0.8,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-      };
-      const onLeave = () => {
-        gsap.to(img, {
-          x: 0,
-          rotateX: 0,
-          rotateY: 0,
-          duration: 1.2,
+          x: targetX * 60,
+          y: `+=${0}`,
+          rotateY: targetX * 18,
+          rotateX: -targetY * 14,
+          z: 40,
+          duration: 1.1,
           ease: "power3.out",
           overwrite: "auto",
         });
+        if (glow) {
+          gsap.to(glow, {
+            x: targetX * -30,
+            y: targetY * -20,
+            duration: 1.4,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+        }
       };
-      card.addEventListener("mousemove", onMove);
-      card.addEventListener("mouseleave", onLeave);
+      const onMove = (e: MouseEvent) => updateFromPoint(e.clientX, e.clientY);
+      const onTouch = (e: TouchEvent) => {
+        const t = e.touches[0];
+        if (t) updateFromPoint(t.clientX, t.clientY);
+      };
+      window.addEventListener("mousemove", onMove, { passive: true });
+      window.addEventListener("touchmove", onTouch, { passive: true });
       return () => {
-        card.removeEventListener("mousemove", onMove);
-        card.removeEventListener("mouseleave", onLeave);
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("touchmove", onTouch);
       };
+
     }, card);
 
     return () => ctx.revert();
