@@ -359,7 +359,7 @@ function Hero() {
           </h1>
           <p className="mt-6 max-w-xl text-base md:text-lg text-white/65 leading-relaxed">
             Notes, flashcards, quizzes and mind maps in BM &amp; DLP — powered
-            by your own intelligent companion. Level up like a game, master KSSM like a pro.
+            by your own Cikgu AI. Level up like a game, master KSSM like a pro.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <PrimaryCta onClick={() => open()}>
