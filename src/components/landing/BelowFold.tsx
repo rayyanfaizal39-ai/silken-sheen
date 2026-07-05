@@ -576,7 +576,7 @@ const PLANS = [
 function PricingSection() {
   const { open } = useSignInModal();
   return (
-    <section id="pricing" className="relative py-20 md:py-28">
+    <section id="pricing" className="relative scroll-mt-24 py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
         <SectionLabel>Choose Your Mission Plan</SectionLabel>
         <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
