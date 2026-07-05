@@ -6119,6 +6119,11 @@ function QuizzesPage() {
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
+  // Mirrors `score` exactly (same reset points, same accumulation timing) so
+  // quiz_history.xp_earned reflects the *real* per-question difficulty-based
+  // XP award (10/20/30) instead of a flat approximation — feeds the Galaxy
+  // Hall of Fame's real Monthly XP ranking.
+  const [xpEarned, setXpEarned] = useState(0);
   const [done, setDone] = useState(false);
   const [streak, setStreak] = useState(0);
   const [combo, setCombo] = useState(0);
@@ -6315,6 +6320,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
+    setXpEarned(0);
     setStreak(0);
     setCombo(0);
     setComboShow(null);
@@ -6334,6 +6340,7 @@ function QuizzesPage() {
       const newCombo = combo + 1;
       setCombo(newCombo);
       addXp(gain, current.subjectId);
+      setXpEarned((x) => x + gain);
       sfx.success();
       if (newCombo >= 2) {
         setComboShow(newCombo);
@@ -6361,12 +6368,16 @@ function QuizzesPage() {
     if (idx + 1 >= total) {
       setDone(true);
       recordQuiz();
-      const finalCorrect = score + (selected === current?.answerIndex ? 1 : 0);
+      const lastWasCorrect = selected === current?.answerIndex;
+      const finalCorrect = score + (lastWasCorrect ? 1 : 0);
+      const lastGain = current?.difficulty === "Hard" ? 30 : current?.difficulty === "Medium" ? 20 : 10;
+      const finalXp = xpEarned + (lastWasCorrect ? lastGain : 0);
       recordQuizResult({
         subjectId: subject ?? current?.subjectId ?? "unknown",
         chapterKey: chapter ?? "all",
         correct: finalCorrect,
         total,
+        xpEarned: finalXp,
       });
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       if (
@@ -6387,6 +6398,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
+    setXpEarned(0);
     setDone(false);
     setStreak(0);
     setCombo(0);
@@ -6410,6 +6422,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
+    setXpEarned(0);
     setDone(false);
     setStreak(0);
     setCombo(0);
@@ -6428,6 +6441,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
+    setXpEarned(0);
     setDone(false);
     setStreak(0);
     setCombo(0);
@@ -6457,6 +6471,7 @@ function QuizzesPage() {
       const newCombo = combo + 1;
       setCombo(newCombo);
       addXp(gain, currentMathQuestion.subjectId);
+      setXpEarned((x) => x + gain);
       sfx.success();
 
       if (newCombo >= 2) {
@@ -6488,12 +6503,17 @@ function QuizzesPage() {
       setDone(true);
       setMathObjectivePhase("results");
       recordQuiz();
-      recordQuizResult({
-        subjectId: subject ?? "math",
-        chapterKey: chapter ?? "all",
-        correct: score + (selected === currentMathQuestion?.answerIndex ? 1 : 0),
-        total,
-      });
+      {
+        const lastWasCorrect = selected === currentMathQuestion?.answerIndex;
+        const lastGain = currentMathQuestion?.difficulty === "Hard" ? 30 : currentMathQuestion?.difficulty === "Medium" ? 20 : 10;
+        recordQuizResult({
+          subjectId: subject ?? "math",
+          chapterKey: chapter ?? "all",
+          correct: score + (lastWasCorrect ? 1 : 0),
+          total,
+          xpEarned: xpEarned + (lastWasCorrect ? lastGain : 0),
+        });
+      }
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       return;
     }
@@ -6508,6 +6528,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
+    setXpEarned(0);
     setDone(false);
     setStreak(0);
     setCombo(0);
@@ -6537,6 +6558,7 @@ function QuizzesPage() {
       const newCombo = combo + 1;
       setCombo(newCombo);
       addXp(gain, currentEnglishQuestion.subjectId);
+      setXpEarned((x) => x + gain);
       sfx.success();
 
       if (newCombo >= 2) {
@@ -6568,12 +6590,17 @@ function QuizzesPage() {
       setDone(true);
       setEnglishPhase("results");
       recordQuiz();
-      recordQuizResult({
-        subjectId: "english",
-        chapterKey: selectedEnglishSet?.title ?? "English Form 1",
-        correct: score + (selected === currentEnglishQuestion?.answerIndex ? 1 : 0),
-        total,
-      });
+      {
+        const lastWasCorrect = selected === currentEnglishQuestion?.answerIndex;
+        const lastGain = currentEnglishQuestion?.difficulty === "Hard" ? 30 : currentEnglishQuestion?.difficulty === "Medium" ? 20 : 10;
+        recordQuizResult({
+          subjectId: "english",
+          chapterKey: selectedEnglishSet?.title ?? "English Form 1",
+          correct: score + (lastWasCorrect ? 1 : 0),
+          total,
+          xpEarned: xpEarned + (lastWasCorrect ? lastGain : 0),
+        });
+      }
       if (selectedEnglishSet) markChapter("english", selectedEnglishSet.title, "quiz");
       return;
     }

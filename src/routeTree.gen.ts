@@ -30,6 +30,9 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
 
@@ -138,6 +141,21 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContentLibraryRoute = AdminContentLibraryRouteImport.update({
+  id: '/content-library',
+  path: '/content-library',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminCikguIntelRoute = AdminCikguIntelRouteImport.update({
   id: '/cikgu-intel',
   path: '/cikgu-intel',
@@ -171,6 +189,9 @@ export interface FileRoutesByFullPath {
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/content-library': typeof AdminContentLibraryRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -195,6 +216,9 @@ export interface FileRoutesByTo {
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/content-library': typeof AdminContentLibraryRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -221,6 +245,9 @@ export interface FileRoutesById {
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/content-library': typeof AdminContentLibraryRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -248,6 +275,9 @@ export interface FileRouteTypes {
     | '/upgrade'
     | '/academy/landingpage3'
     | '/admin/cikgu-intel'
+    | '/admin/content-library'
+    | '/admin/reports'
+    | '/admin/users'
     | '/auth/callback'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -272,6 +302,9 @@ export interface FileRouteTypes {
     | '/upgrade'
     | '/academy/landingpage3'
     | '/admin/cikgu-intel'
+    | '/admin/content-library'
+    | '/admin/reports'
+    | '/admin/users'
     | '/auth/callback'
     | '/admin'
   id:
@@ -297,6 +330,9 @@ export interface FileRouteTypes {
     | '/upgrade'
     | '/academy/landingpage3'
     | '/admin/cikgu-intel'
+    | '/admin/content-library'
+    | '/admin/reports'
+    | '/admin/users'
     | '/auth/callback'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -474,6 +510,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/content-library': {
+      id: '/admin/content-library'
+      path: '/content-library'
+      fullPath: '/admin/content-library'
+      preLoaderRoute: typeof AdminContentLibraryRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/cikgu-intel': {
       id: '/admin/cikgu-intel'
       path: '/cikgu-intel'
@@ -493,11 +550,17 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminCikguIntelRoute: typeof AdminCikguIntelRoute
+  AdminContentLibraryRoute: typeof AdminContentLibraryRoute
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCikguIntelRoute: AdminCikguIntelRoute,
+  AdminContentLibraryRoute: AdminContentLibraryRoute,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 

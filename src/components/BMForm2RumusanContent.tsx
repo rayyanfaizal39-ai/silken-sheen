@@ -1,6 +1,35 @@
 import { useState, type ReactNode } from "react";
-import { AlertTriangle, BookOpen, Brain, Check, CheckCircle2, ChevronDown, ClipboardCheck, Highlighter, Lightbulb, ListChecks, PenLine, Play, Ruler, Search, Sparkles, Star, Target } from "lucide-react";
-import { CorrectWrongExample, ExamSkillLanding, FinalChecklist, MissionPageShell, MissionSection, MissionTimeline, QuickScoreCard, QuizCTA, WarningCard, type MissionDefinition } from "@/components/exam-skill/MissionLearning";
+import { AlertTriangle, BookOpen, Brain, Check, CheckCircle2, ChevronDown, ChevronLeft, ClipboardCheck, Highlighter, Lightbulb, ListChecks, PenLine, Play, Ruler, Search, Sparkles, Star, Target } from "lucide-react";
+import { CorrectWrongExample, ExamSkillLanding, FinalChecklist, GoldenStandardHero, MissionPageShell, MissionSection, MissionSectionStatic, MissionTimeline, QuickScoreCard, QuizCTA, TopicToolsRow, WarningCard, type MissionDefinition } from "@/components/exam-skill/MissionLearning";
+
+// Local copy of BMForm2WorldPage's PageHeader (same markup) — kept local
+// rather than imported to avoid a circular import between the two files.
+function TopicBreadcrumb({ trail, onBack, accent }: { trail: string[]; onBack: () => void; accent: string }) {
+  return (
+    <div className="mb-6 flex items-center gap-3">
+      <button
+        onClick={onBack}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all hover:bg-white/10"
+        aria-label="Kembali"
+      >
+        <ChevronLeft className="h-4 w-4 text-white/60" />
+      </button>
+      <div className="flex min-w-0 flex-wrap items-center gap-1 text-[11px] text-white/40">
+        {trail.map((crumb, i) => (
+          <span key={i} className="flex items-center gap-1">
+            {i > 0 && <span className="text-white/20">/</span>}
+            <span
+              className={i === trail.length - 1 ? "font-bold text-white/70" : ""}
+              style={i === trail.length - 1 ? { color: accent } : {}}
+            >
+              {crumb}
+            </span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const iconMap = { info: BookOpen, formula: Target, focus: Search, content: Highlighter, structure: ListChecks, example: PenLine, mistakes: AlertTriangle, discourse: Sparkles, secrets: Lightbulb, count: Ruler, checklist: ClipboardCheck, quiz: CheckCircle2 } as const;
 
@@ -70,27 +99,36 @@ export function BMForm2RumusanContent() {
   const [checked, setChecked] = useState(() => checklist.map(() => false));
   if (activeModule === null) return <ExamSkillLanding title="Rumusan" subtitle="Bahagian C: Kuasai pendahuluan, isi tersurat, kesimpulan dan teknik menjawab UASA." missions={RUMUSAN_MISSIONS} onSelect={setActiveModule} />;
   const module = RUMUSAN_MISSIONS[activeModule];
-  return <MissionPageShell mission={module} onBack={() => setActiveModule(null)}>
+  return <div>
+    <TopicBreadcrumb trail={["Bahasa Melayu", "Tingkatan 2", "Kertas 1", "Rumusan", module.title]} onBack={() => setActiveModule(null)} accent={module.color} />
+    <TopicToolsRow accent={module.color} />
+    <MissionPageShell mission={module} onBack={() => setActiveModule(null)}>
     {activeModule === 0 && <>
-      <MissionSection title="Apa Itu Rumusan" color={module.color}><div className="grid gap-3 sm:grid-cols-3">{[["Arahan", "Gunakan ayat sendiri tanpa mengubah maksud asal petikan."], ["Panjang", "80 hingga 100 patah perkataan"], ["Struktur", "Pendahuluan + 6 isi + kesimpulan"]].map(([label, text]) => <div key={label} className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-4"><p className="text-[10px] font-black uppercase tracking-widest text-amber-300">{label}</p><p className="mt-2 text-sm leading-6 text-white/70">{text}</p></div>)}</div></MissionSection>
-      <MissionSection title="Formula Markah Penuh" color="#FBBF24"><MissionTimeline steps={flow.map(([title, detail, , icon, color]) => ({ title, detail, icon, color }))} /></MissionSection>
-      <MissionSection title="Kenal Pasti Kehendak Soalan" color="#C084FC"><p className="text-sm leading-7 text-white/65">Gunakan formula <strong className="text-white">kata kunci + tugasan</strong>. Contohnya, langkah + meningkatkan semangat patriotik.</p><div className="mt-4 flex flex-wrap gap-2">{["langkah: usaha · strategi · kaedah · ikhtiar · teknik", "punca: sebab · faktor · pemangkin · pencetus", "halangan: masalah · cabaran · kesulitan · rintangan", "kesan: natijah · impak · implikasi", "manfaat: faedah · kepentingan · kebaikan", "tanggungjawab: tugas · peranan · fungsi", "ciri-ciri: kriteria · sifat"].map(item => <span key={item} className="rounded-lg border border-purple-300/15 bg-purple-300/[0.06] px-3 py-2 text-xs leading-5 text-purple-100">{item}</span>)}</div></MissionSection>
-      <MissionSection title="Cara Mengenal Pasti Isi Tersurat" color="#34D399"><div className="grid gap-2 sm:grid-cols-2">{["Kenal pasti sekurang-kurangnya enam isi", "Gunakan kehendak soalan untuk mencari isi", "Gariskan isi dalam petikan", "Abaikan contoh dan huraian", "Elakkan isi berulang", "Pastikan jawapan tidak melebihi 100 patah perkataan"].map(item => <p key={item} className="flex min-h-11 items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 text-sm text-white/65"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />{item}</p>)}</div></MissionSection>
-      <MissionSection title="Cara Menulis Kesimpulan (Cadangan + Harapan)" color="#F472B6"><p className="rounded-xl border border-pink-300/15 bg-pink-300/[0.05] p-4 text-center text-sm font-bold leading-7 text-white/75">Kesimpulannya, [tema] [kata bantu] [cadangan] agar/supaya [harapan].</p></MissionSection>
-      <MissionSection title="Penanda Wacana" color="#22D3EE"><div className="flex flex-wrap gap-2">{["Satu daripada", "Selain itu", "Di samping itu", "Seterusnya", "Kemudian", "Akhir sekali", "Kesimpulannya"].map(item => <span key={item} className="rounded-lg border border-cyan-300/15 bg-cyan-300/[0.06] px-3 py-2 text-xs font-bold text-cyan-100">{item}</span>)}</div></MissionSection>
-      <MissionSection title="Cara Mengira Patah Perkataan" color="#60A5FA"><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{[["Kata Ganda", "murid-murid"], ["Nama Khas", "Kuala Lumpur"], ["Tarikh", "31 Ogos 1957"], ["Singkatan", "KPM"], ["Nombor", "100"]].map(([rule, example]) => <div key={rule} className="rounded-xl border border-sky-300/15 bg-sky-300/[0.05] p-3"><p className="text-[9px] font-black uppercase tracking-widest text-sky-300">{rule}</p><p className="mt-2 text-xs text-white/60">{example}</p></div>)}</div></MissionSection>
-      <MissionSection title="Checklist Sebelum Hantar" color="#34D399"><FinalChecklist items={checklist} checked={checked} onToggle={index => setChecked(current => current.map((value, i) => i === index ? !value : value))} /></MissionSection>
+      <GoldenStandardHero
+        title="Formula Markah Penuh"
+        description="Tujuh langkah ringkas untuk membina jawapan Rumusan yang tepat, tersusun dan mudah disemak."
+        tags={[{ label: "Kata kunci", color: "#FBBF24" }, { label: "Isi tersurat", color: "#34D399" }, { label: "Penanda wacana", color: "#C084FC" }, { label: "Ayat sendiri", color: "#60A5FA" }, { label: "100 patah perkataan", color: "#FB923C" }]}
+      />
+      <MissionTimeline steps={flow.map(([title, detail, , icon, color]) => ({ title, detail, icon, color }))} />
+      <MissionSectionStatic title="Apa Itu Rumusan" color={module.color}><div className="grid gap-3 sm:grid-cols-3">{[["Arahan", "Gunakan ayat sendiri tanpa mengubah maksud asal petikan."], ["Panjang", "80 hingga 100 patah perkataan"], ["Struktur", "Pendahuluan + 6 isi + kesimpulan"]].map(([label, text]) => <div key={label} className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-4"><p className="text-[10px] font-black uppercase tracking-widest text-amber-300">{label}</p><p className="mt-2 text-sm leading-6 text-white/70">{text}</p></div>)}</div></MissionSectionStatic>
+      <MissionSectionStatic title="Kenal Pasti Kehendak Soalan" color="#C084FC"><p className="text-sm leading-7 text-white/65">Gunakan formula <strong className="text-white">kata kunci + tugasan</strong>. Contohnya, langkah + meningkatkan semangat patriotik.</p><div className="mt-4 flex flex-wrap gap-2">{["langkah: usaha · strategi · kaedah · ikhtiar · teknik", "punca: sebab · faktor · pemangkin · pencetus", "halangan: masalah · cabaran · kesulitan · rintangan", "kesan: natijah · impak · implikasi", "manfaat: faedah · kepentingan · kebaikan", "tanggungjawab: tugas · peranan · fungsi", "ciri-ciri: kriteria · sifat"].map(item => <span key={item} className="rounded-lg border border-purple-300/15 bg-purple-300/[0.06] px-3 py-2 text-xs leading-5 text-purple-100">{item}</span>)}</div></MissionSectionStatic>
+      <MissionSectionStatic title="Cara Mengenal Pasti Isi Tersurat" color="#34D399"><div className="grid gap-2 sm:grid-cols-2">{["Kenal pasti sekurang-kurangnya enam isi", "Gunakan kehendak soalan untuk mencari isi", "Gariskan isi dalam petikan", "Abaikan contoh dan huraian", "Elakkan isi berulang", "Pastikan jawapan tidak melebihi 100 patah perkataan"].map(item => <p key={item} className="flex min-h-11 items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 text-sm text-white/65"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />{item}</p>)}</div></MissionSectionStatic>
+      <MissionSectionStatic title="Cara Menulis Kesimpulan (Cadangan + Harapan)" color="#F472B6"><p className="rounded-xl border border-pink-300/15 bg-pink-300/[0.05] p-4 text-center text-sm font-bold leading-7 text-white/75">Kesimpulannya, [tema] [kata bantu] [cadangan] agar/supaya [harapan].</p></MissionSectionStatic>
+      <MissionSectionStatic title="Penanda Wacana" color="#22D3EE"><div className="flex flex-wrap gap-2">{["Satu daripada", "Selain itu", "Di samping itu", "Seterusnya", "Kemudian", "Akhir sekali", "Kesimpulannya"].map(item => <span key={item} className="rounded-lg border border-cyan-300/15 bg-cyan-300/[0.06] px-3 py-2 text-xs font-bold text-cyan-100">{item}</span>)}</div></MissionSectionStatic>
+      <MissionSectionStatic title="Cara Mengira Patah Perkataan" color="#60A5FA"><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{[["Kata Ganda", "murid-murid"], ["Nama Khas", "Kuala Lumpur"], ["Tarikh", "31 Ogos 1957"], ["Singkatan", "KPM"], ["Nombor", "100"]].map(([rule, example]) => <div key={rule} className="rounded-xl border border-sky-300/15 bg-sky-300/[0.05] p-3"><p className="text-[9px] font-black uppercase tracking-widest text-sky-300">{rule}</p><p className="mt-2 text-xs text-white/60">{example}</p></div>)}</div></MissionSectionStatic>
+      <MissionSectionStatic title="Checklist Sebelum Hantar" color="#34D399"><FinalChecklist items={checklist} checked={checked} onToggle={index => setChecked(current => current.map((value, i) => i === index ? !value : value))} /></MissionSectionStatic>
     </>}
     {activeModule === 1 && <>
-      <MissionSection title="Langkah 1 · Kenal Pasti Kehendak Soalan" color={module.color}><p className="text-sm leading-7 text-white/65">Cari kata kunci dan tugasan. Gunakan sinonim seperti langkah, usaha, kaedah atau strategi untuk mengesan isi yang sepadan.</p></MissionSection>
-      <MissionSection title="Langkah 2 · Tulis Pendahuluan" color={module.color}><div className="rounded-xl border border-sky-300/15 bg-sky-300/[0.05] p-4 text-center text-sm font-bold text-white/75">Petikan membincangkan __________.</div><p className="mt-3 text-sm text-white/60">Contoh: Petikan membincangkan langkah-langkah untuk meningkatkan semangat patriotik.</p></MissionSection>
-      <MissionSection title="Langkah 3 · Kenal Pasti 6 Isi Tersurat" color="#34D399"><div className="grid gap-2 sm:grid-cols-2">{["Cari isi berdasarkan kehendak soalan", "Abaikan contoh", "Abaikan huraian", "Abaikan isi berulang", "Tandakan S1 hingga S6", "Semak jumlah perkataan"].map(item => <p key={item} className="flex min-h-11 items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 text-sm text-white/65"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />{item}</p>)}</div></MissionSection>
-      <MissionSection title="Langkah 4 · Tulis Kesimpulan" color="#F472B6"><p className="rounded-xl border border-pink-300/15 bg-pink-300/[0.05] p-4 text-center text-sm font-bold leading-7 text-white/75">Kesimpulannya, [pihak] hendaklah [tindakan] agar/supaya [harapan].</p></MissionSection>
-      <MissionSection title="Langkah 5 · Semak Jawapan" color="#34D399"><FinalChecklist items={["6 isi tersurat", "Pendahuluan", "Kesimpulan", "Bahasa gramatis", "80–100 patah perkataan"]} checked={checked.slice(0, 5)} onToggle={index => setChecked(current => current.map((value, i) => i === index ? !value : value))} /></MissionSection>
+      <MissionSectionStatic title="Langkah 1 · Kenal Pasti Kehendak Soalan" color={module.color}><p className="text-sm leading-7 text-white/65">Cari kata kunci dan tugasan. Gunakan sinonim seperti langkah, usaha, kaedah atau strategi untuk mengesan isi yang sepadan.</p></MissionSectionStatic>
+      <MissionSectionStatic title="Langkah 2 · Tulis Pendahuluan" color={module.color}><div className="rounded-xl border border-sky-300/15 bg-sky-300/[0.05] p-4 text-center text-sm font-bold text-white/75">Petikan membincangkan __________.</div><p className="mt-3 text-sm text-white/60">Contoh: Petikan membincangkan langkah-langkah untuk meningkatkan semangat patriotik.</p></MissionSectionStatic>
+      <MissionSectionStatic title="Langkah 3 · Kenal Pasti 6 Isi Tersurat" color="#34D399"><div className="grid gap-2 sm:grid-cols-2">{["Cari isi berdasarkan kehendak soalan", "Abaikan contoh", "Abaikan huraian", "Abaikan isi berulang", "Tandakan S1 hingga S6", "Semak jumlah perkataan"].map(item => <p key={item} className="flex min-h-11 items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 text-sm text-white/65"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />{item}</p>)}</div></MissionSectionStatic>
+      <MissionSectionStatic title="Langkah 4 · Tulis Kesimpulan" color="#F472B6"><p className="rounded-xl border border-pink-300/15 bg-pink-300/[0.05] p-4 text-center text-sm font-bold leading-7 text-white/75">Kesimpulannya, [pihak] hendaklah [tindakan] agar/supaya [harapan].</p></MissionSectionStatic>
+      <MissionSectionStatic title="Langkah 5 · Semak Jawapan" color="#34D399"><FinalChecklist items={["6 isi tersurat", "Pendahuluan", "Kesimpulan", "Bahasa gramatis", "80–100 patah perkataan"]} checked={checked.slice(0, 5)} onToggle={index => setChecked(current => current.map((value, i) => i === index ? !value : value))} /></MissionSectionStatic>
       <WarningCard items={mistakes.map(item => item[0])} />
     </>}
     {activeModule === 2 && <><div className="space-y-4">{workbookPractices.map((practice, index) => <PracticeCard key={practice.title} practice={practice} index={index} />)}</div><QuizCTA label="Mulakan Kuiz Rumusan" /></>}
-  </MissionPageShell>;
+    </MissionPageShell>
+  </div>;
 }
 
 function BMForm2RumusanMissionContent() {

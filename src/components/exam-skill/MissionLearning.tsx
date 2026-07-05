@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown, Play, XCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ChevronDown, Play, Star, Trophy, XCircle, Zap } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
 export interface MissionDefinition {
@@ -29,6 +29,32 @@ export function MissionPageShell({ mission, onBack, children }: { mission: Missi
 export function MissionSection({ title, color, children }: { title: string; color: string; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return <section className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]"><button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex min-h-16 w-full items-center justify-between gap-3 px-5 py-4 text-left hover:bg-white/[0.035] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/30"><span className="font-display text-base font-bold text-white">{title}</span><ChevronDown className="h-4 w-4 transition-transform duration-300 motion-reduce:transition-none" style={{ color, transform: open ? "rotate(180deg)" : undefined }} /></button><div className="grid transition-[grid-template-rows,opacity] duration-300 motion-reduce:transition-none" style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}><div className="overflow-hidden"><div className="border-t border-white/[0.06] p-5">{children}</div></div></div></section>;
+}
+
+// Always-open variant of MissionSection — same header look, no collapse.
+// Used for "topic"-style pages that read as one continuous scroll (matching
+// BMWorldPage's per-topic detail pages) rather than an accordion of modules.
+export function MissionSectionStatic({ title, color, children }: { title: string; color: string; children: ReactNode }) {
+  return <section className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]"><div className="flex min-h-16 w-full items-center gap-3 px-5 py-4"><span className="font-display text-base font-bold text-white">{title}</span></div><div className="border-t border-white/[0.06] p-5">{children}</div></section>;
+}
+
+// Eyebrow + trophy-badge hero card for a mission's headline "formula" —
+// matches the Golden Standard presentation used by Form 1's bespoke topic
+// pages (e.g. Rangka Ringkasan), generalised so any subject/form can reuse
+// it with its own real title/description/tags instead of duplicating markup.
+export function GoldenStandardHero({ eyebrow = "Golden Standard", title, description, tags }: { eyebrow?: string; title: string; description: string; tags: Array<{ label: string; color?: string }> }) {
+  return <section className="relative overflow-hidden rounded-[1.75rem] border border-amber-300/20 bg-[#15130d] p-5 sm:p-7"><div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(251,191,36,0.16),transparent_45%),radial-gradient(circle_at_8%_100%,rgba(129,140,248,0.1),transparent_42%)]" /><div className="relative"><div className="flex items-start gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-300/[0.1] text-amber-300"><Trophy className="h-6 w-6" /></span><div><p className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-300">{eyebrow}</p><h2 className="mt-1 font-display text-2xl font-black text-white">{title}</h2><p className="mt-2 max-w-xl text-sm leading-6 text-white/60">{description}</p></div></div><div className="mt-5 flex flex-wrap gap-2">{tags.map(tag => <span key={tag.label} className="inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 text-[10px] font-black" style={{ color: tag.color ?? "#FBBF24", borderColor: `${tag.color ?? "#FBBF24"}35`, background: `${tag.color ?? "#FBBF24"}12` }}>{tag.label}</span>)}</div></div></section>;
+}
+
+// Decorative Nota/Kuiz/Kad Imbas tool row — matches Form 1's TopicView study
+// tools row exactly (inert buttons, no wiring there either).
+export function TopicToolsRow({ accent }: { accent: string }) {
+  const tools: Array<{ icon: LucideIcon; label: string; color: string }> = [
+    { icon: BookOpen, label: "Nota", color: accent },
+    { icon: Zap, label: "Kuiz", color: "#FBBF24" },
+    { icon: Star, label: "Kad Imbas", color: "#34D399" },
+  ];
+  return <div className="mb-6 flex flex-wrap gap-2">{tools.map(tool => { const Icon = tool.icon; return <button key={tool.label} type="button" className="flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-xs font-bold text-white/50 transition-all hover:bg-white/[0.07]"><span style={{ color: tool.color }}><Icon className="h-3.5 w-3.5" /></span>{tool.label}</button>; })}</div>;
 }
 
 export function MissionTimeline({ steps }: { steps: Array<{ title: string; detail: string; icon: LucideIcon; color: string }> }) {

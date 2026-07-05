@@ -503,8 +503,8 @@ function englishFlashcardsFor(chapterKey: string) {
   return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey);
 }
 
-function bmFlashcardsFor(chapterKey: string) {
-  return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey);
+function bmFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
+  return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey && f.form === form);
 }
 function englishQuizzesFor(chapterKey: string) {
   return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey);
@@ -2201,6 +2201,76 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Tingkatkan Karangan",
     title: "Kemahiran Tingkatkan Karangan",
     flashcards: bmFlashcardsFor("Tingkatkan Karangan"),
+  },
+
+  // Bahasa Melayu Form 2 — same structure as Form 1 (flashcards-only skill
+  // decks), scaffolding only: every deck's data file
+  // (src/data/bm-flashcards-*-f2.ts) is intentionally empty pending real
+  // Form 2 KSSM content — never fabricated. Chapters render, show an empty
+  // deck, and are ready for content to be dropped in later.
+  {
+    id: "bm-f2-karangan-pendek",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Pendek",
+    title: "Karangan Pendek",
+    flashcards: bmFlashcardsFor("Karangan Pendek", "Form 2"),
+  },
+  {
+    id: "bm-f2-karangan-panjang",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Panjang",
+    title: "Karangan Panjang",
+    flashcards: bmFlashcardsFor("Karangan Panjang", "Form 2"),
+  },
+  {
+    id: "bm-f2-penanda-wacana",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Penanda Wacana",
+    title: "Penanda Wacana",
+    flashcards: bmFlashcardsFor("Penanda Wacana", "Form 2"),
+  },
+  {
+    id: "bm-f2-peribahasa",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Peribahasa",
+    title: "Peribahasa Wajib Hafal",
+    flashcards: bmFlashcardsFor("Peribahasa", "Form 2"),
+  },
+  {
+    id: "bm-f2-komsas",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "KOMSAS",
+    title: "KOMSAS",
+    flashcards: bmFlashcardsFor("KOMSAS", "Form 2"),
+  },
+  {
+    id: "bm-f2-kosa-kata",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kosa Kata Menarik",
+    title: "Kosa Kata Menarik",
+    flashcards: bmFlashcardsFor("Kosa Kata Menarik", "Form 2"),
+  },
+  {
+    id: "bm-f2-frasa-menarik",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Frasa Menarik",
+    title: "Frasa Menarik",
+    flashcards: bmFlashcardsFor("Frasa Menarik", "Form 2"),
+  },
+  {
+    id: "bm-f2-tingkatkan-karangan",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Tingkatkan Karangan",
+    title: "Kemahiran Tingkatkan Karangan",
+    flashcards: bmFlashcardsFor("Tingkatkan Karangan", "Form 2"),
   },
 
   // Science Form 2 — Chapter 1 (Biodiversiti / Biodiversity), fully populated

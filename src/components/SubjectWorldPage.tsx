@@ -356,6 +356,30 @@ const MATH_F1_BACKGROUNDS = buildChapterBackgroundMap(mathF1BgModules, /^math_f1
 const MATH_F2_BACKGROUNDS = buildChapterBackgroundMap(mathF2BgModules, /^math_f2_chapter(\d{1,2})/i);
 const MATH_F3_BACKGROUNDS = buildChapterBackgroundMap(mathF3BgModules, /^math_f3_chapter(\d{1,2})/i);
 
+// ─── Sejarah "Time Expedition" chapter card backgrounds (Form 1/2/3) ─────────
+// Cinematic, warm-lit era artwork (portrait crop, one hero subject per
+// chapter) — same rendering treatment as Geography/Science/Math (fixed-size
+// image strip + left-to-right gradient into the card), just applied inside
+// SejarahTimelineMap's compact era-cards instead of ChapterCard, since
+// Sejarah uses its own timeline layout (unchanged) rather than the vertical
+// path map. Drop files into src/assets/sejarah/form{1,2,3}/ named
+// "sejarah_f{form}_chapter{N}.png" — picked up automatically.
+const sejarahF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/sejarah/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const sejarahF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/sejarah/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const sejarahF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/sejarah/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const SEJARAH_F1_BACKGROUNDS = buildChapterBackgroundMap(sejarahF1BgModules, /^sejarah_f1_chapter(\d{1,2})/i);
+const SEJARAH_F2_BACKGROUNDS = buildChapterBackgroundMap(sejarahF2BgModules, /^sejarah_f2_chapter(\d{1,2})/i);
+const SEJARAH_F3_BACKGROUNDS = buildChapterBackgroundMap(sejarahF3BgModules, /^sejarah_f3_chapter(\d{1,2})/i);
+
 // Focal point (as a CSS object-position) for each Form 1 Science chapter's
 // banner art, so the right-edge strip crop lands on the subject that best
 // represents the chapter instead of an arbitrary center slice.
@@ -897,6 +921,15 @@ function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scie
   const NODE_W   = 164;
   const totalW   = Math.max(chapters.length * NODE_W, 640);
 
+  // Cinematic era artwork for the right ~40% of each card — same fixed-strip
+  // + left-to-right gradient treatment as Geography/Science/Math's
+  // ChapterCard, just scaled down for this compact timeline card.
+  const eraBackgrounds =
+    form === "Form 1" ? SEJARAH_F1_BACKGROUNDS :
+    form === "Form 2" ? SEJARAH_F2_BACKGROUNDS :
+    form === "Form 3" ? SEJARAH_F3_BACKGROUNDS : undefined;
+  const ERA_IMAGE_STRIP_W = Math.round(NODE_W * 0.4);
+
   return (
     <div className="-mx-2 overflow-x-auto pb-6">
       <div className="relative inline-flex flex-col" style={{ width: totalW, minWidth: "100%", paddingTop: 8 }}>
@@ -957,6 +990,7 @@ function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scie
           {chapters.map((c, i) => {
             const pct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
             const canOpen = canOpenChapter(c, subjectId, form, scienceLang, resourceType);
+            const bgImage = eraBackgrounds?.[c.key];
             return (
               <div key={`card-${c.key}`} className="animate-slide-up px-1.5 pt-3"
                 style={{ width: NODE_W, animationDelay: `${i * 50}ms` }}>
@@ -965,24 +999,47 @@ function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scie
                   onClick={() => canOpen && onSelect(c.key)}
                   disabled={!canOpen}
                   className={[
-                    "w-full rounded-2xl border p-2.5 text-center transition-all duration-300",
+                    "relative w-full overflow-hidden rounded-2xl border p-2.5 text-center transition-all duration-300",
                     canOpen ? "cursor-pointer hover:border-white/[0.14]" : "opacity-38 cursor-not-allowed",
                   ].join(" ")}
                   style={{ background: `linear-gradient(180deg, ${config.from}0d, rgba(0,0,0,0.5))`, border: "1px solid rgba(255,255,255,0.06)" }}
                   onMouseEnter={(e) => { if (canOpen) (e.currentTarget as HTMLElement).style.borderColor = `${config.color}35`; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
                 >
-                  {LOCATIONS[subjectId]?.[c.key] && canOpen && (
-                    <p className="mb-0.5 text-[7.5px] font-black uppercase tracking-widest"
-                      style={{ color: config.color, opacity: 0.55 }}>
-                      {LOCATIONS[subjectId][c.key]}
-                    </p>
+                  {bgImage && (
+                    <div
+                      className="absolute right-0 top-0 h-full overflow-hidden"
+                      style={{ width: ERA_IMAGE_STRIP_W, borderRadius: "inherit" }}
+                    >
+                      <img
+                        src={bgImage}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-full w-full object-cover"
+                        style={{ opacity: 0.65 }}
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(to right, rgba(5,8,22,0.85) 0%, rgba(5,8,22,0.35) 45%, rgba(5,8,22,0.05) 100%)",
+                        }}
+                      />
+                    </div>
                   )}
-                  <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
-                  <p className="mt-1 text-[9px] font-semibold"
-                    style={{ color: pct >= 100 ? config.color : pct > 0 ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
-                    {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : canOpen ? "Not started" : "Available Soon"}
-                  </p>
+                  <div className="relative z-10">
+                    {LOCATIONS[subjectId]?.[c.key] && canOpen && (
+                      <p className="mb-0.5 text-[7.5px] font-black uppercase tracking-widest"
+                        style={{ color: config.color, opacity: 0.55 }}>
+                        {LOCATIONS[subjectId][c.key]}
+                      </p>
+                    )}
+                    <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
+                    <p className="mt-1 text-[9px] font-semibold"
+                      style={{ color: pct >= 100 ? config.color : pct > 0 ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
+                      {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : canOpen ? "Not started" : "Available Soon"}
+                    </p>
+                  </div>
                 </button>
               </div>
             );

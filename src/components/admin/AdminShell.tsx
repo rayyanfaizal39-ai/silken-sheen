@@ -6,7 +6,7 @@ interface NavItem {
   icon: string;
   label: string;
   active?: boolean;
-  to?: '/admin/cikgu-intel';
+  to?: '/admin/cikgu-intel' | '/admin/content-library' | '/admin/users' | '/admin/reports';
 }
 
 const NAV: { group: string; items: NavItem[] }[] = [
@@ -14,9 +14,10 @@ const NAV: { group: string; items: NavItem[] }[] = [
     group: 'Overview',
     items: [
       { icon: '▣', label: 'Dashboard', active: true },
-      { icon: '👥', label: 'Users' },
+      { icon: '👥', label: 'Users', to: '/admin/users' },
       { icon: '💳', label: 'Payments' },
       { icon: '📝', label: 'Quiz activity' },
+      { icon: '📊', label: 'Reports', to: '/admin/reports' },
     ],
   },
   {
@@ -25,6 +26,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
       { icon: '📚', label: 'Subjects' },
       { icon: '🧩', label: 'Chapters' },
       { icon: '🧠', label: 'Cikgu AI Intel', to: '/admin/cikgu-intel' },
+      { icon: '🗂', label: 'Content Library', to: '/admin/content-library' },
     ],
   },
   {
