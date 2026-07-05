@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { AlertTriangle, BookOpen, Brain, Check, CheckCircle2, ChevronDown, ChevronLeft, ClipboardCheck, Highlighter, Lightbulb, ListChecks, PenLine, Play, Ruler, Search, Sparkles, Star, Target } from "lucide-react";
-import { CorrectWrongExample, ExamSkillLanding, FinalChecklist, GoldenStandardHero, MissionPageShell, MissionSection, MissionSectionStatic, MissionTimeline, QuickScoreCard, QuizCTA, TopicToolsRow, WarningCard, type MissionDefinition } from "@/components/exam-skill/MissionLearning";
+import { CollapsibleFolder, CorrectWrongExample, ExamSkillLanding, FinalChecklist, GoldenStandardHero, MissionPageShell, MissionSection, MissionSectionStatic, MissionTimeline, PracticeTabSwitcher, QuickScoreCard, QuizCTA, TopicToolsRow, WarningCard, type MissionDefinition } from "@/components/exam-skill/MissionLearning";
 
 // Local copy of BMForm2WorldPage's PageHeader (same markup) — kept local
 // rather than imported to avoid a circular import between the two files.
@@ -119,14 +119,28 @@ export function BMForm2RumusanContent() {
       <MissionSectionStatic title="Checklist Sebelum Hantar" color="#34D399"><FinalChecklist items={checklist} checked={checked} onToggle={index => setChecked(current => current.map((value, i) => i === index ? !value : value))} /></MissionSectionStatic>
     </>}
     {activeModule === 1 && <>
-      <MissionSectionStatic title="Langkah 1 · Kenal Pasti Kehendak Soalan" color={module.color}><p className="text-sm leading-7 text-white/65">Cari kata kunci dan tugasan. Gunakan sinonim seperti langkah, usaha, kaedah atau strategi untuk mengesan isi yang sepadan.</p></MissionSectionStatic>
-      <MissionSectionStatic title="Langkah 2 · Tulis Pendahuluan" color={module.color}><div className="rounded-xl border border-sky-300/15 bg-sky-300/[0.05] p-4 text-center text-sm font-bold text-white/75">Petikan membincangkan __________.</div><p className="mt-3 text-sm text-white/60">Contoh: Petikan membincangkan langkah-langkah untuk meningkatkan semangat patriotik.</p></MissionSectionStatic>
-      <MissionSectionStatic title="Langkah 3 · Kenal Pasti 6 Isi Tersurat" color="#34D399"><div className="grid gap-2 sm:grid-cols-2">{["Cari isi berdasarkan kehendak soalan", "Abaikan contoh", "Abaikan huraian", "Abaikan isi berulang", "Tandakan S1 hingga S6", "Semak jumlah perkataan"].map(item => <p key={item} className="flex min-h-11 items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 text-sm text-white/65"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />{item}</p>)}</div></MissionSectionStatic>
-      <MissionSectionStatic title="Langkah 4 · Tulis Kesimpulan" color="#F472B6"><p className="rounded-xl border border-pink-300/15 bg-pink-300/[0.05] p-4 text-center text-sm font-bold leading-7 text-white/75">Kesimpulannya, [pihak] hendaklah [tindakan] agar/supaya [harapan].</p></MissionSectionStatic>
-      <MissionSectionStatic title="Langkah 5 · Semak Jawapan" color="#34D399"><FinalChecklist items={["6 isi tersurat", "Pendahuluan", "Kesimpulan", "Bahasa gramatis", "80–100 patah perkataan"]} checked={checked.slice(0, 5)} onToggle={index => setChecked(current => current.map((value, i) => i === index ? !value : value))} /></MissionSectionStatic>
-      <WarningCard items={mistakes.map(item => item[0])} />
+      <CollapsibleFolder icon={<BookOpen className="h-4 w-4" />} title="📖 Asas Rumusan" description={module.description} accent={module.color} defaultOpen>
+        <CollapsibleFolder icon={<Target className="h-4 w-4" />} title="Langkah 1 · Kenal Pasti Kehendak Soalan" accent={module.color}><p className="text-sm leading-7 text-white/65">Cari kata kunci dan tugasan. Gunakan sinonim seperti langkah, usaha, kaedah atau strategi untuk mengesan isi yang sepadan.</p></CollapsibleFolder>
+        <CollapsibleFolder icon={<PenLine className="h-4 w-4" />} title="Langkah 2 · Tulis Pendahuluan" accent={module.color}><div className="rounded-xl border border-sky-300/15 bg-sky-300/[0.05] p-4 text-center text-sm font-bold text-white/75">Petikan membincangkan __________.</div><p className="mt-3 text-sm text-white/60">Contoh: Petikan membincangkan langkah-langkah untuk meningkatkan semangat patriotik.</p></CollapsibleFolder>
+        <CollapsibleFolder icon={<Highlighter className="h-4 w-4" />} title="Langkah 3 · Kenal Pasti 6 Isi Tersurat" accent="#34D399"><div className="grid gap-2 sm:grid-cols-2">{["Cari isi berdasarkan kehendak soalan", "Abaikan contoh", "Abaikan huraian", "Abaikan isi berulang", "Tandakan S1 hingga S6", "Semak jumlah perkataan"].map(item => <p key={item} className="flex min-h-11 items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 text-sm text-white/65"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />{item}</p>)}</div></CollapsibleFolder>
+        <CollapsibleFolder icon={<Lightbulb className="h-4 w-4" />} title="Langkah 4 · Tulis Kesimpulan" accent="#F472B6"><p className="rounded-xl border border-pink-300/15 bg-pink-300/[0.05] p-4 text-center text-sm font-bold leading-7 text-white/75">Kesimpulannya, [pihak] hendaklah [tindakan] agar/supaya [harapan].</p></CollapsibleFolder>
+        <CollapsibleFolder icon={<ClipboardCheck className="h-4 w-4" />} title="Langkah 5 · Semak Jawapan" accent="#34D399"><FinalChecklist items={["6 isi tersurat", "Pendahuluan", "Kesimpulan", "Bahasa gramatis", "80–100 patah perkataan"]} checked={checked.slice(0, 5)} onToggle={index => setChecked(current => current.map((value, i) => i === index ? !value : value))} /></CollapsibleFolder>
+      </CollapsibleFolder>
+      <CollapsibleFolder icon={<Target className="h-4 w-4" />} title="🎯 Semak & Kuasai UASA" description="Kesalahan lazim sebelum menghantar jawapan." accent="#FBBF24">
+        <WarningCard items={mistakes.map(item => item[0])} />
+      </CollapsibleFolder>
     </>}
-    {activeModule === 2 && <><div className="space-y-4">{workbookPractices.map((practice, index) => <PracticeCard key={practice.title} practice={practice} index={index} />)}</div><QuizCTA label="Mulakan Kuiz Rumusan" /></>}
+    {activeModule === 2 && <>
+      <PracticeTabSwitcher
+        intro={<p className="text-sm leading-relaxed text-white/75">{module.description}</p>}
+        facts={[{ icon: "📌", label: "Bahagian C" }, { icon: "⭐", label: "15 Markah" }, { icon: "📝", label: "80–100 Patah Perkataan" }, { icon: "📄", label: "Tiga Perenggan" }]}
+        practices={workbookPractices}
+        tabCountLabel="5 Latihan Rumusan Interaktif"
+        color={module.color}
+        renderPractice={(practice, index) => <PracticeCard practice={practice} index={index} />}
+      />
+      <QuizCTA label="Mulakan Kuiz Rumusan" />
+    </>}
     </MissionPageShell>
   </div>;
 }
