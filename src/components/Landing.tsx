@@ -13,7 +13,7 @@ import {
   Star,
 } from "lucide-react";
 
-import { useState, useEffect, useRef, lazy, Suspense, type CSSProperties, type ReactNode } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, type CSSProperties, type ReactNode, type MouseEvent as ReactMouseEvent } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -83,15 +83,97 @@ function SecondaryCta({ to, children }: { to: string; children: ReactNode }) {
 
 /* ---------------- Top nav ---------------- */
 
+const NAV_LINKS = [
+  { id: "subjects", label: "Subjects" },
+  { id: "cikgu-ai", label: "Cikgu AI" },
+  { id: "parents", label: "Parents" },
+  { id: "pricing", label: "Pricing" },
+] as const;
+
+const NAV_OFFSET = 88;
+
+function smoothScrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return false;
+  const start = window.scrollY;
+  const target = el.getBoundingClientRect().top + start - NAV_OFFSET;
+  const distance = target - start;
+  const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced || Math.abs(distance) < 4) {
+    window.scrollTo(0, target);
+    return true;
+  }
+  const duration = Math.min(800, Math.max(500, Math.abs(distance) * 0.6));
+  const startTime = performance.now();
+  const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+  const step = (now: number) => {
+    const t = Math.min(1, (now - startTime) / duration);
+    window.scrollTo(0, start + distance * ease(t));
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+  return true;
+}
+
 function LandingNav() {
   const { open } = useSignInModal();
   const { user } = useAuth();
-  const links = [
-    { to: "/subjects", label: "Subjects" },
-    { to: "/notes", label: "Cikgu AI" },
-    { to: "#parents", label: "Parents", anchor: true },
-    { to: "#pricing", label: "Pricing", anchor: true },
-  ];
+  const [activeId, setActiveId] = useState<string>("");
+
+  // Scroll on load if URL has a hash matching one of the sections
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+    if (!NAV_LINKS.some((l) => l.id === hash)) return;
+    // Wait a tick so lazy sections are mounted
+    let attempts = 0;
+    const tryScroll = () => {
+      if (smoothScrollToId(hash)) return;
+      if (attempts++ < 40) setTimeout(tryScroll, 100);
+    };
+    setTimeout(tryScroll, 50);
+  }, []);
+
+  // Active section tracking with IntersectionObserver
+  useEffect(() => {
+    const observed: HTMLElement[] = [];
+    NAV_LINKS.forEach((l) => {
+      const el = document.getElementById(l.id);
+      if (el) observed.push(el);
+    });
+    if (!observed.length) return;
+    const visible = new Map<string, number>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) visible.set(e.target.id, e.intersectionRatio);
+          else visible.delete(e.target.id);
+        }
+        let bestId = "";
+        let bestRatio = 0;
+        for (const [id, ratio] of visible) {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        }
+        setActiveId(bestId);
+      },
+      { rootMargin: `-${NAV_OFFSET + 20}px 0px -55% 0px`, threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    observed.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const handleNavClick = (e: ReactMouseEvent, id: string) => {
+    e.preventDefault();
+    const scrolled = smoothScrollToId(id);
+    if (scrolled) {
+      history.replaceState(null, "", `#${id}`);
+      setActiveId(id);
+    }
+  };
+
   return (
     <header className="absolute top-0 inset-x-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
@@ -117,25 +199,24 @@ function LandingNav() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/[0.04] ring-1 ring-white/10 backdrop-blur">
-          {links.map((l) =>
-            l.anchor ? (
+          {NAV_LINKS.map((l) => {
+            const active = activeId === l.id;
+            return (
               <a
-                key={l.to}
-                href={l.to}
-                className="px-4 py-1.5 rounded-full text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+                key={l.id}
+                href={`#${l.id}`}
+                onClick={(e) => handleNavClick(e, l.id)}
+                aria-current={active ? "true" : undefined}
+                className={`px-4 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+                  active
+                    ? "bg-white/10 text-white"
+                    : "text-white/70 hover:text-white hover:bg-white/5"
+                }`}
               >
                 {l.label}
               </a>
-            ) : (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="px-4 py-1.5 rounded-full text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                {l.label}
-              </Link>
-            )
-          )}
+            );
+          })}
         </nav>
 
         {user ? (
@@ -157,6 +238,7 @@ function LandingNav() {
     </header>
   );
 }
+
 
 /* ---------------- Hero ---------------- */
 
@@ -244,36 +326,44 @@ function Hero() {
         });
       }
 
-      // Mouse parallax
-      const onMove = (e: MouseEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
+      // Mouse + touch parallax (window-level, works even outside the card)
+      let targetX = 0;
+      let targetY = 0;
+      const updateFromPoint = (clientX: number, clientY: number) => {
+        targetX = (clientX / window.innerWidth) - 0.5;
+        targetY = (clientY / window.innerHeight) - 0.5;
         gsap.to(img, {
-          x: x * 24,
-          rotateY: x * 6,
-          rotateX: -y * 6,
-          duration: 0.8,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-      };
-      const onLeave = () => {
-        gsap.to(img, {
-          x: 0,
-          rotateX: 0,
-          rotateY: 0,
-          duration: 1.2,
+          x: targetX * 60,
+          y: `+=${0}`,
+          rotateY: targetX * 18,
+          rotateX: -targetY * 14,
+          z: 40,
+          duration: 1.1,
           ease: "power3.out",
           overwrite: "auto",
         });
+        if (glow) {
+          gsap.to(glow, {
+            x: targetX * -30,
+            y: targetY * -20,
+            duration: 1.4,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+        }
       };
-      card.addEventListener("mousemove", onMove);
-      card.addEventListener("mouseleave", onLeave);
+      const onMove = (e: MouseEvent) => updateFromPoint(e.clientX, e.clientY);
+      const onTouch = (e: TouchEvent) => {
+        const t = e.touches[0];
+        if (t) updateFromPoint(t.clientX, t.clientY);
+      };
+      window.addEventListener("mousemove", onMove, { passive: true });
+      window.addEventListener("touchmove", onTouch, { passive: true });
       return () => {
-        card.removeEventListener("mousemove", onMove);
-        card.removeEventListener("mouseleave", onLeave);
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("touchmove", onTouch);
       };
+
     }, card);
 
     return () => ctx.revert();
@@ -351,7 +441,7 @@ function Hero() {
           </h1>
           <p className="mt-6 max-w-xl text-base md:text-lg text-white/65 leading-relaxed">
             Notes, flashcards, quizzes and mind maps in BM &amp; DLP — powered
-            by your own AI cikgu. Level up like a game, master KSSM like a pro.
+            by your own Cikgu AI. Level up like a game, master KSSM like a pro.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <PrimaryCta onClick={() => open()}>
