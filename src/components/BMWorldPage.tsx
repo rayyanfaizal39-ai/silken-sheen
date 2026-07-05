@@ -47,6 +47,7 @@ import {
   bmF1ObjektifKuiz3,
 } from "@/data/bm-f1-objektif-quizzes";
 import { bmF2ObjektifKuiz1, bmF2ObjektifKuiz2, bmF2ObjektifKuiz3 } from "@/data/bm-f2-objektif-quizzes";
+import { bmF3ObjektifKuiz1, bmF3ObjektifKuiz2, bmF3ObjektifKuiz3 } from "@/data/bm-f3-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { sfx } from "@/lib/sounds";
@@ -110,7 +111,12 @@ const OBJEKTIF_SETS_FORM2 = [
   { id: "bm-f2-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF2ObjektifKuiz2 },
   { id: "bm-f2-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF2ObjektifKuiz3 },
 ] as const;
-type ObjectiveSetCollection = typeof OBJEKTIF_SETS | typeof OBJEKTIF_SETS_FORM2;
+const OBJEKTIF_SETS_FORM3 = [
+  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, plannedCount: 15, ready: false },
+  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, plannedCount: 15, ready: false },
+  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, plannedCount: 15, ready: false },
+] as const;
+type ObjectiveSetCollection = typeof OBJEKTIF_SETS | typeof OBJEKTIF_SETS_FORM2 | typeof OBJEKTIF_SETS_FORM3;
 
 function shuffleItems<T>(items: T[]): T[] {
   const next = [...items];
@@ -999,15 +1005,19 @@ function K1QuizView({
           {([0, 1, 2] as const).map((i) => {
             const best = bestScores[i];
             const meta = setMeta[i];
+            const configuredSet = sets[i];
+            const available = !("ready" in configuredSet) || configuredSet.ready;
+            const questionCount = "plannedCount" in configuredSet ? configuredSet.plannedCount : configuredSet.questions.length;
             const completed = best !== null;
-            const status = completed ? "Selesai" : "Belum Bermula";
+            const status = !available ? "Belum Disiapkan" : completed ? "Selesai" : "Belum Bermula";
 
             return (
               <button
                 key={meta.title}
-                onClick={() => onSelectObjektif(i)}
+                onClick={() => available && onSelectObjektif(i)}
+                disabled={!available}
                 onMouseEnter={() => sfx.hover()}
-                className="group relative flex min-h-[245px] flex-col overflow-hidden rounded-[1.5rem] border bg-[#0B1220]/78 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] animate-slide-up"
+                className="group relative flex min-h-[245px] flex-col overflow-hidden rounded-[1.5rem] border bg-[#0B1220]/78 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] animate-slide-up disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:scale-100"
                 style={{
                   borderColor: completed ? `${meta.color}55` : `${meta.color}26`,
                   boxShadow: `0 18px 44px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.02)`,
@@ -1046,7 +1056,7 @@ function K1QuizView({
 
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
-                      <span className="text-white/48">15 Soalan</span>
+                      <span className="text-white/48">{questionCount} Soalan</span>
                       <FileQuestion className="h-4 w-4" style={{ color: meta.color }} />
                     </div>
                     <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
@@ -1079,7 +1089,7 @@ function K1QuizView({
                       background: `linear-gradient(135deg, ${meta.color}, ${meta.color}aa)`,
                     }}
                   >
-                    Mulakan{" "}
+                    {available ? "Mulakan" : "Belum Disiapkan"}{" "}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </div>
@@ -4907,9 +4917,9 @@ export function BMWorldPage({
 }: {
   onBack: () => void;
   mode?: "default" | "quiz";
-  quizForm?: 1 | 2;
+  quizForm?: 1 | 2 | 3;
 }) {
-  const objectiveSets: ObjectiveSetCollection = quizForm === 2 ? OBJEKTIF_SETS_FORM2 : OBJEKTIF_SETS;
+  const objectiveSets: ObjectiveSetCollection = quizForm === 3 ? OBJEKTIF_SETS_FORM3 : quizForm === 2 ? OBJEKTIF_SETS_FORM2 : OBJEKTIF_SETS;
   const [history, setHistory] = useState<BMScreen[]>([
     mode === "quiz" ? { type: "k1-quiz" } : { type: "landing" },
   ]);

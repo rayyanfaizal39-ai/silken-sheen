@@ -6605,7 +6605,7 @@ function QuizzesPage() {
             subject === "math"
               ? { "Form 1": MATH_FORM1_QUIZ_TOTAL }
               : subject === "bm"
-                ? { "Form 1": 45, "Form 2": 45 }
+                ? { "Form 1": 45, "Form 2": 45, "Form 3": 45 }
                 : undefined
           }
           onSelect={(selectedForm) => {
@@ -6630,8 +6630,8 @@ function QuizzesPage() {
   // BM owns a dedicated objective-quiz experience and question bank. Route it
   // before registry-driven upper-form fallbacks so Form 2 is never mistaken
   // for an unpopulated generic subject.
-  if (subject === "bm" && !chapter && (form === "Form 1" || form === "Form 2")) {
-    return <BMWorldPage mode="quiz" quizForm={form === "Form 2" ? 2 : 1} onBack={() => setSubject(null)} />;
+  if (subject === "bm" && !chapter && (form === "Form 1" || form === "Form 2" || form === "Form 3")) {
+    return <BMWorldPage mode="quiz" quizForm={form === "Form 3" ? 3 : form === "Form 2" ? 2 : 1} onBack={() => setSubject(null)} />;
   }
 
   if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormQuizPath && !needsScienceLang) {
