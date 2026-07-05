@@ -3,6 +3,8 @@ import { scienceF3ChapterContent } from "@/content/form3/science/registration";
 import type { MindNode } from "@/components/MindMap";
 import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
 import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
+import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
+import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,
@@ -499,15 +501,15 @@ import { mathF3C9FlashcardsBM } from "@/content/form3/math/chapter-9/flashcards-
 import { mathF3C9FlashcardsDLP } from "@/content/form3/math/chapter-9/flashcards-dlp";
 
 
-function englishFlashcardsFor(chapterKey: string) {
-  return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey);
+function englishFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
+  return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey && f.form === form);
 }
 
 function bmFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
   return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey && f.form === form);
 }
-function englishQuizzesFor(chapterKey: string) {
-  return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey);
+function englishQuizzesFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
+  return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey && q.form === form);
 }
 
 function sejarahFlashcardsFor(chapterNum: number) {
@@ -2135,6 +2137,32 @@ export const chapters: ChapterContent[] = [
     englishData: englishF1C2Notes,
     flashcards: englishFlashcardsFor("Chapter 2"),
     quiz: englishQuizzesFor("Chapter 2"),
+  },
+
+  // English Form 2 — same structure as Form 1 (2 chapters: Paper 1 Reading &
+  // Language Awareness with 5 parts, Paper 2 Writing with Task A/Task B).
+  // No Form 2-specific flashcards/quiz data exists yet, so englishFlashcardsFor/
+  // englishQuizzesFor correctly return an empty array rather than fabricated
+  // content — Notes-only per this task's scope.
+  {
+    id: "english-f2-c1",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Chapter 1",
+    title: "Paper 1 - Reading & Language Awareness",
+    englishData: englishF2C1Notes,
+    flashcards: englishFlashcardsFor("Chapter 1", "Form 2"),
+    quiz: englishQuizzesFor("Chapter 1", "Form 2"),
+  },
+  {
+    id: "english-f2-c2",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Chapter 2",
+    title: "Paper 2 - Writing",
+    englishData: englishF2C2Notes,
+    flashcards: englishFlashcardsFor("Chapter 2", "Form 2"),
+    quiz: englishQuizzesFor("Chapter 2", "Form 2"),
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Landing } from "@/components/Landing";
-import heroAsset from "@/assets/hero-astronaut-mars.png";
+import starCaptain from "@/assets/astronaut-hero.png.asset.json";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -12,7 +12,12 @@ export const Route = createFileRoute("/landing")({
     ],
     links: [
       { rel: "canonical", href: "https://www.myacademy.my/landing" },
-      { rel: "preload", as: "image", href: heroAsset, fetchpriority: "high" } as unknown as { rel: string; as: string; href: string },
+      // Preload the *actual* hero image rendered in <Hero> (the LCP
+      // element) — this used to preload a different, entirely unused
+      // asset (hero-astronaut-mars.png), meaning the real hero image had
+      // no priority hint at all while bandwidth was spent on an image
+      // nothing on the page ever displays.
+      { rel: "preload", as: "image", href: starCaptain.url, fetchPriority: "high" } as unknown as { rel: string; as: string; href: string },
     ],
   }),
   component: LandingRoute,

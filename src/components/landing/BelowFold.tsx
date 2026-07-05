@@ -16,6 +16,7 @@ import {
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
+import { shouldReduceMotion } from "@/lib/motion-preferences";
 import { SiteFooter } from "@/components/SiteFooter";
 import parentsDashboard from "@/assets/parents-dashboard.png.asset.json";
 import cikguAiImage from "@/assets/academy-robot.webp.asset.json";
@@ -189,6 +190,7 @@ const TOOLS = [
 ] as const;
 
 function LearningTools() {
+  const sectionRef = useRef<HTMLElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const planetRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -196,22 +198,31 @@ function LearningTools() {
   useEffect(() => {
     const orbit = orbitRef.current;
     if (!orbit) return;
-    const orbitTween = gsap.to(orbit, {
-      rotation: 360,
-      duration: 40,
-      ease: "none",
-      repeat: -1,
-      transformOrigin: "50% 50%",
-    });
+
+    // The continuous 40s orbit spin is the "spinning disk" the perf brief
+    // calls out by name — skip it for reduced-motion/mobile/touch and keep
+    // only the lightweight per-planet float instead.
+    const reduce = shouldReduceMotion();
+    const orbitTween = reduce
+      ? null
+      : gsap.to(orbit, {
+          rotation: 360,
+          duration: 40,
+          ease: "none",
+          repeat: -1,
+          transformOrigin: "50% 50%",
+        });
     const counterTweens = planetRefs.current.map((el, i) => {
       if (!el) return null;
-      const t = gsap.to(el, {
-        rotation: -360,
-        duration: 40,
-        ease: "none",
-        repeat: -1,
-        transformOrigin: "50% 50%",
-      });
+      const t = reduce
+        ? null
+        : gsap.to(el, {
+            rotation: -360,
+            duration: 40,
+            ease: "none",
+            repeat: -1,
+            transformOrigin: "50% 50%",
+          });
       gsap.to(el, {
         y: "+=10",
         duration: 2.2 + (i % 3) * 0.4,
@@ -222,9 +233,28 @@ function LearningTools() {
       });
       return t;
     });
+
+    // Pause the orbit entirely once it scrolls off-screen so it doesn't
+    // keep spending frame budget while the user is reading other sections.
+    let io: IntersectionObserver | null = null;
+    if (orbitTween && sectionRef.current && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            if (hovered === null) orbitTween.resume();
+          } else {
+            orbitTween.pause();
+          }
+        },
+        { threshold: 0.05 },
+      );
+      io.observe(sectionRef.current);
+    }
+
     return () => {
-      orbitTween.kill();
+      orbitTween?.kill();
       counterTweens.forEach((t) => t?.kill());
+      io?.disconnect();
     };
   }, []);
 
@@ -244,7 +274,7 @@ function LearningTools() {
   }, [hovered]);
 
   return (
-    <section className="relative py-24 md:py-36 overflow-hidden">
+    <section ref={sectionRef} className="relative py-24 md:py-36 overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0"
@@ -344,6 +374,18 @@ function CikguSection() {
             75%  { transform: translate(-28px, -22px) rotate(-4deg); }
             100% { transform: translate(0, 0) rotate(0deg); }
           }
+          .cikgu-orbit-anim { animation: cikguOrbit 8s ease-in-out infinite; }
+          /* Simpler, cheaper motion on small screens: shorter travel, no rotation. */
+          @media (max-width: 768px) {
+            @keyframes cikguOrbitMobile {
+              0%, 100% { transform: translateY(0); }
+              50%      { transform: translateY(-14px); }
+            }
+            .cikgu-orbit-anim { animation: cikguOrbitMobile 6s ease-in-out infinite; }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .cikgu-orbit-anim { animation: none; }
+          }
         `}</style>
         <div className="relative aspect-square max-w-[460px] mx-auto w-full">
           <div
@@ -354,14 +396,13 @@ function CikguSection() {
                 "radial-gradient(closest-side, rgba(168,85,247,0.55), transparent 70%)",
             }}
           />
-          <div className="absolute inset-6 rounded-full ring-2 ring-primary/30 animate-[spin_30s_linear_infinite]" />
-          <div className="absolute inset-12 rounded-full ring-1 ring-accent/25 animate-[spin_45s_linear_infinite_reverse]" />
+          <div className="absolute inset-6 rounded-full ring-2 ring-primary/30 animate-[spin_30s_linear_infinite] max-md:animate-none motion-reduce:animate-none" />
+          <div className="absolute inset-12 rounded-full ring-1 ring-accent/25 animate-[spin_45s_linear_infinite_reverse] max-md:animate-none motion-reduce:animate-none" />
           <div className="relative h-full w-full flex items-center justify-center">
             <img
               src={cikguAiImage.url}
               alt="Cikgu AI — your friendly study companion"
-              className="relative z-10 w-[85%] h-[85%] object-contain drop-shadow-[0_0_60px_rgba(139,92,246,0.55)]"
-              style={{ animation: "cikguOrbit 8s ease-in-out infinite" }}
+              className="cikgu-orbit-anim relative z-10 w-[85%] h-[85%] object-contain drop-shadow-[0_0_60px_rgba(139,92,246,0.55)]"
               loading="lazy"
             />
           </div>

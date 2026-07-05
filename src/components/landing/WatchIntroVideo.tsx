@@ -32,7 +32,7 @@ export function WatchIntroVideo() {
       >
         <span className="relative grid place-items-center w-7 h-7 rounded-full bg-nova-yellow text-[#1a0f2e] shadow-[0_0_24px_rgba(250,204,21,0.5)]">
           <Play className="w-3.5 h-3.5 fill-current" />
-          <span className="absolute inset-0 rounded-full bg-nova-yellow/40 animate-ping" />
+          <span className="absolute inset-0 rounded-full bg-nova-yellow/40 animate-ping motion-reduce:animate-none" />
         </span>
         Watch intro
       </button>

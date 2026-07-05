@@ -15,7 +15,10 @@ export function CinematicStars() {
     if (!ctx) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const mobile = window.matchMedia("(max-width: 768px)").matches;
+    // Lower DPR cap and star/meteor density on mobile — same starfield look,
+    // far fewer pixels and particles for a low-power GPU to push every frame.
+    let dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
     let w = 0;
     let h = 0;
     let stars: { x: number; y: number; r: number; a: number; speed: number; phase: number; depth: number }[] = [];
@@ -24,7 +27,7 @@ export function CinematicStars() {
     let raf = 0;
 
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
       w = window.innerWidth;
       h = window.innerHeight;
       canvas.width = w * dpr;
@@ -33,7 +36,7 @@ export function CinematicStars() {
       canvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.min(280, Math.floor((w * h) / 6500));
+      const count = Math.min(mobile ? 120 : 280, Math.floor((w * h) / 6500));
       stars = Array.from({ length: count }, () => {
         const depth = Math.random(); // 0 far -> 1 near
         return {
@@ -166,13 +169,31 @@ export function CinematicStars() {
       draw(0);
       cancelAnimationFrame(raf);
     } else {
-      const meteorInt = window.setInterval(spawnMeteor, 900);
-      const heroInt = window.setInterval(() => spawnMeteor(true), 4200);
+      // Fewer meteors on mobile — the loop and canvas cost are the same
+      // either way, but rarer meteors means fewer gradients/strokes per frame.
+      const meteorEvery = mobile ? 1800 : 900;
+      const heroMeteorEvery = mobile ? 7000 : 4200;
+      const meteorInt = window.setInterval(spawnMeteor, meteorEvery);
+      const heroInt = window.setInterval(() => spawnMeteor(true), heroMeteorEvery);
+
+      // Pause the rAF loop entirely while the tab is backgrounded — a
+      // continuously-redrawing canvas has no visible effect but still burns
+      // CPU/battery on a hidden tab.
+      const onVisibility = () => {
+        if (document.hidden) {
+          cancelAnimationFrame(raf);
+        } else {
+          raf = requestAnimationFrame(draw);
+        }
+      };
+      document.addEventListener("visibilitychange", onVisibility);
+
       raf = requestAnimationFrame(draw);
       return () => {
         clearInterval(meteorInt);
         clearInterval(heroInt);
         cancelAnimationFrame(raf);
+        document.removeEventListener("visibilitychange", onVisibility);
         window.removeEventListener("resize", resize);
         window.removeEventListener("scroll", onScroll);
       };
