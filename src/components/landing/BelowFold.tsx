@@ -142,7 +142,7 @@ function CenterIntroVideo() {
 const WHY = [
   { icon: GraduationCap, title: "KSSM Aligned", body: "Every note, quiz and mind map maps directly to the latest DSKP syllabus." },
   { icon: Languages, title: "BM & DLP", body: "Toggle Bahasa Melayu or DLP per topic — same quality, your language." },
-  { icon: Bot, title: "Your Intelligent Companion", body: "Your intelligent learning companion—explaining, guiding, and motivating you every step of your journey." },
+  { icon: Bot, title: "Cikgu AI", body: "Your intelligent learning companion—explaining, guiding, and motivating you every step of your journey." },
   { icon: Trophy, title: "Gamified XP", body: "Earn XP, evolve your companion, climb ranks — studying that actually sticks." },
 ];
 
