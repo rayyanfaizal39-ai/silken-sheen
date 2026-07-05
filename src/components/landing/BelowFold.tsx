@@ -334,7 +334,8 @@ const CIKGU = [
 
 function CikguSection() {
   return (
-    <section className="relative py-20 md:py-28">
+    <section id="cikgu-ai" className="relative scroll-mt-24 py-20 md:py-28">
+
       <div className="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
         <style>{`
           @keyframes cikguOrbit {
