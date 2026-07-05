@@ -13,7 +13,7 @@ import {
   Star,
 } from "lucide-react";
 
-import { useState, useEffect, useRef, lazy, Suspense, type CSSProperties, type ReactNode } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, type CSSProperties, type ReactNode, type MouseEvent as ReactMouseEvent } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
 import { useSignInModal } from "@/context/sign-in-modal";
