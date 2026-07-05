@@ -59,6 +59,7 @@ import { getModelKarangan } from "@/data/bm-model-karangan-hub";
 import { PenandaWacanaLengkapHub } from "@/components/PenandaWacanaLengkapHub";
 import { PeribahasaBankLengkapHub } from "@/components/PeribahasaBankLengkapHub";
 import { EssayImprovementPlusSections } from "@/components/EssayImprovementPlusSections";
+import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
 import { ExamSkillLanding, type MissionDefinition } from "@/components/exam-skill/MissionLearning";
 import {
   Accordion,
@@ -1087,6 +1088,7 @@ function KertasView({
   onSelectHub: (hubId: string) => void;
   onBack: () => void;
 }) {
+  if (kertas.id === "k2") return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.label]} onBack={onBack} accent={kertas.color} /><Kertas2HubGrid hubs={kertas.hubs.map(hub => ({ id: hub.id, label: hub.label, description: hub.description, icon: hub.icon, color: hub.color, count: `${hub.topics.length} topik` }))} onSelect={onSelectHub} /></div>;
   return (
     <div>
       <PageHeader
@@ -1177,6 +1179,10 @@ function HubView({
   onSelectTopic: (topicId: string) => void;
   onBack: () => void;
 }) {
+  if (kertas.id === "k2") {
+    const items = hub.topics.map(topic => ({ id: topic.id, title: topic.label, description: topic.description, badge: topic.badge }));
+    return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><Kertas2FolderTemplate title={hub.label} subtitle={hub.description} groups={splitIntoKertas2Folders(items)} onSelectItem={onSelectTopic} /></div>;
+  }
   if (kertas.id === "k1" && hub.id === "rumusan") {
     const missions: MissionDefinition[] = [
       { number: "01", title: "Formula Markah Penuh", description: "Learn the structure and scoring formula.", icon: Star, color: "#FBBF24" },

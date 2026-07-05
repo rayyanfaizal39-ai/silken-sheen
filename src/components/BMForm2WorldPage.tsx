@@ -2,6 +2,10 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 import { BMForm2SistemBahasaLibrary } from "@/components/BMForm2SistemBahasaLibrary";
 import { BMForm2RumusanContent } from "@/components/BMForm2RumusanContent";
+import { BMForm2KaranganPendekContent } from "@/components/BMForm2KaranganPendekContent";
+import { BMForm2KaranganPanjangContent } from "@/components/BMForm2KaranganPanjangContent";
+import { BMForm2WritingSectionPlaceholder, FORM2_WRITING_SECTIONS, getWritingSection } from "@/components/BMForm2WritingStructure";
+import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
 import {
   BMForm2KomsasStructure,
   BMForm2KomsasWorkStructure,
@@ -55,6 +59,7 @@ type Screen =
   | { type: "landing" }
   | { type: "paper"; paperId: PaperId }
   | { type: "hub"; paperId: PaperId; hubId: string }
+  | { type: "writing-section"; paperId: "k2"; hubId: string; sectionId: string }
   | { type: "komsas-work"; paperId: "k1"; hubId: "komsas" | "novel"; workId: string };
 
 const FORM2_PAPERS: PaperItem[] = [
@@ -176,7 +181,7 @@ const FORM2_PAPERS: PaperItem[] = [
         shortLabel: "Kgn. Pendek",
         icon: "KP",
         color: "#38BDF8",
-        description: "50-80 patah perkataan berdasarkan bahan grafik, jadual, carta atau gambar.",
+        description: "Karangan 50–80 patah perkataan berdasarkan bahan grafik, carta, jadual atau gambar mengikut format UASA.",
       },
       {
         id: "karangan-panjang",
@@ -185,7 +190,7 @@ const FORM2_PAPERS: PaperItem[] = [
         icon: "KJ",
         color: "#A78BFA",
         description:
-          "Melebihi 180 patah perkataan dengan 5 isi atau lebih menggunakan formula IMBAK.",
+          "Karangan melebihi 180 patah perkataan mengikut format UASA dengan teknik penulisan lengkap.",
       },
       {
         id: "bengkel-karangan",
@@ -222,11 +227,11 @@ const FORM2_PAPERS: PaperItem[] = [
       },
       {
         id: "tingkatkan-karangan",
-        label: "Kemahiran Tingkatkan Karangan",
-        shortLabel: "Improve",
-        icon: "TK",
+        label: "Strategi Skor A+",
+        shortLabel: "Skor A+",
+        icon: "SA",
         color: "#818CF8",
-        description: "Teknik menukar ayat biasa kepada ayat cemerlang, kaya dan bernas.",
+        description: "Rahsia pemeriksa, teknik menghuraikan isi, kesalahan lazim dan strategi mendapatkan markah tinggi.",
       },
       {
         id: "latihan-uasa",
@@ -463,6 +468,7 @@ function PaperView({
   onSelectHub: (hubId: string) => void;
   onBack: () => void;
 }) {
+  if (paper.id === "k2") return <div><PageHeader breadcrumb={["Bahasa Melayu", "Tingkatan 2", paper.label]} onBack={onBack} accent={paper.color} /><Kertas2HubGrid hubs={paper.hubs.map(hub => ({ id: hub.id, label: hub.label, description: hub.description, icon: hub.icon, color: hub.color, count: `${FORM2_WRITING_SECTIONS[hub.id]?.length ?? 0} topik` }))} onSelect={onSelectHub} /></div>;
   if (paper.id === "k1") {
     const primaryHubs = paper.hubs.filter((hub) => hub.id !== "latihan-uasa");
     const practiceHub = paper.hubs.find((hub) => hub.id === "latihan-uasa");
@@ -768,11 +774,13 @@ function HubView({
   paper,
   hub,
   onSelectKomsasWork,
+  onSelectWritingSection,
   onBack,
 }: {
   paper: PaperItem;
   hub: HubItem;
   onSelectKomsasWork: (workId: string) => void;
+  onSelectWritingSection: (sectionId: string) => void;
   onBack: () => void;
 }) {
   const [studyMode, setStudyMode] = useState<StudyMode>("learn");
@@ -814,6 +822,8 @@ function HubView({
         <BMForm2NovelStructure onSelectWork={onSelectKomsasWork} />
       ) : paper.id === "k1" && hub.id === "ringkasan-rumusan" ? (
         <BMForm2RumusanContent />
+      ) : paper.id === "k2" ? (
+        <Kertas2FolderTemplate title={hub.label} subtitle={hub.description} groups={splitIntoKertas2Folders((FORM2_WRITING_SECTIONS[hub.id] ?? []).map(section => ({ id: section.id, title: section.title })))} onSelectItem={onSelectWritingSection} />
       ) : (
         <>
           <div className="mb-6">
@@ -887,15 +897,17 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
   }
 
   const paper =
-    screen.type === "paper" || screen.type === "hub" || screen.type === "komsas-work"
+    screen.type === "paper" || screen.type === "hub" || screen.type === "komsas-work" || screen.type === "writing-section"
       ? getPaper(screen.paperId)
       : undefined;
   const hub =
-    screen.type === "hub" || screen.type === "komsas-work"
+    screen.type === "hub" || screen.type === "komsas-work" || screen.type === "writing-section"
       ? getHub(screen.paperId, screen.hubId)
       : undefined;
   const komsasWork =
     screen.type === "komsas-work" ? getBMForm2KomsasWork(screen.workId) : undefined;
+  const writingSection =
+    screen.type === "writing-section" ? getWritingSection(screen.hubId, screen.sectionId) : undefined;
 
   return (
     <div
@@ -930,6 +942,9 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
                 workId,
               })
             }
+            onSelectWritingSection={(sectionId) =>
+              push({ type: "writing-section", paperId: "k2", hubId: hub.id, sectionId })
+            }
             onBack={pop}
           />
         )}
@@ -948,6 +963,23 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
               accent={hub.color}
             />
             <BMForm2KomsasWorkStructure work={komsasWork} />
+          </div>
+        )}
+
+        {screen.type === "writing-section" && paper && hub && writingSection && (
+          <div>
+            {hub.id !== "karangan-pendek" && hub.id !== "karangan-panjang" && <PageHeader
+              breadcrumb={["Bahasa Melayu", "Tingkatan 2", paper.shortLabel, hub.shortLabel, writingSection.title]}
+              onBack={pop}
+              accent={hub.color}
+            />}
+            {hub.id === "karangan-pendek" ? (
+              <BMForm2KaranganPendekContent initialSectionId={writingSection.id} onBack={pop} />
+            ) : hub.id === "karangan-panjang" ? (
+              <BMForm2KaranganPanjangContent initialSectionId={writingSection.id} onBack={pop} />
+            ) : (
+              <BMForm2WritingSectionPlaceholder title={writingSection.title} color={hub.color} />
+            )}
           </div>
         )}
       </div>

@@ -4262,3 +4262,180 @@
     animation: none !important;
   }
 }
+
+/* ─── Holographic Planet Centrepiece (landing "Learning Universe") ──────── */
+
+.hologram-glow {
+  position: absolute;
+  inset: -18%;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(56,189,248,0.35), rgba(99,102,241,0.16) 55%, transparent 75%);
+  filter: blur(20px);
+  animation: hologram-breathe 5s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+.hologram-glow--hover {
+  animation-duration: 3.2s;
+  filter: blur(24px);
+}
+@keyframes hologram-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(0.98); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+.hologram-ring {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  pointer-events: none;
+}
+.hologram-ring--a { inset: 3%; }
+.hologram-ring--b { inset: -7%; border-color: rgba(139, 92, 246, 0.16); }
+.hologram-ring--a::after,
+.hologram-ring--b::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, rgba(125,211,252,0.55), transparent 22%, transparent 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+  animation: hologram-ring-spin 100s linear infinite;
+}
+.hologram-ring--b::after {
+  background: conic-gradient(from 0deg, rgba(167,139,250,0.5), transparent 18%, transparent 100%);
+  animation-duration: 140s;
+  animation-direction: reverse;
+}
+@keyframes hologram-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hologram-sphere {
+  position: absolute;
+  inset: 14%;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: radial-gradient(circle at 32% 28%, rgba(224,242,254,0.45), rgba(56,189,248,0.28) 40%, rgba(30,64,175,0.22) 70%, rgba(15,23,42,0.05) 100%);
+  box-shadow: inset 0 0 40px rgba(56,189,248,0.35), inset 0 0 90px rgba(15,23,42,0.55);
+  border: 1px solid rgba(186, 230, 253, 0.35);
+  pointer-events: none;
+}
+.hologram-sphere-grid {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.8;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(186,230,253,0.18) 0, rgba(186,230,253,0.18) 1px, transparent 1px, transparent 14%),
+    repeating-linear-gradient(90deg, rgba(186,230,253,0.12) 0, rgba(186,230,253,0.12) 1px, transparent 1px, transparent 18%);
+  animation: hologram-spin 80s linear infinite;
+}
+.hologram-sphere-shade {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 68% 74%, rgba(2,6,23,0.55), transparent 60%);
+}
+@keyframes hologram-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hologram-flicker {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(224,242,254,0.5);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  animation: hologram-flicker 6s steps(1, end) infinite;
+}
+@keyframes hologram-flicker {
+  0%, 92%, 100% { opacity: 0; }
+  93% { opacity: 0.35; }
+  94% { opacity: 0.05; }
+  95% { opacity: 0.28; }
+  96% { opacity: 0; }
+}
+
+.hologram-beam {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 46%;
+  height: 55%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(56,189,248,0.38), rgba(56,189,248,0.12) 55%, transparent 100%);
+  clip-path: polygon(38% 100%, 62% 100%, 100% 0%, 0% 0%);
+  opacity: 0.55;
+  filter: blur(1px);
+  transition: opacity 0.3s ease;
+}
+.hologram-beam--hover {
+  opacity: 0.85;
+}
+
+.hologram-base {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  width: 42%;
+  height: 10%;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(125,211,252,0.55), rgba(30,64,175,0.25) 60%, transparent 80%);
+  box-shadow: 0 0 30px rgba(56,189,248,0.45);
+  pointer-events: none;
+}
+
+.hologram-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 60%;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(56,189,248,0.5), transparent 70%);
+  pointer-events: none;
+}
+
+.hologram-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 10px 40px rgba(59,130,246,0.55);
+}
+@media (min-width: 768px) {
+  .hologram-play-btn { width: 5.5rem; height: 5.5rem; }
+}
+
+/* Floating tool badges (Notes / Flashcards / Quizzes / Mind Maps / Missions) */
+.tool-float {
+  animation-name: tool-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes tool-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hologram-glow,
+  .hologram-ring--a::after,
+  .hologram-ring--b::after,
+  .hologram-sphere-grid,
+  .hologram-flicker,
+  .tool-float {
+    animation: none !important;
+  }
+}

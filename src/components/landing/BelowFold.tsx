@@ -13,8 +13,8 @@ import {
   TrendingUp,
   LineChart,
 } from "lucide-react";
-import { useState, useEffect, useRef, type ReactNode } from "react";
-import gsap from "gsap";
+import { useState, useRef, type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { SiteFooter } from "@/components/SiteFooter";
 import parentsDashboard from "@/assets/parents-dashboard.png.asset.json";
@@ -63,15 +63,27 @@ function PrimaryCta({
   );
 }
 
-/* ---------------- Center Intro Video ---------------- */
+/* ---------------- Holographic Planet Centrepiece ---------------- */
 
-function CenterIntroVideo() {
+function HolographicPlanet({
+  onHoverChange,
+}: {
+  onHoverChange?: (hovered: boolean) => void;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [pulseKey, setPulseKey] = useState(0);
+
+  const setHover = (v: boolean) => {
+    setHovered(v);
+    onHoverChange?.(v);
+  };
 
   const handlePlay = () => {
     const v = videoRef.current;
     if (!v) return;
+    setPulseKey((k) => k + 1);
     if (v.paused) {
       void v.play();
       setPlaying(true);
@@ -82,50 +94,78 @@ function CenterIntroVideo() {
   };
 
   return (
-    <div className="relative w-56 h-56 md:w-80 md:h-80">
-      <div
-        aria-hidden
-        className="absolute -inset-4 rounded-full blur-3xl opacity-70"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(59,130,246,0.55), rgba(139,92,246,0.25) 55%, transparent 75%)",
-        }}
-      />
-      <div className="relative w-full h-full rounded-full overflow-hidden ring-1 ring-white/15 shadow-[0_20px_60px_rgba(59,130,246,0.45)] bg-black">
+    <div
+      className="relative w-56 h-56 md:w-80 md:h-80"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      {/* Breathing holographic glow */}
+      <div aria-hidden className={`hologram-glow ${hovered ? "hologram-glow--hover" : ""}`} />
+
+      {/* Thin orbit rings hugging the planet */}
+      <div aria-hidden className="hologram-ring hologram-ring--a" />
+      <div aria-hidden className="hologram-ring hologram-ring--b" />
+
+      {/* Projector beam + base */}
+      <div aria-hidden className={`hologram-beam ${hovered ? "hologram-beam--hover" : ""}`} />
+      <div aria-hidden className="hologram-base" />
+
+      {/* Semi-transparent holographic sphere */}
+      <div aria-hidden className="hologram-sphere">
+        <div className="hologram-sphere-grid" />
+        <div className="hologram-sphere-shade" />
+        <div className="hologram-flicker" />
+      </div>
+
+      {/* Intro video, revealed inside the same circle once playing */}
+      <div className="absolute inset-[20%] md:inset-[18%] rounded-full overflow-hidden ring-1 ring-cyan-200/20 bg-black/40">
         <video
           ref={videoRef}
           src={heroIntro.url}
-          className="w-full h-full object-cover"
+          className={`h-full w-full object-cover transition-opacity duration-300 ${playing ? "opacity-100" : "opacity-0"}`}
           playsInline
           preload="none"
           onEnded={() => setPlaying(false)}
           onPause={() => setPlaying(false)}
           onPlay={() => setPlaying(true)}
         />
-        {!playing && (
-          <button
+      </div>
+
+      {/* Energy pulse burst on click */}
+      <AnimatePresence>
+        {pulseKey > 0 && (
+          <motion.span
+            key={pulseKey}
+            aria-hidden
+            className="hologram-pulse"
+            initial={{ opacity: 0.6, scale: 0.6 }}
+            animate={{ opacity: 0, scale: 1.7 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+        {!playing ? (
+          <motion.button
             type="button"
             onClick={handlePlay}
             aria-label="Play intro video"
-            className="absolute inset-0 flex items-center justify-center group focus:outline-none"
+            className="hologram-play-btn pointer-events-auto"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.25 }}
           >
-            <span
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40"
-            />
-            <span className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/95 shadow-[0_10px_40px_rgba(59,130,246,0.6)] transition-transform duration-300 group-hover:scale-110">
-              <svg viewBox="0 0 24 24" className="w-9 h-9 md:w-11 md:h-11 text-slate-900 translate-x-[2px]" fill="currentColor" aria-hidden>
-                <path d="M8 5.14v13.72c0 .79.87 1.27 1.54.84l10.8-6.86a1 1 0 000-1.69L9.54 4.29A1 1 0 008 5.14z" />
-              </svg>
-            </span>
-          </button>
-        )}
-        {playing && (
+            <svg viewBox="0 0 24 24" className="w-8 h-8 md:w-10 md:h-10 text-slate-900 translate-x-[2px]" fill="currentColor" aria-hidden>
+              <path d="M8 5.14v13.72c0 .79.87 1.27 1.54.84l10.8-6.86a1 1 0 000-1.69L9.54 4.29A1 1 0 008 5.14z" />
+            </svg>
+          </motion.button>
+        ) : (
           <button
             type="button"
             onClick={handlePlay}
             aria-label="Pause intro video"
-            className="absolute bottom-3 right-3 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center ring-1 ring-white/20 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity"
+            className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center ring-1 ring-white/20 opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity pointer-events-auto"
           >
             <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor" aria-hidden>
               <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
@@ -189,59 +229,7 @@ const TOOLS = [
 ] as const;
 
 function LearningTools() {
-  const orbitRef = useRef<HTMLDivElement>(null);
-  const planetRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [hovered, setHovered] = useState<number | null>(null);
-
-  useEffect(() => {
-    const orbit = orbitRef.current;
-    if (!orbit) return;
-    const orbitTween = gsap.to(orbit, {
-      rotation: 360,
-      duration: 40,
-      ease: "none",
-      repeat: -1,
-      transformOrigin: "50% 50%",
-    });
-    const counterTweens = planetRefs.current.map((el, i) => {
-      if (!el) return null;
-      const t = gsap.to(el, {
-        rotation: -360,
-        duration: 40,
-        ease: "none",
-        repeat: -1,
-        transformOrigin: "50% 50%",
-      });
-      gsap.to(el, {
-        y: "+=10",
-        duration: 2.2 + (i % 3) * 0.4,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-        delay: i * 0.15,
-      });
-      return t;
-    });
-    return () => {
-      orbitTween.kill();
-      counterTweens.forEach((t) => t?.kill());
-    };
-  }, []);
-
-  useEffect(() => {
-    const orbit = orbitRef.current;
-    if (!orbit) return;
-    const tweens = gsap.getTweensOf(orbit);
-    tweens.forEach((t) => (hovered !== null ? t.pause() : t.resume()));
-    planetRefs.current.forEach((el) => {
-      if (!el) return;
-      gsap.getTweensOf(el).forEach((t) => {
-        if ((t.vars as { rotation?: number }).rotation === -360) {
-          hovered !== null ? t.pause() : t.resume();
-        }
-      });
-    });
-  }, [hovered]);
+  const [planetHovered, setPlanetHovered] = useState(false);
 
   return (
     <section className="relative py-24 md:py-36 overflow-hidden">
@@ -275,10 +263,10 @@ function LearningTools() {
           />
 
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
-            <CenterIntroVideo />
+            <HolographicPlanet onHoverChange={setPlanetHovered} />
           </div>
 
-          <div ref={orbitRef} className="absolute inset-0">
+          <div className="absolute inset-0">
             {TOOLS.map((t, i) => {
               const angle = (i / TOOLS.length) * Math.PI * 2 - Math.PI / 2;
               const radiusPct = 42;
@@ -287,32 +275,43 @@ function LearningTools() {
               return (
                 <div
                   key={t.label}
-                  ref={(el) => { planetRefs.current[i] = el; }}
                   className="absolute -translate-x-1/2 -translate-y-1/2"
                   style={{ left: `${x}%`, top: `${y}%` }}
                 >
-                  <Link
-                    to={t.to}
-                    onMouseEnter={() => setHovered(i)}
-                    onMouseLeave={() => setHovered(null)}
-                    className="group relative flex flex-col items-center"
+                  <div
+                    className="tool-float"
+                    style={{
+                      animationDuration: `${3.4 + (i % 3) * 0.5}s`,
+                      animationDelay: `${i * 0.3}s`,
+                    }}
                   >
-                    <div
-                      aria-hidden
-                      className="absolute -inset-6 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity"
-                      style={{ background: `radial-gradient(closest-side, ${t.glow}, transparent 70%)` }}
-                    />
-                    <img
-                      src={t.img}
-                      alt={t.label}
-                      loading="lazy"
-                      width={160}
-                      height={160}
-                      className="relative w-24 h-24 md:w-32 md:h-32 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)] transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="relative mt-2 text-sm md:text-base font-bold text-white">{t.label}</div>
-                    <div className="relative text-[11px] text-white/60">{t.desc}</div>
-                  </Link>
+                    <Link
+                      to={t.to}
+                      className="group relative flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] hover:-translate-y-1"
+                    >
+                      <div
+                        aria-hidden
+                        className="absolute -inset-2 rounded-full blur-xl opacity-25 group-hover:opacity-55 transition-opacity duration-300"
+                        style={{ background: `radial-gradient(closest-side, ${t.glow}, transparent 72%)` }}
+                      />
+                      <div
+                        className="relative flex items-center justify-center transition-[filter] duration-300"
+                        style={{ filter: planetHovered ? "brightness(1.2)" : "brightness(1)" }}
+                      >
+                        <span aria-hidden className="absolute inset-[-16%] rounded-full ring-1 ring-white/15 bg-white/[0.03] backdrop-blur-sm" />
+                        <img
+                          src={t.img}
+                          alt={t.label}
+                          loading="lazy"
+                          width={128}
+                          height={128}
+                          className="relative w-16 h-16 md:w-24 md:h-24 object-contain drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
+                        />
+                      </div>
+                      <div className="relative mt-2 text-sm md:text-base font-bold text-white">{t.label}</div>
+                      <div className="relative text-[11px] text-white/60">{t.desc}</div>
+                    </Link>
+                  </div>
                 </div>
               );
             })}
