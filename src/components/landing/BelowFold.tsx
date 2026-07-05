@@ -244,7 +244,7 @@ function LearningTools() {
   }, [hovered]);
 
   return (
-    <section className="relative py-24 md:py-36 overflow-hidden">
+    <section id="subjects" className="relative scroll-mt-24 py-24 md:py-36 overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0"
