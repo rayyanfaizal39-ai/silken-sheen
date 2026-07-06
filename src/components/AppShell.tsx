@@ -141,6 +141,8 @@ function SidebarBottom() {
   const { progress } = useProgress();
   const { user, signOut, isConfigured } = useAuth();
   const { open: openSignIn } = useSignInModal();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const hideSignIn = pathname === "/" || pathname.startsWith("/dashboard");
   const rank = getRank(progress.xp);
 
   return (
@@ -174,7 +176,7 @@ function SidebarBottom() {
             Sign Out
           </button>
         </div>
-      ) : isConfigured ? (
+      ) : isConfigured && !hideSignIn ? (
         <button
           type="button"
           onClick={openSignIn}
@@ -439,7 +441,9 @@ function HeaderStreak() {
 function HeaderAuthAction() {
   const { user, isConfigured, loading } = useAuth();
   const { open } = useSignInModal();
-  if (!isConfigured || loading || user) return null;
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const hideSignIn = pathname === "/" || pathname.startsWith("/dashboard");
+  if (!isConfigured || loading || user || hideSignIn) return null;
   return (
     <button
       type="button"
