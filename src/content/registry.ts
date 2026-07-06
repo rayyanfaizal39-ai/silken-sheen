@@ -5,6 +5,8 @@ import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
 import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
 import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
 import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
+import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
+import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,

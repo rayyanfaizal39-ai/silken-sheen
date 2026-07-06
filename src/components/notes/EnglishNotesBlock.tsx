@@ -860,7 +860,7 @@ function EnglishSectionBlock({
 
 // ─── Chapter Hero ─────────────────────────────────────────────────────────────
 
-function ChapterHero({ data }: { data: EnglishChapterData }) {
+function ChapterHero({ data, form }: { data: EnglishChapterData; form?: string }) {
   const gradient = THEME_GRADIENT[data.theme] ?? THEME_GRADIENT.grammar;
   const glow = THEME_GLOW[data.theme] ?? THEME_GLOW.grammar;
   return (
@@ -875,7 +875,7 @@ function ChapterHero({ data }: { data: EnglishChapterData }) {
           <span className="text-5xl">{data.heroEmoji}</span>
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">
-              English Form 1
+              English {form ?? "Form 1"}
             </p>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
               {data.chapterTitle}
@@ -984,31 +984,65 @@ function Paper1Overview({
   );
 }
 
-const PAPER_2_GROUPS = {
+// Group metadata is exam-structure-level (Bahagian A = short writing, Bahagian
+// B = extended writing) and applies the same way across every form. Which
+// *sections* land in each group is computed from the chapter's own data
+// below, so this still works whether a chapter has Form 1's 4 sections or a
+// leaner 2-section chapter for another form.
+const WRITING_GROUP_META = {
   A: {
     icon: "✉️",
     label: "Bahagian A",
     title: "Short Writing Tasks",
-    description: "Email Writing and Message Writing",
-    sectionIndexes: [0, 1],
-    topics: ["Email Writing", "Message Writing"],
   },
   B: {
     icon: "📝",
     label: "Bahagian B",
     title: "Extended Writing Tasks",
-    description: "Essay Writing and Guided Writing",
-    sectionIndexes: [2, 3],
-    topics: ["Essay Writing", "Guided Writing"],
   },
 } as const;
 
-type Paper2GroupKey = keyof typeof PAPER_2_GROUPS;
+type Paper2GroupKey = keyof typeof WRITING_GROUP_META;
+
+type Paper2Group = (typeof WRITING_GROUP_META)[Paper2GroupKey] & {
+  sectionIndexes: number[];
+  topics: string[];
+  description: string;
+};
+
+function computeWritingGroups(
+  sections: EnglishChapterData["sections"],
+): Record<Paper2GroupKey, Paper2Group> {
+  const cohesiveIndex = sections.findIndex((s) => s.title === "Cohesive Devices Bank");
+  const mainIndexes = sections.map((_, i) => i).filter((i) => i !== cohesiveIndex);
+  const mid = Math.ceil(mainIndexes.length / 2);
+  const indexesByGroup: Record<Paper2GroupKey, number[]> = {
+    A: mainIndexes.slice(0, mid),
+    B: mainIndexes.slice(mid),
+  };
+
+  return (Object.keys(WRITING_GROUP_META) as Paper2GroupKey[]).reduce(
+    (acc, key) => {
+      const sectionIndexes = indexesByGroup[key];
+      const topics = sectionIndexes.map((i) => sections[i]?.title).filter(Boolean) as string[];
+      acc[key] = {
+        ...WRITING_GROUP_META[key],
+        sectionIndexes,
+        topics,
+        description: topics.join(" and "),
+      };
+      return acc;
+    },
+    {} as Record<Paper2GroupKey, Paper2Group>,
+  );
+}
 
 function Paper2Overview({
+  groups,
   activeGroup,
   onSelect,
 }: {
+  groups: Record<Paper2GroupKey, Paper2Group>;
   activeGroup: Paper2GroupKey;
   onSelect: (group: Paper2GroupKey) => void;
 }) {
@@ -1023,8 +1057,8 @@ function Paper2Overview({
         </h3>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        {(Object.keys(PAPER_2_GROUPS) as Paper2GroupKey[]).map((key) => {
-          const group = PAPER_2_GROUPS[key];
+        {(Object.keys(groups) as Paper2GroupKey[]).map((key) => {
+          const group = groups[key];
           const isActive = activeGroup === key;
           return (
             <button
@@ -1077,7 +1111,8 @@ function Paper2StudySections({
   onToggleSection: (index: number) => void;
 }) {
   const [activeGroup, setActiveGroup] = useState<Paper2GroupKey>("A");
-  const group = PAPER_2_GROUPS[activeGroup];
+  const groups = computeWritingGroups(sections);
+  const group = groups[activeGroup];
   const cohesiveDevicesBank = sections.find((section) => section.title === "Cohesive Devices Bank");
   const visibleSections = group.sectionIndexes
     .map((sectionIndex) => ({ section: sections[sectionIndex], sectionIndex }))
@@ -1085,7 +1120,7 @@ function Paper2StudySections({
 
   return (
     <>
-      <Paper2Overview activeGroup={activeGroup} onSelect={setActiveGroup} />
+      <Paper2Overview groups={groups} activeGroup={activeGroup} onSelect={setActiveGroup} />
       <div className="mb-4 rounded-2xl border border-purple-300/20 bg-purple-400/[0.08] px-5 py-4">
         <div className="flex items-center gap-3">
           <span className="text-2xl">{group.icon}</span>
@@ -1125,10 +1160,12 @@ export function EnglishNotesBlock({
   id,
   data,
   storageKey,
+  form,
 }: {
   id?: string;
   data: EnglishChapterData;
   storageKey?: string;
+  form?: string;
 }) {
   const stateKey = storageKey ?? `notes:english-study-notes:${id ?? data.chapterTitle}`;
   const [isOpen, setIsOpen] = useState(() => {
@@ -1211,7 +1248,7 @@ export function EnglishNotesBlock({
 
   return (
     <div id={id} className="mx-auto mb-8 w-full max-w-5xl scroll-mt-24">
-      <ChapterHero data={data} />
+      <ChapterHero data={data} form={form} />
       <WordVault words={data.wordVault} />
       {data.chapterTitle === "Paper 1 - Reading & Language Awareness" && (
         <Paper1Overview sections={data.sections} onSelect={openSectionAndScroll} />

@@ -46,6 +46,8 @@ import {
   bmF1ObjektifKuiz2,
   bmF1ObjektifKuiz3,
 } from "@/data/bm-f1-objektif-quizzes";
+import { bmF2ObjektifKuiz1, bmF2ObjektifKuiz2, bmF2ObjektifKuiz3 } from "@/data/bm-f2-objektif-quizzes";
+import { bmF3ObjektifKuiz1, bmF3ObjektifKuiz2, bmF3ObjektifKuiz3 } from "@/data/bm-f3-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { sfx } from "@/lib/sounds";
@@ -59,6 +61,7 @@ import { getModelKarangan } from "@/data/bm-model-karangan-hub";
 import { PenandaWacanaLengkapHub } from "@/components/PenandaWacanaLengkapHub";
 import { PeribahasaBankLengkapHub } from "@/components/PeribahasaBankLengkapHub";
 import { EssayImprovementPlusSections } from "@/components/EssayImprovementPlusSections";
+import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
 import { ExamSkillLanding, type MissionDefinition } from "@/components/exam-skill/MissionLearning";
 import {
   Accordion,
@@ -103,6 +106,17 @@ const OBJEKTIF_SETS = [
     questions: bmF1ObjektifKuiz3,
   },
 ] as const;
+const OBJEKTIF_SETS_FORM2 = [
+  { id: "bm-f2-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF2ObjektifKuiz1 },
+  { id: "bm-f2-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF2ObjektifKuiz2 },
+  { id: "bm-f2-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF2ObjektifKuiz3 },
+] as const;
+const OBJEKTIF_SETS_FORM3 = [
+  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, plannedCount: 15, ready: false },
+  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, plannedCount: 15, ready: false },
+  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, plannedCount: 15, ready: false },
+] as const;
+type ObjectiveSetCollection = typeof OBJEKTIF_SETS | typeof OBJEKTIF_SETS_FORM2 | typeof OBJEKTIF_SETS_FORM3;
 
 function shuffleItems<T>(items: T[]): T[] {
   const next = [...items];
@@ -482,14 +496,18 @@ function KertasCard({ kertas, onSelect }: { kertas: BMKertas; onSelect: () => vo
 
 function ObjektifKuizView({
   setIndex,
+  sets,
+  formLabel = "Tingkatan 1",
   onBack,
   onNextSet,
 }: {
   setIndex: 0 | 1 | 2;
+  sets: ObjectiveSetCollection;
+  formLabel?: string;
   onBack: () => void;
   onNextSet?: () => void;
 }) {
-  const set = OBJEKTIF_SETS[setIndex];
+  const set = sets[setIndex];
   const questions: QuizQuestion[] = set.questions as unknown as QuizQuestion[];
   const { addXp, recordQuiz, recordQuizResult } = useProgress();
   const totalSeconds = 60;
@@ -592,7 +610,7 @@ function ObjektifKuizView({
           </div>
           <h2 className="font-display text-2xl font-bold text-white">Kuiz Objektif {set.label}</h2>
           <p className="mt-1 text-sm text-white/50">
-            Kertas 1 Bahagian A — Format UASA Tingkatan 1
+            Kertas 1 Bahagian A — Format UASA {formLabel}
           </p>
           <div className="mx-auto mt-6 grid max-w-xs grid-cols-3 gap-3">
             {[
@@ -611,7 +629,7 @@ function ObjektifKuizView({
           </div>
           <div className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-4 py-3">
             <p className="text-xs text-white/40 leading-relaxed">
-              Struktur: S1–5 Sistem Bahasa · S6–10 Pemahaman · S11–15 KOMSAS Tingkatan 1
+              Struktur: S1–5 Sistem Bahasa · S6–10 Pemahaman · S11–15 KOMSAS {formLabel}
             </p>
           </div>
           <button
@@ -906,17 +924,21 @@ function ObjektifKuizView({
 
 function K1QuizView({
   kertas,
+  sets,
+  formLabel,
   onSelectObjektif,
   onBack,
 }: {
   kertas: BMKertas;
+  sets: ObjectiveSetCollection;
+  formLabel: string;
   onSelectObjektif: (setIndex: 0 | 1 | 2) => void;
   onBack: () => void;
 }) {
   const { progress } = useProgress();
 
   // Compute best score for each set from quizHistory
-  const bestScores = OBJEKTIF_SETS.map((set) => {
+  const bestScores = sets.map((set) => {
     const results = (progress.quizHistory ?? []).filter((r) => r.chapterKey === set.id);
     return results.length > 0 ? Math.max(...results.map((r) => r.scorePct)) : null;
   });
@@ -968,14 +990,14 @@ function K1QuizView({
             📘
           </div>
           <p className="text-xs font-black uppercase tracking-[0.24em] text-sky-200/70">
-            Bahasa Melayu Form 1
+            Bahasa Melayu {formLabel}
           </p>
           <h2 className="mt-2 font-display text-2xl font-bold text-white sm:text-3xl">
             Kertas 1 Objektif
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-white/52">
             Pilih Set A, Set B atau Set C. Setiap misi mengandungi 15 soalan mengikut format
-            objektif UASA Tingkatan 1.
+            objektif UASA {formLabel}.
           </p>
         </div>
 
@@ -983,15 +1005,19 @@ function K1QuizView({
           {([0, 1, 2] as const).map((i) => {
             const best = bestScores[i];
             const meta = setMeta[i];
+            const configuredSet = sets[i];
+            const available = !("ready" in configuredSet) || configuredSet.ready;
+            const questionCount = "plannedCount" in configuredSet ? configuredSet.plannedCount : configuredSet.questions.length;
             const completed = best !== null;
-            const status = completed ? "Selesai" : "Belum Bermula";
+            const status = !available ? "Belum Disiapkan" : completed ? "Selesai" : "Belum Bermula";
 
             return (
               <button
                 key={meta.title}
-                onClick={() => onSelectObjektif(i)}
+                onClick={() => available && onSelectObjektif(i)}
+                disabled={!available}
                 onMouseEnter={() => sfx.hover()}
-                className="group relative flex min-h-[245px] flex-col overflow-hidden rounded-[1.5rem] border bg-[#0B1220]/78 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] animate-slide-up"
+                className="group relative flex min-h-[245px] flex-col overflow-hidden rounded-[1.5rem] border bg-[#0B1220]/78 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:scale-[1.015] animate-slide-up disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:scale-100"
                 style={{
                   borderColor: completed ? `${meta.color}55` : `${meta.color}26`,
                   boxShadow: `0 18px 44px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.02)`,
@@ -1024,13 +1050,13 @@ function K1QuizView({
                       className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-lg font-black text-white"
                       style={{ background: `${meta.color}22`, color: meta.color }}
                     >
-                      {OBJEKTIF_SETS[i].badge}
+                      {sets[i].badge}
                     </div>
                   </div>
 
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
-                      <span className="text-white/48">15 Soalan</span>
+                      <span className="text-white/48">{questionCount} Soalan</span>
                       <FileQuestion className="h-4 w-4" style={{ color: meta.color }} />
                     </div>
                     <div className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-2">
@@ -1063,7 +1089,7 @@ function K1QuizView({
                       background: `linear-gradient(135deg, ${meta.color}, ${meta.color}aa)`,
                     }}
                   >
-                    Mulakan{" "}
+                    {available ? "Mulakan" : "Belum Disiapkan"}{" "}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </div>
@@ -1087,6 +1113,7 @@ function KertasView({
   onSelectHub: (hubId: string) => void;
   onBack: () => void;
 }) {
+  if (kertas.id === "k2") return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.label]} onBack={onBack} accent={kertas.color} /><Kertas2HubGrid hubs={kertas.hubs.map(hub => ({ id: hub.id, label: hub.label, description: hub.description, icon: hub.icon, color: hub.color, count: `${hub.topics.length} topik` }))} onSelect={onSelectHub} /></div>;
   return (
     <div>
       <PageHeader
@@ -1177,6 +1204,10 @@ function HubView({
   onSelectTopic: (topicId: string) => void;
   onBack: () => void;
 }) {
+  if (kertas.id === "k2") {
+    const items = hub.topics.map(topic => ({ id: topic.id, title: topic.label, description: topic.description, badge: topic.badge }));
+    return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><Kertas2FolderTemplate title={hub.label} subtitle={hub.description} groups={splitIntoKertas2Folders(items)} onSelectItem={onSelectTopic} /></div>;
+  }
   if (kertas.id === "k1" && hub.id === "rumusan") {
     const missions: MissionDefinition[] = [
       { number: "01", title: "Formula Markah Penuh", description: "Learn the structure and scoring formula.", icon: Star, color: "#FBBF24" },
@@ -4882,10 +4913,13 @@ function TopicView({
 export function BMWorldPage({
   onBack,
   mode = "default",
+  quizForm = 1,
 }: {
   onBack: () => void;
   mode?: "default" | "quiz";
+  quizForm?: 1 | 2 | 3;
 }) {
+  const objectiveSets: ObjectiveSetCollection = quizForm === 3 ? OBJEKTIF_SETS_FORM3 : quizForm === 2 ? OBJEKTIF_SETS_FORM2 : OBJEKTIF_SETS;
   const [history, setHistory] = useState<BMScreen[]>([
     mode === "quiz" ? { type: "k1-quiz" } : { type: "landing" },
   ]);
@@ -4938,6 +4972,8 @@ export function BMWorldPage({
         {screen.type === "k1-quiz" && kertas && (
           <K1QuizView
             kertas={kertas}
+            sets={objectiveSets}
+            formLabel={`Tingkatan ${quizForm}`}
             onSelectObjektif={(setIndex) => push({ type: "objektif-quiz", setIndex })}
             onBack={pop}
           />
@@ -4957,6 +4993,8 @@ export function BMWorldPage({
           <ObjektifKuizView
             key={screen.setIndex}
             setIndex={screen.setIndex}
+            sets={objectiveSets}
+            formLabel={`Tingkatan ${quizForm}`}
             onBack={pop}
             onNextSet={
               screen.setIndex < 2

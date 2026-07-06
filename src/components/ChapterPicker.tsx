@@ -143,7 +143,7 @@ function hasCustomFormResourceContent(subjectId: string, form: Form, mode: Learn
   if (subjectId !== "bm") return false;
 
   if (mode === "notes") return form === "Form 1" || form === "Form 2";
-  return mode === "quizzes" && form === "Form 1";
+  return mode === "quizzes" && (form === "Form 1" || form === "Form 2" || form === "Form 3");
 }
 
 // Real per-form stat line shown under a Ready badge — never a generic
