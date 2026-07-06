@@ -194,6 +194,14 @@ import { bmFlashcardsKomsas } from "./bm-flashcards-komsas";
 import { bmFlashcardsKosaKata } from "./bm-flashcards-kosa-kata";
 import { bmFlashcardsFrasaMenarik } from "./bm-flashcards-frasa-menarik";
 import { bmFlashcardsTingkatkanKarangan } from "./bm-flashcards-tingkatkan-karangan";
+import { bmFlashcardsKaranganPendekF2 } from "./bm-flashcards-karangan-pendek-f2";
+import { bmFlashcardsKaranganPanjangF2 } from "./bm-flashcards-karangan-panjang-f2";
+import { bmFlashcardsPenandaWacanaF2 } from "./bm-flashcards-penanda-wacana-f2";
+import { bmFlashcardsPeribahasaF2 } from "./bm-flashcards-peribahasa-f2";
+import { bmFlashcardsKomsasF2 } from "./bm-flashcards-komsas-f2";
+import { bmFlashcardsKosaKataF2 } from "./bm-flashcards-kosa-kata-f2";
+import { bmFlashcardsFrasaMenarikF2 } from "./bm-flashcards-frasa-menarik-f2";
+import { bmFlashcardsTingkatkanKaranganF2 } from "./bm-flashcards-tingkatkan-karangan-f2";
 import { sejarahF2C2Flashcards } from "./sejarah-f2-c2-flashcards";
 import { sejarahF2C3Flashcards } from "./sejarah-f2-c3-flashcards";
 import { sejarahF2C3Quizzes } from "./sejarah-f2-c3-quizzes";
@@ -19744,6 +19752,14 @@ export const flashcards: Flashcard[] = [
   ...bmFlashcardsKosaKata,
   ...bmFlashcardsFrasaMenarik,
   ...bmFlashcardsTingkatkanKarangan,
+  ...bmFlashcardsKaranganPendekF2,
+  ...bmFlashcardsKaranganPanjangF2,
+  ...bmFlashcardsPenandaWacanaF2,
+  ...bmFlashcardsPeribahasaF2,
+  ...bmFlashcardsKomsasF2,
+  ...bmFlashcardsKosaKataF2,
+  ...bmFlashcardsFrasaMenarikF2,
+  ...bmFlashcardsTingkatkanKaranganF2,
 
   // Sejarah Form 2 Chapter 1 - Kerajaan Alam Melayu
   // Deck 1 (fc1-20): Konsep Alam Melayu & Kewujudan Kerajaan

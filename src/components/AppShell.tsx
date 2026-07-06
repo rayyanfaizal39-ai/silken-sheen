@@ -3,6 +3,7 @@ import {
   BookOpen,
   Brain,
   Flame,
+  Gauge,
   Home,
   LayoutDashboard,
   Library,
@@ -131,10 +132,21 @@ const navItems = [
     accentBg: "rgba(52,211,153,0.20)",
     line: "linear-gradient(90deg,#6EE7B7,#10B981)",
   },
+  {
+    label: "Parent Dashboard",
+    short: "Analytics",
+    to: "/parent-dashboard",
+    icon: Gauge,
+    accent: "#A78BFA",
+    accentGlow: "rgba(167,139,250,0.55)",
+    accentBg: "rgba(167,139,250,0.20)",
+    line: "linear-gradient(90deg,#C4B5FD,#8B5CF6)",
+  },
 ] as const;
 
 function isActive(pathname: string, to: string) {
-  return to === "/" ? pathname === "/" : pathname.startsWith(to);
+  if (to === "/") return pathname === "/";
+  return pathname === to || pathname.startsWith(`${to}/`);
 }
 
 function SidebarBottom() {
@@ -235,8 +247,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lastRankUp } = useProgress();
 
-  // Standalone marketing page renders chromeless (no sidebar / top bar / mobile nav)
-  if (pathname === "/landing") {
+  if (pathname.startsWith("/academy/") || pathname === "/landing") {
     return <>{children}</>;
   }
 

@@ -229,6 +229,46 @@ BEGIN
 END;
 $$;
 
+-- ─── Quiz History ─────────────────────────────────────────────
+-- One row per completed quiz attempt. Powers getStudentAnalytics()
+-- (src/lib/analytics.ts) for subject scores, weak topics, recommended
+-- revision, and this-week counters — see the migration file for full
+-- context: supabase/migrations/20260703120000_quiz_history.sql
+CREATE TABLE IF NOT EXISTS public.quiz_history (
+  id          UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id     UUID        NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  subject_id  TEXT        NOT NULL,
+  chapter_key TEXT        NOT NULL,
+  score_pct   NUMERIC     NOT NULL,
+  correct     INTEGER     NOT NULL,
+  total       INTEGER     NOT NULL,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS quiz_history_user_id_created_at_idx
+  ON public.quiz_history (user_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS quiz_history_user_id_subject_id_idx
+  ON public.quiz_history (user_id, subject_id);
+CREATE INDEX IF NOT EXISTS quiz_history_user_id_chapter_key_idx
+  ON public.quiz_history (user_id, chapter_key);
+
+ALTER TABLE public.quiz_history ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Users can read own quiz_history"   ON public.quiz_history;
+DROP POLICY IF EXISTS "Users can insert own quiz_history" ON public.quiz_history;
+
+CREATE POLICY "Users can read own quiz_history"
+  ON public.quiz_history FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own quiz_history"
+  ON public.quiz_history FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- No UPDATE or DELETE policy, intentionally — a quiz attempt is an
+-- immutable record. With no policy for those commands, RLS denies them
+-- from the client by default.
+
 -- ─── Admin Analytics ──────────────────────────────────────────
 -- security_invoker means this view enforces the *caller's* RLS on the
 -- underlying tables (not the view owner's) — so a non-admin querying it

@@ -244,6 +244,188 @@ const LOCATIONS: Record<string, Record<string, string>> = {
   },
 };
 
+// ─── Geography Form 1 chapter card backgrounds ───────────────────────────────
+// Drop cropped chapter images into src/assets/geography/form1/ named
+// "ch{N}-anything.ext" (see the README in that folder) — picked up
+// automatically, no further code changes needed.
+const geographyF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/geography/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+
+const GEOGRAPHY_F1_BACKGROUNDS: Record<string, string> = (() => {
+  const map: Record<string, string> = {};
+  for (const [path, mod] of Object.entries(geographyF1BgModules)) {
+    const filename = path.split("/").pop() ?? "";
+    const match = filename.match(/^ch(\d{1,2})-/i);
+    if (!match) continue;
+    map[`Chapter ${match[1]}`] = mod.default;
+  }
+  return map;
+})();
+
+// ─── Geography Form 2 chapter card backgrounds ───────────────────────────────
+// Drop cropped chapter images into src/assets/geography/form2/ named
+// "ch{N}-anything.ext" (see the README in that folder) — picked up
+// automatically, no further code changes needed.
+const geographyF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/geography/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+
+const GEOGRAPHY_F2_BACKGROUNDS: Record<string, string> = (() => {
+  const map: Record<string, string> = {};
+  for (const [path, mod] of Object.entries(geographyF2BgModules)) {
+    const filename = path.split("/").pop() ?? "";
+    const match = filename.match(/^ch(\d{1,2})-/i);
+    if (!match) continue;
+    map[`Chapter ${match[1]}`] = mod.default;
+  }
+  return map;
+})();
+
+// ─── Science chapter card backgrounds ─────────────────────────────────────────
+// Drop chapter images into src/assets/science/form{1,2,3}/ named
+// "ch{N}-anything.ext" — picked up automatically, no further code changes
+// needed. Source art is wide landscape banners, so each chapter can define an
+// object-position (in SCIENCE_BG_POSITION below) to keep its focal subject
+// inside Geography's narrow vertical strip instead of the crop landing on
+// empty background.
+const scienceF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/science/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const scienceF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/science/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const scienceF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/science/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+
+function buildChapterBackgroundMap(
+  modules: Record<string, { default: string }>,
+  pattern: RegExp = /^ch(\d{1,2})-/i,
+): Record<string, string> {
+  const map: Record<string, string> = {};
+  for (const [path, mod] of Object.entries(modules)) {
+    const filename = path.split("/").pop() ?? "";
+    const match = filename.match(pattern);
+    if (!match) continue;
+    map[`Chapter ${match[1]}`] = mod.default;
+  }
+  return map;
+}
+
+const SCIENCE_F1_BACKGROUNDS = buildChapterBackgroundMap(scienceF1BgModules);
+const SCIENCE_F2_BACKGROUNDS = buildChapterBackgroundMap(scienceF2BgModules);
+const SCIENCE_F3_BACKGROUNDS = buildChapterBackgroundMap(scienceF3BgModules);
+
+// ─── Geography Form 3 chapter card backgrounds ────────────────────────────────
+// Drop chapter images into src/assets/geography/form3/ named "ch{N}-anything.ext"
+// — picked up automatically, no further code changes needed.
+const geographyF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/geography/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const GEOGRAPHY_F3_BACKGROUNDS = buildChapterBackgroundMap(geographyF3BgModules);
+
+// ─── Mathematics chapter card backgrounds (Form 1/2/3) ───────────────────────
+// Drop chapter images into src/assets/math/form{1,2,3}/ — picked up
+// automatically, no further code changes needed. Unlike geography/science,
+// these keep their original "math_f{form}_chapter{N}[_suffix].png" filenames
+// rather than a "ch{N}-slug" prefix, so this uses its own pattern (the digit
+// capture stops at the first non-digit, so "...chapter13_fixed.png" still
+// matches "Chapter 13" fine).
+// Form 3 only has chapters 1-9 registered (math-f3-c1..c9 in registry.ts);
+// any math_f3_chapter10-13.png files exist but won't match a real chapter.
+const mathF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/math/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const mathF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/math/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const mathF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/math/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const MATH_F1_BACKGROUNDS = buildChapterBackgroundMap(mathF1BgModules, /^math_f1_chapter(\d{1,2})/i);
+const MATH_F2_BACKGROUNDS = buildChapterBackgroundMap(mathF2BgModules, /^math_f2_chapter(\d{1,2})/i);
+const MATH_F3_BACKGROUNDS = buildChapterBackgroundMap(mathF3BgModules, /^math_f3_chapter(\d{1,2})/i);
+
+// ─── Sejarah "Time Expedition" chapter card backgrounds (Form 1/2/3) ─────────
+// Cinematic, warm-lit era artwork (portrait crop, one hero subject per
+// chapter) — same rendering treatment as Geography/Science/Math (fixed-size
+// image strip + left-to-right gradient into the card), just applied inside
+// SejarahTimelineMap's compact era-cards instead of ChapterCard, since
+// Sejarah uses its own timeline layout (unchanged) rather than the vertical
+// path map. Drop files into src/assets/sejarah/form{1,2,3}/ named
+// "sejarah_f{form}_chapter{N}.png" — picked up automatically.
+const sejarahF1BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/sejarah/form1/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const sejarahF2BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/sejarah/form2/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const sejarahF3BgModules = import.meta.glob<{ default: string }>(
+  "/src/assets/sejarah/form3/*.{png,jpg,jpeg,webp}",
+  { eager: true },
+);
+const SEJARAH_F1_BACKGROUNDS = buildChapterBackgroundMap(sejarahF1BgModules, /^sejarah_f1_chapter(\d{1,2})/i);
+const SEJARAH_F2_BACKGROUNDS = buildChapterBackgroundMap(sejarahF2BgModules, /^sejarah_f2_chapter(\d{1,2})/i);
+const SEJARAH_F3_BACKGROUNDS = buildChapterBackgroundMap(sejarahF3BgModules, /^sejarah_f3_chapter(\d{1,2})/i);
+
+// Focal point (as a CSS object-position) for each Form 1 Science chapter's
+// banner art, so the right-edge strip crop lands on the subject that best
+// represents the chapter instead of an arbitrary center slice.
+const SCIENCE_F1_BG_POSITION: Record<string, string> = {
+  "Chapter 1": "44% center",  // holographic scan circle, between the microscope and monitors
+  "Chapter 2": "30% center",  // paired animal cells
+  "Chapter 3": "18% center",  // hero neuron
+  "Chapter 4": "68% center",  // embryo in womb
+  "Chapter 5": "50% center",  // molecule cluster, evenly spread
+  "Chapter 6": "50% center",  // periodic table grid, evenly spread
+  "Chapter 7": "30% center",  // O2 molecule cluster over Earth's curve
+  "Chapter 8": "26% center",  // glass prism splitting light
+  "Chapter 9": "38% center",  // glowing Earth core
+};
+
+// Focal point for each Form 3 Science chapter's banner art.
+const SCIENCE_F3_BG_POSITION: Record<string, string> = {
+  "Chapter 1":  "78% center",  // glowing brain
+  "Chapter 2":  "55% center",  // alveoli / O2 gas exchange cluster
+  "Chapter 3":  "55% center",  // red blood cells in vessel
+  "Chapter 4":  "72% center",  // welding torch spark on reactive metal
+  "Chapter 5":  "35% center",  // reaction-energy molecule
+  "Chapter 6":  "62% center",  // lightning arc between pylon and plant
+  "Chapter 7":  "50% center",  // turbines/solar/dam/storage, evenly spread
+  "Chapter 8":  "50% center",  // radioactivity trefoil symbol
+  "Chapter 9":  "55% center",  // aurora + satellite
+  "Chapter 10": "54% center",  // rocket launch
+};
+
+// Focal point for each Form 2 Science chapter's banner art.
+const SCIENCE_F2_BG_POSITION: Record<string, string> = {
+  "Chapter 1":  "45% center",  // tiger in the rainforest
+  "Chapter 2":  "30% center",  // deer by the stream
+  "Chapter 3":  "55% center",  // food-group icon ring
+  "Chapter 4":  "60% center",  // heartbeat + blood cells
+  "Chapter 5":  "40% center",  // molecule dissolving into water
+  "Chapter 6":  "50% center",  // pH scale between ASID/ALKALI flasks
+  "Chapter 7":  "55% center",  // magnet coil sparking
+  "Chapter 8":  "45% center",  // football with force arrows
+  "Chapter 9":  "50% center",  // pot over fire, thermal-camera face
+  "Chapter 10": "35% center",  // speaker emitting sound wave
+  "Chapter 11": "40% center",  // spiral galaxy
+  "Chapter 12": "45% center",  // sun and planets in orbit
+  "Chapter 13": "80% center",  // comet approaching Earth
+};
+
 // ─── Ambient symbol positions ─────────────────────────────────────────────────
 
 const SLOTS = [
@@ -515,19 +697,47 @@ function LocationCard({
   const quizCount  = chapterContent?.quiz?.length ?? 0;
   const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType);
 
+  // Form 1 Geography chapters — and Science chapters across all three forms —
+  // get their concept-art photo in a fixed-size strip pinned to the card's
+  // right edge, same width on every card, regardless of each image's own
+  // aspect ratio, so the cards stay visually consistent. (An earlier version
+  // sized the image to the image; that made some cards look small and others
+  // tall.) object-fit: cover fills that fixed strip without distortion; a
+  // left-to-right gradient blends the strip into the card so the text side
+  // stays readable.
+  const scienceBackgrounds =
+    form === "Form 1" ? SCIENCE_F1_BACKGROUNDS :
+    form === "Form 2" ? SCIENCE_F2_BACKGROUNDS :
+    form === "Form 3" ? SCIENCE_F3_BACKGROUNDS : undefined;
+  const bgImage =
+    subjectId === "geography" && form === "Form 1" ? GEOGRAPHY_F1_BACKGROUNDS[chapter.key] :
+    subjectId === "geography" && form === "Form 2" ? GEOGRAPHY_F2_BACKGROUNDS[chapter.key] :
+    subjectId === "geography" && form === "Form 3" ? GEOGRAPHY_F3_BACKGROUNDS[chapter.key] :
+    subjectId === "math" && form === "Form 1" ? MATH_F1_BACKGROUNDS[chapter.key] :
+    subjectId === "math" && form === "Form 2" ? MATH_F2_BACKGROUNDS[chapter.key] :
+    subjectId === "math" && form === "Form 3" ? MATH_F3_BACKGROUNDS[chapter.key] :
+    subjectId === "science" ? scienceBackgrounds?.[chapter.key] : undefined;
+  const bgImagePosition =
+    subjectId === "science" && form === "Form 1" ? SCIENCE_F1_BG_POSITION[chapter.key] ?? "center" :
+    subjectId === "science" && form === "Form 2" ? SCIENCE_F2_BG_POSITION[chapter.key] ?? "center" :
+    subjectId === "science" && form === "Form 3" ? SCIENCE_F3_BG_POSITION[chapter.key] ?? "center" : "center";
+  const fallbackGradient = `linear-gradient(${align === "left" ? "135deg" : "225deg"}, ${config.from}0d, rgba(0,0,0,0.50))`;
+  const IMAGE_STRIP_CLASS = "w-[clamp(84px,28vw,130px)] sm:w-[clamp(96px,24vw,160px)]";
+  const TEXT_PADDING_CLASS = "pr-[138px] sm:pr-[168px]";
+
   return (
     <button
       type="button"
       onClick={() => canOpen && onSelect(chapter.key)}
       disabled={!canOpen}
       className={[
-        "w-full rounded-2xl border transition-all duration-300",
+        "relative w-full overflow-hidden rounded-2xl border transition-all duration-300",
         canOpen
           ? "cursor-pointer hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2"
           : "opacity-38 cursor-not-allowed",
       ].join(" ")}
       style={{
-        background: `linear-gradient(${align === "left" ? "135deg" : "225deg"}, ${config.from}0d, rgba(0,0,0,0.50))`,
+        background: fallbackGradient,
         border: "1px solid rgba(255,255,255,0.06)",
         "--tw-ring-color": config.color,
       } as CSSProperties}
@@ -543,7 +753,34 @@ function LocationCard({
         el.style.boxShadow   = "";
       }}
     >
-      <div className={`p-3 md:p-4 ${align === "right" ? "text-right" : "text-left"}`}>
+      {bgImage && (
+        <div
+          className={`absolute right-0 top-0 h-full overflow-hidden ${IMAGE_STRIP_CLASS}`}
+          style={{ borderRadius: "inherit" }}
+        >
+          <img
+            src={bgImage}
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover"
+            style={{ opacity: 0.65, objectPosition: bgImagePosition }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(5,8,22,0.85) 0%, rgba(5,8,22,0.35) 45%, rgba(5,8,22,0.05) 100%)",
+            }}
+          />
+        </div>
+      )}
+      <div
+        className={[
+          "relative z-10 pb-3 pl-3 pt-3 md:pb-4 md:pl-4 md:pt-4",
+          align === "right" ? "text-right" : "text-left",
+          bgImage ? TEXT_PADDING_CLASS : "pr-3 md:pr-4",
+        ].join(" ")}
+      >
         {/* World location name */}
         {location && canOpen && (
           <p className="mb-0.5 text-[9px] font-black uppercase tracking-[0.18em]"
@@ -684,6 +921,15 @@ function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scie
   const NODE_W   = 164;
   const totalW   = Math.max(chapters.length * NODE_W, 640);
 
+  // Cinematic era artwork for the right ~40% of each card — same fixed-strip
+  // + left-to-right gradient treatment as Geography/Science/Math's
+  // ChapterCard, just scaled down for this compact timeline card.
+  const eraBackgrounds =
+    form === "Form 1" ? SEJARAH_F1_BACKGROUNDS :
+    form === "Form 2" ? SEJARAH_F2_BACKGROUNDS :
+    form === "Form 3" ? SEJARAH_F3_BACKGROUNDS : undefined;
+  const ERA_IMAGE_STRIP_W = Math.round(NODE_W * 0.4);
+
   return (
     <div className="-mx-2 overflow-x-auto pb-6">
       <div className="relative inline-flex flex-col" style={{ width: totalW, minWidth: "100%", paddingTop: 8 }}>
@@ -744,6 +990,7 @@ function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scie
           {chapters.map((c, i) => {
             const pct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, c.key)]);
             const canOpen = canOpenChapter(c, subjectId, form, scienceLang, resourceType);
+            const bgImage = eraBackgrounds?.[c.key];
             return (
               <div key={`card-${c.key}`} className="animate-slide-up px-1.5 pt-3"
                 style={{ width: NODE_W, animationDelay: `${i * 50}ms` }}>
@@ -752,24 +999,47 @@ function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scie
                   onClick={() => canOpen && onSelect(c.key)}
                   disabled={!canOpen}
                   className={[
-                    "w-full rounded-2xl border p-2.5 text-center transition-all duration-300",
+                    "relative w-full overflow-hidden rounded-2xl border p-2.5 text-center transition-all duration-300",
                     canOpen ? "cursor-pointer hover:border-white/[0.14]" : "opacity-38 cursor-not-allowed",
                   ].join(" ")}
                   style={{ background: `linear-gradient(180deg, ${config.from}0d, rgba(0,0,0,0.5))`, border: "1px solid rgba(255,255,255,0.06)" }}
                   onMouseEnter={(e) => { if (canOpen) (e.currentTarget as HTMLElement).style.borderColor = `${config.color}35`; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
                 >
-                  {LOCATIONS[subjectId]?.[c.key] && canOpen && (
-                    <p className="mb-0.5 text-[7.5px] font-black uppercase tracking-widest"
-                      style={{ color: config.color, opacity: 0.55 }}>
-                      {LOCATIONS[subjectId][c.key]}
-                    </p>
+                  {bgImage && (
+                    <div
+                      className="absolute right-0 top-0 h-full overflow-hidden"
+                      style={{ width: ERA_IMAGE_STRIP_W, borderRadius: "inherit" }}
+                    >
+                      <img
+                        src={bgImage}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-full w-full object-cover"
+                        style={{ opacity: 0.65 }}
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(to right, rgba(5,8,22,0.85) 0%, rgba(5,8,22,0.35) 45%, rgba(5,8,22,0.05) 100%)",
+                        }}
+                      />
+                    </div>
                   )}
-                  <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
-                  <p className="mt-1 text-[9px] font-semibold"
-                    style={{ color: pct >= 100 ? config.color : pct > 0 ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
-                    {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : canOpen ? "Not started" : "Available Soon"}
-                  </p>
+                  <div className="relative z-10">
+                    {LOCATIONS[subjectId]?.[c.key] && canOpen && (
+                      <p className="mb-0.5 text-[7.5px] font-black uppercase tracking-widest"
+                        style={{ color: config.color, opacity: 0.55 }}>
+                        {LOCATIONS[subjectId][c.key]}
+                      </p>
+                    )}
+                    <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
+                    <p className="mt-1 text-[9px] font-semibold"
+                      style={{ color: pct >= 100 ? config.color : pct > 0 ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.2)" }}>
+                      {pct >= 100 ? "✓ Complete" : pct > 0 ? `${pct}%` : canOpen ? "Not started" : "Available Soon"}
+                    </p>
+                  </div>
                 </button>
               </div>
             );

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {
   AlertTriangle,
+  ArrowRight,
   BookOpen,
   Brain,
   CheckCircle2,
+  ChevronLeft,
   Lightbulb,
   MessageCircle,
   Star,
@@ -221,7 +223,71 @@ function TopicContent({ topic, color }: { topic: GrammarTopic; color: string }) 
 
 const TOPIC_COLORS = ["#60A5FA", "#34D399", "#F472B6", "#A78BFA", "#22D3EE", "#FB923C", "#818CF8", "#C084FC", "#FBBF24", "#E879F9", "#FB7185"];
 
+// ─── Topic card — same grid-card presentation as Form 1's Sistem Bahasa
+// (BMWorldPage.tsx TopicCard): numbered badge, type label, title, arrow.
+// Clicking navigates to a single topic's detail view instead of an
+// accordion — same list→detail structure as Form 1, content unchanged.
+function SistemBahasaTopicCard({
+  topic,
+  index,
+  color,
+  onSelect,
+}: {
+  topic: GrammarTopic;
+  index: number;
+  color: string;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className="group flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-left transition-all hover:border-white/[0.14] hover:bg-white/[0.06]"
+    >
+      <div
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-black text-white/60"
+        style={{ background: `${color}15` }}
+      >
+        {String(index).padStart(2, "0")}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="mb-1">
+          <span className="text-[9px] font-black tracking-wide" style={{ color, opacity: 0.7 }}>
+            Tatabahasa
+          </span>
+        </div>
+        <p className="truncate text-sm font-semibold text-white">{topic.title}</p>
+      </div>
+      <ArrowRight
+        className="h-3.5 w-3.5 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-60"
+        style={{ color }}
+      />
+    </button>
+  );
+}
+
 export function BMForm2SistemBahasaLibrary() {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selectedIndex = BM_FORM2_GRAMMAR_TOPICS.findIndex((t) => t.id === selectedId);
+  const selectedTopic = selectedIndex >= 0 ? BM_FORM2_GRAMMAR_TOPICS[selectedIndex] : null;
+
+  if (selectedTopic) {
+    const color = TOPIC_COLORS[selectedIndex % TOPIC_COLORS.length];
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={() => setSelectedId(null)}
+          className="mb-5 flex items-center gap-2 text-xs font-bold text-white/50 transition-colors hover:text-white/80"
+        >
+          <ChevronLeft className="h-4 w-4" /> Kembali ke Sistem Bahasa
+        </button>
+        <h3 className="mb-4 font-display text-lg font-bold text-white">{selectedTopic.title}</h3>
+        <TopicContent topic={selectedTopic} color={color} />
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="mb-5 rounded-2xl border border-sky-400/20 bg-sky-400/5 p-5">
@@ -229,33 +295,22 @@ export function BMForm2SistemBahasaLibrary() {
           <BookOpen className="mt-0.5 h-5 w-5 shrink-0 text-sky-300" />
           <div>
             <h3 className="font-display font-bold text-white">📚 Sistem Bahasa</h3>
-            <p className="mt-1 text-sm leading-6 text-white/55">Pilih satu topik. Hanya satu folder dibuka pada satu masa supaya ulang kaji kekal fokus.</p>
+            <p className="mt-1 text-sm leading-6 text-white/55">Pilih satu topik untuk belajar.</p>
           </div>
         </div>
       </div>
 
-      <Accordion type="single" collapsible className="space-y-3">
-        {BM_FORM2_GRAMMAR_TOPICS.map((topic, index) => {
-          const color = TOPIC_COLORS[index % TOPIC_COLORS.length];
-          return (
-            <AccordionItem
-              key={topic.id}
-              value={topic.id}
-              className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-colors data-[state=open]:border-white/[0.16]"
-            >
-              <AccordionTrigger className="min-h-14 px-5 py-4 text-left hover:no-underline">
-                <span className="flex items-center gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-black" style={{ background: `${color}20`, color }}>{index + 1}</span>
-                  <span className="font-display font-bold text-white/90">{topic.title}</span>
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className="px-4 pb-5 sm:px-5">
-                <TopicContent topic={topic} color={color} />
-              </AccordionContent>
-            </AccordionItem>
-          );
-        })}
-      </Accordion>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {BM_FORM2_GRAMMAR_TOPICS.map((topic, index) => (
+          <SistemBahasaTopicCard
+            key={topic.id}
+            topic={topic}
+            index={index + 1}
+            color={TOPIC_COLORS[index % TOPIC_COLORS.length]}
+            onSelect={() => setSelectedId(topic.id)}
+          />
+        ))}
+      </div>
 
       <div className="mt-5 flex items-center justify-center gap-2 text-xs text-white/35">
         <Zap className="h-3.5 w-3.5" />

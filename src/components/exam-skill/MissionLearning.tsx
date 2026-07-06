@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown, Play, XCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ChevronDown, Play, Star, Trophy, XCircle, Zap } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
 export interface MissionDefinition {
@@ -29,6 +29,97 @@ export function MissionPageShell({ mission, onBack, children }: { mission: Missi
 export function MissionSection({ title, color, children }: { title: string; color: string; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return <section className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]"><button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex min-h-16 w-full items-center justify-between gap-3 px-5 py-4 text-left hover:bg-white/[0.035] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/30"><span className="font-display text-base font-bold text-white">{title}</span><ChevronDown className="h-4 w-4 transition-transform duration-300 motion-reduce:transition-none" style={{ color, transform: open ? "rotate(180deg)" : undefined }} /></button><div className="grid transition-[grid-template-rows,opacity] duration-300 motion-reduce:transition-none" style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}><div className="overflow-hidden"><div className="border-t border-white/[0.06] p-5">{children}</div></div></div></section>;
+}
+
+// Always-open variant of MissionSection — same header look, no collapse.
+// Used for "topic"-style pages that read as one continuous scroll (matching
+// BMWorldPage's per-topic detail pages) rather than an accordion of modules.
+export function MissionSectionStatic({ title, color, children }: { title: string; color: string; children: ReactNode }) {
+  return <section className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]"><div className="flex min-h-16 w-full items-center gap-3 px-5 py-4"><span className="font-display text-base font-bold text-white">{title}</span></div><div className="border-t border-white/[0.06] p-5">{children}</div></section>;
+}
+
+// Eyebrow + trophy-badge hero card for a mission's headline "formula" —
+// matches the Golden Standard presentation used by Form 1's bespoke topic
+// pages (e.g. Rangka Ringkasan), generalised so any subject/form can reuse
+// it with its own real title/description/tags instead of duplicating markup.
+export function GoldenStandardHero({ eyebrow = "Golden Standard", title, description, tags }: { eyebrow?: string; title: string; description: string; tags: Array<{ label: string; color?: string }> }) {
+  return <section className="relative overflow-hidden rounded-[1.75rem] border border-amber-300/20 bg-[#15130d] p-5 sm:p-7"><div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(251,191,36,0.16),transparent_45%),radial-gradient(circle_at_8%_100%,rgba(129,140,248,0.1),transparent_42%)]" /><div className="relative"><div className="flex items-start gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-300/[0.1] text-amber-300"><Trophy className="h-6 w-6" /></span><div><p className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-300">{eyebrow}</p><h2 className="mt-1 font-display text-2xl font-black text-white">{title}</h2><p className="mt-2 max-w-xl text-sm leading-6 text-white/60">{description}</p></div></div><div className="mt-5 flex flex-wrap gap-2">{tags.map(tag => <span key={tag.label} className="inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 text-[10px] font-black" style={{ color: tag.color ?? "#FBBF24", borderColor: `${tag.color ?? "#FBBF24"}35`, background: `${tag.color ?? "#FBBF24"}12` }}>{tag.label}</span>)}</div></div></section>;
+}
+
+// Decorative Nota/Kuiz/Kad Imbas tool row — matches Form 1's TopicView study
+// tools row exactly (inert buttons, no wiring there either).
+export function TopicToolsRow({ accent }: { accent: string }) {
+  const tools: Array<{ icon: LucideIcon; label: string; color: string }> = [
+    { icon: BookOpen, label: "Nota", color: accent },
+    { icon: Zap, label: "Kuiz", color: "#FBBF24" },
+    { icon: Star, label: "Kad Imbas", color: "#34D399" },
+  ];
+  return <div className="mb-6 flex flex-wrap gap-2">{tools.map(tool => { const Icon = tool.icon; return <button key={tool.label} type="button" className="flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-xs font-bold text-white/50 transition-all hover:bg-white/[0.07]"><span style={{ color: tool.color }}><Icon className="h-3.5 w-3.5" /></span>{tool.label}</button>; })}</div>;
+}
+
+// Collapsible folder with a description + indented left-border content area —
+// matches Form 1's LearningFolder/CollapsibleSection exactly, generalised so
+// it's not tied to any one subject's topic-detail pages.
+export function CollapsibleFolder({ icon, title, description, accent, defaultOpen = false, children }: { icon?: ReactNode; title: string; description?: string; accent: string; defaultOpen?: boolean; children: ReactNode }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return <section className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 hover:border-white/[0.16]" style={open ? { borderColor: `${accent}40`, boxShadow: `0 0 28px ${accent}14` } : undefined}>
+    <button type="button" onClick={() => setOpen(o => !o)} aria-expanded={open} className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition-colors hover:bg-white/[0.03]">
+      <span className="flex flex-wrap items-center gap-2.5">{icon && <span className="shrink-0" style={{ color: accent }}>{icon}</span>}<span className="font-display text-sm font-bold text-white/90 sm:text-base">{title}</span></span>
+      <ChevronDown className="h-4 w-4 shrink-0 text-white/40 transition-transform duration-300" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }} />
+    </button>
+    <div className="grid transition-all duration-300 ease-in-out" style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}>
+      <div className="overflow-hidden"><div className="px-5 pb-5 pt-1">
+        {description && <p className="mb-4 text-xs leading-5 text-white/45">{description}</p>}
+        <div className="space-y-3 border-l border-white/10 pl-3 sm:pl-4">{children}</div>
+      </div></div>
+    </div>
+  </section>;
+}
+
+// Numbered step box — matches Form 1's RingkasanDetail "Formula / Langkah"
+// numbered rows exactly.
+export function NumberedStep({ index, text, color }: { index: number; text: string; color: string }) {
+  return <div className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black" style={{ background: `${color}25`, color }}>{index + 1}</span>
+    <p className="text-sm text-white/70">{text}</p>
+  </div>;
+}
+
+// Tabbed practice switcher — matches Form 1's RingkasanPremiumDetail exactly:
+// intro paragraph + fact chips + a tab row (one per practice item) + a single
+// active practice card below, instead of a stacked list of every practice.
+export function PracticeTabSwitcher<T extends { title: string }>({
+  intro,
+  facts,
+  practices,
+  tabCountLabel,
+  color,
+  renderPractice,
+}: {
+  intro: ReactNode;
+  facts: Array<{ icon: string; label: string }>;
+  practices: T[];
+  tabCountLabel: string;
+  color: string;
+  renderPractice: (practice: T, index: number) => ReactNode;
+}) {
+  const [active, setActive] = useState(0);
+  return <div className="space-y-6">
+    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">{intro}</div>
+    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      {facts.map((f, i) => <div key={i} className="flex items-center gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.04] px-3 py-3"><span className="text-base shrink-0">{f.icon}</span><p className="text-xs font-semibold text-white/85 leading-tight">{f.label}</p></div>)}
+    </div>
+    <div>
+      <p className="mb-3 text-[10px] font-black tracking-wide text-white/40">{tabCountLabel}</p>
+      <div className="flex flex-wrap gap-2">
+        {practices.map((p, i) => <button key={p.title} onClick={() => setActive(i)} className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-bold transition-all ${active === i ? "border-transparent text-white shadow-md" : "border-white/[0.08] bg-white/[0.03] text-white/45 hover:text-white/70"}`} style={active === i ? { background: `${color}28`, borderColor: `${color}45`, color } : {}}>
+          <span className="hidden sm:inline">{p.title}</span>
+          <span className="sm:hidden">{i + 1}</span>
+        </button>)}
+      </div>
+    </div>
+    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">{renderPractice(practices[active], active)}</div>
+  </div>;
 }
 
 export function MissionTimeline({ steps }: { steps: Array<{ title: string; detail: string; icon: LucideIcon; color: string }> }) {

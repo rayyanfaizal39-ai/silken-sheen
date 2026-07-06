@@ -1,12 +1,16 @@
 import type { ChapterContent } from "./types";
+import { scienceF3ChapterContent } from "@/content/form3/science/registration";
 import type { MindNode } from "@/components/MindMap";
 import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
 import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
 import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
 import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
+import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
+import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,
+  notes as allNotes,
   scienceF1C2NotesBM,
   scienceF1C2NotesDLP,
   scienceF1C3NotesBM,
@@ -499,19 +503,15 @@ import { mathF3C9FlashcardsBM } from "@/content/form3/math/chapter-9/flashcards-
 import { mathF3C9FlashcardsDLP } from "@/content/form3/math/chapter-9/flashcards-dlp";
 
 
-function englishFlashcardsFor(chapterKey: string, form: ChapterContent["form"] = "Form 1") {
-  return allFlashcards.filter(
-    (f) => f.subjectId === "english" && f.chapter === chapterKey && f.form === form,
-  );
+function englishFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
+  return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey && f.form === form);
 }
 
-function bmFlashcardsFor(chapterKey: string) {
-  return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey);
+function bmFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
+  return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey && f.form === form);
 }
-function englishQuizzesFor(chapterKey: string, form: ChapterContent["form"] = "Form 1") {
-  return allQuizzes.filter(
-    (q) => q.subjectId === "english" && q.chapter === chapterKey && q.form === form,
-  );
+function englishQuizzesFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
+  return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey && q.form === form);
 }
 
 function sejarahFlashcardsFor(chapterNum: number) {
@@ -653,6 +653,7 @@ function geography(
   };
 }
 export const chapters: ChapterContent[] = [
+  ...scienceF3ChapterContent,
   // Sejarah Form 1
   sejarah(1, "Mengenali Sejarah", "dZuhYNHdQ7U", mengenaliSejarahMindMap, "Mengenali Sejarah"),
   sejarah(2, "Zaman Air Batu", "cLgCMnVoJ5g", zamanAirBatuMindMap, "Zaman Air Batu"),
@@ -2140,7 +2141,11 @@ export const chapters: ChapterContent[] = [
     quiz: englishQuizzesFor("Chapter 2"),
   },
 
-  // English Form 2
+  // English Form 2 — same structure as Form 1 (2 chapters: Paper 1 Reading &
+  // Language Awareness with 5 parts, Paper 2 Writing with Task A/Task B).
+  // No Form 2-specific flashcards/quiz data exists yet, so englishFlashcardsFor/
+  // englishQuizzesFor correctly return an empty array rather than fabricated
+  // content — Notes-only per this task's scope.
   {
     id: "english-f2-c1",
     subjectId: "english",
@@ -2226,6 +2231,76 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Tingkatkan Karangan",
     title: "Kemahiran Tingkatkan Karangan",
     flashcards: bmFlashcardsFor("Tingkatkan Karangan"),
+  },
+
+  // Bahasa Melayu Form 2 — same structure as Form 1 (flashcards-only skill
+  // decks), scaffolding only: every deck's data file
+  // (src/data/bm-flashcards-*-f2.ts) is intentionally empty pending real
+  // Form 2 KSSM content — never fabricated. Chapters render, show an empty
+  // deck, and are ready for content to be dropped in later.
+  {
+    id: "bm-f2-karangan-pendek",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Pendek",
+    title: "Karangan Pendek",
+    flashcards: bmFlashcardsFor("Karangan Pendek", "Form 2"),
+  },
+  {
+    id: "bm-f2-karangan-panjang",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Panjang",
+    title: "Karangan Panjang",
+    flashcards: bmFlashcardsFor("Karangan Panjang", "Form 2"),
+  },
+  {
+    id: "bm-f2-penanda-wacana",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Penanda Wacana",
+    title: "Penanda Wacana",
+    flashcards: bmFlashcardsFor("Penanda Wacana", "Form 2"),
+  },
+  {
+    id: "bm-f2-peribahasa",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Peribahasa",
+    title: "Peribahasa Wajib Hafal",
+    flashcards: bmFlashcardsFor("Peribahasa", "Form 2"),
+  },
+  {
+    id: "bm-f2-komsas",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "KOMSAS",
+    title: "KOMSAS",
+    flashcards: bmFlashcardsFor("KOMSAS", "Form 2"),
+  },
+  {
+    id: "bm-f2-kosa-kata",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kosa Kata Menarik",
+    title: "Kosa Kata Menarik",
+    flashcards: bmFlashcardsFor("Kosa Kata Menarik", "Form 2"),
+  },
+  {
+    id: "bm-f2-frasa-menarik",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Frasa Menarik",
+    title: "Frasa Menarik",
+    flashcards: bmFlashcardsFor("Frasa Menarik", "Form 2"),
+  },
+  {
+    id: "bm-f2-tingkatkan-karangan",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Tingkatkan Karangan",
+    title: "Kemahiran Tingkatkan Karangan",
+    flashcards: bmFlashcardsFor("Tingkatkan Karangan", "Form 2"),
   },
 
   // Science Form 2 — Chapter 1 (Biodiversiti / Biodiversity), fully populated
@@ -2622,10 +2697,11 @@ function chapterNumberFromKey(chapterKey: string) {
 // flashcards/quizzes were authored as standalone category/objective banks inside
 // the flashcards/quizzes routes (MATH_FLASHCARD_BANKS / MATH_QUIZ_BANKS, keyed by
 // the same "Chapter N" chapterKey) and were never mirrored onto these rows. Without
-// this registration, readiness checks would report that content as missing even
-// though learners can open it, leaving the form/chapter marked "Coming Soon" and
-// disabled. Register any other externally-stored content here rather than
-// special-casing a subject in the UI layer.
+// Science Form 1 quizzes use the same route-level storage pattern. Without this
+// registration, readiness checks report that content as missing even though
+// learners can open it, leaving the form/chapter marked "Coming Soon" and
+// disabled. Register externally-stored content here rather than special-casing
+// a subject in the UI layer.
 const EXTERNALLY_STORED_RESOURCES: Partial<
   Record<ResourceType, Array<{ subjectId: string; form: ChapterContent["form"]; chapterKeys: string[] }>>
 > = {
@@ -2635,12 +2711,22 @@ const EXTERNALLY_STORED_RESOURCES: Partial<
       form: "Form 1",
       chapterKeys: Array.from({ length: 13 }, (_, i) => `Chapter ${i + 1}`),
     },
+    {
+      subjectId: "science",
+      form: "Form 1",
+      chapterKeys: ["Chapter 1"],
+    },
   ],
   quiz: [
     {
       subjectId: "math",
       form: "Form 1",
       chapterKeys: Array.from({ length: 13 }, (_, i) => `Chapter ${i + 1}`),
+    },
+    {
+      subjectId: "science",
+      form: "Form 1",
+      chapterKeys: Array.from({ length: 9 }, (_, i) => `Chapter ${i + 1}`),
     },
   ],
 };
@@ -2658,7 +2744,17 @@ function hasExternallyStoredResource(chapter: ChapterContent, resourceType: Reso
 
 function chapterHasResourceContent(chapter: ChapterContent, resourceType: ResourceType) {
   if (resourceType === "notes") {
-    return Boolean(chapter.notes || chapter.englishData || chapter.subtopics?.length);
+    if (chapter.notes || chapter.englishData || chapter.subtopics?.length) return true;
+    if (chapter.subjectId === "science" && chapter.form === "Form 1" && chapter.chapterKey === "Chapter 1") {
+      return allNotes.some(
+        (note) =>
+          note.subjectId === "science" &&
+          note.form === "Form 1" &&
+          note.chapter === "Chapter 1" &&
+          (!chapter.lang || !note.lang || note.lang === chapter.lang),
+      );
+    }
+    return false;
   }
   if (resourceType === "quiz") {
     return Boolean(chapter.quiz?.length) || hasExternallyStoredResource(chapter, "quiz");

@@ -665,6 +665,38 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
   }
 }
 
+/**
+ * Inserts one immutable row into `quiz_history` for a completed quiz.
+ * Fire-and-forget: this is purely a learning-history log for
+ * getStudentAnalytics() (src/lib/analytics.ts) — it never affects XP,
+ * streak, rank, or the local `quizHistory` array, which are already
+ * handled by `recordQuizResult` regardless of whether this insert
+ * succeeds. Only runs for a signed-in user with Supabase configured.
+ */
+async function insertQuizHistoryRow(
+  userId: string,
+  result: { subjectId: string; chapterKey: string; scorePct: number; correct: number; total: number; xpEarned?: number },
+): Promise<void> {
+  if (!isSupabaseConfigured) return;
+  try {
+    await supabase.from("quiz_history").insert({
+      user_id: userId,
+      subject_id: result.subjectId,
+      chapter_key: result.chapterKey,
+      score_pct: result.scorePct,
+      correct: result.correct,
+      total: result.total,
+      // Real per-question difficulty-based XP award (10/20/30), summed for
+      // this quiz — not a flat estimate. Omitted (stays NULL) for callers
+      // that don't pass it, which the Galaxy Hall of Fame's Monthly XP
+      // ranking treats as "no data" rather than 0.
+      ...(result.xpEarned != null ? { xp_earned: result.xpEarned } : {}),
+    });
+  } catch {
+    // Silent — this is a supplementary analytics log, not the source of truth
+  }
+}
+
 // ─── Singleton auth sync ──────────────────────────────────────────────────────
 // `useProgress()` is called from ~10 components on a single page (header,
 // sidebar, hero card, companion widgets, etc). Each one used to run its own
@@ -1150,7 +1182,7 @@ export function useProgress() {
    * Returns 0 for backwards compatibility with older callers.
    */
   const recordQuizResult = useCallback(
-    (input: { subjectId: string; chapterKey: string; correct: number; total: number }): number => {
+    (input: { subjectId: string; chapterKey: string; correct: number; total: number; xpEarned?: number }): number => {
       const total = Math.max(1, input.total);
       const correct = Math.max(0, Math.min(input.correct, total));
       const scorePct = Math.round((correct / total) * 100);
@@ -1168,6 +1200,12 @@ export function useProgress() {
         };
         const quizHistory = [...(prev.quizHistory ?? []), result].slice(-QUIZ_HISTORY_CAP);
         const timestamp = Date.now();
+
+        // Learning-history log for getStudentAnalytics() — additive only,
+        // does not replace or alter the local quizHistory/XP handling below.
+        if (sharedUserId) {
+          void insertQuizHistoryRow(sharedUserId, { subjectId: input.subjectId, chapterKey: input.chapterKey, scorePct, correct, total, xpEarned: input.xpEarned });
+        }
 
         const next: Progress = {
           ...prev,

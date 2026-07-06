@@ -15,11 +15,11 @@ import {
 
 import { useState, useEffect, useRef, lazy, Suspense, type CSSProperties, type ReactNode, type MouseEvent as ReactMouseEvent } from "react";
 import gsap from "gsap";
-import { motion } from "framer-motion";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
+import { prefersReducedMotion, isCoarsePointer, isMobileViewport } from "@/lib/motion-preferences";
 import starCaptain from "@/assets/astronaut-hero.png.asset.json";
 import backGround from "@/assets/back-ground.webp.asset.json";
 
@@ -297,73 +297,77 @@ function Hero() {
         });
       }
 
-      // Continuous float — more dramatic
-      gsap.to(img, {
-        y: -40,
-        duration: 3.5,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-      gsap.to(img, {
-        rotation: 2.5,
-        duration: 5,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        transformOrigin: "50% 60%",
-      });
+      // Continuous loops (float, rotate, glow breathing) and mouse parallax
+      // are pure decoration — skip them entirely for prefers-reduced-motion,
+      // touch devices (no mouse to parallax against), and small viewports
+      // (mobile: no continuous heavy rotation, per the perf brief).
+      const reduce = prefersReducedMotion();
+      const coarse = isCoarsePointer();
+      const mobile = isMobileViewport();
 
-      // Glow breathing
-      if (glow) {
-        gsap.to(glow, {
-          opacity: 1,
-          scale: 1.08,
-          duration: 3.6,
+      if (!reduce && !mobile) {
+        // Continuous float — more dramatic
+        gsap.to(img, {
+          y: -40,
+          duration: 3.5,
           ease: "sine.inOut",
           yoyo: true,
           repeat: -1,
         });
-      }
-
-      // Mouse + touch parallax (window-level, works even outside the card)
-      let targetX = 0;
-      let targetY = 0;
-      const updateFromPoint = (clientX: number, clientY: number) => {
-        targetX = (clientX / window.innerWidth) - 0.5;
-        targetY = (clientY / window.innerHeight) - 0.5;
         gsap.to(img, {
-          x: targetX * 60,
-          y: `+=${0}`,
-          rotateY: targetX * 18,
-          rotateX: -targetY * 14,
-          z: 40,
-          duration: 1.1,
-          ease: "power3.out",
-          overwrite: "auto",
+          rotation: 2.5,
+          duration: 5,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          transformOrigin: "50% 60%",
         });
+
+        // Glow breathing
         if (glow) {
           gsap.to(glow, {
-            x: targetX * -30,
-            y: targetY * -20,
-            duration: 1.4,
+            opacity: 1,
+            scale: 1.08,
+            duration: 3.6,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+          });
+        }
+      }
+
+      // Mouse parallax only makes sense with an actual mouse.
+      if (!reduce && !coarse) {
+        const onMove = (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(img, {
+            x: x * 24,
+            rotateY: x * 6,
+            rotateX: -y * 6,
+            duration: 0.8,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        };
+        const onLeave = () => {
+          gsap.to(img, {
+            x: 0,
+            rotateX: 0,
+            rotateY: 0,
+            duration: 1.2,
             ease: "power3.out",
             overwrite: "auto",
           });
-        }
-      };
-      const onMove = (e: MouseEvent) => updateFromPoint(e.clientX, e.clientY);
-      const onTouch = (e: TouchEvent) => {
-        const t = e.touches[0];
-        if (t) updateFromPoint(t.clientX, t.clientY);
-      };
-      window.addEventListener("mousemove", onMove, { passive: true });
-      window.addEventListener("touchmove", onTouch, { passive: true });
-      return () => {
-        window.removeEventListener("mousemove", onMove);
-        window.removeEventListener("touchmove", onTouch);
-      };
-
+        };
+        card.addEventListener("mousemove", onMove);
+        card.addEventListener("mouseleave", onLeave);
+        return () => {
+          card.removeEventListener("mousemove", onMove);
+          card.removeEventListener("mouseleave", onLeave);
+        };
+      }
     }, card);
 
     return () => ctx.revert();
@@ -487,28 +491,22 @@ function Hero() {
 
           <div
             ref={heroCardRef}
-            className="relative aspect-[4/5] [transform-style:preserve-3d]"
+            className="relative aspect-[4/5] [transform-style:preserve-3d] rounded-[2rem] bg-gradient-to-br from-[#2a1a4a] via-[#1b1030] to-[#0d0a1a]"
           >
-            <motion.img
+            {/* Continuous float/rotate/parallax is driven entirely by the
+                GSAP context above (skipped for reduced-motion/mobile/touch) —
+                this used to also carry a framer-motion infinite `animate`
+                loop doing near-identical motion on the same element, which
+                meant two animation engines fighting over one element's
+                transform every frame for no visual benefit. */}
+            <img
               ref={heroImgRef}
               src={starCaptain.url}
               alt="AcadeMY astronaut floating in deep space"
               className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_60px_rgba(120,80,255,0.45)]"
               draggable={false}
-              animate={{
-                y: [0, -22, 0, 14, 0],
-                x: [0, 10, 0, -8, 0],
-                rotate: [0, 2.5, 0, -2, 0],
-              }}
-              transition={{
-                duration: 9,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
+              fetchPriority="high"
             />
-
-
 
             {/* Level badge */}
             <div
