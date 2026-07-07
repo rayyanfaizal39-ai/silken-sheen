@@ -49,6 +49,8 @@ export function CinematicStars() {
           depth,
         };
       });
+
+      buildNebulaGradients();
     };
 
     const spawnMeteor = (hero = false) => {
@@ -70,22 +72,39 @@ export function CinematicStars() {
       scrollY = window.scrollY || 0;
     };
 
+    // Nebula gradients only depend on w/h (which change on resize, not per
+    // frame) — build them once per size instead of allocating two fresh
+    // CanvasGradient objects on every rAF tick. The breathing opacity is
+    // applied via a separate alpha-only overlay draw instead of rebuilding
+    // the gradient stops themselves.
+    let nebulaG1: CanvasGradient | null = null;
+    let nebulaG2: CanvasGradient | null = null;
+    const buildNebulaGradients = () => {
+      nebulaG1 = ctx.createRadialGradient(w * 0.82, h * 0.18, 0, w * 0.82, h * 0.18, Math.max(w, h) * 0.55);
+      nebulaG1.addColorStop(0, "rgba(168,85,247,0.22)");
+      nebulaG1.addColorStop(1, "rgba(168,85,247,0)");
+
+      nebulaG2 = ctx.createRadialGradient(w * 0.1, h * 0.6, 0, w * 0.1, h * 0.6, Math.max(w, h) * 0.5);
+      nebulaG2.addColorStop(0, "rgba(59,130,246,0.14)");
+      nebulaG2.addColorStop(1, "rgba(59,130,246,0)");
+    };
+
     const draw = (t: number) => {
       ctx.clearRect(0, 0, w, h);
 
-      // soft nebula glow that breathes
+      // soft nebula glow that breathes — same gradient shape every frame,
+      // only the overall alpha (via globalAlpha) changes.
       const breathe = (Math.sin(t / 4000) + 1) / 2;
-      const g1 = ctx.createRadialGradient(w * 0.82, h * 0.18, 0, w * 0.82, h * 0.18, Math.max(w, h) * 0.55);
-      g1.addColorStop(0, `rgba(168,85,247,${0.18 + breathe * 0.08})`);
-      g1.addColorStop(1, "rgba(168,85,247,0)");
-      ctx.fillStyle = g1;
-      ctx.fillRect(0, 0, w, h);
+      if (nebulaG1 && nebulaG2) {
+        ctx.globalAlpha = 0.82 + breathe * 0.18;
+        ctx.fillStyle = nebulaG1;
+        ctx.fillRect(0, 0, w, h);
 
-      const g2 = ctx.createRadialGradient(w * 0.1, h * 0.6, 0, w * 0.1, h * 0.6, Math.max(w, h) * 0.5);
-      g2.addColorStop(0, `rgba(59,130,246,${0.12 + (1 - breathe) * 0.05})`);
-      g2.addColorStop(1, "rgba(59,130,246,0)");
-      ctx.fillStyle = g2;
-      ctx.fillRect(0, 0, w, h);
+        ctx.globalAlpha = 0.7 + (1 - breathe) * 0.3;
+        ctx.fillStyle = nebulaG2;
+        ctx.fillRect(0, 0, w, h);
+        ctx.globalAlpha = 1;
+      }
 
       // stars with parallax + twinkle
       for (const s of stars) {

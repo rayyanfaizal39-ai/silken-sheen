@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState, useRef, useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { shouldReduceMotion } from "@/lib/motion-preferences";
 import { SiteFooter } from "@/components/SiteFooter";
