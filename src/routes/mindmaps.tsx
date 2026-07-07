@@ -30,6 +30,8 @@ import {
   SubjectWorldBanner,
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
+import { seoMeta } from "@/lib/seo";
+import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -49,20 +51,19 @@ const searchSchema = z.object({
 
 export const Route = createFileRoute("/mindmaps")({
   validateSearch: searchSchema,
-  head: () => ({
-    meta: [
-      { title: "Mind Maps - AcadeMY" },
-      {
-        name: "description",
-        content: "Explore every chapter visually through interactive learning maps.",
-      },
-      { property: "og:title", content: "Mind Maps - AcadeMY" },
-      {
-        property: "og:description",
-        content: "Dedicated AcadeMY mind maps for visual chapter revision.",
-      },
-    ],
-  }),
+  head: ({ match }) => {
+    const subjectName = subjectSeoName(match.search.subject);
+    const title = subjectName ? `${subjectName} Mind Maps — KSSM Form 1-3` : "KSSM Mind Maps — Visual Chapter Revision";
+    const description = subjectName
+      ? `Visual ${subjectName} mind maps for KSSM Form 1-3 — explore every chapter's key concepts at a glance.`
+      : "Explore every KSSM chapter visually through interactive mind maps — Science, Math, English, Bahasa Melayu, Sejarah and Geografi, Form 1-3.";
+    return seoMeta({
+      title,
+      description,
+      path: "/mindmaps",
+      keywords: ["KSSM mind maps", "visual notes Form 1", "concept maps", ...subjectSeoKeywords(match.search.subject)],
+    });
+  },
   component: MindMapsPage,
 });
 

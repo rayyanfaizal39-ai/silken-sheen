@@ -1,23 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shield } from "lucide-react";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — AcadeMY" },
-      {
-        name: "description",
-        content:
-          "How AcadeMY collects, uses, and protects student data, including information used for Google Sign-In.",
-      },
-      { property: "og:title", content: "Privacy Policy — AcadeMY" },
-      {
-        property: "og:description",
-        content:
-          "How AcadeMY collects, uses, and protects student data, including information used for Google Sign-In.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "https://www.myacademy.my/privacy" }],
+  head: () => seoMeta({
+    title: "Privacy Policy",
+    description: "How AcadeMY collects, uses, and protects student data, including information used for Google Sign-In.",
+    path: "/privacy",
   }),
   component: PrivacyPage,
 });

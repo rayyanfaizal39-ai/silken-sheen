@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import {
   Outlet,
   createRootRouteWithContext,
@@ -17,8 +17,25 @@ import { MusicPlayer } from "@/components/MusicPlayer";
 import { AuthProvider } from "@/context/auth-context";
 import { SignInModalProvider } from "@/context/sign-in-modal";
 import { CikguProvider } from "@/context/cikgu-context";
+import { SITE_URL } from "@/lib/seo";
+import { organizationSchema, educationalOrganizationSchema, websiteSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 function NotFoundComponent() {
+  // The 404 view has no file-based route of its own, so it can't set its
+  // own head(). Root's head() advertises "index, follow" for every page;
+  // override to noindex here so a broken/removed link doesn't get crawled
+  // and indexed as real content. Client-side only — Googlebot executes JS
+  // and will see this, but a JS-less crawler still gets the root's default.
+  useEffect(() => {
+    const el = document.querySelector('meta[name="robots"]');
+    const prev = el?.getAttribute("content") ?? null;
+    el?.setAttribute("content", "noindex, nofollow");
+    return () => {
+      if (prev !== null) el?.setAttribute("content", prev);
+    };
+  }, []);
+
   return (
     <div className="flex min-h-svh items-center justify-center px-4">
       <div className="max-w-md text-center glass-strong rounded-3xl p-10">
@@ -60,66 +77,37 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const ROOT_TITLE = "AcadeMY — Malaysia's Interstellar Learning Platform (KSSM Form 1-3)";
+const ROOT_DESCRIPTION =
+  "AI-powered KSSM learning platform for Malaysian Form 1-3 students. Notes, quizzes, flashcards, mind maps and Cikgu AI tutor in Bahasa Melayu & English/DLP — free to start.";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
+      { title: ROOT_TITLE },
+      { name: "description", content: ROOT_DESCRIPTION },
       {
-        name: "description",
+        name: "keywords",
         content:
-          "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar.",
+          "KSSM notes, KSSM quiz, KSSM flashcards, SPM preparation, PT3 preparation, Form 1 notes, Form 2 notes, Form 3 notes, Cikgu AI, AI tutor Malaysia, student learning platform Malaysia, Malaysia learning platform",
       },
-      { property: "og:title", content: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
-      {
-        property: "og:description",
-        content:
-          "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar.",
-      },
+      { name: "robots", content: "index, follow" },
+      { name: "theme-color", content: "#050816" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+      { name: "apple-mobile-web-app-title", content: "AcadeMY" },
+      { property: "og:title", content: ROOT_TITLE },
+      { property: "og:description", content: ROOT_DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "AcadeMY" },
+      { property: "og:locale", content: "en_MY" },
+      { property: "og:image", content: `${SITE_URL}/og-image.png` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AcadeMY — Belajar Lebih Bijak, Bersinar Lebih Terang" },
-      {
-        name: "twitter:description",
-        content:
-          "Platform pembelajaran KSSM berkuasa AI untuk pelajar Form 1–3 Malaysia. Kuiz, kad imbasan, dan nota pintar.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png",
-      },
-      {
-        name: "description",
-        content:
-          "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students.",
-      },
-      {
-        property: "og:description",
-        content:
-          "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students.",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/91319232-a302-4aa1-b453-84a11b887a9a/id-preview-3b032b13--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780714922692.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/91319232-a302-4aa1-b453-84a11b887a9a/id-preview-3b032b13--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780714922692.png",
-      },
+      { name: "twitter:title", content: ROOT_TITLE },
+      { name: "twitter:description", content: ROOT_DESCRIPTION },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -129,6 +117,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap",
       },
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/favicon-192.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
@@ -158,6 +151,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Site-wide structured data — same on every page, so it lives once
+          at the root rather than being repeated per-route. */}
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={educationalOrganizationSchema()} />
+      <JsonLd data={websiteSchema()} />
       <AuthProvider>
         <SignInModalProvider>
           <CikguProvider>

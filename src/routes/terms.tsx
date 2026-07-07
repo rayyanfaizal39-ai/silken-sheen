@@ -1,21 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Service — AcadeMY" },
-      {
-        name: "description",
-        content: "The terms that govern your use of the AcadeMY learning platform.",
-      },
-      { property: "og:title", content: "Terms of Service — AcadeMY" },
-      {
-        property: "og:description",
-        content: "The terms that govern your use of the AcadeMY learning platform.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "https://www.myacademy.my/terms" }],
+  head: () => seoMeta({
+    title: "Terms of Service",
+    description: "The terms that govern your use of the AcadeMY learning platform.",
+    path: "/terms",
   }),
   component: TermsPage,
 });

@@ -2,15 +2,14 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Rocket, Sparkles, Shield, Zap, Star, ArrowLeft, AlertCircle } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/login")({
-  head: () => ({
-    meta: [
-      { title: "Sign In — AcadeMY" },
-      { name: "description", content: "Sign in to track your KSSM study progress, XP, and streaks." },
-      { property: "og:title", content: "Sign In — AcadeMY" },
-      { property: "og:description", content: "Join AcadeMY free to save your XP, streaks, and achievements." },
-    ],
+  head: () => seoMeta({
+    title: "Sign In",
+    description: "Sign in to AcadeMY to save your KSSM study progress, XP, and streaks across devices.",
+    path: "/login",
+    noindex: true,
   }),
   component: LoginPage,
 });

@@ -4,13 +4,14 @@ import { Check, Sparkles, ArrowRight, Star, Brain, BarChart2, TrendingUp, Gradua
 import { AcademyPageShell } from "@/components/AcademyPage";
 import { useAuth } from "@/context/auth-context";
 import { createAndConfirmStubCheckout, type UpgradePlan } from "./-upgrade.server";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/upgrade")({
-  head: () => ({
-    meta: [
-      { title: "Upgrade — AcadeMY" },
-      { name: "description", content: "Unlock unlimited quizzes, AI Study Assistant and personal analytics with AcadeMY Premium." },
-    ],
+  head: () => seoMeta({
+    title: "Pricing & Premium — Plans for KSSM Students",
+    description: "Simple, student-friendly pricing for AcadeMY Premium — unlimited quizzes, Cikgu AI tutor and parent analytics for Malaysian KSSM Form 1-3 students.",
+    path: "/upgrade",
+    keywords: ["AcadeMY pricing", "KSSM premium", "AI tutor Malaysia", "student learning platform Malaysia"],
   }),
   component: UpgradePage,
 });

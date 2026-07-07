@@ -53,6 +53,8 @@ import {
   isEnglishFlashcardDeckIdF2,
   type EnglishFlashcardDeckIdF2,
 } from "@/data/english-f2-flashcard-decks";
+import { seoMeta } from "@/lib/seo";
+import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -60,17 +62,20 @@ type FlashcardSetIndex = 0 | 1 | 2;
 type FormFilter = Form | "All";
 
 export const Route = createFileRoute("/flashcards")({
-  head: () => ({
-    meta: [
-      { title: "Flashcards — AcadeMY" },
-      { name: "description", content: "Swipeable, flippable flashcards for fast KSSM revision." },
-      { property: "og:title", content: "Flashcards — AcadeMY" },
-      {
-        property: "og:description",
-        content: "Smart revision with favorites and smooth flip animations.",
-      },
-    ],
-  }),
+  head: ({ match }) => {
+    const subjectId = (match.search as { subject?: string })?.subject;
+    const subjectName = subjectSeoName(subjectId);
+    const title = subjectName ? `${subjectName} Flashcards — KSSM Form 1-3` : "KSSM Flashcards — Form 1-3 Revision Cards";
+    const description = subjectName
+      ? `Swipeable ${subjectName} flashcards for fast KSSM Form 1-3 revision, with favorites and spaced repetition.`
+      : "Swipeable, flippable KSSM flashcards for fast Form 1-3 revision across Science, Math, English, Bahasa Melayu, Sejarah and Geografi.";
+    return seoMeta({
+      title,
+      description,
+      path: "/flashcards",
+      keywords: ["KSSM flashcards", "Form 1 flashcards", "spaced repetition", "SPM preparation", ...subjectSeoKeywords(subjectId)],
+    });
+  },
   component: FlashcardsPage,
 });
 

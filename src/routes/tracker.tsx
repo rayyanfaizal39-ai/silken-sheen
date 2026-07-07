@@ -14,16 +14,15 @@ import {
 } from "lucide-react";
 import { useProgress, QUIZ_PASS_PCT } from "@/hooks/use-progress";
 import { analyzeProgress, type SubjectStat } from "@/lib/tracker";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/tracker")({
-  head: () => ({
-    meta: [
-      { title: "AI Tracker — AcadeMY" },
-      {
-        name: "description",
-        content: "Your AI study tracker — see exactly where you're strong and where to focus next.",
-      },
-    ],
+  // Per-user analytics — noindex, same as /dashboard.
+  head: () => seoMeta({
+    title: "AI Study Tracker",
+    description: "Your AI study tracker on AcadeMY — see exactly where you're strong and where to focus next in KSSM.",
+    path: "/tracker",
+    noindex: true,
   }),
   component: TrackerPage,
 });

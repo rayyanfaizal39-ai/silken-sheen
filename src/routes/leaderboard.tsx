@@ -21,16 +21,14 @@ import { buildLeaderboard, nomineesToCsv, type RankedStudent } from "@/lib/leade
 import { SCHOLARSHIP_COORDINATOR_EMAIL, SCHOLARSHIP_MIN_XP } from "@/data/leaderboard";
 import { analyzeProgress } from "@/lib/tracker";
 import { getLeaderboardData, type LeaderboardData, type LeaderboardStudentRow } from "./-leaderboard.server";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/leaderboard")({
-  head: () => ({
-    meta: [
-      { title: "Galaxy Hall of Fame — AcadeMY" },
-      {
-        name: "description",
-        content: "Real monthly XP rankings — top 100 KSSM students, refreshed every season.",
-      },
-    ],
+  head: () => seoMeta({
+    title: "Galaxy Hall of Fame — KSSM Leaderboard",
+    description: "Real monthly XP rankings — top 100 KSSM students on AcadeMY, refreshed every season.",
+    path: "/leaderboard",
+    keywords: ["KSSM leaderboard", "student rankings Malaysia", "Malaysia learning platform"],
   }),
   loader: async () => {
     try {

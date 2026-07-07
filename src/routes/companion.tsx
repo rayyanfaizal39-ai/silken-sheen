@@ -18,11 +18,16 @@ import {
   MOOD_LABEL,
   useCompanionMessage,
 } from "@/companion";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/companion")({
   component: CosmicCompanionPage,
-  head: () => ({
-    meta: [{ title: "Cosmic Companion | AcadeMY" }],
+  // Per-user gamification state — noindex, same as /dashboard.
+  head: () => seoMeta({
+    title: "Cosmic Companion",
+    description: "Evolve your Cosmic Companion by earning XP on AcadeMY — a gamified KSSM study companion for Form 1-3 students.",
+    path: "/companion",
+    noindex: true,
   }),
 });
 

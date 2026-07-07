@@ -15,16 +15,14 @@ import {
 import { useProgress, getRank, type ReportCadence } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { analyzeProgress, withinDays } from "@/lib/tracker";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/parent")({
-  head: () => ({
-    meta: [
-      { title: "Parent Mission Report — AcadeMY" },
-      {
-        name: "description",
-        content: "A clear weekly or monthly summary of your child's KSSM study progress.",
-      },
-    ],
+  head: () => seoMeta({
+    title: "Parent Mission Report",
+    description: "A clear weekly or monthly summary of your child's KSSM study progress — a parent learning dashboard for Malaysian families.",
+    path: "/parent",
+    keywords: ["parent learning dashboard", "KSSM progress report", "student learning platform Malaysia"],
   }),
   component: ParentPage,
 });

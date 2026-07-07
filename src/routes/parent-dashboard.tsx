@@ -21,16 +21,15 @@ import { useAuth } from "@/context/auth-context";
 import { getStudentAnalytics, type StudentAnalytics } from "@/lib/analytics";
 import { AcademyPageShell } from "@/components/AcademyPage";
 import { WeeklyParentReportPreview } from "@/components/parent/WeeklyParentReportPreview";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/parent-dashboard")({
-  head: () => ({
-    meta: [
-      { title: "Parent Dashboard — AcadeMY" },
-      {
-        name: "description",
-        content: "A parent-facing analytics view of your child's KSSM study progress.",
-      },
-    ],
+  // Per-user analytics view — same noindex reasoning as /dashboard.
+  head: () => seoMeta({
+    title: "Parent Dashboard",
+    description: "A parent-facing analytics view of your child's KSSM study progress on AcadeMY.",
+    path: "/parent-dashboard",
+    noindex: true,
   }),
   component: ParentDashboardPage,
 });

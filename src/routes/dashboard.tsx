@@ -56,15 +56,17 @@ import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_
 import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
 import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
 import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/dashboard")({
-  head: () => ({
-    meta: [
-      { title: "Dashboard — AcadeMY" },
-      { name: "description", content: "Track your XP, streaks, badges and study progress." },
-      { property: "og:title", content: "Dashboard — AcadeMY" },
-      { property: "og:description", content: "Your personal study stats and achievements." },
-    ],
+  // Personal, per-user stats page — not useful search-result content, and
+  // indexing it would just be a wall of identical placeholder XP/streak
+  // markup for every crawl. Standard practice: noindex app/account pages.
+  head: () => seoMeta({
+    title: "Dashboard",
+    description: "Track your XP, streaks, badges and KSSM study progress on AcadeMY.",
+    path: "/dashboard",
+    noindex: true,
   }),
   component: DashboardPage,
 });

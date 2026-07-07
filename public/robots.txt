@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /auth/callback
+Disallow: /dashboard
+Disallow: /parent-dashboard
+Disallow: /tracker
+Disallow: /companion
+Disallow: /login
+
+Sitemap: https://www.myacademy.my/sitemap.xml

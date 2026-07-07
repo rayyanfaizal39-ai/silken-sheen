@@ -44,6 +44,8 @@ import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_
 import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
 import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
 import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
+import { seoMeta } from "@/lib/seo";
+import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 
 
 const searchSchema = z.object({
@@ -64,17 +66,19 @@ const searchSchema = z.object({
 
 export const Route = createFileRoute("/notes")({
   validateSearch: searchSchema,
-  head: () => ({
-    meta: [
-      { title: "Summary Notes — AcadeMY" },
-      { name: "description", content: "Bite-sized KSSM notes by subject, form, and chapter." },
-      { property: "og:title", content: "Summary Notes — AcadeMY" },
-      {
-        property: "og:description",
-        content: "Clean, highlighted study notes for Form 1–3 students.",
-      },
-    ],
-  }),
+  head: ({ match }) => {
+    const subjectName = subjectSeoName(match.search.subject);
+    const title = subjectName ? `${subjectName} Notes — KSSM Form 1-3` : "KSSM Notes — Form 1-3 Summary Notes";
+    const description = subjectName
+      ? `${subjectName} KSSM notes for Form 1-3 — clear, exam-focused summaries with highlighted key points.`
+      : "Bite-sized KSSM notes by subject, form, and chapter — Science, Math, English, Bahasa Melayu, Sejarah and Geografi for Form 1-3.";
+    return seoMeta({
+      title,
+      description,
+      path: "/notes",
+      keywords: ["KSSM notes", "Form 1 notes", "Form 2 notes", "Form 3 notes", ...subjectSeoKeywords(match.search.subject)],
+    });
+  },
   component: NotesPage,
 });
 

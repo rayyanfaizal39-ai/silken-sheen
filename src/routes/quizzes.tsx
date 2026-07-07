@@ -59,22 +59,24 @@ import {
   type EnglishQuizSetId,
   type EnglishQuizSetMeta,
 } from "@/data/english-f1-quiz-sets";
+import { seoMeta } from "@/lib/seo";
+import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 
 export const Route = createFileRoute("/quizzes")({
-  head: () => ({
-    meta: [
-      { title: "Quizzes — AcadeMY" },
-      {
-        name: "description",
-        content: "Interactive KSSM quizzes with instant scoring. Easy, Medium, and Hard.",
-      },
-      { property: "og:title", content: "Quizzes — AcadeMY" },
-      {
-        property: "og:description",
-        content: "Test yourself with KSSM quizzes — instant feedback and XP rewards.",
-      },
-    ],
-  }),
+  head: ({ match }) => {
+    const subjectId = (match.search as { subject?: string })?.subject;
+    const subjectName = subjectSeoName(subjectId);
+    const title = subjectName ? `${subjectName} Quiz — KSSM Form 1-3 Practice` : "KSSM Quiz — Form 1-3 Practice Questions";
+    const description = subjectName
+      ? `${subjectName} KSSM quiz for Form 1-3 with instant scoring — Easy, Medium and Hard difficulty, XP rewards.`
+      : "Interactive KSSM quizzes with instant scoring — Easy, Medium and Hard difficulty across Science, Math, English, Bahasa Melayu, Sejarah and Geografi.";
+    return seoMeta({
+      title,
+      description,
+      path: "/quizzes",
+      keywords: ["KSSM quiz", "PT3 preparation", "SPM preparation", "Form 1 quiz", ...subjectSeoKeywords(subjectId)],
+    });
+  },
   component: QuizzesPage,
 });
 

@@ -3,20 +3,18 @@ import { subjects } from "@/data/content";
 import { useState } from "react";
 import { Search, Globe } from "lucide-react";
 import { SubjectPlanetLink, type SubjectPlanetId, AcademyPageShell } from "@/components/AcademyPage";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/subjects")({
-  head: () => ({
-    meta: [
-      { title: "Subjects — AcadeMY" },
-      {
-        name: "description",
-        content: "All KSSM subjects for Form 1, 2, and 3 Malaysian secondary students.",
-      },
-      { property: "og:title", content: "Subjects — AcadeMY" },
-      {
-        property: "og:description",
-        content: "Explore Bahasa Melayu, English, Math, Science, Sejarah and Geography.",
-      },
+  head: () => seoMeta({
+    title: "KSSM Subjects — Science, Math, English, BM, Sejarah, Geografi",
+    description:
+      "All KSSM subjects for Form 1-3 Malaysian students: Science, Mathematics, English, Bahasa Melayu, Sejarah and Geografi — notes, quizzes and flashcards in one place.",
+    path: "/subjects",
+    keywords: [
+      "KSSM subjects", "Form 1 subjects", "Form 2 subjects", "Form 3 subjects",
+      "Science Form 1", "Math Form 1", "English Form 1", "Bahasa Melayu Form 1",
+      "Sejarah Form 1", "Geografi Form 1", "Malaysia learning platform",
     ],
   }),
   component: SubjectsPage,

@@ -1,15 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, Globe, Rocket } from "lucide-react";
+import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — AcadeMY" },
-      { name: "description", content: "Get in touch with the AcadeMY team." },
-      { property: "og:title", content: "Contact — AcadeMY" },
-      { property: "og:description", content: "Get in touch with the AcadeMY team." },
-    ],
-    links: [{ rel: "canonical", href: "https://www.myacademy.my/contact" }],
+  head: () => seoMeta({
+    title: "Contact Us",
+    description: "Get in touch with the AcadeMY team — questions, feedback, or partnership enquiries.",
+    path: "/contact",
   }),
   component: ContactPage,
 });
