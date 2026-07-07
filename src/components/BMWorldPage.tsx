@@ -112,9 +112,9 @@ const OBJEKTIF_SETS_FORM2 = [
   { id: "bm-f2-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF2ObjektifKuiz3 },
 ] as const;
 const OBJEKTIF_SETS_FORM3 = [
-  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, plannedCount: 15, ready: false },
-  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, plannedCount: 15, ready: false },
-  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, plannedCount: 15, ready: false },
+  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, plannedCount: 15, ready: true },
+  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, plannedCount: 15, ready: true },
+  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, plannedCount: 15, ready: true },
 ] as const;
 type ObjectiveSetCollection = typeof OBJEKTIF_SETS | typeof OBJEKTIF_SETS_FORM2 | typeof OBJEKTIF_SETS_FORM3;
 
@@ -127,7 +127,19 @@ function shuffleItems<T>(items: T[]): T[] {
   return next;
 }
 
-function shuffleObjectiveQuestions(questions: QuizQuestion[]): QuizQuestion[] {
+function buildObjectiveQuestions(questions: QuizQuestion[]): QuizQuestion[] {
+  const isBahasaMelayuQuiz = questions.every((question) => {
+    const subjectId = question.subjectId.toLowerCase();
+    return subjectId === "bm" || subjectId === "bahasa-melayu" || subjectId === "bahasa melayu";
+  });
+
+  if (isBahasaMelayuQuiz) {
+    return questions.map((question) => ({
+      ...question,
+      options: [...question.options],
+    }));
+  }
+
   const groups = [
     shuffleItems(questions.slice(0, 5)),
     shuffleItems(questions.slice(5, 10)),
@@ -515,7 +527,7 @@ function ObjektifKuizView({
   type Phase = "intro" | "quiz" | "results";
   const [phase, setPhase] = useState<Phase>("intro");
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(() =>
-    shuffleObjectiveQuestions(questions),
+    buildObjectiveQuestions(questions),
   );
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -575,7 +587,7 @@ function ObjektifKuizView({
   }
 
   function handleRestart() {
-    setQuizQuestions(shuffleObjectiveQuestions(questions));
+    setQuizQuestions(buildObjectiveQuestions(questions));
     setCurrent(0);
     setSelected(null);
     setRevealed(false);
