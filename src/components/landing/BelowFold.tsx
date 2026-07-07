@@ -13,7 +13,7 @@ import {
   TrendingUp,
   LineChart,
 } from "lucide-react";
-import { useState, useRef, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { shouldReduceMotion } from "@/lib/motion-preferences";
