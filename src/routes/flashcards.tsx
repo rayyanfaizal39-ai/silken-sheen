@@ -47,6 +47,12 @@ import {
   isEnglishFlashcardDeckId,
   type EnglishFlashcardDeckId,
 } from "@/data/english-f1-flashcard-decks";
+import {
+  ENGLISH_FLASHCARD_DECKS_F2,
+  getEnglishFlashcardsForDeckF2,
+  isEnglishFlashcardDeckIdF2,
+  type EnglishFlashcardDeckIdF2,
+} from "@/data/english-f2-flashcard-decks";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -3362,12 +3368,16 @@ function MathFlashcardCategoryPicker({
 }
 
 function EnglishFlashcardDeckPicker({
+  form,
   onBack,
   onSelect,
 }: {
+  form: "Form 1" | "Form 2";
   onBack: () => void;
-  onSelect: (deckId: EnglishFlashcardDeckId) => void;
+  onSelect: (deckId: EnglishFlashcardDeckId | EnglishFlashcardDeckIdF2) => void;
 }) {
+  const isForm2 = form === "Form 2";
+  const decks = isForm2 ? ENGLISH_FLASHCARD_DECKS_F2 : ENGLISH_FLASHCARD_DECKS;
   return (
     <div className="animate-fade-up">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
@@ -3377,24 +3387,28 @@ function EnglishFlashcardDeckPicker({
         >
           <ArrowLeft className="h-4 w-4" /> Back to subjects
         </button>
-        <span className="text-sm font-semibold text-muted-foreground">English Form 1</span>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {isForm2 ? "English Form 2" : "English Form 1"}
+        </span>
       </div>
 
       <div className="glass-strong rounded-3xl p-6 sm:p-8">
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
-            English Form 1
+            {isForm2 ? "English Form 2" : "English Form 1"}
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
-            Open <span className="gradient-text">Paper 1 Flashcards</span>
+            Open <span className="gradient-text">{isForm2 ? "Form 2 Flashcards" : "Paper 1 Flashcards"}</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
-            Quick revision for high-frequency UASA Paper 1 skills.
+            {isForm2
+              ? "Quick revision for Tingkatan 2 grammar, reading, and writing skills."
+              : "Quick revision for high-frequency UASA Paper 1 skills."}
           </p>
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {ENGLISH_FLASHCARD_DECKS.map((deck, index) => (
+          {decks.map((deck, index) => (
             <button
               key={deck.id}
               onClick={() => onSelect(deck.id)}
@@ -3534,6 +3548,7 @@ function FlashcardsPage() {
     MATH_FLASHCARD_BANKS[chapter]
   );
   const isEnglishFlashcardDeck = subject === "english" && isEnglishFlashcardDeckId(chapter);
+  const isEnglishFlashcardDeckF2 = subject === "english" && isEnglishFlashcardDeckIdF2(chapter);
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const subjectChaptersForForm = subject
@@ -3541,10 +3556,19 @@ function FlashcardsPage() {
     : [];
   const chapterMeta =
     subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
-  const missingChapter = !!(subject && chapter && !chapterMeta && !isEnglishFlashcardDeck);
+  const missingChapter = !!(
+    subject &&
+    chapter &&
+    !chapterMeta &&
+    !isEnglishFlashcardDeck &&
+    !isEnglishFlashcardDeckF2
+  );
   const rawPool = useMemo(() => {
     if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
       return getEnglishFlashcardsForDeck(chapter);
+    }
+    if (subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
+      return getEnglishFlashcardsForDeckF2(chapter);
     }
     if (
       subject === "math" &&
@@ -3898,6 +3922,7 @@ function FlashcardsPage() {
       return (
         <AcademyPageShell subjectId={planetSubjectId}>
           <EnglishFlashcardDeckPicker
+            form={form === "Form 2" ? "Form 2" : "Form 1"}
             onBack={() => {
               setSubject(null);
               setChapter(null);
@@ -3907,7 +3932,9 @@ function FlashcardsPage() {
               setChapter(deckId);
               resetSession();
               if (setLastVisited) {
-                const deck = ENGLISH_FLASHCARD_DECKS.find((item) => item.id === deckId);
+                const deck = (form === "Form 2" ? ENGLISH_FLASHCARD_DECKS_F2 : ENGLISH_FLASHCARD_DECKS).find(
+                  (item) => item.id === deckId,
+                );
                 setLastVisited({
                   subjectId: "english",
                   chapterKey: deckId,

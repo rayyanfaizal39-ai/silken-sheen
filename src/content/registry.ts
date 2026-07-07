@@ -5,8 +5,8 @@ import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
 import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
 import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
 import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
-import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
-import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
+import { ENGLISH_QUIZ_QUESTIONS_F2 } from "@/data/english-f2-quiz-sets";
+import { ENGLISH_FLASHCARD_DECK_CARDS_F2 } from "@/data/english-f2-flashcard-decks";
 import {
   flashcards as allFlashcards,
   quizzes as allQuizzes,
@@ -507,11 +507,23 @@ function englishFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "F
   return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey && f.form === form);
 }
 
+function englishFlashcardsForF2(chapterKey: string) {
+  if (chapterKey === "Chapter 1") return ENGLISH_FLASHCARD_DECK_CARDS_F2["f2-grammar-language"];
+  if (chapterKey === "Chapter 2") return ENGLISH_FLASHCARD_DECK_CARDS_F2["f2-writing-techniques"];
+  return [];
+}
+
 function bmFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
   return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey && f.form === form);
 }
 function englishQuizzesFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
   return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey && q.form === form);
+}
+
+function englishQuizzesForF2(chapterKey: string) {
+  if (chapterKey === "Chapter 1") return ENGLISH_QUIZ_QUESTIONS_F2["objective-a"];
+  if (chapterKey === "Chapter 2") return ENGLISH_QUIZ_QUESTIONS_F2["objective-b"];
+  return [];
 }
 
 function sejarahFlashcardsFor(chapterNum: number) {
@@ -2153,8 +2165,8 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Paper 1 - Reading & Language Awareness",
     englishData: englishF2C1Notes,
-    flashcards: englishFlashcardsFor("Chapter 1", "Form 2"),
-    quiz: englishQuizzesFor("Chapter 1", "Form 2"),
+    flashcards: englishFlashcardsForF2("Chapter 1"),
+    quiz: englishQuizzesForF2("Chapter 1"),
   },
   {
     id: "english-f2-c2",
@@ -2163,8 +2175,8 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Paper 2 - Writing",
     englishData: englishF2C2Notes,
-    flashcards: englishFlashcardsFor("Chapter 2", "Form 2"),
-    quiz: englishQuizzesFor("Chapter 2", "Form 2"),
+    flashcards: englishFlashcardsForF2("Chapter 2"),
+    quiz: englishQuizzesForF2("Chapter 2"),
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
