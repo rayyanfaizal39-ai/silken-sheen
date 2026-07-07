@@ -21,6 +21,7 @@ import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import { prefersReducedMotion, isCoarsePointer, isMobileViewport } from "@/lib/motion-preferences";
 import backGround from "@/assets/back-ground.webp.asset.json";
+import astronautRocket from "@/assets/astronaut-cutout.png";
 
 import {
   Dialog,
@@ -392,7 +393,7 @@ function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 grid lg:grid-cols-[1.08fr_0.92fr] gap-12 lg:gap-8 items-center">
         <div>
           <SectionLabel>KSSM-aligned · Form 1–3</SectionLabel>
           <Dialog open={comingSoonOpen} onOpenChange={setComingSoonOpen}>
@@ -466,6 +467,35 @@ function Hero() {
           </div>
         </div>
 
+        {/* Floating astronaut — cut out from the rocket sprite sheet, no
+            background, so it reads as sitting directly in the starfield. */}
+        <div
+          ref={heroCardRef}
+          className="relative mx-auto w-full max-w-[320px] sm:max-w-md lg:max-w-lg select-none"
+          style={{ perspective: 1000 }}
+        >
+          <div
+            ref={glowRef}
+            aria-hidden
+            className="absolute inset-0 rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(251,146,60,0.45), rgba(139,92,246,0.25) 55%, transparent 75%)",
+            }}
+          />
+          <img
+            ref={heroImgRef}
+            src={astronautRocket}
+            alt="AcadeMY astronaut riding a rocket"
+            draggable={false}
+            className="relative w-full h-auto"
+            style={{
+              filter:
+                "drop-shadow(0 30px 60px rgba(251,146,60,0.35)) drop-shadow(0 10px 24px rgba(0,0,0,0.45))",
+              willChange: "transform",
+            }}
+          />
+        </div>
       </div>
     </section>
   );
