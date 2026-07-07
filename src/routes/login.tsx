@@ -32,14 +32,23 @@ function GoogleIcon() {
   );
 }
 
+// Deterministic pseudo-random in [0, 1), seeded by an integer. Unlike
+// Math.random(), this produces the exact same sequence on the server and
+// on the client, so SSR-rendered markup matches what hydration re-renders
+// — Math.random() here would fire a hydration mismatch on every star.
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
 function StarField() {
   const stars = Array.from({ length: 40 }, (_, i) => ({
     id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 1.5 + 0.5,
-    opacity: Math.random() * 0.5 + 0.15,
-    delay: Math.random() * 4,
+    x: seededRandom(i * 12.9898) * 100,
+    y: seededRandom(i * 78.233 + 1) * 100,
+    size: seededRandom(i * 39.425 + 2) * 1.5 + 0.5,
+    opacity: seededRandom(i * 94.673 + 3) * 0.5 + 0.15,
+    delay: seededRandom(i * 15.732 + 4) * 4,
   }));
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
