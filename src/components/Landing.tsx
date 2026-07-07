@@ -488,6 +488,13 @@ function Hero() {
             src={astronautRocket}
             alt="AcadeMY astronaut riding a rocket"
             draggable={false}
+            // LCP priority hint lives on the element itself rather than a
+            // separate <link rel="preload"> in the route head — this asset
+            // is already eagerly imported by this component, so a second
+            // preload link for the same URL just duplicates the request
+            // Vite's dev server already schedules for it (the source of
+            // the "preloaded but not used" console warning).
+            fetchPriority="high"
             className="relative w-full h-auto"
             style={{
               // No CSS `filter` here on purpose — this element is continuously

@@ -147,7 +147,11 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
-  const isMarketingPage = router.state.location.pathname.startsWith("/academy/");
+  const pathname = router.state.location.pathname;
+  const isMarketingPage = pathname.startsWith("/academy/");
+  // The floating music button doesn't belong on the marketing landing
+  // page. ParticleBg/SoundFx are unaffected — only removing the button.
+  const isLandingPage = pathname === "/landing";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -163,7 +167,7 @@ function RootComponent() {
               <>
                 <ParticleBg />
                 <SoundFx />
-                <MusicPlayer />
+                {!isLandingPage && <MusicPlayer />}
               </>
             )}
             <AppShell>
