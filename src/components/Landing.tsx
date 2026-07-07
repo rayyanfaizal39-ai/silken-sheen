@@ -20,7 +20,6 @@ import { useAuth } from "@/context/auth-context";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import { prefersReducedMotion, isCoarsePointer, isMobileViewport } from "@/lib/motion-preferences";
-import starCaptain from "@/assets/astronaut-hero.png.asset.json";
 import backGround from "@/assets/back-ground.webp.asset.json";
 
 import {
