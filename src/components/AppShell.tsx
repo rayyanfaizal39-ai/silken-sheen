@@ -14,7 +14,6 @@ import {
   Rocket,
   Sparkles,
   Trophy,
-  Users,
   Zap,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -121,16 +120,6 @@ const navItems = [
     accentGlow: "rgba(252,211,77,0.55)",
     accentBg: "rgba(252,211,77,0.20)",
     line: "linear-gradient(90deg,#FDE68A,#F59E0B)",
-  },
-  {
-    label: "Parent Report",
-    short: "Parents",
-    to: "/parent",
-    icon: Users,
-    accent: "#34D399",
-    accentGlow: "rgba(52,211,153,0.55)",
-    accentBg: "rgba(52,211,153,0.20)",
-    line: "linear-gradient(90deg,#6EE7B7,#10B981)",
   },
   {
     label: "Parent Dashboard",

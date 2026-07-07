@@ -54,6 +54,7 @@ export interface QuizQuestion {
   difficulty: Difficulty;
   chapter?: string;
   lang?: "bm" | "dlp";
+  visualKey?: string;
   question: string;
   options: string[];
   answerIndex: number;

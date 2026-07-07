@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import imgAcademyLogo from "@/assets/landingpage3/academy-logo.png";
-import imgAstronaut from "@/assets/premium-astronaut-rocket.png";
+import imgAstronaut from "@/assets/hero landing/floating A.png";
 import imgWhyEllipse from "@/assets/landingpage3/why-ellipse.png";
 import imgPlanetScience from "@/assets/landingpage3/planet-science.png";
 import imgPlanetMath from "@/assets/landingpage3/planet-math.png";

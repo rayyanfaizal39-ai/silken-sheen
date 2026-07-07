@@ -50,6 +50,18 @@ import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
+import imgF3Q01 from "@/assets/english posters/form 3/q01.png";
+import imgF3Q02 from "@/assets/english posters/form 3/q02.png";
+import imgF3Q03 from "@/assets/english posters/form 3/q03.png";
+import imgF3Q04 from "@/assets/english posters/form 3/q04.png";
+import imgF3Q05 from "@/assets/english posters/form 3/q05.png";
+import imgF3Q06 from "@/assets/english posters/form 3/q06.png";
+import imgF3Q07 from "@/assets/english posters/form 3/q07.png";
+import imgF3Q08 from "@/assets/english posters/form 3/q08.png";
+import imgF3Q09 from "@/assets/english posters/form 3/q09.png";
+import imgF3Q10 from "@/assets/english posters/form 3/q10.png";
+import imgF3Q11 from "@/assets/english posters/form 3/q11.png";
+import imgF3Q12 from "@/assets/english posters/form 3/q12.png";
 import {
   ENGLISH_QUIZ_PAPERS,
   ENGLISH_QUIZ_SETS,
@@ -59,6 +71,15 @@ import {
   type EnglishQuizSetId,
   type EnglishQuizSetMeta,
 } from "@/data/english-f1-quiz-sets";
+import {
+  ENGLISH_QUIZ_PAPERS_F3,
+  ENGLISH_QUIZ_SETS_F3,
+  getEnglishQuizSetF3,
+  getEnglishQuizSetsForPaperF3,
+  type EnglishQuizPaperIdF3,
+  type EnglishQuizSetIdF3,
+  type EnglishQuizSetMetaF3,
+} from "@/data/english-f3-quiz-sets";
 import { seoMeta } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 
@@ -6144,6 +6165,7 @@ function QuizzesPage() {
   );
   const [englishPaperId, setEnglishPaperId] = useState<EnglishQuizPaperId | null>(null);
   const [englishSetId, setEnglishSetId] = useState<EnglishQuizSetId | null>(null);
+  const [englishSetIdF3, setEnglishSetIdF3] = useState<EnglishQuizSetIdF3 | null>(null);
   const [englishPhase, setEnglishPhase] = useState<MathObjectivePhase>("select");
   const [englishShuffledQuestions, setEnglishShuffledQuestions] = useState<
     ShuffledQuestion[] | null
@@ -6206,9 +6228,17 @@ function QuizzesPage() {
     () => ENGLISH_QUIZ_SETS.find((set) => set.id === englishSetId) ?? null,
     [englishSetId],
   );
+  const selectedEnglishSetF3 = useMemo(
+    () => ENGLISH_QUIZ_SETS_F3.find((set) => set.id === englishSetIdF3) ?? null,
+    [englishSetIdF3],
+  );
   const englishSetQuestions = useMemo(
     () => (englishSetId ? getEnglishQuizSet(englishSetId) : []),
     [englishSetId],
+  );
+  const englishSetQuestionsF3 = useMemo(
+    () => (englishSetIdF3 ? getEnglishQuizSetF3(englishSetIdF3) : []),
+    [englishSetIdF3],
   );
   const currentEnglishQuestion = englishShuffledQuestions?.[idx] ?? null;
 
@@ -6297,6 +6327,7 @@ function QuizzesPage() {
         explanation: q.explanation,
         difficulty: q.difficulty,
         subjectId: q.subjectId,
+        visualKey: q.visualKey,
       };
     });
   }
@@ -6416,6 +6447,7 @@ function QuizzesPage() {
     setMathShuffledQuestions(null);
     setEnglishPaperId(null);
     setEnglishSetId(null);
+    setEnglishSetIdF3(null);
     setEnglishPhase("select");
     setEnglishShuffledQuestions(null);
   }
@@ -6539,6 +6571,23 @@ function QuizzesPage() {
     setTimeLeft(0);
     setAnimatedScore(0);
     setEnglishShuffledQuestions(buildShuffledPool(englishSetQuestions));
+    setEnglishPhase("quiz");
+  }
+
+  function startEnglishQuizF3() {
+    if (englishSetQuestionsF3.length === 0) return;
+    setIdx(0);
+    setSelected(null);
+    setScore(0);
+    setXpEarned(0);
+    setDone(false);
+    setStreak(0);
+    setCombo(0);
+    setComboShow(null);
+    setFeedback(null);
+    setTimeLeft(0);
+    setAnimatedScore(0);
+    setEnglishShuffledQuestions(buildShuffledPool(englishSetQuestionsF3));
     setEnglishPhase("quiz");
   }
 
@@ -6698,6 +6747,7 @@ function QuizzesPage() {
 
   // ── Subject World early-return ────────────────────────────────────────────
   if (subject === "english") {
+    const englishIsForm3 = form === "Form 3";
     return (
       <AcademyPageShell
         subjectId={planetSubjectId}
@@ -6714,7 +6764,73 @@ function QuizzesPage() {
           </div>
         )}
 
-        {englishSetId && selectedEnglishSet && englishPhase !== "select" ? (
+        {englishIsForm3 ? (
+          englishSetIdF3 && selectedEnglishSetF3 && englishPhase !== "select" ? (
+            englishPhase === "intro" ? (
+              <EnglishSetIntroScreenF3
+                quizSet={selectedEnglishSetF3}
+                onBack={() => {
+                  setEnglishSetIdF3(null);
+                  setEnglishPhase("select");
+                }}
+                onStart={startEnglishQuizF3}
+              />
+            ) : englishPhase === "results" ? (
+              <EnglishResultsScreenF3
+                quizSet={selectedEnglishSetF3}
+                score={score}
+                total={englishShuffledQuestions?.length || englishSetQuestionsF3.length || 20}
+                onBack={() => {
+                  setEnglishSetIdF3(null);
+                  setEnglishPhase("select");
+                }}
+                onRetry={() => {
+                  resetRegularQuiz();
+                  setEnglishPhase("intro");
+                }}
+              />
+            ) : (
+              <EnglishQuizScreenF3
+                quizSet={selectedEnglishSetF3}
+                questions={
+                  englishShuffledQuestions ??
+                  englishSetQuestionsF3.map((q) => ({
+                    question: q.question,
+                    options: q.options,
+                    answerIndex: q.answerIndex,
+                    explanation: q.explanation,
+                    difficulty: q.difficulty,
+                    subjectId: q.subjectId,
+                    visualKey: q.visualKey,
+                  }))
+                }
+                current={currentEnglishQuestion}
+                idx={idx}
+                selected={selected}
+                feedback={feedback}
+                score={score}
+                onAnswer={answerEnglishQuiz}
+                onNext={nextEnglishQuizQuestion}
+                onBack={() => setEnglishPhase("intro")}
+              />
+            )
+          ) : (
+            <EnglishSetSelectionScreenF3
+              paperId="paper-1"
+              onBack={() => {
+                setSubject(null);
+                setEnglishSetIdF3(null);
+                setEnglishPhase("select");
+                resetRegularQuiz();
+              }}
+              onSelect={(setId) => {
+                setEnglishSetIdF3(setId);
+                setEnglishPhase("intro");
+                resetRegularQuiz();
+              }}
+            />
+          )
+        ) : englishSetId && selectedEnglishSet && englishPhase !== "select" ? (
           englishPhase === "intro" ? (
             <EnglishSetIntroScreen
               quizSet={selectedEnglishSet}
@@ -7364,6 +7480,7 @@ function QuizzesPage() {
 
                 {/* ── Question text ── */}
                 <div className="px-6 pb-4 pt-6">
+                  {current.visualKey && <EnglishQuestionVisual visualKey={current.visualKey} />}
                   <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
                     {current.question}
                   </h2>
@@ -7764,7 +7881,7 @@ function EnglishSetIntroScreen({
           <ArrowLeft className="h-4 w-4" /> Back to sets
         </button>
         <span className="text-sm font-semibold text-muted-foreground">
-          English Form 1 • {quizSet.title}
+          {formLabel} • {quizSet.title}
         </span>
       </div>
 
@@ -7819,6 +7936,85 @@ function EnglishSetIntroScreen({
   );
 }
 
+function EnglishSetSelectionScreenF3({
+  paperId,
+  onBack,
+  onSelect,
+}: {
+  paperId: EnglishQuizPaperIdF3;
+  onBack: () => void;
+  onSelect: (setId: EnglishQuizSetIdF3) => void;
+}) {
+  const paper = ENGLISH_QUIZ_PAPERS_F3.find((item) => item.id === paperId);
+  const sets = getEnglishQuizSetsForPaperF3(paperId);
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button onClick={onBack} className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10">
+          <ArrowLeft className="h-4 w-4" /> Back to papers
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">{paper?.badge} {paper?.title}</span>
+      </div>
+      <div className="glass-strong rounded-3xl p-6 sm:p-8">
+        <div className="text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">{paper?.title}</p>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Choose Your <span className="gradient-text">UASA Set</span></h2>
+          <p className="mt-3 text-sm text-muted-foreground">Every set follows Form 3 UASA-style Paper 1 difficulty.</p>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {sets.map((quizSet, index) => (
+            <button key={quizSet.id} onClick={() => onSelect(quizSet.id)} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up" style={{ animationDelay: `${index * 70}ms` }}>
+              <div className={`absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-br ${quizSet.tone} opacity-20 blur-3xl transition-opacity group-hover:opacity-40`} />
+              <div className={`relative mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${quizSet.tone} text-3xl shadow-lg`}>{quizSet.badge}</div>
+              <h3 className="relative font-display text-xl font-bold">{quizSet.title}</h3>
+              <p className="relative mt-1 text-sm font-bold text-cyan-200">{quizSet.level}</p>
+              <p className="relative mt-3 text-sm leading-7 text-slate-300">{quizSet.description}</p>
+              <div className="relative mt-4 space-y-2">{quizSet.coverage.map((item) => <p key={item} className="rounded-2xl bg-white/5 px-3 py-2 text-xs text-slate-300">{item}</p>)}</div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EnglishSetIntroScreenF3({
+  quizSet,
+  onBack,
+  onStart,
+}: {
+  quizSet: EnglishQuizSetMetaF3;
+  onBack: () => void;
+  onStart: () => void;
+}) {
+  return (
+    <div className="animate-fade-up">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <button onClick={onBack} className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10">
+          <ArrowLeft className="h-4 w-4" /> Back to sets
+        </button>
+        <span className="text-sm font-semibold text-muted-foreground">English Form 3 • {quizSet.title}</span>
+      </div>
+      <div className="glass-strong relative overflow-hidden rounded-3xl p-8 text-center">
+        <div className={`absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-gradient-to-br ${quizSet.tone} opacity-20 blur-3xl`} />
+        <div className="relative">
+          <div className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${quizSet.tone} text-4xl shadow-lg`}>{quizSet.badge}</div>
+          <p className="text-sm font-bold text-cyan-200">English Form 3 Quizzes</p>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">{quizSet.title}</h2>
+          <p className="mt-2 font-semibold text-muted-foreground">{quizSet.level}</p>
+          <div className="mx-auto mt-7 max-w-3xl rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left">
+            <h3 className="font-display text-xl font-bold">Quiz Focus</h3>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {quizSet.coverage.map((item) => <div key={item} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">{item}</div>)}
+            </div>
+          </div>
+          <button onClick={onStart} className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent py-3.5 font-display text-lg font-bold text-white shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.45)] transition-all hover:scale-[1.02]"><Play className="h-5 w-5" /> Start Quiz</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function EnglishQuizScreen({
   quizSet,
   questions,
@@ -7830,6 +8026,7 @@ function EnglishQuizScreen({
   onAnswer,
   onNext,
   onBack,
+  formLabel = "English Form 1",
 }: {
   quizSet: EnglishQuizSetMeta;
   questions: ShuffledQuestion[];
@@ -8015,18 +8212,86 @@ function EnglishQuizScreen({
   );
 }
 
+function EnglishQuizScreenF3(props: {
+  quizSet: EnglishQuizSetMetaF3;
+  questions: ShuffledQuestion[];
+  current: ShuffledQuestion | null;
+  idx: number;
+  selected: number | null;
+  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  score: number;
+  onAnswer: (index: number) => void;
+  onNext: () => void;
+  onBack: () => void;
+  formLabel?: string;
+}) {
+  return (
+    <EnglishQuizScreen
+      {...(props as unknown as Parameters<typeof EnglishQuizScreen>[0])}
+      formLabel="English Form 3"
+    />
+  );
+}
+
+function EnglishResultsScreenF3(props: {
+  quizSet: EnglishQuizSetMetaF3;
+  score: number;
+  total: number;
+  onBack: () => void;
+  onRetry: () => void;
+}) {
+  return (
+    <EnglishResultsScreen
+      {...(props as unknown as Parameters<typeof EnglishResultsScreen>[0])}
+      formLabel="English Form 3"
+    />
+  );
+}
+
+function EnglishQuestionVisual({ visualKey }: { visualKey: string }) {
+  const visuals: Record<string, { title: string; body: string; accent: string; image?: string }> = {
+    q01: { title: "Question 1", body: "", accent: "from-amber-200 to-orange-300", image: imgF3Q01 },
+    q02: { title: "Question 2", body: "", accent: "from-sky-300 to-cyan-300", image: imgF3Q02 },
+    q03: { title: "Question 3", body: "", accent: "from-indigo-300 to-violet-300", image: imgF3Q03 },
+    q04: { title: "Question 4", body: "", accent: "from-yellow-300 to-amber-300", image: imgF3Q04 },
+    q05: { title: "Question 5", body: "", accent: "from-slate-200 to-slate-300", image: imgF3Q05 },
+    q06: { title: "Question 6", body: "", accent: "from-emerald-200 to-teal-300", image: imgF3Q06 },
+    q07: { title: "Question 7", body: "", accent: "from-emerald-300 to-cyan-300", image: imgF3Q07 },
+    q08: { title: "Question 8", body: "", accent: "from-blue-300 to-violet-300", image: imgF3Q08 },
+    q09: { title: "Question 9", body: "", accent: "from-fuchsia-300 to-pink-300", image: imgF3Q09 },
+    q10: { title: "Question 10", body: "", accent: "from-amber-300 to-yellow-300", image: imgF3Q10 },
+    q11: { title: "Question 11", body: "", accent: "from-orange-300 to-rose-300", image: imgF3Q11 },
+    q12: { title: "Question 12", body: "", accent: "from-cyan-300 to-blue-300", image: imgF3Q12 },
+  };
+  const visual = visuals[visualKey] ?? { title: "Visual", body: "Reference stimulus", accent: "from-white/70 to-white/50" };
+  return (
+    <div className="mb-4 overflow-hidden rounded-2xl border border-white/10 bg-[#f7efe4] p-4 text-slate-900 shadow-sm">
+      {visual.image ? (
+        <img src={visual.image} alt={visual.title} className="block w-full rounded-xl object-cover" />
+      ) : (
+        <div className={`rounded-xl border border-black/10 bg-gradient-to-br ${visual.accent} p-4`}>
+          <div className="text-center font-black uppercase tracking-wide">{visual.title}</div>
+          <div className="mt-2 text-center text-sm leading-6">{visual.body}</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function EnglishResultsScreen({
   quizSet,
   score,
   total,
   onBack,
   onRetry,
+  formLabel = "English Form 1",
 }: {
   quizSet: EnglishQuizSetMeta;
   score: number;
   total: number;
   onBack: () => void;
   onRetry: () => void;
+  formLabel?: string;
 }) {
   const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
   const message =
@@ -8045,7 +8310,9 @@ function EnglishResultsScreen({
         className={`absolute left-1/2 top-0 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-gradient-to-br ${quizSet.tone} opacity-20 blur-3xl`}
       />
       <Sparkles className="mx-auto mb-4 h-12 w-12 text-nova-yellow animate-pulse" />
-      <p className="text-sm font-bold text-cyan-200">{quizSet.title}</p>
+      <p className="text-sm font-bold text-cyan-200">
+        {formLabel} • {quizSet.title}
+      </p>
       <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Quiz Complete</h2>
       <p className="mt-2 text-muted-foreground">{message}</p>
 
