@@ -67,7 +67,7 @@ export const getDashboardStats = createServerFn({ method: 'GET' }).handler(
 );
 
 export const getUsers = createServerFn({ method: 'POST' })
-  .inputValidator((f: AdminFilters) => f)
+  .validator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<UserRow[]> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
@@ -90,7 +90,7 @@ export const getUsers = createServerFn({ method: 'POST' })
   });
 
 export const getPayments = createServerFn({ method: 'POST' })
-  .inputValidator((f: AdminFilters) => f)
+  .validator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<PaymentRow[]> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
@@ -117,7 +117,7 @@ export const getPayments = createServerFn({ method: 'POST' })
 // the `form` filter is intentionally a no-op here rather than fabricated —
 // filtering only applies to `subject` (mapped to subject_id).
 export const getQuizActivity = createServerFn({ method: 'POST' })
-  .inputValidator((f: AdminFilters) => f)
+  .validator((f: AdminFilters) => f)
   .handler(async ({ data: f }): Promise<QuizRow[]> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
@@ -160,7 +160,7 @@ export const getQuizActivity = createServerFn({ method: 'POST' })
 // Read-only for now — no insert/update/delete server functions yet.
 // See CikguIntelPage (routes/admin.cikgu-intel.tsx) for the consuming UI.
 export const getKnowledgeEngineEntries = createServerFn({ method: 'POST' })
-  .inputValidator((f: KnowledgeEngineFilters) => f)
+  .validator((f: KnowledgeEngineFilters) => f)
   .handler(async ({ data: f }): Promise<KnowledgeEngineRow[]> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
@@ -212,7 +212,7 @@ export const checkContentLibraryBucket = createServerFn({ method: 'GET' }).handl
 );
 
 export const getContentLibraryEntries = createServerFn({ method: 'POST' })
-  .inputValidator((f: ContentLibraryFilters) => f)
+  .validator((f: ContentLibraryFilters) => f)
   .handler(async ({ data: f }): Promise<ContentLibraryRow[]> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
@@ -236,7 +236,7 @@ export const getContentLibraryEntries = createServerFn({ method: 'POST' })
 // binary upload client-side avoids routing large files through the server
 // function body.
 export const createContentLibraryEntry = createServerFn({ method: 'POST' })
-  .inputValidator((f: {
+  .validator((f: {
     file_path: string;
     file_name: string;
     file_type: string;
@@ -274,7 +274,7 @@ export const createContentLibraryEntry = createServerFn({ method: 'POST' })
   });
 
 export const updateContentLibraryMetadata = createServerFn({ method: 'POST' })
-  .inputValidator((f: { id: string; metadata: ContentLibraryMetadataInput }) => f)
+  .validator((f: { id: string; metadata: ContentLibraryMetadataInput }) => f)
   .handler(async ({ data: f }): Promise<ContentLibraryRow> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) throw new Error('Supabase not configured');
@@ -298,7 +298,7 @@ export const updateContentLibraryMetadata = createServerFn({ method: 'POST' })
   });
 
 export const updateContentLibraryStatus = createServerFn({ method: 'POST' })
-  .inputValidator((f: { id: string; status: ContentLibraryStatus; error_message?: string | null }) => f)
+  .validator((f: { id: string; status: ContentLibraryStatus; error_message?: string | null }) => f)
   .handler(async ({ data: f }): Promise<ContentLibraryRow> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) throw new Error('Supabase not configured');
@@ -316,7 +316,7 @@ export const updateContentLibraryStatus = createServerFn({ method: 'POST' })
 // first so we never orphan a row pointing at a missing file; if storage
 // delete fails, the row delete is skipped so the UI can retry.
 export const deleteContentLibraryEntry = createServerFn({ method: 'POST' })
-  .inputValidator((f: { id: string; file_path: string }) => f)
+  .validator((f: { id: string; file_path: string }) => f)
   .handler(async ({ data: f }): Promise<void> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) throw new Error('Supabase not configured');
@@ -351,7 +351,7 @@ const TAB_TO_ROLE: Record<AdminUserFilters['tab'], string> = {
 };
 
 export const getAdminUsers = createServerFn({ method: 'POST' })
-  .inputValidator((f: AdminUserFilters) => f)
+  .validator((f: AdminUserFilters) => f)
   .handler(async ({ data: f }): Promise<AdminUserRow[]> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
@@ -430,7 +430,7 @@ export const getAdminUserFacets = createServerFn({ method: 'GET' }).handler(
 );
 
 export const getAdminUserProfile = createServerFn({ method: 'POST' })
-  .inputValidator((f: { id: string }) => f)
+  .validator((f: { id: string }) => f)
   .handler(async ({ data: f }): Promise<AdminUserProfile | null> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) return null;
@@ -452,7 +452,7 @@ export const getAdminUserProfile = createServerFn({ method: 'POST' })
 // Suspend/reactivate — reuses the existing "Admins can update any profile"
 // RLS policy (is_admin()), same as every other admin write in this codebase.
 export const updateUserStatus = createServerFn({ method: 'POST' })
-  .inputValidator((f: { id: string; status: UserStatus }) => f)
+  .validator((f: { id: string; status: UserStatus }) => f)
   .handler(async ({ data: f }): Promise<void> => {
     const supabase = getSupabaseServerClient();
     if (!supabase) throw new Error('Supabase not configured');
@@ -461,7 +461,7 @@ export const updateUserStatus = createServerFn({ method: 'POST' })
   });
 
 export const updateUserDetails = createServerFn({ method: 'POST' })
-  .inputValidator((f: {
+  .validator((f: {
     id: string;
     full_name?: string | null;
     username?: string | null;
