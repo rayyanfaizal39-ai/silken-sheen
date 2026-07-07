@@ -393,7 +393,7 @@ function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
         <div>
           <SectionLabel>KSSM-aligned · Form 1–3</SectionLabel>
           <Dialog open={comingSoonOpen} onOpenChange={setComingSoonOpen}>
@@ -467,76 +467,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Cinematic floating astronaut — blended into background */}
-        <div className="relative group [perspective:1400px]">
-          {/* atmospheric glow behind */}
-          <div
-            ref={glowRef}
-            aria-hidden
-            className="absolute -inset-10 blur-3xl opacity-90 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(50% 55% at 50% 55%, rgba(255,140,60,0.45), transparent 70%), radial-gradient(45% 45% at 30% 30%, rgba(168,85,247,0.35), transparent 70%), radial-gradient(40% 40% at 75% 75%, rgba(250,204,21,0.28), transparent 70%)",
-            }}
-          />
-          {/* soft ground haze */}
-          <div
-            aria-hidden
-            className="absolute inset-x-[-10%] bottom-[-6%] h-40 blur-2xl opacity-70 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(60% 100% at 50% 100%, rgba(255,120,40,0.55), transparent 70%)",
-            }}
-          />
-
-          <div
-            ref={heroCardRef}
-            className="relative aspect-[4/5] [transform-style:preserve-3d] rounded-[2rem] bg-gradient-to-br from-[#2a1a4a] via-[#1b1030] to-[#0d0a1a]"
-          >
-            {/* Continuous float/rotate/parallax is driven entirely by the
-                GSAP context above (skipped for reduced-motion/mobile/touch) —
-                this used to also carry a framer-motion infinite `animate`
-                loop doing near-identical motion on the same element, which
-                meant two animation engines fighting over one element's
-                transform every frame for no visual benefit. */}
-            <img
-              ref={heroImgRef}
-              src={starCaptain.url}
-              alt="AcadeMY astronaut floating in deep space"
-              className="absolute inset-0 w-full h-full object-contain object-center will-change-transform drop-shadow-[0_40px_60px_rgba(120,80,255,0.45)]"
-              draggable={false}
-              fetchPriority="high"
-            />
-
-            {/* Level badge */}
-            <div
-              ref={badgeRef}
-              className="absolute left-1/2 -translate-x-1/2 bottom-16 flex items-center gap-2 rounded-full bg-black/45 backdrop-blur-md ring-1 ring-nova-yellow/40 px-3 py-1.5 w-fit z-10"
-            >
-              <span className="grid place-items-center w-6 h-6 rounded-full bg-nova-yellow text-[#1a0f2e] text-[11px] font-black shadow-[0_0_18px_rgba(250,204,21,0.6)]">
-                18
-              </span>
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-nova-yellow">
-                Star Captain
-              </span>
-            </div>
-
-            {/* XP bar */}
-            <div className="absolute inset-x-0 bottom-2 px-6">
-              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-white/70">
-                <span>Lvl 18</span>
-                <span className="text-nova-yellow">12,480 XP</span>
-              </div>
-              <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
-                <div
-                  ref={xpBarRef}
-                  className="h-full rounded-full bg-gradient-to-r from-nova-yellow via-amber-300 to-nova-yellow shadow-[0_0_14px_rgba(250,204,21,0.7)]"
-                  style={{ width: "72%" }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
