@@ -112,9 +112,9 @@ const OBJEKTIF_SETS_FORM2 = [
   { id: "bm-f2-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF2ObjektifKuiz3 },
 ] as const;
 const OBJEKTIF_SETS_FORM3 = [
-  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, plannedCount: 15, ready: false },
-  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, plannedCount: 15, ready: false },
-  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, plannedCount: 15, ready: false },
+  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, plannedCount: 15, ready: true },
+  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, plannedCount: 15, ready: true },
+  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, plannedCount: 15, ready: true },
 ] as const;
 type ObjectiveSetCollection = typeof OBJEKTIF_SETS | typeof OBJEKTIF_SETS_FORM2 | typeof OBJEKTIF_SETS_FORM3;
 
