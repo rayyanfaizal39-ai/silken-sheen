@@ -234,6 +234,7 @@ function LearningTools() {
   const orbitRef = useRef<HTMLDivElement>(null);
   const planetRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [hovered, setHovered] = useState<number | null>(null);
+  const [planetHovered, setPlanetHovered] = useState(false);
 
   useEffect(() => {
     const orbit = orbitRef.current;
