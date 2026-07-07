@@ -127,7 +127,19 @@ function shuffleItems<T>(items: T[]): T[] {
   return next;
 }
 
-function shuffleObjectiveQuestions(questions: QuizQuestion[]): QuizQuestion[] {
+function buildObjectiveQuestions(questions: QuizQuestion[]): QuizQuestion[] {
+  const isBahasaMelayuQuiz = questions.every((question) => {
+    const subjectId = question.subjectId.toLowerCase();
+    return subjectId === "bm" || subjectId === "bahasa-melayu" || subjectId === "bahasa melayu";
+  });
+
+  if (isBahasaMelayuQuiz) {
+    return questions.map((question) => ({
+      ...question,
+      options: [...question.options],
+    }));
+  }
+
   const groups = [
     shuffleItems(questions.slice(0, 5)),
     shuffleItems(questions.slice(5, 10)),
@@ -515,7 +527,7 @@ function ObjektifKuizView({
   type Phase = "intro" | "quiz" | "results";
   const [phase, setPhase] = useState<Phase>("intro");
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(() =>
-    shuffleObjectiveQuestions(questions),
+    buildObjectiveQuestions(questions),
   );
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -575,7 +587,7 @@ function ObjektifKuizView({
   }
 
   function handleRestart() {
-    setQuizQuestions(shuffleObjectiveQuestions(questions));
+    setQuizQuestions(buildObjectiveQuestions(questions));
     setCurrent(0);
     setSelected(null);
     setRevealed(false);
