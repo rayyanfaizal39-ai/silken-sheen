@@ -490,8 +490,12 @@ function Hero() {
             draggable={false}
             className="relative w-full h-auto"
             style={{
-              filter:
-                "drop-shadow(0 30px 60px rgba(251,146,60,0.35)) drop-shadow(0 10px 24px rgba(0,0,0,0.45))",
+              // No CSS `filter` here on purpose — this element is continuously
+              // transformed by GSAP (float/rotate/parallax below), and filter
+              // + transform together forces a full software re-rasterize of
+              // the drop-shadow on every animation frame. The glow div above
+              // (static, pre-blurred, not itself transformed) gives the same
+              // warm-light look for a fraction of the paint cost.
               willChange: "transform",
             }}
           />
