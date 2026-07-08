@@ -47,6 +47,19 @@ export default defineConfig({
     // index.html for most navigation with no SSR HTML to hydrate — so we
     // createRoot + render <RouterProvider /> directly instead.
     client: { entry: "client" },
+    // Reduces the CLIENT bundle: without this, every route component ships
+    // in the main JS bundle regardless of which page the user is on. Note
+    // this only affects the client — it does NOT reduce what the SSR Worker
+    // eagerly imports (dist/server/_ssr/router-*.mjs still statically pulls
+    // in every route module for server-side matching/rendering either way).
+    // The fix for that — the actual cause of Cloudflare's "error 1102" on
+    // "/" and other lightweight routes — was removing static top-level
+    // imports of the multi-MB curriculum content data (@/data/content,
+    // @/content/registry) from files reachable through every route (see
+    // GalaxySearch.tsx, AcademyPage.tsx, HomeDashboard.tsx, subjects-meta.ts,
+    // -reports.server.ts): those get dynamically imported client-side only
+    // now, so the SSR path never has to parse them regardless of route.
+    router: { autoCodeSplitting: true },
   },
   vite: {
     // Dev-only proxy: /__l5e/* is served by Lovable's hosting edge in preview

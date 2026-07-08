@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Sparkles, Brain, GitFork } from "lucide-react";
 import { useProgress, chapterActivityKey, type ChapterActivity } from "@/hooks/use-progress";
-import { subjects } from "@/data/content";
+import { subjects } from "@/data/subjects-meta";
 import { studyHref } from "@/lib/study-routing";
 
 type MissionKind = "notes" | "quiz" | "flashcards" | "mindmaps";

@@ -250,69 +250,13 @@ export const scienceF1C8NotesDLP = _scienceF1C8NotesDLP;
 export const scienceF1C9NotesBM = _scienceF1C9NotesBM;
 export const scienceF1C9NotesDLP = _scienceF1C9NotesDLP;
 
-export type Form = "Form 1" | "Form 2" | "Form 3";
-
-export interface Subject {
-  id: string;
-  name: string;
-  emoji: string;
-  color: string; // tailwind gradient classes
-  description: string;
-  tagline: string;
-}
-
-export const subjects: Subject[] = [
-  {
-    id: "bm",
-    name: "Bahasa Melayu",
-    emoji: "📘",
-    color: "from-rose-500 to-orange-500",
-    description: "Tatabahasa, karangan, dan kefahaman.",
-    tagline: "Kuasai bahasa kebangsaan!",
-  },
-  {
-    id: "english",
-    name: "English",
-    emoji: "🇬🇧",
-    color: "from-sky-500 to-blue-600",
-    description: "Grammar, comprehension, and writing.",
-    tagline: "Level up your English!",
-  },
-  {
-    id: "math",
-    name: "Mathematics",
-    emoji: "📐",
-    color: "from-indigo-500 to-purple-600",
-    description: "Algebra, geometry, statistics, and more.",
-    tagline: "Solve it like a pro!",
-  },
-  {
-    id: "science",
-    name: "Science",
-    emoji: "🔬",
-    color: "from-emerald-500 to-teal-600",
-    description: "Biology, chemistry, and physics basics.",
-    tagline: "Explore the universe!",
-  },
-  {
-    id: "sejarah",
-    name: "Sejarah",
-    emoji: "🏛️",
-    color: "from-amber-500 to-yellow-500",
-    description: "Tamadun, kemerdekaan, dan warisan negara.",
-    tagline: "Jelajah masa lampau!",
-  },
-  {
-    id: "geography",
-    name: "Geography",
-    emoji: "🌏",
-    color: "from-cyan-500 to-emerald-500",
-    description: "Physical & human geography of the world.",
-    tagline: "Discover the world!",
-  },
-];
-
-export const forms: Form[] = ["Form 1", "Form 2", "Form 3"];
+// subjects/forms/Subject/Form moved to ./subjects-meta — that's tiny, static
+// metadata with no dependency on the rest of this file's multi-MB per-chapter
+// content imports. Re-exported here so existing `from "@/data/content"`
+// imports keep working; prefer importing directly from "@/data/subjects-meta"
+// in new code (and especially anywhere that must stay out of an eagerly-
+// loaded bundle, e.g. the SSR route tree) so it doesn't pull this whole file in.
+export { subjects, forms, type Subject, type Form } from "./subjects-meta";
 
 export interface Note {
   id: string;

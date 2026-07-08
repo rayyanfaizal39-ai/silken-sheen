@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { ArrowRight, Check, Rocket, Sparkles, X } from "lucide-react";
-import { subjects } from "@/data/content";
+import { subjects } from "@/data/subjects-meta";
 import { learningForms } from "@/content/metadata/forms";
 import { studyHref } from "@/lib/study-routing";
 

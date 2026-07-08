@@ -25,7 +25,7 @@ import {
   LineChart,
 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
-import { useMemo, type CSSProperties } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
 import heroAstronaut from "@/assets/home-astronaut-rocket.png.asset.json";
@@ -45,11 +45,23 @@ import {
   type LastVisited,
 } from "@/hooks/use-progress";
 import { CompanionImage, getCompanionDisplayName, useCompanionMessage } from "@/companion";
-import { analyzeProgress } from "@/lib/tracker";
+import type { TrackerInsight } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
 import { PlanetCardArt, subjectPlanetStyles, type SubjectPlanetId } from "@/components/AcademyPage";
-import { getSubjectFormStats } from "@/content/registry";
+import type { FormStat } from "@/content/registry";
 import { NextMissionCard } from "@/components/NextMissionCard";
+
+// getSubjectFormStats (@/content/registry) and analyzeProgress (@/lib/tracker,
+// via @/data/content's getSubjectChapters) each pull in several MB of
+// curriculum content at module top level. HomeDashboard renders "/" — loaded
+// on every visit to the homepage — so a static import here meant every SSR
+// request for "/" eagerly parsed ~7MB of data just to compute per-subject
+// completion stats and quiz-history insights. Both depend on `progress`,
+// which is client-only (localStorage-backed via useProgress()) and always
+// empty/default during SSR anyway, so there's no SSR-visible result to lose
+// by loading them only after mount.
+type RegistryModule = typeof import("@/content/registry");
+type TrackerModule = typeof import("@/lib/tracker");
 
 // ─── World portal definitions ─────────────────────────────────────────────────
 
@@ -220,7 +232,17 @@ function WorldPortalCard({
   world: WorldPortal;
   isCurrentWorld: boolean;
 }) {
-  const formStats = getSubjectFormStats(world.id);
+  const [registryModule, setRegistryModule] = useState<RegistryModule | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    import("@/content/registry").then((mod) => {
+      if (!cancelled) setRegistryModule(mod);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const formStats: FormStat[] = registryModule ? registryModule.getSubjectFormStats(world.id) : [];
   return (
     <Link
       to="/notes"
@@ -667,9 +689,32 @@ export function HomeDashboard() {
   const dueCount = getDueCount(progress.cardMastery);
   const masteredCount = getMasteredCount(progress.cardMastery);
   const hasProgress = progress.xp > 0 || !!progress.lastVisited;
-  const insight = useMemo(
-    () => analyzeProgress(progress.quizHistory ?? []),
-    [progress.quizHistory],
+  const [trackerModule, setTrackerModule] = useState<TrackerModule | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    import("@/lib/tracker").then((mod) => {
+      if (!cancelled) setTrackerModule(mod);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const insight: TrackerInsight = useMemo(
+    () =>
+      trackerModule
+        ? trackerModule.analyzeProgress(progress.quizHistory ?? [])
+        : {
+            totalQuizzes: 0,
+            overallAvg: 0,
+            passRate: 0,
+            subjectStats: [],
+            weakSpots: [],
+            strongest: null,
+            weakest: null,
+            recommendation:
+              "Take your first quiz and the Tracker will start charting your strengths and weak spots.",
+          },
+    [trackerModule, progress.quizHistory],
   );
   const topWeakSpot = insight.weakSpots[0] ?? null;
   const board = useMemo(() => buildLeaderboard(progress), [progress]);

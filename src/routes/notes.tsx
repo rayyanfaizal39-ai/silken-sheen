@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { subjects, notes, getItemChapterKey, type Form } from "@/data/content";
+import { notes, getItemChapterKey } from "@/data/content";
+import { subjects, type Form } from "@/data/subjects-meta";
 import { BookOpenCheck, ArrowLeft, ArrowUp, Compass } from "lucide-react";
 import { z } from "zod";
 import {

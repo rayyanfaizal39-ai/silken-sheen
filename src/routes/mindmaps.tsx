@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { ArrowLeft, GitFork, Network, Rocket } from "lucide-react";
-import { subjects, type Form } from "@/data/content";
+import { subjects, type Form } from "@/data/subjects-meta";
 import {
   SubjectGrid,
   FormGrid,

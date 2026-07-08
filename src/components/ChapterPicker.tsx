@@ -1,4 +1,4 @@
-import { subjects, type Form } from "@/data/content";
+import { subjects, type Form } from "@/data/subjects-meta";
 import {
   Lock,
   ArrowLeft,

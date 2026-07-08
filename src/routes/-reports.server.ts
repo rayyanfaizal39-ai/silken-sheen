@@ -2,9 +2,23 @@ import { createServerFn } from '@tanstack/react-start';
 import { getSupabaseServerClient, isSupabaseServerConfigured } from '../lib/supabase.server';
 import { checkContentLibraryBucket } from './-admin.server';
 import type { ReportsData, ReportsLearningInsights } from '../lib/admin.types';
-import { subjects } from '../data/content';
-import { chapters } from '../content/registry';
-import { getChapterFeatures } from '../content/types';
+
+// `subjects`/`chapters` (../data/content, ../content/registry) pull in the
+// entire curriculum content tree (every subject/chapter's notes, quizzes,
+// flashcards — several MB). Since this file exports a createServerFn, a
+// static top-level import here gets bundled into the single always-loaded
+// server-function registry chunk that every SSR request pays to parse on
+// cold start, even requests that never call getReportsData (e.g. "/",
+// "/login"). Dynamic imports inside the handler keep that weight out of the
+// eager bundle and load it only when an admin actually opens Reports.
+async function loadContentRegistry() {
+  const [{ subjects }, { chapters }, { getChapterFeatures }] = await Promise.all([
+    import('../data/content'),
+    import('../content/registry'),
+    import('../content/types'),
+  ]);
+  return { subjects, chapters, getChapterFeatures };
+}
 
 // AcadeMY Mission Intelligence — see docs/DATABASE_MAP.md for the tables
 // this reads (profiles, user_progress, quiz_history, payments,
@@ -35,6 +49,7 @@ function startOfMonthIso(): string {
 
 export const getReportsData = createServerFn({ method: 'GET' }).handler(
   async (): Promise<ReportsData> => {
+    const { subjects, chapters, getChapterFeatures } = await loadContentRegistry();
     const supabase = getSupabaseServerClient();
     const empty: ReportsData = {
       mission_brief: {

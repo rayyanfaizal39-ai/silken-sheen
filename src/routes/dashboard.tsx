@@ -25,7 +25,7 @@ import {
   getCompanionStageForXp,
 } from "@/hooks/use-progress";
 import { CompanionImage, getCompanionSpecies } from "@/companion";
-import { subjects, type Subject } from "@/data/content";
+import { subjects, type Subject } from "@/data/subjects-meta";
 import {
   Target,
   Star,

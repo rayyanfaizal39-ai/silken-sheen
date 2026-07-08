@@ -11,13 +11,17 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import {
-  buildStudySearchIndex,
-  highlightParts,
-  searchStudyIndex,
-  STUDY_SEARCH_SUGGESTIONS,
-  type StudyResourceType,
-} from "@/lib/study-search";
+import type { StudyResourceType, searchStudyIndex } from "@/lib/study-search";
+
+// study-search pulls in the full curriculum content index (notes/quizzes/
+// flashcards/subjects — several MB) to build its search index. GalaxySearch
+// is rendered on every page via AppShell/__root, so a static top-level import
+// here made every SSR request (including "/", "/login") eagerly parse that
+// entire dataset — enough to trip Cloudflare Workers' CPU/startup limit
+// (error 1102). Loading it dynamically, only once the user actually opens
+// search, keeps it out of the SSR path entirely (server always renders with
+// open=false) while keeping identical behavior for real users.
+type StudySearchModule = typeof import("@/lib/study-search");
 
 const TYPE_STYLES: Record<
   StudyResourceType,
@@ -37,11 +41,31 @@ const TYPE_STYLES: Record<
 export function GalaxySearch() {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
+  const [searchModule, setSearchModule] = useState<StudySearchModule | null>(null);
   const rootRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const index = useMemo(() => buildStudySearchIndex(), []);
-  const results = useMemo(() => searchStudyIndex(index, query, 14), [index, query]);
   const hasQuery = query.trim().length > 0;
+
+  useEffect(() => {
+    if (!open || searchModule) return;
+    let cancelled = false;
+    import("@/lib/study-search").then((mod) => {
+      if (!cancelled) setSearchModule(mod);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [open, searchModule]);
+
+  const index = useMemo(
+    () => (searchModule ? searchModule.buildStudySearchIndex() : null),
+    [searchModule],
+  );
+  const results = useMemo(
+    () => (searchModule && index ? searchModule.searchStudyIndex(index, query, 14) : []),
+    [searchModule, index, query],
+  );
+  const suggestions = searchModule?.STUDY_SEARCH_SUGGESTIONS ?? [];
 
   useEffect(() => {
     function onPointerDown(event: PointerEvent) {
@@ -105,16 +129,16 @@ export function GalaxySearch() {
             <p className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-200/60">
               Galaxy Search
             </p>
-            {!hasQuery && (
+            {!hasQuery && suggestions.length > 0 && (
               <p className="mt-1 text-xs text-white/42">
-                Try searching: {STUDY_SEARCH_SUGGESTIONS.join(", ")}
+                Try searching: {suggestions.join(", ")}
               </p>
             )}
           </div>
 
           {!hasQuery ? (
             <div className="flex flex-wrap gap-2 p-4">
-              {STUDY_SEARCH_SUGGESTIONS.map((suggestion) => (
+              {suggestions.map((suggestion) => (
                 <button
                   key={suggestion}
                   type="button"
@@ -128,6 +152,8 @@ export function GalaxySearch() {
                 </button>
               ))}
             </div>
+          ) : !searchModule ? (
+            <div className="p-5 text-sm font-semibold text-white/58">Loading search…</div>
           ) : results.length === 0 ? (
             <div className="p-5 text-sm font-semibold text-white/58">
               No results found. Try another keyword or subject.
@@ -139,6 +165,7 @@ export function GalaxySearch() {
                   key={result.id}
                   query={query}
                   result={result}
+                  highlightParts={searchModule.highlightParts}
                   onOpen={() => setOpen(false)}
                 />
               ))}
@@ -153,10 +180,12 @@ export function GalaxySearch() {
 function SearchResultLink({
   result,
   query,
+  highlightParts,
   onOpen,
 }: {
   result: ReturnType<typeof searchStudyIndex>[number];
   query: string;
+  highlightParts: StudySearchModule["highlightParts"];
   onOpen: () => void;
 }) {
   const style = TYPE_STYLES[result.type];
@@ -177,7 +206,7 @@ function SearchResultLink({
       <span className="min-w-0 flex-1">
         <span className="flex flex-wrap items-center gap-2">
           <span className="truncate text-sm font-black text-white">
-            <HighlightedText text={result.title} query={query} />
+            <HighlightedText text={result.title} query={query} highlightParts={highlightParts} />
           </span>
           <span
             className="rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-wide"
@@ -192,7 +221,7 @@ function SearchResultLink({
         </span>
         {result.preview && (
           <span className="mt-1 line-clamp-2 block text-xs leading-5 text-white/56">
-            <HighlightedText text={result.preview} query={query} />
+            <HighlightedText text={result.preview} query={query} highlightParts={highlightParts} />
           </span>
         )}
       </span>
@@ -200,7 +229,15 @@ function SearchResultLink({
   );
 }
 
-function HighlightedText({ text, query }: { text: string; query: string }) {
+function HighlightedText({
+  text,
+  query,
+  highlightParts,
+}: {
+  text: string;
+  query: string;
+  highlightParts: StudySearchModule["highlightParts"];
+}) {
   return (
     <>
       {highlightParts(text, query).map((part, index) =>

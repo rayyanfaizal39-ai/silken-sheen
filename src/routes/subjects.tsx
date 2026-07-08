@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { subjects } from "@/data/content";
+import { subjects } from "@/data/subjects-meta";
 import { useState } from "react";
 import { Search, Globe } from "lucide-react";
 import { SubjectPlanetLink, type SubjectPlanetId, AcademyPageShell } from "@/components/AcademyPage";

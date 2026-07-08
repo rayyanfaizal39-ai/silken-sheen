@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import type { ComponentType, ReactNode } from "react";
+import { useEffect, useState, type ComponentType, type ReactNode } from "react";
 import {
   BookOpen,
   Brain,
@@ -14,7 +14,15 @@ import {
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { PlanetEnvironment, type PlanetSubjectId } from "@/components/PlanetEnvironment";
-import { getSubjectFormStats } from "@/content/registry";
+import type { FormStat } from "@/content/registry";
+
+// getSubjectFormStats pulls in the full curriculum content registry (several
+// MB) at module top level. AcademyPage.tsx is imported by most subject-facing
+// routes (dashboard, subjects, notes, mindmaps, ...), so a static import here
+// put that weight in the eagerly-loaded path for all of them, including "/"
+// itself. Loaded lazily, client-side only — FormChapterPills renders nothing
+// until it resolves, then fills in (see component below).
+type RegistryModule = typeof import("@/content/registry");
 
 // ─── Subject identity system ─────────────────────────────────────────────────
 // Each subject has a fully unique visual identity: palette, art, atmosphere,
@@ -188,7 +196,17 @@ function FormChapterPills({
   subjectId: string;
   planet: (typeof subjectPlanetStyles)[SubjectPlanetId];
 }) {
-  const formStats = getSubjectFormStats(subjectId);
+  const [registryModule, setRegistryModule] = useState<RegistryModule | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    import("@/content/registry").then((mod) => {
+      if (!cancelled) setRegistryModule(mod);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const formStats: FormStat[] = registryModule ? registryModule.getSubjectFormStats(subjectId) : [];
   return (
     <div className="mt-3">
       <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">
