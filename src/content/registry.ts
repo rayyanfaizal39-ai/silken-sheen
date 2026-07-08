@@ -8,6 +8,7 @@ import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
 import { englishF3C1Notes } from "@/content/form3/english/chapter-1/notes";
 import { englishF3C2Notes } from "@/content/form3/english/chapter-2/notes";
 import { getEnglishQuizSetF3 } from "@/data/english-f3-quiz-sets";
+import { ENGLISH_FLASHCARD_DECK_CARDS_F3 } from "@/data/english-f3-flashcard-decks";
 import { ENGLISH_QUIZ_QUESTIONS_F2 } from "@/data/english-f2-quiz-sets";
 import { ENGLISH_FLASHCARD_DECK_CARDS_F2 } from "@/data/english-f2-flashcard-decks";
 import {
@@ -513,6 +514,12 @@ function englishFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "F
 function englishFlashcardsForF2(chapterKey: string) {
   if (chapterKey === "Chapter 1") return ENGLISH_FLASHCARD_DECK_CARDS_F2["f2-grammar-language"];
   if (chapterKey === "Chapter 2") return ENGLISH_FLASHCARD_DECK_CARDS_F2["f2-writing-techniques"];
+  return [];
+}
+
+function englishFlashcardsForF3(chapterKey: string) {
+  if (chapterKey === "Chapter 1") return ENGLISH_FLASHCARD_DECK_CARDS_F3["f3-paper-1"];
+  if (chapterKey === "Chapter 2") return ENGLISH_FLASHCARD_DECK_CARDS_F3["f3-paper-2"];
   return [];
 }
 
@@ -2190,6 +2197,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Paper 1 - Reading & Language Awareness",
     englishData: englishF3C1Notes,
+    flashcards: englishFlashcardsForF3("Chapter 1"),
     quiz: getEnglishQuizSetF3("uasa-set-1"),
   },
   {
@@ -2199,6 +2207,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Paper 2 - Writing",
     englishData: englishF3C2Notes,
+    flashcards: englishFlashcardsForF3("Chapter 2"),
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)

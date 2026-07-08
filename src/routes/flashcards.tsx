@@ -53,6 +53,12 @@ import {
   isEnglishFlashcardDeckIdF2,
   type EnglishFlashcardDeckIdF2,
 } from "@/data/english-f2-flashcard-decks";
+import {
+  ENGLISH_FLASHCARD_DECKS_F3,
+  getEnglishFlashcardsForDeckF3,
+  isEnglishFlashcardDeckIdF3,
+  type EnglishFlashcardDeckIdF3,
+} from "@/data/english-f3-flashcard-decks";
 import { seoMeta } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 
@@ -3377,12 +3383,13 @@ function EnglishFlashcardDeckPicker({
   onBack,
   onSelect,
 }: {
-  form: "Form 1" | "Form 2";
+  form: "Form 1" | "Form 2" | "Form 3";
   onBack: () => void;
-  onSelect: (deckId: EnglishFlashcardDeckId | EnglishFlashcardDeckIdF2) => void;
+  onSelect: (deckId: EnglishFlashcardDeckId | EnglishFlashcardDeckIdF2 | EnglishFlashcardDeckIdF3) => void;
 }) {
   const isForm2 = form === "Form 2";
-  const decks = isForm2 ? ENGLISH_FLASHCARD_DECKS_F2 : ENGLISH_FLASHCARD_DECKS;
+  const isForm3 = form === "Form 3";
+  const decks = isForm2 ? ENGLISH_FLASHCARD_DECKS_F2 : isForm3 ? ENGLISH_FLASHCARD_DECKS_F3 : ENGLISH_FLASHCARD_DECKS;
   return (
     <div className="animate-fade-up">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
@@ -3393,20 +3400,22 @@ function EnglishFlashcardDeckPicker({
           <ArrowLeft className="h-4 w-4" /> Back to subjects
         </button>
         <span className="text-sm font-semibold text-muted-foreground">
-          {isForm2 ? "English Form 2" : "English Form 1"}
+          {isForm3 ? "English Form 3" : isForm2 ? "English Form 2" : "English Form 1"}
         </span>
       </div>
 
       <div className="glass-strong rounded-3xl p-6 sm:p-8">
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
-            {isForm2 ? "English Form 2" : "English Form 1"}
+            {isForm3 ? "English Form 3" : isForm2 ? "English Form 2" : "English Form 1"}
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
-            Open <span className="gradient-text">{isForm2 ? "Form 2 Flashcards" : "Paper 1 Flashcards"}</span>
+            Open <span className="gradient-text">{isForm3 ? "Form 3 Flashcards" : isForm2 ? "Form 2 Flashcards" : "Paper 1 Flashcards"}</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
-            {isForm2
+            {isForm3
+              ? "Sharper UASA-level revision for Tingkatan 3 grammar, vocabulary, and exam techniques."
+              : isForm2
               ? "Quick revision for Tingkatan 2 grammar, reading, and writing skills."
               : "Quick revision for high-frequency UASA Paper 1 skills."}
           </p>
@@ -3554,6 +3563,7 @@ function FlashcardsPage() {
   );
   const isEnglishFlashcardDeck = subject === "english" && isEnglishFlashcardDeckId(chapter);
   const isEnglishFlashcardDeckF2 = subject === "english" && isEnglishFlashcardDeckIdF2(chapter);
+  const isEnglishFlashcardDeckF3 = subject === "english" && isEnglishFlashcardDeckIdF3(chapter);
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const subjectChaptersForForm = subject
@@ -3566,7 +3576,8 @@ function FlashcardsPage() {
     chapter &&
     !chapterMeta &&
     !isEnglishFlashcardDeck &&
-    !isEnglishFlashcardDeckF2
+    !isEnglishFlashcardDeckF2 &&
+    !isEnglishFlashcardDeckF3
   );
   const rawPool = useMemo(() => {
     if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
@@ -3574,6 +3585,9 @@ function FlashcardsPage() {
     }
     if (subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
       return getEnglishFlashcardsForDeckF2(chapter);
+    }
+    if (subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
+      return getEnglishFlashcardsForDeckF3(chapter);
     }
     if (
       subject === "math" &&
@@ -3647,7 +3661,9 @@ function FlashcardsPage() {
   const pct = total > 0 ? Math.min(100, Math.round((done / total) * 100)) : 0;
   const flashcardSetTitle =
     subject === "english" && isEnglishFlashcardDeck
-      ? (ENGLISH_FLASHCARD_DECKS.find((deck) => deck.id === chapter)?.title ?? "Paper 1 Flashcards")
+      ? ((form === "Form 2" ? ENGLISH_FLASHCARD_DECKS_F2 : form === "Form 3" ? ENGLISH_FLASHCARD_DECKS_F3 : ENGLISH_FLASHCARD_DECKS).find(
+          (deck) => deck.id === chapter,
+        )?.title ?? "Paper 1 Flashcards")
       : subject === "math" && chapter && mathFlashcardLang && mathFlashcardCategory
         ? (MATH_FLASHCARD_CATEGORIES.find((category) => category.id === mathFlashcardCategory)?.[
             mathFlashcardLang
@@ -3927,7 +3943,7 @@ function FlashcardsPage() {
       return (
         <AcademyPageShell subjectId={planetSubjectId}>
           <EnglishFlashcardDeckPicker
-            form={form === "Form 2" ? "Form 2" : "Form 1"}
+            form={form === "Form 2" ? "Form 2" : form === "Form 3" ? "Form 3" : "Form 1"}
             onBack={() => {
               setSubject(null);
               setChapter(null);
@@ -3937,9 +3953,9 @@ function FlashcardsPage() {
               setChapter(deckId);
               resetSession();
               if (setLastVisited) {
-                const deck = (form === "Form 2" ? ENGLISH_FLASHCARD_DECKS_F2 : ENGLISH_FLASHCARD_DECKS).find(
-                  (item) => item.id === deckId,
-                );
+                const deck = (
+                  form === "Form 2" ? ENGLISH_FLASHCARD_DECKS_F2 : form === "Form 3" ? ENGLISH_FLASHCARD_DECKS_F3 : ENGLISH_FLASHCARD_DECKS
+                ).find((item) => item.id === deckId);
                 setLastVisited({
                   subjectId: "english",
                   chapterKey: deckId,
@@ -4204,8 +4220,17 @@ function FlashcardsPage() {
                 <ArrowLeft className="h-4 w-4" /> Back to flashcards
               </button>
               <span className="text-sm font-semibold text-muted-foreground">
-                English Form 1 •{" "}
-                {ENGLISH_FLASHCARD_DECKS.find((deck) => deck.id === chapter)?.title ?? chapter}
+                {form === "Form 2"
+                  ? "English Form 2 •"
+                  : form === "Form 3"
+                    ? "English Form 3 •"
+                    : "English Form 1 •"}{" "}
+                {(form === "Form 2"
+                  ? ENGLISH_FLASHCARD_DECKS_F2
+                  : form === "Form 3"
+                    ? ENGLISH_FLASHCARD_DECKS_F3
+                    : ENGLISH_FLASHCARD_DECKS
+                ).find((deck) => deck.id === chapter)?.title ?? chapter}
               </span>
             </div>
           ) : (
