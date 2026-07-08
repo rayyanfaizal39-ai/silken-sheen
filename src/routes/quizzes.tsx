@@ -8039,6 +8039,7 @@ function EnglishQuizScreen({
   onAnswer: (index: number) => void;
   onNext: () => void;
   onBack: () => void;
+  formLabel?: string;
 }) {
   const total = questions.length;
 
