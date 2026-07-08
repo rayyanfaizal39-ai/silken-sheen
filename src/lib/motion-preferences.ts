@@ -20,7 +20,12 @@ export function isMobileViewport(): boolean {
   return window.matchMedia("(max-width: 768px)").matches;
 }
 
-/** True when continuous/heavy motion (infinite rotations, particle loops, mouse parallax) should be skipped or simplified. */
+/** True when continuous/heavy motion (infinite rotations, particle loops, mouse parallax) should be skipped or simplified.
+ *
+ * Currently always true on the landing page: the infinite gsap orbits and
+ * canvas meteor loop kept the main thread busy enough that clicks on the
+ * header "Sign in" button felt stuck waiting for the modal to paint. Static
+ * decoration keeps interactivity snappy and helps SEO/CWV scores. */
 export function shouldReduceMotion(): boolean {
-  return prefersReducedMotion() || isCoarsePointer() || isMobileViewport();
+  return true;
 }
