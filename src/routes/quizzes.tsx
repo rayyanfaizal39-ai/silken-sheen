@@ -8130,6 +8130,11 @@ function EnglishQuizScreen({
         </div>
 
         <div className="px-6 pb-4 pt-6">
+          {current.image ? (
+            <img src={current.image} alt="" className="mb-4 block w-full rounded-xl object-contain" />
+          ) : current.visualKey ? (
+            <EnglishQuestionVisual visualKey={current.visualKey} />
+          ) : null}
           <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
             {current.question}
           </h2>
