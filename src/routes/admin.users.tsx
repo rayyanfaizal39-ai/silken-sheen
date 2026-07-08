@@ -231,7 +231,7 @@ function UsersPage() {
 
         {tab === 'parents' ? (
           <div className="setup-notice">
-            <h3>👨‍👩‍👧 Coming Soon</h3>
+            <h2>👨‍👩‍👧 Coming Soon</h2>
             <p style={{ margin: 0 }}>
               Parent accounts aren't part of the MVP yet — parents currently receive progress
               reports by email (see Parent Dashboard), not as a separate AcadeMY login. This tab
@@ -245,6 +245,7 @@ function UsersPage() {
               <input
                 type="text"
                 placeholder="Search by name, email, school, or username…"
+                aria-label="Search users"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 style={{ flex: '1 1 320px' }}
@@ -416,7 +417,7 @@ function UsersPage() {
       {editingRow && (
         <div className="modal-backdrop" onClick={() => setEditingRow(null)}>
           <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
-            <h3>Edit {editingRow.full_name ?? editingRow.email}</h3>
+            <h2>Edit {editingRow.full_name ?? editingRow.email}</h2>
             <div className="form-grid">
               <div className="form-field full">
                 <label>Full name</label>

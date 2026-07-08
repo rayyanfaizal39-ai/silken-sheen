@@ -58,6 +58,7 @@ function SubjectsPage() {
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Search worlds…"
+                aria-label="Search worlds"
                 className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.05] py-3 pl-11 pr-4 text-sm text-white placeholder:text-white/30 focus:border-white/[0.16] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]/40"
               />
             </div>

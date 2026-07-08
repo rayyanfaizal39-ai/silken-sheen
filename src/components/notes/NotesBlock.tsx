@@ -298,6 +298,7 @@ export function NotesBlock({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search notes…"
+              aria-label="Search notes"
               className="min-h-11 w-full rounded-2xl border border-white/[0.10] bg-white/[0.05] py-2.5 pl-10 pr-10 text-sm text-white placeholder:text-white/30 transition-all focus:border-white/25 focus:bg-white/[0.08] focus:outline-none"
             />
             {query && (

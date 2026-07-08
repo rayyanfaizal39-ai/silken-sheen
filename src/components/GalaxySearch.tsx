@@ -81,6 +81,7 @@ export function GalaxySearch() {
           }}
           onFocus={() => setOpen(true)}
           placeholder="Search notes, quizzes, chapters..."
+          aria-label="Search notes, quizzes, and chapters"
           className="h-11 w-full rounded-2xl border border-white/[0.09] bg-white/[0.055] pl-10 pr-10 text-sm font-semibold text-white placeholder:text-white/34 shadow-[0_16px_48px_rgba(2,6,23,0.22)] outline-none backdrop-blur-2xl transition-all focus:border-cyan-300/35 focus:bg-white/[0.075] focus:shadow-[0_18px_58px_rgba(34,211,238,0.12)]"
         />
         {query && (

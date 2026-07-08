@@ -187,7 +187,7 @@ function ContentLibraryPage() {
       <div className="admin-content">
         <Panel title="Content · Content Library">
           <div className="setup-notice">
-            <h3>⚠ Storage bucket not found</h3>
+            <h2>⚠ Storage bucket not found</h2>
             <p style={{ marginBottom: 12 }}>
               The <code>content-library</code> Supabase Storage bucket doesn't exist yet, so uploads
               are disabled. Create it once via the Supabase dashboard (Storage → New bucket):
@@ -342,7 +342,7 @@ create policy "Admins can delete content-library objects"
       {pendingFile && (
         <div className="modal-backdrop" onClick={() => !uploading && setPendingFile(null)}>
           <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
-            <h3>Upload "{pendingFile.name}"</h3>
+            <h2>Upload "{pendingFile.name}"</h2>
             <MetadataForm metadata={metadata} setMetadata={setMetadata} />
             <div className="modal-actions">
               <button className="btn btn-ghost" onClick={() => setPendingFile(null)} disabled={uploading}>
@@ -360,7 +360,7 @@ create policy "Admins can delete content-library objects"
       {editingRow && (
         <div className="modal-backdrop" onClick={() => setEditingRow(null)}>
           <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
-            <h3>Edit metadata</h3>
+            <h2>Edit metadata</h2>
             <MetadataForm metadata={metadata} setMetadata={setMetadata} />
             <div className="modal-actions">
               <button className="btn btn-ghost" onClick={() => setEditingRow(null)}>Cancel</button>

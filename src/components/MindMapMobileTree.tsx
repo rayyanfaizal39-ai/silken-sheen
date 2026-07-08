@@ -184,6 +184,7 @@ export function MindMapMobileTree({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search nodes…"
+              aria-label="Search nodes"
               className="bg-transparent text-sm text-slate-100 placeholder:text-slate-500 outline-none flex-1"
             />
             {query && (

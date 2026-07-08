@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+// Materializes dist/server as a Cloudflare Pages "Advanced Mode" Worker so
+// production (a git-integrated Pages project, NOT a plain `wrangler deploy`
+// Worker) actually runs SSR for document requests.
+//
+// ROOT CAUSE this fixes: `patch-wrangler-assets.js` sets `assets.run_worker_first`
+// in dist/server/wrangler.json — but that field only means something for a
+// Workers-with-Assets deploy (`wrangler deploy`). Production is served by the
+// Cloudflare Pages project "academymy" (git-integrated, auto-deploys dist/client
+// on push), and Pages never reads dist/server/wrangler.json at all. Pages only
+// runs a Worker for a request if the published output directory (dist/client)
+// contains a `_worker.js` entry (Advanced Mode), gated by `_routes.json`. Without
+// those, Pages served dist/client/index.html — the generic static shell — for
+// every route, which is why fixing run_worker_first had zero effect in prod.
+//
+// What this does:
+// - Copies dist/server/** into dist/client/_worker.js/** (Pages supports
+//   `_worker.js` as a directory: entry is `_worker.js/index.js`, and it can
+//   import sibling files via relative imports, same as nitro's unbundled
+//   cloudflare-module output already does with dist/server/index.mjs +
+//   ./_libs, ./_chunks, ./_ssr, etc.)
+// - Renames the entry file index.mjs -> index.js (Pages' documented
+//   requirement for the Advanced Mode directory entry point). Nothing inside
+//   references the entry file's own name, so the rename is safe.
+// - Writes dist/client/_routes.json so Pages invokes the Worker for
+//   everything except genuinely static assets (mirrors the exclude list in
+//   patch-wrangler-assets.js's run_worker_first, translated to Pages'
+//   include/exclude glob syntax).
+
+import { cpSync, existsSync, renameSync, writeFileSync, rmSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const root = join(__dirname, "..");
+const serverDir = join(root, "dist/server");
+const clientDir = join(root, "dist/client");
+const workerDir = join(clientDir, "_worker.js");
+
+if (!existsSync(serverDir)) {
+  console.error(
+    `[build-pages-worker] No dist/server at ${serverDir} — did the nitro/Cloudflare build run? Skipping.`,
+  );
+  process.exit(1);
+}
+if (!existsSync(clientDir)) {
+  console.error(
+    `[build-pages-worker] No dist/client at ${clientDir} — did "vite build" run? Skipping.`,
+  );
+  process.exit(1);
+}
+
+rmSync(workerDir, { recursive: true, force: true });
+cpSync(serverDir, workerDir, { recursive: true });
+
+const entryMjs = join(workerDir, "index.mjs");
+const entryJs = join(workerDir, "index.js");
+if (!existsSync(entryMjs)) {
+  console.error(`[build-pages-worker] Expected entry ${entryMjs} not found. Skipping.`);
+  process.exit(1);
+}
+renameSync(entryMjs, entryJs);
+
+// wrangler.json inside _worker.js/ is inert for Pages (Pages doesn't read it)
+// and its `main: "index.mjs"` would be stale after the rename above — remove
+// it so it can't cause confusion.
+rmSync(join(workerDir, "wrangler.json"), { force: true });
+
+writeFileSync(
+  join(clientDir, "_routes.json"),
+  JSON.stringify(
+    {
+      version: 1,
+      description:
+        "Run the SSR Worker for all document/navigation requests; serve genuinely static files directly.",
+      include: ["/*"],
+      exclude: [
+        "/assets/*",
+        "/companions/*",
+        "/favicon.ico",
+        "/*.png",
+        "/*.webmanifest",
+        "/robots.txt",
+        "/sitemap.xml",
+      ],
+    },
+    null,
+    2,
+  ),
+);
+
+console.log(
+  "[build-pages-worker] Wrote dist/client/_worker.js/ (Pages Advanced Mode) and dist/client/_routes.json",
+);

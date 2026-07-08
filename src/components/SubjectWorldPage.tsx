@@ -790,9 +790,9 @@ function LocationCard({
         )}
 
         {/* KSSM chapter title */}
-        <h3 className="font-display text-xs font-bold leading-snug text-white sm:text-sm">
+        <h2 className="font-display text-xs font-bold leading-snug text-white sm:text-sm">
           {chapter.label}
-        </h3>
+        </h2>
 
         {/* Status line */}
         <p className="mt-1 text-[9px] font-bold"
@@ -1159,7 +1159,7 @@ function ChapterCard({
         )}
 
         {/* KSSM chapter title */}
-        <h3 className="font-display text-sm font-bold leading-snug text-white">{chapter.label}</h3>
+        <h2 className="font-display text-sm font-bold leading-snug text-white">{chapter.label}</h2>
 
         {/* Content chips */}
         {chapter.available && (notesCount > 0 || cardCount > 0 || quizCount > 0) && (

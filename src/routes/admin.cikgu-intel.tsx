@@ -66,6 +66,7 @@ function CikguIntelPage() {
           <input
             type="text"
             placeholder="Search by title or content…"
+            aria-label="Search Cikgu AI content"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{ flex: '1 1 260px' }}

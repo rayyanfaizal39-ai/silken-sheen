@@ -219,6 +219,7 @@ export function AstronautScene() {
           <img
             src={astronautRocket}
             alt=""
+            aria-hidden="true"
             className="relative h-full w-full select-none object-contain object-right drop-shadow-[0_24px_80px_rgba(99,102,241,0.68)]"
             draggable={false}
             style={{
