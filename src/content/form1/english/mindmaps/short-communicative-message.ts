@@ -39,7 +39,7 @@ export const englishF1ShortCommunicativeMessageMindMap: MindNode = {
       id: "exam-tips",
       label: "Exam Tips",
       children: [
-        { id: "et-answer-all-points", label: "Answer All Points" },
+        { id: "et-answer-all-points", label: "Answer All Bullet Points" },
         { id: "et-stay-within-word-count", label: "Stay Within Word Count" },
         { id: "et-check-spelling", label: "Check Spelling" },
       ],

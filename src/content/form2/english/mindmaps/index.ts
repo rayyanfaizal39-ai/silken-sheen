@@ -5,3 +5,5 @@ export * from "./reading-comprehension";
 export * from "./gapped-text";
 export * from "./short-communicative-message";
 export * from "./guided-writing";
+export * from "./paper1";
+export * from "./paper2";
