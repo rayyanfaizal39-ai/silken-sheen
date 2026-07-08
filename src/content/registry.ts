@@ -5,8 +5,26 @@ import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
 import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
 import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
 import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
+import {
+  englishF2ShortTextsMindMap,
+  englishF2GrammarMindMap,
+  englishF2InformationTransferMindMap,
+  englishF2ReadingComprehensionMindMap,
+  englishF2GappedTextMindMap,
+  englishF2ShortCommunicativeMessageMindMap,
+  englishF2GuidedWritingMindMap,
+} from "@/content/form2/english/mindmaps";
 import { englishF3C1Notes } from "@/content/form3/english/chapter-1/notes";
 import { englishF3C2Notes } from "@/content/form3/english/chapter-2/notes";
+import {
+  englishF3ShortTextsMindMap,
+  englishF3GrammarMindMap,
+  englishF3InformationTransferMindMap,
+  englishF3ReadingComprehensionMindMap,
+  englishF3GappedTextMindMap,
+  englishF3ShortCommunicativeMessageMindMap,
+  englishF3GuidedWritingMindMap,
+} from "@/content/form3/english/mindmaps";
 import { getEnglishQuizSetF3 } from "@/data/english-f3-quiz-sets";
 import { ENGLISH_FLASHCARD_DECK_CARDS_F3 } from "@/data/english-f3-flashcard-decks";
 import { ENGLISH_QUIZ_QUESTIONS_F2 } from "@/data/english-f2-quiz-sets";
@@ -2191,6 +2209,70 @@ export const chapters: ChapterContent[] = [
     quiz: englishQuizzesForF2("Chapter 2"),
   },
 
+  // English Form 2 — UASA mind maps. Topic-based chapterKeys (not "Chapter N"),
+  // same pattern as the English Form 3 mind-map entries below. Mind-map-only
+  // rows (no notes/flashcards/quiz) — same as how BM's flashcard-only rows
+  // omit the fields they don't have.
+  {
+    id: "english-f2-short-texts",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Short Texts & Visual Materials",
+    title: "Short Texts & Visual Materials",
+    mindMap: { data: englishF2ShortTextsMindMap, title: "Short Texts & Visual Materials" },
+  },
+  {
+    id: "english-f2-grammar",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Grammar & Language Awareness",
+    title: "Grammar & Language Awareness",
+    mindMap: { data: englishF2GrammarMindMap, title: "Grammar & Language Awareness" },
+  },
+  {
+    id: "english-f2-information-transfer",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Information Transfer",
+    title: "Information Transfer",
+    mindMap: { data: englishF2InformationTransferMindMap, title: "Information Transfer" },
+  },
+  {
+    id: "english-f2-reading-comprehension",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Reading Comprehension",
+    title: "Reading Comprehension",
+    mindMap: { data: englishF2ReadingComprehensionMindMap, title: "Reading Comprehension" },
+  },
+  {
+    id: "english-f2-gapped-text",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Gapped Text",
+    title: "Gapped Text",
+    mindMap: { data: englishF2GappedTextMindMap, title: "Gapped Text" },
+  },
+  {
+    id: "english-f2-short-communicative-message",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Short Communicative Message",
+    title: "Paper 2 — Short Communicative Message",
+    mindMap: {
+      data: englishF2ShortCommunicativeMessageMindMap,
+      title: "Short Communicative Message",
+    },
+  },
+  {
+    id: "english-f2-guided-writing",
+    subjectId: "english",
+    form: "Form 2",
+    chapterKey: "Guided Writing",
+    title: "Paper 2 — Guided Writing",
+    mindMap: { data: englishF2GuidedWritingMindMap, title: "Guided Writing" },
+  },
+
   // English Form 3 — UASA mastery-level paper 1 notes.
   {
     id: "english-f3-c1",
@@ -2210,6 +2292,71 @@ export const chapters: ChapterContent[] = [
     title: "Paper 2 - Writing",
     englishData: englishF3C2Notes,
     flashcards: englishFlashcardsForF3("Chapter 2"),
+  },
+
+  // English Form 3 — UASA mind maps. Topic-based chapterKeys (not "Chapter N")
+  // since these are revision mind maps for the 7 UASA topic areas, not tied
+  // to the Paper 1 / Paper 2 chapter split above — same pattern as the BM
+  // topic-keyed entries below. Mind-map-only rows (no notes/flashcards/quiz),
+  // same as how BM's flashcard-only rows below omit the fields they don't have.
+  {
+    id: "english-f3-short-texts",
+    subjectId: "english",
+    form: "Form 3",
+    chapterKey: "Short Texts & Visual Materials",
+    title: "Short Texts & Visual Materials",
+    mindMap: { data: englishF3ShortTextsMindMap, title: "Short Texts & Visual Materials" },
+  },
+  {
+    id: "english-f3-grammar",
+    subjectId: "english",
+    form: "Form 3",
+    chapterKey: "Grammar & Language Awareness",
+    title: "Grammar & Language Awareness",
+    mindMap: { data: englishF3GrammarMindMap, title: "Grammar & Language Awareness" },
+  },
+  {
+    id: "english-f3-information-transfer",
+    subjectId: "english",
+    form: "Form 3",
+    chapterKey: "Information Transfer",
+    title: "Information Transfer",
+    mindMap: { data: englishF3InformationTransferMindMap, title: "Information Transfer" },
+  },
+  {
+    id: "english-f3-reading-comprehension",
+    subjectId: "english",
+    form: "Form 3",
+    chapterKey: "Reading Comprehension",
+    title: "Reading Comprehension",
+    mindMap: { data: englishF3ReadingComprehensionMindMap, title: "Reading Comprehension" },
+  },
+  {
+    id: "english-f3-gapped-text",
+    subjectId: "english",
+    form: "Form 3",
+    chapterKey: "Gapped Text",
+    title: "Gapped Text",
+    mindMap: { data: englishF3GappedTextMindMap, title: "Gapped Text" },
+  },
+  {
+    id: "english-f3-short-communicative-message",
+    subjectId: "english",
+    form: "Form 3",
+    chapterKey: "Short Communicative Message",
+    title: "Paper 2 — Short Communicative Message",
+    mindMap: {
+      data: englishF3ShortCommunicativeMessageMindMap,
+      title: "Short Communicative Message",
+    },
+  },
+  {
+    id: "english-f3-guided-writing",
+    subjectId: "english",
+    form: "Form 3",
+    chapterKey: "Guided Writing",
+    title: "Paper 2 — Guided Writing",
+    mindMap: { data: englishF3GuidedWritingMindMap, title: "Guided Writing" },
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
