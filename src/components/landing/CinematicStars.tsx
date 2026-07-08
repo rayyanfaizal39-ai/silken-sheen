@@ -14,7 +14,11 @@ export function CinematicStars() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Force reduce: the meteor rAF loop + gradient repaints kept the main
+    // thread busy enough on the landing page that clicking the header
+    // "Sign in" button felt stuck waiting for the modal to render. A single
+    // static starfield keeps the aesthetic without the per-frame cost.
+    const reduce = true;
     const mobile = window.matchMedia("(max-width: 768px)").matches;
     // Lower DPR cap and star/meteor density on mobile — same starfield look,
     // far fewer pixels and particles for a low-power GPU to push every frame.
