@@ -6114,6 +6114,7 @@ interface ShuffledQuestion {
   explanation?: string;
   difficulty: Difficulty;
   subjectId: string;
+  visualKey?: string;
 }
 
 type FormFilter = Form | "All";
