@@ -706,6 +706,7 @@ export const chapters: ChapterContent[] = [
     notes: sejarahF2C1Notes,
     mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu yang Masyhur" },
     flashcards: sejarahF2FlashcardsFor(1),
+    quiz: sejarahF2QuizzesFor(1),
   },
   {
     id: "sejarah-f2-c2",
@@ -719,6 +720,7 @@ export const chapters: ChapterContent[] = [
       title: "Sistem Pemerintahan dan Ekonomi Kerajaan Alam Melayu",
     },
     flashcards: sejarahF2FlashcardsFor(2),
+    quiz: sejarahF2QuizzesFor(2),
   },
   {
     id: "sejarah-f2-c3",

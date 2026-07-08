@@ -6133,6 +6133,7 @@ function readStudySearch() {
 }
 
 function QuizzesPage() {
+  const navigate = Route.useNavigate();
   const { progress, addXp, recordQuiz, awardBadge, markChapter, recordQuizResult } = useProgress();
   const { openCikgu } = useCikgu();
   const initialSearch = useMemo(readStudySearch, []);
@@ -6178,6 +6179,33 @@ function QuizzesPage() {
 
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
+
+  function formToSearchValue(value: FormFilter) {
+    if (value === "All") return undefined;
+    return Number(value.replace("Form ", ""));
+  }
+
+  function updateQuizSearch(next: {
+    subject?: string | null;
+    form?: FormFilter | null;
+    chapter?: string | null;
+  }) {
+    if (subject !== "sejarah" && next.subject !== "sejarah") return;
+
+    void navigate({
+      search: (previous: Record<string, unknown>) => ({
+        ...previous,
+        subject: next.subject === undefined ? (subject ?? undefined) : (next.subject ?? undefined),
+        form:
+          next.form === undefined
+            ? formToSearchValue(form)
+            : next.form
+              ? formToSearchValue(next.form)
+              : undefined,
+        chapter: next.chapter === undefined ? (chapter ?? undefined) : (next.chapter ?? undefined),
+      }),
+    });
+  }
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const subjectChaptersForForm = subject
@@ -6720,6 +6748,7 @@ function QuizzesPage() {
             setFormWasChosen(true);
             setChapter(null);
             setDiff("All");
+            updateQuizSearch({ form: selectedForm, chapter: null });
             reset();
           }}
           onBack={() => {
@@ -6727,6 +6756,7 @@ function QuizzesPage() {
             setChapter(null);
             setForm("Form 1");
             setFormWasChosen(false);
+            updateQuizSearch({ subject: null, form: null, chapter: null });
             reset();
           }}
         />
@@ -6738,7 +6768,16 @@ function QuizzesPage() {
   // before registry-driven upper-form fallbacks so Form 2 is never mistaken
   // for an unpopulated generic subject.
   if (subject === "bm" && !chapter && (form === "Form 1" || form === "Form 2" || form === "Form 3")) {
-    return <BMWorldPage mode="quiz" quizForm={form === "Form 3" ? 3 : form === "Form 2" ? 2 : 1} onBack={() => setSubject(null)} />;
+    return (
+      <BMWorldPage
+        mode="quiz"
+        quizForm={form === "Form 3" ? 3 : form === "Form 2" ? 2 : 1}
+        onBack={() => {
+          setSubject(null);
+          updateQuizSearch({ subject: null, form: null, chapter: null });
+        }}
+      />
+    );
   }
 
   if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormQuizPath && !needsScienceLang) {
@@ -6751,6 +6790,7 @@ function QuizzesPage() {
           onBack={() => {
             setChapter(null);
             setFormWasChosen(false);
+            updateQuizSearch({ form: null, chapter: null });
             reset();
           }}
         />
@@ -6921,8 +6961,16 @@ function QuizzesPage() {
         scienceLang={scienceLang ?? undefined}
         isBilingualSubject={isBilingualSubject}
         resourceType="quiz"
-        onSelectChapter={(key) => setChapter(key)}
-        onBack={() => setSubject(null)}
+        onSelectChapter={(key) => {
+          setChapter(key);
+          updateQuizSearch({ chapter: key });
+          reset();
+        }}
+        onBack={() => {
+          setSubject(null);
+          updateQuizSearch({ subject: null, form: null, chapter: null });
+          reset();
+        }}
         onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
       />
     );
@@ -7034,6 +7082,7 @@ function QuizzesPage() {
               setForm("Form 1");
               setFormWasChosen(false);
               setDiff("All");
+              updateQuizSearch({ subject: id, form: null, chapter: null });
               reset();
             }}
           />
@@ -7057,6 +7106,7 @@ function QuizzesPage() {
           onBack={() => {
             setSubject(null);
             setChapter(null);
+            updateQuizSearch({ subject: null, form: null, chapter: null });
             reset();
           }}
         />
@@ -7069,11 +7119,13 @@ function QuizzesPage() {
           resourceType="quiz"
           onSelectChapter={(key) => {
             setChapter(key);
+            updateQuizSearch({ chapter: key });
             reset();
           }}
           onBack={() => {
             setSubject(null);
             setChapter(null);
+            updateQuizSearch({ subject: null, form: null, chapter: null });
             reset();
           }}
           onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
@@ -7085,6 +7137,7 @@ function QuizzesPage() {
             type="button"
             onClick={() => {
               setChapter(null);
+              updateQuizSearch({ chapter: null });
               reset();
             }}
             className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
@@ -7101,6 +7154,7 @@ function QuizzesPage() {
           mode="quizzes"
           onBack={() => {
             setChapter(null);
+            updateQuizSearch({ chapter: null });
             reset();
           }}
         />
@@ -7112,6 +7166,7 @@ function QuizzesPage() {
             scienceLang={scienceLang ?? undefined}
             onBack={() => {
               setChapter(null);
+              updateQuizSearch({ chapter: null });
               reset();
             }}
             onSelect={(lang) => {
@@ -7207,6 +7262,7 @@ function QuizzesPage() {
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           onBack={() => {
             setChapter(null);
+            updateQuizSearch({ chapter: null });
             reset();
           }}
           onStart={(pref) => setTimerPref(pref)}
@@ -7220,6 +7276,7 @@ function QuizzesPage() {
             form={form}
             onBack={() => {
               setChapter(null);
+              updateQuizSearch({ chapter: null });
               reset();
             }}
           />
@@ -7402,7 +7459,11 @@ function QuizzesPage() {
                       <RotateCcw className="h-4 w-4" /> Try Again
                     </button>
                     <button
-                      onClick={() => { setChapter(null); reset(); }}
+                      onClick={() => {
+                        setChapter(null);
+                        updateQuizSearch({ chapter: null });
+                        reset();
+                      }}
                       className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.06] px-8 py-3.5 font-bold text-white transition-all hover:bg-white/[0.10]"
                     >
                       <ArrowLeft className="h-4 w-4" /> Choose Chapter
