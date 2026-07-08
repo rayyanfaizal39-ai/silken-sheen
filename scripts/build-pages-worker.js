@@ -26,6 +26,15 @@
 //   everything except genuinely static assets (mirrors the exclude list in
 //   patch-wrangler-assets.js's run_worker_first, translated to Pages'
 //   include/exclude glob syntax).
+// - Deletes .wrangler/deploy/config.json. nitro's `deployConfig: true` option
+//   (vite.config.ts) writes this file pointing at dist/server/wrangler.json —
+//   a Workers-with-Assets config whose `assets.run_worker_first` is an array
+//   (Pages requires a boolean) and whose `assets.binding` is "ASSETS" (a name
+//   Pages reserves and rejects). Cloudflare's Pages publish step follows this
+//   redirect file when present and switches away from the root wrangler.jsonc
+//   to that incompatible config, failing deployment with exactly those two
+//   errors. Removing it is what makes the root wrangler.jsonc (which is valid
+//   for Pages) the config Cloudflare actually uses.
 
 import { cpSync, existsSync, renameSync, writeFileSync, rmSync } from "fs";
 import { join, dirname } from "path";
@@ -89,6 +98,9 @@ writeFileSync(
   ),
 );
 
+rmSync(join(root, ".wrangler/deploy/config.json"), { force: true });
+
 console.log(
-  "[build-pages-worker] Wrote dist/client/_worker.js/ (Pages Advanced Mode) and dist/client/_routes.json",
+  "[build-pages-worker] Wrote dist/client/_worker.js/ (Pages Advanced Mode), dist/client/_routes.json, " +
+    "and removed .wrangler/deploy/config.json (nitro's Workers-deploy redirect, invalid for Pages)",
 );

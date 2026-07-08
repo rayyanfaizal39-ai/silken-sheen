@@ -10,16 +10,30 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // Used by both the Vercel SSR deploy path (dist/server/server.js) and the
 // Cloudflare Worker deploy path (dist/server/index.mjs) below.
 export default defineConfig({
-  // Cloudflare deploy target: a single Worker serves dist/client as static
-  // assets and dist/server/index.mjs as the User Worker (admin/auth server
-  // functions, e.g. -admin.server.ts). The wrapper's `cloudflare` option type
-  // only allows nodeCompat/deployConfig (no `wrangler` passthrough), so the
-  // extra `assets.not_found_handling`/`run_worker_first` fields needed for
-  // SPA-fallback + server-fn routing are patched onto the generated
-  // dist/server/wrangler.json by scripts/patch-wrangler-assets.js instead —
-  // see that script for why. Deploy with `wrangler deploy` from dist/server
-  // (NOT the Cloudflare Pages dashboard — see commit history for why Pages'
-  // _routes.json model doesn't fit this dist/client-as-root setup).
+  // Cloudflare deploy target: production is the Cloudflare Pages project
+  // "academymy" (git-integrated build, myacademy.my / www.myacademy.my), NOT
+  // a plain `wrangler deploy` Worker. nitro's cloudflare-module preset still
+  // generates dist/server/index.mjs + dist/server/wrangler.json (patched by
+  // scripts/patch-wrangler-assets.js) as a byproduct, but that generated
+  // wrangler.json is a Workers-with-Assets config — its `assets.run_worker_first`
+  // (array of globs) and `assets.binding: "ASSETS"` are both invalid for a
+  // Pages deploy (Pages reserves the "ASSETS" binding name, and expects
+  // run_worker_first as a plain boolean, not a glob array). It's never meant
+  // to be read directly; scripts/build-pages-worker.js repackages the actual
+  // dist/server/** output as dist/client/_worker.js/ (Pages Advanced Mode)
+  // + dist/client/_routes.json, and the real deploy config Cloudflare Pages
+  // reads is the repo-root wrangler.jsonc (pages_build_output_dir mode).
+  //
+  // deployConfig: true is required to make nitro emit dist/server/wrangler.json
+  // at all (patch-wrangler-assets.js depends on that file existing — turning
+  // this off removes the file outright rather than just fixing its content).
+  // The side effect: with it on, nitro ALSO writes .wrangler/deploy/config.json
+  // pointing at dist/server/wrangler.json, and Cloudflare's Pages publish step
+  // follows that redirect instead of using the root wrangler.jsonc — i.e. it
+  // republishes the exact run_worker_first/ASSETS-binding failures described
+  // above. scripts/build-pages-worker.js deletes .wrangler/deploy/config.json
+  // as its last step specifically to neutralize that redirect, so the root
+  // wrangler.jsonc is what Cloudflare Pages actually reads.
   nitro: {
     preset: "cloudflare-module",
     output: { dir: "dist", serverDir: "dist/server", publicDir: "dist/client" },
