@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Root-level config for the Cloudflare Pages project "academymy"
+  // (git-integrated build, myacademy.my / www.myacademy.my). Pages does NOT
+  // read dist/server/wrangler.json or dist/client/_worker.js/wrangler.json —
+  // those are nitro's Workers-deploy output and are inert for a Pages build.
+  // `pages_build_output_dir` is what makes Cloudflare Pages' build system pick
+  // up this file for the Function's compatibility settings.
+  //
+  // compatibility_flags: ["nodejs_compat"] is required, not optional: nitro's
+  // cloudflare-module preset (nodeCompat: true in vite.config.ts) generates
+  // dist/server/_libs/unenv.mjs, which does `import { Buffer } from
+  // "node:buffer"` directly rather than polyfilling it in pure JS — it expects
+  // workerd's native nodejs_compat implementation to provide that module at
+  // runtime. Without this flag, Pages Function publish fails with:
+  // "Uncaught Error: No such module 'node:buffer' imported from _libs/unenv.mjs".
+  "name": "academymy",
+  "pages_build_output_dir": "dist/client",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"]
+}
