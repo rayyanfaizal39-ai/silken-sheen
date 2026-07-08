@@ -3,6 +3,15 @@ import { scienceF3ChapterContent } from "@/content/form3/science/registration";
 import type { MindNode } from "@/components/MindMap";
 import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
 import { englishF1C2Notes } from "@/content/form1/english/chapter-2/notes";
+import {
+  englishF1ShortTextsMindMap,
+  englishF1GrammarMindMap,
+  englishF1InformationTransferMindMap,
+  englishF1ReadingComprehensionMindMap,
+  englishF1GappedTextMindMap,
+  englishF1ShortCommunicativeMessageMindMap,
+  englishF1GuidedWritingMindMap,
+} from "@/content/form1/english/mindmaps";
 import { englishF2C1Notes } from "@/content/form2/english/chapter-1/notes";
 import { englishF2C2Notes } from "@/content/form2/english/chapter-2/notes";
 import {
@@ -2181,6 +2190,70 @@ export const chapters: ChapterContent[] = [
     englishData: englishF1C2Notes,
     flashcards: englishFlashcardsFor("Chapter 2"),
     quiz: englishQuizzesFor("Chapter 2"),
+  },
+
+  // English Form 1 — UASA mind maps. Topic-based chapterKeys (not "Chapter N"),
+  // same pattern as the English Form 2 / Form 3 mind-map entries. Mind-map-only
+  // rows (no notes/flashcards/quiz) — same as how BM's flashcard-only rows
+  // omit the fields they don't have.
+  {
+    id: "english-f1-short-texts",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Short Texts & Visual Materials",
+    title: "Short Texts & Visual Materials",
+    mindMap: { data: englishF1ShortTextsMindMap, title: "Short Texts & Visual Materials" },
+  },
+  {
+    id: "english-f1-grammar",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Grammar & Language Awareness",
+    title: "Grammar & Language Awareness",
+    mindMap: { data: englishF1GrammarMindMap, title: "Grammar & Language Awareness" },
+  },
+  {
+    id: "english-f1-information-transfer",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Information Transfer",
+    title: "Information Transfer",
+    mindMap: { data: englishF1InformationTransferMindMap, title: "Information Transfer" },
+  },
+  {
+    id: "english-f1-reading-comprehension",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Reading Comprehension",
+    title: "Reading Comprehension",
+    mindMap: { data: englishF1ReadingComprehensionMindMap, title: "Reading Comprehension" },
+  },
+  {
+    id: "english-f1-gapped-text",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Gapped Text",
+    title: "Gapped Text",
+    mindMap: { data: englishF1GappedTextMindMap, title: "Gapped Text" },
+  },
+  {
+    id: "english-f1-short-communicative-message",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Short Communicative Message",
+    title: "Paper 2 — Short Communicative Message",
+    mindMap: {
+      data: englishF1ShortCommunicativeMessageMindMap,
+      title: "Short Communicative Message",
+    },
+  },
+  {
+    id: "english-f1-guided-writing",
+    subjectId: "english",
+    form: "Form 1",
+    chapterKey: "Guided Writing",
+    title: "Paper 2 — Guided Writing",
+    mindMap: { data: englishF1GuidedWritingMindMap, title: "Guided Writing" },
   },
 
   // English Form 2 — same structure as Form 1 (2 chapters: Paper 1 Reading &
