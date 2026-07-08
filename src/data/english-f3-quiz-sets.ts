@@ -40,7 +40,7 @@ function buildSet(rows: Array<[
   number,
   string,
   QuizQuestion["difficulty"],
-  string | undefined?
+  string?,
 ]>) {
   return rows.map<QuizQuestion>(([id, question, options, answerIndex, explanation, difficulty, visualKey]) => ({
     id: `eng-f3-uasa-set-1-${id}`,
