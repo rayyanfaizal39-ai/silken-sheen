@@ -1,3 +1,4 @@
+import type { Form } from "@/data/subjects-meta";
 import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-bm";
 import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
 import { mathF2C1QuizzesBM } from "@/content/form2/math/chapter-1/quizzes-bm";
@@ -1774,6 +1775,7 @@ export interface QuizQuestion {
   answerIndex: number;
   explanation?: string;
   visualKey?: string;
+  image?: string;
 }
 
 export const quizzes: QuizQuestion[] = [

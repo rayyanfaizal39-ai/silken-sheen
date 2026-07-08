@@ -74,7 +74,10 @@ function SubjectsPage() {
             className="animate-slide-up"
             style={{ animationDelay: `${i * 70}ms` }}
           >
-            <SubjectPlanetLink subjectId={s.id as SubjectPlanetId} to="/notes" />
+            <SubjectPlanetLink
+              subjectId={s.id as SubjectPlanetId}
+              to={s.id === "english" ? "/quizzes" : "/notes"}
+            />
           </div>
         ))}
       </div>

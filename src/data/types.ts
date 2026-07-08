@@ -55,6 +55,7 @@ export interface QuizQuestion {
   chapter?: string;
   lang?: "bm" | "dlp";
   visualKey?: string;
+  image?: string;
   question: string;
   options: string[];
   answerIndex: number;

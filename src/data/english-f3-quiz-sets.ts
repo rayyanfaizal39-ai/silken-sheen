@@ -1,4 +1,16 @@
 import type { QuizQuestion } from "@/data/types";
+import imgF3Q01 from "@/assets/english posters/form 3/q01.png";
+import imgF3Q02 from "@/assets/english posters/form 3/q02.png";
+import imgF3Q03 from "@/assets/english posters/form 3/q03.png";
+import imgF3Q04 from "@/assets/english posters/form 3/q04.png";
+import imgF3Q05 from "@/assets/english posters/form 3/q05.png";
+import imgF3Q06 from "@/assets/english posters/form 3/q06.png";
+import imgF3Q07 from "@/assets/english posters/form 3/q07.png";
+import imgF3Q08 from "@/assets/english posters/form 3/q08.png";
+import imgF3Q09 from "@/assets/english posters/form 3/q09.png";
+import imgF3Q10 from "@/assets/english posters/form 3/q10.png";
+import imgF3Q11 from "@/assets/english posters/form 3/q11.png";
+import imgF3Q12 from "@/assets/english posters/form 3/q12.png";
 
 export type EnglishQuizPaperIdF3 = "paper-1";
 export type EnglishQuizSetIdF3 = "uasa-set-1";
@@ -53,6 +65,20 @@ function buildSet(rows: Array<[
     answerIndex,
     explanation,
     visualKey: visualKey ?? undefined,
+    image:
+      visualKey === "q01" ? imgF3Q01
+      : visualKey === "q02" ? imgF3Q02
+      : visualKey === "q03" ? imgF3Q03
+      : visualKey === "q04" ? imgF3Q04
+      : visualKey === "q05" ? imgF3Q05
+      : visualKey === "q06" ? imgF3Q06
+      : visualKey === "q07" ? imgF3Q07
+      : visualKey === "q08" ? imgF3Q08
+      : visualKey === "q09" ? imgF3Q09
+      : visualKey === "q10" ? imgF3Q10
+      : visualKey === "q11" ? imgF3Q11
+      : visualKey === "q12" ? imgF3Q12
+      : undefined,
   }));
 }
 

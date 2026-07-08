@@ -6115,6 +6115,7 @@ interface ShuffledQuestion {
   difficulty: Difficulty;
   subjectId: string;
   visualKey?: string;
+  image?: string;
 }
 
 type FormFilter = Form | "All";
@@ -6242,6 +6243,7 @@ function QuizzesPage() {
     [englishSetIdF3],
   );
   const currentEnglishQuestion = englishShuffledQuestions?.[idx] ?? null;
+  const englishIsForm3 = subject === "english" && form === "Form 3";
 
   // Countdown timer per question (only when timer mode enabled)
   useEffect(() => {
@@ -6271,6 +6273,15 @@ function QuizzesPage() {
       setShuffledPool(buildShuffledPool(pool));
     }
   }, [timerPref, pool]);
+
+  useEffect(() => {
+    if (subject !== "english" || form !== "Form 3") return;
+    if (englishSetIdF3 || englishPhase !== "select") return;
+    const firstSet = ENGLISH_QUIZ_SETS_F3[0]?.id ?? null;
+    if (!firstSet) return;
+    setEnglishSetIdF3(firstSet);
+    setEnglishPhase("intro");
+  }, [subject, form, englishSetIdF3, englishPhase]);
 
   // Stop music when leaving the page
   useEffect(
@@ -6329,6 +6340,7 @@ function QuizzesPage() {
         difficulty: q.difficulty,
         subjectId: q.subjectId,
         visualKey: q.visualKey,
+        image: q.image,
       };
     });
   }
@@ -6793,18 +6805,19 @@ function QuizzesPage() {
             ) : (
               <EnglishQuizScreenF3
                 quizSet={selectedEnglishSetF3}
-                questions={
-                  englishShuffledQuestions ??
-                  englishSetQuestionsF3.map((q) => ({
-                    question: q.question,
-                    options: q.options,
-                    answerIndex: q.answerIndex,
-                    explanation: q.explanation,
-                    difficulty: q.difficulty,
-                    subjectId: q.subjectId,
-                    visualKey: q.visualKey,
-                  }))
-                }
+              questions={
+                englishShuffledQuestions ??
+                englishSetQuestionsF3.map((q) => ({
+                  question: q.question,
+                  options: q.options,
+                  answerIndex: q.answerIndex,
+                  explanation: q.explanation,
+                  difficulty: q.difficulty,
+                  subjectId: q.subjectId,
+                  visualKey: q.visualKey,
+                  image: q.image,
+                }))
+              }
                 current={currentEnglishQuestion}
                 idx={idx}
                 selected={selected}
@@ -6867,6 +6880,7 @@ function QuizzesPage() {
                   explanation: q.explanation,
                   difficulty: q.difficulty,
                   subjectId: q.subjectId,
+                  visualKey: q.visualKey,
                 }))
               }
               current={currentEnglishQuestion}
@@ -7481,7 +7495,11 @@ function QuizzesPage() {
 
                 {/* ── Question text ── */}
                 <div className="px-6 pb-4 pt-6">
-                  {current.visualKey && <EnglishQuestionVisual visualKey={current.visualKey} />}
+                  {current.image ? (
+                    <img src={current.image} alt="" className="mb-4 block w-full rounded-xl object-contain" />
+                  ) : current.visualKey ? (
+                    <EnglishQuestionVisual visualKey={current.visualKey} />
+                  ) : null}
                   <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
                     {current.question}
                   </h2>
@@ -8063,7 +8081,7 @@ function EnglishQuizScreen({
           <ArrowLeft className="h-4 w-4" /> Back to instructions
         </button>
         <span className="text-sm font-semibold text-muted-foreground">
-          English Form 1 • {quizSet.title}
+          {formLabel} • {quizSet.title}
         </span>
       </div>
 
