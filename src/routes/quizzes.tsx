@@ -6114,6 +6114,7 @@ interface ShuffledQuestion {
   explanation?: string;
   difficulty: Difficulty;
   subjectId: string;
+  visualKey?: string;
 }
 
 type FormFilter = Form | "All";
@@ -7861,10 +7862,12 @@ function EnglishSetIntroScreen({
   quizSet,
   onBack,
   onStart,
+  formLabel = "English Form 1",
 }: {
   quizSet: EnglishQuizSetMeta;
   onBack: () => void;
   onStart: () => void;
+  formLabel?: string;
 }) {
   const focus =
     quizSet.id === "objective-c"
@@ -8038,6 +8041,7 @@ function EnglishQuizScreen({
   onAnswer: (index: number) => void;
   onNext: () => void;
   onBack: () => void;
+  formLabel?: string;
 }) {
   const total = questions.length;
 

@@ -98,9 +98,15 @@ writeFileSync(
   ),
 );
 
-rmSync(join(root, ".wrangler/deploy/config.json"), { force: true });
+// Belt + suspenders: remove every file Cloudflare Pages could follow as a
+// redirect away from the root wrangler.jsonc.
+//   - .wrangler/deploy/config.json — nitro's redirect pointer
+//   - .wrangler/                    — the whole dir, in case other files land there
+//   - dist/server/wrangler.json     — the invalid Workers-with-Assets target itself
+rmSync(join(root, ".wrangler"), { recursive: true, force: true });
+rmSync(join(serverDir, "wrangler.json"), { force: true });
 
 console.log(
-  "[build-pages-worker] Wrote dist/client/_worker.js/ (Pages Advanced Mode), dist/client/_routes.json, " +
-    "and removed .wrangler/deploy/config.json (nitro's Workers-deploy redirect, invalid for Pages)",
+  "[build-pages-worker] Wrote dist/client/_worker.js/ (Pages Advanced Mode) + _routes.json; " +
+    "removed .wrangler/ and dist/server/wrangler.json so Cloudflare Pages reads root wrangler.jsonc",
 );
