@@ -1829,6 +1829,7 @@ export interface QuizQuestion {
   options: string[];
   answerIndex: number;
   explanation?: string;
+  visualKey?: string;
 }
 
 export const quizzes: QuizQuestion[] = [
