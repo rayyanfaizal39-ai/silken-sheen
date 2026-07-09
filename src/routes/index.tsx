@@ -29,5 +29,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <Landing />;
+  return <CommandCenterHome />;
 }
