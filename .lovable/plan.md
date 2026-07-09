@@ -1,58 +1,71 @@
-## Why the images are broken on localhost
+# Cinematic Command Center Homepage
 
-Both images are healthy — I fetched them from production and got HTTP 200:
+## Why
 
-- `…/hero-astronaut.webp` → 200, 525 KB
-- `…/academy-robot-2.png` → 200, 1.6 MB
+`www.myacademy.my/command-center-preview` currently 404s on the deployed site — the route was removed after the previous 500 issues (see `src/routes/index.tsx` comment about Cloudflare Worker resource limits). But the shell you saw there (dark cosmic sidebar, "Ready to study?" hero, level chip, upgrade CTA, footer) is what you want for `/`.
 
-They render fine on `acade-my.lovable.app` and inside the Lovable preview. They break **only on `http://localhost:8080`**.
+Right now `/` renders the marketing `Landing` component (kept for SSR safety). We'll replace it with a new **cinematic Command Center landing** that:
+- Keeps SSR + KSSM SEO metadata intact (title, description, og:*).
+- Uses only static/marketing data at module scope (no `content/registry`, no `tracker`, no auth-only stats) — this is what blew up `HomeDashboard` on `/` before.
+- Adopts the sidebar-shell look **visually** but keeps the page fully public (no gated dashboard data).
+- Adds a strong "Captain, your mission awaits" welcome + subscribe pressure without gating learning quality (per `ACADEMY_PRINCIPLES`).
 
-Reason: every asset created via `lovable-assets create` (hero, robot, background, video, parents-dashboard, etc.) is referenced by a **relative path**:
+## What's on the page
 
-```
-/__l5e/assets-v1/<asset_id>/<filename>
-```
+Single new component `src/components/CommandCenterHome.tsx` (client-safe, SSR-renderable), wired into `src/routes/index.tsx` in place of `<Landing />`.
 
-`/__l5e/*` is not a real folder in the repo — it's a route served by Lovable's hosting edge (Cloudflare Worker). In the Lovable preview and the published site, that request is intercepted by Lovable's infra and streamed from R2. On raw `localhost:8080` (plain Vite dev, no Lovable proxy in front), nothing handles that path, so Vite returns its SPA fallback (index.html) with `Content-Type: text/html` — the browser treats it as a broken image.
+Layout (desktop):
 
-This is why only asset-hosted images break; anything bundled through `src/assets/*` imports still works.
-
-## Fix
-
-Add a dev-only proxy in `vite.config.ts` that forwards `/__l5e/*` to the Lovable asset origin. No production impact — the proxy only runs under `vite dev`. Published builds continue to be served by the real Lovable edge.
-
-### Change
-
-`vite.config.ts` — add a `server.proxy` block inside `vite`:
-
-```ts
-vite: {
-  server: {
-    proxy: {
-      "/__l5e": {
-        target: "https://acade-my.lovable.app",
-        changeOrigin: true,
-        secure: true,
-      },
-    },
-  },
-  build: { manifest: true },
-  optimizeDeps: { /* unchanged */ },
-  environments: { /* unchanged */ },
-},
+```text
+┌─────────────┬────────────────────────────────────────────┐
+│  SIDEBAR    │  TOP BAR: search • Lv 1 • Upgrade • Sign In│
+│  (visual)   ├────────────────────────────────────────────┤
+│  Home       │  HERO: "Welcome aboard, Captain."          │
+│  Dashboard  │        Cinematic Earth-horizon backdrop    │
+│  Notes      │        Streak ring • Start Mission CTA     │
+│  Mind Maps  │        Cosmic Companion peek               │
+│  Quizzes    ├────────────────────────────────────────────┤
+│  Flashcards │  MISSION TILES: 6 subjects (KSSM)          │
+│  AI Tracker │  → each links to /subjects                 │
+│  Companion  ├────────────────────────────────────────────┤
+│  Leaderboard│  CAPTAIN'S UPGRADE PANEL (premium pitch)   │
+│  Parent     │  • Insights • Reports • Cikgu AI unlimited │
+│             │  • 2 plans: Cadet (free) / Captain (Pro)   │
+│             ├────────────────────────────────────────────┤
+│  Sign in    │  SOCIAL PROOF strip + FOOTER               │
+└─────────────┴────────────────────────────────────────────┘
 ```
 
-That's the entire change. After restarting the dev server:
+Mobile: sidebar collapses to a top drawer trigger; hero + tiles stack.
 
-- `http://localhost:8080/__l5e/assets-v1/<id>/hero-astronaut.webp` → proxied to Lovable CDN → 200 image/webp
-- Hero astronaut, Cikgu AI robot, orbital background, intro video, parents-dashboard mockup all render on localhost.
+## Cinematic direction
 
-### Verification
+- Reuse existing tokens: deep-space `#020617` base, cyan/violet accents, `OrbitalBackdrop` earth horizon, `CinematicStars` layer.
+- Hero copy: "Welcome aboard, Captain." + "Your mission control for KSSM Form 1–3." — welcoming, aspirational, uses the "Captain" identity you mentioned.
+- Streak/level shown as **example** ("Lv 1 · 0-day streak · Sign in to start your mission") so unauthenticated visitors see the promise without the page depending on real user data.
+- Subscribe pressure = premium panel + subtle "Captain badge" glow on locked features (Cikgu AI unlimited, Parent reports, offline pack). Learning content stays free.
 
-1. `curl -sI http://localhost:8080/__l5e/assets-v1/adf9ec40-a51c-42a7-aeff-59d48f294874/hero-astronaut.webp` must return `HTTP/1.1 200` with `content-type: image/webp` (not `text/html`).
-2. Reload `/` and `/landing` on localhost — hero + robot visible, no broken-image icons.
-3. Production untouched (proxy is dev-server only).
+## SSR / SEO safety
 
-### Not in scope
+- No import of `@/content/registry`, `@/lib/tracker`, `@/lib/leaderboard`, `useProgress`, or anything reading `localStorage`/`window` at module scope.
+- Any `window`-touching effect (parallax, sound) is inside `useEffect`.
+- Keeps current `seoMeta(...)` head from `src/routes/index.tsx` unchanged.
+- Landing route (`/landing`) stays as-is so we have a rollback.
 
-- The hydration-mismatch runtime error in the console (`"You're doing great!"` vs `"Ready for another mission, Cadet?"` in `NextMissionCard`) is unrelated to the missing images — it's a separate SSR/client text mismatch. Happy to fix in a follow-up if you want.
+## Files touched
+
+- **NEW** `src/components/CommandCenterHome.tsx` — the page.
+- **NEW** `src/components/command/Sidebar.tsx` — visual sidebar (public, links to real routes).
+- **NEW** `src/components/command/TopBar.tsx` — search + level + upgrade + sign in.
+- **NEW** `src/components/command/MissionTile.tsx` — subject tile.
+- **NEW** `src/components/command/UpgradePanel.tsx` — Captain pitch.
+- **EDIT** `src/routes/index.tsx` — swap `<Landing />` for `<CommandCenterHome />`, keep `seoMeta`.
+- No changes to auth, DB, server functions, or `HomeDashboard`.
+
+## Out of scope
+
+- Fixing/re-adding the broken `/command-center-preview` route (the design is being reincarnated on `/` instead — cleaner and avoids the original 500).
+- Real personalized dashboard data on `/` (that lives on `/home` / `/dashboard` behind auth).
+- Payment flow changes (Upgrade button links to existing `/upgrade`).
+
+Approve and I'll build it.
