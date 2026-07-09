@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   Rocket,
@@ -12,14 +11,11 @@ import {
   Scroll,
   Globe2,
   Languages,
-  X,
   Trophy,
   Users,
   ShieldCheck,
   Star,
 } from "lucide-react";
-import { CommandSidebar } from "@/components/command/Sidebar";
-import { CommandTopBar } from "@/components/command/TopBar";
 import { MissionTile } from "@/components/command/MissionTile";
 import { UpgradePanel } from "@/components/command/UpgradePanel";
 import { CinematicStars } from "@/components/landing/CinematicStars";
@@ -27,8 +23,8 @@ import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
 import { useSignInModal } from "@/context/sign-in-modal";
 
 // Static marketing subjects — DO NOT import from @/data/content or
-// @/content/registry (they pull the entire KSSM content graph and blow up
-// the SSR Worker on cold start; that's what killed the previous
+// @/content/registry (they pull the entire KSSM content graph and blow
+// up the SSR Worker on cold start; that's what killed the previous
 // /command-center-preview route).
 const SUBJECTS = [
   { id: "bahasa-melayu", title: "Bahasa Melayu", subtitle: "Tatabahasa & karangan", chapters: 24, icon: Languages, gradient: "from-rose-500 to-pink-500", accent: "rose-300" },
@@ -40,101 +36,54 @@ const SUBJECTS = [
 ];
 
 export function CommandCenterHome() {
-  const [mobileNav, setMobileNav] = useState(false);
   const { open: openSignIn } = useSignInModal();
 
-  // Ensure body doesn't scroll when mobile sidebar open
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    document.body.style.overflow = mobileNav ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileNav]);
-
   return (
-    <div className="relative min-h-screen bg-[#020617] text-white">
-      {/* Cinematic backdrop layers (client-only motion, SSR-safe) */}
+    <div className="relative">
+      {/* Cinematic backdrop layers (SSR-safe: heavy motion inside useEffect) */}
       <OrbitalBackdrop />
       <CinematicStars />
 
-      <div className="relative flex min-h-screen">
-        {/* Desktop sidebar */}
-        <div className="hidden lg:block w-64 flex-shrink-0 sticky top-0 h-screen">
-          <CommandSidebar />
-        </div>
+      <div className="relative mx-auto w-full max-w-6xl px-4 py-8 md:px-8 md:py-10 space-y-10">
+        <Hero onSignIn={openSignIn} />
 
-        {/* Mobile drawer */}
-        {mobileNav && (
-          <div className="fixed inset-0 z-40 lg:hidden">
-            <button
-              type="button"
-              aria-label="Close navigation"
-              onClick={() => setMobileNav(false)}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            />
-            <div className="relative h-full w-72 animate-in slide-in-from-left duration-200">
-              <CommandSidebar onNavigate={() => setMobileNav(false)} />
-              <button
-                type="button"
-                aria-label="Close"
-                onClick={() => setMobileNav(false)}
-                className="absolute top-4 right-4 rounded-full bg-white/10 p-1.5 text-white hover:bg-white/20"
-              >
-                <X className="h-4 w-4" />
-              </button>
+        {/* Subjects */}
+        <section>
+          <div className="mb-5 flex items-end justify-between">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-300">
+                Mission board
+              </p>
+              <h2 className="mt-1 font-display text-2xl md:text-3xl font-bold text-white">
+                Pick your next mission
+              </h2>
             </div>
+            <Link
+              to="/subjects"
+              className="hidden sm:inline-flex items-center gap-1 text-xs text-cyan-300 hover:text-cyan-200"
+            >
+              All subjects <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
-        )}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {SUBJECTS.map((s) => (
+              <MissionTile
+                key={s.id}
+                to="/subjects"
+                title={s.title}
+                subtitle={s.subtitle}
+                chapters={s.chapters}
+                icon={s.icon}
+                gradient={s.gradient}
+                accent={s.accent}
+              />
+            ))}
+          </div>
+        </section>
 
-        {/* Main column */}
-        <div className="flex-1 min-w-0 flex flex-col">
-          <CommandTopBar onOpenSidebar={() => setMobileNav(true)} />
+        <SocialProof />
 
-          <main className="flex-1 px-4 py-8 md:px-8 md:py-10 space-y-10">
-            <Hero onSignIn={openSignIn} />
-
-            {/* Subjects */}
-            <section>
-              <div className="mb-5 flex items-end justify-between">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-300">
-                    Mission board
-                  </p>
-                  <h2 className="mt-1 font-display text-2xl md:text-3xl font-bold text-white">
-                    Pick your next mission
-                  </h2>
-                </div>
-                <Link
-                  to="/subjects"
-                  className="hidden sm:inline-flex items-center gap-1 text-xs text-cyan-300 hover:text-cyan-200"
-                >
-                  All subjects <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {SUBJECTS.map((s) => (
-                  <MissionTile
-                    key={s.id}
-                    to="/subjects"
-                    title={s.title}
-                    subtitle={s.subtitle}
-                    chapters={s.chapters}
-                    icon={s.icon}
-                    gradient={s.gradient}
-                    accent={s.accent}
-                  />
-                ))}
-              </div>
-            </section>
-
-            <SocialProof />
-
-            <UpgradePanel />
-
-            <Footer />
-          </main>
-        </div>
+        <UpgradePanel />
       </div>
     </div>
   );
@@ -217,7 +166,6 @@ function Hero({ onSignIn }: { onSignIn: () => void }) {
               <StatChip label="Badges" value="0" />
             </div>
 
-            {/* Level ring */}
             <div className="mt-6">
               <div className="flex justify-between text-[11px] text-slate-400">
                 <span>Level 1</span>
@@ -281,25 +229,5 @@ function SocialProof() {
         </div>
       ))}
     </section>
-  );
-}
-
-/* ---------------- Footer ---------------- */
-
-function Footer() {
-  return (
-    <footer className="border-t border-white/[0.06] pt-6 pb-4 text-xs text-slate-500">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <p>© {new Date().getFullYear()} AcadeMY · Malaysia's Interstellar Learning Platform</p>
-        <nav className="flex items-center gap-4">
-          <Link to="/privacy" className="hover:text-slate-300">Privacy</Link>
-          <Link to="/terms" className="hover:text-slate-300">Terms</Link>
-          <Link to="/contact" className="hover:text-slate-300">Contact</Link>
-          <a href="mailto:support@myacademy.my" className="hover:text-slate-300">
-            support@myacademy.my
-          </a>
-        </nav>
-      </div>
-    </footer>
   );
 }
