@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Landing } from "@/components/Landing";
+import { CommandCenterHome } from "@/components/CommandCenterHome";
 import { seoMeta } from "@/lib/seo";
 
 // Temporarily renders the same SSR-safe Landing page as /landing instead of
