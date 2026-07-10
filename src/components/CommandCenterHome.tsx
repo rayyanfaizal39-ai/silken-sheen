@@ -53,7 +53,6 @@ export function CommandCenterHome() {
         <SubjectsGrid />
         <CikguHelp onSignIn={openSignIn} />
         <SocialProof />
-        <UpgradePanel />
         <NewsletterCTA />
       </div>
     </div>
