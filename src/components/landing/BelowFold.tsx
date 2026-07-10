@@ -20,7 +20,7 @@ import { useSignInModal } from "@/context/sign-in-modal";
 import { shouldReduceMotion } from "@/lib/motion-preferences";
 import { SiteFooter } from "@/components/SiteFooter";
 import parentsDashboard from "@/assets/parents-dashboard.png.asset.json";
-import cikguAiImage from "@/assets/academy-robot.webp.asset.json";
+import cikguAiImage from "@/assets/cikgu-ai-robot.png";
 import heroIntro from "@/assets/hero-intro.mp4.asset.json";
 import toolNotes from "@/assets/tool-notes.png";
 import toolFlashcards from "@/assets/tool-flashcards.png";
@@ -454,7 +454,7 @@ function CikguSection() {
           <div className="absolute inset-12 rounded-full ring-1 ring-accent/25 animate-[spin_45s_linear_infinite_reverse] max-md:animate-none motion-reduce:animate-none" />
           <div className="relative h-full w-full flex items-center justify-center">
             <img
-              src={cikguAiImage.url}
+              src={cikguAiImage}
               alt="Cikgu AI — your friendly study companion"
               className="cikgu-orbit-anim relative z-10 w-[85%] h-[85%] object-contain drop-shadow-[0_0_60px_rgba(139,92,246,0.55)]"
               loading="lazy"

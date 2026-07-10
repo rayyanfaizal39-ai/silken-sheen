@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import {
-  Rocket,
   Sparkles,
   ArrowRight,
   BookOpen,
@@ -19,6 +18,8 @@ import {
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
 import { useSignInModal } from "@/context/sign-in-modal";
+import floatingAstronaut from "@/assets/hero landing/floating A.png";
+import cikguAiRobot from "@/assets/cikgu-ai-robot.png";
 
 const SUBJECTS = [
   { id: "bahasa-melayu", title: "Bahasa Melayu", subtitle: "Tatabahasa & karangan", chapters: 24, icon: Languages, thumb: "radial-gradient(circle at 30% 30%,#ff5c8a,#7a1d4a 55%,#12061a)" },
@@ -47,7 +48,7 @@ export function CommandCenterHome() {
       </div>
 
       <div className="relative mx-auto w-full max-w-6xl px-4 md:px-8 space-y-24 py-14 md:py-20">
-        <Hero onSignIn={openSignIn} />
+        <FloatingAstronaut />
         <MissionIntro />
         <FeatureBanner />
         <SubjectsGrid />
@@ -59,89 +60,19 @@ export function CommandCenterHome() {
   );
 }
 
-/* ---------------- Hero ---------------- */
+/* ---------------- Floating astronaut ---------------- */
 
-function Hero({ onSignIn }: { onSignIn: () => void }) {
+function FloatingAstronaut() {
   return (
-    <section className="relative overflow-hidden rounded-[28px] border border-white/[0.06] px-6 py-20 md:py-28 text-center">
-      {/* Nebula */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(60% 55% at 70% 20%,rgba(124,92,255,.42),transparent 60%),radial-gradient(50% 45% at 20% 30%,rgba(34,211,238,.28),transparent 60%),radial-gradient(70% 60% at 50% 100%,rgba(255,92,138,.22),transparent 60%)",
-          filter: "blur(10px)",
-        }}
+    <div className="relative flex justify-center">
+      <img
+        src={floatingAstronaut}
+        alt="AcadeMY astronaut floating in space"
+        className="w-40 sm:w-52 md:w-64 drop-shadow-[0_20px_60px_rgba(124,92,255,.45)]"
+        style={{ animation: "cc-astro-float 6s ease-in-out infinite" }}
       />
-      {/* Planet */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 top-8 h-[280px] w-[280px] md:h-[420px] md:w-[420px] rounded-full opacity-90"
-        style={{
-          background:
-            "radial-gradient(circle at 32% 30%,#ffe08a,#e5b300 22%,#b06a2c 46%,#5b2f6b 72%,#241040 100%)",
-          boxShadow:
-            "inset -40px -30px 90px rgba(0,0,0,.55),0 0 120px rgba(124,92,255,.35)",
-        }}
-      >
-        <span
-          className="absolute left-[-40px] top-[46%] h-[70px] w-[360px] md:h-[90px] md:w-[560px] rounded-[50%] border-[12px] md:border-[14px]"
-          style={{
-            borderColor: "rgba(167,139,255,.35)",
-            borderBottomColor: "transparent",
-            borderTopColor: "rgba(255,224,138,.5)",
-            transform: "rotate(-18deg)",
-          }}
-        />
-      </div>
-
-      <div className="relative mx-auto max-w-4xl">
-        <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.28em] text-violet-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-300 shadow-[0_0_12px_#f5c518]" />
-          Command Center · KSSM Form 1–3
-        </div>
-
-        <h1 className="mt-6 font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-          Welcome aboard,{" "}
-          <span
-            className="inline-block rounded-md px-3 py-0.5 text-[#1a1305] shadow-[0_6px_30px_rgba(245,197,24,0.4)]"
-            style={{ background: "#f5c518", transform: "rotate(-1.5deg)" }}
-          >
-            Captain.
-          </span>
-        </h1>
-
-        <p className="mt-6 mx-auto max-w-2xl text-lg md:text-2xl font-medium text-slate-100">
-          Malaysia's cinematic learning platform for the next generation.
-        </p>
-        <p className="mt-3 mx-auto max-w-xl text-base text-slate-400">
-          Notes, mind maps, quizzes, flashcards and Cikgu AI — all powered by the AcadeMY Brain.
-        </p>
-
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Link
-            to="/subjects"
-            className="group inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-[#20180a] transition-transform hover:-translate-y-0.5"
-            style={{
-              background: "linear-gradient(180deg,#f5c518,#e5b300)",
-              boxShadow: "0 12px 40px rgba(245,197,24,.35)",
-            }}
-          >
-            <Rocket className="h-4 w-4" />
-            Start your mission
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-          <button
-            type="button"
-            onClick={onSignIn}
-            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-slate-100 hover:border-violet-400/60 hover:bg-violet-500/10 transition-colors"
-          >
-            Sign in to sync
-          </button>
-        </div>
-      </div>
-    </section>
+      <style>{`@keyframes cc-astro-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}`}</style>
+    </div>
   );
 }
 
@@ -286,14 +217,11 @@ function CikguHelp({ onSignIn }: { onSignIn: () => void }) {
             "radial-gradient(circle at 30% 30%,rgba(124,92,255,.5),transparent 55%),radial-gradient(circle at 75% 70%,rgba(34,211,238,.4),transparent 55%),#0c0d24",
         }}
       >
-        <div
-          className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle at 35% 30%,#fff,#a78bff 40%,#7c5cff 70%)",
-            boxShadow: "0 0 80px rgba(124,92,255,.7)",
-            animation: "cc-float 6s ease-in-out infinite",
-          }}
+        <img
+          src={cikguAiRobot}
+          alt="Cikgu AI — your friendly study companion"
+          className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_0_60px_rgba(139,92,246,0.55)]"
+          style={{ animation: "cc-float 6s ease-in-out infinite" }}
         />
         <style>{`@keyframes cc-float{50%{transform:translate(-50%,-64%)}}`}</style>
       </div>
