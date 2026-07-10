@@ -20,6 +20,7 @@ import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
 import { useSignInModal } from "@/context/sign-in-modal";
 import floatingAstronaut from "@/assets/hero landing/floating A.png";
 import cikguAiRobot from "@/assets/cikgu-ai-robot.png";
+import cikguBackground from "@/assets/backgroundcikgu.png";
 
 const SUBJECTS = [
   { id: "bahasa-melayu", title: "Bahasa Melayu", subtitle: "Tatabahasa & karangan", chapters: 24, icon: Languages, thumb: "radial-gradient(circle at 30% 30%,#ff5c8a,#7a1d4a 55%,#12061a)" },
@@ -104,8 +105,8 @@ function MissionIntro() {
 
 function FeatureBanner() {
   const features = [
-    { icon: Brain, title: "AcadeMY Brain", body: "One intelligent system tracks your progress, spots your weak spots, and recommends the next best mission." },
-    { icon: MessageCircle, title: "Cikgu AI", body: "Your intelligent learning companion — explaining, guiding, and motivating you every step of your journey." },
+    { icon: Brain, title: "AcadeMY Brain", body: "Your AI learning engine that understands your progress, detects learning gaps, and guides you to the next mission." },
+    { icon: MessageCircle, title: "Cikgu AI", body: "Your intelligent learning companion—explaining concepts, guiding your learning, and motivating you every step of the way." },
     { icon: Trophy, title: "Missions & XP", body: "Quizzes, flashcards and daily challenges turn revision into a game you actually want to open." },
   ];
   return (
@@ -211,10 +212,9 @@ function CikguHelp({ onSignIn }: { onSignIn: () => void }) {
   return (
     <section className="grid items-center gap-12 lg:grid-cols-2">
       <div
-        className="relative h-[380px] overflow-hidden rounded-[22px] border border-white/[0.08]"
+        className="relative h-[380px] overflow-hidden rounded-[22px] border border-white/[0.08] bg-cover bg-center"
         style={{
-          background:
-            "radial-gradient(circle at 30% 30%,rgba(124,92,255,.5),transparent 55%),radial-gradient(circle at 75% 70%,rgba(34,211,238,.4),transparent 55%),#0c0d24",
+          backgroundImage: `radial-gradient(circle at 30% 30%,rgba(124,92,255,.5),transparent 55%),radial-gradient(circle at 75% 70%,rgba(34,211,238,.4),transparent 55%),linear-gradient(rgba(12,13,36,.55),rgba(12,13,36,.55)),url(${cikguBackground})`,
         }}
       >
         <img
@@ -230,12 +230,12 @@ function CikguHelp({ onSignIn }: { onSignIn: () => void }) {
           Meet Cikgu AI
         </p>
         <h2 className="mt-3 font-display text-3xl md:text-4xl font-semibold tracking-tight">
-          Stuck on a concept? Ask Cikgu.
+          Your Personal Learning Companion.
         </h2>
         <p className="mt-5 text-lg leading-relaxed text-slate-400">
-          Cikgu AI is your intelligent learning companion — explaining, guiding, and motivating
-          you every step of your journey. Ask in Bahasa Melayu or English, and get a clear,
-          KSSM-aligned answer in seconds.
+          From difficult concepts to exam preparation, Cikgu AI is here to explain, guide, and
+          inspire. Ask questions in Bahasa Melayu or English and receive clear, KSSM-aligned
+          answers that help you understand—not just memorize.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link

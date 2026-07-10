@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
+import { rankArtwork, rankImageScale } from "@/data/rankArtwork";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
-import { Avatar } from "@/components/Avatar";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
 import { OnboardingWizard } from "@/components/onboarding/OnboardingWizard";
@@ -477,10 +477,12 @@ function RankBadge() {
   const rank = getRank(progress.xp);
   return (
     <div className="flex items-center gap-2">
-      <Avatar config={progress.avatar} size={26} glow={false} />
-      <span className="hidden text-xs font-bold md:inline" style={{ color: rank.color }}>
-        {rank.name}
-      </span>
+      <img
+        src={rankArtwork[rank.id]}
+        alt={rank.name}
+        className="h-7 w-7 object-contain"
+        style={{ transform: `scale(${rankImageScale[rank.id] ?? 1})` }}
+      />
     </div>
   );
 }
