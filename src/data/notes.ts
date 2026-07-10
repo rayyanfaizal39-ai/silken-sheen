@@ -325,7 +325,7 @@ export const notes: Note[] = [
     chapter: "Chapter 1",
     title: "Mengenali Sejarah",
     summary:
-      "Sejarah mempunyai makna unik mengikut bahasa dan tokoh. Dalam bahasa Arab, ia berasal daripada 'syajaratun' (pokok) yang dikaitkan dengan salasilah dan asal usul. Dalam bahasa Melayu, sejarah merujuk kepada asal usul, silsilah, dan peristiwa yang benar-benar berlaku. Dalam bahasa Inggeris, 'history' berasal daripada 'historia' dalam bahasa Yunani yang bermaksud penyelidikan. Herodotus menyatakan sejarah sebagai penceritaan tindakan manusia yang mengagumkan dan sebab berlakunya sesuatu peristiwa. Ibn Khaldun membicarakan masyarakat manusia, peradaban dunia, dan perubahan watak masyarakat. E.H. Carr menganggap sejarah sebagai proses interaksi berterusan antara ahli sejarah dengan fakta-faktanya. Khoo Kay Kim merujuk sejarah kepada apa-apa yang pernah atau sudah berlaku. Masa silam ialah rentetan peristiwa yang telah berlaku, manakala kronologi ialah urutan waktu yang diukur mengikut masa kejadian. Unit masa termasuk dekad (10 tahun), abad (100 tahun), dan alaf (1,000 tahun). Zaman Sebelum Masihi (SM) merujuk kepada sebelum kelahiran Nabi Isa AS, manakala Masihi (M) merujuk kepada selepas kelahiran baginda. Sumber sejarah terbahagi kepada sumber primer dan sekunder. Sumber primer bersifat asli dan belum diolah, contohnya fosil, artifak, dokumen rasmi, diari, dan bukan artifak seperti monumen dan gua. Sumber sekunder pula ialah bahan yang telah diolah, ditafsir, dan diterbitkan untuk umum seperti buku teks, majalah, surat khabar, dan ensiklopedia. Terdapat tiga kaedah penyelidikan sejarah: kaedah bertulis melalui catatan pada batu bersurat, dinding gua, kulit kayu, gading, dan kertas; kaedah lisan melalui temubual dengan tokoh atau saksi peristiwa yang dikenali sebagai orang sumber; dan kaedah arkeologi yang menggunakan pendekatan saintifik melalui aktiviti gali cari peninggalan sejarah di permukaan tanah atau di bawah air. Tafsiran sejarah adalah tindakan menerangkan fakta sejarah berdasarkan sumber yang ada. Perbezaan tafsiran berlaku kerana perbezaan pandangan sejarawan, ideologi, tujuan penulisan, dan pemilihan sumber yang tidak sama. Kepentingan tafsiran ialah untuk mendorong kita berfikir secara kritis dalam menilai sesuatu peristiwa dari pelbagai sudut. Kepentingan mempelajari sejarah termasuk mengenal asal usul keluarga dan negara, mengambil iktibar daripada kejayaan dan kegagalan masa lalu, memupuk patriotisme dengan menghargai warisan negara, dan mengukuhkan perpaduan dengan memahami budaya kaum lain untuk hidup harmoni.",
+      "Sejarah ialah kajian tentang peristiwa masa lalu. Dalam bahasa Arab, sejarah berasal daripada syajaratun yang bermaksud pokok. Dalam bahasa Melayu, sejarah dikaitkan dengan asal usul, salasilah, riwayat dan keturunan. Dalam bahasa Inggeris, history berasal daripada historia yang bermaksud penyelidikan. Herodotus mentakrifkan sejarah sebagai penceritaan tindakan manusia yang penting dan mengagumkan serta sebab sesuatu peristiwa berlaku. Ibn Khaldun menekankan masyarakat manusia, peradaban dunia dan perubahan sifat masyarakat. E.H. Carr melihat sejarah sebagai interaksi berterusan antara ahli sejarah dengan fakta. Khoo Kay Kim menegaskan sejarah ialah apa-apa yang pernah atau sudah berlaku, manakala Muhd Yusof Ibrahim melihat sejarah sebagai catatan atau rekod peristiwa masa lalu. Masa silam ialah rentetan peristiwa yang telah berlaku dan kronologi ialah urutan peristiwa mengikut masa. Dekad bersamaan 10 tahun, abad 100 tahun dan alaf 1,000 tahun. SM ialah sebelum kelahiran Nabi Isa AS, manakala M ialah selepas kelahiran baginda. Sumber sejarah terbahagi kepada sumber primer dan sumber sekunder. Sumber primer ialah sumber asli yang belum diolah seperti fosil, artifak, batu bersurat, dokumen rasmi, manuskrip asal, diari, dinding gua, monumen dan runtuhan lama. Sumber sekunder pula ialah bahan yang telah diolah, ditafsir dan diterbitkan seperti buku teks, majalah, surat khabar dan ensiklopedia. Sejarah dikaji melalui kaedah bertulis, kaedah lisan dan kaedah arkeologi. Kaedah bertulis menggunakan catatan pada batu, dinding gua, kulit kayu, gading dan kertas. Kaedah lisan diperoleh melalui temubual dengan tokoh atau saksi peristiwa, iaitu orang sumber. Kaedah arkeologi ialah kaedah saintifik melalui ekskavasi dan kajian tinggalan sejarah, termasuk arkeologi bawah air. Pentafsiran sejarah ialah proses menerangkan fakta berdasarkan sumber. Tafsiran boleh berbeza kerana perbezaan sumber, pandangan, ideologi dan tujuan penulisan. Mempelajari sejarah penting untuk mengenal asal usul, mengambil iktibar, memupuk patriotisme, mengukuhkan perpaduan dan melatih pemikiran kritis.",
     keywords: [
       "Mengenali Sejarah",
       "Pengertian Sejarah",
@@ -357,7 +357,7 @@ export const notes: Note[] = [
     chapter: "Chapter 2",
     title: "Zaman Air Batu",
     summary:
-      "Zaman Air Batu ialah tempoh di mana suhu bumi jatuh dan sebahagian besar bumi dilitupi air batu tebal. Usia bumi dianggarkan 4.6 bilion tahun. Zaman Air Batu dibahagikan kepada 4 tahap: Miosen (23–5 juta tahun dahulu) — pembentukan gunung dan kemunculan mamalia; Pliosen (5.3–2.6 juta tahun dahulu) — penyejukan global dan penyebaran padang rumput; Pleistosen (2.5 juta–11,700 tahun dahulu) — 11 kali pengglasieran utama dan penghijrahan manusia ke Eropah dan Asia; Holosen (11,700 tahun dahulu–kini) — zaman kita dengan bercucuk tanam, roda, dan tulisan awal. Ciri-cirinya: suhu sangat rendah, tumbuhan renek sahaja, haiwan berbulu tebal seperti mamot mendominasi, manusia hidup nomad memburu, paras laut sangat rendah kerana air membeku. Selepas Zaman Air Batu, suhu meningkat lalu berlaku kenaikan paras laut sehingga 100 meter, tasik air tawar terbentuk, mamot pupus, dan manusia berhijrah. Di Asia Tenggara, Pentas Sunda menghubungkan Malaysia, Singapura, Indonesia, dan Borneo sebelum tenggelam akibat kenaikan paras laut. Penduduk Asia Tenggara mempunyai persamaan fizikal, bahasa, dan budaya kerana asalnya tinggal di daratan sama. Memahami Zaman Air Batu mengajar kita menjaga alam sekitar untuk mengelak perubahan iklim ekstrem.",
+      "Bab 2 Zaman Air Batu menerangkan dunia kita, perubahan iklim bumi dan kesannya kepada hidupan serta kawasan di Asia Tenggara. Dunia kita terdiri daripada daratan dan lautan yang berubah mengikut suhu bumi. Zaman Air Batu ialah tempoh suhu bumi sangat rendah sehingga banyak kawasan dilitupi air batu tebal. Zaman ini berlaku sejak jutaan tahun dahulu dan membantu kita memahami sejarah bumi secara kronologi. Garis masa Zaman Air Batu dibahagikan kepada empat tahap utama, iaitu Miosen, Pliosen, Pleistosen dan Holosen. Miosen berlaku kira-kira 23 hingga 5 juta tahun dahulu, apabila gunung-ganang terbentuk dan mamalia mula berkembang. Pliosen berlaku antara 5.3 hingga 2.6 juta tahun dahulu, dengan penyejukan global dan penyebaran padang rumput. Pleistosen berlaku antara 2.5 juta hingga 11,700 tahun dahulu dan merupakan tahap yang mengalami banyak pengglasieran. Holosen bermula 11,700 tahun dahulu hingga kini, iaitu zaman kita hidup sekarang. Ciri-ciri Zaman Air Batu Akhir termasuk suhu yang sangat sejuk, tumbuhan renek yang tahan iklim sejuk, haiwan berbulu tebal seperti mamot dan badak berbulu, serta manusia yang hidup secara nomad kerana bergantung pada memburu dan mengumpul makanan. Paras laut pula sangat rendah kerana banyak air membeku menjadi air batu. Apabila Zaman Air Batu Akhir berakhir, suhu bumi meningkat, air batu mencair, paras laut naik, tasik-tasik besar dan laut terbentuk, mamot pupus dan manusia berpindah ke kawasan yang lebih sesuai. Di Asia Tenggara, perubahan ini menyebabkan Pentas Sunda tenggelam dan memisahkan kawasan yang dahulu bersambung seperti Semenanjung Tanah Melayu, Sumatera, Jawa, Borneo dan kawasan sekitarnya. Perubahan ini turut menjelaskan persamaan pada rupa fizikal, bahasa dan budaya masyarakat Asia Tenggara. Bab ini mengajar kita bahawa perubahan iklim memberi kesan besar kepada alam sekitar dan kehidupan manusia, jadi kita mesti menjaga bumi dengan lebih bijak.",
     keywords: [
       "Zaman Air Batu",
       "Pentas Sunda",
@@ -378,8 +378,179 @@ export const notes: Note[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     title: "Zaman Prasejarah",
-    summary:
-      "Zaman Prasejarah ialah zaman manusia belum mengenali tulisan, dibahagikan kepada Zaman Batu (Paleolitik, Mesolitik, Neolitik) dan Zaman Logam (gangsa dan besi). Zaman Paleolitik (2.5 juta SM – 8,000 SM): manusia menggunakan peralatan batu kasar dan ringkas. Zaman Mesolitik (12,000 SM – 4,000 SM): alat batu lebih kecil (mikrolit), mula tinggal di pinggir sungai dan laut. Zaman Neolitik (10,000 SM – 2,000 SM): kehidupan menetap bermula, aktiviti pertanian, penternakan, dan pembuatan tembikar. Zaman Logam (3,500 SM – 500 M): alatan daripada gangsa dan besi, aktiviti pelayaran dan perdagangan berkembang. Lokasi dunia termasuk Gua Chauvet (Perancis), Altamira (Sepanyol), Stonehenge (Britain), Catal Huyuk (Turki), dan Zhoukoudian (China). Di Malaysia: Kota Tampan (Perak) dan Gua Niah (Sarawak) untuk Paleolitik; Gua Kecil (Pahang) untuk Mesolitik; Gua Cha (Kelantan) dan Bukit Tengkorak (Sabah) untuk Neolitik; Sungai Lang dan Lembah Bernam (Selangor) untuk Zaman Logam. Ciri-ciri kehidupan: Paleolitik & Mesolitik tinggal di gua dan tempat terbuka, berpindah-randah (nomad), menggunakan batu kasar, memburu dan mengumpul hasil hutan, berkepercayaan animisme. Neolitik menetap di rumah kayu/tanah, bercucuk tanam dan menternak, menggunakan batu yang dicanai halus dan tembikar, wujud ketua dan pembahagian kerja, ritual keagamaan lebih tersusun. Zaman Logam membina bandar dan kota, pertanian pesat dan perdagangan antarabangsa melalui laut, alatan logam seperti kapak dan sabit, masyarakat kompleks dengan ketua berwibawa dan undang-undang, tempat ibadat khusus, upacara pengebumian menggunakan kubur kepingan batu, kesenian pada peralatan logam seperti gendang gangsa Dong Son. Kesinambungan sumbangan: pertanian berevolusi kepada industri komersial, penternakan menjamin bekalan makanan, peralatan daripada batu kepada logam membawa kepada jentera moden, seni bina berkembang menjadi reka bentuk bangunan canggih. Perak Man: rangka manusia Paleolitik paling lengkap ditemui di Gua Gunung Runtuh, Lenggong, Perak, membuktikan sistem kepercayaan awal melalui cara pengebumian bersama barangan tertentu.",
+    summary: `🚀 Misi Bab
+Bab 3 menerangkan maksud Zaman Prasejarah, lokasi prasejarah di dunia, ciri kehidupan manusia mengikut tahap zaman, kesinambungan sumbangan prasejarah kepada kehidupan moden, dan bukti prasejarah di Malaysia.
+
+🎯 Objektif Pembelajaran
+Selepas belajar bab ini, anda boleh:
+- menerangkan maksud Zaman Prasejarah
+- menyatakan lokasi Zaman Prasejarah di dunia
+- menghuraikan ciri kehidupan manusia prasejarah
+- menjelaskan sumbangan Zaman Prasejarah kepada kemajuan hidup manusia
+- menyenaraikan lokasi, bukti penemuan dan kepentingan tapak prasejarah di Malaysia
+
+🌍 Mengapa Bab Ini Penting?
+Bab ini menunjukkan bahawa manusia dahulu hidup tanpa tulisan tetapi tetap bijak menyesuaikan diri dengan alam. Daripada bab ini, kita belajar bagaimana manusia berkembang daripada memburu kepada bertani, daripada menggunakan batu kepada logam, dan daripada hidup berpindah-randah kepada hidup menetap.
+
+📖 Nota Lengkap
+
+3.1 Maksud Zaman Prasejarah
+Zaman Prasejarah ialah zaman sebelum manusia mengenal tulisan.
+
+Zaman ini bermula sejak manusia wujud di bumi dan berakhir apabila tulisan mula dicipta.
+
+Zaman Prasejarah dibahagikan kepada:
+- Zaman Batu
+- Zaman Logam
+
+Zaman Batu pula terbahagi kepada:
+- Paleolitik
+- Mesolitik
+- Neolitik
+
+Zaman Logam pula merangkumi:
+- Zaman Gangsa
+- Zaman Besi
+
+Cara mudah ingat:
+- Pra = sebelum
+- Sejarah = tulisan sudah wujud
+- Prasejarah = sebelum tulisan wujud
+
+3.2 Lokasi Zaman Prasejarah di Dunia
+Zaman Prasejarah berlaku di banyak tempat di dunia.
+
+Antara tapak terkenal ialah:
+- Gua Chauvet, Perancis
+- Altamira, Sepanyol
+- Stonehenge, Britain
+- Catal Huyuk, Turki
+- Zhoukoudian, China
+
+Tapak-tapak ini penting kerana membuktikan bahawa manusia prasejarah hidup di pelbagai benua dan meninggalkan kesan kehidupan mereka.
+
+3.3 Ciri-ciri Kehidupan Manusia Zaman Prasejarah
+
+Tempat Kediaman
+- Paleolitik: tinggal di gua, tepi tasik, pinggir sungai atau tempat terlindung
+- Mesolitik: masih tinggal di gua dan kawasan berhampiran air
+- Neolitik: mula menetap di kawasan tertentu, biasanya berhampiran sungai dan tanah subur
+- Zaman Logam: hidup lebih teratur dan menetap di lembah sungai, kawasan subur dan strategik
+
+Peralatan
+- Paleolitik: menggunakan alat batu yang kasar, ringkas dan belum dicanai
+- Mesolitik: alat batu lebih kecil dan lebih halus, contohnya mikrolit
+- Neolitik: alat batu dicanai halus, lebih kemas dan lebih berfungsi
+- Zaman Logam: menggunakan alatan gangsa dan besi yang lebih kuat dan tahan lama
+
+Pengumpulan Makanan
+- Paleolitik: memburu binatang liar, memungut hasil hutan dan menangkap ikan
+- Mesolitik: masih memburu, memungut hasil hutan dan menangkap ikan, tetapi lebih mahir menggunakan alat kecil
+- Neolitik: mula bercucuk tanam dan menternak haiwan
+- Zaman Logam: pertanian dan penternakan semakin maju
+
+Kegiatan Ekonomi
+- Paleolitik: ekonomi secara asas, bergantung pada alam
+- Mesolitik: masih bergantung pada pemburuan dan pengumpulan makanan
+- Neolitik: pertanian berkembang, manusia mula menghasilkan lebihan makanan
+- Zaman Logam: perdagangan berkembang, termasuk pertukaran barang dan perdagangan melalui laut
+
+Organisasi Sosial
+- Paleolitik dan Mesolitik: hidup secara kecil-kecilan dalam kumpulan
+- Neolitik: wujud pembahagian kerja dan ketua
+- Zaman Logam: masyarakat lebih tersusun, ada pemimpin, petani, artisan dan golongan lain
+
+Kepercayaan
+- Paleolitik: berkepercayaan animisme, iaitu percaya setiap benda mempunyai semangat
+- Neolitik: kepercayaan lebih tersusun
+- Zaman Logam: wujud upacara keagamaan dan tempat ibadat
+
+Kesenian dan Kebudayaan
+- Paleolitik: lukisan pada dinding gua dan ukiran ringkas
+- Mesolitik: alat dan corak kehidupan lebih kemas
+- Neolitik: pembuatan tembikar dan hiasan yang lebih baik
+- Zaman Logam: kesenian pada peralatan logam, termasuk hiasan dan gendang gangsa
+
+3.4 Kesinambungan Sumbangan Zaman Prasejarah kepada Kemajuan Kehidupan Manusia
+Walaupun Zaman Prasejarah sudah lama berlalu, banyak sumbangannya masih memberi kesan hingga hari ini.
+
+Antara sumbangannya:
+- penggunaan alat batu membawa kepada penciptaan alat moden
+- kemahiran memburu dan mengumpul berkembang menjadi ilmu pengurusan sumber
+- pertanian awal menjadi asas pertanian moden
+- penternakan awal membantu bekalan makanan manusia
+- kehidupan menetap menjadi asas pembinaan kampung, bandar dan negara
+- pembuatan tembikar menjadi asas industri kraf dan pembuatan
+- penggunaan logam menjadi asas teknologi moden
+
+3.5 Zaman Prasejarah di Malaysia
+
+Lokasi
+Antara tapak prasejarah utama di Malaysia ialah:
+- Kota Tampan, Perak
+- Gua Niah, Sarawak
+- Gua Cha, Kelantan
+- Bukit Tengkorak, Sabah
+- Sungai Lang, Selangor
+- Lembah Bernam, Selangor
+
+Bukit dan gua ini dipilih kerana sesuai untuk manusia prasejarah berlindung, tinggal dan menjalankan kegiatan harian.
+
+Bukti Penemuan
+Antara bukti penemuan penting:
+- alat batu
+- tembikar
+- peralatan logam
+- tinggalan rangka manusia
+- lukisan dan kesan aktiviti kehidupan
+
+Antara bukti terkenal ialah Perak Man di Gua Gunung Runtuh, Lenggong, Perak.
+
+Kepentingan Tapak Prasejarah
+Tapak prasejarah penting kerana:
+- membuktikan kewujudan manusia awal di Malaysia
+- menunjukkan cara hidup masyarakat dahulu
+- membantu ahli sejarah mengkaji perkembangan manusia
+- menambah pengetahuan tentang asal usul negara
+- menjadi khazanah warisan yang perlu dipelihara
+
+💡 Tip Ingatan
+- Paleolitik = batu kasar
+- Mesolitik = batu kecil
+- Neolitik = batu halus
+- Logam = gangsa dan besi
+- Prasejarah = sebelum tulisan
+
+⚠️ Kesilapan Lazim
+- menyangka prasejarah bermaksud zaman selepas tulisan
+- tertukar ciri Paleolitik, Mesolitik dan Neolitik
+- lupa bahawa Zaman Logam datang selepas Zaman Batu
+- menganggap semua manusia prasejarah hidup sama
+- lupa kepentingan tapak prasejarah di Malaysia
+
+🌍 Aplikasi Kehidupan
+Bab ini mengajar kita supaya:
+- menghargai kemajuan hidup manusia
+- menjaga tapak sejarah dan warisan negara
+- memahami bagaimana manusia menyesuaikan diri dengan alam
+- menghargai teknologi moden yang berasal daripada pengetahuan awal manusia
+
+📝 Ringkasan Bab
+Zaman Prasejarah ialah zaman sebelum tulisan. Zaman ini terbahagi kepada Zaman Batu dan Zaman Logam. Kehidupan manusia berubah daripada memburu kepada bertani, daripada hidup berpindah-randah kepada hidup menetap, dan daripada menggunakan batu kepada logam. Di Malaysia, banyak tapak prasejarah membuktikan kewujudan manusia awal dan warisan sejarah negara.
+
+🎯 Apa Yang Perlu Anda Ingat?
+- Prasejarah ialah zaman sebelum tulisan
+- Zaman Prasejarah terbahagi kepada Zaman Batu dan Zaman Logam
+- Paleolitik, Mesolitik dan Neolitik ialah tiga tahap Zaman Batu
+- Manusia prasejarah berubah daripada nomad kepada hidup menetap
+- Pertanian, penternakan dan logam ialah sumbangan penting zaman ini
+- Tapak prasejarah di Malaysia ialah bukti penting kewujudan manusia awal
+
+🚀 Teruskan ke Kuiz
+Semak semula fakta utama, urutan zaman, ciri kehidupan dan tapak prasejarah.
+
+🚀 Teruskan ke Flashcards
+Ulang istilah penting seperti Paleolitik, Mesolitik, Neolitik, animisme dan Perak Man.`,
     keywords: [
       "Zaman Prasejarah",
       "Paleolitik",
@@ -409,8 +580,330 @@ export const notes: Note[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     title: "Mengenali Tamadun",
-    summary:
-      "Tamadun bukan sekadar pembangunan bangunan tinggi tetapi merangkumi kemajuan menyeluruh dalam masyarakat. Mengikut bahasa, tamadun merujuk kepada Civitas dalam bahasa Yunani (bandar atau kota dengan kemajuan politik, ekonomi, dan sosial), Civilization dalam bahasa Inggeris (tahap kebudayaan kompleks diukur melalui pencapaian sains, teknologi, seni, dan undang-undang), dan dalam bahasa Arab menggunakan istilah Mudun, Madain, Madana (tinggi budi bahasa dan pembukaan bandar), Hadharah (kawasan, daerah, atau kota), dan Madaniyyah (taraf kehidupan yang maju). Dalam bahasa Melayu, tamadun dikenali sebagai Peradaban, iaitu kemajuan lahiriah dan rohani masyarakat. Terdapat perbezaan konsep tamadun antara sudut pandang Islam dan Barat. Sudut pandang Islam melihat tamadun sebagai pembangunan seimbang antara kebendaan (lahiriah) dan kerohanian (insaniah), dengan tokoh Syed Naquib al-Attas mentakrifkan tamadun sebagai keadaan kehidupan insan yang mencapai taraf kehalusan budi pekerti dan kebudayaan yang luhur bagi seluruh masyarakat, berteraskan nilai murni, akidah, dan syariat Islam. Sudut pandang Barat pula lebih menitikberatkan pembangunan lahiriah (aspek fizikal sahaja), dengan tokoh Arnold J. Toynbee melihat tamadun sebagai satu sistem masyarakat yang membantu manusia mempertingkatkan hasil kesenian, penulisan, undang-undang, dan sains. Terdapat sembilan ciri utama tamadun awal. Pertama, pertanian dan perdagangan: manusia mencipta sistem pengairan dan kincir air, lebihan hasil pertanian membawa kepada perdagangan dari barter kepada mata wang. Kedua, sistem pemerintahan: sistem beraja diwujudkan untuk menguruskan populasi besar, undang-undang digubal untuk menjaga keamanan seperti Kod Hammurabi. Ketiga, pembentukan bandar yang berfungsi sebagai pusat pentadbiran, ekonomi, dan ibadat, dibina secara terancang dengan sistem saliran. Keempat, pengkhususan pekerjaan seperti artisan, askar, dan pegawai kerajaan. Kelima, teknologi: penemuan gangsa dan besi untuk alat pertanian, penciptaan roda untuk pengangkutan dan pembuatan tembikar. Keenam, organisasi sosial berbentuk piramid dengan raja dan bangsawan di atas, pendeta dan pedagang di tengah, serta petani dan hamba di bawah. Ketujuh, agama dan kepercayaan: politeisme dengan pembinaan monumen seperti ziggurat di Mesopotamia dan piramid di Mesir. Kelapan, tulisan dan penyimpanan rekod seperti kuneiform di Mesopotamia, hieroglif di Mesir, dan ideogram di China. Kesembilan, kesenian dan kesusasteraan melalui patung dan karya sastera yang menceritakan kehebatan wira dan sejarah raja-raja.",
+    summary: `🚀 Misi Bab
+Bab 4 menerangkan maksud tamadun, konsep tamadun menurut Islam dan Barat, serta ciri-ciri tamadun awal dunia yang menjadi asas kemajuan manusia.
+
+🎯 Objektif Pembelajaran
+Selepas belajar bab ini, anda boleh:
+- menerangkan maksud tamadun
+- membezakan masyarakat bertamadun dan belum bertamadun
+- menghuraikan konsep tamadun menurut perspektif Islam dan Barat
+- membandingkan persamaan dan perbezaan kedua-dua konsep tamadun
+- menjelaskan sembilan ciri tamadun awal dunia
+
+🌍 Mengapa Bab Ini Penting?
+Bab ini penting kerana tamadun ialah asas kepada kehidupan moden. Kita belajar bagaimana manusia membina bandar, sistem kerajaan, tulisan, ekonomi, seni dan teknologi sehingga lahirlah kehidupan yang lebih teratur.
+
+📖 Nota Lengkap
+
+4.1 Maksud Tamadun
+
+Maksud Tamadun
+Tamadun ialah keadaan masyarakat yang maju dalam bidang lahiriah dan rohaniah.
+
+Maksud yang lebih mudah:
+- masyarakat hidup teratur
+- ada ilmu, nilai, undang-undang dan kemajuan
+- bukan hanya bangunan tinggi atau teknologi canggih
+
+Dalam bahasa Melayu, tamadun juga disebut sebagai peradaban.
+
+Dalam bahasa Yunani:
+- civitas bermaksud bandar atau kota
+
+Dalam bahasa Inggeris:
+- civilization bermaksud tahap kebudayaan yang tinggi dan kompleks
+
+Dalam bahasa Arab:
+- mudun
+- madain
+- madana
+- hadharah
+- madaniyyah
+
+Maksud umum:
+- mudun dan madain berkaitan bandar atau kota
+- madana berkaitan tinggi budi bahasa dan pembukaan bandar
+- hadharah berkaitan kawasan, daerah atau kota
+- madaniyyah berkaitan taraf kehidupan yang maju
+
+💡 Mudah Ingat
+Tamadun bukan sekadar “besar dan moden”, tetapi “maju, berilmu dan berbudi”.
+
+Ciri Umum Tamadun
+Antara ciri umum tamadun ialah:
+- kehidupan tersusun
+- masyarakat berorganisasi
+- ada sistem pemerintahan
+- ada undang-undang
+- ada kegiatan ekonomi
+- ada tulisan
+- ada teknologi
+- ada kesenian dan kebudayaan
+
+Perbezaan masyarakat bertamadun dan belum bertamadun
+
+| Masyarakat bertamadun | Masyarakat belum bertamadun |
+| --- | --- |
+| Hidup teratur | Hidup lebih bebas dan tidak tetap |
+| Ada bandar | Tiada bandar yang tersusun |
+| Ada undang-undang | Kurang sistem peraturan |
+| Ada tulisan dan rekod | Belum ada sistem tulisan |
+| Ada pengkhususan kerja | Semua orang melakukan kerja asas |
+| Ada seni, budaya dan teknologi | Kemajuan masih sangat terhad |
+
+Mengapa penting?
+- memudahkan hidup bersama
+- mengelakkan kacau-bilau
+- membantu kemajuan ekonomi dan ilmu
+
+4.2 Konsep Tamadun
+
+Konsep tamadun menurut perspektif Islam
+Islam melihat tamadun sebagai kemajuan yang seimbang antara:
+- lahiriah atau kebendaan
+- rohaniah atau kerohanian
+
+Maksudnya:
+- manusia perlu maju dalam ilmu, ekonomi dan teknologi
+- tetapi akhlak, nilai dan agama mesti ada
+
+Tokoh penting:
+- Syed Naquib al-Attas menekankan kehalusan budi pekerti, adab dan kebudayaan yang luhur
+- Ibn Khaldun mengaitkan tamadun dengan \`umran\` dan \`hadari\`, iaitu kehidupan bermasyarakat yang tersusun
+
+Konsep tamadun menurut perspektif Barat
+Barat lebih menumpukan pembangunan lahiriah.
+
+Maksudnya:
+- kemajuan bandar
+- kemajuan ilmu dan teknologi
+- kemajuan seni, undang-undang dan organisasi masyarakat
+
+Tokoh penting:
+- Arnold J. Toynbee melihat tamadun sebagai sistem masyarakat yang membantu manusia maju dalam kesenian, penulisan, undang-undang dan sains
+
+Persamaan dan perbezaan kedua-dua konsep
+
+Persamaan:
+- kedua-duanya melihat tamadun sebagai kemajuan manusia
+- kedua-duanya mengiktiraf sistem kehidupan yang teratur
+- kedua-duanya mengaitkan tamadun dengan pencapaian masyarakat
+
+Perbezaan:
+
+| Perspektif Islam | Perspektif Barat |
+| --- | --- |
+| Seimbang antara lahiriah dan rohaniah | Lebih menekankan lahiriah |
+| Akhlak, agama dan budi pekerti penting | Kemajuan fizikal dan material lebih ditonjolkan |
+| Tamadun mesti berteras nilai murni | Tamadun dinilai melalui pencapaian kebendaan |
+
+💡 Mudah Ingat
+- Islam = seimbang
+- Barat = lebih fokus pada fizikal
+
+Mengapa konsep ini penting?
+- supaya kita faham tamadun tidak boleh diukur pada bangunan sahaja
+- supaya kita sedar akhlak sama penting dengan kemajuan
+
+4.3 Ciri-ciri Tamadun Awal Dunia
+
+1. Pembentukan bandar
+Definisi:
+- pembinaan penempatan yang tersusun dan menjadi pusat masyarakat
+
+Penerangan mudah:
+- bandar lahir apabila penduduk semakin ramai
+- bandar menjadi pusat pentadbiran, ekonomi dan keagamaan
+
+Contoh:
+- Ur, Uruk dan Babylon dalam Tamadun Mesopotamia
+- Memphis dalam Tamadun Mesir Purba
+
+Mengapa penting?
+- bandar memudahkan pengurusan penduduk dan kegiatan ekonomi
+
+2. Sistem pemerintahan
+Definisi:
+- cara sesebuah masyarakat diketuai dan diurus
+
+Penerangan mudah:
+- tamadun awal memerlukan pemimpin untuk menjaga keamanan dan mengurus rakyat
+- raja biasanya memegang kuasa tertinggi
+
+Contoh:
+- Raja Hammurabi di Mesopotamia
+- Firaun di Mesir Purba
+
+Mengapa penting?
+- sistem pemerintahan mewujudkan ketertiban dan keadilan
+
+3. Agama dan kepercayaan
+Definisi:
+- kepercayaan masyarakat terhadap kuasa atau tuhan
+
+Penerangan mudah:
+- masyarakat awal percaya kepada banyak tuhan atau kuasa alam
+- agama menjadi panduan hidup dan upacara
+
+Contoh:
+- politeisme
+- ziggurat sebagai tempat ibadat di Mesopotamia
+- piramid berkaitan kepercayaan kehidupan selepas mati di Mesir
+
+Mengapa penting?
+- agama membentuk nilai dan cara hidup masyarakat
+
+4. Pengkhususan pekerjaan
+Definisi:
+- pembahagian kerja mengikut kemahiran tertentu
+
+Penerangan mudah:
+- apabila makanan mencukupi, tidak semua orang perlu bertani
+- ada yang menjadi petani, artisan, pedagang, askar dan pegawai
+
+Contoh:
+- artisan membuat tembikar dan alat logam
+- pedagang menjalankan urusan jual beli
+
+Mengapa penting?
+- kerja menjadi lebih cekap
+- ekonomi berkembang
+
+5. Sistem ekonomi
+Definisi:
+- cara masyarakat menghasilkan, mengguna dan menukar barang
+
+Penerangan mudah:
+- ekonomi tamadun awal bermula dengan pertanian
+- lebihan hasil pertanian menyebabkan perdagangan berkembang
+- barter digunakan sebelum wujud mata wang
+
+Contoh:
+- petani menukar gandum dengan tembikar
+- pedagang menjalankan pertukaran barang di pasar
+
+Mengapa penting?
+- ekonomi yang baik membantu bandar dan kerajaan berkembang
+
+6. Organisasi sosial
+Definisi:
+- susunan lapisan masyarakat mengikut kedudukan dan peranan
+
+Penerangan mudah:
+- masyarakat tamadun awal tidak sama rata
+- ada golongan atasan dan golongan bawahan
+- susunannya seperti piramid
+
+Contoh:
+- raja di atas
+- bangsawan, pendeta dan pegawai di tengah
+- petani, artisan dan hamba di bawah
+
+Mengapa penting?
+- memudahkan pembahagian tugas dan pentadbiran
+
+7. Tulisan dan penyimpanan rekod
+Definisi:
+- sistem untuk mencatat maklumat penting
+
+Penerangan mudah:
+- tulisan digunakan untuk menyimpan rekod cukai, undang-undang, perniagaan dan sejarah
+- tanpa tulisan, pentadbiran menjadi sukar
+
+Contoh:
+- kuneiform di Mesopotamia
+- hieroglif di Mesir
+- ideogram di China
+
+Mengapa penting?
+- tulisan memudahkan komunikasi dan penyimpanan ilmu
+
+💡 Mudah Ingat
+Tulisan = simpan ilmu dan rekod
+
+8. Teknologi
+Definisi:
+- penggunaan alat dan pengetahuan untuk memudahkan kehidupan
+
+Penerangan mudah:
+- tamadun awal mencipta alat yang membantu pertanian, pengangkutan dan pembinaan
+
+Contoh:
+- roda
+- gangsa
+- besi
+- sistem pengairan
+
+Mengapa penting?
+- teknologi meningkatkan hasil kerja dan memudahkan hidup
+
+9. Kesenian dan kesusasteraan
+Definisi:
+- hasil ciptaan seni dan karya tulisan yang menunjukkan budaya masyarakat
+
+Penerangan mudah:
+- tamadun awal menghasilkan patung, ukiran, lukisan dan karya sastera
+- kesusasteraan juga menceritakan raja, dewa dan peristiwa penting
+
+Contoh:
+- patung dewa
+- lukisan dinding
+- Epik Gilgamesh
+
+Mengapa penting?
+- seni dan sastera menunjukkan identiti serta pemikiran sesuatu tamadun
+
+📦 Fakta Penting
+- Tamadun = kemajuan masyarakat yang teratur
+- Peradaban = istilah tamadun dalam bahasa Melayu
+- Islam menekankan keseimbangan lahiriah dan rohaniah
+- Barat lebih menekankan pembangunan fizikal
+- Ciri tamadun awal ada 9
+- Bandar, tulisan dan sistem pemerintahan ialah asas tamadun
+
+💡 Tip Ingatan
+- \`Bandar\` untuk masyarakat ramai
+- \`Raja\` untuk pemerintahan
+- \`Tuhan\` untuk agama
+- \`Kerja khas\` untuk pengkhususan pekerjaan
+- \`Barter\` untuk ekonomi awal
+- \`Piramid\` untuk sosial
+- \`Tulisan\` untuk rekod
+- \`Roda\` untuk teknologi
+- \`Seni\` untuk kesenian
+
+⚠️ Kesilapan Lazim
+- menyangka tamadun hanya bermaksud bangunan tinggi
+- tertukar pandangan Islam dan Barat
+- lupa bahawa akhlak juga sebahagian daripada tamadun
+- mencampurkan ciri tamadun dengan ciri masyarakat biasa
+- menganggap tulisan tidak penting dalam tamadun
+
+🌍 Aplikasi Kehidupan
+Bab ini mengajar kita untuk:
+- menghargai hidup beradab
+- mematuhi undang-undang
+- menghormati perbezaan budaya
+- menggunakan teknologi dengan bijak
+- membina masyarakat yang maju tetapi berakhlak
+
+📝 Ringkasan Bab
+Tamadun ialah kemajuan masyarakat yang merangkumi lahiriah dan rohaniah. Islam menekankan keseimbangan, manakala Barat lebih menumpukan pembangunan fizikal. Tamadun awal dunia mempunyai sembilan ciri utama, iaitu bandar, pemerintahan, agama, pekerjaan, ekonomi, sosial, tulisan, teknologi, serta kesenian dan kesusasteraan.
+
+🎯 Apa Yang Perlu Anda Ingat?
+- Tamadun bukan sekadar bangunan
+- Tamadun mesti ada kemajuan dan nilai
+- Islam menekankan keseimbangan, Barat menekankan fizikal
+- Ciri tamadun awal ada 9
+- Bandar, tulisan dan pemerintahan ialah asas penting tamadun
+- Setiap ciri tamadun ada definisi, contoh dan kepentingan
+
+🚀 Teruskan ke Kuiz
+Uji semula maksud tamadun, konsep Islam dan Barat, serta sembilan ciri tamadun awal.
+
+🚀 Teruskan ke Flashcard
+Ulang istilah penting seperti civitas, civilization, madaniyyah, politeisme, barter, dan hieroglif.`,
     keywords: [
       "Mengenali Tamadun",
       "Pengertian Tamadun",
@@ -439,8 +932,388 @@ export const notes: Note[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     title: "Tamadun Awal Dunia",
-    summary:
-      "Terdapat empat tamadun awal dunia yang berkembang di lembah sungai besar. Tamadun Mesopotamia berkembang di antara Sungai Tigris dan Euphrates di kawasan yang digelar 'Bulan Sabit Subur'. Negara kota seperti Ur, Uruk, dan Babylon adalah unit politik bebas. Ziggurat berfungsi sebagai kuil, pusat pentadbiran, dan gedung simpanan. Sistem sosial terbahagi kepada kelas pemerintah (raja, bangsawan, pendeta) dan kelas rakyat (pedagang, artisan, petani, hamba). Raja Hammurabi memperkenalkan Kod Hammurabi, iaitu 282 undang-undang yang merangkumi perdagangan, kecurian, dan perkahwinan. Dalam bidang intelektual, Mesopotamia mencipta Sistem 60 yang menjadi asas ukuran masa (60 saat, 60 minit) dan bulatan (360 darjah), menguasai astronomi dengan merekodkan pergerakan planet, serta menghasilkan tulisan Kuneiform dan Epik Gilgamesh, karya sastera tertua dunia. Tamadun Mesir Purba berkembang di Lembah Sungai Nil. Herodotus menggelar Mesir sebagai 'Hadiah Sungai Nil' kerana tanahnya subur akibat banjir tahunan. Firaun memegang kuasa mutlak dan dianggap wakil tuhan di bumi, dibantu oleh Wazir yang menguruskan birokrasi dan mengutip cukai. Kepercayaan terhadap kehidupan selepas mati mendorong penciptaan teknik Mumia. Melalui proses mumia, mereka menguasai anatomi dan perubatan. Matematik dan geometri digunakan untuk mengira keluasan tanah dan membina piramid dengan ketepatan tinggi. Tamadun Indus berkembang di Lembah Sungai Indus dengan fokus pada kesejahteraan penduduk. Bandar Mohenjo-Daro dan Harappa dibina mengikut pelan grid dengan batu bata bersaiz seragam. Setiap rumah mempunyai bilik mandi dan sistem longkang tertutup, menjadikannya sistem perparitan paling awal di dunia. The Great Bath ialah kolam mandi awam untuk upacara pembersihan. Meterai Indus ditemui di Mesopotamia, membuktikan perdagangan jarak jauh. Tamadun Huang He berkembang di Utara China. Pemerintah mendakwa memerintah atas Mandat dari Syurga; jika berlaku bencana, mandat dianggap ditarik balik. Tulang Sula (Oracle Bones) digunakan untuk meramal masa depan dan menjadi asal usul tulisan Ideogram China. Penggunaan peralatan besi membolehkan penerokaan tanah baru. Penciptaan sutera menjadikannya barangan mewah dalam perdagangan dunia.",
+    summary: `🚀 Misi Bab
+Bab 5 memperkenalkan empat tamadun awal dunia dan menunjukkan bagaimana lokasi sungai, pertanian, pemerintahan, tulisan dan teknologi membantu tamadun berkembang.
+
+🎯 Objektif Pembelajaran
+Selepas belajar bab ini, anda boleh:
+- menamakan empat tamadun awal dunia
+- menerangkan lokasi dan faktor perkembangan setiap tamadun
+- menghuraikan ciri utama setiap tamadun
+- menjelaskan sumbangan tamadun awal kepada kehidupan moden
+- membandingkan sumbangan tamadun awal dunia
+
+🌍 Mengapa Bab Ini Penting?
+Bab ini penting kerana tamadun awal menjadi asas kepada kehidupan moden. Kita belajar bahawa bandar, undang-undang, tulisan, seni bina, pertanian dan teknologi hari ini berkembang daripada idea manusia pada zaman dahulu.
+
+📖 Nota Lengkap
+
+5.1 Empat Lokasi Tamadun Awal Dunia
+
+Empat tamadun awal dunia ialah:
+- Tamadun Mesopotamia
+- Tamadun Mesir Purba
+- Tamadun Indus
+- Tamadun Huang He
+
+Setiap tamadun berkembang di lembah sungai kerana:
+- air diperlukan untuk pertanian
+- tanah menjadi subur selepas banjir
+- manusia mudah mendapatkan makanan
+- pengangkutan dan perdagangan lebih mudah
+
+💡 Mudah Ingat
+Empat tamadun awal dunia = Mesopotamia, Mesir, Indus dan Huang He.
+
+A. Tamadun Mesopotamia
+
+Lokasi
+Tamadun Mesopotamia berkembang di antara Sungai Tigris dan Sungai Euphrates.
+
+Mengapa di situ?
+- kawasan itu subur
+- sungainya membekalkan air untuk pertanian
+- tanah aluvium sesuai untuk bercucuk tanam
+
+Faktor perkembangan
+- air sungai untuk pertanian
+- tanah subur
+- kedudukan strategik untuk perdagangan
+- penduduk boleh tinggal tetap kerana bekalan makanan stabil
+
+Ciri utama
+- bandar wujud sebagai negara kota
+- sistem pemerintahan beraja
+- masyarakat tersusun
+- tulisan berkembang
+- undang-undang digubal
+
+Pemerintahan
+- setiap negara kota mempunyai pemerintah sendiri
+- raja memegang kuasa tertinggi
+- raja dibantu oleh pegawai, pendeta dan bangsawan
+
+Kegiatan ekonomi
+- pertanian ialah asas ekonomi
+- perdagangan berkembang apabila hasil pertanian berlebihan
+- pertukaran barang berlaku melalui barter
+
+Agama dan kepercayaan
+- percaya kepada banyak tuhan
+- ziggurat menjadi tempat ibadat dan pusat aktiviti keagamaan
+
+Teknologi
+- roda
+- sistem pengairan
+- pembinaan ziggurat
+- pengiraan masa dan bulatan menggunakan Sistem 60
+
+Sistem tulisan
+- kuneiform
+- ditulis pada kepingan tanah liat
+
+Sumbangan
+- Kod Hammurabi
+- Sistem 60
+- tulisan kuneiform
+- perkembangan ilmu astronomi
+- karya sastera seperti Epik Gilgamesh
+
+Fakta penting
+- Ur, Uruk dan Babylon ialah negara kota terkenal
+- Kod Hammurabi ialah undang-undang bertulis yang penting
+
+💡 Mudah Ingat
+Mesopotamia = sungai dua, negara kota, kod undang-undang dan kuneiform.
+
+B. Tamadun Mesir Purba
+
+Lokasi
+Tamadun Mesir Purba berkembang di Lembah Sungai Nil.
+
+Mengapa di situ?
+- Sungai Nil membekalkan air
+- banjir tahunan menjadikan tanah subur
+- pertanian boleh dijalankan dengan baik
+
+Faktor perkembangan
+- tanah subur di tepi Nil
+- air mencukupi sepanjang tahun
+- banjir membawa mendapan lumpur yang subur
+- kehidupan lebih stabil dan teratur
+
+Ciri utama
+- pemerintah utama ialah Firaun
+- masyarakat tersusun
+- pembinaan besar seperti piramid
+- kepercayaan terhadap kehidupan selepas mati
+
+Pemerintahan
+- Firaun ialah ketua negara dan dianggap wakil tuhan
+- dibantu oleh wazir dan pegawai kerajaan
+
+Kegiatan ekonomi
+- pertanian di tepi Sungai Nil
+- pengumpulan hasil pertanian
+- perdagangan dengan kawasan luar
+
+Agama dan kepercayaan
+- percaya kepada banyak tuhan
+- percaya kepada kehidupan selepas mati
+- mumia dibuat untuk menjaga mayat
+
+Teknologi
+- geometri
+- pembinaan piramid
+- penghasilan kertas papirus
+- ilmu perubatan dan mumia
+
+Sistem tulisan
+- hieroglif
+- digunakan pada dinding, papirus dan monumen
+
+Sumbangan
+- piramid
+- kertas papirus
+- ilmu perubatan
+- ilmu matematik dan geometri
+- tulisan hieroglif
+
+Fakta penting
+- Sungai Nil ialah nadi tamadun Mesir
+- Herodotus menggelar Mesir sebagai Hadiah Sungai Nil
+
+💡 Mudah Ingat
+Mesir = Nil, Firaun, piramid dan hieroglif.
+
+C. Tamadun Indus
+
+Lokasi
+Tamadun Indus berkembang di Lembah Sungai Indus.
+
+Mengapa di situ?
+- tanah subur
+- air sungai untuk pertanian
+- sesuai untuk pembentukan bandar
+- kedudukan memudahkan perdagangan
+
+Faktor perkembangan
+- sungai menyediakan air
+- tanah subur
+- masyarakat mampu membina bandar terancang
+- perdagangan berkembang dengan baik
+
+Ciri utama
+- bandar terancang
+- sistem perparitan yang baik
+- rumah dibina mengikut pelan yang teratur
+- masyarakat mempunyai kemudahan asas
+
+Pemerintahan
+- wujud sistem pentadbiran yang teratur
+- bandar dikawal dengan baik walaupun bukti raja sangat terhad
+
+Kegiatan ekonomi
+- pertanian
+- penternakan
+- perdagangan
+
+Agama dan kepercayaan
+- terdapat kepercayaan dan upacara tertentu
+- penemuan arkeologi menunjukkan kehidupan masyarakat yang tersusun
+
+Teknologi
+- pembinaan bandar mengikut pelan grid
+- sistem kumbahan dan perparitan
+- penggunaan batu bata bersaiz seragam
+
+Sistem tulisan
+- piktograf atau tulisan simbol
+- masih belum dapat dibaca sepenuhnya
+
+Sumbangan
+- bandar terancang
+- sistem saliran dan pembetungan
+- batu bata seragam
+- perancangan bandar yang sistematik
+
+Fakta penting
+- Mohenjo-Daro dan Harappa ialah bandar terkenal
+- The Great Bath menunjukkan kebolehan masyarakat Indus dalam pembinaan
+
+💡 Mudah Ingat
+Indus = bandar terancang, saliran baik dan rumah tersusun.
+
+D. Tamadun Huang He
+
+Lokasi
+Tamadun Huang He berkembang di Lembah Sungai Huang He, iaitu Sungai Kuning di China.
+
+Mengapa di situ?
+- sungai membekalkan air
+- tanah subur sesuai untuk pertanian
+- kawasan lembah memudahkan petempatan
+
+Faktor perkembangan
+- pertanian di lembah sungai
+- kesuburan tanah
+- masyarakat menetap di kawasan sesuai
+- kemajuan alat dan teknik pertanian
+
+Ciri utama
+- pemerintahan dinasti
+- pertanian penting
+- tulisan berkembang
+- kemahiran teknologi semakin maju
+
+Pemerintahan
+- pemerintah memegang kuasa besar
+- dinasti-dinasti awal memerintah kawasan luas
+- konsep Mandat dari Syurga digunakan untuk mengesahkan kuasa pemerintah
+
+Kegiatan ekonomi
+- pertanian
+- penternakan
+- perdagangan
+
+Agama dan kepercayaan
+- percaya kepada kuasa syurga
+- upacara dan ramalan digunakan dalam kehidupan
+
+Teknologi
+- penggunaan besi
+- penghasilan sutera
+- pembuatan alat pertanian
+
+Sistem tulisan
+- ideogram
+- ditulis pada tulang sula dan bahan lain
+
+Sumbangan
+- tulisan ideogram
+- sutera
+- penggunaan besi
+- terusan dan alat pertanian
+
+Fakta penting
+- Huang He bermaksud Sungai Kuning
+- Tulang Sula digunakan untuk meramal dan mencatat
+
+💡 Mudah Ingat
+Huang He = Sungai Kuning, dinasti, ideogram dan sutera.
+
+5.2 Perbandingan Sumbangan Tamadun Awal
+
+Pemerintahan
+- Mesopotamia: raja mengetuai negara kota
+- Mesir Purba: Firaun memerintah sebagai wakil tuhan
+- Indus: pentadbiran teratur, tetapi bukti raja tidak jelas
+- Huang He: dinasti memerintah dan konsep Mandat dari Syurga digunakan
+
+Pertanian
+- Mesopotamia: bergantung pada sistem pengairan
+- Mesir Purba: sangat bergantung pada Sungai Nil
+- Indus: pertanian di lembah sungai dan bandar terancang
+- Huang He: pertanian berkembang di lembah Sungai Kuning
+
+Sistem tulisan
+- Mesopotamia: kuneiform
+- Mesir Purba: hieroglif
+- Indus: piktograf
+- Huang He: ideogram
+
+Teknologi
+- Mesopotamia: roda dan Sistem 60
+- Mesir Purba: piramid, geometri dan papirus
+- Indus: sistem perparitan dan batu bata seragam
+- Huang He: besi, sutera dan alat pertanian
+
+Seni bina
+- Mesopotamia: ziggurat
+- Mesir Purba: piramid dan monumen besar
+- Indus: rumah bandar dan The Great Bath
+- Huang He: pembinaan kota dan bangunan yang tersusun
+
+Pengangkutan
+- Mesopotamia: roda memudahkan pengangkutan
+- Mesir Purba: pengangkutan di Sungai Nil
+- Indus: perdagangan darat dan sungai
+- Huang He: penggunaan sungai dan laluan darat untuk pergerakan barang
+
+Organisasi masyarakat
+- semua tamadun mempunyai masyarakat yang tersusun
+- wujud golongan pemerintah, pegawai, pekerja mahir dan rakyat biasa
+
+Undang-undang
+- Mesopotamia: Kod Hammurabi
+- tamadun lain juga mempunyai peraturan dan pentadbiran tersusun
+
+Keagamaan
+- semua tamadun awal mempunyai kepercayaan yang kuat
+- tempat ibadat dan upacara penting dalam kehidupan mereka
+
+Perdagangan
+- semua tamadun berkembang kerana lebihan hasil
+- perdagangan membantu pertukaran barang, idea dan teknologi
+
+| Tamadun | Sumbangan utama yang mudah diingat |
+| --- | --- |
+| Mesopotamia | Kod Hammurabi, kuneiform, roda, Sistem 60 |
+| Mesir Purba | Piramid, hieroglif, papirus, perubatan |
+| Indus | Bandar terancang, perparitan, batu bata seragam |
+| Huang He | Ideogram, sutera, besi, Mandat dari Syurga |
+
+Fakta penting perbandingan
+- semua tamadun awal lahir di lembah sungai
+- semua berkembang kerana pertanian dan organisasi masyarakat
+- semua memberi sumbangan kepada dunia moden
+
+📦 Fakta Penting
+- Empat tamadun awal dunia berkembang di lembah sungai
+- Sungai membantu pertanian, pengangkutan dan petempatan
+- Mesopotamia terkenal dengan negara kota
+- Mesir Purba terkenal dengan Firaun dan piramid
+- Indus terkenal dengan bandar terancang
+- Huang He terkenal dengan dinasti, sutera dan ideogram
+
+💡 Tip Ingatan
+Untuk hafal empat tamadun:
+- \`Me\`sopotamia
+- \`Me\`sir
+- \`In\`dus
+- \`Huang\` He
+
+⚠️ Kesilapan Lazim
+- tertukar lokasi empat tamadun awal
+- menyangka semua tamadun mempunyai ciri yang sama
+- lupa bahawa sungai ialah faktor penting perkembangan
+- tertukar tulisan kuneiform, hieroglif, piktograf dan ideogram
+- menganggap tamadun hanya berlaku kerana bangunan besar
+
+🌍 Aplikasi Kehidupan
+Bab ini membantu kita memahami bahawa:
+- bandar moden juga perlu perancangan yang baik
+- undang-undang penting untuk keamanan
+- teknologi memudahkan kehidupan
+- tulisan dan rekod penting untuk pengurusan
+- kemajuan mesti seimbang dengan nilai
+
+📝 Ringkasan Bab
+Bab 5 menerangkan empat tamadun awal dunia yang berkembang di lembah sungai. Mesopotamia, Mesir Purba, Indus dan Huang He masing-masing mempunyai lokasi, faktor perkembangan, ciri, pemerintahan, ekonomi, agama, teknologi, tulisan dan sumbangan yang besar kepada tamadun manusia.
+
+🎯 Apa Yang Perlu Anda Ingat?
+- Empat tamadun awal dunia ialah Mesopotamia, Mesir Purba, Indus dan Huang He
+- Semua tamadun berkembang di lembah sungai
+- Sungai penting untuk air, pertanian dan perdagangan
+- Setiap tamadun ada tulisan dan teknologi tersendiri
+- Setiap tamadun memberi sumbangan penting kepada dunia moden
+- Perbandingan sumbangan membantu kita nampak persamaan dan keunikan setiap tamadun
+
+🚀 Teruskan ke Kuiz
+Semak lokasi, ciri, sumbangan dan perbandingan empat tamadun awal dunia.
+
+🚀 Teruskan ke Flashcard
+Ulang nama tamadun, sungai, tulisan, sumbangan dan fakta penting setiap tamadun.`,
     keywords: [
       "Tamadun Mesopotamia",
       "Tamadun Mesir Purba",
@@ -484,9 +1357,479 @@ export const notes: Note[] = [
     subjectId: "sejarah",
     form: "Form 1",
     chapter: "Chapter 6",
-    title: "Tamadun Yunani dan Tamadun Rom",
-    summary:
-      "Tamadun Yunani berkembang di Semenanjung Balkan dan pulau-pulau di Laut Aegean. Unit politik utamanya ialah Polis (negara kota) yang terdiri daripada Bandar Utama, Acropolis (kawasan tertinggi dengan kuil dan kubu), Agora (pusat ekonomi dan pertemuan), dan Kawasan Kampung. Tiga polis terkenal ialah Athens (pusat ilmu dan demokrasi), Sparta (pusat ketenteraan), dan Corinth. Athens melalui lima tahap pemerintahan: Monarki (pemerintahan beraja berkuasa mutlak), Oligarki (pemerintahan oleh sekelompok orang kaya), Aristokrasi (kuasa dipegang golongan bangsawan bertanah), Tirani (pemerintahan diktator), dan Demokrasi (pemerintahan oleh rakyat melalui wakil). Struktur demokrasi Athens terdiri daripada Dewan Perhimpunan (badan tertinggi menggubal undang-undang, terbuka kepada semua lelaki berumur 18 tahun ke atas), Majlis/Council of 500 (500 ahli dipilih melalui undian untuk urusan harian), Majistret (kakitangan awam melaksanakan dasar), dan Juri (201–501 orang, untuk mengelakkan rasuah). Sparta pula mengamalkan Diarqi (dua raja serentak), sistem pendidikan Agoge (latihan ketenteraan bermula usia 7 tahun), dan memberikan latihan fizikal kepada wanita. Tamadun Rom pula cemerlang dalam seni bina menggunakan Pozzolana (campuran kapur dan abu gunung berapi) untuk simen yang sangat kuat. Tujuh binaan ikonik Rom: Colosseum (amfiteater elips, 50,000 penonton, pertarungan gladiator), Pantheon (kuil berkubah konkrit terbesar dengan Oculus), Akueduk (saluran air dari pergunungan ke bandar melalui graviti), Amfiteater (tempat seni dan teater dengan reka bentuk akustik), Jalan Raya Rom (berlapis pasir, batu, dan simen untuk tentera dan perdagangan), Tembok Hadrian (117 km di Britain sebagai pertahanan), dan Pusat Mandi Awam (pusat sosial dengan bilik mandi panas/sejuk/suam, perpustakaan, dan gimnasium). Iktibar: Demokrasi Athens menjadi asas sistem politik moden, manakala kejuruteraan Rom membuktikan kehebatan sains dan kreativiti manusia purba.",
+    title: "Peningkatan Tamadun Yunani dan Rom",
+    summary: `🚀 Misi Bab
+Bab 6 menerangkan perkembangan Tamadun Yunani dan Rom, perubahan sistem pemerintahan, serta peningkatan seni bina Rom yang menjadi asas banyak idea moden.
+
+🎯 Objektif Pembelajaran
+Selepas belajar bab ini, anda boleh:
+- menerangkan latar belakang Tamadun Yunani dan Rom
+- menjelaskan ciri-ciri polis dan kehidupan masyarakat Yunani
+- menghuraikan perubahan sistem pemerintahan Yunani
+- menerangkan perkembangan Tamadun Rom
+- menjelaskan peningkatan seni bina dalam Tamadun Rom
+
+🌍 Mengapa Bab Ini Penting?
+Bab ini penting kerana banyak idea moden datang daripada Yunani dan Rom, seperti demokrasi, undang-undang, seni bina, jalan raya dan sistem pentadbiran. Bab ini juga membantu kita faham bagaimana tamadun berubah apabila masyarakat menjadi semakin besar dan kompleks.
+
+📖 Nota Lengkap
+
+6.1 Tamadun Yunani
+
+Latar belakang Tamadun Yunani
+Tamadun Yunani berkembang di kawasan berbukit-bukau, pulau-pulau dan kawasan pantai di sekitar Laut Aegean dan Laut Mediterranean.
+
+Mengapa di situ?
+- bentuk muka bumi yang bergunung-ganang menyebabkan kawasan terpisah
+- banyak pulau memudahkan perkembangan bandar kecil yang berdikari
+- laut memudahkan perhubungan dan perdagangan
+
+Lokasi
+Tamadun Yunani berkembang di:
+- Semenanjung Greece
+- Kepulauan Laut Aegean
+- kawasan sekitar Laut Mediterranean
+
+Polis
+Polis ialah negara kota Yunani.
+
+Maksud mudah:
+- satu bandar utama bersama kawasan sekitarnya
+- setiap polis mempunyai kerajaan sendiri
+- setiap polis berdikari
+
+Ciri-ciri polis
+- ada bandar utama
+- ada kawasan kampung atau luar bandar
+- ada sistem pemerintahan sendiri
+- ada pusat pentadbiran, pasar dan tempat ibadat
+- polis biasanya dikelilingi oleh kawasan pertahanan
+
+Contoh polis terkenal:
+- Athens
+- Sparta
+- Corinth
+
+Athens
+Athens terkenal sebagai polis yang:
+- mempunyai penduduk paling ramai
+- menekankan pendidikan, seni, falsafah dan demokrasi
+- menjadi pusat perdagangan dan kebudayaan
+
+Kehidupan masyarakat Athens:
+- ada golongan warganegara, bukan warganegara, wanita dan hamba
+- warganegara lelaki dewasa boleh terlibat dalam politik
+- masyarakat mengutamakan ilmu dan perbincangan awam
+
+Sparta
+Sparta terkenal sebagai polis yang:
+- menekankan disiplin dan ketenteraan
+- mempunyai wilayah yang luas
+- menumpukan kekuatan tentera darat
+
+Kehidupan masyarakat Sparta:
+- kehidupan yang keras dan teratur
+- kanak-kanak lelaki dilatih menjadi askar
+- wanita Sparta lebih bebas berbanding wanita Athens
+- masyarakat sangat mementingkan kesetiaan dan kekuatan
+
+Kehidupan masyarakat
+Masyarakat Yunani hidup dalam polis yang berasingan.
+
+Kehidupan harian mereka bergantung pada:
+- pertanian
+- perdagangan
+- seni
+- peperangan
+- perbincangan politik
+
+💡 Mudah Ingat
+Yunani = polis, Athens = ilmu dan demokrasi, Sparta = tentera dan disiplin.
+
+Fakta penting
+- Polis ialah asas organisasi politik Yunani
+- Athens dan Sparta sering dibandingkan kerana cara hidupnya sangat berbeza
+
+6.2 Peningkatan Pemerintahan dan Pentadbiran Tamadun Yunani
+
+Perubahan sistem pemerintahan berlaku apabila masyarakat menjadi lebih ramai dan polis menjadi lebih kompleks.
+
+1. Monarki
+Maksud
+- sistem pemerintahan oleh seorang raja
+- kuasa diwarisi melalui keturunan
+
+Ciri-ciri
+- raja menjadi pemerintah tertinggi
+- kuasa biasanya diwarisi
+- rakyat taat kepada raja
+
+Bagaimana sistem berfungsi
+- raja membuat keputusan utama
+- pembesar membantu raja
+- rakyat perlu patuh
+
+Mengapa berubah kepada sistem seterusnya?
+- kuasa raja terlalu kuat
+- golongan bangsawan mahu berkongsi kuasa
+- masyarakat menjadi lebih besar dan rumit
+
+Analogi mudah
+- seperti ketua keluarga yang mahu semua keputusan datang daripada seorang sahaja
+
+💡 Mudah Ingat
+Monarki = satu raja, satu kuasa.
+
+2. Oligarki
+Maksud
+- sistem pemerintahan oleh sekumpulan kecil orang berkuasa
+
+Ciri-ciri
+- kuasa dipegang oleh beberapa orang
+- biasanya golongan kaya atau bangsawan
+- rakyat biasa tidak banyak suara
+
+Bagaimana sistem berfungsi
+- kumpulan kecil membuat keputusan
+- mereka menguasai politik dan ekonomi
+
+Mengapa berubah kepada sistem seterusnya?
+- rakyat tidak puas hati kerana kuasa terlalu terhad
+- golongan bangsawan pula mahu lebih pengaruh
+- muncul persaingan dalam kalangan golongan atasan
+
+Analogi mudah
+- seperti satu kelas yang hanya dibenarkan beberapa orang pelajar menentukan semua keputusan
+
+💡 Mudah Ingat
+Oligarki = kuasa kumpulan kecil.
+
+3. Aristokrasi
+Maksud
+- sistem pemerintahan oleh golongan bangsawan
+
+Ciri-ciri
+- bangsawan memegang kuasa
+- dipilih kerana dianggap paling mulia atau berketurunan baik
+- rakyat biasa masih kurang kuasa
+
+Bagaimana sistem berfungsi
+- bangsawan mengurus polis
+- keputusan dibuat oleh golongan elit
+
+Mengapa berubah kepada sistem seterusnya?
+- rakyat biasa tidak berpuas hati
+- muncul penentangan terhadap kuasa bangsawan
+- masyarakat mahukan perubahan yang lebih adil
+
+Analogi mudah
+- seperti hanya pelajar yang paling kaya atau paling terkenal diberi kuasa membuat semua peraturan
+
+💡 Mudah Ingat
+Aristokrasi = kuasa bangsawan.
+
+4. Tirani
+Maksud
+- pemerintahan oleh seorang pemerintah yang menggunakan kuasa secara zalim
+
+Ciri-ciri
+- kuasa dipegang oleh seorang individu
+- pemerintah boleh bertindak keras
+- rakyat ditekan atau ditindas
+
+Bagaimana sistem berfungsi
+- pemerintah mengambil kuasa melalui sokongan rakyat atau kekacauan politik
+- selepas berkuasa, dia memerintah secara keras
+
+Mengapa berubah kepada sistem seterusnya?
+- rakyat bosan dengan pemerintahan zalim
+- muncul keinginan untuk pemerintahan yang memberi suara kepada rakyat
+- rakyat mahu keadilan dan penyertaan dalam pentadbiran
+
+Analogi mudah
+- seperti seorang ketua yang mula-mula dipilih untuk membantu, tetapi kemudian memaksa semua orang ikut kehendaknya
+
+💡 Mudah Ingat
+Tirani = kuasa seorang yang zalim.
+
+5. Demokrasi
+Maksud
+- sistem pemerintahan yang memberi kuasa kepada rakyat
+
+Ciri-ciri
+- rakyat terlibat dalam membuat keputusan
+- ada perbincangan dan undian
+- lebih adil berbanding sistem sebelumnya
+
+Bagaimana sistem berfungsi
+- rakyat bersuara melalui dewan atau perhimpunan
+- pegawai dipilih untuk menjalankan tugas
+- keputusan dibuat secara majoriti
+
+Mengapa berlaku perubahan?
+- rakyat mahu hak bersuara
+- rakyat tidak mahu diperintah secara zalim
+- masyarakat mahu pentadbiran yang lebih adil dan terbuka
+
+Analogi mudah
+- seperti kelas yang membenarkan murid mengundi untuk memilih ketua kelas
+
+💡 Mudah Ingat
+Demokrasi = rakyat ada suara.
+
+Perbandingan sistem pemerintahan Yunani
+
+| Sistem | Siapa memerintah? | Ciri utama | Sebab berubah |
+| --- | --- | --- | --- |
+| Monarki | Raja | Kuasa diwarisi | Bangsawan mahu kuasa |
+| Oligarki | Kumpulan kecil | Kuasa terhad | Rakyat dan golongan lain tidak puas hati |
+| Aristokrasi | Bangsawan | Kuasa golongan elit | Rakyat mahukan perubahan |
+| Tirani | Seorang pemerintah | Pemerintah zalim | Rakyat mahukan keadilan |
+| Demokrasi | Rakyat | Kuasa rakyat | Inilah bentuk yang lebih adil dan terbuka |
+
+Mengapa perubahan ini penting?
+- menunjukkan masyarakat Yunani semakin matang
+- mengajar bahawa kuasa perlu ada had
+- membantu lahirnya idea demokrasi moden
+
+6.3 Tamadun Rom
+
+Latar belakang
+Tamadun Rom bermula di Semenanjung Itali.
+
+Lokasi
+- berkembang di Lembah Sungai Tiber
+- berhampiran Laut Mediterranean
+
+Mengapa di situ?
+- lokasi sesuai untuk perdagangan
+- kedudukan strategik untuk peluasan kuasa
+- mudah berhubung dengan kawasan lain di Mediterranean
+
+Perkembangan Tamadun Rom
+Tamadun Rom melalui tiga tahap utama:
+- Zaman Beraja
+- Zaman Republik
+- Zaman Empayar
+
+Zaman Beraja
+- Rom diperintah oleh raja
+- kuasa tertumpu pada pemerintah
+
+Zaman Republik
+- kuasa raja diganti dengan wakil rakyat dan pegawai
+- senat memainkan peranan penting
+
+Zaman Empayar
+- Rom menjadi empayar besar
+- pemerintah bergelar maharaja
+- zaman ini terkenal dengan Pax Romana, iaitu keamanan Rom
+
+Pemerintahan
+- pada awalnya beraja
+- kemudian republik
+- akhirnya empayar
+- sistem ini menunjukkan perkembangan politik yang sangat panjang
+
+Kehidupan masyarakat
+Masyarakat Rom terdiri daripada:
+- Patrician, iaitu golongan atasan
+- Plebeian, iaitu rakyat biasa seperti petani, pedagang dan artisan
+- Hamba
+
+Kehidupan harian:
+- golongan atasan memegang kuasa dan kekayaan
+- rakyat biasa bekerja dalam pertanian, perdagangan dan kraf
+- hamba melakukan kerja berat
+
+💡 Mudah Ingat
+Rom = beraja, republik, empayar.
+
+Fakta penting
+- Rom berkembang menjadi empayar besar di Mediterranean
+- Pax Romana membawa keamanan dan kestabilan
+
+6.4 Peningkatan Seni Bina dalam Tamadun Rom
+
+Seni bina Rom sangat maju kerana:
+- ada arkitek yang mahir
+- ada teknologi pembinaan seperti simen dan konkrit
+- ada ramai buruh
+- pemerintah mahu binaan yang besar dan megah
+
+1. Colosseum
+Apa itu
+- bangunan besar berbentuk arena untuk pertunjukan
+
+Fungsi
+- tempat pertarungan gladiator
+- tempat hiburan awam
+
+Keistimewaan
+- binaan sangat besar
+- boleh memuatkan ramai penonton
+- reka bentuknya sangat kukuh
+
+Kepentingan
+- menunjukkan kehebatan seni bina Rom
+- menjadi simbol kemegahan Rom
+
+Sumbangan kepada tamadun
+- memberi inspirasi kepada stadium dan arena moden
+
+2. Pantheon
+Apa itu
+- bangunan kuil besar bagi tujuan keagamaan
+
+Fungsi
+- tempat pemujaan dan sembahyang
+
+Keistimewaan
+- kubah besar
+- seni bina yang seimbang dan indah
+
+Kepentingan
+- membuktikan kebolehan Rom membina bangunan bertingkat tinggi dan berkubah besar
+
+Sumbangan kepada tamadun
+- mempengaruhi reka bentuk bangunan berkubah pada masa kini
+
+3. Amfiteater
+Apa itu
+- gelanggang terbuka berbentuk bulat atau bujur
+
+Fungsi
+- pertandingan dan hiburan awam
+
+Keistimewaan
+- susunan tempat duduk melingkari gelanggang
+- membolehkan ramai orang menonton
+
+Kepentingan
+- menunjukkan seni bina untuk kegunaan masyarakat ramai
+
+Sumbangan kepada tamadun
+- menjadi asas kepada arena dan stadium moden
+
+4. Akueduk
+Apa itu
+- saluran air yang membawa air dari tempat tinggi ke bandar
+
+Fungsi
+- membekalkan air bersih kepada penduduk
+
+Keistimewaan
+- dibina dengan cerun yang tepat
+- air mengalir dengan lancar melalui saluran
+
+Kepentingan
+- memastikan bandar sentiasa mempunyai bekalan air
+
+Sumbangan kepada tamadun
+- menjadi asas kepada sistem bekalan air moden
+
+5. Jalan raya
+Apa itu
+- jaringan jalan yang dibina untuk menghubungkan kawasan
+
+Fungsi
+- memudahkan pergerakan tentera, pedagang dan penduduk
+
+Keistimewaan
+- dibina lurus dan kukuh
+- tahan lama
+
+Kepentingan
+- memudahkan pentadbiran empayar yang luas
+
+Sumbangan kepada tamadun
+- mempengaruhi pembinaan jalan raya moden
+
+6. Tembok pertahanan
+Apa itu
+- binaan untuk melindungi kawasan daripada serangan musuh
+
+Fungsi
+- mempertahankan bandar dan empayar
+
+Keistimewaan
+- dibina kukuh
+- menjadi simbol kekuatan pertahanan
+
+Kepentingan
+- melindungi penduduk dan harta benda
+
+Sumbangan kepada tamadun
+- memberi idea kepada benteng dan kubu moden
+
+7. Tempat mandi awam
+Apa itu
+- tempat masyarakat mandi, berehat dan bersosial
+
+Fungsi
+- membersihkan badan
+- tempat bertemu dan berinteraksi
+
+Keistimewaan
+- ada bilik mandi, kolam air panas dan sejuk
+- direka untuk kegunaan ramai
+
+Kepentingan
+- menunjukkan kehidupan bandar yang maju
+
+Sumbangan kepada tamadun
+- memberi idea kepada kemudahan awam moden seperti pusat rekreasi
+
+Mengapa seni bina Rom penting?
+- menunjukkan kemahiran kejuruteraan tinggi
+- membantu kehidupan harian
+- menjadi warisan dunia hingga hari ini
+
+📦 Fakta Penting
+- Colosseum = arena hiburan
+- Pantheon = kuil berkubah
+- Akueduk = saluran bekalan air
+- Jalan raya Rom = kukuh dan lurus
+- Seni bina Rom mempengaruhi banyak bangunan moden
+
+💡 Tip Ingatan
+- \`C\`olosseum = \`C\`rowd / ramai penonton
+- \`P\`antheon = \`P\`enyembahan
+- \`A\`kueduk = \`A\`ir
+- \`J\`alan raya = \`J\`auh dan luas
+- \`T\`embok = \`T\`ahan serangan
+- \`M\`andi awam = \`M\`asyarakat
+
+⚠️ Kesilapan Lazim
+- menyangka polis ialah negara seluruh Greece
+- tertukar Athens dengan Sparta
+- menganggap demokrasi sama seperti tirani
+- lupa bahawa Rom berkembang melalui tiga tahap pemerintahan
+- menyamakan Colosseum dengan Pantheon
+
+🌍 Aplikasi Kehidupan
+Bab ini membantu kita memahami:
+- pentingnya hak rakyat dalam sistem pemerintahan
+- kepentingan jalan raya dan bekalan air
+- perlunya bangunan awam yang berfungsi
+- bagaimana idea lama masih mempengaruhi dunia moden
+
+📝 Ringkasan Bab
+Bab 6 menerangkan Tamadun Yunani dan Rom, perubahan sistem pemerintahan Yunani daripada monarki kepada demokrasi, perkembangan Tamadun Rom daripada beraja kepada empayar, dan peningkatan seni bina Rom seperti Colosseum, Pantheon dan akueduk. Banyak idea moden berasal daripada tamadun ini.
+
+🎯 Apa Yang Perlu Anda Ingat?
+- Yunani terkenal dengan polis, Athens dan Sparta
+- Sistem pemerintahan Yunani berubah beberapa kali
+- Demokrasi memberi kuasa kepada rakyat
+- Rom berkembang melalui zaman beraja, republik dan empayar
+- Seni bina Rom sangat maju dan mempengaruhi dunia moden
+- Setiap bangunan Rom ada fungsi dan kepentingan tersendiri
+
+🚀 Teruskan ke Kuiz
+Semak semula polis, sistem pemerintahan Yunani, perkembangan Rom dan binaan Rom.
+
+🚀 Teruskan ke Flashcard
+Ulang istilah penting seperti polis, monarki, oligarki, aristokrasi, tirani, demokrasi, Colosseum, Pantheon dan akueduk.`,
     keywords: [
       "Tamadun Yunani",
       "Tamadun Rom",

@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
-import { useSignInModal } from "@/context/sign-in-modal";
 import floatingAstronaut from "@/assets/hero landing/floating A.png";
 import cikguAiRobot from "@/assets/cikgu-ai-robot.png";
 import cikguBackground from "@/assets/backgroundcikgu.png";
@@ -32,8 +31,6 @@ const SUBJECTS = [
 ];
 
 export function CommandCenterHome() {
-  const { open: openSignIn } = useSignInModal();
-
   return (
     <div className="relative text-slate-100">
       <OrbitalBackdrop />
@@ -53,7 +50,7 @@ export function CommandCenterHome() {
         <MissionIntro />
         <FeatureBanner />
         <SubjectsGrid />
-        <CikguHelp onSignIn={openSignIn} />
+        <CikguHelp />
         <SocialProof />
         <NewsletterCTA />
       </div>
@@ -208,7 +205,7 @@ function SubjectsGrid() {
 
 /* ---------------- Cikgu Help ---------------- */
 
-function CikguHelp({ onSignIn }: { onSignIn: () => void }) {
+function CikguHelp() {
   return (
     <section className="grid items-center gap-12 lg:grid-cols-2">
       <div
@@ -249,13 +246,6 @@ function CikguHelp({ onSignIn }: { onSignIn: () => void }) {
             Try Cikgu now
             <ArrowRight className="h-4 w-4" />
           </Link>
-          <button
-            type="button"
-            onClick={onSignIn}
-            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-slate-100 hover:border-violet-400/60 hover:bg-violet-500/10 transition-colors"
-          >
-            Sign in to save chats
-          </button>
         </div>
       </div>
     </section>
