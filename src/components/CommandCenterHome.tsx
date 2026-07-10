@@ -16,7 +16,6 @@ import {
   ShieldCheck,
   Star,
 } from "lucide-react";
-import { UpgradePanel } from "@/components/command/UpgradePanel";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -54,7 +53,6 @@ export function CommandCenterHome() {
         <SubjectsGrid />
         <CikguHelp onSignIn={openSignIn} />
         <SocialProof />
-        <UpgradePanel />
         <NewsletterCTA />
       </div>
     </div>
