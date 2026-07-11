@@ -27,7 +27,6 @@ import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
-import { Route as CommandCenterPreviewRouteImport } from './routes/command-center-preview'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
@@ -128,11 +127,6 @@ const CompanionRoute = CompanionRouteImport.update({
   path: '/companion',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CommandCenterPreviewRoute = CommandCenterPreviewRouteImport.update({
-  id: '/command-center-preview',
-  path: '/command-center-preview',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -182,7 +176,6 @@ const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
-  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -211,7 +204,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -242,7 +234,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
-  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -274,7 +265,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
-    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -303,7 +293,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -333,7 +322,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
-    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -364,7 +352,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
-  CommandCenterPreviewRoute: typeof CommandCenterPreviewRoute
   CompanionRoute: typeof CompanionRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
@@ -515,13 +502,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/command-center-preview': {
-      id: '/command-center-preview'
-      path: '/command-center-preview'
-      fullPath: '/command-center-preview'
-      preLoaderRoute: typeof CommandCenterPreviewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -609,7 +589,6 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
-  CommandCenterPreviewRoute: CommandCenterPreviewRoute,
   CompanionRoute: CompanionRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
