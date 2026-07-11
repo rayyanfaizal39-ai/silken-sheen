@@ -1,18 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CommandCenterHome } from "@/components/CommandCenterHome";
+import { Landing } from "@/components/Landing";
 import { seoMeta } from "@/lib/seo";
 
-// Temporarily renders the same SSR-safe Landing page as /landing instead of
-// HomeDashboard. HomeDashboard pulls in the content registry + tracker stats
-// (@/content/registry, @/lib/tracker) through several of its child
-// components, and even after moving those to client-only dynamic imports
-// elsewhere, "/" specifically was still tripping Cloudflare's Worker
-// resource-limit error (1102) on cold start. Landing is already proven safe
-// here (see /landing route, confirmed working SSR with full metadata) and
-// has no dependency on that content data. HomeDashboard itself is untouched —
-// only this route's `component` changed, so nothing about the dashboard,
-// auth, or Supabase logic is affected. Revert this to restore HomeDashboard
-// on "/" once the underlying weight is fully resolved.
+// "/" is the canonical public SSR landing page. The authenticated student
+// homepage lives at "/home" (see src/routes/home.tsx) and the dashboard at
+// "/dashboard" — this route intentionally stays public marketing content.
 export const Route = createFileRoute("/")({
   head: () => seoMeta({
     title: "Malaysia's Interstellar Learning Platform — KSSM Form 1-3",
@@ -29,5 +21,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <CommandCenterHome />;
+  return <Landing />;
 }

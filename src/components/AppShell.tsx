@@ -34,7 +34,7 @@ const navItems = [
   {
     label: "Home",
     short: "Home",
-    to: "/",
+    to: "/home",
     icon: Home,
     accent: "#6366F1",
     accentGlow: "rgba(99,102,241,0.55)",
@@ -236,7 +236,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lastRankUp } = useProgress();
 
-  if (pathname.startsWith("/academy/") || pathname === "/landing") {
+  if (pathname.startsWith("/academy/") || pathname === "/") {
     return <>{children}</>;
   }
 

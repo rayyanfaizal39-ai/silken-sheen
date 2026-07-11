@@ -151,7 +151,7 @@ function RootComponent() {
   const isMarketingPage = pathname.startsWith("/academy/");
   // The floating music button doesn't belong on the marketing landing
   // page. ParticleBg/SoundFx are unaffected — only removing the button.
-  const isLandingPage = pathname === "/landing";
+  const isLandingPage = pathname === "/";
 
   return (
     <QueryClientProvider client={queryClient}>
