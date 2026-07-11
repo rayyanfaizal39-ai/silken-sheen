@@ -95,7 +95,7 @@ function PrivacyPage() {
           <ul className="ml-5 list-disc space-y-1.5">
             <li>To create and secure your account.</li>
             <li>To save and sync your quiz results, XP, streaks, and study progress across devices.</li>
-            <li>To show you a leaderboard rank and, where eligible, scholarship recognition.</li>
+            <li>To show you a leaderboard rank.</li>
             <li>To generate optional parent/guardian progress reports, when configured.</li>
             <li>To operate, maintain, and improve the Service.</li>
           </ul>

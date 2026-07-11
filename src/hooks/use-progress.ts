@@ -134,7 +134,7 @@ export interface Progress {
   equippedTitle?: string; // Explorer Title id shown on the profile
   seenCollectibles?: string[]; // collectible ids already celebrated
   displayName?: string; // name shown on the Hall of Fame leaderboard
-  school?: string; // school used in scholarship nominations
+  school?: string; // school shown on the Hall of Fame leaderboard
 }
 
 export interface LastVisited {

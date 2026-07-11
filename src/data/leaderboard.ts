@@ -1,4 +1,4 @@
-// ─── Hall of Fame cohort + scholarship config ────────────────────────────────────
+// ─── Hall of Fame cohort ────────────────────────────────────────────────────
 // Until cross-user cloud sync is connected, the leaderboard blends this seeded
 // cohort with the real local student so the feature is fully functional (top 100).
 
@@ -122,10 +122,3 @@ export const COHORT: CohortStudent[] = [
   { id: "c98", name: "Nadiyah binti Hashim",          school: "SMK Sri Aman",        xp:    0 },
   { id: "c99", name: "Azmi bin Saad",                 school: "SMK Kepong",          xp:    0 },
 ];
-
-/** Students ranked within the top N are recognised + put forward for scholarships. */
-export const SCHOLARSHIP_TOP_N = 5;
-/** Minimum XP to be a credible scholarship nominee. */
-export const SCHOLARSHIP_MIN_XP = 1000;
-/** Where nominations are emailed (placeholder coordinator inbox). */
-export const SCHOLARSHIP_COORDINATOR_EMAIL = "scholarships@academy.my";
