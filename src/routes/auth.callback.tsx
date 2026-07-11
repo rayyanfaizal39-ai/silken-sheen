@@ -25,7 +25,7 @@ function AuthCallbackPage() {
     });
     if (!loading && user) {
       console.info("[Auth] OAuth callback complete; navigating home");
-      void navigate({ to: "/", replace: true });
+      void navigate({ to: "/home", replace: true });
     }
   }, [loading, navigate, session, user]);
 

@@ -1404,6 +1404,8 @@ Ciri-ciri polis
 - ada sistem pemerintahan sendiri
 - ada pusat pentadbiran, pasar dan tempat ibadat
 - polis biasanya dikelilingi oleh kawasan pertahanan
+- Acropolis ialah kawasan tinggi yang menjadi pusat pertahanan dan keagamaan
+- Agora ialah kawasan terbuka yang menjadi tempat perhimpunan dan perdagangan
 
 Contoh polis terkenal:
 - Athens
@@ -1669,6 +1671,8 @@ Keistimewaan
 - binaan sangat besar
 - boleh memuatkan ramai penonton
 - reka bentuknya sangat kukuh
+- mempunyai ruang duduk berlapis-lapis untuk penonton
+- berbentuk elips supaya semua orang dapat melihat pertunjukan dengan lebih baik
 
 Kepentingan
 - menunjukkan kehebatan seni bina Rom
@@ -1687,6 +1691,7 @@ Fungsi
 Keistimewaan
 - kubah besar
 - seni bina yang seimbang dan indah
+- mempunyai oculus di bahagian atas kubah untuk memasukkan cahaya
 
 Kepentingan
 - membuktikan kebolehan Rom membina bangunan bertingkat tinggi dan berkubah besar
@@ -1721,6 +1726,7 @@ Fungsi
 Keistimewaan
 - dibina dengan cerun yang tepat
 - air mengalir dengan lancar melalui saluran
+- menggunakan gerbang batu yang kuat untuk menyokong struktur
 
 Kepentingan
 - memastikan bandar sentiasa mempunyai bekalan air
@@ -1755,6 +1761,7 @@ Fungsi
 Keistimewaan
 - dibina kukuh
 - menjadi simbol kekuatan pertahanan
+- contoh terkenal ialah Tembok Hadrian di Britain
 
 Kepentingan
 - melindungi penduduk dan harta benda
@@ -1773,6 +1780,7 @@ Fungsi
 Keistimewaan
 - ada bilik mandi, kolam air panas dan sejuk
 - direka untuk kegunaan ramai
+- tempat ini juga dikenali sebagai thermae dalam tamadun Rom
 
 Kepentingan
 - menunjukkan kehidupan bandar yang maju

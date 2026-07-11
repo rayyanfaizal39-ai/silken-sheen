@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Sparkles } from "lucide-react";
 
 const links = [
-  { to: "/", label: "Home" },
+  { to: "/home", label: "Home" },
   { to: "/subjects", label: "Subjects" },
   { to: "/notes", label: "Notes" },
   { to: "/mindmaps", label: "Mind Maps" },

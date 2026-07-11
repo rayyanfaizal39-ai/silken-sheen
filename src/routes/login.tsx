@@ -79,7 +79,7 @@ function LoginPage() {
   // If already logged in, go home
   useEffect(() => {
     if (!loading && user) {
-      void navigate({ to: "/" });
+      void navigate({ to: "/home" });
     }
   }, [user, loading, navigate]);
 
