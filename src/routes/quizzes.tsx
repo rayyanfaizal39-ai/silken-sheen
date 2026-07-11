@@ -80,7 +80,7 @@ import {
   type EnglishQuizSetIdF3,
   type EnglishQuizSetMetaF3,
 } from "@/data/english-f3-quiz-sets";
-import { seoMeta } from "@/lib/seo";
+import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 
 export const Route = createFileRoute("/quizzes")({
@@ -91,15 +91,30 @@ export const Route = createFileRoute("/quizzes")({
     const description = subjectName
       ? `${subjectName} KSSM quiz for Form 1-3 with instant scoring — Easy, Medium and Hard difficulty, XP rewards.`
       : "Interactive KSSM quizzes with instant scoring — Easy, Medium and Hard difficulty across Science, Math, English, Bahasa Melayu, Sejarah and Geografi.";
+    const crumbs = [
+      { name: "Home", path: "/" },
+      { name: "Quizzes", path: "/quizzes" },
+    ];
+    if (subjectName) crumbs.push({ name: subjectName, path: `/quizzes?subject=${subjectId}` });
     return seoMeta({
       title,
       description,
       path: "/quizzes",
       keywords: ["KSSM quiz", "PT3 preparation", "SPM preparation", "Form 1 quiz", ...subjectSeoKeywords(subjectId)],
+      jsonLd: [
+        courseJsonLd({
+          name: subjectName ? `${subjectName} KSSM Quiz Practice (Form 1-3)` : "KSSM Quiz Practice — Form 1-3",
+          description,
+          path: subjectName ? `/quizzes?subject=${subjectId}` : "/quizzes",
+          subjectName: subjectName ?? undefined,
+        }),
+        breadcrumbJsonLd(crumbs),
+      ],
     });
   },
   component: QuizzesPage,
 });
+
 
 const diffs: ("All" | Difficulty)[] = ["All", "Easy", "Medium", "Hard"];
 const CORRECT_MSGS = ["Hebat! 🔥", "Betul! ⚡", "Awesome! 🌟", "Bagus! 💫", "Power! 🚀"];

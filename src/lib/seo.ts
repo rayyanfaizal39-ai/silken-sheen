@@ -21,6 +21,8 @@ export interface SeoOptions {
   ogType?: string;
   /** Set true to suppress indexing (e.g. auth-gated or duplicate-content pages). */
   noindex?: boolean;
+  /** Optional JSON-LD objects rendered as <script type="application/ld+json"> in <head>. */
+  jsonLd?: Array<Record<string, unknown>>;
 }
 
 export function seoMeta({
@@ -31,6 +33,7 @@ export function seoMeta({
   image = DEFAULT_OG_IMAGE,
   ogType = "website",
   noindex = false,
+  jsonLd,
 }: SeoOptions) {
   const fullTitle = `${title} — ${SITE_NAME}`;
   const url = `${SITE_URL}${path}`;
@@ -59,8 +62,66 @@ export function seoMeta({
     { name: "twitter:image", content: image },
   );
 
-  return {
+  const result: {
+    meta: Array<Record<string, string>>;
+    links: Array<Record<string, string>>;
+    scripts?: Array<{ type: string; children: string }>;
+  } = {
     meta,
     links: [{ rel: "canonical", href: url }],
   };
+
+  if (jsonLd && jsonLd.length > 0) {
+    result.scripts = jsonLd.map((data) => ({
+      type: "application/ld+json",
+      children: JSON.stringify(data),
+    }));
+  }
+
+  return result;
 }
+
+/** Build a schema.org BreadcrumbList from ordered {name, path} crumbs. */
+export function breadcrumbJsonLd(
+  crumbs: Array<{ name: string; path: string }>,
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      item: `${SITE_URL}${c.path}`,
+    })),
+  };
+}
+
+/** Build a schema.org Course for a KSSM subject/resource page. */
+export function courseJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+  subjectName?: string;
+}): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: input.name,
+    description: input.description,
+    url: `${SITE_URL}${input.path}`,
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      sameAs: SITE_URL,
+    },
+    inLanguage: ["en", "ms"],
+    educationalLevel: "Secondary (KSSM Form 1-3)",
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "student",
+    },
+    ...(input.subjectName ? { about: input.subjectName } : {}),
+  };
+}
+

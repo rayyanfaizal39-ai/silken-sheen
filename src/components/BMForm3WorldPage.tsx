@@ -11,8 +11,21 @@ import {
 } from "@/data/bm-form3-structure";
 import { Kertas2HubGrid } from "@/components/Kertas2FolderTemplate";
 import { ComingSoonScreen } from "@/components/ChapterPicker";
-import { BMForm3SistemBahasaTopic } from "@/components/BMForm3SistemBahasaTopic";
-import { BM_FORM3_SISTEM_BAHASA_TOPICS, type TopicSlug } from "@/data/bm-form3-sistem-bahasa";
+import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
+import { getBMForm3SistemBahasaContent } from "@/data/bm-form3-sistem-bahasa-content";
+import type { TopicSlug } from "@/data/bm-form3-sistem-bahasa";
+import {
+  BMForm2KomsasWorkStructure,
+  BMForm2NovelStructure,
+  BMKomsasPlaceholderWorkStructure,
+  BMKomsasStructure,
+} from "@/components/BMForm2KomsasStructure";
+import {
+  BM_FORM3_KOMSAS_CATEGORIES,
+  BM_FORM3_KOMSAS_WORKS,
+  getBMForm3KomsasWork,
+} from "@/data/bm-form3-komsas-structure";
+import { BM_FORM3_NOVEL_WORKS, getBMForm3NovelWork } from "@/data/bm-form3-novel-structure";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -125,7 +138,10 @@ function LandingView({
 
       <div className="mt-6 grid grid-cols-3 gap-3">
         {[
-          { label: "Hub Belajar", value: `${BM_FORM3_KERTAS.reduce((s, k) => s + k.hubs.length, 0)}` },
+          {
+            label: "Hub Belajar",
+            value: `${BM_FORM3_KERTAS.reduce((s, k) => s + k.hubs.length, 0)}`,
+          },
           { label: "Format Ringkas", value: "Ready" },
           { label: "Kertas UASA", value: "2" },
         ].map((stat) => (
@@ -185,7 +201,10 @@ function KertasCard({ kertas, onSelect }: { kertas: BMForm3Kertas; onSelect: () 
 
         <div className="flex items-center justify-between">
           <span className="text-xs text-white/30">{kertas.hubs.length} hub</span>
-          <span className="flex items-center gap-1 text-xs font-bold" style={{ color: kertas.color }}>
+          <span
+            className="flex items-center gap-1 text-xs font-bold"
+            style={{ color: kertas.color }}
+          >
             Mula Belajar
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </span>
@@ -228,7 +247,7 @@ function HubCard({ hub, onSelect }: { hub: BMForm3Hub; onSelect: () => void }) {
             className="rounded-full px-2 py-0.5 text-[10px] font-bold"
             style={{ background: `${hub.color}18`, color: hub.color }}
           >
-            {hub.topics.length > 0 ? `${hub.topics.length} topik` : "Coming Soon"}
+            {hub.topics.length} topik
           </span>
           <ArrowRight
             className="h-3.5 w-3.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
@@ -252,7 +271,11 @@ function KertasView({
   if (kertas.id === "k2") {
     return (
       <div>
-        <PageHeader breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.label]} onBack={onBack} accent={kertas.color} />
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.label]}
+          onBack={onBack}
+          accent={kertas.color}
+        />
         <Kertas2HubGrid
           hubs={kertas.hubs.map((hub) => ({
             id: hub.id,
@@ -260,7 +283,7 @@ function KertasView({
             description: hub.description,
             icon: hub.icon,
             color: hub.color,
-            count: "Coming Soon",
+            count: `${hub.topics.length} topik`,
           }))}
           onSelect={onSelectHub}
         />
@@ -270,7 +293,11 @@ function KertasView({
 
   return (
     <div>
-      <PageHeader breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.label]} onBack={onBack} accent={kertas.color} />
+      <PageHeader
+        breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.label]}
+        onBack={onBack}
+        accent={kertas.color}
+      />
 
       <div className="mb-6">
         <div
@@ -323,6 +350,14 @@ function TopicCard({
         {String(index).padStart(2, "0")}
       </div>
       <div className="min-w-0 flex-1">
+        <div className="mb-1 flex items-center gap-2">
+          <span
+            className="text-[9px] font-black tracking-wide"
+            style={{ color: hubColor, opacity: 0.7 }}
+          >
+            Tatabahasa
+          </span>
+        </div>
         <p className="truncate text-sm font-semibold text-white">{topic.label}</p>
       </div>
       <ArrowRight
@@ -344,27 +379,6 @@ function HubView({
   onSelectTopic: (topicId: string) => void;
   onBack: () => void;
 }) {
-  const groupedTopics = [
-    {
-      heading: "GOLONGAN KATA",
-      topics: ["Kata Nama", "Kata Kerja", "Kata Adjektif", "Kata Tugas"],
-    },
-    {
-      heading: "PEMBENTUKAN & BINAAN BAHASA",
-      topics: ["Morfologi", "Imbuhan", "Frasa", "Sintaksis", "Pola Ayat"],
-    },
-    {
-      heading: "KETEPATAN BAHASA",
-      topics: ["Kesalahan Bahasa", "Kesalahan Ejaan & Tanda Baca"],
-    },
-    {
-      heading: "PENGAYAAN BAHASA",
-      topics: ["Kosa Kata", "Peribahasa"],
-    },
-  ];
-
-  const topicByLabel = new Map(hub.topics.map((item) => [item.label, item]));
-
   return (
     <div>
       <PageHeader
@@ -386,44 +400,30 @@ function HubView({
         </div>
       </div>
 
-      <div className="space-y-6">
-        {hub.id === "sistem-bahasa" ? (
-          groupedTopics.map((group) => (
-            <div key={group.heading}>
-              <SectionLabel>{group.heading}</SectionLabel>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {group.topics
-                  .map((label) => topicByLabel.get(label))
-                  .filter((topic): topic is BMForm3Topic => !!topic)
-                  .map((topic, idx) => (
-                    <TopicCard
-                      key={topic.id}
-                      topic={topic}
-                      index={idx + 1}
-                      hubColor={hub.color}
-                      onSelect={() => onSelectTopic(topic.id)}
-                    />
-                  ))}
-              </div>
-            </div>
-          ))
-        ) : (
-          <>
-            <SectionLabel>Topik dalam {hub.label}</SectionLabel>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {hub.topics.map((topic, idx) => (
-                <TopicCard
-                  key={topic.id}
-                  topic={topic}
-                  index={idx + 1}
-                  hubColor={hub.color}
-                  onSelect={() => onSelectTopic(topic.id)}
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
+      {hub.id === "komsas" ? (
+        <BMKomsasStructure
+          categories={BM_FORM3_KOMSAS_CATEGORIES}
+          works={BM_FORM3_KOMSAS_WORKS}
+          onSelectWork={onSelectTopic}
+        />
+      ) : hub.id === "novel" ? (
+        <BMForm2NovelStructure works={BM_FORM3_NOVEL_WORKS} onSelectWork={onSelectTopic} />
+      ) : (
+        <>
+          <SectionLabel>Topik dalam {hub.label}</SectionLabel>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {hub.topics.map((topic, idx) => (
+              <TopicCard
+                key={topic.id}
+                topic={topic}
+                index={idx + 1}
+                hubColor={hub.color}
+                onSelect={() => onSelectTopic(topic.id)}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -455,7 +455,9 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
       ? getBMForm3Hub(screen.kertasId, screen.hubId)
       : undefined;
   const topic =
-    screen.type === "topic" ? getBMForm3Topic(screen.kertasId, screen.hubId, screen.topicId) : undefined;
+    screen.type === "topic"
+      ? getBMForm3Topic(screen.kertasId, screen.hubId, screen.topicId)
+      : undefined;
 
   return (
     <div
@@ -464,7 +466,10 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
     >
       <div className="mx-auto max-w-4xl">
         {screen.type === "landing" && (
-          <LandingView onSelectKertas={(kertasId) => push({ type: "kertas", kertasId })} onBack={onBack} />
+          <LandingView
+            onSelectKertas={(kertasId) => push({ type: "kertas", kertasId })}
+            onBack={onBack}
+          />
         )}
 
         {screen.type === "kertas" && kertas && (
@@ -486,55 +491,92 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
           <HubView
             kertas={kertas}
             hub={hub}
-            onSelectTopic={(topicId) => push({ type: "topic", kertasId: kertas.id, hubId: hub.id, topicId })}
+            onSelectTopic={(topicId) =>
+              push({ type: "topic", kertasId: kertas.id, hubId: hub.id, topicId })
+            }
             onBack={pop}
           />
         )}
 
-        {screen.type === "topic" && kertas && hub && topic && hub.id === "sistem-bahasa" && (
-          <BMForm3SistemBahasaTopic
-            slug={topic.id as TopicSlug}
-            title={topic.label}
-            onBack={pop}
-            onPrevious={
-              BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) > 0
-                ? () => push({
-                    type: "topic",
-                    kertasId: kertas.id,
-                    hubId: hub.id,
-                    topicId:
-                      BM_FORM3_SISTEM_BAHASA_TOPICS[
-                        BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) - 1
-                      ].slug,
-                  })
-                : undefined
-            }
-            onNext={
-              BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) <
-              BM_FORM3_SISTEM_BAHASA_TOPICS.length - 1
-                ? () =>
-                    push({
-                      type: "topic",
-                      kertasId: kertas.id,
-                      hubId: hub.id,
-                      topicId:
-                        BM_FORM3_SISTEM_BAHASA_TOPICS[
-                          BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) + 1
-                        ].slug,
-                    })
-                : undefined
-            }
-          />
-        )}
+        {screen.type === "topic" &&
+          kertas &&
+          hub &&
+          topic &&
+          hub.id === "sistem-bahasa" &&
+          (() => {
+            const content = getBMForm3SistemBahasaContent(topic.id as TopicSlug);
+            return content ? <SistemBahasaTopicDetail topic={content} onBack={pop} /> : null;
+          })()}
 
         {screen.type === "topic" && kertas && hub && topic && hub.id !== "sistem-bahasa" && (
           <div>
             <PageHeader
-              breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label, topic.label]}
+              breadcrumb={[
+                "Bahasa Melayu",
+                "Tingkatan 3",
+                kertas.shortLabel,
+                hub.label,
+                topic.label,
+              ]}
               onBack={pop}
               accent={hub.color}
             />
-            <ComingSoonScreen subjectId="bm" chapterKey={topic.label} form="Form 3" onBack={pop} />
+            {hub.id === "komsas" ? (
+              (() => {
+                const work = getBMForm3KomsasWork(topic.id);
+                if (!work) return null;
+                const index = BM_FORM3_KOMSAS_WORKS.findIndex((w) => w.id === work.id);
+                const previousWork = index > 0 ? BM_FORM3_KOMSAS_WORKS[index - 1] : undefined;
+                const nextWork =
+                  index >= 0 && index < BM_FORM3_KOMSAS_WORKS.length - 1
+                    ? BM_FORM3_KOMSAS_WORKS[index + 1]
+                    : undefined;
+                return (
+                  <BMKomsasPlaceholderWorkStructure
+                    work={work}
+                    formLabel="Tingkatan 3"
+                    onBackToCategory={pop}
+                    backLabel="Kembali ke KOMSAS"
+                    previousLabel={previousWork?.title}
+                    onPrevious={
+                      previousWork
+                        ? () =>
+                            push({
+                              type: "topic",
+                              kertasId: "k1",
+                              hubId: "komsas",
+                              topicId: previousWork.id,
+                            })
+                        : undefined
+                    }
+                    nextLabel={nextWork?.title}
+                    onNext={
+                      nextWork
+                        ? () =>
+                            push({
+                              type: "topic",
+                              kertasId: "k1",
+                              hubId: "komsas",
+                              topicId: nextWork.id,
+                            })
+                        : undefined
+                    }
+                  />
+                );
+              })()
+            ) : hub.id === "novel" ? (
+              (() => {
+                const novel = getBMForm3NovelWork(topic.id);
+                return novel ? <BMForm2KomsasWorkStructure work={novel} /> : null;
+              })()
+            ) : (
+              <ComingSoonScreen
+                subjectId="bm"
+                chapterKey={topic.label}
+                form="Form 3"
+                onBack={pop}
+              />
+            )}
           </div>
         )}
       </div>

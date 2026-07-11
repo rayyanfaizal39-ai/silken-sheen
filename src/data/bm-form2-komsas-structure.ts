@@ -5,6 +5,7 @@ export interface Form2KomsasWork {
   title: string;
   category: string;
   kind: Form2KomsasKind;
+  author?: string;
 }
 
 export const BM_FORM2_KOMSAS_CATEGORIES = [
