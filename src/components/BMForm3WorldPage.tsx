@@ -11,6 +11,8 @@ import {
 } from "@/data/bm-form3-structure";
 import { Kertas2HubGrid } from "@/components/Kertas2FolderTemplate";
 import { ComingSoonScreen } from "@/components/ChapterPicker";
+import { BMForm3SistemBahasaTopic } from "@/components/BMForm3SistemBahasaTopic";
+import { BM_FORM3_SISTEM_BAHASA_TOPICS, type TopicSlug } from "@/data/bm-form3-sistem-bahasa";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -342,6 +344,27 @@ function HubView({
   onSelectTopic: (topicId: string) => void;
   onBack: () => void;
 }) {
+  const groupedTopics = [
+    {
+      heading: "GOLONGAN KATA",
+      topics: ["Kata Nama", "Kata Kerja", "Kata Adjektif", "Kata Tugas"],
+    },
+    {
+      heading: "PEMBENTUKAN & BINAAN BAHASA",
+      topics: ["Morfologi", "Imbuhan", "Frasa", "Sintaksis", "Pola Ayat"],
+    },
+    {
+      heading: "KETEPATAN BAHASA",
+      topics: ["Kesalahan Bahasa", "Kesalahan Ejaan & Tanda Baca"],
+    },
+    {
+      heading: "PENGAYAAN BAHASA",
+      topics: ["Kosa Kata", "Peribahasa"],
+    },
+  ];
+
+  const topicByLabel = new Map(hub.topics.map((item) => [item.label, item]));
+
   return (
     <div>
       <PageHeader
@@ -363,17 +386,43 @@ function HubView({
         </div>
       </div>
 
-      <SectionLabel>Topik dalam {hub.label}</SectionLabel>
-      <div className="grid gap-3 sm:grid-cols-2">
-        {hub.topics.map((topic, idx) => (
-          <TopicCard
-            key={topic.id}
-            topic={topic}
-            index={idx + 1}
-            hubColor={hub.color}
-            onSelect={() => onSelectTopic(topic.id)}
-          />
-        ))}
+      <div className="space-y-6">
+        {hub.id === "sistem-bahasa" ? (
+          groupedTopics.map((group) => (
+            <div key={group.heading}>
+              <SectionLabel>{group.heading}</SectionLabel>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {group.topics
+                  .map((label) => topicByLabel.get(label))
+                  .filter((topic): topic is BMForm3Topic => !!topic)
+                  .map((topic, idx) => (
+                    <TopicCard
+                      key={topic.id}
+                      topic={topic}
+                      index={idx + 1}
+                      hubColor={hub.color}
+                      onSelect={() => onSelectTopic(topic.id)}
+                    />
+                  ))}
+              </div>
+            </div>
+          ))
+        ) : (
+          <>
+            <SectionLabel>Topik dalam {hub.label}</SectionLabel>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {hub.topics.map((topic, idx) => (
+                <TopicCard
+                  key={topic.id}
+                  topic={topic}
+                  index={idx + 1}
+                  hubColor={hub.color}
+                  onSelect={() => onSelectTopic(topic.id)}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -442,23 +491,50 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
           />
         )}
 
-        {screen.type === "topic" && kertas && hub && (
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "sistem-bahasa" && (
+          <BMForm3SistemBahasaTopic
+            slug={topic.id as TopicSlug}
+            title={topic.label}
+            onBack={pop}
+            onPrevious={
+              BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) > 0
+                ? () => push({
+                    type: "topic",
+                    kertasId: kertas.id,
+                    hubId: hub.id,
+                    topicId:
+                      BM_FORM3_SISTEM_BAHASA_TOPICS[
+                        BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) - 1
+                      ].slug,
+                  })
+                : undefined
+            }
+            onNext={
+              BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) <
+              BM_FORM3_SISTEM_BAHASA_TOPICS.length - 1
+                ? () =>
+                    push({
+                      type: "topic",
+                      kertasId: kertas.id,
+                      hubId: hub.id,
+                      topicId:
+                        BM_FORM3_SISTEM_BAHASA_TOPICS[
+                          BM_FORM3_SISTEM_BAHASA_TOPICS.findIndex((entry) => entry.slug === topic.id) + 1
+                        ].slug,
+                    })
+                : undefined
+            }
+          />
+        )}
+
+        {screen.type === "topic" && kertas && hub && topic && hub.id !== "sistem-bahasa" && (
           <div>
             <PageHeader
-              breadcrumb={
-                topic
-                  ? ["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label, topic.label]
-                  : ["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label]
-              }
+              breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label, topic.label]}
               onBack={pop}
               accent={hub.color}
             />
-            <ComingSoonScreen
-              subjectId="bm"
-              chapterKey={topic ? topic.label : hub.label}
-              form="Form 3"
-              onBack={pop}
-            />
+            <ComingSoonScreen subjectId="bm" chapterKey={topic.label} form="Form 3" onBack={pop} />
           </div>
         )}
       </div>
