@@ -142,7 +142,7 @@ function resourceTypeForMode(mode: LearningMode): ResourceType {
 function hasCustomFormResourceContent(subjectId: string, form: Form, mode: LearningMode) {
   if (subjectId !== "bm") return false;
 
-  if (mode === "notes") return form === "Form 1" || form === "Form 2";
+  if (mode === "notes") return form === "Form 1" || form === "Form 2" || form === "Form 3";
   return mode === "quizzes" && (form === "Form 1" || form === "Form 2" || form === "Form 3");
 }
 

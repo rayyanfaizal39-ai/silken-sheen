@@ -39,6 +39,7 @@ import {
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { BMForm2WorldPage } from "@/components/BMForm2WorldPage";
+import { BMForm3WorldPage } from "@/components/BMForm3WorldPage";
 import geographyArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 10_59_37 AM.png";
 import bmArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_15 AM.png";
 import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_47 AM.png";
@@ -270,6 +271,19 @@ function NotesPage() {
   if (subject === "bm" && form === "Form 2" && !activeChapterKey) {
     return (
       <BMForm2WorldPage
+        onBack={() => {
+          setChapter(null);
+          void navigate({
+            search: (previous: Record<string, unknown>) => ({ ...previous, subject: undefined }),
+          });
+        }}
+      />
+    );
+  }
+
+  if (subject === "bm" && form === "Form 3" && !activeChapterKey) {
+    return (
+      <BMForm3WorldPage
         onBack={() => {
           setChapter(null);
           void navigate({
