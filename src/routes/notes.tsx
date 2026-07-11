@@ -46,8 +46,9 @@ import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_
 import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
 import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
 import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
-import { seoMeta } from "@/lib/seo";
+import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
+
 
 
 const searchSchema = z.object({
@@ -74,13 +75,28 @@ export const Route = createFileRoute("/notes")({
     const description = subjectName
       ? `${subjectName} KSSM notes for Form 1-3 — clear, exam-focused summaries with highlighted key points.`
       : "Bite-sized KSSM notes by subject, form, and chapter — Science, Math, English, Bahasa Melayu, Sejarah and Geografi for Form 1-3.";
+    const crumbs = [
+      { name: "Home", path: "/" },
+      { name: "Notes", path: "/notes" },
+    ];
+    if (subjectName) crumbs.push({ name: subjectName, path: `/notes?subject=${match.search.subject}` });
     return seoMeta({
       title,
       description,
       path: "/notes",
       keywords: ["KSSM notes", "Form 1 notes", "Form 2 notes", "Form 3 notes", ...subjectSeoKeywords(match.search.subject)],
+      jsonLd: [
+        courseJsonLd({
+          name: subjectName ? `${subjectName} KSSM Notes (Form 1-3)` : "KSSM Notes — Form 1-3",
+          description,
+          path: subjectName ? `/notes?subject=${match.search.subject}` : "/notes",
+          subjectName: subjectName ?? undefined,
+        }),
+        breadcrumbJsonLd(crumbs),
+      ],
     });
   },
+
   component: NotesPage,
 });
 
