@@ -46,8 +46,9 @@ import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_
 import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
 import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
 import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
-import { seoMeta } from "@/lib/seo";
+import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
+
 
 
 const searchSchema = z.object({
