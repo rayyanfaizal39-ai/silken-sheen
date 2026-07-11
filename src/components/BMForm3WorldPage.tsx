@@ -14,6 +14,15 @@ import { ComingSoonScreen } from "@/components/ChapterPicker";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import { getBMForm3SistemBahasaContent } from "@/data/bm-form3-sistem-bahasa-content";
 import type { TopicSlug } from "@/data/bm-form3-sistem-bahasa";
+import {
+  BMKomsasPlaceholderWorkStructure,
+  BMKomsasStructure,
+} from "@/components/BMForm2KomsasStructure";
+import {
+  BM_FORM3_KOMSAS_CATEGORIES,
+  BM_FORM3_KOMSAS_WORKS,
+  getBMForm3KomsasWork,
+} from "@/data/bm-form3-komsas-structure";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -388,18 +397,28 @@ function HubView({
         </div>
       </div>
 
-      <SectionLabel>Topik dalam {hub.label}</SectionLabel>
-      <div className="grid gap-3 sm:grid-cols-2">
-        {hub.topics.map((topic, idx) => (
-          <TopicCard
-            key={topic.id}
-            topic={topic}
-            index={idx + 1}
-            hubColor={hub.color}
-            onSelect={() => onSelectTopic(topic.id)}
-          />
-        ))}
-      </div>
+      {hub.id === "komsas" ? (
+        <BMKomsasStructure
+          categories={BM_FORM3_KOMSAS_CATEGORIES}
+          works={BM_FORM3_KOMSAS_WORKS}
+          onSelectWork={onSelectTopic}
+        />
+      ) : (
+        <>
+          <SectionLabel>Topik dalam {hub.label}</SectionLabel>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {hub.topics.map((topic, idx) => (
+              <TopicCard
+                key={topic.id}
+                topic={topic}
+                index={idx + 1}
+                hubColor={hub.color}
+                onSelect={() => onSelectTopic(topic.id)}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -497,7 +516,57 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
               onBack={pop}
               accent={hub.color}
             />
-            <ComingSoonScreen subjectId="bm" chapterKey={topic.label} form="Form 3" onBack={pop} />
+            {hub.id === "komsas" ? (
+              (() => {
+                const work = getBMForm3KomsasWork(topic.id);
+                if (!work) return null;
+                const index = BM_FORM3_KOMSAS_WORKS.findIndex((w) => w.id === work.id);
+                const previousWork = index > 0 ? BM_FORM3_KOMSAS_WORKS[index - 1] : undefined;
+                const nextWork =
+                  index >= 0 && index < BM_FORM3_KOMSAS_WORKS.length - 1
+                    ? BM_FORM3_KOMSAS_WORKS[index + 1]
+                    : undefined;
+                return (
+                  <BMKomsasPlaceholderWorkStructure
+                    work={work}
+                    formLabel="Tingkatan 3"
+                    onBackToCategory={pop}
+                    backLabel="Kembali ke KOMSAS"
+                    previousLabel={previousWork?.title}
+                    onPrevious={
+                      previousWork
+                        ? () =>
+                            push({
+                              type: "topic",
+                              kertasId: "k1",
+                              hubId: "komsas",
+                              topicId: previousWork.id,
+                            })
+                        : undefined
+                    }
+                    nextLabel={nextWork?.title}
+                    onNext={
+                      nextWork
+                        ? () =>
+                            push({
+                              type: "topic",
+                              kertasId: "k1",
+                              hubId: "komsas",
+                              topicId: nextWork.id,
+                            })
+                        : undefined
+                    }
+                  />
+                );
+              })()
+            ) : (
+              <ComingSoonScreen
+                subjectId="bm"
+                chapterKey={topic.label}
+                form="Form 3"
+                onBack={pop}
+              />
+            )}
           </div>
         )}
       </div>
