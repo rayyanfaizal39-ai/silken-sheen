@@ -15,6 +15,8 @@ import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import { getBMForm3SistemBahasaContent } from "@/data/bm-form3-sistem-bahasa-content";
 import type { TopicSlug } from "@/data/bm-form3-sistem-bahasa";
 import {
+  BMForm2KomsasWorkStructure,
+  BMForm2NovelStructure,
   BMKomsasPlaceholderWorkStructure,
   BMKomsasStructure,
 } from "@/components/BMForm2KomsasStructure";
@@ -23,6 +25,7 @@ import {
   BM_FORM3_KOMSAS_WORKS,
   getBMForm3KomsasWork,
 } from "@/data/bm-form3-komsas-structure";
+import { BM_FORM3_NOVEL_WORKS, getBMForm3NovelWork } from "@/data/bm-form3-novel-structure";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -403,6 +406,8 @@ function HubView({
           works={BM_FORM3_KOMSAS_WORKS}
           onSelectWork={onSelectTopic}
         />
+      ) : hub.id === "novel" ? (
+        <BMForm2NovelStructure works={BM_FORM3_NOVEL_WORKS} onSelectWork={onSelectTopic} />
       ) : (
         <>
           <SectionLabel>Topik dalam {hub.label}</SectionLabel>
@@ -558,6 +563,11 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
                     }
                   />
                 );
+              })()
+            ) : hub.id === "novel" ? (
+              (() => {
+                const novel = getBMForm3NovelWork(topic.id);
+                return novel ? <BMForm2KomsasWorkStructure work={novel} /> : null;
               })()
             ) : (
               <ComingSoonScreen

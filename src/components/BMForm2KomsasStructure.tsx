@@ -66,6 +66,8 @@ import { LEGASI_TAPAI_UBI } from "@/data/bm-form3-legasi-tapai-ubi";
 import { SEKEPING_TANAH } from "@/data/bm-form3-sekeping-tanah";
 import { BAWOD } from "@/data/bm-form3-bawod";
 import { TENANG_TENANG_AIR_DI_TASIK } from "@/data/bm-form3-tenang-tenang-air-di-tasik";
+import { BM_FORM3_NOVEL_WORKS } from "@/data/bm-form3-novel-structure";
+import { BMForm3NovelContent } from "@/components/BMForm3NovelContent";
 
 const ACCENT = "#C084FC";
 const FOCUS_ITEMS = [
@@ -96,11 +98,15 @@ const RANGKAP_VALUES = [
   "Hormat",
 ];
 const VALUE_COLORS = ["#FB7185", "#FBBF24", "#34D399", "#60A5FA"];
+const ZON_NEGERI_PENDING = "Menunggu pengesahan zon UASA";
 const NOVEL_ZONES: Record<string, string> = {
   "meniti-impian": "Selangor · Kuala Lumpur · Putrajaya · Negeri Sembilan",
   "darah-titik-di-semantan": "Johor · Sabah · Sarawak · Labuan",
   "jejak-monpus": "Melaka · Pahang · Terengganu · Kelantan",
   "jalan-ke-puncak": "Perlis · Kedah · Pulau Pinang · Perak",
+  ...Object.fromEntries(
+    BM_FORM3_NOVEL_WORKS.map((novel) => [novel.id, novel.zonNegeri ?? ZON_NEGERI_PENDING]),
+  ),
 };
 const LANGUAGE_ICONS = ["🌿", "💬", "↔", "🎵", "🔁", "✨"];
 
@@ -135,6 +141,9 @@ function WorkCard({
           {work.category}
         </span>
         <span className="block truncate text-sm font-semibold text-white">{work.title}</span>
+        {work.author && (
+          <span className="mt-0.5 block truncate text-xs text-white/45">{work.author}</span>
+        )}
         {work.kind === "novel" && NOVEL_ZONES[work.id] && (
           <span className="mt-2 flex items-start gap-1.5 rounded-lg border border-sky-300/15 bg-sky-300/[0.06] px-2.5 py-2 text-[10px] leading-4 text-sky-100/70">
             <MapPin className="mt-0.5 h-3 w-3 shrink-0 text-sky-300" />
@@ -1764,6 +1773,7 @@ function TeacherTip({
 export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) {
   const [open, setOpen] = useState(false);
   const folderColor = work.kind === "novel" ? "#FB923C" : ACCENT;
+  const form3Novel = BM_FORM3_NOVEL_WORKS.find((novel) => novel.id === work.id);
   return (
     <section className="overflow-hidden rounded-2xl border border-white/[0.09] bg-white/[0.025]">
       <button
@@ -1825,14 +1835,18 @@ export function BMForm2KomsasWorkStructure({ work }: { work: Form2KomsasWork }) 
           work.id === "meniti-impian" ||
           work.id === "darah-titik-di-semantan" ||
           work.id === "jejak-monpus" ||
-          work.id === "jalan-ke-puncak" ? (
+          work.id === "jalan-ke-puncak" ||
+          form3Novel ? (
             open ? (
               <div className="border-t border-white/[0.07] p-3 sm:p-5">
                 {work.id !== "meniti-impian" &&
                   work.id !== "jejak-monpus" &&
                   work.id !== "darah-titik-di-semantan" &&
-                  work.id !== "jalan-ke-puncak" && <WorkHero work={work} />}
-                {work.id === "jalan-ke-puncak" ? (
+                  work.id !== "jalan-ke-puncak" &&
+                  !form3Novel && <WorkHero work={work} />}
+                {form3Novel ? (
+                  <BMForm3NovelContent novel={form3Novel} />
+                ) : work.id === "jalan-ke-puncak" ? (
                   <BMForm2JalanKePuncakContent />
                 ) : work.id === "darah-titik-di-semantan" ? (
                   <BMForm2DarahTitikContent />
@@ -2115,7 +2129,8 @@ function SyairBurungNuriContent() {
   ];
   const kbatQuestions = [
     {
-      question: "Mengapakah kita perlu mempunyai akal fikiran yang waras sebelum melakukan sesuatu tindakan?",
+      question:
+        "Mengapakah kita perlu mempunyai akal fikiran yang waras sebelum melakukan sesuatu tindakan?",
       answer:
         "Supaya kita dapat membuat keputusan yang bijak, mengelakkan berlakunya kesilapan yang boleh merugikan diri sendiri, dan memastikan tindakan kita tidak menyinggung perasaan orang lain.",
     },
@@ -2625,8 +2640,7 @@ const BAHAGIA_SESUDAH_DERITA_CHARACTERS = [
       { title: "Tabah dan setia", example: "Seorang yang tabah dan setia kepada suaminya." },
       {
         title: "Mementingkan diri",
-        example:
-          "Digambarkan sebagai seorang yang mementingkan diri sendiri (ketika mengidam).",
+        example: "Digambarkan sebagai seorang yang mementingkan diri sendiri (ketika mengidam).",
       },
     ],
   },
@@ -2696,10 +2710,7 @@ function BahagiaSesudahDeritaContent() {
     ["Waktu siang, petang dan malam", "Peristiwa berlaku sepanjang pelbagai waktu dalam sehari."],
     ["Tiga bulan", "Tempoh kehamilan isteri Si Miskin."],
     ["Malam empat belas haribulan", "Waktu kelahiran Marakarma."],
-    [
-      "Empat puluh hari empat puluh malam",
-      "Tempoh majlis keraian kelahiran puteri.",
-    ],
+    ["Empat puluh hari empat puluh malam", "Tempoh majlis keraian kelahiran puteri."],
   ] as const;
   const settingsMasyarakat = [
     "Masyarakat yang memandang hina terhadap orang miskin.",
@@ -2713,10 +2724,7 @@ function BahagiaSesudahDeritaContent() {
     ["Bahasa Istana", "Contohnya, baginda, titah, kakanda, patik, berputeralah."],
     ["Bahasa Klasik", "Contohnya, hatta, cetera, adapun."],
     ["Simile", "“...rupa kainnya carik-carik berjurai-jurai seperti ubur-uburlah rupanya.”"],
-    [
-      "Repetisi",
-      "“Maka ada yang memberi buah, ada yang memberi juadah; ada yang memberi nasi...”",
-    ],
+    ["Repetisi", "“Maka ada yang memberi buah, ada yang memberi juadah; ada yang memberi nasi...”"],
   ] as const;
   const values = [
     ["Kasih sayang", "Kesanggupan suami mencari ubat dan buah untuk isteri."],
@@ -3554,14 +3562,16 @@ export function BMForm2KomsasStructure({
 }
 
 export function BMForm2NovelStructure({
+  works = BM_FORM2_NOVEL_WORKS,
   onSelectWork,
 }: {
+  works?: Form2KomsasWork[];
   onSelectWork: (workId: string) => void;
 }) {
   const color = "#FB923C";
   return (
     <div className="grid gap-3 sm:grid-cols-2">
-      {BM_FORM2_NOVEL_WORKS.map((work, index) => (
+      {works.map((work, index) => (
         <WorkCard
           key={work.id}
           work={work}

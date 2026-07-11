@@ -109,14 +109,10 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         description:
           "Empat novel KOMSAS — sinopsis, watak, tema, latar, persoalan, nilai dan pengajaran Tingkatan 3.",
         topics: [
-          { id: "nota", label: "Nota" },
-          { id: "watak-perwatakan", label: "Watak & Perwatakan" },
-          { id: "tema-persoalan", label: "Tema & Persoalan" },
-          { id: "latar", label: "Latar" },
-          { id: "nilai-murni", label: "Nilai Murni" },
-          { id: "pengajaran", label: "Pengajaran" },
-          { id: "kuiz", label: "Kuiz" },
-          { id: "flashcards", label: "Flashcards" },
+          { id: "tawanan-komander-caucasus", label: "Tawanan Komander Caucasus" },
+          { id: "chot", label: "Chot" },
+          { id: "justeru-impian-di-jaring", label: "Justeru Impian di Jaring" },
+          { id: "hempasan-ombak", label: "Hempasan Ombak" },
         ],
       },
       {
