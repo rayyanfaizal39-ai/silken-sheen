@@ -38,6 +38,7 @@ import {
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
+import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { mathF1C1NotesBM } from "@/content/form1/math/chapter-1/notes-bm";
 import { mathF1C1NotesDLP } from "@/content/form1/math/chapter-1/notes-dlp";
 import { mathF1C2NotesBM } from "@/content/form1/math/chapter-2/notes-bm";
@@ -2094,6 +2095,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C7MindMapBM, title: "Bab 7: Udara" },
     notes: scienceF1C7NotesBM,
+    bab7Data: bab7Content,
   },
   {
     id: "science-f1-c7-dlp",
@@ -2104,6 +2106,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C7MindMapDLP, title: "Air (Chapter 7)" },
     notes: scienceF1C7NotesDLP,
+    bab7Data: bab7Content,
   },
   {
     id: "science-f1-c8-bm",

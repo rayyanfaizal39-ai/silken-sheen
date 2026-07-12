@@ -7,6 +7,7 @@ import type {
 } from "@/data/content";
 import type { Subtopic } from "@/data/sejarah-f1-subtopics";
 import type { EnglishChapterData } from "@/data/english-types";
+import type { Bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -41,6 +42,8 @@ export type ChapterContent = {
   notes?: StructuredNotes;
   /** English-specific learning experience — replaces generic StructuredNotes for English chapters. */
   englishData?: EnglishChapterData;
+  /** Bab 7 (Udara/Air) chunked, bilingual learning experience — replaces generic StructuredNotes when present. */
+  bab7Data?: { en: Bab7Content; bm: Bab7Content };
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -55,7 +58,7 @@ export type ChapterFeatureKey =
 
 export function getChapterFeatures(c: ChapterContent | undefined): Record<ChapterFeatureKey, boolean> {
   return {
-    notes: !!c?.notes || !!c?.englishData || !!c?.subtopics?.length,
+    notes: !!c?.notes || !!c?.englishData || !!c?.bab7Data || !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,
     mindMap: !!c?.mindMap,

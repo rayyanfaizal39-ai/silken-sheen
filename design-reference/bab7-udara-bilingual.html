@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7: Udara — Bilingual Redesign — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632; --bg-card-hover:#151b3d;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --violet-soft:rgba(139,107,255,0.16);
+    --blue:#4fb0ff; --blue-soft:rgba(79,176,255,0.14);
+    --amber:#fbbf5a; --amber-soft:rgba(251,191,90,0.16);
+    --green:#4ade80; --green-soft:rgba(74,222,128,0.12);
+    --red:#f87171; --red-soft:rgba(248,113,113,0.12);
+    --orange:#fb923c;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 110% 20%, rgba(79,176,255,0.10), transparent 60%),
+      var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+  }
+  .app{display:flex; min-height:100vh;}
+  .sidebar{width:220px; flex-shrink:0; padding:28px 20px; border-right:1px solid var(--line); display:flex; flex-direction:column; gap:28px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:17px;}
+  .logo .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .logo span.hl{color:var(--amber);}
+  .navlist{display:flex; flex-direction:column; gap:3px;}
+  .navlist a{color:var(--muted-dim); text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 10px; border-radius:8px; display:flex; align-items:center; gap:10px;}
+  .navlist a.active{background:var(--violet-soft); color:#cfc2ff;}
+
+  .main{flex:1; padding:36px 48px 80px; max-width:1020px; margin:0 auto;}
+  .topline{display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:12px;}
+  .crumb{color:var(--muted-dim); font-size:12.5px; letter-spacing:.03em;}
+  .crumb b{color:var(--muted);}
+  .toolbar-right{display:flex; gap:10px; align-items:center;}
+  .streak{display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--amber); font-weight:600;}
+  .accuracy-badge{display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--green); background:var(--green-soft); border:1px solid rgba(74,222,128,0.3); padding:5px 11px; border-radius:20px; font-weight:600;}
+
+  .lang-toggle{display:flex; background:var(--bg-panel); border:1px solid var(--line); border-radius:20px; padding:3px; gap:2px;}
+  .lang-btn{border:none; background:transparent; color:var(--muted-dim); font-family:var(--font-body); font-weight:700; font-size:12px; padding:7px 16px; border-radius:18px; cursor:pointer; transition:all .2s;}
+  .lang-btn.active{background:linear-gradient(135deg,var(--violet),var(--blue)); color:#fff;}
+
+  .hook{background:linear-gradient(120deg, rgba(139,107,255,0.14), rgba(79,176,255,0.08)); border:1px solid rgba(139,107,255,0.28); border-radius:16px; padding:20px 24px; margin-bottom:26px; display:flex; gap:16px; align-items:center;}
+  .hook .icon{font-size:26px; flex-shrink:0;}
+  .hook .title{font-family:var(--font-display); font-weight:700; font-size:19px; margin:0 0 4px;}
+  .hook p{margin:0; color:var(--muted); font-size:14px; line-height:1.5;}
+
+  .orbit-track{display:flex; align-items:center; justify-content:space-between; margin-bottom:30px; padding:0 2px; position:relative; overflow-x:auto; gap:4px;}
+  .orbit-track::before{content:''; position:absolute; top:15px; left:16px; right:16px; height:2px; background:var(--line); z-index:0;}
+  .orbit-node{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; background:transparent; border:none; font-family:var(--font-body); flex-shrink:0; width:76px;}
+  .orbit-dot{width:30px;height:30px;border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12.5px; background:var(--bg-panel); border:2px solid var(--line); color:var(--muted-dim); transition:all .25s ease;}
+  .orbit-node.done .orbit-dot{background:linear-gradient(135deg,var(--violet),var(--blue)); border-color:transparent; color:#fff;}
+  .orbit-node.current .orbit-dot{border-color:var(--blue); color:var(--blue); box-shadow:0 0 0 4px var(--blue-soft);}
+  .orbit-label{font-size:9.5px; color:var(--muted-dim); max-width:74px; text-align:center; line-height:1.2;}
+  .orbit-node.current .orbit-label{color:var(--text); font-weight:600;}
+
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:32px 36px; min-height:420px; position:relative; overflow:hidden;}
+  .card::before{content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(139,107,255,0.10), transparent 70%); pointer-events:none;}
+  .sec-eyebrow{display:flex; align-items:center; gap:8px; color:var(--blue); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;}
+  .sec-title{font-family:var(--font-display); font-size:24px; font-weight:700; margin:0 0 8px;}
+  .sec-sub{font-size:13.5px; color:var(--muted); margin:0 0 22px; line-height:1.5;}
+
+  .section-panel{display:none; animation:fadeIn .35s ease;}
+  .section-panel.active{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .card-nav{display:flex; justify-content:space-between; align-items:center; margin-top:28px;}
+  .btn{font-family:var(--font-body); font-weight:600; font-size:13.5px; border-radius:10px; border:1px solid var(--line); background:var(--bg-panel); color:var(--text); padding:11px 20px; cursor:pointer; display:flex; align-items:center; gap:8px; transition:all .15s ease;}
+  .btn:hover{background:var(--bg-card-hover); border-color:rgba(148,163,184,0.3);}
+  .btn.primary{background:linear-gradient(135deg,var(--violet),var(--blue)); border:none; color:#fff;}
+  .btn.primary:hover{filter:brightness(1.08);}
+  .btn:disabled{opacity:.35; cursor:not-allowed;}
+
+  .comp-layout{display:flex; gap:40px; align-items:center; flex-wrap:wrap;}
+  .donut-wrap{position:relative; width:190px; height:190px; flex-shrink:0;}
+  .donut-wrap svg{transform:rotate(-90deg);}
+  .donut-center{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .donut-center .n{font-family:var(--font-display); font-size:24px; font-weight:700;}
+  .donut-center .l{font-size:10.5px; color:var(--muted-dim); text-align:center;}
+  .comp-legend{display:flex; flex-direction:column; gap:10px; flex:1; min-width:220px;}
+  .legend-row{display:flex; align-items:center; gap:10px; font-size:13.5px; padding:8px 12px; border-radius:10px; background:var(--bg-panel);}
+  .legend-swatch{width:12px;height:12px;border-radius:3px; flex-shrink:0;}
+  .legend-row b{margin-left:auto; font-family:var(--font-display); font-size:13.5px;}
+
+  .reveal-chip{display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:10px; background:var(--violet-soft); border:1px dashed rgba(139,107,255,0.45); color:#cfc2ff; font-size:13px; font-weight:600; cursor:pointer; margin:6px 8px 0 0;}
+  .reveal-box{margin-top:12px; padding:15px 17px; border-radius:12px; background:var(--bg-panel); border:1px solid var(--line); font-size:13.5px; color:var(--muted); line-height:1.55; display:none;}
+  .reveal-box.open{display:block; animation:fadeIn .3s ease;}
+  .reveal-set{margin-top:20px;}
+
+  .exp-steps{display:flex; gap:14px; margin-bottom:22px; flex-wrap:wrap;}
+  .exp-step{flex:1; min-width:150px; background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:16px; text-align:center;}
+  .exp-step .emoji{font-size:28px; margin-bottom:8px; display:block;}
+  .exp-step .cap{font-size:12.5px; color:var(--muted); line-height:1.4;}
+  .predict-box{background:var(--blue-soft); border:1px solid rgba(79,176,255,0.3); border-radius:14px; padding:20px;}
+  .predict-box .q{font-weight:600; font-size:14.5px; margin-bottom:14px;}
+  .predict-opts{display:flex; gap:10px; flex-wrap:wrap;}
+  .predict-opt{padding:10px 16px; border-radius:10px; background:var(--bg-panel); border:1px solid var(--line); font-size:13.5px; cursor:pointer; font-weight:500;}
+  .predict-opt.correct{background:rgba(74,222,128,0.16); border-color:var(--green); color:var(--green);}
+  .predict-opt.wrong{background:rgba(248,113,113,0.16); border-color:var(--red); color:var(--red);}
+  .predict-feedback{margin-top:14px; font-size:13.5px; color:var(--muted); display:none; line-height:1.5;}
+  .predict-feedback.show{display:block; animation:fadeIn .3s ease;}
+
+  .gas-tabs{display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;}
+  .gas-tab{flex:1; min-width:90px; padding:12px; border-radius:12px; border:1px solid var(--line); background:var(--bg-panel); cursor:pointer; text-align:center; transition:all .2s;}
+  .gas-tab.active{border-color:var(--violet); background:var(--violet-soft);}
+  .gas-tab .sym{font-family:var(--font-display); font-size:18px; font-weight:700;}
+  .gas-tab .name{font-size:11px; color:var(--muted); margin-top:2px;}
+  .use-grid{display:none; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px;}
+  .use-grid.active{display:grid;}
+  .use-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:12px; padding:14px; font-size:12.5px; text-align:center; line-height:1.4;}
+  .use-card .ic{font-size:20px; display:block; margin-bottom:6px;}
+  .use-card b{display:block; font-size:12px; margin-bottom:2px;}
+  .use-card span{color:var(--muted-dim); font-size:11px;}
+
+  .cycle-row{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .cycle-box{background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:18px;}
+  .cycle-box h4{margin:0 0 12px; font-family:var(--font-display); font-size:15px;}
+  .cycle-list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .cycle-list li{font-size:12px; color:var(--muted); display:flex; gap:8px; align-items:flex-start; line-height:1.4;}
+  .cycle-list li::before{content:'→'; color:var(--blue); flex-shrink:0;}
+  .balance-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
+  .balance-chip{background:rgba(74,222,128,0.12); border:1px solid rgba(74,222,128,0.3); color:var(--green); padding:8px 14px; border-radius:20px; font-size:12px; font-weight:500;}
+
+  .triangle-wrap{display:flex; justify-content:center; margin:10px 0 26px;}
+  .fire-tri{position:relative; width:240px; height:200px;}
+  .fire-tri .node{position:absolute; width:80px; height:80px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--bg-panel); border:2px solid var(--amber); font-size:24px;}
+  .fire-tri .node span.lbl{font-size:10px; color:var(--muted); margin-top:2px; font-weight:600;}
+  .fire-tri .n1{top:0; left:80px;}
+  .fire-tri .n2{bottom:0; left:0;}
+  .fire-tri .n3{bottom:0; right:0;}
+  .method-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:26px;}
+  .method-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:12px; padding:16px;}
+  .method-card .ic{font-size:22px;}
+  .method-card h5{margin:8px 0 6px; font-size:13.5px; font-family:var(--font-display);}
+  .method-card p{margin:0; font-size:11.5px; color:var(--muted); line-height:1.4;}
+
+  .ext-table{width:100%; border-collapse:collapse; margin-bottom:26px; font-size:12.5px;}
+  .ext-table th{text-align:left; color:var(--muted-dim); font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; padding:0 12px 10px;}
+  .ext-table td{background:var(--bg-panel); padding:12px; vertical-align:top; border-top:6px solid var(--bg-card);}
+  .ext-table tr td:first-child{border-radius:10px 0 0 10px; font-weight:600;}
+  .ext-table tr td:last-child{border-radius:0 10px 10px 0;}
+  .pill{display:inline-block; background:var(--violet-soft); color:#cfc2ff; padding:3px 9px; border-radius:20px; font-size:11px; margin:2px 3px 0 0;}
+
+  .safety-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px;}
+  .safety-item{display:flex; gap:10px; align-items:flex-start; background:var(--bg-panel); border:1px solid var(--line); border-radius:10px; padding:11px 13px; font-size:12px; color:var(--muted); line-height:1.4;}
+  .safety-item .chk{width:18px; height:18px; border-radius:5px; border:2px solid var(--green); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:var(--green); font-size:11px; margin-top:1px;}
+
+  .source-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px;}
+  .source-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:16px;}
+  .source-card .from{font-size:11px; color:var(--muted-dim); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; font-weight:700;}
+  .source-card .pollutants{margin-top:10px; display:flex; flex-wrap:wrap; gap:5px;}
+  .tag{font-size:10.5px; background:var(--red-soft); color:#ffb4b4; padding:3px 8px; border-radius:20px;}
+
+  .effects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .effect-card{border-radius:14px; padding:16px; border:1px solid var(--line);}
+  .effect-card h5{margin:0 0 10px; font-family:var(--font-display); font-size:14px; display:flex; align-items:center; gap:8px;}
+  .effect-card ul{margin:0; padding-left:16px; font-size:12px; color:var(--muted); line-height:1.5;}
+  .effect-health{background:rgba(248,113,113,0.06);}
+  .effect-build{background:rgba(251,191,90,0.06);}
+  .effect-plant{background:rgba(74,222,128,0.06);}
+  .effect-climate{background:rgba(79,176,255,0.06);}
+
+  .prevent-cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .prevent-col{background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:16px;}
+  .prevent-col h5{margin:0 0 10px; font-family:var(--font-display); font-size:13.5px; color:var(--blue);}
+  .prevent-col ul{margin:0; padding-left:16px; font-size:12px; color:var(--muted); line-height:1.6;}
+
+  .api-row{display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:10px; margin-bottom:6px;}
+  .api-range{font-family:var(--font-display); font-weight:700; min-width:80px;}
+  .api-label{font-weight:600; flex:1;}
+  .api-good{background:rgba(74,222,128,0.14); color:var(--green);}
+  .api-mod{background:rgba(251,191,90,0.14); color:var(--amber);}
+  .api-unh{background:rgba(251,146,60,0.14); color:var(--orange);}
+  .api-vunh{background:rgba(248,113,113,0.14); color:var(--red);}
+  .api-haz{background:rgba(194,65,12,0.22); color:#ff9d7a;}
+
+  .flip-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-bottom:8px;}
+  .flip-card{background:rgba(74,222,128,0.08); border:1px solid rgba(74,222,128,0.25); border-radius:12px; padding:14px 16px; font-size:12.5px; color:#c8f5d8; line-height:1.5; display:flex; gap:10px; align-items:flex-start;}
+  .flip-card .num{width:20px; height:20px; border-radius:50%; background:rgba(74,222,128,0.25); color:var(--green); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+
+  .glossary-wrap{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;}
+  .glossary-chip{background:var(--bg-panel); border:1px solid var(--line); color:var(--muted); padding:7px 13px; border-radius:20px; font-size:12px;}
+
+  .summary-box{background:linear-gradient(120deg, rgba(139,107,255,0.12), rgba(79,176,255,0.06)); border:1px solid rgba(139,107,255,0.28); border-radius:14px; padding:20px 22px; margin:24px 0;}
+  .summary-box h4{margin:0 0 8px; font-family:var(--font-display); font-size:15px; display:flex; gap:8px; align-items:center;}
+  .summary-box p{margin:0; font-size:13px; color:var(--muted); line-height:1.55;}
+
+  .complete-row{display:flex; justify-content:center; margin-top:10px;}
+  .xp-toast{position:fixed; top:26px; left:50%; transform:translateX(-50%) translateY(-140%); z-index:50; background:linear-gradient(135deg,var(--violet),var(--blue)); color:#fff; font-weight:700; font-size:14px; padding:14px 22px; border-radius:14px; box-shadow:0 10px 30px rgba(79,88,255,0.4); display:flex; gap:8px; align-items:center; transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+  .xp-toast.show{transform:translateX(-50%) translateY(0);}
+
+  .subhead{font-family:var(--font-display); font-weight:700; font-size:14px; margin:22px 0 10px; display:flex; align-items:center; gap:8px;}
+  .subhead:first-child{margin-top:0;}
+
+  @media(max-width:760px){
+    .sidebar{display:none;}
+    .main{padding:24px 18px 60px;}
+    .cycle-row{grid-template-columns:1fr;}
+    .comp-layout{flex-direction:column; align-items:flex-start;}
+    .orbit-label{display:none;}
+    .orbit-node{width:40px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="sidebar">
+    <div class="logo"><div class="dot">🚀</div>Academ<span class="hl">Y</span></div>
+    <div class="navlist" id="navlist"></div>
+  </div>
+
+  <div class="main">
+
+    <div class="topline">
+      <div class="crumb" id="crumb"></div>
+      <div class="toolbar-right">
+        <div class="accuracy-badge" id="accBadge"></div>
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN · DLP</button>
+          <button class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hook">
+      <div class="icon">🌬️</div>
+      <div>
+        <p class="title" id="hookTitle"></p>
+        <p id="hookText"></p>
+      </div>
+    </div>
+
+    <div class="orbit-track" id="orbitTrack"></div>
+
+    <div class="card" id="cardShell">
+
+      <!-- 1: Composition -->
+      <div class="section-panel active" data-index="0">
+        <div class="sec-eyebrow">◆ 7.1</div>
+        <h2 class="sec-title" id="s0-title"></h2>
+        <p class="sec-sub" id="s0-sub"></p>
+
+        <div class="comp-layout">
+          <div class="donut-wrap">
+            <svg width="190" height="190" viewBox="0 0 190 190">
+              <circle cx="95" cy="95" r="76" fill="none" stroke="#1b2044" stroke-width="24"/>
+              <circle id="arcN2" cx="95" cy="95" r="76" fill="none" stroke="#4fb0ff" stroke-width="24" stroke-linecap="round"/>
+              <circle id="arcO2" cx="95" cy="95" r="76" fill="none" stroke="#8b6bff" stroke-width="24" stroke-linecap="round"/>
+              <circle id="arcCO2" cx="95" cy="95" r="76" fill="none" stroke="#fbbf5a" stroke-width="24" stroke-linecap="round"/>
+              <circle id="arcOther" cx="95" cy="95" r="76" fill="none" stroke="#4ade80" stroke-width="24" stroke-linecap="round"/>
+            </svg>
+            <div class="donut-center"><div class="n">100%</div><div class="l" id="donutLabel"></div></div>
+          </div>
+          <div class="comp-legend" id="legend"></div>
+        </div>
+
+        <div class="reveal-set" id="revealSet0"></div>
+      </div>
+
+      <!-- 2: Experiment -->
+      <div class="section-panel" data-index="1">
+        <div class="sec-eyebrow" id="s1-eyebrow"></div>
+        <h2 class="sec-title" id="s1-title"></h2>
+        <p class="sec-sub" id="s1-sub"></p>
+        <div class="exp-steps" id="expSteps"></div>
+        <div class="predict-box">
+          <div class="q" id="predictQ"></div>
+          <div class="predict-opts" id="predictOpts"></div>
+          <div class="predict-feedback" id="predictFeedback"></div>
+        </div>
+      </div>
+
+      <!-- 3: Uses -->
+      <div class="section-panel" data-index="2">
+        <div class="sec-eyebrow" id="s2-eyebrow"></div>
+        <h2 class="sec-title" id="s2-title"></h2>
+        <p class="sec-sub" id="s2-sub"></p>
+        <div class="gas-tabs" id="gasTabs"></div>
+        <div id="useGrids"></div>
+      </div>
+
+      <!-- 4: Cycles -->
+      <div class="section-panel" data-index="3">
+        <div class="sec-eyebrow" id="s3-eyebrow"></div>
+        <h2 class="sec-title" id="s3-title"></h2>
+        <p class="sec-sub" id="s3-sub"></p>
+        <div class="cycle-row" id="cycleRow"></div>
+        <div class="subhead" id="balanceHead"></div>
+        <div class="balance-chips" id="balanceChips"></div>
+      </div>
+
+      <!-- 5: Combustion -->
+      <div class="section-panel" data-index="4">
+        <div class="sec-eyebrow" id="s4-eyebrow"></div>
+        <h2 class="sec-title" id="s4-title"></h2>
+        <p class="sec-sub" id="s4-sub"></p>
+        <div class="triangle-wrap">
+          <div class="fire-tri">
+            <div class="node n1">🔥<span class="lbl" id="triHeat"></span></div>
+            <div class="node n2">💨<span class="lbl" id="triOxy"></span></div>
+            <div class="node n3">🪵<span class="lbl" id="triFuel"></span></div>
+          </div>
+        </div>
+        <div class="subhead" id="methodHead"></div>
+        <div class="method-grid" id="methodGrid"></div>
+        <div class="subhead" id="extHead"></div>
+        <table class="ext-table" id="extTable"></table>
+        <div class="subhead" id="safetyHead"></div>
+        <div class="safety-grid" id="safetyGrid"></div>
+      </div>
+
+      <!-- 6: Pollution sources -->
+      <div class="section-panel" data-index="5">
+        <div class="sec-eyebrow" id="s5-eyebrow"></div>
+        <h2 class="sec-title" id="s5-title"></h2>
+        <p class="sec-sub" id="s5-sub"></p>
+        <div class="source-grid" id="sourceGrid"></div>
+      </div>
+
+      <!-- 7: Pollution effects -->
+      <div class="section-panel" data-index="6">
+        <div class="sec-eyebrow" id="s6-eyebrow"></div>
+        <h2 class="sec-title" id="s6-title"></h2>
+        <p class="sec-sub" id="s6-sub"></p>
+        <div class="effects-grid" id="effectsGrid"></div>
+      </div>
+
+      <!-- 8: Prevention -->
+      <div class="section-panel" data-index="7">
+        <div class="sec-eyebrow" id="s7-eyebrow"></div>
+        <h2 class="sec-title" id="s7-title"></h2>
+        <p class="sec-sub" id="s7-sub"></p>
+        <div class="prevent-cols" id="preventCols"></div>
+      </div>
+
+      <!-- 9: Wrap up -->
+      <div class="section-panel" data-index="8">
+        <div class="sec-eyebrow" id="s8-eyebrow"></div>
+        <h2 class="sec-title" id="s8-title"></h2>
+        <div class="subhead" id="apiHead"></div>
+        <div id="apiRows"></div>
+        <div class="subhead" id="factsHead"></div>
+        <div class="flip-grid" id="factsGrid"></div>
+        <div class="subhead" id="glossHead"></div>
+        <div class="glossary-wrap" id="glossWrap"></div>
+        <div class="summary-box">
+          <h4 id="summaryHead"></h4>
+          <p id="summaryText"></p>
+        </div>
+        <div class="complete-row">
+          <button class="btn primary" id="markReadBtn" onclick="markComplete()"></button>
+        </div>
+      </div>
+
+      <div class="card-nav">
+        <button class="btn" id="prevBtn" onclick="go(-1)"></button>
+        <button class="btn primary" id="nextBtn" onclick="go(1)"></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="xp-toast" id="xpToast"></div>
+
+<script>
+let lang = 'en';
+let current = 0;
+
+const orbitLabels = { en:['Composition','Experiment','Gas uses','Cycles','Combustion','Pollution sources','Pollution effects','Prevention','Summary'],
+                       bm:['Komposisi','Eksperimen','Kepentingan gas','Kitar','Pembakaran','Punca pencemaran','Kesan pencemaran','Pencegahan','Ringkasan'] };
+
+const nav = { en:[['🏠','Home'],['📊','Dashboard'],['📖','Notes'],['🧩','Mind Maps'],['❓','Quizzes'],['🃏','Flashcards']],
+              bm:[['🏠','Laman Utama'],['📊','Papan Pemuka'],['📖','Nota'],['🧩','Peta Minda'],['❓','Kuiz'],['🃏','Kad Imbas']] };
+
+const T = {
+  crumb: { en:'Science · Form 1 · <b>Chapter 7 — Air</b>', bm:'Sains · Tingkatan 1 · <b>Bab 7 — Udara</b>' },
+  accBadge: { en:'📗 Textbook-complete', bm:'📗 Lengkap mengikut buku teks' },
+  hookTitle: { en:'Why this matters', bm:'Kenapa ini penting' },
+  hookText: { en:'Every breath you take is only ~21% oxygen — that\'s why astronauts, divers, and even candles all depend on getting that ratio exactly right. This chapter shows you how air actually works, why fires behave the way they do, and how pollution throws all of it off balance.',
+              bm:'Setiap nafas yang anda ambil hanya mengandungi kira-kira 21% oksigen — itulah sebabnya angkasawan, penyelam, malah lilin juga bergantung pada nisbah ini. Bab ini menunjukkan bagaimana udara sebenarnya berfungsi, mengapa api berkelakuan sedemikian, dan bagaimana pencemaran mengganggu keseimbangan ini.' },
+  donutLabel: { en:'of the air<br>around you', bm:'udara di<br>sekeliling anda' },
+
+  legend: { en:[['#4fb0ff','Nitrogen','78%'],['#8b6bff','Oxygen','21%'],['#fbbf5a','Carbon dioxide','0.03%'],['#4ade80','Inert gases &amp; others','0.97%']],
+            bm:[['#4fb0ff','Nitrogen','78%'],['#8b6bff','Oksigen','21%'],['#fbbf5a','Karbon dioksida','0.03%'],['#4ade80','Gas nadir &amp; bahan lain','0.97%']] },
+
+  s0: { en:['Composition of Air','Air is a mixture of several gases — invisible, but never empty.'],
+        bm:['Komposisi Udara','Udara ialah campuran beberapa jenis gas — tidak kelihatan, tetapi tidak pernah kosong.'] },
+
+  reveals0: {
+    en:[
+      ['💡 Formal definition','Air is a mixture of gases that surrounds the Earth. Other components — water vapour, dust and microorganisms — are also present in small, variable amounts depending on place and time (e.g. more water vapour in forests or after rain).', 'violet'],
+      ['🧪 What\'s inside "inert gases"?','Helium, Neon, Argon, Krypton and Xenon — five separate gases grouped together because they rarely react. Each has its own specific job later in this chapter.', 'amber'],
+      ['🔬 Mixture or compound?','Air is a <b style="color:var(--text)">mixture</b>, not a compound — because its gases can be separated by a physical method called <b style="color:var(--text)">fractional distillation</b> (separating a liquid mixture into fractions with different boiling points, through boiling and condensation).', 'blue']
+    ],
+    bm:[
+      ['💡 Definisi rasmi','Udara ialah campuran gas yang mengelilingi Bumi. Komponen lain — wap air, habuk dan mikroorganisma — turut wujud dalam kuantiti kecil yang berubah mengikut tempat dan masa (cth: wap air lebih banyak di hutan atau selepas hujan).', 'violet'],
+      ['🧪 Apa yang ada dalam "gas nadir"?','Helium, Neon, Argon, Kripton dan Xenon — lima gas berasingan yang dikumpulkan kerana jarang bertindak balas. Setiap satu mempunyai kegunaan tersendiri nanti dalam bab ini.', 'amber'],
+      ['🔬 Campuran atau sebatian?','Udara ialah <b style="color:var(--text)">campuran</b>, bukan sebatian — kerana komponennya boleh diasingkan melalui kaedah fizikal iaitu <b style="color:var(--text)">penyulingan berperingkat</b> (mengasingkan campuran kepada pecahan berlainan takat didih, melalui pendidihan dan kondensasi).', 'blue']
+    ]
+  },
+
+  s1: { en:['◆ Activity 7.1','Finding the % of Oxygen in Air','Aim: to determine the percentage of oxygen in the air.'],
+        bm:['◆ Aktiviti 7.1','Menentukan Peratusan Oksigen dalam Udara','Tujuan: menentukan peratusan oksigen dalam udara.'] },
+  expSteps: { en:[['🕯️','A lit candle is placed inside an upturned gas jar (marked into 5 equal parts), standing in water'],['💨','The candle burns for a while, then goes out on its own'],['📈','Water rises into the jar as it cools']],
+              bm:[['🕯️','Lilin yang menyala diletakkan di dalam balang gas terbalik (ditanda 5 bahagian sama), berdiri di dalam air'],['💨','Lilin terbakar seketika, kemudian terpadam dengan sendirinya'],['📈','Air naik ke dalam balang apabila menyejuk']] },
+  predictQ: { en:'🤔 Quick check — before you scroll, predict: how far does the water rise?', bm:'🤔 Semak cepat — sebelum menatal, ramalkan: berapa jauh air akan naik?' },
+  predictOpts: { en:[['About half (2.5/5 parts)',false],['About a fifth (1/5 parts)',true],['Almost all (4.5/5 parts)',false]],
+                 bm:[['Kira-kira separuh (2.5/5 bahagian)',false],['Kira-kira satu perlima (1/5 bahagian)',true],['Hampir semua (4.5/5 bahagian)',false]] },
+  predictFeedback: { en:'✅ Right — water rises to <b>1/5 of the gas jar</b>. That\'s proof: oxygen was used up during combustion, and it makes up roughly <b>20%</b> of air. Air is a mixture — you can tell because it\'s separable by physical methods, unlike a compound.',
+                      bm:'✅ Betul — air naik ke <b>1/5 balang gas</b>. Ini membuktikan oksigen telah digunakan semasa pembakaran, dan ia merangkumi kira-kira <b>20%</b> udara. Udara ialah campuran — boleh diasingkan melalui kaedah fizikal, tidak seperti sebatian.' },
+
+  s2: { en:['◆ 7.1 continued','Why These Gases Matter','Every gas in that donut chart earns its place — including the "rare" ones.'],
+        bm:['◆ Sambungan 7.1','Kepentingan Gas dalam Kehidupan Harian','Setiap gas dalam carta pai itu mempunyai peranan — termasuk gas "nadir".'] },
+  gasTabs: { en:[['O₂','Oxygen'],['CO₂','Carbon dioxide'],['N₂','Nitrogen'],['◆','Inert gases']],
+             bm:[['O₂','Oksigen'],['CO₂','Karbon dioksida'],['N₂','Nitrogen'],['◆','Gas nadir']] },
+  useGrids: {
+    en:[
+      [['🫁','Respiration',''],['🚀','Rocket engines','combustion at high altitude'],['⚡','Welding &amp; steel cutting',''],['🧪','Compound preparation','']],
+      [['🌿','Photosynthesis',''],['🥤','Carbonated drinks',''],['🧯','Fire extinguishers',''],['🔄','Carbon cycle','']],
+      [['🧪','Nitric acid &amp; ammonia','fertiliser production'],['🔄','Nitrogen cycle',''],['❄️','Liquid nitrogen','cooling agent']],
+      [['🎈','Helium','hot air &amp; weather balloons'],['💡','Neon','advertising lights'],['💡','Argon','light bulbs'],['◇','Krypton &amp; Xenon','present in air as inert gases']]
+    ],
+    bm:[
+      [['🫁','Pernafasan',''],['🚀','Enjin roket','pembakaran pada altitud tinggi'],['⚡','Kimpalan &amp; pemotongan keluli',''],['🧪','Penyediaan sebatian','']],
+      [['🌿','Fotosintesis',''],['🥤','Minuman berkarbonat',''],['🧯','Alat pemadam api',''],['🔄','Kitar karbon','']],
+      [['🧪','Asid nitrik &amp; ammonia','penghasilan baja'],['🔄','Kitar nitrogen',''],['❄️','Nitrogen cecair','agen penyejuk']],
+      [['🎈','Helium','belon udara &amp; belon kaji cuaca'],['💡','Neon','lampu iklan'],['💡','Argon','mentol lampu'],['◇','Kripton &amp; Xenon','wujud dalam udara sebagai gas nadir']]
+    ]
+  },
+
+  s3: { en:['◆ Carbon &amp; Oxygen Cycles','Keeping the Gas Balance','Two cycles working in opposite directions, constantly, to keep air\'s ratio stable.'],
+        bm:['◆ Kitar Karbon &amp; Kitar Oksigen','Mengekalkan Keseimbangan Gas','Dua kitaran yang bekerja dalam arah bertentangan, secara berterusan, untuk mengekalkan nisbah udara.'] },
+  cycleBoxes: {
+    en:[ ['🔵 Carbon Cycle',['Green plants absorb CO₂ through photosynthesis','Animals eat plants and obtain carbon from them','Dead plants &amp; animals decompose (bacteria/fungi), releasing CO₂','Burning fossil fuels (coal, petrol) releases CO₂','Respiration releases CO₂ — balanced again by photosynthesis']],
+          ['🟣 Oxygen Cycle',['Respiration, rusting, combustion &amp; decomposition all use O₂','Photosynthesis is the only process that releases O₂ back','This constant give-and-take keeps oxygen levels stable']] ],
+    bm:[ ['🔵 Kitar Karbon',['Tumbuhan hijau menyerap CO₂ melalui fotosintesis','Haiwan memakan tumbuhan dan memperoleh karbon daripadanya','Tumbuhan &amp; haiwan mati akan mereput (bakteria/kulat), membebaskan CO₂','Pembakaran bahan api fosil (arang batu, petroleum) membebaskan CO₂','Respirasi membebaskan CO₂ — diseimbangkan semula oleh fotosintesis']],
+          ['🟣 Kitar Oksigen',['Respirasi, pengaratan, pembakaran &amp; pereputan semuanya menggunakan O₂','Fotosintesis satu-satunya proses yang membebaskan semula O₂','Pertukaran berterusan ini mengekalkan kandungan oksigen']] ]
+  },
+  balanceHead: { en:'🌍 Protecting the balance', bm:'🌍 Melindungi keseimbangan' },
+  balanceChips: { en:['🌳 Prohibit illegal logging','🌱 Reforestation','🚫 Don\'t burn forests','🧴 Avoid excessive pesticides','🚗 Prevent excess vehicle smoke'],
+                  bm:['🌳 Larang pembalakan haram','🌱 Program penghutanan semula','🚫 Elak pembakaran hutan','🧴 Elak penggunaan racun serangga berlebihan','🚗 Elak asap kenderaan berlebihan'] },
+
+  s4: { en:['◆ 7.2','Combustion &amp; Fire Safety','Combustion: a reaction when a substance is heated in the presence of oxygen, producing heat and light energy.'],
+        bm:['◆ 7.2','Pembakaran &amp; Keselamatan Kebakaran','Pembakaran: tindak balas apabila bahan dipanaskan dengan kehadiran oksigen, menghasilkan tenaga haba dan cahaya.'] },
+  tri: { en:['Heat','Oxygen','Fuel'], bm:['Haba','Oksigen','Bahan api'] },
+  methodHead: { en:'🧯 Remove one condition, the fire stops', bm:'🧯 Singkirkan satu syarat, api akan padam' },
+  methods: { en:[['🧊','Cooling','Spray water or a layer of CO₂ onto the burning surface to remove heat'],['🛑','Covering','Cut off oxygen using a fire blanket, wet sack, mud, sand, soil or foam'],['📦','Reducing fuel','Separate burning material, keep unburnt material away, cut off gas/oil supply']],
+             bm:[['🧊','Mendinginkan','Semburkan air atau lapisan CO₂ pada permukaan terbakar untuk menyingkirkan haba'],['🛑','Menyelimuti','Putuskan bekalan oksigen menggunakan selimut api, karung basah, lumpur, pasir, tanah atau busa'],['📦','Mengurangkan bahan api','Asingkan bahan terbakar, jauhkan bahan belum terbakar, tutup bekalan gas/minyak']] },
+  extHead: { en:'📋 Matching extinguisher to material on fire', bm:'📋 Memadankan alat pemadam dengan bahan terbakar' },
+  extTable: { en:[['Material on fire','Examples','Suitable extinguisher'],['Solid','Wood, cloth, paper',['Water','Dry powder']],['Liquid','Oil, varnish, paint',['Foam','Dry powder','CO₂']],['Gas','Propane, acetylene, methane',['Foam','Dry powder','CO₂']],['Metal','Potassium, sodium, magnesium, calcium',['Dry powder','Dry sand']]],
+             bm:[['Bahan terbakar','Contoh','Alat pemadam sesuai'],['Pepejal','Kayu, kain, kertas',['Air','Serbuk kering']],['Cecair','Minyak, varnis, cat',['Busa','Serbuk kering','CO₂']],['Gas','Propana, asetilena, metana',['Busa','Serbuk kering','CO₂']],['Logam','Kalium, natrium, magnesium, kalsium',['Serbuk kering','Pasir kering']]] },
+  safetyHead: { en:'✅ Fire safety at home', bm:'✅ Sikap berjaga-jaga di rumah' },
+  safety: { en:['Keep flammable substances away from fire','Keep matches &amp; lighters in a safe place','Always be aware of electrical appliances','Never discard burning cigarette butts','Install a fire alarm / smoke detector','Don\'t overload a single electrical socket'],
+            bm:['Jauhkan bahan mudah terbakar daripada api','Simpan mancis &amp; pemetik api di tempat selamat','Sentiasa peka terhadap barangan elektrik','Jangan buang puntung rokok yang masih menyala','Pasang penggera kebakaran / pengesan asap','Jangan letak terlalu banyak beban pada satu sumber elektrik'] },
+
+  s5: { en:['◆ 7.3','Where Air Pollution Comes From','Air pollution: the presence of pollutants in the air that harms living things and the environment.'],
+        bm:['◆ 7.3','Punca Pencemaran Udara','Pencemaran udara: kehadiran bahan pencemar dalam udara yang memudaratkan hidupan dan alam sekitar.'] },
+  sources: { en:[['🚗 Vehicle exhaust &amp; factories',['Smoke','Soot','CO','SO₂','NO₂','Lead']],['🔥 Open burning, cigarettes, forest fires',['Dust','Soot','Smoke']],['🏗️ Construction, asbestos factories, quarries',['Dust','Soot']],['☢️ Nuclear power plants',['Radioactive materials']],['🌾 Agriculture &amp; plantation activity',['Aerosol spray','Chemical fertiliser']],['🧊 A/C, fridges, aerosol sprays, electronics factories',['CFC']]],
+             bm:[['🚗 Ekzos kenderaan &amp; kilang',['Asap','Jelaga','CO','SO₂','NO₂','Plumbum']],['🔥 Pembakaran terbuka, rokok, kebakaran hutan',['Habuk','Jelaga','Asap']],['🏗️ Tapak pembinaan, kilang asbestos, kuari batu kapur',['Habuk','Jelaga']],['☢️ Loji kuasa nuklear',['Bahan radioaktif']],['🌾 Aktiviti pertanian &amp; perladangan',['Semburan aerosol','Baja kimia']],['🧊 Penyaman udara, peti sejuk, semburan aerosol, kilang elektronik',['CFC']]] },
+
+  s6: { en:['◆ 7.3 continued','The Damage It Causes','Air pollution doesn\'t just affect breathing — it touches health, buildings, ecosystems and climate.'],
+        bm:['◆ Sambungan 7.3','Kesan Buruk Pencemaran Udara','Pencemaran udara bukan sekadar menjejaskan pernafasan — ia turut menjejaskan bangunan, ekosistem dan iklim.'] },
+  effects: {
+    en:[ ['🫁 Health','effect-health',['Smoke &amp; dust — breathing problems','Sulfur dioxide — respiratory problems','Carbon monoxide — headache, mental retardation, death','Asbestos particles — lung cancer','Lead particles — intellectual disability in children &amp; babies']],
+         ['🏛️ Buildings &amp; Infrastructure','effect-build',['Dust &amp; soot stain buildings','Acid rain corrodes concrete &amp; limestone','Acid rain speeds up iron rusting']],
+         ['🌱 Plants &amp; Animals','effect-plant',['Acid rain makes soil acidic &amp; less fertile','Acid rain makes water acidic — unsuitable for aquatic life','Smoke &amp; haze reduce sunlight — slows photosynthesis']],
+         ['🌍 Climate','effect-climate',['Smoke from factories, vehicles &amp; burning → haze','Excess CO₂ → greenhouse effect','Excess CFC → thinning ozone layer','SO₂ &amp; NO₂ → acid rain']] ],
+    bm:[ ['🫁 Kesihatan','effect-health',['Asap &amp; habuk — masalah kesesakan nafas','Sulfur dioksida — penyakit salur pernafasan','Karbon monoksida — sakit kepala, kerencatan akal, maut','Zarah asbestos — kanser peparu','Zarah plumbum — kerencatan akal kanak-kanak &amp; bayi']],
+         ['🏛️ Bangunan &amp; Infrastruktur','effect-build',['Habuk &amp; jelaga mengotorkan bangunan','Hujan asid mengakis konkrit &amp; batu kapur','Hujan asid mempercepat pengaratan besi']],
+         ['🌱 Tumbuhan &amp; Haiwan','effect-plant',['Hujan asid menjadikan tanah berasid &amp; kurang subur','Hujan asid menjadikan air berasid — tidak sesuai untuk hidupan akuatik','Asap &amp; jerebu mengurangkan cahaya matahari — melambatkan fotosintesis']],
+         ['🌍 Iklim','effect-climate',['Asap kilang, kenderaan &amp; pembakaran → jerebu','CO₂ berlebihan → kesan rumah hijau','CFC berlebihan → penipisan lapisan ozon','SO₂ &amp; NO₂ → hujan asid']] ]
+  },
+
+  s7: { en:['◆ 7.3 continued','Prevention &amp; Control','Three fronts working together — rules, awareness, and technology.'],
+        bm:['◆ Sambungan 7.3','Pencegahan &amp; Kawalan','Tiga pendekatan yang bergerak seiring — undang-undang, pendidikan, dan teknologi.'] },
+  prevent: {
+    en:[ ['⚖️ Law Enforcement',['Fine smokers in restricted areas','Fine open burning','Fine vehicles emitting excess smoke','Prohibit factories in housing areas']],
+         ['🎓 Education',['Teach students the effects &amp; prevention of pollution','Anti-smoking campaigns','Encourage walking / cycling','Encourage public transport / carpooling']],
+         ['🔬 Science &amp; Technology',['Hybrid vehicle technology','HCFC instead of CFC in refrigerators','Install filters in factory chimneys','Catalytic converters on vehicles','Biological pest control instead of pesticides']] ],
+    bm:[ ['⚖️ Undang-undang',['Denda perokok di kawasan larangan','Denda pembakaran terbuka','Denda kenderaan yang mengeluarkan asap berlebihan','Larang kilang dibina di kawasan perumahan']],
+         ['🎓 Pendidikan',['Didik pelajar tentang kesan &amp; pencegahan pencemaran','Program antimerokok','Galakan berjalan kaki / berbasikal','Galakan pengangkutan awam / kongsi kereta']],
+         ['🔬 Sains &amp; Teknologi',['Teknologi kenderaan hibrid','HCFC menggantikan CFC dalam peti sejuk','Pasang penapis di cerobong kilang','Penukar bermangkin pada kenderaan','Kawalan biologi menggantikan pestisid']] ]
+  },
+
+  s8: { en:['◆ Wrap-up','Air Pollutant Index &amp; Key Facts'], bm:['◆ Rumusan','Indeks Pencemaran Udara &amp; Fakta Penting'] },
+  apiHead: { en:'📟 Air Pollutant Index (API)', bm:'📟 Indeks Pencemaran Udara (IPU)' },
+  apiRows: { en:[['0–50','Good','api-good'],['51–100','Moderate','api-mod'],['101–200','Unhealthy','api-unh'],['201–300','Very Unhealthy','api-vunh'],['&gt;300','Hazardous','api-haz']],
+             bm:[['0–50','Baik','api-good'],['51–100','Sederhana','api-mod'],['101–200','Tidak sihat','api-unh'],['201–300','Sangat tidak sihat','api-vunh'],['&gt;300','Berbahaya','api-haz']] },
+  factsHead: { en:'⭐ Key exam facts', bm:'⭐ Fakta penting peperiksaan' },
+  facts: { en:['Nitrogen is the largest part of air, at 78%','Air is a mixture — separable by fractional distillation','Photosynthesis removes CO₂ and releases oxygen','Fire needs heat, oxygen and fuel — remove one, fire stops','Carbon monoxide reduces oxygen carried in the blood','SO₂ and NO₂ both contribute to acid rain','Excess CO₂ causes the greenhouse effect; excess CFC thins the ozone layer','Hybrid vehicles &amp; catalytic converters reduce air pollution'],
+           bm:['Nitrogen adalah komponen terbesar udara, iaitu 78%','Udara ialah campuran — boleh diasingkan melalui penyulingan berperingkat','Fotosintesis menyingkirkan CO₂ dan membebaskan oksigen','Api memerlukan haba, oksigen dan bahan api — singkirkan satu, api padam','Karbon monoksida mengurangkan oksigen dalam darah','SO₂ dan NO₂ kedua-duanya menyebabkan hujan asid','CO₂ berlebihan menyebabkan kesan rumah hijau; CFC berlebihan menipiskan lapisan ozon','Kenderaan hibrid &amp; penukar bermangkin mengurangkan pencemaran udara'] },
+  glossHead: { en:'📘 Glossary', bm:'📘 Glosari' },
+  gloss: { en:['Air','Atmosphere','Nitrogen','Oxygen','Carbon dioxide','Inert gas','Fractional distillation','Carbon cycle','Oxygen cycle','Photosynthesis','Respiration','Combustion','Fire triangle','Fire extinguisher','Air pollution','Air Pollutant Index','Acid rain','Greenhouse effect','Ozone layer','CFC','Catalytic converter'],
+          bm:['Udara','Atmosfera','Nitrogen','Oksigen','Karbon dioksida','Gas nadir','Penyulingan berperingkat','Kitar karbon','Kitar oksigen','Fotosintesis','Respirasi','Pembakaran','Segi tiga api','Alat pemadam api','Pencemaran udara','Indeks Pencemaran Udara','Hujan asid','Kesan rumah hijau','Lapisan ozon','CFC','Penukar bermangkin'] },
+  summaryHead: { en:'⭐ Chapter Summary', bm:'⭐ Rumusan Bab' },
+  summaryText: { en:'Chapter 7 covers the composition of air and why air is a mixture, the importance of each gas, the carbon and oxygen cycles that keep them balanced, how combustion and fire safety work, and the sources, effects, and control of air pollution — including the Air Pollutant Index used to monitor it.',
+                 bm:'Bab 7 merangkumi komposisi udara dan sebab udara ialah campuran, kepentingan setiap gas, kitar karbon dan oksigen yang mengekalkan keseimbangan, cara pembakaran dan keselamatan kebakaran berfungsi, serta punca, kesan dan kawalan pencemaran udara — termasuk Indeks Pencemaran Udara.' },
+  markReadBtn: { en:'📘 Mark Chapter 7 as Read · +20 XP', bm:'📘 Tandakan Bab 7 Selesai · +20 XP' },
+  prevBtn: { en:'← Back', bm:'← Kembali' },
+  nextBtn: { en:'Next section →', bm:'Seksyen seterusnya →' },
+  xpToast: { en:'🎉 +20 XP — Chapter 7 complete!', bm:'🎉 +20 XP — Bab 7 selesai!' }
+};
+
+function el(tag, cls, html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+
+function renderNav(){
+  const list = document.getElementById('navlist');
+  list.innerHTML = nav[lang].map(([ic,label], i) => `<a href="#" class="${i===2?'active':''}">${ic} ${label}</a>`).join('');
+}
+
+function renderOrbit(){
+  const track = document.getElementById('orbitTrack');
+  track.innerHTML = orbitLabels[lang].map((label,i) => `
+    <button class="orbit-node ${i<current?'done':''} ${i===current?'current':''}" onclick="jump(${i})">
+      <div class="orbit-dot">${i<current ? '✓' : i+1}</div>
+      <div class="orbit-label">${label}</div>
+    </button>`).join('');
+}
+
+function renderAll(){
+  document.getElementById('crumb').innerHTML = T.crumb[lang];
+  document.getElementById('accBadge').innerHTML = T.accBadge[lang];
+  document.getElementById('hookTitle').innerHTML = T.hookTitle[lang];
+  document.getElementById('hookText').innerHTML = T.hookText[lang];
+  document.getElementById('donutLabel').innerHTML = T.donutLabel[lang];
+  document.getElementById('legend').innerHTML = T.legend[lang].map(([c,name,pct]) => `<div class="legend-row"><div class="legend-swatch" style="background:${c}"></div> ${name} <b>${pct}</b></div>`).join('');
+
+  document.getElementById('s0-title').innerHTML = T.s0[lang][0];
+  document.getElementById('s0-sub').innerHTML = T.s0[lang][1];
+  const colorMap = {violet:['var(--violet-soft)','rgba(139,107,255,0.45)','#cfc2ff'], amber:['var(--amber-soft)','rgba(251,191,90,0.45)','#ffd699'], blue:['var(--blue-soft)','rgba(79,176,255,0.45)','#bfe4ff']};
+  document.getElementById('revealSet0').innerHTML = T.reveals0[lang].map((r,i) => {
+    const [bg,border,color] = colorMap[r[2]];
+    return `<div class="reveal-chip" style="background:${bg}; border-color:${border}; color:${color};" onclick="toggleReveal('rv0-${i}')">${r[0]}</div><div class="reveal-box" id="rv0-${i}">${r[1]}</div>`;
+  }).join('');
+
+  document.getElementById('s1-eyebrow').innerHTML = T.s1[lang][0];
+  document.getElementById('s1-title').innerHTML = T.s1[lang][1];
+  document.getElementById('s1-sub').innerHTML = T.s1[lang][2];
+  document.getElementById('expSteps').innerHTML = T.expSteps[lang].map(([em,cap]) => `<div class="exp-step"><span class="emoji">${em}</span><div class="cap">${cap}</div></div>`).join('');
+  document.getElementById('predictQ').innerHTML = T.predictQ[lang];
+  document.getElementById('predictOpts').innerHTML = T.predictOpts[lang].map(([label,correct]) => `<div class="predict-opt" onclick="checkPredict(this, ${correct})">${label}</div>`).join('');
+  document.getElementById('predictFeedback').innerHTML = T.predictFeedback[lang];
+  document.getElementById('predictFeedback').classList.remove('show');
+  document.querySelectorAll('.predict-opt').forEach(o=>o.classList.remove('correct','wrong'));
+
+  document.getElementById('s2-eyebrow').innerHTML = T.s2[lang][0];
+  document.getElementById('s2-title').innerHTML = T.s2[lang][1];
+  document.getElementById('s2-sub').innerHTML = T.s2[lang][2];
+  document.getElementById('gasTabs').innerHTML = T.gasTabs[lang].map(([sym,name],i) => `<div class="gas-tab ${i===0?'active':''}" onclick="switchGasTab(${i}, this)"><div class="sym">${sym}</div><div class="name">${name}</div></div>`).join('');
+  document.getElementById('useGrids').innerHTML = T.useGrids[lang].map((grid,gi) => `<div class="use-grid ${gi===0?'active':''}" data-gas="${gi}">${grid.map(([ic,b,s]) => `<div class="use-card"><span class="ic">${ic}</span><b>${b}</b>${s?`<span>${s}</span>`:''}</div>`).join('')}</div>`).join('');
+
+  document.getElementById('s3-eyebrow').innerHTML = T.s3[lang][0];
+  document.getElementById('s3-title').innerHTML = T.s3[lang][1];
+  document.getElementById('s3-sub').innerHTML = T.s3[lang][2];
+  document.getElementById('cycleRow').innerHTML = T.cycleBoxes[lang].map(([h,items]) => `<div class="cycle-box"><h4>${h}</h4><ul class="cycle-list">${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+  document.getElementById('balanceHead').innerHTML = T.balanceHead[lang];
+  document.getElementById('balanceChips').innerHTML = T.balanceChips[lang].map(c => `<div class="balance-chip">${c}</div>`).join('');
+
+  document.getElementById('s4-eyebrow').innerHTML = T.s4[lang][0];
+  document.getElementById('s4-title').innerHTML = T.s4[lang][1];
+  document.getElementById('s4-sub').innerHTML = T.s4[lang][2];
+  document.getElementById('triHeat').innerHTML = T.tri[lang][0];
+  document.getElementById('triOxy').innerHTML = T.tri[lang][1];
+  document.getElementById('triFuel').innerHTML = T.tri[lang][2];
+  document.getElementById('methodHead').innerHTML = T.methodHead[lang];
+  document.getElementById('methodGrid').innerHTML = T.methods[lang].map(([ic,h,p]) => `<div class="method-card"><span class="ic">${ic}</span><h5>${h}</h5><p>${p}</p></div>`).join('');
+  document.getElementById('extHead').innerHTML = T.extHead[lang];
+  const extRows = T.extTable[lang];
+  document.getElementById('extTable').innerHTML = `<tr><th>${extRows[0][0]}</th><th>${extRows[0][1]}</th><th>${extRows[0][2]}</th></tr>` +
+    extRows.slice(1).map(row => `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2].map(p=>`<span class="pill">${p}</span>`).join('')}</td></tr>`).join('');
+  document.getElementById('safetyHead').innerHTML = T.safetyHead[lang];
+  document.getElementById('safetyGrid').innerHTML = T.safety[lang].map(s => `<div class="safety-item"><div class="chk">✓</div>${s}</div>`).join('');
+
+  document.getElementById('s5-eyebrow').innerHTML = T.s5[lang][0];
+  document.getElementById('s5-title').innerHTML = T.s5[lang][1];
+  document.getElementById('s5-sub').innerHTML = T.s5[lang][2];
+  document.getElementById('sourceGrid').innerHTML = T.sources[lang].map(([from,tags]) => `<div class="source-card"><div class="from">${from}</div><div class="pollutants">${tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>`).join('');
+
+  document.getElementById('s6-eyebrow').innerHTML = T.s6[lang][0];
+  document.getElementById('s6-title').innerHTML = T.s6[lang][1];
+  document.getElementById('s6-sub').innerHTML = T.s6[lang][2];
+  document.getElementById('effectsGrid').innerHTML = T.effects[lang].map(([h,cls,items]) => `<div class="effect-card ${cls}"><h5>${h}</h5><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+
+  document.getElementById('s7-eyebrow').innerHTML = T.s7[lang][0];
+  document.getElementById('s7-title').innerHTML = T.s7[lang][1];
+  document.getElementById('s7-sub').innerHTML = T.s7[lang][2];
+  document.getElementById('preventCols').innerHTML = T.prevent[lang].map(([h,items]) => `<div class="prevent-col"><h5>${h}</h5><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+
+  document.getElementById('s8-eyebrow').innerHTML = T.s8[lang][0];
+  document.getElementById('s8-title').innerHTML = T.s8[lang][1];
+  document.getElementById('apiHead').innerHTML = T.apiHead[lang];
+  document.getElementById('apiRows').innerHTML = T.apiRows[lang].map(([range,label,cls]) => `<div class="api-row ${cls}"><div class="api-range">${range}</div><div class="api-label">${label}</div></div>`).join('');
+  document.getElementById('factsHead').innerHTML = T.factsHead[lang];
+  document.getElementById('factsGrid').innerHTML = T.facts[lang].map((f,i) => `<div class="flip-card"><div class="num">${i+1}</div>${f}</div>`).join('');
+  document.getElementById('glossHead').innerHTML = T.glossHead[lang];
+  document.getElementById('glossWrap').innerHTML = T.gloss[lang].map(g => `<span class="glossary-chip">${g}</span>`).join('');
+  document.getElementById('summaryHead').innerHTML = T.summaryHead[lang];
+  document.getElementById('summaryText').innerHTML = T.summaryText[lang];
+  document.getElementById('markReadBtn').innerHTML = T.markReadBtn[lang];
+
+  document.getElementById('prevBtn').innerHTML = T.prevBtn[lang];
+  document.getElementById('nextBtn').innerHTML = T.nextBtn[lang];
+  document.getElementById('xpToast').innerHTML = T.xpToast[lang];
+
+  renderNav();
+  renderOrbit();
+  renderPanels();
+}
+
+function renderPanels(){
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.toggle('active', Number(p.dataset.index) === current));
+  document.getElementById('prevBtn').disabled = current === 0;
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.style.display = current === 8 ? 'none' : 'flex';
+}
+
+function go(dir){ current = Math.max(0, Math.min(8, current+dir)); renderOrbit(); renderPanels(); document.getElementById('cardShell').scrollIntoView({behavior:'smooth', block:'start'}); }
+function jump(i){ current = i; renderOrbit(); renderPanels(); }
+function toggleReveal(id){ document.getElementById(id).classList.toggle('open'); }
+function checkPredict(el, isCorrect){ document.querySelectorAll('.predict-opt').forEach(o => o.classList.remove('correct','wrong')); el.classList.add(isCorrect ? 'correct' : 'wrong'); document.getElementById('predictFeedback').classList.add('show'); }
+function switchGasTab(idx, elm){ document.querySelectorAll('.gas-tab').forEach(t => t.classList.remove('active')); elm.classList.add('active'); document.querySelectorAll('.use-grid').forEach(g => g.classList.toggle('active', g.dataset.gas == idx)); }
+function markComplete(){ const toast = document.getElementById('xpToast'); toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2600); }
+
+function setLang(l){
+  lang = l;
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+  renderAll();
+}
+
+function drawDonut(){
+  const R = 76, C = 2*Math.PI*R;
+  const segs = [{id:'arcN2', pct:78}, {id:'arcO2', pct:21}, {id:'arcCO2', pct:0.6}, {id:'arcOther', pct:0.4}];
+  let offset = 0;
+  segs.forEach(s => {
+    const len = (s.pct/100)*C;
+    const e = document.getElementById(s.id);
+    e.style.strokeDasharray = `${len} ${C-len}`;
+    e.style.strokeDashoffset = -offset;
+    offset += len;
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => { drawDonut(); renderAll(); });
+</script>
+
+</body>
+</html>

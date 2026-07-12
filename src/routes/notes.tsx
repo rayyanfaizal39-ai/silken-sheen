@@ -29,6 +29,7 @@ import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
+import { Bab7NotesBlock } from "@/components/notes/bab7/Bab7NotesBlock";
 import { normalizeChapterParam, normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
   AcademyHero,
@@ -619,7 +620,18 @@ function NotesPage() {
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
-          {subject === "english" && activeChapter?.englishData ? (
+          {activeChapter?.bab7Data ? (
+            <Bab7NotesBlock
+              id="notes"
+              content={activeChapter.bab7Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : subject === "english" && activeChapter?.englishData ? (
             <EnglishNotesBlock
               id="notes"
               data={activeChapter.englishData}
@@ -639,6 +651,7 @@ function NotesPage() {
           )}
 
           {filtered.length === 0 ? (
+            !activeChapter?.bab7Data &&
             !activeChapter?.englishData &&
             !activeChapter?.notes &&
             !activeChapter?.video && (
@@ -650,7 +663,7 @@ function NotesPage() {
             )
           ) : (
             <>
-              {!activeChapter?.englishData && !activeChapter?.notes && (
+              {!activeChapter?.bab7Data && !activeChapter?.englishData && !activeChapter?.notes && (
                 <NotesBlock
                   id="notes"
                   sections={legacyNoteSections}
@@ -659,6 +672,7 @@ function NotesPage() {
                 />
               )}
 
+              {!activeChapter?.bab7Data && (
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button
                   onClick={() =>
@@ -675,6 +689,7 @@ function NotesPage() {
                   {isRead ? "Marked as read ✓" : "Mark as Read"}
                 </button>
               </div>
+              )}
             </>
           )}
         </>

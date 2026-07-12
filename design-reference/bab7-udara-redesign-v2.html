@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 7: Udara — Full Textbook Redesign — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816;
+    --bg-panel:#0c1128;
+    --bg-card:#111632;
+    --bg-card-hover:#151b3d;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff;
+    --violet-soft:rgba(139,107,255,0.16);
+    --blue:#4fb0ff;
+    --blue-soft:rgba(79,176,255,0.14);
+    --amber:#fbbf5a;
+    --amber-soft:rgba(251,191,90,0.16);
+    --green:#4ade80;
+    --green-soft:rgba(74,222,128,0.12);
+    --red:#f87171;
+    --red-soft:rgba(248,113,113,0.12);
+    --orange:#fb923c;
+    --maroon:#c2410c;
+    --text:#eef1fb;
+    --muted:#93a0c2;
+    --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 110% 20%, rgba(79,176,255,0.10), transparent 60%),
+      var(--bg-deep);
+    color:var(--text);
+    font-family:var(--font-body);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .app{display:flex; min-height:100vh;}
+
+  .sidebar{width:220px; flex-shrink:0; padding:28px 20px; border-right:1px solid var(--line); display:flex; flex-direction:column; gap:28px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:17px;}
+  .logo .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .logo span.hl{color:var(--amber);}
+  .navlist{display:flex; flex-direction:column; gap:3px;}
+  .navlist a{color:var(--muted-dim); text-decoration:none; font-size:13.5px; font-weight:500; padding:9px 10px; border-radius:8px; display:flex; align-items:center; gap:10px;}
+  .navlist a.active{background:var(--violet-soft); color:#cfc2ff;}
+
+  .main{flex:1; padding:36px 48px 80px; max-width:1020px; margin:0 auto;}
+  .topline{display:flex; align-items:center; justify-content:space-between; margin-bottom:22px;}
+  .crumb{color:var(--muted-dim); font-size:12.5px; letter-spacing:.03em;}
+  .crumb b{color:var(--muted);}
+  .streak{display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--amber); font-weight:600;}
+  .accuracy-badge{display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--green); background:var(--green-soft); border:1px solid rgba(74,222,128,0.3); padding:5px 11px; border-radius:20px; font-weight:600;}
+
+  .hook{background:linear-gradient(120deg, rgba(139,107,255,0.14), rgba(79,176,255,0.08)); border:1px solid rgba(139,107,255,0.28); border-radius:16px; padding:20px 24px; margin-bottom:26px; display:flex; gap:16px; align-items:center;}
+  .hook .icon{font-size:26px; flex-shrink:0;}
+  .hook .title{font-family:var(--font-display); font-weight:700; font-size:19px; margin:0 0 4px;}
+  .hook p{margin:0; color:var(--muted); font-size:14px; line-height:1.5;}
+
+  .orbit-track{display:flex; align-items:center; justify-content:space-between; margin-bottom:30px; padding:0 2px; position:relative; overflow-x:auto; gap:4px;}
+  .orbit-track::before{content:''; position:absolute; top:15px; left:16px; right:16px; height:2px; background:var(--line); z-index:0;}
+  .orbit-node{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; background:transparent; border:none; font-family:var(--font-body); flex-shrink:0; width:76px;}
+  .orbit-dot{width:30px;height:30px;border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12.5px; background:var(--bg-panel); border:2px solid var(--line); color:var(--muted-dim); transition:all .25s ease;}
+  .orbit-node.done .orbit-dot{background:linear-gradient(135deg,var(--violet),var(--blue)); border-color:transparent; color:#fff;}
+  .orbit-node.current .orbit-dot{border-color:var(--blue); color:var(--blue); box-shadow:0 0 0 4px var(--blue-soft);}
+  .orbit-label{font-size:9.5px; color:var(--muted-dim); max-width:74px; text-align:center; line-height:1.2;}
+  .orbit-node.current .orbit-label{color:var(--text); font-weight:600;}
+
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:32px 36px; min-height:420px; position:relative; overflow:hidden;}
+  .card::before{content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(139,107,255,0.10), transparent 70%); pointer-events:none;}
+  .sec-eyebrow{display:flex; align-items:center; gap:8px; color:var(--blue); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;}
+  .sec-title{font-family:var(--font-display); font-size:24px; font-weight:700; margin:0 0 8px;}
+  .sec-sub{font-size:13.5px; color:var(--muted); margin:0 0 22px; line-height:1.5;}
+
+  .section-panel{display:none; animation:fadeIn .35s ease;}
+  .section-panel.active{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .card-nav{display:flex; justify-content:space-between; align-items:center; margin-top:28px;}
+  .btn{font-family:var(--font-body); font-weight:600; font-size:13.5px; border-radius:10px; border:1px solid var(--line); background:var(--bg-panel); color:var(--text); padding:11px 20px; cursor:pointer; display:flex; align-items:center; gap:8px; transition:all .15s ease;}
+  .btn:hover{background:var(--bg-card-hover); border-color:rgba(148,163,184,0.3);}
+  .btn.primary{background:linear-gradient(135deg,var(--violet),var(--blue)); border:none; color:#fff;}
+  .btn.primary:hover{filter:brightness(1.08);}
+  .btn:disabled{opacity:.35; cursor:not-allowed;}
+
+  /* Composition donut */
+  .comp-layout{display:flex; gap:40px; align-items:center; flex-wrap:wrap;}
+  .donut-wrap{position:relative; width:190px; height:190px; flex-shrink:0;}
+  .donut-wrap svg{transform:rotate(-90deg);}
+  .donut-center{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .donut-center .n{font-family:var(--font-display); font-size:24px; font-weight:700;}
+  .donut-center .l{font-size:10.5px; color:var(--muted-dim); text-align:center;}
+  .comp-legend{display:flex; flex-direction:column; gap:10px; flex:1; min-width:220px;}
+  .legend-row{display:flex; align-items:center; gap:10px; font-size:13.5px; padding:8px 12px; border-radius:10px; background:var(--bg-panel);}
+  .legend-swatch{width:12px;height:12px;border-radius:3px; flex-shrink:0;}
+  .legend-row b{margin-left:auto; font-family:var(--font-display); font-size:13.5px;}
+
+  .reveal-chip{display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:10px; background:var(--violet-soft); border:1px dashed rgba(139,107,255,0.45); color:#cfc2ff; font-size:13px; font-weight:600; cursor:pointer; margin:6px 8px 0 0;}
+  .reveal-box{margin-top:12px; padding:15px 17px; border-radius:12px; background:var(--bg-panel); border:1px solid var(--line); font-size:13.5px; color:var(--muted); line-height:1.55; display:none;}
+  .reveal-box.open{display:block; animation:fadeIn .3s ease;}
+  .reveal-set{margin-top:20px;}
+
+  /* Experiment */
+  .exp-steps{display:flex; gap:14px; margin-bottom:22px; flex-wrap:wrap;}
+  .exp-step{flex:1; min-width:150px; background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:16px; text-align:center;}
+  .exp-step .emoji{font-size:28px; margin-bottom:8px; display:block;}
+  .exp-step .cap{font-size:12.5px; color:var(--muted); line-height:1.4;}
+  .predict-box{background:var(--blue-soft); border:1px solid rgba(79,176,255,0.3); border-radius:14px; padding:20px;}
+  .predict-box .q{font-weight:600; font-size:14.5px; margin-bottom:14px;}
+  .predict-opts{display:flex; gap:10px; flex-wrap:wrap;}
+  .predict-opt{padding:10px 16px; border-radius:10px; background:var(--bg-panel); border:1px solid var(--line); font-size:13.5px; cursor:pointer; font-weight:500;}
+  .predict-opt.correct{background:rgba(74,222,128,0.16); border-color:var(--green); color:var(--green);}
+  .predict-opt.wrong{background:rgba(248,113,113,0.16); border-color:var(--red); color:var(--red);}
+  .predict-feedback{margin-top:14px; font-size:13.5px; color:var(--muted); display:none; line-height:1.5;}
+  .predict-feedback.show{display:block; animation:fadeIn .3s ease;}
+
+  /* Gas tabs */
+  .gas-tabs{display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;}
+  .gas-tab{flex:1; min-width:90px; padding:12px; border-radius:12px; border:1px solid var(--line); background:var(--bg-panel); cursor:pointer; text-align:center; transition:all .2s;}
+  .gas-tab.active{border-color:var(--violet); background:var(--violet-soft);}
+  .gas-tab .sym{font-family:var(--font-display); font-size:18px; font-weight:700;}
+  .gas-tab .name{font-size:11px; color:var(--muted); margin-top:2px;}
+  .use-grid{display:none; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px;}
+  .use-grid.active{display:grid;}
+  .use-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:12px; padding:14px; font-size:12.5px; text-align:center; line-height:1.4;}
+  .use-card .ic{font-size:20px; display:block; margin-bottom:6px;}
+  .use-card b{display:block; font-size:12px; margin-bottom:2px;}
+  .use-card span{color:var(--muted-dim); font-size:11px;}
+
+  /* Cycles */
+  .cycle-row{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .cycle-box{background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:18px;}
+  .cycle-box h4{margin:0 0 12px; font-family:var(--font-display); font-size:15px;}
+  .cycle-list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .cycle-list li{font-size:12px; color:var(--muted); display:flex; gap:8px; align-items:flex-start; line-height:1.4;}
+  .cycle-list li::before{content:'→'; color:var(--blue); flex-shrink:0;}
+  .balance-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
+  .balance-chip{background:rgba(74,222,128,0.12); border:1px solid rgba(74,222,128,0.3); color:var(--green); padding:8px 14px; border-radius:20px; font-size:12px; font-weight:500;}
+
+  /* Combustion */
+  .triangle-wrap{display:flex; justify-content:center; margin:10px 0 26px;}
+  .fire-tri{position:relative; width:240px; height:200px;}
+  .fire-tri .node{position:absolute; width:80px; height:80px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--bg-panel); border:2px solid var(--amber); font-size:24px;}
+  .fire-tri .node span.lbl{font-size:10px; color:var(--muted); margin-top:2px; font-weight:600;}
+  .fire-tri .n1{top:0; left:80px;}
+  .fire-tri .n2{bottom:0; left:0;}
+  .fire-tri .n3{bottom:0; right:0;}
+  .method-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:26px;}
+  .method-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:12px; padding:16px;}
+  .method-card .ic{font-size:22px;}
+  .method-card h5{margin:8px 0 6px; font-size:13.5px; font-family:var(--font-display);}
+  .method-card p{margin:0; font-size:11.5px; color:var(--muted); line-height:1.4;}
+
+  .ext-table{width:100%; border-collapse:collapse; margin-bottom:26px; font-size:12.5px;}
+  .ext-table th{text-align:left; color:var(--muted-dim); font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; padding:0 12px 10px;}
+  .ext-table td{background:var(--bg-panel); padding:12px; vertical-align:top; border-top:6px solid var(--bg-card);}
+  .ext-table tr td:first-child{border-radius:10px 0 0 10px; font-weight:600;}
+  .ext-table tr td:last-child{border-radius:0 10px 10px 0;}
+  .pill{display:inline-block; background:var(--violet-soft); color:#cfc2ff; padding:3px 9px; border-radius:20px; font-size:11px; margin:2px 3px 0 0;}
+
+  .safety-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px;}
+  .safety-item{display:flex; gap:10px; align-items:flex-start; background:var(--bg-panel); border:1px solid var(--line); border-radius:10px; padding:11px 13px; font-size:12px; color:var(--muted); line-height:1.4;}
+  .safety-item .chk{width:18px; height:18px; border-radius:5px; border:2px solid var(--green); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:var(--green); font-size:11px; margin-top:1px;}
+
+  /* Pollution sources */
+  .source-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px;}
+  .source-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:16px;}
+  .source-card .from{font-size:11px; color:var(--muted-dim); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; font-weight:700;}
+  .source-card .list{font-size:12px; color:var(--muted); line-height:1.5;}
+  .source-card .pollutants{margin-top:10px; display:flex; flex-wrap:wrap; gap:5px;}
+  .tag{font-size:10.5px; background:var(--red-soft); color:#ffb4b4; padding:3px 8px; border-radius:20px;}
+
+  /* Effects 4-category */
+  .effects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .effect-card{border-radius:14px; padding:16px; border:1px solid var(--line);}
+  .effect-card h5{margin:0 0 10px; font-family:var(--font-display); font-size:14px; display:flex; align-items:center; gap:8px;}
+  .effect-card ul{margin:0; padding-left:16px; font-size:12px; color:var(--muted); line-height:1.5;}
+  .effect-health{background:rgba(248,113,113,0.06);}
+  .effect-build{background:rgba(251,191,90,0.06);}
+  .effect-plant{background:rgba(74,222,128,0.06);}
+  .effect-climate{background:rgba(79,176,255,0.06);}
+
+  /* Prevention 3-column */
+  .prevent-cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .prevent-col{background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:16px;}
+  .prevent-col h5{margin:0 0 10px; font-family:var(--font-display); font-size:13.5px; color:var(--blue);}
+  .prevent-col ul{margin:0; padding-left:16px; font-size:12px; color:var(--muted); line-height:1.6;}
+
+  /* API table */
+  .api-table{width:100%; border-collapse:collapse; margin-bottom:8px; font-size:13px;}
+  .api-table td{padding:10px 14px;}
+  .api-row{display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:10px; margin-bottom:6px;}
+  .api-range{font-family:var(--font-display); font-weight:700; min-width:80px;}
+  .api-label{font-weight:600; flex:1;}
+  .api-good{background:rgba(74,222,128,0.14); color:var(--green);}
+  .api-mod{background:rgba(251,191,90,0.14); color:var(--amber);}
+  .api-unh{background:rgba(251,146,60,0.14); color:var(--orange);}
+  .api-vunh{background:rgba(248,113,113,0.14); color:var(--red);}
+  .api-haz{background:rgba(194,65,12,0.22); color:#ff9d7a;}
+
+  .flip-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-bottom:8px;}
+  .flip-card{background:rgba(74,222,128,0.08); border:1px solid rgba(74,222,128,0.25); border-radius:12px; padding:14px 16px; font-size:12.5px; color:#c8f5d8; line-height:1.5; display:flex; gap:10px; align-items:flex-start;}
+  .flip-card .num{width:20px; height:20px; border-radius:50%; background:rgba(74,222,128,0.25); color:var(--green); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+
+  .glossary-wrap{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;}
+  .glossary-chip{background:var(--bg-panel); border:1px solid var(--line); color:var(--muted); padding:7px 13px; border-radius:20px; font-size:12px;}
+
+  .summary-box{background:linear-gradient(120deg, rgba(139,107,255,0.12), rgba(79,176,255,0.06)); border:1px solid rgba(139,107,255,0.28); border-radius:14px; padding:20px 22px; margin:24px 0;}
+  .summary-box h4{margin:0 0 8px; font-family:var(--font-display); font-size:15px; display:flex; gap:8px; align-items:center;}
+  .summary-box p{margin:0; font-size:13px; color:var(--muted); line-height:1.55;}
+
+  .complete-row{display:flex; justify-content:center; margin-top:10px;}
+  .xp-toast{position:fixed; top:26px; left:50%; transform:translateX(-50%) translateY(-140%); z-index:50; background:linear-gradient(135deg,var(--violet),var(--blue)); color:#fff; font-weight:700; font-size:14px; padding:14px 22px; border-radius:14px; box-shadow:0 10px 30px rgba(79,88,255,0.4); display:flex; gap:8px; align-items:center; transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+  .xp-toast.show{transform:translateX(-50%) translateY(0);}
+
+  .subhead{font-family:var(--font-display); font-weight:700; font-size:14px; margin:22px 0 10px; display:flex; align-items:center; gap:8px;}
+  .subhead:first-child{margin-top:0;}
+
+  @media(max-width:760px){
+    .sidebar{display:none;}
+    .main{padding:24px 18px 60px;}
+    .cycle-row{grid-template-columns:1fr;}
+    .comp-layout{flex-direction:column; align-items:flex-start;}
+    .orbit-label{display:none;}
+    .orbit-node{width:40px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="sidebar">
+    <div class="logo"><div class="dot">🚀</div>Academ<span class="hl">Y</span></div>
+    <div class="navlist">
+      <a href="#">🏠 Home</a>
+      <a href="#">📊 Dashboard</a>
+      <a class="active" href="#">📖 Notes</a>
+      <a href="#">🧩 Mind Maps</a>
+      <a href="#">❓ Quizzes</a>
+      <a href="#">🃏 Flashcards</a>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="topline">
+      <div class="crumb">Science · Form 1 · <b>Bab 7 — Udara</b></div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <div class="accuracy-badge">📗 Textbook-complete</div>
+        <div class="streak">🔥 3 day streak</div>
+      </div>
+    </div>
+
+    <div class="hook">
+      <div class="icon">🌬️</div>
+      <div>
+        <p class="title">Why this matters</p>
+        <p>Every breath you take is only ~21% oxygen — that's why astronauts, divers, and even candles all depend on getting that ratio exactly right. This chapter shows you how air actually works, why fires behave the way they do, and how pollution throws all of it off balance.</p>
+      </div>
+    </div>
+
+    <div class="orbit-track" id="orbitTrack"></div>
+
+    <div class="card" id="cardShell">
+
+      <!-- 1: Composition -->
+      <div class="section-panel active" data-index="0">
+        <div class="sec-eyebrow">◆ 7.1</div>
+        <h2 class="sec-title">Composition of Air</h2>
+        <p class="sec-sub">Air is a mixture of several gases — invisible, but never empty.</p>
+
+        <div class="comp-layout">
+          <div class="donut-wrap">
+            <svg width="190" height="190" viewBox="0 0 190 190">
+              <circle cx="95" cy="95" r="76" fill="none" stroke="#1b2044" stroke-width="24"/>
+              <circle id="arcN2" cx="95" cy="95" r="76" fill="none" stroke="#4fb0ff" stroke-width="24" stroke-linecap="round"/>
+              <circle id="arcO2" cx="95" cy="95" r="76" fill="none" stroke="#8b6bff" stroke-width="24" stroke-linecap="round"/>
+              <circle id="arcCO2" cx="95" cy="95" r="76" fill="none" stroke="#fbbf5a" stroke-width="24" stroke-linecap="round"/>
+              <circle id="arcOther" cx="95" cy="95" r="76" fill="none" stroke="#4ade80" stroke-width="24" stroke-linecap="round"/>
+            </svg>
+            <div class="donut-center"><div class="n">100%</div><div class="l">of the air<br>around you</div></div>
+          </div>
+          <div class="comp-legend">
+            <div class="legend-row"><div class="legend-swatch" style="background:#4fb0ff"></div> Nitrogen <b>78%</b></div>
+            <div class="legend-row"><div class="legend-swatch" style="background:#8b6bff"></div> Oxygen <b>21%</b></div>
+            <div class="legend-row"><div class="legend-swatch" style="background:#fbbf5a"></div> Carbon dioxide <b>0.03%</b></div>
+            <div class="legend-row"><div class="legend-swatch" style="background:#4ade80"></div> Inert gases &amp; others <b>0.97%</b></div>
+          </div>
+        </div>
+
+        <div class="reveal-set">
+          <div class="reveal-chip" onclick="toggleReveal('def1', this)">💡 Formal definition</div>
+          <div class="reveal-box" id="def1">Air is a mixture of gases that surrounds the Earth. Other components — water vapour, dust and microorganisms — are also present in small, variable amounts depending on place and time (e.g. more water vapour in forests or after rain).</div>
+
+          <div class="reveal-chip" onclick="toggleReveal('def2', this)" style="background:var(--amber-soft); border-color:rgba(251,191,90,0.45); color:#ffd699;">🧪 What's inside "inert gases"?</div>
+          <div class="reveal-box" id="def2">Helium, Neon, Argon, Krypton and Xenon — five separate gases grouped together because they rarely react. Each has its own specific job later in this chapter.</div>
+
+          <div class="reveal-chip" onclick="toggleReveal('def3', this)" style="background:var(--blue-soft); border-color:rgba(79,176,255,0.45); color:#bfe4ff;">🔬 Mixture or compound?</div>
+          <div class="reveal-box" id="def3">Air is a <b style="color:var(--text)">mixture</b>, not a compound — because its gases can be separated by a physical method called <b style="color:var(--text)">fractional distillation</b> (separating a liquid mixture into fractions with different boiling points, through boiling and condensation).</div>
+        </div>
+      </div>
+
+      <!-- 2: Experiment -->
+      <div class="section-panel" data-index="1">
+        <div class="sec-eyebrow">◆ Activity 7.1</div>
+        <h2 class="sec-title">Finding the % of Oxygen in Air</h2>
+        <p class="sec-sub">Aim: to determine the percentage of oxygen in the air.</p>
+
+        <div class="exp-steps">
+          <div class="exp-step"><span class="emoji">🕯️</span><div class="cap">A lit candle is placed inside an upturned gas jar (marked into 5 equal parts), standing in water</div></div>
+          <div class="exp-step"><span class="emoji">💨</span><div class="cap">The candle burns for a while, then goes out on its own</div></div>
+          <div class="exp-step"><span class="emoji">📈</span><div class="cap">Water rises into the jar as it cools</div></div>
+        </div>
+
+        <div class="predict-box">
+          <div class="q">🤔 Quick check — before you scroll, predict: how far does the water rise?</div>
+          <div class="predict-opts">
+            <div class="predict-opt" onclick="checkPredict(this, false)">About half (2.5/5 parts)</div>
+            <div class="predict-opt" onclick="checkPredict(this, true)">About a fifth (1/5 parts)</div>
+            <div class="predict-opt" onclick="checkPredict(this, false)">Almost all (4.5/5 parts)</div>
+          </div>
+          <div class="predict-feedback" id="predictFeedback">
+            ✅ Right — water rises to <b>1/5 of the gas jar</b>. That's proof: oxygen was used up during combustion, and it makes up roughly <b>20%</b> of air. Air is a mixture — you can tell because it's separable by physical methods, unlike a compound.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: Uses of gases -->
+      <div class="section-panel" data-index="2">
+        <div class="sec-eyebrow">◆ 7.1 continued</div>
+        <h2 class="sec-title">Why These Gases Matter</h2>
+        <p class="sec-sub">Every gas in that donut chart earns its place — including the "rare" ones.</p>
+
+        <div class="gas-tabs">
+          <div class="gas-tab active" onclick="switchGasTab(0, this)"><div class="sym">O₂</div><div class="name">Oxygen</div></div>
+          <div class="gas-tab" onclick="switchGasTab(1, this)"><div class="sym">CO₂</div><div class="name">Carbon dioxide</div></div>
+          <div class="gas-tab" onclick="switchGasTab(2, this)"><div class="sym">N₂</div><div class="name">Nitrogen</div></div>
+          <div class="gas-tab" onclick="switchGasTab(3, this)"><div class="sym">◆</div><div class="name">Inert gases</div></div>
+        </div>
+
+        <div class="use-grid active" data-gas="0">
+          <div class="use-card"><span class="ic">🫁</span><b>Respiration</b></div>
+          <div class="use-card"><span class="ic">🚀</span><b>Rocket engines</b><span>combustion at high altitude</span></div>
+          <div class="use-card"><span class="ic">⚡</span><b>Welding &amp; steel cutting</b></div>
+          <div class="use-card"><span class="ic">🧪</span><b>Compound preparation</b></div>
+        </div>
+        <div class="use-grid" data-gas="1">
+          <div class="use-card"><span class="ic">🌿</span><b>Photosynthesis</b></div>
+          <div class="use-card"><span class="ic">🥤</span><b>Carbonated drinks</b></div>
+          <div class="use-card"><span class="ic">🧯</span><b>Fire extinguishers</b></div>
+          <div class="use-card"><span class="ic">🔄</span><b>Carbon cycle</b></div>
+        </div>
+        <div class="use-grid" data-gas="2">
+          <div class="use-card"><span class="ic">🧪</span><b>Nitric acid &amp; ammonia</b><span>fertiliser production</span></div>
+          <div class="use-card"><span class="ic">🔄</span><b>Nitrogen cycle</b></div>
+          <div class="use-card"><span class="ic">❄️</span><b>Liquid nitrogen</b><span>cooling agent</span></div>
+        </div>
+        <div class="use-grid" data-gas="3">
+          <div class="use-card"><span class="ic">🎈</span><b>Helium</b><span>hot air &amp; weather balloons</span></div>
+          <div class="use-card"><span class="ic">💡</span><b>Neon</b><span>advertising lights</span></div>
+          <div class="use-card"><span class="ic">💡</span><b>Argon</b><span>light bulbs</span></div>
+          <div class="use-card"><span class="ic">◇</span><b>Krypton &amp; Xenon</b><span>present in air as inert gases</span></div>
+        </div>
+      </div>
+
+      <!-- 4: Cycles -->
+      <div class="section-panel" data-index="3">
+        <div class="sec-eyebrow">◆ Carbon &amp; Oxygen Cycles</div>
+        <h2 class="sec-title">Keeping the Gas Balance</h2>
+        <p class="sec-sub">Two cycles working in opposite directions, constantly, to keep air's ratio stable.</p>
+
+        <div class="cycle-row">
+          <div class="cycle-box">
+            <h4>🔵 Carbon Cycle</h4>
+            <ul class="cycle-list">
+              <li>Green plants absorb CO₂ through photosynthesis</li>
+              <li>Animals eat plants and obtain carbon from them</li>
+              <li>Dead plants &amp; animals decompose (bacteria/fungi), releasing CO₂</li>
+              <li>Burning fossil fuels (coal, petrol) releases CO₂</li>
+              <li>Respiration releases CO₂ — balanced again by photosynthesis</li>
+            </ul>
+          </div>
+          <div class="cycle-box">
+            <h4>🟣 Oxygen Cycle</h4>
+            <ul class="cycle-list">
+              <li>Respiration, rusting, combustion &amp; decomposition all use O₂</li>
+              <li>Photosynthesis is the only process that releases O₂ back</li>
+              <li>This constant give-and-take keeps oxygen levels stable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="subhead">🌍 Protecting the balance</div>
+        <div class="balance-chips">
+          <div class="balance-chip">🌳 Prohibit illegal logging</div>
+          <div class="balance-chip">🌱 Reforestation</div>
+          <div class="balance-chip">🚫 Don't burn forests</div>
+          <div class="balance-chip">🧴 Avoid excessive pesticides</div>
+          <div class="balance-chip">🚗 Prevent excess vehicle smoke</div>
+        </div>
+      </div>
+
+      <!-- 5: Combustion -->
+      <div class="section-panel" data-index="4">
+        <div class="sec-eyebrow">◆ 7.2</div>
+        <h2 class="sec-title">Combustion &amp; Fire Safety</h2>
+        <p class="sec-sub">Combustion: a reaction when a substance is heated in the presence of oxygen, producing heat and light energy.</p>
+
+        <div class="triangle-wrap">
+          <div class="fire-tri">
+            <div class="node n1">🔥<span class="lbl">Heat</span></div>
+            <div class="node n2">💨<span class="lbl">Oxygen</span></div>
+            <div class="node n3">🪵<span class="lbl">Fuel</span></div>
+          </div>
+        </div>
+
+        <div class="subhead">🧯 Remove one condition, the fire stops</div>
+        <div class="method-grid">
+          <div class="method-card"><span class="ic">🧊</span><h5>Cooling</h5><p>Spray water or a layer of CO₂ onto the burning surface to remove heat</p></div>
+          <div class="method-card"><span class="ic">🛑</span><h5>Covering</h5><p>Cut off oxygen using a fire blanket, wet sack, mud, sand, soil or foam</p></div>
+          <div class="method-card"><span class="ic">📦</span><h5>Reducing fuel</h5><p>Separate burning material, keep unburnt material away, cut off gas/oil supply</p></div>
+        </div>
+
+        <div class="subhead">📋 Matching extinguisher to material on fire</div>
+        <table class="ext-table">
+          <tr><th>Material on fire</th><th>Examples</th><th>Suitable extinguisher</th></tr>
+          <tr><td>Solid</td><td>Wood, cloth, paper</td><td><span class="pill">Water</span><span class="pill">Dry powder</span></td></tr>
+          <tr><td>Liquid</td><td>Oil, varnish, paint</td><td><span class="pill">Foam</span><span class="pill">Dry powder</span><span class="pill">CO₂</span></td></tr>
+          <tr><td>Gas</td><td>Propane, acetylene, methane</td><td><span class="pill">Foam</span><span class="pill">Dry powder</span><span class="pill">CO₂</span></td></tr>
+          <tr><td>Metal</td><td>Potassium, sodium, magnesium, calcium</td><td><span class="pill">Dry powder</span><span class="pill">Dry sand</span></td></tr>
+        </table>
+
+        <div class="subhead">✅ Fire safety at home</div>
+        <div class="safety-grid">
+          <div class="safety-item"><div class="chk">✓</div>Keep flammable substances away from fire</div>
+          <div class="safety-item"><div class="chk">✓</div>Keep matches &amp; lighters in a safe place</div>
+          <div class="safety-item"><div class="chk">✓</div>Always be aware of electrical appliances</div>
+          <div class="safety-item"><div class="chk">✓</div>Never discard burning cigarette butts</div>
+          <div class="safety-item"><div class="chk">✓</div>Install a fire alarm / smoke detector</div>
+          <div class="safety-item"><div class="chk">✓</div>Don't overload a single electrical socket</div>
+        </div>
+      </div>
+
+      <!-- 6: Pollution sources -->
+      <div class="section-panel" data-index="5">
+        <div class="sec-eyebrow">◆ 7.3</div>
+        <h2 class="sec-title">Where Air Pollution Comes From</h2>
+        <p class="sec-sub">Air pollution: the presence of pollutants in the air that harms living things and the environment.</p>
+
+        <div class="source-grid">
+          <div class="source-card"><div class="from">🚗 Vehicle exhaust &amp; factories</div><div class="pollutants"><span class="tag">Smoke</span><span class="tag">Soot</span><span class="tag">CO</span><span class="tag">SO₂</span><span class="tag">NO₂</span><span class="tag">Lead</span></div></div>
+          <div class="source-card"><div class="from">🔥 Open burning, cigarettes, forest fires</div><div class="pollutants"><span class="tag">Dust</span><span class="tag">Soot</span><span class="tag">Smoke</span></div></div>
+          <div class="source-card"><div class="from">🏗️ Construction, asbestos factories, quarries</div><div class="pollutants"><span class="tag">Dust</span><span class="tag">Soot</span></div></div>
+          <div class="source-card"><div class="from">☢️ Nuclear power plants</div><div class="pollutants"><span class="tag">Radioactive materials</span></div></div>
+          <div class="source-card"><div class="from">🌾 Agriculture &amp; plantation activity</div><div class="pollutants"><span class="tag">Aerosol spray</span><span class="tag">Chemical fertiliser</span></div></div>
+          <div class="source-card"><div class="from">🧊 A/C, fridges, aerosol sprays, electronics factories</div><div class="pollutants"><span class="tag">CFC</span></div></div>
+        </div>
+      </div>
+
+      <!-- 7: Pollution effects -->
+      <div class="section-panel" data-index="6">
+        <div class="sec-eyebrow">◆ 7.3 continued</div>
+        <h2 class="sec-title">The Damage It Causes</h2>
+        <p class="sec-sub">Air pollution doesn't just affect breathing — it touches health, buildings, ecosystems and climate.</p>
+
+        <div class="effects-grid">
+          <div class="effect-card effect-health"><h5>🫁 Health</h5><ul>
+            <li>Smoke &amp; dust — breathing problems</li>
+            <li>Sulfur dioxide — respiratory problems</li>
+            <li>Carbon monoxide — headache, mental retardation, death</li>
+            <li>Asbestos particles — lung cancer</li>
+            <li>Lead particles — intellectual disability in children &amp; babies</li>
+          </ul></div>
+          <div class="effect-card effect-build"><h5>🏛️ Buildings &amp; Infrastructure</h5><ul>
+            <li>Dust &amp; soot stain buildings</li>
+            <li>Acid rain corrodes concrete &amp; limestone</li>
+            <li>Acid rain speeds up iron rusting</li>
+          </ul></div>
+          <div class="effect-card effect-plant"><h5>🌱 Plants &amp; Animals</h5><ul>
+            <li>Acid rain makes soil acidic &amp; less fertile</li>
+            <li>Acid rain makes water acidic — unsuitable for aquatic life</li>
+            <li>Smoke &amp; haze reduce sunlight — slows photosynthesis</li>
+          </ul></div>
+          <div class="effect-card effect-climate"><h5>🌍 Climate</h5><ul>
+            <li>Smoke from factories, vehicles &amp; burning → haze</li>
+            <li>Excess CO₂ → greenhouse effect</li>
+            <li>Excess CFC → thinning ozone layer</li>
+            <li>SO₂ &amp; NO₂ → acid rain</li>
+          </ul></div>
+        </div>
+      </div>
+
+      <!-- 8: Prevention -->
+      <div class="section-panel" data-index="7">
+        <div class="sec-eyebrow">◆ 7.3 continued</div>
+        <h2 class="sec-title">Prevention &amp; Control</h2>
+        <p class="sec-sub">Three fronts working together — rules, awareness, and technology.</p>
+
+        <div class="prevent-cols">
+          <div class="prevent-col"><h5>⚖️ Law Enforcement</h5><ul>
+            <li>Fine smokers in restricted areas</li>
+            <li>Fine open burning</li>
+            <li>Fine vehicles emitting excess smoke</li>
+            <li>Prohibit factories in housing areas</li>
+          </ul></div>
+          <div class="prevent-col"><h5>🎓 Education</h5><ul>
+            <li>Teach students the effects &amp; prevention of pollution</li>
+            <li>Anti-smoking campaigns</li>
+            <li>Encourage walking / cycling</li>
+            <li>Encourage public transport / carpooling</li>
+          </ul></div>
+          <div class="prevent-col"><h5>🔬 Science &amp; Technology</h5><ul>
+            <li>Hybrid vehicle technology</li>
+            <li>HCFC instead of CFC in refrigerators</li>
+            <li>Install filters in factory chimneys</li>
+            <li>Catalytic converters on vehicles</li>
+            <li>Biological pest control instead of pesticides</li>
+          </ul></div>
+        </div>
+      </div>
+
+      <!-- 9: API + facts + glossary + summary -->
+      <div class="section-panel" data-index="8">
+        <div class="sec-eyebrow">◆ Wrap-up</div>
+        <h2 class="sec-title">Air Pollutant Index &amp; Key Facts</h2>
+
+        <div class="subhead">📟 Air Pollutant Index (API)</div>
+        <div class="api-row api-good"><div class="api-range">0–50</div><div class="api-label">Good</div></div>
+        <div class="api-row api-mod"><div class="api-range">51–100</div><div class="api-label">Moderate</div></div>
+        <div class="api-row api-unh"><div class="api-range">101–200</div><div class="api-label">Unhealthy</div></div>
+        <div class="api-row api-vunh"><div class="api-range">201–300</div><div class="api-label">Very Unhealthy</div></div>
+        <div class="api-row api-haz"><div class="api-range">&gt;300</div><div class="api-label">Hazardous</div></div>
+
+        <div class="subhead">⭐ Key exam facts</div>
+        <div class="flip-grid">
+          <div class="flip-card"><div class="num">1</div>Nitrogen is the largest part of air, at 78%</div>
+          <div class="flip-card"><div class="num">2</div>Air is a mixture — separable by fractional distillation</div>
+          <div class="flip-card"><div class="num">3</div>Photosynthesis removes CO₂ and releases oxygen</div>
+          <div class="flip-card"><div class="num">4</div>Fire needs heat, oxygen and fuel — remove one, fire stops</div>
+          <div class="flip-card"><div class="num">5</div>Carbon monoxide reduces oxygen carried in the blood</div>
+          <div class="flip-card"><div class="num">6</div>SO₂ and NO₂ both contribute to acid rain</div>
+          <div class="flip-card"><div class="num">7</div>Excess CO₂ causes the greenhouse effect; excess CFC thins the ozone layer</div>
+          <div class="flip-card"><div class="num">8</div>Hybrid vehicles &amp; catalytic converters reduce air pollution</div>
+        </div>
+
+        <div class="subhead">📘 Glossary</div>
+        <div class="glossary-wrap">
+          <span class="glossary-chip">Air</span><span class="glossary-chip">Atmosphere</span><span class="glossary-chip">Nitrogen</span>
+          <span class="glossary-chip">Oxygen</span><span class="glossary-chip">Carbon dioxide</span><span class="glossary-chip">Inert gas</span>
+          <span class="glossary-chip">Fractional distillation</span><span class="glossary-chip">Carbon cycle</span><span class="glossary-chip">Oxygen cycle</span>
+          <span class="glossary-chip">Photosynthesis</span><span class="glossary-chip">Respiration</span><span class="glossary-chip">Combustion</span>
+          <span class="glossary-chip">Fire triangle</span><span class="glossary-chip">Fire extinguisher</span><span class="glossary-chip">Air pollution</span>
+          <span class="glossary-chip">Air Pollutant Index</span><span class="glossary-chip">Acid rain</span><span class="glossary-chip">Greenhouse effect</span>
+          <span class="glossary-chip">Ozone layer</span><span class="glossary-chip">CFC</span><span class="glossary-chip">Catalytic converter</span>
+        </div>
+
+        <div class="summary-box">
+          <h4>⭐ Chapter Summary</h4>
+          <p>Bab 7 covers the composition of air and why air is a mixture, the importance of each gas, the carbon and oxygen cycles that keep them balanced, how combustion and fire safety work, and the sources, effects, and control of air pollution — including the Air Pollutant Index used to monitor it.</p>
+        </div>
+
+        <div class="complete-row">
+          <button class="btn primary" onclick="markComplete()">📘 Mark Bab 7 as Read · +20 XP</button>
+        </div>
+      </div>
+
+      <div class="card-nav">
+        <button class="btn" id="prevBtn" onclick="go(-1)">← Back</button>
+        <button class="btn primary" id="nextBtn" onclick="go(1)">Next section →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="xp-toast" id="xpToast">🎉 +20 XP — Bab 7 complete!</div>
+
+<script>
+  const sections = [
+    {label:'Composition'}, {label:'Experiment'}, {label:'Gas uses'},
+    {label:'Cycles'}, {label:'Combustion'}, {label:'Pollution sources'},
+    {label:'Pollution effects'}, {label:'Prevention'}, {label:'Summary'}
+  ];
+  let current = 0;
+
+  function renderOrbit(){
+    const track = document.getElementById('orbitTrack');
+    track.innerHTML = sections.map((s,i) => `
+      <button class="orbit-node ${i<current?'done':''} ${i===current?'current':''}" onclick="jump(${i})">
+        <div class="orbit-dot">${i<current ? '✓' : i+1}</div>
+        <div class="orbit-label">${s.label}</div>
+      </button>
+    `).join('');
+  }
+
+  function renderPanels(){
+    document.querySelectorAll('.section-panel').forEach(p => {
+      p.classList.toggle('active', Number(p.dataset.index) === current);
+    });
+    document.getElementById('prevBtn').disabled = current === 0;
+    const nextBtn = document.getElementById('nextBtn');
+    if(current === sections.length-1){ nextBtn.style.display = 'none'; }
+    else { nextBtn.style.display = 'flex'; nextBtn.textContent = 'Next section →'; }
+  }
+
+  function go(dir){
+    current = Math.max(0, Math.min(sections.length-1, current+dir));
+    renderOrbit(); renderPanels();
+    document.getElementById('cardShell').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function jump(i){ current = i; renderOrbit(); renderPanels(); }
+
+  function toggleReveal(id, el){ document.getElementById(id).classList.toggle('open'); }
+
+  function checkPredict(el, isCorrect){
+    document.querySelectorAll('.predict-opt').forEach(o => o.classList.remove('correct','wrong'));
+    el.classList.add(isCorrect ? 'correct' : 'wrong');
+    document.getElementById('predictFeedback').classList.add('show');
+  }
+
+  function switchGasTab(idx, el){
+    document.querySelectorAll('.gas-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.use-grid').forEach(g => g.classList.toggle('active', g.dataset.gas == idx));
+  }
+
+  function markComplete(){
+    const toast = document.getElementById('xpToast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const R = 76, C = 2*Math.PI*R;
+    const segs = [
+      {id:'arcN2', pct:78}, {id:'arcO2', pct:21}, {id:'arcCO2', pct:0.6}, {id:'arcOther', pct:0.4}
+    ];
+    let offset = 0;
+    segs.forEach(s => {
+      const len = (s.pct/100)*C;
+      const el = document.getElementById(s.id);
+      el.style.strokeDasharray = `${len} ${C-len}`;
+      el.style.strokeDashoffset = -offset;
+      offset += len;
+    });
+    renderOrbit(); renderPanels();
+  });
+</script>
+
+</body>
+</html>
