@@ -17,7 +17,6 @@ import {
   TrendingUp,
   Rocket,
   Trophy,
-  GraduationCap,
   ShieldCheck,
   NotebookPen,
   BrainCircuit,
@@ -529,7 +528,6 @@ export function HomeDashboard() {
   const topWeakSpot = insight.weakSpots[0] ?? null;
   const board = useMemo(() => buildLeaderboard(progress), [progress]);
   const myRank = board.currentUser?.rank ?? null;
-  const scholarshipEligible = board.currentUser?.scholarshipEligible ?? false;
   const mission = progress.missions;
   const missionState = DAILY_MISSIONS.map((m) => ({
     ...m,
@@ -949,29 +947,21 @@ export function HomeDashboard() {
         <ArrowRight className="h-4 w-4 shrink-0 text-[#6EE7B7] transition-transform group-hover:translate-x-0.5" />
       </Link>
 
-      {/* ── HALL OF FAME / SCHOLARSHIP TEASER ──────────────────────────── */}
+      {/* ── HALL OF FAME TEASER ──────────────────────────── */}
       <Link
         to="/leaderboard"
         className="group flex items-center gap-4 rounded-[2rem] border border-[#FBBF24]/25 bg-[#FBBF24]/[0.08] px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#FBBF24]/45 hover:bg-[#FBBF24]/[0.14]"
       >
         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#FBBF24]/20">
-          {scholarshipEligible ? (
-            <GraduationCap className="h-5 w-5 text-[#FCD34D]" />
-          ) : (
-            <Trophy className="h-5 w-5 text-[#FCD34D]" />
-          )}
+          <Trophy className="h-5 w-5 text-[#FCD34D]" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-[10px] font-bold uppercase tracking-widest text-[#FCD34D]">
             Hall of Fame{myRank ? ` · You're #${myRank}` : ""}
           </p>
-          <p className="font-bold text-white">
-            {scholarshipEligible
-              ? "You're scholarship-eligible — submit your nomination 🎓"
-              : "Climb the ranking to earn scholarship recognition"}
-          </p>
+          <p className="font-bold text-white">Climb the ranking and earn your spot</p>
           <p className="text-sm text-white/45">
-            Top students are recognised and put forward for scholarships.
+            See how you stack up against students across Malaysia.
           </p>
         </div>
         <ArrowRight className="h-4 w-4 shrink-0 text-[#FCD34D] transition-transform group-hover:translate-x-0.5" />

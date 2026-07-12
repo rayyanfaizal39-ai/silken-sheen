@@ -1,5 +1,8 @@
 import type { Form2KomsasWork } from "@/data/bm-form2-komsas-structure";
 import { CHOT_ANALYSIS, CHOT_CHAPTERS_11_TO_20 } from "@/data/bm-form3-chot-content";
+import { JESTERU_ANALYSIS, JESTERU_CHAPTERS } from "@/data/bm-form3-justeru-content";
+import { HEMPASAN_ANALYSIS, HEMPASAN_CHAPTERS } from "@/data/bm-form3-hempasan-content";
+import { TAWANAN_ANALYSIS, TAWANAN_CHAPTERS } from "@/data/bm-form3-tawanan-content";
 
 export type BMForm3AnalysisPair = readonly [string, string];
 
@@ -70,7 +73,22 @@ export const BM_FORM3_NOVEL_WORKS: BMForm3Novel[] = [
     author: "Ruzaini Yahya",
     zonNegeri:
       "Selangor · Wilayah Persekutuan Kuala Lumpur · Wilayah Persekutuan Putrajaya · Negeri Sembilan",
-    chapters: buildChapters(18, "Bab"),
+    focus: [
+      "Memahami kronologi peristiwa dalam setiap bab novel dari awal hingga peleraian.",
+      "Menganalisis tema kegigihan dan persoalan yang mendasari konflik antara manusia dengan dimensi kumbang.",
+      "Mengenal pasti perwatakan watak utama dan watak sampingan serta bukti peristiwa berkaitan.",
+      "Menghuraikan latar tempat, masa, dan masyarakat yang terdapat dalam novel.",
+      "Menguasai teknik menjawab soalan Subjektif Respons Terhad (SRT) dan KBAT mengikut format UASA.",
+    ],
+    introduction:
+      "Novel ini merupakan sebuah karya berunsur sains fiksi dan pengembaraan yang mengisahkan keberanian sekumpulan remaja Tingkatan Satu. Cerita ini membawa pembaca menerokai dimensi kerajaan kumbang yang penuh dengan konflik perebutan kuasa, di mana watak-watak manusia terpaksa berjuang untuk menyelamatkan diri dan mengembalikan keamanan dalam koloni serangga tersebut sebelum pulang ke dunia asal.",
+    synopsis:
+      "Farhani dan rakan-rakannya terperangkap dalam pengembaraan mencabar setelah menjadi tawanan tentera kumbang. Segalanya bermula dengan kehilangan Kim Yong secara misteri, diikuti oleh Farhani yang menemui pintu ke dimensi kerajaan kumbang di sebuah rumah lama. Di sana, mereka berhadapan dengan Komander Caucasus yang tamak dan ingin menakluki dunia manusia. Farhani bekerjasama dengan kumbang Bara dan Puteri Coleoptera untuk menumbangkan Maharaja Caucasus yang zalim menggunakan strategi racun serangga Endosulfan. Setelah berjaya, mereka menghadapi masalah menjadi halimunan di dunia manusia namun berjaya dipulihkan dengan serum ciptaan Bara. Mereka akhirnya bersepakat merahsiakan kewujudan dimensi tersebut demi keselamatan sejagat.",
+    quickSummary:
+      "Seorang murid bernama Farhani tersedut masuk ke dimensi kerajaan kumbang dan menemui Kim Yong yang telah lama hilang. Mereka berdua ditawan oleh Komander Caucasus yang gila kuasa, namun berjaya melarikan diri dengan bantuan kumbang Bara. Bersama tiga rakan lain yang turut tersesat, mereka membantu Puteri Coleoptera menggulingkan kerajaan Caucasus yang zalim. Setelah menang, mereka pulang sebagai manusia normal selepas meminum serum khas dan berjanji merahsiakan pengembaraan tersebut.",
+    mainCharacter: "Farhani",
+    chapters: TAWANAN_CHAPTERS,
+    analysis: TAWANAN_ANALYSIS,
   },
   {
     id: "chot",
@@ -293,9 +311,22 @@ export const BM_FORM3_NOVEL_WORKS: BMForm3Novel[] = [
     kind: "novel",
     author: "Zaid Akhtar",
     zonNegeri: "Perlis · Kedah · Pulau Pinang · Perak",
-    chapters: [],
-    chaptersNote:
-      "Novel ini menggunakan struktur Prolog hingga Epilog, tetapi bilangan dan senarai bab penuh belum disahkan daripada sumber rasmi.",
+    focus: [
+      "Menghuraikan sinopsis dan peristiwa penting dalam setiap bab novel Justeru Impian di Jaring.",
+      "Menganalisis tema ketabahan seorang pemain badminton dan persoalan ketaatan kepada syariat.",
+      "Mengenal pasti perwatakan Syahir, Haji Marzuki, dan Syed Amiri berdasarkan bukti teks.",
+      "Menganalisis latar masyarakat yang gigih berusaha dan berpegang teguh pada pesanan.",
+      "Merumuskan nilai dan pengajaran untuk menjawab soalan respons terhad UASA.",
+    ],
+    introduction:
+      "Novel Justeru Impian di Jaring mengisahkan perjalanan hidup Syahir, seorang pemain badminton skuad kebangsaan yang bercita-cita tinggi untuk mewakili negara ke peringkat antarabangsa. Novel ini memaparkan cabaran fizikal, tekanan mental, dan prinsip agama yang dipegang teguh oleh watak utamanya dalam mengharungi dunia sukan yang kompetitif.",
+    synopsis:
+      "Syahir merupakan pemain badminton berbakat yang sering menghadapi rintangan daripada pihak pengurusan PBSM dan sindiran rakan sepasukannya, Syed Amiri. Walaupun gagal dalam Kejohanan Terbuka Johor akibat ketidakadilan pengadil, Syahir akhirnya terpilih ke Jakarta bagi menggantikan Gopinath yang terlibat dalam kemalangan. Di Jakarta, Syahir bertarung dalam keadaan emaknya diserang strok dan dirinya sendiri menanggung kesakitan radang apendiks. Ketabahannya membuahkan hasil apabila dia berjaya muncul sebagai juara dunia setelah menewaskan Andri Mirnawan di peringkat akhir.",
+    quickSummary:
+      "Syahir, pemain badminton yang komited pada syariat Islam, berjuang mengatasi diskriminasi jurulatih dan fitnah media. Selepas tewas secara tidak adil di Johor, dia mendapat peluang ke Jakarta menggantikan rakan yang cedera. Meskipun diuji dengan masalah kesihatan ibu dan kesakitan perutnya sendiri, Syahir tetap cekal bertarung hingga bergelar juara dunia sebelum menjalani pembedahan apendiks sebaik sahaja tamat perlawanan.",
+    mainCharacter: "Syahir",
+    chapters: JESTERU_CHAPTERS,
+    analysis: JESTERU_ANALYSIS,
   },
   {
     id: "hempasan-ombak",
@@ -304,7 +335,22 @@ export const BM_FORM3_NOVEL_WORKS: BMForm3Novel[] = [
     kind: "novel",
     author: "Zailiani Taslim",
     zonNegeri: "Johor · Sabah · Sarawak · Wilayah Persekutuan Labuan",
-    chapters: buildChapters(14, "Bab"),
+    focus: [
+      "Menghuraikan sinopsis dan peristiwa penting dalam setiap bab novel Hempasan Ombak.",
+      "Menganalisis tema kegigihan remaja dalam usaha memajukan syarikat keluarga.",
+      "Mengenal pasti perwatakan Farid, Mokhsein, Hajah Zaoyah, Zuraida, dan Mukhtar berdasarkan bukti teks.",
+      "Menganalisis latar masyarakat yang berkaitan dengan dunia perniagaan batik.",
+      "Merumuskan nilai dan pengajaran untuk menjawab soalan respons terhad UASA.",
+    ],
+    introduction:
+      "Novel Hempasan Ombak mengisahkan Farid yang memikul tanggungjawab besar untuk menerajui syarikat batik keluarga selepas kematian bapanya. Perjalanan ini memperlihatkan usaha gigih, kreativiti, konflik persaingan, dan sokongan keluarga serta sahabat dalam memajukan perniagaan.",
+    synopsis:
+      "Farid bergelut dengan masalah kewangan, stok yang tidak laku dan persaingan sengit daripada Mukhtar. Dengan bantuan ibunya, Hajah Zaoyah, Mokhsein dan Zuraida, Farid memperkenalkan batik lukis moden dan membina bengkel baharu. Namun, Mukhtar yang dengki melancarkan sabotaj hingga bengkel Farid terbakar. Walaupun diuji hebat, Farid bangkit semula apabila Mukhtar dihukum penjara dan syarikatnya kembali pulih melalui tempahan besar dari luar negara.",
+    quickSummary:
+      "Farid memulakan usaha menyelamatkan syarikat batik keluarga dengan idea baharu, sokongan ibu, dan bantuan rakan. Dia berdepan sabotaj, ugutan dan kebakaran, tetapi akhirnya berjaya memulihkan syarikat dan belajar bahawa kejayaan memerlukan ilmu, ketabahan dan bantuan orang sekeliling.",
+    mainCharacter: "Farid",
+    chapters: HEMPASAN_CHAPTERS,
+    analysis: HEMPASAN_ANALYSIS,
   },
 ];
 
