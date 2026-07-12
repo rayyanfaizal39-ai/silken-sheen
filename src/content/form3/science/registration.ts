@@ -1,5 +1,6 @@
 import type { ChapterContent } from "@/content/types";
 import { scienceF3Chapters } from "./chapter-data";
+import { buildScienceF3MindMap } from "./mindmap-builder";
 
 import { scienceF3C1NotesBM } from "./chapter-1/notes-bm";
 import { scienceF3C1NotesDLP } from "./chapter-1/notes-dlp";
@@ -110,6 +111,10 @@ export const scienceF3ChapterContent: ChapterContent[] = scienceF3Chapters.flatM
       chapterKey: `Chapter ${chapter.chapter}`,
       title: chapter.title[lang],
       lang,
+      mindMap: {
+        data: buildScienceF3MindMap(chapter.chapter, lang),
+        title: chapter.title[lang],
+      },
       notes: notes[index][langIndex],
       quiz: quizzes[index][langIndex],
       flashcards: flashcards[index][langIndex],
