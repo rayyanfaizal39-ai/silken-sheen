@@ -19,7 +19,7 @@ import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { shouldReduceMotion } from "@/lib/motion-preferences";
 import { SiteFooter } from "@/components/SiteFooter";
-import parentsDashboard from "@/assets/parents-dashboard.png.asset.json";
+import parentsDashboard from "@/assets/parent-dashboard-landing.png.asset.json";
 import cikguAiImage from "@/assets/cikgu-ai-robot.png";
 import heroIntro from "@/assets/hero-intro.mp4.asset.json";
 import toolNotes from "@/assets/tool-notes.png";
