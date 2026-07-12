@@ -26,6 +26,7 @@ import {
   getBMForm3KomsasWork,
 } from "@/data/bm-form3-komsas-structure";
 import { BM_FORM3_NOVEL_WORKS, getBMForm3NovelWork } from "@/data/bm-form3-novel-structure";
+import { BMForm3UlasanContent } from "@/components/BMForm3UlasanContent";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -379,6 +380,9 @@ function HubView({
   onSelectTopic: (topicId: string) => void;
   onBack: () => void;
 }) {
+  if (hub.id === "ulasan") {
+    return <div><PageHeader breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><BMForm3UlasanContent /></div>;
+  }
   return (
     <div>
       <PageHeader
