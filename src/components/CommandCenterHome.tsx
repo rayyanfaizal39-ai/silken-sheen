@@ -50,6 +50,7 @@ export function CommandCenterHome() {
         <FloatingAstronaut />
         <MissionIntro />
         <FeatureBanner />
+        <DashboardPreview />
         <SubjectsGrid />
         <CikguHelp />
         <SocialProof />
