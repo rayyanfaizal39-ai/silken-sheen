@@ -38,7 +38,7 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "📘",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ulasan",
+    description: "Sistem Bahasa, KOMSAS, Novel, Ulasan",
     examDetails: "Kertas 1 Bahasa Melayu Tingkatan 3",
     color: "#818CF8",
     hubs: [
@@ -64,19 +64,6 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
           { id: "kesalahan-ejaan-tanda-baca", label: "Kesalahan Ejaan & Tanda Baca" },
           { id: "kosa-kata", label: "Kosa Kata" },
           { id: "peribahasa", label: "Peribahasa" },
-        ],
-      },
-      {
-        id: "pemahaman",
-        label: "Pemahaman",
-        shortLabel: "Pemahaman",
-        icon: "🔍",
-        color: "#34D399",
-        description: "Teknik menjawab soalan pemahaman, KBAT dan cara mencari isi penting.",
-        topics: [
-          { id: "teknik-menjawab", label: "Teknik Menjawab Soalan Pemahaman" },
-          { id: "kbat", label: "Soalan KBAT" },
-          { id: "cari-isi-penting", label: "Cara Mencari Isi Penting" },
         ],
       },
       {

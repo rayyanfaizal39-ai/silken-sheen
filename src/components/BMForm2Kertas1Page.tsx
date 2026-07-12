@@ -86,7 +86,7 @@ const BAHAGIAN_A_TIPS = [
 ];
 
 const BAHAGIAN_A_MISTAKES = [
-  "Tidak membaca petikan dengan teliti sebelum menjawab soalan pemahaman.",
+  "Tidak membaca petikan dengan teliti sebelum menjawab soalan petikan.",
   "Keliru antara golongan kata (contohnya kata adjektif dengan kata kerja).",
   "Memilih jawapan berdasarkan struktur ayat tanpa memahami maksud sebenar peribahasa.",
 ];
@@ -289,7 +289,7 @@ export function BMForm2Kertas1Page({ onBack }: { onBack: () => void }) {
           <SectionLabel>Struktur Kertas 1</SectionLabel>
           <p className="mb-4 text-sm leading-relaxed text-white/70">
             Kertas 1 (02/1) terdiri daripada tiga bahagian yang menguji penguasaan sistem
-            bahasa, kemahiran pemahaman serta kemahiran memindah maklumat secara berturutan.
+            bahasa, kemahiran petikan serta kemahiran memindah maklumat secara berturutan.
           </p>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
             {BAHAGIAN_FLOW.map((b, i) => (
@@ -344,7 +344,7 @@ export function BMForm2Kertas1Page({ onBack }: { onBack: () => void }) {
                   chips={["Morfologi", "Frasa", "Sintaksis", "Peribahasa"]}
                 />
                 <SoalanSubcard
-                  label="Pemahaman Petikan"
+                  label="Petikan"
                   count="5 Soalan"
                   color={PEMAHAMAN_COLOR}
                   description="Menguji kemahiran murid memahami dan mentafsir maklumat daripada petikan yang diberikan, termasuk makna perkataan mengikut konteks."
@@ -386,7 +386,7 @@ export function BMForm2Kertas1Page({ onBack }: { onBack: () => void }) {
                   chips={["Morfologi", "Frasa", "Sintaksis"]}
                 />
                 <SoalanSubcard
-                  label="Pemahaman Petikan"
+                  label="Petikan"
                   count="3 Soalan"
                   color={PEMAHAMAN_COLOR}
                   description="Soalan subjektif respons terhad yang memerlukan murid menjawab dalam ayat sendiri berdasarkan petikan."

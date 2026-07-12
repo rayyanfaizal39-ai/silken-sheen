@@ -19,7 +19,7 @@ import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { shouldReduceMotion } from "@/lib/motion-preferences";
 import { SiteFooter } from "@/components/SiteFooter";
-import parentsDashboard from "@/assets/parents-dashboard.png.asset.json";
+import parentsDashboard from "@/assets/parent-dashboard-landing.png.asset.json";
 import cikguAiImage from "@/assets/cikgu-ai-robot.png";
 import heroIntro from "@/assets/hero-intro.mp4.asset.json";
 import toolNotes from "@/assets/tool-notes.png";
@@ -27,6 +27,7 @@ import toolFlashcards from "@/assets/tool-flashcards.png";
 import toolQuizzes from "@/assets/tool-quizzes.png";
 import toolMindmaps from "@/assets/tool-mindmaps.png";
 import toolMissions from "@/assets/tool-missions.png";
+import landingDashboard from "@/assets/landing-dashboard-preview.png.asset.json";
 
 /* ---------------- Shared helpers (local copy) ---------------- */
 
@@ -761,10 +762,69 @@ function FinalCta() {
 
 /* ---------------- Aggregate ---------------- */
 
+function DashboardPreview() {
+  return (
+    <section id="dashboard-preview" className="relative scroll-mt-24 py-20 md:py-28 overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(1000px 520px at 50% 40%, rgba(99,102,241,0.20), transparent 70%), radial-gradient(700px 400px at 80% 80%, rgba(236,72,153,0.14), transparent 70%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-8 text-center">
+        <SectionLabel>Your Command Center</SectionLabel>
+        <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          One dashboard.{" "}
+          <span className="bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent">
+            Every mission.
+          </span>
+        </h2>
+        <p className="mt-4 max-w-2xl mx-auto text-white/60">
+          Track XP, streaks, subject worlds and leaderboard rank — all from your personal Cosmic HQ.
+        </p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mt-14 mx-auto max-w-5xl"
+        >
+          <div
+            aria-hidden
+            className="absolute -inset-6 rounded-[2.5rem] blur-3xl opacity-70"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(99,102,241,0.35), rgba(236,72,153,0.28))",
+            }}
+          />
+          <div className="relative rounded-[1.75rem] border border-white/[0.10] bg-[#0B1220]/70 p-2 shadow-[0_40px_120px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+            <img
+              src={landingDashboard.url}
+              alt="AcadeMY Dashboard preview showing cosmic journey, subject worlds, and leaderboard"
+              width={1120}
+              height={1400}
+              loading="lazy"
+              className="w-full rounded-[1.25rem]"
+            />
+          </div>
+        </motion.div>
+
+        <div className="mt-10 flex justify-center">
+          <PrimaryCta to="/login">Enter Your Dashboard</PrimaryCta>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function BelowFold() {
   return (
     <>
       <WhyAcademy />
+      <DashboardPreview />
       <LearningTools />
       <CikguSection />
       <ProgressPreview />

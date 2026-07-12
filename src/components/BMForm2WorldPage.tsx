@@ -22,7 +22,6 @@ import {
   Lightbulb,
   MessageCircle,
   NotebookText,
-  Search,
   Sparkles,
   Target,
   Zap,
@@ -68,29 +67,29 @@ const FORM2_PAPERS: PaperItem[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "K1",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Rumusan",
-    examDetails: "Masa: 1 jam 30 minit · 60 markah · Pemahaman + KOMSAS",
+    description: "Sistem Bahasa, KOMSAS, Novel, Rumusan",
+    examDetails: "Masa: 1 jam 30 minit · 60 markah · KOMSAS + Novel",
     color: "#818CF8",
-    tags: ["Tatabahasa", "Pemahaman", "KOMSAS", "Novel", "Rumusan"],
+    tags: ["Tatabahasa", "KOMSAS", "Novel", "Rumusan"],
     title: "Kertas 1 Bahasa Melayu Tingkatan 2",
     subtitle: "UASA Bahasa Melayu Kertas 1 (02/1)",
     infoCards: [
       { label: "Tempoh", value: "1 jam 30 minit" },
       { label: "Jumlah Markah", value: "60 markah" },
-      { label: "Jenis", value: "Ujian Bertulis Pemahaman" },
+      { label: "Jenis", value: "Ujian Bertulis" },
     ],
     explanation: (
       <div className="space-y-4">
         <FormatBlock
           title="Bahagian A - 15 Markah"
           subtitle="Objektif Aneka Pilihan"
-          items={["Sistem Bahasa: 10 soalan", "Pemahaman Petikan: 5 soalan"]}
+          items={["Sistem Bahasa: 10 soalan", "KOMSAS / Novel: 5 soalan"]}
           color="#818CF8"
         />
         <FormatBlock
           title="Bahagian B - 30 Markah"
           subtitle="Objektif Pelbagai Bentuk & Subjektif Respons Terhad"
-          items={["Sistem Bahasa", "Pemahaman Petikan", "Novel KOMSAS"]}
+          items={["Sistem Bahasa", "KOMSAS", "Novel"]}
           color="#C084FC"
         />
         <FormatBlock
@@ -109,14 +108,6 @@ const FORM2_PAPERS: PaperItem[] = [
         icon: "SB",
         color: "#60A5FA",
         description: "Morfologi, frasa, sintaksis, kesalahan bahasa dan peribahasa.",
-      },
-      {
-        id: "pemahaman",
-        label: "Pemahaman Petikan",
-        shortLabel: "Pemahaman",
-        icon: "P",
-        color: "#34D399",
-        description: "Teknik menjawab soalan pemahaman petikan dan soalan KBAT.",
       },
       {
         id: "komsas",
@@ -474,7 +465,6 @@ function PaperView({
     const practiceHub = paper.hubs.find((hub) => hub.id === "latihan-uasa");
     const hubMeta: Record<string, { count: string; icon: ReactNode }> = {
       "sistem-bahasa": { count: "5 topik", icon: <BookText className="h-7 w-7" /> },
-      pemahaman: { count: "2 fokus", icon: <Search className="h-7 w-7" /> },
       komsas: { count: "5 genre", icon: <Sparkles className="h-7 w-7" /> },
       novel: { count: "4 novel", icon: <NotebookText className="h-7 w-7" /> },
       "ringkasan-rumusan": { count: "4 fokus", icon: <FileText className="h-7 w-7" /> },
