@@ -2367,7 +2367,7 @@ function SyairBurungNuriContent() {
             <p className="mt-2 text-sm leading-6 text-white/60">
               Objektif Aneka Pilihan
               <br />
-              Pemahaman Petikan
+              Petikan
               <br />
               Respons Terhad
             </p>
@@ -3068,7 +3068,7 @@ function BahagiaSesudahDeritaContent() {
           <article className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
             <h3 className="font-bold text-white">Bentuk Soalan</h3>
             <p className="mt-2 text-sm leading-6 text-white/60">
-              Kerap keluar dalam Bahagian B (Pemahaman Petikan) yang menguji pemahaman maksud kata
+              Kerap keluar dalam Bahagian B (Petikan) yang menguji kefahaman maksud kata
               klasik atau istana.
             </p>
           </article>

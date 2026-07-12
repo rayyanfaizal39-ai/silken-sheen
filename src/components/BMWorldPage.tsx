@@ -641,7 +641,7 @@ function ObjektifKuizView({
           </div>
           <div className="mt-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-4 py-3">
             <p className="text-xs text-white/40 leading-relaxed">
-              Struktur: S1–5 Sistem Bahasa · S6–10 Pemahaman · S11–15 KOMSAS {formLabel}
+              Struktur: S1–5 Sistem Bahasa · S6–10 KOMSAS · S11–15 Novel {formLabel}
             </p>
           </div>
           <button
@@ -1280,7 +1280,6 @@ function TopicCard({
   const getTopicTypeLabel = (t: string) => {
     const map: Record<string, string> = {
       tatabahasa: "Tatabahasa",
-      pemahaman: "Teknik",
       komsas: "KOMSAS",
       novel: "Novel",
       ringkasan: "Ringkasan",
@@ -3163,151 +3162,6 @@ function NovelDetail({ topic, color }: { topic: BMTopic; color: string }) {
   );
 }
 
-function PemahamanDetail({ topic, color }: { topic: BMTopic; color: string }) {
-  return (
-    <div className="space-y-4">
-      <LearningFolder
-        icon={<BookOpen className="h-4 w-4" />}
-        title="📖 Faham & Ikut Langkah"
-        description="Pengenalan topik dan urutan menjawab"
-        accent={color}
-        defaultOpen
-      >
-        {topic.description && (
-          <CollapsibleSection
-            icon={<BookOpen className="h-4 w-4" />}
-            title="Pengenalan"
-            accent={color}
-          >
-            <p className="text-sm leading-relaxed text-white/75">{topic.description}</p>
-          </CollapsibleSection>
-        )}
-
-        {topic.steps && topic.steps.length > 0 && (
-          <CollapsibleSection
-            icon={<Map className="h-4 w-4" />}
-            title="Langkah-langkah"
-            accent={color}
-          >
-            <div className="space-y-2.5">
-              {topic.steps.map((step, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
-                >
-                  <span
-                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-black"
-                    style={{ background: `${color}25`, color }}
-                  >
-                    {i + 1}
-                  </span>
-                  <p className="text-sm text-white/70">{step}</p>
-                </div>
-              ))}
-            </div>
-          </CollapsibleSection>
-        )}
-      </LearningFolder>
-
-      <LearningFolder
-        icon={<Target className="h-4 w-4" />}
-        title="🎯 Isi Penting & UASA"
-        description="Perkara wajib tahu dan fokus peperiksaan"
-        accent="#FBBF24"
-      >
-        {topic.keyPoints && topic.keyPoints.length > 0 && (
-          <CollapsibleSection
-            icon={<Star className="h-4 w-4" />}
-            title="⭐ Wajib Hafal — Perkara Utama"
-            accent="#818CF8"
-          >
-            <ul className="space-y-2">
-              {topic.keyPoints.map((pt, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                  <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#818CF8]" />
-                  {pt}
-                </li>
-              ))}
-            </ul>
-          </CollapsibleSection>
-        )}
-
-        {topic.uasaTips && (
-          <CollapsibleSection
-            icon={<Trophy className="h-4 w-4" />}
-            title="🎯 Fokus UASA — Tips UASA"
-            accent="#FBBF24"
-          >
-            <ul className="space-y-2">
-              {topic.uasaTips.map((tip, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-white/65">
-                  <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
-                  {tip}
-                </li>
-              ))}
-            </ul>
-          </CollapsibleSection>
-        )}
-      </LearningFolder>
-
-      <LearningFolder
-        icon={<Zap className="h-4 w-4" />}
-        title="⚡ Ulang Kaji Pantas"
-        description="Penerangan cikgu dan ringkasan satu minit"
-        accent="#34D399"
-      >
-        {(topic.description || (topic.steps && topic.steps.length > 0)) && (
-          <CollapsibleSection
-            icon={<MessageCircle className="h-4 w-4" />}
-            title="🤖 Cikgu AcadeMY Terangkan"
-            accent={color}
-          >
-            {topic.description && (
-              <p className="mb-3 text-sm italic leading-7 text-white/75">{topic.description}</p>
-            )}
-            {topic.steps && topic.steps.length > 0 && (
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-                <p className="mb-1 text-[10px] font-black tracking-wide" style={{ color }}>
-                  Mula dengan langkah pertama
-                </p>
-                <p className="text-sm text-white/75">{topic.steps[0]}</p>
-              </div>
-            )}
-          </CollapsibleSection>
-        )}
-
-        {((topic.keyPoints && topic.keyPoints.length > 0) || topic.uasaTips) && (
-          <CollapsibleSection
-            icon={<Lightbulb className="h-4 w-4" />}
-            title="📝 Ringkasan 1 Minit"
-            accent="#34D399"
-          >
-            <ul className="space-y-2">
-              {topic.keyPoints?.slice(0, 2).map((pt, i) => (
-                <li key={`kp-${i}`} className="flex items-start gap-2 text-sm text-white/70">
-                  <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
-                  {pt}
-                </li>
-              ))}
-              {topic.uasaTips?.slice(0, 1).map((tip, i) => (
-                <li key={`tip-${i}`} className="flex items-start gap-2 text-sm text-white/70">
-                  <Star className="mt-0.5 h-3.5 w-3.5 shrink-0 text-yellow-400" />
-                  {tip}
-                </li>
-              ))}
-            </ul>
-          </CollapsibleSection>
-        )}
-      </LearningFolder>
-
-      <div className="flex gap-3">
-        <PlaceholderChip label="Petikan Latihan" />
-        <PlaceholderChip label="Soalan Contoh" />
-      </div>
-    </div>
-  );
-}
-
 // ─── RANGKA RINGKASAN MARKAH TINGGI ──────────────────────────────────────────
 
 const RANGKA_KESALAHAN = [
@@ -4792,8 +4646,6 @@ function TopicDetailRenderer({ topic, hubColor }: { topic: BMTopic; hubColor: st
       return <KOMSASDetail topic={topic} color={hubColor} />;
     case "novel":
       return <NovelDetail topic={topic} color={hubColor} />;
-    case "pemahaman":
-      return <PemahamanDetail topic={topic} color={hubColor} />;
     case "rangka-ringkasan":
       return <RangkaRingkasanDetail color={hubColor} />;
     case "ringkasan-premium":

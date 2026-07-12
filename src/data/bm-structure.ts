@@ -3,7 +3,6 @@
 
 export type BMTopicType =
   | "tatabahasa"
-  | "pemahaman"
   | "komsas"
   | "novel"
   | "ringkasan"
@@ -64,7 +63,6 @@ export interface BMTopic {
   exampleRows?: { category: string; examples: string[] }[];
   commonMistakes?: string[];
   uasaTips?: string[];
-  // Pemahaman
   description?: string;
   steps?: string[];
   keyPoints?: string[];
@@ -406,106 +404,6 @@ const SISTEM_BAHASA_TOPICS: BMTopic[] = [
     uasaTips: [
       "Hafal sekurang-kurangnya 10 peribahasa beserta maksudnya",
       "Untuk karangan, gunakan peribahasa sebagai penutup atau sokong hujah",
-    ],
-  },
-];
-
-const PEMAHAMAN_TOPICS: BMTopic[] = [
-  {
-    id: "pemahaman-petikan",
-    label: "Pemahaman Petikan",
-    topicType: "pemahaman",
-    badge: "Pemahaman",
-    description:
-      "Kemahiran menjawab soalan berdasarkan petikan teks yang diberikan dalam peperiksaan.",
-    steps: [
-      "Baca soalan dahulu sebelum membaca petikan",
-      "Baca petikan sekali lalu — faham idea umum",
-      "Garis bawahi maklumat penting semasa membaca kali kedua",
-      "Jawab menggunakan ayat lengkap dan bahasa baku",
-      "Semak ejaan dan tanda baca sebelum hantar",
-    ],
-    keyPoints: [
-      "Jawapan mesti dalam ayat lengkap kecuali soalan minta kata kunci sahaja",
-      "Gunakan perkataan dalam petikan tetapi tukar susun ayat",
-      "Jangan salin perkataan mentah-mentah — parafrasakan",
-      "Soalan 'apa' → kemukakan fakta; soalan 'mengapa' → kemukakan sebab",
-    ],
-    uasaTips: [
-      "Jawapan perlu merujuk baris dalam petikan (contoh: 'Berdasarkan perenggan 2...')",
-      "Markah: 1 markah untuk isi + 1 markah untuk bahasa",
-    ],
-  },
-  {
-    id: "soalan-kbat",
-    label: "Soalan KBAT",
-    topicType: "pemahaman",
-    badge: "Pemahaman",
-    description:
-      "Kemahiran Berfikir Aras Tinggi (KBAT) — soalan yang menguji analisis, penilaian, dan kreativiti pelajar.",
-    steps: [
-      "Kenal pasti kata arahan: 'jelaskan', 'nilaikan', 'bandingkan', 'huraikan'",
-      "Berikan pendapat peribadi dengan justifikasi",
-      "Sokong dengan bukti dari petikan atau pengetahuan am",
-      "Struktur jawapan: Pernyataan → Huraian → Contoh → Kesimpulan (PHCK)",
-    ],
-    keyPoints: [
-      "Soalan KBAT tidak ada jawapan 'betul' atau 'salah' — markah diberi untuk alasan",
-      "Jawapan perlu relevan, bernas, dan disokong bukti",
-      "Panjang jawapan: minimum 3 ayat untuk soalan 3 markah",
-    ],
-    uasaTips: [
-      "Gunakan kata hubung seperti 'oleh sebab itu', 'selain itu', 'walau bagaimanapun'",
-      "Elak ayat terlalu pendek — jawapan KBAT perlu huraian mendalam",
-    ],
-  },
-  {
-    id: "cara-cari-isi",
-    label: "Cara Cari Isi",
-    topicType: "pemahaman",
-    badge: "Pemahaman",
-    description:
-      "Teknik mengenal pasti isi penting dalam petikan untuk menjawab soalan pemahaman dan ringkasan.",
-    steps: [
-      "Baca soalan — kenal pasti kata kunci soalan",
-      "Cari bahagian petikan yang berkaitan dengan kata kunci",
-      "Kenal pasti ayat topik setiap perenggan (biasanya ayat pertama)",
-      "Garis bawahi hujah atau fakta utama sahaja (bukan contoh atau ulangan)",
-      "Senaraikan isi dalam bentuk poin sebelum menulis ayat penuh",
-    ],
-    keyPoints: [
-      "Setiap perenggan biasanya ada satu idea utama",
-      "Contoh, ilustrasi, dan perangkaan bukan isi — isi ialah idea utama",
-      "Untuk ringkasan: maksimum 120 patah perkataan, gunakan isi sahaja",
-    ],
-    uasaTips: [
-      "Latih mengenal pasti ayat topik dalam setiap petikan",
-      "Contoh: 'Perenggan 1: isi = kepentingan membaca; contoh = pelajar A mendapat A'",
-    ],
-  },
-  {
-    id: "cara-jawab-pemahaman",
-    label: "Cara Jawab Soalan Pemahaman",
-    topicType: "pemahaman",
-    badge: "Pemahaman",
-    description:
-      "Panduan lengkap cara menjawab pelbagai jenis soalan pemahaman dalam UASA dan peperiksaan lain.",
-    steps: [
-      "Baca soalan dengan teliti — berapa markah? apa yang ditanya?",
-      "Tentukan jenis soalan: fakta, inferens, kosa kata, atau soalan KBAT",
-      "Untuk soalan fakta: cari maklumat terus dari teks",
-      "Untuk soalan kosa kata: faham konteks sebelum jawab",
-      "Untuk soalan inferens: gunakan maklumat teks + logik",
-      "Tulis jawapan dalam ayat lengkap dengan bahasa baku",
-    ],
-    keyPoints: [
-      "Soalan 1 markah: jawapan pendek (1 isi)",
-      "Soalan 2 markah: jawapan lengkap (1 isi + 1 huraian/contoh)",
-      "Soalan 3-4 markah: beberapa isi dengan huraian",
-    ],
-    uasaTips: [
-      "Semak: adakah jawapan menjawab soalan yang ditanya, bukan yang 'rasa nak jawab'?",
-      "Skor penuh = isi betul + bahasa lancar + ejaan tepat",
     ],
   },
 ];
@@ -1415,7 +1313,7 @@ export const BM_KERTAS: BMKertas[] = [
     label: "Kertas 1",
     shortLabel: "K1",
     icon: "📝",
-    description: "Sistem Bahasa, Pemahaman, KOMSAS, Novel, Ringkasan",
+    description: "Sistem Bahasa, KOMSAS, Novel, Ringkasan",
     examDetails: "Masa: 1 jam 45 minit · Soalan berstruktur · Teks + KOMSAS",
     color: "#818CF8",
     gradient: "from-indigo-500/20 to-violet-500/20",
@@ -1430,17 +1328,6 @@ export const BM_KERTAS: BMKertas[] = [
         borderColor: "rgba(96,165,250,0.25)",
         description: "Kata nama, adjektif, kerja, tatabahasa, pola ayat dan peribahasa asas.",
         topics: SISTEM_BAHASA_TOPICS,
-      },
-      {
-        id: "pemahaman",
-        label: "Pemahaman",
-        shortLabel: "Pemahaman",
-        icon: "🔍",
-        color: "#34D399",
-        bgGradient: "from-emerald-500/15 to-teal-500/10",
-        borderColor: "rgba(52,211,153,0.25)",
-        description: "Teknik menjawab soalan pemahaman, KBAT dan cara mencari isi penting.",
-        topics: PEMAHAMAN_TOPICS,
       },
       {
         id: "komsas",

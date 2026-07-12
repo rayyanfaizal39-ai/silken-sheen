@@ -118,7 +118,7 @@ function LandingView({
 
         <div className="mt-5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] py-2">
           <p className="text-center text-[9px] font-bold uppercase tracking-[0.3em] text-[#F472B6]/40">
-            SISTEM BAHASA · PEMAHAMAN · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · ULASAN
+            SISTEM BAHASA · KOMSAS · NOVEL · KARANGAN · PERIBAHASA · ULASAN
           </p>
         </div>
       </div>
