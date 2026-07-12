@@ -20,6 +20,7 @@ import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
 import floatingAstronaut from "@/assets/hero landing/floating A.png";
 import cikguAiRobot from "@/assets/cikgu-ai-robot.png";
 import cikguBackground from "@/assets/backgroundcikgu.png";
+import dashboardPreview from "@/assets/dashboard-preview.png.asset.json";
 
 const SUBJECTS = [
   { id: "bahasa-melayu", title: "Bahasa Melayu", subtitle: "Tatabahasa & karangan", chapters: 24, icon: Languages, thumb: "radial-gradient(circle at 30% 30%,#ff5c8a,#7a1d4a 55%,#12061a)" },
