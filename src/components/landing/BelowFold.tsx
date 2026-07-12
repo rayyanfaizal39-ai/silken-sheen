@@ -27,6 +27,7 @@ import toolFlashcards from "@/assets/tool-flashcards.png";
 import toolQuizzes from "@/assets/tool-quizzes.png";
 import toolMindmaps from "@/assets/tool-mindmaps.png";
 import toolMissions from "@/assets/tool-missions.png";
+import landingDashboard from "@/assets/landing-dashboard-preview.png.asset.json";
 
 /* ---------------- Shared helpers (local copy) ---------------- */
 
