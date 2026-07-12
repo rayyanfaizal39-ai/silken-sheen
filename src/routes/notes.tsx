@@ -29,7 +29,9 @@ import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
-import { Bab7NotesBlock } from "@/components/notes/bab7/Bab7NotesBlock";
+import { Bab7NotesBlock } from "@/components/notes/Bab7NotesBlock";
+import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
+import { Chapter5NotesBlock } from "@/components/notes/Chapter5NotesBlock";
 import { normalizeChapterParam, normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
   AcademyHero,
@@ -631,6 +633,28 @@ function NotesPage() {
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
+          ) : activeChapter?.chapter1Data ? (
+            <Chapter1NotesBlock
+              id="notes"
+              content={activeChapter.chapter1Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.chapter5Data ? (
+            <Chapter5NotesBlock
+              id="notes"
+              content={activeChapter.chapter5Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
           ) : subject === "english" && activeChapter?.englishData ? (
             <EnglishNotesBlock
               id="notes"
@@ -652,6 +676,8 @@ function NotesPage() {
 
           {filtered.length === 0 ? (
             !activeChapter?.bab7Data &&
+            !activeChapter?.chapter1Data &&
+            !activeChapter?.chapter5Data &&
             !activeChapter?.englishData &&
             !activeChapter?.notes &&
             !activeChapter?.video && (
@@ -663,7 +689,11 @@ function NotesPage() {
             )
           ) : (
             <>
-              {!activeChapter?.bab7Data && !activeChapter?.englishData && !activeChapter?.notes && (
+              {!activeChapter?.bab7Data &&
+                !activeChapter?.chapter1Data &&
+                !activeChapter?.chapter5Data &&
+                !activeChapter?.englishData &&
+                !activeChapter?.notes && (
                 <NotesBlock
                   id="notes"
                   sections={legacyNoteSections}
@@ -672,7 +702,7 @@ function NotesPage() {
                 />
               )}
 
-              {!activeChapter?.bab7Data && (
+              {!activeChapter?.bab7Data && !activeChapter?.chapter1Data && !activeChapter?.chapter5Data && (
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button
                   onClick={() =>
