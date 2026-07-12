@@ -1,18 +1,38 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
-import { CompositionDonut } from "./CompositionDonut";
-import { PredictReveal } from "./PredictReveal";
-import { TabbedUses } from "./TabbedUses";
-import { CycleDiagram } from "./CycleDiagram";
-import { FireTriangle } from "./FireTriangle";
-import { ExtinguisherTable } from "./ExtinguisherTable";
-import { SourceCards } from "./SourceCards";
-import { EffectsGrid } from "./EffectsGrid";
-import { PreventionColumns } from "./PreventionColumns";
-import { ApiTable } from "./ApiTable";
+import { CompositionDonut } from "./blocks/CompositionDonut";
+import { PredictReveal } from "./blocks/PredictReveal";
+import { TabbedUses } from "./blocks/TabbedUses";
+import { CycleDiagram } from "./blocks/CycleDiagram";
+import { FireTriangle } from "./blocks/FireTriangle";
+import { ExtinguisherTable } from "./blocks/ExtinguisherTable";
+import { SourceCards } from "./blocks/SourceCards";
+import { EffectsGrid, type EffectsGridTint } from "./blocks/EffectsGrid";
+import { PreventionColumns } from "./blocks/PreventionColumns";
+import { ApiTable } from "./blocks/ApiTable";
+import { FactGrid } from "./blocks/FactGrid";
+import { ChipRow } from "./blocks/ChipRow";
 
 type Lang = "en" | "bm";
+
+const BALANCE_HEAD: Record<Lang, string> = {
+  en: "🌍 Protecting the balance",
+  bm: "🌍 Melindungi keseimbangan",
+};
+
+const EFFECT_CATEGORY_ICON: Record<string, string> = {
+  health: "🫁",
+  buildings: "🏛️",
+  plants: "🌱",
+  climate: "🌍",
+};
+const EFFECT_CATEGORY_TINT: Record<string, EffectsGridTint> = {
+  health: "red",
+  buildings: "amber",
+  plants: "green",
+  climate: "blue",
+};
 
 const ORBIT_LABELS: Record<Lang, string[]> = {
   en: ["Composition", "Experiment", "Gas uses", "Cycles", "Combustion", "Pollution sources", "Pollution effects", "Prevention", "Summary"],
@@ -158,10 +178,12 @@ export function Bab7NotesBlock({
         {current === 2 && <TabbedUses tabs={t.uses.tabs} />}
         {current === 3 && (
           <CycleDiagram
-            carbonCycle={t.cycles.carbonCycle}
-            oxygenCycle={t.cycles.oxygenCycle}
-            balanceActions={t.cycles.balanceActions}
-            lang={lang}
+            boxes={[
+              { icon: "🔵", heading: t.cycles.carbonCycle.heading, steps: t.cycles.carbonCycle.steps },
+              { icon: "🟣", heading: t.cycles.oxygenCycle.heading, steps: t.cycles.oxygenCycle.steps },
+            ]}
+            chipsHeading={BALANCE_HEAD[lang]}
+            chips={t.cycles.balanceActions}
           />
         )}
         {current === 4 && (
@@ -176,7 +198,16 @@ export function Bab7NotesBlock({
           </div>
         )}
         {current === 5 && <SourceCards sources={t.pollutionSources} />}
-        {current === 6 && <EffectsGrid effects={t.pollutionEffects} />}
+        {current === 6 && (
+          <EffectsGrid
+            cards={t.pollutionEffects.map((e) => ({
+              icon: EFFECT_CATEGORY_ICON[e.category],
+              tint: EFFECT_CATEGORY_TINT[e.category],
+              heading: e.heading,
+              items: e.items,
+            }))}
+          />
+        )}
         {current === 7 && <PreventionColumns categories={t.prevention} />}
         {current === 8 && (
           <div className="space-y-8">
@@ -185,36 +216,9 @@ export function Bab7NotesBlock({
               <ApiTable rows={t.api} />
             </div>
 
-            <div>
-              <h4 className="font-display mb-3 text-sm font-bold text-foreground">{FACTS_HEAD[lang]}</h4>
-              <div className="grid gap-2.5 sm:grid-cols-2">
-                {t.keyExamFacts.map((fact, i) => (
-                  <div
-                    key={fact}
-                    className="flex items-start gap-2.5 rounded-xl border border-emerald-400/25 bg-emerald-500/10 p-3.5 text-[13px] leading-relaxed text-emerald-100"
-                  >
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/25 text-[11px] font-bold text-emerald-300">
-                      {i + 1}
-                    </span>
-                    <span>{fact}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <FactGrid heading={FACTS_HEAD[lang]} facts={t.keyExamFacts} />
 
-            <div>
-              <h4 className="font-display mb-3 text-sm font-bold text-foreground">{GLOSS_HEAD[lang]}</h4>
-              <div className="flex flex-wrap gap-2">
-                {t.keyTerms.map((term) => (
-                  <span
-                    key={term}
-                    className="rounded-full border border-border bg-secondary/40 px-3 py-1.5 text-xs font-medium text-foreground"
-                  >
-                    {term}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <ChipRow heading={GLOSS_HEAD[lang]} items={t.keyTerms} />
 
             <div className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-accent/5 p-5">
               <h4 className="font-display mb-2 flex items-center gap-2 text-sm font-bold text-foreground">

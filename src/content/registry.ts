@@ -39,6 +39,8 @@ import {
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
+import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
+import { chapter5Content } from "@/content/form1/science/chapter-5/chapter5-content";
 import { mathF1C1NotesBM } from "@/content/form1/math/chapter-1/notes-bm";
 import { mathF1C1NotesDLP } from "@/content/form1/math/chapter-1/notes-dlp";
 import { mathF1C2NotesBM } from "@/content/form1/math/chapter-2/notes-bm";
@@ -1976,6 +1978,7 @@ export const chapters: ChapterContent[] = [
     title: "Pengenalan kepada Penyiasatan Saintifik",
     lang: "bm",
     mindMap: { data: scienceF1C1MindMapBM, title: "Pengenalan kepada Penyiasatan Saintifik" },
+    chapter1Data: chapter1Content,
   },
   {
     id: "science-f1-c1-dlp",
@@ -1985,6 +1988,7 @@ export const chapters: ChapterContent[] = [
     title: "Introduction to Scientific Investigation",
     lang: "dlp",
     mindMap: { data: scienceF1C1MindMapDLP, title: "Introduction to Scientific Investigation" },
+    chapter1Data: chapter1Content,
   },
   {
     id: "science-f1-c2-bm",
@@ -2055,6 +2059,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C5MindMapBM, title: "Jirim" },
     notes: scienceF1C5NotesBM,
+    chapter5Data: chapter5Content,
   },
   {
     id: "science-f1-c5-dlp",
@@ -2065,6 +2070,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C5MindMapDLP, title: "Matter" },
     notes: scienceF1C5NotesDLP,
+    chapter5Data: chapter5Content,
   },
   {
     id: "science-f1-c6-bm",
