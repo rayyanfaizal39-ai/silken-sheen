@@ -69,6 +69,44 @@ function ParagraphBlock({ text }: { text: string }) {
   );
 }
 
+function HighlightCard({ title, text, color }: { title: string; text: string; color: string }) {
+  return (
+    <div className="rounded-xl border p-4" style={{ borderColor: `${color}30`, background: `${color}0a` }}>
+      <p className="text-[10px] font-black uppercase tracking-wide" style={{ color }}>
+        {title}
+      </p>
+      <p className="mt-2 text-sm leading-6 text-white/70">{text}</p>
+    </div>
+  );
+}
+
+const F2_MODEL_NOTES = [
+  {
+    title: "Karangan Fakta",
+    text: "Sesuai untuk soalan langkah, kepentingan dan faedah yang memerlukan isi jelas, logik dan tersusun.",
+  },
+  {
+    title: "Karangan Pendapat",
+    text: "Gunakan bila soalan meminta pandangan. Nyatakan pendirian dengan sopan dan beralasan.",
+  },
+  {
+    title: "Karangan Pengalaman",
+    text: "Tulis dalam orang pertama dan susun mengikut kronologi supaya mudah difahami.",
+  },
+  {
+    title: "Karangan Perbincangan",
+    text: "Bandingkan dua sudut atau dua pilihan, kemudian simpulkan pandangan sendiri secara matang.",
+  },
+  {
+    title: "Laporan",
+    text: "Gunakan format rasmi, tajuk yang tepat dan bahasa yang ringkas tetapi padat.",
+  },
+  {
+    title: "Surat Kiriman",
+    text: "Bezakan surat rasmi dan tidak rasmi dari segi format, sapaan dan penutup.",
+  },
+];
+
 // ─── Per-model sections ────────────────────────────────────────────────────────
 
 function ModelDetail({ model, color }: { model: ModelKaranganTemplate; color: string }) {
@@ -78,6 +116,12 @@ function ModelDetail({ model, color }: { model: ModelKaranganTemplate; color: st
 
   return (
     <div className="space-y-4">
+      <div className="grid gap-2 sm:grid-cols-2">
+        {F2_MODEL_NOTES.map((item) => (
+          <HighlightCard key={item.title} title={item.title} text={item.text} color={color} />
+        ))}
+      </div>
+
       {/* Always-visible quick-ID block */}
       <div className="rounded-2xl border p-4" style={{ borderColor: `${color}35`, background: `${color}0c` }}>
         <p className="mb-2 text-[10px] font-black uppercase tracking-wide" style={{ color }}>
@@ -128,6 +172,23 @@ function ModelDetail({ model, color }: { model: ModelKaranganTemplate; color: st
           </ul>
         </CollapsibleSection>
       )}
+
+      <CollapsibleSection title="Cara Guna Model Ini" icon="🧭">
+        <div className="grid gap-2 sm:grid-cols-2">
+          <HighlightCard title="1. Pilih jenis" text="Kenal pasti kata kunci soalan sebelum memilih model yang sesuai." color={color} />
+          <HighlightCard title="2. Bina rangka" text="Susun pendahuluan, isi, contoh dan penutup mengikut struktur model." color={color} />
+          <HighlightCard title="3. Tulis semula" text="Gunakan model sebagai panduan, bukan untuk menyalin bulat-bulat." color={color} />
+          <HighlightCard title="4. Semak bahasa" text="Pastikan ayat gramatis, isi matang dan penutup kuat." color={color} />
+        </div>
+      </CollapsibleSection>
+
+      <CollapsibleSection title="Soalan Tipikal Form 2" icon="🎓">
+        <div className="space-y-2">
+          <HighlightCard title="Fakta" text="Huraikan langkah-langkah mengatasi sesuatu masalah atau menjelaskan faedah sesuatu perkara." color={color} />
+          <HighlightCard title="Pendapat" text="Pada pandangan anda, apakah cara terbaik untuk menyelesaikan isu yang diberikan?" color={color} />
+          <HighlightCard title="Pengalaman" text="Ceritakan pengalaman yang berkaitan dengan tema dalam urutan masa yang jelas." color={color} />
+        </div>
+      </CollapsibleSection>
 
       <CollapsibleSection title="Template" icon="🧩">
         <div className="rounded-xl border border-dashed border-white/15 bg-black/20 p-3.5">

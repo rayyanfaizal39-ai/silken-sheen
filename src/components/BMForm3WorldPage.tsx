@@ -9,7 +9,7 @@ import {
   type BMForm3Hub,
   type BMForm3Topic,
 } from "@/data/bm-form3-structure";
-import { Kertas2HubGrid } from "@/components/Kertas2FolderTemplate";
+import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
 import { ComingSoonScreen } from "@/components/ChapterPicker";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import { getBMForm3SistemBahasaContent } from "@/data/bm-form3-sistem-bahasa-content";
@@ -380,6 +380,10 @@ function HubView({
   onSelectTopic: (topicId: string) => void;
   onBack: () => void;
 }) {
+  if (kertas.id === "k2") {
+    const items = hub.topics.map((topic) => ({ id: topic.id, title: topic.label }));
+    return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><Kertas2FolderTemplate title={hub.label} subtitle={hub.description} groups={splitIntoKertas2Folders(items)} onSelectItem={onSelectTopic} /></div>;
+  }
   if (hub.id === "ulasan") {
     return <div><PageHeader breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><BMForm3UlasanContent /></div>;
   }
