@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signature Visuals — Chapter 3 — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --violet-soft:rgba(139,107,255,0.16);
+    --blue:#4fb0ff; --blue-soft:rgba(79,176,255,0.14);
+    --amber:#fbbf5a;
+    --green:#4ade80;
+    --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 110% 20%, rgba(79,176,255,0.10), transparent 60%),
+      var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1040px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:640px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  /* ===== Thermostat dial ===== */
+  .dial-wrap{display:flex; justify-content:center; padding:10px 0;}
+  .dial-labels{display:flex; justify-content:space-between; max-width:380px; margin:14px auto 0; font-size:12px; color:var(--muted);}
+  .loop-caption{text-align:center; font-size:12.5px; color:var(--muted-dim); margin-top:6px;}
+
+  @keyframes needleSwing{
+    0%,100%{ transform: rotate(-35deg); }
+    50%{ transform: rotate(35deg); }
+  }
+  .needle{ transform-origin: 150px 150px; animation: needleSwing 4s ease-in-out infinite; }
+
+  /* ===== Split body hot/cold ===== */
+  .body-split{display:flex; justify-content:center; gap:0; position:relative;}
+  .body-half{width:220px; text-align:center; padding:16px;}
+  .body-half.hot{background:linear-gradient(180deg, rgba(248,113,113,0.10), transparent); border-radius:16px 0 0 16px;}
+  .body-half.cold{background:linear-gradient(180deg, rgba(79,176,255,0.10), transparent); border-radius:0 16px 16px 0;}
+  .body-half h4{font-family:var(--font-display); font-size:14px; margin:10px 0;}
+  .body-half ul{text-align:left; font-size:11.5px; color:var(--muted); padding-left:18px; line-height:1.6; margin:0;}
+  .divider{width:2px; background:var(--line);}
+
+  @keyframes sweatDrip{
+    0%{ transform: translateY(0); opacity:1;}
+    100%{ transform: translateY(20px); opacity:0;}
+  }
+  .sweat{ animation: sweatDrip 1.5s infinite ease-in; }
+  @keyframes shiver{
+    0%,100%{ transform: translateX(0); }
+    25%{ transform: translateX(-2px); }
+    75%{ transform: translateX(2px); }
+  }
+  .shiver-body{ animation: shiver 0.15s infinite; }
+
+  /* ===== Animal adaptation cards ===== */
+  .animal-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px;}
+  .animal-card{background:var(--bg-panel); border-radius:14px; padding:16px; text-align:center;}
+  .animal-card .ic{font-size:32px;}
+  .animal-card h5{font-family:var(--font-display); font-size:13px; margin:8px 0 4px;}
+  .animal-card p{font-size:11px; color:var(--muted); line-height:1.4; margin:0;}
+
+  /* ===== Transpiration leaf ===== */
+  .leaf-row{display:flex; gap:24px; justify-content:center; flex-wrap:wrap;}
+  .leaf-card{background:var(--bg-panel); border-radius:14px; padding:18px; text-align:center; width:260px;}
+  .leaf-card h4{font-family:var(--font-display); font-size:13px; margin:10px 0 4px;}
+  .leaf-card p{font-size:11.5px; color:var(--muted); margin:0;}
+  @keyframes waterRise{
+    0%{ transform: translateY(0); opacity:0.9;}
+    100%{ transform: translateY(-70px); opacity:0;}
+  }
+  .water-particle{ animation: waterRise 2.5s infinite linear; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Signature Visuals — Chapter 3: Coordination and Response</h1>
+  <p class="lead">Homeostasis is inherently a "dial swinging back to center" concept — so the visuals lean into that directly instead of describing it in prose.</p>
+
+  <div class="card">
+    <h2>🌡️ The Homeostatic Control Loop</h2>
+    <p class="sub">A literal thermostat dial — the exact same mental model as an oven or air-con, applied to the body.</p>
+    <div class="dial-wrap">
+      <svg width="320" height="260" viewBox="0 0 320 260">
+        <path d="M 40 170 A 120 120 0 0 1 300 170" fill="none" stroke="#1b2044" stroke-width="20" stroke-linecap="round"/>
+        <path d="M 40 170 A 120 120 0 0 1 118 60" fill="none" stroke="#4fb0ff" stroke-width="20" stroke-linecap="round"/>
+        <path d="M 118 60 A 120 120 0 0 1 222 60" fill="none" stroke="#4ade80" stroke-width="20" stroke-linecap="round"/>
+        <path d="M 222 60 A 120 120 0 0 1 300 170" fill="none" stroke="#f87171" stroke-width="20" stroke-linecap="round"/>
+        <g class="needle">
+          <line x1="160" y1="170" x2="160" y2="70" stroke="#fbbf5a" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="160" cy="170" r="9" fill="#fbbf5a"/>
+        </g>
+        <text x="45" y="215" fill="#4fb0ff" font-size="12" font-weight="700" text-anchor="middle">TOO LOW</text>
+        <text x="160" y="35" fill="#4ade80" font-size="12" font-weight="700" text-anchor="middle">NORMAL</text>
+        <text x="278" y="215" fill="#f87171" font-size="12" font-weight="700" text-anchor="middle">TOO HIGH</text>
+      </svg>
+    </div>
+    <div class="loop-caption">Brain detects the swing away from normal → triggers a corrective mechanism → needle returns to center. This one loop explains water regulation, temperature regulation, and every animal example in this chapter.</div>
+  </div>
+
+  <div class="card">
+    <h2>🧍 Hot Day vs Cold Day — Side by Side</h2>
+    <p class="sub">Both responses shown at once, not as two separate paragraphs to compare mentally.</p>
+    <div class="body-split">
+      <div class="body-half hot">
+        <svg width="90" height="140" viewBox="0 0 90 140">
+          <ellipse cx="45" cy="30" rx="16" ry="18" fill="#1b2044" stroke="#f87171" stroke-width="2"/>
+          <rect x="25" y="48" width="40" height="70" rx="14" fill="#1b2044" stroke="#f87171" stroke-width="2"/>
+          <line x1="30" y1="55" x2="30" y2="110" stroke="#f87171" stroke-width="3" opacity="0.7"/>
+          <line x1="60" y1="55" x2="60" y2="110" stroke="#f87171" stroke-width="3" opacity="0.7"/>
+          <circle class="sweat" cx="30" cy="60" r="2.5" fill="#4fb0ff"/>
+          <circle class="sweat" cx="60" cy="70" r="2.5" fill="#4fb0ff" style="animation-delay:0.5s"/>
+          <circle class="sweat" cx="45" cy="50" r="2.5" fill="#4fb0ff" style="animation-delay:1s"/>
+        </svg>
+        <h4>🔥 Hot Day</h4>
+        <ul>
+          <li>Blood vessels dilate (widen)</li>
+          <li>Hairs lie flat</li>
+          <li>Sweating increases</li>
+          <li>Body temperature decreases</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="body-half cold shiver-body">
+        <svg width="90" height="140" viewBox="0 0 90 140">
+          <ellipse cx="45" cy="30" rx="16" ry="18" fill="#1b2044" stroke="#4fb0ff" stroke-width="2"/>
+          <rect x="25" y="48" width="40" height="70" rx="14" fill="#1b2044" stroke="#4fb0ff" stroke-width="2"/>
+          <line x1="30" y1="55" x2="30" y2="110" stroke="#4fb0ff" stroke-width="1.5" opacity="0.5"/>
+          <line x1="60" y1="55" x2="60" y2="110" stroke="#4fb0ff" stroke-width="1.5" opacity="0.5"/>
+          <path d="M22 52 l4 -6 M35 50 l4 -6 M55 50 l4 -6 M68 52 l4 -6" stroke="#cfe8ff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h4>❄️ Cold Day</h4>
+        <ul>
+          <li>Blood vessels constrict (narrow)</li>
+          <li>Hairs stand erect</li>
+          <li>Sweating decreases</li>
+          <li>Shivering — body temperature increases</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🐕 How Different Animals Regulate</h2>
+    <p class="sub">Five very different strategies for the same problem — a grid makes the variety obvious at a glance.</p>
+    <div class="animal-grid">
+      <div class="animal-card"><div class="ic">🐕</div><h5>Cats &amp; Dogs</h5><p>Lick fur, hang tongue out to cool; fur stands erect when cold</p></div>
+      <div class="animal-card"><div class="ic">🦎</div><h5>Lizard (hot)</h5><p>Heart beats faster, movement and metabolism speed up</p></div>
+      <div class="animal-card"><div class="ic">🦎</div><h5>Lizard (cold)</h5><p>Body activity, movement and metabolism all slow down</p></div>
+      <div class="animal-card"><div class="ic">🐌</div><h5>Snail</h5><p>Produces fluid, seeks humid places to reduce water loss</p></div>
+      <div class="animal-card"><div class="ic">🐝</div><h5>Bee</h5><p>Closes spiracles between breaths to reduce water loss</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🌿 Transpiration &amp; Stoma Control</h2>
+    <p class="sub">Water flow animated upward through the plant, and the stoma actually shown open vs closed.</p>
+    <div class="leaf-row">
+      <div class="leaf-card">
+        <svg width="160" height="190" viewBox="0 0 160 190">
+          <line x1="80" y1="115" x2="80" y2="180" stroke="#4ade80" stroke-width="4"/>
+          <circle class="water-particle" cx="75" cy="170" r="3" fill="#4fb0ff"/>
+          <circle class="water-particle" cx="85" cy="170" r="3" fill="#4fb0ff" style="animation-delay:0.8s"/>
+          <circle class="water-particle" cx="80" cy="175" r="3" fill="#4fb0ff" style="animation-delay:1.6s"/>
+          <!-- surrounding epidermal cells -->
+          <path d="M10 60 Q40 40 55 60 Q40 90 10 90 Z" fill="none" stroke="#4b5670" stroke-width="1.5"/>
+          <path d="M150 60 Q120 40 105 60 Q120 90 150 90 Z" fill="none" stroke="#4b5670" stroke-width="1.5"/>
+          <path d="M20 15 Q60 5 80 20 Q100 5 140 15 L140 40 Q80 30 20 40 Z" fill="none" stroke="#4b5670" stroke-width="1.5"/>
+          <!-- guard cells: two ovals, separated = OPEN pore -->
+          <ellipse cx="63" cy="72.5" rx="16" ry="26" fill="#22c55e" opacity="0.55" stroke="#4ade80" stroke-width="2"/>
+          <ellipse cx="97" cy="72.5" rx="16" ry="26" fill="#22c55e" opacity="0.55" stroke="#4ade80" stroke-width="2"/>
+          <ellipse cx="80" cy="72.5" rx="10" ry="22" fill="#050816"/>
+          <circle cx="60" cy="60" r="2.5" fill="#166534"/><circle cx="66" cy="85" r="2.5" fill="#166534"/>
+          <circle cx="100" cy="60" r="2.5" fill="#166534"/><circle cx="94" cy="85" r="2.5" fill="#166534"/>
+          <text x="80" y="14" font-size="8.5" fill="var(--muted-dim)" text-anchor="middle">epidermal cell</text>
+          <text x="80" y="145" font-size="8.5" fill="#4ade80" text-anchor="middle" font-weight="700">guard cells (turgid, separated)</text>
+        </svg>
+        <h4>☀️ During the Day — Stoma Open</h4>
+        <p>Guard cells absorb water, become turgid (swollen), and bulge apart — opening the pore between them for gas exchange and transpiration</p>
+      </div>
+      <div class="leaf-card">
+        <svg width="160" height="190" viewBox="0 0 160 190">
+          <line x1="80" y1="115" x2="80" y2="180" stroke="#4ade80" stroke-width="4" opacity="0.4"/>
+          <path d="M10 60 Q40 40 55 72.5 Q40 90 10 90 Z" fill="none" stroke="#4b5670" stroke-width="1.5"/>
+          <path d="M150 60 Q120 40 105 72.5 Q120 90 150 90 Z" fill="none" stroke="#4b5670" stroke-width="1.5"/>
+          <path d="M20 15 Q60 5 80 20 Q100 5 140 15 L140 40 Q80 30 20 40 Z" fill="none" stroke="#4b5670" stroke-width="1.5"/>
+          <!-- guard cells flaccid, touching, no gap = CLOSED pore -->
+          <ellipse cx="70" cy="72.5" rx="16" ry="24" fill="#f87171" opacity="0.5" stroke="#f87171" stroke-width="2"/>
+          <ellipse cx="90" cy="72.5" rx="16" ry="24" fill="#f87171" opacity="0.5" stroke="#f87171" stroke-width="2"/>
+          <circle cx="66" cy="60" r="2.5" fill="#7f1d1d"/><circle cx="72" cy="85" r="2.5" fill="#7f1d1d"/>
+          <circle cx="94" cy="60" r="2.5" fill="#7f1d1d"/><circle cx="88" cy="85" r="2.5" fill="#7f1d1d"/>
+          <text x="80" y="14" font-size="8.5" fill="var(--muted-dim)" text-anchor="middle">epidermal cell</text>
+          <text x="80" y="145" font-size="8.5" fill="#f87171" text-anchor="middle" font-weight="700">guard cells (flaccid, touching)</text>
+        </svg>
+        <h4>🔥 Temperature Too High — Stoma Closed</h4>
+        <p>Guard cells lose water, become flaccid, and sit flush against each other — sealing the pore to reduce water loss</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

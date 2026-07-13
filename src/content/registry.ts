@@ -40,7 +40,13 @@ import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
+import { chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
+import { chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
+import { chapter4Content } from "@/content/form1/science/chapter-4/chapter4-content";
 import { chapter5Content } from "@/content/form1/science/chapter-5/chapter5-content";
+import { chapter6Content } from "@/content/form1/science/chapter-6/chapter6-content";
+import { chapter8Content } from "@/content/form1/science/chapter-8/chapter8-content";
+import { chapter9Content } from "@/content/form1/science/chapter-9/chapter9-content";
 import { mathF1C1NotesBM } from "@/content/form1/math/chapter-1/notes-bm";
 import { mathF1C1NotesDLP } from "@/content/form1/math/chapter-1/notes-dlp";
 import { mathF1C2NotesBM } from "@/content/form1/math/chapter-2/notes-bm";
@@ -1999,6 +2005,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C2MindMapBM, title: "Sel sebagai Unit Asas Hidupan" },
     notes: scienceF1C2NotesBM,
+    chapter2Data: chapter2Content,
   },
   {
     id: "science-f1-c2-dlp",
@@ -2009,6 +2016,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C2MindMapDLP, title: "Cells as the Basic Unit of Life" },
     notes: scienceF1C2NotesDLP,
+    chapter2Data: chapter2Content,
   },
   {
     id: "science-f1-c3-bm",
@@ -2019,6 +2027,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C3MindMapBM, title: "Homeostasis dalam Benda Hidup" },
     notes: scienceF1C3NotesBM,
+    chapter3Data: chapter3Content,
   },
   {
     id: "science-f1-c3-dlp",
@@ -2029,6 +2038,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C3MindMapDLP, title: "Homeostasis" },
     notes: scienceF1C3NotesDLP,
+    chapter3Data: chapter3Content,
   },
   {
     id: "science-f1-c4-bm",
@@ -2039,6 +2049,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C4MindMapBM, title: "Pembiakan" },
     notes: scienceF1C4NotesBM,
+    chapter4Data: chapter4Content,
   },
   {
     id: "science-f1-c4-dlp",
@@ -2049,6 +2060,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C4MindMapDLP, title: "Reproduction" },
     notes: scienceF1C4NotesDLP,
+    chapter4Data: chapter4Content,
   },
   {
     id: "science-f1-c5-bm",
@@ -2081,6 +2093,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C6MindMapBM, title: "Bab 6: Jadual Berkala" },
     notes: scienceF1C6NotesBM,
+    chapter6Data: chapter6Content,
   },
   {
     id: "science-f1-c6-dlp",
@@ -2091,6 +2104,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C6MindMapDLP, title: "Periodic Table" },
     notes: scienceF1C6NotesDLP,
+    chapter6Data: chapter6Content,
   },
   {
     id: "science-f1-c7-bm",
@@ -2123,6 +2137,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C8MindMapBM, title: "Sains Tingkatan 1 : Bab 8 Cahaya dan Optik" },
     notes: scienceF1C8NotesBM,
+    chapter8Data: chapter8Content,
   },
   {
     id: "science-f1-c8-dlp",
@@ -2133,6 +2148,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C8MindMapDLP, title: "Light and Optics" },
     notes: scienceF1C8NotesDLP,
+    chapter8Data: chapter8Content,
   },
   {
     id: "science-f1-c9-bm",
@@ -2143,6 +2159,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: scienceF1C9MindMapBM, title: "Bumi (Earth)" },
     notes: scienceF1C9NotesBM,
+    chapter9Data: chapter9Content,
   },
   {
     id: "science-f1-c9-dlp",
@@ -2153,6 +2170,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: scienceF1C9MindMapDLP, title: "Chapter 9: Earth" },
     notes: scienceF1C9NotesDLP,
+    chapter9Data: chapter9Content,
   },
 
   // English Form 1 — Chapter 1 = Paper 1 (Reading & Language Awareness),

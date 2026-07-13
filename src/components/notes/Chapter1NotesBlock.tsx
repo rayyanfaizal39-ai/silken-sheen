@@ -4,12 +4,15 @@ import type { Chapter1Content } from "@/content/form1/science/chapter-1/chapter1
 import { IconCardGrid } from "./blocks/IconCardGrid";
 import { TabbedUses } from "./blocks/TabbedUses";
 import { DataTable } from "./blocks/DataTable";
-import { DefinitionCard } from "./blocks/DefinitionCard";
 import { SafetyChecklist } from "./blocks/SafetyChecklist";
 import { EffectsGrid, type EffectsGridTint } from "./blocks/EffectsGrid";
 import { ProcessSteps } from "./blocks/ProcessSteps";
 import { PreventionColumns } from "./blocks/PreventionColumns";
 import { ChipRow } from "./blocks/ChipRow";
+import { AccuracyTargets } from "./blocks/AccuracyTargets";
+import { VernierDiagram } from "./blocks/VernierDiagram";
+import { HazardDiamonds } from "./blocks/HazardDiamonds";
+import { DensityColumn } from "./blocks/DensityColumn";
 
 type Lang = "en" | "bm";
 
@@ -26,6 +29,21 @@ const HAZARD_ICON: Record<string, string> = {
   "Bahan mudah meletup": "💥",
   Flammable: "🔥",
   "Bahan mudah terbakar": "🔥",
+};
+
+const HAZARD_FILL: Record<string, string> = {
+  Irritant: "fill-accent",
+  "Bahan merengsa": "fill-accent",
+  Radioactive: "fill-emerald-400",
+  "Bahan radioaktif": "fill-emerald-400",
+  Corrosive: "fill-slate-400",
+  "Bahan mengakis": "fill-slate-400",
+  "Poison / Toxic": "fill-red-400",
+  "Bahan beracun / toksik": "fill-red-400",
+  Explosive: "fill-amber-400",
+  "Bahan mudah meletup": "fill-amber-400",
+  Flammable: "fill-orange-400",
+  "Bahan mudah terbakar": "fill-orange-400",
 };
 
 const DEFINITION_ICON: Record<string, string> = {
@@ -100,7 +118,6 @@ const SECTION_CHROME: Record<Lang, Array<{ eyebrow: string; title: string; sub?:
   ],
 };
 
-const EXAMPLES_LABEL: Record<Lang, string> = { en: "Examples", bm: "Contoh" };
 const RULES_HEAD: Record<Lang, string> = { en: "🧷 Laboratory Rules", bm: "🧷 Peraturan Makmal" };
 const SAFETY_MEASURES_HEAD: Record<Lang, string> = { en: "🛡️ Safety Measures", bm: "🛡️ Langkah Keselamatan" };
 const ACCIDENT_HEAD: Record<Lang, string> = { en: "🚨 In Case of an Accident", bm: "🚨 Semasa Berlaku Kemalangan" };
@@ -236,13 +253,13 @@ export function Chapter1NotesBlock({
         )}
 
         {current === 3 && (
-          <DefinitionCard
+          <HazardDiamonds
             items={t.laboratory.hazardSymbols.map((h) => ({
               icon: HAZARD_ICON[h.name],
               name: h.name,
               body: h.body,
-              example: h.examples,
-              exampleLabel: EXAMPLES_LABEL[lang],
+              examples: h.examples,
+              fillClass: HAZARD_FILL[h.name] ?? "fill-accent",
             }))}
           />
         )}
@@ -276,14 +293,22 @@ export function Chapter1NotesBlock({
           <div className="space-y-6">
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">{DEFINITIONS_HEAD[lang]}</h4>
-              <IconCardGrid
-                items={t.measuringInstruments.definitions.map((d) => ({
-                  icon: DEFINITION_ICON[d.term],
-                  label: d.term,
-                  detail: d.body,
-                }))}
+              <AccuracyTargets
+                lang={lang}
+                accuracyTerm={t.measuringInstruments.definitions[0].term}
+                consistencyTerm={t.measuringInstruments.definitions[1].term}
               />
+              <div className="mt-3.5 rounded-2xl border border-border bg-secondary/40 p-4">
+                <p className="font-display flex items-center gap-2 text-[13px] font-bold text-foreground">
+                  <span>{DEFINITION_ICON[t.measuringInstruments.definitions[2].term]}</span>
+                  {t.measuringInstruments.definitions[2].term}
+                </p>
+                <p className="mt-1 text-[12.5px] leading-relaxed text-muted-foreground">
+                  {t.measuringInstruments.definitions[2].body}
+                </p>
+              </div>
             </div>
+            <VernierDiagram lang={lang} />
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">{INSTRUMENTS_HEAD[lang]}</h4>
               <DataTable
@@ -336,6 +361,7 @@ export function Chapter1NotesBlock({
               </h4>
               <p className="font-display text-sm font-semibold text-foreground">{t.density.formula}</p>
             </div>
+            <DensityColumn table={t.density.table} lang={lang} />
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">{DENSITY_TABLE_HEAD[lang]}</h4>
               <DataTable

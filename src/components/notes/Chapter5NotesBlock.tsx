@@ -4,9 +4,10 @@ import type { Chapter5Content, StateProperty } from "@/content/form1/science/cha
 import { TabbedUses } from "./blocks/TabbedUses";
 import { ChipRow } from "./blocks/ChipRow";
 import { DataTable } from "./blocks/DataTable";
-import { CycleDiagram } from "./blocks/CycleDiagram";
 import { FactGrid } from "./blocks/FactGrid";
 import { IconCardGrid } from "./blocks/IconCardGrid";
+import { ParticleAnimation } from "./blocks/ParticleAnimation";
+import { ChangeOfStateFlow } from "./blocks/ChangeOfStateFlow";
 
 type Lang = "en" | "bm";
 
@@ -41,6 +42,8 @@ const DENSITY_CLASS_HEAD: Record<Lang, string> = { en: "⚖️ Which Is Denser?"
 const MELT_BOIL_HEAD: Record<Lang, string> = { en: "🌡️ Melting & Boiling Points", bm: "🌡️ Takat Lebur & Takat Didih" };
 const SOLUBILITY_HEAD: Record<Lang, string> = { en: "🍬 Solubility", bm: "🍬 Keterlarutan" };
 const STATE_PROPS_HEAD: Record<Lang, string> = { en: "🧊 Comparing the Three States", bm: "🧊 Perbandingan Tiga Keadaan" };
+const PARTICLES_HEAD: Record<Lang, string> = { en: "⚛️ Particles in Motion", bm: "⚛️ Zarah dalam Pergerakan" };
+const CHANGE_FLOW_HEAD: Record<Lang, string> = { en: "🔄 Changes of State", bm: "🔄 Perubahan Keadaan" };
 const DIFFUSION_RESULTS_HEAD: Record<Lang, string> = { en: "🧪 Diffusion Rate by State", bm: "🧪 Kadar Resapan mengikut Keadaan" };
 const CONSTANT_FACTS_HEAD: Record<Lang, string> = { en: "📌 What Stays Constant", bm: "📌 Apa yang Kekal Malar" };
 
@@ -212,6 +215,10 @@ export function Chapter5NotesBlock({
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.statesOfMatter.kineticTheory}</p>
             <div>
+              <h4 className="font-display mb-3 text-sm font-bold text-foreground">{PARTICLES_HEAD[lang]}</h4>
+              <ParticleAnimation stateProperties={t.statesOfMatter.stateProperties} />
+            </div>
+            <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">{STATE_PROPS_HEAD[lang]}</h4>
               <DataTable headers={stateTableHeaders} rows={stateTableRows} />
             </div>
@@ -233,9 +240,17 @@ export function Chapter5NotesBlock({
 
         {current === 5 && (
           <div className="space-y-6">
-            <CycleDiagram
-              boxes={t.statesOfMatter.changesOfState.map((c) => ({ icon: "🔄", heading: c.name, steps: c.description }))}
-            />
+            <div>
+              <h4 className="font-display mb-3 text-sm font-bold text-foreground">{CHANGE_FLOW_HEAD[lang]}</h4>
+              <ChangeOfStateFlow
+                stateLabels={[
+                  t.statesOfMatter.stateProperties[0].state,
+                  t.statesOfMatter.stateProperties[1].state,
+                  t.statesOfMatter.stateProperties[2].state,
+                ]}
+                transitions={t.statesOfMatter.changesOfState}
+              />
+            </div>
             <FactGrid heading={CONSTANT_FACTS_HEAD[lang]} facts={t.statesOfMatter.constantFacts} />
           </div>
         )}
