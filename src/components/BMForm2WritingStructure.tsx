@@ -44,13 +44,9 @@ export const FORM2_WRITING_SECTIONS: Record<string, WritingSection[]> = {
     { id: "contoh-latihan", title: "Contoh & Latihan" },
   ],
   "tingkatkan-karangan": [
-    { id: "kesalahan-lazim", title: "Kesalahan Lazim" },
-    { id: "mengembangkan-isi", title: "Cara Mengembangkan Isi" },
-    { id: "teknik-huraian", title: "Teknik Huraian" },
-    { id: "pendahuluan-menarik", title: "Pendahuluan Menarik" },
-    { id: "penutup-mantap", title: "Penutup Mantap" },
-    { id: "penggunaan-peribahasa", title: "Penggunaan Peribahasa" },
-    { id: "tips-pemeriksa", title: "Tips Pemeriksa" },
+    { id: "asas-formula", title: "Rahsia Karangan Cemerlang" },
+    { id: "teknik-menjawab", title: "Formula I-H-C-P untuk Isi Matang" },
+    { id: "contoh-latihan", title: "Latihan Transformasi Ayat dan Kosa Kata" },
   ],
 };
 
