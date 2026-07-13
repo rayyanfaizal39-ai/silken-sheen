@@ -77,11 +77,18 @@ CREATE TRIGGER on_profiles_updated
 
 -- SECURITY DEFINER + STABLE so RLS policies can call this without recursing
 -- back into profiles' own RLS (a policy on `profiles` that queries `profiles`
--- directly would deadlock the planner / always see zero rows).
+-- directly would deadlock the planner / always see zero rows). Keep the
+-- source of truth to the persisted profiles.role field, normalized so
+-- whitespace/casing mismatches don't break admin checks.
 CREATE OR REPLACE FUNCTION public.is_admin()
-RETURNS BOOLEAN LANGUAGE sql SECURITY DEFINER STABLE AS $$
+RETURNS BOOLEAN LANGUAGE sql SECURITY DEFINER STABLE
+SET search_path = public
+AS $$
   SELECT EXISTS (
-    SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role = 'admin'
+    SELECT 1
+    FROM public.profiles
+    WHERE id = auth.uid()
+      AND lower(btrim(coalesce(role, ''))) = 'admin'
   );
 $$;
 

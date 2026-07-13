@@ -115,6 +115,17 @@ function BadgeLegend() {
   );
 }
 
+function CalloutCard({ title, text, color }: { title: string; text: string; color: string }) {
+  return (
+    <div className="rounded-xl border p-4" style={{ borderColor: `${color}30`, background: `${color}0a` }}>
+      <p className="text-[10px] font-black uppercase tracking-wide" style={{ color }}>
+        {title}
+      </p>
+      <p className="mt-2 text-sm leading-6 text-white/70">{text}</p>
+    </div>
+  );
+}
+
 function ItemBadges({ item }: { item: PeribahasaLengkapItem }) {
   return (
     <div className="flex flex-wrap gap-1.5">
@@ -503,6 +514,29 @@ export function PeribahasaBankLengkapHub({ topic, color, onBack }: { topic: BMTo
       </div>
 
       {topic.description && <p className="text-sm leading-relaxed text-white/55">{topic.description}</p>}
+
+      <div className="grid gap-2 sm:grid-cols-2">
+        <CalloutCard
+          title="Cara Menghafal"
+          text="Hafal peribahasa mengikut tema, kemudian padankan dengan maksud dan situasi penggunaannya."
+          color={color}
+        />
+        <CalloutCard
+          title="Cara Menggunakan"
+          text="Masukkan peribahasa pada pendahuluan atau penutup karangan untuk memberi kesan yang lebih kuat."
+          color={color}
+        />
+        <CalloutCard
+          title="Kata Kunci Hafalan"
+          text="Fokus pada kata kerja, tema dan imej yang paling mudah diingat untuk setiap peribahasa."
+          color={color}
+        />
+        <CalloutCard
+          title="Tip Guru"
+          text="Peribahasa yang tepat dalam kesimpulan biasanya lebih selamat daripada memaksa peribahasa di tempat yang kurang sesuai."
+          color={color}
+        />
+      </div>
 
       <BadgeLegend />
 

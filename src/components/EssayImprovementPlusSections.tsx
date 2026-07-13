@@ -62,6 +62,17 @@ function CollapsibleGroup({
   );
 }
 
+function MiniCard({ title, text, color }: { title: string; text: string; color: string }) {
+  return (
+    <div className="rounded-xl border p-4" style={{ borderColor: `${color}30`, background: `${color}0a` }}>
+      <p className="text-[10px] font-black uppercase tracking-wide" style={{ color }}>
+        {title}
+      </p>
+      <p className="mt-2 text-sm leading-6 text-white/70">{text}</p>
+    </div>
+  );
+}
+
 function RevealAnswer({ label = "Tekan untuk lihat contoh jawapan", children }: { label?: string; children: React.ReactNode }) {
   const [show, setShow] = useState(false);
   return (
@@ -82,6 +93,10 @@ function RevealAnswer({ label = "Tekan untuk lihat contoh jawapan", children }: 
 function AyatLemahCemerlangSection({ color }: { color: string }) {
   return (
     <CollapsibleGroup title="Ayat Lemah → Ayat Cemerlang" icon="✨" color={color} countLabel={`${AYAT_LEMAH_CEMERLANG_PLUS.length} contoh`}>
+      <div className="mb-3 grid gap-2 sm:grid-cols-2">
+        <MiniCard title="Upgrade ayat biasa" text="Tukar kata umum kepada kata kerja, kata adjektif dan frasa yang lebih matang." color={color} />
+        <MiniCard title="Upgrade pendahuluan" text="Mulakan dengan latar semasa, isu dan gambaran umum agar pembuka karangan lebih berkesan." color={color} />
+      </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {AYAT_LEMAH_CEMERLANG_PLUS.map((item, i) => (
           <div key={i} className="overflow-hidden rounded-xl border border-white/10">
@@ -108,6 +123,11 @@ function AyatLemahCemerlangSection({ color }: { color: string }) {
 function KosaKataMenarikSection({ color }: { color: string }) {
   return (
     <CollapsibleGroup title="Kosa Kata Biasa → Kosa Kata Menarik" icon="🔤" color={color} countLabel={`${KOSA_KATA_MENARIK_LENGKAP.length} pasangan`}>
+      <div className="mb-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <MiniCard title="Masalah → Polemik" text="Gunakan kata yang lebih formal untuk menunjukkan isu yang kompleks." color={color} />
+        <MiniCard title="Sangat penting → Signifikan" text="Kata ini sesuai untuk karangan fakta dan perbincangan." color={color} />
+        <MiniCard title="Contoh → Tamsilnya" text="Sesuai untuk membawa contoh yang lebih akademik." color={color} />
+      </div>
       <div className="grid gap-2 sm:grid-cols-2">
         {KOSA_KATA_MENARIK_LENGKAP.map((k, i) => (
           <div key={i} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
@@ -126,6 +146,9 @@ function KosaKataMenarikSection({ color }: { color: string }) {
 function FrasaMenarikSection() {
   return (
     <CollapsibleGroup title="Frasa Menarik Untuk Karangan" icon="💎" color="#C084FC" countLabel={`${FRASA_MENARIK_KATEGORI.length} kategori`}>
+      <div className="mb-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 text-xs leading-relaxed text-white/55">
+        Frasa yang baik membantu ayat menjadi lebih hidup, lebih matang dan lebih meyakinkan. Pilih frasa yang sesuai dengan tema, bukan sekadar frasa yang bunyinya indah.
+      </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {FRASA_MENARIK_KATEGORI.map((kat) => (
           <div key={kat.kategori} className="rounded-xl border p-3.5" style={{ borderColor: `${kat.color}30`, background: `${kat.color}0a` }}>
@@ -156,6 +179,10 @@ function PenandaWacanaCemerlangSection() {
       <p className="mb-3 text-xs leading-relaxed text-white/45">
         Disusun berdasarkan nota Penanda Wacana Lengkap yang sedia ada — dipilih khusus untuk pelajar yang menyasarkan markah cemerlang.
       </p>
+      <div className="mb-3 grid gap-2 sm:grid-cols-2">
+        <MiniCard title="Upgrade penanda wacana" text="Gunakan variasi seperti selain itu, di samping itu, justeru dan natijahnya." color="#60A5FA" />
+        <MiniCard title="Sambung perenggan" text="Penanda wacana yang tepat menjadikan idea bergerak lancar antara satu perenggan dengan perenggan yang lain." color="#60A5FA" />
+      </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {PENANDA_WACANA_CEMERLANG.map((kat) => (
           <div key={kat.kategori} className="rounded-xl border p-3.5" style={{ borderColor: `${kat.color}30`, background: `${kat.color}0a` }}>
@@ -188,6 +215,9 @@ function PenandaWacanaCemerlangSection() {
 function PeribahasaMarkahTinggiSection() {
   return (
     <CollapsibleGroup title="Peribahasa Untuk Markah Tinggi" icon="🏆" color="#FBBF24" countLabel={`${PERIBAHASA_MARKAH_TINGGI.length} tema`}>
+      <div className="mb-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 text-xs leading-relaxed text-white/55">
+        Peribahasa paling selamat ialah yang benar-benar sesuai dengan tema dan diikat pada ayat penegas di penutup.
+      </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {PERIBAHASA_MARKAH_TINGGI.map((tema) => (
           <div key={tema.tema} className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5">
@@ -233,6 +263,12 @@ function TeknikImbakSection({ color }: { color: string }) {
       <p className="mb-3 text-xs leading-relaxed text-white/45">
         Formula IMBAK membantu setiap perenggan isi berkembang dengan lengkap dan meyakinkan.
       </p>
+      <div className="mb-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <MiniCard title="Isi" text="Nyatakan idea utama yang terus menjawab kehendak soalan." color={color} />
+        <MiniCard title="Mengapa" text="Berikan sebab yang logik mengapa isi itu penting." color={color} />
+        <MiniCard title="Bagaimana" text="Tunjukkan cara atau contoh yang membuat isi itu hidup." color={color} />
+        <MiniCard title="Akibat" text="Terangkan kesan supaya huraian terasa matang." color={color} />
+      </div>
       <div className="mb-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
         {IMBAK_STEPS.map((s) => (
           <div key={s.code} className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
@@ -264,6 +300,9 @@ function TeknikImbakSection({ color }: { color: string }) {
 function KesalahanLazimPlusSection() {
   return (
     <CollapsibleGroup title="Kesalahan Lazim Dalam Karangan" icon="⚠️" color="#FB7185" countLabel={`${KESALAHAN_LAZIM_KARANGAN_PLUS.length} kesalahan`}>
+      <div className="mb-3 rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 text-xs leading-relaxed text-white/60">
+        Kesalahan yang paling mahal ialah ayat tergantung, isi berulang dan huraian yang terlalu pendek. Karangan Form 2 perlu lebih lengkap daripada Form 1.
+      </div>
       <div className="space-y-3">
         {KESALAHAN_LAZIM_KARANGAN_PLUS.map((k) => (
           <div key={k.label} className="overflow-hidden rounded-xl border border-white/10">
@@ -293,9 +332,7 @@ function FormulaKaranganCemerlangSection({ color }: { color: string }) {
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <p className="mb-2 text-[10px] font-black uppercase tracking-wide text-white/40">Karangan Pendek</p>
-          <p className="mb-3 text-sm font-black text-white">
-            P + IHK + IHK + IHK + KH
-          </p>
+          <p className="mb-3 text-sm font-black text-white">P + IHK + IHK + IHK + KH</p>
           <div className="flex flex-col items-center gap-1">
             {FORMULA_KARANGAN_PENDEK_CEMERLANG.map((step, i) => (
               <div key={i} className="flex w-full flex-col items-center">
@@ -320,6 +357,12 @@ function FormulaKaranganCemerlangSection({ color }: { color: string }) {
             ))}
           </div>
         </div>
+      </div>
+      <div className="mt-4 grid gap-2 sm:grid-cols-2">
+        <MiniCard title="Upgrade huraian" text="Setiap isi mesti diterangkan dengan sebab, cara dan kesan." color={color} />
+        <MiniCard title="Kata hikmat" text="Selitkan kata hikmat yang sesuai untuk menambah kematangan ayat." color={color} />
+        <MiniCard title="Ayat gramatis" text="Gunakan struktur ayat yang tepat, pelbagai dan kemas." color={color} />
+        <MiniCard title="Markah tinggi" text="Pemeriksa lebih mudah memberi markah baik jika jawapan tersusun dan padat." color={color} />
       </div>
     </CollapsibleGroup>
   );

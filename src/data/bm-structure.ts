@@ -1405,7 +1405,7 @@ export const BM_KERTAS: BMKertas[] = [
         color: "#34D399",
         bgGradient: "from-emerald-500/15 to-green-500/10",
         borderColor: "rgba(52,211,153,0.25)",
-        description: "8 topik karangan dengan idea bank, template, dan peribahasa sesuai.",
+        description: "Struktur 12 bahagian ikut Form 1, tetapi kandungan dan contoh dikembangkan ke tahap Tingkatan 2.",
         topics: WORKSHOP_TOPICS,
       },
       {

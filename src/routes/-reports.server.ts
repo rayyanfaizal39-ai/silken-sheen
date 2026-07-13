@@ -42,6 +42,14 @@ function daysAgoIso(n: number): string {
   return new Date(Date.now() - n * 86400000).toISOString();
 }
 
+function logSupabaseResult(label: string, result: { data?: unknown; error?: unknown; count?: number | null }) {
+  console.log(`[reports] ${label}`, {
+    data: result.data ?? null,
+    error: result.error ?? null,
+    count: result.count ?? null,
+  });
+}
+
 function startOfMonthIso(): string {
   const d = new Date();
   return new Date(d.getFullYear(), d.getMonth(), 1).toISOString();
@@ -163,6 +171,20 @@ export const getReportsData = createServerFn({ method: 'GET' }).handler(
       return [null, null, null, null, null, null, null, null, null, null, null, null, null] as const;
     });
 
+    logSupabaseResult('profiles count student', { data: studentsRes?.data, error: studentsRes?.error, count: studentsRes?.count ?? null });
+    logSupabaseResult('profiles count paid', { data: premiumRes?.data, error: premiumRes?.error, count: premiumRes?.count ?? null });
+    logSupabaseResult('profiles count free', { data: freeRes?.data, error: freeRes?.error, count: freeRes?.count ?? null });
+    logSupabaseResult('user_progress count last_active', { data: dauRes?.data, error: dauRes?.error, count: dauRes?.count ?? null });
+    logSupabaseResult('profiles count signup week', { data: newUsersWeekRes?.data, error: newUsersWeekRes?.error, count: newUsersWeekRes?.count ?? null });
+    logSupabaseResult('quiz_history count today', { data: quizzesTodayRes?.data, error: quizzesTodayRes?.error, count: quizzesTodayRes?.count ?? null });
+    logSupabaseResult('quiz_history count week', { data: quizzesWeekRes?.data, error: quizzesWeekRes?.error, count: quizzesWeekRes?.count ?? null });
+    logSupabaseResult('user_progress count streak', { data: activeStreaksRes?.data, error: activeStreaksRes?.error, count: activeStreaksRes?.count ?? null });
+    logSupabaseResult('content_library count all', { data: contentLibraryFilesRes?.data, error: contentLibraryFilesRes?.error, count: contentLibraryFilesRes?.count ?? null });
+    logSupabaseResult('content_library count awaiting', { data: contentAwaitingRes?.data, error: contentAwaitingRes?.error, count: contentAwaitingRes?.count ?? null });
+    logSupabaseResult('payments count month', { data: newPremiumMonthRes?.data, error: newPremiumMonthRes?.error, count: newPremiumMonthRes?.count ?? null });
+    logSupabaseResult('payments count week', { data: newPremiumWeekRes?.data, error: newPremiumWeekRes?.error, count: newPremiumWeekRes?.count ?? null });
+    logSupabaseResult('profiles newest student', { data: newestStudentRes?.data, error: newestStudentRes?.error, count: null });
+
     // supabase-js resolves with { error } rather than throwing on query
     // failures (RLS denial, bad filter, etc.), so the .catch above only
     // covers network-level failures — check each resolved result too.
@@ -189,6 +211,9 @@ export const getReportsData = createServerFn({ method: 'GET' }).handler(
         .order('created_at', { ascending: false })
         .limit(3000),
     ]).catch(() => [{ data: [] }, { data: [] }] as const);
+
+    logSupabaseResult('quiz_history recent slice', { data: recentQuizzes, error: null, count: Array.isArray(recentQuizzes) ? recentQuizzes.length : null });
+    logSupabaseResult('profiles recent slice', { data: recentProfiles, error: null, count: Array.isArray(recentProfiles) ? recentProfiles.length : null });
 
     const quizzes = recentQuizzes ?? [];
     const profileSignups = recentProfiles ?? [];
@@ -240,6 +265,7 @@ export const getReportsData = createServerFn({ method: 'GET' }).handler(
     const namesById = new Map<string, string | null>();
     if (namedUserIds.length) {
       const { data: nameRows } = await supabase.from('profiles').select('id, full_name').in('id', namedUserIds);
+      logSupabaseResult('profiles name lookup', { data: nameRows, error: null, count: Array.isArray(nameRows) ? nameRows.length : null });
       for (const r of nameRows ?? []) namesById.set(r.id, r.full_name);
     }
 

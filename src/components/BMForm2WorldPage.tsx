@@ -4,7 +4,9 @@ import { BMForm2SistemBahasaLibrary } from "@/components/BMForm2SistemBahasaLibr
 import { BMForm2RumusanContent } from "@/components/BMForm2RumusanContent";
 import { BMForm2KaranganPendekContent } from "@/components/BMForm2KaranganPendekContent";
 import { BMForm2KaranganPanjangContent } from "@/components/BMForm2KaranganPanjangContent";
-import { BMForm2WritingSectionPlaceholder, FORM2_WRITING_SECTIONS, getWritingSection } from "@/components/BMForm2WritingStructure";
+import { BMForm2BengkelKaranganContent, BMForm2WritingSectionPlaceholder, FORM2_WRITING_SECTIONS, getWritingSection } from "@/components/BMForm2WritingStructure";
+import { BMForm2ModelKaranganBankContent } from "@/components/BMForm2ModelKaranganBankContent";
+import { BMForm2PeribahasaBankContent } from "@/components/BMForm2PeribahasaBankContent";
 import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
 import {
   BMForm2KomsasStructure,
@@ -175,10 +177,10 @@ const FORM2_PAPERS: PaperItem[] = [
         description: "Karangan 50–80 patah perkataan berdasarkan bahan grafik, carta, jadual atau gambar mengikut format UASA.",
       },
       {
-        id: "karangan-panjang",
-        label: "Karangan Panjang",
-        shortLabel: "Panjang",
-        icon: "KJ",
+        id: "respons-terbuka",
+        label: "Karangan Respons Terbuka",
+        shortLabel: "Respons Terbuka",
+        icon: "RT",
         color: "#A78BFA",
         description:
           "Karangan melebihi 180 patah perkataan mengikut format UASA dengan teknik penulisan lengkap.",
@@ -189,7 +191,7 @@ const FORM2_PAPERS: PaperItem[] = [
         shortLabel: "Bengkel",
         icon: "BK",
         color: "#34D399",
-        description: "Idea bank, template, kosa kata, penanda wacana dan peribahasa mengikut tema.",
+        description: "Struktur 12 bahagian ikut Form 1, tetapi kandungan dikembangkan ke tahap Tingkatan 2.",
       },
       {
         id: "model-karangan-bank",
@@ -202,35 +204,19 @@ const FORM2_PAPERS: PaperItem[] = [
       },
       {
         id: "peribahasa-bank",
-        label: "Bank Peribahasa",
+        label: "Peribahasa Bank",
         shortLabel: "Peribahasa",
         icon: "PB",
         color: "#F472B6",
         description: "Peribahasa mengikut tema, maksud, contoh ayat dan wajib hafal.",
       },
       {
-        id: "penanda-wacana",
-        label: "Penanda Wacana",
-        shortLabel: "Penanda Wacana",
-        icon: "PW",
-        color: "#22D3EE",
-        description: "Ruang pembelajaran penanda wacana untuk menyusun idea dan perenggan.",
-      },
-      {
         id: "tingkatkan-karangan",
-        label: "Strategi Skor A+",
-        shortLabel: "Skor A+",
+        label: "Tingkatkan Karangan",
+        shortLabel: "Tingkatkan",
         icon: "SA",
         color: "#818CF8",
-        description: "Rahsia pemeriksa, teknik menghuraikan isi, kesalahan lazim dan strategi mendapatkan markah tinggi.",
-      },
-      {
-        id: "latihan-uasa",
-        label: "Latihan Berformat UASA",
-        shortLabel: "Latihan UASA",
-        icon: "LU",
-        color: "#FB7185",
-        description: "Ruang latihan penulisan mengikut format UASA Bahasa Melayu Tingkatan 2.",
+        description: "Ubah ayat biasa jadi ayat cemerlang — kosa kata menarik dan teknik penulisan.",
       },
     ],
   },
@@ -965,8 +951,16 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
             />}
             {hub.id === "karangan-pendek" ? (
               <BMForm2KaranganPendekContent initialSectionId={writingSection.id} onBack={pop} />
-            ) : hub.id === "karangan-panjang" ? (
+            ) : hub.id === "respons-terbuka" ? (
               <BMForm2KaranganPanjangContent initialSectionId={writingSection.id} onBack={pop} />
+            ) : hub.id === "bengkel-karangan" ? (
+              <BMForm2BengkelKaranganContent color={hub.color} />
+            ) : hub.id === "model-karangan-bank" ? (
+              <BMForm2ModelKaranganBankContent sectionId={writingSection.id} accent={hub.color} />
+            ) : hub.id === "peribahasa-bank" ? (
+              <BMForm2PeribahasaBankContent sectionId={writingSection.id} accent={hub.color} />
+            ) : hub.id === "tingkatkan-karangan" ? (
+              <BMForm2WritingSectionPlaceholder title={writingSection.title} color={hub.color} />
             ) : (
               <BMForm2WritingSectionPlaceholder title={writingSection.title} color={hub.color} />
             )}
