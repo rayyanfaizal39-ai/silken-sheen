@@ -20,6 +20,14 @@ import type { StudentAnalytics } from "@/lib/analytics";
 export function WeeklyParentReportPreview({ analytics }: { analytics: StudentAnalytics }) {
   const cadenceLabel = "This Week";
   const topWeakTopics = analytics.weakTopics.slice(0, 3);
+  const achievement = analytics.bestSubject
+    ? `${analytics.bestSubject.name} led the week with a ${analytics.bestSubject.avgScore}% quiz average.`
+    : analytics.studyStreak > 0
+      ? `A ${analytics.studyStreak}-day study streak is building a helpful routine.`
+      : "The first completed learning activity will appear here.";
+  const supportArea = analytics.weakestSubject
+    ? `${analytics.weakestSubject.name} would benefit from a short, focused revision session.`
+    : "There is not enough quiz history yet to identify a support area.";
 
   return (
     <div className="overflow-hidden rounded-2xl border border-black/10 bg-white text-slate-800 shadow-[0_12px_32px_rgba(0,0,0,0.25)]">
@@ -40,6 +48,18 @@ export function WeeklyParentReportPreview({ analytics }: { analytics: StudentAna
         </h3>
         <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
           Hi there — here's a quick, plain-language summary of how {analytics.studentName.split(" ")[0]} did.
+        </p>
+
+        <hr className="my-5 border-slate-100" />
+
+        <div className="space-y-3">
+          <SummaryBlock label="Achievement this week" text={achievement} tone="success" />
+          <SummaryBlock label="Area needing support" text={supportArea} tone="support" />
+          <SummaryBlock label="Recommended action for next week" text={analytics.missionInsight.recommendation} tone="action" />
+        </div>
+
+        <p className="mt-5 rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-600">
+          {analytics.missionInsight.summary}
         </p>
 
         <hr className="my-5 border-slate-100" />
@@ -124,6 +144,20 @@ export function WeeklyParentReportPreview({ analytics }: { analytics: StudentAna
           You're receiving this because a {cadenceLabel.toLowerCase()} report was requested from AcadeMY.
         </p>
       </div>
+    </div>
+  );
+}
+
+function SummaryBlock({ label, text, tone }: { label: string; text: string; tone: "success" | "support" | "action" }) {
+  const styles = tone === "success"
+    ? "border-emerald-100 bg-emerald-50 text-emerald-800"
+    : tone === "support"
+      ? "border-amber-100 bg-amber-50 text-amber-800"
+      : "border-sky-100 bg-sky-50 text-sky-800";
+  return (
+    <div className={`rounded-xl border p-3 ${styles}`}>
+      <p className="text-[11px] font-semibold uppercase tracking-wide">{label}</p>
+      <p className="mt-1 text-sm leading-relaxed text-slate-700">{text}</p>
     </div>
   );
 }
