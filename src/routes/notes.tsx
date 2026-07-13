@@ -31,7 +31,13 @@ import { NotesBlock, type NotesAccordionSection } from "@/components/notes/Notes
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { Bab7NotesBlock } from "@/components/notes/Bab7NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
+import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
+import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
+import { Chapter4NotesBlock } from "@/components/notes/Chapter4NotesBlock";
 import { Chapter5NotesBlock } from "@/components/notes/Chapter5NotesBlock";
+import { Chapter6NotesBlock } from "@/components/notes/Chapter6NotesBlock";
+import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
+import { Chapter9NotesBlock } from "@/components/notes/Chapter9NotesBlock";
 import { normalizeChapterParam, normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
   AcademyHero,
@@ -644,10 +650,76 @@ function NotesPage() {
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
+          ) : activeChapter?.chapter2Data ? (
+            <Chapter2NotesBlock
+              id="notes"
+              content={activeChapter.chapter2Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.chapter3Data ? (
+            <Chapter3NotesBlock
+              id="notes"
+              content={activeChapter.chapter3Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.chapter4Data ? (
+            <Chapter4NotesBlock
+              id="notes"
+              content={activeChapter.chapter4Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
           ) : activeChapter?.chapter5Data ? (
             <Chapter5NotesBlock
               id="notes"
               content={activeChapter.chapter5Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.chapter6Data ? (
+            <Chapter6NotesBlock
+              id="notes"
+              content={activeChapter.chapter6Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.chapter8Data ? (
+            <Chapter8NotesBlock
+              id="notes"
+              content={activeChapter.chapter8Data}
+              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.chapter9Data ? (
+            <Chapter9NotesBlock
+              id="notes"
+              content={activeChapter.chapter9Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
               isRead={isRead}
@@ -677,7 +749,13 @@ function NotesPage() {
           {filtered.length === 0 ? (
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
+            !activeChapter?.chapter2Data &&
+            !activeChapter?.chapter3Data &&
+            !activeChapter?.chapter4Data &&
             !activeChapter?.chapter5Data &&
+            !activeChapter?.chapter6Data &&
+            !activeChapter?.chapter8Data &&
+            !activeChapter?.chapter9Data &&
             !activeChapter?.englishData &&
             !activeChapter?.notes &&
             !activeChapter?.video && (
@@ -691,7 +769,13 @@ function NotesPage() {
             <>
               {!activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
+                !activeChapter?.chapter2Data &&
+                !activeChapter?.chapter3Data &&
+                !activeChapter?.chapter4Data &&
                 !activeChapter?.chapter5Data &&
+                !activeChapter?.chapter6Data &&
+                !activeChapter?.chapter8Data &&
+                !activeChapter?.chapter9Data &&
                 !activeChapter?.englishData &&
                 !activeChapter?.notes && (
                 <NotesBlock
@@ -702,7 +786,15 @@ function NotesPage() {
                 />
               )}
 
-              {!activeChapter?.bab7Data && !activeChapter?.chapter1Data && !activeChapter?.chapter5Data && (
+              {!activeChapter?.bab7Data &&
+                !activeChapter?.chapter1Data &&
+                !activeChapter?.chapter2Data &&
+                !activeChapter?.chapter3Data &&
+                !activeChapter?.chapter4Data &&
+                !activeChapter?.chapter5Data &&
+                !activeChapter?.chapter6Data &&
+                !activeChapter?.chapter8Data &&
+                !activeChapter?.chapter9Data && (
               <div className="mt-10 flex justify-center animate-fade-up">
                 <button
                   onClick={() =>

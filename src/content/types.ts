@@ -9,7 +9,13 @@ import type { Subtopic } from "@/data/sejarah-f1-subtopics";
 import type { EnglishChapterData } from "@/data/english-types";
 import type { Bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import type { Chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
+import type { Chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
+import type { Chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
+import type { Chapter4Content } from "@/content/form1/science/chapter-4/chapter4-content";
 import type { Chapter5Content } from "@/content/form1/science/chapter-5/chapter5-content";
+import type { Chapter6Content } from "@/content/form1/science/chapter-6/chapter6-content";
+import type { Chapter8Content } from "@/content/form1/science/chapter-8/chapter8-content";
+import type { Chapter9Content } from "@/content/form1/science/chapter-9/chapter9-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -48,8 +54,20 @@ export type ChapterContent = {
   bab7Data?: { en: Bab7Content; bm: Bab7Content };
   /** Bab 1 (Pengenalan kepada Penyiasatan Saintifik) chunked, bilingual learning experience. */
   chapter1Data?: { en: Chapter1Content; bm: Chapter1Content };
+  /** Bab 2 (Sel Sebagai Unit Asas Hidupan/Cell as the Basic Unit of Life) chunked, bilingual learning experience. */
+  chapter2Data?: { en: Chapter2Content; bm: Chapter2Content };
+  /** Bab 3 (Koordinasi dan Gerak Balas/Coordination and Response) chunked, bilingual learning experience. */
+  chapter3Data?: { en: Chapter3Content; bm: Chapter3Content };
+  /** Bab 4 (Pembiakan/Reproduction) chunked, bilingual learning experience. */
+  chapter4Data?: { en: Chapter4Content; bm: Chapter4Content };
   /** Bab 5 (Jirim/Matter) chunked, bilingual learning experience. */
   chapter5Data?: { en: Chapter5Content; bm: Chapter5Content };
+  /** Bab 6 (Jadual Berkala/Periodic Table) chunked, bilingual learning experience. */
+  chapter6Data?: { en: Chapter6Content; bm: Chapter6Content };
+  /** Bab 8 (Cahaya dan Optik/Light and Optics) chunked, bilingual learning experience. */
+  chapter8Data?: { en: Chapter8Content; bm: Chapter8Content };
+  /** Bab 9 (Bumi/Earth) chunked, bilingual learning experience. */
+  chapter9Data?: { en: Chapter9Content; bm: Chapter9Content };
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -69,7 +87,13 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.englishData ||
       !!c?.bab7Data ||
       !!c?.chapter1Data ||
+      !!c?.chapter2Data ||
+      !!c?.chapter3Data ||
+      !!c?.chapter4Data ||
       !!c?.chapter5Data ||
+      !!c?.chapter6Data ||
+      !!c?.chapter8Data ||
+      !!c?.chapter9Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,
