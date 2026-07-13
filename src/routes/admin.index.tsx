@@ -1,11 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import {
-  getDashboardStats,
-  getUsers,
-  getPayments,
-  getQuizActivity,
-} from './-admin.server';
 import type {
   AdminStats,
   AdminFilters,
@@ -13,6 +7,8 @@ import type {
   PaymentRow,
   QuizRow,
 } from '../lib/admin.types';
+import { supabase } from '../lib/supabase';
+import { useAuth } from '../context/auth-context';
 import {
   Panel,
   StatCard,
@@ -44,12 +40,7 @@ const EMPTY_STATS: AdminStats = {
 
 export const Route = createFileRoute('/admin/')({
   loader: async () => {
-    try {
-      return { stats: await getDashboardStats() };
-    } catch (e) {
-      console.error('[admin] getDashboardStats failed:', e);
-      return { stats: EMPTY_STATS };
-    }
+    return { stats: EMPTY_STATS };
   },
   component: AdminDashboard,
 });
@@ -59,31 +50,111 @@ const EMPTY: AdminFilters = {
 };
 
 function AdminDashboard() {
-  const { stats } = Route.useLoaderData() as { stats: AdminStats };
+  const { stats: initialStats } = Route.useLoaderData() as { stats: AdminStats };
+  const { user, loading: authLoading } = useAuth();
 
   const [filters, setFilters] = useState<AdminFilters>(EMPTY);
   const [applied, setApplied] = useState<AdminFilters>(EMPTY);
+  const [stats, setStats] = useState<AdminStats>(initialStats);
   const [users, setUsers] = useState<UserRow[]>([]);
   const [payments, setPayments] = useState<PaymentRow[]>([]);
   const [quiz, setQuiz] = useState<QuizRow[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Re-fetch the three tables whenever the applied filters change.
+  function logQuery(table: string, query: string, result: { data?: unknown; error?: unknown; count?: number | null }) {
+    console.log({
+      table,
+      query,
+      data: result.data ?? null,
+      count: result.count ?? null,
+      error: result.error ?? null,
+    });
+  }
+
   useEffect(() => {
     let alive = true;
+    if (authLoading) return;
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
-    Promise.all([
-      getUsers({ data: applied }).catch(() => [] as UserRow[]),
-      getPayments({ data: applied }).catch(() => [] as PaymentRow[]),
-      getQuizActivity({ data: applied }).catch(() => [] as QuizRow[]),
-    ])
-      .then(([u, p, q]) => {
-        if (!alive) return;
-        setUsers(u); setPayments(p); setQuiz(q);
-      })
-      .finally(() => alive && setLoading(false));
+    void (async () => {
+      const statsQuery = "rpc('admin_dashboard_stats')";
+      const statsPromise = supabase.rpc('admin_dashboard_stats');
+
+      const usersQueryText = "from('admin_users_overview').select('*').order('created_at', { ascending: false }).limit(applied.limit ?? 100)";
+      let usersQuery = supabase
+        .from('admin_users_overview')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(applied.limit ?? 100);
+      if (applied.role) usersQuery = usersQuery.eq('role', applied.role);
+      if (applied.plan) usersQuery = usersQuery.eq('plan', applied.plan);
+      if (applied.start) usersQuery = usersQuery.gte('created_at', applied.start);
+      if (applied.end) usersQuery = usersQuery.lte('created_at', applied.end);
+      if (applied.search) usersQuery = usersQuery.or(`full_name.ilike.%${applied.search}%,email.ilike.%${applied.search}%`);
+
+      const paymentsQueryText = "from('payments').select('id, created_at, amount, currency, method, status, profiles(full_name, email)').order('created_at', { ascending: false }).limit(applied.limit ?? 100)";
+      let paymentsQuery = supabase
+        .from('payments')
+        .select('id, created_at, amount, currency, method, status, profiles(full_name, email)')
+        .order('created_at', { ascending: false })
+        .limit(applied.limit ?? 100);
+      if (applied.start) paymentsQuery = paymentsQuery.gte('created_at', applied.start);
+      if (applied.end) paymentsQuery = paymentsQuery.lte('created_at', applied.end);
+
+      const quizQueryText = "from('quiz_history').select('id, created_at, subject_id, chapter_key, score_pct, user_id').order('created_at', { ascending: false }).limit(applied.limit ?? 100)";
+      let quizQuery = supabase
+        .from('quiz_history')
+        .select('id, created_at, subject_id, chapter_key, score_pct, user_id')
+        .order('created_at', { ascending: false })
+        .limit(applied.limit ?? 100);
+      if (applied.subject) quizQuery = quizQuery.eq('subject_id', applied.subject);
+      if (applied.start) quizQuery = quizQuery.gte('created_at', applied.start);
+      if (applied.end) quizQuery = quizQuery.lte('created_at', applied.end);
+
+      const [statsRes, usersRes, paymentsRes, quizRes] = await Promise.all([
+        statsPromise,
+        usersQuery,
+        paymentsQuery,
+        quizQuery,
+      ]);
+
+      logQuery('rpc', statsQuery, { data: statsRes.data, error: statsRes.error, count: null });
+      logQuery('admin_users_overview', usersQueryText, {
+        data: usersRes.data,
+        error: usersRes.error,
+        count: Array.isArray(usersRes.data) ? usersRes.data.length : null,
+      });
+      logQuery('payments', paymentsQueryText, {
+        data: paymentsRes.data,
+        error: paymentsRes.error,
+        count: Array.isArray(paymentsRes.data) ? paymentsRes.data.length : null,
+      });
+      logQuery('quiz_history', quizQueryText, {
+        data: quizRes.data,
+        error: quizRes.error,
+        count: Array.isArray(quizRes.data) ? quizRes.data.length : null,
+      });
+
+      if (!alive) return;
+
+      if (!statsRes.error && statsRes.data) {
+        setStats(statsRes.data as AdminStats);
+      }
+      setUsers((usersRes.data ?? []) as UserRow[]);
+      setPayments((paymentsRes.data ?? []) as PaymentRow[]);
+      setQuiz((quizRes.data ?? []) as QuizRow[]);
+      setLoading(false);
+    })().catch((error) => {
+      console.error('[admin.dashboard] browser fetch failed', error);
+      if (alive) setLoading(false);
+    });
+
     return () => { alive = false; };
-  }, [applied]);
+  }, [applied, authLoading, user]);
 
   const recentSignups = users.slice(0, 6);
   const recentPayments = payments.slice(0, 6);
@@ -94,30 +165,34 @@ function AdminDashboard() {
       {/* ── KPI ROW ──────────────────────────────────────────── */}
       <Eyebrow>Overview</Eyebrow>
       <div className="admin-grid cols-4">
-        <StatCard k="Registered users" v={stats.total_users.toLocaleString()} c="all accounts" chip="Total" />
-        <StatCard k="Students" v={stats.total_students.toLocaleString()} c="role · student" chip="Learners" chipClass="chip-blue" />
-        <StatCard k="Teachers" v={stats.total_teachers.toLocaleString()} c="role · teacher" chip="Staff" chipClass="chip-violet" />
-        <StatCard k="Paid users" v={stats.total_paid.toLocaleString()} c={`${stats.total_free.toLocaleString()} on free`} chip="Revenue" chipClass="chip-green" />
+        <StatCard k="Registered users" v={loading ? 'Loading…' : stats.total_users.toLocaleString()} c="all accounts" chip="Total" />
+        <StatCard k="Students" v={loading ? 'Loading…' : stats.total_students.toLocaleString()} c="role · student" chip="Learners" chipClass="chip-blue" />
+        <StatCard k="Teachers" v={loading ? 'Loading…' : stats.total_teachers.toLocaleString()} c="role · teacher" chip="Staff" chipClass="chip-violet" />
+        <StatCard k="Paid users" v={loading ? 'Loading…' : stats.total_paid.toLocaleString()} c={loading ? 'Loading…' : `${stats.total_free.toLocaleString()} on free`} chip="Revenue" chipClass="chip-green" />
       </div>
 
       <div className="admin-grid cols-4">
-        <StatCard k="Quiz attempts" v={stats.total_quiz_attempts.toLocaleString()} c="across all forms" />
-        <StatCard k="Average score" v={`${stats.avg_quiz_score}%`} c="all attempts" chip="Mean" chipClass="chip-green" />
-        <StatCard k="Top subject" v={stats.most_popular_subject ?? '—'} c="most attempts" chip="Popular" />
-        <StatCard k="Top chapter" v={stats.most_attempted_chapter ?? '—'} c="most attempts" chip="Popular" chipClass="chip-blue" />
+        <StatCard k="Quiz attempts" v={loading ? 'Loading…' : stats.total_quiz_attempts.toLocaleString()} c="across all forms" />
+        <StatCard k="Average score" v={loading ? 'Loading…' : `${stats.avg_quiz_score}%`} c="all attempts" chip="Mean" chipClass="chip-green" />
+        <StatCard k="Top subject" v={loading ? 'Loading…' : (stats.most_popular_subject ?? '—')} c="most attempts" chip="Popular" />
+        <StatCard k="Top chapter" v={loading ? 'Loading…' : (stats.most_attempted_chapter ?? '—')} c="most attempts" chip="Popular" chipClass="chip-blue" />
       </div>
 
       {/* ── DISTRIBUTION + SIGNUPS ──────────────────────────── */}
       <div className="admin-grid cols-2">
         <Panel title="Subject distribution" badge={<span className="chip chip-orange">Quiz attempts</span>}>
-          {stats.subject_distribution.length ? (
+          {loading ? (
+            <div className="empty">Loading…</div>
+          ) : stats.subject_distribution.length ? (
             <Donut data={stats.subject_distribution} total={stats.total_quiz_attempts} centerLabel="Attempts" />
           ) : (
             <div className="empty">No quiz data yet.</div>
           )}
         </Panel>
         <Panel title="Signups · last 14 days" badge={<span className="chip chip-green">New users</span>}>
-          {stats.signups_by_day.length ? (
+          {loading ? (
+            <div className="empty">Loading…</div>
+          ) : stats.signups_by_day.length ? (
             <BarList data={stats.signups_by_day.map((d) => ({ label: d.day.slice(5), value: d.value }))} />
           ) : (
             <div className="empty">No recent signups.</div>

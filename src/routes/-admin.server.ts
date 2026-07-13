@@ -21,6 +21,72 @@ import type {
 
 export const CONTENT_LIBRARY_BUCKET = 'content-library';
 
+export type StorageBucketCheckResult =
+  | {
+      ok: true;
+      exists: true;
+      bucketId: string;
+      rawResponse: unknown;
+      listBucketsResponse: unknown;
+    }
+  | {
+      ok: false;
+      exists: false;
+      reason: 'missing_bucket' | 'permission_denied' | 'network_error' | 'wrong_project' | 'not_configured' | 'unknown';
+      bucketId: string;
+      errorMessage: string | null;
+      errorCode: string | number | null;
+      statusCode: number | null;
+      supabaseUrl: string | null;
+      rawResponse: unknown;
+      listBucketsResponse: unknown;
+    };
+
+function readSupabaseUrl() {
+  return process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? null;
+}
+
+function classifyBucketError(error: { message?: string; code?: string | number; status?: number } | null | undefined, supabaseUrl: string | null): StorageBucketCheckResult['reason'] {
+  const message = (error?.message ?? '').toLowerCase();
+  const code = error?.code;
+  const status = error?.status;
+
+  if (!supabaseUrl) return 'not_configured';
+  if (status === 401 || status === 403 || code === '401' || code === '403' || message.includes('permission') || message.includes('forbidden') || message.includes('unauthorized')) {
+    return 'permission_denied';
+  }
+  if (status === 404 || code === '404' || message.includes('does not exist') || message.includes('not found')) {
+    return 'missing_bucket';
+  }
+  if (message.includes('network') || message.includes('fetch') || message.includes('failed to fetch') || message.includes('enotfound') || message.includes('econnrefused') || message.includes('timed out')) {
+    return 'network_error';
+  }
+  if (message.includes('invalid api key') || message.includes('jwt') || message.includes('project') || message.includes('region') || message.includes('mismatch') || message.includes('refused')) {
+    return 'wrong_project';
+  }
+  return 'unknown';
+}
+
+function isBucketNotFoundError(error: { message?: string; code?: string | number; status?: number } | null | undefined) {
+  const message = (error?.message ?? '').toLowerCase();
+  const code = String(error?.code ?? '');
+  return (
+    code === '404' ||
+    error?.status === 404 ||
+    message.includes('bucket not found') ||
+    message.includes('not found') ||
+    message.includes('does not exist')
+  );
+}
+
+function logSupabaseResult(label: string, result: { data?: unknown; error?: unknown; count?: number | null }) {
+  console.log(`[admin] ${label}`, {
+    data: result.data ?? null,
+    error: result.error ?? null,
+    count: result.count ?? null,
+  });
+}
+
 const EMPTY_STATS: AdminStats = {
   total_users: 0,
   total_students: 0,
@@ -61,6 +127,7 @@ export const getDashboardStats = createServerFn({ method: 'GET' }).handler(
     const supabase = getSupabaseServerClient();
     if (!supabase) return EMPTY_STATS;
     const { data, error } = await supabase.rpc('admin_dashboard_stats');
+    logSupabaseResult('rpc admin_dashboard_stats', { data, error });
     if (error) throw error;
     return data as AdminStats;
   },
@@ -85,6 +152,11 @@ export const getUsers = createServerFn({ method: 'POST' })
       q = q.or(`full_name.ilike.%${f.search}%,email.ilike.%${f.search}%`);
 
     const { data, error } = await q;
+    logSupabaseResult('profiles overview query', {
+      data,
+      error,
+      count: Array.isArray(data) ? data.length : null,
+    });
     if (error) throw error;
     return (data ?? []) as UserRow[];
   });
@@ -104,6 +176,11 @@ export const getPayments = createServerFn({ method: 'POST' })
     if (f.end) q = q.lte('created_at', f.end);
 
     const { data, error } = await q;
+    logSupabaseResult('payments query', {
+      data,
+      error,
+      count: Array.isArray(data) ? data.length : null,
+    });
     if (error) throw error;
     return (data ?? []) as unknown as PaymentRow[];
   });
@@ -132,6 +209,11 @@ export const getQuizActivity = createServerFn({ method: 'POST' })
     if (f.end) q = q.lte('created_at', f.end);
 
     const { data, error } = await q;
+    logSupabaseResult('quiz_history query', {
+      data,
+      error,
+      count: Array.isArray(data) ? data.length : null,
+    });
     if (error) throw error;
     const rows = data ?? [];
 
@@ -174,6 +256,11 @@ export const getKnowledgeEngineEntries = createServerFn({ method: 'POST' })
     if (f.search) q = q.or(`title.ilike.%${f.search}%,content.ilike.%${f.search}%`);
 
     const { data, error } = await q;
+    logSupabaseResult('knowledge_engine query', {
+      data,
+      error,
+      count: Array.isArray(data) ? data.length : null,
+    });
     if (error) throw error;
     return (data ?? []) as KnowledgeEngineRow[];
   });
@@ -186,6 +273,11 @@ export const getKnowledgeEngineCategories = createServerFn({ method: 'GET' }).ha
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
     const { data, error } = await supabase.from('knowledge_engine').select('category');
+    logSupabaseResult('knowledge_engine categories query', {
+      data,
+      error,
+      count: Array.isArray(data) ? data.length : null,
+    });
     if (error) throw error;
     const unique = new Set((data ?? []).map((r) => r.category).filter(Boolean));
     return Array.from(unique).sort();
@@ -202,12 +294,52 @@ export const getKnowledgeEngineCategories = createServerFn({ method: 'GET' }).ha
 // (dashboard or CLI) before any upload will succeed. Surfaced in the UI as an
 // actionable setup notice rather than a silent failure.
 export const checkContentLibraryBucket = createServerFn({ method: 'GET' }).handler(
-  async (): Promise<boolean> => {
+  async (): Promise<StorageBucketCheckResult> => {
     const supabase = getSupabaseServerClient();
-    if (!supabase) return false;
-    const { data, error } = await supabase.storage.getBucket(CONTENT_LIBRARY_BUCKET);
-    if (error || !data) return false;
-    return true;
+    const supabaseUrl = readSupabaseUrl();
+    if (!supabase) {
+      return {
+        ok: false,
+        exists: false,
+        reason: 'not_configured',
+        bucketId: CONTENT_LIBRARY_BUCKET,
+        errorMessage: 'Supabase server client is not configured',
+        errorCode: null,
+        statusCode: null,
+        supabaseUrl,
+        rawResponse: null,
+        listBucketsResponse: null,
+      };
+    }
+    const listBucketsResponse = await supabase.storage.listBuckets();
+    console.log('[admin.content-library] storage.listBuckets()', listBucketsResponse);
+
+    const { data, error } = await supabase.storage.from(CONTENT_LIBRARY_BUCKET).list('', { limit: 1 });
+    const rawResponse = { data, error };
+    console.log('[admin.content-library] storage.from().list("", { limit: 1 })', rawResponse);
+
+    if (data && !error) {
+      return {
+        ok: true,
+        exists: true,
+        bucketId: CONTENT_LIBRARY_BUCKET,
+        rawResponse,
+        listBucketsResponse,
+      };
+    }
+    const reason = isBucketNotFoundError(error) ? 'missing_bucket' : classifyBucketError(error, supabaseUrl);
+    return {
+      ok: false,
+      exists: false,
+      reason,
+      bucketId: CONTENT_LIBRARY_BUCKET,
+      errorMessage: error?.message ?? null,
+      errorCode: error?.code ?? null,
+      statusCode: error?.status ?? null,
+      supabaseUrl,
+      rawResponse,
+      listBucketsResponse,
+    };
   },
 );
 
@@ -227,6 +359,11 @@ export const getContentLibraryEntries = createServerFn({ method: 'POST' })
     if (f.search) q = q.ilike('title', `%${f.search}%`);
 
     const { data, error } = await q;
+    logSupabaseResult('content_library query', {
+      data,
+      error,
+      count: Array.isArray(data) ? data.length : null,
+    });
     if (error) throw error;
     return (data ?? []) as ContentLibraryRow[];
   });
@@ -249,6 +386,71 @@ export const createContentLibraryEntry = createServerFn({ method: 'POST' })
     const {
       data: { user },
     } = await supabase.auth.getUser();
+    console.log('[content-library] createContentLibraryEntry auth step', {
+      step: 'auth.getUser',
+      auth_uid: user?.id ?? null,
+      auth_email: user?.email ?? null,
+      has_session: Boolean(user),
+    });
+    console.log('[content-library] createContentLibraryEntry step start', {
+      step: 'profiles.lookup',
+      auth_uid: user?.id ?? null,
+      auth_email: user?.email ?? null,
+    });
+    const { data: currentUserProfile, error: currentUserProfileError } = await supabase
+      .from('profiles')
+      .select('id, email, role')
+      .eq('id', user?.id ?? '')
+      .maybeSingle();
+    console.log('[content-library] createContentLibraryEntry step complete', {
+      step: 'profiles.lookup',
+      profile: currentUserProfile ?? null,
+      profile_error: currentUserProfileError ?? null,
+    });
+    console.log('[content-library] createContentLibraryEntry step start', {
+      step: 'rpc.is_admin',
+      auth_uid: user?.id ?? null,
+      auth_email: user?.email ?? null,
+    });
+    const { data: isAdminResult, error: isAdminError } = await supabase.rpc('is_admin');
+    console.log('[content-library] createContentLibraryEntry step complete', {
+      step: 'rpc.is_admin',
+      is_admin: isAdminResult ?? null,
+      is_admin_error: isAdminError ?? null,
+    });
+    console.log('[content-library] createContentLibraryEntry context', {
+      auth_uid: user?.id ?? null,
+      auth_email: user?.email ?? null,
+      profile: currentUserProfile ?? null,
+      profile_error: currentUserProfileError ?? null,
+      is_admin: isAdminResult ?? null,
+      is_admin_error: isAdminError ?? null,
+      query: {
+        table: 'content_library',
+        operation: 'insert',
+        values: {
+          file_path: f.file_path,
+          file_name: f.file_name,
+          file_type: f.file_type,
+          file_size: f.file_size,
+          title: f.metadata.title,
+          subject: f.metadata.subject ?? null,
+          form: f.metadata.form ?? null,
+          chapter: f.metadata.chapter ?? null,
+          topic: f.metadata.topic ?? null,
+          language: f.metadata.language ?? null,
+          source_type: f.metadata.source_type ?? null,
+          tags: f.metadata.tags ?? [],
+          status: 'uploaded',
+          uploaded_by: user?.id ?? null,
+        },
+      },
+    });
+    console.log('[content-library] createContentLibraryEntry step start', {
+      step: 'content_library.insert',
+      auth_uid: user?.id ?? null,
+      auth_email: user?.email ?? null,
+    });
     const { data, error } = await supabase
       .from('content_library')
       .insert({
@@ -269,7 +471,23 @@ export const createContentLibraryEntry = createServerFn({ method: 'POST' })
       })
       .select('*')
       .single();
-    if (error) throw error;
+    console.log('[content-library] createContentLibraryEntry step complete', {
+      step: 'content_library.insert',
+      data,
+      error,
+    });
+    if (error) {
+      console.error('[content-library] content_library insert failed', {
+        error,
+        auth_uid: user?.id ?? null,
+        auth_email: user?.email ?? null,
+        profile: currentUserProfile ?? null,
+        profile_error: currentUserProfileError ?? null,
+        is_admin: isAdminResult ?? null,
+        is_admin_error: isAdminError ?? null,
+      });
+      throw error;
+    }
     return data as ContentLibraryRow;
   });
 

@@ -31,38 +31,76 @@ function GoogleIcon() {
   );
 }
 
-// Deterministic pseudo-random in [0, 1), seeded by an integer. Unlike
-// Math.random(), this produces the exact same sequence on the server and
-// on the client, so SSR-rendered markup matches what hydration re-renders
-// — Math.random() here would fire a hydration mismatch on every star.
-function seededRandom(seed: number): number {
-  const x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
-}
+type Star = {
+  id: number;
+  left: string;
+  top: string;
+  width: string;
+  height: string;
+  opacity: number;
+  animationDuration: string;
+  animationDelay: string;
+};
+
+// Fixed starfield data so the server and client render the exact same markup.
+const STARS: Star[] = [
+  { id: 0, left: '8%', top: '12%', width: '1.1px', height: '1.1px', opacity: 0.32, animationDuration: '3.2s', animationDelay: '0.1s' },
+  { id: 1, left: '16%', top: '68%', width: '1.4px', height: '1.4px', opacity: 0.22, animationDuration: '4.4s', animationDelay: '0.8s' },
+  { id: 2, left: '24%', top: '28%', width: '0.9px', height: '0.9px', opacity: 0.48, animationDuration: '2.8s', animationDelay: '1.4s' },
+  { id: 3, left: '31%', top: '82%', width: '1.2px', height: '1.2px', opacity: 0.27, animationDuration: '3.9s', animationDelay: '0.5s' },
+  { id: 4, left: '39%', top: '18%', width: '1.5px', height: '1.5px', opacity: 0.18, animationDuration: '5.1s', animationDelay: '1.1s' },
+  { id: 5, left: '47%', top: '54%', width: '0.8px', height: '0.8px', opacity: 0.44, animationDuration: '2.6s', animationDelay: '0.3s' },
+  { id: 6, left: '55%', top: '10%', width: '1.3px', height: '1.3px', opacity: 0.29, animationDuration: '4.8s', animationDelay: '1.7s' },
+  { id: 7, left: '63%', top: '36%', width: '1.0px', height: '1.0px', opacity: 0.36, animationDuration: '3.1s', animationDelay: '0.9s' },
+  { id: 8, left: '71%', top: '76%', width: '1.6px', height: '1.6px', opacity: 0.19, animationDuration: '5.4s', animationDelay: '1.6s' },
+  { id: 9, left: '79%', top: '22%', width: '0.9px', height: '0.9px', opacity: 0.41, animationDuration: '2.9s', animationDelay: '0.2s' },
+  { id: 10, left: '87%', top: '60%', width: '1.4px', height: '1.4px', opacity: 0.24, animationDuration: '4.1s', animationDelay: '1.0s' },
+  { id: 11, left: '92%', top: '14%', width: '1.1px', height: '1.1px', opacity: 0.34, animationDuration: '3.5s', animationDelay: '1.3s' },
+  { id: 12, left: '11%', top: '42%', width: '0.8px', height: '0.8px', opacity: 0.5, animationDuration: '2.4s', animationDelay: '0.6s' },
+  { id: 13, left: '19%', top: '90%', width: '1.3px', height: '1.3px', opacity: 0.26, animationDuration: '4.9s', animationDelay: '1.8s' },
+  { id: 14, left: '27%', top: '6%', width: '1.0px', height: '1.0px', opacity: 0.37, animationDuration: '3.3s', animationDelay: '0.4s' },
+  { id: 15, left: '35%', top: '50%', width: '1.5px', height: '1.5px', opacity: 0.21, animationDuration: '5.0s', animationDelay: '1.2s' },
+  { id: 16, left: '43%', top: '74%', width: '0.9px', height: '0.9px', opacity: 0.46, animationDuration: '2.7s', animationDelay: '0.7s' },
+  { id: 17, left: '51%', top: '26%', width: '1.2px', height: '1.2px', opacity: 0.28, animationDuration: '3.8s', animationDelay: '1.5s' },
+  { id: 18, left: '59%', top: '86%', width: '1.6px', height: '1.6px', opacity: 0.17, animationDuration: '5.5s', animationDelay: '0.9s' },
+  { id: 19, left: '67%', top: '40%', width: '1.0px', height: '1.0px', opacity: 0.39, animationDuration: '3.0s', animationDelay: '0.1s' },
+  { id: 20, left: '75%', top: '8%', width: '1.4px', height: '1.4px', opacity: 0.23, animationDuration: '4.3s', animationDelay: '1.3s' },
+  { id: 21, left: '83%', top: '48%', width: '0.8px', height: '0.8px', opacity: 0.47, animationDuration: '2.5s', animationDelay: '0.5s' },
+  { id: 22, left: '90%', top: '80%', width: '1.1px', height: '1.1px', opacity: 0.31, animationDuration: '3.6s', animationDelay: '1.6s' },
+  { id: 23, left: '6%', top: '62%', width: '1.5px', height: '1.5px', opacity: 0.2, animationDuration: '4.7s', animationDelay: '0.8s' },
+  { id: 24, left: '14%', top: '20%', width: '1.0px', height: '1.0px', opacity: 0.43, animationDuration: '3.4s', animationDelay: '1.1s' },
+  { id: 25, left: '22%', top: '58%', width: '1.3px', height: '1.3px', opacity: 0.25, animationDuration: '4.0s', animationDelay: '0.3s' },
+  { id: 26, left: '30%', top: '94%', width: '0.9px', height: '0.9px', opacity: 0.38, animationDuration: '2.9s', animationDelay: '1.7s' },
+  { id: 27, left: '38%', top: '32%', width: '1.6px', height: '1.6px', opacity: 0.18, animationDuration: '5.2s', animationDelay: '0.4s' },
+  { id: 28, left: '46%', top: '16%', width: '1.1px', height: '1.1px', opacity: 0.35, animationDuration: '3.2s', animationDelay: '1.0s' },
+  { id: 29, left: '54%', top: '70%', width: '0.8px', height: '0.8px', opacity: 0.49, animationDuration: '2.6s', animationDelay: '1.4s' },
+  { id: 30, left: '62%', top: '24%', width: '1.4px', height: '1.4px', opacity: 0.22, animationDuration: '4.6s', animationDelay: '0.6s' },
+  { id: 31, left: '70%', top: '52%', width: '1.0px', height: '1.0px', opacity: 0.4, animationDuration: '3.1s', animationDelay: '1.8s' },
+  { id: 32, left: '78%', top: '12%', width: '1.2px', height: '1.2px', opacity: 0.27, animationDuration: '3.7s', animationDelay: '0.9s' },
+  { id: 33, left: '86%', top: '88%', width: '1.5px', height: '1.5px', opacity: 0.2, animationDuration: '5.3s', animationDelay: '0.2s' },
+  { id: 34, left: '94%', top: '38%', width: '0.9px', height: '0.9px', opacity: 0.45, animationDuration: '2.8s', animationDelay: '1.2s' },
+  { id: 35, left: '9%', top: '74%', width: '1.3px', height: '1.3px', opacity: 0.24, animationDuration: '4.2s', animationDelay: '0.7s' },
+  { id: 36, left: '17%', top: '4%', width: '1.0px', height: '1.0px', opacity: 0.37, animationDuration: '3.5s', animationDelay: '1.5s' },
+  { id: 37, left: '25%', top: '46%', width: '1.6px', height: '1.6px', opacity: 0.19, animationDuration: '5.0s', animationDelay: '0.4s' },
+  { id: 38, left: '33%', top: '66%', width: '0.8px', height: '0.8px', opacity: 0.48, animationDuration: '2.5s', animationDelay: '1.1s' },
+  { id: 39, left: '41%', top: '96%', width: '1.1px', height: '1.1px', opacity: 0.3, animationDuration: '3.9s', animationDelay: '1.7s' },
+];
 
 function StarField() {
-  const stars = Array.from({ length: 40 }, (_, i) => ({
-    id: i,
-    x: seededRandom(i * 12.9898) * 100,
-    y: seededRandom(i * 78.233 + 1) * 100,
-    size: seededRandom(i * 39.425 + 2) * 1.5 + 0.5,
-    opacity: seededRandom(i * 94.673 + 3) * 0.5 + 0.15,
-    delay: seededRandom(i * 15.732 + 4) * 4,
-  }));
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
-      {stars.map((s) => (
+      {STARS.map((s) => (
         <div
           key={s.id}
           className="absolute rounded-full bg-white animate-pulse"
           style={{
-            left: `${s.x}%`,
-            top: `${s.y}%`,
-            width: s.size,
-            height: s.size,
+            left: s.left,
+            top: s.top,
+            width: s.width,
+            height: s.height,
             opacity: s.opacity,
-            animationDuration: `${2 + s.delay}s`,
-            animationDelay: `${s.delay}s`,
+            animationDuration: s.animationDuration,
+            animationDelay: s.animationDelay,
           }}
         />
       ))}

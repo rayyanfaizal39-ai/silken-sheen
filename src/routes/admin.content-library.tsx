@@ -2,12 +2,12 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   checkContentLibraryBucket,
-  createContentLibraryEntry,
   deleteContentLibraryEntry,
   getContentLibraryEntries,
   updateContentLibraryMetadata,
   updateContentLibraryStatus,
   CONTENT_LIBRARY_BUCKET,
+  type StorageBucketCheckResult,
 } from './-admin.server';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import type {
@@ -24,10 +24,24 @@ export const Route = createFileRoute('/admin/content-library')({
         getContentLibraryEntries({ data: {} }),
         checkContentLibraryBucket(),
       ]);
-      return { entries, bucketExists };
+      return { entries, bucketCheck: bucketExists };
     } catch (e) {
       console.error('[admin] getContentLibraryEntries failed:', e);
-      return { entries: [] as ContentLibraryRow[], bucketExists: false };
+      return {
+        entries: [] as ContentLibraryRow[],
+        bucketCheck: {
+          ok: false,
+          exists: false,
+          reason: 'unknown',
+          bucketId: CONTENT_LIBRARY_BUCKET,
+          errorMessage: e instanceof Error ? e.message : 'unknown error',
+          errorCode: null,
+          statusCode: null,
+          supabaseUrl: null,
+          rawResponse: null,
+          listBucketsResponse: null,
+        } satisfies StorageBucketCheckResult,
+      };
     }
   },
   component: ContentLibraryPage,
@@ -53,6 +67,22 @@ function bytesToSize(bytes: number): string {
   return `${(bytes / Math.pow(1024, i)).toFixed(1)} ${units[i]}`;
 }
 
+function serializeSupabaseError(error: unknown) {
+  if (!error || typeof error !== 'object') return null;
+  const maybe = error as {
+    code?: unknown;
+    message?: unknown;
+    details?: unknown;
+    hint?: unknown;
+  };
+  return {
+    code: typeof maybe.code === 'string' || typeof maybe.code === 'number' ? maybe.code : null,
+    message: typeof maybe.message === 'string' ? maybe.message : null,
+    details: typeof maybe.details === 'string' ? maybe.details : null,
+    hint: typeof maybe.hint === 'string' ? maybe.hint : null,
+  };
+}
+
 const EMPTY_METADATA: ContentLibraryMetadataInput = {
   title: '',
   subject: '',
@@ -65,9 +95,9 @@ const EMPTY_METADATA: ContentLibraryMetadataInput = {
 };
 
 function ContentLibraryPage() {
-  const { entries: initialEntries, bucketExists } = Route.useLoaderData() as {
+  const { entries: initialEntries, bucketCheck } = Route.useLoaderData() as {
     entries: ContentLibraryRow[];
-    bucketExists: boolean;
+    bucketCheck: StorageBucketCheckResult;
   };
 
   const [entries, setEntries] = useState<ContentLibraryRow[]>(initialEntries);
@@ -108,26 +138,103 @@ function ContentLibraryPage() {
     setUploading(true);
     try {
       const path = `${Date.now()}-${pendingFile.name}`;
-      const { error: uploadError } = await supabase.storage
-        .from(CONTENT_LIBRARY_BUCKET)
-        .upload(path, pendingFile);
-      if (uploadError) throw uploadError;
-
-      await createContentLibraryEntry({
-        data: {
-          file_path: path,
-          file_name: pendingFile.name,
-          file_type: pendingFile.type || 'application/octet-stream',
-          file_size: pendingFile.size,
-          metadata,
+      console.log('[content-library] upload step start', {
+        step: 'file_selected',
+        file_name: pendingFile.name,
+        file_type: pendingFile.type || 'application/octet-stream',
+        file_size: pendingFile.size,
+        bucket: CONTENT_LIBRARY_BUCKET,
+        path,
+      });
+      const { data: authData } = await supabase.auth.getUser();
+      console.log('[content-library] upload step complete', {
+        step: 'auth.getUser',
+        auth_uid: authData.user?.id ?? null,
+        auth_email: authData.user?.email ?? null,
+        has_session: Boolean(authData.user),
+      });
+      console.log('[content-library] browser upload context', {
+        auth_uid: authData.user?.id ?? null,
+        auth_email: authData.user?.email ?? null,
+        query: {
+          table: 'storage.objects',
+          operation: 'upload',
+          bucket: CONTENT_LIBRARY_BUCKET,
+          path,
         },
       });
+      console.log('[upload] storage start', {
+        bucket: CONTENT_LIBRARY_BUCKET,
+        object_path: path,
+      });
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from(CONTENT_LIBRARY_BUCKET)
+        .upload(path, pendingFile);
+      console.log('[upload] storage result', {
+        bucket: CONTENT_LIBRARY_BUCKET,
+        object_path: path,
+        data: uploadData ?? null,
+        error: serializeSupabaseError(uploadError),
+      });
+      if (uploadError) {
+        console.error('[content-library] storage upload failed', {
+          bucket: CONTENT_LIBRARY_BUCKET,
+          object_path: path,
+          error: serializeSupabaseError(uploadError),
+        });
+        throw uploadError;
+      }
+
+      console.log('[upload] metadata insert start', {
+        bucket: CONTENT_LIBRARY_BUCKET,
+        object_path: path,
+      });
+      const insertQuery = "from('content_library').insert({...}).select('*').single()";
+      const insertPayload = {
+        file_path: path,
+        file_name: pendingFile.name,
+        file_type: pendingFile.type || 'application/octet-stream',
+        file_size: pendingFile.size,
+        title: metadata.title,
+        subject: metadata.subject ?? null,
+        form: metadata.form ?? null,
+        chapter: metadata.chapter ?? null,
+        topic: metadata.topic ?? null,
+        language: metadata.language ?? null,
+        source_type: metadata.source_type ?? null,
+        tags: metadata.tags ?? [],
+        status: 'uploaded',
+        uploaded_by: authData.user?.id ?? null,
+      };
+      const { data: createdEntry, error: insertError } = await supabase
+        .from('content_library')
+        .insert(insertPayload)
+        .select('*')
+        .single();
+      console.log('[upload] metadata insert result', {
+        table: 'content_library',
+        query: insertQuery,
+        data: createdEntry ?? null,
+        count: createdEntry ? 1 : 0,
+        error: serializeSupabaseError(insertError),
+      });
+      if (insertError) {
+        console.error('[content-library] content_library insert failed', {
+          table: 'content_library',
+          query: insertQuery,
+          data: createdEntry ?? null,
+          count: createdEntry ? 1 : 0,
+          error: serializeSupabaseError(insertError),
+        });
+        throw insertError;
+      }
       setToast(`Uploaded "${pendingFile.name}"`);
       setPendingFile(null);
       setMetadata(EMPTY_METADATA);
       refresh();
     } catch (e) {
       console.error('[content-library] upload failed:', e);
+      console.error('[content-library] upload failed raw error object', e);
       setToast(`Upload failed: ${e instanceof Error ? e.message : 'unknown error'}`);
     } finally {
       setUploading(false);
@@ -182,41 +289,34 @@ function ContentLibraryPage() {
     if (data?.signedUrl) window.open(data.signedUrl, '_blank', 'noopener');
   }
 
-  if (!bucketExists) {
+  if (!bucketCheck.ok) {
     return (
       <div className="admin-content">
         <Panel title="Content · Content Library">
           <div className="setup-notice">
-            <h2>⚠ Storage bucket not found</h2>
+            <h2>⚠ Supabase Storage check failed</h2>
             <p style={{ marginBottom: 12 }}>
-              The <code>content-library</code> Supabase Storage bucket doesn't exist yet, so uploads
-              are disabled. Create it once via the Supabase dashboard (Storage → New bucket):
+              The app could not confirm the <code>content-library</code> bucket. This panel shows
+              the actual Supabase response instead of collapsing everything into a missing-bucket
+              message.
             </p>
-            <pre>{`Name:   content-library
-Public: No (private — admin-only)
+            <pre>{`Bucket:       ${bucketCheck.bucketId}
+Reason:       ${bucketCheck.reason}
+Status:       ${bucketCheck.statusCode ?? 'n/a'}
+Code:         ${bucketCheck.errorCode ?? 'n/a'}
+Message:      ${bucketCheck.errorMessage ?? 'n/a'}
+Supabase URL: ${bucketCheck.supabaseUrl ?? 'n/a'}`}</pre>
+            <pre>{`Raw response:
+${JSON.stringify(bucketCheck.rawResponse, null, 2)}
 
-Then add storage policies (SQL editor):
-
-create policy "Admins can read content-library objects"
-  on storage.objects for select
-  using (bucket_id = 'content-library' and is_admin());
-
-create policy "Admins can upload content-library objects"
-  on storage.objects for insert
-  with check (bucket_id = 'content-library' and is_admin());
-
-create policy "Admins can update content-library objects"
-  on storage.objects for update
-  using (bucket_id = 'content-library' and is_admin())
-  with check (bucket_id = 'content-library' and is_admin());
-
-create policy "Admins can delete content-library objects"
-  on storage.objects for delete
-  using (bucket_id = 'content-library' and is_admin());`}</pre>
+listBuckets():
+${JSON.stringify(bucketCheck.listBucketsResponse, null, 2)}`}</pre>
             <p style={{ marginTop: 12, color: 'var(--muted)', fontSize: 12.5 }}>
-              Reload this page once the bucket + policies exist — the rest of the Content Library
-              UI (table, metadata, status pipeline) is already live and reads real data from the{' '}
-              <code>content_library</code> table.
+              If this says <code>missing_bucket</code>, the bucket truly is absent. If it says{' '}
+              <code>permission_denied</code>, the storage policy or auth context is the issue. If it
+              says <code>wrong_project</code>, the app is pointed at a different Supabase project.
+              If it says <code>network_error</code>, the request never reached Supabase
+              successfully.
             </p>
           </div>
         </Panel>
