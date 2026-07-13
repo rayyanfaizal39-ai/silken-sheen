@@ -5,6 +5,8 @@ import { BMForm2RumusanContent } from "@/components/BMForm2RumusanContent";
 import { BMForm2KaranganPendekContent } from "@/components/BMForm2KaranganPendekContent";
 import { BMForm2KaranganPanjangContent } from "@/components/BMForm2KaranganPanjangContent";
 import { BMForm2BengkelKaranganContent, BMForm2WritingSectionPlaceholder, FORM2_WRITING_SECTIONS, getWritingSection } from "@/components/BMForm2WritingStructure";
+import { BMForm2ModelKaranganBankContent } from "@/components/BMForm2ModelKaranganBankContent";
+import { BMForm2PeribahasaBankContent } from "@/components/BMForm2PeribahasaBankContent";
 import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
 import {
   BMForm2KomsasStructure,
@@ -954,9 +956,9 @@ export function BMForm2WorldPage({ onBack }: { onBack: () => void }) {
             ) : hub.id === "bengkel-karangan" ? (
               <BMForm2BengkelKaranganContent color={hub.color} />
             ) : hub.id === "model-karangan-bank" ? (
-              <BMForm2WritingSectionPlaceholder title={writingSection.title} color={hub.color} />
+              <BMForm2ModelKaranganBankContent sectionId={writingSection.id} accent={hub.color} />
             ) : hub.id === "peribahasa-bank" ? (
-              <BMForm2WritingSectionPlaceholder title={writingSection.title} color={hub.color} />
+              <BMForm2PeribahasaBankContent sectionId={writingSection.id} accent={hub.color} />
             ) : hub.id === "tingkatkan-karangan" ? (
               <BMForm2WritingSectionPlaceholder title={writingSection.title} color={hub.color} />
             ) : (

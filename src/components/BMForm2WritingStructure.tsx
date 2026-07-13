@@ -39,11 +39,9 @@ export const FORM2_WRITING_SECTIONS: Record<string, WritingSection[]> = {
     { id: "syarahan", title: "Syarahan" }, { id: "dialog", title: "Dialog" },
   ],
   "peribahasa-bank": [
-    { id: "pendidikan", title: "Pendidikan" }, { id: "kesihatan", title: "Kesihatan" },
-    { id: "keluarga", title: "Keluarga" }, { id: "alam-sekitar", title: "Alam Sekitar" },
-    { id: "patriotisme", title: "Patriotisme" }, { id: "teknologi", title: "Teknologi" },
-    { id: "masyarakat", title: "Masyarakat" }, { id: "sukan", title: "Sukan" },
-    { id: "nilai-murni", title: "Nilai Murni" },
+    { id: "asas-formula", title: "Asas & Formula" },
+    { id: "teknik-menjawab", title: "Teknik Menjawab" },
+    { id: "contoh-latihan", title: "Contoh & Latihan" },
   ],
   "tingkatkan-karangan": [
     { id: "kesalahan-lazim", title: "Kesalahan Lazim" },
