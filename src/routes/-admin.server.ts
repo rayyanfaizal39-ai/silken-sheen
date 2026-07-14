@@ -21,32 +21,34 @@ import type {
 
 export const CONTENT_LIBRARY_BUCKET = 'content-library';
 
+type BucketFailureReason = 'missing_bucket' | 'permission_denied' | 'network_error' | 'wrong_project' | 'not_configured' | 'unknown';
+
 export type StorageBucketCheckResult =
   | {
       ok: true;
       exists: true;
       bucketId: string;
-      rawResponse: unknown;
-      listBucketsResponse: unknown;
+      rawResponse: Record<string, unknown> | null;
+      listBucketsResponse: Record<string, unknown> | null;
     }
   | {
       ok: false;
       exists: false;
-      reason: 'missing_bucket' | 'permission_denied' | 'network_error' | 'wrong_project' | 'not_configured' | 'unknown';
+      reason: BucketFailureReason;
       bucketId: string;
       errorMessage: string | null;
       errorCode: string | number | null;
       statusCode: number | null;
       supabaseUrl: string | null;
-      rawResponse: unknown;
-      listBucketsResponse: unknown;
+      rawResponse: Record<string, unknown> | null;
+      listBucketsResponse: Record<string, unknown> | null;
     };
 
 function readSupabaseUrl() {
   return process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? null;
 }
 
-function classifyBucketError(error: { message?: string; code?: string | number; status?: number } | null | undefined, supabaseUrl: string | null): StorageBucketCheckResult['reason'] {
+function classifyBucketError(error: { message?: string; code?: string | number; status?: number } | null | undefined, supabaseUrl: string | null): BucketFailureReason {
   const message = (error?.message ?? '').toLowerCase();
   const code = error?.code;
   const status = error?.status;
