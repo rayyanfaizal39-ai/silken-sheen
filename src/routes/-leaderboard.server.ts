@@ -1,45 +1,62 @@
-import { createServerFn } from '@tanstack/react-start';
-import { getSupabaseServerClient } from '../lib/supabase.server';
+import { createServerFn } from "@tanstack/react-start";
+import { getSupabaseServerClient } from "../lib/supabase.server";
 
-// Real, server-verified Galaxy Hall of Fame data — see the get_leaderboard()
-// Postgres function (supabase/migrations/20260705024814_get_leaderboard.sql)
-// for why this goes through a SECURITY DEFINER RPC rather than direct table
-// reads: profiles/user_progress/quiz_history RLS only allow reading your own
-// row, but a leaderboard needs every student's name/school/XP visible to
-// every other student. The RPC is scoped to only the safe leaderboard
-// fields (no email, no payments) and requires the caller to be signed in.
 export interface LeaderboardStudentRow {
-  id: string;
-  full_name: string | null;
-  school: string | null;
+  position: number;
+  display_name: string;
   lifetime_xp: number;
-  streak: number | null; // null = no user_progress row yet, i.e. genuinely no data
+  streak: number | null;
   monthly_xp: number;
   monthly_quiz_count: number;
   monthly_correct: number;
   monthly_total: number;
-  created_at: string;
+  is_current_user: boolean;
 }
 
 export interface LeaderboardData {
   month: string;
+  period_start: string;
+  generated_at: string;
   students: LeaderboardStudentRow[];
+  current_position: LeaderboardStudentRow | null;
 }
 
-export const getLeaderboardData = createServerFn({ method: 'GET' }).handler(
-  async (): Promise<LeaderboardData | null> => {
+export type LeaderboardResponse =
+  | { status: "ok"; data: LeaderboardData }
+  | { status: "unauthenticated" }
+  | { status: "error"; message: string };
+
+export const getLeaderboardData = createServerFn({ method: "GET" }).handler(
+  async (): Promise<LeaderboardResponse> => {
     const supabase = getSupabaseServerClient();
-    if (!supabase) return null;
+    if (!supabase) {
+      return { status: "error", message: "The leaderboard is temporarily unavailable." };
+    }
+
     const {
       data: { user },
+      error: authError,
     } = await supabase.auth.getUser();
-    if (!user) return null; // not signed in — caller falls back to the local demo board
 
-    const { data, error } = await supabase.rpc('get_leaderboard');
-    if (error) {
-      console.error('[leaderboard] get_leaderboard RPC failed:', error);
-      return null;
+    if (authError) {
+      if (import.meta.env.DEV) console.error("[leaderboard] auth lookup failed:", authError);
+      return { status: "error", message: "The leaderboard could not be loaded safely." };
     }
-    return data as LeaderboardData;
+    if (!user) return { status: "unauthenticated" };
+
+    const { data, error } = await supabase.rpc("get_leaderboard", {
+      page_size: 10,
+      page_offset: 0,
+    });
+
+    if (error || !data) {
+      if (import.meta.env.DEV) console.error("[leaderboard] get_leaderboard RPC failed:", error);
+      return {
+        status: "error",
+        message: "The monthly leaderboard could not be loaded. Please try again.",
+      };
+    }
+
+    return { status: "ok", data: data as LeaderboardData };
   },
 );
