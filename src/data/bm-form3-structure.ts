@@ -8,10 +8,14 @@ import { BM_FORM3_KARANGAN_PENDEK_SECTIONS } from "@/data/bm-form3-karangan-pend
 import { BM_FORM3_RESPONS_TERBUKA_SECTIONS } from "@/data/bm-form3-karangan-respons-terbuka";
 import { BM_FORM3_BENGKEL_KARANGAN_SECTIONS } from "@/data/bm-form3-bengkel-karangan";
 import { BM_FORM3_MODEL_KARANGAN_SECTIONS } from "@/data/bm-form3-model-karangan-bank";
+import { BM_FORM3_PERIBAHASA_SECTIONS } from "@/data/bm-form3-peribahasa-bank";
+import { BM_FORM3_TINGKATKAN_KARANGAN_SECTIONS } from "@/data/bm-form3-tingkatkan-karangan";
 
 export interface BMForm3Topic {
   id: string;
   label: string;
+  description?: string;
+  badge?: string;
 }
 
 export interface BMForm3Hub {
@@ -146,6 +150,7 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         topics: BM_FORM3_KARANGAN_PENDEK_SECTIONS.map((section) => ({
           id: section.id,
           label: section.lessonTitle,
+          description: section.description,
         })),
       },
       {
@@ -158,6 +163,7 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         topics: BM_FORM3_RESPONS_TERBUKA_SECTIONS.map((section) => ({
           id: section.id,
           label: section.lessonTitle,
+          description: section.description,
         })),
       },
       {
@@ -170,6 +176,7 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         topics: BM_FORM3_BENGKEL_KARANGAN_SECTIONS.map((section) => ({
           id: section.id,
           label: section.lessonTitle,
+          description: section.description,
         })),
       },
       {
@@ -183,6 +190,7 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         topics: BM_FORM3_MODEL_KARANGAN_SECTIONS.map((section) => ({
           id: section.id,
           label: section.lessonTitle,
+          description: section.description,
         })),
       },
       {
@@ -192,17 +200,11 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         icon: "PB",
         color: "#34D399",
         description: "Peribahasa mengikut tema, maksud dan contoh ayat.",
-        topics: [
-          { id: "pendidikan", label: "Pendidikan" },
-          { id: "kesihatan", label: "Kesihatan" },
-          { id: "keluarga", label: "Keluarga" },
-          { id: "alam-sekitar", label: "Alam Sekitar" },
-          { id: "patriotisme", label: "Patriotisme" },
-          { id: "teknologi", label: "Teknologi" },
-          { id: "masyarakat", label: "Masyarakat" },
-          { id: "sukan", label: "Sukan" },
-          { id: "nilai-murni", label: "Nilai Murni" },
-        ],
+        topics: BM_FORM3_PERIBAHASA_SECTIONS.map((section) => ({
+          id: section.id,
+          label: section.lessonTitle,
+          description: section.description,
+        })),
       },
       {
         id: "tingkatkan-karangan",
@@ -212,15 +214,11 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         color: "#818CF8",
         description:
           "Ubah ayat biasa jadi ayat cemerlang — kosa kata menarik dan teknik penulisan.",
-        topics: [
-          { id: "kesalahan-lazim", label: "Kesalahan Lazim" },
-          { id: "mengembangkan-isi", label: "Cara Mengembangkan Isi" },
-          { id: "teknik-huraian", label: "Teknik Huraian" },
-          { id: "pendahuluan-menarik", label: "Pendahuluan Menarik" },
-          { id: "penutup-mantap", label: "Penutup Mantap" },
-          { id: "penggunaan-peribahasa", label: "Penggunaan Peribahasa" },
-          { id: "tips-pemeriksa", label: "Tips Pemeriksa" },
-        ],
+        topics: BM_FORM3_TINGKATKAN_KARANGAN_SECTIONS.map((section) => ({
+          id: section.id,
+          label: section.lessonTitle,
+          description: section.description,
+        })),
       },
     ],
   },

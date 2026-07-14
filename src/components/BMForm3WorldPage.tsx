@@ -39,6 +39,10 @@ import { BMForm3BengkelKaranganContent } from "@/components/BMForm3BengkelKarang
 import type { BMForm3BengkelKaranganSectionId } from "@/data/bm-form3-bengkel-karangan";
 import { BMForm3ModelKaranganBankContent } from "@/components/BMForm3ModelKaranganBankContent";
 import type { BMForm3ModelKaranganSectionId } from "@/data/bm-form3-model-karangan-bank";
+import { BMForm3PeribahasaBankContent } from "@/components/BMForm3PeribahasaBankContent";
+import type { BMForm3PeribahasaSectionId } from "@/data/bm-form3-peribahasa-bank";
+import { BMForm3TingkatkanKaranganContent } from "@/components/BMForm3TingkatkanKaranganContent";
+import type { BMForm3TingkatkanKaranganSectionId } from "@/data/bm-form3-tingkatkan-karangan";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -285,7 +289,7 @@ function KertasView({
     return (
       <div>
         <PageHeader
-          breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.label]}
+          breadcrumb={["Bahasa Melayu", kertas.label]}
           onBack={onBack}
           accent={kertas.color}
         />
@@ -393,7 +397,12 @@ function HubView({
   onBack: () => void;
 }) {
   if (kertas.id === "k2") {
-    const items = hub.topics.map((topic) => ({ id: topic.id, title: topic.label }));
+    const items = hub.topics.map((topic) => ({
+      id: topic.id,
+      title: topic.label,
+      description: topic.description,
+      badge: topic.badge,
+    }));
     return (
       <div>
         <PageHeader
@@ -627,6 +636,44 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
           />
         )}
 
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "peribahasa-bank" && (
+          <BMForm3PeribahasaBankContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3PeribahasaSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "peribahasa-bank",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "tingkatkan-karangan" && (
+          <BMForm3TingkatkanKaranganContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3TingkatkanKaranganSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "tingkatkan-karangan",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
         {screen.type === "topic" &&
           kertas &&
           hub &&
@@ -635,7 +682,9 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
           hub.id !== "karangan-pendek" &&
           hub.id !== "respons-terbuka" &&
           hub.id !== "bengkel-karangan" &&
-          hub.id !== "model-karangan-bank" && (
+          hub.id !== "model-karangan-bank" &&
+          hub.id !== "peribahasa-bank" &&
+          hub.id !== "tingkatkan-karangan" && (
             <div>
               <PageHeader
                 breadcrumb={[
