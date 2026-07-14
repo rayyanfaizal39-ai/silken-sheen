@@ -13,7 +13,7 @@ import appCss from "../styles.css?url";
 import { AppShell } from "@/components/AppShell";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
-import { MusicPlayer } from "@/components/MusicPlayer";
+import { BgMusicController } from "@/components/BgMusicController";
 import { AuthProvider } from "@/context/auth-context";
 import { SignInModalProvider } from "@/context/sign-in-modal";
 import { CikguProvider } from "@/context/cikgu-context";
@@ -167,9 +167,9 @@ function RootComponent() {
               <>
                 <ParticleBg />
                 <SoundFx />
-                {!isLandingPage && <MusicPlayer />}
               </>
             )}
+            <BgMusicController />
             <AppShell>
               <Outlet />
             </AppShell>
