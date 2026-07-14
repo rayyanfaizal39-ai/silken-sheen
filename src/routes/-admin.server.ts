@@ -21,32 +21,34 @@ import type {
 
 export const CONTENT_LIBRARY_BUCKET = 'content-library';
 
+type BucketFailureReason = 'missing_bucket' | 'permission_denied' | 'network_error' | 'wrong_project' | 'not_configured' | 'unknown';
+
 export type StorageBucketCheckResult =
   | {
       ok: true;
       exists: true;
       bucketId: string;
-      rawResponse: unknown;
-      listBucketsResponse: unknown;
+      rawResponse: string | null;
+      listBucketsResponse: string | null;
     }
   | {
       ok: false;
       exists: false;
-      reason: 'missing_bucket' | 'permission_denied' | 'network_error' | 'wrong_project' | 'not_configured' | 'unknown';
+      reason: BucketFailureReason;
       bucketId: string;
       errorMessage: string | null;
       errorCode: string | number | null;
       statusCode: number | null;
       supabaseUrl: string | null;
-      rawResponse: unknown;
-      listBucketsResponse: unknown;
+      rawResponse: string | null;
+      listBucketsResponse: string | null;
     };
 
 function readSupabaseUrl() {
   return process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? null;
 }
 
-function classifyBucketError(error: { message?: string; code?: string | number; status?: number } | null | undefined, supabaseUrl: string | null): StorageBucketCheckResult['reason'] {
+function classifyBucketError(error: { message?: string; code?: string | number; status?: number } | null | undefined, supabaseUrl: string | null): BucketFailureReason {
   const message = (error?.message ?? '').toLowerCase();
   const code = error?.code;
   const status = error?.status;
@@ -313,32 +315,35 @@ export const checkContentLibraryBucket = createServerFn({ method: 'GET' }).handl
     }
     const listBucketsResponse = await supabase.storage.listBuckets();
     console.log('[admin.content-library] storage.listBuckets()', listBucketsResponse);
+    const listBucketsResponseStr = JSON.stringify(listBucketsResponse);
 
     const { data, error } = await supabase.storage.from(CONTENT_LIBRARY_BUCKET).list('', { limit: 1 });
     const rawResponse = { data, error };
     console.log('[admin.content-library] storage.from().list("", { limit: 1 })', rawResponse);
+    const rawResponseStr = JSON.stringify(rawResponse);
 
     if (data && !error) {
       return {
         ok: true,
         exists: true,
         bucketId: CONTENT_LIBRARY_BUCKET,
-        rawResponse,
-        listBucketsResponse,
+        rawResponse: rawResponseStr,
+        listBucketsResponse: listBucketsResponseStr,
       };
     }
-    const reason = isBucketNotFoundError(error) ? 'missing_bucket' : classifyBucketError(error, supabaseUrl);
+    const errAny = error as { message?: string; code?: string | number; status?: number } | null;
+    const reason = isBucketNotFoundError(errAny) ? 'missing_bucket' : classifyBucketError(errAny, supabaseUrl);
     return {
       ok: false,
       exists: false,
       reason,
       bucketId: CONTENT_LIBRARY_BUCKET,
-      errorMessage: error?.message ?? null,
-      errorCode: error?.code ?? null,
-      statusCode: error?.status ?? null,
+      errorMessage: errAny?.message ?? null,
+      errorCode: errAny?.code ?? null,
+      statusCode: errAny?.status ?? null,
       supabaseUrl,
-      rawResponse,
-      listBucketsResponse,
+      rawResponse: rawResponseStr,
+      listBucketsResponse: listBucketsResponseStr,
     };
   },
 );

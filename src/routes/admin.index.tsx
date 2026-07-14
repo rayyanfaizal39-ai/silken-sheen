@@ -145,8 +145,8 @@ function AdminDashboard() {
         setStats(statsRes.data as AdminStats);
       }
       setUsers((usersRes.data ?? []) as UserRow[]);
-      setPayments((paymentsRes.data ?? []) as PaymentRow[]);
-      setQuiz((quizRes.data ?? []) as QuizRow[]);
+      setPayments((paymentsRes.data ?? []) as unknown as PaymentRow[]);
+      setQuiz((quizRes.data ?? []) as unknown as QuizRow[]);
       setLoading(false);
     })().catch((error) => {
       console.error('[admin.dashboard] browser fetch failed', error);
