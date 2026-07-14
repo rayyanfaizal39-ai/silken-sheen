@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 2: Kedudukan — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  .cap{font-size:11.5px; color:var(--muted); margin-top:10px; max-width:460px; line-height:1.6; text-align:center;}
+  .row2{display:flex; gap:24px; flex-wrap:wrap; justify-content:center; align-items:flex-start;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 2: Kedudukan</h1>
+  <p class="lead">Latitud dan longitud ialah konsep yang sukar dibayangkan daripada teks sahaja — glob berlabel menjadikannya konkrit serta-merta.</p>
+
+  <div class="card">
+    <h2>🌐 Lima Garisan Latitud Utama + Garisan Meridian Pangkal</h2>
+    <p class="sub">Glob mudah menunjukkan kedudukan sebenar setiap garisan berbanding satu sama lain.</p>
+    <div style="display:flex; justify-content:center;">
+      <svg width="560" height="420" viewBox="0 0 560 420">
+        <!-- Globe outline, positioned left-of-center to leave room for labels on the right -->
+        <circle cx="230" cy="210" r="170" fill="#0c1128" stroke="#1b2044" stroke-width="2"/>
+
+        <!-- Longitude curve hints (just 2, for sphere suggestion) -->
+        <path d="M 230 40 Q 130 210 230 380" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <path d="M 230 40 Q 330 210 230 380" fill="none" stroke="var(--line)" stroke-width="1"/>
+
+        <!-- Latitude lines, spaced by real relative angle -->
+        <circle cx="230" cy="42" r="3" fill="#eef1fb"/>
+        <ellipse cx="230" cy="84" rx="158" ry="19" fill="none" stroke="#4fb0ff" stroke-width="2.5"/>
+        <ellipse cx="230" cy="140" rx="167" ry="32" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+        <ellipse cx="230" cy="210" rx="170" ry="40" fill="none" stroke="#fbbf5a" stroke-width="3"/>
+        <ellipse cx="230" cy="280" rx="167" ry="32" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+        <ellipse cx="230" cy="336" rx="158" ry="19" fill="none" stroke="#4fb0ff" stroke-width="2.5"/>
+        <circle cx="230" cy="378" r="3" fill="#eef1fb"/>
+
+        <!-- Prime Meridian, vertical through center -->
+        <line x1="230" y1="40" x2="230" y2="380" stroke="#f87171" stroke-width="2.5"/>
+
+        <!-- Leader lines + labels, all clear of the globe on the right, generously spaced vertically -->
+        <line x1="370" y1="84" x2="410" y2="60" stroke="var(--muted-dim)" stroke-width="1"/>
+        <text x="415" y="57" font-size="11" fill="#4fb0ff" font-weight="700">Garisan Artik</text>
+        <text x="415" y="70" font-size="10" fill="var(--muted)">66°U</text>
+
+        <line x1="380" y1="140" x2="410" y2="122" stroke="var(--muted-dim)" stroke-width="1"/>
+        <text x="415" y="119" font-size="11" fill="#4ade80" font-weight="700">Garisan Sartan</text>
+        <text x="415" y="132" font-size="10" fill="var(--muted)">23°U</text>
+
+        <line x1="395" y1="210" x2="410" y2="200" stroke="var(--muted-dim)" stroke-width="1"/>
+        <text x="415" y="197" font-size="11.5" fill="#fbbf5a" font-weight="700">Garisan Khatulistiwa</text>
+        <text x="415" y="210" font-size="10" fill="var(--muted)">0°</text>
+
+        <line x1="380" y1="280" x2="410" y2="270" stroke="var(--muted-dim)" stroke-width="1"/>
+        <text x="415" y="267" font-size="11" fill="#4ade80" font-weight="700">Garisan Jadi</text>
+        <text x="415" y="280" font-size="10" fill="var(--muted)">23°S</text>
+
+        <line x1="370" y1="336" x2="410" y2="345" stroke="var(--muted-dim)" stroke-width="1"/>
+        <text x="415" y="342" font-size="11" fill="#4fb0ff" font-weight="700">Garisan Antartik</text>
+        <text x="415" y="355" font-size="10" fill="var(--muted)">66°S</text>
+
+        <!-- Prime Meridian label at top -->
+        <text x="230" y="20" text-anchor="middle" font-size="11" fill="#f87171" font-weight="700">Garisan Meridian Pangkal (0°)</text>
+      </svg>
+    </div>
+    <p class="cap" style="margin:10px auto 0;">Khatulistiwa (0°) membahagikan Bumi kepada Hemisfera Utara dan Selatan. Garisan Meridian Pangkal (0° longitud) memisahkan Timur dan Barat.</p>
+  </div>
+
+  <div class="card">
+    <h2>📍 Membaca Kedudukan Titik A</h2>
+    <p class="sub">Tiga langkah, ditunjukkan satu demi satu — bukan sekadar diterangkan.</p>
+    <div class="row2">
+      <svg width="360" height="300" viewBox="0 0 360 300">
+        <!-- Grid: 3 latitude lines, 3 longitude lines -->
+        <line x1="40" y1="80" x2="320" y2="80" stroke="var(--line)" stroke-width="1.5"/>
+        <line x1="40" y1="150" x2="320" y2="150" stroke="#fbbf5a" stroke-width="2"/>
+        <line x1="40" y1="220" x2="320" y2="220" stroke="var(--line)" stroke-width="1.5"/>
+
+        <line x1="110" y1="40" x2="110" y2="260" stroke="var(--line)" stroke-width="1.5"/>
+        <line x1="220" y1="40" x2="220" y2="260" stroke="#4fb0ff" stroke-width="2"/>
+        <line x1="290" y1="40" x2="290" y2="260" stroke="var(--line)" stroke-width="1.5"/>
+
+        <!-- Point A at the intersection -->
+        <circle cx="220" cy="150" r="7" fill="#eef1fb"/>
+        <text x="235" y="145" font-size="13" fill="var(--text)" font-weight="700">A</text>
+
+        <!-- Step 1 label: latitude line -->
+        <text x="30" y="154" font-size="11" fill="#fbbf5a" font-weight="700" text-anchor="end">① 30°U</text>
+        <!-- Step 2 label: longitude line -->
+        <text x="220" y="30" font-size="11" fill="#4fb0ff" font-weight="700" text-anchor="middle">② 40°T</text>
+      </svg>
+    </div>
+    <div style="max-width:460px; margin:0 auto; font-size:11px; color:var(--muted); line-height:1.9;">
+      <div><b style="color:#fbbf5a;">① </b>Kenal pasti garisan latitud A — 30°U</div>
+      <div><b style="color:#4fb0ff;">② </b>Kenal pasti garisan longitud A — 40°T</div>
+      <div><b style="color:var(--text);">③ </b>Titik persilangan ialah kedudukan A</div>
+    </div>
+    <p class="cap" style="margin:8px auto 0;">Kedudukan titik A ialah <b style="color:var(--text);">30°U, 40°T</b></p>
+  </div>
+
+</div>
+</body>
+</html>

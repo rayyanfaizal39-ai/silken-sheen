@@ -16,6 +16,11 @@ import type { Chapter5Content } from "@/content/form1/science/chapter-5/chapter5
 import type { Chapter6Content } from "@/content/form1/science/chapter-6/chapter6-content";
 import type { Chapter8Content } from "@/content/form1/science/chapter-8/chapter8-content";
 import type { Chapter9Content } from "@/content/form1/science/chapter-9/chapter9-content";
+import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
+import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
+import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
+import type { Geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
+import type { Geo5Content } from "@/content/form1/geography/chapter-5/geo5-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -68,6 +73,16 @@ export type ChapterContent = {
   chapter8Data?: { en: Chapter8Content; bm: Chapter8Content };
   /** Bab 9 (Bumi/Earth) chunked, bilingual learning experience. */
   chapter9Data?: { en: Chapter9Content; bm: Chapter9Content };
+  /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
+  geoChapter1Data?: Geo1Content;
+  /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
+  geoChapter2Data?: Geo2Content;
+  /** Geography Bab 3 (Peta Lakar/Sketch Maps) chunked learning experience. BM-only. */
+  geoChapter3Data?: Geo3Content;
+  /** Geography Bab 4 (Lakaran Peta Malaysia) chunked learning experience. BM-only. */
+  geoChapter4Data?: Geo4Content;
+  /** Geography Bab 5 (Bumi/Earth) chunked learning experience. BM-only. */
+  geoChapter5Data?: Geo5Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -94,6 +109,11 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.chapter6Data ||
       !!c?.chapter8Data ||
       !!c?.chapter9Data ||
+      !!c?.geoChapter1Data ||
+      !!c?.geoChapter2Data ||
+      !!c?.geoChapter3Data ||
+      !!c?.geoChapter4Data ||
+      !!c?.geoChapter5Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

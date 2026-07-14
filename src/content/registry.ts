@@ -109,6 +109,11 @@ import { sejarahF3C7MindMap } from "@/content/form3/sejarah/chapter-7/mindmap";
 import { sejarahF3C8Notes } from "@/content/form3/sejarah/chapter-8/notes";
 import { sejarahF3C8MindMap } from "@/content/form3/sejarah/chapter-8/mindmap";
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
+import { geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
+import { geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
+import { geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
+import { geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
+import { geo5Content } from "@/content/form1/geography/chapter-5/geo5-content";
 import { geoF1C2MindMap } from "@/content/form1/geography/chapter-2/mindmap";
 import { geoF1C3MindMap } from "@/content/form1/geography/chapter-3/mindmap";
 import { geoF1C4MindMap } from "@/content/form1/geography/chapter-4/mindmap";
@@ -921,11 +926,11 @@ export const chapters: ChapterContent[] = [
   },
 
   // Geography Form 1
-  geography(1, geoF1C1MindMap, "Arah"),
-  geography(2, geoF1C2MindMap, "Kedudukan"),
-  geography(3, geoF1C3MindMap, "Peta Lakar"),
-  geography(4, geoF1C4MindMap, "Lakaran Peta Malaysia"),
-  geography(5, geoF1C5MindMap, "Bumi"),
+  { ...geography(1, geoF1C1MindMap, "Arah"), geoChapter1Data: geo1Content },
+  { ...geography(2, geoF1C2MindMap, "Kedudukan"), geoChapter2Data: geo2Content },
+  { ...geography(3, geoF1C3MindMap, "Peta Lakar"), geoChapter3Data: geo3Content },
+  { ...geography(4, geoF1C4MindMap, "Lakaran Peta Malaysia"), geoChapter4Data: geo4Content },
+  { ...geography(5, geoF1C5MindMap, "Bumi"), geoChapter5Data: geo5Content },
   geography(6, geoF1C6MindMap, "Bentuk Muka Bumi"),
   geography(7, geoF1C7MindMap, "Saliran"),
   geography(8, geoF1C8MindMap, "Penduduk di Malaysia"),
