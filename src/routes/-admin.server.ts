@@ -315,32 +315,35 @@ export const checkContentLibraryBucket = createServerFn({ method: 'GET' }).handl
     }
     const listBucketsResponse = await supabase.storage.listBuckets();
     console.log('[admin.content-library] storage.listBuckets()', listBucketsResponse);
+    const listBucketsResponseStr = JSON.stringify(listBucketsResponse);
 
     const { data, error } = await supabase.storage.from(CONTENT_LIBRARY_BUCKET).list('', { limit: 1 });
     const rawResponse = { data, error };
     console.log('[admin.content-library] storage.from().list("", { limit: 1 })', rawResponse);
+    const rawResponseStr = JSON.stringify(rawResponse);
 
     if (data && !error) {
       return {
         ok: true,
         exists: true,
         bucketId: CONTENT_LIBRARY_BUCKET,
-        rawResponse,
-        listBucketsResponse,
+        rawResponse: rawResponseStr,
+        listBucketsResponse: listBucketsResponseStr,
       };
     }
-    const reason = isBucketNotFoundError(error) ? 'missing_bucket' : classifyBucketError(error, supabaseUrl);
+    const errAny = error as { message?: string; code?: string | number; status?: number } | null;
+    const reason = isBucketNotFoundError(errAny) ? 'missing_bucket' : classifyBucketError(errAny, supabaseUrl);
     return {
       ok: false,
       exists: false,
       reason,
       bucketId: CONTENT_LIBRARY_BUCKET,
-      errorMessage: error?.message ?? null,
-      errorCode: error?.code ?? null,
-      statusCode: error?.status ?? null,
+      errorMessage: errAny?.message ?? null,
+      errorCode: errAny?.code ?? null,
+      statusCode: errAny?.status ?? null,
       supabaseUrl,
-      rawResponse,
-      listBucketsResponse,
+      rawResponse: rawResponseStr,
+      listBucketsResponse: listBucketsResponseStr,
     };
   },
 );
