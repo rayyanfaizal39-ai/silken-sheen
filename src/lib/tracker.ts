@@ -27,10 +27,15 @@ export interface WeakSpot {
 
 export interface TrackerInsight {
   totalQuizzes: number;
+  totalCorrect: number;
+  questionsAttempted: number;
   overallAvg: number;
   passRate: number; // % of quizzes at/above pass threshold
   subjectStats: SubjectStat[];
+  chapterStats: WeakSpot[];
   weakSpots: WeakSpot[];
+  strongSpots: WeakSpot[];
+  recentActivity: QuizResult[];
   strongest: SubjectStat | null;
   weakest: SubjectStat | null;
   recommendation: string;
@@ -67,10 +72,15 @@ export function analyzeProgress(history: QuizResult[]): TrackerInsight {
   if (totalQuizzes === 0) {
     return {
       totalQuizzes: 0,
+      totalCorrect: 0,
+      questionsAttempted: 0,
       overallAvg: 0,
       passRate: 0,
       subjectStats: [],
+      chapterStats: [],
       weakSpots: [],
+      strongSpots: [],
+      recentActivity: [],
       strongest: null,
       weakest: null,
       recommendation:
@@ -79,6 +89,8 @@ export function analyzeProgress(history: QuizResult[]): TrackerInsight {
   }
 
   const sorted = [...history].sort((a, b) => a.date.localeCompare(b.date));
+  const totalCorrect = sorted.reduce((sum, result) => sum + result.correct, 0);
+  const questionsAttempted = sorted.reduce((sum, result) => sum + result.total, 0);
   const overallAvg = avg(sorted.map((r) => r.scorePct));
   const passRate = Math.round(
     (sorted.filter((r) => r.scorePct >= QUIZ_PASS_PCT).length / totalQuizzes) * 100,
@@ -116,20 +128,24 @@ export function analyzeProgress(history: QuizResult[]): TrackerInsight {
     list.push(r);
     byChapter.set(k, list);
   }
-  const weakSpots: WeakSpot[] = Array.from(byChapter.entries())
-    .map(([k, list]) => {
-      const [subjectId, chapterKey] = k.split("::");
-      return {
-        subjectId,
-        subjectName: subjectName(subjectId),
-        chapterKey,
-        chapterLabel: chapterLabel(subjectId, chapterKey),
-        avgScore: avg(list.map((r) => r.scorePct)),
-        attempts: list.length,
-      };
-    })
+  const chapterStats: WeakSpot[] = Array.from(byChapter.entries()).map(([k, list]) => {
+    const [subjectId, chapterKey] = k.split("::");
+    return {
+      subjectId,
+      subjectName: subjectName(subjectId),
+      chapterKey,
+      chapterLabel: chapterLabel(subjectId, chapterKey),
+      avgScore: avg(list.map((r) => r.scorePct)),
+      attempts: list.length,
+    };
+  });
+  const weakSpots = chapterStats
     .filter((w) => w.avgScore < QUIZ_PASS_PCT)
     .sort((a, b) => a.avgScore - b.avgScore)
+    .slice(0, 5);
+  const strongSpots = [...chapterStats]
+    .filter((chapter) => chapter.avgScore >= QUIZ_PASS_PCT)
+    .sort((a, b) => b.avgScore - a.avgScore)
     .slice(0, 5);
 
   const ranked = [...subjectStats].sort((a, b) => b.avgScore - a.avgScore);
@@ -149,10 +165,15 @@ export function analyzeProgress(history: QuizResult[]): TrackerInsight {
 
   return {
     totalQuizzes,
+    totalCorrect,
+    questionsAttempted,
     overallAvg,
     passRate,
     subjectStats,
+    chapterStats,
     weakSpots,
+    strongSpots,
+    recentActivity: sorted.slice(-5).reverse(),
     strongest,
     weakest,
     recommendation,

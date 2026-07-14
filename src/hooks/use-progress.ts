@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 
 const KEY = "learnnova-progress-v1";
 const SYNC_DEBOUNCE_MS = 2000;
@@ -480,20 +481,24 @@ function today() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function load(): Progress {
+function progressStorageKey(userId?: string | null): string {
+  return userId ? `${KEY}:${userId}` : KEY;
+}
+
+function load(userId?: string | null): Progress {
   if (typeof window === "undefined") return initial;
   try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return stampCompanionSelectedAt(initial);
+    const raw = localStorage.getItem(progressStorageKey(userId));
+    if (!raw) return stampCompanionSelectedAt(initial, userId);
     const merged: Progress = { ...initial, ...JSON.parse(raw) };
-    return stampCompanionSelectedAt(merged);
+    return stampCompanionSelectedAt(merged, userId);
   } catch {
     return initial;
   }
 }
 
 /** Replaces the epoch sentinel with "now" the first time a companion is actually loaded. */
-function stampCompanionSelectedAt(progress: Progress): Progress {
+function stampCompanionSelectedAt(progress: Progress, userId?: string | null): Progress {
   if (!progress.companion || progress.companion.selectedAt !== COMPANION_SENTINEL_DATE) {
     return progress;
   }
@@ -502,7 +507,7 @@ function stampCompanionSelectedAt(progress: Progress): Progress {
     companion: { ...progress.companion, selectedAt: new Date().toISOString() },
   };
   try {
-    localStorage.setItem(KEY, JSON.stringify(next));
+    localStorage.setItem(progressStorageKey(userId), JSON.stringify(next));
   } catch {}
   return next;
 }
@@ -674,13 +679,22 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
  * succeeds. Only runs for a signed-in user with Supabase configured.
  */
 async function insertQuizHistoryRow(
-  userId: string,
   result: { subjectId: string; chapterKey: string; scorePct: number; correct: number; total: number; xpEarned?: number },
 ): Promise<void> {
   if (!isSupabaseConfigured) return;
   try {
-    await supabase.from("quiz_history").insert({
-      user_id: userId,
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("plan")
+      .eq("id", user.id)
+      .maybeSingle();
+    if (profileError || !hasFeature(resolveStoredPlan(profile?.plan), "quiz_history")) return;
+
+    const { error } = await supabase.from("quiz_history").insert({
+      user_id: user.id,
       subject_id: result.subjectId,
       chapter_key: result.chapterKey,
       score_pct: result.scorePct,
@@ -692,6 +706,7 @@ async function insertQuizHistoryRow(
       // ranking treats as "no data" rather than 0.
       ...(result.xpEarned != null ? { xp_earned: result.xpEarned } : {}),
     });
+    if (!error) window.dispatchEvent(new Event("academy:quiz-history-updated"));
   } catch {
     // Silent — this is a supplementary analytics log, not the source of truth
   }
@@ -724,8 +739,10 @@ function ensureAuthSync() {
   supabase.auth.getUser().then(async ({ data: { user } }) => {
     if (!user) return;
     sharedUserId = user.id;
-    const local = sharedProgress ?? load();
+    const local = load(user.id);
+    broadcastProgress(local);
     const remote = await loadFromSupabase(user.id);
+    if (sharedUserId !== user.id) return;
     if (!remote) {
       await saveToSupabase(user.id, local);
       return;
@@ -733,7 +750,7 @@ function ensureAuthSync() {
     const merged = mergeProgress(local, remote);
     broadcastProgress(merged);
     try {
-      localStorage.setItem(KEY, JSON.stringify(merged));
+      localStorage.setItem(progressStorageKey(user.id), JSON.stringify(merged));
     } catch {}
   });
 
@@ -743,16 +760,19 @@ function ensureAuthSync() {
     if (event === "SIGNED_IN" && session?.user) {
       if (sharedUserId === session.user.id) return;
       sharedUserId = session.user.id;
-      const local2 = sharedProgress ?? load();
+      const local2 = load(session.user.id);
+      broadcastProgress(local2);
       const remote2 = await loadFromSupabase(session.user.id);
+      if (sharedUserId !== session.user.id) return;
       const merged2 = remote2 ? mergeProgress(local2, remote2) : local2;
       broadcastProgress(merged2);
       try {
-        localStorage.setItem(KEY, JSON.stringify(merged2));
+        localStorage.setItem(progressStorageKey(session.user.id), JSON.stringify(merged2));
       } catch {}
       await saveToSupabase(session.user.id, merged2);
     } else if (event === "SIGNED_OUT") {
       sharedUserId = null;
+      broadcastProgress(load(null));
     }
   });
 }
@@ -864,7 +884,7 @@ export function useProgress() {
   // singleton's broadcasts, and kick off auth sync (a no-op if some other
   // already-mounted useProgress() instance started it first).
   useEffect(() => {
-    const local = sharedProgress ?? load();
+    const local = sharedProgress ?? load(sharedUserId);
     if (sharedProgress === null) sharedProgress = local;
     setProgress(local);
 
@@ -879,10 +899,11 @@ export function useProgress() {
 
   // Debounced sync to Supabase after every progress change
   const scheduleSync = useCallback((p: Progress) => {
-    if (!isSupabaseConfigured || !sharedUserId) return;
+    const userId = sharedUserId;
+    if (!isSupabaseConfigured || !userId) return;
     if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
     syncTimerRef.current = setTimeout(() => {
-      void saveToSupabase(sharedUserId!, p);
+      void saveToSupabase(userId, p);
     }, SYNC_DEBOUNCE_MS);
   }, []);
 
@@ -890,7 +911,7 @@ export function useProgress() {
     (p: Progress) => {
       setProgress(p);
       try {
-        localStorage.setItem(KEY, JSON.stringify(p));
+        localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(p));
       } catch {}
       scheduleSync(p);
     },
@@ -932,7 +953,7 @@ export function useProgress() {
             : prev.subjectXp,
         };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         detectProgressionEvents(prev, next);
@@ -965,7 +986,7 @@ export function useProgress() {
           missions: { ...missions, quizzesDone: newQuizzesDone },
         };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         detectProgressionEvents(prev, next);
@@ -981,7 +1002,7 @@ export function useProgress() {
         if (prev.badges.includes(id)) return prev;
         const next = { ...prev, badges: [...prev.badges, id] };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
@@ -997,7 +1018,7 @@ export function useProgress() {
         const favorites = exists ? prev.favorites.filter((f) => f !== id) : [...prev.favorites, id];
         const next = { ...prev, favorites };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
@@ -1049,7 +1070,7 @@ export function useProgress() {
           missions: updatedMissions,
         };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         detectProgressionEvents(prev, next);
@@ -1075,7 +1096,7 @@ export function useProgress() {
 
         const next: Progress = { ...prev, cardMastery: mastery, badges: newBadges };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
@@ -1093,7 +1114,7 @@ export function useProgress() {
           recentActivity: pushRecentActivity(prev.recentActivity, lv),
         };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
@@ -1118,7 +1139,7 @@ export function useProgress() {
           },
         };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
@@ -1148,7 +1169,7 @@ export function useProgress() {
         },
       };
       try {
-        localStorage.setItem(KEY, JSON.stringify(next));
+        localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
       } catch {}
       scheduleSync(next);
       return next;
@@ -1167,7 +1188,7 @@ export function useProgress() {
           companion: { ...prev.companion, name: trimmed },
         };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
@@ -1204,7 +1225,7 @@ export function useProgress() {
         // Learning-history log for getStudentAnalytics() — additive only,
         // does not replace or alter the local quizHistory/XP handling below.
         if (sharedUserId) {
-          void insertQuizHistoryRow(sharedUserId, { subjectId: input.subjectId, chapterKey: input.chapterKey, scorePct, correct, total, xpEarned: input.xpEarned });
+          void insertQuizHistoryRow({ subjectId: input.subjectId, chapterKey: input.chapterKey, scorePct, correct, total, xpEarned: input.xpEarned });
         }
 
         const next: Progress = {
@@ -1227,7 +1248,7 @@ export function useProgress() {
             : prev.subjectXp,
         };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         detectProgressionEvents(prev, next);
@@ -1243,7 +1264,7 @@ export function useProgress() {
       setProgress((prev) => {
         const next: Progress = { ...prev, parentEmail: email, reportCadence: cadence };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
@@ -1258,7 +1279,7 @@ export function useProgress() {
       setProgress((prev) => {
         const next: Progress = { ...prev, displayName, school };
         try {
-          localStorage.setItem(KEY, JSON.stringify(next));
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
         scheduleSync(next);
         return next;
