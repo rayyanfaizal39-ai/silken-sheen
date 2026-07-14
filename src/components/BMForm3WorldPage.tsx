@@ -35,6 +35,8 @@ import { BMForm3KaranganPendekContent } from "@/components/BMForm3KaranganPendek
 import type { BMForm3KaranganPendekSectionId } from "@/data/bm-form3-karangan-pendek";
 import { BMForm3KaranganResponsTerbukaContent } from "@/components/BMForm3KaranganResponsTerbukaContent";
 import type { BMForm3ResponsTerbukaSectionId } from "@/data/bm-form3-karangan-respons-terbuka";
+import { BMForm3BengkelKaranganContent } from "@/components/BMForm3BengkelKaranganContent";
+import type { BMForm3BengkelKaranganSectionId } from "@/data/bm-form3-bengkel-karangan";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -562,13 +564,33 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
           />
         )}
 
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "bengkel-karangan" && (
+          <BMForm3BengkelKaranganContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3BengkelKaranganSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "bengkel-karangan",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
         {screen.type === "topic" &&
           kertas &&
           hub &&
           topic &&
           hub.id !== "sistem-bahasa" &&
           hub.id !== "karangan-pendek" &&
-          hub.id !== "respons-terbuka" && (
+          hub.id !== "respons-terbuka" &&
+          hub.id !== "bengkel-karangan" && (
             <div>
               <PageHeader
                 breadcrumb={[

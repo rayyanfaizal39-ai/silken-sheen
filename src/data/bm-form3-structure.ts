@@ -6,6 +6,7 @@
 
 import { BM_FORM3_KARANGAN_PENDEK_SECTIONS } from "@/data/bm-form3-karangan-pendek";
 import { BM_FORM3_RESPONS_TERBUKA_SECTIONS } from "@/data/bm-form3-karangan-respons-terbuka";
+import { BM_FORM3_BENGKEL_KARANGAN_SECTIONS } from "@/data/bm-form3-bengkel-karangan";
 
 export interface BMForm3Topic {
   id: string;
@@ -164,16 +165,10 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         icon: "BK",
         color: "#34D399",
         description: "Idea bank, template, kosa kata, penanda wacana dan peribahasa mengikut tema.",
-        topics: [
-          { id: "bank-idea", label: "Bank Idea" },
-          { id: "pendahuluan-bank", label: "Pendahuluan Bank" },
-          { id: "penutup-bank", label: "Penutup Bank" },
-          { id: "ayat-menarik", label: "Ayat Menarik" },
-          { id: "kosa-kata", label: "Kosa Kata" },
-          { id: "formula-imbak", label: "Formula IMBAK" },
-          { id: "huraian-isi", label: "Huraian Isi" },
-          { id: "contoh-ayat", label: "Contoh Ayat" },
-        ],
+        topics: BM_FORM3_BENGKEL_KARANGAN_SECTIONS.map((section) => ({
+          id: section.id,
+          label: section.lessonTitle,
+        })),
       },
       {
         id: "model-karangan-bank",
