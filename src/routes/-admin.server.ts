@@ -28,8 +28,8 @@ export type StorageBucketCheckResult =
       ok: true;
       exists: true;
       bucketId: string;
-      rawResponse: Record<string, unknown> | null;
-      listBucketsResponse: Record<string, unknown> | null;
+      rawResponse: string | null;
+      listBucketsResponse: string | null;
     }
   | {
       ok: false;
@@ -40,8 +40,8 @@ export type StorageBucketCheckResult =
       errorCode: string | number | null;
       statusCode: number | null;
       supabaseUrl: string | null;
-      rawResponse: Record<string, unknown> | null;
-      listBucketsResponse: Record<string, unknown> | null;
+      rawResponse: string | null;
+      listBucketsResponse: string | null;
     };
 
 function readSupabaseUrl() {
