@@ -30,6 +30,11 @@ import { VideoBlock } from "@/components/notes/VideoBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { Bab7NotesBlock } from "@/components/notes/Bab7NotesBlock";
+import { GeoChapter1NotesBlock } from "@/components/notes/GeoChapter1NotesBlock";
+import { GeoChapter2NotesBlock } from "@/components/notes/GeoChapter2NotesBlock";
+import { GeoChapter3NotesBlock } from "@/components/notes/GeoChapter3NotesBlock";
+import { GeoChapter4NotesBlock } from "@/components/notes/GeoChapter4NotesBlock";
+import { GeoChapter5NotesBlock } from "@/components/notes/GeoChapter5NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -169,8 +174,19 @@ function NotesPage() {
   const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang, form) : [];
   const activeChapterKey =
     chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
+  const activeChapter =
+    subject && activeChapterKey
+      ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
+      : undefined;
   const hasSubtopics =
-    form === "Form 1" && (subject === "sejarah" || subject === "geography") && !!activeChapterKey;
+    form === "Form 1" &&
+    (subject === "sejarah" || subject === "geography") &&
+    !!activeChapterKey &&
+    !activeChapter?.geoChapter1Data &&
+    !activeChapter?.geoChapter2Data &&
+    !activeChapter?.geoChapter3Data &&
+    !activeChapter?.geoChapter4Data &&
+    !activeChapter?.geoChapter5Data;
   const subtopics: Subtopic[] = hasSubtopics
     ? subject === "sejarah"
       ? getSejarahF1Subtopics(activeChapterKey ?? "")
@@ -186,10 +202,6 @@ function NotesPage() {
     subject && activeChapterKey
       ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
       : false;
-  const activeChapter =
-    subject && activeChapterKey
-      ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
-      : undefined;
   const features = getChapterFeatures(activeChapter);
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
@@ -628,7 +640,57 @@ function NotesPage() {
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
-          {activeChapter?.bab7Data ? (
+          {activeChapter?.geoChapter1Data ? (
+            <GeoChapter1NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter1Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.geoChapter2Data ? (
+            <GeoChapter2NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter2Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.geoChapter3Data ? (
+            <GeoChapter3NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter3Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.geoChapter4Data ? (
+            <GeoChapter4NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter4Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.geoChapter5Data ? (
+            <GeoChapter5NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter5Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.bab7Data ? (
             <Bab7NotesBlock
               id="notes"
               content={activeChapter.bab7Data}
@@ -747,6 +809,11 @@ function NotesPage() {
           )}
 
           {filtered.length === 0 ? (
+            !activeChapter?.geoChapter1Data &&
+            !activeChapter?.geoChapter2Data &&
+            !activeChapter?.geoChapter3Data &&
+            !activeChapter?.geoChapter4Data &&
+            !activeChapter?.geoChapter5Data &&
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
             !activeChapter?.chapter2Data &&
@@ -767,7 +834,12 @@ function NotesPage() {
             )
           ) : (
             <>
-              {!activeChapter?.bab7Data &&
+              {!activeChapter?.geoChapter1Data &&
+                !activeChapter?.geoChapter2Data &&
+                !activeChapter?.geoChapter3Data &&
+                !activeChapter?.geoChapter4Data &&
+                !activeChapter?.geoChapter5Data &&
+                !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&
                 !activeChapter?.chapter3Data &&
@@ -786,7 +858,12 @@ function NotesPage() {
                 />
               )}
 
-              {!activeChapter?.bab7Data &&
+              {!activeChapter?.geoChapter1Data &&
+                !activeChapter?.geoChapter2Data &&
+                !activeChapter?.geoChapter3Data &&
+                !activeChapter?.geoChapter4Data &&
+                !activeChapter?.geoChapter5Data &&
+                !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&
                 !activeChapter?.chapter3Data &&

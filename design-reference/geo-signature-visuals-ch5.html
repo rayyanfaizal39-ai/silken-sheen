@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 5: Bumi — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171; --orange:#fb923c;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  .row2{display:flex; gap:24px; flex-wrap:wrap; justify-content:center; align-items:flex-start;}
+  .cap{font-size:11.5px; color:var(--muted); margin-top:10px; max-width:420px; line-height:1.6; text-align:center;}
+  .continent-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-top:16px;}
+  .cont-tile{background:var(--bg-panel); border-radius:12px; padding:12px 14px;}
+  .cont-tile .name{font-weight:700; font-size:12.5px;}
+  .cont-tile .size{font-size:10.5px; color:var(--muted-dim); margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 5: Bumi</h1>
+  <p class="lead">Struktur Bumi dan proses pembentukan gunung adalah konsep tiga dimensi — lukisan rentas dan gambaran sebelum/selepas menjadikannya konkrit.</p>
+
+  <div class="card">
+    <h2>🌍 Struktur Bumi (Keratan Rentas)</h2>
+    <p class="sub">Tiga lapisan utama, dengan kerak bumi dipecahkan kepada sial dan sima.</p>
+    <div style="display:flex; justify-content:center;">
+      <img src="geo-images/earth-structure.png" alt="Struktur Bumi" style="max-width:100%; border-radius:14px;">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⛰️ Pembentukan Gunung Lipat vs Gunung Bongkah</h2>
+    <p class="sub">Sebelum dan selepas, bersebelahan — daya yang berbeza menghasilkan bentuk muka bumi yang berbeza.</p>
+    <div class="row2">
+      <div style="border-radius:14px; overflow:hidden;">
+        <img src="geo-images/gunung-lipat.png" alt="Gunung Lipat — Daya Mampatan" style="max-width:100%; display:block; border-radius:14px;">
+      </div>
+      <div style="border-radius:14px; overflow:hidden;">
+        <img src="geo-images/gunung-bongkah.png" alt="Gunung Bongkah — Daya Tegangan" style="max-width:100%; display:block; border-radius:14px;">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🌎 Tujuh Benua &amp; Lima Lautan</h2>
+    <p class="sub">Saiz sebenar (juta km²) supaya perbandingan lebih bermakna daripada senarai nama sahaja.</p>
+    <div class="continent-grid">
+      <div class="cont-tile"><div class="name">Asia</div><div class="size">55.8 juta km² · terbesar</div></div>
+      <div class="cont-tile"><div class="name">Afrika</div><div class="size">30 juta km²</div></div>
+      <div class="cont-tile"><div class="name">Amerika Utara</div><div class="size">24.5 juta km²</div></div>
+      <div class="cont-tile"><div class="name">Amerika Selatan</div><div class="size">17.8 juta km²</div></div>
+      <div class="cont-tile"><div class="name">Antartika</div><div class="size">14 juta km² · paling selatan</div></div>
+      <div class="cont-tile"><div class="name">Eropah</div><div class="size">10.4 juta km² · kedua terkecil</div></div>
+      <div class="cont-tile"><div class="name">Australia</div><div class="size">7.6 juta km² · paling mendatar</div></div>
+    </div>
+    <div class="continent-grid" style="margin-top:8px;">
+      <div class="cont-tile" style="background:rgba(79,176,255,0.08);"><div class="name">Lautan Pasifik</div><div class="size">terbesar, purata 4300m</div></div>
+      <div class="cont-tile" style="background:rgba(79,176,255,0.08);"><div class="name">Lautan Atlantik</div><div class="size">kedua terbesar, bentuk 'S'</div></div>
+      <div class="cont-tile" style="background:rgba(79,176,255,0.08);"><div class="name">Lautan Hindi</div><div class="size">ketiga terbesar, 3900m</div></div>
+      <div class="cont-tile" style="background:rgba(79,176,255,0.08);"><div class="name">Lautan Selatan</div><div class="size">mengelilingi Antartika</div></div>
+      <div class="cont-tile" style="background:rgba(79,176,255,0.08);"><div class="name">Lautan Artik</div><div class="size">terkecil &amp; tercetek</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

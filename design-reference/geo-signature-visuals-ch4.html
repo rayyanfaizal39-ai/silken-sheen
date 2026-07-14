@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 4: Lakaran Peta Malaysia — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  .legend-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:14px; font-size:11px; color:var(--muted);}
+  .legend-dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 4: Lakaran Peta Malaysia</h1>
+  <p class="lead">Peta ringkas tapi kedudukan sebenar — Semenanjung dan Borneo, sempadan negara jiran, dan ibu negeri setiap negeri.</p>
+
+  <div class="card">
+    <h2>🇲🇾 Malaysia — Negeri, Sempadan &amp; Ibu Negeri</h2>
+    <p class="sub">Kedudukan relatif sebenar, bukan sekadar senarai nama.</p>
+    <div style="display:flex; justify-content:center;">
+      <img src="geo-images/malaysia-map.png" alt="Peta Malaysia" style="max-width:100%; border-radius:14px;">
+    </div>
+    <div class="legend-row">
+      <div><span class="legend-dot" style="background:#fbbf5a;"></span>Ibu negeri</div>
+      <div><span class="legend-dot" style="background:#f87171;"></span>Ibu negara (Kuala Lumpur)</div>
+      <div><span class="legend-dot" style="background:#8b6bff;"></span>Pusat Pentadbiran (Putrajaya)</div>
+      <div><span class="legend-dot" style="background:var(--muted);"></span>Wilayah Persekutuan Labuan</div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:12px;">13 negeri + 3 wilayah persekutuan (Kuala Lumpur, Putrajaya, Labuan)</p>
+  </div>
+
+</div>
+</body>
+</html>

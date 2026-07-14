@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 1: Arah — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --violet-soft:rgba(139,107,255,0.16);
+    --blue:#4fb0ff; --blue-soft:rgba(79,176,255,0.14);
+    --amber:#fbbf5a;
+    --green:#4ade80;
+    --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%),
+      var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1040px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  .row2{display:flex; gap:24px; flex-wrap:wrap; justify-content:center; align-items:flex-start;}
+  .cap{font-size:11.5px; color:var(--muted); margin-top:10px; max-width:280px; line-height:1.5; text-align:center;}
+
+  @keyframes sunrise{
+    0%{ transform: translateY(15px); opacity:0.7; }
+    50%{ transform: translateY(0px); opacity:1; }
+    100%{ transform: translateY(15px); opacity:0.7; }
+  }
+  .sun-icon{ animation: sunrise 3s ease-in-out infinite; }
+
+  @keyframes needleSettle{
+    0%{ transform: rotate(25deg); }
+    60%{ transform: rotate(-8deg); }
+    100%{ transform: rotate(0deg); }
+  }
+  .compass-needle{ transform-origin: 150px 150px; animation: needleSettle 2s ease-out infinite; animation-iteration-count: 1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 1: Arah</h1>
+  <p class="lead">Tiga cara menentukan arah — mata angin, matahari, dan kompas — semuanya konsep visual pada asasnya. Bab ini paling sesuai ditunjukkan, bukan sekadar dibaca.</p>
+
+  <div class="card">
+    <h2>🧭 Kompas Lapan Arah Mata Angin</h2>
+    <p class="sub">Kompas sebenar dengan lapan arah berlabel — titik rujukan visual untuk seluruh bab.</p>
+    <div style="display:flex; justify-content:center;">
+      <svg width="320" height="320" viewBox="0 0 320 320">
+        <circle cx="160" cy="160" r="140" fill="#0c1128" stroke="#1b2044" stroke-width="2"/>
+        <circle cx="160" cy="160" r="105" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <!-- 4 main direction points (long) -->
+        <polygon points="160,25 172,140 160,155 148,140" fill="#4fb0ff"/>
+        <polygon points="160,295 172,180 160,165 148,180" fill="#4fb0ff"/>
+        <polygon points="25,160 140,148 155,160 140,172" fill="#4fb0ff"/>
+        <polygon points="295,160 180,148 165,160 180,172" fill="#4fb0ff"/>
+        <!-- 4 intermediate direction points (short, rotated) -->
+        <polygon points="257,63 190,130 180,120" fill="#8b6bff" opacity="0.8"/>
+        <polygon points="257,257 190,190 180,200" fill="#8b6bff" opacity="0.8"/>
+        <polygon points="63,257 130,190 120,180" fill="#8b6bff" opacity="0.8"/>
+        <polygon points="63,63 130,130 120,120" fill="#8b6bff" opacity="0.8"/>
+        <circle cx="160" cy="160" r="10" fill="#fbbf5a"/>
+
+        <!-- Main direction labels: abbreviation + full name + degree -->
+        <text x="160" y="16" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)">U</text>
+        <text x="160" y="30" text-anchor="middle" font-size="8.5" fill="var(--muted)">Utara · 0°</text>
+
+        <text x="160" y="302" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)">S</text>
+        <text x="160" y="314" text-anchor="middle" font-size="8.5" fill="var(--muted)">Selatan · 180°</text>
+
+        <text x="298" y="162" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)">T</text>
+        <text x="298" y="176" text-anchor="middle" font-size="8.5" fill="var(--muted)">Timur · 90°</text>
+
+        <text x="22" y="162" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)">B</text>
+        <text x="22" y="176" text-anchor="middle" font-size="8.5" fill="var(--muted)">Barat · 270°</text>
+
+        <!-- Intermediate labels: abbreviation + full name + degree -->
+        <text x="270" y="52" text-anchor="middle" font-size="11.5" font-weight="700" fill="#cfc2ff">TL</text>
+        <text x="270" y="64" text-anchor="middle" font-size="8" fill="var(--muted-dim)">Timur Laut · 45°</text>
+
+        <text x="270" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#cfc2ff">Tg</text>
+        <text x="270" y="282" text-anchor="middle" font-size="8" fill="var(--muted-dim)">Tenggara · 135°</text>
+
+        <text x="50" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#cfc2ff">BD</text>
+        <text x="50" y="282" text-anchor="middle" font-size="8" fill="var(--muted-dim)">Barat Daya · 225°</text>
+
+        <text x="50" y="52" text-anchor="middle" font-size="11.5" font-weight="700" fill="#cfc2ff">BL</text>
+        <text x="50" y="64" text-anchor="middle" font-size="8" fill="var(--muted-dim)">Barat Laut · 315°</text>
+      </svg>
+    </div>
+    <p style="text-align:center; font-size:11.5px; color:var(--muted); margin-top:8px;">4 arah utama (biru) + 4 arah perantaraan (ungu) — setiap satu tepat di tengah dua arah utama. Darjah ditunjukkan kerana ia akan digunakan semula dalam bearing sudutan.</p>
+  </div>
+
+  <div class="card">
+    <h2>☀️ Menentukan Arah Menggunakan Matahari</h2>
+    <p class="sub">Kaedah semula jadi — kenapa ia berfungsi, bukan sekadar langkahnya.</p>
+    <div class="row2">
+      <div>
+        <svg width="420" height="340" viewBox="0 0 420 340">
+          <!-- Reference cross, matching compass rose orientation -->
+          <text x="210" y="22" text-anchor="middle" font-size="13" fill="var(--text)" font-weight="700">Utara</text>
+          <text x="210" y="325" text-anchor="middle" font-size="13" fill="var(--text)" font-weight="700">Selatan</text>
+          <line x1="210" y1="35" x2="210" y2="305" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="40" y1="170" x2="380" y2="170" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"/>
+
+          <!-- Rising sun, far right with clear spacing from any label -->
+          <circle class="sun-icon" cx="345" cy="170" r="26" fill="#fde047"/>
+          <text x="345" y="130" text-anchor="middle" font-size="11" fill="#fde047" font-weight="700">Matahari terbit</text>
+          <text x="345" y="220" text-anchor="middle" font-size="10.5" fill="var(--muted)">(Timur)</text>
+
+          <!-- Human figure as a simple universal pictogram (like a person icon), oriented facing East -->
+          <!-- Head: nude -->
+          <circle cx="135" cy="170" r="15" fill="#e8b892"/>
+          <!-- Spine/body: red, head toward East, body extends West (back) -->
+          <line x1="120" y1="170" x2="85" y2="170" stroke="#dc2626" stroke-width="8" stroke-linecap="round"/>
+          <!-- Arms: red, crossing the spine, extending North (up) and South (down) -->
+          <line x1="105" y1="170" x2="105" y2="100" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="105" cy="95" r="8" fill="#e8b892"/>
+          <line x1="105" y1="170" x2="105" y2="240" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="105" cy="245" r="8" fill="#e8b892"/>
+          <!-- Legs: dark blue, continuing West from the body, spread slightly apart -->
+          <line x1="85" y1="170" x2="65" y2="150" stroke="#1e3a8a" stroke-width="7" stroke-linecap="round"/>
+          <line x1="85" y1="170" x2="65" y2="190" stroke="#1e3a8a" stroke-width="7" stroke-linecap="round"/>
+
+          <!-- Labels, generously spaced, no overlap -->
+          <text x="105" y="80" text-anchor="middle" font-size="11.5" fill="#4ade80" font-weight="700">Tangan kiri</text>
+          <text x="105" y="65" text-anchor="middle" font-size="10" fill="#4ade80">→ Utara</text>
+
+          <text x="105" y="268" text-anchor="middle" font-size="11.5" fill="#f87171" font-weight="700">Tangan kanan</text>
+          <text x="105" y="283" text-anchor="middle" font-size="10" fill="#f87171">→ Selatan</text>
+
+          <text x="105" y="305" text-anchor="middle" font-size="10" fill="var(--muted)">Anda, menghadap Timur (ke arah matahari)</text>
+        </svg>
+      </div>
+    </div>
+    <p class="cap" style="max-width:420px; margin:10px auto 0;">Pandangan dari atas: berdiri menghadap matahari terbit (Timur) — belakang anda ialah Barat, tangan kiri menunjuk Utara, tangan kanan menunjuk Selatan.</p>
+    <p class="cap" style="max-width:420px; margin:6px auto 0;">Kenapa ia berfungsi: Bumi berputar dari barat ke timur, jadi matahari sentiasa terbit di timur dan terbenam di barat — setiap hari, di mana-mana sahaja.</p>
+  </div>
+
+  <div class="card">
+    <h2>🧭 Mengukur Bearing Sudutan</h2>
+    <p class="sub">Konsep paling sukar dalam bab ini — skala luar vs dalam, dan peraturan lebih 180°.</p>
+    <div class="row2">
+      <div style="background:var(--bg-panel); border-radius:14px; padding:16px;">
+        <div style="text-align:center; font-size:12px; font-weight:700; color:#4fb0ff; margin-bottom:10px;">CONTOH 1 · Bearing kurang daripada 180°</div>
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <line x1="130" y1="250" x2="130" y2="10" stroke="var(--muted-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="130" y="8" text-anchor="middle" font-size="11" fill="var(--text)" font-weight="700">U (0°)</text>
+          <path d="M 130 130 m -100 0 a 100 100 0 1 1 200 0" fill="none" stroke="#4fb0ff" stroke-width="3"/>
+          <path d="M 130 130 m -100 0 a 100 100 0 1 0 200 0" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="235" y="135" font-size="9.5" fill="#4fb0ff" font-weight="700">① Skala LUAR — baca ini</text>
+          <text x="235" y="150" font-size="9" fill="var(--muted-dim)">Skala dalam — abaikan</text>
+          <line x1="130" y1="130" x2="215" y2="65" stroke="#fbbf5a" stroke-width="2.5"/>
+          <circle cx="215" cy="65" r="5" fill="#fbbf5a"/>
+          <text x="222" y="60" font-size="10.5" fill="#fbbf5a" font-weight="700">Y</text>
+          <circle cx="130" cy="130" r="5" fill="#eef1fb"/>
+          <text x="115" y="150" font-size="10.5" fill="var(--text)" font-weight="700">X (rujukan)</text>
+          <path d="M 130 90 A 40 40 0 0 1 165 100" fill="none" stroke="#fbbf5a" stroke-width="1.5"/>
+          <text x="150" y="85" font-size="10" fill="#fbbf5a" font-weight="700">65°</text>
+        </svg>
+        <div style="font-size:10.5px; color:var(--muted); line-height:1.7; margin-top:8px;">
+          <div><b style="color:var(--text);">① </b>Letak jangka sudut di X, selaraskan 0° dengan Utara</div>
+          <div><b style="color:var(--text);">② </b>Baca skala LUAR ikut arah jam terus ke garisan XY</div>
+        </div>
+        <p class="cap" style="margin-top:8px;">Bearing Y dari X = <b style="color:var(--text);">65°</b> — terus dibaca, tiada pembetulan diperlukan</p>
+      </div>
+      <div style="background:var(--bg-panel); border-radius:14px; padding:16px;">
+        <div style="text-align:center; font-size:12px; font-weight:700; color:#f87171; margin-bottom:10px;">CONTOH 2 · Bearing lebih daripada 180°</div>
+        <svg width="300" height="320" viewBox="0 0 300 320">
+          <line x1="150" y1="290" x2="150" y2="20" stroke="var(--muted-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="15" y1="155" x2="285" y2="155" stroke="var(--muted-dim)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="150" y="16" text-anchor="middle" font-size="11.5" fill="var(--text)" font-weight="700">U (0°)</text>
+          <text x="150" y="306" text-anchor="middle" font-size="11.5" fill="var(--text)" font-weight="700">S (180°)</text>
+          <circle cx="150" cy="155" r="5" fill="#eef1fb"/>
+          <text x="150" y="140" text-anchor="middle" font-size="10.5" fill="var(--text)" font-weight="700">X (rujukan)</text>
+
+          <path d="M 150 25 A 130 130 0 1 1 91 249" fill="none" stroke="#8b6bff" stroke-width="2" stroke-dasharray="4 5" opacity="0.6"/>
+          <text x="235" y="270" font-size="10.5" fill="#8b6bff" font-weight="700">Jumlah penuh = 220°</text>
+          <text x="235" y="283" font-size="9" fill="var(--muted-dim)">(diukur terus dari U)</text>
+
+          <line x1="150" y1="155" x2="91" y2="249" stroke="#f87171" stroke-width="2.5"/>
+          <circle cx="91" cy="249" r="5" fill="#f87171"/>
+          <text x="65" y="268" font-size="11" fill="#f87171" font-weight="700">Y</text>
+
+          <path d="M 150 185 A 30 30 0 0 0 122 202" fill="none" stroke="#fbbf5a" stroke-width="2.5"/>
+          <text x="108" y="190" font-size="11" fill="#fbbf5a" font-weight="700">40°</text>
+          <text x="108" y="203" font-size="8.5" fill="var(--muted-dim)">(diukur dari S)</text>
+        </svg>
+        <div style="font-size:10.5px; color:var(--muted); line-height:1.8; margin-top:8px;">
+          <div><b style="color:var(--text);">① </b>Y berada melepasi paksi Selatan</div>
+          <div><b style="color:var(--text);">② </b>Ukur sudut kecil dari S ke garisan XY = <b style="color:#fbbf5a;">40°</b> (senang diukur dengan jangka sudut)</div>
+          <div><b style="color:var(--text);">③ </b>Tambah 180° (jarak U ke S) + 40° = <b style="color:#8b6bff;">220°</b> (jumlah penuh dari U)</div>
+        </div>
+        <p class="cap" style="margin-top:8px;">Bearing Y dari X = 180° + 40° = <b style="color:var(--text);">220°</b></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
