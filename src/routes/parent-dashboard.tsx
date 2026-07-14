@@ -1,33 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
-  Star,
-  BookOpen,
-  Flame,
-  Rocket,
-  Mail,
-  Send,
-  Printer,
-  ShieldCheck,
-  Bot,
-  TrendingUp,
-  TrendingDown,
-  Clock3,
-  ArrowRight,
-  Loader2,
+  ArrowRight, Award, BarChart3, BookOpen, CheckCircle2,
+  Flame, Layers3, LockKeyhole, Rocket, Sparkles,
+  Star, Target, TrendingDown, TrendingUp, Trophy, UsersRound,
 } from "lucide-react";
-import { useProgress, type ReportCadence } from "@/hooks/use-progress";
-import { useAuth } from "@/context/auth-context";
-import { getStudentAnalytics, type StudentAnalytics } from "@/lib/analytics";
 import { AcademyPageShell } from "@/components/AcademyPage";
 import { WeeklyParentReportPreview } from "@/components/parent/WeeklyParentReportPreview";
+import { useAuth } from "@/context/auth-context";
+import { useProgress, totalChaptersCompleted } from "@/hooks/use-progress";
+import { getStudentAnalytics, type StudentAnalytics, type SubjectPerformance } from "@/lib/analytics";
+import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { subjects } from "@/data/subjects-meta";
 import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/parent-dashboard")({
-  // Per-user analytics view — same noindex reasoning as /dashboard.
   head: () => seoMeta({
     title: "Parent Dashboard",
-    description: "A parent-facing analytics view of your child's KSSM study progress on AcadeMY.",
+    description: "A clear view of your child's learning progress on AcadeMY.",
     path: "/parent-dashboard",
     noindex: true,
   }),
@@ -35,429 +26,258 @@ export const Route = createFileRoute("/parent-dashboard")({
 });
 
 const SUBJECT_COLOR: Record<string, string> = {
-  bm: "#C458A3",
-  english: "#8E5ACF",
-  math: "#60A5FA",
-  science: "#34D399",
-  sejarah: "#F59E0B",
-  geography: "#F472B6",
-};
-
-const TONE_COLOR: Record<StudentAnalytics["missionInsight"]["tone"], string> = {
-  great: "#34D399",
-  steady: "#FBBF24",
-  "needs-attention": "#F87171",
+  bm: "#FB7185", english: "#38BDF8", math: "#818CF8", science: "#34D399",
+  sejarah: "#FBBF24", geography: "#2DD4BF",
 };
 
 function ParentDashboardPage() {
-  // NOTE: This page's ONLY data source is getStudentAnalytics() from
-  // src/lib/analytics.ts — the shared analytics layer that also powers the
-  // student dashboard and (later) weekly/monthly parent emails and admin
-  // reports. Nothing here recomputes XP, rank, or quiz stats itself.
-  const { progress, setParentReport } = useProgress();
-  const { user } = useAuth();
-
-  const [cadence, setCadence] = useState<ReportCadence>(progress.reportCadence ?? "weekly");
-  const [email, setEmail] = useState(progress.parentEmail ?? "");
-  const [saved, setSaved] = useState(false);
+  const { user, loading: authLoading } = useAuth();
+  const { progress } = useProgress();
   const [analytics, setAnalytics] = useState<StudentAnalytics | null>(null);
+  const [storedPlan, setStoredPlan] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const windowDays = cadence === "weekly" ? 7 : 30;
-  const periodLabel = cadence === "weekly" ? "the past 7 days" : "the past 30 days";
-
   useEffect(() => {
-    let alive = true;
+    let active = true;
+    if (authLoading) return;
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
-    // The signed-in student's own live progress (from useProgress) is passed
-    // in directly — this is the "fast path" documented in analytics.ts. When
-    // there's no signed-in user yet, getStudentAnalytics falls back to its
-    // built-in mock student so the page still renders a full demo.
-    getStudentAnalytics(user?.id ?? getStudentAnalytics.MOCK_STUDENT_ID, {
-      progress: user ? progress : undefined,
-      studentName: user?.name,
-      windowDays,
-    }).then((data) => {
-      if (alive) {
-        setAnalytics(data);
-        setLoading(false);
+    const profileRequest = isSupabaseConfigured
+      ? supabase.from("profiles").select("plan").eq("id", user.id).maybeSingle()
+      : Promise.resolve({ data: null, error: null });
+
+    Promise.all([
+      getStudentAnalytics(user.id, { progress, studentName: user.name, windowDays: 7 }),
+      profileRequest,
+    ]).then(([nextAnalytics, profileResult]) => {
+      if (!active) return;
+      if (profileResult.error && import.meta.env.DEV) {
+        console.error("[parent-dashboard] profile plan query failed", profileResult.error);
       }
+      setStoredPlan(profileResult.data?.plan ?? null);
+      setAnalytics(nextAnalytics);
+      setLoading(false);
+    }).catch((error: unknown) => {
+      if (import.meta.env.DEV) console.error("[parent-dashboard] analytics load failed", error);
+      if (active) setLoading(false);
     });
-    return () => {
-      alive = false;
-    };
-  }, [user, progress, windowDays]);
+    return () => { active = false; };
+  }, [authLoading, user, progress]);
 
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (authLoading || loading) return <DashboardSkeleton />;
 
-  function save() {
-    setParentReport(emailValid ? email : undefined, cadence);
-    setSaved(true);
-    window.setTimeout(() => setSaved(false), 2200);
-  }
-
-  function sendEmail() {
-    if (!analytics) return;
-    const subject = `AcadeMY Parent Dashboard — ${analytics.studentName}`;
-    const lines = [
-      `AcadeMY — Parent Dashboard Snapshot`,
-      `Student: ${analytics.studentName}`,
-      `Period: ${periodLabel}`,
-      ``,
-      `Total XP: ${analytics.totalXp.toLocaleString()} (+${analytics.weeklyXp} this week)`,
-      `Study streak: ${analytics.studyStreak} day${analytics.studyStreak !== 1 ? "s" : ""}`,
-      `Cosmic rank: ${analytics.rankName} (ELO ${analytics.chessRating.toLocaleString()})`,
-      ``,
-      `SUBJECT PERFORMANCE`,
-      ...analytics.subjectPerformance.map((s) => `• ${s.name}: ${s.avgScore}% (${s.trend >= 0 ? "+" : ""}${s.trend})`),
-      ``,
-      `MISSION INSIGHT`,
-      analytics.missionInsight.summary,
-      ``,
-      `RECOMMENDED REVISION`,
-      ...analytics.recommendedRevision.map((r) => `• ${r}`),
-      ``,
-      `— Sent from AcadeMY`,
-    ];
-    const body = lines.join("\n");
-    if (emailValid) setParentReport(email, cadence);
-    window.location.href = `mailto:${emailValid ? encodeURIComponent(email) : ""}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-  }
-
-  const greeting = useMemo(() => {
-    const h = new Date().getHours();
-    if (h < 12) return "Good Morning";
-    if (h < 17) return "Good Afternoon";
-    return "Good Evening";
-  }, []);
-
-  if (loading || !analytics) {
+  if (!user) {
     return (
-      <AcademyPageShell className="max-w-7xl">
-        <div className="flex min-h-[50vh] flex-col items-center justify-center gap-3 text-white/50">
-          <Loader2 className="h-6 w-6 animate-spin" />
-          <p className="text-sm font-semibold">Loading analytics…</p>
-        </div>
+      <AcademyPageShell className="max-w-6xl">
+        <EmptyPanel icon={<UsersRound />} title="Sign in to view the Parent Dashboard"
+          body="Your child's learning summary is private. Sign in to continue." action="Sign in" to="/login" />
       </AcademyPageShell>
     );
   }
 
+  if (!analytics) {
+    return (
+      <AcademyPageShell className="max-w-6xl">
+        <EmptyPanel icon={<BarChart3 />} title="Progress is not available yet"
+          body="We couldn't load this learning summary. Please refresh and try again." />
+      </AcademyPageShell>
+    );
+  }
+
+  const plan = resolveStoredPlan(storedPlan);
+  const canViewDashboard = hasFeature(plan, "parent_dashboard");
+  const canViewAnalytics = hasFeature(plan, "parent_analytics");
+  const canViewReports = hasFeature(plan, "parent_reports");
+
+  return <DashboardContent analytics={analytics} progress={progress} canViewDashboard={canViewDashboard}
+    canViewAnalytics={canViewAnalytics} canViewReports={canViewReports} />;
+}
+
+function DashboardContent({ analytics, progress, canViewDashboard, canViewAnalytics, canViewReports }: {
+  analytics: StudentAnalytics;
+  progress: ReturnType<typeof useProgress>["progress"];
+  canViewDashboard: boolean;
+  canViewAnalytics: boolean;
+  canViewReports: boolean;
+}) {
+  const quizResults = progress.quizHistory ?? [];
+  const weeklyResults = quizResults.filter((item) => Date.now() - new Date(item.date).getTime() <= 7 * 86_400_000);
+  const averageQuiz = weeklyResults.length
+    ? Math.round(weeklyResults.reduce((sum, item) => sum + item.scorePct, 0) / weeklyResults.length)
+    : null;
+  const activeSubjectIds = new Set(Object.keys(progress.subjectXp));
+  const totalSubjectXp = Math.max(1, Object.values(progress.subjectXp).reduce((a, b) => a + b, 0));
+  const performanceById = new Map(analytics.subjectPerformance.map((item) => [item.subjectId, item]));
+  const subjectRows = subjects.filter((subject) => activeSubjectIds.has(subject.id) || performanceById.has(subject.id));
+  const mostImproved = [...analytics.subjectPerformance].sort((a, b) => b.trend - a.trend)[0] ?? null;
+  const formLevel = progress.lastVisited?.form ?? "Form not set";
+  const lastActive = formatLastActive(progress.lastActive);
+  const chaptersCompleted = totalChaptersCompleted(progress.chapterActivity);
+  const recentActivity = (progress.recentActivity ?? []).slice(0, 6);
+  const weeklyTotal = analytics.quizzesCompletedThisWeek + analytics.chaptersCompletedThisWeek + analytics.flashcardsReviewedThisWeek;
+
   return (
     <AcademyPageShell className="max-w-7xl">
-      {/* ── Child summary / header ── */}
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#34D399]">Parent Dashboard</p>
-          <h1 className="font-display text-xl font-black text-white sm:text-2xl">{greeting} 👋</h1>
-          <p className="mt-1 text-sm text-white/45">
-            {analytics.studentName}'s progress at a glance — {periodLabel}.
-            {analytics.isMockData && (
-              <span className="ml-2 rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white/40">
-                Demo data
-              </span>
-            )}
-          </p>
-        </div>
-        <div className="inline-flex rounded-xl border border-white/10 bg-white/[0.04] p-1">
-          {(["weekly", "monthly"] as ReportCadence[]).map((c) => (
-            <button
-              key={c}
-              type="button"
-              onClick={() => setCadence(c)}
-              className={`rounded-lg px-4 py-1.5 text-xs font-bold capitalize transition-all ${
-                cadence === c
-                  ? "bg-gradient-to-r from-[#34D399] to-[#10B981] text-[#04130C]"
-                  : "text-white/50 hover:text-white"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Child summary KPI row ── */}
-      <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <KpiCard icon={Star} label="Total XP" value={analytics.totalXp.toLocaleString()} note={`+${analytics.weeklyXp} this week`} color="#A78BFA" />
-        <KpiCard icon={BookOpen} label="Subjects Active" value={String(analytics.subjectPerformance.length)} note="With quiz attempts" color="#60A5FA" />
-        <KpiCard icon={Flame} label="Study Streak" value={`${analytics.studyStreak}d`} note="Keep it up!" color="#F59E0B" />
-        <KpiCard icon={Rocket} label="Cosmic Rank" value={analytics.rankName} note={`ELO: ${analytics.chessRating.toLocaleString()} pts`} color={analytics.rankColor} />
-      </div>
-
-      {/* ── Weekly progress ── */}
-      <div className="mb-6">
-        <Card>
-          <SectionLabel>Weekly Progress</SectionLabel>
-          <div className="mt-4 grid grid-cols-3 gap-4">
-            <MiniStat label="Quizzes" value={analytics.quizzesCompletedThisWeek} />
-            <MiniStat label="Chapters" value={analytics.chaptersCompletedThisWeek} />
-            <MiniStat label="Flashcards" value={analytics.flashcardsReviewedThisWeek} />
-          </div>
-          <div className="mt-5 flex h-24 items-end justify-between gap-2">
-            {analytics.studyConsistency.map((d, i) => {
-              const total = d.quizzesCompleted + d.chaptersCompleted + d.flashcardsReviewed;
-              const max = Math.max(1, ...analytics.studyConsistency.map((x) => x.quizzesCompleted + x.chaptersCompleted + x.flashcardsReviewed));
-              const pct = Math.round((total / max) * 100);
-              return (
-                <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
-                  <div className="flex h-16 w-full items-end">
-                    <div
-                      className="w-full rounded-md bg-gradient-to-t from-[#331499] to-[#8C40FF]"
-                      style={{ height: `${Math.max(6, pct)}%`, opacity: total === 0 ? 0.3 : 1 }}
-                    />
-                  </div>
-                  <span className="text-[10px] font-bold text-white/40">{d.day}</span>
-                </div>
-              );
-            })}
-          </div>
-        </Card>
-      </div>
-
-      {/* ── Subject performance + weak topics ── */}
-      <div className="mb-6 grid gap-6 lg:grid-cols-2">
-        <Card>
-          <div className="mb-4 flex items-center justify-between">
-            <SectionLabel>Subject Performance</SectionLabel>
-            <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-[10px] font-bold text-white/50">
-              {cadence === "weekly" ? "Last 7 days" : "Last 30 days"}
-            </span>
-          </div>
-          {analytics.subjectPerformance.length === 0 ? (
-            <EmptyState text="No quizzes completed in this period yet." />
-          ) : (
-            <div className="space-y-3.5">
-              {analytics.subjectPerformance.map((s) => {
-                const color = SUBJECT_COLOR[s.subjectId] ?? "#A78BFA";
-                return (
-                  <div key={s.subjectId} className="flex items-center gap-3">
-                    <span className="w-28 shrink-0 truncate text-sm font-semibold text-white/80">{s.name}</span>
-                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/[0.08]">
-                      <div className="h-full rounded-full" style={{ width: `${s.avgScore}%`, background: color }} />
-                    </div>
-                    <span className="w-10 shrink-0 text-right text-sm font-bold" style={{ color }}>
-                      {s.avgScore}%
-                    </span>
-                    <span
-                      className={`flex w-10 shrink-0 items-center gap-0.5 text-xs font-bold ${
-                        s.trend >= 0 ? "text-emerald-400" : "text-rose-400"
-                      }`}
-                    >
-                      {s.trend >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                      {s.trend >= 0 ? "+" : ""}
-                      {s.trend}
-                    </span>
-                  </div>
-                );
-              })}
+      <header className="mb-7 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#111A2D]/95 via-[#0B1324]/95 to-[#0A1220]/95 p-5 shadow-[0_24px_80px_rgba(2,6,23,.45)] sm:p-7">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-emerald-300">
+              <UsersRound className="h-4 w-4" /> Parent overview
             </div>
-          )}
-        </Card>
-
-        <Card>
-          <div className="mb-4 flex items-center justify-between">
-            <span className="flex items-center gap-2">
-              <Clock3 className="h-4 w-4 text-cyan-300" />
-              <SectionLabel>Weak Topics</SectionLabel>
-            </span>
-            <Link to="/tracker" className="text-xs font-bold text-[#A78BFA] hover:text-white transition-colors">
-              View AI Tracker →
-            </Link>
+            <h1 className="font-display text-3xl font-black text-white sm:text-4xl">{analytics.studentName}</h1>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+              {weeklyTotal > 0
+                ? `${weeklyTotal} learning activities recorded this week. Here is where progress is building and where a little support can help.`
+                : "No learning activity has been recorded this week yet. A short revision session is a good way to restart momentum."}
+            </p>
           </div>
-          {analytics.weakTopics.length === 0 ? (
-            <EmptyState text="No weak topics — every quizzed chapter is above the pass threshold. 🎉" />
-          ) : (
-            <div className="space-y-2.5">
-              {analytics.weakTopics.map((w) => (
-                <div
-                  key={`${w.subjectId}-${w.chapterKey}`}
-                  className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5"
-                >
-                  <span className="flex h-9 w-12 shrink-0 items-center justify-center rounded-lg bg-rose-500/15 text-xs font-black tabular-nums text-rose-300">
-                    {w.avgScore}%
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-bold text-white">{w.chapterLabel}</span>
-                    <span className="block truncate text-xs text-white/40">{w.subjectName}</span>
-                  </span>
-                </div>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:min-w-[520px]">
+            <HeaderFact label="Level" value={formLevel} />
+            <HeaderFact label="Current rank" value={analytics.rankName} />
+            <HeaderFact label="Companion" value={`Nova · ${analytics.companionStageName}`} />
+            <HeaderFact label="Last active" value={lastActive} />
+          </div>
+        </div>
+      </header>
+
+      {!canViewDashboard && <UpgradeBanner />}
+
+      <section aria-labelledby="key-metrics" className="mb-8">
+        <SectionHeading id="key-metrics" eyebrow="At a glance" title="Key learning metrics" />
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+          <Metric icon={<Star />} label="Total XP" value={analytics.totalXp.toLocaleString()} detail={`+${analytics.weeklyXp} this week`} color="#A78BFA" />
+          <Metric icon={<Flame />} label="Current streak" value={`${analytics.studyStreak} days`} detail="Study consistency" color="#F59E0B" />
+          <Metric icon={<BarChart3 />} label="Weekly activity" value={String(weeklyTotal)} detail="Recorded actions" color="#38BDF8" />
+          <Metric icon={<Trophy />} label="Quiz average" value={averageQuiz === null ? "—" : `${averageQuiz}%`} detail={weeklyResults.length ? `${weeklyResults.length} attempts` : "No attempts yet"} color="#34D399" />
+          <Metric icon={<BookOpen />} label="Chapters completed" value={String(chaptersCompleted)} detail="Notes, cards and quiz" color="#F472B6" />
+        </div>
+      </section>
+
+      <LockedSection locked={!canViewAnalytics} label="Captain insight">
+        <div className="grid gap-6 xl:grid-cols-[1.45fr_.8fr]">
+          <Panel>
+            <SectionHeading id="subjects" eyebrow="Performance" title="Subject progress" compact />
+            {subjectRows.length ? (
+              <div className="mt-5 space-y-4">
+                {subjectRows.map((subject) => {
+                  const performance = performanceById.get(subject.id);
+                  const progressPct = Math.round(((progress.subjectXp[subject.id] ?? 0) / totalSubjectXp) * 100);
+                  return <SubjectRow key={subject.id} name={subject.name} color={SUBJECT_COLOR[subject.id] ?? "#A78BFA"}
+                    progress={progressPct} performance={performance} />;
+                })}
+              </div>
+            ) : <InlineEmpty text="Subject progress will appear after the first learning activity." />}
+          </Panel>
+
+          <Panel>
+            <SectionHeading id="insights" eyebrow="Plain-language guidance" title="Learning insights" compact />
+            <div className="mt-5 space-y-3">
+              <Insight icon={<Award />} label="Strongest subject" value={analytics.bestSubject?.name ?? "Not enough data"} />
+              <Insight icon={<Target />} label="Needs attention" value={analytics.weakestSubject?.name ?? "Not enough data"} />
+              <Insight icon={<TrendingUp />} label="Most improved" value={mostImproved && mostImproved.trend > 0 ? mostImproved.name : "Not enough history"} />
+            </div>
+            <div className="mt-5 rounded-2xl border border-violet-400/20 bg-violet-400/[.07] p-4">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-violet-200"><Rocket className="h-4 w-4" /> Next revision mission</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{analytics.missionInsight.recommendation}</p>
+            </div>
+          </Panel>
+        </div>
+      </LockedSection>
+
+      <section className="my-8 grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
+        <Panel>
+          <SectionHeading id="activity" eyebrow="Latest learning" title="Weekly activity" compact />
+          {recentActivity.length ? (
+            <ol className="mt-5 space-y-2">
+              {recentActivity.map((item) => (
+                <li key={item.id} className="flex items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.035] p-3">
+                  <ActivityIcon type={item.type} />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold text-white">{item.label}</p>
+                    <p className="mt-0.5 text-xs capitalize text-slate-400">{item.type} · {formatActivityTime(item.timestamp)}</p>
+                  </div>
+                </li>
               ))}
-            </div>
-          )}
-        </Card>
-      </div>
+            </ol>
+          ) : <InlineEmpty text="Recent quizzes, notes and flashcard sessions will appear here." />}
+        </Panel>
 
-      {/* ── Mission insight + recommended revision + send report ── */}
-      <div className="mb-6 grid gap-6 lg:grid-cols-3">
-        <Card
-          className="border-[#8B5CF6]/30 bg-gradient-to-br from-[#8B5CF6]/10 to-[#0B1220]/62"
-          style={{ borderColor: `${TONE_COLOR[analytics.missionInsight.tone]}55` }}
-        >
-          <div className="mb-3 flex items-center gap-2.5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#8B5CF6]/20">
-              <Bot className="h-4.5 w-4.5 text-[#C4B5FD]" />
-            </span>
-            <SectionLabel>Mission Insight</SectionLabel>
-          </div>
-          <p className="text-sm font-bold text-white">{analytics.missionInsight.headline}</p>
-          <p className="mt-2 text-sm leading-relaxed text-white/70">{analytics.missionInsight.summary}</p>
-        </Card>
+        <LockedSection locked={!canViewAnalytics} label="Captain insight" flush>
+          <Panel className="h-full">
+            <SectionHeading id="support" eyebrow="Support priorities" title="Topics to revisit" compact />
+            {analytics.weakTopics.length ? (
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {analytics.weakTopics.slice(0, 4).map((topic) => (
+                  <div key={`${topic.subjectId}-${topic.chapterKey}`} className="rounded-2xl border border-amber-300/15 bg-amber-300/[.055] p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div><p className="font-semibold text-white">{topic.chapterLabel}</p><p className="mt-1 text-xs text-slate-400">{topic.subjectName}</p></div>
+                      <span className="rounded-full bg-amber-300/10 px-2.5 py-1 text-xs font-bold text-amber-200">{topic.avgScore}%</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : <InlineEmpty text="No weak topics detected from recent quizzes." />}
+          </Panel>
+        </LockedSection>
+      </section>
 
-        <Card>
-          <SectionLabel>Recommended Revision</SectionLabel>
-          <ul className="mt-3 space-y-2">
-            {analytics.recommendedRevision.map((r, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm leading-relaxed text-white/75">
-                <ArrowRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#A78BFA]" />
-                {r}
-              </li>
-            ))}
-          </ul>
-        </Card>
+      <section className="mb-8">
+        <SectionHeading id="report" eyebrow="Parent-friendly summary" title="Weekly Parent Report" />
+        <LockedSection locked={!canViewReports} label="Captain report">
+          <WeeklyParentReportPreview analytics={analytics} />
+        </LockedSection>
+      </section>
 
-        <Card>
-          <h2 className="flex items-center gap-2 font-display text-base font-bold text-white">
-            <Mail className="h-4.5 w-4.5 text-[#34D399]" /> Send to parent
-          </h2>
-          <p className="mt-1 text-xs text-white/45">
-            Save an email to enable {cadence} reports, or send this snapshot now.
-          </p>
-
-          <label htmlFor="pd-parent-email" className="sr-only">
-            Parent email
-          </label>
-          <div className="mt-3 flex flex-col gap-2">
-            <input
-              id="pd-parent-email"
-              type="email"
-              inputMode="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="parent@example.com"
-              className="min-h-[40px] rounded-xl border border-white/10 bg-white/[0.05] px-3.5 text-sm text-white placeholder:text-white/30 focus:border-[#34D399]/50 focus:outline-none focus:ring-2 focus:ring-[#34D399]/30"
-            />
-            {email.length > 0 && !emailValid && (
-              <p role="alert" className="text-xs text-rose-300">
-                Enter a valid email address.
-              </p>
-            )}
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={save}
-                disabled={email.length > 0 && !emailValid}
-                className="min-h-[40px] flex-1 rounded-xl border border-white/15 bg-white/[0.06] text-xs font-bold text-white transition-colors hover:bg-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {saved ? "Saved ✓" : "Save"}
-              </button>
-              <button
-                type="button"
-                onClick={sendEmail}
-                className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#34D399] to-[#10B981] text-xs font-black text-[#04130C] transition-transform hover:scale-[1.02] active:scale-[0.99]"
-              >
-                <Send className="h-3.5 w-3.5" /> Send now
-              </button>
-            </div>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="inline-flex min-h-[40px] items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.06] text-xs font-bold text-white transition-colors hover:bg-white/[0.12]"
-            >
-              <Printer className="h-3.5 w-3.5" /> Print / PDF
-            </button>
-          </div>
-          <p className="mt-3 flex items-start gap-1.5 text-[10px] leading-relaxed text-white/35">
-            <ShieldCheck className="mt-0.5 h-3 w-3 shrink-0" />
-            Opens your email app with this snapshot pre-filled. Automated {cadence} delivery is a future step (see
-            src/lib/analytics.ts) — no email is sent automatically yet.
-          </p>
-        </Card>
-      </div>
-
-      {/* ── Weekly parent email preview — visual only, no email is sent from here ── */}
-      <div className="mb-6">
-        <div className="mb-3 flex items-center gap-2">
-          <Mail className="h-4 w-4 text-[#34D399]" />
-          <SectionLabel>Email Report Preview</SectionLabel>
-        </div>
-        <WeeklyParentReportPreview analytics={analytics} />
+      <div className="rounded-2xl border border-sky-300/15 bg-sky-300/[.05] px-4 py-3 text-sm leading-6 text-slate-300">
+        <span className="font-semibold text-sky-200">Account note:</span> AcadeMY does not yet have a parent-to-child account link. This preview currently reflects the signed-in account's own progress; no other student's records are queried.
       </div>
     </AcademyPageShell>
   );
 }
 
-function KpiCard({
-  icon: Icon,
-  label,
-  value,
-  note,
-  color,
-}: {
-  icon: typeof Star;
-  label: string;
-  value: string;
-  note: string;
-  color: string;
-}) {
+function SubjectRow({ name, color, progress, performance }: { name: string; color: string; progress: number; performance?: SubjectPerformance }) {
+  const status = !performance ? "Building" : performance.avgScore >= 80 ? "Strong" : performance.trend > 0 ? "Improving" : "Needs Attention";
   return (
-    <Card className="relative overflow-hidden">
-      <div
-        className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-40 blur-2xl"
-        style={{ background: color }}
-      />
-      <div className="relative z-10 flex items-center gap-2.5">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ background: `${color}2a` }}>
-          <Icon className="h-5 w-5" style={{ color }} />
-        </span>
-        <span className="text-xs font-bold text-white/50">{label}</span>
+    <div className="grid items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.03] p-4 sm:grid-cols-[140px_1fr_70px_105px]">
+      <p className="font-semibold text-white">{name}</p>
+      <div><div className="mb-1.5 flex justify-between text-xs text-slate-400"><span>Current progress</span><span>{progress}%</span></div>
+        <div className="h-2 overflow-hidden rounded-full bg-white/[.08]"><div className="h-full rounded-full" style={{ width: `${progress}%`, background: color }} /></div></div>
+      <p className="text-sm font-bold tabular-nums" style={{ color }}>{performance ? `${performance.avgScore}%` : "—"}</p>
+      <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-300">
+        {performance?.trend !== undefined && (performance.trend >= 0 ? <TrendingUp className="h-3.5 w-3.5 text-emerald-300" /> : <TrendingDown className="h-3.5 w-3.5 text-rose-300" />)}{status}
+      </span>
+    </div>
+  );
+}
+
+function LockedSection({ locked, label, children, flush = false }: { locked: boolean; label: string; children: ReactNode; flush?: boolean }) {
+  if (!locked) return <>{children}</>;
+  return <div className={`relative overflow-hidden rounded-[2rem] ${flush ? "h-full" : "my-8"}`}>
+    <div aria-hidden="true" className="pointer-events-none select-none blur-[7px] opacity-45">{children}</div>
+    <div className="absolute inset-0 flex items-center justify-center bg-[#070D18]/55 p-5 backdrop-blur-[2px]">
+      <div className="max-w-sm rounded-2xl border border-violet-300/20 bg-[#10182A]/95 p-5 text-center shadow-2xl">
+        <LockKeyhole className="mx-auto h-6 w-6 text-violet-300" />
+        <p className="mt-3 font-display text-lg font-bold text-white">Unlock {label}</p>
+        <p className="mt-2 text-sm leading-6 text-slate-300">Captain plans include full subject trends, learning insights and parent reports.</p>
+        <Link to="/upgrade" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-bold text-white hover:bg-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300">Explore Captain <ArrowRight className="h-4 w-4" /></Link>
       </div>
-      <p className="relative z-10 mt-3 font-display text-2xl font-black text-white">{value}</p>
-      <p className="relative z-10 mt-1 text-[11px] font-semibold" style={{ color }}>
-        {note}
-      </p>
-    </Card>
-  );
-}
-
-function MiniStat({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-3 text-center">
-      <p className="font-display text-xl font-black text-white">{value}</p>
-      <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-white/40">{label}</p>
     </div>
-  );
+  </div>;
 }
 
-function Card({
-  children,
-  className = "",
-  style,
-}: {
-  children: ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div
-      className={`academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6 ${className}`}
-      style={style}
-    >
-      {children}
-    </div>
-  );
-}
-
-function SectionLabel({ children }: { children: ReactNode }) {
-  return <p className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">{children}</p>;
-}
-
-function EmptyState({ text }: { text: string }) {
-  return (
-    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 text-center">
-      <p className="text-sm text-white/45">{text}</p>
-    </div>
-  );
-}
+function UpgradeBanner() { return <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-violet-300/20 bg-violet-400/[.07] p-4 sm:flex-row sm:items-center sm:justify-between"><div className="flex gap-3"><Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-violet-300" /><div><p className="font-semibold text-white">Parent Dashboard preview</p><p className="mt-1 text-sm text-slate-300">Core progress is visible. Captain unlocks detailed insights and weekly reports.</p></div></div><Link to="/upgrade" className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-violet-300/25 px-4 text-sm font-bold text-violet-100 hover:bg-violet-300/10">View plans</Link></div>; }
+function Panel({ children, className = "" }: { children: ReactNode; className?: string }) { return <div className={`rounded-[2rem] border border-white/[.08] bg-[#0B1322]/80 p-5 shadow-[0_18px_60px_rgba(2,6,23,.28)] sm:p-6 ${className}`}>{children}</div>; }
+function SectionHeading({ id, eyebrow, title, compact = false }: { id: string; eyebrow: string; title: string; compact?: boolean }) { return <div className={compact ? "" : "mb-4"}><p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-300">{eyebrow}</p><h2 id={id} className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">{title}</h2></div>; }
+function HeaderFact({ label, value }: { label: string; value: string }) { return <div className="rounded-2xl border border-white/[.08] bg-white/[.045] p-3"><p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">{label}</p><p className="mt-1 text-sm font-semibold text-white">{value}</p></div>; }
+function Metric({ icon, label, value, detail, color }: { icon: ReactNode; label: string; value: string; detail: string; color: string }) { return <div className="rounded-2xl border border-white/[.08] bg-[#0B1322]/80 p-4"><span className="flex h-9 w-9 items-center justify-center rounded-xl [&>svg]:h-4 [&>svg]:w-4" style={{ color, background: `${color}1A` }}>{icon}</span><p className="mt-4 text-xs font-semibold text-slate-400">{label}</p><p className="mt-1 font-display text-2xl font-black tabular-nums text-white">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>; }
+function Insight({ icon, label, value }: { icon: ReactNode; label: string; value: string }) { return <div className="flex items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.035] p-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[.06] text-emerald-300 [&>svg]:h-4.5 [&>svg]:w-4.5">{icon}</span><div><p className="text-xs text-slate-400">{label}</p><p className="mt-0.5 text-sm font-semibold text-white">{value}</p></div></div>; }
+function ActivityIcon({ type }: { type: string }) { const icon = type === "quiz" ? <CheckCircle2 /> : type === "flashcards" ? <Layers3 /> : <BookOpen />; return <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-sky-300 [&>svg]:h-4.5 [&>svg]:w-4.5">{icon}</span>; }
+function InlineEmpty({ text }: { text: string }) { return <div className="mt-5 rounded-2xl border border-dashed border-white/10 p-5 text-center text-sm text-slate-400">{text}</div>; }
+function DashboardSkeleton() { return <AcademyPageShell className="max-w-7xl"><div aria-label="Loading Parent Dashboard" className="animate-pulse space-y-6"><div className="h-48 rounded-[2rem] bg-white/[.05]" /><div className="grid grid-cols-2 gap-3 lg:grid-cols-5">{Array.from({ length: 5 }).map((_, i) => <div key={i} className="h-36 rounded-2xl bg-white/[.05]" />)}</div><div className="grid gap-6 lg:grid-cols-2"><div className="h-80 rounded-[2rem] bg-white/[.05]" /><div className="h-80 rounded-[2rem] bg-white/[.05]" /></div></div></AcademyPageShell>; }
+function EmptyPanel({ icon, title, body, action, to }: { icon: ReactNode; title: string; body: string; action?: string; to?: string }) { return <div className="mx-auto mt-16 max-w-xl rounded-[2rem] border border-white/10 bg-[#0B1322]/85 p-8 text-center"><span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300 [&>svg]:h-5 [&>svg]:w-5">{icon}</span><h1 className="mt-5 font-display text-2xl font-bold text-white">{title}</h1><p className="mt-2 text-sm leading-6 text-slate-300">{body}</p>{action && to && <Link to={to} className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-emerald-500 px-5 text-sm font-bold text-emerald-950">{action}</Link>}</div>; }
+function formatLastActive(value: string) { if (!value) return "No activity yet"; const date = new Date(`${value}T00:00:00`); const days = Math.floor((Date.now() - date.getTime()) / 86_400_000); if (days <= 0) return "Today"; if (days === 1) return "Yesterday"; return `${days} days ago`; }
+function formatActivityTime(value: number) { return new Intl.DateTimeFormat("en-MY", { weekday: "short", hour: "numeric", minute: "2-digit" }).format(new Date(value)); }

@@ -9,7 +9,11 @@ import {
   type BMForm3Hub,
   type BMForm3Topic,
 } from "@/data/bm-form3-structure";
-import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
+import {
+  Kertas2FolderTemplate,
+  Kertas2HubGrid,
+  splitIntoKertas2Folders,
+} from "@/components/Kertas2FolderTemplate";
 import { ComingSoonScreen } from "@/components/ChapterPicker";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import { getBMForm3SistemBahasaContent } from "@/data/bm-form3-sistem-bahasa-content";
@@ -27,6 +31,18 @@ import {
 } from "@/data/bm-form3-komsas-structure";
 import { BM_FORM3_NOVEL_WORKS, getBMForm3NovelWork } from "@/data/bm-form3-novel-structure";
 import { BMForm3UlasanContent } from "@/components/BMForm3UlasanContent";
+import { BMForm3KaranganPendekContent } from "@/components/BMForm3KaranganPendekContent";
+import type { BMForm3KaranganPendekSectionId } from "@/data/bm-form3-karangan-pendek";
+import { BMForm3KaranganResponsTerbukaContent } from "@/components/BMForm3KaranganResponsTerbukaContent";
+import type { BMForm3ResponsTerbukaSectionId } from "@/data/bm-form3-karangan-respons-terbuka";
+import { BMForm3BengkelKaranganContent } from "@/components/BMForm3BengkelKaranganContent";
+import type { BMForm3BengkelKaranganSectionId } from "@/data/bm-form3-bengkel-karangan";
+import { BMForm3ModelKaranganBankContent } from "@/components/BMForm3ModelKaranganBankContent";
+import type { BMForm3ModelKaranganSectionId } from "@/data/bm-form3-model-karangan-bank";
+import { BMForm3PeribahasaBankContent } from "@/components/BMForm3PeribahasaBankContent";
+import type { BMForm3PeribahasaSectionId } from "@/data/bm-form3-peribahasa-bank";
+import { BMForm3TingkatkanKaranganContent } from "@/components/BMForm3TingkatkanKaranganContent";
+import type { BMForm3TingkatkanKaranganSectionId } from "@/data/bm-form3-tingkatkan-karangan";
 
 // Mirrors BMWorldPage.tsx (Tingkatan 1) screen-by-screen so Tingkatan 3 looks
 // and behaves identically. Every leaf here renders the shared ComingSoonScreen
@@ -273,7 +289,7 @@ function KertasView({
     return (
       <div>
         <PageHeader
-          breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.label]}
+          breadcrumb={["Bahasa Melayu", kertas.label]}
           onBack={onBack}
           accent={kertas.color}
         />
@@ -381,11 +397,39 @@ function HubView({
   onBack: () => void;
 }) {
   if (kertas.id === "k2") {
-    const items = hub.topics.map((topic) => ({ id: topic.id, title: topic.label }));
-    return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><Kertas2FolderTemplate title={hub.label} subtitle={hub.description} groups={splitIntoKertas2Folders(items)} onSelectItem={onSelectTopic} /></div>;
+    const items = hub.topics.map((topic) => ({
+      id: topic.id,
+      title: topic.label,
+      description: topic.description,
+      badge: topic.badge,
+    }));
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]}
+          onBack={onBack}
+          accent={hub.color}
+        />
+        <Kertas2FolderTemplate
+          title={hub.label}
+          subtitle={hub.description}
+          groups={splitIntoKertas2Folders(items)}
+          onSelectItem={onSelectTopic}
+        />
+      </div>
+    );
   }
   if (hub.id === "ulasan") {
-    return <div><PageHeader breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><BMForm3UlasanContent /></div>;
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", "Tingkatan 3", kertas.shortLabel, hub.label]}
+          onBack={onBack}
+          accent={hub.color}
+        />
+        <BMForm3UlasanContent />
+      </div>
+    );
   }
   return (
     <div>
@@ -516,77 +560,201 @@ export function BMForm3WorldPage({ onBack }: { onBack: () => void }) {
             return content ? <SistemBahasaTopicDetail topic={content} onBack={pop} /> : null;
           })()}
 
-        {screen.type === "topic" && kertas && hub && topic && hub.id !== "sistem-bahasa" && (
-          <div>
-            <PageHeader
-              breadcrumb={[
-                "Bahasa Melayu",
-                "Tingkatan 3",
-                kertas.shortLabel,
-                hub.label,
-                topic.label,
-              ]}
-              onBack={pop}
-              accent={hub.color}
-            />
-            {hub.id === "komsas" ? (
-              (() => {
-                const work = getBMForm3KomsasWork(topic.id);
-                if (!work) return null;
-                const index = BM_FORM3_KOMSAS_WORKS.findIndex((w) => w.id === work.id);
-                const previousWork = index > 0 ? BM_FORM3_KOMSAS_WORKS[index - 1] : undefined;
-                const nextWork =
-                  index >= 0 && index < BM_FORM3_KOMSAS_WORKS.length - 1
-                    ? BM_FORM3_KOMSAS_WORKS[index + 1]
-                    : undefined;
-                return (
-                  <BMKomsasPlaceholderWorkStructure
-                    work={work}
-                    formLabel="Tingkatan 3"
-                    onBackToCategory={pop}
-                    backLabel="Kembali ke KOMSAS"
-                    previousLabel={previousWork?.title}
-                    onPrevious={
-                      previousWork
-                        ? () =>
-                            push({
-                              type: "topic",
-                              kertasId: "k1",
-                              hubId: "komsas",
-                              topicId: previousWork.id,
-                            })
-                        : undefined
-                    }
-                    nextLabel={nextWork?.title}
-                    onNext={
-                      nextWork
-                        ? () =>
-                            push({
-                              type: "topic",
-                              kertasId: "k1",
-                              hubId: "komsas",
-                              topicId: nextWork.id,
-                            })
-                        : undefined
-                    }
-                  />
-                );
-              })()
-            ) : hub.id === "novel" ? (
-              (() => {
-                const novel = getBMForm3NovelWork(topic.id);
-                return novel ? <BMForm2KomsasWorkStructure work={novel} /> : null;
-              })()
-            ) : (
-              <ComingSoonScreen
-                subjectId="bm"
-                chapterKey={topic.label}
-                form="Form 3"
-                onBack={pop}
-              />
-            )}
-          </div>
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "karangan-pendek" && (
+          <BMForm3KaranganPendekContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3KaranganPendekSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "karangan-pendek",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
         )}
+
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "respons-terbuka" && (
+          <BMForm3KaranganResponsTerbukaContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3ResponsTerbukaSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "respons-terbuka",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "bengkel-karangan" && (
+          <BMForm3BengkelKaranganContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3BengkelKaranganSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "bengkel-karangan",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "model-karangan-bank" && (
+          <BMForm3ModelKaranganBankContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3ModelKaranganSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "model-karangan-bank",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "peribahasa-bank" && (
+          <BMForm3PeribahasaBankContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3PeribahasaSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "peribahasa-bank",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
+        {screen.type === "topic" && kertas && hub && topic && hub.id === "tingkatkan-karangan" && (
+          <BMForm3TingkatkanKaranganContent
+            key={topic.id}
+            initialSectionId={topic.id}
+            onBack={pop}
+            onNavigate={(sectionId: BMForm3TingkatkanKaranganSectionId) =>
+              setHistory((previous) => [
+                ...previous.slice(0, -1),
+                {
+                  type: "topic",
+                  kertasId: "k2",
+                  hubId: "tingkatkan-karangan",
+                  topicId: sectionId,
+                },
+              ])
+            }
+          />
+        )}
+
+        {screen.type === "topic" &&
+          kertas &&
+          hub &&
+          topic &&
+          hub.id !== "sistem-bahasa" &&
+          hub.id !== "karangan-pendek" &&
+          hub.id !== "respons-terbuka" &&
+          hub.id !== "bengkel-karangan" &&
+          hub.id !== "model-karangan-bank" &&
+          hub.id !== "peribahasa-bank" &&
+          hub.id !== "tingkatkan-karangan" && (
+            <div>
+              <PageHeader
+                breadcrumb={[
+                  "Bahasa Melayu",
+                  "Tingkatan 3",
+                  kertas.shortLabel,
+                  hub.label,
+                  topic.label,
+                ]}
+                onBack={pop}
+                accent={hub.color}
+              />
+              {hub.id === "komsas" ? (
+                (() => {
+                  const work = getBMForm3KomsasWork(topic.id);
+                  if (!work) return null;
+                  const index = BM_FORM3_KOMSAS_WORKS.findIndex((w) => w.id === work.id);
+                  const previousWork = index > 0 ? BM_FORM3_KOMSAS_WORKS[index - 1] : undefined;
+                  const nextWork =
+                    index >= 0 && index < BM_FORM3_KOMSAS_WORKS.length - 1
+                      ? BM_FORM3_KOMSAS_WORKS[index + 1]
+                      : undefined;
+                  return (
+                    <BMKomsasPlaceholderWorkStructure
+                      work={work}
+                      formLabel="Tingkatan 3"
+                      onBackToCategory={pop}
+                      backLabel="Kembali ke KOMSAS"
+                      previousLabel={previousWork?.title}
+                      onPrevious={
+                        previousWork
+                          ? () =>
+                              push({
+                                type: "topic",
+                                kertasId: "k1",
+                                hubId: "komsas",
+                                topicId: previousWork.id,
+                              })
+                          : undefined
+                      }
+                      nextLabel={nextWork?.title}
+                      onNext={
+                        nextWork
+                          ? () =>
+                              push({
+                                type: "topic",
+                                kertasId: "k1",
+                                hubId: "komsas",
+                                topicId: nextWork.id,
+                              })
+                          : undefined
+                      }
+                    />
+                  );
+                })()
+              ) : hub.id === "novel" ? (
+                (() => {
+                  const novel = getBMForm3NovelWork(topic.id);
+                  return novel ? <BMForm2KomsasWorkStructure work={novel} /> : null;
+                })()
+              ) : (
+                <ComingSoonScreen
+                  subjectId="bm"
+                  chapterKey={topic.label}
+                  form="Form 3"
+                  onBack={pop}
+                />
+              )}
+            </div>
+          )}
       </div>
     </div>
   );
