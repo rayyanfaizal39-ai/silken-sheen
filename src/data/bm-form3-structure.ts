@@ -4,6 +4,8 @@
 // identical experience. Every hub/topic here is a placeholder — content is
 // added later, one topic at a time.
 
+import { BM_FORM3_KARANGAN_PENDEK_SECTIONS } from "@/data/bm-form3-karangan-pendek";
+
 export interface BMForm3Topic {
   id: string;
   label: string;
@@ -137,11 +139,10 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         icon: "KP",
         color: "#38BDF8",
         description: "Karangan pendek berdasarkan bahan rangsangan mengikut format peperiksaan.",
-        topics: [
-          { id: "asas", label: "Asas Karangan Pendek" },
-          { id: "langkah-menulis", label: "Langkah Menulis Karangan" },
-          { id: "contoh-latihan", label: "Contoh & Latihan" },
-        ],
+        topics: BM_FORM3_KARANGAN_PENDEK_SECTIONS.map((section) => ({
+          id: section.id,
+          label: section.lessonTitle,
+        })),
       },
       {
         id: "respons-terbuka",
