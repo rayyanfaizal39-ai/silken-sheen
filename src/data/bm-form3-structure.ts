@@ -7,6 +7,7 @@
 import { BM_FORM3_KARANGAN_PENDEK_SECTIONS } from "@/data/bm-form3-karangan-pendek";
 import { BM_FORM3_RESPONS_TERBUKA_SECTIONS } from "@/data/bm-form3-karangan-respons-terbuka";
 import { BM_FORM3_BENGKEL_KARANGAN_SECTIONS } from "@/data/bm-form3-bengkel-karangan";
+import { BM_FORM3_MODEL_KARANGAN_SECTIONS } from "@/data/bm-form3-model-karangan-bank";
 
 export interface BMForm3Topic {
   id: string;
@@ -130,7 +131,8 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
     label: "Kertas 2",
     shortLabel: "K2",
     icon: "📝",
-    description: "Karangan Pendek, Karangan Respons Terbuka, Bengkel Karangan, Model Karangan Bank, Peribahasa Bank, Tingkatkan Karangan",
+    description:
+      "Karangan Pendek, Karangan Respons Terbuka, Bengkel Karangan, Model Karangan Bank, Peribahasa Bank, Tingkatkan Karangan",
     examDetails: "Kertas 2 Bahasa Melayu Tingkatan 3",
     color: "#FB923C",
     hubs: [
@@ -176,19 +178,12 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         shortLabel: "Model",
         icon: "MK",
         color: "#FBBF24",
-        description: "Contoh karangan mengikut jenis seperti fakta, perbincangan, pengalaman, laporan dan ucapan.",
-        topics: [
-          { id: "fakta", label: "Fakta" },
-          { id: "pendapat", label: "Pendapat" },
-          { id: "perbincangan", label: "Perbincangan" },
-          { id: "pengalaman", label: "Pengalaman" },
-          { id: "surat-rasmi", label: "Surat Rasmi" },
-          { id: "surat-tidak-rasmi", label: "Surat Tidak Rasmi" },
-          { id: "laporan", label: "Laporan" },
-          { id: "ucapan", label: "Ucapan" },
-          { id: "syarahan", label: "Syarahan" },
-          { id: "dialog", label: "Dialog" },
-        ],
+        description:
+          "Contoh karangan mengikut jenis seperti fakta, perbincangan, pengalaman, laporan dan ucapan.",
+        topics: BM_FORM3_MODEL_KARANGAN_SECTIONS.map((section) => ({
+          id: section.id,
+          label: section.lessonTitle,
+        })),
       },
       {
         id: "peribahasa-bank",
@@ -215,7 +210,8 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         shortLabel: "Tingkatkan",
         icon: "SA",
         color: "#818CF8",
-        description: "Ubah ayat biasa jadi ayat cemerlang — kosa kata menarik dan teknik penulisan.",
+        description:
+          "Ubah ayat biasa jadi ayat cemerlang — kosa kata menarik dan teknik penulisan.",
         topics: [
           { id: "kesalahan-lazim", label: "Kesalahan Lazim" },
           { id: "mengembangkan-isi", label: "Cara Mengembangkan Isi" },
