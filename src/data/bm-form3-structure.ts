@@ -5,6 +5,7 @@
 // added later, one topic at a time.
 
 import { BM_FORM3_KARANGAN_PENDEK_SECTIONS } from "@/data/bm-form3-karangan-pendek";
+import { BM_FORM3_RESPONS_TERBUKA_SECTIONS } from "@/data/bm-form3-karangan-respons-terbuka";
 
 export interface BMForm3Topic {
   id: string;
@@ -151,11 +152,10 @@ export const BM_FORM3_KERTAS: BMForm3Kertas[] = [
         icon: "RT",
         color: "#A78BFA",
         description: "Karangan respons terbuka mengikut format peperiksaan.",
-        topics: [
-          { id: "asas", label: "Asas Karangan Panjang" },
-          { id: "langkah-menulis", label: "Langkah Menulis Karangan" },
-          { id: "contoh-latihan", label: "Contoh & Latihan" },
-        ],
+        topics: BM_FORM3_RESPONS_TERBUKA_SECTIONS.map((section) => ({
+          id: section.id,
+          label: section.lessonTitle,
+        })),
       },
       {
         id: "bengkel-karangan",
