@@ -684,12 +684,15 @@ function geography(
   mindMapTitle?: string,
 ): ChapterContent {
   const chapterKey = `Chapter ${chapterNum}`;
+  const id = `geography-f1-c${chapterNum}`;
+  const video = getEducationalVideo(id);
   return {
-    id: `geography-f1-c${chapterNum}`,
+    id,
     subjectId: "geography",
     form: "Form 1",
     chapterKey,
     title: GEOGRAPHY_F1_CHAPTER_TITLES[chapterNum],
+    ...(video ? { video } : {}),
     ...(mindMapData && mindMapTitle ? { mindMap: { data: mindMapData, title: mindMapTitle } } : {}),
     flashcards: geographyFlashcardsFor(chapterNum),
     quiz: geographyQuizzesFor(chapterNum),
