@@ -13,6 +13,7 @@ import {
   Radar,
   Rocket,
   Sparkles,
+  Settings,
   Trophy,
   Zap,
 } from "lucide-react";
@@ -120,6 +121,16 @@ const navItems = [
     accentGlow: "rgba(252,211,77,0.55)",
     accentBg: "rgba(252,211,77,0.20)",
     line: "linear-gradient(90deg,#FDE68A,#F59E0B)",
+  },
+  {
+    label: "Settings",
+    short: "Settings",
+    to: "/settings",
+    icon: Settings,
+    accent: "#94A3B8",
+    accentGlow: "rgba(148,163,184,0.45)",
+    accentBg: "rgba(148,163,184,0.18)",
+    line: "linear-gradient(90deg,#CBD5E1,#64748B)",
   },
   {
     label: "Parent Dashboard",
@@ -235,11 +246,11 @@ function SidebarBottom() {
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lastRankUp } = useProgress();
+  const { user } = useAuth();
 
   if (pathname.startsWith("/academy/") || pathname === "/") {
     return <>{children}</>;
   }
-
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">
@@ -340,6 +351,15 @@ export function AppShell({ children }: { children: ReactNode }) {
               Upgrade
             </Link>
             <HeaderAuthAction />
+            {user && (
+              <Link
+                to="/settings"
+                aria-label="Settings"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.05] text-white/60 hover:bg-white/[0.1] hover:text-white"
+              >
+                <Settings className="h-4 w-4" />
+              </Link>
+            )}
             {/* Profile / avatar link with upgrade pip */}
             <div className="relative">
               <Link
