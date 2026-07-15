@@ -21,6 +21,9 @@ import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-conte
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
 import type { Geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
 import type { Geo5Content } from "@/content/form1/geography/chapter-5/geo5-content";
+import type { Geo6Content } from "@/content/form1/geography/chapter-6/geo6-content";
+import type { Geo7Content } from "@/content/form1/geography/chapter-7/geo7-content";
+import type { Geo8Content } from "@/content/form1/geography/chapter-8/geo8-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -83,6 +86,12 @@ export type ChapterContent = {
   geoChapter4Data?: Geo4Content;
   /** Geography Bab 5 (Bumi/Earth) chunked learning experience. BM-only. */
   geoChapter5Data?: Geo5Content;
+  /** Geography Bab 6 (Bentuk Muka Bumi/Landforms) chunked learning experience. BM-only. */
+  geoChapter6Data?: Geo6Content;
+  /** Geography Bab 7 (Saliran/Drainage) chunked learning experience. BM-only. */
+  geoChapter7Data?: Geo7Content;
+  /** Geography Bab 8 (Penduduk di Malaysia/Population) chunked learning experience. BM-only. */
+  geoChapter8Data?: Geo8Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -114,6 +123,9 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.geoChapter3Data ||
       !!c?.geoChapter4Data ||
       !!c?.geoChapter5Data ||
+      !!c?.geoChapter6Data ||
+      !!c?.geoChapter7Data ||
+      !!c?.geoChapter8Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

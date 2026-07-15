@@ -114,6 +114,9 @@ import { geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import { geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
 import { geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
 import { geo5Content } from "@/content/form1/geography/chapter-5/geo5-content";
+import { geo6Content } from "@/content/form1/geography/chapter-6/geo6-content";
+import { geo7Content } from "@/content/form1/geography/chapter-7/geo7-content";
+import { geo8Content } from "@/content/form1/geography/chapter-8/geo8-content";
 import { geoF1C2MindMap } from "@/content/form1/geography/chapter-2/mindmap";
 import { geoF1C3MindMap } from "@/content/form1/geography/chapter-3/mindmap";
 import { geoF1C4MindMap } from "@/content/form1/geography/chapter-4/mindmap";
@@ -931,9 +934,9 @@ export const chapters: ChapterContent[] = [
   { ...geography(3, geoF1C3MindMap, "Peta Lakar"), geoChapter3Data: geo3Content },
   { ...geography(4, geoF1C4MindMap, "Lakaran Peta Malaysia"), geoChapter4Data: geo4Content },
   { ...geography(5, geoF1C5MindMap, "Bumi"), geoChapter5Data: geo5Content },
-  geography(6, geoF1C6MindMap, "Bentuk Muka Bumi"),
-  geography(7, geoF1C7MindMap, "Saliran"),
-  geography(8, geoF1C8MindMap, "Penduduk di Malaysia"),
+  { ...geography(6, geoF1C6MindMap, "Bentuk Muka Bumi"), geoChapter6Data: geo6Content },
+  { ...geography(7, geoF1C7MindMap, "Saliran"), geoChapter7Data: geo7Content },
+  { ...geography(8, geoF1C8MindMap, "Penduduk di Malaysia"), geoChapter8Data: geo8Content },
   geography(9, geoF1C9MindMap, "Petempatan di Malaysia"),
   geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"),
   geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"),

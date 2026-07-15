@@ -35,6 +35,9 @@ import { GeoChapter2NotesBlock } from "@/components/notes/GeoChapter2NotesBlock"
 import { GeoChapter3NotesBlock } from "@/components/notes/GeoChapter3NotesBlock";
 import { GeoChapter4NotesBlock } from "@/components/notes/GeoChapter4NotesBlock";
 import { GeoChapter5NotesBlock } from "@/components/notes/GeoChapter5NotesBlock";
+import { GeoChapter6NotesBlock } from "@/components/notes/GeoChapter6NotesBlock";
+import { GeoChapter7NotesBlock } from "@/components/notes/GeoChapter7NotesBlock";
+import { GeoChapter8NotesBlock } from "@/components/notes/GeoChapter8NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -186,7 +189,10 @@ function NotesPage() {
     !activeChapter?.geoChapter2Data &&
     !activeChapter?.geoChapter3Data &&
     !activeChapter?.geoChapter4Data &&
-    !activeChapter?.geoChapter5Data;
+    !activeChapter?.geoChapter5Data &&
+    !activeChapter?.geoChapter6Data &&
+    !activeChapter?.geoChapter7Data &&
+    !activeChapter?.geoChapter8Data;
   const subtopics: Subtopic[] = hasSubtopics
     ? subject === "sejarah"
       ? getSejarahF1Subtopics(activeChapterKey ?? "")
@@ -690,6 +696,36 @@ function NotesPage() {
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
+          ) : activeChapter?.geoChapter6Data ? (
+            <GeoChapter6NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter6Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.geoChapter7Data ? (
+            <GeoChapter7NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter7Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.geoChapter8Data ? (
+            <GeoChapter8NotesBlock
+              id="notes"
+              content={activeChapter.geoChapter8Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
           ) : activeChapter?.bab7Data ? (
             <Bab7NotesBlock
               id="notes"
@@ -814,6 +850,9 @@ function NotesPage() {
             !activeChapter?.geoChapter3Data &&
             !activeChapter?.geoChapter4Data &&
             !activeChapter?.geoChapter5Data &&
+            !activeChapter?.geoChapter6Data &&
+            !activeChapter?.geoChapter7Data &&
+            !activeChapter?.geoChapter8Data &&
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
             !activeChapter?.chapter2Data &&
@@ -839,6 +878,9 @@ function NotesPage() {
                 !activeChapter?.geoChapter3Data &&
                 !activeChapter?.geoChapter4Data &&
                 !activeChapter?.geoChapter5Data &&
+                !activeChapter?.geoChapter6Data &&
+                !activeChapter?.geoChapter7Data &&
+                !activeChapter?.geoChapter8Data &&
                 !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&
@@ -863,6 +905,9 @@ function NotesPage() {
                 !activeChapter?.geoChapter3Data &&
                 !activeChapter?.geoChapter4Data &&
                 !activeChapter?.geoChapter5Data &&
+                !activeChapter?.geoChapter6Data &&
+                !activeChapter?.geoChapter7Data &&
+                !activeChapter?.geoChapter8Data &&
                 !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&
