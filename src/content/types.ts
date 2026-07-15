@@ -24,6 +24,11 @@ import type { Geo5Content } from "@/content/form1/geography/chapter-5/geo5-conte
 import type { Geo6Content } from "@/content/form1/geography/chapter-6/geo6-content";
 import type { Geo7Content } from "@/content/form1/geography/chapter-7/geo7-content";
 import type { Geo8Content } from "@/content/form1/geography/chapter-8/geo8-content";
+import type { Geo9Content } from "@/content/form1/geography/chapter-9/geo9-content";
+import type { Geo10Content } from "@/content/form1/geography/chapter-10/geo10-content";
+import type { Geo11Content } from "@/content/form1/geography/chapter-11/geo11-content";
+import type { Geo12Content } from "@/content/form1/geography/chapter-12/geo12-content";
+import type { Geo13Content } from "@/content/form1/geography/chapter-13/geo13-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -92,6 +97,16 @@ export type ChapterContent = {
   geoChapter7Data?: Geo7Content;
   /** Geography Bab 8 (Penduduk di Malaysia/Population) chunked learning experience. BM-only. */
   geoChapter8Data?: Geo8Content;
+  /** Geography Bab 9 (Petempatan di Malaysia/Settlement) chunked learning experience. BM-only. */
+  geoChapter9Data?: Geo9Content;
+  /** Geography Bab 10 (Bentuk Muka Bumi dan Saliran di Asia Tenggara) chunked learning experience. BM-only. */
+  geoChapter10Data?: Geo10Content;
+  /** Geography Bab 11 (Penduduk dan Petempatan di Asia Tenggara) chunked learning experience. BM-only. */
+  geoChapter11Data?: Geo11Content;
+  /** Geography Bab 12 (Sumber Air/Water Resources) chunked learning experience. BM-only. */
+  geoChapter12Data?: Geo12Content;
+  /** Geography Bab 13 (Sisa Domestik/Domestic Waste) chunked learning experience. BM-only. */
+  geoChapter13Data?: Geo13Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -126,6 +141,11 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.geoChapter6Data ||
       !!c?.geoChapter7Data ||
       !!c?.geoChapter8Data ||
+      !!c?.geoChapter9Data ||
+      !!c?.geoChapter10Data ||
+      !!c?.geoChapter11Data ||
+      !!c?.geoChapter12Data ||
+      !!c?.geoChapter13Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

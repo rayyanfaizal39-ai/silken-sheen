@@ -117,6 +117,11 @@ import { geo5Content } from "@/content/form1/geography/chapter-5/geo5-content";
 import { geo6Content } from "@/content/form1/geography/chapter-6/geo6-content";
 import { geo7Content } from "@/content/form1/geography/chapter-7/geo7-content";
 import { geo8Content } from "@/content/form1/geography/chapter-8/geo8-content";
+import { geo9Content } from "@/content/form1/geography/chapter-9/geo9-content";
+import { geo10Content } from "@/content/form1/geography/chapter-10/geo10-content";
+import { geo11Content } from "@/content/form1/geography/chapter-11/geo11-content";
+import { geo12Content } from "@/content/form1/geography/chapter-12/geo12-content";
+import { geo13Content } from "@/content/form1/geography/chapter-13/geo13-content";
 import { geoF1C2MindMap } from "@/content/form1/geography/chapter-2/mindmap";
 import { geoF1C3MindMap } from "@/content/form1/geography/chapter-3/mindmap";
 import { geoF1C4MindMap } from "@/content/form1/geography/chapter-4/mindmap";
@@ -937,11 +942,11 @@ export const chapters: ChapterContent[] = [
   { ...geography(6, geoF1C6MindMap, "Bentuk Muka Bumi"), geoChapter6Data: geo6Content },
   { ...geography(7, geoF1C7MindMap, "Saliran"), geoChapter7Data: geo7Content },
   { ...geography(8, geoF1C8MindMap, "Penduduk di Malaysia"), geoChapter8Data: geo8Content },
-  geography(9, geoF1C9MindMap, "Petempatan di Malaysia"),
-  geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"),
-  geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"),
-  geography(12, geoF1C12MindMap, "Sumber Air"),
-  geography(13, geoF1C13MindMap, "Sisa Domestik"),
+  { ...geography(9, geoF1C9MindMap, "Petempatan di Malaysia"), geoChapter9Data: geo9Content },
+  { ...geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"), geoChapter10Data: geo10Content },
+  { ...geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"), geoChapter11Data: geo11Content },
+  { ...geography(12, geoF1C12MindMap, "Sumber Air"), geoChapter12Data: geo12Content },
+  { ...geography(13, geoF1C13MindMap, "Sisa Domestik"), geoChapter13Data: geo13Content },
 
   // Geography Form 2
   {
