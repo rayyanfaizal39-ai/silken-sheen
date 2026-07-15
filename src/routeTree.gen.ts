@@ -13,6 +13,7 @@ import { Route as UpgradeRouteImport } from './routes/upgrade'
 import { Route as TrackerRouteImport } from './routes/tracker'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SubjectsRouteImport } from './routes/subjects'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ParentDashboardRouteImport } from './routes/parent-dashboard'
@@ -55,6 +56,11 @@ const TermsRoute = TermsRouteImport.update({
 const SubjectsRoute = SubjectsRouteImport.update({
   id: '/subjects',
   path: '/subjects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuizzesRoute = QuizzesRouteImport.update({
@@ -190,6 +196,7 @@ export interface FileRoutesByFullPath {
   '/parent-dashboard': typeof ParentDashboardRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
+  '/settings': typeof SettingsRoute
   '/subjects': typeof SubjectsRoute
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
@@ -218,6 +225,7 @@ export interface FileRoutesByTo {
   '/parent-dashboard': typeof ParentDashboardRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
+  '/settings': typeof SettingsRoute
   '/subjects': typeof SubjectsRoute
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
@@ -248,6 +256,7 @@ export interface FileRoutesById {
   '/parent-dashboard': typeof ParentDashboardRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
+  '/settings': typeof SettingsRoute
   '/subjects': typeof SubjectsRoute
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
@@ -279,6 +288,7 @@ export interface FileRouteTypes {
     | '/parent-dashboard'
     | '/privacy'
     | '/quizzes'
+    | '/settings'
     | '/subjects'
     | '/terms'
     | '/tracker'
@@ -307,6 +317,7 @@ export interface FileRouteTypes {
     | '/parent-dashboard'
     | '/privacy'
     | '/quizzes'
+    | '/settings'
     | '/subjects'
     | '/terms'
     | '/tracker'
@@ -336,6 +347,7 @@ export interface FileRouteTypes {
     | '/parent-dashboard'
     | '/privacy'
     | '/quizzes'
+    | '/settings'
     | '/subjects'
     | '/terms'
     | '/tracker'
@@ -366,6 +378,7 @@ export interface RootRouteChildren {
   ParentDashboardRoute: typeof ParentDashboardRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizzesRoute: typeof QuizzesRoute
+  SettingsRoute: typeof SettingsRoute
   SubjectsRoute: typeof SubjectsRoute
   TermsRoute: typeof TermsRoute
   TrackerRoute: typeof TrackerRoute
@@ -402,6 +415,13 @@ declare module '@tanstack/react-router' {
       path: '/subjects'
       fullPath: '/subjects'
       preLoaderRoute: typeof SubjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quizzes': {
@@ -603,6 +623,7 @@ const rootRouteChildren: RootRouteChildren = {
   ParentDashboardRoute: ParentDashboardRoute,
   PrivacyRoute: PrivacyRoute,
   QuizzesRoute: QuizzesRoute,
+  SettingsRoute: SettingsRoute,
   SubjectsRoute: SubjectsRoute,
   TermsRoute: TermsRoute,
   TrackerRoute: TrackerRoute,

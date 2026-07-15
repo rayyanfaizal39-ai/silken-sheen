@@ -1,4 +1,5 @@
 // Adaptive background music engine for AcadeMY.
+/* eslint-disable no-empty, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-expressions */
 // - Auto-plays a section-appropriate lo-fi track after the first user interaction.
 // - Crossfades between sections (home / quiz / flashcards / notes).
 // - Automatically ducks when videos, other audio, or speech synthesis play.
@@ -21,7 +22,7 @@ const TRACKS: Record<Section, TrackConfig> = {
   quiz: {
     // Slightly more energetic lo-fi mix
     url: "https://archive.org/download/lofi-hip-hop-radio-beats-to-relaxstudy-to/Lofi%20Hip%20Hop%20Radio%20-%20Beats%20To%20Relax_Study%20To.mp3",
-    volume: 0.20,
+    volume: 0.2,
   },
   flashcards: {
     // Calm ambient piano — for memorisation sessions
@@ -53,6 +54,13 @@ type EngineState = {
 };
 
 let engine: EngineState | null = null;
+let preferenceVolume = 1;
+let enabledSections: Record<Section, boolean> = {
+  home: true,
+  quiz: true,
+  flashcards: true,
+  notes: true,
+};
 
 function isBrowser() {
   return typeof window !== "undefined" && typeof document !== "undefined";
@@ -118,8 +126,8 @@ function fadeTo(
 }
 
 function targetVolumeFor(e: EngineState, section: Section): number {
-  if (e.muted) return 0;
-  const base = TRACKS[section].volume;
+  if (e.muted || !enabledSections[section]) return 0;
+  const base = TRACKS[section].volume * preferenceVolume;
   if (e.duckReasons.size > 0) return base * DUCK_MULTIPLIER;
   return base;
 }
@@ -201,10 +209,20 @@ function installGlobalListeners(e: EngineState) {
 
 function installKeyboardShortcut(e: EngineState) {
   window.addEventListener("keydown", (ev) => {
-    if (ev.shiftKey && (ev.key === "M" || ev.key === "m") && !ev.metaKey && !ev.ctrlKey && !ev.altKey) {
+    if (
+      ev.shiftKey &&
+      (ev.key === "M" || ev.key === "m") &&
+      !ev.metaKey &&
+      !ev.ctrlKey &&
+      !ev.altKey
+    ) {
       // Ignore when typing in inputs.
       const active = document.activeElement as HTMLElement | null;
-      if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) return;
+      if (
+        active &&
+        (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)
+      )
+        return;
       toggleMute();
     }
   });
@@ -317,6 +335,24 @@ export function toggleMute(): boolean {
 export function isMuted(): boolean {
   const e = ensureEngine();
   return e?.muted ?? false;
+}
+
+export function configureMusic(options: {
+  volume: number;
+  home: boolean;
+  quiz: boolean;
+  flashcards: boolean;
+}) {
+  preferenceVolume = Math.max(0, Math.min(1, options.volume));
+  enabledSections = {
+    home: options.home,
+    quiz: options.quiz,
+    flashcards: options.flashcards,
+    notes: options.home,
+  };
+  const e = ensureEngine();
+  if (e?.currentAudio && e.currentSection)
+    fadeTo(e, e.currentAudio, targetVolumeFor(e, e.currentSection), 200);
 }
 
 export function sectionFromPath(pathname: string): Section {
