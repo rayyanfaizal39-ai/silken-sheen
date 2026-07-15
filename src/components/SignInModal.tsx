@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Mail, Lock, AlertCircle, CheckCircle2, Rocket, Loader2 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
+import { supabaseConfigurationError } from "@/lib/supabase";
 
 function GoogleIcon() {
   return (
@@ -261,8 +262,8 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
           </p>
 
           {!isConfigured && (
-            <p className="mt-3 text-center text-[10px] text-amber-300/70">
-              Cloud sync isn't configured yet.
+            <p className="mt-3 text-center text-xs text-amber-300/80">
+              {supabaseConfigurationError ?? "Cloud sync isn't configured yet."}
             </p>
           )}
         </div>
