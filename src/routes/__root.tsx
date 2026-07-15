@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "sonner";
 import { useEffect, type ReactNode } from "react";
 import {
   Outlet,
@@ -16,7 +15,6 @@ import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
 import { BgMusicController } from "@/components/BgMusicController";
 import { AuthProvider } from "@/context/auth-context";
-import { UserSettingsProvider } from "@/context/user-settings-context";
 import { SignInModalProvider } from "@/context/sign-in-modal";
 import { CikguProvider } from "@/context/cikgu-context";
 import { SITE_URL } from "@/lib/seo";
@@ -163,23 +161,20 @@ function RootComponent() {
       <JsonLd data={educationalOrganizationSchema()} />
       <JsonLd data={websiteSchema()} />
       <AuthProvider>
-        <UserSettingsProvider>
-          <Toaster theme="dark" position="top-right" richColors />
-          <SignInModalProvider>
-            <CikguProvider>
-              {!isMarketingPage && (
-                <>
-                  <ParticleBg />
-                  <SoundFx />
-                </>
-              )}
-              <BgMusicController />
-              <AppShell>
-                <Outlet />
-              </AppShell>
-            </CikguProvider>
-          </SignInModalProvider>
-        </UserSettingsProvider>
+        <SignInModalProvider>
+          <CikguProvider>
+            {!isMarketingPage && (
+              <>
+                <ParticleBg />
+                <SoundFx />
+              </>
+            )}
+            <BgMusicController />
+            <AppShell>
+              <Outlet />
+            </AppShell>
+          </CikguProvider>
+        </SignInModalProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

@@ -1,10 +1,8 @@
 // Lightweight Web Audio sound effects — no assets needed.
-/* eslint-disable no-empty, @typescript-eslint/no-explicit-any */
 // Subtle UI feedback: hover, click, and level-up.
 
 let ctx: AudioContext | null = null;
 let muted = false;
-let volumeMultiplier = 1;
 let lastHover = 0;
 let lastClick = 0;
 
@@ -12,7 +10,8 @@ function getCtx(): AudioContext | null {
   if (typeof window === "undefined") return null;
   if (muted) return null;
   if (!ctx) {
-    const AC = (window as any).AudioContext || (window as any).webkitAudioContext;
+    const AC =
+      (window as any).AudioContext || (window as any).webkitAudioContext;
     if (!AC) return null;
     try {
       ctx = new AC();
@@ -44,7 +43,7 @@ function tone(
     osc.frequency.exponentialRampToValueAtTime(Math.max(1, freqEnd), t0 + duration);
   }
   g.gain.setValueAtTime(0, t0);
-  g.gain.linearRampToValueAtTime(gain * volumeMultiplier, t0 + 0.005);
+  g.gain.linearRampToValueAtTime(gain, t0 + 0.005);
   g.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
   osc.connect(g).connect(c.destination);
   osc.start(t0);
@@ -70,7 +69,9 @@ export const sfx = {
   },
   levelUp() {
     const notes = [523.25, 659.25, 783.99, 1046.5]; // C E G C
-    notes.forEach((f, i) => setTimeout(() => tone(f, 0.18, "triangle", 0.06), i * 90));
+    notes.forEach((f, i) =>
+      setTimeout(() => tone(f, 0.18, "triangle", 0.06), i * 90),
+    );
   },
   combo(n: number) {
     const base = 440 + Math.min(n, 8) * 80;
@@ -79,7 +80,9 @@ export const sfx = {
   },
   perfect() {
     const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
-    notes.forEach((f, i) => setTimeout(() => tone(f, 0.22, "triangle", 0.07), i * 80));
+    notes.forEach((f, i) =>
+      setTimeout(() => tone(f, 0.22, "triangle", 0.07), i * 80),
+    );
   },
   whoosh() {
     tone(720, 0.22, "sine", 0.045, 180);
@@ -93,7 +96,9 @@ export const sfx = {
   },
   fanfare() {
     const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98];
-    notes.forEach((f, i) => setTimeout(() => tone(f, 0.26, "triangle", 0.07), i * 95));
+    notes.forEach((f, i) =>
+      setTimeout(() => tone(f, 0.26, "triangle", 0.07), i * 95),
+    );
   },
   streak(n: number) {
     const base = 520 + Math.min(n, 12) * 60;
@@ -103,9 +108,6 @@ export const sfx = {
   },
   setMuted(v: boolean) {
     muted = v;
-  },
-  setVolume(v: number) {
-    volumeMultiplier = Math.max(0, Math.min(1, v));
   },
   isMuted() {
     return muted;
@@ -128,3 +130,4 @@ export function toggleSfxMuted() {
 }
 
 // Ambient background music has moved to src/lib/bg-music.ts (adaptive engine).
+
