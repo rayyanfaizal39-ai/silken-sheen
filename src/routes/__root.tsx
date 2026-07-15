@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { AppShell } from "@/components/AppShell";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
-import { BgMusicController } from "@/components/BgMusicController";
 import { AuthProvider } from "@/context/auth-context";
 import { SignInModalProvider } from "@/context/sign-in-modal";
 import { CikguProvider } from "@/context/cikgu-context";
@@ -169,7 +168,6 @@ function RootComponent() {
                 <SoundFx />
               </>
             )}
-            <BgMusicController />
             <AppShell>
               <Outlet />
             </AppShell>
