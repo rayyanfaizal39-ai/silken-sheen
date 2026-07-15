@@ -1,0 +1,169 @@
+warning: in the working copy of 'src/hooks/use-progress.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/lib/tracker.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/routeTree.gen.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/routes/tracker.tsx', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src/hooks/use-progress.ts b/src/hooks/use-progress.ts[m
+[1mindex 991bee3..bb13523 100644[m
+[1m--- a/src/hooks/use-progress.ts[m
+[1m+++ b/src/hooks/use-progress.ts[m
+[36m@@ -1,5 +1,6 @@[m
+ import { useEffect, useState, useCallback, useRef } from "react";[m
+ import { supabase, isSupabaseConfigured } from "@/lib/supabase";[m
+[32m+[m[32mimport { hasFeature, resolveStoredPlan } from "@/lib/feature-access";[m
+ [m
+ const KEY = "learnnova-progress-v1";[m
+ const SYNC_DEBOUNCE_MS = 2000;[m
+[36m@@ -480,20 +481,24 @@[m [mfunction today() {[m
+   return new Date().toISOString().slice(0, 10);[m
+ }[m
+ [m
+[31m-function load(): Progress {[m
+[32m+[m[32mfunction progressStorageKey(userId?: string | null): string {[m
+[32m+[m[32m  return userId ? `${KEY}:${userId}` : KEY;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mfunction load(userId?: string | null): Progress {[m
+   if (typeof window === "undefined") return initial;[m
+   try {[m
+[31m-    const raw = localStorage.getItem(KEY);[m
+[31m-    if (!raw) return stampCompanionSelectedAt(initial);[m
+[32m+[m[32m    const raw = localStorage.getItem(progressStorageKey(userId));[m
+[32m+[m[32m    if (!raw) return stampCompanionSelectedAt(initial, userId);[m
+     const merged: Progress = { ...initial, ...JSON.parse(raw) };[m
+[31m-    return stampCompanionSelectedAt(merged);[m
+[32m+[m[32m    return stampCompanionSelectedAt(merged, userId);[m
+   } catch {[m
+     return initial;[m
+   }[m
+ }[m
+ [m
+ /** Replaces the epoch sentinel with "now" the first time a companion is actually loaded. */[m
+[31m-function stampCompanionSelectedAt(progress: Progress): Progress {[m
+[32m+[m[32mfunction stampCompanionSelectedAt(progress: Progress, userId?: string | null): Progress {[m
+   if (!progress.companion || progress.companion.selectedAt !== COMPANION_SENTINEL_DATE) {[m
+     return progress;[m
+   }[m
+[36m@@ -502,7 +507,7 @@[m [mfunction stampCompanionSelectedAt(progress: Progress): Progress {[m
+     companion: { ...progress.companion, selectedAt: new Date().toISOString() },[m
+   };[m
+   try {[m
+[31m-    localStorage.setItem(KEY, JSON.stringify(next));[m
+[32m+[m[32m    localStorage.setItem(progressStorageKey(userId), JSON.stringify(next));[m
+   } catch {}[m
+   return next;[m
+ }[m
+[36m@@ -674,13 +679,22 @@[m [masync function saveToSupabase(userId: string, p: Progress): Promise<void> {[m
+  * succeeds. Only runs for a signed-in user with Supabase configured.[m
+  */[m
+ async function insertQuizHistoryRow([m
+[31m-  userId: string,[m
+   result: { subjectId: string; chapterKey: string; scorePct: number; correct: number; total: number; xpEarned?: number },[m
+ ): Promise<void> {[m
+   if (!isSupabaseConfigured) return;[m
+   try {[m
+[31m-    await supabase.from("quiz_history").insert({[m
+[31m-      user_id: userId,[m
+[32m+[m[32m    const { data: { user } } = await supabase.auth.getUser();[m
+[32m+[m[32m    if (!user) return;[m
+[32m+[m
+[32m+[m[32m    const { data: profile, error: profileError } = await supabase[m
+[32m+[m[32m      .from("profiles")[m
+[32m+[m[32m      .select("plan")[m
+[32m+[m[32m      .eq("id", user.id)[m
+[32m+[m[32m      .maybeSingle();[m
+[32m+[m[32m    if (profileError || !hasFeature(resolveStoredPlan(profile?.plan), "quiz_history")) return;[m
+[32m+[m
+[32m+[m[32m    const { error } = await supabase.from("quiz_history").insert({[m
+[32m+[m[32m      user_id: user.id,[m
+       subject_id: result.subjectId,[m
+       chapter_key: result.chapterKey,[m
+       score_pct: result.scorePct,[m
+[36m@@ -692,6 +706,7 @@[m [masync function insertQuizHistoryRow([m
+       // ranking treats as "no data" rather than 0.[m
+       ...(result.xpEarned != null ? { xp_earned: result.xpEarned } : {}),[m
+     });[m
+[32m+[m[32m    if (!error) window.dispatchEvent(new Event("academy:quiz-history-updated"));[m
+   } catch {[m
+     // Silent — this is a supplementary analytics log, not the source of truth[m
+   }[m
+[36m@@ -724,8 +739,10 @@[m [mfunction ensureAuthSync() {[m
+   supabase.auth.getUser().then(async ({ data: { user } }) => {[m
+     if (!user) return;[m
+     sharedUserId = user.id;[m
+[31m-    const local = sharedProgress ?? load();[m
+[32m+[m[32m    const local = load(user.id);[m
+[32m+[m[32m    broadcastProgress(local);[m
+     const remote = await loadFromSupabase(user.id);[m
+[32m+[m[32m    if (sharedUserId !== user.id) return;[m
+     if (!remote) {[m
+       await saveToSupabase(user.id, local);[m
+       return;[m
+[36m@@ -733,7 +750,7 @@[m [mfunction ensureAuthSync() {[m
+     const merged = mergeProgress(local, remote);[m
+     broadcastProgress(merged);[m
+     try {[m
+[31m-      localStorage.setItem(KEY, JSON.stringify(merged));[m
+[32m+[m[32m      localStorage.setItem(progressStorageKey(user.id), JSON.stringify(merged));[m
+     } catch {}[m
+   });[m
+ [m
+[36m@@ -743,16 +760,19 @@[m [mfunction ensureAuthSync() {[m
+     if (event === "SIGNED_IN" && session?.user) {[m
+       if (sharedUserId === session.user.id) return;[m
+       sharedUserId = session.user.id;[m
+[31m-      const local2 = sharedProgress ?? load();[m
+[32m+[m[32m      const local2 = load(session.user.id);[m
+[32m+[m[32m      broadcastProgress(local2);[m
+       const remote2 = await loadFromSupabase(session.user.id);[m
+[32m+[m[32m      if (sharedUserId !== session.user.id) return;[m
+       const merged2 = remote2 ? mergeProgress(local2, remote2) : local2;[m
+       broadcastProgress(merged2);[m
+       try {[m
+[31m-        localStorage.setItem(KEY, JSON.stringify(merged2));[m
+[32m+[m[32m        localStorage.setItem(progressStorageKey(session.user.id), JSON.stringify(merged2));[m
+       } catch {}[m
+       await saveToSupabase(session.user.id, merged2);[m
+     } else if (event === "SIGNED_OUT") {[m
+       sharedUserId = null;[m
+[32m+[m[32m      broadcastProgress(load(null));[m
+     }[m
+   });[m
+ }[m
+[36m@@ -864,7 +884,7 @@[m [mexport function useProgress() {[m
+   // singleton's broadcasts, and kick off auth sync (a no-op if some other[m
+   // already-mounted useProgress() instance started it first).[m
+   useEffect(() => {[m
+[31m-    const local = sharedProgress ?? load();[m
+[32m+[m[32m    const local = sharedProgress ?? load(sharedUserId);[m
+     if (sharedProgress === null) sharedProgress = local;[m
+     setProgress(local);[m
+ [m
+[36m@@ -879,10 +899,11 @@[m [mexport function useProgress() {[m
+ [m
+   // Debounced sync to Supabase after every progress change[m
+   const scheduleSync = useCallback((p: Progress) => {[m
+[31m-    if (!isSupabaseConfigured || !sharedUserId) return;[m
+[32m+[m[32m    const userId = sharedUserId;[m
+[32m+[m[32m    if (!isSupabaseConfigured || !userId) return;[m
+     if (syncTimerRef.current) clearTimeout(syncTimerRef.current);[m
+     syncTimerRef.current = setTimeout(() => {[m
+[31m-      void saveToSupabase(sharedUserId!, p);[m
+[32m+[m[32m      void saveToSupabase(userId, p);[m
+     }, SYNC_DEBOUNCE_MS);[m
+   }, []);[m
+ [m
+[36m@@ -890,7 +911,7 @@[m [mexport function useProgress() {[m
+     (p: Progress) => {[m
+       setProgress(p);[m
+       try {[m
+[31m-        localStorage.setItem(KEY, JSON.stringify(p));[m
+[32m+[m[32m        localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(p));[m
+       } catch {}[m
+       scheduleSync(p);[m
+     },[m
+[36m@@ -932,7 +953,7 @@[m [mexport function useProgress() {[m
+             : prev.subjectXp,[m
+         };[m
+         try {[m
+[31m-          localStorage.setItem(KEY, JSON.stringify(next));[m
+[32m+[m[32m          localStorage.setItem(progressStorag
