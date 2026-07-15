@@ -37,6 +37,7 @@ import {
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
+import { getEducationalVideo } from "@/data/educationalVideos";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
@@ -575,23 +576,19 @@ function sejarahQuizzesFor(chapterNum: number) {
 function sejarah(
   num: number,
   title: string,
-  youtubeId: string,
   mindMapData: MindNode,
   mindMapTitle: string,
 ): ChapterContent {
   const chapterKey = `Chapter ${num}`;
+  const id = `sejarah-f1-c${num}`;
+  const video = getEducationalVideo(id);
   return {
-    id: `sejarah-f1-c${num}`,
+    id,
     subjectId: "sejarah",
     form: "Form 1",
     chapterKey,
     title,
-    video: {
-      youtubeId,
-      title: `Sejarah Tingkatan 1 Bab ${num} - ${title}`,
-      captionLang: "ms",
-      hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
-    },
+    ...(video ? { video } : {}),
     mindMap: { data: mindMapData, title: mindMapTitle },
     flashcards: sejarahFlashcardsFor(num),
     quiz: sejarahQuizzesFor(num),
@@ -702,29 +699,26 @@ function geography(
 export const chapters: ChapterContent[] = [
   ...scienceF3ChapterContent,
   // Sejarah Form 1
-  sejarah(1, "Mengenali Sejarah", "dZuhYNHdQ7U", mengenaliSejarahMindMap, "Mengenali Sejarah"),
-  sejarah(2, "Zaman Air Batu", "cLgCMnVoJ5g", zamanAirBatuMindMap, "Zaman Air Batu"),
-  sejarah(3, "Zaman Prasejarah", "LAAafdFO3Zo", zamanPrasejarahMindMap, "Zaman Prasejarah"),
-  sejarah(4, "Mengenali Tamadun", "fdU9wX5oGAI", mengenaliTamadunMindMap, "Mengenali Tamadun"),
-  sejarah(5, "Tamadun Awal Dunia", "UXeM03mYPO4", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"),
+  sejarah(1, "Mengenali Sejarah", mengenaliSejarahMindMap, "Mengenali Sejarah"),
+  sejarah(2, "Zaman Air Batu", zamanAirBatuMindMap, "Zaman Air Batu"),
+  sejarah(3, "Zaman Prasejarah", zamanPrasejarahMindMap, "Zaman Prasejarah"),
+  sejarah(4, "Mengenali Tamadun", mengenaliTamadunMindMap, "Mengenali Tamadun"),
+  sejarah(5, "Tamadun Awal Dunia", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"),
   sejarah(
     6,
     "Tamadun Yunani dan Rom",
-    "gSXFJYisA6w",
     peningkatanTamadunYunaniRomMindMap,
     "Peningkatan Tamadun Yunani dan Rom",
   ),
   sejarah(
     7,
     "Tamadun India dan China",
-    "aeLoGzzm85o",
     tamadunIndiaChinaMindMap,
     "Tamadun India dan China",
   ),
   sejarah(
     8,
     "Tamadun Islam",
-    "RIDZG6LTY5Y",
     tamadunIslamSumbanganMindMap,
     "Tamadun Islam dan Sumbangannya",
   ),

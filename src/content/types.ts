@@ -39,6 +39,8 @@ export type StructuredNotes = ScienceChapter2Notes;
 export type VideoBlock = {
   youtubeId: string;
   title: string;
+  /** Optional offset, in seconds, at which playback should begin. */
+  startSeconds?: number;
   /** Caption language hint for the YouTube player (e.g. "ms", "en"). */
   captionLang?: string;
   /** Short caption shown beneath the player. */
