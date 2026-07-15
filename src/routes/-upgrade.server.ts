@@ -12,11 +12,13 @@
 import { createServerFn } from '@tanstack/react-start';
 import { getSupabaseServerClient } from '../lib/supabase.server';
 
-export type UpgradePlan = 'monthly' | 'annual';
+export type UpgradePlan = 'pro_monthly' | 'pro_annual' | 'premium_monthly' | 'premium_annual';
 
 const PLAN_AMOUNTS: Record<UpgradePlan, number> = {
-  monthly: 9.9,
-  annual: 79,
+  pro_monthly: 19,
+  pro_annual: 190,
+  premium_monthly: 49,
+  premium_annual: 490,
 };
 
 export interface CheckoutResult {
