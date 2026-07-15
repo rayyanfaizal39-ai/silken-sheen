@@ -1,3 +1,5 @@
+import { bgPanel, neon } from "./neon-tokens";
+
 export interface SettlementPatternItem {
   name: string;
   description: string[];
@@ -23,17 +25,28 @@ const DOT_LAYOUTS: Record<string, Array<[number, number]>> = {
   ],
 };
 
+// Per-pattern dot fill color matches design-reference/geo-signature-visuals-ch9.html.
+const DOT_COLOR: Record<string, string> = {
+  Berpusat: neon.blue,
+  Berkelompok: neon.violet,
+  Berjajar: neon.amber,
+  Berselerak: neon.green,
+};
+
 export function SettlementPatternGrid({ patterns }: { patterns: SettlementPatternItem[] }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {patterns.map((p) => {
         const dots = DOT_LAYOUTS[p.name] ?? [];
+        const color = DOT_COLOR[p.name] ?? neon.blue;
         return (
-          <div key={p.name} className="rounded-2xl border border-border bg-secondary/40 p-4">
-            <h5 className="font-display text-sm font-bold text-foreground">{p.name}</h5>
-            <svg viewBox="0 0 100 60" className="mt-2 h-20 w-full rounded-lg border border-border/50 bg-card/60">
+          <div key={p.name} className="rounded-2xl p-4" style={{ background: bgPanel }}>
+            <h5 className="font-display text-sm font-bold" style={{ color }}>
+              {p.name}
+            </h5>
+            <svg viewBox="0 0 100 60" className="mt-2 h-20 w-full">
               {dots.map(([x, y], i) => (
-                <circle key={i} cx={x} cy={y} r={3.2} className="fill-primary" />
+                <circle key={i} cx={x} cy={y} r={3.2} fill={color} />
               ))}
             </svg>
             <ul className="mt-3 space-y-1.5">
