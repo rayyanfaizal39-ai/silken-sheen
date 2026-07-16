@@ -4,6 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
     "dev": "vite dev",
     "build": "vite build && node scripts/generate-static-shell.js && node scripts/generate-sitemap.js && node scripts/patch-wrangler-assets.js && node scripts/build-pages-worker.js",
     "build:dev": "vite build --mode development && node scripts/generate-static-shell.js && node scripts/generate-sitemap.js && node scripts/patch-wrangler-assets.js && node scripts/build-pages-worker.js",

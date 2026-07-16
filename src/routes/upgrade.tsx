@@ -149,7 +149,10 @@ function CtaButton({
     if (!plan) return;
     setStatus("loading");
     try {
-      await createAndConfirmStubCheckout({ data: { plan } });
+      await createAndConfirmStubCheckout({
+        data: { plan },
+        fetch: (url, init) => fetch(url, { ...init, credentials: "include" }),
+      });
       navigate({ to: "/dashboard" });
     } catch (err) {
       console.error("[upgrade] checkout failed:", err);

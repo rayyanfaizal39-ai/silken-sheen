@@ -11,29 +11,43 @@
 // `nitro`/`vinxi` cloudflare preset and wrangler vars) this works as-is.
 // Otherwise swap the two `process.env.*` reads for your binding accessor.
 
-import { createServerClient } from '@supabase/ssr';
-import { getCookies } from '@tanstack/start-server-core';
+import { createServerClient } from "@supabase/ssr";
+import {
+  getCookies,
+  getRequestProtocol,
+  setCookie,
+  setResponseHeader,
+} from "@tanstack/start-server-core";
+import { SUPABASE_AUTH_COOKIE_NAME, SUPABASE_AUTH_COOKIE_OPTIONS } from "./supabase-auth-cookie";
 
 export function isSupabaseServerConfigured() {
-  const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? '';
-  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? '';
+  const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
+  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? "";
   return !!(url && key);
 }
 
 export function getSupabaseServerClient() {
-  const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? '';
-  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? '';
+  const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
+  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? "";
   if (!url || !key) return null;
-  return createServerClient(
-    url,
-    key,
-    {
-      cookies: {
-        getAll() {
-          return Object.entries(getCookies()).map(([name, value]) => ({ name, value: value ?? '' }));
-        },
-        setAll() {},
+  return createServerClient(url, key, {
+    cookieOptions: {
+      name: SUPABASE_AUTH_COOKIE_NAME,
+      ...SUPABASE_AUTH_COOKIE_OPTIONS,
+      secure: getRequestProtocol({ xForwardedProto: true }) === "https",
+    },
+    cookies: {
+      getAll() {
+        return Object.entries(getCookies()).map(([name, value]) => ({ name, value: value ?? "" }));
+      },
+      setAll(cookiesToSet, headers) {
+        for (const { name, value, options } of cookiesToSet) {
+          setCookie(name, value, options);
+        }
+        for (const [name, value] of Object.entries(headers)) {
+          setResponseHeader(name, value);
+        }
       },
     },
-  );
+  });
 }

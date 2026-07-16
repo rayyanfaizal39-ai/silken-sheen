@@ -9,52 +9,68 @@
 //      instead of calling confirmCheckout itself.
 //   2. Replace confirm_stub_payment() with a webhook handler that verifies
 //      the gateway's signature before marking the payment 'paid'.
-import { createServerFn } from '@tanstack/react-start';
-import { getSupabaseServerClient } from '../lib/supabase.server';
+import { createServerFn } from "@tanstack/react-start";
+import { getRequest, setResponseStatus } from "@tanstack/start-server-core";
+import { getSupabaseServerClient } from "../lib/supabase.server";
+import {
+  CheckoutAuthenticationError,
+  executeCheckout,
+  type CheckoutResult,
+  type UpgradePlan,
+} from "./-upgrade-checkout";
 
-export type UpgradePlan = 'pro_monthly' | 'pro_annual' | 'premium_monthly' | 'premium_annual';
+export type { UpgradePlan } from "./-upgrade-checkout";
 
-const PLAN_AMOUNTS: Record<UpgradePlan, number> = {
-  pro_monthly: 19,
-  pro_annual: 190,
-  premium_monthly: 49,
-  premium_annual: 490,
-};
-
-export interface CheckoutResult {
-  paymentId: string;
-  status: 'paid';
-}
-
-export const createAndConfirmStubCheckout = createServerFn({ method: 'POST' })
+export const createAndConfirmStubCheckout = createServerFn({ method: "POST" })
   .inputValidator((data: { plan: UpgradePlan }) => data)
   .handler(async ({ data }): Promise<CheckoutResult> => {
+    const request = getRequest();
+    const requestUrl = new URL(request.url);
     const supabase = getSupabaseServerClient();
-    if (!supabase) throw new Error('Supabase is not configured');
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      throw new Error('Must be logged in to upgrade');
+    if (!supabase) throw new Error("Supabase is not configured");
+    let sessionResolved = false;
+
+    try {
+      return await executeCheckout(data, {
+        async getVerifiedUser() {
+          const {
+            data: { user },
+          } = await supabase.auth.getUser();
+          sessionResolved = Boolean(user);
+          if (!user) return null;
+          return { id: user.id, email: user.email ?? null };
+        },
+        async insertPendingPayment({ userId, amount, plan }) {
+          const { data: payment, error } = await supabase
+            .from("payments")
+            .insert({
+              user_id: userId,
+              amount,
+              currency: "MYR",
+              plan,
+              status: "pending",
+            })
+            .select("id")
+            .single();
+          if (error) throw error;
+          return payment.id as string;
+        },
+        async confirmPayment(paymentId) {
+          const { error } = await supabase.rpc("confirm_stub_payment", {
+            payment_id: paymentId,
+          });
+          if (error) throw error;
+        },
+      });
+    } catch (error) {
+      if (error instanceof CheckoutAuthenticationError) setResponseStatus(401);
+      throw error;
+    } finally {
+      console.info("[upgrade-auth]", {
+        hasCookieHeader: request.headers.has("cookie"),
+        sessionResolved,
+        origin: request.headers.get("origin") ?? requestUrl.origin,
+        host: request.headers.get("host") ?? requestUrl.host,
+      });
     }
-
-    const { data: payment, error: insertError } = await supabase
-      .from('payments')
-      .insert({
-        user_id: user.id,
-        amount: PLAN_AMOUNTS[data.plan],
-        currency: 'MYR',
-        plan: data.plan,
-        status: 'pending',
-      })
-      .select('id')
-      .single();
-    if (insertError) throw insertError;
-
-    const { error: confirmError } = await supabase.rpc('confirm_stub_payment', {
-      payment_id: payment.id,
-    });
-    if (confirmError) throw confirmError;
-
-    return { paymentId: payment.id as string, status: 'paid' };
   });

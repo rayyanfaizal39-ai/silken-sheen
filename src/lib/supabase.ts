@@ -1,5 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
 import { type SupabaseClient as SupabaseClientClass } from "@supabase/supabase-js";
+import { SUPABASE_AUTH_COOKIE_NAME, SUPABASE_AUTH_COOKIE_OPTIONS } from "./supabase-auth-cookie";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
@@ -23,7 +24,7 @@ function getConfigurationError(url: string | undefined, key: string | undefined)
     return "VITE_SUPABASE_ANON_KEY must contain your Supabase publishable key (or legacy anon key).";
   }
 
-  if (key.startsWith("sb_secret_") || key.startsWith("eyJ") && key.includes("service_role")) {
+  if (key.startsWith("sb_secret_") || (key.startsWith("eyJ") && key.includes("service_role"))) {
     return "Do not expose a Supabase secret or service_role key in the browser.";
   }
 
@@ -43,6 +44,11 @@ function createStubClient() {
 
 export const supabase = isSupabaseConfigured
   ? createBrowserClient(supabaseUrl!, supabaseAnonKey!, {
+      cookieOptions: {
+        name: SUPABASE_AUTH_COOKIE_NAME,
+        ...SUPABASE_AUTH_COOKIE_OPTIONS,
+        secure: isBrowser && window.location.protocol === "https:",
+      },
       auth: {
         flowType: "pkce",
         persistSession: isBrowser,
@@ -50,7 +56,7 @@ export const supabase = isSupabaseConfigured
         // /auth/callback explicitly owns the one-time PKCE code exchange.
         // Automatic detection here would race it and consume the verifier twice.
         detectSessionInUrl: false,
-        storageKey: "academy-auth-v1",
+        storageKey: SUPABASE_AUTH_COOKIE_NAME,
       },
     })
   : createStubClient();
