@@ -139,6 +139,60 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
     captionLang: "ms",
     hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
   },
+  "science-f1-c1": {
+    title: "Sains Tingkatan 1 — Bab 1",
+    youtubeId: "qWIof78Sbas",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c2": {
+    title: "Sains Tingkatan 1 — Bab 2",
+    youtubeId: "yQWGI7i4Jtc",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c3": {
+    title: "Sains Tingkatan 1 — Bab 3",
+    youtubeId: "BgoqhcILGeE",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c4": {
+    title: "Sains Tingkatan 1 — Bab 4",
+    youtubeId: "Ha2tIznbrYE",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c5": {
+    title: "Sains Tingkatan 1 — Bab 5",
+    youtubeId: "7dbejj6JFdc",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c6": {
+    title: "Sains Tingkatan 1 — Bab 6",
+    youtubeId: "4nbuIJSUXO4",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c7": {
+    title: "Sains Tingkatan 1 — Bab 7",
+    youtubeId: "bSCnibrJY80",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c8": {
+    title: "Sains Tingkatan 1 — Bab 8",
+    youtubeId: "caOC4OsDWQI",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f1-c9": {
+    title: "Sains Tingkatan 1 — Bab 9",
+    youtubeId: "GLFJlQ71pJE",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
 };
 
 export function getEducationalVideo(chapterId: string): EducationalVideo | undefined {
