@@ -1,19 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import {
-  ArrowRight,
   Sparkles,
   Check,
   Rocket,
-  Languages,
   NotebookPen,
   Layers,
   BrainCircuit,
   ClipboardCheck,
-  ShieldCheck,
-  Star,
 } from "lucide-react";
 
-import { useState, useEffect, useRef, lazy, Suspense, type CSSProperties, type ReactNode, type MouseEvent as ReactMouseEvent } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, type MouseEvent as ReactMouseEvent } from "react";
 import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
@@ -31,55 +27,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-/* ---------------- Shared bits ---------------- */
-
-
-function SectionLabel({ children }: { children: ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/90 bg-primary/10 ring-1 ring-primary/30">
-      <Sparkles className="w-3 h-3" />
-      {children}
-    </span>
-  );
-}
-
-function PrimaryCta({
-  to,
-  onClick,
-  children,
-}: {
-  to?: string;
-  onClick?: () => void;
-  children: ReactNode;
-}) {
-  const cls =
-    "inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold shadow-[0_10px_40px_-10px_rgba(139,92,246,0.7)] hover:scale-[1.03] transition-transform";
-  if (to)
-    return (
-      <Link to={to} className={cls}>
-        {children}
-        <ArrowRight className="w-4 h-4" />
-      </Link>
-    );
-  return (
-    <button onClick={onClick} className={cls}>
-      {children}
-      <ArrowRight className="w-4 h-4" />
-    </button>
-  );
-}
-
-function SecondaryCta({ to, children }: { to: string; children: ReactNode }) {
-  return (
-    <Link
-      to={to}
-      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white text-sm font-semibold ring-1 ring-white/10 transition-colors"
-    >
-      {children}
-    </Link>
-  );
-}
 
 /* ---------------- Top nav ---------------- */
 
@@ -394,14 +341,16 @@ function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 grid lg:grid-cols-[1.08fr_0.92fr] gap-12 lg:gap-8 items-center">
-        <div>
-          <SectionLabel>KSSM-aligned · Form 1–3</SectionLabel>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 grid lg:grid-cols-[519px_1fr] gap-12 lg:gap-8 items-center">
+        <div className="lg:max-w-[519px]">
+          <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80 bg-[#12163e] border border-[#242a5c]">
+            Malaysia KSSM Curriculum
+          </span>
           <Dialog open={comingSoonOpen} onOpenChange={setComingSoonOpen}>
             <DialogTrigger asChild>
               <button
                 type="button"
-                className="mt-2 text-[11px] font-medium uppercase tracking-[0.18em] text-white/40 hover:text-white/70 cursor-pointer transition-colors bg-transparent border-0 p-0"
+                className="mt-2 block text-[11px] font-medium uppercase tracking-[0.18em] text-white/40 hover:text-white/70 cursor-pointer transition-colors bg-transparent border-0 p-0"
               >
                 Form 4–5 (Coming Soon)
               </button>
@@ -435,36 +384,56 @@ function Hero() {
               </div>
             </DialogContent>
           </Dialog>
-          <h1 className="mt-6 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.02] tracking-tight text-white">
-            Malaysia's
-            <br />
-            <span className="bg-gradient-to-r from-white via-[#c9b8ff] to-accent bg-clip-text text-transparent">
-              Interstellar
-            </span>
-            <br />
-            Learning Platform
+          <h1 className="mt-6 font-display text-4xl sm:text-5xl lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-white">
+            Master KSSM With AI-Powered Learning
           </h1>
-          <p className="mt-6 max-w-xl text-base md:text-lg text-white/65 leading-relaxed">
+          <p className="mt-6 max-w-xl text-lg text-[#9ca3af] leading-relaxed font-body">
             Notes, flashcards, quizzes and mind maps in BM &amp; DLP — powered
             by your own Cikgu AI. Level up like a game, master KSSM like a pro.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <PrimaryCta onClick={() => open()}>
-              Start your mission
-            </PrimaryCta>
-            <SecondaryCta to="/subjects">Explore subjects</SecondaryCta>
-            <WatchIntroVideo />
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              onClick={() => open()}
+              className="inline-flex items-center justify-center rounded-full bg-[#7c3aed] hover:bg-[#6d28d9] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_40px_-10px_rgba(124,58,237,0.7)] hover:scale-[1.03] transition-transform"
+            >
+              Start Your Mission
+            </button>
+            <WatchIntroVideo
+              label="Watch Demo"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 hover:border-white/50 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition-colors"
+            />
           </div>
-          <div className="mt-10 flex flex-wrap items-center gap-6 text-xs text-white/50">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" /> KSSM aligned
+          <Link
+            to="/subjects"
+            className="mt-3 inline-block text-xs text-white/40 hover:text-white/70 underline underline-offset-4 transition-colors"
+          >
+            Or explore all subjects →
+          </Link>
+
+          {/* Social proof — overlapping avatars + live student count */}
+          <div className="mt-10 flex items-center gap-4">
+            <div className="flex -space-x-3">
+              {[
+                { bg: "#7c3aed", initial: "A" },
+                { bg: "#3b82f6", initial: "N" },
+                { bg: "#facc15", initial: "S" },
+                { bg: "#10b981", initial: "M" },
+              ].map((a) => (
+                <div
+                  key={a.initial}
+                  aria-hidden
+                  className="w-9 h-9 rounded-full ring-2 ring-[#0d1117] flex items-center justify-center text-xs font-bold text-white"
+                  style={{ backgroundColor: a.bg }}
+                >
+                  {a.initial}
+                </div>
+              ))}
             </div>
-            <div className="flex items-center gap-2">
-              <Languages className="w-4 h-4 text-sky-400" /> BM &amp; DLP
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-nova-yellow" /> Free to start
-            </div>
+            <p className="text-sm text-white/60">
+              Empowering <span className="font-bold text-white">10,000+</span>{" "}
+              students across Malaysia
+            </p>
           </div>
         </div>
 
@@ -472,7 +441,7 @@ function Hero() {
             background, so it reads as sitting directly in the starfield. */}
         <div
           ref={heroCardRef}
-          className="relative mx-auto w-full max-w-[320px] sm:max-w-md lg:max-w-lg select-none"
+          className="relative mx-auto w-full max-w-[320px] sm:max-w-md lg:w-[27vw] lg:min-w-[280px] lg:max-w-[420px] lg:ml-auto xl:-ml-6 select-none"
           style={{ perspective: 1000 }}
         >
           <div

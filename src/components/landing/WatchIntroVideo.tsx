@@ -6,7 +6,16 @@ import heroVideo from "@/assets/hero-intro.mp4.asset.json";
  * Small "Watch intro" pill that opens a lightbox MP4 player.
  * The video itself is the cinematic intro from the Figma Make scene.
  */
-export function WatchIntroVideo() {
+const DEFAULT_TRIGGER_CLASSNAME =
+  "group inline-flex items-center gap-3 rounded-full bg-white/5 hover:bg-white/10 ring-1 ring-white/15 px-5 py-2.5 text-white text-sm font-semibold transition-colors";
+
+export function WatchIntroVideo({
+  label = "Watch intro",
+  className = DEFAULT_TRIGGER_CLASSNAME,
+}: {
+  label?: string;
+  className?: string;
+} = {}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -25,16 +34,12 @@ export function WatchIntroVideo() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="group inline-flex items-center gap-3 rounded-full bg-white/5 hover:bg-white/10 ring-1 ring-white/15 px-5 py-2.5 text-white text-sm font-semibold transition-colors"
-      >
+      <button type="button" onClick={() => setOpen(true)} className={className}>
         <span className="relative grid place-items-center w-7 h-7 rounded-full bg-nova-yellow text-[#1a0f2e] shadow-[0_0_24px_rgba(250,204,21,0.5)]">
           <Play className="w-3.5 h-3.5 fill-current" />
           <span className="absolute inset-0 rounded-full bg-nova-yellow/40 animate-ping motion-reduce:animate-none" />
         </span>
-        Watch intro
+        {label}
       </button>
 
       {open && (
