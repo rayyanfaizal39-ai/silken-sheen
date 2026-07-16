@@ -94,8 +94,15 @@ export default defineConfig({
             /^\/_worker/,
           ],
           globPatterns: ["**/*.{js,css,html,ico,png,svg,webp,woff,woff2}"],
-          // Avoid precaching large curriculum JSON — those are runtime-cached.
-          globIgnores: ["**/node_modules/**", "sw.js", "workbox-*.js"],
+          // Geography lesson PNGs include several 5–6 MB diagrams. Keep them
+          // out of the install-time precache; the same-origin image rule below
+          // caches each image on demand after a student opens its chapter.
+          globIgnores: [
+            "**/node_modules/**",
+            "client/geography/**/*.png",
+            "sw.js",
+            "workbox-*.js",
+          ],
           maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
           cleanupOutdatedCaches: true,
           clientsClaim: true,
