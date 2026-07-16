@@ -37,6 +37,7 @@ import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
+import { Route as ApiToyyibpayCallbackRouteImport } from './routes/api.toyyibpay.callback'
 
 const UpgradeRoute = UpgradeRouteImport.update({
   id: '/upgrade',
@@ -178,6 +179,11 @@ const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
   path: '/academy/landingpage3',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiToyyibpayCallbackRoute = ApiToyyibpayCallbackRouteImport.update({
+  id: '/api/toyyibpay/callback',
+  path: '/api/toyyibpay/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -208,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -237,6 +244,7 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
+  '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -268,6 +276,7 @@ export interface FileRoutesById {
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -300,6 +309,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/auth/callback'
     | '/admin/'
+    | '/api/toyyibpay/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -329,6 +339,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/auth/callback'
     | '/admin'
+    | '/api/toyyibpay/callback'
   id:
     | '__root__'
     | '/'
@@ -359,6 +370,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/auth/callback'
     | '/admin/'
+    | '/api/toyyibpay/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -385,6 +397,7 @@ export interface RootRouteChildren {
   UpgradeRoute: typeof UpgradeRoute
   AcademyLandingpage3Route: typeof AcademyLandingpage3Route
   AuthCallbackRoute: typeof AuthCallbackRoute
+  ApiToyyibpayCallbackRoute: typeof ApiToyyibpayCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -585,6 +598,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AcademyLandingpage3RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/toyyibpay/callback': {
+      id: '/api/toyyibpay/callback'
+      path: '/api/toyyibpay/callback'
+      fullPath: '/api/toyyibpay/callback'
+      preLoaderRoute: typeof ApiToyyibpayCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -630,6 +650,7 @@ const rootRouteChildren: RootRouteChildren = {
   UpgradeRoute: UpgradeRoute,
   AcademyLandingpage3Route: AcademyLandingpage3Route,
   AuthCallbackRoute: AuthCallbackRoute,
+  ApiToyyibpayCallbackRoute: ApiToyyibpayCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -96,10 +96,10 @@ function AdminDashboard() {
       if (applied.end) usersQuery = usersQuery.lte('created_at', applied.end);
       if (applied.search) usersQuery = usersQuery.or(`full_name.ilike.%${applied.search}%,email.ilike.%${applied.search}%`);
 
-      const paymentsQueryText = "from('payments').select('id, created_at, amount, currency, method, status, profiles(full_name, email)').order('created_at', { ascending: false }).limit(applied.limit ?? 100)";
+      const paymentsQueryText = "from('payment_transactions').select('id, user_id, created_at, amount, currency, payment_method, payment_status').order('created_at', { ascending: false }).limit(applied.limit ?? 100)";
       let paymentsQuery = supabase
-        .from('payments')
-        .select('id, created_at, amount, currency, method, status, profiles(full_name, email)')
+        .from('payment_transactions')
+        .select('id, user_id, created_at, amount, currency, payment_method, payment_status')
         .order('created_at', { ascending: false })
         .limit(applied.limit ?? 100);
       if (applied.start) paymentsQuery = paymentsQuery.gte('created_at', applied.start);
@@ -145,7 +145,27 @@ function AdminDashboard() {
         setStats(statsRes.data as AdminStats);
       }
       setUsers((usersRes.data ?? []) as UserRow[]);
-      setPayments((paymentsRes.data ?? []) as unknown as PaymentRow[]);
+      const paymentRows = paymentsRes.data ?? [];
+      const paymentUserIds = Array.from(new Set(paymentRows.map((row) => row.user_id)));
+      const paymentProfiles = new Map<string, { full_name: string | null; email: string | null }>();
+      if (paymentUserIds.length) {
+        const profileResult = await supabase
+          .from('profiles')
+          .select('id, full_name, email')
+          .in('id', paymentUserIds);
+        for (const profile of profileResult.data ?? []) {
+          paymentProfiles.set(profile.id, { full_name: profile.full_name, email: profile.email });
+        }
+      }
+      setPayments(paymentRows.map((row) => ({
+        id: row.id,
+        created_at: row.created_at,
+        amount: Number(row.amount),
+        currency: row.currency,
+        method: row.payment_method,
+        status: row.payment_status,
+        profiles: paymentProfiles.get(row.user_id) ?? null,
+      })) as PaymentRow[]);
       setQuiz((quizRes.data ?? []) as unknown as QuizRow[]);
       setLoading(false);
     })().catch((error) => {

@@ -169,8 +169,8 @@ export const getPayments = createServerFn({ method: 'POST' })
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
     let q = supabase
-      .from('payments')
-      .select('id, created_at, amount, currency, method, status, profiles(full_name, email)')
+      .from('payment_transactions')
+      .select('id, user_id, created_at, amount, currency, payment_method, payment_status')
       .order('created_at', { ascending: false })
       .limit(f.limit ?? 100);
 
@@ -184,7 +184,28 @@ export const getPayments = createServerFn({ method: 'POST' })
       count: Array.isArray(data) ? data.length : null,
     });
     if (error) throw error;
-    return (data ?? []) as unknown as PaymentRow[];
+    const rows = data ?? [];
+    const userIds = Array.from(new Set(rows.map((row) => row.user_id)));
+    const profilesById = new Map<string, { full_name: string | null; email: string | null }>();
+    if (userIds.length) {
+      const profiles = await supabase
+        .from('profiles')
+        .select('id, full_name, email')
+        .in('id', userIds);
+      if (profiles.error) throw profiles.error;
+      for (const profile of profiles.data ?? []) {
+        profilesById.set(profile.id, { full_name: profile.full_name, email: profile.email });
+      }
+    }
+    return rows.map((row) => ({
+      id: row.id,
+      created_at: row.created_at,
+      amount: Number(row.amount),
+      currency: row.currency,
+      method: row.payment_method,
+      status: row.payment_status,
+      profiles: profilesById.get(row.user_id) ?? null,
+    })) as PaymentRow[];
   });
 
 // quiz_history.user_id references auth.users(id), not profiles(id) directly,

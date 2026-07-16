@@ -26,7 +26,7 @@ preview.html                                      ← static visual preview
 ## Install — 4 steps
 
 **1. Database.** Paste `supabase/migrations/0001_admin_dashboard.sql` into the
-Supabase SQL editor and run it. It is idempotent and only *adds* things — it
+Supabase SQL editor and run it. It is idempotent and only _adds_ things — it
 creates `profiles`, `quiz_attempts`, `payments` if missing, adds any missing
 columns if they already exist, sets up RLS, the `is_admin()` guard, an auto
 profile-on-signup trigger, the `admin_users_overview` view, and the
@@ -37,15 +37,18 @@ update public.profiles set role = 'admin' where email = 'you@example.com';
 ```
 
 **2. Dependency.**
+
 ```bash
 npm i @supabase/ssr
 ```
 
 **3. Env.** Ensure these are available to the server runtime:
+
 ```
 SUPABASE_URL=...
 SUPABASE_ANON_KEY=...
 ```
+
 On Cloudflare Workers, if env arrives via bindings instead of `process.env`,
 swap the two reads in `src/lib/supabase.server.ts` for your binding accessor.
 
@@ -90,3 +93,44 @@ data.
   into `admin_dashboard_stats()` later if you want the KPIs to react too.
 - `last_login_at` is shown but you populate it — set it on sign-in
   (`update profiles set last_login_at = now() where id = auth.uid()`).
+
+## Subscription, payments, and invoices
+
+The existing `/upgrade` page now includes a logged-in **My Subscription**
+section. Financial writes run only on the server with the Supabase service-role
+key; browser clients have read-only RLS access to their own subscription,
+payment, and invoice rows.
+
+### Setup
+
+1. Copy `.env.example` to your local environment and provide the Supabase
+   browser keys plus the server-only `SUPABASE_SERVICE_ROLE_KEY`.
+2. Apply `supabase/migrations/20260716001758_subscription_payments_invoices.sql`.
+   It creates the three billing tables, indexes, RLS policies, idempotent
+   payment RPCs, and the private `invoices` Storage bucket.
+3. For local phase-1 testing only, set `ENABLE_MOCK_PAYMENTS=true`. Mock
+   controls are rejected when `NODE_ENV=production` or the Cloudflare Pages
+   branch is `main`.
+4. To prepare email delivery, set `RESEND_API_KEY` and
+   `INVOICE_SENDER_EMAIL`. If these are omitted, verified payments still
+   generate and store invoices; email is skipped until configured.
+5. Fill the legal-name, SSM, and address placeholders before issuing live
+   invoices.
+
+### ToyyibPay phase 2
+
+Use `https://dev.toyyibpay.com` with sandbox credentials first. Configure the
+category code, secret key, and public `APPLICATION_URL`; the callback URL is
+`/api/toyyibpay/callback`. The callback hash is validated, the bill is matched
+to a server-created pending transaction, and status/amount are re-fetched from
+ToyyibPay before the invoice transaction runs. Change only
+`TOYYIBPAY_API_URL` and credentials when moving to live mode.
+
+Never expose `SUPABASE_SERVICE_ROLE_KEY`, `TOYYIBPAY_SECRET_KEY`, or
+`RESEND_API_KEY` through a `VITE_` variable.
+
+Run billing tests with:
+
+```bash
+npm test
+```

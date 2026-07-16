@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, X, Sparkles, ArrowRight, Star, Loader2, Crown, Rocket } from "lucide-react";
 import { AcademyPageShell } from "@/components/AcademyPage";
 import { useAuth } from "@/context/auth-context";
-import { createAndConfirmStubCheckout, type UpgradePlan } from "./-upgrade.server";
+import { createCheckout, simulateMockPayment, type UpgradePlan } from "./-upgrade.server";
 import { seoMeta } from "@/lib/seo";
+import { MySubscription } from "@/components/billing/MySubscription";
 
 export const Route = createFileRoute("/upgrade")({
   head: () =>
@@ -126,7 +127,6 @@ function CtaButton({
   className: string;
 }) {
   const { user, loading: authLoading } = useAuth();
-  const navigate = useNavigate();
   const [status, setStatus] = useState<CheckoutStatus>("idle");
 
   if (plan === null) {
@@ -149,8 +149,18 @@ function CtaButton({
     if (!plan) return;
     setStatus("loading");
     try {
-      await createAndConfirmStubCheckout({ data: { plan } });
-      navigate({ to: "/dashboard" });
+      const checkout = await createCheckout({
+        data: { plan, idempotencyKey: crypto.randomUUID() },
+      });
+      if (checkout.mode === "toyyibpay") {
+        window.location.assign(checkout.checkoutUrl);
+        return;
+      }
+      await simulateMockPayment({
+        data: { paymentId: checkout.paymentId, outcome: "successful" },
+      });
+      window.dispatchEvent(new Event("academy:billing-updated"));
+      setStatus("idle");
     } catch (err) {
       console.error("[upgrade] checkout failed:", err);
       setStatus("error");
@@ -241,7 +251,7 @@ function UpgradePage() {
       </div>
 
       {/* ── Plan cards ─────────────────────────────────────────────────── */}
-      <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
+      <div id="pricing-plans" className="mx-auto grid max-w-6xl scroll-mt-24 gap-6 lg:grid-cols-3">
         {/* Basic */}
         <div className="flex flex-col rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-7 backdrop-blur-2xl">
           <div className="mb-1 flex items-center gap-2">
@@ -497,6 +507,8 @@ function UpgradePage() {
           </span>
         </div>
       </div>
+
+      <MySubscription />
     </AcademyPageShell>
   );
 }
