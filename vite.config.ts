@@ -5,6 +5,7 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { VitePWA } from "vite-plugin-pwa";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // Used by both the Vercel SSR deploy path (dist/server/server.js) and the
@@ -66,6 +67,104 @@ export default defineConfig({
     router: { autoCodeSplitting: true },
   },
   vite: {
+    // vite-plugin-pwa: offline support for AcadeMY. Only the client build
+    // consumes the generated /sw.js. Registration is done from a guarded
+    // wrapper (src/lib/pwa-register.ts) — the plugin itself never injects
+    // its own registration script (injectRegister: null) and stays disabled
+    // in dev/preview (devOptions.enabled: false), so Lovable previews and
+    // `vite dev` never serve a service worker.
+    plugins: [
+      VitePWA({
+        registerType: "autoUpdate",
+        injectRegister: null,
+        strategies: "generateSW",
+        filename: "sw.js",
+        devOptions: { enabled: false },
+        // We already ship a hand-maintained manifest at public/site.webmanifest
+        // linked from __root.tsx. Tell the plugin not to emit or link a new one.
+        manifest: false,
+        workbox: {
+          // Extra dev-safety: never intercept SSR / API / OAuth / auth routes.
+          navigateFallback: "/index.html",
+          navigateFallbackDenylist: [
+            /^\/api\//,
+            /^\/~oauth/,
+            /^\/auth\//,
+            /^\/admin/,
+            /^\/_worker/,
+          ],
+          globPatterns: ["**/*.{js,css,html,ico,png,svg,webp,woff,woff2}"],
+          // Avoid precaching large curriculum JSON — those are runtime-cached.
+          globIgnores: ["**/node_modules/**", "sw.js", "workbox-*.js"],
+          maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+          cleanupOutdatedCaches: true,
+          clientsClaim: true,
+          skipWaiting: false,
+          runtimeCaching: [
+            {
+              // Google Fonts stylesheets
+              urlPattern: ({ url }) => url.origin === "https://fonts.googleapis.com",
+              handler: "StaleWhileRevalidate",
+              options: { cacheName: "google-fonts-stylesheets" },
+            },
+            {
+              // Google Fonts webfont files
+              urlPattern: ({ url }) => url.origin === "https://fonts.gstatic.com",
+              handler: "CacheFirst",
+              options: {
+                cacheName: "google-fonts-webfonts",
+                expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 365 },
+                cacheableResponse: { statuses: [0, 200] },
+              },
+            },
+            {
+              // Lovable-hosted images / uploaded assets
+              urlPattern: ({ url }) => url.pathname.startsWith("/__l5e/"),
+              handler: "StaleWhileRevalidate",
+              options: {
+                cacheName: "l5e-assets",
+                expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 },
+                cacheableResponse: { statuses: [0, 200] },
+              },
+            },
+            {
+              // Same-origin images
+              urlPattern: ({ request, sameOrigin }) => sameOrigin && request.destination === "image",
+              handler: "StaleWhileRevalidate",
+              options: {
+                cacheName: "images",
+                expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              },
+            },
+            {
+              // Educational content routes — notes, mindmaps, flashcards, chapters.
+              // Stale-while-revalidate so previously opened content works offline.
+              urlPattern: ({ url, sameOrigin, request }) =>
+                sameOrigin &&
+                request.mode === "navigate" &&
+                /^\/(notes|mindmaps|flashcards|study|academy)(\/|$)/.test(url.pathname),
+              handler: "StaleWhileRevalidate",
+              options: {
+                cacheName: "educational-pages",
+                expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 14 },
+              },
+            },
+            {
+              // Default HTML navigations — NetworkFirst so users get fresh pages online,
+              // but still see something when offline.
+              urlPattern: ({ request, sameOrigin }) => sameOrigin && request.mode === "navigate",
+              handler: "NetworkFirst",
+              options: {
+                cacheName: "html-pages",
+                networkTimeoutSeconds: 4,
+                expiration: { maxEntries: 40, maxAgeSeconds: 60 * 60 * 24 * 7 },
+              },
+            },
+          ],
+        },
+      }),
+    ],
+
     // Dev-only proxy: /__l5e/* is served by Lovable's hosting edge in preview
     // and production, but not by raw `vite dev`. Without this, images uploaded
     // via `lovable-assets create` appear as broken images on localhost:8080.

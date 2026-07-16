@@ -11,6 +11,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { AppShell } from "@/components/AppShell";
+import { PwaUpdatePrompt } from "@/components/PwaUpdatePrompt";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
 import { AuthProvider } from "@/context/auth-context";
@@ -171,6 +172,7 @@ function RootComponent() {
             <AppShell>
               <Outlet />
             </AppShell>
+            <PwaUpdatePrompt />
           </CikguProvider>
         </SignInModalProvider>
       </AuthProvider>
