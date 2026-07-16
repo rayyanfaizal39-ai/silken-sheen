@@ -130,6 +130,7 @@ writeFileSync(
         "/assets/*",
         "/companions/*",
         "/favicon.ico",
+        "/index.html",
         "/sw.js",
         "/workbox-*.js",
         "/*.png",
