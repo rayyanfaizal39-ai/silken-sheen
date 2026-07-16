@@ -2,12 +2,17 @@
   "name": "AcadeMY",
   "short_name": "AcadeMY",
   "description": "Malaysia's KSSM-aligned learning platform for Form 1-3 students.",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#050816",
-  "theme_color": "#6366F1",
+  "theme_color": "#050816",
+  "categories": ["education", "productivity"],
   "icons": [
-    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
