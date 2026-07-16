@@ -114,6 +114,9 @@ import { geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import { sej1Content } from "@/content/form1/sejarah/chapter-1/sej1-content";
 import { sej2Content } from "@/content/form1/sejarah/chapter-2/sej2-content";
 import { sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content";
+import { sej4Content } from "@/content/form1/sejarah/chapter-4/sej4-content";
+import { sej5Content } from "@/content/form1/sejarah/chapter-5/sej5-content";
+import { sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content";
 import { geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import { geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
 import { geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
@@ -708,14 +711,17 @@ export const chapters: ChapterContent[] = [
   { ...sejarah(1, "Mengenali Sejarah", mengenaliSejarahMindMap, "Mengenali Sejarah"), sejChapter1Data: sej1Content },
   { ...sejarah(2, "Zaman Air Batu", zamanAirBatuMindMap, "Zaman Air Batu"), sejChapter2Data: sej2Content },
   { ...sejarah(3, "Zaman Prasejarah", zamanPrasejarahMindMap, "Zaman Prasejarah"), sejChapter3Data: sej3Content },
-  sejarah(4, "Mengenali Tamadun", mengenaliTamadunMindMap, "Mengenali Tamadun"),
-  sejarah(5, "Tamadun Awal Dunia", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"),
-  sejarah(
-    6,
-    "Tamadun Yunani dan Rom",
-    peningkatanTamadunYunaniRomMindMap,
-    "Peningkatan Tamadun Yunani dan Rom",
-  ),
+  { ...sejarah(4, "Mengenali Tamadun", mengenaliTamadunMindMap, "Mengenali Tamadun"), sejChapter4Data: sej4Content },
+  { ...sejarah(5, "Tamadun Awal Dunia", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"), sejChapter5Data: sej5Content },
+  {
+    ...sejarah(
+      6,
+      "Tamadun Yunani dan Rom",
+      peningkatanTamadunYunaniRomMindMap,
+      "Peningkatan Tamadun Yunani dan Rom",
+    ),
+    sejChapter6Data: sej6Content,
+  },
   sejarah(
     7,
     "Tamadun India dan China",

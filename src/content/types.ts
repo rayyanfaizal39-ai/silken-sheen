@@ -32,6 +32,9 @@ import type { Geo13Content } from "@/content/form1/geography/chapter-13/geo13-co
 import type { Sej1Content } from "@/content/form1/sejarah/chapter-1/sej1-content";
 import type { Sej2Content } from "@/content/form1/sejarah/chapter-2/sej2-content";
 import type { Sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content";
+import type { Sej4Content } from "@/content/form1/sejarah/chapter-4/sej4-content";
+import type { Sej5Content } from "@/content/form1/sejarah/chapter-5/sej5-content";
+import type { Sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -118,6 +121,12 @@ export type ChapterContent = {
   sejChapter2Data?: Sej2Content;
   /** Sejarah Bab 3 (Zaman Prasejarah) chunked learning experience. BM-only. */
   sejChapter3Data?: Sej3Content;
+  /** Sejarah Bab 4 (Mengenali Tamadun) chunked learning experience. BM-only. */
+  sejChapter4Data?: Sej4Content;
+  /** Sejarah Bab 5 (Tamadun Awal Dunia) chunked learning experience. BM-only. */
+  sejChapter5Data?: Sej5Content;
+  /** Sejarah Bab 6 (Peningkatan Tamadun Yunani dan Rom) chunked learning experience. BM-only. */
+  sejChapter6Data?: Sej6Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -160,6 +169,9 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.sejChapter1Data ||
       !!c?.sejChapter2Data ||
       !!c?.sejChapter3Data ||
+      !!c?.sejChapter4Data ||
+      !!c?.sejChapter5Data ||
+      !!c?.sejChapter6Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

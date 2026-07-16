@@ -46,6 +46,9 @@ import { GeoChapter13NotesBlock } from "@/components/notes/GeoChapter13NotesBloc
 import { SejChapter1NotesBlock } from "@/components/notes/SejChapter1NotesBlock";
 import { SejChapter2NotesBlock } from "@/components/notes/SejChapter2NotesBlock";
 import { SejChapter3NotesBlock } from "@/components/notes/SejChapter3NotesBlock";
+import { SejChapter4NotesBlock } from "@/components/notes/SejChapter4NotesBlock";
+import { SejChapter5NotesBlock } from "@/components/notes/SejChapter5NotesBlock";
+import { SejChapter6NotesBlock } from "@/components/notes/SejChapter6NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -208,7 +211,10 @@ function NotesPage() {
     !activeChapter?.geoChapter13Data &&
     !activeChapter?.sejChapter1Data &&
     !activeChapter?.sejChapter2Data &&
-    !activeChapter?.sejChapter3Data;
+    !activeChapter?.sejChapter3Data &&
+    !activeChapter?.sejChapter4Data &&
+    !activeChapter?.sejChapter5Data &&
+    !activeChapter?.sejChapter6Data;
   const subtopics: Subtopic[] = hasSubtopics
     ? subject === "sejarah"
       ? getSejarahF1Subtopics(activeChapterKey ?? "")
@@ -692,6 +698,36 @@ function NotesPage() {
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
+          ) : activeChapter?.sejChapter4Data ? (
+            <SejChapter4NotesBlock
+              id="notes"
+              content={activeChapter.sejChapter4Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sejChapter5Data ? (
+            <SejChapter5NotesBlock
+              id="notes"
+              content={activeChapter.sejChapter5Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sejChapter6Data ? (
+            <SejChapter6NotesBlock
+              id="notes"
+              content={activeChapter.sejChapter6Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
           ) : activeChapter?.geoChapter1Data ? (
             <GeoChapter1NotesBlock
               id="notes"
@@ -957,6 +993,9 @@ function NotesPage() {
             !activeChapter?.sejChapter1Data &&
             !activeChapter?.sejChapter2Data &&
             !activeChapter?.sejChapter3Data &&
+            !activeChapter?.sejChapter4Data &&
+            !activeChapter?.sejChapter5Data &&
+            !activeChapter?.sejChapter6Data &&
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
             !activeChapter?.chapter2Data &&
@@ -993,6 +1032,9 @@ function NotesPage() {
                 !activeChapter?.sejChapter1Data &&
                 !activeChapter?.sejChapter2Data &&
                 !activeChapter?.sejChapter3Data &&
+                !activeChapter?.sejChapter4Data &&
+                !activeChapter?.sejChapter5Data &&
+                !activeChapter?.sejChapter6Data &&
                 !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&
@@ -1028,6 +1070,9 @@ function NotesPage() {
                 !activeChapter?.sejChapter1Data &&
                 !activeChapter?.sejChapter2Data &&
                 !activeChapter?.sejChapter3Data &&
+                !activeChapter?.sejChapter4Data &&
+                !activeChapter?.sejChapter5Data &&
+                !activeChapter?.sejChapter6Data &&
                 !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&
