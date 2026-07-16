@@ -1,11 +1,16 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import type { InvoiceData } from "./billing.types";
+
+const PAGE_WIDTH = 595;
+const PAGE_HEIGHT = 842;
 
 function safePdfText(value: string | null | undefined) {
   return (value ?? "-")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^\x20-\x7E]/g, "?");
+    .replace(/[^\x20-\x7e]/g, "?")
+    .replace(/\\/g, "\\\\")
+    .replace(/\(/g, "\\(")
+    .replace(/\)/g, "\\)");
 }
 
 function money(amount: number, currency: string) {
@@ -21,191 +26,106 @@ function date(value: string) {
   }).format(new Date(value));
 }
 
+function text(
+  value: string,
+  x: number,
+  y: number,
+  size = 10,
+  font: "F1" | "F2" = "F1",
+  color = "0.04 0.07 0.14",
+) {
+  return `BT /${font} ${size} Tf ${color} rg ${x} ${y} Td (${safePdfText(value)}) Tj ET`;
+}
+
+function buildContent(invoice: InvoiceData) {
+  const legalName = process.env.ACADEMY_LEGAL_NAME ?? "AcadeMY [Legal company name]";
+  const registration = process.env.ACADEMY_SSM_NUMBER ?? "[Registration number]";
+  const address = process.env.ACADEMY_BUSINESS_ADDRESS ?? "[Business address]";
+
+  return [
+    "0.04 0.07 0.14 rg 0 742 595 100 re f",
+    text("AcadeMY", 48, 790, 24, "F2", "1 1 1"),
+    text("SUBSCRIPTION INVOICE", 48, 770, 9, "F2", "0.72 0.75 0.84"),
+    text("PAID", 485, 790, 16, "F2", "0.05 0.55 0.34"),
+    text(invoice.invoice_number, 390, 768, 9, "F1", "0.85 0.87 0.93"),
+    text(legalName, 48, 708, 12, "F2"),
+    text(`SSM: ${registration}`, 48, 690, 9, "F1", "0.38 0.43 0.53"),
+    text(address, 48, 674, 9, "F1", "0.38 0.43 0.53"),
+    text("Invoice date", 365, 708, 8, "F1", "0.38 0.43 0.53"),
+    text(date(invoice.invoice_date), 450, 708, 8, "F2"),
+    text("Payment reference", 365, 689, 8, "F1", "0.38 0.43 0.53"),
+    text(invoice.payment_reference, 450, 689, 8, "F2"),
+    text("Payment status", 365, 670, 8, "F1", "0.38 0.43 0.53"),
+    text(invoice.payment_status.toUpperCase(), 450, 670, 8, "F2"),
+    "0.88 0.90 0.94 RG 1 w 48 640 m 547 640 l S",
+    text("BILL TO", 48, 615, 9, "F2", "0.39 0.40 0.95"),
+    text(invoice.customer_name, 48, 591, 15, "F2"),
+    text(invoice.customer_email, 48, 573, 10, "F1", "0.38 0.43 0.53"),
+    ...(invoice.student_name
+      ? [text(`Student: ${invoice.student_name}`, 48, 555, 10, "F1", "0.38 0.43 0.53")]
+      : []),
+    "0.04 0.07 0.14 rg 48 493 499 34 re f",
+    text("DESCRIPTION", 62, 505, 9, "F2", "1 1 1"),
+    text("PERIOD", 313, 505, 9, "F2", "1 1 1"),
+    text("AMOUNT", 477, 505, 9, "F2", "1 1 1"),
+    text(invoice.description, 62, 463, 10, "F2"),
+    text(`${date(invoice.period_start)} - ${date(invoice.period_end)}`, 313, 463, 9),
+    text(money(invoice.subtotal, invoice.currency), 467, 463, 10, "F2"),
+    "0.88 0.90 0.94 RG 1 w 48 441 m 547 441 l S",
+    text("Subtotal", 389, 400, 9, "F1", "0.38 0.43 0.53"),
+    text(money(invoice.subtotal, invoice.currency), 473, 400, 9, "F2"),
+    text("Tax", 389, 373, 9, "F1", "0.38 0.43 0.53"),
+    text(money(invoice.tax, invoice.currency), 473, 373, 9, "F2"),
+    text("Total paid", 389, 346, 11, "F2"),
+    text(money(invoice.total, invoice.currency), 473, 346, 11, "F2", "0.05 0.55 0.34"),
+    "0.96 0.97 1 rg 48 225 499 70 re f",
+    text("Thank you for learning with AcadeMY.", 68, 267, 12, "F2"),
+    text(
+      "This invoice confirms payment for the subscription period shown above.",
+      68,
+      246,
+      9,
+      "F1",
+      "0.38 0.43 0.53",
+    ),
+    text("This is a computer-generated invoice.", 48, 66, 8, "F1", "0.38 0.43 0.53"),
+    text("myacademy.my", 472, 66, 8, "F2", "0.39 0.40 0.95"),
+  ].join("\n");
+}
+
+function serializePdf(objects: string[]) {
+  let output = "%PDF-1.4\n% AcadeMY invoice\n";
+  const offsets = [0];
+
+  objects.forEach((object, index) => {
+    offsets.push(output.length);
+    output += `${index + 1} 0 obj\n${object}\nendobj\n`;
+  });
+
+  const xrefOffset = output.length;
+  output += `xref\n0 ${objects.length + 1}\n`;
+  output += "0000000000 65535 f \n";
+  output += offsets
+    .slice(1)
+    .map((offset) => `${String(offset).padStart(10, "0")} 00000 n \n`)
+    .join("");
+  output += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R /Info 7 0 R >>\n`;
+  output += `startxref\n${xrefOffset}\n%%EOF\n`;
+
+  return new TextEncoder().encode(output);
+}
+
 export async function generateInvoicePdf(invoice: InvoiceData) {
-  const pdf = await PDFDocument.create();
-  pdf.setTitle(`AcadeMY Invoice ${invoice.invoice_number}`);
-  pdf.setAuthor("AcadeMY");
-  pdf.setSubject("Subscription payment invoice");
-
-  const page = pdf.addPage([595.28, 841.89]);
-  const regular = await pdf.embedFont(StandardFonts.Helvetica);
-  const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
-  const navy = rgb(0.035, 0.067, 0.14);
-  const violet = rgb(0.39, 0.4, 0.95);
-  const muted = rgb(0.38, 0.43, 0.53);
-  const green = rgb(0.05, 0.55, 0.34);
-  const left = 48;
-  const right = 547;
-
-  page.drawRectangle({ x: 0, y: 742, width: 595.28, height: 100, color: navy });
-  page.drawCircle({ x: 75, y: 793, size: 22, color: violet });
-  page.drawText("A", { x: 66, y: 783, size: 26, font: bold, color: rgb(1, 1, 1) });
-  page.drawText("AcadeMY", { x: 108, y: 791, size: 24, font: bold, color: rgb(1, 1, 1) });
-  page.drawText("SUBSCRIPTION INVOICE", {
-    x: 108,
-    y: 771,
-    size: 9,
-    font: bold,
-    color: rgb(0.66, 0.7, 0.8),
-  });
-
-  page.drawText("PAID", { x: 472, y: 786, size: 17, font: bold, color: green });
-  page.drawText(safePdfText(invoice.invoice_number), {
-    x: 390,
-    y: 765,
-    size: 10,
-    font: regular,
-    color: rgb(0.85, 0.87, 0.93),
-  });
-
-  page.drawText(process.env.ACADEMY_LEGAL_NAME ?? "AcadeMY [Legal company name]", {
-    x: left,
-    y: 708,
-    size: 12,
-    font: bold,
-    color: navy,
-  });
-  page.drawText(`SSM: ${process.env.ACADEMY_SSM_NUMBER ?? "[Registration number]"}`, {
-    x: left,
-    y: 691,
-    size: 9,
-    font: regular,
-    color: muted,
-  });
-  page.drawText(safePdfText(process.env.ACADEMY_BUSINESS_ADDRESS ?? "[Business address]"), {
-    x: left,
-    y: 676,
-    size: 9,
-    font: regular,
-    color: muted,
-  });
-
-  const info = [
-    ["Invoice date", date(invoice.invoice_date)],
-    ["Payment reference", safePdfText(invoice.payment_reference)],
-    ["Payment status", invoice.payment_status.toUpperCase()],
+  const content = buildContent(invoice);
+  const objects = [
+    "<< /Type /Catalog /Pages 2 0 R >>",
+    "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+    `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PAGE_WIDTH} ${PAGE_HEIGHT}] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>`,
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>",
+    `<< /Length ${content.length} >>\nstream\n${content}\nendstream`,
+    `<< /Title (${safePdfText(`AcadeMY Invoice ${invoice.invoice_number}`)}) /Author (AcadeMY) /Subject (Subscription payment invoice) >>`,
   ];
-  info.forEach(([label, value], index) => {
-    const y = 708 - index * 19;
-    page.drawText(label, { x: 368, y, size: 8, font: regular, color: muted });
-    page.drawText(value, { x: 449, y, size: 8, font: bold, color: navy });
-  });
 
-  page.drawLine({
-    start: { x: left, y: 640 },
-    end: { x: right, y: 640 },
-    thickness: 1,
-    color: rgb(0.88, 0.9, 0.94),
-  });
-  page.drawText("BILL TO", { x: left, y: 615, size: 9, font: bold, color: violet });
-  page.drawText(safePdfText(invoice.customer_name), {
-    x: left,
-    y: 591,
-    size: 15,
-    font: bold,
-    color: navy,
-  });
-  page.drawText(safePdfText(invoice.customer_email), {
-    x: left,
-    y: 573,
-    size: 10,
-    font: regular,
-    color: muted,
-  });
-  if (invoice.student_name) {
-    page.drawText(`Student: ${safePdfText(invoice.student_name)}`, {
-      x: left,
-      y: 555,
-      size: 10,
-      font: regular,
-      color: muted,
-    });
-  }
-
-  page.drawRectangle({ x: left, y: 493, width: right - left, height: 34, color: navy });
-  page.drawText("DESCRIPTION", { x: 62, y: 505, size: 9, font: bold, color: rgb(1, 1, 1) });
-  page.drawText("PERIOD", { x: 313, y: 505, size: 9, font: bold, color: rgb(1, 1, 1) });
-  page.drawText("AMOUNT", { x: 477, y: 505, size: 9, font: bold, color: rgb(1, 1, 1) });
-  page.drawText(safePdfText(invoice.description), {
-    x: 62,
-    y: 463,
-    size: 10,
-    font: bold,
-    color: navy,
-  });
-  page.drawText(`${date(invoice.period_start)} - ${date(invoice.period_end)}`, {
-    x: 313,
-    y: 463,
-    size: 9,
-    font: regular,
-    color: muted,
-  });
-  page.drawText(money(invoice.subtotal, invoice.currency), {
-    x: 467,
-    y: 463,
-    size: 10,
-    font: bold,
-    color: navy,
-  });
-  page.drawLine({
-    start: { x: left, y: 441 },
-    end: { x: right, y: 441 },
-    thickness: 1,
-    color: rgb(0.88, 0.9, 0.94),
-  });
-
-  const totals = [
-    ["Subtotal", money(invoice.subtotal, invoice.currency)],
-    ["Tax", money(invoice.tax, invoice.currency)],
-    ["Total paid", money(invoice.total, invoice.currency)],
-  ];
-  totals.forEach(([label, value], index) => {
-    const y = 400 - index * 27;
-    page.drawText(label, {
-      x: 389,
-      y,
-      size: index === 2 ? 11 : 9,
-      font: index === 2 ? bold : regular,
-      color: index === 2 ? navy : muted,
-    });
-    page.drawText(value, {
-      x: 473,
-      y,
-      size: index === 2 ? 11 : 9,
-      font: bold,
-      color: index === 2 ? green : navy,
-    });
-  });
-
-  page.drawRectangle({
-    x: left,
-    y: 225,
-    width: right - left,
-    height: 70,
-    color: rgb(0.96, 0.97, 1),
-  });
-  page.drawText("Thank you for learning with AcadeMY.", {
-    x: 68,
-    y: 267,
-    size: 12,
-    font: bold,
-    color: navy,
-  });
-  page.drawText("This invoice confirms payment for the subscription period shown above.", {
-    x: 68,
-    y: 246,
-    size: 9,
-    font: regular,
-    color: muted,
-  });
-  page.drawText("This is a computer-generated invoice.", {
-    x: left,
-    y: 66,
-    size: 8,
-    font: regular,
-    color: muted,
-  });
-  page.drawText("myacademy.my", { x: 472, y: 66, size: 8, font: bold, color: violet });
-
-  return pdf.save();
+  return serializePdf(objects);
 }

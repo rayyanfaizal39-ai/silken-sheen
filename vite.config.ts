@@ -35,7 +35,11 @@ export default defineConfig({
   // as its last step specifically to neutralize that redirect, so the root
   // wrangler.jsonc is what Cloudflare Pages actually reads.
   nitro: {
+    ...({ minify: true } as { minify: boolean }),
     preset: "cloudflare-module",
+    // Pages enforces the free-plan Worker limit against the compressed upload.
+    // The preset defaults to unminified server chunks, which needlessly ships
+    // multi-megabyte curriculum data with whitespace and long identifiers.
     output: { dir: "dist", serverDir: "dist/server", publicDir: "dist/client" },
     cloudflare: { nodeCompat: true, deployConfig: true },
   },
