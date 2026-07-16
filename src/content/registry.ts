@@ -117,6 +117,8 @@ import { sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content";
 import { sej4Content } from "@/content/form1/sejarah/chapter-4/sej4-content";
 import { sej5Content } from "@/content/form1/sejarah/chapter-5/sej5-content";
 import { sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content";
+import { sej7Content } from "@/content/form1/sejarah/chapter-7/sej7-content";
+import { sej8Content } from "@/content/form1/sejarah/chapter-8/sej8-content";
 import { geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import { geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
 import { geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
@@ -722,18 +724,24 @@ export const chapters: ChapterContent[] = [
     ),
     sejChapter6Data: sej6Content,
   },
-  sejarah(
-    7,
-    "Tamadun India dan China",
-    tamadunIndiaChinaMindMap,
-    "Tamadun India dan China",
-  ),
-  sejarah(
-    8,
-    "Tamadun Islam",
-    tamadunIslamSumbanganMindMap,
-    "Tamadun Islam dan Sumbangannya",
-  ),
+  {
+    ...sejarah(
+      7,
+      "Tamadun India dan China",
+      tamadunIndiaChinaMindMap,
+      "Tamadun India dan China",
+    ),
+    sejChapter7Data: sej7Content,
+  },
+  {
+    ...sejarah(
+      8,
+      "Tamadun Islam",
+      tamadunIslamSumbanganMindMap,
+      "Tamadun Islam dan Sumbangannya",
+    ),
+    sejChapter8Data: sej8Content,
+  },
 
   // Sejarah Form 2
   {

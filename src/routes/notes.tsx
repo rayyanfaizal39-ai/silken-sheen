@@ -49,6 +49,8 @@ import { SejChapter3NotesBlock } from "@/components/notes/SejChapter3NotesBlock"
 import { SejChapter4NotesBlock } from "@/components/notes/SejChapter4NotesBlock";
 import { SejChapter5NotesBlock } from "@/components/notes/SejChapter5NotesBlock";
 import { SejChapter6NotesBlock } from "@/components/notes/SejChapter6NotesBlock";
+import { SejChapter7NotesBlock } from "@/components/notes/SejChapter7NotesBlock";
+import { SejChapter8NotesBlock } from "@/components/notes/SejChapter8NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -214,7 +216,9 @@ function NotesPage() {
     !activeChapter?.sejChapter3Data &&
     !activeChapter?.sejChapter4Data &&
     !activeChapter?.sejChapter5Data &&
-    !activeChapter?.sejChapter6Data;
+    !activeChapter?.sejChapter6Data &&
+    !activeChapter?.sejChapter7Data &&
+    !activeChapter?.sejChapter8Data;
   const subtopics: Subtopic[] = hasSubtopics
     ? subject === "sejarah"
       ? getSejarahF1Subtopics(activeChapterKey ?? "")
@@ -728,6 +732,26 @@ function NotesPage() {
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
+          ) : activeChapter?.sejChapter7Data ? (
+            <SejChapter7NotesBlock
+              id="notes"
+              content={activeChapter.sejChapter7Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sejChapter8Data ? (
+            <SejChapter8NotesBlock
+              id="notes"
+              content={activeChapter.sejChapter8Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
           ) : activeChapter?.geoChapter1Data ? (
             <GeoChapter1NotesBlock
               id="notes"
@@ -996,6 +1020,8 @@ function NotesPage() {
             !activeChapter?.sejChapter4Data &&
             !activeChapter?.sejChapter5Data &&
             !activeChapter?.sejChapter6Data &&
+            !activeChapter?.sejChapter7Data &&
+            !activeChapter?.sejChapter8Data &&
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
             !activeChapter?.chapter2Data &&
@@ -1035,6 +1061,8 @@ function NotesPage() {
                 !activeChapter?.sejChapter4Data &&
                 !activeChapter?.sejChapter5Data &&
                 !activeChapter?.sejChapter6Data &&
+                !activeChapter?.sejChapter7Data &&
+                !activeChapter?.sejChapter8Data &&
                 !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&
@@ -1073,6 +1101,8 @@ function NotesPage() {
                 !activeChapter?.sejChapter4Data &&
                 !activeChapter?.sejChapter5Data &&
                 !activeChapter?.sejChapter6Data &&
+                !activeChapter?.sejChapter7Data &&
+                !activeChapter?.sejChapter8Data &&
                 !activeChapter?.bab7Data &&
                 !activeChapter?.chapter1Data &&
                 !activeChapter?.chapter2Data &&

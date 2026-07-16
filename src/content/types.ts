@@ -35,6 +35,8 @@ import type { Sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content
 import type { Sej4Content } from "@/content/form1/sejarah/chapter-4/sej4-content";
 import type { Sej5Content } from "@/content/form1/sejarah/chapter-5/sej5-content";
 import type { Sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content";
+import type { Sej7Content } from "@/content/form1/sejarah/chapter-7/sej7-content";
+import type { Sej8Content } from "@/content/form1/sejarah/chapter-8/sej8-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -127,6 +129,10 @@ export type ChapterContent = {
   sejChapter5Data?: Sej5Content;
   /** Sejarah Bab 6 (Peningkatan Tamadun Yunani dan Rom) chunked learning experience. BM-only. */
   sejChapter6Data?: Sej6Content;
+  /** Sejarah Bab 7 (Peningkatan Tamadun India dan China) chunked learning experience. BM-only. */
+  sejChapter7Data?: Sej7Content;
+  /** Sejarah Bab 8 (Tamadun Islam dan Sumbangannya) chunked learning experience. BM-only. */
+  sejChapter8Data?: Sej8Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -172,6 +178,8 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.sejChapter4Data ||
       !!c?.sejChapter5Data ||
       !!c?.sejChapter6Data ||
+      !!c?.sejChapter7Data ||
+      !!c?.sejChapter8Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,
