@@ -7,6 +7,19 @@ export type EducationalVideo = VideoBlock;
  * Chapters without a confirmed video are intentionally omitted.
  */
 export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
+  "sejarah-f1-c1": {
+    title: "Sejarah Tingkatan 1 — Bab 1",
+    youtubeId: "dZuhYNHdQ7U",
+    startSeconds: 10,
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f1-c2": {
+    title: "Sejarah Tingkatan 1 — Bab 2",
+    youtubeId: "cLgCMnVoJ5g",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
   "sejarah-f1-c3": {
     title: "Sejarah Tingkatan 1 — Bab 3",
     youtubeId: "3Hx4FX1avMU",

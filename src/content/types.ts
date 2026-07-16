@@ -29,6 +29,9 @@ import type { Geo10Content } from "@/content/form1/geography/chapter-10/geo10-co
 import type { Geo11Content } from "@/content/form1/geography/chapter-11/geo11-content";
 import type { Geo12Content } from "@/content/form1/geography/chapter-12/geo12-content";
 import type { Geo13Content } from "@/content/form1/geography/chapter-13/geo13-content";
+import type { Sej1Content } from "@/content/form1/sejarah/chapter-1/sej1-content";
+import type { Sej2Content } from "@/content/form1/sejarah/chapter-2/sej2-content";
+import type { Sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -109,6 +112,12 @@ export type ChapterContent = {
   geoChapter12Data?: Geo12Content;
   /** Geography Bab 13 (Sisa Domestik/Domestic Waste) chunked learning experience. BM-only. */
   geoChapter13Data?: Geo13Content;
+  /** Sejarah Bab 1 (Mengenali Sejarah) chunked learning experience. BM-only. */
+  sejChapter1Data?: Sej1Content;
+  /** Sejarah Bab 2 (Zaman Air Batu) chunked learning experience. BM-only. */
+  sejChapter2Data?: Sej2Content;
+  /** Sejarah Bab 3 (Zaman Prasejarah) chunked learning experience. BM-only. */
+  sejChapter3Data?: Sej3Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -148,6 +157,9 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.geoChapter11Data ||
       !!c?.geoChapter12Data ||
       !!c?.geoChapter13Data ||
+      !!c?.sejChapter1Data ||
+      !!c?.sejChapter2Data ||
+      !!c?.sejChapter3Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

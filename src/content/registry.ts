@@ -111,6 +111,9 @@ import { sejarahF3C8Notes } from "@/content/form3/sejarah/chapter-8/notes";
 import { sejarahF3C8MindMap } from "@/content/form3/sejarah/chapter-8/mindmap";
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
 import { geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
+import { sej1Content } from "@/content/form1/sejarah/chapter-1/sej1-content";
+import { sej2Content } from "@/content/form1/sejarah/chapter-2/sej2-content";
+import { sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content";
 import { geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import { geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
 import { geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
@@ -702,9 +705,9 @@ function geography(
 export const chapters: ChapterContent[] = [
   ...scienceF3ChapterContent,
   // Sejarah Form 1
-  sejarah(1, "Mengenali Sejarah", mengenaliSejarahMindMap, "Mengenali Sejarah"),
-  sejarah(2, "Zaman Air Batu", zamanAirBatuMindMap, "Zaman Air Batu"),
-  sejarah(3, "Zaman Prasejarah", zamanPrasejarahMindMap, "Zaman Prasejarah"),
+  { ...sejarah(1, "Mengenali Sejarah", mengenaliSejarahMindMap, "Mengenali Sejarah"), sejChapter1Data: sej1Content },
+  { ...sejarah(2, "Zaman Air Batu", zamanAirBatuMindMap, "Zaman Air Batu"), sejChapter2Data: sej2Content },
+  { ...sejarah(3, "Zaman Prasejarah", zamanPrasejarahMindMap, "Zaman Prasejarah"), sejChapter3Data: sej3Content },
   sejarah(4, "Mengenali Tamadun", mengenaliTamadunMindMap, "Mengenali Tamadun"),
   sejarah(5, "Tamadun Awal Dunia", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"),
   sejarah(
