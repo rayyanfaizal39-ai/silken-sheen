@@ -30,6 +30,14 @@ export function areMockPaymentsEnabled(env: NodeJS.ProcessEnv = process.env) {
   return !isProductionEnvironment(env) && env.ENABLE_MOCK_PAYMENTS === "true";
 }
 
+export function isToyyibPayConfigured(env: NodeJS.ProcessEnv = process.env) {
+  return Boolean(
+    env.TOYYIBPAY_SECRET_KEY?.trim() &&
+    env.TOYYIBPAY_CATEGORY_CODE?.trim() &&
+    env.APPLICATION_URL?.trim(),
+  );
+}
+
 export function toCheckoutPlan(plan: PaidBillingPlan, interval: BillingInterval): CheckoutPlan {
   return `${plan}_${interval}`;
 }

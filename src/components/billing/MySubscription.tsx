@@ -140,10 +140,10 @@ export function MySubscription() {
     }
   }
 
-  async function downloadInvoice(invoiceId: string) {
-    setAction(`invoice-${invoiceId}`);
+  async function downloadInvoice(invoiceNumber: string) {
+    setAction(`invoice-${invoiceNumber}`);
     try {
-      const { url } = await getInvoiceDownloadUrl({ data: { invoiceId } });
+      const { url } = await getInvoiceDownloadUrl({ data: { invoiceNumber } });
       window.location.assign(url);
     } catch (downloadError) {
       console.error("[billing] invoice download failed", downloadError);
@@ -350,8 +350,11 @@ export function MySubscription() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/[0.06]">
-                    {overview.payments.map((payment) => (
-                      <tr key={payment.id} className="text-sm text-white/80">
+                    {overview.payments.map((payment, index) => (
+                      <tr
+                        key={`${payment.created_at}-${payment.provider_transaction_id ?? index}`}
+                        className="text-sm text-white/80"
+                      >
                         <td className="whitespace-nowrap px-6 py-4">
                           {formatDate(payment.paid_at ?? payment.created_at)}
                         </td>
@@ -372,8 +375,8 @@ export function MySubscription() {
                           {payment.invoice ? (
                             <button
                               type="button"
-                              onClick={() => void downloadInvoice(payment.invoice!.id)}
-                              disabled={action === `invoice-${payment.invoice.id}`}
+                              onClick={() => void downloadInvoice(payment.invoice!.invoice_number)}
+                              disabled={action === `invoice-${payment.invoice.invoice_number}`}
                               className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/[0.1] px-3 text-xs font-bold text-white hover:bg-white/[0.06] disabled:opacity-50"
                             >
                               <Download className="h-4 w-4" /> Download

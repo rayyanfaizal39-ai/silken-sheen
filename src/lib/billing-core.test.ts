@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { areMockPaymentsEnabled } from "./billing-config";
+import { areMockPaymentsEnabled, isToyyibPayConfigured } from "./billing-config";
 import {
   assertVerifiedAmount,
   canAccessInvoice,
@@ -52,5 +52,35 @@ describe("mock payment production restrictions", () => {
     expect(areMockPaymentsEnabled({ NODE_ENV: "development", ENABLE_MOCK_PAYMENTS: "true" })).toBe(
       true,
     );
+    expect(
+      areMockPaymentsEnabled({
+        NODE_ENV: "development",
+        CF_PAGES_BRANCH: "main",
+        ENABLE_MOCK_PAYMENTS: "true",
+      }),
+    ).toBe(false);
+  });
+
+  it("requires every live checkout setting before enabling ToyyibPay", () => {
+    expect(
+      isToyyibPayConfigured({
+        TOYYIBPAY_SECRET_KEY: "secret",
+        TOYYIBPAY_CATEGORY_CODE: "category",
+      }),
+    ).toBe(false);
+    expect(
+      isToyyibPayConfigured({
+        TOYYIBPAY_SECRET_KEY: "secret",
+        TOYYIBPAY_CATEGORY_CODE: "category",
+        APPLICATION_URL: "https://example.com",
+      }),
+    ).toBe(true);
+    expect(
+      isToyyibPayConfigured({
+        TOYYIBPAY_SECRET_KEY: " ",
+        TOYYIBPAY_CATEGORY_CODE: "category",
+        APPLICATION_URL: "https://example.com",
+      }),
+    ).toBe(false);
   });
 });

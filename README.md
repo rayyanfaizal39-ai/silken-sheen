@@ -103,8 +103,8 @@ payment, and invoice rows.
 
 ### Setup
 
-1. Copy `.env.example` to your local environment and provide the Supabase
-   browser keys plus the server-only `SUPABASE_SERVICE_ROLE_KEY`.
+1. Put public `VITE_` values in `.env.local` and server-only local values in
+   `.dev.vars`. Both files are ignored by Git.
 2. Apply `supabase/migrations/20260716001758_subscription_payments_invoices.sql`.
    It creates the three billing tables, indexes, RLS policies, idempotent
    payment RPCs, and the private `invoices` Storage bucket.
@@ -128,6 +128,61 @@ ToyyibPay before the invoice transaction runs. Change only
 
 Never expose `SUPABASE_SERVICE_ROLE_KEY`, `TOYYIBPAY_SECRET_KEY`, or
 `RESEND_API_KEY` through a `VITE_` variable.
+
+### Cloudflare Pages billing variables
+
+**Production — required now**
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (encrypted secret)
+
+Keep `ENABLE_MOCK_PAYMENTS`, `TOYYIBPAY_SECRET_KEY`,
+`TOYYIBPAY_CATEGORY_CODE`, and `TOYYIBPAY_API_URL` unset. This intentionally
+keeps both mock checkout and live ToyyibPay checkout disabled.
+
+**Preview — required**
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (encrypted secret)
+
+Use a separate non-production Supabase project where possible. Keep mock and
+ToyyibPay variables unset in Pages previews; production-mode builds reject mock
+payments even if the flag is set accidentally.
+
+**Local development — required for billing**
+
+`.env.local`:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+`.dev.vars`:
+
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `ENABLE_MOCK_PAYMENTS=true` (only when testing the local mock flow)
+
+`APPLICATION_URL`, `TOYYIBPAY_API_URL`, `TOYYIBPAY_CATEGORY_CODE`, and
+`TOYYIBPAY_SECRET_KEY` are required only when a ToyyibPay sandbox is enabled.
+Before accepting real payments, also configure `ACADEMY_LEGAL_NAME`,
+`ACADEMY_SSM_NUMBER`, and `ACADEMY_BUSINESS_ADDRESS`. `RESEND_API_KEY` and
+`INVOICE_SENDER_EMAIL` are optional; invoice email is skipped safely when they
+are absent.
+
+### Cloudflare Pages deployment checklist
+
+- Scope the three required Supabase variables to both Production and Preview.
+- Keep the service-role key encrypted and never add it to a `VITE_` variable.
+- Use build command `npm run build` and output directory `dist/client`.
+- Confirm `nodejs_compat` remains enabled in `wrangler.jsonc`.
+- Leave mock and ToyyibPay variables unset for the initial production release.
+- Run `npm test`, targeted billing ESLint, `npx tsc --noEmit`, and
+  `npm run build` before deploying.
+- After deployment, verify sign-in, the `/upgrade` empty state, and a denied
+  unauthenticated invoice request without creating a real payment.
 
 Run billing tests with:
 

@@ -7,7 +7,6 @@ export type SubscriptionStatus = "active" | "pending" | "expired" | "cancelled";
 export type MockPaymentOutcome = "successful" | "failed" | "cancelled";
 
 export interface SubscriptionRecord {
-  id: string;
   plan: BillingPlan;
   billing_interval: BillingInterval | null;
   status: SubscriptionStatus;
@@ -20,7 +19,6 @@ export interface SubscriptionRecord {
 }
 
 export interface PaymentHistoryItem {
-  id: string;
   plan: PaidBillingPlan;
   billing_interval: BillingInterval;
   amount: number;
@@ -29,7 +27,7 @@ export interface PaymentHistoryItem {
   provider_transaction_id: string | null;
   paid_at: string | null;
   created_at: string;
-  invoice: { id: string; invoice_number: string } | null;
+  invoice: { invoice_number: string } | null;
 }
 
 export interface SubscriptionOverview {

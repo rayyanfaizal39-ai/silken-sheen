@@ -187,7 +187,7 @@ function CtaButton({
       </button>
       {status === "error" && (
         <p className="mt-2 text-center text-xs text-red-400">
-          Something went wrong. Please try again.
+          Payments are temporarily unavailable. No charge was made. Please try again later.
         </p>
       )}
     </>

@@ -1,6 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { areMockPaymentsEnabled, CHECKOUT_PLANS } from "../lib/billing-config";
+import {
+  areMockPaymentsEnabled,
+  CHECKOUT_PLANS,
+  isToyyibPayConfigured,
+} from "../lib/billing-config";
 import {
   createPendingPayment,
   createToyyibPayBill,
@@ -40,6 +44,11 @@ export const createCheckout = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { supabase, user } = await requireUser();
     const mock = areMockPaymentsEnabled();
+
+    if (!mock && !isToyyibPayConfigured()) {
+      throw new Error("Payment checkout is not configured");
+    }
+
     const payment = await createPendingPayment({
       userId: user.id,
       checkoutPlan: data.plan,
@@ -107,16 +116,24 @@ export const getSubscriptionOverview = createServerFn({ method: "GET" }).handler
   async (): Promise<SubscriptionOverview> => {
     const { supabase, user } = await requireUser();
     const [subscriptionResult, paymentsResult, invoicesResult] = await Promise.all([
-      supabase.from("subscriptions").select("*").eq("user_id", user.id).maybeSingle(),
+      supabase
+        .from("subscriptions")
+        .select(
+          "plan, billing_interval, status, amount, currency, started_at, current_period_start, current_period_end, cancelled_at",
+        )
+        .eq("user_id", user.id)
+        .maybeSingle(),
       supabase
         .from("payment_transactions")
-        .select("*")
+        .select(
+          "id, plan, billing_interval, amount, currency, payment_status, provider_transaction_id, paid_at, created_at",
+        )
         .eq("user_id", user.id)
         .order("created_at", { ascending: false })
         .limit(50),
       supabase
         .from("invoices")
-        .select("id, invoice_number, payment_transaction_id")
+        .select("invoice_number, payment_transaction_id")
         .eq("user_id", user.id),
     ]);
     if (subscriptionResult.error) throw subscriptionResult.error;
@@ -125,14 +142,17 @@ export const getSubscriptionOverview = createServerFn({ method: "GET" }).handler
     const invoices = new Map(
       (invoicesResult.data ?? []).map((invoice) => [
         invoice.payment_transaction_id,
-        { id: invoice.id, invoice_number: invoice.invoice_number },
+        { invoice_number: invoice.invoice_number },
       ]),
     );
-    const payments = (paymentsResult.data ?? []).map((payment) => ({
-      ...payment,
-      amount: Number(payment.amount),
-      invoice: invoices.get(payment.id) ?? null,
-    })) as PaymentHistoryItem[];
+    const payments = (paymentsResult.data ?? []).map((payment) => {
+      const { id, ...publicPayment } = payment;
+      return {
+        ...publicPayment,
+        amount: Number(payment.amount),
+        invoice: invoices.get(id) ?? null,
+      };
+    }) as PaymentHistoryItem[];
     return {
       subscription: subscriptionResult.data
         ? { ...subscriptionResult.data, amount: Number(subscriptionResult.data.amount) }
@@ -152,13 +172,15 @@ export const cancelSubscription = createServerFn({ method: "POST" }).handler(asy
 });
 
 export const getInvoiceDownloadUrl = createServerFn({ method: "POST" })
-  .validator((input: unknown) => z.object({ invoiceId: z.string().uuid() }).parse(input))
+  .validator((input: unknown) =>
+    z.object({ invoiceNumber: z.string().regex(/^ACAD-\d{8}-\d{6}$/) }).parse(input),
+  )
   .handler(async ({ data }) => {
     const { supabase } = await requireUser();
     const invoice = await supabase
       .from("invoices")
       .select("pdf_storage_path, invoice_number")
-      .eq("id", data.invoiceId)
+      .eq("invoice_number", data.invoiceNumber)
       .single();
     if (invoice.error || !invoice.data?.pdf_storage_path)
       throw new Error("Invoice is not available");
