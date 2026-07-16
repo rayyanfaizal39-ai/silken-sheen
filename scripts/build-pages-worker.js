@@ -36,12 +36,21 @@
 //   errors. Removing it is what makes the root wrangler.jsonc (which is valid
 //   for Pages) the config Cloudflare actually uses.
 
-import { cpSync, existsSync, renameSync, writeFileSync, rmSync } from "fs";
+import {
+  copyFileSync,
+  cpSync,
+  existsSync,
+  readdirSync,
+  renameSync,
+  writeFileSync,
+  rmSync,
+} from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
+const distDir = join(root, "dist");
 const serverDir = join(root, "dist/server");
 const clientDir = join(root, "dist/client");
 const workerDir = join(clientDir, "_worker.js");
@@ -55,6 +64,40 @@ if (!existsSync(serverDir)) {
 if (!existsSync(clientDir)) {
   console.error(
     `[build-pages-worker] No dist/client at ${clientDir} — did "vite build" run? Skipping.`,
+  );
+  process.exit(1);
+}
+
+// vite-plugin-pwa runs against Nitro's top-level output and generates these
+// files in dist/. Cloudflare Pages publishes dist/client/, so materialize the
+// generated worker and its hashed Workbox runtime in that deployed directory.
+const serviceWorkerSource = join(distDir, "sw.js");
+const serviceWorkerTarget = join(clientDir, "sw.js");
+const workboxFiles = readdirSync(distDir).filter(
+  (name) => name.startsWith("workbox-") && name.endsWith(".js"),
+);
+
+if (!existsSync(serviceWorkerSource) || workboxFiles.length === 0) {
+  console.error(
+    "[build-pages-worker] Expected vite-plugin-pwa output in dist/ (sw.js and workbox-*.js).",
+  );
+  process.exit(1);
+}
+
+for (const name of readdirSync(clientDir)) {
+  if (name.startsWith("workbox-") && name.endsWith(".js")) {
+    rmSync(join(clientDir, name), { force: true });
+  }
+}
+
+copyFileSync(serviceWorkerSource, serviceWorkerTarget);
+for (const name of workboxFiles) {
+  copyFileSync(join(distDir, name), join(clientDir, name));
+}
+
+if (!existsSync(join(clientDir, "site.webmanifest"))) {
+  console.error(
+    "[build-pages-worker] Expected public/site.webmanifest in dist/client after the Vite build.",
   );
   process.exit(1);
 }
@@ -87,6 +130,8 @@ writeFileSync(
         "/assets/*",
         "/companions/*",
         "/favicon.ico",
+        "/sw.js",
+        "/workbox-*.js",
         "/*.png",
         "/*.webmanifest",
         "/robots.txt",
@@ -107,6 +152,7 @@ rmSync(join(root, ".wrangler"), { recursive: true, force: true });
 rmSync(join(serverDir, "wrangler.json"), { force: true });
 
 console.log(
-  "[build-pages-worker] Wrote dist/client/_worker.js/ (Pages Advanced Mode) + _routes.json; " +
+  "[build-pages-worker] Copied PWA files into dist/client, wrote _worker.js/ " +
+    "(Pages Advanced Mode) + _routes.json; " +
     "removed .wrangler/ and dist/server/wrangler.json so Cloudflare Pages reads root wrangler.jsonc",
 );
