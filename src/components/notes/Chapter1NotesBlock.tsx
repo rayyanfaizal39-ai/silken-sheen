@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ResearchModuleMeta } from "@/components/science/ScienceDiscoveryChrome";
 import type { Chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
 import { IconCardGrid } from "./blocks/IconCardGrid";
 import { TabbedUses } from "./blocks/TabbedUses";
@@ -174,7 +175,7 @@ export function Chapter1NotesBlock({
   const fieldIconByName = new Map(t.scienceInLife.fields.map((f) => [f.name, f.icon]));
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} data-lang={lang} className="science-research-modules mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🔬</div>
         <div>
@@ -183,7 +184,7 @@ export function Chapter1NotesBlock({
         </div>
       </div>
 
-      <div className="mb-6 flex items-center justify-between gap-1 overflow-x-auto pb-1">
+      <div className="science-research-orbit mb-6 flex items-center justify-between gap-1 overflow-x-auto pb-1">
         {ORBIT_LABELS[lang].map((label, i) => (
           <button
             key={label}
@@ -213,9 +214,10 @@ export function Chapter1NotesBlock({
         ))}
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
+      <div className="science-research-module-shell relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
         <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
+        <h2 className="science-research-title font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
+        <ResearchModuleMeta index={current} total={total} title={chrome.title} lang={lang} />
         {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
         {!chrome.sub && <div className="mb-6" />}
 

@@ -15,7 +15,7 @@ import {
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
-import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
+import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import {
@@ -59,6 +59,10 @@ import { Chapter5NotesBlock } from "@/components/notes/Chapter5NotesBlock";
 import { Chapter6NotesBlock } from "@/components/notes/Chapter6NotesBlock";
 import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
 import { Chapter9NotesBlock } from "@/components/notes/Chapter9NotesBlock";
+import {
+  MiniInvestigation,
+  ScienceDiscoveryChapterHeader,
+} from "@/components/science/ScienceDiscoveryChrome";
 import { normalizeChapterParam, normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
   AcademyHero,
@@ -234,6 +238,11 @@ function NotesPage() {
     subject && activeChapterKey
       ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
       : false;
+  const isScienceDiscovery = subject === "science" && form === "Form 1" && !!activeChapterKey;
+  const activeChapterProgress =
+    subject && activeChapterKey
+      ? chapterProgressPct(progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)])
+      : 0;
   const features = getChapterFeatures(activeChapter);
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
@@ -668,10 +677,21 @@ function NotesPage() {
               <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} />
             )}
             <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
-
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
+          <div className={isScienceDiscovery ? "science-discovery-notes" : undefined}>
+          {isScienceDiscovery && (
+            <ScienceDiscoveryChapterHeader
+              chapterKey={activeChapterKey}
+              title={chapterMeta?.label ?? activeChapter?.title ?? activeChapterKey}
+              lang={scienceLang === "bm" ? "bm" : "dlp"}
+              readingProgress={scrollPct}
+              chapterProgress={activeChapterProgress}
+              isRead={isRead}
+              embedded
+            />
+          )}
           {activeChapter?.sejChapter1Data ? (
             <SejChapter1NotesBlock
               id="notes"
@@ -884,7 +904,7 @@ function NotesPage() {
             />
           ) : activeChapter?.bab7Data ? (
             <Bab7NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.bab7Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -895,7 +915,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter1Data ? (
             <Chapter1NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter1Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -906,7 +926,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter2Data ? (
             <Chapter2NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter2Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -917,7 +937,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter3Data ? (
             <Chapter3NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter3Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -928,7 +948,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter4Data ? (
             <Chapter4NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter4Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -939,7 +959,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter5Data ? (
             <Chapter5NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter5Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -950,7 +970,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter6Data ? (
             <Chapter6NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter6Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -961,7 +981,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter8Data ? (
             <Chapter8NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter8Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -972,7 +992,7 @@ function NotesPage() {
             />
           ) : activeChapter?.chapter9Data ? (
             <Chapter9NotesBlock
-              id="notes"
+              id="science-notes-content"
               content={activeChapter.chapter9Data}
               lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
@@ -999,6 +1019,11 @@ function NotesPage() {
               />
             )
           )}
+
+          {isScienceDiscovery && (
+            <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} />
+          )}
+          </div>
 
           {filtered.length === 0 ? (
             !activeChapter?.geoChapter1Data &&

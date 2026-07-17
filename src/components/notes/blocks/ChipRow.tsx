@@ -13,7 +13,7 @@ export function ChipRow({
       : "rounded-full border border-border bg-secondary/40 px-3 py-1.5 text-xs font-medium text-foreground";
 
   return (
-    <div>
+    <div className="science-knowledge-chips">
       {heading && <h4 className="font-display mb-2.5 text-sm font-bold text-foreground">{heading}</h4>}
       <div className="flex flex-wrap gap-2">
         {items.map((item, i) => (
