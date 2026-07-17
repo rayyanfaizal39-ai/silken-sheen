@@ -637,93 +637,6 @@ function ParentsSection() {
   );
 }
 
-/* ---------------- Pricing ---------------- */
-
-const PLANS = [
-  {
-    name: "Free",
-    price: "RM0",
-    period: "forever",
-    cta: "Start free",
-    highlighted: false,
-    features: ["All Form 1 subjects", "Notes, flashcards & quizzes", "Basic AI cikgu", "Progress tracking"],
-  },
-  {
-    name: "Cadet",
-    price: "RM28",
-    period: "/month",
-    cta: "Go Cadet",
-    highlighted: true,
-    badge: "Most popular",
-    features: ["All Form 1–3 subjects", "Unlimited AI cikgu", "Mind maps & mock tests", "Parent dashboard", "Priority support"],
-  },
-  {
-    name: "Captain",
-    price: "RM68",
-    period: "/month",
-    cta: "Go Captain",
-    highlighted: false,
-    features: ["Everything in Cadet", "1-on-1 study coach", "Personalised study plan", "Early access to new content"],
-  },
-];
-
-function PricingSection() {
-  const { open } = useSignInModal();
-  return (
-    <section id="pricing" className="relative scroll-mt-24 py-20 md:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
-        <SectionLabel>Choose Your Mission Plan</SectionLabel>
-        <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
-          Simple, student-friendly pricing
-        </h2>
-        <p className="mt-4 text-white/60">Cancel anytime. Built for Malaysian families.</p>
-
-        <div className="mt-12 grid md:grid-cols-3 gap-5 text-left">
-          {PLANS.map((p) => (
-            <div
-              key={p.name}
-              className={`relative rounded-3xl p-7 ring-1 backdrop-blur ${
-                p.highlighted
-                  ? "bg-gradient-to-b from-primary/20 to-accent/10 ring-primary/50 shadow-[0_30px_80px_-20px_rgba(139,92,246,0.5)]"
-                  : "bg-white/[0.03] ring-white/10"
-              }`}
-            >
-              {p.badge && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-primary to-accent text-white text-[11px] font-semibold uppercase tracking-wider">
-                  {p.badge}
-                </div>
-              )}
-              <div className="text-sm uppercase tracking-[0.18em] text-white/50">{p.name}</div>
-              <div className="mt-3 flex items-baseline gap-1">
-                <span className="font-display text-4xl font-bold text-white">{p.price}</span>
-                <span className="text-sm text-white/50">{p.period}</span>
-              </div>
-              <ul className="mt-6 space-y-2.5">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-white/75">
-                    <Check className="w-4 h-4 mt-0.5 text-primary shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => open()}
-                className={`mt-7 w-full px-4 py-2.5 rounded-full text-sm font-semibold transition-transform hover:scale-[1.02] ${
-                  p.highlighted
-                    ? "bg-gradient-to-r from-primary to-accent text-white"
-                    : "bg-white/10 text-white ring-1 ring-white/15"
-                }`}
-              >
-                {p.cta}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------------- Final CTA ---------------- */
 
 function FinalCta() {
@@ -801,7 +714,6 @@ export default function BelowFold() {
       <CikguSection />
       <ProgressPreview />
       <ParentsSection />
-      <PricingSection />
       <FinalCta />
       <SiteFooter />
     </>

@@ -34,7 +34,6 @@ const NAV_LINKS = [
   { id: "top", label: "Home" },
   { id: "features", label: "Features" },
   { id: "parents", label: "For Parents" },
-  { id: "pricing", label: "Pricing" },
 ] as const;
 
 const NAV_OFFSET = 88;
@@ -165,6 +164,12 @@ function LandingNav() {
               </a>
             );
           })}
+          <Link
+            to="/upgrade"
+            className="px-4 py-1.5 rounded-full text-[13px] font-medium text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+          >
+            Pricing
+          </Link>
         </nav>
 
         {user ? (
@@ -191,7 +196,6 @@ function LandingNav() {
 /* ---------------- Hero ---------------- */
 
 function Hero() {
-  const { open } = useSignInModal();
   const [comingSoonOpen, setComingSoonOpen] = useState(false);
   const heroCardRef = useRef<HTMLDivElement>(null);
   const heroImgRef = useRef<HTMLImageElement>(null);
@@ -392,13 +396,12 @@ function Hero() {
             by your own Cikgu AI. Level up like a game, master KSSM like a pro.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <button
-              type="button"
-              onClick={() => open()}
+            <Link
+              to="/upgrade"
               className="inline-flex items-center justify-center rounded-full bg-[#7c3aed] hover:bg-[#6d28d9] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_40px_-10px_rgba(124,58,237,0.7)] hover:scale-[1.03] transition-transform"
             >
               Start Your Mission
-            </button>
+            </Link>
             <WatchIntroVideo
               label="Watch Demo"
               className="inline-flex items-center gap-2 rounded-full border border-white/25 hover:border-white/50 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition-colors"
