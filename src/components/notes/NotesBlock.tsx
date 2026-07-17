@@ -41,6 +41,10 @@ type DisplaySection = ScienceNotesSection & {
   keywords?: string[];
 };
 
+function hasSignatureVisual(sub: ScienceNotesSubsection): boolean {
+  return Boolean(sub.numberLine || sub.workedExample || sub.problemSolving);
+}
+
 // Subject-aware accent palette
 const SUBJECT_PALETTE: Record<string, { primary: string; glow: string; from: string; to: string }> =
   {
@@ -100,7 +104,10 @@ export function NotesBlock({
 }) {
   const subjectPalette = SUBJECT_PALETTE[subjectId ?? "_default"] ?? SUBJECT_PALETTE["_default"];
   const [query, setQuery] = useState("");
-  const [openValue, setOpenValue] = useState<string | undefined>(undefined);
+  // Multiple sections can be open at once so signature visuals (number lines,
+  // worked examples, problem-solving flows) are visible on load rather than
+  // hidden behind a single-open accordion the user has to guess which to click.
+  const [openValue, setOpenValue] = useState<string[]>([]);
   const quickRevision = Array.isArray(notes?.quickRevision) ? notes.quickRevision : [];
   const keyTerms = Array.isArray(notes?.keyTerms) ? notes.keyTerms : [];
   const keyExamFacts = Array.isArray(notes?.keyExamFacts) ? notes.keyExamFacts : [];
@@ -159,15 +166,25 @@ export function NotesBlock({
   useEffect(() => {
     const first = filteredSections[0];
     if (!first) {
-      setOpenValue(undefined);
+      setOpenValue([]);
       return;
     }
     if (!defaultOpenFirstSection && !query.trim()) {
-      setOpenValue(undefined);
+      setOpenValue([]);
       return;
     }
     const values = filteredSections.map((section) => section.id ?? section.title);
-    setOpenValue((current) => (current && values.includes(current) ? current : values[0]));
+    // Auto-expand the first section plus any section containing a signature
+    // visual (number line, worked example, problem-solving flow) so those
+    // are visible on load instead of hidden behind a collapsed accordion.
+    const visualValues = filteredSections
+      .filter((section) => section.subsections?.some(hasSignatureVisual))
+      .map((section) => section.id ?? section.title);
+    const defaults = Array.from(new Set([values[0], ...visualValues]));
+    setOpenValue((current) => {
+      const stillValid = current.filter((v) => values.includes(v));
+      return stillValid.length > 0 ? stillValid : defaults;
+    });
   }, [defaultOpenFirstSection, filteredSections, query]);
 
   const scrollCorrectionTimer = useRef<number | null>(null);
@@ -179,7 +196,7 @@ export function NotesBlock({
   }, []);
 
   function jumpToSection(value: string) {
-    setOpenValue(value);
+    setOpenValue((current) => (current.includes(value) ? current : [...current, value]));
     if (scrollCorrectionTimer.current !== null) window.clearTimeout(scrollCorrectionTimer.current);
     const scrollToTarget = () => {
       document.getElementById(`notes-section-${value}`)?.scrollIntoView({
@@ -387,7 +404,7 @@ export function NotesBlock({
               <div className="max-h-[42vh] space-y-0.5 overflow-y-auto p-2 lg:max-h-none">
                 {filteredSections.map((section, i) => {
                   const value = section.id ?? section.title;
-                  const active = openValue === value;
+                  const active = openValue.includes(value);
                   return (
                     <button
                       key={value}
@@ -443,8 +460,7 @@ export function NotesBlock({
 
             {/* Accordion sections */}
             <Accordion
-              type="single"
-              collapsible
+              type="multiple"
               value={openValue}
               onValueChange={setOpenValue}
               className="min-w-0 space-y-2.5"
@@ -452,7 +468,7 @@ export function NotesBlock({
               {filteredSections.map((section, i) => {
                 const value = section.id ?? section.title;
                 const accent = SECTION_ACCENTS[i % SECTION_ACCENTS.length];
-                const isOpen = openValue === value;
+                const isOpen = openValue.includes(value);
                 return (
                   <AccordionItem
                     id={`notes-section-${value}`}
@@ -664,6 +680,15 @@ function SubsectionBlock({
 }) {
   return (
     <div className="space-y-3">
+      {(() => {
+        console.log("[DEBUG SubsectionBlock]", {
+          title: sub.title,
+          numberLine: sub.numberLine,
+          workedExample: sub.workedExample,
+          problemSolving: sub.problemSolving,
+        });
+        return null;
+      })()}
       {sub.title && (
         <h3 className="flex items-center gap-2.5 text-sm font-bold text-white/90 sm:text-base">
           <span
@@ -692,7 +717,7 @@ function SubsectionBlock({
           ))}
         </ul>
       )}
-      {sub.numberLine && <NumberLineBlock line={sub.numberLine} />}
+      {sub.numberLine && "min" in sub.numberLine && <NumberLineBlock line={sub.numberLine} />}
       {sub.factorVisual && <FactorVisualBlock visual={sub.factorVisual} />}
       {sub.workedExample && <WorkedExampleBlock example={sub.workedExample} />}
       {sub.methodCards && sub.methodCards.length > 0 && (
@@ -714,6 +739,18 @@ function SubsectionBlock({
             {sub.formula}
           </div>
         </div>
+      )}
+      {sub.numberLine && "examples" in sub.numberLine && Array.isArray(sub.numberLine.examples) && (
+        <NumberLineDiagram
+          examples={sub.numberLine.examples}
+          subjectPalette={subjectPalette}
+        />
+      )}
+      {sub.workedExample && (
+        <WorkedExampleCard example={sub.workedExample} subjectPalette={subjectPalette} />
+      )}
+      {sub.problemSolving && (
+        <ProblemSolvingFlow flow={sub.problemSolving} subjectPalette={subjectPalette} />
       )}
       {sub.table && Array.isArray(sub.table.headers) && Array.isArray(sub.table.rows) && (
         <div className="overflow-x-auto rounded-xl border border-white/[0.08]">
@@ -747,6 +784,151 @@ function SubsectionBlock({
           </table>
         </div>
       )}
+    </div>
+  );
+}
+
+// ─── Number line diagram ───────────────────────────────────────────────────────
+function NumberLineDiagram({
+  examples,
+  subjectPalette,
+}: {
+  examples: { value: string; meaning: string }[];
+  subjectPalette: { primary: string; glow: string; from: string; to: string };
+}) {
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-[#0A1628] to-[#0C1E38] p-4 sm:p-5">
+      <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/50">
+        <Hash className="h-3.5 w-3.5" style={{ color: subjectPalette.primary }} />
+        Number Line
+      </div>
+      <div className="flex flex-wrap gap-3">
+        {examples.map((ex, i) => {
+          const isNegative = ex.value.trim().startsWith("−") || ex.value.trim().startsWith("-");
+          return (
+            <div
+              key={`${ex.value}-${i}`}
+              className={`flex min-w-[7rem] flex-col items-center gap-1 rounded-xl border px-4 py-3 ${
+                isNegative
+                  ? "border-rose-500/25 bg-rose-500/10"
+                  : "border-emerald-500/25 bg-emerald-500/10"
+              }`}
+            >
+              <span
+                className={`font-mono text-lg font-bold ${isNegative ? "text-rose-300" : "text-emerald-300"}`}
+              >
+                {ex.value}
+              </span>
+              <span className="text-center text-[11px] leading-4 text-slate-300">{ex.meaning}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── Worked example with visible steps ─────────────────────────────────────────
+function WorkedExampleCard({
+  example,
+  subjectPalette,
+}: {
+  example: { problem: string; steps: string[]; answer: string };
+  subjectPalette: { primary: string; glow: string; from: string; to: string };
+}) {
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
+      <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/50">
+        <Lightbulb className="h-3.5 w-3.5" style={{ color: subjectPalette.primary }} />
+        Worked Example
+      </div>
+      <p className="mb-3 font-mono text-sm text-slate-100">{example.problem}</p>
+      <ol className="space-y-2 border-l-2 border-white/[0.08] pl-4">
+        {example.steps.map((step, i) => (
+          <li key={i} className="font-mono text-sm leading-6 text-slate-300">
+            {step}
+          </li>
+        ))}
+      </ol>
+      <div
+        className="mt-3 flex items-center gap-2 rounded-xl px-4 py-2.5 font-mono text-sm font-bold"
+        style={{
+          background: `${subjectPalette.from}18`,
+          color: subjectPalette.primary,
+        }}
+      >
+        Answer: {example.answer}
+      </div>
+    </div>
+  );
+}
+
+// ─── 4-step problem-solving flow ────────────────────────────────────────────────
+function ProblemSolvingFlow({
+  flow,
+  subjectPalette,
+}: {
+  flow: {
+    scenario: string;
+    understanding: string[];
+    devisingPlan: string[];
+    implementing: string[];
+    reflection: string;
+  };
+  subjectPalette: { primary: string; glow: string; from: string; to: string };
+}) {
+  // Fixed 4-stage palette for the universal KSSM problem-solving method —
+  // constant across subjects (not subject-themed), matching the reference design.
+  const STEP_COLORS = ["#8b6bff", "#4fb0ff", "#fbbf5a", "#4ade80"];
+  const steps = [
+    { label: "Understanding the Problem", points: flow.understanding },
+    { label: "Devising a Plan", points: flow.devisingPlan },
+    { label: "Implementing the Strategy", points: flow.implementing },
+    { label: "Doing Reflection", points: [flow.reflection] },
+  ];
+  return (
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
+      <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/50">
+        <Target className="h-3.5 w-3.5" style={{ color: subjectPalette.primary }} />
+        Problem Solving
+      </div>
+      <p className="mb-4 text-sm leading-7 text-slate-200">{flow.scenario}</p>
+      <div className="space-y-0">
+        {steps.map((step, i) => {
+          const color = STEP_COLORS[i % STEP_COLORS.length];
+          return (
+            <div key={step.label} className="relative flex gap-3 pb-5 last:pb-0">
+              {i < steps.length - 1 && (
+                <div
+                  className="absolute left-[13px] top-7 h-full w-0.5"
+                  style={{ background: "rgba(148,163,184,0.2)" }}
+                />
+              )}
+              <span
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black text-white"
+                style={{
+                  background: color,
+                  boxShadow: `0 0 12px ${color}55`,
+                }}
+              >
+                {i + 1}
+              </span>
+              <div className="min-w-0 flex-1 pt-0.5">
+                <p className="mb-1.5 text-sm font-bold" style={{ color }}>
+                  {step.label}
+                </p>
+                <ul className="space-y-1">
+                  {step.points.map((p, pi) => (
+                    <li key={pi} className="text-sm leading-6 text-slate-300">
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
