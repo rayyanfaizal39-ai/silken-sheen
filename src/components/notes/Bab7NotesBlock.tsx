@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ResearchModuleMeta } from "@/components/science/ScienceDiscoveryChrome";
 import type { Bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { CompositionDonut } from "./blocks/CompositionDonut";
 import { PredictReveal } from "./blocks/PredictReveal";
@@ -113,7 +114,7 @@ export function Bab7NotesBlock({
   }
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} data-lang={lang} className="science-research-modules mt-8 animate-fade-up">
       <div className="mb-4 flex items-center justify-end">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1.5 text-[11.5px] font-semibold text-emerald-300">
           {ACC_BADGE[lang]}
@@ -128,7 +129,7 @@ export function Bab7NotesBlock({
         </div>
       </div>
 
-      <div className="mb-6 flex items-center justify-between gap-1 overflow-x-auto pb-1">
+      <div className="science-research-orbit mb-6 flex items-center justify-between gap-1 overflow-x-auto pb-1">
         {ORBIT_LABELS[lang].map((label, i) => (
           <button
             key={label}
@@ -158,9 +159,10 @@ export function Bab7NotesBlock({
         ))}
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
+      <div className="science-research-module-shell relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
         <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
+        <h2 className="science-research-title font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
+        <ResearchModuleMeta index={current} total={9} title={chrome.title} lang={lang} />
         {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
         {!chrome.sub && <div className="mb-6" />}
 
