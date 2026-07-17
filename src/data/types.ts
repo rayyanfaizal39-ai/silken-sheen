@@ -1,3 +1,15 @@
+export type {
+  ScienceNotesSubsection,
+  ScienceNotesSection,
+  WorkedExample,
+  MethodCard,
+  ProblemSolvingFlow,
+  NumberLineVisual,
+  FactorTreeNode,
+  FactorVisual,
+} from "./content";
+import type { ScienceChapter2Notes } from "./content";
+
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
 export interface Subject {
@@ -20,30 +32,7 @@ export interface Note {
   lang?: "bm" | "dlp";
 }
 
-export interface ScienceNotesSubsection {
-  title?: string;
-  content?: string;
-  bulletPoints?: string[];
-  table?: {
-    headers: string[];
-    rows: string[][];
-  };
-  formula?: string;
-}
-
-export interface ScienceNotesSection {
-  title: string;
-  subsections?: ScienceNotesSubsection[];
-  content?: string;
-}
-
-export interface StructuredNotes {
-  quickRevision: string[];
-  sections: ScienceNotesSection[];
-  keyExamFacts: string[];
-  keyTerms?: string[];
-  chapterSummary?: string;
-}
+export type StructuredNotes = ScienceChapter2Notes;
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 

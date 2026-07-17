@@ -12,9 +12,9 @@ import {
 
 import appCss from "../styles.css?url";
 import { AppShell } from "@/components/AppShell";
+import { PwaUpdatePrompt } from "@/components/PwaUpdatePrompt";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
-import { BgMusicController } from "@/components/BgMusicController";
 import { AuthProvider } from "@/context/auth-context";
 import { UserSettingsProvider } from "@/context/user-settings-context";
 import { SignInModalProvider } from "@/context/sign-in-modal";
@@ -173,10 +173,10 @@ function RootComponent() {
                   <SoundFx />
                 </>
               )}
-              <BgMusicController />
-              <AppShell>
+                <AppShell>
                 <Outlet />
               </AppShell>
+            <PwaUpdatePrompt />
             </CikguProvider>
           </SignInModalProvider>
         </UserSettingsProvider>

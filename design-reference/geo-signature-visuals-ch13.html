@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 13: Sisa Domestik — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1040px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  .bin-row{display:flex; gap:20px; flex-wrap:wrap;}
+  .bin{flex:1; min-width:260px; background:var(--bg-panel); border-radius:16px; padding:20px; text-align:center;}
+  .bin h4{font-family:var(--font-display); font-size:15px; margin:10px 0 4px;}
+  .bin .desc{font-size:11.5px; color:var(--muted-dim); margin-bottom:14px;}
+  .bin-items{display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+  .bin-item{background:var(--bg-card); border-radius:10px; padding:8px 12px; font-size:11px; display:flex; align-items:center; gap:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 13: Sisa Domestik</h1>
+  <p class="lead">Dua kategori sisa, satu kitaran penyelesaian tiga langkah.</p>
+
+  <div class="card">
+    <h2>🗑️ Bahan Organik vs Bukan Organik</h2>
+    <p class="sub">Sumber bahan menentukan sama ada ia mudah atau sukar diuraikan.</p>
+    <div class="bin-row">
+      <div class="bin" style="box-shadow:0 0 24px rgba(74,222,128,0.15);">
+        <div style="font-size:32px;">🌱</div>
+        <h4 style="color:#4ade80;">Bahan Organik</h4>
+        <div class="desc">Boleh diuraikan · dari sumber haiwan &amp; tumbuhan</div>
+        <div class="bin-items">
+          <div class="bin-item">🍎 Sisa makanan</div>
+          <div class="bin-item">🍂 Sisa kebun</div>
+          <div class="bin-item">📄 Kertas</div>
+        </div>
+      </div>
+      <div class="bin" style="box-shadow:0 0 24px rgba(251,191,90,0.15);">
+        <div style="font-size:32px;">⚙️</div>
+        <h4 style="color:#fbbf5a;">Bahan Bukan Organik</h4>
+        <div class="desc">Sukar diuraikan · dari sumber mineral</div>
+        <div class="bin-items">
+          <div class="bin-item">🥫 Tin</div>
+          <div class="bin-item">🧴 Plastik</div>
+          <div class="bin-item">🔩 Besi buruk</div>
+          <div class="bin-item">🍾 Kaca</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>♻️ Kitaran Amalan 3R</h2>
+    <p class="sub">Tiga langkah berterusan — bukan urutan sekali sahaja.</p>
+    <div style="display:flex; justify-content:center;">
+      <svg width="380" height="380" viewBox="0 0 380 380">
+        <defs>
+          <marker id="arrowB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#4fb0ff"/></marker>
+          <marker id="arrowV" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#8b6bff"/></marker>
+          <marker id="arrowG" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#4ade80"/></marker>
+        </defs>
+        <!-- Three curved arrows forming a triangular cycle -->
+        <path d="M 190 90 A 130 130 0 0 1 300 260" fill="none" stroke="#4fb0ff" stroke-width="3" marker-end="url(#arrowB)" style="filter:drop-shadow(0 0 6px rgba(79,176,255,0.6));"/>
+        <path d="M 300 260 A 130 130 0 0 1 80 260" fill="none" stroke="#8b6bff" stroke-width="3" marker-end="url(#arrowV)" style="filter:drop-shadow(0 0 6px rgba(139,107,255,0.6));"/>
+        <path d="M 80 260 A 130 130 0 0 1 190 90" fill="none" stroke="#4ade80" stroke-width="3" marker-end="url(#arrowG)" style="filter:drop-shadow(0 0 6px rgba(74,222,128,0.6));"/>
+
+        <circle cx="190" cy="80" r="46" fill="var(--bg-panel)" stroke="#4fb0ff" stroke-width="2" style="filter:drop-shadow(0 0 12px rgba(79,176,255,0.4));"/>
+        <text x="190" y="72" text-anchor="middle" font-size="18">⬇️</text>
+        <text x="190" y="94" text-anchor="middle" font-size="10.5" fill="#4fb0ff" font-weight="700">Kurangkan</text>
+
+        <circle cx="310" cy="270" r="46" fill="var(--bg-panel)" stroke="#8b6bff" stroke-width="2" style="filter:drop-shadow(0 0 12px rgba(139,107,255,0.4));"/>
+        <text x="310" y="262" text-anchor="middle" font-size="18">🔁</text>
+        <text x="310" y="284" text-anchor="middle" font-size="10.5" fill="#8b6bff" font-weight="700">Guna Semula</text>
+
+        <circle cx="70" cy="270" r="46" fill="var(--bg-panel)" stroke="#4ade80" stroke-width="2" style="filter:drop-shadow(0 0 12px rgba(74,222,128,0.4));"/>
+        <text x="70" y="262" text-anchor="middle" font-size="18">♻️</text>
+        <text x="70" y="284" text-anchor="middle" font-size="10.5" fill="#4ade80" font-weight="700">Kitar Semula</text>
+      </svg>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; font-size:11px; color:var(--muted); margin-top:6px;">
+      <div style="max-width:200px; text-align:center;"><b style="color:#4fb0ff;">Kurangkan</b> — elak beg plastik, bekas polistirena</div>
+      <div style="max-width:200px; text-align:center;"><b style="color:#8b6bff;">Guna Semula</b> — bekas minuman, surat khabar, derma pakaian</div>
+      <div style="max-width:200px; text-align:center;"><b style="color:#4ade80;">Kitar Semula</b> — kraf tangan, baja kompos</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

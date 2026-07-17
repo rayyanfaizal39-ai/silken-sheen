@@ -42,7 +42,6 @@ import {
   type LastVisited,
 } from "@/hooks/use-progress";
 import { CompanionImage, getCompanionDisplayName, useCompanionMessage } from "@/companion";
-import type { TrackerInsight } from "@/lib/tracker";
 import { buildLeaderboard } from "@/lib/leaderboard";
 import { PlanetCardArt, subjectPlanetStyles, type SubjectPlanetId } from "@/components/AcademyPage";
 import type { FormStat } from "@/content/registry";
@@ -508,24 +507,11 @@ export function HomeDashboard() {
       cancelled = true;
     };
   }, []);
-  const insight: TrackerInsight = useMemo(
-    () =>
-      trackerModule
-        ? trackerModule.analyzeProgress(progress.quizHistory ?? [])
-        : {
-            totalQuizzes: 0,
-            overallAvg: 0,
-            passRate: 0,
-            subjectStats: [],
-            weakSpots: [],
-            strongest: null,
-            weakest: null,
-            recommendation:
-              "Take your first quiz and the Tracker will start charting your strengths and weak spots.",
-          },
+  const insight = useMemo(
+    () => trackerModule?.analyzeProgress(progress.quizHistory ?? []) ?? null,
     [trackerModule, progress.quizHistory],
   );
-  const topWeakSpot = insight.weakSpots[0] ?? null;
+  const topWeakSpot = insight?.weakSpots[0] ?? null;
   const board = useMemo(() => buildLeaderboard(progress), [progress]);
   const myRank = board.currentUser?.rank ?? null;
   const mission = progress.missions;

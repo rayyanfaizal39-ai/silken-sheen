@@ -83,12 +83,19 @@ export const mathF1C2NotesDLP: StructuredNotes = {
           },
         },
         {
-          title: "Methods",
-          bulletPoints: [
-            "Use repeated division by prime numbers.",
-            "A factor tree can also be used.",
-            "Continue until all factors are prime numbers.",
-          ],
+          title: "Two Methods, Same Result: Repeated Division and Factor Tree",
+          content: "Express 60 as a product of its prime factors — both methods always agree.",
+          factorVisual: {
+            number: 60,
+            ladder: [2, 2, 3, 5],
+            tree: {
+              value: 60,
+              children: [
+                { value: 4, children: [{ value: 2, isPrime: true }, { value: 2, isPrime: true }] },
+                { value: 15, children: [{ value: 3, isPrime: true }, { value: 5, isPrime: true }] },
+              ],
+            },
+          },
         },
       ],
     },
@@ -120,6 +127,63 @@ export const mathF1C2NotesDLP: StructuredNotes = {
           title: "Prime Factorisation Method",
           content: "To find HCF, take the common prime factors with the smallest powers.",
           formula: "12 = 2 x 2 x 3\n18 = 2 x 3 x 3\nHCF = 2 x 3 = 6",
+        },
+        {
+          title: "Three Methods to Find HCF",
+          content: "Listing, repeated division, or prime factorisation — same answer every time.",
+          methodCards: [
+            {
+              methodName: "Listing the Common Factors",
+              steps: [
+                "Factors of 18: 1, 2, 3, 6, 9, 18",
+                "Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24",
+                "Common factors: 1, 2, 3, 6",
+              ],
+              result: "HCF of 18 and 24 is 6",
+            },
+            {
+              methodName: "Repeated Division",
+              steps: [
+                "Divide 36, 60, 72 by a common factor repeatedly",
+                "2 | 36, 60, 72 → 18, 30, 36",
+                "2 | 18, 30, 36 → 9, 15, 18",
+                "3 | 9, 15, 18 → 3, 5, 6",
+                "Multiply all the divisors: 2 × 2 × 3",
+              ],
+              result: "HCF of 36, 60 and 72 is 12",
+            },
+            {
+              methodName: "Prime Factorisation",
+              steps: [
+                "48 = 2 × 2 × 2 × 2 × 3",
+                "64 = 2 × 2 × 2 × 2 × 2 × 2",
+                "80 = 2 × 2 × 2 × 2 × 5",
+                "Multiply all the common prime factors: 2 × 2 × 2 × 2",
+              ],
+              result: "HCF of 48, 64 and 80 is 16",
+            },
+          ],
+        },
+        {
+          title: "Problem Solving: Charity Packs (HCF)",
+          problemSolvingFlow: {
+            scenario:
+              "The Boy Scouts of a school donated 252 shirts, 180 pairs of trousers and 108 pairs of socks to an orphanage. All items were divided equally into each pack. What was the maximum number of packs prepared?",
+            understanding: [
+              "252 shirts, 180 pairs of trousers, 108 pairs of socks were divided equally into each pack",
+              "Find the maximum number of packs that were prepared",
+            ],
+            devisingPlan: ["Find the HCF of 252, 180 and 108"],
+            implementing: [
+              "252 = 2 × 2 × 3 × 3 × 7",
+              "180 = 2 × 2 × 3 × 3 × 5",
+              "108 = 2 × 2 × 3 × 3 × 3",
+              "HCF of 252, 180 and 108 = 2 × 2 × 3 × 3 = 36",
+              "The maximum number of packs prepared would be 36",
+            ],
+            reflection:
+              "Checking: 252 ÷ 36 = 7, 180 ÷ 36 = 5, 108 ÷ 36 = 3 — all divide exactly, confirming 36 packs works",
+          },
         },
       ],
     },
@@ -171,6 +235,66 @@ export const mathF1C2NotesDLP: StructuredNotes = {
           title: "Prime Factorisation Method",
           content: "To find LCM, take all prime factors with the greatest powers.",
           formula: "12 = 2 x 2 x 3\n18 = 2 x 3 x 3\nLCM = 2 x 2 x 3 x 3 = 36",
+        },
+        {
+          title: "Three Methods to Find LCM",
+          content: "Listing, repeated division, or prime factorisation — same answer every time.",
+          methodCards: [
+            {
+              methodName: "Listing the Common Multiples",
+              steps: [
+                "Multiples of 2: 2, 4, 6, 8, 10…",
+                "Multiples of 3: 3, 6, 9, 12…",
+                "Choose the lowest common multiple",
+              ],
+              result: "LCM of 2 and 3 is 6",
+            },
+            {
+              methodName: "Repeated Division",
+              steps: [
+                "Divide the numbers repeatedly by a divisor that can divide completely at least one number",
+                "Numbers that can't be divided are brought down unchanged",
+                "Continue until all quotients become 1",
+                "Multiply all the divisors: 3 × 2 × 3",
+              ],
+              result: "LCM of 3, 6 and 9 is 18",
+            },
+            {
+              methodName: "Prime Factorisation",
+              steps: [
+                "3 = 3",
+                "8 = 2 × 2 × 2",
+                "12 = 2 × 2 × 3",
+                "Multiply the highest power of each prime factor present: 2 × 2 × 2 × 3",
+              ],
+              result: "LCM of 3, 8 and 12 is 24",
+            },
+          ],
+        },
+        {
+          title: "Problem Solving: Coffee & Tea Boxes (LCM)",
+          problemSolvingFlow: {
+            scenario:
+              "Canned coffee is sold 6 cans per box and canned tea 9 cans per box. Ainun wants to buy the same number of canned coffee and canned tea for her sister's birthday party. What is the minimum number of boxes of each she needs to buy?",
+            understanding: [
+              "Number of cans of coffee = 6 cans per box",
+              "Number of cans of tea = 9 cans per box",
+              "Find the minimum number of boxes of each type needed",
+            ],
+            devisingPlan: [
+              "Find the LCM of 6 and 9 to determine the same number of cans",
+              "Use division to find the number of boxes of coffee and tea",
+            ],
+            implementing: [
+              "Multiples of 6: 6, 12, 18, 24, 30…",
+              "Multiples of 9: 9, 18, 27, 36, 45…",
+              "LCM of 6 and 9 = 18",
+              "Number of boxes of canned coffee = 18 ÷ 6 = 3",
+              "Number of boxes of canned tea = 18 ÷ 9 = 2",
+            ],
+            reflection:
+              "Number of canned coffee = 3 × 6 = 18; number of canned tea = 2 × 9 = 18 — both equal, confirming the answer",
+          },
         },
       ],
     },

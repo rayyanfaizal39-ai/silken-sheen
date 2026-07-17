@@ -37,6 +37,7 @@ import {
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
+import { getEducationalVideo } from "@/data/educationalVideos";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
@@ -110,6 +111,14 @@ import { sejarahF3C8Notes } from "@/content/form3/sejarah/chapter-8/notes";
 import { sejarahF3C8MindMap } from "@/content/form3/sejarah/chapter-8/mindmap";
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
 import { geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
+import { sej1Content } from "@/content/form1/sejarah/chapter-1/sej1-content";
+import { sej2Content } from "@/content/form1/sejarah/chapter-2/sej2-content";
+import { sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content";
+import { sej4Content } from "@/content/form1/sejarah/chapter-4/sej4-content";
+import { sej5Content } from "@/content/form1/sejarah/chapter-5/sej5-content";
+import { sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content";
+import { sej7Content } from "@/content/form1/sejarah/chapter-7/sej7-content";
+import { sej8Content } from "@/content/form1/sejarah/chapter-8/sej8-content";
 import { geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import { geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
 import { geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
@@ -117,6 +126,11 @@ import { geo5Content } from "@/content/form1/geography/chapter-5/geo5-content";
 import { geo6Content } from "@/content/form1/geography/chapter-6/geo6-content";
 import { geo7Content } from "@/content/form1/geography/chapter-7/geo7-content";
 import { geo8Content } from "@/content/form1/geography/chapter-8/geo8-content";
+import { geo9Content } from "@/content/form1/geography/chapter-9/geo9-content";
+import { geo10Content } from "@/content/form1/geography/chapter-10/geo10-content";
+import { geo11Content } from "@/content/form1/geography/chapter-11/geo11-content";
+import { geo12Content } from "@/content/form1/geography/chapter-12/geo12-content";
+import { geo13Content } from "@/content/form1/geography/chapter-13/geo13-content";
 import { geoF1C2MindMap } from "@/content/form1/geography/chapter-2/mindmap";
 import { geoF1C3MindMap } from "@/content/form1/geography/chapter-3/mindmap";
 import { geoF1C4MindMap } from "@/content/form1/geography/chapter-4/mindmap";
@@ -570,23 +584,19 @@ function sejarahQuizzesFor(chapterNum: number) {
 function sejarah(
   num: number,
   title: string,
-  youtubeId: string,
   mindMapData: MindNode,
   mindMapTitle: string,
 ): ChapterContent {
   const chapterKey = `Chapter ${num}`;
+  const id = `sejarah-f1-c${num}`;
+  const video = getEducationalVideo(id);
   return {
-    id: `sejarah-f1-c${num}`,
+    id,
     subjectId: "sejarah",
     form: "Form 1",
     chapterKey,
     title,
-    video: {
-      youtubeId,
-      title: `Sejarah Tingkatan 1 Bab ${num} - ${title}`,
-      captionLang: "ms",
-      hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
-    },
+    ...(video ? { video } : {}),
     mindMap: { data: mindMapData, title: mindMapTitle },
     flashcards: sejarahFlashcardsFor(num),
     quiz: sejarahQuizzesFor(num),
@@ -682,12 +692,15 @@ function geography(
   mindMapTitle?: string,
 ): ChapterContent {
   const chapterKey = `Chapter ${chapterNum}`;
+  const id = `geography-f1-c${chapterNum}`;
+  const video = getEducationalVideo(id);
   return {
-    id: `geography-f1-c${chapterNum}`,
+    id,
     subjectId: "geography",
     form: "Form 1",
     chapterKey,
     title: GEOGRAPHY_F1_CHAPTER_TITLES[chapterNum],
+    ...(video ? { video } : {}),
     ...(mindMapData && mindMapTitle ? { mindMap: { data: mindMapData, title: mindMapTitle } } : {}),
     flashcards: geographyFlashcardsFor(chapterNum),
     quiz: geographyQuizzesFor(chapterNum),
@@ -697,32 +710,38 @@ function geography(
 export const chapters: ChapterContent[] = [
   ...scienceF3ChapterContent,
   // Sejarah Form 1
-  sejarah(1, "Mengenali Sejarah", "dZuhYNHdQ7U", mengenaliSejarahMindMap, "Mengenali Sejarah"),
-  sejarah(2, "Zaman Air Batu", "cLgCMnVoJ5g", zamanAirBatuMindMap, "Zaman Air Batu"),
-  sejarah(3, "Zaman Prasejarah", "LAAafdFO3Zo", zamanPrasejarahMindMap, "Zaman Prasejarah"),
-  sejarah(4, "Mengenali Tamadun", "fdU9wX5oGAI", mengenaliTamadunMindMap, "Mengenali Tamadun"),
-  sejarah(5, "Tamadun Awal Dunia", "UXeM03mYPO4", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"),
-  sejarah(
-    6,
-    "Tamadun Yunani dan Rom",
-    "gSXFJYisA6w",
-    peningkatanTamadunYunaniRomMindMap,
-    "Peningkatan Tamadun Yunani dan Rom",
-  ),
-  sejarah(
-    7,
-    "Tamadun India dan China",
-    "aeLoGzzm85o",
-    tamadunIndiaChinaMindMap,
-    "Tamadun India dan China",
-  ),
-  sejarah(
-    8,
-    "Tamadun Islam",
-    "RIDZG6LTY5Y",
-    tamadunIslamSumbanganMindMap,
-    "Tamadun Islam dan Sumbangannya",
-  ),
+  { ...sejarah(1, "Mengenali Sejarah", mengenaliSejarahMindMap, "Mengenali Sejarah"), sejChapter1Data: sej1Content },
+  { ...sejarah(2, "Zaman Air Batu", zamanAirBatuMindMap, "Zaman Air Batu"), sejChapter2Data: sej2Content },
+  { ...sejarah(3, "Zaman Prasejarah", zamanPrasejarahMindMap, "Zaman Prasejarah"), sejChapter3Data: sej3Content },
+  { ...sejarah(4, "Mengenali Tamadun", mengenaliTamadunMindMap, "Mengenali Tamadun"), sejChapter4Data: sej4Content },
+  { ...sejarah(5, "Tamadun Awal Dunia", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"), sejChapter5Data: sej5Content },
+  {
+    ...sejarah(
+      6,
+      "Tamadun Yunani dan Rom",
+      peningkatanTamadunYunaniRomMindMap,
+      "Peningkatan Tamadun Yunani dan Rom",
+    ),
+    sejChapter6Data: sej6Content,
+  },
+  {
+    ...sejarah(
+      7,
+      "Tamadun India dan China",
+      tamadunIndiaChinaMindMap,
+      "Tamadun India dan China",
+    ),
+    sejChapter7Data: sej7Content,
+  },
+  {
+    ...sejarah(
+      8,
+      "Tamadun Islam",
+      tamadunIslamSumbanganMindMap,
+      "Tamadun Islam dan Sumbangannya",
+    ),
+    sejChapter8Data: sej8Content,
+  },
 
   // Sejarah Form 2
   {
@@ -937,11 +956,11 @@ export const chapters: ChapterContent[] = [
   { ...geography(6, geoF1C6MindMap, "Bentuk Muka Bumi"), geoChapter6Data: geo6Content },
   { ...geography(7, geoF1C7MindMap, "Saliran"), geoChapter7Data: geo7Content },
   { ...geography(8, geoF1C8MindMap, "Penduduk di Malaysia"), geoChapter8Data: geo8Content },
-  geography(9, geoF1C9MindMap, "Petempatan di Malaysia"),
-  geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"),
-  geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"),
-  geography(12, geoF1C12MindMap, "Sumber Air"),
-  geography(13, geoF1C13MindMap, "Sisa Domestik"),
+  { ...geography(9, geoF1C9MindMap, "Petempatan di Malaysia"), geoChapter9Data: geo9Content },
+  { ...geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"), geoChapter10Data: geo10Content },
+  { ...geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"), geoChapter11Data: geo11Content },
+  { ...geography(12, geoF1C12MindMap, "Sumber Air"), geoChapter12Data: geo12Content },
+  { ...geography(13, geoF1C13MindMap, "Sisa Domestik"), geoChapter13Data: geo13Content },
 
   // Geography Form 2
   {
@@ -1991,6 +2010,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Pengenalan kepada Penyiasatan Saintifik",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c1"),
     mindMap: { data: scienceF1C1MindMapBM, title: "Pengenalan kepada Penyiasatan Saintifik" },
     chapter1Data: chapter1Content,
   },
@@ -2001,6 +2021,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Introduction to Scientific Investigation",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c1"),
     mindMap: { data: scienceF1C1MindMapDLP, title: "Introduction to Scientific Investigation" },
     chapter1Data: chapter1Content,
   },
@@ -2011,6 +2032,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Sel sebagai Unit Asas Kehidupan",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c2"),
     mindMap: { data: scienceF1C2MindMapBM, title: "Sel sebagai Unit Asas Hidupan" },
     notes: scienceF1C2NotesBM,
     chapter2Data: chapter2Content,
@@ -2022,6 +2044,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Cell as the Basic Unit of Life",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c2"),
     mindMap: { data: scienceF1C2MindMapDLP, title: "Cells as the Basic Unit of Life" },
     notes: scienceF1C2NotesDLP,
     chapter2Data: chapter2Content,
@@ -2033,6 +2056,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Koordinasi dan Tindak Balas",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c3"),
     mindMap: { data: scienceF1C3MindMapBM, title: "Homeostasis dalam Benda Hidup" },
     notes: scienceF1C3NotesBM,
     chapter3Data: chapter3Content,
@@ -2044,6 +2068,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Coordination and Response",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c3"),
     mindMap: { data: scienceF1C3MindMapDLP, title: "Homeostasis" },
     notes: scienceF1C3NotesDLP,
     chapter3Data: chapter3Content,
@@ -2055,6 +2080,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Pembiakan",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c4"),
     mindMap: { data: scienceF1C4MindMapBM, title: "Pembiakan" },
     notes: scienceF1C4NotesBM,
     chapter4Data: chapter4Content,
@@ -2066,6 +2092,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Reproduction",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c4"),
     mindMap: { data: scienceF1C4MindMapDLP, title: "Reproduction" },
     notes: scienceF1C4NotesDLP,
     chapter4Data: chapter4Content,
@@ -2077,6 +2104,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Jirim",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c5"),
     mindMap: { data: scienceF1C5MindMapBM, title: "Jirim" },
     notes: scienceF1C5NotesBM,
     chapter5Data: chapter5Content,
@@ -2088,6 +2116,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Matter",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c5"),
     mindMap: { data: scienceF1C5MindMapDLP, title: "Matter" },
     notes: scienceF1C5NotesDLP,
     chapter5Data: chapter5Content,
@@ -2099,6 +2128,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Jadual Berkala",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c6"),
     mindMap: { data: scienceF1C6MindMapBM, title: "Bab 6: Jadual Berkala" },
     notes: scienceF1C6NotesBM,
     chapter6Data: chapter6Content,
@@ -2110,6 +2140,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Periodic Table",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c6"),
     mindMap: { data: scienceF1C6MindMapDLP, title: "Periodic Table" },
     notes: scienceF1C6NotesDLP,
     chapter6Data: chapter6Content,
@@ -2121,6 +2152,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Udara",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c7"),
     mindMap: { data: scienceF1C7MindMapBM, title: "Bab 7: Udara" },
     notes: scienceF1C7NotesBM,
     bab7Data: bab7Content,
@@ -2132,6 +2164,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Air",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c7"),
     mindMap: { data: scienceF1C7MindMapDLP, title: "Air (Chapter 7)" },
     notes: scienceF1C7NotesDLP,
     bab7Data: bab7Content,
@@ -2143,6 +2176,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Cahaya dan Optik",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c8"),
     mindMap: { data: scienceF1C8MindMapBM, title: "Sains Tingkatan 1 : Bab 8 Cahaya dan Optik" },
     notes: scienceF1C8NotesBM,
     chapter8Data: chapter8Content,
@@ -2154,6 +2188,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Light and Optics",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c8"),
     mindMap: { data: scienceF1C8MindMapDLP, title: "Light and Optics" },
     notes: scienceF1C8NotesDLP,
     chapter8Data: chapter8Content,
@@ -2165,6 +2200,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Bumi",
     lang: "bm",
+    video: getEducationalVideo("science-f1-c9"),
     mindMap: { data: scienceF1C9MindMapBM, title: "Bumi (Earth)" },
     notes: scienceF1C9NotesBM,
     chapter9Data: chapter9Content,
@@ -2176,6 +2212,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Earth",
     lang: "dlp",
+    video: getEducationalVideo("science-f1-c9"),
     mindMap: { data: scienceF1C9MindMapDLP, title: "Chapter 9: Earth" },
     notes: scienceF1C9NotesDLP,
     chapter9Data: chapter9Content,

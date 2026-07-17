@@ -54,11 +54,7 @@ export const mathF1C1NotesBM: StructuredNotes = {
             "Nombor di sebelah kiri sifar ialah integer negatif.",
             "Nilainya semakin kecil apabila bergerak ke kiri.",
           ],
-        },
-        {
-          title: "Visual Garis Nombor",
-          formula:
-            "-5  -4  -3  -2  -1   0   1   2   3   4   5\n<-- semakin kecil        semakin besar -->",
+          numberLine: { min: -5, max: 5, highlight: [0] },
         },
         {
           title: "Membanding dan Menyusun Integer",
@@ -150,7 +146,15 @@ export const mathF1C1NotesBM: StructuredNotes = {
         {
           title: "Operasi Pecahan",
           content: "Apabila membahagi pecahan, tukar bahagi kepada darab menggunakan salingan.",
-          formula: "1/2 ÷ 1/4\n= 1/2 x 4/1",
+          workedExample: {
+            problem: "Bahagikan: 1/2 ÷ 1/4",
+            steps: [
+              "Kekalkan pecahan pertama",
+              "Tukar ÷ kepada ×, dan songsangkan pecahan kedua",
+              "1/2 ÷ 1/4 = 1/2 × 4/1",
+            ],
+            answer: "1/2 ÷ 1/4 = 2",
+          },
         },
       ],
     },

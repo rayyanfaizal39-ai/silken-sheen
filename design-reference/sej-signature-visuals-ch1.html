@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 1: Mengenali Sejarah — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  /* Historian cards */
+  .historian-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
+  .historian-card{background:var(--bg-panel); border-radius:16px; padding:18px; box-shadow:0 0 22px rgba(139,107,255,0.12);}
+  .historian-card .avatar{width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; font-size:20px; box-shadow:0 0 14px rgba(139,107,255,0.4); margin-bottom:10px;}
+  .historian-card h4{font-family:var(--font-display); font-size:14px; margin:0 0 8px;}
+  .historian-card .quote{font-size:12px; color:var(--muted); font-style:italic; line-height:1.5; margin-bottom:8px;}
+  .historian-card .work{font-size:10.5px; color:var(--muted-dim);}
+
+  /* Sources bins */
+  .bin-row{display:flex; gap:20px; flex-wrap:wrap;}
+  .bin{flex:1; min-width:280px; background:var(--bg-panel); border-radius:16px; padding:20px;}
+  .bin h4{font-family:var(--font-display); font-size:15px; margin:8px 0 4px;}
+  .bin .desc{font-size:11.5px; color:var(--muted-dim); margin-bottom:14px;}
+  .bin-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .bin-chip{background:var(--bg-card); border-radius:10px; padding:7px 12px; font-size:11px;}
+
+  /* Timeline */
+  .timeline-wrap{padding:20px 10px;}
+
+  /* Research methods */
+  .method-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .method-card{flex:1; min-width:230px; background:var(--bg-panel); border-radius:16px; padding:18px;}
+  .method-card .ic{font-size:28px;}
+  .method-card h4{font-family:var(--font-display); font-size:14px; margin:10px 0 4px;}
+  .method-card .desc{font-size:11px; color:var(--muted-dim); margin-bottom:12px; line-height:1.4;}
+  .method-card ol{margin:0; padding-left:18px; font-size:11px; color:var(--muted); line-height:1.7;}
+
+  /* Importance grid */
+  .importance-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px;}
+  .importance-tile{background:var(--bg-panel); border-radius:14px; padding:16px;}
+  .importance-tile .ic{font-size:24px;}
+  .importance-tile h5{font-family:var(--font-display); font-size:13px; margin:8px 0 4px;}
+  .importance-tile p{font-size:11px; color:var(--muted); margin:0; line-height:1.4;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 1: Mengenali Sejarah</h1>
+  <p class="lead">Asas kepada seluruh mata pelajaran Sejarah — bagaimana kita mengukur masa, mengenal pasti sumber, dan mentafsir peristiwa lampau.</p>
+
+  <div class="card">
+    <h2>📜 Garis Masa — SM ke Masihi</h2>
+    <p class="sub">Dekad, abad, alaf — unit masa yang digunakan sejarawan untuk mengukur kronologi.</p>
+    <div class="timeline-wrap">
+      <svg width="100%" height="200" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid meet">
+        <!-- Main timeline -->
+        <line x1="60" y1="100" x2="840" y2="100" stroke="#4fb0ff" stroke-width="3" style="filter:drop-shadow(0 0 6px rgba(79,176,255,0.5));"/>
+        <polygon points="840,100 828,93 828,107" fill="#4fb0ff"/>
+
+        <!-- SM zone (left, red-ish) vs Masihi zone (right, green-ish) -->
+        <rect x="60" y="90" width="330" height="20" fill="#f87171" opacity="0.12" rx="4"/>
+        <rect x="390" y="90" width="450" height="20" fill="#4ade80" opacity="0.12" rx="4"/>
+
+        <!-- Center marker: birth of Nabi Isa AS -->
+        <circle cx="390" cy="100" r="8" fill="#fbbf5a" style="filter:drop-shadow(0 0 10px rgba(251,191,90,0.6));"/>
+        <text x="390" y="70" text-anchor="middle" font-size="12" fill="#fbbf5a" font-weight="700">0 (Kelahiran Nabi Isa AS)</text>
+
+        <text x="200" y="140" text-anchor="middle" font-size="14" fill="#f87171" font-weight="700" font-family="'Space Grotesk',sans-serif">Sebelum Masihi (SM)</text>
+        <text x="620" y="140" text-anchor="middle" font-size="14" fill="#4ade80" font-weight="700" font-family="'Space Grotesk',sans-serif">Masihi (M)</text>
+
+        <!-- Decade/century/millennium markers on the right side -->
+        <line x1="450" y1="95" x2="450" y2="105" stroke="var(--muted)" stroke-width="2"/>
+        <text x="450" y="180" text-anchor="middle" font-size="10" fill="var(--muted)">Dekad</text>
+        <text x="450" y="192" text-anchor="middle" font-size="9" fill="var(--muted-dim)">10 tahun</text>
+
+        <line x1="600" y1="95" x2="600" y2="105" stroke="var(--muted)" stroke-width="2"/>
+        <text x="600" y="180" text-anchor="middle" font-size="10" fill="var(--muted)">Abad</text>
+        <text x="600" y="192" text-anchor="middle" font-size="9" fill="var(--muted-dim)">100 tahun</text>
+
+        <line x1="780" y1="95" x2="780" y2="105" stroke="var(--muted)" stroke-width="2"/>
+        <text x="780" y="180" text-anchor="middle" font-size="10" fill="var(--muted)">Alaf</text>
+        <text x="780" y="192" text-anchor="middle" font-size="9" fill="var(--muted-dim)">1000 tahun</text>
+      </svg>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim);">Ruang dalam sejarah turut dibahagikan mengikut tema: <b style="color:var(--text);">Politik</b> · <b style="color:var(--text);">Ekonomi</b> · <b style="color:var(--text);">Sosial</b></p>
+  </div>
+
+  <div class="card">
+    <h2>🗣️ Pandangan Sejarawan Tentang Sejarah</h2>
+    <p class="sub">Empat sejarawan tersohor, empat definisi berbeza.</p>
+    <div class="historian-grid">
+      <div class="historian-card">
+        <div class="avatar">🏛️</div>
+        <h4>Herodotus</h4>
+        <div class="quote">"Penceritaan tentang tindakan manusia yang penting dan mengagumkan serta sebab berlakunya sesuatu peristiwa."</div>
+        <div class="work">Histories (Sejarah Perang Parsi)</div>
+      </div>
+      <div class="historian-card">
+        <div class="avatar">📖</div>
+        <h4>E.H. Carr</h4>
+        <div class="quote">"Suatu proses interaksi berterusan antara ahli sejarah dengan fakta-faktanya... dialog antara masa kini dengan masa lampau."</div>
+        <div class="work">What is History?</div>
+      </div>
+      <div class="historian-card">
+        <div class="avatar">🕌</div>
+        <h4>Ibn Khaldun</h4>
+        <div class="quote">"Sejarah membicarakan perkara tentang masyarakat manusia, peradaban dunia dan perubahan-perubahan yang berlaku."</div>
+        <div class="work">Muqaddimah</div>
+      </div>
+      <div class="historian-card">
+        <div class="avatar">🇲🇾</div>
+        <h4>Khoo Kay Kim</h4>
+        <div class="quote">"Sejarah mendorong kita lebih memahami apa-apa yang berlaku pada masa kini... Sejarah ialah ibu kepada semua bidang."</div>
+        <div class="work">Sejarawan tempatan tersohor Malaysia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🗃️ Sumber Primer vs Sekunder</h2>
+    <p class="sub">Sumber asli yang belum ditafsir, berbanding bahan yang telah diolah dan diterbitkan.</p>
+    <div class="bin-row">
+      <div class="bin" style="box-shadow:0 0 24px rgba(139,107,255,0.15);">
+        <div style="font-size:30px;">🏺</div>
+        <h4 style="color:#8b6bff;">Sumber Primer</h4>
+        <div class="desc">Belum diolah · bersifat asli · belum ditafsir</div>
+        <div class="bin-chips">
+          <div class="bin-chip">Fosil</div><div class="bin-chip">Artifak</div><div class="bin-chip">Batu bersurat</div>
+          <div class="bin-chip">Keterangan lisan</div><div class="bin-chip">Dokumen rasmi</div><div class="bin-chip">Diari</div>
+        </div>
+      </div>
+      <div class="bin" style="box-shadow:0 0 24px rgba(79,176,255,0.15);">
+        <div style="font-size:30px;">📚</div>
+        <h4 style="color:#4fb0ff;">Sumber Sekunder</h4>
+        <div class="desc">Telah diolah dan diterbitkan · tersebar kepada umum</div>
+        <div class="bin-chips">
+          <div class="bin-chip">Buku</div><div class="bin-chip">Akhbar</div><div class="bin-chip">Majalah</div>
+          <div class="bin-chip">Jurnal</div><div class="bin-chip">Ensiklopedia</div><div class="bin-chip">Risalah</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Contoh sebenar: Loceng Gangsa (Muar) · Candi Lembah Bujang (Kedah) · Batu Bersurat Terengganu (1303 M)</p>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Tiga Kaedah Penyelidikan Sejarah</h2>
+    <p class="sub">Bertulis, lisan, dan arkeologi — setiap satu dengan langkah tersendiri.</p>
+    <div class="method-row">
+      <div class="method-card" style="box-shadow:0 0 18px rgba(251,191,90,0.12);">
+        <div class="ic">📜</div>
+        <h4 style="color:#fbbf5a;">Kaedah Bertulis</h4>
+        <div class="desc">Kajian sumber yang dipahat atau ditulis</div>
+        <ol>
+          <li>Kenal pasti sumber</li>
+          <li>Dapat &amp; sahkan sumber</li>
+          <li>Kumpul &amp; simpan</li>
+          <li>Guna peralatan sesuai</li>
+          <li>Menganalisis</li>
+        </ol>
+      </div>
+      <div class="method-card" style="box-shadow:0 0 18px rgba(74,222,128,0.12);">
+        <div class="ic">🎙️</div>
+        <h4 style="color:#4ade80;">Kaedah Lisan</h4>
+        <div class="desc">Mendapatkan maklumat melalui temu bual</div>
+        <ol>
+          <li>Persediaan (tokoh, skop, soalan)</li>
+          <li>Rakaman temu bual</li>
+          <li>Memproses rakaman</li>
+        </ol>
+      </div>
+      <div class="method-card" style="box-shadow:0 0 18px rgba(139,107,255,0.12);">
+        <div class="ic">⛏️</div>
+        <h4 style="color:#8b6bff;">Kaedah Arkeologi</h4>
+        <div class="desc">Ekskavasi bahan tinggalan sejarah</div>
+        <ol>
+          <li>Perancangan grid</li>
+          <li>Menandakan kawasan</li>
+          <li>Ekskavasi &amp; catat</li>
+          <li>Pembersihan &amp; pengkatalogan</li>
+          <li>Penganalisisan</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⭐ Kepentingan Mempelajari Sejarah</h2>
+    <p class="sub">Enam sebab kenapa sejarah bukan sekadar fakta lama.</p>
+    <div class="importance-grid">
+      <div class="importance-tile" style="box-shadow:0 0 14px rgba(139,107,255,0.12);"><div class="ic">🌳</div><h5>Mengenal Asal Usul</h5><p>Memahami adat, tradisi dan budaya bangsa</p></div>
+      <div class="importance-tile" style="box-shadow:0 0 14px rgba(79,176,255,0.12);"><div class="ic">💡</div><h5>Mengambil Iktibar</h5><p>Elak mengulangi kesilapan masa lalu</p></div>
+      <div class="importance-tile" style="box-shadow:0 0 14px rgba(251,191,90,0.12);"><div class="ic">🇲🇾</div><h5>Memupuk Patriotisme</h5><p>Menyemai rasa cinta akan negara</p></div>
+      <div class="importance-tile" style="box-shadow:0 0 14px rgba(74,222,128,0.12);"><div class="ic">🤝</div><h5>Mengukuhkan Perpaduan</h5><p>Meneruskan hubungan harmoni antara kaum</p></div>
+      <div class="importance-tile" style="box-shadow:0 0 14px rgba(248,113,113,0.12);"><div class="ic">🏗️</div><h5>Membangunkan Negara</h5><p>Membandingkan budaya dahulu &amp; kini</p></div>
+      <div class="importance-tile" style="box-shadow:0 0 14px rgba(139,107,255,0.12);"><div class="ic">🧠</div><h5>Kemahiran Pemikiran Sejarah</h5><p>Pemikiran kritis, analitis dan empati</p></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

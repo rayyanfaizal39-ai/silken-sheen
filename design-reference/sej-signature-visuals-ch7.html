@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 7: India dan China — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  .factor-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;}
+  .factor-tile{background:var(--bg-panel); border-radius:12px; padding:14px; box-shadow:0 0 12px rgba(139,107,255,0.1);}
+  .factor-tile h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 6px; color:var(--violet);}
+  .factor-tile p{font-size:10.5px; color:var(--muted); margin:0; line-height:1.4;}
+
+  .dynasty-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .dynasty-card{flex:1; min-width:230px; background:var(--bg-panel); border-radius:14px; padding:16px;}
+  .dynasty-card h4{font-family:var(--font-display); font-size:13.5px; margin:0 0 4px; color:var(--amber);}
+  .dynasty-card .dur{font-size:10.5px; color:var(--muted-dim); margin-bottom:8px;}
+  .dynasty-card .mil{display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px;}
+  .dynasty-card .mil-chip{background:var(--bg-card); border-radius:6px; padding:3px 8px; font-size:9.5px;}
+  .dynasty-card p{font-size:10px; color:var(--muted); margin:0; line-height:1.4;}
+
+  .split-compare{display:flex; gap:16px; flex-wrap:wrap;}
+  .split-col{flex:1; min-width:250px; background:var(--bg-panel); border-radius:14px; padding:16px;}
+  .split-col h5{font-family:var(--font-display); font-size:13px; margin:0 0 8px;}
+  .split-col p{font-size:11px; color:var(--muted); margin:0; line-height:1.5;}
+
+  .china-timeline{display:flex; gap:0; padding:16px 0;}
+  .ct-era{flex:1; text-align:center; position:relative;}
+  .ct-era:not(:last-child)::after{content:''; position:absolute; top:18px; right:0; width:100%; height:2px; background:var(--line);}
+  .ct-dot{width:16px; height:16px; border-radius:50%; margin:0 auto 8px; position:relative; z-index:1;}
+  .ct-era h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 3px;}
+  .ct-era .dur{font-size:10px; color:var(--muted-dim);}
+  .ct-era .facts{font-size:9.5px; color:var(--muted); margin-top:6px; line-height:1.4;}
+
+  .edu-flow{display:flex; gap:12px; flex-wrap:wrap; justify-content:center;}
+  .edu-level{background:var(--bg-panel); border-radius:12px; padding:14px; flex:1; min-width:160px; text-align:center;}
+  .edu-level h6{font-family:var(--font-display); font-size:12px; margin:0 0 6px; color:var(--green);}
+  .edu-level p{font-size:10px; color:var(--muted); margin:0; line-height:1.4;}
+
+  .exam-timeline{display:flex; align-items:center; gap:14px; justify-content:center; padding:14px 0;}
+  .exam-point{text-align:center;}
+  .exam-point .yr{font-family:var(--font-display); font-weight:700; font-size:13px;}
+  .exam-point .lbl{font-size:10px; color:var(--muted-dim);}
+  .exam-line{flex:1; max-width:200px; height:2px; background:linear-gradient(90deg,var(--green),var(--red));}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 7: Peningkatan Tamadun India dan China</h1>
+  <p class="lead">Bagaimana kerajaan berkembang menjadi empayar — dan bagaimana pendidikan membentuk sebuah tamadun.</p>
+
+  <div class="card">
+    <h2>⚔️ Lima Faktor Perluasan Kuasa</h2>
+    <p class="sub">Apa yang membolehkan sesebuah kerajaan India berkembang menjadi empayar.</p>
+    <div class="factor-grid">
+      <div class="factor-tile"><h5>Kekuatan Ketenteraan</h5><p>Pasukan tentera kuat untuk mempertahankan negara</p></div>
+      <div class="factor-tile"><h5>Dasar Pemerintahan</h5><p>Raja menentukan dasar perluasan kuasa</p></div>
+      <div class="factor-tile"><h5>Sumber Manusia</h5><p>Menjamin kerajaan ditadbir dengan baik</p></div>
+      <div class="factor-tile"><h5>Diplomasi Keagamaan</h5><p>Aspek keagamaan turut memperluas pengaruh</p></div>
+      <div class="factor-tile"><h5>Kewangan</h5><p>Pembiayaan daripada perbendaharaan kerajaan</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏹 Tiga Dinasti India — Kekuatan Ketenteraan</h2>
+    <p class="sub">Semua berpusat di Pataliputra, semua bergantung pada kekuatan tentera.</p>
+    <div class="dynasty-row">
+      <div class="dynasty-card">
+        <h4>Dinasti Nanda</h4>
+        <div class="dur">345–321 SM</div>
+        <div class="mil"><div class="mil-chip">20,000 kavalri</div><div class="mil-chip">200,000 infantri</div><div class="mil-chip">3,000 gajah</div></div>
+        <p>Bengal (timur) hingga Punjab (barat)</p>
+      </div>
+      <div class="dynasty-card">
+        <h4>Dinasti Maurya</h4>
+        <div class="dur">322–185 SM</div>
+        <div class="mil"><div class="mil-chip">30,000 kavalri</div><div class="mil-chip">600,000 infantri</div><div class="mil-chip">9,000 gajah</div></div>
+        <p>Chandragupta Maurya &amp; Asoka — Bengal hingga Hindu Kush</p>
+      </div>
+      <div class="dynasty-card">
+        <h4>Dinasti Gupta</h4>
+        <div class="dur">320–550 M</div>
+        <div class="mil"><div class="mil-chip">Chandragupta I</div></div>
+        <p>Punjab hingga Bengal — zaman keemasan Hindu</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>☸️ Transformasi Asoka — Sebelum dan Selepas Kalinga</h2>
+    <p class="sub">Satu peperangan yang mengubah keseluruhan hala tuju empayar.</p>
+    <img class="gen" src="form 1 content images/transformasi-asoka.png" alt="Transformasi Asoka" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="split-compare">
+      <div class="split-col" style="box-shadow:0 0 18px rgba(248,113,113,0.15);">
+        <h5 style="color:#f87171;">⚔️ Sebelum Perang Kalinga</h5>
+        <p>Meneruskan perluasan kuasa secara fizikal — menguasai kawasan yang belum ditakluki, termasuk Kalinga. Perang mengorbankan 150,000 kehilangan harta benda dan 100,000 terbunuh.</p>
+      </div>
+      <div class="split-col" style="box-shadow:0 0 18px rgba(74,222,128,0.15);">
+        <h5 style="color:#4ade80;">☸️ Selepas Perang Kalinga</h5>
+        <p>Kesedaran mengubah pemerintahan menjadi lebih toleran. Menghentikan perluasan fizikal, menumpukan penyebaran agama Buddha ke Tibet, Nepal, Sri Lanka, Asia Tenggara — melalui Tiang Asoka.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏯 Dinasti Qin ke Dinasti Han</h2>
+    <p class="sub">Penyatuan China, kemudian pembukaan dunia melalui Laluan Sutera.</p>
+    <img class="gen" src="form 1 content images/dinasti-qin-han.png" alt="Dinasti Qin dan Han" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="china-timeline">
+      <div class="ct-era">
+        <div class="ct-dot" style="background:#f87171; box-shadow:0 0 8px rgba(248,113,113,0.6);"></div>
+        <h5>Dinasti Qin</h5>
+        <div class="dur">221–206 SM</div>
+        <div class="facts">Shi Huangdi menyatukan China; menyeragamkan tulisan</div>
+      </div>
+      <div class="ct-era">
+        <div class="ct-dot" style="background:#4fb0ff; box-shadow:0 0 8px rgba(79,176,255,0.6);"></div>
+        <h5>Dinasti Han</h5>
+        <div class="dur">206 SM–220 M</div>
+        <div class="facts">Han Wu Di membuka Laluan Sutera — laluan darat terpanjang di dunia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📚 Sistem Pendidikan Tamadun China</h2>
+    <p class="sub">Tiga peringkat, satu matlamat: peperiksaan perkhidmatan awam.</p>
+    <div class="edu-flow">
+      <div class="edu-level"><h6>Pendidikan Rendah</h6><p>Menghafal tulisan &amp; buku suci</p></div>
+      <div class="edu-level"><h6>Pendidikan Menengah</h6><p>Menulis karangan &amp; sajak</p></div>
+      <div class="edu-level"><h6>Pendidikan Tinggi</h6><p>Mentafsir buku suci &amp; etika</p></div>
+    </div>
+    <div class="exam-timeline">
+      <div class="exam-point"><div class="yr" style="color:#4ade80;">29 SM</div><div class="lbl">Diperkenalkan (Maharaja Wu)</div></div>
+      <div class="exam-line"></div>
+      <div class="exam-point"><div class="yr" style="color:#f87171;">1905</div><div class="lbl">Dimansuhkan (Maharani Cixi)</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

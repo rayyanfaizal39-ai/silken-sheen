@@ -1,10 +1,17 @@
 export type EffectsGridTint = "red" | "amber" | "green" | "blue";
 
 const TINT_BG: Record<EffectsGridTint, string> = {
-  red: "bg-red-500/5",
-  amber: "bg-amber-400/5",
-  green: "bg-emerald-500/5",
-  blue: "bg-primary/5",
+  red: "bg-red-500/10 border-red-400/25",
+  amber: "bg-amber-400/10 border-amber-400/25",
+  green: "bg-emerald-500/10 border-emerald-400/25",
+  blue: "bg-blue-500/10 border-blue-400/25",
+};
+
+const TINT_TEXT: Record<EffectsGridTint, string> = {
+  red: "text-red-300",
+  amber: "text-amber-300",
+  green: "text-emerald-300",
+  blue: "text-blue-300",
 };
 
 export interface EffectsGridCard {
@@ -21,8 +28,8 @@ export function EffectsGrid({ cards }: { cards: EffectsGridCard[] }) {
   return (
     <div className="grid gap-3.5 sm:grid-cols-2">
       {cards.map((c) => (
-        <div key={c.heading} className={`rounded-2xl border border-border p-4 ${TINT_BG[c.tint]}`}>
-          <h5 className="font-display mb-2.5 flex items-center gap-2 text-[13.5px] font-bold text-foreground">
+        <div key={c.heading} className={`rounded-2xl border p-4 ${TINT_BG[c.tint]}`}>
+          <h5 className={`font-display mb-2.5 flex items-center gap-2 text-[13.5px] font-bold ${TINT_TEXT[c.tint]}`}>
             {c.icon} {c.heading}
           </h5>
           <ul className="flex flex-col gap-1.5">
