@@ -177,9 +177,9 @@ function LandingNav() {
         ) : (
           <button
             onClick={() => open()}
-            className="px-4 py-2 rounded-full bg-white text-[#0b0a1f] text-sm font-semibold hover:scale-[1.03] transition-transform"
+            className="px-6 py-3 rounded-lg bg-[#4f46e5] text-white text-sm font-semibold drop-shadow-[0px_4px_6px_rgba(79,70,229,0.15)] hover:scale-[1.03] transition-transform"
           >
-            Sign in
+            Sign In
           </button>
         )}
       </div>
@@ -441,7 +441,7 @@ function Hero() {
             background, so it reads as sitting directly in the starfield. */}
         <div
           ref={heroCardRef}
-          className="relative mx-auto w-full max-w-[630px] sm:max-w-3xl lg:w-[51vw] lg:min-w-[510px] lg:max-w-[840px] lg:ml-auto xl:-ml-6 select-none"
+          className="relative mx-auto w-full max-w-[819px] sm:max-w-[998px] lg:w-[66.3vw] lg:min-w-[663px] lg:max-w-[1092px] lg:mr-auto select-none"
           style={{ perspective: 1000 }}
         >
           <div
