@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
   Link,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
@@ -55,9 +56,27 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
+function ErrorComponent({ error, info, reset }: ErrorComponentProps) {
   const router = useRouter();
+
+  useEffect(() => {
+    const componentStack = info?.componentStack ?? "(component stack unavailable)";
+    const componentName =
+      componentStack.match(/\n\s+at\s+([^\s(]+)/)?.[1] ?? "Unknown component";
+
+    // Keep this diagnostic while the production incident is being monitored.
+    // Logging in an effect avoids emitting the same report on every render.
+    console.error("[RouteErrorBoundary] Uncaught route render error", {
+      error,
+      name: error.name,
+      message: error.message,
+      stack: error.stack ?? "(JavaScript stack unavailable)",
+      componentName,
+      componentStack,
+      pathname: router.state.location.pathname,
+    });
+  }, [error, info, router.state.location.pathname]);
+
   return (
     <div className="flex min-h-svh items-center justify-center px-4">
       <div className="max-w-md text-center glass-strong rounded-3xl p-10">

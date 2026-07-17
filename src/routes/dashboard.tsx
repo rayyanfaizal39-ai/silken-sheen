@@ -97,9 +97,28 @@ function timeAgo(ts: number) {
 }
 
 function useStreakUrgent(lastActive: string, streak: number) {
-  const today = new Date().toISOString().slice(0, 10);
-  const hour = new Date().getHours();
-  return streak > 0 && lastActive !== today && hour >= 15;
+  const [urgent, setUrgent] = useState(false);
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    setUrgent(streak > 0 && lastActive !== today && new Date().getHours() >= 15);
+  }, [lastActive, streak]);
+
+  return urgent;
+}
+
+function useLocalGreeting(firstName: string) {
+  // Cloudflare renders in UTC while students hydrate in their local timezone.
+  // Start with timezone-neutral text, then personalize after the client mounts.
+  const [greeting, setGreeting] = useState(`Welcome, ${firstName}`);
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+    const salutation = hour < 12 ? "Good Morning" : hour < 17 ? "Good Afternoon" : "Good Evening";
+    setGreeting(`${salutation}, ${firstName}`);
+  }, [firstName]);
+
+  return greeting;
 }
 
 /** Picks the single most useful "what should I do next" prompt from today's daily missions. */
@@ -186,12 +205,7 @@ function DashboardPage() {
     .slice(0, 6);
 
   const firstName = user?.name?.split(" ")[0] ?? "Student";
-  const greeting = (() => {
-    const h = new Date().getHours();
-    if (h < 12) return `Good Morning, ${firstName}`;
-    if (h < 17) return `Good Afternoon, ${firstName}`;
-    return `Good Evening, ${firstName}`;
-  })();
+  const greeting = useLocalGreeting(firstName);
   const companionId = progress.companion?.id ?? "nova";
   const nextGoalLabel = getNextGoalLabel(todaysMissions);
 

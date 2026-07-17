@@ -28,6 +28,17 @@ if (container) {
       <StrictMode>
         <StartClient />
       </StrictMode>,
+      {
+        onRecoverableError(error, errorInfo) {
+          console.error("[Hydration] React recovered from an SSR/client mismatch", {
+            error,
+            message: error instanceof Error ? error.message : String(error),
+            stack: error instanceof Error ? error.stack : undefined,
+            componentStack: errorInfo.componentStack ?? "(component stack unavailable)",
+            pathname: window.location.pathname,
+          });
+        },
+      },
     );
   });
 }
