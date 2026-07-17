@@ -51,6 +51,7 @@ import { SejChapter5NotesBlock } from "@/components/notes/SejChapter5NotesBlock"
 import { SejChapter6NotesBlock } from "@/components/notes/SejChapter6NotesBlock";
 import { SejChapter7NotesBlock } from "@/components/notes/SejChapter7NotesBlock";
 import { SejChapter8NotesBlock } from "@/components/notes/SejChapter8NotesBlock";
+import { Sej2Chapter1NotesBlock } from "@/components/notes/Sej2Chapter1NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -766,6 +767,16 @@ function NotesPage() {
             <SejChapter8NotesBlock
               id="notes"
               content={activeChapter.sejChapter8Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej2Chapter1Data ? (
+            <Sej2Chapter1NotesBlock
+              id="notes"
+              content={activeChapter.sej2Chapter1Data}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
               isRead={isRead}
               onMarkRead={() =>

@@ -37,6 +37,7 @@ import type { Sej5Content } from "@/content/form1/sejarah/chapter-5/sej5-content
 import type { Sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content";
 import type { Sej7Content } from "@/content/form1/sejarah/chapter-7/sej7-content";
 import type { Sej8Content } from "@/content/form1/sejarah/chapter-8/sej8-content";
+import type { Sej2Ch1Content } from "@/content/form2/sejarah/chapter-1/sej2ch1-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -133,6 +134,8 @@ export type ChapterContent = {
   sejChapter7Data?: Sej7Content;
   /** Sejarah Bab 8 (Tamadun Islam dan Sumbangannya) chunked learning experience. BM-only. */
   sejChapter8Data?: Sej8Content;
+  /** Sejarah Form 2 Bab 1 (Kerajaan Alam Melayu) chunked learning experience. BM-only. */
+  sej2Chapter1Data?: Sej2Ch1Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -180,6 +183,7 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.sejChapter6Data ||
       !!c?.sejChapter7Data ||
       !!c?.sejChapter8Data ||
+      !!c?.sej2Chapter1Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

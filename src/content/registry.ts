@@ -1,4 +1,5 @@
 import type { ChapterContent } from "./types";
+import { getChapterFeatures } from "./types";
 import { scienceF3ChapterContent } from "@/content/form3/science/registration";
 import type { MindNode } from "@/components/MindMap";
 import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
@@ -74,7 +75,7 @@ import { mathF1C12NotesBM } from "@/content/form1/math/chapter-12/notes-bm";
 import { mathF1C12NotesDLP } from "@/content/form1/math/chapter-12/notes-dlp";
 import { mathF1C13NotesBM } from "@/content/form1/math/chapter-13/notes-bm";
 import { mathF1C13NotesDLP } from "@/content/form1/math/chapter-13/notes-dlp";
-import { sejarahF2C1Notes } from "@/content/form2/sejarah/chapter-1/notes";
+import { sej2Ch1Content } from "@/content/form2/sejarah/chapter-1/sej2ch1-content";
 import { sejarahF2C2Notes } from "@/content/form2/sejarah/chapter-2/notes";
 import { sejarahF2C3Notes } from "@/content/form2/sejarah/chapter-3/notes";
 import { sejarahF2C4Notes } from "@/content/form2/sejarah/chapter-4/notes";
@@ -750,7 +751,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 1",
     title: "Kerajaan Alam Melayu",
-    notes: sejarahF2C1Notes,
+    sej2Chapter1Data: sej2Ch1Content,
     mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu yang Masyhur" },
     flashcards: sejarahF2FlashcardsFor(1),
     quiz: sejarahF2QuizzesFor(1),
@@ -2872,7 +2873,7 @@ function hasExternallyStoredResource(chapter: ChapterContent, resourceType: Reso
 
 function chapterHasResourceContent(chapter: ChapterContent, resourceType: ResourceType) {
   if (resourceType === "notes") {
-    if (chapter.notes || chapter.englishData || chapter.subtopics?.length) return true;
+    if (getChapterFeatures(chapter).notes) return true;
     if (chapter.subjectId === "science" && chapter.form === "Form 1" && chapter.chapterKey === "Chapter 1") {
       return allNotes.some(
         (note) =>
@@ -2894,14 +2895,13 @@ function chapterHasResourceContent(chapter: ChapterContent, resourceType: Resour
 }
 
 function chapterHasContent(chapter: ChapterContent) {
+  const features = getChapterFeatures(chapter);
   return Boolean(
-    chapter.notes ||
-      chapter.englishData ||
-      chapter.subtopics?.length ||
-      chapter.mindMap ||
-      chapter.video ||
-      chapter.flashcards?.length ||
-      chapter.quiz?.length,
+    features.notes ||
+      features.mindMap ||
+      features.video ||
+      features.flashcards ||
+      features.quiz,
   );
 }
 
