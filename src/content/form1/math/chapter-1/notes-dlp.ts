@@ -54,11 +54,7 @@ export const mathF1C1NotesDLP: StructuredNotes = {
             "Numbers to the left of zero are negative integers.",
             "Their value decreases as they move further left.",
           ],
-        },
-        {
-          title: "Number Line Visual",
-          formula:
-            "-5  -4  -3  -2  -1   0   1   2   3   4   5\n<-- smaller values        greater values -->",
+          numberLine: { min: -5, max: 5, highlight: [0] },
         },
         {
           title: "Comparing and Ordering Integers",
@@ -151,7 +147,15 @@ export const mathF1C1NotesDLP: StructuredNotes = {
           title: "Fraction Operations",
           content:
             "When dividing fractions, convert division into multiplication using the reciprocal.",
-          formula: "1/2 ÷ 1/4\n= 1/2 x 4/1",
+          workedExample: {
+            problem: "Divide: 1/2 ÷ 1/4",
+            steps: [
+              "Keep the first fraction as it is",
+              "Change ÷ to ×, and flip the second fraction (reciprocal)",
+              "1/2 ÷ 1/4 = 1/2 × 4/1",
+            ],
+            answer: "1/2 ÷ 1/4 = 2",
+          },
         },
       ],
     },

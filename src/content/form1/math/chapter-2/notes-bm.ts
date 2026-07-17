@@ -85,12 +85,19 @@ export const mathF1C2NotesBM: StructuredNotes = {
           },
         },
         {
-          title: "Kaedah",
-          bulletPoints: [
-            "Gunakan pembahagian berulang dengan nombor perdana.",
-            "Boleh juga menggunakan pokok faktor.",
-            "Teruskan sehingga semua faktor ialah nombor perdana.",
-          ],
+          title: "Dua Kaedah, Satu Jawapan: Pembahagian Berulang dan Pokok Faktor",
+          content: "Nyatakan 60 sebagai hasil darab faktor perdananya — kedua-dua kaedah memberi jawapan yang sama.",
+          factorVisual: {
+            number: 60,
+            ladder: [2, 2, 3, 5],
+            tree: {
+              value: 60,
+              children: [
+                { value: 4, children: [{ value: 2, isPrime: true }, { value: 2, isPrime: true }] },
+                { value: 15, children: [{ value: 3, isPrime: true }, { value: 5, isPrime: true }] },
+              ],
+            },
+          },
         },
       ],
     },
@@ -122,6 +129,63 @@ export const mathF1C2NotesBM: StructuredNotes = {
           title: "Kaedah Pemfaktoran Perdana",
           content: "Untuk mencari FSTB, ambil faktor perdana sepunya dengan kuasa terkecil.",
           formula: "12 = 2 x 2 x 3\n18 = 2 x 3 x 3\nFSTB = 2 x 3 = 6",
+        },
+        {
+          title: "Tiga Kaedah Mencari FSTB",
+          content: "Menyenaraikan, pembahagian berulang, atau pemfaktoran perdana — jawapan yang sama setiap kali.",
+          methodCards: [
+            {
+              methodName: "Menyenaraikan Faktor Sepunya",
+              steps: [
+                "Faktor 18: 1, 2, 3, 6, 9, 18",
+                "Faktor 24: 1, 2, 3, 4, 6, 8, 12, 24",
+                "Faktor sepunya: 1, 2, 3, 6",
+              ],
+              result: "FSTB bagi 18 dan 24 ialah 6",
+            },
+            {
+              methodName: "Pembahagian Berulang",
+              steps: [
+                "Bahagikan 36, 60, 72 dengan faktor sepunya secara berulang",
+                "2 | 36, 60, 72 → 18, 30, 36",
+                "2 | 18, 30, 36 → 9, 15, 18",
+                "3 | 9, 15, 18 → 3, 5, 6",
+                "Darabkan semua pembahagi: 2 × 2 × 3",
+              ],
+              result: "FSTB bagi 36, 60 dan 72 ialah 12",
+            },
+            {
+              methodName: "Pemfaktoran Perdana",
+              steps: [
+                "48 = 2 × 2 × 2 × 2 × 3",
+                "64 = 2 × 2 × 2 × 2 × 2 × 2",
+                "80 = 2 × 2 × 2 × 2 × 5",
+                "Darabkan semua faktor perdana sepunya: 2 × 2 × 2 × 2",
+              ],
+              result: "FSTB bagi 48, 64 dan 80 ialah 16",
+            },
+          ],
+        },
+        {
+          title: "Penyelesaian Masalah: Pek Amal (FSTB)",
+          problemSolvingFlow: {
+            scenario:
+              "Pengakap sebuah sekolah menderma 252 baju, 180 pasang seluar dan 108 pasang stoking kepada rumah anak yatim. Semua barangan dibahagikan sama rata dalam setiap pek. Berapakah bilangan maksimum pek yang disediakan?",
+            understanding: [
+              "252 baju, 180 pasang seluar, 108 pasang stoking dibahagikan sama rata dalam setiap pek",
+              "Cari bilangan maksimum pek yang disediakan",
+            ],
+            devisingPlan: ["Cari FSTB bagi 252, 180 dan 108"],
+            implementing: [
+              "252 = 2 × 2 × 3 × 3 × 7",
+              "180 = 2 × 2 × 3 × 3 × 5",
+              "108 = 2 × 2 × 3 × 3 × 3",
+              "FSTB bagi 252, 180 dan 108 = 2 × 2 × 3 × 3 = 36",
+              "Bilangan maksimum pek yang disediakan ialah 36",
+            ],
+            reflection:
+              "Semakan: 252 ÷ 36 = 7, 180 ÷ 36 = 5, 108 ÷ 36 = 3 — semua terbahagi tepat, mengesahkan 36 pek adalah betul",
+          },
         },
       ],
     },
@@ -173,6 +237,61 @@ export const mathF1C2NotesBM: StructuredNotes = {
           title: "Kaedah Pemfaktoran Perdana",
           content: "Untuk mencari GSTK, ambil semua faktor perdana dengan kuasa terbesar.",
           formula: "12 = 2 x 2 x 3\n18 = 2 x 3 x 3\nGSTK = 2 x 2 x 3 x 3 = 36",
+        },
+        {
+          title: "Tiga Kaedah Mencari GSTK",
+          content: "Menyenaraikan, pembahagian berulang, atau pemfaktoran perdana — jawapan yang sama setiap kali.",
+          methodCards: [
+            {
+              methodName: "Menyenaraikan Gandaan Sepunya",
+              steps: [
+                "Gandaan 2: 2, 4, 6, 8, 10…",
+                "Gandaan 3: 3, 6, 9, 12…",
+                "Pilih gandaan sepunya terkecil",
+              ],
+              result: "GSTK bagi 2 dan 3 ialah 6",
+            },
+            {
+              methodName: "Pembahagian Berulang",
+              steps: [
+                "Bahagikan nombor secara berulang dengan pembahagi yang boleh membahagi sekurang-kurangnya satu nombor secara tepat",
+                "Nombor yang tidak boleh dibahagi dibawa turun tanpa diubah",
+                "Teruskan sehingga semua hasil bahagi menjadi 1",
+                "Darabkan semua pembahagi: 3 × 2 × 3",
+              ],
+              result: "GSTK bagi 3, 6 dan 9 ialah 18",
+            },
+            {
+              methodName: "Pemfaktoran Perdana",
+              steps: ["3 = 3", "8 = 2 × 2 × 2", "12 = 2 × 2 × 3", "Darabkan kuasa tertinggi setiap faktor perdana yang hadir: 2 × 2 × 2 × 3"],
+              result: "GSTK bagi 3, 8 dan 12 ialah 24",
+            },
+          ],
+        },
+        {
+          title: "Penyelesaian Masalah: Kotak Kopi & Teh (GSTK)",
+          problemSolvingFlow: {
+            scenario:
+              "Kopi tin dijual 6 tin sekotak dan teh tin dijual 9 tin sekotak. Ainun ingin membeli bilangan yang sama bagi kopi tin dan teh tin untuk parti hari jadi kakaknya. Berapakah bilangan minimum kotak setiap jenis minuman tin yang perlu dibeli?",
+            understanding: [
+              "Bilangan tin kopi = 6 tin sekotak",
+              "Bilangan tin teh = 9 tin sekotak",
+              "Cari bilangan minimum kotak setiap jenis yang diperlukan",
+            ],
+            devisingPlan: [
+              "Cari GSTK bagi 6 dan 9 untuk menentukan bilangan tin yang sama",
+              "Guna pembahagian untuk cari bilangan kotak kopi dan teh",
+            ],
+            implementing: [
+              "Gandaan 6: 6, 12, 18, 24, 30…",
+              "Gandaan 9: 9, 18, 27, 36, 45…",
+              "GSTK bagi 6 dan 9 = 18",
+              "Bilangan kotak kopi tin = 18 ÷ 6 = 3",
+              "Bilangan kotak teh tin = 18 ÷ 9 = 2",
+            ],
+            reflection:
+              "Bilangan kopi tin = 3 × 6 = 18; bilangan teh tin = 2 × 9 = 18 — kedua-duanya sama, mengesahkan jawapan",
+          },
         },
       ],
     },

@@ -21,6 +21,13 @@ import {
 } from "@/components/ui/accordion";
 import type { ScienceNotesSection, ScienceNotesSubsection } from "@/data/content";
 import type { StructuredNotes } from "@/content/types";
+import {
+  WorkedExampleBlock,
+  MethodCardsBlock,
+  ProblemSolvingFlowBlock,
+  NumberLineBlock,
+  FactorVisualBlock,
+} from "@/components/notes/blocks/MathVisuals";
 
 export type NotesAccordionSection = {
   id: string;
@@ -685,6 +692,13 @@ function SubsectionBlock({
           ))}
         </ul>
       )}
+      {sub.numberLine && <NumberLineBlock line={sub.numberLine} />}
+      {sub.factorVisual && <FactorVisualBlock visual={sub.factorVisual} />}
+      {sub.workedExample && <WorkedExampleBlock example={sub.workedExample} />}
+      {sub.methodCards && sub.methodCards.length > 0 && (
+        <MethodCardsBlock methods={sub.methodCards} />
+      )}
+      {sub.problemSolvingFlow && <ProblemSolvingFlowBlock flow={sub.problemSolvingFlow} />}
       {sub.formula && (
         <div className="relative overflow-hidden rounded-2xl border border-cyan-500/25 bg-gradient-to-br from-[#0A1628] to-[#0C1E38] p-4 sm:p-5">
           {/* Glow accent */}

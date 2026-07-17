@@ -270,6 +270,49 @@ export interface Note {
   lang?: "bm" | "dlp";
 }
 
+export interface WorkedExample {
+  problem: string;
+  steps: string[];
+  answer: string;
+}
+
+export interface MethodCard {
+  methodName: string;
+  steps: string[];
+  result: string;
+}
+
+export interface ProblemSolvingFlow {
+  scenario: string;
+  understanding: string[];
+  devisingPlan: string[];
+  implementing: string[];
+  reflection: string;
+}
+
+export interface NumberLineVisual {
+  min: number;
+  max: number;
+  /** Values to mark with a highlighted dot, e.g. the number(s) under discussion. */
+  highlight?: number[];
+}
+
+export interface FactorTreeNode {
+  value: number;
+  /** True for a leaf that is itself a prime factor (rendered in accent color). */
+  isPrime?: boolean;
+  children?: [FactorTreeNode, FactorTreeNode];
+}
+
+export interface FactorVisual {
+  /** The number being decomposed, e.g. 60. */
+  number: number;
+  /** Prime divisors applied in order for the repeated-division ladder, e.g. [2, 2, 3, 5]. */
+  ladder: number[];
+  /** Factor tree decomposition of the same number, for side-by-side comparison. */
+  tree: FactorTreeNode;
+}
+
 export interface ScienceNotesSubsection {
   title?: string;
   content?: string;
@@ -279,6 +322,16 @@ export interface ScienceNotesSubsection {
     rows: string[][];
   };
   formula?: string;
+  /** A single worked problem with numbered steps and a final answer. */
+  workedExample?: WorkedExample;
+  /** Side-by-side method comparison cards (e.g. the 3 ways to find HCF/LCM). */
+  methodCards?: MethodCard[];
+  /** 4-step Understanding / Devising a Plan / Implementing / Reflection problem-solving flow. */
+  problemSolvingFlow?: ProblemSolvingFlow;
+  /** A simple number line diagram. */
+  numberLine?: NumberLineVisual;
+  /** Factor tree + repeated-division ladder pair for prime factorisation. */
+  factorVisual?: FactorVisual;
 }
 
 export interface ScienceNotesSection {
