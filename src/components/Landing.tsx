@@ -84,9 +84,9 @@ function SecondaryCta({ to, children }: { to: string; children: ReactNode }) {
 /* ---------------- Top nav ---------------- */
 
 const NAV_LINKS = [
-  { id: "subjects", label: "Subjects" },
-  { id: "cikgu-ai", label: "Cikgu AI" },
-  { id: "parents", label: "Parents" },
+  { id: "top", label: "Home" },
+  { id: "features", label: "Features" },
+  { id: "parents", label: "For Parents" },
   { id: "pricing", label: "Pricing" },
 ] as const;
 
