@@ -17,7 +17,7 @@ import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
 import { prefersReducedMotion, isCoarsePointer, isMobileViewport } from "@/lib/motion-preferences";
 import backGround from "@/assets/back-ground.webp.asset.json";
-import astronautRocket from "@/assets/astronaut-cutout.png";
+import heroAstronautDashboard from "@/assets/hero-astronaut-dashboard.png";
 
 import {
   Dialog,
@@ -437,11 +437,11 @@ function Hero() {
           </div>
         </div>
 
-        {/* Floating astronaut — cut out from the rocket sprite sheet, no
+        {/* Astronaut + dashboard preview — transparent-edged render, no
             background, so it reads as sitting directly in the starfield. */}
         <div
           ref={heroCardRef}
-          className="relative mx-auto w-full max-w-[320px] sm:max-w-md lg:w-[27vw] lg:min-w-[280px] lg:max-w-[420px] lg:ml-auto xl:-ml-6 select-none"
+          className="relative mx-auto w-full max-w-[630px] sm:max-w-3xl lg:w-[51vw] lg:min-w-[510px] lg:max-w-[840px] lg:ml-auto xl:-ml-6 select-none"
           style={{ perspective: 1000 }}
         >
           <div
@@ -455,8 +455,8 @@ function Hero() {
           />
           <img
             ref={heroImgRef}
-            src={astronautRocket}
-            alt="AcadeMY astronaut riding a rocket"
+            src={heroAstronautDashboard}
+            alt="AcadeMY astronaut floating beside the student dashboard"
             draggable={false}
             // LCP priority hint lives on the element itself rather than a
             // separate <link rel="preload"> in the route head — this asset
