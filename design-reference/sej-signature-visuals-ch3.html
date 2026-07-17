@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 3: Zaman Prasejarah — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  img.gen{max-width:100%; border-radius:14px; display:block; margin:0 auto;}
+
+  /* Site cards */
+  .site-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;}
+  .site-card{background:var(--bg-panel); border-radius:12px; padding:14px; box-shadow:0 0 12px rgba(139,107,255,0.08);}
+  .site-card h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 3px;}
+  .site-card .country{font-size:10px; color:var(--muted-dim); margin-bottom:6px;}
+  .site-card .date{font-size:10px; color:var(--amber); font-weight:700; margin-bottom:6px;}
+  .site-card p{font-size:10.5px; color:var(--muted); margin:0; line-height:1.4;}
+  .site-card.my{box-shadow:0 0 18px rgba(74,222,128,0.25); border:1px solid rgba(74,222,128,0.3);}
+
+  /* Characteristics table */
+  .char-table{width:100%; border-collapse:collapse; font-size:11px;}
+  .char-table th{text-align:left; padding:8px 10px; color:var(--muted-dim); font-size:9.5px; text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid var(--line);}
+  .char-table td{padding:9px 10px; color:var(--muted); vertical-align:top; border-bottom:1px solid var(--line);}
+  .char-table td.cat{color:var(--text); font-weight:700; white-space:nowrap;}
+  .char-table tr:nth-child(even){background:rgba(255,255,255,0.02);}
+
+  /* Continuity pairs */
+  .cont-row{display:flex; align-items:center; gap:14px; background:var(--bg-panel); border-radius:14px; padding:14px 18px; margin-bottom:10px;}
+  .cont-then, .cont-now{flex:1; font-size:11px; color:var(--muted); line-height:1.4;}
+  .cont-then b, .cont-now b{color:var(--text); display:block; font-size:12px; margin-bottom:3px;}
+  .cont-arrow{font-size:18px; color:var(--amber);}
+
+  /* Malaysia timeline */
+  .my-era{background:var(--bg-panel); border-radius:14px; padding:16px; margin-bottom:10px; box-shadow:0 0 14px rgba(74,222,128,0.12);}
+  .my-era h5{font-family:var(--font-display); font-size:13px; margin:0 0 2px; color:var(--green);}
+  .my-era .dur{font-size:10.5px; color:var(--muted-dim); margin-bottom:8px;}
+  .my-era .sites{display:flex; flex-wrap:wrap; gap:6px;}
+  .my-era .site-chip{background:var(--bg-card); border-radius:8px; padding:5px 10px; font-size:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 3: Zaman Prasejarah</h1>
+  <p class="lead">Daripada peralatan batu ringkas kepada gendang gangsa berukir — dan Lenggong, Perak, sebagai salah satu tapak paling penting di Asia Tenggara.</p>
+
+  <div class="card">
+    <h2>🔨 Evolusi Peralatan: Zaman Batu ke Zaman Logam</h2>
+    <p class="sub">Empat era, peningkatan teknologi yang jelas kelihatan.</p>
+    <img class="gen" src="sej-images/evolusi-peralatan.png" alt="Evolusi Peralatan">
+  </div>
+
+  <div class="card">
+    <h2>🏕️ Kehidupan Manusia Zaman Prasejarah</h2>
+    <p class="sub">Gua, api, tembikar, dan pemburuan — satu hari dalam kehidupan prasejarah.</p>
+    <img class="gen" src="sej-images/kehidupan-prasejarah.png" alt="Kehidupan Manusia Zaman Prasejarah">
+  </div>
+
+  <div class="card">
+    <h2>🌍 Tapak Prasejarah Dunia (Diiktiraf UNESCO)</h2>
+    <p class="sub">Lapan tapak terkenal merentasi tiga benua.</p>
+    <div class="site-grid">
+      <div class="site-card"><h5>Gua Chauvet</h5><div class="country">Perancis</div><div class="date">30,000–27,000 SM</div><p>Lukisan gua membuktikan aktiviti memburu</p></div>
+      <div class="site-card"><h5>Altamira</h5><div class="country">Sepanyol</div><div class="date">35,000–11,000 SM</div><p>Lukisan gua Zaman Mesolitik</p></div>
+      <div class="site-card"><h5>Catal Huyuk</h5><div class="country">Turki</div><div class="date">7,100–600 SM</div><p>Pertanian barli dan gandum</p></div>
+      <div class="site-card"><h5>Stonehenge</h5><div class="country">Britain</div><div class="date">3,700–1,600 SM</div><p>Upacara ritual &amp; kajian bintang</p></div>
+      <div class="site-card"><h5>Bhimbetka</h5><div class="country">India</div><div class="date">30,000 SM</div><p>Kehidupan prasejarah tengah India</p></div>
+      <div class="site-card"><h5>Zhoukoudian</h5><div class="country">China</div><div class="date">18,000–11,000 SM</div><p>Penemuan rangka Peking Man</p></div>
+      <div class="site-card"><h5>Shahr-i-Sokhta</h5><div class="country">Iran</div><div class="date">3,200–1,800 SM</div><p>Masyarakat tersusun — rumah &amp; kuburan</p></div>
+      <div class="site-card"><h5>Gobekli Tepe</h5><div class="country">Turki</div><div class="date">12,000 SM</div><p>Binaan batu untuk ritual</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🌏 Tapak Prasejarah Asia Tenggara</h2>
+    <p class="sub">Lenggong, Perak — antara tapak paling penting di rantau ini.</p>
+    <div class="site-grid">
+      <div class="site-card"><h5>Ban Chiang</h5><div class="country">Thailand</div><div class="date">3,600–500 SM</div><p>Pertanian, logam, tekstil, tembikar</p></div>
+      <div class="site-card my"><h5>Lenggong ⭐</h5><div class="country">Malaysia (Perak)</div><div class="date">Paleolitik–Neolitik</div><p>Rangka Perak Man (11,000–10,000 SM)</p></div>
+      <div class="site-card"><h5>Gua Liang Bua</h5><div class="country">Indonesia (Flores)</div><div class="date">94,000–12,000 SM</div><p>Flores Man (Homo Floresiensis)</p></div>
+      <div class="site-card"><h5>Gua Padah-lin</h5><div class="country">Myanmar</div><div class="date">13,000–11,000 SM</div><p>Tempat tinggal manusia prasejarah</p></div>
+      <div class="site-card"><h5>Sa Hyun</h5><div class="country">Vietnam</div><div class="date">1,000 SM–200 M</div><p>Tapak Zaman Besi — pembuatan tembikar</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📊 Tujuh Ciri Kehidupan Merentas Empat Era</h2>
+    <p class="sub">Bagaimana setiap aspek kehidupan berubah dari Paleolitik ke Zaman Logam.</p>
+    <div style="overflow-x:auto;">
+      <table class="char-table">
+        <tr><th>Ciri</th><th>Paleolitik</th><th>Mesolitik</th><th>Neolitik</th><th>Logam</th></tr>
+        <tr><td class="cat">Kediaman</td><td>Gua, lubang bawah tanah</td><td>Gua; pinggir sungai/laut</td><td>Menetap — batu, tanah liat, kayu</td><td>Lebih tersusun; tanah tinggi</td></tr>
+        <tr><td class="cat">Peralatan</td><td>Batu, kayu, tulang — ringkas</td><td>Mikrolit, panah</td><td>Halus; alat menggali, roda</td><td>Tembaga, gangsa, besi</td></tr>
+        <tr><td class="cat">Makanan</td><td>Kumpul buah, bijiran</td><td>+ kerang, siput</td><td>Berkurang — bertani/ternak</td><td>Hampir tiada — pertanian penuh</td></tr>
+        <tr><td class="cat">Ekonomi</td><td>Nomad, sara diri</td><td>Kutip hasil hutan, ikan</td><td>Pertanian; barter bermula</td><td>Barter, pertukangan</td></tr>
+        <tr><td class="cat">Sosial</td><td>Kelompok kecil, nomad</td><td>Kelompok kecil, belum tersusun</td><td>Ada ketua; kelas atasan/bawahan</td><td>Sistem pentadbiran</td></tr>
+        <tr><td class="cat">Kepercayaan</td><td>Animisme — kuasa alam</td><td>Animisme diteruskan</td><td>Ritual; kehidupan selepas mati</td><td>Binaan khusus untuk ritual</td></tr>
+        <tr><td class="cat">Kesenian</td><td>Lukisan gua realisme</td><td>Lukisan gua diteruskan</td><td>Corak tembikar, geometri</td><td>Estetika pada gendang gangsa</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔗 Kesinambungan — Dahulu ke Kini</h2>
+    <p class="sub">Enam aktiviti prasejarah yang masih kita amalkan hari ini.</p>
+    <div class="cont-row"><div class="cont-then"><b>Pertanian</b>Padi, gandum, barli sejak Zaman Neolitik</div><div class="cont-arrow">→</div><div class="cont-now"><b>Hari Ini</b>Pertanian komersial berskala besar</div></div>
+    <div class="cont-row"><div class="cont-then"><b>Memburu &amp; Menternak</b>Aktiviti paling tua sejak Paleolitik</div><div class="cont-arrow">→</div><div class="cont-now"><b>Hari Ini</b>Masih diamalkan, kini kebanyakannya untuk sukan</div></div>
+    <div class="cont-row"><div class="cont-then"><b>Peralatan</b>Batu, kemudian gangsa &amp; besi</div><div class="cont-arrow">→</div><div class="cont-now"><b>Hari Ini</b>Digantikan mesin dalam aktiviti komersial</div></div>
+    <div class="cont-row"><div class="cont-then"><b>Tembikar</b>Bekas makanan &amp; upacara ritual</div><div class="cont-arrow">→</div><div class="cont-now"><b>Hari Ini</b>Industri labu sayong, Kuala Kangsar</div></div>
+    <div class="cont-row"><div class="cont-then"><b>Pengebumian</b>Mayat dikebumikan dengan teliti (Gua Cha)</div><div class="cont-arrow">→</div><div class="cont-now"><b>Hari Ini</b>Penghormatan mayat mengikut agama masing-masing</div></div>
+    <div class="cont-row"><div class="cont-then"><b>Monumen</b>Binaan sejak Zaman Neolitik</div><div class="cont-arrow">→</div><div class="cont-now"><b>Hari Ini</b>Binaan moden seperti Menara Berkembar KL</div></div>
+  </div>
+
+  <div class="card">
+    <h2>🇲🇾 Zaman Prasejarah di Malaysia</h2>
+    <p class="sub">Manusia telah menetap di negara ini sejak 40,000 tahun dahulu.</p>
+    <div class="my-era">
+      <h5>Zaman Paleolitik</h5>
+      <div class="dur">40,000 SM</div>
+      <div class="sites"><div class="site-chip">Tingkayu, Sabah</div><div class="site-chip">Gua Niah, Sarawak</div><div class="site-chip">Kota Tampan, Perak</div><div class="site-chip">Lembah Mansuli, Sabah</div></div>
+    </div>
+    <div class="my-era">
+      <h5>Zaman Mesolitik (Hoabinhian)</h5>
+      <div class="dur">12,000 – 2,800 SM</div>
+      <div class="sites"><div class="site-chip">Jenderam Hilir, Selangor</div><div class="site-chip">Gua Madai, Sabah</div><div class="site-chip">Gua Cha, Ulu Kelantan</div><div class="site-chip">Bukit Tegun Lembu, Perlis</div></div>
+    </div>
+    <div class="my-era">
+      <h5>Zaman Neolitik</h5>
+      <div class="dur">2,800 – 500 SM</div>
+      <div class="sites"><div class="site-chip">Gua Kecil, Pahang</div><div class="site-chip">Sungai Tembeling, Pahang</div><div class="site-chip">Lubang Angin, Sarawak</div><div class="site-chip">Gua Tapadong, Sabah</div></div>
+    </div>
+    <div class="my-era">
+      <h5>Zaman Logam</h5>
+      <div class="dur">500 SM – 500 M</div>
+      <div class="sites"><div class="site-chip">Sungai Tembeling, Pahang</div><div class="site-chip">Lembah Bernam, Selangor</div></div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:10px;">Zaman Mesolitik Asia Tenggara dikenali sebagai <b style="color:var(--text);">Zaman Hoabinhian</b> — diperkenalkan oleh Madeleine Colani (1932)</p>
+  </div>
+
+</div>
+</body>
+</html>

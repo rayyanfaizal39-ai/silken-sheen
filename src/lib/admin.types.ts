@@ -2,7 +2,7 @@
 
 export type Role = 'student' | 'teacher' | 'admin';
 export type Plan = 'free' | 'paid';
-export type PaymentStatus = 'paid' | 'pending' | 'failed' | 'refunded';
+export type PaymentStatus = 'successful' | 'pending' | 'failed' | 'cancelled' | 'refunded';
 
 export interface AdminProfile {
   id: string;

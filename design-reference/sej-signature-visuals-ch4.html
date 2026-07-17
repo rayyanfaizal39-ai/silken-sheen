@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 4: Mengenali Tamadun — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  .etym-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px;}
+  .etym-card{background:var(--bg-panel); border-radius:14px; padding:16px; box-shadow:0 0 16px rgba(139,107,255,0.1);}
+  .etym-card h4{font-family:var(--font-display); font-size:13px; margin:0 0 6px; color:var(--violet);}
+  .etym-card .term{font-size:12px; color:var(--amber); font-weight:700; margin-bottom:6px;}
+  .etym-card p{font-size:11px; color:var(--muted); margin:0; line-height:1.5;}
+
+  .concept-row{display:flex; gap:20px; flex-wrap:wrap;}
+  .concept-col{flex:1; min-width:280px; background:var(--bg-panel); border-radius:16px; padding:20px;}
+  .concept-col h4{font-family:var(--font-display); font-size:15px; margin:0 0 12px;}
+  .concept-col .scholar{background:var(--bg-card); border-radius:10px; padding:10px 14px; margin-bottom:8px;}
+  .concept-col .scholar b{display:block; font-size:12px; color:var(--text); margin-bottom:3px;}
+  .concept-col .scholar span{font-size:11px; color:var(--muted); line-height:1.4;}
+
+  .char-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px;}
+  .char-tile{background:var(--bg-panel); border-radius:14px; padding:14px; display:flex; gap:10px; align-items:flex-start; box-shadow:0 0 12px rgba(79,176,255,0.08);}
+  .char-tile .num{width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; box-shadow:0 0 10px rgba(139,107,255,0.4);}
+  .char-tile .txt h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 3px;}
+  .char-tile .txt p{font-size:10.5px; color:var(--muted); margin:0; line-height:1.4;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 4: Mengenali Tamadun</h1>
+  <p class="lead">Sebelum mengkaji tamadun tertentu, kita perlukan kerangka — apa sebenarnya yang menjadikan sesuatu masyarakat 'bertamadun'.</p>
+
+  <div class="card">
+    <h2>🗣️ Maksud Tamadun — Empat Bahasa</h2>
+    <p class="sub">Perkataan berbeza, makna yang bertemu pada satu persamaan.</p>
+    <div class="etym-grid">
+      <div class="etym-card">
+        <h4>Bahasa Yunani</h4>
+        <div class="term">"Civitas"</div>
+        <p>Bandar atau kota; tahap kemajuan dalam kebudayaan, sains, industri dan sistem kerajaan</p>
+      </div>
+      <div class="etym-card">
+        <h4>Bahasa Inggeris</h4>
+        <div class="term">"Civilisation"</div>
+        <p>Tahap pembangunan manusia dan organisasi paling maju — pengetahuan, kepercayaan, seni, moral, undang-undang</p>
+      </div>
+      <div class="etym-card">
+        <h4>Bahasa Arab</h4>
+        <div class="term">Mudun / Hadharah / Hadari</div>
+        <p>Tinggi budi bahasa dan pembukaan bandar; kawasan untuk bercucuk tanam; tahap kemajuan dan kekayaan</p>
+      </div>
+      <div class="etym-card">
+        <h4>Bahasa Melayu</h4>
+        <div class="term">Tamadun (Peradaban)</div>
+        <p>Pencapaian kemajuan masyarakat dari segi kebendaan dan pemikiran — sosial, budaya, politik yang tinggi</p>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Persamaan: kemajuan yang dicapai masyarakat untuk membina kehidupan yang lebih baik dan kompleks</p>
+  </div>
+
+  <div class="card">
+    <h2>🕌 Konsep Tamadun — Islam vs Barat</h2>
+    <p class="sub">Dua kerangka pemikiran, dua penekanan yang berbeza.</p>
+    <div class="concept-row">
+      <div class="concept-col" style="box-shadow:0 0 20px rgba(74,222,128,0.12);">
+        <h4 style="color:#4ade80;">☪️ Sudut Pandangan Islam</h4>
+        <div class="scholar"><b>Ibn Khaldun (Muqaddimah)</b><span>Memperkenalkan "umran" dan "hadharah" — prinsip nilai meliputi akidah, syarak, akhlak, falsafah, kebudayaan</span></div>
+        <div class="scholar"><b>Syed Muhammad Naquib Al-Attas</b><span>Tamadun ialah keadaan kehidupan insan bermasyarakat yang mencapai taraf kehalusan tatasusila dan kebudayaan luhur</span></div>
+        <p style="font-size:10.5px; color:var(--muted-dim); margin:8px 0 0;">Merangkumi pembangunan lahiriah <b style="color:var(--text);">dan</b> rohaniah</p>
+      </div>
+      <div class="concept-col" style="box-shadow:0 0 20px rgba(79,176,255,0.12);">
+        <h4 style="color:#4fb0ff;">🏛️ Sudut Pandangan Barat</h4>
+        <div class="scholar"><b>Arnold J. Toynbee</b><span>Tamadun ialah sistem masyarakat yang memperkasakan sistem politik, ekonomi, sosial serta kesenian dan kebudayaan</span></div>
+        <p style="font-size:10.5px; color:var(--muted-dim); margin:8px 0 0;">Tertumpu kepada pembangunan lahiriah — kesenian, penulisan, undang-undang, perbandaran</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📐 Sembilan Ciri Tamadun Awal Dunia</h2>
+    <p class="sub">Kerangka yang akan kita gunakan untuk mengkaji setiap tamadun seterusnya.</p>
+    <div class="char-grid">
+      <div class="char-tile"><div class="num">1</div><div class="txt"><h5>Pertanian &amp; Perdagangan</h5><p>Peralatan, saliran, perdagangan tempatan &amp; jarak jauh</p></div></div>
+      <div class="char-tile"><div class="num">2</div><div class="txt"><h5>Sistem Pemerintahan</h5><p>Kerajaan, raja, undang-undang</p></div></div>
+      <div class="char-tile"><div class="num">3</div><div class="txt"><h5>Pembentukan Bandar</h5><p>Kampung → bandar, bandar pertama 4,000 SM</p></div></div>
+      <div class="char-tile"><div class="num">4</div><div class="txt"><h5>Pengkhususan Pekerjaan</h5><p>Pengutip cukai, jurutera, tentera, artisan</p></div></div>
+      <div class="char-tile"><div class="num">5</div><div class="txt"><h5>Teknologi</h5><p>Logam, roda, monumen, pertukangan</p></div></div>
+      <div class="char-tile"><div class="num">6</div><div class="txt"><h5>Organisasi Sosial</h5><p>Kelas sosial berasaskan pekerjaan &amp; kekayaan</p></div></div>
+      <div class="char-tile"><div class="num">7</div><div class="txt"><h5>Agama &amp; Kepercayaan</h5><p>Banyak tuhan, institusi agama, tempat ibadat</p></div></div>
+      <div class="char-tile"><div class="num">8</div><div class="txt"><h5>Tulisan &amp; Rekod</h5><p>Piktograf, ~5,000 tahun lalu</p></div></div>
+      <div class="char-tile"><div class="num">9</div><div class="txt"><h5>Kesenian &amp; Kesusasteraan</h5><p>Patung, lukisan tuhan &amp; pemerintah</p></div></div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Tamadun awal dunia lahir di lembah sungai: Tigris-Euphrates · Nil · Indus · Huang He</p>
+  </div>
+
+</div>
+</body>
+</html>

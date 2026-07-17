@@ -1,34 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-import {
-  Trophy,
-  Crown,
-  Sparkles,
-  Rocket,
-  TrendingUp,
-} from "lucide-react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Trophy, Crown, Sparkles, Rocket, TrendingUp, RefreshCw } from "lucide-react";
 import { useProgress, getRank } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
-import { Avatar } from "@/components/Avatar";
-import { buildLeaderboard, type RankedStudent } from "@/lib/leaderboard";
-import { getLeaderboardData, type LeaderboardData, type LeaderboardStudentRow } from "./-leaderboard.server";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import type {
+  LeaderboardData,
+  LeaderboardResponse,
+  LeaderboardStudentRow,
+} from "./-leaderboard.server";
 import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/leaderboard")({
-  head: () => seoMeta({
-    title: "Galaxy Hall of Fame — KSSM Leaderboard",
-    description: "Real monthly XP rankings — top 100 KSSM students on AcadeMY, refreshed every season.",
-    path: "/leaderboard",
-    keywords: ["KSSM leaderboard", "student rankings Malaysia", "Malaysia learning platform"],
+  head: () =>
+    seoMeta({
+      title: "Galaxy Hall of Fame — KSSM Leaderboard",
+      description: "Real monthly XP rankings for AcadeMY students.",
+      path: "/leaderboard",
+      keywords: ["KSSM leaderboard", "student rankings Malaysia", "Malaysia learning platform"],
+    }),
+  // Authentication is restored by AuthProvider in the browser. Keeping the
+  // SSR loader deterministic avoids a server/client session mismatch, and
+  // the authenticated RPC is fetched immediately after that restoration.
+  loader: () => ({
+    leaderboard: { status: "unauthenticated" } satisfies LeaderboardResponse,
   }),
-  loader: async () => {
-    try {
-      return { leaderboard: await getLeaderboardData() };
-    } catch (e) {
-      console.error("[leaderboard] loader failed:", e);
-      return { leaderboard: null as LeaderboardData | null };
-    }
-  },
   component: LeaderboardPage,
 });
 
@@ -36,10 +32,8 @@ const MEDALS = ["#FBBF24", "#CBD5E1", "#FB923C"]; // gold / silver / bronze
 
 // ── A single ranked row derived from the real get_leaderboard() RPC ─────────
 interface RealRankedStudent {
-  id: string;
   rank: number;
   name: string;
-  school: string;
   lifetimeXp: number;
   monthlyXp: number;
   monthlyQuizCount: number;
@@ -48,18 +42,17 @@ interface RealRankedStudent {
   isCurrentUser: boolean;
 }
 
-function rankRealStudents(data: LeaderboardData, currentUserId?: string): RealRankedStudent[] {
-  return data.students.map((s: LeaderboardStudentRow, i: number) => ({
-    id: s.id,
-    rank: i + 1,
-    name: s.full_name?.trim() || "Unnamed student",
-    school: s.school?.trim() || "—",
+function rankRealStudents(data: LeaderboardData): RealRankedStudent[] {
+  return data.students.map((s: LeaderboardStudentRow) => ({
+    rank: s.position,
+    name: s.display_name.trim() || "Student",
     lifetimeXp: s.lifetime_xp,
     monthlyXp: s.monthly_xp,
     monthlyQuizCount: s.monthly_quiz_count,
-    monthlyAccuracy: s.monthly_total > 0 ? Math.round((s.monthly_correct / s.monthly_total) * 100) : null,
+    monthlyAccuracy:
+      s.monthly_total > 0 ? Math.round((s.monthly_correct / s.monthly_total) * 100) : null,
     streak: s.streak,
-    isCurrentUser: s.id === currentUserId,
+    isCurrentUser: s.is_current_user,
   }));
 }
 
@@ -70,55 +63,157 @@ function top3Label(rank: number): string | null {
   return null;
 }
 
-function LeaderboardPage() {
-  const { leaderboard: loaderLeaderboard } = Route.useLoaderData() as { leaderboard: LeaderboardData | null };
-  const { user } = useAuth();
-  const { progress } = useProgress();
-
-  // The route loader only runs once at initial navigation. If the student
-  // signs in *after* that (client-side, no hard refresh), the loader's
-  // `leaderboard: null` result is stale — self-heal by re-fetching once we
-  // see a real signed-in user but no real board yet.
-  const [clientLeaderboard, setClientLeaderboard] = useState<LeaderboardData | null>(null);
-  const leaderboard = loaderLeaderboard ?? clientLeaderboard;
-
-  useEffect(() => {
-    if (leaderboard || !user) return;
-    let alive = true;
-    getLeaderboardData()
-      .then((data) => {
-        if (alive && data) setClientLeaderboard(data);
-      })
-      .catch(() => {});
-    return () => {
-      alive = false;
-    };
-  }, [leaderboard, user?.id]);
-
-  const realRanked = useMemo(
-    () => (leaderboard ? rankRealStudents(leaderboard, user?.id) : null),
-    [leaderboard, user?.id],
-  );
-
-  if (realRanked) {
-    return <GalaxyHallOfFame ranked={realRanked} month={leaderboard!.month} />;
+async function getBrowserLeaderboardData(): Promise<LeaderboardResponse> {
+  if (!isSupabaseConfigured) {
+    return { status: "error", message: "The leaderboard is temporarily unavailable." };
   }
 
-  // ── Fallback: no signed-in session / RPC unavailable — the original
-  // local-progress + seeded-cohort board, kept fully intact so the page is
-  // never blank (this is the "do not break the current leaderboard
-  // backend" guarantee: buildLeaderboard/COHORT are untouched below). ──
-  return <LegacyLocalLeaderboard progress={progress} userName={user?.name} />;
+  const { data, error } = await supabase.rpc("get_leaderboard", {
+    page_size: 10,
+    page_offset: 0,
+  });
+
+  if (error || !data) {
+    if (import.meta.env.DEV) console.error("[leaderboard] get_leaderboard RPC failed:", error);
+    return {
+      status: "error",
+      message: "The monthly leaderboard could not be loaded. Please try again.",
+    };
+  }
+
+  return { status: "ok", data: data as LeaderboardData };
+}
+
+function LeaderboardPage() {
+  const { leaderboard: loaderLeaderboard } = Route.useLoaderData() as {
+    leaderboard: LeaderboardResponse;
+  };
+  const { user, loading: authLoading } = useAuth();
+  const { progress } = useProgress();
+  const [response, setResponse] = useState<LeaderboardResponse>(loaderLeaderboard);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const refresh = useCallback(
+    async (showSpinner = true) => {
+      if (!user) return;
+      if (showSpinner) setRefreshing(true);
+      try {
+        setResponse(await getBrowserLeaderboardData());
+      } catch (error) {
+        if (import.meta.env.DEV) console.error("[leaderboard] refresh failed:", error);
+        setResponse({
+          status: "error",
+          message: "The monthly leaderboard could not be loaded. Please try again.",
+        });
+      } finally {
+        if (showSpinner) setRefreshing(false);
+      }
+    },
+    [user],
+  );
+
+  useEffect(() => {
+    if (!user) return;
+    const timer = window.setTimeout(() => void refresh(response.status !== "ok"), 350);
+    return () => window.clearTimeout(timer);
+  }, [user, progress.xp, refresh, response.status]);
+
+  const realRanked = useMemo(
+    () => (response.status === "ok" ? rankRealStudents(response.data) : null),
+    [response],
+  );
+
+  if (
+    authLoading ||
+    (user && response.status === "unauthenticated") ||
+    (refreshing && response.status !== "ok")
+  ) {
+    return <LeaderboardSkeleton />;
+  }
+
+  if (!user || response.status === "unauthenticated") {
+    return <LeaderboardMessage message="Sign in as a student to view the Monthly Leaderboard." />;
+  }
+
+  if (response.status === "error") {
+    return <LeaderboardMessage message={response.message} onRetry={() => void refresh()} />;
+  }
+
+  const current = response.data.current_position;
+  const currentRanked = current
+    ? rankRealStudents({ ...response.data, students: [current] })[0]
+    : null;
+
+  return (
+    <GalaxyHallOfFame
+      ranked={realRanked ?? []}
+      currentStudent={currentRanked}
+      month={response.data.month}
+      refreshing={refreshing}
+      onRefresh={() => void refresh()}
+    />
+  );
+}
+
+function LeaderboardSkeleton() {
+  return (
+    <section
+      className="mx-auto max-w-5xl space-y-6 px-4 py-6 sm:px-6 lg:px-8"
+      aria-label="Loading leaderboard"
+    >
+      <div className="h-44 animate-pulse rounded-[2rem] border border-white/[0.08] bg-white/[0.04]" />
+      <div className="h-24 animate-pulse rounded-2xl border border-white/[0.08] bg-white/[0.04]" />
+      <div className="grid grid-cols-3 items-end gap-3">
+        <div className="h-48 animate-pulse rounded-2xl bg-white/[0.04]" />
+        <div className="h-56 animate-pulse rounded-2xl bg-white/[0.04]" />
+        <div className="h-44 animate-pulse rounded-2xl bg-white/[0.04]" />
+      </div>
+      <span className="sr-only">Loading Monthly Leaderboard</span>
+    </section>
+  );
+}
+
+function LeaderboardMessage({ message, onRetry }: { message: string; onRetry?: () => void }) {
+  return (
+    <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 px-6 py-12 text-center backdrop-blur-2xl">
+        <Trophy className="mx-auto h-9 w-9 text-[#C4B5FD]" />
+        <h1 className="mt-4 font-display text-2xl font-bold text-white">Monthly Leaderboard</h1>
+        <p className="mt-2 text-sm text-white/55">{message}</p>
+        {onRetry && (
+          <button
+            type="button"
+            onClick={onRetry}
+            className="mt-5 rounded-full border border-[#7C3AED]/50 bg-[#7C3AED]/15 px-4 py-2 text-xs font-black text-[#DDD6FE]"
+          >
+            Try again
+          </button>
+        )}
+      </div>
+    </section>
+  );
 }
 
 // ── Galaxy Hall of Fame — real Supabase data ─────────────────────────────────
 
-function GalaxyHallOfFame({ ranked, month }: { ranked: RealRankedStudent[]; month: string }) {
-  const me = ranked.find((s) => s.isCurrentUser) ?? null;
-  const hasMonthlyActivity = ranked.some((s) => s.monthlyQuizCount > 0);
+function GalaxyHallOfFame({
+  ranked,
+  currentStudent,
+  month,
+  refreshing,
+  onRefresh,
+}: {
+  ranked: RealRankedStudent[];
+  currentStudent: RealRankedStudent | null;
+  month: string;
+  refreshing: boolean;
+  onRefresh: () => void;
+}) {
+  const me = currentStudent;
+  const hasMonthlyActivity = ranked.length > 0;
   const podium = ranked.slice(0, 3);
   const rest = ranked.slice(3, 100);
-  const myIdx = me ? ranked.findIndex((s) => s.id === me.id) : -1;
+  const myIdx = me ? ranked.findIndex((s) => s.rank === me.rank) : -1;
   const nextAbove = myIdx > 0 ? ranked[myIdx - 1] : null;
   const xpToNext = nextAbove && me ? Math.max(0, nextAbove.monthlyXp - me.monthlyXp) : null;
 
@@ -135,19 +230,30 @@ function GalaxyHallOfFame({ ranked, month }: { ranked: RealRankedStudent[]; mont
             </div>
             <div className="min-w-0">
               <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#C4B5FD]">
-                Galaxy Hall of Fame
+                Monthly Leaderboard
               </p>
               <h1 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">
                 Cosmic Leaderboard
               </h1>
               <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/55">
-                Real monthly XP, refreshed live from every student's quizzes this season.
+                Real XP earned from completed quizzes this calendar month.
               </p>
             </div>
           </div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/40 bg-[#7C3AED]/10 px-4 py-2 text-xs font-black uppercase tracking-wide text-[#C4B5FD]">
-            <Sparkles className="h-3.5 w-3.5" /> Season · {month}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/40 bg-[#7C3AED]/10 px-4 py-2 text-xs font-black uppercase tracking-wide text-[#C4B5FD]">
+              <Sparkles className="h-3.5 w-3.5" /> {month}
+            </span>
+            <button
+              type="button"
+              onClick={onRefresh}
+              disabled={refreshing}
+              aria-label="Refresh leaderboard"
+              className="rounded-full border border-white/10 bg-white/[0.04] p-2.5 text-white/60 transition hover:bg-white/[0.08] disabled:opacity-50"
+            >
+              <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -156,15 +262,14 @@ function GalaxyHallOfFame({ ranked, month }: { ranked: RealRankedStudent[]; mont
         <StudentRankCard student={me} xpToNext={xpToNext} nextAboveName={nextAbove?.name ?? null} />
       ) : (
         <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-4 py-4 text-center text-sm text-white/50 backdrop-blur-xl">
-          Sign in as a student to see your position on the Galaxy Hall of Fame.
+          Earn XP from a completed quiz to claim your monthly position.
         </div>
       )}
 
       {/* ── No activity this month empty state ── */}
       {!hasMonthlyActivity && (
         <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-4 py-4 text-center text-sm text-white/50 backdrop-blur-xl">
-          No quiz activity yet this month. Monthly rankings will update as students complete
-          quizzes in {month}.
+          No missions completed yet this month. Be the first to earn XP.
         </div>
       )}
 
@@ -183,7 +288,7 @@ function GalaxyHallOfFame({ ranked, month }: { ranked: RealRankedStudent[]; mont
               const cosmicRank = getRank(s.lifetimeXp);
               const label = top3Label(s.rank);
               return (
-                <div key={s.id} className="flex flex-col items-center">
+                <div key={s.rank} className="flex flex-col items-center">
                   <PodiumAvatar student={s} medal={MEDALS[slot]} rankGlow={cosmicRank.glowColor} />
                   {label && (
                     <span
@@ -195,8 +300,8 @@ function GalaxyHallOfFame({ ranked, month }: { ranked: RealRankedStudent[]; mont
                   )}
                   <p className="mt-1 max-w-full truncate text-center text-xs font-bold text-white">
                     {s.name}
+                    {s.isCurrentUser ? " · You" : ""}
                   </p>
-                  <p className="max-w-full truncate text-center text-[10px] text-white/40">{s.school}</p>
                   <CosmicRankBadge xp={s.lifetimeXp} small />
                   <div
                     className={`mt-2 flex ${heights[hi]} w-full flex-col items-center justify-start rounded-t-xl border-t-2 pt-2`}
@@ -205,11 +310,15 @@ function GalaxyHallOfFame({ ranked, month }: { ranked: RealRankedStudent[]; mont
                       background: `linear-gradient(180deg, ${MEDALS[slot]}22, transparent)`,
                     }}
                   >
-                    <span className="font-display text-2xl font-black" style={{ color: MEDALS[slot] }}>
+                    <span
+                      className="font-display text-2xl font-black"
+                      style={{ color: MEDALS[slot] }}
+                    >
                       #{s.rank}
                     </span>
                     <span className="flex items-center gap-1 text-[11px] font-bold text-white/70">
-                      <Sparkles className="h-3 w-3 text-[#FBBF24]" /> {s.monthlyXp.toLocaleString()} XP
+                      <Sparkles className="h-3 w-3 text-[#FBBF24]" /> {s.monthlyXp.toLocaleString()}{" "}
+                      XP
                     </span>
                     <span className="text-[9px] text-white/35">this month</span>
                   </div>
@@ -220,47 +329,34 @@ function GalaxyHallOfFame({ ranked, month }: { ranked: RealRankedStudent[]; mont
         </section>
       )}
 
-      {/* ── Top 100 table ── */}
-      <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-3 backdrop-blur-2xl sm:p-4">
-        <h2 className="px-2 py-2 font-display text-lg font-bold text-white">Full ranking · Top 100</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[720px] text-left text-sm">
-            <thead>
-              <tr className="text-[10px] uppercase tracking-wide text-white/35">
-                <th className="px-2 py-2">Rank</th>
-                <th className="px-2 py-2">Student</th>
-                <th className="px-2 py-2">School</th>
-                <th className="px-2 py-2 text-right">Monthly XP</th>
-                <th className="px-2 py-2 text-right">Quizzes</th>
-                <th className="px-2 py-2 text-right">Accuracy</th>
-                <th className="px-2 py-2 text-right">Streak</th>
-                <th className="px-2 py-2">Cosmic Rank</th>
-                <th className="px-2 py-2 text-right">Movement</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rest.map((s) => (
-                <RankTableRow key={s.id} student={s} />
-              ))}
-              {me && me.rank > 100 && (
-                <>
-                  <tr>
-                    <td colSpan={9} className="px-2 py-1 text-center text-xs text-white/30">
-                      · · ·
-                    </td>
-                  </tr>
-                  <RankTableRow student={me} />
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
-        {!ranked.length && (
-          <p className="px-2 py-6 text-center text-sm text-white/40">
-            No students found. Rankings will appear once students begin learning.
-          </p>
-        )}
-      </section>
+      {/* ── Positions 4–10 ── */}
+      {hasMonthlyActivity && (
+        <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-3 backdrop-blur-2xl sm:p-4">
+          <h2 className="px-2 py-2 font-display text-lg font-bold text-white">
+            Monthly ranking · Top 10
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[620px] text-left text-sm">
+              <thead>
+                <tr className="text-[10px] uppercase tracking-wide text-white/35">
+                  <th className="px-2 py-2">Rank</th>
+                  <th className="px-2 py-2">Student</th>
+                  <th className="px-2 py-2 text-right">Monthly XP</th>
+                  <th className="px-2 py-2 text-right">Quizzes</th>
+                  <th className="px-2 py-2 text-right">Accuracy</th>
+                  <th className="px-2 py-2 text-right">Streak</th>
+                  <th className="px-2 py-2">Cosmic Rank</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rest.map((s) => (
+                  <RankTableRow key={s.rank} student={s} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
     </section>
   );
 }
@@ -284,6 +380,7 @@ function StudentRankCard({
       <span className="text-2xl">{cosmicRank.emoji}</span>
       <div className="min-w-0 flex-1">
         <p className="text-xs font-bold text-white/60">Your position</p>
+        <p className="mt-0.5 text-xs font-bold text-white/75">{student.name} · You</p>
         <p className="font-display text-xl font-black" style={{ color: cosmicRank.color }}>
           #{student.rank}{" "}
           <span className="text-sm font-bold opacity-70">
@@ -298,7 +395,7 @@ function StudentRankCard({
       </div>
       <div className="text-right">
         <p className="flex items-center justify-end gap-1 text-[10px] text-white/40">
-          <TrendingUp className="h-3 w-3" /> XP to next rank
+          <TrendingUp className="h-3 w-3" /> XP to next position
         </p>
         <p className="font-display text-lg font-black text-white">
           {xpToNext == null ? "—" : xpToNext === 0 ? "Tied!" : `${xpToNext.toLocaleString()} XP`}
@@ -316,7 +413,9 @@ function StudentRankCard({
         </div>
         <div>
           <p className="uppercase tracking-wide text-white/35">Streak</p>
-          <p className="font-bold text-white">{student.streak == null ? "—" : `${student.streak}d`}</p>
+          <p className="font-bold text-white">
+            {student.streak == null ? "—" : `${student.streak}d`}
+          </p>
         </div>
       </div>
     </div>
@@ -352,10 +451,14 @@ function PodiumAvatar({
   return (
     <div className="relative">
       <div
-        className="flex h-16 w-16 items-center justify-center rounded-2xl border-2"
+        className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border-2"
         style={{ borderColor: medal, boxShadow: `0 0 22px ${medal}66`, background: `${medal}1a` }}
       >
-        <span className="font-display text-xl font-black text-white">{student.name[0]}</span>
+        <img
+          src="/companions/Astrounaut/cadet.png"
+          alt="Astronaut avatar"
+          className="h-full w-full object-cover"
+        />
       </div>
       <span
         className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full text-[#050816]"
@@ -371,10 +474,10 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
   const r = getRank(student.lifetimeXp);
   const label = top3Label(student.rank);
   return (
-    <tr
-      className={student.isCurrentUser ? "bg-[#7C3AED]/10" : "odd:bg-white/[0.015]"}
-    >
-      <td className="px-2 py-2.5 font-display font-black tabular-nums text-white/70">#{student.rank}</td>
+    <tr className={student.isCurrentUser ? "bg-[#7C3AED]/10" : "odd:bg-white/[0.015]"}>
+      <td className="px-2 py-2.5 font-display font-black tabular-nums text-white/70">
+        #{student.rank}
+      </td>
       <td className="px-2 py-2.5">
         <div className="flex items-center gap-2">
           <span className="truncate font-bold text-white">{student.name}</span>
@@ -388,11 +491,12 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
           )}
         </div>
       </td>
-      <td className="px-2 py-2.5 truncate text-white/40">{student.school}</td>
       <td className="px-2 py-2.5 text-right font-bold tabular-nums text-white">
         {student.monthlyXp.toLocaleString()}
       </td>
-      <td className="px-2 py-2.5 text-right tabular-nums text-white/50">{student.monthlyQuizCount}</td>
+      <td className="px-2 py-2.5 text-right tabular-nums text-white/50">
+        {student.monthlyQuizCount}
+      </td>
       <td className="px-2 py-2.5 text-right tabular-nums text-white/50">
         {student.monthlyAccuracy == null ? "—" : `${student.monthlyAccuracy}%`}
       </td>
@@ -400,215 +504,13 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
         {student.streak == null ? "—" : `${student.streak}d`}
       </td>
       <td className="px-2 py-2.5">
-        <span className="flex items-center gap-1 text-xs font-black tabular-nums" style={{ color: r.color }}>
+        <span
+          className="flex items-center gap-1 text-xs font-black tabular-nums"
+          style={{ color: r.color }}
+        >
           {r.emoji} {r.name}
         </span>
       </td>
-      <td className="px-2 py-2.5 text-right text-white/30">—</td>
     </tr>
   );
 }
-
-// ── Legacy fallback board (unchanged engine: buildLeaderboard + COHORT) ──────
-// Rendered only when there's no real Supabase session/data, so the page is
-// never blank. This is the "do not break the current leaderboard backend"
-// guarantee — everything below is the pre-existing implementation.
-
-function LegacyLocalLeaderboard({
-  progress,
-  userName,
-}: {
-  progress: ReturnType<typeof useProgress>["progress"];
-  userName?: string;
-}) {
-  const board = useMemo(() => buildLeaderboard(progress, userName), [progress, userName]);
-  const me = board.currentUser;
-
-  const podium = board.ranked.slice(0, 3);
-  const rest = board.ranked.slice(3, 100);
-  const myRank = getRank(progress.xp);
-
-  return (
-    <section className="mx-auto max-w-4xl px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10 space-y-6">
-      <header className="relative overflow-hidden rounded-[2rem] border border-[#7C3AED]/30 bg-gradient-to-br from-[#3B0764]/30 via-[#0B1220]/70 to-[#312E81]/30 p-6 backdrop-blur-2xl sm:p-8">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.3),transparent_60%)] blur-2xl" />
-        <div className="relative flex items-start gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] shadow-[0_0_28px_rgba(124,58,237,0.55)]">
-            <Trophy className="h-7 w-7 text-white" />
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#C4B5FD]">
-              Hall of Fame · Top 100
-            </p>
-            <h1 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">
-              AcadeMy Cosmic Leaderboard
-            </h1>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/55">
-              Sign in to see the real Galaxy Hall of Fame. Meanwhile, here's a preview using your
-              local progress against a demo cohort.
-            </p>
-          </div>
-        </div>
-      </header>
-
-      {me && (
-        <div
-          className="flex items-center gap-3 rounded-2xl border px-4 py-3 backdrop-blur-xl"
-          style={{ borderColor: `${myRank.color}44`, background: `${myRank.glowColor}` }}
-        >
-          <span className="text-2xl">{myRank.emoji}</span>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs font-bold text-white/60">Your Cosmic Rank</p>
-            <p className="font-display text-xl font-black" style={{ color: myRank.color }}>
-              {myRank.name}{" "}
-              <span className="text-sm font-bold opacity-70">· {progress.xp.toLocaleString()} XP</span>
-            </p>
-          </div>
-          <div className="text-right">
-            <p className="text-[10px] text-white/40">Hall of Fame</p>
-            <p className="font-display text-lg font-black text-white">#{me.rank}</p>
-          </div>
-        </div>
-      )}
-
-      <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
-        <div className="grid grid-cols-3 items-end gap-3">
-          {[1, 0, 2].map((slot) => {
-            const s = podium[slot];
-            if (!s) return <div key={slot} />;
-            const heights = ["h-24", "h-32", "h-20"];
-            const hi = slot === 0 ? 1 : slot === 1 ? 0 : 2;
-            const studentRank = getRank(s.xp);
-            return (
-              <div key={s.id} className="flex flex-col items-center">
-                <LegacyPodiumAvatar
-                  student={s}
-                  medal={MEDALS[slot]}
-                  isMe={s.isCurrentUser}
-                  avatarConfig={progress.avatar}
-                  rankGlow={studentRank.glowColor}
-                />
-                <p className="mt-2 max-w-full truncate text-center text-xs font-bold text-white">
-                  {s.name}
-                </p>
-                <p className="max-w-full truncate text-center text-[10px] text-white/40">{s.school}</p>
-                <CosmicRankBadge xp={s.xp} small />
-                <div
-                  className={`mt-2 flex ${heights[hi]} w-full flex-col items-center justify-start rounded-t-xl border-t-2 pt-2`}
-                  style={{
-                    borderColor: MEDALS[slot],
-                    background: `linear-gradient(180deg, ${MEDALS[slot]}22, transparent)`,
-                  }}
-                >
-                  <span className="font-display text-2xl font-black" style={{ color: MEDALS[slot] }}>
-                    #{s.rank}
-                  </span>
-                  <span className="flex items-center gap-1 text-[11px] font-bold text-white/70">
-                    <Sparkles className="h-3 w-3 text-[#FBBF24]" /> {s.xp.toLocaleString()} XP
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-3 backdrop-blur-2xl sm:p-4">
-        <h2 className="px-2 py-2 font-display text-lg font-bold text-white">Full ranking · Top 100</h2>
-        <ul className="space-y-1.5">
-          {rest.map((s) => (
-            <LegacyRankRow key={s.id} student={s} avatarConfig={progress.avatar} />
-          ))}
-        </ul>
-        {me && me.rank > 100 && (
-          <>
-            <p className="px-2 py-1 text-center text-xs text-white/30">· · ·</p>
-            <LegacyRankRow student={me} avatarConfig={progress.avatar} />
-          </>
-        )}
-      </section>
-    </section>
-  );
-}
-
-function LegacyPodiumAvatar({
-  student,
-  medal,
-  isMe,
-  avatarConfig,
-  rankGlow,
-}: {
-  student: RankedStudent;
-  medal: string;
-  isMe: boolean;
-  avatarConfig: Parameters<typeof Avatar>[0]["config"];
-  rankGlow: string;
-}) {
-  return (
-    <div className="relative">
-      <div
-        className="flex h-16 w-16 items-center justify-center rounded-2xl border-2"
-        style={{ borderColor: medal, boxShadow: `0 0 22px ${medal}66`, background: `${medal}1a` }}
-      >
-        {isMe ? (
-          <Avatar config={avatarConfig} size={52} glow={false} rankGlow={rankGlow} />
-        ) : (
-          <span className="font-display text-xl font-black text-white">{student.name[0]}</span>
-        )}
-      </div>
-      <span
-        className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full text-[#050816]"
-        style={{ background: medal }}
-      >
-        <Crown className="h-3.5 w-3.5" />
-      </span>
-    </div>
-  );
-}
-
-function LegacyRankRow({
-  student,
-  avatarConfig,
-}: {
-  student: RankedStudent;
-  avatarConfig: Parameters<typeof Avatar>[0]["config"];
-}) {
-  const r = getRank(student.xp);
-  return (
-    <li
-      className={`flex items-center gap-3 rounded-2xl border px-3 py-2.5 ${
-        student.isCurrentUser ? "border-[#7C3AED]/45 bg-[#7C3AED]/10" : "border-white/[0.06] bg-white/[0.02]"
-      }`}
-    >
-      <span className="w-8 shrink-0 text-center font-display text-sm font-black tabular-nums text-white/70">
-        {student.rank}
-      </span>
-      <span
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-black text-white"
-        style={{ background: `${r.color}15`, border: `1px solid ${r.color}30` }}
-      >
-        {student.isCurrentUser ? (
-          <Avatar config={avatarConfig} size={34} glow={false} rankGlow={r.glowColor} />
-        ) : (
-          student.name[0]
-        )}
-      </span>
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-bold text-white">
-          {student.name}
-          {student.isCurrentUser && (
-            <span className="ml-1.5 text-[10px] font-black uppercase text-[#C4B5FD]">You</span>
-          )}
-        </p>
-        <p className="truncate text-[11px] text-white/40">{student.school}</p>
-      </div>
-      <div className="flex shrink-0 flex-col items-end gap-0.5">
-        <span className="flex items-center gap-1 text-xs font-black tabular-nums" style={{ color: r.color }}>
-          {r.emoji} {r.name}
-        </span>
-        <span className="text-[9px] text-white/35 tabular-nums">{student.xp.toLocaleString()} XP</span>
-      </div>
-    </li>
-  );
-}
-

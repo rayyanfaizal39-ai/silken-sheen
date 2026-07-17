@@ -179,7 +179,7 @@ function AdminLayout() {
                   <pre style={{ whiteSpace: 'pre-wrap', margin: 0 }}>
                     {`userId: ${user?.id ?? 'n/a'}
 email: ${user?.email ?? 'n/a'}
-profile: ${state.profile ? JSON.stringify(state.profile, null, 2) : 'n/a'}
+profile: n/a
 queryError: ${state.queryError}
 redirectReason: ${state.redirectReason ?? 'n/a'}`}
                   </pre>

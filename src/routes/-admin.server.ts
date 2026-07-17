@@ -21,32 +21,34 @@ import type {
 
 export const CONTENT_LIBRARY_BUCKET = 'content-library';
 
+type BucketFailureReason = 'missing_bucket' | 'permission_denied' | 'network_error' | 'wrong_project' | 'not_configured' | 'unknown';
+
 export type StorageBucketCheckResult =
   | {
       ok: true;
       exists: true;
       bucketId: string;
-      rawResponse: unknown;
-      listBucketsResponse: unknown;
+      rawResponse: string | null;
+      listBucketsResponse: string | null;
     }
   | {
       ok: false;
       exists: false;
-      reason: 'missing_bucket' | 'permission_denied' | 'network_error' | 'wrong_project' | 'not_configured' | 'unknown';
+      reason: BucketFailureReason;
       bucketId: string;
       errorMessage: string | null;
       errorCode: string | number | null;
       statusCode: number | null;
       supabaseUrl: string | null;
-      rawResponse: unknown;
-      listBucketsResponse: unknown;
+      rawResponse: string | null;
+      listBucketsResponse: string | null;
     };
 
 function readSupabaseUrl() {
   return process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? null;
 }
 
-function classifyBucketError(error: { message?: string; code?: string | number; status?: number } | null | undefined, supabaseUrl: string | null): StorageBucketCheckResult['reason'] {
+function classifyBucketError(error: { message?: string; code?: string | number; status?: number } | null | undefined, supabaseUrl: string | null): BucketFailureReason {
   const message = (error?.message ?? '').toLowerCase();
   const code = error?.code;
   const status = error?.status;
@@ -167,8 +169,8 @@ export const getPayments = createServerFn({ method: 'POST' })
     const supabase = getSupabaseServerClient();
     if (!supabase) return [];
     let q = supabase
-      .from('payments')
-      .select('id, created_at, amount, currency, method, status, profiles(full_name, email)')
+      .from('payment_transactions')
+      .select('id, user_id, created_at, amount, currency, payment_method, payment_status')
       .order('created_at', { ascending: false })
       .limit(f.limit ?? 100);
 
@@ -182,7 +184,28 @@ export const getPayments = createServerFn({ method: 'POST' })
       count: Array.isArray(data) ? data.length : null,
     });
     if (error) throw error;
-    return (data ?? []) as unknown as PaymentRow[];
+    const rows = data ?? [];
+    const userIds = Array.from(new Set(rows.map((row) => row.user_id)));
+    const profilesById = new Map<string, { full_name: string | null; email: string | null }>();
+    if (userIds.length) {
+      const profiles = await supabase
+        .from('profiles')
+        .select('id, full_name, email')
+        .in('id', userIds);
+      if (profiles.error) throw profiles.error;
+      for (const profile of profiles.data ?? []) {
+        profilesById.set(profile.id, { full_name: profile.full_name, email: profile.email });
+      }
+    }
+    return rows.map((row) => ({
+      id: row.id,
+      created_at: row.created_at,
+      amount: Number(row.amount),
+      currency: row.currency,
+      method: row.payment_method,
+      status: row.payment_status,
+      profiles: profilesById.get(row.user_id) ?? null,
+    })) as PaymentRow[];
   });
 
 // quiz_history.user_id references auth.users(id), not profiles(id) directly,
@@ -313,32 +336,35 @@ export const checkContentLibraryBucket = createServerFn({ method: 'GET' }).handl
     }
     const listBucketsResponse = await supabase.storage.listBuckets();
     console.log('[admin.content-library] storage.listBuckets()', listBucketsResponse);
+    const listBucketsResponseStr = JSON.stringify(listBucketsResponse);
 
     const { data, error } = await supabase.storage.from(CONTENT_LIBRARY_BUCKET).list('', { limit: 1 });
     const rawResponse = { data, error };
     console.log('[admin.content-library] storage.from().list("", { limit: 1 })', rawResponse);
+    const rawResponseStr = JSON.stringify(rawResponse);
 
     if (data && !error) {
       return {
         ok: true,
         exists: true,
         bucketId: CONTENT_LIBRARY_BUCKET,
-        rawResponse,
-        listBucketsResponse,
+        rawResponse: rawResponseStr,
+        listBucketsResponse: listBucketsResponseStr,
       };
     }
-    const reason = isBucketNotFoundError(error) ? 'missing_bucket' : classifyBucketError(error, supabaseUrl);
+    const errAny = error as { message?: string; code?: string | number; status?: number } | null;
+    const reason = isBucketNotFoundError(errAny) ? 'missing_bucket' : classifyBucketError(errAny, supabaseUrl);
     return {
       ok: false,
       exists: false,
       reason,
       bucketId: CONTENT_LIBRARY_BUCKET,
-      errorMessage: error?.message ?? null,
-      errorCode: error?.code ?? null,
-      statusCode: error?.status ?? null,
+      errorMessage: errAny?.message ?? null,
+      errorCode: errAny?.code ?? null,
+      statusCode: errAny?.status ?? null,
       supabaseUrl,
-      rawResponse,
-      listBucketsResponse,
+      rawResponse: rawResponseStr,
+      listBucketsResponse: listBucketsResponseStr,
     };
   },
 );

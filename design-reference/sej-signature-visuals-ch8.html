@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 8: Tamadun Islam — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:16px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:18px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  .split-row{display:flex; gap:20px; flex-wrap:wrap;}
+  .split-col{flex:1; min-width:260px; background:var(--bg-panel); border-radius:12px; padding:18px;}
+  .split-col h4{font-family:var(--font-display); font-size:14px; margin:0 0 8px;}
+  .split-col p{font-size:11.5px; color:var(--muted); margin:0; line-height:1.5;}
+
+  .life-timeline{display:flex; flex-direction:column; gap:0;}
+  .life-step{display:flex; gap:14px; padding:10px 0; position:relative;}
+  .life-step:not(:last-child)::after{content:''; position:absolute; left:15px; top:36px; width:1px; height:calc(100% - 10px); background:var(--line);}
+  .life-dot{width:32px; height:32px; border-radius:50%; background:var(--bg-panel); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; z-index:1;}
+  .life-txt{font-size:11.5px; color:var(--muted); padding-top:5px; line-height:1.5;}
+  .life-txt b{color:var(--text);}
+
+  .trait-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px;}
+  .trait-tile{background:var(--bg-panel); border-radius:12px; padding:16px; text-align:center;}
+  .trait-tile h5{font-family:var(--font-display); font-size:14px; margin:0 0 4px; color:var(--amber);}
+  .trait-tile p{font-size:10.5px; color:var(--muted); margin:0;}
+
+  .lead-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px;}
+  .lead-tile{background:var(--bg-panel); border-radius:12px; padding:16px;}
+  .lead-tile h5{font-family:var(--font-display); font-size:13px; margin:0 0 8px;}
+  .lead-tile ul{font-size:10.5px; color:var(--muted); padding-left:16px; margin:0; line-height:1.6;}
+
+  .scholar-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px;}
+  .scholar-card{background:var(--bg-panel); border-radius:12px; padding:14px;}
+  .scholar-card .field{font-size:9.5px; color:var(--muted-dim); text-transform:uppercase; letter-spacing:.03em;}
+  .scholar-card h5{font-family:var(--font-display); font-size:13px; margin:4px 0 6px;}
+  .scholar-card p{font-size:10px; color:var(--muted); margin:0; line-height:1.4;}
+
+  .arch-feature-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px;}
+  .arch-feature{background:var(--bg-panel); border-radius:10px; padding:12px;}
+  .arch-feature h6{font-family:var(--font-display); font-size:11.5px; margin:0 0 4px;}
+  .arch-feature p{font-size:10px; color:var(--muted); margin:0; line-height:1.4;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 8: Tamadun Islam dan Sumbangannya</h1>
+  <p class="lead">Daripada masyarakat Arab Jahiliah kepada tamadun yang menyumbang algebra, perubatan moden, dan seni bina bersejarah kepada dunia.</p>
+
+  <div class="card">
+    <h2>🏜️ Masyarakat Arab Sebelum Islam</h2>
+    <p class="sub">Dua kumpulan masyarakat, dua cara hidup yang berbeza.</p>
+    <div class="split-row">
+      <div class="split-col">
+        <h4 style="color:#fbbf5a;">Kaum Hadhari</h4>
+        <p>Tinggal di kota, menjalankan perniagaan dan memiliki binatang ternakan</p>
+      </div>
+      <div class="split-col">
+        <h4 style="color:#4fb0ff;">Kaum Badwi</h4>
+        <p>Hidup secara nomad, memelihara binatang ternakan, berpindah-randah mencari rumput dan air</p>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Zaman Jahiliah — masyarakat tanpa nabi atau kitab suci sebagai panduan hidup</p>
+  </div>
+
+  <div class="card">
+    <h2>📜 Peristiwa Penting — Kelahiran hingga Wahyu Pertama</h2>
+    <p class="sub">Susur galur kronologi seperti yang dicatatkan dalam sejarah.</p>
+    <div class="life-timeline">
+      <div class="life-step"><div class="life-dot">1</div><div class="life-txt"><b>12 Rabiulawal, Tahun Gajah (20 April 570 M)</b> — kelahiran, ayahanda Abdullah, ibunda Aminah</div></div>
+      <div class="life-step"><div class="life-dot">2</div><div class="life-txt">Ayahanda wafat semasa dalam kandungan; ibunda wafat ketika baginda berusia 6 tahun</div></div>
+      <div class="life-step"><div class="life-dot">3</div><div class="life-txt">Dipelihara datuknya Abdul Muttalib, kemudian bapa saudaranya Abu Talib</div></div>
+      <div class="life-step"><div class="life-dot">4</div><div class="life-txt">Menjalankan perniagaan Siti Khadijah — sifat amanah membawa kepada perkahwinan</div></div>
+      <div class="life-step"><div class="life-dot">5</div><div class="life-txt"><b>17 Ramadan (6 Ogos 610 M)</b> — wahyu pertama di Gua Hira', Surah al-Alaq</div></div>
+      <div class="life-step"><div class="life-dot">6</div><div class="life-txt">Dakwah secara rahsia (3 tahun), kemudian terang-terangan</div></div>
+      <div class="life-step"><div class="life-dot">7</div><div class="life-txt">Hijrah ke Madinah — merangka Piagam Madinah</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⭐ Empat Sifat Terpuji</h2>
+    <div class="trait-grid">
+      <div class="trait-tile"><h5>Siddiq</h5><p>Benar</p></div>
+      <div class="trait-tile"><h5>Amanah</h5><p>Boleh dipercayai</p></div>
+      <div class="trait-tile"><h5>Tabligh</h5><p>Menyampaikan ajaran</p></div>
+      <div class="trait-tile"><h5>Fatanah</h5><p>Bijaksana</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🕌 Ketokohan sebagai Pemimpin</h2>
+    <p class="sub">Empat aspek kepimpinan yang diiktiraf.</p>
+    <div class="lead-grid">
+      <div class="lead-tile"><h5 style="color:#8b6bff;">Pemimpin Negara</h5><ul><li>Piagam Madinah</li><li>Kebebasan beragama bagi bukan Islam</li><li>Perwakilan dakwah antarabangsa</li></ul></div>
+      <div class="lead-tile"><h5 style="color:#4fb0ff;">Pemimpin Masyarakat</h5><ul><li>Syura, keadilan, persamaan</li><li>Menyatukan Muhajirin &amp; Ansar</li></ul></div>
+      <div class="lead-tile"><h5 style="color:#fbbf5a;">Pembangun Ekonomi</h5><ul><li>Perdagangan &amp; pertanian</li><li>Pasar Suq al-Ansar</li></ul></div>
+      <div class="lead-tile"><h5 style="color:#4ade80;">Pemimpin Tentera</h5><ul><li>Konsep jihad</li><li>Perang Badar, Uhud, Khandak</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔬 Tujuh Tokoh Ilmuwan Islam</h2>
+    <p class="sub">Sumbangan yang membentuk sains dan falsafah dunia.</p>
+    <div class="scholar-grid">
+      <div class="scholar-card"><div class="field">Sains &amp; Kimia</div><h5>Jabir bin Hayyan</h5><p>Korpus Jabir — 80 karya</p></div>
+      <div class="scholar-card"><div class="field">Perubatan</div><h5>Ibn Sina</h5><p>Al-Qanun fi al-Tib</p></div>
+      <div class="scholar-card"><div class="field">Falsafah</div><h5>Al-Kindi</h5><p>270+ karya</p></div>
+      <div class="scholar-card"><div class="field">Astronomi</div><h5>Al-Battani</h5><p>Asas trigonometri</p></div>
+      <div class="scholar-card"><div class="field">Geografi</div><h5>Al-Biruni</h5><p>Kartografi</p></div>
+      <div class="scholar-card"><div class="field">Matematik</div><h5>Al-Khawarizmi</h5><p>Pengasas algebra</p></div>
+      <div class="scholar-card"><div class="field">Pelayaran</div><h5>Ibn Battuta</h5><p>India &amp; Alam Melayu</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🕌 Seni Bina Islam</h2>
+    <p class="sub">Bermula dengan Masjid Quba' — model bagi seni bina masjid sehingga kini.</p>
+    <img src="form 1 content images/seni-bina-tamadun-islam.png" alt="Seni Bina Tamadun Islam" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="arch-feature-grid">
+      <div class="arch-feature"><h6>Menara</h6><p>Tirus dan tinggi supaya azan didengari jauh</p></div>
+      <div class="arch-feature"><h6>Mihrab</h6><p>Penanda arah kiblat</p></div>
+      <div class="arch-feature"><h6>Mimbar</h6><p>Untuk imam membaca khutbah</p></div>
+      <div class="arch-feature"><h6>Kaligrafi &amp; Ukiran</h6><p>Seni khat dan hiasan arabes</p></div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Contoh: Masjid Putra (Putrajaya) · Masjid Cordoba (Sepanyol) · Masjid Tengkera (Melaka)</p>
+  </div>
+
+</div>
+</body>
+</html>

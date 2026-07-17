@@ -21,6 +21,22 @@ import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-conte
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
 import type { Geo4Content } from "@/content/form1/geography/chapter-4/geo4-content";
 import type { Geo5Content } from "@/content/form1/geography/chapter-5/geo5-content";
+import type { Geo6Content } from "@/content/form1/geography/chapter-6/geo6-content";
+import type { Geo7Content } from "@/content/form1/geography/chapter-7/geo7-content";
+import type { Geo8Content } from "@/content/form1/geography/chapter-8/geo8-content";
+import type { Geo9Content } from "@/content/form1/geography/chapter-9/geo9-content";
+import type { Geo10Content } from "@/content/form1/geography/chapter-10/geo10-content";
+import type { Geo11Content } from "@/content/form1/geography/chapter-11/geo11-content";
+import type { Geo12Content } from "@/content/form1/geography/chapter-12/geo12-content";
+import type { Geo13Content } from "@/content/form1/geography/chapter-13/geo13-content";
+import type { Sej1Content } from "@/content/form1/sejarah/chapter-1/sej1-content";
+import type { Sej2Content } from "@/content/form1/sejarah/chapter-2/sej2-content";
+import type { Sej3Content } from "@/content/form1/sejarah/chapter-3/sej3-content";
+import type { Sej4Content } from "@/content/form1/sejarah/chapter-4/sej4-content";
+import type { Sej5Content } from "@/content/form1/sejarah/chapter-5/sej5-content";
+import type { Sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content";
+import type { Sej7Content } from "@/content/form1/sejarah/chapter-7/sej7-content";
+import type { Sej8Content } from "@/content/form1/sejarah/chapter-8/sej8-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -31,6 +47,8 @@ export type StructuredNotes = ScienceChapter2Notes;
 export type VideoBlock = {
   youtubeId: string;
   title: string;
+  /** Optional offset, in seconds, at which playback should begin. */
+  startSeconds?: number;
   /** Caption language hint for the YouTube player (e.g. "ms", "en"). */
   captionLang?: string;
   /** Short caption shown beneath the player. */
@@ -83,6 +101,38 @@ export type ChapterContent = {
   geoChapter4Data?: Geo4Content;
   /** Geography Bab 5 (Bumi/Earth) chunked learning experience. BM-only. */
   geoChapter5Data?: Geo5Content;
+  /** Geography Bab 6 (Bentuk Muka Bumi/Landforms) chunked learning experience. BM-only. */
+  geoChapter6Data?: Geo6Content;
+  /** Geography Bab 7 (Saliran/Drainage) chunked learning experience. BM-only. */
+  geoChapter7Data?: Geo7Content;
+  /** Geography Bab 8 (Penduduk di Malaysia/Population) chunked learning experience. BM-only. */
+  geoChapter8Data?: Geo8Content;
+  /** Geography Bab 9 (Petempatan di Malaysia/Settlement) chunked learning experience. BM-only. */
+  geoChapter9Data?: Geo9Content;
+  /** Geography Bab 10 (Bentuk Muka Bumi dan Saliran di Asia Tenggara) chunked learning experience. BM-only. */
+  geoChapter10Data?: Geo10Content;
+  /** Geography Bab 11 (Penduduk dan Petempatan di Asia Tenggara) chunked learning experience. BM-only. */
+  geoChapter11Data?: Geo11Content;
+  /** Geography Bab 12 (Sumber Air/Water Resources) chunked learning experience. BM-only. */
+  geoChapter12Data?: Geo12Content;
+  /** Geography Bab 13 (Sisa Domestik/Domestic Waste) chunked learning experience. BM-only. */
+  geoChapter13Data?: Geo13Content;
+  /** Sejarah Bab 1 (Mengenali Sejarah) chunked learning experience. BM-only. */
+  sejChapter1Data?: Sej1Content;
+  /** Sejarah Bab 2 (Zaman Air Batu) chunked learning experience. BM-only. */
+  sejChapter2Data?: Sej2Content;
+  /** Sejarah Bab 3 (Zaman Prasejarah) chunked learning experience. BM-only. */
+  sejChapter3Data?: Sej3Content;
+  /** Sejarah Bab 4 (Mengenali Tamadun) chunked learning experience. BM-only. */
+  sejChapter4Data?: Sej4Content;
+  /** Sejarah Bab 5 (Tamadun Awal Dunia) chunked learning experience. BM-only. */
+  sejChapter5Data?: Sej5Content;
+  /** Sejarah Bab 6 (Peningkatan Tamadun Yunani dan Rom) chunked learning experience. BM-only. */
+  sejChapter6Data?: Sej6Content;
+  /** Sejarah Bab 7 (Peningkatan Tamadun India dan China) chunked learning experience. BM-only. */
+  sejChapter7Data?: Sej7Content;
+  /** Sejarah Bab 8 (Tamadun Islam dan Sumbangannya) chunked learning experience. BM-only. */
+  sejChapter8Data?: Sej8Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -114,6 +164,22 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.geoChapter3Data ||
       !!c?.geoChapter4Data ||
       !!c?.geoChapter5Data ||
+      !!c?.geoChapter6Data ||
+      !!c?.geoChapter7Data ||
+      !!c?.geoChapter8Data ||
+      !!c?.geoChapter9Data ||
+      !!c?.geoChapter10Data ||
+      !!c?.geoChapter11Data ||
+      !!c?.geoChapter12Data ||
+      !!c?.geoChapter13Data ||
+      !!c?.sejChapter1Data ||
+      !!c?.sejChapter2Data ||
+      !!c?.sejChapter3Data ||
+      !!c?.sejChapter4Data ||
+      !!c?.sejChapter5Data ||
+      !!c?.sejChapter6Data ||
+      !!c?.sejChapter7Data ||
+      !!c?.sejChapter8Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

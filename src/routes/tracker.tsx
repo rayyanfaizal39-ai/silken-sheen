@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo } from "react";
+import { useMemo, type ReactNode } from "react";
 import {
   Radar,
   TrendingUp,
@@ -11,19 +11,24 @@ import {
   Brain,
   Trophy,
   Activity,
+  LoaderCircle,
+  Lock,
 } from "lucide-react";
-import { useProgress, QUIZ_PASS_PCT } from "@/hooks/use-progress";
+import { QUIZ_PASS_PCT } from "@/hooks/use-progress";
+import { useTrackerHistory } from "@/hooks/use-tracker-history";
 import { analyzeProgress, type SubjectStat } from "@/lib/tracker";
 import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/tracker")({
   // Per-user analytics — noindex, same as /dashboard.
-  head: () => seoMeta({
-    title: "AI Study Tracker",
-    description: "Your AI study tracker on AcadeMY — see exactly where you're strong and where to focus next in KSSM.",
-    path: "/tracker",
-    noindex: true,
-  }),
+  head: () =>
+    seoMeta({
+      title: "AI Study Tracker",
+      description:
+        "Your AI study tracker on AcadeMY — see exactly where you're strong and where to focus next in KSSM.",
+      path: "/tracker",
+      noindex: true,
+    }),
   component: TrackerPage,
 });
 
@@ -35,11 +40,44 @@ function scoreColor(pct: number): string {
 }
 
 function TrackerPage() {
-  const { progress } = useProgress();
-  const insight = useMemo(
-    () => analyzeProgress(progress.quizHistory ?? []),
-    [progress.quizHistory],
-  );
+  const { user, history, eligible, loading, error } = useTrackerHistory();
+  const insight = useMemo(() => analyzeProgress(history), [history]);
+
+  if (loading) {
+    return (
+      <TrackerGate
+        icon={<LoaderCircle className="h-8 w-8 animate-spin" />}
+        title="Loading your Tracker"
+      />
+    );
+  }
+  if (!user) {
+    return (
+      <TrackerGate
+        icon={<Lock className="h-8 w-8" />}
+        title="Sign in to view your Tracker"
+        body="Your study history is private and linked to your AcadeMY account."
+        action="Sign in"
+        to="/login"
+      />
+    );
+  }
+  if (error) {
+    return (
+      <TrackerGate icon={<Radar className="h-8 w-8" />} title="Tracker unavailable" body={error} />
+    );
+  }
+  if (!eligible) {
+    return (
+      <TrackerGate
+        icon={<Lock className="h-8 w-8" />}
+        title="AI Tracker is a paid feature"
+        body="Upgrade to unlock your personal quiz history, weak spots, and study recommendations."
+        action="View plans"
+        to="/upgrade"
+      />
+    );
+  }
 
   return (
     <section className="mx-auto max-w-5xl px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10 space-y-6">
@@ -196,6 +234,40 @@ function TrackerPage() {
           </Link>
         </>
       )}
+    </section>
+  );
+}
+
+function TrackerGate({
+  icon,
+  title,
+  body,
+  action,
+  to,
+}: {
+  icon: ReactNode;
+  title: string;
+  body?: string;
+  action?: string;
+  to?: "/login" | "/upgrade";
+}) {
+  return (
+    <section className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-10 text-center backdrop-blur-2xl">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#22D3EE]/15 text-[#67E8F9]">
+          {icon}
+        </div>
+        <h1 className="font-display text-xl font-bold text-white">{title}</h1>
+        {body && <p className="mx-auto mt-2 max-w-md text-sm text-white/45">{body}</p>}
+        {action && to && (
+          <Link
+            to={to}
+            className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-[#22D3EE] to-[#6366F1] px-6 py-3 text-sm font-bold text-white"
+          >
+            {action}
+          </Link>
+        )}
+      </div>
     </section>
   );
 }

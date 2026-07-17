@@ -39,7 +39,7 @@ import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLangu
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
-import { sfx, music } from "@/lib/sounds";
+import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
   getRegisteredSubjectChapters as getSubjectChapters,
@@ -6170,7 +6170,7 @@ function QuizzesPage() {
   const [combo, setCombo] = useState(0);
   const [comboShow, setComboShow] = useState<number | null>(null);
   const [screenShake, setScreenShake] = useState(false);
-  const [musicOn, setMusicOn] = useState(false);
+  // Background music is now handled globally by BgMusicController.
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
   const [timerPref, setTimerPref] = useState<TimerPref>(null);
@@ -6326,13 +6326,8 @@ function QuizzesPage() {
     setEnglishPhase("intro");
   }, [subject, form, englishSetIdF3, englishPhase]);
 
-  // Stop music when leaving the page
-  useEffect(
-    () => () => {
-      music.stop();
-    },
-    [],
-  );
+  // Background music lifecycle handled globally by BgMusicController.
+
 
   function triggerShake() {
     setScreenShake(true);
@@ -7361,22 +7356,7 @@ function QuizzesPage() {
               >
                 <Shuffle className="w-3.5 h-3.5" /> Shuffle
               </button>
-              <button
-                onClick={() => setMusicOn(music.toggle())}
-                title={musicOn ? "Mute music" : "Play music"}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                  musicOn
-                    ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-                    : "bg-white/5 text-muted-foreground hover:bg-white/10"
-                }`}
-              >
-                {musicOn ? (
-                  <Music2 className="w-3.5 h-3.5 animate-pulse" />
-                ) : (
-                  <VolumeX className="w-3.5 h-3.5" />
-                )}
-                {musicOn ? "Music on" : "Music"}
-              </button>
+              {/* Music toggle removed — background music is adaptive and global. */}
               <span className="text-muted-foreground">XP</span>
               <span className="font-bold text-nova-yellow">{progress.xp}</span>
               <span className="text-muted-foreground">🔥 {streak}</span>

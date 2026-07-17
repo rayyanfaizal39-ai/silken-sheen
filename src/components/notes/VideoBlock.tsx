@@ -1,9 +1,16 @@
 import type { VideoBlock as VideoBlockData } from "@/content/types";
 
 export function VideoBlock({ video, id }: { video: VideoBlockData; id?: string }) {
-  const src = `https://www.youtube.com/embed/${video.youtubeId}?cc_load_policy=1${
-    video.captionLang ? `&cc_lang_pref=${video.captionLang}` : ""
-  }&rel=0&modestbranding=1`;
+  const params = new URLSearchParams({
+    cc_load_policy: "1",
+    rel: "0",
+    modestbranding: "1",
+  });
+
+  if (video.captionLang) params.set("cc_lang_pref", video.captionLang);
+  if (video.startSeconds) params.set("start", String(video.startSeconds));
+
+  const src = `https://www.youtube-nocookie.com/embed/${video.youtubeId}?${params.toString()}`;
   return (
     <div id={id} className="mb-8 animate-fade-up scroll-mt-24">
       <div className="mb-3 flex items-center justify-between gap-3">
@@ -20,7 +27,8 @@ export function VideoBlock({ video, id }: { video: VideoBlockData; id?: string }
             className="absolute inset-0 w-full h-full rounded-[1.5rem]"
             src={src}
             title={video.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
         </div>

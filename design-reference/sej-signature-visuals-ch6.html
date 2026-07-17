@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 6: Yunani dan Rom — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  .polis-row{display:flex; flex-direction:column; gap:12px;}
+  .polis-wrap{display:flex; align-items:center; gap:12px;}
+  .polis-label{width:80px; font-size:12px; font-weight:700; text-align:right;}
+  .polis-bar-track{flex:1; background:var(--bg-panel); border-radius:8px; height:24px; position:relative;}
+  .polis-bar-fill{height:100%; border-radius:8px; display:flex; align-items:center; padding-left:10px; font-size:10.5px; font-weight:700; color:#0c1128;}
+
+  .gov-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;}
+  .gov-tile{background:var(--bg-panel); border-radius:12px; padding:14px; box-shadow:0 0 12px rgba(139,107,255,0.1);}
+  .gov-tile h5{font-family:var(--font-display); font-size:13px; margin:0 0 6px; color:var(--violet);}
+  .gov-tile p{font-size:10.5px; color:var(--muted); margin:0; line-height:1.4;}
+  .gov-tile.demo{box-shadow:0 0 16px rgba(74,222,128,0.25); border:1px solid rgba(74,222,128,0.3);}
+  .gov-tile.demo h5{color:var(--green);}
+
+  .hierarchy{display:flex; flex-direction:column; align-items:center; gap:8px;}
+  .h-top{background:linear-gradient(135deg,var(--violet),var(--blue)); border-radius:12px; padding:12px 24px; font-weight:700; font-size:13px; box-shadow:0 0 16px rgba(139,107,255,0.4);}
+  .h-line{width:2px; height:20px; background:var(--line);}
+  .h-row{display:flex; gap:14px;}
+  .h-item{background:var(--bg-panel); border-radius:10px; padding:10px 18px; font-size:12px; font-weight:600;}
+
+  .roman-timeline{display:flex; gap:0; position:relative; padding:20px 0;}
+  .rt-era{flex:1; text-align:center; position:relative;}
+  .rt-era:not(:last-child)::after{content:''; position:absolute; top:20px; right:0; width:100%; height:2px; background:var(--line);}
+  .rt-dot{width:16px; height:16px; border-radius:50%; margin:0 auto 8px; position:relative; z-index:1;}
+  .rt-era h5{font-family:var(--font-display); font-size:12px; margin:0 0 2px;}
+  .rt-era .dur{font-size:10px; color:var(--muted-dim);}
+
+  .arch-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .arch-card{background:var(--bg-panel); border-radius:14px; padding:16px; box-shadow:0 0 14px rgba(251,191,90,0.12);}
+  .arch-card h5{font-family:var(--font-display); font-size:13.5px; margin:0 0 6px; color:var(--amber);}
+  .arch-card p{font-size:10.5px; color:var(--muted); margin:0 0 8px; line-height:1.4;}
+  .arch-card .specs{display:flex; flex-wrap:wrap; gap:5px;}
+  .arch-card .spec-chip{background:var(--bg-card); border-radius:6px; padding:3px 8px; font-size:9.5px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 6: Peningkatan Tamadun Yunani dan Rom</h1>
+  <p class="lead">Demokrasi Athens dan kejuruteraan Rom — dua warisan yang masih membentuk dunia hari ini.</p>
+
+  <div class="card">
+    <h2>🏛️ Tiga Polis Terkenal</h2>
+    <p class="sub">Athens paling ramai penduduk, Sparta paling luas.</p>
+    <img class="gen" src="form 1 content images/polis-tamadun-yunani.png" alt="Polis dalam Tamadun Yunani" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="polis-row">
+      <div class="polis-wrap">
+        <div class="polis-label">Athens</div>
+        <div class="polis-bar-track"><div class="polis-bar-fill" style="width:100%; background:linear-gradient(90deg,#4fb0ff,#1d4ed8);">40,000 orang</div></div>
+      </div>
+      <div class="polis-wrap">
+        <div class="polis-label">Sparta</div>
+        <div class="polis-bar-track"><div class="polis-bar-fill" style="width:40%; background:linear-gradient(90deg,#4ade80,#15803d);">16,000 orang</div></div>
+      </div>
+      <div class="polis-wrap">
+        <div class="polis-label">Corinth</div>
+        <div class="polis-bar-track"><div class="polis-bar-fill" style="width:25%; background:linear-gradient(90deg,#fbbf5a,#c2760c);">10,000 orang</div></div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:12px;">Keluasan: Sparta 8,400 km² (terluas) · Athens 2,650 km² · Corinth 880 km²</p>
+  </div>
+
+  <div class="card">
+    <h2>⚖️ Lima Sistem Pemerintahan Yunani</h2>
+    <p class="sub">Athens beralih daripada empat sistem lain sebelum memilih demokrasi.</p>
+    <div class="gov-grid">
+      <div class="gov-tile"><h5>Monarki</h5><p>Sistem beraja berasaskan keturunan</p></div>
+      <div class="gov-tile"><h5>Oligarki</h5><p>Dikuasai sebahagian kecil golongan berkuasa</p></div>
+      <div class="gov-tile"><h5>Aristokrasi</h5><p>Dikuasai golongan bangsawan</p></div>
+      <div class="gov-tile"><h5>Tirani</h5><p>Dikuasai golongan zalim, menindas rakyat</p></div>
+      <div class="gov-tile demo"><h5>Demokrasi ⭐</h5><p>Dipilih rakyat melalui pengundian — Solon (594 SM)</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏛️ Struktur Demokrasi Athens</h2>
+    <p class="sub">Dewan Perhimpunan sebagai badan tertinggi.</p>
+    <div class="hierarchy">
+      <div class="h-top">Dewan Perhimpunan</div>
+      <div class="h-line"></div>
+      <div class="h-row">
+        <div class="h-item">Majlis</div>
+        <div class="h-item">Majistret</div>
+        <div class="h-item">Juri</div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Solon (594 SM) → Pericles (495-429 SM) → berakhir pada zaman Raja Philip (338 SM)</p>
+  </div>
+
+  <div class="card">
+    <h2>🏛️ Tiga Zaman Tamadun Rom</h2>
+    <p class="sub">Pax Romana — 200 tahun keamanan pada zaman kegemilangan.</p>
+    <div class="roman-timeline">
+      <div class="rt-era"><div class="rt-dot" style="background:#8b6bff; box-shadow:0 0 8px rgba(139,107,255,0.6);"></div><h5>Zaman Beraja</h5><div class="dur">753–509 SM</div></div>
+      <div class="rt-era"><div class="rt-dot" style="background:#4fb0ff; box-shadow:0 0 8px rgba(79,176,255,0.6);"></div><h5>Zaman Republik</h5><div class="dur">509–27 SM</div></div>
+      <div class="rt-era"><div class="rt-dot" style="background:#fbbf5a; box-shadow:0 0 8px rgba(251,191,90,0.6);"></div><h5>Zaman Empayar</h5><div class="dur">27 SM–476 M</div></div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--amber); font-weight:700; margin-top:6px;">Pax Romana: 27 SM – 180 M — merangkumi Asia, Afrika, Eropah</p>
+  </div>
+
+  <div class="card">
+    <h2>🏟️ Seni Bina Rom</h2>
+    <p class="sub">Empat binaan yang masih kekal sebagai warisan dunia.</p>
+    <img class="gen" src="form 1 content images/seni-bina-tamadun-rom.png" alt="Seni Bina Tamadun Rom" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="arch-grid">
+      <div class="arch-card">
+        <h5>Colosseum</h5>
+        <p>Persembahan &amp; gladiator; dimulakan Vespian (72M), disiapkan Titus (80M)</p>
+        <div class="specs"><div class="spec-chip">50m tinggi</div><div class="spec-chip">156m lebar</div><div class="spec-chip">50,000 orang</div><div class="spec-chip">80 pintu</div></div>
+      </div>
+      <div class="arch-card">
+        <h5>Pantheon</h5>
+        <p>Binaan berkubah terbesar di dunia; dibina semula Hadrian (125M)</p>
+        <div class="specs"><div class="spec-chip">Kubah 43m</div><div class="spec-chip">Oculus 13m</div></div>
+      </div>
+      <div class="arch-card">
+        <h5>Amfiteater</h5>
+        <p>"Colosseum mini" — ~230 dibina di seluruh empayar Rom</p>
+        <div class="specs"><div class="spec-chip">El Djem: 16,000</div><div class="spec-chip">Arles: 20,000</div></div>
+      </div>
+      <div class="arch-card">
+        <h5>Akueduk</h5>
+        <p>Sistem pengairan air ke rumah &amp; tempat mandi awam</p>
+        <div class="specs"><div class="spec-chip">Aqua Appia 312 SM</div><div class="spec-chip">16 km</div><div class="spec-chip">Pont du Gard</div></div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:12px;">Marco Vitruvius menulis "On Architecture" (46 SM) · Simen = air + kapur + pozzolana (abu gunung berapi)</p>
+  </div>
+
+</div>
+</body>
+</html>
