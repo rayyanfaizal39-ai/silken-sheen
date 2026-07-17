@@ -84,19 +84,20 @@ function SecondaryCta({ to, children }: { to: string; children: ReactNode }) {
 /* ---------------- Top nav ---------------- */
 
 const NAV_LINKS = [
-  { id: "subjects", label: "Subjects" },
-  { id: "cikgu-ai", label: "Cikgu AI" },
-  { id: "parents", label: "Parents" },
+  { id: "top", label: "Home" },
+  { id: "features", label: "Features" },
+  { id: "parents", label: "For Parents" },
   { id: "pricing", label: "Pricing" },
 ] as const;
 
 const NAV_OFFSET = 88;
 
 function smoothScrollToId(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return false;
+  const isTop = id === "top";
+  const el = isTop ? null : document.getElementById(id);
+  if (!isTop && !el) return false;
   const start = window.scrollY;
-  const target = el.getBoundingClientRect().top + start - NAV_OFFSET;
+  const target = isTop ? 0 : el!.getBoundingClientRect().top + start - NAV_OFFSET;
   const distance = target - start;
   const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   if (prefersReduced || Math.abs(distance) < 4) {
