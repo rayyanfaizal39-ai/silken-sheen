@@ -11,6 +11,10 @@ import {
   CheckCircle2,
   BookOpen,
   Rocket,
+  Atom,
+  FlaskConical,
+  Microscope,
+  Orbit,
 } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import {
@@ -299,6 +303,7 @@ export function ChapterGrid({
   const chapters = getSubjectChapters(subjectId, scienceLang, form);
   const { progress } = useProgress();
   const accent = getSubjectAccent(subjectId);
+  const isScienceWorld = subjectId === "science" && form === "Form 1" && mode === "notes";
 
   return (
     <AcademyPanel>
@@ -318,9 +323,9 @@ export function ChapterGrid({
       </div>
 
       <AcademySectionHeader
-        eyebrow="Chapter Cards"
-        title={subj ? `${subj.name} Chapters` : "Chapters"}
-        description="Choose a chapter to open the learning content."
+        eyebrow={isScienceWorld ? "Science Discovery World · Research Directory" : "Chapter Cards"}
+        title={isScienceWorld ? "Choose a Research Laboratory" : subj ? `${subj.name} Chapters` : "Chapters"}
+        description={isScienceWorld ? "Each KSSM chapter is a laboratory. Enter one to begin your next scientific discovery." : "Choose a chapter to open the learning content."}
       />
 
       {chapters.length === 0 ? (
@@ -358,6 +363,7 @@ export function ChapterGrid({
             const isComplete = pct >= 100;
             const isStarted = pct > 0;
             const status = isComplete ? "Complete" : isStarted ? "In progress" : "Not started";
+            const discoveries = Math.max(1, notesCount || chapterContent?.notes?.quickRevision?.length || 6);
 
             return (
               <button
@@ -365,7 +371,7 @@ export function ChapterGrid({
                 key={c.key}
                 onClick={() => resourceAvailable && onSelect(c.key, resourceAvailable)}
                 disabled={!resourceAvailable}
-                className={`chapter-card group relative flex h-full min-h-[248px] flex-col overflow-hidden rounded-[1.75rem] border bg-[#0D1525]/80 p-0 text-left transition-all duration-300 animate-slide-up backdrop-blur-2xl ${
+                className={`chapter-card ${isScienceWorld ? "science-lab-card" : ""} group relative flex h-full min-h-[248px] flex-col overflow-hidden rounded-[1.75rem] border bg-[#0D1525]/80 p-0 text-left transition-all duration-300 animate-slide-up backdrop-blur-2xl ${
                   resourceAvailable
                     ? "border-white/[0.08] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                     : "border-white/[0.05] opacity-60"
@@ -398,6 +404,15 @@ export function ChapterGrid({
 
                 {/* Card content */}
                 <div className="flex flex-1 flex-col p-4">
+                  {isScienceWorld && (
+                    <div className="science-lab-visual" aria-hidden="true">
+                      <span className="science-orbit science-orbit-a" />
+                      <span className="science-orbit science-orbit-b" />
+                      <Atom className="science-lab-atom" />
+                      <FlaskConical className="science-lab-flask" />
+                      <Microscope className="science-lab-microscope" />
+                    </div>
+                  )}
                   {/* Header row */}
                   <div className="mb-3 flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -413,7 +428,7 @@ export function ChapterGrid({
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span className="text-[11px] font-bold uppercase tracking-wide text-white/35">
-                        {subj?.name}
+                        {isScienceWorld ? `Research Lab ${String(i + 1).padStart(2, "0")}` : subj?.name}
                       </span>
                     </div>
                     <div className="flex items-center gap-1.5">
@@ -458,6 +473,11 @@ export function ChapterGrid({
                           <Brain className="h-3 w-3" /> {quizCount}
                         </span>
                       )}
+                      {isScienceWorld && (
+                        <span className="chapter-chip">
+                          <Orbit className="h-3 w-3" /> {discoveries} discoveries
+                        </span>
+                      )}
                     </div>
                   )}
                   {!resourceAvailable && (
@@ -478,7 +498,7 @@ export function ChapterGrid({
                               : "rgba(255,255,255,0.3)",
                           }}
                         >
-                          {status}
+                          {isScienceWorld ? `Research ${status}` : status}
                         </span>
                         <span style={{ color: pct > 0 ? accent.color : "rgba(255,255,255,0.3)" }}>
                           {pct}%
@@ -528,6 +548,11 @@ export function ContentHeader({
     chapter?.label ??
     (chapterContent ? `${chapterContent.chapterKey}: ${chapterContent.title}` : chapterKey);
   const accent = getSubjectAccent(subjectId);
+  const isScienceWorld = subjectId === "science" && form === "Form 1";
+  const { progress } = useProgress();
+  const researchPct = chapterProgressPct(progress.chapterActivity[chapterActivityKey(subjectId, chapterKey)]);
+  const discoveryTotal = Math.max(1, chapterContent?.notes?.sections?.length || chapterContent?.notes?.quickRevision?.length || 6);
+  const conceptsMastered = Math.round((researchPct / 100) * discoveryTotal);
 
   return (
     <div className="mb-5 animate-fade-up">
@@ -581,6 +606,22 @@ export function ContentHeader({
             </h2>
           </div>
         </div>
+        {isScienceWorld && (
+          <div className="science-research-console" aria-label="Research progress">
+            {[
+              ["Research Progress", `${researchPct}%`],
+              ["Concepts Mastered", String(conceptsMastered)],
+              ["Discoveries Unlocked", `${conceptsMastered}/${discoveryTotal}`],
+              ["Experiments Completed", "0"],
+              ["Reading Progress", `${researchPct}%`],
+            ].map(([label, value]) => (
+              <div className="science-progress-metric" key={label}>
+                <span className="science-progress-ring" style={{ "--ring-progress": `${researchPct}%` } as React.CSSProperties}>{value}</span>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

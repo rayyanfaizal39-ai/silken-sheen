@@ -412,7 +412,7 @@ function NotesPage() {
   }
 
   return (
-    <AcademyPageShell subjectId={planetSubjectId}>
+    <AcademyPageShell subjectId={planetSubjectId} className={subject === "science" && form === "Form 1" ? "max-w-7xl science-discovery-world" : "max-w-7xl"}>
       {/* Reading progress bar */}
       {subject && activeChapterKey && (
         <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">
@@ -449,13 +449,13 @@ function NotesPage() {
       )}
 
       <AcademyHero
-        eyebrow="Smart revision"
-        title="Summary"
-        gradientTitle="Notes"
-        description="Quick, focused notes that get you ready in minutes."
+        eyebrow={subject === "science" && form === "Form 1" ? "KSSM Form 1 · Orbital Research Station" : "Smart revision"}
+        title={subject === "science" && form === "Form 1" ? "Science Discovery" : "Summary"}
+        gradientTitle={subject === "science" && form === "Form 1" ? "World" : "Notes"}
+        description={subject === "science" && form === "Form 1" ? "Enter a premium research station where every chapter is a laboratory and every lesson reveals a new discovery." : "Quick, focused notes that get you ready in minutes."}
         stats={[
           {
-            label: "Reading Progress",
+            label: subject === "science" && form === "Form 1" ? "Research Progress" : "Reading Progress",
             value: subject && activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
           },
           {
@@ -463,7 +463,7 @@ function NotesPage() {
             value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
               .length,
           },
-          { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
+          { label: subject === "science" && form === "Form 1" ? "Station Status" : "Study Mode", value: activeChapterKey ? (subject === "science" && form === "Form 1" ? "Lab Active" : "Chapter") : "Explore" },
         ]}
       />
       <div className="mb-7 flex justify-center">
