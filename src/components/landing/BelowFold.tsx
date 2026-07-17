@@ -191,7 +191,7 @@ const WHY = [
 
 function WhyAcademy() {
   return (
-    <section className="relative py-20 md:py-28">
+    <section id="features" className="relative scroll-mt-24 py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <SectionLabel>Why AcadeMY?</SectionLabel>
