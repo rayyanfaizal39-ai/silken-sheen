@@ -38,6 +38,9 @@ import type { Sej6Content } from "@/content/form1/sejarah/chapter-6/sej6-content
 import type { Sej7Content } from "@/content/form1/sejarah/chapter-7/sej7-content";
 import type { Sej8Content } from "@/content/form1/sejarah/chapter-8/sej8-content";
 import type { Sej2Ch1Content } from "@/content/form2/sejarah/chapter-1/sej2ch1-content";
+import type { Sej2Ch2Content } from "@/content/form2/sejarah/chapter-2/sej2ch2-content";
+import type { Sej2Ch3Content } from "@/content/form2/sejarah/chapter-3/sej2ch3-content";
+import type { Sej2Ch4Content } from "@/content/form2/sejarah/chapter-4/sej2ch4-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -136,6 +139,12 @@ export type ChapterContent = {
   sejChapter8Data?: Sej8Content;
   /** Sejarah Form 2 Bab 1 (Kerajaan Alam Melayu) chunked learning experience. BM-only. */
   sej2Chapter1Data?: Sej2Ch1Content;
+  /** Sejarah Form 2 Bab 2 (Sistem Pemerintahan dan Kegiatan Ekonomi) chunked learning experience. BM-only. */
+  sej2Chapter2Data?: Sej2Ch2Content;
+  /** Sejarah Form 2 Bab 3 (Sosiobudaya Masyarakat Kerajaan Alam Melayu) chunked learning experience. BM-only. */
+  sej2Chapter3Data?: Sej2Ch3Content;
+  /** Sejarah Form 2 Bab 4 (Agama, Kepercayaan dan Keunikan Warisan) chunked learning experience. BM-only. */
+  sej2Chapter4Data?: Sej2Ch4Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -184,6 +193,9 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.sejChapter7Data ||
       !!c?.sejChapter8Data ||
       !!c?.sej2Chapter1Data ||
+      !!c?.sej2Chapter2Data ||
+      !!c?.sej2Chapter3Data ||
+      !!c?.sej2Chapter4Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

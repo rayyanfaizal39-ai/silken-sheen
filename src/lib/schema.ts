@@ -13,7 +13,7 @@ export function organizationSchema() {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/favicon-512.png`,
+    logo: `${SITE_URL}/branding/academy-icon-512.png`,
     sameAs: [] as string[],
   };
 }

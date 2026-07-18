@@ -11,7 +11,6 @@ import {
   LogOut,
   Network,
   Radar,
-  Rocket,
   Sparkles,
   Trophy,
   Zap,
@@ -29,6 +28,7 @@ import { NextMissionCard } from "@/components/NextMissionCard";
 import { RankUpModal } from "@/components/progression/RankUpModal";
 import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
 import { SiteFooter } from "@/components/SiteFooter";
+import { AcademyLogo } from "@/components/AcademyLogo";
 
 const navItems = [
   {
@@ -240,7 +240,6 @@ export function AppShell({ children }: { children: ReactNode }) {
     return <>{children}</>;
   }
 
-
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">
       {/* Space background */}
@@ -253,14 +252,10 @@ export function AppShell({ children }: { children: ReactNode }) {
         {/* Brand */}
         <Link
           to="/"
-          className="flex items-center gap-3 rounded-2xl p-1 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+          aria-label="AcadeMY home"
+          className="rounded-2xl p-1 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] shadow-[0_0_28px_rgba(99,102,241,0.6)]">
-            <Rocket className="h-4.5 w-4.5" />
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight">
-            Acade<span className="text-nova-yellow">MY</span>
-          </span>
+          <AcademyLogo className="h-auto w-[168px]" />
         </Link>
 
         {/* Nav */}
@@ -313,13 +308,12 @@ export function AppShell({ children }: { children: ReactNode }) {
         <header className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] bg-[#050816]/86 px-4 py-3 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-2xl sm:px-6 lg:flex-nowrap lg:px-8">
           <div className="flex items-center gap-2">
             {/* Mobile brand */}
-            <Link to="/" className="flex items-center gap-2 lg:hidden">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] shadow-[0_0_20px_rgba(99,102,241,0.5)]">
-                <Rocket className="h-3.5 w-3.5" />
-              </span>
-              <span className="font-display text-base font-bold">
-                Acade<span className="text-nova-yellow">MY</span>
-              </span>
+            <Link
+              to="/"
+              aria-label="AcadeMY home"
+              className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] lg:hidden"
+            >
+              <AcademyLogo variant="icon" className="h-8 w-8" />
             </Link>
           </div>
 

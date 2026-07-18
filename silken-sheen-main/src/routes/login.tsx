@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
+import { AcademyLogo } from "@/components/AcademyLogo";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -8,7 +8,10 @@ export const Route = createFileRoute("/login")({
       { title: "Sign In — AcadeMY" },
       { name: "description", content: "Sign in or sign up to track your KSSM study progress." },
       { property: "og:title", content: "Sign In — AcadeMY" },
-      { property: "og:description", content: "Create a free AcadeMY account to save your XP and streaks." },
+      {
+        property: "og:description",
+        content: "Create a free AcadeMY account to save your XP and streaks.",
+      },
     ],
   }),
   component: LoginPage,
@@ -24,27 +27,25 @@ function LoginPage() {
         <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-primary/30 blur-3xl rounded-full" />
 
         <div className="relative">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
-            <span className="font-display text-xl font-bold"><span className="text-white">Acade</span><span className="text-nova-yellow" style={{ textShadow: "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)" }}>MY</span></span>
-          </div>
+          <AcademyLogo className="mb-2 h-auto w-[156px]" />
 
           <h1 className="font-display text-3xl font-bold mt-4">
             {mode === "signin" ? "Welcome back" : "Create your account"}
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            {mode === "signin" ? "Sign in to keep your streak alive." : "Free forever. Built for KSSM students."}
+            {mode === "signin"
+              ? "Sign in to keep your streak alive."
+              : "Free forever. Built for KSSM students."}
           </p>
 
           <form
-            onSubmit={(e) => { e.preventDefault(); alert("Auth coming soon — enable Lovable Cloud to wire it up."); }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Auth coming soon — enable Lovable Cloud to wire it up.");
+            }}
             className="mt-6 space-y-4"
           >
-            {mode === "signup" && (
-              <Field label="Full name" type="text" placeholder="Your name" />
-            )}
+            {mode === "signup" && <Field label="Full name" type="text" placeholder="Your name" />}
             <Field label="Email" type="email" placeholder="you@example.com" />
             <Field label="Password" type="password" placeholder="••••••••" />
 
@@ -66,7 +67,10 @@ function LoginPage() {
             </button>
           </p>
 
-          <Link to="/" className="block text-center text-xs text-muted-foreground mt-4 hover:text-foreground">
+          <Link
+            to="/"
+            className="block text-center text-xs text-muted-foreground mt-4 hover:text-foreground"
+          >
             ← Back to home
           </Link>
         </div>

@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen, Flame, Sparkles } from "lucide-react";
 import { AcademyButton } from "@/components/AcademyPage";
+import { AcademyLogo } from "@/components/AcademyLogo";
 
 export function CtaBand() {
   return (
@@ -14,7 +15,8 @@ export function CtaBand() {
           Ready to unlock your next <span className="study-gradient-text">study streak?</span>
         </h2>
         <p className="relative mx-auto mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-          Choose a chapter, collect XP, and let AcadeMY make revision feel lighter, faster, and more alive.
+          Choose a chapter, collect XP, and let AcadeMY make revision feel lighter, faster, and more
+          alive.
         </p>
         <div className="relative mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <AcademyButton to="/login" variant="hero" icon={ArrowRight}>
@@ -37,7 +39,10 @@ export function Footer() {
   return (
     <footer className="mt-12 border-t border-white/5 px-4 py-10 sm:px-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
-        <p>© {new Date().getFullYear()} AcadeMY. Made for Malaysian students.</p>
+        <div className="flex flex-col items-center gap-3 sm:items-start">
+          <AcademyLogo className="h-auto w-[150px]" loading="lazy" />
+          <p>© {new Date().getFullYear()} AcadeMY. Made for Malaysian students.</p>
+        </div>
         <p className="italic">"Belajar Lebih Bijak, Bersinar Lebih Terang."</p>
       </div>
     </footer>

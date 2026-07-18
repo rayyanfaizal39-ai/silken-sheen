@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 3: Sosiobudaya — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  img.gen{max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;}
+
+  .lang-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .lang-card{background:var(--bg-panel); border-radius:14px; padding:16px;}
+  .lang-card h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 6px;}
+  .lang-card .chip-row{display:flex; flex-wrap:wrap; gap:5px; margin-bottom:6px;}
+  .lang-card .chip{background:var(--bg-card); border-radius:6px; padding:3px 8px; font-size:9px;}
+  .lang-card p{font-size:9.5px; color:var(--muted-dim); margin:0; line-height:1.4;}
+
+  .inscription-box{background:var(--bg-panel); border-radius:16px; padding:24px; box-shadow:0 0 24px rgba(251,191,90,0.15);}
+  .inscription-box .ctx{font-size:11px; color:var(--amber); font-weight:700; margin-bottom:10px;}
+  .inscription-box .txt{font-size:13px; color:var(--text); font-style:italic; line-height:1.7;}
+
+  .arch-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px;}
+  .arch-card{background:var(--bg-panel); border-radius:14px; padding:16px; box-shadow:0 0 14px rgba(139,107,255,0.1);}
+  .arch-card h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 8px;}
+  .arch-card ul{font-size:10px; color:var(--muted); margin:0; padding-left:16px; line-height:1.6;}
+
+  .hierarchy{display:flex; flex-direction:column; align-items:center; gap:0;}
+  .h-tier{width:100%; max-width:500px; text-align:center; border-radius:12px; padding:14px; margin-bottom:6px;}
+  .h-tier h5{font-family:var(--font-display); font-size:13px; margin:0 0 4px;}
+  .h-tier p{font-size:10px; color:var(--muted); margin:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 3: Sosiobudaya Masyarakat Kerajaan Alam Melayu</h1>
+  <p class="lead">Bahasa, tulisan, karya sastera dan seni bina — bukti kebijaksanaan tamadun yang bertahan hingga kini.</p>
+
+  <div class="card">
+    <h2>✍️ Bahasa dan Tulisan Mengikut Kerajaan</h2>
+    <div class="lang-grid">
+      <div class="lang-card"><h5>Funan</h5><div class="chip-row"><div class="chip">Sanskrit</div><div class="chip">Tulisan Hu</div></div><p>Kalendar Saka dari India</p></div>
+      <div class="lang-card"><h5>Champa</h5><div class="chip-row"><div class="chip">Melayu Champa</div><div class="chip">Palava</div><div class="chip">Jawi</div></div><p>Islam tersebar abad ke-8</p></div>
+      <div class="lang-card"><h5>Srivijaya</h5><div class="chip-row"><div class="chip">Melayu</div><div class="chip">Palava</div></div><p>Kedukan Bukit, Talang Tuwo</p></div>
+      <div class="lang-card"><h5>Angkor</h5><div class="chip-row"><div class="chip">Sanskrit</div><div class="chip">Khmer</div></div><p>Inskripsi dinding candi</p></div>
+      <div class="lang-card"><h5>Majapahit</h5><div class="chip-row"><div class="chip">Jawa Kuno</div><div class="chip">Kawi</div><div class="chip">Pegon</div></div><p>Batu bersurat Trowulan 1358</p></div>
+      <div class="lang-card"><h5>Kedah Tua</h5><div class="chip-row"><div class="chip">Sanskrit</div><div class="chip">Palava</div></div><p>Sungai Mas, Cherok Tok Kun</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📜 Batu Bersurat Talang Tuwo</h2>
+    <p class="sub">Inskripsi 1,300 tahun yang masih boleh dibaca hari ini.</p>
+    <div class="inscription-box">
+      <div class="ctx">Sumatera · Abad Ketujuh · Tahun Saka 606</div>
+      <div class="txt">"Pada tahun Saka 606, taman yang dinamakan Sriksetra dibuka di bawah pimpinan Baginda Sri Jayanasa. Niat baginda, semoga yang ditanam di sini — seperti pokok kelapa, pinang, nipah, sagu dan pelbagai pokok buah-buahan — dapat dimakan hasilnya."</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏛️ Seni Bina Kerajaan Alam Melayu</h2>
+    <img class="gen" src="form 1 content images/angkor-wat-borobudur.png" alt="Angkor Wat dan Candi Borobudur">
+    <div class="arch-grid">
+      <div class="arch-card"><h5>Funan</h5><ul><li>Kapal memuatkan 700 orang, 1,000 tan kargo</li><li>Candi Go Cay Thi</li></ul></div>
+      <div class="arch-card"><h5>Angkor</h5><ul><li>Angkor Wat: 208 hektar, menara 65m</li><li>Baray: 2×8km, 30 juta m³ air</li></ul></div>
+      <div class="arch-card"><h5>Srivijaya</h5><ul><li>Candi Muara Takus, Muara Jambi</li><li>Palembang: pusat kapal Kun-lun-po</li></ul></div>
+      <div class="arch-card"><h5>Majapahit</h5><ul><li>Candi Tikus, Candi Cetho</li><li>Gapura Wringin Lawang</li></ul></div>
+      <div class="arch-card"><h5>Kedah Tua</h5><ul><li>Candi Buddha: Bukit Choras, Bukit Meriam</li><li>Candi Hindu: Bukit Batu Pahat</li></ul></div>
+      <div class="arch-card"><h5>Gangga Nagara</h5><ul><li>Patung Buddha gangsa 18m (Tanjung Rambutan)</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏯 Struktur Sosial — Empat Lapisan</h2>
+    <div class="hierarchy">
+      <div class="h-tier" style="background:linear-gradient(135deg,#8b6bff,#4fb0ff); box-shadow:0 0 20px rgba(139,107,255,0.4);"><h5>Golongan Diraja</h5><p>Raja, permaisuri, putera/puteri, kerabat</p></div>
+      <div class="h-tier" style="background:rgba(139,107,255,0.2); max-width:440px;"><h5 style="color:#8b6bff;">Bangsawan</h5><p>Pembesar, ilmuwan, golongan agama, pujangga</p></div>
+      <div class="h-tier" style="background:rgba(74,222,128,0.15); max-width:380px;"><h5 style="color:#4ade80;">Rakyat Merdeka</h5><p>Petani, penternak, pedagang, nelayan, artisan</p></div>
+      <div class="h-tier" style="background:rgba(248,113,113,0.15); max-width:320px;"><h5 style="color:#f87171;">Hamba</h5><p>Tawanan perang, hamba berhutang</p></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

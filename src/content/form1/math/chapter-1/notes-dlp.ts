@@ -57,6 +57,17 @@ export const mathF1C1NotesDLP: StructuredNotes = {
           numberLine: { min: -5, max: 5, highlight: [0] },
         },
         {
+          title: "Number Line Examples",
+          numberLine: {
+            examples: [
+              { value: "−3", meaning: "3 less than 0" },
+              { value: "3", meaning: "3 more than 0" },
+              { value: "−1", meaning: "1 less than 0" },
+              { value: "1", meaning: "1 more than 0" },
+            ],
+          },
+        },
+        {
           title: "Comparing and Ordering Integers",
           table: {
             headers: ["Order", "Meaning", "Example"],
@@ -91,6 +102,38 @@ export const mathF1C1NotesDLP: StructuredNotes = {
               ["Subtract a positive integer", "Move left"],
               ["Subtract a negative integer", "Move right"],
             ],
+          },
+        },
+        {
+          title: "Worked Example: 8 + (+3)",
+          workedExample: {
+            problem: "8 + (+3)",
+            steps: ["Move 3 units to the right from 8"],
+            answer: "11",
+          },
+        },
+        {
+          title: "Worked Example: 5 + (−2)",
+          workedExample: {
+            problem: "5 + (−2)",
+            steps: ["Move 2 units to the left from 5"],
+            answer: "3",
+          },
+        },
+        {
+          title: "Worked Example: 2 − (+4)",
+          workedExample: {
+            problem: "2 − (+4)",
+            steps: ["Move 4 units to the left from 2"],
+            answer: "−2",
+          },
+        },
+        {
+          title: "Worked Example: −1 − (−4)",
+          workedExample: {
+            problem: "−1 − (−4)",
+            steps: ["Equivalent to −1 + 4", "Move 4 units to the right from −1"],
+            answer: "3",
           },
         },
         {
@@ -157,6 +200,31 @@ export const mathF1C1NotesDLP: StructuredNotes = {
             answer: "1/2 ÷ 1/4 = 2",
           },
         },
+        {
+          title: "Problem Solving",
+          problemSolving: {
+            scenario:
+              "A mathematics quiz has 20 questions. A score of 2 marks is awarded for every correct answer and −½ mark for every incorrect answer. Mei Ling answered all questions and her score for incorrect answers was −4. What was her total score?",
+            understanding: [
+              "A correct answer scores 2 marks",
+              "An incorrect answer scores −½ mark",
+              "Score for incorrect answers = −4",
+              "Find the total score",
+            ],
+            devisingPlan: [
+              "+2 represents the score for a correct answer",
+              "−½ represents the score for an incorrect answer",
+              "Find the number of incorrect answers using division",
+              "Find total score using multiplication and addition",
+            ],
+            implementing: [
+              "Number of incorrect answers = −4 ÷ (−½) = 8",
+              "Total score = (20 − 8) × 2 + (−4) = 12 × 2 − 4 = 20",
+            ],
+            reflection:
+              "Checking: 20 questions, 8 incorrect (score −4), 12 correct (score 24) → 24 − 4 = 20 ✓",
+          },
+        },
       ],
     },
     {
@@ -182,6 +250,31 @@ export const mathF1C1NotesDLP: StructuredNotes = {
         {
           title: "Order of Operations for Decimals",
           bulletPoints: ["1. Multiply / Divide first", "2. Add / Subtract second"],
+        },
+        {
+          title: "Problem Solving",
+          problemSolving: {
+            scenario:
+              "The price of a company's stock was RM2.05. The price hiked by RM0.32, then dropped RM0.28 every hour for the next three hours. Calculate the final stock price.",
+            understanding: [
+              "Starting price = RM2.05",
+              "Price hiked by RM0.32",
+              "Price dropped RM0.28 every hour for 3 hours",
+              "Find the final price",
+            ],
+            devisingPlan: [
+              "Increase in price is written as +0.32",
+              "Decrease in price is written as −0.28",
+              "Use multiplication and addition",
+            ],
+            implementing: [
+              "Final price = 2.05 + 0.32 + 3 × (−0.28)",
+              "= 2.37 + (−0.84)",
+              "= 2.37 − 0.84 = 1.53",
+            ],
+            reflection:
+              "RM2.05 + RM0.32 − 3 × RM0.28 = RM2.37 − RM0.84 = RM1.53 — the final stock price was RM1.53",
+          },
         },
       ],
     },
