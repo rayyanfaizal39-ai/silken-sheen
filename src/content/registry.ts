@@ -82,9 +82,9 @@ import { sej2Ch4Content } from "@/content/form2/sejarah/chapter-4/sej2ch4-conten
 import { sej2Ch5Content } from "@/content/form2/sejarah/chapter-5/sej2ch5-content";
 import { sej2Ch6Content } from "@/content/form2/sejarah/chapter-6/sej2ch6-content";
 import { sej2Ch7Content } from "@/content/form2/sejarah/chapter-7/sej2ch7-content";
-import { sejarahF2C8Notes } from "@/content/form2/sejarah/chapter-8/notes";
-import { sejarahF2C9Notes } from "@/content/form2/sejarah/chapter-9/notes";
-import { sejarahF2C10Notes } from "@/content/form2/sejarah/chapter-10/notes";
+import { sej2Ch8Content } from "@/content/form2/sejarah/chapter-8/sej2ch8-content";
+import { sej2Ch9Content } from "@/content/form2/sejarah/chapter-9/sej2ch9-content";
+import { sej2Ch10Content } from "@/content/form2/sejarah/chapter-10/sej2ch10-content";
 import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
 import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
 import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
@@ -833,7 +833,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 8",
     title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
-    notes: sejarahF2C8Notes,
+    sej2Chapter8Data: sej2Ch8Content,
     flashcards: sejarahF2FlashcardsFor(8),
     quiz: sejarahF2QuizzesFor(8),
   },
@@ -843,7 +843,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 9",
     title: "Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
-    notes: sejarahF2C9Notes,
+    sej2Chapter9Data: sej2Ch9Content,
     flashcards: sejarahF2FlashcardsFor(9),
     quiz: sejarahF2QuizzesFor(9),
   },
@@ -853,7 +853,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 10",
     title: "Sarawak dan Sabah",
-    notes: sejarahF2C10Notes,
+    sej2Chapter10Data: sej2Ch10Content,
     flashcards: sejarahF2FlashcardsFor(10),
     quiz: sejarahF2QuizzesFor(10),
   },
