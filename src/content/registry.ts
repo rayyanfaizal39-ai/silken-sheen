@@ -79,9 +79,9 @@ import { sej2Ch1Content } from "@/content/form2/sejarah/chapter-1/sej2ch1-conten
 import { sej2Ch2Content } from "@/content/form2/sejarah/chapter-2/sej2ch2-content";
 import { sej2Ch3Content } from "@/content/form2/sejarah/chapter-3/sej2ch3-content";
 import { sej2Ch4Content } from "@/content/form2/sejarah/chapter-4/sej2ch4-content";
-import { sejarahF2C5Notes } from "@/content/form2/sejarah/chapter-5/notes";
-import { sejarahF2C6Notes } from "@/content/form2/sejarah/chapter-6/notes";
-import { sejarahF2C7Notes } from "@/content/form2/sejarah/chapter-7/notes";
+import { sej2Ch5Content } from "@/content/form2/sejarah/chapter-5/sej2ch5-content";
+import { sej2Ch6Content } from "@/content/form2/sejarah/chapter-6/sej2ch6-content";
+import { sej2Ch7Content } from "@/content/form2/sejarah/chapter-7/sej2ch7-content";
 import { sejarahF2C8Notes } from "@/content/form2/sejarah/chapter-8/notes";
 import { sejarahF2C9Notes } from "@/content/form2/sejarah/chapter-9/notes";
 import { sejarahF2C10Notes } from "@/content/form2/sejarah/chapter-10/notes";
@@ -801,7 +801,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 5",
     title: "Kesultanan Melayu Melaka",
-    notes: sejarahF2C5Notes,
+    sej2Chapter5Data: sej2Ch5Content,
     mindMap: { data: sejarahF2C5MindMap, title: "Kesultanan Melayu Melaka" },
     flashcards: sejarahF2FlashcardsFor(5),
     quiz: sejarahF2QuizzesFor(5),
@@ -812,7 +812,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 6",
     title: "Kesultanan Johor Riau",
-    notes: sejarahF2C6Notes,
+    sej2Chapter6Data: sej2Ch6Content,
     mindMap: { data: sejarahF2C6MindMap, title: "Kesultanan Johor Riau" },
     flashcards: sejarahF2FlashcardsFor(6),
     quiz: sejarahF2QuizzesFor(6),
@@ -823,7 +823,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 7",
     title: "Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor",
-    notes: sejarahF2C7Notes,
+    sej2Chapter7Data: sej2Ch7Content,
     flashcards: sejarahF2FlashcardsFor(7),
     quiz: sejarahF2QuizzesFor(7),
   },

@@ -41,6 +41,9 @@ import type { Sej2Ch1Content } from "@/content/form2/sejarah/chapter-1/sej2ch1-c
 import type { Sej2Ch2Content } from "@/content/form2/sejarah/chapter-2/sej2ch2-content";
 import type { Sej2Ch3Content } from "@/content/form2/sejarah/chapter-3/sej2ch3-content";
 import type { Sej2Ch4Content } from "@/content/form2/sejarah/chapter-4/sej2ch4-content";
+import type { Sej2Ch5Content } from "@/content/form2/sejarah/chapter-5/sej2ch5-content";
+import type { Sej2Ch6Content } from "@/content/form2/sejarah/chapter-6/sej2ch6-content";
+import type { Sej2Ch7Content } from "@/content/form2/sejarah/chapter-7/sej2ch7-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -145,6 +148,12 @@ export type ChapterContent = {
   sej2Chapter3Data?: Sej2Ch3Content;
   /** Sejarah Form 2 Bab 4 (Agama, Kepercayaan dan Keunikan Warisan) chunked learning experience. BM-only. */
   sej2Chapter4Data?: Sej2Ch4Content;
+  /** Sejarah Form 2 Bab 5 (Kesultanan Melayu Melaka) chunked learning experience. BM-only. */
+  sej2Chapter5Data?: Sej2Ch5Content;
+  /** Sejarah Form 2 Bab 6 (Kesultanan Johor Riau) chunked learning experience. BM-only. */
+  sej2Chapter6Data?: Sej2Ch6Content;
+  /** Sejarah Form 2 Bab 7 (Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor) chunked learning experience. BM-only. */
+  sej2Chapter7Data?: Sej2Ch7Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -196,6 +205,9 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.sej2Chapter2Data ||
       !!c?.sej2Chapter3Data ||
       !!c?.sej2Chapter4Data ||
+      !!c?.sej2Chapter5Data ||
+      !!c?.sej2Chapter6Data ||
+      !!c?.sej2Chapter7Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

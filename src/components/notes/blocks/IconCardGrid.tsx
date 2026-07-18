@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 export interface IconCardGridItem {
-  icon?: string;
+  icon?: ReactNode;
   label: string;
   detail?: string | string[];
 }
@@ -11,7 +13,9 @@ export function IconCardGrid({ items }: { items: IconCardGridItem[] }) {
         const details = Array.isArray(item.detail) ? item.detail : item.detail ? [item.detail] : [];
         return (
           <div key={`${i}-${item.label}`} className="rounded-2xl border border-border bg-secondary/40 p-4">
-            {item.icon && <span className="mb-2 block text-xl">{item.icon}</span>}
+            {item.icon && (
+              <span className="mb-2 flex text-xl [&_svg]:h-[22px] [&_svg]:w-[22px]">{item.icon}</span>
+            )}
             <b className="font-display block text-[13.5px] text-foreground">{item.label}</b>
             {details.map((d, j) => (
               <p key={j} className="mt-1 text-xs leading-snug text-muted-foreground">
