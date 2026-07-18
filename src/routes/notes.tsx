@@ -24,8 +24,7 @@ import {
   hasFormResourceContent,
   hasResourceContent,
 } from "@/content/registry";
-import { getChapterFeatures } from "@/content/types";
-import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
+import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
@@ -55,6 +54,9 @@ import { Sej2Chapter1NotesBlock } from "@/components/notes/Sej2Chapter1NotesBloc
 import { Sej2Chapter2NotesBlock } from "@/components/notes/Sej2Chapter2NotesBlock";
 import { Sej2Chapter3NotesBlock } from "@/components/notes/Sej2Chapter3NotesBlock";
 import { Sej2Chapter4NotesBlock } from "@/components/notes/Sej2Chapter4NotesBlock";
+import { Sej2Chapter5NotesBlock } from "@/components/notes/Sej2Chapter5NotesBlock";
+import { Sej2Chapter6NotesBlock } from "@/components/notes/Sej2Chapter6NotesBlock";
+import { Sej2Chapter7NotesBlock } from "@/components/notes/Sej2Chapter7NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -75,6 +77,7 @@ import {
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
+import { NotesLanding } from "@/components/notes/NotesLanding";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { BMForm2WorldPage } from "@/components/BMForm2WorldPage";
 import { BMForm3WorldPage } from "@/components/BMForm3WorldPage";
@@ -247,7 +250,6 @@ function NotesPage() {
     subject && activeChapterKey
       ? chapterProgressPct(progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)])
       : 0;
-  const features = getChapterFeatures(activeChapter);
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
 
@@ -295,17 +297,6 @@ function NotesPage() {
     !!activeChapterKey &&
     (hasResourceContent(subject, form, activeChapterKey, "notes", activeScienceLang) ||
       legacyNoteSections.length > 0);
-  const visibleFeatures = {
-    ...features,
-    notes: features.notes || legacyNoteSections.length > 0,
-    mindMap: false,
-  };
-
-  function jumpTo(key: string) {
-    const el = document.getElementById(key);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -314,6 +305,18 @@ function NotesPage() {
     const el = document.getElementById("chapter-overview");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     else scrollToTop();
+  }
+
+  function selectChapter(key: string | null) {
+    setChapter(key);
+    void navigate({
+      search: (previous: Record<string, unknown>) => ({
+        ...previous,
+        subject: subject ?? undefined,
+        form: Number(form.replace("Form ", "")),
+        chapter: key ?? undefined,
+      }),
+    });
   }
 
   // ── BM has its own hub page ───────────────────────────────────────────────
@@ -424,7 +427,7 @@ function NotesPage() {
         scienceLang={scienceLang ?? undefined}
         isBilingualSubject={isBilingualSubject}
         onSelectChapter={(key) => {
-          setChapter(key);
+          selectChapter(key);
           if (setLastVisited) {
             const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
               (c) => c.key === key,
@@ -487,93 +490,65 @@ function NotesPage() {
         </div>
       )}
 
-      <AcademyHero
-        eyebrow="Smart revision"
-        title="Summary"
-        gradientTitle="Notes"
-        description="Quick, focused notes that get you ready in minutes."
-        stats={[
-          {
-            label: "Reading Progress",
-            value: subject && activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
-          },
-          {
-            label: "Chapters Completed",
-            value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
-              .length,
-          },
-          { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
-        ]}
-      />
-      <div className="mb-7 flex justify-center">
-        <DailyQuote />
-      </div>
+      {/* On the landing view (no subject selected) we render the redesigned
+          Notes hub instead of the generic AcademyHero + inline preview cards.
+          The AcademyHero + DailyQuote stack still shows when a subject is
+          picked so downstream chapter views keep their existing chrome. */}
+      {!subject && (
+        <NotesLanding
+          progress={progress}
+          onSelectSubject={(id) => {
+            setChapter(null);
+            void navigate({
+              search: (previous: Record<string, unknown>) => ({
+                ...previous,
+                subject: id,
+                form: undefined,
+                chapter: undefined,
+              }),
+            });
+          }}
+          onContinueReading={(subjectId, chapterKey, form) => {
+            setChapter(chapterKey);
+            void navigate({
+              search: (previous: Record<string, unknown>) => ({
+                ...previous,
+                subject: subjectId,
+                form: Number(form.replace("Form ", "")),
+                chapter: chapterKey,
+              }),
+            });
+          }}
+        />
+      )}
 
-      {!subject ? (
-        <div className="space-y-6">
-          <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                Continue Reading
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
-              <p className="mt-1 text-sm text-[#94A3B8]">Bab 7: Udara</p>
-              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6]" />
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  void navigate({
-                    search: (previous: Record<string, unknown>) => ({
-                      ...previous,
-                      subject: "science",
-                    }),
-                  });
-                  setScienceLang("bm");
-                  setChapter("Chapter 7");
-                }}
-                className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
-              >
-                Continue Reading
-              </button>
-            </div>
-            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                Notes Preview
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold">
-                Key points, definitions, exam tips
-              </h2>
-              <div className="mt-5 grid gap-3">
-                {["Quick revision bullets", "Highlighted definitions", "Exam-ready facts"].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-sm font-semibold"
-                    >
-                      {item}
-                    </div>
-                  ),
-                )}
-              </div>
-            </div>
-          </div>
-          <SubjectGrid
-            onSelect={(id) => {
-              setChapter(null);
-              void navigate({
-            search: (previous: Record<string, unknown>) => ({
-              ...previous,
-              subject: id,
-              form: undefined,
-              chapter: undefined,
-            }),
-          });
-        }}
+      {subject && (
+        <>
+          <AcademyHero
+            eyebrow="Smart revision"
+            title="Summary"
+            gradientTitle="Notes"
+            description="Quick, focused notes that get you ready in minutes."
+            stats={[
+              {
+                label: "Reading Progress",
+                value: activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
+              },
+              {
+                label: "Chapters Completed",
+                value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
+                  .length,
+              },
+              { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
+            ]}
           />
-        </div>
-      ) : needsScienceLang ? (
+          <div className="mb-7 flex justify-center">
+            <DailyQuote />
+          </div>
+        </>
+      )}
+
+      {!subject ? null : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
           subjectName={subject === "math" ? "Mathematics" : "Science"}
@@ -621,7 +596,7 @@ function NotesPage() {
             scienceLang={activeScienceLang}
             form={form}
             onSelect={(key) => {
-              setChapter(key);
+              selectChapter(key);
               if (subject && setLastVisited) {
                 const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
                   (c) => c.key === key,
@@ -654,7 +629,7 @@ function NotesPage() {
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           form={form}
           mode="notes"
-          onBack={() => setChapter(null)}
+          onBack={() => selectChapter(null)}
         />
       ) : hasSubtopics ? (
         <SubtopicView
@@ -662,9 +637,11 @@ function NotesPage() {
           chapterKey={activeChapterKey}
           subtopics={subtopics}
           chapterContent={activeChapter}
+          form={form}
+          scienceLang={activeScienceLang}
           isRead={isRead}
           onMarkRead={() => markChapter(subject, activeChapterKey, "read")}
-          onBack={() => setChapter(null)}
+          onBack={() => selectChapter(null)}
         />
       ) : (
         <>
@@ -674,13 +651,19 @@ function NotesPage() {
               chapterKey={activeChapterKey}
               scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
               form={form}
-              onBack={() => setChapter(null)}
+              onBack={() => selectChapter(null)}
             />
 
             {subject && chapterArtwork && (
               <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} />
             )}
-            <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
+            <ChapterContentTabs
+              subjectId={subject}
+              form={form}
+              chapterKey={activeChapterKey}
+              scienceLang={activeScienceLang}
+              currentContentType="notes"
+            />
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
@@ -810,6 +793,36 @@ function NotesPage() {
             <Sej2Chapter4NotesBlock
               id="notes"
               content={activeChapter.sej2Chapter4Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej2Chapter5Data ? (
+            <Sej2Chapter5NotesBlock
+              id="notes"
+              content={activeChapter.sej2Chapter5Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej2Chapter6Data ? (
+            <Sej2Chapter6NotesBlock
+              id="notes"
+              content={activeChapter.sej2Chapter6Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej2Chapter7Data ? (
+            <Sej2Chapter7NotesBlock
+              id="notes"
+              content={activeChapter.sej2Chapter7Data}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
               isRead={isRead}
               onMarkRead={() =>
@@ -1095,6 +1108,9 @@ function NotesPage() {
             !activeChapter?.sej2Chapter2Data &&
             !activeChapter?.sej2Chapter3Data &&
             !activeChapter?.sej2Chapter4Data &&
+            !activeChapter?.sej2Chapter5Data &&
+            !activeChapter?.sej2Chapter6Data &&
+            !activeChapter?.sej2Chapter7Data &&
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
             !activeChapter?.chapter2Data &&
@@ -1215,6 +1231,8 @@ function SubtopicView({
   chapterKey,
   subtopics,
   chapterContent,
+  form,
+  scienceLang,
   isRead,
   onMarkRead,
   onBack,
@@ -1223,6 +1241,8 @@ function SubtopicView({
   chapterKey: string;
   subtopics: Subtopic[];
   chapterContent: ReturnType<typeof getChapter>;
+  form: Form;
+  scienceLang?: "bm" | "dlp";
   isRead: boolean;
   onMarkRead: () => void;
   onBack: () => void;
@@ -1230,7 +1250,6 @@ function SubtopicView({
   const subj = subjects.find((s) => s.id === subjectId);
   const chapterLabel =
     getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
-  const features = { ...getChapterFeatures(chapterContent), mindMap: false };
   const subtopicSections = useMemo<NotesAccordionSection[]>(
     () =>
       (Array.isArray(subtopics) ? subtopics : []).map((subtopic) => ({
@@ -1251,11 +1270,6 @@ function SubtopicView({
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  function jumpTo(key: string) {
-    const el = document.getElementById(key);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1303,7 +1317,13 @@ function SubtopicView({
         </div>
 
         {subj && <SubjectFeatureArtwork subjectId={subjectId} src={getSubjectArtwork(subjectId)} />}
-        <ChapterFeatureBar features={features} onJump={jumpTo} />
+        <ChapterContentTabs
+          subjectId={subjectId}
+          form={form}
+          chapterKey={chapterKey}
+          scienceLang={scienceLang}
+          currentContentType="notes"
+        />
 
       </div>
 

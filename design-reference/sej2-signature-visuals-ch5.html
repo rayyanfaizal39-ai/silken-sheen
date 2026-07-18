@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 5: Kesultanan Melayu Melaka — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  .factor-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;}
+  .factor-tile{background:var(--bg-panel); border-radius:14px; padding:16px; box-shadow:0 0 14px rgba(79,176,255,0.1);}
+  .factor-tile .ic{font-size:26px;}
+  .factor-tile h5{font-family:var(--font-display); font-size:12.5px; margin:8px 0 4px;}
+  .factor-tile p{font-size:10.5px; color:var(--muted); margin:0; line-height:1.4;}
+
+  .gov-hierarchy{display:flex; flex-direction:column; align-items:center;}
+  .gov-top{background:linear-gradient(135deg,#8b6bff,#4fb0ff); border-radius:14px; padding:14px 30px; font-weight:700; font-size:14px; box-shadow:0 0 20px rgba(139,107,255,0.4); margin-bottom:8px;}
+  .gov-line{width:2px; height:20px; background:var(--line);}
+  .gov-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; width:100%; margin-top:8px;}
+  .official-card{background:var(--bg-panel); border-radius:14px; padding:16px;}
+  .official-card h5{font-family:var(--font-display); font-size:13px; margin:0 0 8px;}
+  .official-card ul{font-size:10px; color:var(--muted); margin:0; padding-left:16px; line-height:1.6;}
+
+  .legal-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .legal-card{flex:1; min-width:260px; background:var(--bg-panel); border-radius:16px; padding:18px;}
+  .legal-card h4{font-family:var(--font-display); font-size:14px; margin:0 0 4px;}
+  .legal-card .meta{font-size:10.5px; color:var(--amber); font-weight:700; margin-bottom:8px;}
+  .legal-card p{font-size:11px; color:var(--muted); line-height:1.5; margin:0;}
+
+  .empire-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;}
+  .empire-tile{background:var(--bg-panel); border-radius:14px; padding:16px; text-align:center;}
+  .empire-tile h5{font-family:var(--font-display); font-size:13px; margin:0 0 8px; color:var(--green);}
+  .empire-tile p{font-size:10px; color:var(--muted); margin:0; line-height:1.4;}
+
+  .fall-timeline{display:flex; gap:0; padding:16px 0; flex-wrap:wrap;}
+  .fall-era{flex:1; min-width:130px; text-align:center; position:relative;}
+  .fall-dot{width:14px; height:14px; border-radius:50%; margin:0 auto 6px; background:var(--red); box-shadow:0 0 8px rgba(248,113,113,0.6);}
+  .fall-era h6{font-family:var(--font-display); font-size:11px; margin:0 0 2px;}
+  .fall-era .dtl{font-size:9px; color:var(--muted-dim); line-height:1.3;}
+
+  .weakness-row{display:flex; gap:20px; flex-wrap:wrap;}
+  .weakness-col{flex:1; min-width:250px; background:var(--bg-panel); border-radius:14px; padding:16px;}
+  .weakness-col h5{font-family:var(--font-display); font-size:13px; margin:0 0 8px; color:var(--red);}
+  .weakness-col ul{font-size:10.5px; color:var(--muted); margin:0; padding-left:16px; line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 5: Kesultanan Melayu Melaka</h1>
+  <p class="lead">Daripada perkampungan nelayan kepada empayar 84 bahasa — dan kejatuhannya dalam tiga serangan.</p>
+
+  <div class="card">
+    <h2>⚓ Empat Faktor Strategik Pengasasan</h2>
+    <p class="sub">Kebijaksanaan Parameswara memilih lokasi di muara Sungai Bertam.</p>
+    <div class="factor-grid">
+      <div class="factor-tile"><div class="ic">🚢</div><h5>Laluan Perdagangan</h5><p>Mengawal laluan kapal dagang timur-barat</p></div>
+      <div class="factor-tile"><div class="ic">⛰️</div><h5>Bentuk Muka Bumi</h5><p>Berbukit-bukau — benteng pertahanan &amp; panduan kapal</p></div>
+      <div class="factor-tile"><div class="ic">🌳</div><h5>Benteng Semula Jadi</h5><p>Bakau &amp; api-api — pelindung sukar ditembusi</p></div>
+      <div class="factor-tile"><div class="ic">🌬️</div><h5>Terlindung Monsun</h5><p>Kapal dagang berlabuh dengan selamat</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>👑 Sistem Pembesar Empat Lipatan</h2>
+    <p class="sub">Empat pembesar utama peringkat pusat, setiap satu dengan tugas tersendiri.</p>
+    <div class="gov-hierarchy">
+      <div class="gov-top">Sultan</div>
+      <div class="gov-line"></div>
+      <div class="gov-row">
+        <div class="official-card"><h5 style="color:#8b6bff;">Bendahara</h5><ul><li>Penasihat raja</li><li>Menteri utama pusat</li><li>Ketua hakim</li><li>Pemangku sultan</li></ul></div>
+        <div class="official-card"><h5 style="color:#4fb0ff;">Penghulu Bendahari</h5><ul><li>Pemungut ufti</li><li>Ketua bendahari</li><li>Ketua urus setia istana</li><li>Ketua syahbandar</li></ul></div>
+        <div class="official-card"><h5 style="color:#fbbf5a;">Temenggung</h5><ul><li>Ketua polis &amp; penjara</li><li>Penguasa kota Melaka</li><li>Hakim di darat</li></ul></div>
+        <div class="official-card"><h5 style="color:#4ade80;">Laksamana</h5><ul><li>Ketua angkatan laut</li><li>Pengawal peribadi raja</li><li>Ketua duta</li><li>Hakim di laut</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📜 Sistem Perundangan</h2>
+    <div class="legal-row">
+      <div class="legal-card" style="box-shadow:0 0 18px rgba(251,191,90,0.12);">
+        <h4>Hukum Kanun Melaka</h4>
+        <div class="meta">44 Fasal</div>
+        <p>Mula ditulis Sultan Muzaffar Shah (1446-1456); disusun semula Sultan Mahmud Shah. Hak keistimewaan, tanggungjawab raja/pembesar, hukum Islam (jenayah, jual beli, kekeluargaan).</p>
+      </div>
+      <div class="legal-card" style="box-shadow:0 0 18px rgba(79,176,255,0.12);">
+        <h4>Undang-Undang Laut Melaka</h4>
+        <div class="meta">25 Fasal</div>
+        <p>Ditulis zaman Sultan Mahmud Shah. Peraturan pelayaran &amp; perdagangan — tertib berniaga, tanggungjawab nakhoda, anak kapal, kiwi, syahbandar.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🗺️ Tiga Cara Pembentukan Empayar</h2>
+    <div class="empire-grid">
+      <div class="empire-tile"><h5>Penaklukan</h5><p>Kuala Linggi, Beruas, Pahang, Terengganu, Kelantan, Siak, Rokan, Kampar, Rupat</p></div>
+      <div class="empire-tile"><h5>Perkahwinan</h5><p>Sultan Mansur Shah berkahwin dengan puteri Majapahit</p></div>
+      <div class="empire-tile"><h5>Naungan</h5><p>Raja bawah naungan ditabalkan oleh Sultan Melaka</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚔️ Kejatuhan Melaka — Tiga Serangan Portugis</h2>
+    <p class="sub">Dari rundingan gagal kepada kejatuhan dalam 2 tahun.</p>
+    <img class="gen" src="form 1 content images/kejatuhan-melaka.png" alt="Kejatuhan Melaka 1511" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="fall-timeline">
+      <div class="fall-era"><div class="fall-dot" style="background:#fbbf5a; box-shadow:0 0 8px rgba(251,191,90,0.6);"></div><h6>11 Sept 1509</h6><div class="dtl">Lopez de Sequeira tiba — rundingan gagal</div></div>
+      <div class="fall-era"><div class="fall-dot"></div><h6>25 Julai 1511</h6><div class="dtl">Serangan pertama Albuquerque</div></div>
+      <div class="fall-era"><div class="fall-dot"></div><h6>10 Ogos 1511</h6><div class="dtl">Serangan kedua</div></div>
+      <div class="fall-era"><div class="fall-dot" style="width:18px; height:18px;"></div><h6>24 Ogos 1511</h6><div class="dtl">Serangan ketiga — Melaka jatuh</div></div>
+    </div>
+    <div class="weakness-row" style="margin-top:14px;">
+      <div class="weakness-col">
+        <h5>Masalah Kepimpinan</h5>
+        <ul><li>Kelemahan Sultan Mahmud Shah &amp; pembesar</li><li>Pilih kasih, rasuah, penyelewengan</li><li>Perbalahan sesama pembesar</li></ul>
+      </div>
+      <div class="weakness-col">
+        <h5>Masalah Perpaduan</h5>
+        <ul><li>Rakyat tidak bersatu padu</li><li>Persaingan kuasa antara pembesar</li><li>Askar upahan tidak taat setia</li></ul>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Sultan Mahmud Shah berundur ke Bentan (1511) → cuba merampas semula (1515-1519) → Bentan dimusnahkan (1526) → mangkat di Kampar (1528)</p>
+  </div>
+
+</div>
+</body>
+</html>
