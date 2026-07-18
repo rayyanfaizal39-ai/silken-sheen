@@ -97,6 +97,7 @@ export function NotesLanding({ progress, onSelectSubject, onContinueReading }: N
         title="Summary"
         gradientTitle="Notes"
         description="Quick, focused notes that get you ready in minutes."
+        illustration="notes"
         stats={[
           { label: "Reading Progress", value: "Ready" },
           {
