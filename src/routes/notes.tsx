@@ -77,6 +77,7 @@ import {
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
+import { NotesLanding } from "@/components/notes/NotesLanding";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { BMForm2WorldPage } from "@/components/BMForm2WorldPage";
 import { BMForm3WorldPage } from "@/components/BMForm3WorldPage";
