@@ -9,12 +9,12 @@ import {
   Home,
   LayoutDashboard,
   Library,
-  Rocket,
   Search,
   Sparkles,
   Video,
 } from "lucide-react";
 import type { ReactNode } from "react";
+import { AcademyLogo } from "@/components/AcademyLogo";
 
 const navItems = [
   { label: "Home", short: "Home", to: "/", icon: Home },
@@ -44,14 +44,10 @@ export function AppShell({ children }: { children: ReactNode }) {
       <aside className="fixed left-0 top-0 z-50 hidden h-svh w-[236px] border-r border-white/[0.08] bg-[#0B1220]/82 px-4 py-6 shadow-[18px_0_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl lg:flex lg:flex-col">
         <Link
           to="/"
-          className="flex items-center gap-3 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+          aria-label="AcadeMY home"
+          className="rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
         >
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] shadow-[0_0_34px_rgba(99,102,241,0.55)]">
-            <Rocket className="h-5 w-5" />
-          </span>
-          <span className="font-display text-xl font-bold tracking-tight">
-            Acade<span className="text-nova-yellow">MY</span>
-          </span>
+          <AcademyLogo className="h-auto w-[168px]" />
         </Link>
 
         <nav className="mt-9 space-y-1">
@@ -98,6 +94,13 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="relative z-10 lg:ml-[236px]">
         <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#050816]/78 px-4 py-4 backdrop-blur-2xl sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
+            <Link
+              to="/"
+              aria-label="AcadeMY home"
+              className="shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] lg:hidden"
+            >
+              <AcademyLogo variant="icon" className="h-9 w-9" />
+            </Link>
             <div className="relative min-w-0 flex-1">
               <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
               <input

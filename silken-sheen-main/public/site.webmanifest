@@ -6,10 +6,8 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#050816",
   "theme_color": "#050816",
-  "categories": ["education", "productivity"],
   "icons": [
     {
       "src": "/branding/academy-icon-192.png",

@@ -24,8 +24,7 @@ import {
   hasFormResourceContent,
   hasResourceContent,
 } from "@/content/registry";
-import { getChapterFeatures } from "@/content/types";
-import { ChapterFeatureBar } from "@/components/notes/ChapterFeatureBar";
+import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
@@ -250,7 +249,6 @@ function NotesPage() {
     subject && activeChapterKey
       ? chapterProgressPct(progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)])
       : 0;
-  const features = getChapterFeatures(activeChapter);
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
 
@@ -298,17 +296,6 @@ function NotesPage() {
     !!activeChapterKey &&
     (hasResourceContent(subject, form, activeChapterKey, "notes", activeScienceLang) ||
       legacyNoteSections.length > 0);
-  const visibleFeatures = {
-    ...features,
-    notes: features.notes || legacyNoteSections.length > 0,
-    mindMap: false,
-  };
-
-  function jumpTo(key: string) {
-    const el = document.getElementById(key);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -317,6 +304,18 @@ function NotesPage() {
     const el = document.getElementById("chapter-overview");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     else scrollToTop();
+  }
+
+  function selectChapter(key: string | null) {
+    setChapter(key);
+    void navigate({
+      search: (previous: Record<string, unknown>) => ({
+        ...previous,
+        subject: subject ?? undefined,
+        form: Number(form.replace("Form ", "")),
+        chapter: key ?? undefined,
+      }),
+    });
   }
 
   // ── BM has its own hub page ───────────────────────────────────────────────
@@ -427,7 +426,7 @@ function NotesPage() {
         scienceLang={scienceLang ?? undefined}
         isBilingualSubject={isBilingualSubject}
         onSelectChapter={(key) => {
-          setChapter(key);
+          selectChapter(key);
           if (setLastVisited) {
             const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
               (c) => c.key === key,
@@ -624,7 +623,7 @@ function NotesPage() {
             scienceLang={activeScienceLang}
             form={form}
             onSelect={(key) => {
-              setChapter(key);
+              selectChapter(key);
               if (subject && setLastVisited) {
                 const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
                   (c) => c.key === key,
@@ -657,7 +656,7 @@ function NotesPage() {
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           form={form}
           mode="notes"
-          onBack={() => setChapter(null)}
+          onBack={() => selectChapter(null)}
         />
       ) : hasSubtopics ? (
         <SubtopicView
@@ -665,9 +664,11 @@ function NotesPage() {
           chapterKey={activeChapterKey}
           subtopics={subtopics}
           chapterContent={activeChapter}
+          form={form}
+          scienceLang={activeScienceLang}
           isRead={isRead}
           onMarkRead={() => markChapter(subject, activeChapterKey, "read")}
-          onBack={() => setChapter(null)}
+          onBack={() => selectChapter(null)}
         />
       ) : (
         <>
@@ -677,13 +678,19 @@ function NotesPage() {
               chapterKey={activeChapterKey}
               scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
               form={form}
-              onBack={() => setChapter(null)}
+              onBack={() => selectChapter(null)}
             />
 
             {subject && chapterArtwork && (
               <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} />
             )}
-            <ChapterFeatureBar features={visibleFeatures} onJump={jumpTo} />
+            <ChapterContentTabs
+              subjectId={subject}
+              form={form}
+              chapterKey={activeChapterKey}
+              scienceLang={activeScienceLang}
+              currentContentType="notes"
+            />
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
@@ -1251,6 +1258,8 @@ function SubtopicView({
   chapterKey,
   subtopics,
   chapterContent,
+  form,
+  scienceLang,
   isRead,
   onMarkRead,
   onBack,
@@ -1259,6 +1268,8 @@ function SubtopicView({
   chapterKey: string;
   subtopics: Subtopic[];
   chapterContent: ReturnType<typeof getChapter>;
+  form: Form;
+  scienceLang?: "bm" | "dlp";
   isRead: boolean;
   onMarkRead: () => void;
   onBack: () => void;
@@ -1266,7 +1277,6 @@ function SubtopicView({
   const subj = subjects.find((s) => s.id === subjectId);
   const chapterLabel =
     getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
-  const features = { ...getChapterFeatures(chapterContent), mindMap: false };
   const subtopicSections = useMemo<NotesAccordionSection[]>(
     () =>
       (Array.isArray(subtopics) ? subtopics : []).map((subtopic) => ({
@@ -1287,11 +1297,6 @@ function SubtopicView({
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  function jumpTo(key: string) {
-    const el = document.getElementById(key);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1339,7 +1344,13 @@ function SubtopicView({
         </div>
 
         {subj && <SubjectFeatureArtwork subjectId={subjectId} src={getSubjectArtwork(subjectId)} />}
-        <ChapterFeatureBar features={features} onJump={jumpTo} />
+        <ChapterContentTabs
+          subjectId={subjectId}
+          form={form}
+          chapterKey={chapterKey}
+          scienceLang={scienceLang}
+          currentContentType="notes"
+        />
 
       </div>
 

@@ -328,10 +328,18 @@ export interface ScienceNotesSubsection {
   methodCards?: MethodCard[];
   /** 4-step Understanding / Devising a Plan / Implementing / Reflection problem-solving flow. */
   problemSolvingFlow?: ProblemSolvingFlow;
-  /** A simple number line diagram. */
-  numberLine?: NumberLineVisual;
+  /** A number line diagram, or labeled real-world examples used by the chapter 1 layout. */
+  numberLine?: NumberLineVisual | {
+    examples: {
+      value: string;
+      meaning: string;
+    }[];
+  };
   /** Factor tree + repeated-division ladder pair for prime factorisation. */
   factorVisual?: FactorVisual;
+
+  /** The 4-step problem-solving flow: Understanding → Devising → Implementing → Reflection. */
+  problemSolving?: ProblemSolvingFlow;
 }
 
 export interface ScienceNotesSection {

@@ -24,6 +24,7 @@ import {
 } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
+import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 
 // Subject accent colors — must stay in sync with AcademyPage subjectPlanetStyles
 const SUBJECT_COLORS: Record<string, { color: string; glow: string; from: string; to: string }> = {
@@ -659,7 +660,7 @@ export function ComingSoonScreen({
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
-  mode?: "notes" | "quizzes" | "flashcards";
+  mode?: "notes" | "quizzes" | "flashcards" | "mindmaps";
 }) {
   const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
     (c) => c.key === chapterKey,
@@ -673,7 +674,17 @@ export function ComingSoonScreen({
         : (chapter?.subtopics ?? []);
 
   return (
-    <div className="animate-fade-up rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 px-5 py-12 text-center sm:px-8 sm:py-16">
+    <>
+      {mode && (
+        <ChapterContentTabs
+          subjectId={subjectId}
+          form={form}
+          chapterKey={chapterKey}
+          scienceLang={scienceLang}
+          currentContentType={mode}
+        />
+      )}
+      <div className="animate-fade-up rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 px-5 py-12 text-center sm:px-8 sm:py-16">
       <div className="mb-6 text-6xl animate-float-soft">🚧</div>
       <h2 className="font-display text-2xl font-bold text-white">{chapter?.label ?? chapterKey}</h2>
       <p className="mt-2 text-sm text-white/50">This chapter is coming soon. Stay tuned!</p>
@@ -710,6 +721,7 @@ export function ComingSoonScreen({
       >
         <ArrowLeft className="h-4 w-4" /> Back to chapters
       </button>
-    </div>
+      </div>
+    </>
   );
 }

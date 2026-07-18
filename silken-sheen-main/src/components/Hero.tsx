@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import {
-  ArrowRight,
-  Sparkles,
-  X,
-} from "lucide-react";
+import { ArrowRight, Sparkles, X } from "lucide-react";
 import { studyHref } from "@/lib/study-routing";
 import { AcademyButton } from "@/components/AcademyPage";
+import { AcademyLogo } from "@/components/AcademyLogo";
 
 type SubjectId = "math" | "science" | "sejarah" | "geography" | "bm" | "english";
 type StudyType = "notes" | "quizzes" | "flashcards";
@@ -179,8 +176,7 @@ export function Hero() {
             <div className="simple-orbit-ring simple-orbit-ring-outer" />
             <div className="simple-orbit-ring simple-orbit-ring-inner" />
             <div className="simple-academy-core" aria-hidden="true">
-              <Sparkles className="h-8 w-8 text-nova-yellow" />
-              <span>AcadeMY</span>
+              <AcademyLogo className="h-auto w-[136px]" alt="" />
               <small>Learning Universe</small>
             </div>
 
@@ -240,7 +236,9 @@ function SubjectPlanet({
         } as CSSProperties
       }
     >
-      <span className={`simple-planet-orb bg-gradient-to-br ${planet.color} simple-planet-art-${planet.art}`}>
+      <span
+        className={`simple-planet-orb bg-gradient-to-br ${planet.color} simple-planet-art-${planet.art}`}
+      >
         <span className="simple-planet-sheen" />
         <span className="relative z-10 text-4xl drop-shadow-sm" aria-hidden="true">
           {planet.emoji}

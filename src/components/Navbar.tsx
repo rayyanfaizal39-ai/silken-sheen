@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import { AcademyLogo } from "@/components/AcademyLogo";
 
 const links = [
   { to: "/home", label: "Home" },
@@ -23,25 +23,10 @@ export function Navbar() {
         <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-8 py-4">
           <Link
             to="/"
-            className="flex items-center gap-2 group rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+            aria-label="AcadeMY home"
+            className="group rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
-              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-            </div>
-            <span className="font-display text-xl font-bold tracking-tight">
-              <span className="text-white">Acade</span>
-              <span
-                className="text-nova-yellow"
-                style={{
-                  textShadow: "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)",
-                }}
-              >
-                MY
-              </span>
-            </span>
+            <AcademyLogo className="h-auto w-[128px] transition-opacity group-hover:opacity-90 sm:w-[168px]" />
           </Link>
 
           <ul className="hidden md:flex items-center gap-1">

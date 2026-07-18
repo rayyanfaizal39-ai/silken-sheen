@@ -57,6 +57,17 @@ export const mathF1C1NotesBM: StructuredNotes = {
           numberLine: { min: -5, max: 5, highlight: [0] },
         },
         {
+          title: "Contoh Garis Nombor",
+          numberLine: {
+            examples: [
+              { value: "−3", meaning: "3 kurang daripada 0" },
+              { value: "3", meaning: "3 lebih daripada 0" },
+              { value: "−1", meaning: "1 kurang daripada 0" },
+              { value: "1", meaning: "1 lebih daripada 0" },
+            ],
+          },
+        },
+        {
           title: "Membanding dan Menyusun Integer",
           table: {
             headers: ["Tertib", "Maksud", "Contoh"],
@@ -91,6 +102,38 @@ export const mathF1C1NotesBM: StructuredNotes = {
               ["Tolak integer positif", "Bergerak ke kiri"],
               ["Tolak integer negatif", "Bergerak ke kanan"],
             ],
+          },
+        },
+        {
+          title: "Contoh Diselesaikan: 8 + (+3)",
+          workedExample: {
+            problem: "8 + (+3)",
+            steps: ["Bergerak 3 unit ke kanan daripada 8"],
+            answer: "11",
+          },
+        },
+        {
+          title: "Contoh Diselesaikan: 5 + (−2)",
+          workedExample: {
+            problem: "5 + (−2)",
+            steps: ["Bergerak 2 unit ke kiri daripada 5"],
+            answer: "3",
+          },
+        },
+        {
+          title: "Contoh Diselesaikan: 2 − (+4)",
+          workedExample: {
+            problem: "2 − (+4)",
+            steps: ["Bergerak 4 unit ke kiri daripada 2"],
+            answer: "−2",
+          },
+        },
+        {
+          title: "Contoh Diselesaikan: −1 − (−4)",
+          workedExample: {
+            problem: "−1 − (−4)",
+            steps: ["Bersamaan dengan −1 + 4", "Bergerak 4 unit ke kanan daripada −1"],
+            answer: "3",
           },
         },
         {
@@ -156,6 +199,31 @@ export const mathF1C1NotesBM: StructuredNotes = {
             answer: "1/2 ÷ 1/4 = 2",
           },
         },
+        {
+          title: "Penyelesaian Masalah",
+          problemSolving: {
+            scenario:
+              "Satu kuiz matematik mengandungi 20 soalan. Markah 2 diberikan bagi setiap jawapan betul dan −½ markah bagi setiap jawapan salah. Mei Ling menjawab semua soalan dan markah bagi jawapan salahnya ialah −4. Berapakah jumlah markah Mei Ling?",
+            understanding: [
+              "Jawapan betul mendapat markah 2",
+              "Jawapan salah mendapat markah −½",
+              "Markah bagi jawapan salah = −4",
+              "Cari jumlah markah",
+            ],
+            devisingPlan: [
+              "+2 mewakili markah bagi jawapan betul",
+              "−½ mewakili markah bagi jawapan salah",
+              "Cari bilangan jawapan salah menggunakan pembahagian",
+              "Cari jumlah markah menggunakan pendaraban dan penambahan",
+            ],
+            implementing: [
+              "Bilangan jawapan salah = −4 ÷ (−½) = 8",
+              "Jumlah markah = (20 − 8) × 2 + (−4) = 12 × 2 − 4 = 20",
+            ],
+            reflection:
+              "Semakan: 20 soalan, 8 salah (markah −4), 12 betul (markah 24) → 24 − 4 = 20 ✓",
+          },
+        },
       ],
     },
     {
@@ -181,6 +249,31 @@ export const mathF1C1NotesBM: StructuredNotes = {
         {
           title: "Tertib Operasi Perpuluhan",
           bulletPoints: ["1. Darab / Bahagi dahulu", "2. Tambah / Tolak kemudian"],
+        },
+        {
+          title: "Penyelesaian Masalah",
+          problemSolving: {
+            scenario:
+              "Harga saham sebuah syarikat ialah RM2.05. Harga naik RM0.32, kemudian jatuh RM0.28 setiap jam untuk tiga jam berikutnya. Hitung harga akhir saham tersebut.",
+            understanding: [
+              "Harga permulaan = RM2.05",
+              "Harga naik RM0.32",
+              "Harga jatuh RM0.28 setiap jam untuk 3 jam",
+              "Cari harga akhir",
+            ],
+            devisingPlan: [
+              "Kenaikan harga ditulis sebagai +0.32",
+              "Penurunan harga ditulis sebagai −0.28",
+              "Gunakan pendaraban dan penambahan",
+            ],
+            implementing: [
+              "Harga akhir = 2.05 + 0.32 + 3 × (−0.28)",
+              "= 2.37 + (−0.84)",
+              "= 2.37 − 0.84 = 1.53",
+            ],
+            reflection:
+              "RM2.05 + RM0.32 − 3 × RM0.28 = RM2.37 − RM0.84 = RM1.53 — harga akhir saham ialah RM1.53",
+          },
         },
       ],
     },

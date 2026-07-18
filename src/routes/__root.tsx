@@ -61,8 +61,7 @@ function ErrorComponent({ error, info, reset }: ErrorComponentProps) {
 
   useEffect(() => {
     const componentStack = info?.componentStack ?? "(component stack unavailable)";
-    const componentName =
-      componentStack.match(/\n\s+at\s+([^\s(]+)/)?.[1] ?? "Unknown component";
+    const componentName = componentStack.match(/\n\s+at\s+([^\s(]+)/)?.[1] ?? "Unknown component";
 
     // Keep this diagnostic while the production incident is being monitored.
     // Logging in an effect avoids emitting the same report on every render.
@@ -137,9 +136,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
-      { rel: "icon", type: "image/png", sizes: "192x192", href: "/favicon-192.png" },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "icon", type: "image/svg+xml", href: "/branding/academy-icon.svg" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/branding/academy-icon-16.png" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/branding/academy-icon-32.png" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/branding/academy-icon-192.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/branding/academy-icon-180.png" },
       { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),
