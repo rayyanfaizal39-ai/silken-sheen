@@ -17,8 +17,10 @@ import {
 } from "lucide-react";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
-import floatingAstronaut from "@/assets/hero landing/floating A.png";
+import astronautRocket from "@/assets/premium-astronaut-rocket.png";
+import academyBrainIcon from "@/assets/academy-brain-icon.png";
 import cikguAiRobot from "@/assets/cikgu-ai-robot.png";
+import missionsXpIcon from "@/assets/missions-xp-icon.png";
 import cikguBackground from "@/assets/backgroundcikgu.png";
 import dashboardPreview from "@/assets/dashboard-preview.png.asset.json";
 
@@ -64,14 +66,32 @@ export function CommandCenterHome() {
 
 function FloatingAstronaut() {
   return (
-    <div className="relative flex justify-center">
-      <img
-        src={floatingAstronaut}
-        alt="AcadeMY astronaut floating in space"
-        className="w-40 sm:w-52 md:w-64 drop-shadow-[0_20px_60px_rgba(124,92,255,.45)]"
-        style={{ animation: "cc-astro-float 6s ease-in-out infinite" }}
+    <div className="relative -mx-4 flex min-h-[280px] items-center justify-center overflow-hidden sm:min-h-[380px] md:-mx-8 md:min-h-[520px]">
+      <div
+        className="pointer-events-none absolute inset-x-[8%] inset-y-[12%] rounded-full opacity-70 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at 48% 58%,rgba(124,92,255,.38),transparent 48%),radial-gradient(circle at 68% 52%,rgba(34,211,238,.18),transparent 42%)",
+        }}
+        aria-hidden
       />
-      <style>{`@keyframes cc-astro-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}`}</style>
+      <img
+        src={astronautRocket}
+        alt="AcadeMY astronaut riding a rocket through space"
+        className="relative w-full max-w-5xl object-contain drop-shadow-[0_28px_80px_rgba(124,92,255,.3)]"
+        style={{
+          animation: "cc-astro-float 7s ease-in-out infinite",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 68% 72% at 50% 50%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%)",
+          maskImage:
+            "radial-gradient(ellipse 68% 72% at 50% 50%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#05060f] to-transparent"
+        aria-hidden
+      />
+      <style>{`@keyframes cc-astro-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.01)}}`}</style>
     </div>
   );
 }
@@ -129,7 +149,30 @@ function FeatureBanner() {
                   "linear-gradient(160deg,rgba(245,197,24,.16),rgba(124,92,255,.16))",
               }}
             >
-              <Icon className="h-6 w-6" />
+              {title === "AcadeMY Brain" ? (
+                <img
+                  src={academyBrainIcon}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-12 w-12 rounded-xl object-cover drop-shadow-[0_4px_10px_rgba(34,211,238,.3)]"
+                />
+              ) : title === "Cikgu AI" ? (
+                <img
+                  src={cikguAiRobot}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-12 w-12 object-contain drop-shadow-[0_4px_10px_rgba(124,92,255,.35)]"
+                />
+              ) : title === "Missions & XP" ? (
+                <img
+                  src={missionsXpIcon}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-auto w-[52px] object-contain drop-shadow-[0_4px_10px_rgba(245,197,24,.3)]"
+                />
+              ) : (
+                <Icon className="h-6 w-6" />
+              )}
             </div>
             <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
             <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{body}</p>
