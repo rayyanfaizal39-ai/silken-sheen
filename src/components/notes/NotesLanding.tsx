@@ -2,10 +2,11 @@ import { useMemo } from "react";
 import { ArrowRight, BookOpen, LayoutGrid, Pencil } from "lucide-react";
 import { subjects, type Form } from "@/data/subjects-meta";
 import { SubjectGrid } from "@/components/ChapterPicker";
+import { DailyQuote } from "@/components/DailyQuote";
+import { AcademyHero } from "@/components/AcademyPage";
 import type { Progress } from "@/hooks/use-progress";
 import { chapterProgressPct, chapterActivityKey } from "@/hooks/use-progress";
 import { getFormChapterCount } from "@/content/registry";
-import notesHeroBanner from "@/assets/notes/notes-hero-banner.png";
 
 const SUBJECT_ACCENT: Record<string, { text: string; bar: string; ring: string }> = {
   bm: { text: "text-rose-300", bar: "from-rose-500 to-orange-500", ring: "ring-rose-500/40" },
@@ -91,32 +92,26 @@ export function NotesLanding({ progress, onSelectSubject, onContinueReading }: N
 
   return (
     <div>
-      <section className="w-full" aria-labelledby="notes-hero-title">
-        <h1 id="notes-hero-title" className="sr-only">
-          Smart Notes, Better Understanding
-        </h1>
-        <p className="sr-only">
-          Clear, concise and KSSM-aligned notes with exam-focused summaries, examples, diagrams and
-          quick revision.
-        </p>
-        <div
-          tabIndex={0}
-          aria-label="Notes hero banner. Scroll horizontally to view the full banner on small screens."
-          className="box-border w-full overflow-x-auto overflow-y-hidden rounded-[1.25rem] border border-violet-400/[0.16] bg-[#07091c] leading-[0] shadow-[0_30px_100px_-35px_rgba(124,58,237,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/70 md:overflow-hidden md:rounded-[1.75rem]"
-        >
-          <img
-            src={notesHeroBanner}
-            alt="Smart Notes, Better Understanding — KSSM-aligned notes with exam-focused summaries, examples, diagrams and quick revision."
-            width={1680}
-            height={945}
-            fetchPriority="high"
-            decoding="async"
-            className="block h-auto w-full min-w-[760px] rounded-[inherit] object-contain object-center md:min-w-0"
-          />
-        </div>
-      </section>
+      <AcademyHero
+        eyebrow="Smart revision"
+        title="Summary"
+        gradientTitle="Notes"
+        description="Quick, focused notes that get you ready in minutes."
+        stats={[
+          { label: "Reading Progress", value: "Ready" },
+          {
+            label: "Chapters Completed",
+            value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
+              .length,
+          },
+          { label: "Study Mode", value: "Explore" },
+        ]}
+      />
+      <div className="mb-7 flex justify-center">
+        <DailyQuote />
+      </div>
 
-      <div className="mt-8 space-y-10 lg:space-y-12">
+      <div className="space-y-10 lg:space-y-12">
         <section>
           <header className="mb-5 flex items-end justify-between gap-3">
             <div className="flex items-center gap-3">
