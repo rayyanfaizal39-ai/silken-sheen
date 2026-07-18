@@ -20,6 +20,7 @@ import {
   hasResourceContent,
 } from "@/content/registry";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
+import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
@@ -234,6 +235,7 @@ function MindMapsPage() {
           chapterKey={activeChapterKey}
           scienceLang={activeScienceLang}
           form={form}
+          mode="mindmaps"
           onBack={backToChapters}
         />
       ) : (
@@ -244,6 +246,13 @@ function MindMapsPage() {
             scienceLang={activeScienceLang}
             form={form}
             onBack={backToChapters}
+          />
+          <ChapterContentTabs
+            subjectId={subject}
+            form={form}
+            chapterKey={activeChapterKey}
+            scienceLang={activeScienceLang}
+            currentContentType="mindmaps"
           />
           {activeChapter?.mindMap ? (
             <MindMapBlock

@@ -82,6 +82,7 @@ import {
 } from "@/data/english-f3-quiz-sets";
 import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
+import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 
 export const Route = createFileRoute("/quizzes")({
   head: ({ match }) => {
@@ -6149,6 +6150,11 @@ function readStudySearch() {
 
 function QuizzesPage() {
   const navigate = Route.useNavigate();
+  const routeSearch = Route.useSearch() as {
+    subject?: string;
+    form?: string | number;
+    chapter?: string;
+  };
   const { progress, addXp, recordQuiz, awardBadge, markChapter, recordQuizResult } = useProgress();
   const { openCikgu } = useCikgu();
   const initialSearch = useMemo(readStudySearch, []);
@@ -6195,6 +6201,16 @@ function QuizzesPage() {
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
 
+  useEffect(() => {
+    const nextSubject = normalizeSubjectParam(routeSearch.subject);
+    const nextForm = normalizeFormParam(routeSearch.form);
+    const nextChapter = routeSearch.chapter ?? null;
+    setSubject(nextSubject);
+    setForm(nextForm as FormFilter);
+    setFormWasChosen(routeSearch.form != null);
+    setChapter(nextChapter);
+  }, [routeSearch.subject, routeSearch.form, routeSearch.chapter]);
+
   function formToSearchValue(value: FormFilter) {
     if (value === "All") return undefined;
     return Number(value.replace("Form ", ""));
@@ -6205,8 +6221,6 @@ function QuizzesPage() {
     form?: FormFilter | null;
     chapter?: string | null;
   }) {
-    if (subject !== "sejarah" && next.subject !== "sejarah") return;
-
     void navigate({
       search: (previous: Record<string, unknown>) => ({
         ...previous,
@@ -6809,7 +6823,7 @@ function QuizzesPage() {
   }
 
   // ── Subject World early-return ────────────────────────────────────────────
-  if (subject === "english") {
+  if (subject === "english" && !chapter) {
     const englishIsForm3 = form === "Form 3";
     return (
       <AcademyPageShell
@@ -7020,6 +7034,15 @@ function QuizzesPage() {
           },
         ]}
       />
+      {subject && chapter && hasSelectedChapterQuiz && (
+        <ChapterContentTabs
+          subjectId={subject}
+          form={form}
+          chapterKey={chapter}
+          scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+          currentContentType="quizzes"
+        />
+      )}
       <div className="mb-7 flex justify-center">
         <DailyQuote />
       </div>
