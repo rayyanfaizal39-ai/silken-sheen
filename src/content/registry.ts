@@ -76,9 +76,9 @@ import { mathF1C12NotesDLP } from "@/content/form1/math/chapter-12/notes-dlp";
 import { mathF1C13NotesBM } from "@/content/form1/math/chapter-13/notes-bm";
 import { mathF1C13NotesDLP } from "@/content/form1/math/chapter-13/notes-dlp";
 import { sej2Ch1Content } from "@/content/form2/sejarah/chapter-1/sej2ch1-content";
-import { sejarahF2C2Notes } from "@/content/form2/sejarah/chapter-2/notes";
-import { sejarahF2C3Notes } from "@/content/form2/sejarah/chapter-3/notes";
-import { sejarahF2C4Notes } from "@/content/form2/sejarah/chapter-4/notes";
+import { sej2Ch2Content } from "@/content/form2/sejarah/chapter-2/sej2ch2-content";
+import { sej2Ch3Content } from "@/content/form2/sejarah/chapter-3/sej2ch3-content";
+import { sej2Ch4Content } from "@/content/form2/sejarah/chapter-4/sej2ch4-content";
 import { sejarahF2C5Notes } from "@/content/form2/sejarah/chapter-5/notes";
 import { sejarahF2C6Notes } from "@/content/form2/sejarah/chapter-6/notes";
 import { sejarahF2C7Notes } from "@/content/form2/sejarah/chapter-7/notes";
@@ -762,7 +762,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 2",
     title: "Sistem Pemerintahan dan Kegiatan Ekonomi",
-    notes: sejarahF2C2Notes,
+    sej2Chapter2Data: sej2Ch2Content,
     mindMap: {
       data: sejarahF2C2MindMap,
       title: "Sistem Pemerintahan dan Ekonomi Kerajaan Alam Melayu",
@@ -776,7 +776,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 3",
     title: "Sosiobudaya Masyarakat Kerajaan Alam Melayu",
-    notes: sejarahF2C3Notes,
+    sej2Chapter3Data: sej2Ch3Content,
     mindMap: { data: sejarahF2C3MindMap, title: "Sosiobudaya Kerajaan Alam Melayu" },
     flashcards: sejarahF2FlashcardsFor(3),
     quiz: sejarahF2QuizzesFor(3),
@@ -787,7 +787,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 4",
     title: "Agama, Kepercayaan dan Keunikan Warisan Masyarakat Kerajaan Alam Melayu",
-    notes: sejarahF2C4Notes,
+    sej2Chapter4Data: sej2Ch4Content,
     mindMap: {
       data: sejarahF2C4MindMap,
       title: "Keunikan Warisan Masyarakat Kerajaan Alam Melayu",
