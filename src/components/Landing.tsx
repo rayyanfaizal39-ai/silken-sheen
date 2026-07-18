@@ -1,20 +1,20 @@
 import { Link } from "@tanstack/react-router";
-import {
-  Sparkles,
-  Check,
-  Rocket,
-  NotebookPen,
-  Layers,
-  BrainCircuit,
-  ClipboardCheck,
-} from "lucide-react";
+import { Check, NotebookPen, Layers, BrainCircuit, ClipboardCheck } from "lucide-react";
 
-import { useState, useEffect, useRef, lazy, Suspense, type MouseEvent as ReactMouseEvent } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  lazy,
+  Suspense,
+  type MouseEvent as ReactMouseEvent,
+} from "react";
 import gsap from "gsap";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useAuth } from "@/context/auth-context";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { WatchIntroVideo } from "@/components/landing/WatchIntroVideo";
+import { AcademyLogo } from "@/components/AcademyLogo";
 import { prefersReducedMotion, isCoarsePointer, isMobileViewport } from "@/lib/motion-preferences";
 import backGround from "@/assets/back-ground.webp.asset.json";
 import heroAstronautDashboard from "@/assets/hero-astronaut-dashboard.png";
@@ -124,25 +124,12 @@ function LandingNav() {
   return (
     <header className="absolute top-0 inset-x-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary blur-lg opacity-60 group-hover:opacity-100 transition-opacity" />
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
-          </div>
-          <span className="font-display text-xl font-bold tracking-tight">
-            <span className="text-white">Acade</span>
-            <span
-              className="text-nova-yellow"
-              style={{
-                textShadow:
-                  "0 0 12px rgba(250,204,21,0.7), 0 0 24px rgba(250,204,21,0.4)",
-              }}
-            >
-              MY
-            </span>
-          </span>
+        <Link
+          to="/"
+          aria-label="AcadeMY home"
+          className="group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+        >
+          <AcademyLogo className="h-auto w-[128px] transition-opacity group-hover:opacity-90 sm:w-[168px]" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/[0.04] ring-1 ring-white/10 backdrop-blur">
@@ -191,7 +178,6 @@ function LandingNav() {
     </header>
   );
 }
-
 
 /* ---------------- Hero ---------------- */
 
@@ -332,16 +318,14 @@ function Hero() {
         aria-hidden
         className="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full"
         style={{
-          background:
-            "radial-gradient(closest-side, rgba(168,85,247,0.35), transparent 70%)",
+          background: "radial-gradient(closest-side, rgba(168,85,247,0.35), transparent 70%)",
         }}
       />
       <div
         aria-hidden
         className="absolute top-1/2 -left-40 w-[420px] h-[420px] rounded-full"
         style={{
-          background:
-            "radial-gradient(closest-side, rgba(59,130,246,0.25), transparent 70%)",
+          background: "radial-gradient(closest-side, rgba(59,130,246,0.25), transparent 70%)",
         }}
       />
 
@@ -365,8 +349,7 @@ function Hero() {
                   Form 4 &amp; 5 — Coming Soon
                 </DialogTitle>
                 <DialogDescription className="text-white/60 text-sm">
-                  We are expanding AcadeMY to cover upper secondary KSSM
-                  subjects.
+                  We are expanding AcadeMY to cover upper secondary KSSM subjects.
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-3 text-sm text-white/70">
@@ -379,8 +362,7 @@ function Hero() {
                   <li>Bahasa Melayu &amp; English</li>
                 </ul>
                 <p className="pt-2">
-                  Target release:{" "}
-                  <span className="text-white font-medium">Q4 2025</span>
+                  Target release: <span className="text-white font-medium">Q4 2025</span>
                 </p>
                 <p className="text-xs text-white/40">
                   Sign up and we will notify you the moment Form 4–5 goes live.
@@ -392,8 +374,8 @@ function Hero() {
             Master KSSM With AI-Powered Learning
           </h1>
           <p className="mt-6 max-w-xl text-lg text-[#9ca3af] leading-relaxed font-body">
-            Notes, flashcards, quizzes and mind maps in BM &amp; DLP — powered
-            by your own Cikgu AI. Level up like a game, master KSSM like a pro.
+            Notes, flashcards, quizzes and mind maps in BM &amp; DLP — powered by your own Cikgu AI.
+            Level up like a game, master KSSM like a pro.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
@@ -434,8 +416,8 @@ function Hero() {
               ))}
             </div>
             <p className="text-sm text-white/60">
-              Empowering <span className="font-bold text-white">10,000+</span>{" "}
-              students across Malaysia
+              Empowering <span className="font-bold text-white">10,000+</span> students across
+              Malaysia
             </p>
           </div>
         </div>
@@ -523,7 +505,9 @@ function DeferredBelowFold() {
     return () => {
       io.disconnect();
       if (typeof w.requestIdleCallback === "function") {
-        (window as Window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(idleId as number);
+        (window as Window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(
+          idleId as number,
+        );
       } else {
         window.clearTimeout(idleId as number);
       }
@@ -552,10 +536,7 @@ export function Landing() {
         style={{ backgroundImage: `url(${backGround.url})` }}
       />
       {/* dark scrim for readability */}
-      <div
-        aria-hidden
-        className="fixed inset-0 -z-10 bg-black/45"
-      />
+      <div aria-hidden className="fixed inset-0 -z-10 bg-black/45" />
       <CinematicStars />
       <LandingNav />
       <Hero />
@@ -563,4 +544,3 @@ export function Landing() {
     </div>
   );
 }
-

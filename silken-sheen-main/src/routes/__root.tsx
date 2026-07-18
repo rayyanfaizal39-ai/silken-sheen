@@ -93,11 +93,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d4da5c1d-d922-4e19-848b-382833973588/id-preview-aaf2500d--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780661904269.png",
       },
-      { name: "description", content: "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students." },
-      { property: "og:description", content: "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students." },
-      { name: "twitter:description", content: "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/91319232-a302-4aa1-b453-84a11b887a9a/id-preview-3b032b13--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780714922692.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/91319232-a302-4aa1-b453-84a11b887a9a/id-preview-3b032b13--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780714922692.png" },
+      {
+        name: "description",
+        content:
+          "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students.",
+      },
+      {
+        property: "og:description",
+        content:
+          "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "AcadeMY is an educational platform offering interactive notes, quizzes, and flashcards for students.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/91319232-a302-4aa1-b453-84a11b887a9a/id-preview-3b032b13--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780714922692.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/91319232-a302-4aa1-b453-84a11b887a9a/id-preview-3b032b13--57cd3342-b1f5-4ee9-a0c8-535f6ce0fa07.lovable.app-1780714922692.png",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -107,6 +127,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/svg+xml", href: "/branding/academy-icon.svg" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/branding/academy-icon-16.png" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/branding/academy-icon-32.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/branding/academy-icon-180.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),
   shellComponent: RootShell,

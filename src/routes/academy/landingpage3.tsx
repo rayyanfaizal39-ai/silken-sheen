@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { createFileRoute } from "@tanstack/react-router";
 
-import imgAcademyLogo from "@/assets/landingpage3/academy-logo.png";
 import imgAstronaut from "@/assets/hero landing/floating A.png";
 import imgWhyEllipse from "@/assets/landingpage3/why-ellipse.png";
 import imgPlanetScience from "@/assets/landingpage3/planet-science.png";
@@ -25,6 +24,7 @@ import imgPlanExplorer from "@/assets/landingpage3/plan-explorer.png";
 import imgPlanCommander from "@/assets/landingpage3/plan-commander.png";
 import imgPlanMissionControl from "@/assets/landingpage3/plan-mission-control.png";
 import imgFinalGlow from "@/assets/landingpage3/final-glow.png";
+import { AcademyLogo } from "@/components/AcademyLogo";
 
 export const Route = createFileRoute("/academy/landingpage3")({
   head: () => ({
@@ -163,10 +163,11 @@ function Header() {
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "none",
       }}
     >
-      <div className="h-[32px] w-[128px] md:h-[40px] md:w-[160px]">
-        <img alt="AcadeMY" className="size-full object-contain" src={imgAcademyLogo} />
-      </div>
-      <nav aria-label="Primary" className="hidden gap-[40px] font-normal text-[14px] text-white md:flex">
+      <AcademyLogo className="h-auto w-[128px] md:w-[160px]" />
+      <nav
+        aria-label="Primary"
+        className="hidden gap-[40px] font-normal text-[14px] text-white md:flex"
+      >
         {["Features", "Subjects", "Cikgu AI", "Parents", "Pricing"].map((link) => (
           <a
             key={link}
@@ -243,8 +244,8 @@ function Hero() {
                 </span>
               </h1>
               <p className="w-full text-[16px] font-normal leading-[26px] text-white/80 md:w-[560px] md:text-[18px]">
-                AcadeMY turns the KSSM syllabus into a galaxy of quests, XP and AI guidance —
-                built for Malaysian students who'd rather explore than memorise.
+                AcadeMY turns the KSSM syllabus into a galaxy of quests, XP and AI guidance — built
+                for Malaysian students who'd rather explore than memorise.
               </p>
             </div>
           </Reveal>
@@ -267,8 +268,18 @@ function Hero() {
                 className="group flex cursor-pointer items-center gap-[8px] rounded-sm px-[8px] py-[16px] text-[15px] font-medium text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a78bfa]"
               >
                 See how it works
-                <svg className="size-[14px] transition-transform group-hover:translate-y-[2px]" fill="none" viewBox="0 0 12 12">
-                  <path d="M6 2v8M2 7l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <svg
+                  className="size-[14px] transition-transform group-hover:translate-y-[2px]"
+                  fill="none"
+                  viewBox="0 0 12 12"
+                >
+                  <path
+                    d="M6 2v8M2 7l4 4 4-4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </a>
             </div>
@@ -363,12 +374,17 @@ function GlassFeatureCard({
             className="relative flex size-[56px] shrink-0 items-center justify-center rounded-[16px] md:size-[64px]"
             style={{ background: iconBg }}
           >
-            <div className="absolute inset-0 rounded-[16px] border border-solid" style={{ borderColor: color }} />
+            <div
+              className="absolute inset-0 rounded-[16px] border border-solid"
+              style={{ borderColor: color }}
+            />
             {icon}
           </div>
           <div className="flex min-w-0 flex-1 flex-col items-start gap-[12px] text-white">
             <p className="w-full text-[18px] font-bold leading-normal md:text-[20px]">{title}</p>
-            <p className="w-full text-[14px] font-normal leading-[22px] text-white/75 md:text-[15px]">{desc}</p>
+            <p className="w-full text-[14px] font-normal leading-[22px] text-white/75 md:text-[15px]">
+              {desc}
+            </p>
           </div>
         </div>
       </div>
@@ -379,7 +395,10 @@ function GlassFeatureCard({
 
 function WhySection() {
   return (
-    <div id="features" className="relative w-full shrink-0 overflow-hidden bg-[#050510] py-24 md:h-[800px] md:py-0">
+    <div
+      id="features"
+      className="relative w-full shrink-0 overflow-hidden bg-[#050510] py-24 md:h-[800px] md:py-0"
+    >
       <div
         className="pointer-events-none absolute left-[-200px] top-[200px] size-[700px]"
         style={{ animation: "lp3NebulaPulse2 7s ease-in-out infinite" }}
@@ -618,7 +637,9 @@ function NovaSection() {
               <p className="text-[13px] uppercase tracking-wide leading-normal text-[#f59e0b] md:text-[14px]">
                 Your AI study guide
               </p>
-              <p className="text-[40px] leading-[1.15] text-white md:text-[56px] md:leading-[64px]">Meet Cikgu AI</p>
+              <p className="text-[40px] leading-[1.15] text-white md:text-[56px] md:leading-[64px]">
+                Meet Cikgu AI
+              </p>
             </div>
           </Reveal>
 
@@ -636,7 +657,9 @@ function NovaSection() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[16px] font-medium leading-normal text-white md:text-[18px]">{f}</p>
+                  <p className="text-[16px] font-medium leading-normal text-white md:text-[18px]">
+                    {f}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -743,7 +766,10 @@ function ProgressTracking() {
                         {s.name}
                       </p>
                     </div>
-                    <p className="whitespace-nowrap text-[12px] leading-normal" style={{ color: s.color }}>
+                    <p
+                      className="whitespace-nowrap text-[12px] leading-normal"
+                      style={{ color: s.color }}
+                    >
                       {s.xp}
                     </p>
                   </div>
@@ -760,7 +786,11 @@ function ProgressTracking() {
             <div className="relative flex w-full flex-wrap items-start justify-between gap-4 pt-[20px]">
               <div className="absolute inset-0 border-t border-solid border-[rgba(255,255,255,0.1)]" />
               {["Lesson Streak", "Quiz Master", "Planet Unlocked", "Top 10%"].map((badge) => (
-                <motion.div key={badge} className="flex items-center gap-[12px]" whileHover={{ scale: 1.05 }}>
+                <motion.div
+                  key={badge}
+                  className="flex items-center gap-[12px]"
+                  whileHover={{ scale: 1.05 }}
+                >
                   <div className="relative flex size-[48px] items-center justify-center rounded-[24px] bg-[rgba(245,158,11,0.15)]">
                     <svg className="block size-[24px]" fill="none" viewBox="0 0 24 24">
                       <path
@@ -813,8 +843,8 @@ function ParentsSection() {
                   title: "Monitor",
                   desc: (
                     <>
-                      Stay informed with <strong>real-time performance reports</strong>, allowing you to
-                      track your child{"'"}s progress and identify areas needing attention.
+                      Stay informed with <strong>real-time performance reports</strong>, allowing
+                      you to track your child{"'"}s progress and identify areas needing attention.
                     </>
                   ),
                 },
@@ -823,16 +853,21 @@ function ParentsSection() {
                   title: "Alerts",
                   desc: (
                     <>
-                      Receive <strong>early weakness alerts</strong> to promptly address challenges your
-                      child may face, ensuring they stay on track for success.
+                      Receive <strong>early weakness alerts</strong> to promptly address challenges
+                      your child may face, ensuring they stay on track for success.
                     </>
                   ),
                 },
               ].map((f) => (
-                <div key={f.num} className="flex w-full flex-col items-start gap-[10px] md:gap-[12px]">
+                <div
+                  key={f.num}
+                  className="flex w-full flex-col items-start gap-[10px] md:gap-[12px]"
+                >
                   <div className="flex items-baseline gap-[16px] text-[24px] leading-normal text-white md:text-[32px]">
                     <p style={{ fontFamily: "'IBM Plex Mono', monospace" }}>{f.num}</p>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}>{f.title}</p>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}>
+                      {f.title}
+                    </p>
                   </div>
                   <div className="h-px w-full bg-white opacity-30" />
                   <p className="w-full text-[14px] font-normal leading-[1.5] text-white md:text-[16px]">
@@ -866,17 +901,27 @@ function CheckItem({ label }: { label: string }) {
     <div className="flex items-center gap-[12px]">
       <svg className="block size-[14px] shrink-0" fill="none" viewBox="0 0 14 14">
         <g opacity="0.5">
-          <path d="M11.6662 3.5L5.25017 9.9162L2.3338 6.99975" stroke="white" strokeLinecap="round" strokeWidth="2" />
+          <path
+            d="M11.6662 3.5L5.25017 9.9162L2.3338 6.99975"
+            stroke="white"
+            strokeLinecap="round"
+            strokeWidth="2"
+          />
         </g>
       </svg>
-      <p className="whitespace-nowrap text-[14px] font-normal leading-normal text-white opacity-80">{label}</p>
+      <p className="whitespace-nowrap text-[14px] font-normal leading-normal text-white opacity-80">
+        {label}
+      </p>
     </div>
   );
 }
 
 function MissionPlans() {
   return (
-    <div id="pricing" className="relative flex w-full flex-col items-center gap-[48px] overflow-hidden bg-[#050510] px-6 py-24 md:gap-[64px] md:p-[120px]">
+    <div
+      id="pricing"
+      className="relative flex w-full flex-col items-center gap-[48px] overflow-hidden bg-[#050510] px-6 py-24 md:gap-[64px] md:p-[120px]"
+    >
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2"
         style={{ animation: "lp3NebulaPulse2 10s ease-in-out infinite" }}
@@ -916,7 +961,9 @@ function MissionPlans() {
                 <p className="whitespace-nowrap text-[14px] font-extrabold uppercase leading-normal text-[#60a5fa]">
                   Explorer
                 </p>
-                <p className="whitespace-nowrap text-[40px] font-extrabold leading-normal text-white">Free</p>
+                <p className="whitespace-nowrap text-[40px] font-extrabold leading-normal text-white">
+                  Free
+                </p>
               </div>
               <div className="flex w-full flex-1 flex-col items-start gap-[16px]">
                 {["Free notes only", "1 quiz only", "1 flashcard", "Basic"].map((item) => (
@@ -970,11 +1017,18 @@ function MissionPlans() {
                 <p className="w-[280px] text-[12px] font-semibold leading-normal text-[#9cf]">
                   Everything needed to study:
                 </p>
-                {["All notes", "All quizzes", "All flashcards", "All mind maps", "Cikgu AI", "XP", "Companion", "Future content"].map(
-                  (item) => (
-                    <CheckItem key={item} label={item} />
-                  ),
-                )}
+                {[
+                  "All notes",
+                  "All quizzes",
+                  "All flashcards",
+                  "All mind maps",
+                  "Cikgu AI",
+                  "XP",
+                  "Companion",
+                  "Future content",
+                ].map((item) => (
+                  <CheckItem key={item} label={item} />
+                ))}
               </div>
               <motion.a
                 href="#contact"
@@ -1012,16 +1066,20 @@ function MissionPlans() {
                   <p className="text-[40px] font-extrabold">RM59</p>
                   <p className="text-[16px] font-normal opacity-40">/mo</p>
                 </div>
-                <p className="w-[200px] text-[14px] font-bold leading-normal text-[#ffd633]">For Parents</p>
+                <p className="w-[200px] text-[14px] font-bold leading-normal text-[#ffd633]">
+                  For Parents
+                </p>
                 <p className="w-[280px] text-[12px] font-normal leading-normal text-white/72">{`Stay connected with your child's learning journey.`}</p>
               </div>
               <div className="flex w-full flex-1 flex-col items-start gap-[16px]">
                 <p className="w-[250px] text-[14px] font-normal leading-normal text-[#9cf] opacity-80">
                   Everything in Commander PLUS:
                 </p>
-                {["📊 Parent Dashboard", "📧 Weekly Progress Report", "🎯 Weekly Study Goals"].map((item) => (
-                  <CheckItem key={item} label={item} />
-                ))}
+                {["📊 Parent Dashboard", "📧 Weekly Progress Report", "🎯 Weekly Study Goals"].map(
+                  (item) => (
+                    <CheckItem key={item} label={item} />
+                  ),
+                )}
               </div>
               <motion.a
                 href="#contact"
@@ -1069,7 +1127,8 @@ function FinalCta() {
               <p>Mission?</p>
             </div>
             <p className="w-full max-w-[600px] text-center text-[16px] font-normal leading-[1.5] text-white/75 md:text-[20px] md:leading-[30px]">
-              The galaxy of knowledge is waiting for you. Join 50,000+ students already exploring AcadeMY.
+              The galaxy of knowledge is waiting for you. Join 50,000+ students already exploring
+              AcadeMY.
             </p>
           </div>
         </Reveal>
@@ -1099,9 +1158,7 @@ function FinalCta() {
       <div className="relative mt-auto flex w-full flex-col items-start gap-[40px] px-6 pb-[40px] pt-[80px] md:px-[120px]">
         <div className="h-px w-full bg-white opacity-[0.1]" />
         <div className="flex w-full flex-wrap items-center justify-between gap-6">
-          <div className="h-[32px] w-[128px] md:h-[40px] md:w-[160px]">
-            <img alt="AcadeMY" className="size-full object-contain" src={imgAcademyLogo} />
-          </div>
+          <AcademyLogo className="h-auto w-[128px] md:w-[160px]" loading="lazy" />
           <div className="flex flex-wrap gap-[24px] text-[14px] font-normal leading-normal md:gap-[32px]">
             {["Privacy", "Terms", "Support", "Contact"].map((l) => (
               <a
