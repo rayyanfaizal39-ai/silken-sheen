@@ -72,7 +72,27 @@ describe("educational video registry", () => {
     });
   });
 
-  it("attaches the same chapter video to both Sains language variants", () => {
+  it("selects DLP Science videos by language while preserving the BM defaults", () => {
+    const dlpIds = [
+      "TY49EVN-mJI",
+      "U1ncevXORm0",
+      "nROw9wVMw2Y",
+      "JrUIDZWCORU",
+      "yZpe3OYE1wk",
+      "rCeE5DBvFcQ",
+      "AA7mZ_pHB_k",
+      "eAG6NflS5R8",
+      "gruPxCff8G8",
+    ];
+
+    scienceForm1.forEach(([chapterId, bmYoutubeId], index) => {
+      expect(getEducationalVideo(chapterId)?.youtubeId).toBe(bmYoutubeId);
+      expect(getEducationalVideo(chapterId, "bm")?.youtubeId).toBe(bmYoutubeId);
+      expect(getEducationalVideo(chapterId, "dlp")?.youtubeId).toBe(dlpIds[index]);
+    });
+  });
+
+  it("attaches the selected chapter video to each Sains language variant", () => {
     scienceForm1.forEach(([, youtubeId], index) => {
       const chapterNumber = index + 1;
       const variants = chapters.filter(
@@ -84,7 +104,10 @@ describe("educational video registry", () => {
 
       expect(variants).toHaveLength(2);
       expect(variants.map((chapter) => chapter.lang).sort()).toEqual(["bm", "dlp"]);
-      expect(variants.every((chapter) => chapter.video?.youtubeId === youtubeId)).toBe(true);
+      expect(variants.find((chapter) => chapter.lang === "bm")?.video?.youtubeId).toBe(youtubeId);
+      expect(variants.find((chapter) => chapter.lang === "dlp")?.video?.youtubeId).toBe(
+        getEducationalVideo(`science-f1-c${chapterNumber}`, "dlp")?.youtubeId,
+      );
     });
   });
 });

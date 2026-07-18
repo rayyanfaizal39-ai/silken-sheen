@@ -193,8 +193,62 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
     captionLang: "ms",
     hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
   },
+  "science-f1-c1-dlp": {
+    title: "Science Form 1 — Chapter 1",
+    youtubeId: "TY49EVN-mJI",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c2-dlp": {
+    title: "Science Form 1 — Chapter 2",
+    youtubeId: "U1ncevXORm0",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c3-dlp": {
+    title: "Science Form 1 — Chapter 3",
+    youtubeId: "nROw9wVMw2Y",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c4-dlp": {
+    title: "Science Form 1 — Chapter 4",
+    youtubeId: "JrUIDZWCORU",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c5-dlp": {
+    title: "Science Form 1 — Chapter 5",
+    youtubeId: "yZpe3OYE1wk",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c6-dlp": {
+    title: "Science Form 1 — Chapter 6",
+    youtubeId: "rCeE5DBvFcQ",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c7-dlp": {
+    title: "Science Form 1 — Chapter 7",
+    youtubeId: "AA7mZ_pHB_k",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c8-dlp": {
+    title: "Science Form 1 — Chapter 8",
+    youtubeId: "eAG6NflS5R8",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
+  "science-f1-c9-dlp": {
+    title: "Science Form 1 — Chapter 9",
+    youtubeId: "gruPxCff8G8",
+    captionLang: "en",
+    hint: "Turn on captions for better understanding! 💡",
+  },
 };
 
-export function getEducationalVideo(chapterId: string): EducationalVideo | undefined {
-  return educationalVideos[chapterId];
+export function getEducationalVideo(chapterId: string, language?: string): EducationalVideo | undefined {
+  return (language && educationalVideos[`${chapterId}-${language}`]) || educationalVideos[chapterId];
 }
