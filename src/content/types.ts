@@ -47,6 +47,10 @@ import type { Sej2Ch7Content } from "@/content/form2/sejarah/chapter-7/sej2ch7-c
 import type { Sej2Ch8Content } from "@/content/form2/sejarah/chapter-8/sej2ch8-content";
 import type { Sej2Ch9Content } from "@/content/form2/sejarah/chapter-9/sej2ch9-content";
 import type { Sej2Ch10Content } from "@/content/form2/sejarah/chapter-10/sej2ch10-content";
+import type { Sej3Ch1Content } from "@/content/form3/sejarah/chapter-1/sej3ch1-content";
+import type { Sej3Ch2Content } from "@/content/form3/sejarah/chapter-2/sej3ch2-content";
+import type { Sej3Ch3Content } from "@/content/form3/sejarah/chapter-3/sej3ch3-content";
+import type { Sej3Ch4Content } from "@/content/form3/sejarah/chapter-4/sej3ch4-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -163,6 +167,10 @@ export type ChapterContent = {
   sej2Chapter9Data?: Sej2Ch9Content;
   /** Sejarah Form 2 Bab 10 (Sarawak dan Sabah) chunked learning experience. BM-only. */
   sej2Chapter10Data?: Sej2Ch10Content;
+  sej3Chapter1Data?: Sej3Ch1Content;
+  sej3Chapter2Data?: Sej3Ch2Content;
+  sej3Chapter3Data?: Sej3Ch3Content;
+  sej3Chapter4Data?: Sej3Ch4Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
