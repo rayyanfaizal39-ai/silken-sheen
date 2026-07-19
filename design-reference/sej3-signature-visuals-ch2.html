@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 2: Negeri-negeri Selat — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif; --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  /* Acquisition story cards */
+  .acq-row{display:flex; gap:20px; flex-wrap:wrap;}
+  .acq-card{flex:1; min-width:280px; background:var(--bg-panel); border-radius:16px; padding:20px;}
+  .acq-card h4{font-family:var(--font-display); font-size:15px; margin:0 0 4px;}
+  .acq-card .figures{font-size:10.5px; color:var(--amber); font-weight:700; margin-bottom:10px;}
+  .acq-story{display:flex; flex-direction:column; gap:0;}
+  .acq-step{display:flex; gap:10px; position:relative; padding:6px 0;}
+  .acq-step:not(:last-child)::after{content:''; position:absolute; left:9px; top:26px; width:1px; height:calc(100% - 6px); background:var(--line);}
+  .acq-dot{width:18px; height:18px; border-radius:50%; background:var(--bg-card); border:1px solid var(--line); flex-shrink:0; z-index:1;}
+  .acq-txt{font-size:10.5px; color:var(--muted); line-height:1.4; padding-top:1px;}
+  .acq-txt b{color:var(--text);}
+
+  /* Split-screen Alam Melayu division - signature element */
+  .division-wrap{display:flex; border-radius:16px; overflow:hidden; box-shadow:0 0 30px rgba(139,107,255,0.1);}
+  .division-side{flex:1; padding:24px; position:relative;}
+  .division-side.british{background:linear-gradient(135deg, rgba(79,176,255,0.15), rgba(79,176,255,0.05));}
+  .division-side.dutch{background:linear-gradient(135deg, rgba(251,191,90,0.15), rgba(251,191,90,0.05));}
+  .division-side h4{font-family:var(--font-display); font-size:16px; margin:0 0 4px;}
+  .division-side .subtitle{font-size:10.5px; color:var(--muted-dim); margin-bottom:12px;}
+  .division-side ul{font-size:11px; color:var(--muted); margin:0; padding-left:16px; line-height:1.7;}
+  .division-line{width:3px; background:linear-gradient(180deg, var(--blue), var(--amber)); position:relative;}
+  .division-line::before{content:'⚡'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--bg-card); width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px;}
+
+  .treaty-terms{display:flex; gap:16px; flex-wrap:wrap; margin-top:16px;}
+  .treaty-col{flex:1; min-width:220px; background:var(--bg-panel); border-radius:12px; padding:14px;}
+  .treaty-col h6{font-family:var(--font-display); font-size:12px; margin:0 0 8px;}
+  .treaty-col ul{font-size:10px; color:var(--muted); margin:0; padding-left:14px; line-height:1.5;}
+
+  /* Admin eras */
+  .era-flow{display:flex; gap:0; flex-wrap:wrap;}
+  .era-seg{flex:1; min-width:160px; text-align:center; padding:12px 8px; position:relative;}
+  .era-seg:not(:last-child)::after{content:'→'; position:absolute; right:-4px; top:20px; color:var(--muted-dim); font-size:14px;}
+  .era-seg h6{font-family:var(--font-display); font-size:11.5px; margin:0 0 3px;}
+  .era-seg .yr{font-size:9.5px; color:var(--muted-dim);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 2: Pentadbiran Negeri-negeri Selat</h1>
+  <p class="lead">Satu perjanjian di London — tanpa raja-raja Melayu hadir — membelah Alam Melayu menjadi dua lingkungan pengaruh yang kekal hingga hari ini.</p>
+
+  <div class="card">
+    <h2>🎭 Tipu Helah dan Manipulasi — Dua Kisah</h2>
+    <img src="form 1 content images/ketibaan-francis-light.png" alt="Ketibaan Francis Light di Pulau Pinang" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="acq-row">
+      <div class="acq-card">
+        <h4>Pulau Pinang</h4>
+        <div class="figures">Francis Light · Sultan Abdullah</div>
+        <div class="acq-story">
+          <div class="acq-step"><div class="acq-dot"></div><div class="acq-txt"><b>1786</b>: Francis Light berjanji bantuan SHTI — petempatan dibuka</div></div>
+          <div class="acq-step"><div class="acq-dot"></div><div class="acq-txt">Siam menyerang Patani — SHTI enggan membantu (tiada perjanjian rasmi)</div></div>
+          <div class="acq-step"><div class="acq-dot"></div><div class="acq-txt">Sultan Abdullah cuba rampas semula — tewas</div></div>
+          <div class="acq-step"><div class="acq-dot" style="background:var(--red); border-color:var(--red);"></div><div class="acq-txt"><b>1791</b>: Dipaksa tandatangan — pendudukan British diiktiraf</div></div>
+        </div>
+      </div>
+      <div class="acq-card">
+        <h4>Singapura</h4>
+        <div class="figures">Stamford Raffles · Tengku Hussein</div>
+        <div class="acq-story">
+          <div class="acq-step"><div class="acq-dot"></div><div class="acq-txt"><b>Jan 1819</b>: Raffles &amp; Farquhar tiba, berunding dengan Temenggung</div></div>
+          <div class="acq-step"><div class="acq-dot"></div><div class="acq-txt">Isu pewarisan takhta Johor Riau — Tengku Hussein tidak hadir semasa pemakaman</div></div>
+          <div class="acq-step"><div class="acq-dot"></div><div class="acq-txt">Raffles memujuk Temenggung menjemput Tengku Hussein</div></div>
+          <div class="acq-step"><div class="acq-dot" style="background:var(--red); border-color:var(--red);"></div><div class="acq-txt"><b>Hasil</b>: DUA sultan serentak — Johor Riau terbelah</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🌏 Perjanjian London 1824 — Membelah Alam Melayu</h2>
+    <p class="sub">17 Mac 1824, London — dibuat tanpa merujuk Raja-raja Melayu.</p>
+    <div class="division-wrap">
+      <div class="division-side british">
+        <h4 style="color:#4fb0ff;">Tanah Melayu</h4>
+        <div class="subtitle">Lingkungan Pengaruh British</div>
+        <ul><li>Timur &amp; selatan Selat Melaka</li><li>Singapura diiktiraf Belanda</li><li>Melaka diserahkan kepada British</li></ul>
+      </div>
+      <div class="division-line"></div>
+      <div class="division-side dutch">
+        <h4 style="color:#fbbf5a;">Hindia Timur Belanda</h4>
+        <div class="subtitle">Lingkungan Pengaruh Belanda</div>
+        <ul><li>Barat &amp; selatan Selat Melaka</li><li>Kepulauan Riau Lingga</li><li>British berundur dari Sumatera</li></ul>
+      </div>
+    </div>
+    <div class="treaty-terms">
+      <div class="treaty-col"><h6 style="color:#4fb0ff;">Syarat British</h6><ul><li>Berundur dari Sumatera</li><li>Serah Bengkahulu kepada Belanda</li><li>Tiada petempatan baharu selatan Singapura</li></ul></div>
+      <div class="treaty-col"><h6 style="color:#fbbf5a;">Syarat Belanda</h6><ul><li>Iktiraf Singapura British</li><li>Serah Melaka dan jajahannya</li><li>Tiada petempatan baharu di Tanah Melayu</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏛️ Pentadbiran Negeri-negeri Selat — Tiga Era</h2>
+    <div class="era-flow">
+      <div class="era-seg"><h6>SHTI</h6><div class="yr">1826-1857</div></div>
+      <div class="era-seg"><h6>Pejabat India</h6><div class="yr">1858-1867</div></div>
+      <div class="era-seg"><h6>Pejabat Tanah Jajahan London</h6><div class="yr">1867-1946</div></div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:10px;">1 April 1867: diisytiharkan tanah jajahan British · Mohammad Eunos Abdullah — orang Melayu pertama dalam Majlis Perundangan</p>
+  </div>
+
+</div>
+</body>
+</html>

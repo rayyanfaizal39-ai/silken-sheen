@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 3: Negeri-negeri Melayu Bersekutu — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif; --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  .tin-track{display:flex; gap:0; flex-wrap:wrap;}
+  .tin-era{flex:1; min-width:180px; background:var(--bg-panel); border-radius:14px; padding:14px; margin:4px;}
+  .tin-era h6{font-family:var(--font-display); font-size:12px; margin:0 0 6px; color:var(--amber);}
+  .tin-era ul{font-size:9.5px; color:var(--muted); margin:0; padding-left:14px; line-height:1.5;}
+
+  .decree-box{background:var(--bg-panel); border-radius:16px; padding:26px; box-shadow:0 0 24px rgba(251,191,90,0.15); position:relative; border-left:3px solid var(--amber);}
+  .decree-box .meta{font-size:10.5px; color:var(--amber); font-weight:700; margin-bottom:12px;}
+  .decree-box .quote{font-family:var(--font-display); font-size:14px; color:var(--text); font-style:italic; line-height:1.7;}
+  .decree-box .date{text-align:right; font-size:10px; color:var(--muted-dim); margin-top:12px;}
+
+  .name-row{display:flex; gap:20px; flex-wrap:wrap; justify-content:center;}
+  .name-card{background:var(--bg-panel); border-radius:14px; padding:18px; text-align:center; width:220px;}
+  .name-card h5{font-family:var(--font-display); font-size:15px; margin:0 0 4px; color:var(--green);}
+  .name-card .src{font-size:9.5px; color:var(--muted-dim); margin-bottom:6px;}
+  .name-card .mean{font-size:11px; color:var(--muted);}
+
+  .pangkor-terms{display:flex; flex-direction:column; gap:0;}
+  .pterm{display:flex; gap:12px; position:relative; padding:8px 0;}
+  .pterm:not(:last-child)::after{content:''; position:absolute; left:13px; top:34px; width:2px; height:calc(100% - 8px); background:var(--line);}
+  .pterm-num{width:26px; height:26px; border-radius:50%; background:var(--bg-panel); border:1px solid var(--red); color:var(--red); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:11px; flex-shrink:0; z-index:1;}
+  .pterm-txt{font-size:11px; color:var(--muted); padding-top:3px; line-height:1.4;}
+
+  .res-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px;}
+  .res-tile{background:var(--bg-panel); border-radius:12px; padding:14px; font-size:10.5px; color:var(--muted); line-height:1.4;}
+
+  .fms-hierarchy{display:flex; flex-direction:column; align-items:center; gap:6px;}
+  .fms-tier{border-radius:10px; padding:10px 18px; text-align:center; font-size:11px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 3: Pentadbiran Negeri-negeri Melayu Bersekutu</h1>
+  <p class="lead">Seekor gajah terlepas ke dalam hutan mengubah sejarah Perak — dan membawa kepada perjanjian yang ditandatangani di atas kapal perang.</p>
+
+  <div class="card">
+    <h2>⛏️ Kekayaan Bijih Timah — Empat Era</h2>
+    <div class="tin-track">
+      <div class="tin-era"><h6>Abad Ke-15</h6><ul><li>Diusahakan orang Melayu di lembah sungai</li><li>Surat tauliah daripada sultan</li></ul></div>
+      <div class="tin-era"><h6>Abad Ke-16/17</h6><ul><li>Manjung &amp; Beruas (1616)</li><li>Acheh jadikan Perak naungan</li></ul></div>
+      <div class="tin-era"><h6>Abad Ke-18</h6><ul><li>Kerian, Kurau, Larut</li><li>Perjanjian dengan Belanda</li></ul></div>
+      <div class="tin-era"><h6>Abad Ke-19</h6><ul><li>Larut (1840-an), Lembah Kinta</li><li>Ipoh, Gopeng, Batu Gajah muncul</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📜 Titah Sultan kepada Long Jaafar</h2>
+    <p class="sub">Surat kuasa pengurniaan daerah Larut, 28 Februari 1850.</p>
+    <img src="form 1 content images/legenda-bijih-timah-larut.png" alt="Legenda Penemuan Bijih Timah di Larut" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="decree-box">
+      <div class="meta">Daripada Paduka Seri Sultan Sahabudin Riayat Syah</div>
+      <div class="quote">"Che Long Jaafar telah membuka sebuah daripada jajahan negeri Perak yang dinamakan Larut dan segala sungai-sungai telah dijadikan lombong bijih timah... dengan sukacita beta menyerahkan jajahan Larut kepadanya dan anak cucunya bolehlah menerima jajahan itu seperti hak miliknya."</div>
+      <div class="date">28 Februari 1850</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>✨ Nama Purba Semenanjung Tanah Melayu</h2>
+    <p class="sub">Jalur emas Pahang (Raub, 14,000 batu persegi) dikenali sejak berabad lalu.</p>
+    <div class="name-row">
+      <div class="name-card"><h5>Suvarnabhumi</h5><div class="src">Rekod India</div><div class="mean">"Bumi Emas"</div></div>
+      <div class="name-card"><h5>Golden Khersonese</h5><div class="src">Claudius Ptolemy, abad ke-2</div><div class="mean">"Semenanjung Emas"</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚓ Perjanjian Pangkor 1874</h2>
+    <p class="sub">Ditandatangani di atas kapal perang British, HMS Pluto. Perjanjian pertama British dengan negeri Melayu.</p>
+    <img src="form 1 content images/perjanjian-pangkor-1874.png" alt="Perjanjian Pangkor 1874" style="max-width:100%; border-radius:14px; display:block; margin:0 auto 20px;">
+    <div class="pangkor-terms">
+      <div class="pterm"><div class="pterm-num">1</div><div class="pterm-txt">Raja Abdullah diiktiraf sebagai Sultan Perak</div></div>
+      <div class="pterm"><div class="pterm-num">2</div><div class="pterm-txt">Raja Ismail dibenarkan gelaran Sultan Muda + jajahan kecil</div></div>
+      <div class="pterm"><div class="pterm-num">3</div><div class="pterm-txt">Sultan menerima Residen British — nasihat wajib dipatuhi (kecuali agama/adat)</div></div>
+      <div class="pterm"><div class="pterm-num">4</div><div class="pterm-txt">Ngah Ibrahim diakui Orang Kaya Menteri Larut + Penolong Residen</div></div>
+      <div class="pterm"><div class="pterm-num">5</div><div class="pterm-txt">British berkuasa penuh ke atas pungutan cukai Perak</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏛️ Sistem Residen</h2>
+    <div class="res-grid">
+      <div class="res-tile">Kedudukan sultan &amp; pembesar dikekalkan secara nama sahaja</div>
+      <div class="res-tile">Sultan wajib terima nasihat British — tidak boleh buat undang-undang sendiri</div>
+      <div class="res-tile">Residen ambil alih pentadbiran pembesar &amp; negeri</div>
+      <div class="res-tile">Jabatan bercorak Barat: Tanah &amp; Ukur, Kehakiman, Polis</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏴 Pembentukan Negeri-negeri Melayu Bersekutu (1895)</h2>
+    <div class="fms-hierarchy">
+      <div class="fms-tier" style="background:linear-gradient(135deg,#8b6bff,#4fb0ff); box-shadow:0 0 16px rgba(139,107,255,0.4); width:260px;">Residen Jeneral</div>
+      <div class="fms-tier" style="background:rgba(139,107,255,0.15); color:#8b6bff; width:340px;">Majlis Mesyuarat Persekutuan (1909)</div>
+      <div class="fms-tier" style="background:rgba(74,222,128,0.15); color:#4ade80; width:420px;">Perak · Selangor · Negeri Sembilan · Pahang</div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Kuala Lumpur — pusat pentadbiran · Durbar pertama 1897, Kuala Kangsar · Frank Swettenham — Residen Jeneral (1896-1900)</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -94,13 +94,13 @@ import { sejarahF2C6MindMap } from "@/content/form2/sejarah/chapter-6/mindmap";
 import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
 // Geografi F1 mind maps
-import { sejarahF3C1Notes } from "@/content/form3/sejarah/chapter-1/notes";
+import { sej3Ch1Content } from "@/content/form3/sejarah/chapter-1/sej3ch1-content";
 import { sejarahF3C1MindMap } from "@/content/form3/sejarah/chapter-1/mindmap";
-import { sejarahF3C2Notes } from "@/content/form3/sejarah/chapter-2/notes";
+import { sej3Ch2Content } from "@/content/form3/sejarah/chapter-2/sej3ch2-content";
 import { sejarahF3C2MindMap } from "@/content/form3/sejarah/chapter-2/mindmap";
-import { sejarahF3C3Notes } from "@/content/form3/sejarah/chapter-3/notes";
+import { sej3Ch3Content } from "@/content/form3/sejarah/chapter-3/sej3ch3-content";
 import { sejarahF3C3MindMap } from "@/content/form3/sejarah/chapter-3/mindmap";
-import { sejarahF3C4Notes } from "@/content/form3/sejarah/chapter-4/notes";
+import { sej3Ch4Content } from "@/content/form3/sejarah/chapter-4/sej3ch4-content";
 import { sejarahF3C4MindMap } from "@/content/form3/sejarah/chapter-4/mindmap";
 import { sejarahF3C5Notes } from "@/content/form3/sejarah/chapter-5/notes";
 import { sejarahF3C5MindMap } from "@/content/form3/sejarah/chapter-5/mindmap";
@@ -865,7 +865,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 1",
     title: "Kedatangan Kuasa Barat",
-    notes: sejarahF3C1Notes,
+    sej3Chapter1Data: sej3Ch1Content,
     mindMap: { data: sejarahF3C1MindMap, title: "Kedatangan Kuasa Barat" },
     flashcards: sejarahF3FlashcardsFor(1),
     quiz: sejarahF3QuizzesFor(1),
@@ -876,7 +876,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 2",
     title: "Pentadbiran Negeri-negeri Selat",
-    notes: sejarahF3C2Notes,
+    sej3Chapter2Data: sej3Ch2Content,
     mindMap: { data: sejarahF3C2MindMap, title: "Pentadbiran Negeri-negeri Selat" },
     flashcards: sejarahF3FlashcardsFor(2),
     quiz: sejarahF3QuizzesFor(2),
@@ -887,7 +887,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 3",
     title: "Pentadbiran Negeri-negeri Melayu Bersekutu",
-    notes: sejarahF3C3Notes,
+    sej3Chapter3Data: sej3Ch3Content,
     mindMap: { data: sejarahF3C3MindMap, title: "Pentadbiran Negeri-negeri Melayu Bersekutu" },
     flashcards: sejarahF3FlashcardsFor(3),
     quiz: sejarahF3QuizzesFor(3),
@@ -898,7 +898,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 4",
     title: "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
-    notes: sejarahF3C4Notes,
+    sej3Chapter4Data: sej3Ch4Content,
     mindMap: { data: sejarahF3C4MindMap, title: "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu" },
     flashcards: sejarahF3FlashcardsFor(4),
     quiz: sejarahF3QuizzesFor(4),
