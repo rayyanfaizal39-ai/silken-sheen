@@ -1145,6 +1145,10 @@ function NotesPage() {
             !activeChapter?.sej2Chapter5Data &&
             !activeChapter?.sej2Chapter6Data &&
             !activeChapter?.sej2Chapter7Data &&
+            !activeChapter?.sej3Chapter1Data &&
+            !activeChapter?.sej3Chapter2Data &&
+            !activeChapter?.sej3Chapter3Data &&
+            !activeChapter?.sej3Chapter4Data &&
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
             !activeChapter?.chapter2Data &&
