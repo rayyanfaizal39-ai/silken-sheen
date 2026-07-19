@@ -167,10 +167,6 @@ export type ChapterContent = {
   sej2Chapter9Data?: Sej2Ch9Content;
   /** Sejarah Form 2 Bab 10 (Sarawak dan Sabah) chunked learning experience. BM-only. */
   sej2Chapter10Data?: Sej2Ch10Content;
-  flashcards?: Flashcard[];
-  quiz?: QuizQuestion[];
-  subtopics?: Subtopic[];
-  sej2Chapter10Data?: Sej2Ch10Content;
   sej3Chapter1Data?: Sej3Ch1Content;
   sej3Chapter2Data?: Sej3Ch2Content;
   sej3Chapter3Data?: Sej3Ch3Content;
