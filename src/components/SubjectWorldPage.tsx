@@ -912,14 +912,28 @@ function VerticalPathMap({ chapters, config, subjectId, form, scienceLang, resou
 // ─── Horizontal timeline map ──────────────────────────────────────────────────
 // Sejarah only — chapters are historical eras on a chronological timeline
 
-const SEJARAH_ERA_LABELS = [
-  "Prasejarah", "Zaman Batu", "Prasejarah", "Tamadun Awal",
-  "Tamadun Dunia", "Zaman Klasik", "Zaman Pertengahan", "Tamadun Islam",
-];
+const SEJARAH_ERA_LABELS_BY_FORM: Record<string, readonly string[]> = {
+  "Form 1": [
+    "Prasejarah", "Zaman Batu", "Prasejarah", "Tamadun Awal",
+    "Tamadun Dunia", "Zaman Klasik", "Zaman Pertengahan", "Tamadun Islam",
+  ],
+  "Form 2": [
+    "Kerajaan Alam Melayu", "Kerajaan Alam Melayu", "Kerajaan Alam Melayu", "Kerajaan Alam Melayu",
+    "Kesultanan Melayu", "Kesultanan Melayu", "Kesultanan Melayu",
+    "Kerajaan Negeri Melayu", "Kerajaan Negeri Melayu", "Sarawak & Sabah",
+  ],
+  "Form 3": [
+    "Peluasan Kuasa Barat", "Peluasan Kuasa Barat",
+    "Pentadbiran Negeri Melayu", "Pentadbiran Negeri Melayu",
+    "Pentadbiran Borneo", "Kesan Pentadbiran Barat",
+    "Reaksi Tempatan terhadap Barat", "Reaksi Tempatan terhadap Barat",
+  ],
+};
 
 function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scienceLang, resourceType = "notes", progress, onSelect }: MapProps) {
   const NODE_W   = 164;
   const totalW   = Math.max(chapters.length * NODE_W, 640);
+  const eraLabels = SEJARAH_ERA_LABELS_BY_FORM[form] ?? SEJARAH_ERA_LABELS_BY_FORM["Form 1"];
 
   // Cinematic era artwork for the right ~40% of each card — same fixed-strip
   // + left-to-right gradient treatment as Geography/Science/Math's
@@ -940,7 +954,7 @@ function SejarahTimelineMap({ chapters, config, subjectId, form = "Form 1", scie
             <div key={`era-${c.key}`} className="flex justify-center" style={{ width: NODE_W }}>
               <p className="mb-1 text-[7.5px] font-black uppercase tracking-widest"
                 style={{ color: config.color, opacity: 0.48 }}>
-                {SEJARAH_ERA_LABELS[i] ?? "Era"}
+                {eraLabels[i] ?? "Era"}
               </p>
             </div>
           ))}
