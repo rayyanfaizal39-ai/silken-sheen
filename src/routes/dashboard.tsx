@@ -1242,6 +1242,15 @@ function getRankTheme(id: string) {
   return RANK_GLOW_THEME[id] ?? RANK_GLOW_THEME.cadet;
 }
 
+/** Keeps the locked figures visually varied without changing their layout boxes. */
+const LOCKED_RANK_SILHOUETTE_SCALE: Record<string, number> = {
+  "planet-voyager": 0.88,
+  "star-captain": 0.96,
+  "galaxy-guardian": 1.08,
+  "celestial-master": 1,
+  "cosmic-legend": 1.12,
+};
+
 /** Small twinkling sparkles scattered around a spotlighted portrait. */
 const RANK_SPARKLE_POSITIONS = [
   { left: "6%", top: "12%", size: 4, dur: 2.1, delay: 0 },
@@ -1278,7 +1287,7 @@ function CosmicPlanet({
   rank,
   size = 56,
   current = false,
-  dim = false,
+  locked = false,
   spotlight = false,
   floaty = false,
   glowSmall = false,
@@ -1286,7 +1295,8 @@ function CosmicPlanet({
   rank: SpaceRank;
   size?: number | string;
   current?: boolean;
-  dim?: boolean;
+  /** Locked ranks render as mystery silhouettes while preserving their unique outline. */
+  locked?: boolean;
   /** Hero-scale presentation: halo glow + sparkles, used for the Cosmic Rank centerpiece. */
   spotlight?: boolean;
   /** Adds a slight vertical floating motion — used for the active node in the Cosmic Journey. */
@@ -1298,11 +1308,13 @@ function CosmicPlanet({
   return (
     <div
       title={`${rank.name} · ${rank.minXp.toLocaleString()} XP`}
+      data-rank-state={locked ? "locked" : current ? "current" : "unlocked"}
       className={[
         "cosmic-planet",
         current ? "cosmic-planet-current" : "",
         floaty ? "cosmic-planet-floaty" : "",
         glowSmall ? "cosmic-planet-glow-sm" : "",
+        locked ? "cosmic-planet-locked" : "cosmic-planet-unlocked",
         theme.rainbow && current ? "cosmic-planet-rainbow" : "",
       ]
         .filter(Boolean)
@@ -1310,8 +1322,6 @@ function CosmicPlanet({
       style={{
         width: size,
         height: size,
-        opacity: dim ? 0.4 : 1,
-        filter: dim ? "grayscale(1)" : "none",
         ["--planet-color" as string]: rank.color,
         ["--planet-glow" as string]: theme.glow,
         ["--planet-glow-soft" as string]: theme.soft,
@@ -1332,10 +1342,19 @@ function CosmicPlanet({
       {spotlight && <RankSparkles />}
       <img
         src={rankArtwork[rank.id]}
-        alt={rank.name}
-        className="cosmic-planet-img"
+        alt={locked ? "" : rank.name}
+        aria-hidden={locked || undefined}
+        className="cosmic-planet-img cosmic-planet-artwork-img"
         style={{ transform: `scale(${rankImageScale[rank.id] ?? 1})` }}
       />
+      <img
+        src={rankArtwork[rank.id]}
+        alt=""
+        aria-hidden="true"
+        className="cosmic-planet-img cosmic-planet-silhouette-img"
+        style={{ transform: `scale(${LOCKED_RANK_SILHOUETTE_SCALE[rank.id] ?? 1})` }}
+      />
+      <span className="cosmic-planet-mystery-mark" aria-hidden="true">?</span>
     </div>
   );
 }
@@ -1343,7 +1362,7 @@ function CosmicPlanet({
 /** Compact cosmic journey — orbit-connected planets arranged 3-per-row across two rows
  *  (Cadet → Voyager → Captain / Guardian → Master → Legend). Current rank renders 25%
  *  larger than the shared base size, with a glow; completed ranks stay full color,
- *  locked ranks render grayscale. */
+ *  locked ranks render as solid mystery silhouettes. */
 function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; currentId: string; xp: number }) {
   const BASE_SIZE = 96;
   const CURRENT_SIZE = 124;
@@ -1395,6 +1414,7 @@ function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; curre
               const next = row[i + 1];
               const nextDone = next ? xp >= next.minXp : false;
               const nextTheme = next ? getRankTheme(next.id) : null;
+              const lineUnlocked = Boolean(nextDone && nextTheme);
               return (
                 <div key={r.id} className="flex shrink-0 items-center">
                   <div className="flex w-[108px] shrink-0 flex-col items-center gap-1">
@@ -1403,7 +1423,7 @@ function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; curre
                         rank={r}
                         size={isCurrent ? CURRENT_SIZE : BASE_SIZE}
                         current={isCurrent}
-                        dim={!done}
+                        locked={!done}
                         floaty={isCurrent}
                         glowSmall={done && !isCurrent}
                       />
@@ -1419,11 +1439,11 @@ function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; curre
                     <span
                       className="cosmic-journey-line mx-1 w-6 shrink-0 sm:w-9"
                       style={{
-                        ["--from-color" as string]: done ? theme.glow : "rgba(255,255,255,0.08)",
-                        ["--to-color" as string]: nextDone && nextTheme ? nextTheme.glow : "rgba(255,255,255,0.08)",
+                        ["--from-color" as string]: lineUnlocked ? theme.glow : "rgba(139,92,246,0.14)",
+                        ["--to-color" as string]: lineUnlocked && nextTheme ? nextTheme.glow : "rgba(139,92,246,0.08)",
                       } as CSSProperties}
                     >
-                      {done && <span className="cosmic-journey-line-energy" />}
+                      {lineUnlocked && <span className="cosmic-journey-line-energy" />}
                     </span>
                   )}
                 </div>

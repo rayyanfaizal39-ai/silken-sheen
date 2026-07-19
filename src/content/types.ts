@@ -44,10 +44,9 @@ import type { Sej2Ch4Content } from "@/content/form2/sejarah/chapter-4/sej2ch4-c
 import type { Sej2Ch5Content } from "@/content/form2/sejarah/chapter-5/sej2ch5-content";
 import type { Sej2Ch6Content } from "@/content/form2/sejarah/chapter-6/sej2ch6-content";
 import type { Sej2Ch7Content } from "@/content/form2/sejarah/chapter-7/sej2ch7-content";
-import type { Sej3Ch1Content } from "@/content/form3/sejarah/chapter-1/sej3ch1-content";
-import type { Sej3Ch2Content } from "@/content/form3/sejarah/chapter-2/sej3ch2-content";
-import type { Sej3Ch3Content } from "@/content/form3/sejarah/chapter-3/sej3ch3-content";
-import type { Sej3Ch4Content } from "@/content/form3/sejarah/chapter-4/sej3ch4-content";
+import type { Sej2Ch8Content } from "@/content/form2/sejarah/chapter-8/sej2ch8-content";
+import type { Sej2Ch9Content } from "@/content/form2/sejarah/chapter-9/sej2ch9-content";
+import type { Sej2Ch10Content } from "@/content/form2/sejarah/chapter-10/sej2ch10-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -158,14 +157,12 @@ export type ChapterContent = {
   sej2Chapter6Data?: Sej2Ch6Content;
   /** Sejarah Form 2 Bab 7 (Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor) chunked learning experience. BM-only. */
   sej2Chapter7Data?: Sej2Ch7Content;
-  /** Sejarah Form 3 Bab 1 (Kedatangan Kuasa Barat) chunked learning experience. BM-only. */
-  sej3Chapter1Data?: Sej3Ch1Content;
-  /** Sejarah Form 3 Bab 2 (Pentadbiran Negeri-negeri Selat) chunked learning experience. BM-only. */
-  sej3Chapter2Data?: Sej3Ch2Content;
-  /** Sejarah Form 3 Bab 3 (Pentadbiran Negeri-negeri Melayu Bersekutu) chunked learning experience. BM-only. */
-  sej3Chapter3Data?: Sej3Ch3Content;
-  /** Sejarah Form 3 Bab 4 (Pentadbiran Negeri-negeri Melayu Tidak Bersekutu) chunked learning experience. BM-only. */
-  sej3Chapter4Data?: Sej3Ch4Content;
+  /** Sejarah Form 2 Bab 8 (Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis) chunked learning experience. BM-only. */
+  sej2Chapter8Data?: Sej2Ch8Content;
+  /** Sejarah Form 2 Bab 9 (Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis) chunked learning experience. BM-only. */
+  sej2Chapter9Data?: Sej2Ch9Content;
+  /** Sejarah Form 2 Bab 10 (Sarawak dan Sabah) chunked learning experience. BM-only. */
+  sej2Chapter10Data?: Sej2Ch10Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -220,10 +217,9 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.sej2Chapter5Data ||
       !!c?.sej2Chapter6Data ||
       !!c?.sej2Chapter7Data ||
-      !!c?.sej3Chapter1Data ||
-      !!c?.sej3Chapter2Data ||
-      !!c?.sej3Chapter3Data ||
-      !!c?.sej3Chapter4Data ||
+      !!c?.sej2Chapter8Data ||
+      !!c?.sej2Chapter9Data ||
+      !!c?.sej2Chapter10Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

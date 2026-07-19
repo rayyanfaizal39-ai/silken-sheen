@@ -82,9 +82,9 @@ import { sej2Ch4Content } from "@/content/form2/sejarah/chapter-4/sej2ch4-conten
 import { sej2Ch5Content } from "@/content/form2/sejarah/chapter-5/sej2ch5-content";
 import { sej2Ch6Content } from "@/content/form2/sejarah/chapter-6/sej2ch6-content";
 import { sej2Ch7Content } from "@/content/form2/sejarah/chapter-7/sej2ch7-content";
-import { sejarahF2C8Notes } from "@/content/form2/sejarah/chapter-8/notes";
-import { sejarahF2C9Notes } from "@/content/form2/sejarah/chapter-9/notes";
-import { sejarahF2C10Notes } from "@/content/form2/sejarah/chapter-10/notes";
+import { sej2Ch8Content } from "@/content/form2/sejarah/chapter-8/sej2ch8-content";
+import { sej2Ch9Content } from "@/content/form2/sejarah/chapter-9/sej2ch9-content";
+import { sej2Ch10Content } from "@/content/form2/sejarah/chapter-10/sej2ch10-content";
 import { sejarahF2C1MindMap } from "@/content/form2/sejarah/chapter-1/mindmap";
 import { sejarahF2C2MindMap } from "@/content/form2/sejarah/chapter-2/mindmap";
 import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
@@ -833,7 +833,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 8",
     title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
-    notes: sejarahF2C8Notes,
+    sej2Chapter8Data: sej2Ch8Content,
     flashcards: sejarahF2FlashcardsFor(8),
     quiz: sejarahF2QuizzesFor(8),
   },
@@ -843,7 +843,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 9",
     title: "Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
-    notes: sejarahF2C9Notes,
+    sej2Chapter9Data: sej2Ch9Content,
     flashcards: sejarahF2FlashcardsFor(9),
     quiz: sejarahF2QuizzesFor(9),
   },
@@ -853,7 +853,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 10",
     title: "Sarawak dan Sabah",
-    notes: sejarahF2C10Notes,
+    sej2Chapter10Data: sej2Ch10Content,
     flashcards: sejarahF2FlashcardsFor(10),
     quiz: sejarahF2QuizzesFor(10),
   },
@@ -970,6 +970,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 1",
     title: "Skala dan Jarak",
+    video: getEducationalVideo("geography-f2-c1"),
     notes: geographyF2C1Notes,
     mindMap: { data: geoF2C1MindMap, title: "Skala dan Jarak" },
     flashcards: geographyF2FlashcardsFor(1),
@@ -981,6 +982,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 2",
     title: "Peta Topografi",
+    video: getEducationalVideo("geography-f2-c2"),
     notes: geographyF2C2Notes,
     mindMap: { data: geoF2C2MindMap, title: "Peta Topografi" },
     flashcards: geographyF2FlashcardsFor(2),
@@ -992,6 +994,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 3",
     title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim",
+    video: getEducationalVideo("geography-f2-c3"),
     notes: geographyF2C3Notes,
     mindMap: { data: geoF2C3MindMap, title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim" },
     flashcards: geographyF2FlashcardsFor(3),
@@ -1003,6 +1006,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 4",
     title: "Cuaca dan Iklim di Malaysia",
+    video: getEducationalVideo("geography-f2-c4"),
     notes: geographyF2C4Notes,
     mindMap: { data: geoF2C4MindMap, title: "Cuaca dan Iklim di Malaysia" },
     flashcards: geographyF2FlashcardsFor(4),
@@ -1014,6 +1018,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 5",
     title: "Pengangkutan di Malaysia",
+    video: getEducationalVideo("geography-f2-c5"),
     notes: geographyF2C5Notes,
     mindMap: { data: geoF2C5MindMap, title: "Pengangkutan di Malaysia" },
     flashcards: geographyF2FlashcardsFor(5),
@@ -1025,6 +1030,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 6",
     title: "Telekomunikasi di Malaysia",
+    video: getEducationalVideo("geography-f2-c6"),
     notes: geographyF2C6Notes,
     mindMap: { data: geoF2C6MindMap, title: "Telekomunikasi di Malaysia" },
     flashcards: geographyF2FlashcardsFor(6),
@@ -1036,6 +1042,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 7",
     title: "Kepelbagaian Iklim dan Pengaruhnya terhadap Kegiatan Manusia di Asia",
+    video: getEducationalVideo("geography-f2-c7"),
     notes: geographyF2C7Notes,
     mindMap: { data: geoF2C7MindMap, title: "Kepelbagaian Iklim di Asia" },
     flashcards: geographyF2FlashcardsFor(7),
@@ -1047,6 +1054,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 8",
     title: "Jenis dan Kemajuan Pengangkutan di Asia",
+    video: getEducationalVideo("geography-f2-c8"),
     notes: geographyF2C8Notes,
     mindMap: { data: geoF2C8MindMap, title: "Jenis dan Kemajuan Pengangkutan di Asia" },
     flashcards: geographyF2FlashcardsFor(8),
@@ -1058,6 +1066,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 9",
     title: "Pemanasan Global",
+    video: getEducationalVideo("geography-f2-c9"),
     notes: geographyF2C9Notes,
     mindMap: { data: geoF2C9MindMap, title: "Pemanasan Global" },
     flashcards: geographyF2FlashcardsFor(9),
@@ -1069,6 +1078,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Chapter 10",
     title: "Teknologi Hijau",
+    video: getEducationalVideo("geography-f2-c10"),
     notes: geographyF2C10Notes,
     mindMap: { data: geoF2C10MindMap, title: "Teknologi Hijau" },
     flashcards: geographyF2FlashcardsFor(10),

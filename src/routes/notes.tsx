@@ -57,10 +57,9 @@ import { Sej2Chapter4NotesBlock } from "@/components/notes/Sej2Chapter4NotesBloc
 import { Sej2Chapter5NotesBlock } from "@/components/notes/Sej2Chapter5NotesBlock";
 import { Sej2Chapter6NotesBlock } from "@/components/notes/Sej2Chapter6NotesBlock";
 import { Sej2Chapter7NotesBlock } from "@/components/notes/Sej2Chapter7NotesBlock";
-import { Sej3Chapter1NotesBlock } from "@/components/notes/Sej3Chapter1NotesBlock";
-import { Sej3Chapter2NotesBlock } from "@/components/notes/Sej3Chapter2NotesBlock";
-import { Sej3Chapter3NotesBlock } from "@/components/notes/Sej3Chapter3NotesBlock";
-import { Sej3Chapter4NotesBlock } from "@/components/notes/Sej3Chapter4NotesBlock";
+import { Sej2Chapter8NotesBlock } from "@/components/notes/Sej2Chapter8NotesBlock";
+import { Sej2Chapter9NotesBlock } from "@/components/notes/Sej2Chapter9NotesBlock";
+import { Sej2Chapter10NotesBlock } from "@/components/notes/Sej2Chapter10NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -81,6 +80,7 @@ import {
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
+import { NotesLanding } from "@/components/notes/NotesLanding";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { BMForm2WorldPage } from "@/components/BMForm2WorldPage";
 import { BMForm3WorldPage } from "@/components/BMForm3WorldPage";
@@ -493,93 +493,66 @@ function NotesPage() {
         </div>
       )}
 
-      <AcademyHero
-        eyebrow="Smart revision"
-        title="Summary"
-        gradientTitle="Notes"
-        description="Quick, focused notes that get you ready in minutes."
-        stats={[
-          {
-            label: "Reading Progress",
-            value: subject && activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
-          },
-          {
-            label: "Chapters Completed",
-            value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
-              .length,
-          },
-          { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
-        ]}
-      />
-      <div className="mb-7 flex justify-center">
-        <DailyQuote />
-      </div>
+      {/* On the landing view (no subject selected) we render the redesigned
+          Notes hub instead of the generic AcademyHero + inline preview cards.
+          The AcademyHero + DailyQuote stack still shows when a subject is
+          picked so downstream chapter views keep their existing chrome. */}
+      {!subject && (
+        <NotesLanding
+          progress={progress}
+          onSelectSubject={(id) => {
+            setChapter(null);
+            void navigate({
+              search: (previous: Record<string, unknown>) => ({
+                ...previous,
+                subject: id,
+                form: undefined,
+                chapter: undefined,
+              }),
+            });
+          }}
+          onContinueReading={(subjectId, chapterKey, form) => {
+            setChapter(chapterKey);
+            void navigate({
+              search: (previous: Record<string, unknown>) => ({
+                ...previous,
+                subject: subjectId,
+                form: Number(form.replace("Form ", "")),
+                chapter: chapterKey,
+              }),
+            });
+          }}
+        />
+      )}
 
-      {!subject ? (
-        <div className="space-y-6">
-          <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                Continue Reading
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
-              <p className="mt-1 text-sm text-[#94A3B8]">Bab 7: Udara</p>
-              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6]" />
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  void navigate({
-                    search: (previous: Record<string, unknown>) => ({
-                      ...previous,
-                      subject: "science",
-                    }),
-                  });
-                  setScienceLang("bm");
-                  setChapter("Chapter 7");
-                }}
-                className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
-              >
-                Continue Reading
-              </button>
-            </div>
-            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                Notes Preview
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold">
-                Key points, definitions, exam tips
-              </h2>
-              <div className="mt-5 grid gap-3">
-                {["Quick revision bullets", "Highlighted definitions", "Exam-ready facts"].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-sm font-semibold"
-                    >
-                      {item}
-                    </div>
-                  ),
-                )}
-              </div>
-            </div>
-          </div>
-          <SubjectGrid
-            onSelect={(id) => {
-              setChapter(null);
-              void navigate({
-            search: (previous: Record<string, unknown>) => ({
-              ...previous,
-              subject: id,
-              form: undefined,
-              chapter: undefined,
-            }),
-          });
-        }}
+      {subject && (
+        <>
+          <AcademyHero
+            eyebrow="Smart revision"
+            title="Summary"
+            gradientTitle="Notes"
+            description="Quick, focused notes that get you ready in minutes."
+            illustration="notes"
+            stats={[
+              {
+                label: "Reading Progress",
+                value: activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
+              },
+              {
+                label: "Chapters Completed",
+                value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
+                  .length,
+              },
+              { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
+            ]}
           />
-        </div>
-      ) : needsScienceLang ? (
+          <div className="mb-7 flex justify-center">
+            <DailyQuote />
+          </div>
+        </>
+      )}
+
+      {!subject ? null : needsScienceLang ? (
         <ScienceLanguagePicker
           onSelect={(l) => setScienceLang(l)}
           subjectName={subject === "math" ? "Mathematics" : "Science"}
@@ -860,40 +833,30 @@ function NotesPage() {
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
-          ) : activeChapter?.sej3Chapter1Data ? (
-            <Sej3Chapter1NotesBlock
+          ) : activeChapter?.sej2Chapter8Data ? (
+            <Sej2Chapter8NotesBlock
               id="notes"
-              content={activeChapter.sej3Chapter1Data}
+              content={activeChapter.sej2Chapter8Data}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
               isRead={isRead}
               onMarkRead={() =>
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
-          ) : activeChapter?.sej3Chapter2Data ? (
-            <Sej3Chapter2NotesBlock
+          ) : activeChapter?.sej2Chapter9Data ? (
+            <Sej2Chapter9NotesBlock
               id="notes"
-              content={activeChapter.sej3Chapter2Data}
+              content={activeChapter.sej2Chapter9Data}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
               isRead={isRead}
               onMarkRead={() =>
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
-          ) : activeChapter?.sej3Chapter3Data ? (
-            <Sej3Chapter3NotesBlock
+          ) : activeChapter?.sej2Chapter10Data ? (
+            <Sej2Chapter10NotesBlock
               id="notes"
-              content={activeChapter.sej3Chapter3Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter4Data ? (
-            <Sej3Chapter4NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter4Data}
+              content={activeChapter.sej2Chapter10Data}
               storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
               isRead={isRead}
               onMarkRead={() =>

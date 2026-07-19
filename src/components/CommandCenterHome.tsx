@@ -17,10 +17,11 @@ import {
 } from "lucide-react";
 import { CinematicStars } from "@/components/landing/CinematicStars";
 import { OrbitalBackdrop } from "@/components/home/OrbitalBackdrop";
-import floatingAstronaut from "@/assets/hero landing/floating A.png";
+import astronautRocket from "@/assets/premium-astronaut-rocket.png";
+import academyBrainIcon from "@/assets/academy-brain-icon.png";
 import cikguAiRobot from "@/assets/cikgu-ai-robot.png";
+import missionsXpIcon from "@/assets/missions-xp-icon.png";
 import cikguBackground from "@/assets/backgroundcikgu.png";
-import dashboardPreview from "@/assets/dashboard-preview.png.asset.json";
 
 const SUBJECTS = [
   { id: "bahasa-melayu", title: "Bahasa Melayu", subtitle: "Tatabahasa & karangan", chapters: 24, icon: Languages, thumb: "radial-gradient(circle at 30% 30%,#ff5c8a,#7a1d4a 55%,#12061a)" },
@@ -50,7 +51,6 @@ export function CommandCenterHome() {
         <FloatingAstronaut />
         <MissionIntro />
         <FeatureBanner />
-        <DashboardPreview />
         <SubjectsGrid />
         <CikguHelp />
         <SocialProof />
@@ -64,14 +64,32 @@ export function CommandCenterHome() {
 
 function FloatingAstronaut() {
   return (
-    <div className="relative flex justify-center">
-      <img
-        src={floatingAstronaut}
-        alt="AcadeMY astronaut floating in space"
-        className="w-40 sm:w-52 md:w-64 drop-shadow-[0_20px_60px_rgba(124,92,255,.45)]"
-        style={{ animation: "cc-astro-float 6s ease-in-out infinite" }}
+    <div className="relative -mx-4 flex min-h-[280px] items-center justify-center overflow-hidden sm:min-h-[380px] md:-mx-8 md:min-h-[520px]">
+      <div
+        className="pointer-events-none absolute inset-x-[8%] inset-y-[12%] rounded-full opacity-70 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at 48% 58%,rgba(124,92,255,.38),transparent 48%),radial-gradient(circle at 68% 52%,rgba(34,211,238,.18),transparent 42%)",
+        }}
+        aria-hidden
       />
-      <style>{`@keyframes cc-astro-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}`}</style>
+      <img
+        src={astronautRocket}
+        alt="AcadeMY astronaut riding a rocket through space"
+        className="relative w-full max-w-5xl object-contain drop-shadow-[0_28px_80px_rgba(124,92,255,.3)]"
+        style={{
+          animation: "cc-astro-float 7s ease-in-out infinite",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 68% 72% at 50% 50%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%)",
+          maskImage:
+            "radial-gradient(ellipse 68% 72% at 50% 50%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#05060f] to-transparent"
+        aria-hidden
+      />
+      <style>{`@keyframes cc-astro-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.01)}}`}</style>
     </div>
   );
 }
@@ -129,7 +147,30 @@ function FeatureBanner() {
                   "linear-gradient(160deg,rgba(245,197,24,.16),rgba(124,92,255,.16))",
               }}
             >
-              <Icon className="h-6 w-6" />
+              {title === "AcadeMY Brain" ? (
+                <img
+                  src={academyBrainIcon}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-12 w-12 rounded-xl object-cover drop-shadow-[0_4px_10px_rgba(34,211,238,.3)]"
+                />
+              ) : title === "Cikgu AI" ? (
+                <img
+                  src={cikguAiRobot}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-12 w-12 object-contain drop-shadow-[0_4px_10px_rgba(124,92,255,.35)]"
+                />
+              ) : title === "Missions & XP" ? (
+                <img
+                  src={missionsXpIcon}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-auto w-[52px] object-contain drop-shadow-[0_4px_10px_rgba(245,197,24,.3)]"
+                />
+              ) : (
+                <Icon className="h-6 w-6" />
+              )}
             </div>
             <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
             <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{body}</p>
@@ -139,98 +180,6 @@ function FeatureBanner() {
     </section>
   );
 }
-
-/* ---------------- Dashboard preview ---------------- */
-
-function DashboardPreview() {
-  const highlights = [
-    { icon: Trophy, label: "Cosmic Journey", body: "Rank up from Space Cadet to Cosmic Legend as you master every KSSM chapter." },
-    { icon: Brain, label: "Today's Progress", body: "Notes studied, quizzes cleared, flashcards mastered and XP — all in one glance." },
-    { icon: Users, label: "Cosmic Leaderboard", body: "Compete with 50,000+ Malaysian captains and climb the top 100 nationwide." },
-  ];
-  return (
-    <section className="relative">
-      <div className="mx-auto mb-10 max-w-2xl text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-violet-300">
-          Your Command Center
-        </p>
-        <h2 className="mt-3 font-display text-3xl md:text-4xl font-semibold tracking-tight">
-          One dashboard. Every mission. All your progress.
-        </h2>
-        <div
-          className="mx-auto mt-5 h-1.5 w-32 rounded-full"
-          style={{ background: "linear-gradient(90deg,#7c5cff,#22d3ee)" }}
-        />
-        <p className="mt-6 text-lg leading-relaxed text-slate-400">
-          Sign in and land on a dashboard built for Malaysian KSSM captains — track your rank,
-          continue your subject worlds, and see where you stand on the cosmic leaderboard.
-        </p>
-      </div>
-
-      <div
-        className="relative overflow-hidden rounded-[28px] border border-white/[0.08] p-3 md:p-5"
-        style={{
-          background:
-            "radial-gradient(70% 100% at 10% 0%,rgba(124,92,255,.28),transparent 55%),radial-gradient(70% 100% at 90% 100%,rgba(34,211,238,.22),transparent 55%),linear-gradient(140deg,#0b0d24,#070818)",
-        }}
-      >
-        {/* glow frame */}
-        <div
-          className="pointer-events-none absolute -inset-px rounded-[28px] opacity-70"
-          style={{
-            background:
-              "linear-gradient(120deg,rgba(124,92,255,.35),transparent 40%,transparent 60%,rgba(34,211,238,.35))",
-            filter: "blur(24px)",
-          }}
-          aria-hidden
-        />
-        <div className="relative overflow-hidden rounded-[20px] border border-white/[0.06] bg-black/40 shadow-[0_40px_120px_-30px_rgba(124,92,255,.55)]">
-          <img
-            src={dashboardPreview.url}
-            alt="AcadeMY student dashboard preview showing cosmic journey, subject worlds and leaderboard"
-            className="block w-full h-auto"
-            loading="lazy"
-          />
-          {/* top gloss */}
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-24"
-            style={{ background: "linear-gradient(180deg,rgba(255,255,255,.06),transparent)" }}
-            aria-hidden
-          />
-        </div>
-      </div>
-
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
-        {highlights.map(({ icon: Icon, label, body }) => (
-          <div
-            key={label}
-            className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-violet-400/50 hover:bg-violet-500/[0.06]"
-          >
-            <div
-              className="flex h-11 w-11 items-center justify-center rounded-xl text-cyan-300"
-              style={{ background: "linear-gradient(160deg,rgba(34,211,238,.16),rgba(124,92,255,.16))" }}
-            >
-              <Icon className="h-5 w-5" />
-            </div>
-            <h3 className="mt-4 font-display text-lg font-semibold">{label}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-400">{body}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-8 flex justify-center">
-        <Link
-          to="/dashboard"
-          className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-slate-100 backdrop-blur transition hover:border-violet-400/60 hover:bg-violet-500/[0.12]"
-        >
-          Preview the dashboard
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-        </Link>
-      </div>
-    </section>
-  );
-}
-
 
 /* ---------------- Subjects grid ---------------- */
 

@@ -12,6 +12,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 import astronautRocket from "@/assets/premium-astronaut-rocket.png";
+import {
+  AcademyHeroVectorIllustration,
+  type AcademyHeroIllustrationVariant,
+} from "@/components/AcademyHeroIllustrations";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { PlanetEnvironment, type PlanetSubjectId } from "@/components/PlanetEnvironment";
 import type { FormStat } from "@/content/registry";
@@ -450,6 +454,7 @@ export function AcademyHero({
   description,
   stats,
   icon: Icon = Brain,
+  illustration = "astronaut",
 }: {
   eyebrow?: string;
   title: string;
@@ -457,6 +462,7 @@ export function AcademyHero({
   description: string;
   stats?: Array<{ label: string; value: string | number; tone?: string }>;
   icon?: ComponentType<{ className?: string }>;
+  illustration?: AcademyHeroIllustrationVariant;
 }) {
   return (
     <div className="academy-surface mb-7 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:p-6 md:p-8">
@@ -475,7 +481,7 @@ export function AcademyHero({
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-[#94A3B8]">{description}</p>
         </div>
-        <LearningHeroIllustration />
+        <LearningHeroIllustration variant={illustration} />
       </div>
       {stats && stats.length > 0 && (
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
@@ -494,16 +500,20 @@ export function AcademyHero({
   );
 }
 
-function LearningHeroIllustration() {
+function LearningHeroIllustration({ variant }: { variant: AcademyHeroIllustrationVariant }) {
   return (
     <div className="relative hidden min-h-[240px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#050816]/50 lg:block">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_32%,rgba(99,102,241,0.28),transparent_32%),radial-gradient(circle_at_20%_78%,rgba(59,130,246,0.16),transparent_34%)]" />
       <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle,rgba(255,255,255,0.85)_1px,transparent_1px)] [background-size:34px_34px]" />
-      <img
-        src={astronautRocket}
-        alt="Premium 3D astronaut riding a rocket through a purple blue nebula"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-      />
+      {variant === "astronaut" ? (
+        <img
+          src={astronautRocket}
+          alt="Premium 3D astronaut riding a rocket through a purple blue nebula"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+      ) : (
+        <AcademyHeroVectorIllustration variant={variant} />
+      )}
       <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050816]/80 to-transparent" />
     </div>
   );

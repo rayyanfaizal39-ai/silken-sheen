@@ -199,6 +199,7 @@ function MindMapsPage() {
             title="Mind Maps"
             gradientTitle="Library"
             description="Explore every chapter visually through interactive learning maps."
+            illustration="mindmaps"
           />
           <SubjectGrid onSelect={chooseSubject} />
         </>
