@@ -170,6 +170,14 @@ export type ChapterContent = {
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
+  sej2Chapter10Data?: Sej2Ch10Content;
+  sej3Chapter1Data?: Sej3Ch1Content;
+  sej3Chapter2Data?: Sej3Ch2Content;
+  sej3Chapter3Data?: Sej3Ch3Content;
+  sej3Chapter4Data?: Sej3Ch4Content;
+  flashcards?: Flashcard[];
+  quiz?: QuizQuestion[];
+  subtopics?: Subtopic[];
 };
 
 export type ChapterFeatureKey =
