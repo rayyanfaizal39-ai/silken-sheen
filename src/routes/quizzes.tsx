@@ -7021,6 +7021,7 @@ function QuizzesPage() {
         title="Take a"
         gradientTitle="Quiz"
         description="Instant scoring, focused practice, and XP momentum for every KSSM subject."
+        illustration="quizzes"
         stats={[
           {
             label: "Quiz Progress",

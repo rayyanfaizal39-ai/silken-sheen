@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 9: Warisan dan Adat Perpatih — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:24px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+
+  /* 5 aspects grid */
+  .aspect-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px;}
+  .aspect-tile{background:var(--bg-panel); border-radius:12px; padding:14px; text-align:center;}
+  .aspect-tile h6{font-family:var(--font-display); font-size:12px; margin:0;}
+
+  /* Perlis lineage timeline */
+  .lineage-flow{display:flex; gap:0; padding:16px 0; flex-wrap:wrap; justify-content:center;}
+  .lineage-step{text-align:center; padding:0 8px; min-width:110px;}
+  .lineage-dot{width:12px; height:12px; border-radius:50%; margin:0 auto 6px; background:var(--amber); box-shadow:0 0 8px rgba(251,191,90,0.6);}
+  .lineage-step h6{font-family:var(--font-display); font-size:10px; margin:0 0 2px;}
+  .lineage-step .yr{font-size:9px; color:var(--muted-dim);}
+
+  /* Coronation steps */
+  .coronation-flow{display:flex; flex-direction:column; gap:0;}
+  .coronation-step{display:flex; gap:14px; position:relative; padding:12px 0;}
+  .coronation-step:not(:last-child)::after{content:''; position:absolute; left:15px; top:38px; width:2px; height:calc(100% - 12px); background:var(--line);}
+  .coronation-num{width:32px; height:32px; border-radius:50%; background:var(--bg-panel); border:1px solid var(--violet); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; z-index:1; color:var(--violet);}
+  .coronation-txt{font-size:11.5px; color:var(--muted); padding-top:5px; line-height:1.5;}
+
+  /* Adat Perpatih features */
+  .feature-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;}
+  .feature-tile{background:var(--bg-panel); border-radius:14px; padding:16px;}
+  .feature-tile h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 8px; color:var(--green);}
+  .feature-tile ul{font-size:10px; color:var(--muted); margin:0; padding-left:16px; line-height:1.6;}
+
+  /* Kedim chant */
+  .chant-box{background:var(--bg-panel); border-radius:16px; padding:24px; text-align:center; box-shadow:0 0 20px rgba(139,107,255,0.15);}
+  .chant-box .txt{font-size:15px; color:var(--text); font-style:italic; line-height:1.8; font-family:var(--font-display);}
+
+  /* Adat Perpatih hierarchy */
+  .adat-hierarchy{display:flex; flex-direction:column; align-items:center; gap:6px;}
+  .adat-tier{width:100%; text-align:center; border-radius:12px; padding:12px; font-size:12px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 9: Warisan Kedah, Kelantan, Negeri Sembilan dan Perlis</h1>
+  <p class="lead">Sistem matrilineal yang unik di Negeri Sembilan — dan salasilah 7 Raja Perlis yang bersambung hingga kini.</p>
+
+  <div class="card">
+    <h2>⭐ Lima Aspek Warisan</h2>
+    <div class="aspect-grid">
+      <div class="aspect-tile"><h6>Pemerintahan Beraja</h6></div>
+      <div class="aspect-tile"><h6>Adat Istiadat</h6></div>
+      <div class="aspect-tile"><h6>Perundangan</h6></div>
+      <div class="aspect-tile"><h6>Persuratan</h6></div>
+      <div class="aspect-tile"><h6>Kesenian</h6></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>👑 Salasilah Raja Perlis — 7 Pemerintah Berturutan</h2>
+    <div class="lineage-flow">
+      <div class="lineage-step"><div class="lineage-dot"></div><h6>Syed Hussin</h6><div class="yr">1843-1873</div></div>
+      <div class="lineage-step"><div class="lineage-dot"></div><h6>Syed Ahmad</h6><div class="yr">1873-1897</div></div>
+      <div class="lineage-step"><div class="lineage-dot"></div><h6>Syed Safi</h6><div class="yr">1897-1904</div></div>
+      <div class="lineage-step"><div class="lineage-dot"></div><h6>Syed Alwi</h6><div class="yr">1904-1943</div></div>
+      <div class="lineage-step"><div class="lineage-dot"></div><h6>Syed Hamzah</h6><div class="yr">1943-1945</div></div>
+      <div class="lineage-step"><div class="lineage-dot"></div><h6>Syed Putra</h6><div class="yr">1945-2000</div></div>
+      <div class="lineage-step"><div class="lineage-dot" style="width:16px; height:16px;"></div><h6>Syed Sirajuddin</h6><div class="yr">2000-kini</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🕌 Langkah Istiadat Pertabalan</h2>
+    <div class="coronation-flow">
+      <div class="coronation-step"><div class="coronation-num">1</div><div class="coronation-txt">Majlis Pemasyhuran — pengganti dimasyhurkan sebelum jenazah pemerintah lama dimakamkan</div></div>
+      <div class="coronation-step"><div class="coronation-num">2</div><div class="coronation-txt">Istiadat Pertabalan — mempersembahkan al-Quran dan alat kebesaran diraja</div></div>
+      <div class="coronation-step"><div class="coronation-num">3</div><div class="coronation-txt">Membaca watikah pertabalan dan mengucup keris kuasa</div></div>
+      <div class="coronation-step"><div class="coronation-num">4</div><div class="coronation-txt">Menteri Besar mengetuai seruan "Daulat Tuanku"</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🌾 Lima Keunikan Adat Perpatih</h2>
+    <p class="sub">Sistem matrilineal yang tiada tandingan di Malaysia.</p>
+    <div class="feature-grid">
+      <div class="feature-tile"><h5>Jurai Keturunan Sebelah Ibu</h5><ul><li>Wanita dianggap Ibu Soko</li><li>Anak ialah ahli suku ibunya</li></ul></div>
+      <div class="feature-tile"><h5>Pelaksanaan Hukuman</h5><ul><li>Bersifat pemulihan</li><li>Kesalahan kecil: bermaaf/denda ringan</li></ul></div>
+      <div class="feature-tile"><h5>Perkahwinan</h5><ul><li>Digalakkan luar suku</li><li>Lelaki jadi "orang semenda"</li></ul></div>
+      <div class="feature-tile"><h5>Upacara Kedim</h5><ul><li>Menerima ahli suku baharu</li><li>Sumpah taat setia</li></ul></div>
+      <div class="feature-tile"><h5>Wanita Mewarisi Pusaka</h5><ul><li>Tanah &amp; rumah diwarisi ibu ke anak perempuan</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📿 Ucapan Upacara Kedim</h2>
+    <div class="chant-box">
+      <div class="txt">"Darah dicecah,<br>Doa ditampung,<br>Sumpah dilabuh,<br>Quran dijunjung."</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏛️ Hierarki Pemerintahan Adat Perpatih</h2>
+    <p class="sub">Setiap peringkat dipilih melalui muafakat — tanpa Ibu Soko, tiada pelantikan boleh berlaku.</p>
+    <div class="adat-hierarchy">
+      <div class="adat-tier" style="background:linear-gradient(135deg,#8b6bff,#4fb0ff); font-weight:700; box-shadow:0 0 18px rgba(139,107,255,0.4); max-width:320px;">Yamtuan Besar</div>
+      <div class="adat-tier" style="background:rgba(79,176,255,0.15); color:#4fb0ff; max-width:280px;">Undang (Sungai Ujong, Jelebu, Johol, Rembau)</div>
+      <div class="adat-tier" style="background:rgba(251,191,90,0.15); color:#fbbf5a; max-width:240px;">Lembaga (Ketua Suku)</div>
+      <div class="adat-tier" style="background:rgba(74,222,128,0.15); color:#4ade80; max-width:200px;">Buapak</div>
+      <div class="adat-tier" style="background:rgba(248,113,113,0.15); color:#f87171; max-width:180px;">Anak Buah &amp; Ibu Soko</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

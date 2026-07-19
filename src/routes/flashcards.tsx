@@ -4036,6 +4036,7 @@ function FlashcardsPage() {
         title=""
         gradientTitle="Flashcards"
         description="Master concepts through active recall."
+        illustration="flashcards"
         stats={[
           { label: "Completed", value: subject || chapter ? idx : "Ready" },
           { label: "Cards Left", value: subject || chapter ? Math.max(0, remaining) : "Choose" },
