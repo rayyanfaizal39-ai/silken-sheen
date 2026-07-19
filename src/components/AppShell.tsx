@@ -334,23 +334,13 @@ export function AppShell({ children }: { children: ReactNode }) {
               Upgrade
             </Link>
             <HeaderAuthAction />
-            {/* Profile / avatar link with upgrade pip */}
-            <div className="relative">
-              <Link
-                to="/dashboard"
-                className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2 py-1.5 text-sm transition-colors hover:bg-white/[0.10]"
-              >
-                <RankBadge />
-              </Link>
-              {/* Upgrade pip on avatar */}
-              <Link
-                to="/upgrade"
-                title="Upgrade to Premium"
-                className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-[#F59E0B] to-[#D97706] text-[9px] shadow-[0_0_8px_rgba(245,158,11,0.6)] transition-transform hover:scale-110"
-              >
-                â­
-              </Link>
-            </div>
+            {/* Profile / avatar link */}
+            <Link
+              to="/dashboard"
+              className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2 py-1.5 text-sm transition-colors hover:bg-white/[0.10]"
+            >
+              <RankBadge />
+            </Link>
           </div>
         </header>
 
