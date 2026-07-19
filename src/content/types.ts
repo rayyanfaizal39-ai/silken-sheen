@@ -47,6 +47,10 @@ import type { Sej2Ch7Content } from "@/content/form2/sejarah/chapter-7/sej2ch7-c
 import type { Sej2Ch8Content } from "@/content/form2/sejarah/chapter-8/sej2ch8-content";
 import type { Sej2Ch9Content } from "@/content/form2/sejarah/chapter-9/sej2ch9-content";
 import type { Sej2Ch10Content } from "@/content/form2/sejarah/chapter-10/sej2ch10-content";
+import type { Sej3Ch1Content } from "@/content/form3/sejarah/chapter-1/sej3ch1-content";
+import type { Sej3Ch2Content } from "@/content/form3/sejarah/chapter-2/sej3ch2-content";
+import type { Sej3Ch3Content } from "@/content/form3/sejarah/chapter-3/sej3ch3-content";
+import type { Sej3Ch4Content } from "@/content/form3/sejarah/chapter-4/sej3ch4-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
