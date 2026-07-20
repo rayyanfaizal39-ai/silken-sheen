@@ -51,6 +51,10 @@ import type { Sej3Ch1Content } from "@/content/form3/sejarah/chapter-1/sej3ch1-c
 import type { Sej3Ch2Content } from "@/content/form3/sejarah/chapter-2/sej3ch2-content";
 import type { Sej3Ch3Content } from "@/content/form3/sejarah/chapter-3/sej3ch3-content";
 import type { Sej3Ch4Content } from "@/content/form3/sejarah/chapter-4/sej3ch4-content";
+import type { Sej3Ch5Content } from "@/content/form3/sejarah/chapter-5/sej3ch5-content";
+import type { Sej3Ch6Content } from "@/content/form3/sejarah/chapter-6/sej3ch6-content";
+import type { Sej3Ch7Content } from "@/content/form3/sejarah/chapter-7/sej3ch7-content";
+import type { Sej3Ch8Content } from "@/content/form3/sejarah/chapter-8/sej3ch8-content";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -175,6 +179,14 @@ export type ChapterContent = {
   sej3Chapter3Data?: Sej3Ch3Content;
   /** Sejarah Form 3 Bab 4 (Pentadbiran Negeri-negeri Melayu Tidak Bersekutu) chunked learning experience. BM-only. */
   sej3Chapter4Data?: Sej3Ch4Content;
+  /** Sejarah Form 3 Bab 5 (Pentadbiran Barat di Sarawak dan Sabah) chunked learning experience. BM-only. */
+  sej3Chapter5Data?: Sej3Ch5Content;
+  /** Sejarah Form 3 Bab 6 (Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial) chunked learning experience. BM-only. */
+  sej3Chapter6Data?: Sej3Ch6Content;
+  /** Sejarah Form 3 Bab 7 (Penentangan Masyarakat Tempatan) chunked learning experience. BM-only. */
+  sej3Chapter7Data?: Sej3Ch7Content;
+  /** Sejarah Form 3 Bab 8 (Kebijaksanaan Raja dan Pembesar Melayu) chunked learning experience. BM-only. */
+  sej3Chapter8Data?: Sej3Ch8Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -236,6 +248,10 @@ export function getChapterFeatures(c: ChapterContent | undefined): Record<Chapte
       !!c?.sej3Chapter2Data ||
       !!c?.sej3Chapter3Data ||
       !!c?.sej3Chapter4Data ||
+      !!c?.sej3Chapter5Data ||
+      !!c?.sej3Chapter6Data ||
+      !!c?.sej3Chapter7Data ||
+      !!c?.sej3Chapter8Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

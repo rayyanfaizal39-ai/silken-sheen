@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 8: Kebijaksanaan Raja dan Pembesar Melayu — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes popIn{0%{opacity:0; transform:scale(0.85);} 70%{transform:scale(1.03);} 100%{opacity:1; transform:scale(1);}}
+  @keyframes softPulse{0%,100%{box-shadow:0 0 10px rgba(251,191,90,0.3);} 50%{box-shadow:0 0 18px rgba(251,191,90,0.6);}}
+  @keyframes flagWave{0%,100%{transform:rotate(0deg);} 50%{transform:rotate(2deg);}}
+
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;
+        opacity:0; animation:fadeUp 0.6s ease-out forwards;}
+  .card:nth-of-type(1){animation-delay:0.05s;} .card:nth-of-type(2){animation-delay:0.1s;}
+  .card:nth-of-type(3){animation-delay:0.15s;} .card:nth-of-type(4){animation-delay:0.2s;}
+  .card:nth-of-type(5){animation-delay:0.25s;} .card:nth-of-type(6){animation-delay:0.3s;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  img.gen{max-width:100%; border-radius:14px; display:block; margin:0 auto 20px; transition:transform 0.4s ease;}
+  img.gen:hover{transform:scale(1.015);}
+
+  .state-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
+  .state-card{background:var(--bg-panel); border-radius:14px; padding:18px; opacity:0; animation:popIn 0.5s ease-out forwards;
+              transition:transform 0.25s ease;}
+  .state-card:hover{transform:translateY(-4px);}
+  .state-card:nth-child(1){animation-delay:0.5s;} .state-card:nth-child(2){animation-delay:0.65s;}
+  .state-card:nth-child(3){animation-delay:0.8s;} .state-card:nth-child(4){animation-delay:0.95s;}
+  .state-card h4{font-family:var(--font-display); font-size:14px; margin:0 0 4px;}
+  .state-card .ruler{font-size:10px; color:var(--muted-dim); margin-bottom:6px;}
+  .state-card .loss{font-size:10.5px; color:var(--red); font-weight:600; margin-bottom:8px;}
+  .state-card ul{font-size:10px; color:var(--muted); margin:0; padding-left:15px; line-height:1.5;}
+  .state-card blockquote{font-style:italic; font-size:10.5px; color:var(--amber); border-left:2px solid var(--amber); padding-left:8px; margin:8px 0 0;}
+
+  .durbar-flow{display:flex; flex-direction:column; gap:0;}
+  .durbar-step{display:flex; gap:14px; position:relative; padding:10px 0;}
+  .durbar-step:not(:last-child)::after{content:''; position:absolute; left:17px; top:38px; width:2px; height:calc(100% - 10px); background:var(--line);}
+  .durbar-num{width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+              font-family:var(--font-display); font-weight:700; font-size:13px; flex-shrink:0; z-index:1;
+              background:var(--bg-panel); border:2px solid var(--violet); color:var(--violet);}
+  .durbar-content h6{font-family:var(--font-display); font-size:13px; margin:0 0 6px;}
+  .durbar-content ul{font-size:10.5px; color:var(--muted); margin:0; padding-left:16px; line-height:1.6;}
+
+  /* Advisor refusal cards */
+  .advisor-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px;}
+  .advisor-card{background:var(--bg-panel); border-radius:14px; padding:18px;}
+  .advisor-card h4{font-family:var(--font-display); font-size:14px; margin:0 0 4px;}
+  .advisor-card .advisor-name{font-size:10px; color:var(--blue); font-weight:700; margin-bottom:8px;}
+  .advisor-card ul{font-size:9.5px; color:var(--muted); margin:0 0 8px; padding-left:14px; line-height:1.5;}
+  .advisor-card blockquote{font-style:italic; font-size:10px; color:var(--amber); border-left:2px solid var(--amber); padding-left:8px; margin:0 0 8px;}
+  .advisor-card .final{font-size:10px; color:var(--green); font-weight:600; padding-top:8px; border-top:1px solid var(--line);}
+  .advisor-card .identity{display:flex; flex-wrap:wrap; gap:4px; margin-top:6px;}
+  .advisor-card .id-chip{background:var(--bg-card); border-radius:6px; padding:2px 8px; font-size:8.5px; color:var(--muted-dim);}
+
+  /* Written constitutions - document blocks */
+  .constitution-row{display:flex; gap:20px; flex-wrap:wrap;}
+  .constitution-doc{flex:1; min-width:280px; background:var(--bg-panel); border-radius:16px; padding:24px; box-shadow:0 0 20px rgba(139,107,255,0.1); border-left:3px solid var(--violet);}
+  .constitution-doc .meta{font-size:10.5px; color:var(--violet); font-weight:700; margin-bottom:4px;}
+  .constitution-doc h4{font-family:var(--font-display); font-size:14px; margin:0 0 4px;}
+  .constitution-doc .clauses{font-size:9.5px; color:var(--muted-dim); margin-bottom:12px;}
+  .constitution-doc ul{font-size:10px; color:var(--muted); margin:0 0 10px; padding-left:14px; line-height:1.6;}
+  .constitution-doc .significance{font-size:9.5px; color:var(--green); font-style:italic; padding-top:8px; border-top:1px solid var(--line);}
+  .first-badge{display:inline-block; background:rgba(251,191,90,0.15); color:var(--amber); border-radius:8px; padding:3px 10px; font-size:9px; font-weight:700; margin-top:8px;}
+
+  .diplomacy-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;}
+  .diplomacy-tile{background:var(--bg-panel); border-radius:14px; padding:16px; position:relative;}
+  .diplomacy-tile.highlight{animation:softPulse 3s ease-in-out infinite;}
+  .diplomacy-tile h5{font-family:var(--font-display); font-size:12.5px; margin:0 0 6px; color:var(--amber);}
+  .diplomacy-tile p{font-size:10px; color:var(--muted); margin:0; line-height:1.4;}
+  .flag-icon{display:inline-block; animation:flagWave 2s ease-in-out infinite; transform-origin:bottom left;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 8: Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat</h1>
+  <p class="lead">"Tidak akan memaafkan sesiapa yang menjual negeri Kedah seperti menjual seekor kerbau" — dan dua negeri Melayu yang menulis perlembagaan sendiri untuk menghalang penjajahan.</p>
+
+  <div class="card">
+    <h2>🗺️ Reaksi Terhadap Perjanjian Bangkok 1909</h2>
+    <p class="sub">Setiap negeri kehilangan wilayah — dan setiap raja bertindak balas dengan caranya sendiri.</p>
+    <div class="state-grid">
+      <div class="state-card">
+        <h4>Perlis</h4>
+        <div class="ruler">Raja Syed Alwi Jamalullail</div>
+        <div class="loss">Kehilangan: Pujoh</div>
+        <ul><li>Membantah — Pujoh sepatutnya sebahagian Perlis</li></ul>
+      </div>
+      <div class="state-card">
+        <h4>Kedah</h4>
+        <div class="ruler">Sultan Abdul Hamid Halim Shah</div>
+        <div class="loss">Kehilangan: Sadao, Setul, Terutau, Butang</div>
+        <blockquote>"...seperti menjual seekor kerbau"</blockquote>
+      </div>
+      <div class="state-card">
+        <h4>Terengganu</h4>
+        <div class="ruler">Sultan Zainal Abidin III</div>
+        <ul><li>Bantahan rasmi 24 Mei 1909</li><li>"Bunga emas hanya tanda persahabatan, bukan naungan"</li></ul>
+      </div>
+      <div class="state-card">
+        <h4>Kelantan</h4>
+        <div class="ruler">Sultan Muhammad IV</div>
+        <div class="loss">Kehilangan: Tabal (15,000 orang)</div>
+        <ul><li>Menolak perjanjian secara terus di hadapan wakil British/Siam</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🚫 Keengganan Menerima Penasihat British</h2>
+    <p class="sub">Setiap negeri menentang dengan cara berbeza — sesetengah bertahan hingga puluhan tahun.</p>
+    <div class="advisor-grid">
+      <div class="advisor-card">
+        <h4>Perlis</h4>
+        <div class="advisor-name">Meadow Frost — dilantik 15 Julai 1909</div>
+        <ul><li>Tiada perjanjian rasmi mengikat Perlis-British selepas 1909</li></ul>
+        <div class="final">28 April 1930: Perjanjian Perlis-British — negeri Melayu TERAKHIR terima naungan British</div>
+      </div>
+      <div class="advisor-card">
+        <h4>Kedah</h4>
+        <div class="advisor-name">W.G. Maxwell — dilantik 15 Julai 1909</div>
+        <ul><li>Konflik dengan Majlis Mesyuarat Negeri (Tunku Mahmud) — isu bahasa Inggeris &amp; bendera Union Jack</li></ul>
+        <div class="final">1 November 1923: Perjanjian Kedah-British</div>
+        <div class="identity">
+          <div class="id-chip">Bahasa Melayu</div><div class="id-chip">Kalendar Hijrah</div><div class="id-chip">Cuti Jumaat</div>
+        </div>
+      </div>
+      <div class="advisor-card">
+        <h4>Kelantan</h4>
+        <div class="advisor-name">J.S. Mason — 1910 (perjanjian berasingan)</div>
+        <blockquote>"...tidak ada hajat meletakkan seorang wakil menduduki di dalam negeri kita ini..."</blockquote>
+        <div class="final">— Sultan Muhammad IV, surat bantahan rasmi</div>
+      </div>
+      <div class="advisor-card">
+        <h4>Terengganu</h4>
+        <div class="advisor-name">J.L. Humphreys — Penasihat penuh selepas 1919</div>
+        <ul><li>1910: hanya wakil tanpa kuasa diterima</li><li>Sultan Muhammad II (1918-1920) berunding dgn pembesar, bukan Penasihat — turun takhta 1920</li></ul>
+        <div class="final">24 Mei 1919: Perjanjian Terengganu-British</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📜 Perlembagaan Bertulis — Menghalang Penjajahan Melalui Undang-Undang</h2>
+    <p class="sub">Dua negeri Melayu menggubal perlembagaan sendiri untuk mengukuhkan kedaulatan.</p>
+    <div class="constitution-row">
+      <div class="constitution-doc">
+        <div class="meta">14 April 1895</div>
+        <h4>Undang-Undang Tubuh Kerajaan Johor</h4>
+        <div class="clauses">64 fasal</div>
+        <ul>
+          <li>Sultan tidak boleh menyerahkan Johor kepada kuasa asing</li>
+          <li>Jemaah Menteri mesti Melayu, rakyat Johor, beragama Islam</li>
+          <li>Islam sebagai agama negeri selama-lamanya</li>
+        </ul>
+        <div class="significance">Menyediakan asas mengimbangi kuasa British dan mempertahankan identiti negeri</div>
+        <div class="first-badge">🏆 Perlembagaan Melayu PERTAMA</div>
+      </div>
+      <div class="constitution-doc">
+        <div class="meta">2 November 1911</div>
+        <h4>Undang-Undang Bagi Diri Kerajaan Terengganu</h4>
+        <div class="clauses">53 fasal · "Itqan Al-Muluk Bi Ta'dil Al-Suluk"</div>
+        <ul>
+          <li>Kerajaan Melayu Islam (Malayuwiyyah Islamiyyah)</li>
+          <li>Sultan yang serah negeri kepada asing WAJIB turun takhta</li>
+          <li>Menteri Besar mesti Islam dan rakyat Terengganu</li>
+        </ul>
+        <div class="significance">Kekuatan hubungan raja-rakyat menjadi benteng menghalang campur tangan British</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📢 Tuntutan Durbar</h2>
+    <p class="sub">Raja-raja Melayu menyuarakan pembelaan bangsa di hadapan British.</p>
+    <div class="durbar-flow">
+      <div class="durbar-step"><div class="durbar-num">1903</div><div class="durbar-content"><h6>Kuala Lumpur</h6><ul><li>Sultan Idris kritik pemusatan kuasa Residen Jeneral</li><li>Bahasa Melayu dituntut jadi bahasa rasmi Persekutuan</li></ul></div></div>
+      <div class="durbar-step"><div class="durbar-num">1932</div><div class="durbar-content"><h6>Pekan, Pahang</h6><ul><li>Sultan Iskandar Shah desak kuasa dikembalikan kepada Raja Melayu</li></ul></div></div>
+      <div class="durbar-step"><div class="durbar-num">1937</div><div class="durbar-content"><h6>Klang, Selangor</h6><ul><li>Perhatian kepada Melayu tanpa tanah/kerja</li></ul></div></div>
+      <div class="durbar-step"><div class="durbar-num">1939</div><div class="durbar-content"><h6>Seri Menanti</h6><ul><li>Sultan Hisamuddin cadangkan Malay Girls College</li></ul></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🤝 Diplomasi Sultan Abu Bakar, Johor</h2>
+    <img class="gen" src="form 1 content images/diplomasi-sultan-abu-bakar-england.png" alt="Diplomasi Sultan Abu Bakar Lawatan ke England">
+    <div class="diplomacy-grid">
+      <div class="diplomacy-tile"><h5>Hubungan Baik</h5><p>Teluk Belanga kekal milik Johor; menetap di Singapura hingga 1889</p></div>
+      <div class="diplomacy-tile highlight"><h5><span class="flag-icon">🏴</span> Gelaran Maharaja Johor</h5><p>Dikurniakan 1868 selepas kunjungan diplomatik ke England</p></div>
+      <div class="diplomacy-tile"><h5>Lembaga Penasihat London</h5><p>Pegawai British berpengaruh menasihati baginda</p></div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:var(--muted-dim); margin-top:14px;">Kedaulatan Kesultanan Johor kekal terpelihara sehingga 1914</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Bertanda — Bab 7: Penentangan Masyarakat Tempatan — AcadeMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#050816; --bg-panel:#0c1128; --bg-card:#111632;
+    --line:rgba(148,163,184,0.14);
+    --violet:#8b6bff; --blue:#4fb0ff; --amber:#fbbf5a; --green:#4ade80; --red:#f87171;
+    --text:#eef1fb; --muted:#93a0c2; --muted-dim:#6b7593;
+    --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif; --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,107,255,0.16), transparent 60%), var(--bg-deep);
+    color:var(--text); font-family:var(--font-body); min-height:100vh; -webkit-font-smoothing:antialiased;
+    padding:32px 40px 80px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  h1{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .lead{color:var(--muted); font-size:14px; margin:0 0 26px; max-width:660px; line-height:1.5;}
+
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes pulseGlow{0%,100%{box-shadow:0 0 8px rgba(248,113,113,0.4);} 50%{box-shadow:0 0 18px rgba(248,113,113,0.8);}}
+  @keyframes shimmer{0%{background-position:-200% 0;} 100%{background-position:200% 0;}}
+
+  .card{background:var(--bg-card); border:1px solid var(--line); border-radius:20px; padding:28px 30px; margin-bottom:24px;
+        opacity:0; animation:fadeUp 0.6s ease-out forwards;}
+  .card:nth-of-type(1){animation-delay:0.05s;} .card:nth-of-type(2){animation-delay:0.1s;}
+  .card:nth-of-type(3){animation-delay:0.15s;} .card:nth-of-type(4){animation-delay:0.2s;}
+  .card:nth-of-type(5){animation-delay:0.25s;} .card:nth-of-type(6){animation-delay:0.3s;}
+  .card:nth-of-type(7){animation-delay:0.35s;} .card:nth-of-type(8){animation-delay:0.4s;}
+  .card h2{font-family:var(--font-display); font-size:19px; margin:0 0 4px;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 20px;}
+  img.gen{max-width:100%; border-radius:14px; display:block; margin:0 auto 20px; transition:transform 0.4s ease;}
+  img.gen:hover{transform:scale(1.015);}
+
+  .forms-row{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+  .form-tile{background:var(--bg-panel); border-radius:12px; padding:14px 20px; text-align:center; font-size:12px; font-weight:600;
+             transition:transform 0.25s ease, box-shadow 0.25s ease; cursor:default;}
+  .form-tile:hover{transform:translateY(-3px); box-shadow:0 6px 16px rgba(0,0,0,0.3);}
+
+  .power-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;}
+  .power-tile{background:var(--bg-panel); border-radius:12px; padding:14px;}
+  .power-tile h6{font-family:var(--font-display); font-size:12px; margin:0 0 6px; color:var(--red);}
+  .power-tile ul{font-size:9.5px; color:var(--muted); margin:0; padding-left:14px; line-height:1.5;}
+
+  .tax-compare{display:flex; gap:16px; flex-wrap:wrap;}
+  .tax-col{flex:1; min-width:220px; background:var(--bg-panel); border-radius:12px; padding:14px;}
+  .tax-col h6{font-family:var(--font-display); font-size:12px; margin:0 0 8px;}
+  .tax-col ul{font-size:9.5px; color:var(--muted); margin:0; padding-left:14px; line-height:1.5;}
+  .tax-table{width:100%; border-collapse:collapse; font-size:10px; margin-top:10px;}
+  .tax-table th{text-align:left; padding:6px 8px; color:var(--muted-dim); font-size:9px; text-transform:uppercase; border-bottom:1px solid var(--line);}
+  .tax-table td{padding:6px 8px; color:var(--muted); border-bottom:1px solid var(--line);}
+  .tax-table td.rate{color:var(--amber); font-family:var(--font-mono); font-weight:700;}
+  .shock-row td{color:var(--red) !important;}
+
+  .strength-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px;}
+  .strength-card{background:var(--bg-panel); border-radius:14px; padding:16px; transition:transform 0.25s ease;}
+  .strength-card:hover{transform:translateY(-4px);}
+  .strength-card h5{font-family:var(--font-display); font-size:13px; margin:0 0 8px;}
+  .strength-card .leader-name{font-size:10px; color:var(--amber); font-weight:700; margin-bottom:4px;}
+  .strength-card ul{font-size:9.5px; color:var(--muted); margin:0 0 10px; padding-left:14px; line-height:1.5;}
+
+  .leader-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .leader-card{background:var(--bg-panel); border-radius:14px; padding:16px; transition:transform 0.25s ease, box-shadow 0.25s ease;}
+  .leader-card:hover{transform:translateY(-4px); box-shadow:0 8px 20px rgba(139,107,255,0.15);}
+  .leader-card h5{font-family:var(--font-display); font-size:13px; margin:0 0 2px;}
+  .leader-card .region{font-size:9.5px; color:var(--amber); margin-bottom:8px;}
+  .leader-card p{font-size:10px; color:var(--muted); margin:0; line-height:1.4;}
+
+  .birch-timeline{display:flex; flex-direction:column; gap:0;}
+  .birch-step{display:flex; gap:12px; position:relative; padding:8px 0;}
+  .birch-step:not(:last-child)::after{content:''; position:absolute; left:12px; top:32px; width:2px; height:calc(100% - 8px); background:var(--line);}
+  .birch-dot{width:24px; height:24px; border-radius:50%; background:var(--bg-panel); border:1px solid var(--red); flex-shrink:0; z-index:1;}
+  .birch-dot.climax{width:28px; height:28px; background:var(--red); animation:pulseGlow 2s ease-in-out infinite;}
+  .birch-txt{font-size:10.5px; color:var(--muted); padding-top:3px; line-height:1.4;}
+  .birch-txt b{color:var(--text);}
+
+  .limbong-box{background:var(--bg-panel); border-radius:14px; padding:18px;}
+  .limbong-box h5{font-family:var(--font-display); font-size:14px; margin:0 0 8px; color:var(--green);}
+  .limbong-box ul{font-size:10.5px; color:var(--muted); margin:0; padding-left:16px; line-height:1.6;}
+
+  .wave-flow{display:flex; gap:14px; flex-wrap:wrap;}
+  .wave-node{flex:1; min-width:180px; background:var(--bg-panel); border-radius:12px; padding:14px; position:relative; overflow:hidden;}
+  .wave-node:last-child{background:linear-gradient(90deg, var(--bg-panel) 25%, rgba(248,113,113,0.08) 50%, var(--bg-panel) 75%);
+                         background-size:200% 100%; animation:shimmer 3s ease-in-out infinite;}
+  .wave-node h6{font-family:var(--font-display); font-size:12.5px; margin:0 0 6px; color:var(--violet);}
+  .wave-node p{font-size:9.5px; color:var(--muted); margin:0; line-height:1.4;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visual Bertanda — Bab 7: Penentangan Masyarakat Tempatan</h1>
+  <p class="lead">Sebuah kubu bertahan lapan tahun. Seorang peguam menggunakan mahkamah British sendiri sebagai senjata. Tujuh mesyuarat rahsia membawa kepada satu pembunuhan yang mengubah sejarah.</p>
+
+  <div class="card">
+    <h2>🎯 Tiga Bentuk Penentangan</h2>
+    <div class="forms-row">
+      <div class="form-tile" style="color:#f87171;">Penentangan Bersenjata</div>
+      <div class="form-tile" style="color:#4fb0ff;">Mencabar Perjanjian</div>
+      <div class="form-tile" style="color:#4ade80;">Sistem Perundangan</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚖️ Kesan Pentadbiran Barat Terhadap Kuasa Tempatan</h2>
+    <p class="sub">Kehilangan kuasa pemerintahan, perundangan dan kewangan — mengikut negeri.</p>
+    <div class="power-grid">
+      <div class="power-tile"><h6>Negeri Sembilan</h6><ul><li>British sebelahi Dato' Kelana (1874)</li><li>Cabar kedudukan Yamtuan Antah</li></ul></div>
+      <div class="power-tile"><h6>Perak</h6><ul><li>J.W.W. Birch tekan Sultan Abdullah tandatangan pengisytiharan</li><li>Larangan kutip cukai jejaskan pendapatan pembesar</li></ul></div>
+      <div class="power-tile"><h6>Pahang</h6><ul><li>Dato' Bahaman dilucutkan gelaran</li><li>Elaun kecil ($70/bulan) gantikan hak kutip cukai</li></ul></div>
+      <div class="power-tile"><h6>Sabah</h6><ul><li>SBUB mungkir janji, ambil semula Tambunan daripada Mat Salleh</li></ul></div>
+      <div class="power-tile"><h6>Kelantan</h6><ul><li>Engku Besar Jeram diturunkan pangkat (Tok Kweng Muda)</li></ul></div>
+      <div class="power-tile"><h6>Naning</h6><ul><li>Kuasa penghakiman Dol Said dicabar, Adat Perpatih diganggu</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💰 Kesan Terhadap Kehidupan Rakyat — Cukai</h2>
+    <p class="sub">Sebelum dan selepas British, di Pasir Puteh dan ke atas orang Murut, Sabah.</p>
+    <div class="tax-compare">
+      <div class="tax-col">
+        <h6 style="color:var(--green);">Pasir Puteh — Sebelum</h6>
+        <ul><li>Cukai berasaskan jumlah hasil</li><li>Hasil sedikit → cukai rendah</li><li>Tanah tidak diusahakan dikecualikan</li></ul>
+        <h6 style="color:var(--red); margin-top:10px;">Selepas British</h6>
+        <table class="tax-table">
+          <tr><th>Item</th><th>Kadar</th></tr>
+          <tr><td>Tanah pertanian</td><td class="rate">40sen-$1.20/ekar</td></tr>
+          <tr><td>Pokok durian</td><td class="rate">12½ sen</td></tr>
+          <tr><td>Lembu/kerbau</td><td class="rate">20 sen/tahun</td></tr>
+        </table>
+      </div>
+      <div class="tax-col">
+        <h6 style="color:var(--red);">Cukai SBUB ke atas Orang Murut</h6>
+        <table class="tax-table">
+          <tr><th>Item</th><th>Kadar</th></tr>
+          <tr><td>1 ekar tanah</td><td class="rate">$1.00</td></tr>
+          <tr><td>Tangkapan ikan besar</td><td class="rate">$1.00</td></tr>
+          <tr class="shock-row"><td>Suami isteri berjumpa (dipisah sungai)</td><td class="rate">Denda $1.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🏯 Kubu Rentap di Bukit Sadok</h2>
+    <img class="gen" src="form 1 content images/kubu-rentap-bukit-sadok.png" alt="Kubu Rentap di Bukit Sadok">
+    <p class="sub" style="text-align:center;">Bertahan 1853-1861 — dilengkapi meriam besi "Bujang Timpang Berang".</p>
+  </div>
+
+  <div class="card">
+    <h2>💪 Kekuatan Strategi Penentangan Awal</h2>
+    <div class="strength-grid">
+      <div class="strength-card"><h5 style="color:#8b6bff;">Muafakat</h5>
+        <div class="leader-name">Dato' Maharaja Lela</div><ul><li>7 mesyuarat rahsia, sumpah air keris</li></ul>
+        <div class="leader-name">Sharif Masahor</div><ul><li>Serang Kanowit, bunuh 2 pegawai British</li></ul>
+      </div>
+      <div class="strength-card"><h5 style="color:#4fb0ff;">Kubu Pertahanan</h5>
+        <div class="leader-name">Rentap</div><ul><li>Kayu belian 2 kaki, meriam "Bujang Timpang Berang"</li></ul>
+      </div>
+      <div class="strength-card"><h5 style="color:#fbbf5a;">Persenjataan</h5>
+        <div class="leader-name">Dol Said</div><ul><li>Senapang flintlock/snider, meriam lela rentaka</li></ul>
+      </div>
+      <div class="strength-card"><h5 style="color:#4ade80;">Perundangan</h5>
+        <div class="leader-name">Haji Abdul Rahman Limbong</div><ul><li>"Hak Allah SWT" — hujah agama menentang cukai</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚔️ Tokoh Penentangan Bersenjata</h2>
+    <div class="leader-grid">
+      <div class="leader-card"><h5>Dol Said</h5><div class="region">Naning</div><p>Menang Perang Naning I (1831), tewas selepas pakatan berpecah (1832)</p></div>
+      <div class="leader-card"><h5>Yamtuan Antah</h5><div class="region">Negeri Sembilan</div><p>4,000 pengikut; akhirnya dilantik Yamtuan Besar Seri Menanti (1876)</p></div>
+      <div class="leader-card"><h5>Dato' Bahaman</h5><div class="region">Pahang</div><p>Dibantu Tok Gajah &amp; Mat Kilau; menawan Kuala Tembeling 1894</p></div>
+      <div class="leader-card"><h5>Rentap</h5><div class="region">Sarawak</div><p>"Penggoncang" — bertahan Bukit Sadok hingga ditewaskan meriam khas 1861</p></div>
+      <div class="leader-card"><h5>Sharif Masahor</h5><div class="region">Sarawak</div><p>Menyerang Kanowit; Brooke tak dapat buktikan penglibatannya</p></div>
+      <div class="leader-card"><h5>Tok Janggut</h5><div class="region">Kelantan</div><p>Haji Hassan bin Munas; terkorban menentang cukai tanah 1915</p></div>
+      <div class="leader-card"><h5>Mat Salleh</h5><div class="region">Sabah</div><p>Bajau-Suluk; gugur di Tambunan 1900</p></div>
+      <div class="leader-card"><h5>Mat Sator</h5><div class="region">Sabah</div><p>Meneruskan perjuangan Mat Salleh; turut terkorban 1900</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🗡️ Pembunuhan J.W.W. Birch — Tujuh Mesyuarat Rahsia</h2>
+    <p class="sub">Cabaran terhadap Perjanjian Pangkor — dipimpin Dato' Maharaja Lela.</p>
+    <div class="birch-timeline">
+      <div class="birch-step"><div class="birch-dot"></div><div class="birch-txt"><b>16 Okt 1874</b> — Pakatan sulit pertama menghapuskan J.W.W. Birch</div></div>
+      <div class="birch-step"><div class="birch-dot"></div><div class="birch-txt"><b>21 Julai 1875</b> — Mesyuarat di Durian Sebatang, berjabat tangan &amp; angkat sumpah</div></div>
+      <div class="birch-step"><div class="birch-dot"></div><div class="birch-txt"><b>5 Sept 1875</b> — Mesyuarat di rumah Dato' Sagor, sumpah minum air keris</div></div>
+      <div class="birch-step"><div class="birch-dot"></div><div class="birch-txt"><b>12 Sept 1875</b> — Mesyuarat khas malam di Istana Sultan Ismail, Belanja</div></div>
+      <div class="birch-step"><div class="birch-dot climax"></div><div class="birch-txt"><b>2 Nov 1875</b> — Selepas 7 kali mesyuarat, J.W.W. Birch dibunuh di Pasir Salak</div></div>
+      <div class="birch-step"><div class="birch-dot"></div><div class="birch-txt"><b>1877</b> — Dato' Maharaja Lela, Dato' Sagor, Pandak Indut, Siputum digantung</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚖️ Penentangan Melalui Undang-Undang</h2>
+    <div class="limbong-box">
+      <h5>Haji Abdul Rahman Limbong (Terengganu)</h5>
+      <ul>
+        <li>Memohon Lesen Wakil (pleader) — menjadi peguam mewakili petani Ulu Telemong</li>
+        <li>Tanah yang dikerjakan ialah "Hak Allah SWT" — rakyat bebas mengerjakannya tanpa cukai</li>
+        <li>Berhujah sistem percukaian British berlawanan hukum syarak</li>
+      </ul>
+    </div>
+    <div class="wave-flow" style="margin-top:14px;">
+      <div class="wave-node"><h6>1922</h6><p>Petani bersihkan tanah tanpa pas</p></div>
+      <div class="wave-node"><h6>1925</h6><p>300-500 petani, 600 ekar tanah</p></div>
+      <div class="wave-node"><h6>1928</h6><p>Kebangkitan Tani — bendera merah dikibarkan, Limbong ditangkap dan dibuang ke Makkah</p></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
