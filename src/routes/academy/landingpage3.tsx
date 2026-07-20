@@ -120,32 +120,34 @@ function ScrollSequencePage() {
       await Promise.all(workers);
     })();
 
-    const computeTarget = () => {
-      const sectionTop = section.offsetTop;
-      const scrollable = section.offsetHeight - window.innerHeight;
-      if (scrollable <= 0) {
-        targetFrameRef.current = 0;
-        return;
-      }
-      const raw = (window.scrollY - sectionTop) / scrollable;
-      const progress = Math.min(1, Math.max(0, raw));
-      targetFrameRef.current = Math.min(
-        FRAME_COUNT - 1,
-        Math.round(progress * (FRAME_COUNT - 1)),
-      );
+    // Cached layout measurements; only recomputed on resize.
+    let sectionTop = 0;
+    let scrollable = 1;
+    const measure = () => {
+      const rect = section.getBoundingClientRect();
+      sectionTop = rect.top + window.scrollY;
+      scrollable = Math.max(1, section.offsetHeight - window.innerHeight);
     };
 
+    // Gentle ease-out: starts responsive, slows slightly at the end.
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 1.35);
+
+    const computeTarget = () => {
+      const raw = (window.scrollY - sectionTop) / scrollable;
+      const clamped = Math.min(1, Math.max(0, raw));
+      const eased = easeOut(clamped);
+      targetFrameRef.current = eased * (FRAME_COUNT - 1);
+    };
+
+    const LERP = 0.24;
     const tick = () => {
       const current = currentFrameRef.current;
       const target = targetFrameRef.current;
-      if (current !== target) {
-        const diff = target - current;
-        const step = current + diff * 0.18;
-        // ensure at least 1-frame progression toward target
-        let nextFrame = step;
-        if (Math.abs(target - step) < 0.5) nextFrame = target;
-        currentFrameRef.current = nextFrame;
-        drawFrame(Math.round(nextFrame));
+      const diff = target - current;
+      if (Math.abs(diff) > 0.01) {
+        const next = Math.abs(diff) < 0.05 ? target : current + diff * LERP;
+        currentFrameRef.current = next;
+        drawFrame(Math.round(next));
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -154,20 +156,27 @@ function ScrollSequencePage() {
       computeTarget();
     };
 
+    const onResize = () => {
+      resize();
+      measure();
+      computeTarget();
+    };
+
     resize();
+    measure();
     computeTarget();
     currentFrameRef.current = targetFrameRef.current;
     rafRef.current = requestAnimationFrame(tick);
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", resize);
-    window.addEventListener("orientationchange", resize);
+    window.addEventListener("resize", onResize, { passive: true });
+    window.addEventListener("orientationchange", onResize);
 
     return () => {
       cancelled = true;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("orientationchange", resize);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
     };
   }, []);
 
@@ -175,7 +184,7 @@ function ScrollSequencePage() {
     <section
       ref={sectionRef}
       className="relative bg-black"
-      style={{ height: "900vh" }}
+      style={{ height: "320vh" }}
     >
       <div
         className="sticky top-0 w-full overflow-hidden bg-black"
@@ -190,3 +199,4 @@ function ScrollSequencePage() {
     </section>
   );
 }
+
