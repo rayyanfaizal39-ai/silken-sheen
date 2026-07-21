@@ -99,8 +99,17 @@ export async function registerServiceWorker(
     // now activates and claims control on its own, with no "waiting"
     // click-through required. Reload once so an already-open tab picks up
     // the fresh HTML/assets it's now being served by.
+    //
+    // IMPORTANT: "controlling" also fires on the very first install of a
+    // page that had no prior controller (clientsClaim causes it to claim
+    // the page immediately) — that is NOT an update, just first-time setup,
+    // and reloading then serves no purpose while risking cancellation of
+    // in-flight requests (e.g. the initial CSS fetch) mid-load. Workbox
+    // marks that case with isUpdate: false, so only react when isUpdate is
+    // true (this client already had a controlling SW before).
     let reloaded = false;
-    wb.addEventListener("controlling", () => {
+    wb.addEventListener("controlling", (event) => {
+      if (!event.isUpdate) return;
       if (reloaded) return;
       if (sessionStorage.getItem(RELOAD_ONCE_KEY)) return;
       reloaded = true;
@@ -109,7 +118,16 @@ export async function registerServiceWorker(
       } catch {
         /* sessionStorage unavailable (e.g. private mode) — reload anyway */
       }
-      window.location.reload();
+
+      // Even for a genuine update, defer the reload until the current page
+      // has finished loading — reloading mid-load can cancel in-flight
+      // stylesheet/script requests and interrupt first paint.
+      const doReload = () => window.location.reload();
+      if (document.readyState === "complete") {
+        doReload();
+      } else {
+        window.addEventListener("load", doReload, { once: true });
+      }
     });
 
     await wb.register();
