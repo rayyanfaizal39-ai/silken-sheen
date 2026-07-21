@@ -36,7 +36,7 @@ function LandingPage3() {
         }}
       >
         <img
-          src={heroBackground.src}
+          src={heroBackground.url}
           alt=""
           aria-hidden="true"
           draggable={false}
