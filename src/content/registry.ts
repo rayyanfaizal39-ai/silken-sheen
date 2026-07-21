@@ -102,13 +102,13 @@ import { sej3Ch3Content } from "@/content/form3/sejarah/chapter-3/sej3ch3-conten
 import { sejarahF3C3MindMap } from "@/content/form3/sejarah/chapter-3/mindmap";
 import { sej3Ch4Content } from "@/content/form3/sejarah/chapter-4/sej3ch4-content";
 import { sejarahF3C4MindMap } from "@/content/form3/sejarah/chapter-4/mindmap";
-import { sejarahF3C5Notes } from "@/content/form3/sejarah/chapter-5/notes";
+import { sej3Ch5Content } from "@/content/form3/sejarah/chapter-5/sej3ch5-content";
 import { sejarahF3C5MindMap } from "@/content/form3/sejarah/chapter-5/mindmap";
-import { sejarahF3C6Notes } from "@/content/form3/sejarah/chapter-6/notes";
+import { sej3Ch6Content } from "@/content/form3/sejarah/chapter-6/sej3ch6-content";
 import { sejarahF3C6MindMap } from "@/content/form3/sejarah/chapter-6/mindmap";
-import { sejarahF3C7Notes } from "@/content/form3/sejarah/chapter-7/notes";
+import { sej3Ch7Content } from "@/content/form3/sejarah/chapter-7/sej3ch7-content";
 import { sejarahF3C7MindMap } from "@/content/form3/sejarah/chapter-7/mindmap";
-import { sejarahF3C8Notes } from "@/content/form3/sejarah/chapter-8/notes";
+import { sej3Ch8Content } from "@/content/form3/sejarah/chapter-8/sej3ch8-content";
 import { sejarahF3C8MindMap } from "@/content/form3/sejarah/chapter-8/mindmap";
 import { geoF1C1MindMap } from "@/content/form1/geography/chapter-1/mindmap";
 import { geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
@@ -909,7 +909,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 5",
     title: "Pentadbiran Barat di Sarawak dan Sabah",
-    notes: sejarahF3C5Notes,
+    sej3Chapter5Data: sej3Ch5Content,
     mindMap: { data: sejarahF3C5MindMap, title: "Pentadbiran Barat di Sarawak dan Sabah" },
     flashcards: sejarahF3FlashcardsFor(5),
     quiz: sejarahF3QuizzesFor(5),
@@ -920,7 +920,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 6",
     title: "Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial",
-    notes: sejarahF3C6Notes,
+    sej3Chapter6Data: sej3Ch6Content,
     mindMap: { data: sejarahF3C6MindMap, title: "Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial" },
     flashcards: sejarahF3FlashcardsFor(6),
     quiz: sejarahF3QuizzesFor(6),
@@ -931,7 +931,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 7",
     title: "Penentangan Masyarakat Tempatan",
-    notes: sejarahF3C7Notes,
+    sej3Chapter7Data: sej3Ch7Content,
     mindMap: { data: sejarahF3C7MindMap, title: "Penentangan Masyarakat Tempatan" },
     flashcards: sejarahF3FlashcardsFor(7),
     quiz: sejarahF3QuizzesFor(7),
@@ -942,7 +942,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 8",
     title: "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat",
-    notes: sejarahF3C8Notes,
+    sej3Chapter8Data: sej3Ch8Content,
     mindMap: { data: sejarahF3C8MindMap, title: "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat" },
     flashcards: sejarahF3FlashcardsFor(8),
     quiz: sejarahF3QuizzesFor(8),

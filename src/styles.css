@@ -3753,6 +3753,68 @@
   animation: sejarah-shimmer 3s ease-in-out infinite;
 }
 
+/* ── Sejarah F3 Bab 7/8: staggered card entrance, Birch climax pulse, uprising-card shimmer, flag wave ── */
+@keyframes sej3-card-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.sej3-stagger-card {
+  opacity: 0;
+  animation: sej3-card-fade-up 0.6s ease-out forwards;
+}
+.sej3-stagger-card:nth-child(1) { animation-delay: 0.05s; }
+.sej3-stagger-card:nth-child(2) { animation-delay: 0.1s; }
+.sej3-stagger-card:nth-child(3) { animation-delay: 0.15s; }
+.sej3-stagger-card:nth-child(4) { animation-delay: 0.2s; }
+.sej3-stagger-card:nth-child(5) { animation-delay: 0.25s; }
+.sej3-stagger-card:nth-child(6) { animation-delay: 0.3s; }
+.sej3-stagger-card:nth-child(7) { animation-delay: 0.35s; }
+.sej3-stagger-card:nth-child(8) { animation-delay: 0.4s; }
+.sej3-hover-lift { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.sej3-hover-lift:hover { transform: translateY(-4px); }
+
+@keyframes sej3-pulse-climax {
+  0%, 100% { box-shadow: 0 0 8px rgba(248,113,113,0.4); }
+  50%       { box-shadow: 0 0 18px rgba(248,113,113,0.8); }
+}
+.sej3-birch-climax-dot { animation: sej3-pulse-climax 2s ease-in-out infinite; }
+
+@keyframes sej3-shimmer-sweep {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.sej3-shimmer-card {
+  background-image: linear-gradient(90deg, transparent 25%, rgba(248,113,113,0.10) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: sej3-shimmer-sweep 3s ease-in-out infinite;
+}
+
+@keyframes sej3-pop-in {
+  0%   { opacity: 0; transform: scale(0.85); }
+  70%  { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.sej3-pop-card {
+  opacity: 0;
+  animation: sej3-pop-in 0.5s ease-out forwards;
+}
+.sej3-pop-card:nth-child(1) { animation-delay: 0.5s; }
+.sej3-pop-card:nth-child(2) { animation-delay: 0.65s; }
+.sej3-pop-card:nth-child(3) { animation-delay: 0.8s; }
+.sej3-pop-card:nth-child(4) { animation-delay: 0.95s; }
+
+@keyframes sej3-soft-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(251,191,90,0.3); }
+  50%       { box-shadow: 0 0 18px rgba(251,191,90,0.6); }
+}
+.sej3-soft-pulse-highlight { animation: sej3-soft-pulse 3s ease-in-out infinite; }
+
+@keyframes sej3-flag-wave {
+  0%, 100% { transform: rotate(0deg); }
+  50%       { transform: rotate(8deg); }
+}
+.sej3-flag-icon { display: inline-block; animation: sej3-flag-wave 2s ease-in-out infinite; transform-origin: bottom left; }
+
 /* ── Geography: compass N indicator ──────────────────────────────────────── */
 @keyframes compass-breathe {
   0%, 100% { opacity: 0.22; transform: rotate(0deg) scale(1);    }
