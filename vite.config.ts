@@ -122,7 +122,12 @@ export default defineConfig({
           maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
           cleanupOutdatedCaches: true,
           clientsClaim: true,
-          skipWaiting: false,
+          // Was false: a new SW would sit in "waiting" indefinitely until a
+          // user clicked the in-app update toast, which is why deploys
+          // required a hard refresh to actually land. true + clientsClaim
+          // lets a newly installed SW activate and take control on its own;
+          // pwa-register.ts reloads the page once when that happens.
+          skipWaiting: true,
           runtimeCaching: [
             {
               // Google Fonts stylesheets

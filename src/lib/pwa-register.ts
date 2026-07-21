@@ -6,6 +6,13 @@
 //  - Only one place registers the SW (this module) — no auto-injection.
 
 const SW_URL = "/sw.js";
+// Guards the auto-reload below to at most once per browser session, in case
+// the new SW never settles as the controller and "controlling" keeps firing.
+const RELOAD_ONCE_KEY = "academy-sw-reload-once";
+// Browsers only re-check /sw.js on their own schedule (up to 24h, or on
+// navigation). Poll explicitly so an already-open tab still notices a fresh
+// deploy without waiting on that heuristic.
+const UPDATE_CHECK_INTERVAL_MS = 60 * 60 * 1000;
 
 function isRefusedContext(): boolean {
   if (typeof window === "undefined") return true;
@@ -88,7 +95,28 @@ export async function registerServiceWorker(
 
     wb.addEventListener("waiting", promptUpdate);
 
+    // skipWaiting + clientsClaim (vite.config.ts) mean a newly installed SW
+    // now activates and claims control on its own, with no "waiting"
+    // click-through required. Reload once so an already-open tab picks up
+    // the fresh HTML/assets it's now being served by.
+    let reloaded = false;
+    wb.addEventListener("controlling", () => {
+      if (reloaded) return;
+      if (sessionStorage.getItem(RELOAD_ONCE_KEY)) return;
+      reloaded = true;
+      try {
+        sessionStorage.setItem(RELOAD_ONCE_KEY, "1");
+      } catch {
+        /* sessionStorage unavailable (e.g. private mode) — reload anyway */
+      }
+      window.location.reload();
+    });
+
     await wb.register();
+
+    setInterval(() => {
+      void wb.update();
+    }, UPDATE_CHECK_INTERVAL_MS);
   } catch {
     /* noop */
   }

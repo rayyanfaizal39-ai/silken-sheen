@@ -41,6 +41,7 @@ import {
   cpSync,
   existsSync,
   readdirSync,
+  readFileSync,
   renameSync,
   writeFileSync,
   rmSync,
@@ -143,6 +144,30 @@ writeFileSync(
     2,
   ),
 );
+
+// The build's generated dist/client/_headers only covers /assets/* (content-
+// hashed, safe to cache immutably for a year). /sw.js and /workbox-*.js are
+// NOT content-hashed (filename: "sw.js" is fixed), so without an explicit
+// override the browser/Cloudflare edge can serve a stale copy of the worker
+// script itself — delaying how quickly a client even notices a new deploy
+// exists, on top of the skipWaiting/clientsClaim fix in vite.config.ts.
+// Force those two to always revalidate, while leaving whatever immutable
+// rule already exists for /assets/* untouched.
+const headersPath = join(clientDir, "_headers");
+const swHeaderRules = [
+  "/sw.js",
+  "  cache-control: no-cache, no-store, must-revalidate",
+  "",
+  "/workbox-*.js",
+  "  cache-control: no-cache, no-store, must-revalidate",
+  "",
+].join("\n");
+
+const existingHeaders = existsSync(headersPath) ? readFileSync(headersPath, "utf8") : "";
+if (!existingHeaders.includes("/sw.js")) {
+  const merged = `${existingHeaders.trimEnd()}\n\n${swHeaderRules}`.trimStart();
+  writeFileSync(headersPath, merged);
+}
 
 // Belt + suspenders: remove every file Cloudflare Pages could follow as a
 // redirect away from the root wrangler.jsonc.
