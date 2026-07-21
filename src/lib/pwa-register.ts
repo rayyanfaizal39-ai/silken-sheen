@@ -6,9 +6,6 @@
 //  - Only one place registers the SW (this module) — no auto-injection.
 
 const SW_URL = "/sw.js";
-// Guards the auto-reload below to at most once per browser session, in case
-// the new SW never settles as the controller and "controlling" keeps firing.
-const RELOAD_ONCE_KEY = "academy-sw-reload-once";
 // Browsers only re-check /sw.js on their own schedule (up to 24h, or on
 // navigation). Poll explicitly so an already-open tab still notices a fresh
 // deploy without waiting on that heuristic.
@@ -84,12 +81,7 @@ export async function registerServiceWorker(
     const promptUpdate = () => {
       onUpdate({
         needRefresh: true,
-        update: async () => {
-          wb.addEventListener("controlling", () => {
-            window.location.reload();
-          });
-          await wb.messageSkipWaiting();
-        },
+        update: async () => wb.messageSkipWaiting(),
       });
     };
 
@@ -107,17 +99,14 @@ export async function registerServiceWorker(
     // in-flight requests (e.g. the initial CSS fetch) mid-load. Workbox
     // marks that case with isUpdate: false, so only react when isUpdate is
     // true (this client already had a controlling SW before).
-    let reloaded = false;
+    // Guard by ServiceWorker object identity, not by a session-wide flag. A
+    // controller can trigger only one reload on this page, while a later,
+    // genuinely different controller is still allowed to reload the same tab.
+    let reloadScheduledFor: ServiceWorker | null = null;
     wb.addEventListener("controlling", (event) => {
       if (!event.isUpdate) return;
-      if (reloaded) return;
-      if (sessionStorage.getItem(RELOAD_ONCE_KEY)) return;
-      reloaded = true;
-      try {
-        sessionStorage.setItem(RELOAD_ONCE_KEY, "1");
-      } catch {
-        /* sessionStorage unavailable (e.g. private mode) — reload anyway */
-      }
+      if (!event.sw || reloadScheduledFor === event.sw) return;
+      reloadScheduledFor = event.sw;
 
       // Even for a genuine update, defer the reload until the current page
       // has finished loading — reloading mid-load can cancel in-flight
