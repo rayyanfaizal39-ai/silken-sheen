@@ -69,8 +69,8 @@ export function CosmicHero() {
           the right edge so only ~55-60% remains visible, feeling like a
           giant body just outside frame rather than a framed illustration. */}
       <div
-        className="absolute -top-[22%] right-0 w-[52vw] max-w-[760px] min-w-[360px] sm:w-[46vw] lg:w-[40vw]"
-        style={{ transform: "translateX(43%)" }}
+        className="absolute -top-[11%] right-0 w-[52vw] max-w-[760px] min-w-[360px] sm:w-[46vw] lg:w-[40vw]"
+        style={{ transform: "translateX(48%)" }}
       >
         {/* Soft inner glow — clipped to the planet's own circular silhouette
             so it reads as light leaking between the paper layers rather than
