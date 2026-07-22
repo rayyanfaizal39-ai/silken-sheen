@@ -6,6 +6,10 @@
 //  - Only one place registers the SW (this module) — no auto-injection.
 
 const SW_URL = "/sw.js";
+// Browsers only re-check /sw.js on their own schedule (up to 24h, or on
+// navigation). Poll explicitly so an already-open tab still notices a fresh
+// deploy without waiting on that heuristic.
+const UPDATE_CHECK_INTERVAL_MS = 60 * 60 * 1000;
 
 function isRefusedContext(): boolean {
   if (typeof window === "undefined") return true;
@@ -77,18 +81,49 @@ export async function registerServiceWorker(
     const promptUpdate = () => {
       onUpdate({
         needRefresh: true,
-        update: async () => {
-          wb.addEventListener("controlling", () => {
-            window.location.reload();
-          });
-          await wb.messageSkipWaiting();
-        },
+        update: async () => wb.messageSkipWaiting(),
       });
     };
 
     wb.addEventListener("waiting", promptUpdate);
 
+    // skipWaiting + clientsClaim (vite.config.ts) mean a newly installed SW
+    // now activates and claims control on its own, with no "waiting"
+    // click-through required. Reload once so an already-open tab picks up
+    // the fresh HTML/assets it's now being served by.
+    //
+    // IMPORTANT: "controlling" also fires on the very first install of a
+    // page that had no prior controller (clientsClaim causes it to claim
+    // the page immediately) — that is NOT an update, just first-time setup,
+    // and reloading then serves no purpose while risking cancellation of
+    // in-flight requests (e.g. the initial CSS fetch) mid-load. Workbox
+    // marks that case with isUpdate: false, so only react when isUpdate is
+    // true (this client already had a controlling SW before).
+    // Guard by ServiceWorker object identity, not by a session-wide flag. A
+    // controller can trigger only one reload on this page, while a later,
+    // genuinely different controller is still allowed to reload the same tab.
+    let reloadScheduledFor: ServiceWorker | null = null;
+    wb.addEventListener("controlling", (event) => {
+      if (!event.isUpdate) return;
+      if (!event.sw || reloadScheduledFor === event.sw) return;
+      reloadScheduledFor = event.sw;
+
+      // Even for a genuine update, defer the reload until the current page
+      // has finished loading — reloading mid-load can cancel in-flight
+      // stylesheet/script requests and interrupt first paint.
+      const doReload = () => window.location.reload();
+      if (document.readyState === "complete") {
+        doReload();
+      } else {
+        window.addEventListener("load", doReload, { once: true });
+      }
+    });
+
     await wb.register();
+
+    setInterval(() => {
+      void wb.update();
+    }, UPDATE_CHECK_INTERVAL_MS);
   } catch {
     /* noop */
   }

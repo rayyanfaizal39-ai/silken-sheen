@@ -60,6 +60,14 @@ import { Sej2Chapter7NotesBlock } from "@/components/notes/Sej2Chapter7NotesBloc
 import { Sej2Chapter8NotesBlock } from "@/components/notes/Sej2Chapter8NotesBlock";
 import { Sej2Chapter9NotesBlock } from "@/components/notes/Sej2Chapter9NotesBlock";
 import { Sej2Chapter10NotesBlock } from "@/components/notes/Sej2Chapter10NotesBlock";
+import { Sej3Chapter1NotesBlock } from "@/components/notes/Sej3Chapter1NotesBlock";
+import { Sej3Chapter2NotesBlock } from "@/components/notes/Sej3Chapter2NotesBlock";
+import { Sej3Chapter3NotesBlock } from "@/components/notes/Sej3Chapter3NotesBlock";
+import { Sej3Chapter4NotesBlock } from "@/components/notes/Sej3Chapter4NotesBlock";
+import { Sej3Chapter5NotesBlock } from "@/components/notes/Sej3Chapter5NotesBlock";
+import { Sej3Chapter6NotesBlock } from "@/components/notes/Sej3Chapter6NotesBlock";
+import { Sej3Chapter7NotesBlock } from "@/components/notes/Sej3Chapter7NotesBlock";
+import { Sej3Chapter8NotesBlock } from "@/components/notes/Sej3Chapter8NotesBlock";
 import { Chapter1NotesBlock } from "@/components/notes/Chapter1NotesBlock";
 import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
 import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
@@ -863,6 +871,86 @@ function NotesPage() {
                 subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
               }
             />
+          ) : activeChapter?.sej3Chapter1Data ? (
+            <Sej3Chapter1NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter1Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej3Chapter2Data ? (
+            <Sej3Chapter2NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter2Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej3Chapter3Data ? (
+            <Sej3Chapter3NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter3Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej3Chapter4Data ? (
+            <Sej3Chapter4NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter4Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej3Chapter5Data ? (
+            <Sej3Chapter5NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter5Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej3Chapter6Data ? (
+            <Sej3Chapter6NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter6Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej3Chapter7Data ? (
+            <Sej3Chapter7NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter7Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
+          ) : activeChapter?.sej3Chapter8Data ? (
+            <Sej3Chapter8NotesBlock
+              id="notes"
+              content={activeChapter.sej3Chapter8Data}
+              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+              isRead={isRead}
+              onMarkRead={() =>
+                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+              }
+            />
           ) : activeChapter?.geoChapter1Data ? (
             <GeoChapter1NotesBlock
               id="notes"
@@ -1145,6 +1233,14 @@ function NotesPage() {
             !activeChapter?.sej2Chapter5Data &&
             !activeChapter?.sej2Chapter6Data &&
             !activeChapter?.sej2Chapter7Data &&
+            !activeChapter?.sej3Chapter1Data &&
+            !activeChapter?.sej3Chapter2Data &&
+            !activeChapter?.sej3Chapter3Data &&
+            !activeChapter?.sej3Chapter4Data &&
+            !activeChapter?.sej3Chapter5Data &&
+            !activeChapter?.sej3Chapter6Data &&
+            !activeChapter?.sej3Chapter7Data &&
+            !activeChapter?.sej3Chapter8Data &&
             !activeChapter?.bab7Data &&
             !activeChapter?.chapter1Data &&
             !activeChapter?.chapter2Data &&

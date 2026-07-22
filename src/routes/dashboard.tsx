@@ -522,24 +522,26 @@ function RankHeroCard({
 
 function CompanionHeroCard({ xp, companionId }: { xp: number; companionId: CompanionId }) {
   const stageId = getCompanionStageForXp(xp);
-  const stageIndex = Math.max(0, COMPANION_STAGES.findIndex((s) => s.id === stageId));
-  const stage = COMPANION_STAGES[stageIndex] ?? COMPANION_STAGES[0];
   const species = getCompanionSpecies(companionId);
 
   return (
-    <Card className="relative flex h-[280px] flex-col overflow-hidden text-center sm:h-[300px]">
+    <Card className="relative flex h-[280px] flex-col overflow-hidden text-center !p-4 sm:h-[300px] sm:!p-5">
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
         style={{ background: "radial-gradient(circle at 50% 10%, rgba(167,139,250,0.32), transparent 65%)" }}
       />
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center">
-        <SectionLabel className="mb-3">Companion</SectionLabel>
-        <CompanionImage speciesId={companionId} stage={stageId} size={104} />
-        <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-[#C4B5FD]/70">{species.name}</p>
-        <p className="font-display text-xl font-black text-white">
-          {species.fallbackEmoji[stageId]} {stage.name}
-        </p>
-        <p className="mt-2 text-sm font-bold text-white">
+        <SectionLabel>Companion</SectionLabel>
+        <p className="mt-1 font-display text-xl font-black text-white">{species.name}</p>
+        <div className="mt-1 flex h-[168px] w-full max-w-[280px] items-center justify-center sm:h-[188px] sm:max-w-[288px]">
+          <CompanionImage
+            speciesId={companionId}
+            stage={stageId}
+            size={288}
+            className="!h-full !w-full object-contain"
+          />
+        </div>
+        <p className="mt-1 text-sm font-bold text-white">
           XP: <span className="text-[#A78BFA]">{xp.toLocaleString()}</span>
         </p>
       </div>
