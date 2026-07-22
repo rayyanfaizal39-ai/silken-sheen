@@ -70,7 +70,7 @@ export function CosmicHero() {
           giant body just outside frame rather than a framed illustration. */}
       <div
         className="absolute -top-[11%] right-0 w-[52vw] max-w-[760px] min-w-[360px] sm:w-[46vw] lg:w-[40vw]"
-        style={{ transform: "translateX(48%)" }}
+        style={{ transform: "translate(calc(48% + 25px), 90px)" }}
       >
         {/* Soft inner glow — clipped to the planet's own circular silhouette
             so it reads as light leaking between the paper layers rather than
