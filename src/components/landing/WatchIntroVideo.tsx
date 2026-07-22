@@ -12,9 +12,12 @@ const DEFAULT_TRIGGER_CLASSNAME =
 export function WatchIntroVideo({
   label = "Watch intro",
   className = DEFAULT_TRIGGER_CLASSNAME,
+  minimal = false,
 }: {
   label?: string;
   className?: string;
+  /** Drops the icon's glow shadow and ping pulse for contexts that call for a quieter, no-glow secondary CTA. */
+  minimal?: boolean;
 } = {}) {
   const [open, setOpen] = useState(false);
 
@@ -35,9 +38,15 @@ export function WatchIntroVideo({
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} className={className}>
-        <span className="relative grid place-items-center w-7 h-7 rounded-full bg-nova-yellow text-[#1a0f2e] shadow-[0_0_24px_rgba(250,204,21,0.5)]">
+        <span
+          className={`relative grid place-items-center w-7 h-7 rounded-full bg-nova-yellow text-[#1a0f2e] ${
+            minimal ? "" : "shadow-[0_0_24px_rgba(250,204,21,0.5)]"
+          }`}
+        >
           <Play className="w-3.5 h-3.5 fill-current" />
-          <span className="absolute inset-0 rounded-full bg-nova-yellow/40 animate-ping motion-reduce:animate-none" />
+          {!minimal && (
+            <span className="absolute inset-0 rounded-full bg-nova-yellow/40 animate-ping motion-reduce:animate-none" />
+          )}
         </span>
         {label}
       </button>
