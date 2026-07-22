@@ -154,7 +154,7 @@ export function PaperHorizonStack() {
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden"
-      style={{ height: "40vh" }}
+      style={{ height: "15vh" }}
     >
       {LAYERS.map((cfg) => (
         <HorizonLayer key={cfg.key} config={cfg} tier={tier} reduceMotion={reduceMotion} />
