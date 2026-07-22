@@ -27,10 +27,17 @@ function GoogleIcon() {
   );
 }
 
-type Mode = "signin" | "signup";
+type Mode = "signin" | "signup" | "reset";
 
 export function SignInModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { signInWithGoogle, signInWithEmail, signUpWithEmail, isConfigured, user } = useAuth();
+  const {
+    signInWithGoogle,
+    signInWithEmail,
+    signUpWithEmail,
+    requestPasswordReset,
+    isConfigured,
+    user,
+  } = useAuth();
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -93,8 +100,8 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     e.preventDefault();
     setError(null);
     setNotice(null);
-    if (!email || !password) {
-      setError("Email and password are required.");
+    if (!email || (mode !== "reset" && !password)) {
+      setError(mode === "reset" ? "Email is required." : "Email and password are required.");
       return;
     }
     if (mode === "signup" && password.length < 6) {
@@ -103,7 +110,11 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     }
     setBusy("email");
     try {
-      if (mode === "signin") {
+      if (mode === "reset") {
+        await requestPasswordReset(email);
+        setNotice("If an AcadeMY account exists for this email, a reset link is on its way.");
+        setMode("signin");
+      } else if (mode === "signin") {
         await signInWithEmail(email, password);
         // Auth state change will close the modal, but close immediately too
         // so the spinner can't appear stuck on slow auth-state propagation.
@@ -161,39 +172,49 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
             <AcademyLogo className="mb-4 h-auto w-[156px]" />
             <div>
               <h2 className="font-display text-xl font-bold text-white">
-                {mode === "signin" ? "Welcome back" : "Create account"}
+                {mode === "signin"
+                  ? "Welcome back"
+                  : mode === "signup"
+                    ? "Create account"
+                    : "Reset password"}
               </h2>
               <p className="text-xs text-white/50">
                 {mode === "signin"
                   ? "Sign in to sync your progress."
-                  : "Start saving your XP & streaks."}
+                  : mode === "signup"
+                    ? "Start saving your XP & streaks."
+                    : "We’ll email you a secure reset link."}
               </p>
             </div>
           </div>
 
-          {/* Google */}
-          <button
-            type="button"
-            onClick={handleGoogle}
-            disabled={!isConfigured || busy !== null}
-            className="group flex w-full items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-gray-800 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {busy === "google" ? (
-              <Loader2 className="h-5 w-5 animate-spin text-gray-500" />
-            ) : (
-              <GoogleIcon />
-            )}
-            <span>{busy === "google" ? "Redirecting…" : "Continue with Google"}</span>
-          </button>
+          {mode !== "reset" && (
+            <>
+              {/* Google */}
+              <button
+                type="button"
+                onClick={handleGoogle}
+                disabled={!isConfigured || busy !== null}
+                className="group flex w-full items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-gray-800 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {busy === "google" ? (
+                  <Loader2 className="h-5 w-5 animate-spin text-gray-500" />
+                ) : (
+                  <GoogleIcon />
+                )}
+                <span>{busy === "google" ? "Redirecting…" : "Continue with Google"}</span>
+              </button>
 
-          {/* Divider */}
-          <div className="my-5 flex items-center gap-3">
-            <div className="h-px flex-1 bg-white/[0.07]" />
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">
-              or
-            </span>
-            <div className="h-px flex-1 bg-white/[0.07]" />
-          </div>
+              {/* Divider */}
+              <div className="my-5 flex items-center gap-3">
+                <div className="h-px flex-1 bg-white/[0.07]" />
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">
+                  or
+                </span>
+                <div className="h-px flex-1 bg-white/[0.07]" />
+              </div>
+            </>
+          )}
 
           {/* Email form */}
           <form onSubmit={handleEmail} className="space-y-3">
@@ -215,24 +236,42 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
               </div>
             </label>
 
-            <label className="block">
-              <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
-                Password
-              </span>
-              <div className="relative">
-                <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
-                <input
-                  type="password"
-                  autoComplete={mode === "signin" ? "current-password" : "new-password"}
-                  required
-                  minLength={mode === "signup" ? 6 : undefined}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder={mode === "signup" ? "At least 6 characters" : "Your password"}
-                  className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.04] py-3 pl-10 pr-3.5 text-sm text-white placeholder:text-white/25 outline-none transition focus:border-[#8B5CF6]/50 focus:bg-white/[0.06]"
-                />
+            {mode !== "reset" && (
+              <label className="block">
+                <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
+                  Password
+                </span>
+                <div className="relative">
+                  <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+                  <input
+                    type="password"
+                    autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                    required
+                    minLength={mode === "signup" ? 6 : undefined}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder={mode === "signup" ? "At least 6 characters" : "Your password"}
+                    className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.04] py-3 pl-10 pr-3.5 text-sm text-white placeholder:text-white/25 outline-none transition focus:border-[#8B5CF6]/50 focus:bg-white/[0.06]"
+                  />
+                </div>
+              </label>
+            )}
+
+            {mode === "signin" && (
+              <div className="text-right">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("reset");
+                    setError(null);
+                    setNotice(null);
+                  }}
+                  className="min-h-11 px-1 text-xs font-semibold text-violet-300 underline-offset-4 hover:text-violet-200 hover:underline"
+                >
+                  Forgot password?
+                </button>
               </div>
-            </label>
+            )}
 
             {error && (
               <div className="flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-3 py-2.5 text-xs text-red-300">
@@ -253,13 +292,17 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
               className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_40px_-8px_rgba(99,102,241,0.6)] transition hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {busy === "email" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-              {mode === "signin" ? "Sign in" : "Create account"}
+              {mode === "signin"
+                ? "Sign in"
+                : mode === "signup"
+                  ? "Create account"
+                  : "Send reset link"}
             </button>
           </form>
 
           {/* Mode toggle */}
           <p className="mt-5 text-center text-xs text-white/40">
-            {mode === "signin" ? "New to AcadeMY?" : "Already have an account?"}{" "}
+            {mode === "signin" ? "New to AcadeMY?" : "Ready to sign in?"}{" "}
             <button
               type="button"
               onClick={() => {
@@ -269,7 +312,7 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
               }}
               className="font-semibold text-white/80 underline underline-offset-2 transition hover:text-white"
             >
-              {mode === "signin" ? "Create an account" : "Sign in"}
+              {mode === "signin" ? "Create an account" : "Back to sign in"}
             </button>
           </p>
 

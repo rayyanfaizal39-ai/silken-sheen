@@ -143,44 +143,12 @@ async function ensureInvoiceAssets(invoiceId: string) {
     if (update.error) throw update.error;
   }
 
-  if (!invoice.emailed_at && process.env.RESEND_API_KEY && process.env.INVOICE_SENDER_EMAIL) {
-    const download = await admin.storage.from("invoices").download(storagePath);
-    if (download.error) throw download.error;
-    const bytes = new Uint8Array(await download.data.arrayBuffer());
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-        "Idempotency-Key": `academy-invoice-${invoice.invoice_number}`,
-      },
-      body: JSON.stringify({
-        from: process.env.INVOICE_SENDER_EMAIL,
-        to: [invoice.customer_email],
-        subject: `Payment confirmed — ${invoice.invoice_number}`,
-        html: `<p>Hi ${escapeHtml(invoice.customer_name)},</p><p>Your AcadeMY payment of <strong>${invoice.currency} ${Number(invoice.total).toFixed(2)}</strong> was successful.</p><p>Your paid invoice is attached for your records.</p>`,
-        attachments: [
-          {
-            filename: `${invoice.invoice_number}.pdf`,
-            content: Buffer.from(bytes).toString("base64"),
-          },
-        ],
-      }),
+  if (!invoice.emailed_at) {
+    const delivery = await admin.functions.invoke("send-invoice-email", {
+      body: { invoiceId: invoice.id },
     });
-    if (!response.ok) throw new Error(`Resend delivery failed (${response.status})`);
-    const update = await admin
-      .from("invoices")
-      .update({ emailed_at: new Date().toISOString() })
-      .eq("id", invoice.id);
-    if (update.error) throw update.error;
+    if (delivery.error) throw new Error(`Invoice email delivery failed: ${delivery.error.message}`);
   }
-}
-
-function escapeHtml(value: string) {
-  return value.replace(
-    /[&<>'"]/g,
-    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]!,
-  );
 }
 
 function toyyibBaseUrl() {

@@ -28,6 +28,22 @@ const scienceForm1 = [
   ["science-f1-c9", "GLFJlQ71pJE"],
 ] as const;
 
+const scienceForm2 = [
+  ["science-f2-c1", "vkA6GCnPVCM"],
+  ["science-f2-c2", "C8xkNNYVNbU"],
+  ["science-f2-c3", "pKMdFhEMxzQ"],
+  ["science-f2-c4", "haZu6hJZjIw"],
+  ["science-f2-c5", "2HJQG6poyL4"],
+  ["science-f2-c6", "X-xGqQb1LXY"],
+  ["science-f2-c7", "kcPjkhMsEiY"],
+  ["science-f2-c8", "-ItU2cwAY1c"],
+  ["science-f2-c9", "4irkPVLK4R0"],
+  ["science-f2-c10", "3tyBRTIHW30"],
+  ["science-f2-c11", "a2QRfTVmkV0"],
+  ["science-f2-c12", "pcq0Id4K-KI"],
+  ["science-f2-c13", "F5yEfVJvGCo"],
+] as const;
+
 describe("educational video registry", () => {
   it("maps every Sejarah Tingkatan 1 chapter to its intended video", () => {
     sejarahForm1.forEach(([chapterId, youtubeId, startSeconds], index) => {
@@ -108,6 +124,31 @@ describe("educational video registry", () => {
       expect(variants.find((chapter) => chapter.lang === "dlp")?.video?.youtubeId).toBe(
         getEducationalVideo(`science-f1-c${chapterNumber}`, "dlp")?.youtubeId,
       );
+    });
+  });
+
+  it("maps and renders one AI video for every Sains Tingkatan 2 chapter", () => {
+    scienceForm2.forEach(([chapterId, youtubeId], index) => {
+      const chapterNumber = index + 1;
+      const video = getEducationalVideo(chapterId);
+      const variants = chapters.filter(
+        (chapter) =>
+          chapter.subjectId === "science" &&
+          chapter.form === "Form 2" &&
+          chapter.chapterKey === `Chapter ${chapterNumber}`,
+      );
+
+      expect(video?.title).toBe(`Sains Tingkatan 2 — Bab ${chapterNumber}`);
+      expect(video?.youtubeId).toBe(youtubeId);
+      expect(video?.startSeconds).toBeUndefined();
+      expect(variants).toHaveLength(2);
+      expect(variants.every((chapter) => chapter.video?.youtubeId === youtubeId)).toBe(true);
+
+      const markup = renderToStaticMarkup(createElement(VideoBlock, { video: video! }));
+      expect(markup.match(/<iframe/g)).toHaveLength(1);
+      expect(markup).toContain(`youtube-nocookie.com/embed/${youtubeId}?`);
+      expect(markup).toContain('loading="lazy"');
+      expect(markup).toContain("autoplay");
     });
   });
 });

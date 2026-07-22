@@ -307,6 +307,84 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
     captionLang: "en",
     hint: "Turn on captions for better understanding! 💡",
   },
+  "science-f2-c1": {
+    title: "Sains Tingkatan 2 — Bab 1",
+    youtubeId: "vkA6GCnPVCM",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c2": {
+    title: "Sains Tingkatan 2 — Bab 2",
+    youtubeId: "C8xkNNYVNbU",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c3": {
+    title: "Sains Tingkatan 2 — Bab 3",
+    youtubeId: "pKMdFhEMxzQ",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c4": {
+    title: "Sains Tingkatan 2 — Bab 4",
+    youtubeId: "haZu6hJZjIw",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c5": {
+    title: "Sains Tingkatan 2 — Bab 5",
+    youtubeId: "2HJQG6poyL4",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c6": {
+    title: "Sains Tingkatan 2 — Bab 6",
+    youtubeId: "X-xGqQb1LXY",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c7": {
+    title: "Sains Tingkatan 2 — Bab 7",
+    youtubeId: "kcPjkhMsEiY",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c8": {
+    title: "Sains Tingkatan 2 — Bab 8",
+    youtubeId: "-ItU2cwAY1c",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c9": {
+    title: "Sains Tingkatan 2 — Bab 9",
+    youtubeId: "4irkPVLK4R0",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c10": {
+    title: "Sains Tingkatan 2 — Bab 10",
+    youtubeId: "3tyBRTIHW30",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c11": {
+    title: "Sains Tingkatan 2 — Bab 11",
+    youtubeId: "a2QRfTVmkV0",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c12": {
+    title: "Sains Tingkatan 2 — Bab 12",
+    youtubeId: "pcq0Id4K-KI",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f2-c13": {
+    title: "Sains Tingkatan 2 — Bab 13",
+    youtubeId: "F5yEfVJvGCo",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
 };
 
 export function getEducationalVideo(chapterId: string, language?: string): EducationalVideo | undefined {

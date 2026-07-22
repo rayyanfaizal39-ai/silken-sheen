@@ -1,0 +1,43 @@
+project_id = "aojrbxoqbgyxmfljqpqj"
+
+[auth]
+site_url = "https://myacademy.my"
+additional_redirect_urls = [
+  "https://www.myacademy.my/login",
+  "https://www.myacademy.my/auth/callback",
+  "http://localhost:8080",
+  "http://localhost:8080/auth/callback",
+  "https://www.myacademy.my",
+  "https://myacademy.my/login",
+  "https://myacademy.my/auth/callback",
+  "https://myacademy.my",
+  "https://partners.myacademy.my",
+  "https://partners.myacademy.my/**",
+]
+enable_anonymous_sign_ins = true
+
+[auth.email]
+enable_confirmations = false
+max_frequency = "1m"
+otp_length = 8
+
+[auth.mfa.totp]
+enroll_enabled = true
+verify_enabled = true
+
+[auth.hook.send_email]
+enabled = true
+uri = "https://aojrbxoqbgyxmfljqpqj.supabase.co/functions/v1/send-auth-email"
+secrets = "env(SEND_EMAIL_HOOK_SECRET)"
+
+[functions.send-auth-email]
+verify_jwt = false
+
+[functions.send-invoice-email]
+verify_jwt = true
+
+[functions.send-parent-report]
+verify_jwt = true
+
+[storage.vector]
+enabled = false

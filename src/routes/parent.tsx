@@ -16,6 +16,7 @@ import { useProgress, getRank, type ReportCadence } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { analyzeProgress, withinDays } from "@/lib/tracker";
 import { seoMeta } from "@/lib/seo";
+import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/parent")({
   head: () => seoMeta({
@@ -33,6 +34,9 @@ function ParentPage() {
   const [cadence, setCadence] = useState<ReportCadence>(progress.reportCadence ?? "weekly");
   const [email, setEmail] = useState(progress.parentEmail ?? "");
   const [saved, setSaved] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [deliveryError, setDeliveryError] = useState<string | null>(null);
+  const [deliveryComplete, setDeliveryComplete] = useState(false);
 
   const studentName = user?.name ?? "Your child";
   const days = cadence === "weekly" ? 7 : 30;
@@ -52,41 +56,49 @@ function ParentPage() {
     window.setTimeout(() => setSaved(false), 2200);
   }
 
-  function buildReportText(): string {
-    const lines = [
-      `AcadeMY — Mission Report (${cadence === "weekly" ? "Weekly" : "Monthly"})`,
-      `Student: ${studentName}`,
-      `Period: ${periodLabel}`,
-      ``,
-      `OVERVIEW`,
-      `• Quizzes completed: ${insight.totalQuizzes}`,
-      `• Average score: ${insight.overallAvg}%`,
-      `• Pass rate (80%+): ${insight.passRate}%`,
-      `• Current rank: ${rank.name} (${progress.xp.toLocaleString()} XP)`,
-      `• Study streak: ${progress.streak} day${progress.streak !== 1 ? "s" : ""}`,
-      ``,
-    ];
-    if (insight.strongest)
-      lines.push(`STRONGEST SUBJECT: ${insight.strongest.name} (${insight.strongest.avgScore}%)`);
-    if (insight.weakSpots.length > 0) {
-      lines.push(``, `AREAS TO SUPPORT:`);
-      insight.weakSpots.forEach((w) =>
-        lines.push(`• ${w.subjectName} — ${w.chapterLabel} (${w.avgScore}%)`),
-      );
-    } else {
-      lines.push(``, `No weak areas this period — every quizzed chapter is above 80%.`);
+  async function sendEmail() {
+    setDeliveryError(null);
+    setDeliveryComplete(false);
+    if (!user) {
+      setDeliveryError("Sign in before sending a parent report.");
+      return;
     }
-    lines.push(``, `RECOMMENDATION`, insight.recommendation, ``, `— Sent from AcadeMY`);
-    return lines.join("\n");
-  }
+    if (!isSupabaseConfigured || !emailValid) {
+      setDeliveryError("Enter a valid parent email address.");
+      return;
+    }
 
-  function sendEmail() {
-    const subject = `AcadeMY ${cadence === "weekly" ? "Weekly" : "Monthly"} Report — ${studentName}`;
-    const body = buildReportText();
-    if (emailValid) setParentReport(email, cadence);
-    window.location.href = `mailto:${emailValid ? encodeURIComponent(email) : ""}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+    setSending(true);
+    setParentReport(email, cadence);
+    const { error } = await supabase.functions.invoke("send-parent-report", {
+      body: {
+        to: email,
+        cadence,
+        studentName,
+        periodLabel,
+        totalQuizzes: insight.totalQuizzes,
+        overallAvg: insight.overallAvg,
+        passRate: insight.passRate,
+        rankName: rank.name,
+        totalXp: progress.xp,
+        studyStreak: progress.streak,
+        strongest: insight.strongest
+          ? { name: insight.strongest.name, avgScore: insight.strongest.avgScore }
+          : null,
+        weakSpots: insight.weakSpots.slice(0, 5).map((spot) => ({
+          subjectName: spot.subjectName,
+          chapterLabel: spot.chapterLabel,
+          avgScore: spot.avgScore,
+        })),
+        recommendation: insight.recommendation,
+      },
+    });
+    setSending(false);
+    if (error) {
+      setDeliveryError(error.message || "The report could not be sent. Please try again.");
+      return;
+    }
+    setDeliveryComplete(true);
   }
 
   return (
@@ -270,10 +282,11 @@ function ParentPage() {
         <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
           <button
             type="button"
-            onClick={sendEmail}
+            onClick={() => void sendEmail()}
+            disabled={sending || !emailValid}
             className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#34D399] to-[#10B981] px-5 text-sm font-black text-[#04130C] transition-transform hover:scale-[1.02] active:scale-[0.99]"
           >
-            <Send className="h-4 w-4" /> Send report now
+            <Send className="h-4 w-4" /> {sending ? "Sending…" : "Send report now"}
           </button>
           <button
             type="button"
@@ -284,11 +297,21 @@ function ParentPage() {
           </button>
         </div>
 
+        {deliveryError && (
+          <p role="alert" className="mt-3 text-sm text-rose-300">
+            {deliveryError}
+          </p>
+        )}
+        {deliveryComplete && (
+          <p role="status" className="mt-3 text-sm font-semibold text-emerald-300">
+            Report sent to {email}.
+          </p>
+        )}
+
         <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-white/35">
           <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          "Send report now" opens your email app with the summary pre-filled. Fully automated{" "}
-          {cadence} delivery activates once cloud sync is connected — your saved preference is
-          remembered.
+          "Send report now" delivers securely through AcadeMY. Scheduled {cadence} delivery is
+          still being prepared; your saved preference is remembered.
         </p>
       </div>
     </section>

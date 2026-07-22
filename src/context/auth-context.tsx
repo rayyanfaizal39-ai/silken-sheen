@@ -28,6 +28,7 @@ interface AuthContextValue {
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
+  requestPasswordReset: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -41,6 +42,7 @@ const AuthContext = createContext<AuthContextValue>({
   signInWithGoogle: async () => {},
   signInWithEmail: async () => {},
   signUpWithEmail: async () => ({ needsConfirmation: false }),
+  requestPasswordReset: async () => {},
   signOut: async () => {},
 });
 
@@ -71,7 +73,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // Retrieve the initial session (handles post-OAuth redirects too)
     console.info("[Auth] Initial session check started", { path: window.location.pathname });
-    void supabase.auth.getSession()
+    void supabase.auth
+      .getSession()
       .then(({ data: { session: s }, error }) => {
         if (error) console.error("[Auth] Initial session check failed", error);
         else console.info("[Auth] Initial session check completed", { hasSession: !!s });
@@ -84,7 +87,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setLoading(false));
 
     // Subscribe to auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, s) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, s) => {
       console.info("[Auth] State changed", { event, hasSession: !!s });
       // Supabase re-fires SIGNED_IN/INITIAL_SESSION on tab focus even when
       // the session hasn't actually changed — skip the state update (and the
@@ -184,6 +189,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { needsConfirmation: !data.session };
   }, []);
 
+  const requestPasswordReset = useCallback(async (email: string) => {
+    if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
+    const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent("/auth/reset-password")}`;
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+    if (error) throw error;
+  }, []);
+
   const signOut = useCallback(async () => {
     if (!isSupabaseConfigured) return;
     await supabase.auth.signOut();
@@ -198,9 +210,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signInWithGoogle,
       signInWithEmail,
       signUpWithEmail,
+      requestPasswordReset,
       signOut,
     }),
-    [user, session, loading, signInWithGoogle, signInWithEmail, signUpWithEmail, signOut],
+    [
+      user,
+      session,
+      loading,
+      signInWithGoogle,
+      signInWithEmail,
+      signUpWithEmail,
+      requestPasswordReset,
+      signOut,
+    ],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

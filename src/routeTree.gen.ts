@@ -30,6 +30,7 @@ import { Route as CompanionRouteImport } from './routes/companion'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
@@ -143,6 +144,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/auth/reset-password',
+  path: '/auth/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
   id: '/auth/callback',
   path: '/auth/callback',
@@ -206,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
   '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
@@ -235,6 +242,7 @@ export interface FileRoutesByTo {
   '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin': typeof AdminIndexRoute
   '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
@@ -266,6 +274,7 @@ export interface FileRoutesById {
   '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
   '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
@@ -298,6 +307,7 @@ export interface FileRouteTypes {
     | '/admin/reports'
     | '/admin/users'
     | '/auth/callback'
+    | '/auth/reset-password'
     | '/admin/'
     | '/api/toyyibpay/callback'
   fileRoutesByTo: FileRoutesByTo
@@ -327,6 +337,7 @@ export interface FileRouteTypes {
     | '/admin/reports'
     | '/admin/users'
     | '/auth/callback'
+    | '/auth/reset-password'
     | '/admin'
     | '/api/toyyibpay/callback'
   id:
@@ -357,6 +368,7 @@ export interface FileRouteTypes {
     | '/admin/reports'
     | '/admin/users'
     | '/auth/callback'
+    | '/auth/reset-password'
     | '/admin/'
     | '/api/toyyibpay/callback'
   fileRoutesById: FileRoutesById
@@ -384,6 +396,7 @@ export interface RootRouteChildren {
   UpgradeRoute: typeof UpgradeRoute
   AcademyLandingpage3Route: typeof AcademyLandingpage3Route
   AuthCallbackRoute: typeof AuthCallbackRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   ApiToyyibpayCallbackRoute: typeof ApiToyyibpayCallbackRoute
 }
 
@@ -536,6 +549,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/auth/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/callback': {
       id: '/auth/callback'
       path: '/auth/callback'
@@ -629,6 +649,7 @@ const rootRouteChildren: RootRouteChildren = {
   UpgradeRoute: UpgradeRoute,
   AcademyLandingpage3Route: AcademyLandingpage3Route,
   AuthCallbackRoute: AuthCallbackRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
   ApiToyyibpayCallbackRoute: ApiToyyibpayCallbackRoute,
 }
 export const routeTree = rootRouteImport

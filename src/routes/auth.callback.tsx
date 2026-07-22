@@ -11,12 +11,24 @@ function AuthCallbackPage() {
   const { user, session, loading } = useAuth();
   const navigate = useNavigate();
   const exchangeStarted = useRef(false);
+  const initialCode = useRef(
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("code")
+      : null,
+  );
+  const nextPath = useRef<"/auth/reset-password" | "/home">(
+    typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("next") === "/auth/reset-password"
+      ? "/auth/reset-password"
+      : "/home",
+  );
   const [callbackError, setCallbackError] = useState<string | null>(null);
+  const [exchangeComplete, setExchangeComplete] = useState(!initialCode.current);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-    console.info("[Auth] OAuth callback route mounted", {
+    console.info("[Auth] callback route mounted", {
       hasCode: Boolean(code),
       hasHash: window.location.hash.length > 1,
     });
@@ -30,11 +42,11 @@ function AuthCallbackPage() {
 
     void (async () => {
       try {
-        console.info("[Auth] OAuth code exchange started", {
+        console.info("[Auth] code exchange started", {
           callbackPath: window.location.pathname,
         });
         const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-        console.info("[Auth] OAuth code exchange completed", {
+        console.info("[Auth] code exchange completed", {
           hasSession: !!data.session,
           hasUser: !!data.user,
           error: error ? { message: error.message, status: error.status, code: error.code } : null,
@@ -43,9 +55,10 @@ function AuthCallbackPage() {
 
         const cleanUrl = `${window.location.origin}/auth/callback`;
         window.history.replaceState({}, "", cleanUrl);
+        setExchangeComplete(true);
       } catch (e) {
-        const message = e instanceof Error ? e.message : "OAuth callback exchange failed";
-        console.error("[Auth] OAuth callback exchange failed", e);
+        const message = e instanceof Error ? e.message : "Auth callback exchange failed";
+        console.error("[Auth] callback exchange failed", e);
         setCallbackError(message);
       }
     })();
@@ -57,11 +70,11 @@ function AuthCallbackPage() {
       hasSession: !!session,
       hasUser: !!user,
     });
-    if (!loading && user) {
-      console.info("[Auth] OAuth callback complete; navigating home");
-      void navigate({ to: "/home", replace: true });
+    if (!loading && user && exchangeComplete) {
+      console.info("[Auth] callback complete; navigating", { nextPath: nextPath.current });
+      void navigate({ to: nextPath.current, replace: true });
     }
-  }, [loading, navigate, session, user]);
+  }, [exchangeComplete, loading, navigate, session, user]);
 
   return (
     <section className="min-h-[calc(100svh-80px)] flex items-center justify-center px-4">
