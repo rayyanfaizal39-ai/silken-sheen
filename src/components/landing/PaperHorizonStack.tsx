@@ -13,71 +13,23 @@ type LayerConfig = {
   key: string;
   asset: string;
   zIndex: number;
-  /** width relative to viewport, per tier */
-  widthVw: Record<Tier, number>;
-  /** bottom offset (vh) that positions the layer, per tier */
-  bottomVh: Record<Tier, number>;
-  /** idle horizontal drift in px */
   driftX: number;
-  /** seconds for one full drift cycle */
   duration: number;
 };
 
 /**
- * Clean, low, elegant five-layer papercraft horizon. Each layer is rendered
- * as an <img> anchored to the bottom of the hero. Width controls scale;
- * heights stay auto so the artwork is never stretched. Kept intentionally
- * simple after an earlier oversized/blurred implementation.
+ * Papercraft horizon. Each PNG already contains its own full-width silhouette
+ * with transparent surroundings, so we render each one at exactly 100vw,
+ * anchored to bottom:0 with left:0 — no centering translate, no cropping,
+ * no forced height. The PNGs stack via z-index only; drift is a few pixels.
  */
 const LAYERS: LayerConfig[] = [
-  {
-    key: "layer-5",
-    asset: layer5,
-    zIndex: 10,
-    widthVw: { desktop: 112, tablet: 116, mobile: 124 },
-    bottomVh: { desktop: 0, tablet: 0, mobile: 0 },
-    driftX: 2,
-    duration: 150,
-  },
-  {
-    key: "layer-4",
-    asset: layer4,
-    zIndex: 11,
-    widthVw: { desktop: 112, tablet: 116, mobile: 124 },
-    bottomVh: { desktop: 0, tablet: 0, mobile: 0 },
-    driftX: -2,
-    duration: 130,
-  },
-  {
-    key: "layer-3",
-    asset: layer3,
-    zIndex: 12,
-    widthVw: { desktop: 112, tablet: 116, mobile: 124 },
-    bottomVh: { desktop: 0, tablet: 0, mobile: 0 },
-    driftX: 3,
-    duration: 115,
-  },
-  {
-    key: "layer-2",
-    asset: layer2,
-    zIndex: 13,
-    widthVw: { desktop: 112, tablet: 116, mobile: 124 },
-    bottomVh: { desktop: 0, tablet: 0, mobile: 0 },
-    driftX: -3,
-    duration: 100,
-  },
-  {
-    key: "layer-1",
-    asset: layer1,
-    zIndex: 14,
-    widthVw: { desktop: 112, tablet: 116, mobile: 124 },
-    bottomVh: { desktop: 0, tablet: 0, mobile: 0 },
-    driftX: 4,
-    duration: 90,
-  },
+  { key: "layer-5", asset: layer5, zIndex: 10, driftX: 2, duration: 150 },
+  { key: "layer-4", asset: layer4, zIndex: 11, driftX: -2, duration: 130 },
+  { key: "layer-3", asset: layer3, zIndex: 12, driftX: 3, duration: 115 },
+  { key: "layer-2", asset: layer2, zIndex: 13, driftX: -3, duration: 100 },
+  { key: "layer-1", asset: layer1, zIndex: 14, driftX: 4, duration: 90 },
 ];
-
-const SHADOW = "drop-shadow(0 -1px 2px rgba(0,0,0,0.18))";
 
 function useViewportTier(): Tier {
   const [tier, setTier] = useState<Tier>("desktop");
@@ -106,7 +58,6 @@ function HorizonLayer({
   tier: Tier;
   reduceMotion: boolean;
 }) {
-  // Disable drift on mobile for a calmer feel + battery.
   const animate =
     reduceMotion || tier === "mobile"
       ? undefined
@@ -120,14 +71,13 @@ function HorizonLayer({
       draggable={false}
       className="absolute pointer-events-none select-none"
       style={{
-        left: "50%",
-        bottom: `${config.bottomVh[tier]}vh`,
-        width: `${config.widthVw[tier]}vw`,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: "100vw",
         height: "auto",
         zIndex: config.zIndex,
-        transform: "translateX(-50%)",
         transformOrigin: "bottom center",
-        filter: SHADOW,
         willChange: animate ? "transform" : undefined,
       }}
       initial={false}
@@ -153,8 +103,7 @@ export function PaperHorizonStack() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden"
-      style={{ height: "15vh" }}
+      className="pointer-events-none absolute inset-x-0 bottom-0"
     >
       {LAYERS.map((cfg) => (
         <HorizonLayer key={cfg.key} config={cfg} tier={tier} reduceMotion={reduceMotion} />
