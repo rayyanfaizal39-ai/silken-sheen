@@ -28,7 +28,49 @@ const scienceForm1 = [
   ["science-f1-c9", "GLFJlQ71pJE"],
 ] as const;
 
+const sejarahForm2 = [
+  ["sejarah-f2-c1", "p6BhanQF6OE"],
+  ["sejarah-f2-c2", "i1UtsCwEqJc"],
+  ["sejarah-f2-c3", "TRgsYd5wo5I"],
+  ["sejarah-f2-c4", "FFi8JiF2TJU"],
+  ["sejarah-f2-c5", "GAZCHn6vK8U"],
+  ["sejarah-f2-c6", "vw6oMLOujxk"],
+  ["sejarah-f2-c7", "Fz8_K8o7gq0"],
+  ["sejarah-f2-c8", "pkviFyb56X0"],
+  ["sejarah-f2-c9", "tpwz9PDtWe4"],
+  ["sejarah-f2-c10", "UOM59qDl348"],
+] as const;
+
 describe("educational video registry", () => {
+  it("maps and attaches every Sejarah Tingkatan 2 chapter to its intended video", () => {
+    sejarahForm2.forEach(([chapterId, youtubeId], index) => {
+      const video = getEducationalVideo(chapterId);
+      expect(video?.title).toBe(`Sejarah Tingkatan 2 — Bab ${index + 1}`);
+      expect(video?.youtubeId).toBe(youtubeId);
+
+      const chapter = chapters.find(
+        (candidate) =>
+          candidate.subjectId === "sejarah" &&
+          candidate.form === "Form 2" &&
+          candidate.chapterKey === `Chapter ${index + 1}`,
+      );
+      expect(chapter?.id).toBe(chapterId);
+      expect(chapter?.video).toBe(video);
+    });
+  });
+
+  it("renders lazy, non-autoplay privacy-enhanced embeds for Sejarah Tingkatan 2", () => {
+    for (const [chapterId, youtubeId] of sejarahForm2) {
+      const video = getEducationalVideo(chapterId);
+      const markup = renderToStaticMarkup(createElement(VideoBlock, { video: video! }));
+
+      expect(markup.match(/<iframe/g)).toHaveLength(1);
+      expect(markup).toContain(`youtube-nocookie.com/embed/${youtubeId}?`);
+      expect(markup).toContain('loading="lazy"');
+      expect(markup).not.toContain("autoplay=1");
+    }
+  });
+
   it("maps every Sejarah Tingkatan 1 chapter to its intended video", () => {
     sejarahForm1.forEach(([chapterId, youtubeId, startSeconds], index) => {
       const video = getEducationalVideo(chapterId);
