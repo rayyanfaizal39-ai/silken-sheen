@@ -6,8 +6,6 @@ import {
   Clock,
   Gauge,
   NotebookPen,
-  Brain,
-  Layers,
   CheckCircle2,
   BookOpen,
   Rocket,
@@ -23,7 +21,6 @@ import {
   type ResourceType,
 } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
-import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 
@@ -149,19 +146,12 @@ function hasCustomFormResourceContent(subjectId: string, form: Form, mode: Learn
 }
 
 // Real per-form stat line shown under a Ready badge — never a generic
-// placeholder, so Form 1/2/3 always communicate their own real coverage
-// instead of implying the whole subject is one size. `override` lets a page
-// supply an exact count for content that lives outside the registry (e.g.
-// Math Form 1 flashcards/quizzes — see flashcards.tsx/quizzes.tsx). If a form
-// is ready but no chapter/item number is available (e.g. BM's notes hub,
-// which isn't backed by registry chapter rows), fall back to a plain
-// "Available" instead of a misleading zero.
-function formStatLabel(mode: LearningMode, stat: FormStat, isReady: boolean, override?: number): string {
+// placeholder. Quiz and flashcard forms intentionally use availability-only
+// copy so pre-activity cards never announce content quantities.
+function formStatLabel(mode: LearningMode, stat: FormStat, isReady: boolean): string {
   if (!isReady) return "Coming Soon";
 
   if (mode === "quizzes" || mode === "flashcards") {
-    const count = override ?? (mode === "quizzes" ? stat.quizCount : stat.flashcardCount);
-    if (count > 0) return `${count} ${mode === "quizzes" ? "Questions" : "Cards"}`;
     return "✔ Available";
   }
 
@@ -174,17 +164,11 @@ function formStatLabel(mode: LearningMode, stat: FormStat, isReady: boolean, ove
 export function FormGrid({
   subjectId,
   mode = "notes",
-  formResourceCountOverride,
   onSelect,
   onBack,
 }: {
   subjectId: string;
   mode?: LearningMode;
-  // Exact count for content stored outside the chapter registry (currently
-  // only Math Form 1 flashcards/quizzes need this — see flashcards.tsx /
-  // quizzes.tsx). Replaces the registry-derived count for that form, it does
-  // not add to it.
-  formResourceCountOverride?: Partial<Record<Form, number>>;
   onSelect: (form: Form) => void;
   onBack: () => void;
 }) {
@@ -226,12 +210,13 @@ export function FormGrid({
           ) || hasCustomFormResourceContent(subjectId, item.form, mode);
           const stat = formStats.find((s) => s.form === item.form);
           const statLabel = stat
-            ? formStatLabel(mode, stat, isReady, formResourceCountOverride?.[item.form])
+            ? formStatLabel(mode, stat, isReady)
             : item.description;
           return (
             <button
               key={item.form}
               type="button"
+              aria-label={isReady ? `Open ${item.label} ${modeLabel(mode).toLowerCase()}` : undefined}
               onClick={() => isReady && onSelect(item.form)}
               disabled={!isReady}
               className="group relative flex min-h-[190px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.22)] transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-white/[0.16] hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
@@ -354,8 +339,6 @@ export function ChapterGrid({
             );
             const feats = getChapterFeatures(chapterContent);
             const notesCount = chapterContent?.notes?.sections?.length ?? 0;
-            const cardCount = chapterContent?.flashcards?.length ?? 0;
-            const quizCount = getQuizQuestionCount([chapterContent?.quiz]);
             const readMins = Math.max(
               3,
               Math.round(notesCount * 2 + (chapterContent?.notes?.quickRevision?.length ?? 0)),
@@ -368,6 +351,11 @@ export function ChapterGrid({
             return (
               <button
                 type="button"
+                aria-label={
+                  resourceAvailable
+                    ? `Open ${c.label} ${modeLabel(mode).toLowerCase()}`
+                    : undefined
+                }
                 key={c.key}
                 onClick={() => resourceAvailable && onSelect(c.key, resourceAvailable)}
                 disabled={!resourceAvailable}
@@ -452,16 +440,6 @@ export function ChapterGrid({
                       {notesCount > 0 && (
                         <span className="chapter-chip">
                           <NotebookPen className="h-3 w-3" /> {notesCount}
-                        </span>
-                      )}
-                      {cardCount > 0 && (
-                        <span className="chapter-chip">
-                          <Layers className="h-3 w-3" /> {cardCount}
-                        </span>
-                      )}
-                      {quizCount > 0 && (
-                        <span className="chapter-chip">
-                          <Brain className="h-3 w-3" /> {quizCount}
                         </span>
                       )}
                     </div>

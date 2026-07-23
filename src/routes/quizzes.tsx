@@ -41,7 +41,6 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import {
   getRegisteredSubjectChapters as getSubjectChapters,
   hasFormResourceContent,
@@ -50,21 +49,6 @@ import {
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
-import {
-  bmF1ObjektifKuiz1,
-  bmF1ObjektifKuiz2,
-  bmF1ObjektifKuiz3,
-} from "@/data/bm-f1-objektif-quizzes";
-import {
-  bmF2ObjektifKuiz1,
-  bmF2ObjektifKuiz2,
-  bmF2ObjektifKuiz3,
-} from "@/data/bm-f2-objektif-quizzes";
-import {
-  bmF3ObjektifKuiz1,
-  bmF3ObjektifKuiz2,
-  bmF3ObjektifKuiz3,
-} from "@/data/bm-f3-objektif-quizzes";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import imgF3Q01 from "@/assets/english posters/form 3/q01.png";
 import imgF3Q02 from "@/assets/english posters/form 3/q02.png";
@@ -6122,43 +6106,6 @@ const MATH_QUIZ_BANKS: Partial<
   },
 };
 
-// Math Form 1 quizzes aren't mirrored onto the content registry (they live
-// here as MATH_QUIZ_BANKS), so the registry can't report an exact count for
-// them. Compute the real total from the same bank the quiz player reads from,
-// and hand it to FormGrid as an override (see formResourceCountOverride on
-// the <FormGrid mode="quizzes" /> call below).
-const MATH_FORM1_QUIZ_TOTAL = getQuizQuestionCount(
-  Object.values(MATH_QUIZ_BANKS).flatMap((objectives) =>
-    Object.values(objectives ?? {}).map((languages) => languages?.bm),
-  ),
-);
-
-const BM_FORM_QUIZ_TOTALS = {
-  "Form 1": getQuizQuestionCount([
-    bmF1ObjektifKuiz1,
-    bmF1ObjektifKuiz2,
-    bmF1ObjektifKuiz3,
-  ]),
-  "Form 2": getQuizQuestionCount([
-    bmF2ObjektifKuiz1,
-    bmF2ObjektifKuiz2,
-    bmF2ObjektifKuiz3,
-  ]),
-  "Form 3": getQuizQuestionCount([
-    bmF3ObjektifKuiz1,
-    bmF3ObjektifKuiz2,
-    bmF3ObjektifKuiz3,
-  ]),
-} as const;
-
-function getMathObjectiveQuestionCount(
-  chapterKey: string,
-  objectiveId: MathObjectiveId,
-  lang: MathQuizLang,
-): number {
-  return getQuizQuestionCount([MATH_QUIZ_BANKS[chapterKey]?.[objectiveId]?.[lang]]);
-}
-
 interface ShuffledQuestion {
   question: string;
   options: string[];
@@ -6796,13 +6743,6 @@ function QuizzesPage() {
         <FormGrid
           subjectId={subject}
           mode="quizzes"
-          formResourceCountOverride={
-            subject === "math"
-              ? { "Form 1": MATH_FORM1_QUIZ_TOTAL }
-              : subject === "bm"
-                ? BM_FORM_QUIZ_TOTALS
-                : undefined
-          }
           onSelect={(selectedForm) => {
             setForm(selectedForm);
             setFormWasChosen(true);
@@ -7111,7 +7051,7 @@ function QuizzesPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
               {[
-                ["Daily Challenge", "10 mixed questions", "Start"],
+                ["Daily Challenge", "Mixed question challenge", "Start"],
                 ["Quick Practice", "5-minute warm up", "Practice"],
                 ["Exam Mode", "Timed score run", "Enter"],
               ].map(([title, description, cta]) => (
@@ -7962,6 +7902,7 @@ function EnglishSetSelectionScreen({
             <button
               key={quizSet.id}
               onClick={() => onSelect(quizSet.id)}
+              aria-label={`Open ${quizSet.title}`}
               className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
               style={{ animationDelay: `${index * 70}ms` }}
             >
@@ -7983,9 +7924,6 @@ function EnglishSetSelectionScreen({
                   </p>
                 ))}
               </div>
-              <div className="relative mt-4 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1.5 text-xs font-bold text-cyan-100">
-                {getQuizQuestionCount([getEnglishQuizSet(quizSet.id)])} Questions
-              </div>
             </button>
           ))}
         </div>
@@ -8005,7 +7943,6 @@ function EnglishSetIntroScreen({
   onStart: () => void;
   formLabel?: string;
 }) {
-  const questionCount = getQuizQuestionCount([getEnglishQuizSet(quizSet.id)]);
   const focus =
     quizSet.id === "objective-c"
       ? ["Full mixed Paper 1 simulation", "Parts 1, 2, 3, 4 and 5", "Mini UASA exam flow"]
@@ -8048,11 +7985,7 @@ function EnglishSetIntroScreen({
                 </div>
               ))}
             </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl bg-white/5 p-4 text-center">
-                <div className="text-2xl font-bold text-cyan-200">{questionCount}</div>
-                <div className="mt-1 text-xs text-muted-foreground">Questions</div>
-              </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl bg-white/5 p-4 text-center">
                 <div className="text-2xl font-bold text-cyan-200">A-D</div>
                 <div className="mt-1 text-xs text-muted-foreground">Options</div>
@@ -8103,16 +8036,13 @@ function EnglishSetSelectionScreenF3({
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           {sets.map((quizSet, index) => (
-            <button key={quizSet.id} onClick={() => onSelect(quizSet.id)} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up" style={{ animationDelay: `${index * 70}ms` }}>
+            <button key={quizSet.id} onClick={() => onSelect(quizSet.id)} aria-label={`Open ${quizSet.title}`} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up" style={{ animationDelay: `${index * 70}ms` }}>
               <div className={`absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-br ${quizSet.tone} opacity-20 blur-3xl transition-opacity group-hover:opacity-40`} />
               <div className={`relative mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${quizSet.tone} text-3xl shadow-lg`}>{quizSet.badge}</div>
               <h3 className="relative font-display text-xl font-bold">{quizSet.title}</h3>
               <p className="relative mt-1 text-sm font-bold text-cyan-200">{quizSet.level}</p>
               <p className="relative mt-3 text-sm leading-7 text-slate-300">{quizSet.description}</p>
               <div className="relative mt-4 space-y-2">{quizSet.coverage.map((item) => <p key={item} className="rounded-2xl bg-white/5 px-3 py-2 text-xs text-slate-300">{item}</p>)}</div>
-              <div className="relative mt-4 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1.5 text-xs font-bold text-cyan-100">
-                {getQuizQuestionCount([getEnglishQuizSetF3(quizSet.id)])} Questions
-              </div>
             </button>
           ))}
         </div>
@@ -8627,6 +8557,7 @@ function MathObjectiveSelectionScreen({
             <button
               key={objective.id}
               onClick={() => onSelect(objective.id)}
+              aria-label={`Open ${objective.title}`}
               className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
               style={{ animationDelay: `${index * 70}ms` }}
             >
@@ -8645,9 +8576,6 @@ function MathObjectiveSelectionScreen({
                     {item}
                   </p>
                 ))}
-              </div>
-              <div className="relative mt-5 inline-flex rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-xs font-bold text-amber-200">
-                {getMathObjectiveQuestionCount(chapterKey, objective.id, quizLang)} Questions Ready
               </div>
             </button>
           ))}
@@ -8680,7 +8608,6 @@ function MathObjectiveIntroScreen({
   const isPractice = objective.id === "objective-2";
   const isChallenge = objective.id === "objective-3";
   const isDlp = quizLang === "dlp";
-  const questionCount = getMathObjectiveQuestionCount(chapterKey, objective.id, quizLang);
   const isChapter2 = chapterKey === "Chapter 2";
   const isChapter3 = chapterKey === "Chapter 3";
   const isChapter4 = chapterKey === "Chapter 4";
@@ -9045,15 +8972,9 @@ function MathObjectiveIntroScreen({
                     ]),
             ]
         : [
-            isDlp
-              ? `This quiz contains ${questionCount} objective questions.`
-              : `Quiz ini mengandungi ${questionCount} soalan objektif.`,
             isDlp ? "Each question is worth 1 mark." : "Setiap soalan bernilai 1 markah.",
             isDlp ? "Choose the most accurate answer." : "Pilih jawapan yang paling tepat.",
             isDlp ? "Use paper for calculations." : "Gunakan kertas untuk membuat pengiraan.",
-            isDlp
-              ? `Full marks: ${questionCount} marks.`
-              : `Markah penuh: ${questionCount} markah.`,
           ];
   const summaryItems = isChallenge
     ? [
@@ -9061,19 +8982,16 @@ function MathObjectiveIntroScreen({
           isDlp ? "Difficulty Level" : "Tahap Kesukaran",
           isDlp ? (isChapter2 ? "Medium to Hard" : "Medium → Hard") : "Sederhana → Sukar",
         ],
-        [isDlp ? "Number of Questions" : "Bilangan Soalan", String(questionCount)],
         [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "20–25 minutes" : "20–25 minit"],
       ]
     : isPractice
       ? [
           [isDlp ? "Difficulty Level" : "Tahap Kesukaran", isDlp ? "Medium" : "Sederhana"],
-          [isDlp ? "Number of Questions" : "Bilangan Soalan", String(questionCount)],
           [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "15–20 minutes" : "15–20 minit"],
         ]
       : isFoundation
         ? [
             [isDlp ? "Difficulty Level" : "Tahap Kesukaran", isDlp ? "Easy" : "Mudah"],
-            [isDlp ? "Number of Questions" : "Bilangan Soalan", String(questionCount)],
             [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "10–15 minutes" : "10–15 minit"],
           ]
         : [];
@@ -9205,7 +9123,7 @@ function MathObjectiveIntroScreen({
               </ul>
             )}
             {summaryItems.length > 0 && (
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {summaryItems.map(([label, value]) => (
                   <div key={label} className="rounded-2xl bg-white/5 p-3 text-center">
                     <div className="text-base font-bold text-cyan-200">{value}</div>
@@ -9214,12 +9132,6 @@ function MathObjectiveIntroScreen({
                 ))}
               </div>
             )}
-            <div className="mt-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-cyan-100">
-              {isDlp ? "Full Marks" : "Markah Penuh"}:{" "}
-              <span className="font-bold text-cyan-200">
-                {questionCount} {isDlp ? "marks" : "markah"}
-              </span>
-            </div>
             {isFoundation && (
               <p className="mt-4 text-sm text-muted-foreground">
                 {isDlp ? 'Press "Start Quiz" when ready.' : 'Tekan "Mula Quiz" apabila bersedia.'}

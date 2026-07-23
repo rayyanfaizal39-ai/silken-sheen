@@ -683,6 +683,13 @@ function canOpenChapter(
   return hasResourceContent(subjectId, form, chapter.key, resourceType, scienceLang);
 }
 
+function resourceLabel(resourceType?: ResourceType) {
+  if (resourceType === "quiz") return "quizzes";
+  if (resourceType === "flashcards") return "flashcards";
+  if (resourceType === "mindMap") return "mind maps";
+  return "notes";
+}
+
 // ─── Path node (circular marker sitting on the path line) ────────────────────
 
 function PathNode({
@@ -830,8 +837,6 @@ function LocationCard({
     form === "All" ? "Form 1" : form,
   );
   const notesCount = chapterContent?.notes?.sections?.length ?? 0;
-  const cardCount = chapterContent?.flashcards?.length ?? 0;
-  const quizCount = chapterContent?.quiz?.length ?? 0;
   const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType);
 
   // Form 1 Geography chapters — and Science chapters across all three forms —
@@ -881,6 +886,11 @@ function LocationCard({
   return (
     <button
       type="button"
+      aria-label={
+        canOpen
+          ? `Open ${chapter.label} ${resourceLabel(resourceType)}`
+          : undefined
+      }
       onClick={() => canOpen && onSelect(chapter.key)}
       disabled={!canOpen}
       className={[
@@ -972,13 +982,11 @@ function LocationCard({
         </p>
 
         {/* Content chips */}
-        {canOpen && (notesCount > 0 || cardCount > 0 || quizCount > 0) && (
+        {canOpen && notesCount > 0 && (
           <div
             className={`mt-1.5 flex flex-wrap gap-1 ${align === "right" ? "justify-end" : "justify-start"}`}
           >
             {notesCount > 0 && <span className="chapter-chip">📄 {notesCount}</span>}
-            {cardCount > 0 && <span className="chapter-chip">🃏 {cardCount}</span>}
-            {quizCount > 0 && <span className="chapter-chip">🧠 {quizCount}q</span>}
           </div>
         )}
 
@@ -1301,6 +1309,11 @@ function SejarahTimelineMap({
                 <button
                   type="button"
                   data-chapter-card={c.key}
+                  aria-label={
+                    canOpen
+                      ? `Open ${c.label} ${resourceLabel(resourceType)}`
+                      : undefined
+                  }
                   onClick={() => canOpen && onSelect(c.key)}
                   disabled={!canOpen}
                   className={[
@@ -1434,13 +1447,16 @@ function ChapterCard({
     form === "All" ? "Form 1" : form,
   );
   const notesCount = chapterContent?.notes?.sections?.length ?? 0;
-  const cardCount = chapterContent?.flashcards?.length ?? 0;
-  const quizCount = chapterContent?.quiz?.length ?? 0;
   const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType ?? "notes");
 
   return (
     <button
       type="button"
+      aria-label={
+        canOpen
+          ? `Open ${chapter.label} ${resourceLabel(resourceType)}`
+          : undefined
+      }
       onClick={() => canOpen && onSelect(chapter.key)}
       disabled={!canOpen}
       className={[
@@ -1514,11 +1530,9 @@ function ChapterCard({
         <h2 className="font-display text-sm font-bold leading-snug text-white">{chapter.label}</h2>
 
         {/* Content chips */}
-        {chapter.available && (notesCount > 0 || cardCount > 0 || quizCount > 0) && (
+        {chapter.available && notesCount > 0 && (
           <div className="mt-2 flex flex-wrap gap-1.5">
             {notesCount > 0 && <span className="chapter-chip">📄 {notesCount} notes</span>}
-            {cardCount > 0 && <span className="chapter-chip">🃏 {cardCount} cards</span>}
-            {quizCount > 0 && <span className="chapter-chip">🧠 {quizCount} Qs</span>}
           </div>
         )}
 

@@ -3052,17 +3052,6 @@ const MATH_FLASHCARD_BANKS: Partial<
   "Chapter 13": MATH_F1_C13_FLASHCARD_PAIRS,
 };
 
-// Math Form 1 flashcards aren't mirrored onto the content registry (they live
-// here as MATH_FLASHCARD_BANKS), so the registry can't report an exact count
-// for them. Compute the real total from the same bank the player itself reads
-// from, and hand it to FormGrid as an override (see formResourceCountOverride
-// on the <FormGrid mode="flashcards" /> call below).
-const MATH_FORM1_FLASHCARD_TOTAL = Object.values(MATH_FLASHCARD_BANKS).reduce(
-  (chapterSum, categories) =>
-    chapterSum + Object.values(categories ?? {}).reduce((sum, cards) => sum + (cards?.length ?? 0), 0),
-  0,
-);
-
 const MATH_FLASHCARD_CHAPTER_TITLES: Record<
   string,
   { bm: string; dlp: string; headerBm: string; headerDlp: string }
@@ -3252,10 +3241,6 @@ function MathFlashcardLanguagePicker({
   onSelect: (lang: MathFlashcardLang) => void;
 }) {
   const chapterNumber = chapterKey.replace("Chapter ", "");
-  const bmTotal = Object.values(MATH_FLASHCARD_BANKS[chapterKey] ?? {}).reduce(
-    (sum, cards) => sum + cards.length,
-    0,
-  );
   return (
     <div className="animate-fade-up">
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
@@ -3286,25 +3271,27 @@ function MathFlashcardLanguagePicker({
         <div className="grid gap-4 sm:grid-cols-2">
           <button
             onClick={() => onSelect("bm")}
+            aria-label="Open Bahasa Melayu flashcards"
             className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)]"
           >
             <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
             <div className="relative mb-4 text-5xl">🇲🇾</div>
             <h3 className="relative font-display text-2xl font-bold">Bahasa Melayu</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
-              {bmTotal} kad ulang kaji Bab {chapterNumber} dalam Bahasa Melayu.
+              Kad ulang kaji Bab {chapterNumber} dalam Bahasa Melayu.
             </p>
           </button>
 
           <button
             onClick={() => onSelect("dlp")}
+            aria-label="Open DLP English flashcards"
             className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_0_32px_oklch(0.7_0.18_180_/_0.35)]"
           >
             <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
             <div className="relative mb-4 text-5xl">🇬🇧</div>
             <h3 className="relative font-display text-2xl font-bold">DLP (English)</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
-              {bmTotal} translated Chapter {chapterNumber} revision cards in English.
+              Chapter {chapterNumber} revision cards translated into English.
             </p>
           </button>
         </div>
@@ -3361,6 +3348,7 @@ function MathFlashcardCategoryPicker({
               <button
                 key={category.id}
                 onClick={() => onSelect(category.id)}
+                aria-label={`Open ${copy.title} flashcards`}
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
                 style={{ animationDelay: `${index * 70}ms` }}
               >
@@ -3372,9 +3360,6 @@ function MathFlashcardCategoryPicker({
                 <p className="relative mt-2 text-sm leading-6 text-muted-foreground">
                   {copy.purpose}
                 </p>
-                <div className="relative mt-5 inline-flex rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-xs font-bold text-amber-200">
-                  {MATH_FLASHCARD_BANKS[chapterKey]?.[category.id]?.length ?? 0} Flashcards
-                </div>
               </button>
             );
           })}
@@ -3445,6 +3430,7 @@ function EnglishFlashcardDeckPicker({
             <button
               key={deck.id}
               onClick={() => onSelect(deck.id)}
+              aria-label={`Open ${deck.title}`}
               className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
               style={{ animationDelay: `${index * 70}ms` }}
             >
@@ -3458,9 +3444,6 @@ function EnglishFlashcardDeckPicker({
               </div>
               <h3 className="relative font-display text-2xl font-bold">{deck.title}</h3>
               <p className="relative mt-3 text-sm leading-7 text-slate-300">{deck.description}</p>
-              <div className="relative mt-5 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100">
-                {deck.count} Cards
-              </div>
             </button>
           ))}
         </div>
@@ -3505,6 +3488,7 @@ function FlashcardSetPicker({
             <button
               key={set.index}
               onClick={() => onSelect(set.index)}
+              aria-label={`Open Flashcards Set ${index + 1}`}
               className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
               style={{ animationDelay: `${index * 70}ms` }}
             >
@@ -3512,11 +3496,9 @@ function FlashcardSetPicker({
               <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-xl font-black shadow-lg">
                 {index + 1}
               </div>
-              <h3 className="relative font-display text-2xl font-bold">{set.title}</h3>
-              <p className="relative mt-3 text-sm leading-7 text-slate-300">{set.range}</p>
-              <div className="relative mt-5 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100">
-                {FLASHCARD_SET_SIZE} Cards
-              </div>
+              <h3 className="relative font-display text-2xl font-bold">
+                Flashcards Set {index + 1}
+              </h3>
             </button>
           ))}
         </div>
@@ -3968,9 +3950,6 @@ function FlashcardsPage() {
         <FormGrid
           subjectId={subject}
           mode="flashcards"
-          formResourceCountOverride={
-            subject === "math" ? { "Form 1": MATH_FORM1_FLASHCARD_TOTAL } : undefined
-          }
           onSelect={(selectedForm) => {
             setForm(selectedForm);
             setFormWasChosen(true);
@@ -4080,7 +4059,6 @@ function FlashcardsPage() {
               <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
                 <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6]" />
               </div>
-              <p className="mt-3 text-sm font-semibold text-[#94A3B8]">18 cards remaining</p>
               <button
                 type="button"
                 onClick={() => {
@@ -4096,19 +4074,17 @@ function FlashcardsPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
               {[
-                ["Recommended", "Science", "Bab 7: Udara", "64 cards"],
-                ["Recently Studied", "Mathematics", "Bab 3", "42 cards"],
-                ["Popular Deck", "Sejarah", "Bab 2", "30 cards"],
-              ].map(([badge, deckSubject, deckChapter, count]) => (
+                ["Recommended", "Science", "Bab 7: Udara"],
+                ["Recently Studied", "Mathematics", "Bab 3"],
+                ["Popular Deck", "Sejarah", "Bab 2"],
+              ].map(([badge, deckSubject, deckChapter]) => (
                 <div
                   key={badge}
                   className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.05] p-4"
                 >
                   <p className="text-xs font-bold uppercase tracking-wide text-accent">{badge}</p>
                   <h3 className="mt-2 font-display text-xl font-bold">{deckSubject}</h3>
-                  <p className="text-sm text-[#94A3B8]">
-                    {deckChapter} • {count}
-                  </p>
+                  <p className="text-sm text-[#94A3B8]">{deckChapter}</p>
                 </div>
               ))}
             </div>
