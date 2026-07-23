@@ -53,6 +53,13 @@ export function normalizeChapterParam(value: unknown) {
   return cleaned;
 }
 
+export function normalizeFlashcardSetParam(value: unknown): 0 | 1 | 2 | null {
+  const setNumber = Number(value);
+  return Number.isInteger(setNumber) && setNumber >= 1 && setNumber <= 3
+    ? ((setNumber - 1) as 0 | 1 | 2)
+    : null;
+}
+
 export function studyHref(
   kind: "notes" | "mindmaps" | "quizzes" | "flashcards",
   subjectId: string,
@@ -62,4 +69,21 @@ export function studyHref(
   const formNumber = form?.match(/\d/)?.[0];
   const formParam = formNumber ? `&form=${formNumber}` : "";
   return `/${kind}?subject=${subject}${formParam}`;
+}
+
+export type StudyRouteMode = "notes" | "mindmaps" | "quizzes" | "flashcards";
+
+export function getStudyRouteMode(pathname: string): StudyRouteMode | null {
+  const mode = pathname.split("/").filter(Boolean)[0];
+  return mode === "notes" ||
+    mode === "mindmaps" ||
+    mode === "quizzes" ||
+    mode === "flashcards"
+    ? mode
+    : null;
+}
+
+export function isRouteActive(pathname: string, target: string) {
+  if (target === "/") return pathname === "/";
+  return pathname === target || pathname.startsWith(`${target}/`);
 }

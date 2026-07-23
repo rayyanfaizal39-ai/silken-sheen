@@ -26,8 +26,9 @@ import {
   hasResourceContent,
 } from "@/content/registry";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
-import { VideoBlock } from "@/components/notes/VideoBlock";
+import { NotesContentWithVideo } from "@/components/notes/NotesContentWithVideo";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
+import { NotesSummaryHeroGate } from "@/components/notes/NotesSummaryHeroGate";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { Bab7NotesBlock } from "@/components/notes/Bab7NotesBlock";
 import { GeoChapter1NotesBlock } from "@/components/notes/GeoChapter1NotesBlock";
@@ -548,25 +549,27 @@ function NotesPage() {
 
       {subject && (
         <>
-          <AcademyHero
-            eyebrow="Smart revision"
-            title="Summary"
-            gradientTitle="Notes"
-            description="Quick, focused notes that get you ready in minutes."
-            illustration="notes"
-            stats={[
-              {
-                label: "Reading Progress",
-                value: activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
-              },
-              {
-                label: "Chapters Completed",
-                value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
-                  .length,
-              },
-              { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
-            ]}
-          />
+          <NotesSummaryHeroGate subjectId={subject} chapterKey={activeChapterKey}>
+            <AcademyHero
+              eyebrow="Smart revision"
+              title="Summary"
+              gradientTitle="Notes"
+              description="Quick, focused notes that get you ready in minutes."
+              illustration="notes"
+              stats={[
+                {
+                  label: "Reading Progress",
+                  value: activeChapterKey ? `${Math.round(scrollPct)}%` : "Ready",
+                },
+                {
+                  label: "Chapters Completed",
+                  value: Object.values(progress.chapterActivity).filter((activity) => activity.read)
+                    .length,
+                },
+                { label: "Study Mode", value: activeChapterKey ? "Chapter" : "Explore" },
+              ]}
+            />
+          </NotesSummaryHeroGate>
           <div className="mb-7 flex justify-center">
             <DailyQuote />
           </div>
@@ -692,10 +695,9 @@ function NotesPage() {
             />
           </div>
 
-          {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
-          <div
-            ref={notesContentRef}
-            data-notes-reading-content
+          <NotesContentWithVideo
+            notesContentRef={notesContentRef}
+            video={activeChapter?.video}
             className={isScienceDiscovery ? "science-discovery-notes" : undefined}
           >
             {isScienceDiscovery && (
@@ -1218,7 +1220,7 @@ function NotesPage() {
             )}
 
             {isScienceDiscovery && <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} />}
-          </div>
+          </NotesContentWithVideo>
 
           {filtered.length === 0 ? (
             !activeChapter?.geoChapter1Data &&
@@ -1478,15 +1480,14 @@ function SubtopicView({
         />
       </div>
 
-      {chapterContent?.video && <VideoBlock id="video" video={chapterContent.video} />}
-      <div ref={notesContentRef} data-notes-reading-content>
+      <NotesContentWithVideo notesContentRef={notesContentRef} video={chapterContent?.video}>
         <NotesBlock
           id="notes"
           sections={subtopicSections}
           subjectId={subjectId}
           storageKey={`notes:${subjectId}:${chapterKey}:study-notes`}
         />
-      </div>
+      </NotesContentWithVideo>
 
       <div className="mt-10 flex justify-center">
         <button

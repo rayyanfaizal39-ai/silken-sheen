@@ -23,6 +23,7 @@ import {
   type ResourceType,
 } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
+import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 
@@ -288,6 +289,7 @@ export function ChapterGrid({
   scienceLang,
   form = "Form 1",
   mode = "notes",
+  isChapterAvailable,
 }: {
   subjectId: string;
   onSelect: (key: string, available: boolean) => void;
@@ -295,6 +297,7 @@ export function ChapterGrid({
   scienceLang?: "bm" | "dlp";
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
   mode?: Extract<LearningMode, "notes" | "quizzes" | "flashcards">;
+  isChapterAvailable?: (chapterKey: string) => boolean;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const chapters = getSubjectChapters(subjectId, scienceLang, form);
@@ -331,13 +334,15 @@ export function ChapterGrid({
       ) : (
         <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {chapters.map((c, i) => {
-            const resourceAvailable = hasResourceContent(
-              subjectId,
-              form,
-              c.key,
-              resourceTypeForMode(mode),
-              scienceLang,
-            );
+            const resourceAvailable =
+              isChapterAvailable?.(c.key) ??
+              hasResourceContent(
+                subjectId,
+                form,
+                c.key,
+                resourceTypeForMode(mode),
+                scienceLang,
+              );
             const pct = chapterProgressPct(
               progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
             );
@@ -350,7 +355,7 @@ export function ChapterGrid({
             const feats = getChapterFeatures(chapterContent);
             const notesCount = chapterContent?.notes?.sections?.length ?? 0;
             const cardCount = chapterContent?.flashcards?.length ?? 0;
-            const quizCount = chapterContent?.quiz?.length ?? 0;
+            const quizCount = getQuizQuestionCount([chapterContent?.quiz]);
             const readMins = Math.max(
               3,
               Math.round(notesCount * 2 + (chapterContent?.notes?.quickRevision?.length ?? 0)),

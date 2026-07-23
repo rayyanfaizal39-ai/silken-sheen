@@ -41,6 +41,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import {
   getRegisteredSubjectChapters as getSubjectChapters,
   hasFormResourceContent,
@@ -49,6 +50,21 @@ import {
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
+import {
+  bmF1ObjektifKuiz1,
+  bmF1ObjektifKuiz2,
+  bmF1ObjektifKuiz3,
+} from "@/data/bm-f1-objektif-quizzes";
+import {
+  bmF2ObjektifKuiz1,
+  bmF2ObjektifKuiz2,
+  bmF2ObjektifKuiz3,
+} from "@/data/bm-f2-objektif-quizzes";
+import {
+  bmF3ObjektifKuiz1,
+  bmF3ObjektifKuiz2,
+  bmF3ObjektifKuiz3,
+} from "@/data/bm-f3-objektif-quizzes";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import imgF3Q01 from "@/assets/english posters/form 3/q01.png";
 import imgF3Q02 from "@/assets/english posters/form 3/q02.png";
@@ -6111,17 +6127,37 @@ const MATH_QUIZ_BANKS: Partial<
 // them. Compute the real total from the same bank the quiz player reads from,
 // and hand it to FormGrid as an override (see formResourceCountOverride on
 // the <FormGrid mode="quizzes" /> call below).
-const MATH_FORM1_QUIZ_TOTAL = Object.values(MATH_QUIZ_BANKS).reduce(
-  (chapterSum, objectives) =>
-    chapterSum +
-    Object.values(objectives ?? {}).reduce(
-      (objectiveSum, langs) =>
-        objectiveSum +
-        Object.values(langs ?? {}).reduce((sum, questions) => sum + (questions?.length ?? 0), 0),
-      0,
-    ),
-  0,
+const MATH_FORM1_QUIZ_TOTAL = getQuizQuestionCount(
+  Object.values(MATH_QUIZ_BANKS).flatMap((objectives) =>
+    Object.values(objectives ?? {}).map((languages) => languages?.bm),
+  ),
 );
+
+const BM_FORM_QUIZ_TOTALS = {
+  "Form 1": getQuizQuestionCount([
+    bmF1ObjektifKuiz1,
+    bmF1ObjektifKuiz2,
+    bmF1ObjektifKuiz3,
+  ]),
+  "Form 2": getQuizQuestionCount([
+    bmF2ObjektifKuiz1,
+    bmF2ObjektifKuiz2,
+    bmF2ObjektifKuiz3,
+  ]),
+  "Form 3": getQuizQuestionCount([
+    bmF3ObjektifKuiz1,
+    bmF3ObjektifKuiz2,
+    bmF3ObjektifKuiz3,
+  ]),
+} as const;
+
+function getMathObjectiveQuestionCount(
+  chapterKey: string,
+  objectiveId: MathObjectiveId,
+  lang: MathQuizLang,
+): number {
+  return getQuizQuestionCount([MATH_QUIZ_BANKS[chapterKey]?.[objectiveId]?.[lang]]);
+}
 
 interface ShuffledQuestion {
   question: string;
@@ -6764,7 +6800,7 @@ function QuizzesPage() {
             subject === "math"
               ? { "Form 1": MATH_FORM1_QUIZ_TOTAL }
               : subject === "bm"
-                ? { "Form 1": 45, "Form 2": 45, "Form 3": 45 }
+                ? BM_FORM_QUIZ_TOTALS
                 : undefined
           }
           onSelect={(selectedForm) => {
@@ -6856,7 +6892,7 @@ function QuizzesPage() {
               <EnglishResultsScreenF3
                 quizSet={selectedEnglishSetF3}
                 score={score}
-                total={englishShuffledQuestions?.length || englishSetQuestionsF3.length || 20}
+                total={englishShuffledQuestions?.length ?? englishSetQuestionsF3.length}
                 onBack={() => {
                   setEnglishSetIdF3(null);
                   setEnglishPhase("select");
@@ -6922,7 +6958,7 @@ function QuizzesPage() {
             <EnglishResultsScreen
               quizSet={selectedEnglishSet}
               score={score}
-              total={englishShuffledQuestions?.length || englishSetQuestions.length || 30}
+              total={englishShuffledQuestions?.length ?? englishSetQuestions.length}
               onBack={() => {
                 setEnglishSetId(null);
                 setEnglishPhase("select");
@@ -7228,7 +7264,7 @@ function QuizzesPage() {
             <MathObjectiveResultsScreen
               objective={selectedMathObjective}
               score={score}
-              total={mathShuffledQuestions?.length || mathObjectiveQuestions.length || 30}
+              total={mathShuffledQuestions?.length ?? mathObjectiveQuestions.length}
               quizLang={mathQuizLang}
               chapterKey={chapter}
               onBack={() => {
@@ -7917,8 +7953,7 @@ function EnglishSetSelectionScreen({
             Choose Your <span className="gradient-text">Practice Set</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Every set has 30 UASA-style multiple-choice questions with shuffled questions and
-            options.
+            Each set uses its complete registered UASA-style question bank.
           </p>
         </div>
 
@@ -7948,6 +7983,9 @@ function EnglishSetSelectionScreen({
                   </p>
                 ))}
               </div>
+              <div className="relative mt-4 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1.5 text-xs font-bold text-cyan-100">
+                {getQuizQuestionCount([getEnglishQuizSet(quizSet.id)])} Questions
+              </div>
             </button>
           ))}
         </div>
@@ -7967,6 +8005,7 @@ function EnglishSetIntroScreen({
   onStart: () => void;
   formLabel?: string;
 }) {
+  const questionCount = getQuizQuestionCount([getEnglishQuizSet(quizSet.id)]);
   const focus =
     quizSet.id === "objective-c"
       ? ["Full mixed Paper 1 simulation", "Parts 1, 2, 3, 4 and 5", "Mini UASA exam flow"]
@@ -8011,7 +8050,7 @@ function EnglishSetIntroScreen({
             </div>
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl bg-white/5 p-4 text-center">
-                <div className="text-2xl font-bold text-cyan-200">30</div>
+                <div className="text-2xl font-bold text-cyan-200">{questionCount}</div>
                 <div className="mt-1 text-xs text-muted-foreground">Questions</div>
               </div>
               <div className="rounded-2xl bg-white/5 p-4 text-center">
@@ -8071,6 +8110,9 @@ function EnglishSetSelectionScreenF3({
               <p className="relative mt-1 text-sm font-bold text-cyan-200">{quizSet.level}</p>
               <p className="relative mt-3 text-sm leading-7 text-slate-300">{quizSet.description}</p>
               <div className="relative mt-4 space-y-2">{quizSet.coverage.map((item) => <p key={item} className="rounded-2xl bg-white/5 px-3 py-2 text-xs text-slate-300">{item}</p>)}</div>
+              <div className="relative mt-4 inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1.5 text-xs font-bold text-cyan-100">
+                {getQuizQuestionCount([getEnglishQuizSetF3(quizSet.id)])} Questions
+              </div>
             </button>
           ))}
         </div>
@@ -8605,7 +8647,7 @@ function MathObjectiveSelectionScreen({
                 ))}
               </div>
               <div className="relative mt-5 inline-flex rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-xs font-bold text-amber-200">
-                30 Questions Ready
+                {getMathObjectiveQuestionCount(chapterKey, objective.id, quizLang)} Questions Ready
               </div>
             </button>
           ))}
@@ -8638,6 +8680,7 @@ function MathObjectiveIntroScreen({
   const isPractice = objective.id === "objective-2";
   const isChallenge = objective.id === "objective-3";
   const isDlp = quizLang === "dlp";
+  const questionCount = getMathObjectiveQuestionCount(chapterKey, objective.id, quizLang);
   const isChapter2 = chapterKey === "Chapter 2";
   const isChapter3 = chapterKey === "Chapter 3";
   const isChapter4 = chapterKey === "Chapter 4";
@@ -9003,12 +9046,14 @@ function MathObjectiveIntroScreen({
             ]
         : [
             isDlp
-              ? "Each quiz contains 30 objective questions."
-              : "Setiap quiz mengandungi 30 soalan objektif.",
+              ? `This quiz contains ${questionCount} objective questions.`
+              : `Quiz ini mengandungi ${questionCount} soalan objektif.`,
             isDlp ? "Each question is worth 1 mark." : "Setiap soalan bernilai 1 markah.",
             isDlp ? "Choose the most accurate answer." : "Pilih jawapan yang paling tepat.",
             isDlp ? "Use paper for calculations." : "Gunakan kertas untuk membuat pengiraan.",
-            isDlp ? "Full marks: 30 marks." : "Markah penuh: 30 markah.",
+            isDlp
+              ? `Full marks: ${questionCount} marks.`
+              : `Markah penuh: ${questionCount} markah.`,
           ];
   const summaryItems = isChallenge
     ? [
@@ -9016,19 +9061,19 @@ function MathObjectiveIntroScreen({
           isDlp ? "Difficulty Level" : "Tahap Kesukaran",
           isDlp ? (isChapter2 ? "Medium to Hard" : "Medium → Hard") : "Sederhana → Sukar",
         ],
-        [isDlp ? "Number of Questions" : "Bilangan Soalan", "30"],
+        [isDlp ? "Number of Questions" : "Bilangan Soalan", String(questionCount)],
         [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "20–25 minutes" : "20–25 minit"],
       ]
     : isPractice
       ? [
           [isDlp ? "Difficulty Level" : "Tahap Kesukaran", isDlp ? "Medium" : "Sederhana"],
-          [isDlp ? "Number of Questions" : "Bilangan Soalan", "30"],
+          [isDlp ? "Number of Questions" : "Bilangan Soalan", String(questionCount)],
           [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "15–20 minutes" : "15–20 minit"],
         ]
       : isFoundation
         ? [
             [isDlp ? "Difficulty Level" : "Tahap Kesukaran", isDlp ? "Easy" : "Mudah"],
-            [isDlp ? "Number of Questions" : "Bilangan Soalan", "30"],
+            [isDlp ? "Number of Questions" : "Bilangan Soalan", String(questionCount)],
             [isDlp ? "Estimated Time" : "Anggaran Masa", isDlp ? "10–15 minutes" : "10–15 minit"],
           ]
         : [];
@@ -9171,7 +9216,9 @@ function MathObjectiveIntroScreen({
             )}
             <div className="mt-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-cyan-100">
               {isDlp ? "Full Marks" : "Markah Penuh"}:{" "}
-              <span className="font-bold text-cyan-200">{isDlp ? "30 marks" : "30 markah"}</span>
+              <span className="font-bold text-cyan-200">
+                {questionCount} {isDlp ? "marks" : "markah"}
+              </span>
             </div>
             {isFoundation && (
               <p className="mt-4 text-sm text-muted-foreground">

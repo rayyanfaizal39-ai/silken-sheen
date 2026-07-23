@@ -51,6 +51,7 @@ import { bmF3ObjektifKuiz1, bmF3ObjektifKuiz2, bmF3ObjektifKuiz3 } from "@/data/
 import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { sfx } from "@/lib/sounds";
+import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import { KaranganPendekHub } from "@/components/KaranganPendekHub";
 import { KaranganPanjangHub } from "@/components/KaranganPanjangHub";
@@ -112,9 +113,9 @@ const OBJEKTIF_SETS_FORM2 = [
   { id: "bm-f2-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF2ObjektifKuiz3 },
 ] as const;
 const OBJEKTIF_SETS_FORM3 = [
-  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, plannedCount: 15, ready: true },
-  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, plannedCount: 15, ready: true },
-  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, plannedCount: 15, ready: true },
+  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, ready: true },
+  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, ready: true },
+  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, ready: true },
 ] as const;
 type ObjectiveSetCollection = typeof OBJEKTIF_SETS | typeof OBJEKTIF_SETS_FORM2 | typeof OBJEKTIF_SETS_FORM3;
 
@@ -1019,7 +1020,7 @@ function K1QuizView({
             const meta = setMeta[i];
             const configuredSet = sets[i];
             const available = !("ready" in configuredSet) || configuredSet.ready;
-            const questionCount = "plannedCount" in configuredSet ? configuredSet.plannedCount : configuredSet.questions.length;
+            const questionCount = getQuizQuestionCount([configuredSet.questions]);
             const completed = best !== null;
             const status = !available ? "Belum Disiapkan" : completed ? "Selesai" : "Belum Bermula";
 

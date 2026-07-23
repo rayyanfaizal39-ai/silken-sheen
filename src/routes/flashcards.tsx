@@ -3,8 +3,6 @@ import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
 import {
   subjects,
   forms,
-  flashcards,
-  getItemChapterKey,
   type Form,
 } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
@@ -32,14 +30,22 @@ import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLangu
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
-import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import {
+  normalizeFlashcardSetParam,
+  normalizeFormParam,
+  normalizeSubjectParam,
+} from "@/lib/study-routing";
+import {
+  getFlashcardDeckCards,
+  hasFlashcardDeck,
+  splitFlashcardDeck,
+  standardizeFlashcardDeck,
+} from "@/lib/flashcard-availability";
 import {
   getRegisteredSubjectChapters as getSubjectChapters,
   hasFormResourceContent,
-  hasResourceContent,
 } from "@/content/registry";
 import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
-import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
   ENGLISH_FLASHCARD_DECKS,
@@ -95,7 +101,6 @@ const GENTLE = [
 ];
 
 const FLASHCARD_SET_SIZE = 20;
-const FLASHCARD_SPLIT_SIZE = 60;
 const FLASHCARD_SET_OPTIONS: Array<{ index: FlashcardSetIndex; title: string; range: string }> = [
   { index: 0, title: "Flashcards Set 1", range: "Cards 1-20" },
   { index: 1, title: "Flashcards Set 2", range: "Cards 21-40" },
@@ -3390,7 +3395,20 @@ function EnglishFlashcardDeckPicker({
 }) {
   const isForm2 = form === "Form 2";
   const isForm3 = form === "Form 3";
-  const decks = isForm2 ? ENGLISH_FLASHCARD_DECKS_F2 : isForm3 ? ENGLISH_FLASHCARD_DECKS_F3 : ENGLISH_FLASHCARD_DECKS;
+  const decks = (
+    isForm2
+      ? ENGLISH_FLASHCARD_DECKS_F2
+      : isForm3
+        ? ENGLISH_FLASHCARD_DECKS_F3
+        : ENGLISH_FLASHCARD_DECKS
+  ).filter((deck) => {
+    const cards = isForm2
+      ? getEnglishFlashcardsForDeckF2(deck.id as EnglishFlashcardDeckIdF2)
+      : isForm3
+        ? getEnglishFlashcardsForDeckF3(deck.id as EnglishFlashcardDeckIdF3)
+        : getEnglishFlashcardsForDeck(deck.id as EnglishFlashcardDeckId);
+    return standardizeFlashcardDeck(cards).length === 60;
+  });
   return (
     <div className="animate-fade-up">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
@@ -3513,6 +3531,7 @@ function FlashcardsPage() {
     subject?: string;
     form?: string | number;
     chapter?: string;
+    set?: string | number;
   };
   const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
   const initialSearch = useMemo(readStudySearch, []);
@@ -3523,7 +3542,9 @@ function FlashcardsPage() {
   const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
   const [mathFlashcardCategory, setMathFlashcardCategory] =
     useState<MathFlashcardCategoryId | null>(null);
-  const [selectedFlashcardSet, setSelectedFlashcardSet] = useState<FlashcardSetIndex | null>(null);
+  const [selectedFlashcardSet, setSelectedFlashcardSet] = useState<FlashcardSetIndex | null>(
+    normalizeFlashcardSetParam(routeSearch.set),
+  );
   const [favOnly, setFavOnly] = useState(false);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -3568,12 +3589,14 @@ function FlashcardsPage() {
     setForm(normalizeFormParam(routeSearch.form) as FormFilter);
     setFormWasChosen(routeSearch.form != null);
     setChapter(routeSearch.chapter ?? null);
-  }, [routeSearch.subject, routeSearch.form, routeSearch.chapter]);
+    setSelectedFlashcardSet(normalizeFlashcardSetParam(routeSearch.set));
+  }, [routeSearch.subject, routeSearch.form, routeSearch.chapter, routeSearch.set]);
 
   function updateFlashcardSearch(next: {
     subject?: string | null;
     form?: FormFilter | null;
     chapter?: string | null;
+    set?: FlashcardSetIndex | null;
   }) {
     void navigate({
       search: (previous: Record<string, unknown>) => ({
@@ -3588,6 +3611,14 @@ function FlashcardsPage() {
               ? Number(next.form.replace("Form ", ""))
               : undefined,
         chapter: next.chapter === undefined ? (chapter ?? undefined) : (next.chapter ?? undefined),
+        set:
+          next.set === undefined
+            ? selectedFlashcardSet === null
+              ? undefined
+              : selectedFlashcardSet + 1
+            : next.set === null
+              ? undefined
+              : next.set + 1,
       }),
     });
   }
@@ -3617,46 +3648,40 @@ function FlashcardsPage() {
   );
   const rawPool = useMemo(() => {
     if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
-      return getEnglishFlashcardsForDeck(chapter);
+      return standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
     }
     if (subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
-      return getEnglishFlashcardsForDeckF2(chapter);
+      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF2(chapter));
     }
     if (subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
-      return getEnglishFlashcardsForDeckF3(chapter);
+      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
     }
     if (
       subject === "math" &&
       chapter &&
       MATH_FLASHCARD_BANKS[chapter] &&
-      mathFlashcardLang &&
-      mathFlashcardCategory
+      mathFlashcardLang
     ) {
-      return getMathFlashcards(chapter, mathFlashcardLang, mathFlashcardCategory);
+      return standardizeFlashcardDeck(
+        MATH_FLASHCARD_CATEGORIES.flatMap((category) =>
+          getMathFlashcards(chapter, mathFlashcardLang, category.id),
+        ),
+      );
     }
     if (!subject || !chapter) return [];
-    return flashcards.filter((f) => {
-      if (f.subjectId !== subject) return false;
-      if (getItemChapterKey(f) !== chapter) return false;
-      if (isBilingualSubject && scienceLang && f.lang && f.lang !== scienceLang) return false;
-      if (form !== "All" && f.form !== form) return false;
-      return true;
-    });
+    return getFlashcardDeckCards(subject, form, chapter, scienceLang ?? undefined);
   }, [
     subject,
     chapter,
     form,
     scienceLang,
-    isBilingualSubject,
     mathFlashcardLang,
-    mathFlashcardCategory,
   ]);
   const hasSelectedChapterFlashcards =
     !!subject &&
     !!chapter &&
     (hasMathFlashcards ||
-      hasResourceContent(subject, form, chapter, "flashcards", scienceLang ?? undefined) ||
-      rawPool.length > 0);
+      hasFlashcardDeck(subject, form, chapter, scienceLang ?? undefined));
   const hasUpperFormFlashcardPath = !!(
     subject &&
     (form === "Form 2" || form === "Form 3") &&
@@ -3665,7 +3690,8 @@ function FlashcardsPage() {
       (chapter && hasSelectedChapterFlashcards))
   );
 
-  const shouldSplitFlashcards = rawPool.length === FLASHCARD_SPLIT_SIZE;
+  const flashcardSets = useMemo(() => splitFlashcardDeck(rawPool), [rawPool]);
+  const shouldSplitFlashcards = flashcardSets.length === 3;
   const flashcardSetOptions =
     subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
       ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
@@ -3679,16 +3705,20 @@ function FlashcardsPage() {
   const pool = useMemo(() => {
     const setCards =
       shouldSplitFlashcards && selectedFlashcardSet !== null
-        ? rawPool.slice(
-            selectedFlashcardSet * FLASHCARD_SET_SIZE,
-            selectedFlashcardSet * FLASHCARD_SET_SIZE + FLASHCARD_SET_SIZE,
-          )
+        ? flashcardSets[selectedFlashcardSet]
         : shouldSplitFlashcards
           ? []
           : rawPool;
 
     return favOnly ? setCards.filter((f) => progress.favorites.includes(f.id)) : setCards;
-  }, [rawPool, shouldSplitFlashcards, selectedFlashcardSet, favOnly, progress.favorites]);
+  }, [
+    rawPool,
+    flashcardSets,
+    shouldSplitFlashcards,
+    selectedFlashcardSet,
+    favOnly,
+    progress.favorites,
+  ]);
 
   const currentPoolIdx = queue[idx];
   const current = currentPoolIdx !== undefined ? pool[currentPoolIdx] : pool[0];
@@ -3847,6 +3877,7 @@ function FlashcardsPage() {
   function selectFlashcardSet(setIndex: FlashcardSetIndex) {
     resetSession();
     setSelectedFlashcardSet(setIndex);
+    updateFlashcardSearch({ set: setIndex });
   }
 
   function resetMathFlashcardFlow() {
@@ -3944,7 +3975,7 @@ function FlashcardsPage() {
             setForm(selectedForm);
             setFormWasChosen(true);
             setChapter(null);
-            updateFlashcardSearch({ form: selectedForm, chapter: null });
+            updateFlashcardSearch({ form: selectedForm, chapter: null, set: null });
             resetSession();
           }}
           onBack={() => {
@@ -3952,7 +3983,7 @@ function FlashcardsPage() {
             setChapter(null);
             setForm("Form 1");
             setFormWasChosen(false);
-            updateFlashcardSearch({ subject: null, form: null, chapter: null });
+            updateFlashcardSearch({ subject: null, form: null, chapter: null, set: null });
             resetSession();
           }}
         />
@@ -3976,56 +4007,39 @@ function FlashcardsPage() {
     );
   }
 
-  if (subject && !needsScienceLang && !chapter) {
-    if (subject === "english") {
-      return (
-        <AcademyPageShell subjectId={planetSubjectId}>
-          <EnglishFlashcardDeckPicker
-            form={form === "Form 2" ? "Form 2" : form === "Form 3" ? "Form 3" : "Form 1"}
-            onBack={() => {
-              setSubject(null);
-              setChapter(null);
-              resetSession();
-            }}
-            onSelect={(deckId) => {
-              setChapter(deckId);
-              resetSession();
-              if (setLastVisited) {
-                const deck = (
-                  form === "Form 2" ? ENGLISH_FLASHCARD_DECKS_F2 : form === "Form 3" ? ENGLISH_FLASHCARD_DECKS_F3 : ENGLISH_FLASHCARD_DECKS
-                ).find((item) => item.id === deckId);
-                setLastVisited({
-                  subjectId: "english",
-                  chapterKey: deckId,
-                  type: "flashcards",
-                  label: deck?.title ?? deckId,
-                  timestamp: Date.now(),
-                  form: form === "All" ? "Form 1" : form,
-                });
-              }
-            }}
-          />
-        </AcademyPageShell>
-      );
-    }
-
+  if (subject === "english" && !needsScienceLang && !chapter) {
     return (
-      <SubjectWorldPage
-        subjectId={subject}
-        scienceLang={scienceLang ?? undefined}
-        form={form}
-        isBilingualSubject={isBilingualSubject}
-        resourceType="flashcards"
-        onSelectChapter={(key) => {
-          setChapter(key);
-          updateFlashcardSearch({ chapter: key });
-        }}
-        onBack={() => {
-          setSubject(null);
-          updateFlashcardSearch({ subject: null, form: null, chapter: null });
-        }}
-        onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
-      />
+      <AcademyPageShell subjectId={planetSubjectId}>
+        <EnglishFlashcardDeckPicker
+          form={form === "Form 2" ? "Form 2" : form === "Form 3" ? "Form 3" : "Form 1"}
+          onBack={() => {
+            setSubject(null);
+            setChapter(null);
+            resetSession();
+          }}
+          onSelect={(deckId) => {
+            setChapter(deckId);
+            resetSession();
+            if (setLastVisited) {
+              const deck = (
+                form === "Form 2"
+                  ? ENGLISH_FLASHCARD_DECKS_F2
+                  : form === "Form 3"
+                    ? ENGLISH_FLASHCARD_DECKS_F3
+                    : ENGLISH_FLASHCARD_DECKS
+              ).find((item) => item.id === deckId);
+              setLastVisited({
+                subjectId: "english",
+                chapterKey: deckId,
+                type: "flashcards",
+                label: deck?.title ?? deckId,
+                timestamp: Date.now(),
+                form: form === "All" ? "Form 1" : form,
+              });
+            }
+          }}
+        />
+      </AcademyPageShell>
     );
   }
 
@@ -4130,7 +4144,7 @@ function FlashcardsPage() {
               setFormWasChosen(false);
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
-              updateFlashcardSearch({ subject: id, form: null, chapter: null });
+              updateFlashcardSearch({ subject: id, form: null, chapter: null, set: null });
               resetSession();
             }}
           />
@@ -4170,9 +4184,15 @@ function FlashcardsPage() {
             scienceLang={scienceLang ?? undefined}
             form={form}
             mode="flashcards"
+            isChapterAvailable={(chapterKey) =>
+              hasFlashcardDeck(subject, form, chapterKey, scienceLang ?? undefined) ||
+              (subject === "math" &&
+                form === "Form 1" &&
+                Boolean(MATH_FLASHCARD_BANKS[chapterKey]))
+            }
             onSelect={(key) => {
               setChapter(key);
-              updateFlashcardSearch({ chapter: key });
+              updateFlashcardSearch({ chapter: key, set: null });
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
               resetSession();
@@ -4191,7 +4211,7 @@ function FlashcardsPage() {
             onBack={() => {
               setSubject(null);
               setChapter(null);
-              updateFlashcardSearch({ subject: null, form: null, chapter: null });
+              updateFlashcardSearch({ subject: null, form: null, chapter: null, set: null });
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
             }}
@@ -4204,7 +4224,7 @@ function FlashcardsPage() {
             type="button"
             onClick={() => {
               setChapter(null);
-              updateFlashcardSearch({ chapter: null });
+              updateFlashcardSearch({ chapter: null, set: null });
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
               resetSession();
@@ -4223,7 +4243,7 @@ function FlashcardsPage() {
           mode="flashcards"
           onBack={() => {
             setChapter(null);
-            updateFlashcardSearch({ chapter: null });
+            updateFlashcardSearch({ chapter: null, set: null });
             setMathFlashcardLang(null);
             setMathFlashcardCategory(null);
           }}
@@ -4233,7 +4253,7 @@ function FlashcardsPage() {
           chapterKey={chapter}
           onBack={() => {
             setChapter(null);
-            updateFlashcardSearch({ chapter: null });
+            updateFlashcardSearch({ chapter: null, set: null });
             resetMathFlashcardFlow();
           }}
           onSelect={(lang) => {
@@ -4242,27 +4262,18 @@ function FlashcardsPage() {
             resetSession();
           }}
         />
-      ) : hasMathFlashcards && mathFlashcardLang && !mathFlashcardCategory ? (
-        <MathFlashcardCategoryPicker
-          chapterKey={chapter}
-          lang={mathFlashcardLang}
-          onBack={() => {
-            setMathFlashcardLang(null);
-            setMathFlashcardCategory(null);
-            resetSession();
-          }}
-          onSelect={selectMathCategory}
-        />
       ) : shouldSplitFlashcards && selectedFlashcardSet === null ? (
         <FlashcardSetPicker
           title={flashcardSetTitle}
           setOptions={flashcardSetOptions}
           onBack={() => {
             if (hasMathFlashcards) {
-              setMathFlashcardCategory(null);
+              setChapter(null);
+              updateFlashcardSearch({ chapter: null, set: null });
+              resetMathFlashcardFlow();
             } else {
               setChapter(null);
-              updateFlashcardSearch({ chapter: null });
+              updateFlashcardSearch({ chapter: null, set: null });
             }
             resetSession();
           }}
@@ -4274,8 +4285,13 @@ function FlashcardsPage() {
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <button
                 onClick={() => {
+                  if (shouldSplitFlashcards && selectedFlashcardSet !== null) {
+                    resetSession();
+                    updateFlashcardSearch({ set: null });
+                    return;
+                  }
                   setChapter(null);
-                  updateFlashcardSearch({ chapter: null });
+                  updateFlashcardSearch({ chapter: null, set: null });
                   resetSession();
                 }}
                 className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
@@ -4303,13 +4319,18 @@ function FlashcardsPage() {
               scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
               form={form}
               onBack={() => {
+                if (shouldSplitFlashcards && selectedFlashcardSet !== null) {
+                  resetSession();
+                  updateFlashcardSearch({ set: null });
+                  return;
+                }
                 if (hasMathFlashcards) {
                   setMathFlashcardCategory(null);
                   resetSession();
                   return;
                 }
                 setChapter(null);
-                updateFlashcardSearch({ chapter: null });
+                updateFlashcardSearch({ chapter: null, set: null });
               }}
             />
           )}

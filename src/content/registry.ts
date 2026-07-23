@@ -40,9 +40,14 @@ import {
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { getEducationalVideo } from "@/data/educationalVideos";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
+import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
 import { chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
+import {
+  scienceF1C2FlashcardsBM,
+  scienceF1C2FlashcardsDLP,
+} from "@/content/form1/science/chapter-2/flashcards";
 import { chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
 import { chapter4Content } from "@/content/form1/science/chapter-4/chapter4-content";
 import { chapter5Content } from "@/content/form1/science/chapter-5/chapter5-content";
@@ -2046,6 +2051,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f1-c2"),
     mindMap: { data: scienceF1C2MindMapBM, title: "Sel sebagai Unit Asas Hidupan" },
     notes: scienceF1C2NotesBM,
+    flashcards: scienceF1C2FlashcardsBM,
     chapter2Data: chapter2Content,
   },
   {
@@ -2058,6 +2064,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f1-c2", "dlp"),
     mindMap: { data: scienceF1C2MindMapDLP, title: "Cells as the Basic Unit of Life" },
     notes: scienceF1C2NotesDLP,
+    flashcards: scienceF1C2FlashcardsDLP,
     chapter2Data: chapter2Content,
   },
   {
@@ -3088,7 +3095,7 @@ export function getSubjectFormStats(subjectId: string): FormStat[] {
 
   return ALL_FORMS.map((form) => {
     const registeredChapters = getRegisteredSubjectChapters(subjectId, lang, form);
-    const rawChapters = getChaptersForSubject(subjectId, undefined, form);
+    const rawChapters = getChaptersForSubject(subjectId, lang, form);
 
     return {
       form,
@@ -3104,7 +3111,7 @@ export function getSubjectFormStats(subjectId: string): FormStat[] {
       flashcardsReady: hasFormResourceContent(subjectId, form, "flashcards", lang),
       flashcardCount: rawChapters.reduce((sum, c) => sum + (c.flashcards?.length ?? 0), 0),
       quizReady: hasFormResourceContent(subjectId, form, "quiz", lang),
-      quizCount: rawChapters.reduce((sum, c) => sum + (c.quiz?.length ?? 0), 0),
+      quizCount: getQuizQuestionCount(rawChapters.map((chapter) => chapter.quiz)),
     };
   });
 }

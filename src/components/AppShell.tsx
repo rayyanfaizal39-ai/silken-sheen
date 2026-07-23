@@ -29,6 +29,7 @@ import { RankUpModal } from "@/components/progression/RankUpModal";
 import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
 import { SiteFooter } from "@/components/SiteFooter";
 import { AcademyLogo } from "@/components/AcademyLogo";
+import { isRouteActive } from "@/lib/study-routing";
 
 const navItems = [
   {
@@ -132,11 +133,6 @@ const navItems = [
     line: "linear-gradient(90deg,#C4B5FD,#8B5CF6)",
   },
 ] as const;
-
-function isActive(pathname: string, to: string) {
-  if (to === "/") return pathname === "/";
-  return pathname === to || pathname.startsWith(`${to}/`);
-}
 
 function SidebarBottom() {
   const { progress } = useProgress();
@@ -262,7 +258,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <nav className="mt-8 space-y-0.5">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const active = isActive(pathname, item.to);
+            const active = isRouteActive(pathname, item.to);
             return (
               <Link
                 key={item.label}
@@ -370,7 +366,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex h-full max-w-md items-center justify-between gap-0.5">
           {navItems.slice(0, 6).map((item) => {
             const Icon = item.icon;
-            const active = isActive(pathname, item.to);
+            const active = isRouteActive(pathname, item.to);
             return (
               <Link
                 key={item.label}
