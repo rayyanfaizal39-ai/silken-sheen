@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { notes, getItemChapterKey } from "@/data/content";
 import { subjects, type Form } from "@/data/subjects-meta";
 import { BookOpenCheck, ArrowLeft, ArrowUp, Compass } from "lucide-react";
@@ -14,8 +14,9 @@ import {
 } from "@/components/ChapterPicker";
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
+import { useNotesProgressScope, useNotesReadingTracker } from "@/hooks/use-notes-reading-progress";
 import { DailyQuote } from "@/components/DailyQuote";
-import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
+import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import {
@@ -80,7 +81,11 @@ import {
   MiniInvestigation,
   ScienceDiscoveryChapterHeader,
 } from "@/components/science/ScienceDiscoveryChrome";
-import { normalizeChapterParam, normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import {
+  normalizeChapterParam,
+  normalizeFormParam,
+  normalizeSubjectParam,
+} from "@/lib/study-routing";
 import {
   AcademyHero,
   AcademyPageShell,
@@ -100,8 +105,6 @@ import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_
 import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
 import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
-
-
 
 const searchSchema = z.object({
   subject: z.preprocess(
@@ -123,7 +126,9 @@ export const Route = createFileRoute("/notes")({
   validateSearch: searchSchema,
   head: ({ match }) => {
     const subjectName = subjectSeoName(match.search.subject);
-    const title = subjectName ? `${subjectName} Notes — KSSM Form 1-3` : "KSSM Notes — Form 1-3 Summary Notes";
+    const title = subjectName
+      ? `${subjectName} Notes — KSSM Form 1-3`
+      : "KSSM Notes — Form 1-3 Summary Notes";
     const description = subjectName
       ? `${subjectName} KSSM notes for Form 1-3 — clear, exam-focused summaries with highlighted key points.`
       : "Bite-sized KSSM notes by subject, form, and chapter — Science, Math, English, Bahasa Melayu, Sejarah and Geografi for Form 1-3.";
@@ -131,12 +136,19 @@ export const Route = createFileRoute("/notes")({
       { name: "Home", path: "/" },
       { name: "Notes", path: "/notes" },
     ];
-    if (subjectName) crumbs.push({ name: subjectName, path: `/notes?subject=${match.search.subject}` });
+    if (subjectName)
+      crumbs.push({ name: subjectName, path: `/notes?subject=${match.search.subject}` });
     return seoMeta({
       title,
       description,
       path: "/notes",
-      keywords: ["KSSM notes", "Form 1 notes", "Form 2 notes", "Form 3 notes", ...subjectSeoKeywords(match.search.subject)],
+      keywords: [
+        "KSSM notes",
+        "Form 1 notes",
+        "Form 2 notes",
+        "Form 3 notes",
+        ...subjectSeoKeywords(match.search.subject),
+      ],
       jsonLd: [
         courseJsonLd({
           name: subjectName ? `${subjectName} KSSM Notes (Form 1-3)` : "KSSM Notes — Form 1-3",
@@ -165,13 +177,7 @@ function getSubjectArtwork(subjectId: string) {
   return SUBJECT_ARTWORK[subjectId] ?? null;
 }
 
-function SubjectFeatureArtwork({
-  subjectId,
-  src,
-}: {
-  subjectId: string;
-  src: string | null;
-}) {
+function SubjectFeatureArtwork({ subjectId, src }: { subjectId: string; src: string | null }) {
   if (!src) return null;
 
   const subjectName = subjects.find((item) => item.id === subjectId)?.name ?? subjectId;
@@ -188,7 +194,6 @@ function SubjectFeatureArtwork({
     </div>
   );
 }
-
 
 function NotesPage() {
   const search = Route.useSearch();
@@ -209,6 +214,17 @@ function NotesPage() {
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
   const activeScienceLang = isBilingualSubject ? (scienceLang ?? undefined) : undefined;
+  const notesProgressScope = useMemo(
+    () => (subject ? { subject, form, variant: activeScienceLang } : null),
+    [subject, form, activeScienceLang],
+  );
+  const notesContentRef = useRef<HTMLDivElement>(null);
+  const {
+    progress: notesProgress,
+    loading: notesProgressLoading,
+    userId: notesProgressUserId,
+    recordProgress: recordNotesProgress,
+  } = useNotesProgressScope(notesProgressScope);
   const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang, form) : [];
   const activeChapterKey =
     chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
@@ -257,25 +273,20 @@ function NotesPage() {
       ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
       : false;
   const isScienceDiscovery = subject === "science" && form === "Form 1" && !!activeChapterKey;
-  const activeChapterProgress =
-    subject && activeChapterKey
-      ? chapterProgressPct(progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)])
-      : 0;
+  const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
 
+  const measuredScrollPct = useNotesReadingTracker({
+    contentRef: notesContentRef,
+    scope: notesProgressScope,
+    chapter: activeChapterKey,
+    userId: notesProgressUserId,
+    initialProgress: activeChapterProgress,
+    onProgress: recordNotesProgress,
+  });
 
-  // Reading progress bar
-  useEffect(() => {
-    function onScroll() {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      setScrollPct(max > 0 ? Math.min(100, (h.scrollTop / max) * 100) : 0);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  useEffect(() => setScrollPct(measuredScrollPct), [measuredScrollPct]);
 
   useEffect(() => {
     setChapter(normalizedChapter);
@@ -460,6 +471,8 @@ function NotesPage() {
           });
         }}
         onChangeLang={isBilingualSubject ? () => setScienceLang(null) : undefined}
+        notesProgress={notesProgress}
+        notesProgressLoading={notesProgressLoading}
       />
     );
   }
@@ -654,6 +667,7 @@ function NotesPage() {
           isRead={isRead}
           onMarkRead={() => markChapter(subject, activeChapterKey, "read")}
           onBack={() => selectChapter(null)}
+          notesContentRef={notesContentRef}
         />
       ) : (
         <>
@@ -679,529 +693,531 @@ function NotesPage() {
           </div>
 
           {activeChapter?.video && <VideoBlock id="video" video={activeChapter.video} />}
-          <div className={isScienceDiscovery ? "science-discovery-notes" : undefined}>
-          {isScienceDiscovery && (
-            <ScienceDiscoveryChapterHeader
-              chapterKey={activeChapterKey}
-              title={chapterMeta?.label ?? activeChapter?.title ?? activeChapterKey}
-              lang={scienceLang === "bm" ? "bm" : "dlp"}
-              readingProgress={scrollPct}
-              chapterProgress={activeChapterProgress}
-              isRead={isRead}
-              embedded
-            />
-          )}
-          {activeChapter?.sejChapter1Data ? (
-            <SejChapter1NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter1Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sejChapter2Data ? (
-            <SejChapter2NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter2Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sejChapter3Data ? (
-            <SejChapter3NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter3Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sejChapter4Data ? (
-            <SejChapter4NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter4Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sejChapter5Data ? (
-            <SejChapter5NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter5Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sejChapter6Data ? (
-            <SejChapter6NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter6Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sejChapter7Data ? (
-            <SejChapter7NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter7Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sejChapter8Data ? (
-            <SejChapter8NotesBlock
-              id="notes"
-              content={activeChapter.sejChapter8Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter1Data ? (
-            <Sej2Chapter1NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter1Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter2Data ? (
-            <Sej2Chapter2NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter2Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter3Data ? (
-            <Sej2Chapter3NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter3Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter4Data ? (
-            <Sej2Chapter4NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter4Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter5Data ? (
-            <Sej2Chapter5NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter5Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter6Data ? (
-            <Sej2Chapter6NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter6Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter7Data ? (
-            <Sej2Chapter7NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter7Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter8Data ? (
-            <Sej2Chapter8NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter8Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter9Data ? (
-            <Sej2Chapter9NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter9Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej2Chapter10Data ? (
-            <Sej2Chapter10NotesBlock
-              id="notes"
-              content={activeChapter.sej2Chapter10Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter1Data ? (
-            <Sej3Chapter1NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter1Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter2Data ? (
-            <Sej3Chapter2NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter2Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter3Data ? (
-            <Sej3Chapter3NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter3Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter4Data ? (
-            <Sej3Chapter4NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter4Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter5Data ? (
-            <Sej3Chapter5NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter5Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter6Data ? (
-            <Sej3Chapter6NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter6Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter7Data ? (
-            <Sej3Chapter7NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter7Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.sej3Chapter8Data ? (
-            <Sej3Chapter8NotesBlock
-              id="notes"
-              content={activeChapter.sej3Chapter8Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter1Data ? (
-            <GeoChapter1NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter1Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter2Data ? (
-            <GeoChapter2NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter2Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter3Data ? (
-            <GeoChapter3NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter3Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter4Data ? (
-            <GeoChapter4NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter4Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter5Data ? (
-            <GeoChapter5NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter5Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter6Data ? (
-            <GeoChapter6NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter6Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter7Data ? (
-            <GeoChapter7NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter7Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter8Data ? (
-            <GeoChapter8NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter8Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter9Data ? (
-            <GeoChapter9NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter9Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter10Data ? (
-            <GeoChapter10NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter10Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter11Data ? (
-            <GeoChapter11NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter11Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter12Data ? (
-            <GeoChapter12NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter12Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.geoChapter13Data ? (
-            <GeoChapter13NotesBlock
-              id="notes"
-              content={activeChapter.geoChapter13Data}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.bab7Data ? (
-            <Bab7NotesBlock
-              id="science-notes-content"
-              content={activeChapter.bab7Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter1Data ? (
-            <Chapter1NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter1Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter2Data ? (
-            <Chapter2NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter2Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter3Data ? (
-            <Chapter3NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter3Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter4Data ? (
-            <Chapter4NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter4Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter5Data ? (
-            <Chapter5NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter5Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter6Data ? (
-            <Chapter6NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter6Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter8Data ? (
-            <Chapter8NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter8Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : activeChapter?.chapter9Data ? (
-            <Chapter9NotesBlock
-              id="science-notes-content"
-              content={activeChapter.chapter9Data}
-              lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              isRead={isRead}
-              onMarkRead={() =>
-                subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-              }
-            />
-          ) : subject === "english" && activeChapter?.englishData ? (
-            <EnglishNotesBlock
-              id="notes"
-              data={activeChapter.englishData}
-              storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-              form={form}
-            />
-          ) : (
-            activeChapter?.notes && (
-              <NotesBlock
-                id="notes"
-                notes={activeChapter.notes}
-                subjectId={subject ?? undefined}
-                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-                defaultOpenFirstSection={activeChapter.id !== "sejarah-f2-c1"}
+          <div
+            ref={notesContentRef}
+            data-notes-reading-content
+            className={isScienceDiscovery ? "science-discovery-notes" : undefined}
+          >
+            {isScienceDiscovery && (
+              <ScienceDiscoveryChapterHeader
+                chapterKey={activeChapterKey}
+                title={chapterMeta?.label ?? activeChapter?.title ?? activeChapterKey}
+                lang={scienceLang === "bm" ? "bm" : "dlp"}
+                readingProgress={scrollPct}
+                chapterProgress={activeChapterProgress}
+                isRead={isRead}
+                embedded
               />
-            )
-          )}
+            )}
+            {activeChapter?.sejChapter1Data ? (
+              <SejChapter1NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter1Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sejChapter2Data ? (
+              <SejChapter2NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter2Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sejChapter3Data ? (
+              <SejChapter3NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter3Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sejChapter4Data ? (
+              <SejChapter4NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter4Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sejChapter5Data ? (
+              <SejChapter5NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter5Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sejChapter6Data ? (
+              <SejChapter6NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter6Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sejChapter7Data ? (
+              <SejChapter7NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter7Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sejChapter8Data ? (
+              <SejChapter8NotesBlock
+                id="notes"
+                content={activeChapter.sejChapter8Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter1Data ? (
+              <Sej2Chapter1NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter1Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter2Data ? (
+              <Sej2Chapter2NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter2Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter3Data ? (
+              <Sej2Chapter3NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter3Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter4Data ? (
+              <Sej2Chapter4NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter4Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter5Data ? (
+              <Sej2Chapter5NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter5Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter6Data ? (
+              <Sej2Chapter6NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter6Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter7Data ? (
+              <Sej2Chapter7NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter7Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter8Data ? (
+              <Sej2Chapter8NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter8Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter9Data ? (
+              <Sej2Chapter9NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter9Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej2Chapter10Data ? (
+              <Sej2Chapter10NotesBlock
+                id="notes"
+                content={activeChapter.sej2Chapter10Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter1Data ? (
+              <Sej3Chapter1NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter1Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter2Data ? (
+              <Sej3Chapter2NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter2Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter3Data ? (
+              <Sej3Chapter3NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter3Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter4Data ? (
+              <Sej3Chapter4NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter4Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter5Data ? (
+              <Sej3Chapter5NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter5Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter6Data ? (
+              <Sej3Chapter6NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter6Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter7Data ? (
+              <Sej3Chapter7NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter7Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sej3Chapter8Data ? (
+              <Sej3Chapter8NotesBlock
+                id="notes"
+                content={activeChapter.sej3Chapter8Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter1Data ? (
+              <GeoChapter1NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter1Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter2Data ? (
+              <GeoChapter2NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter2Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter3Data ? (
+              <GeoChapter3NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter3Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter4Data ? (
+              <GeoChapter4NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter4Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter5Data ? (
+              <GeoChapter5NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter5Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter6Data ? (
+              <GeoChapter6NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter6Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter7Data ? (
+              <GeoChapter7NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter7Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter8Data ? (
+              <GeoChapter8NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter8Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter9Data ? (
+              <GeoChapter9NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter9Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter10Data ? (
+              <GeoChapter10NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter10Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter11Data ? (
+              <GeoChapter11NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter11Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter12Data ? (
+              <GeoChapter12NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter12Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.geoChapter13Data ? (
+              <GeoChapter13NotesBlock
+                id="notes"
+                content={activeChapter.geoChapter13Data}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.bab7Data ? (
+              <Bab7NotesBlock
+                id="science-notes-content"
+                content={activeChapter.bab7Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter1Data ? (
+              <Chapter1NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter1Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter2Data ? (
+              <Chapter2NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter2Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter3Data ? (
+              <Chapter3NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter3Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter4Data ? (
+              <Chapter4NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter4Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter5Data ? (
+              <Chapter5NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter5Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter6Data ? (
+              <Chapter6NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter6Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter8Data ? (
+              <Chapter8NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter8Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.chapter9Data ? (
+              <Chapter9NotesBlock
+                id="science-notes-content"
+                content={activeChapter.chapter9Data}
+                lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : subject === "english" && activeChapter?.englishData ? (
+              <EnglishNotesBlock
+                id="notes"
+                data={activeChapter.englishData}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                form={form}
+              />
+            ) : (
+              activeChapter?.notes && (
+                <NotesBlock
+                  id="notes"
+                  notes={activeChapter.notes}
+                  subjectId={subject ?? undefined}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  defaultOpenFirstSection={activeChapter.id !== "sejarah-f2-c1"}
+                />
+              )
+            )}
 
-          {isScienceDiscovery && (
-            <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} />
-          )}
+            {isScienceDiscovery && <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} />}
           </div>
 
           {filtered.length === 0 ? (
@@ -1293,13 +1309,13 @@ function NotesPage() {
                 !activeChapter?.chapter9Data &&
                 !activeChapter?.englishData &&
                 !activeChapter?.notes && (
-                <NotesBlock
-                  id="notes"
-                  sections={legacyNoteSections}
-                  subjectId={subject ?? undefined}
-                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
-                />
-              )}
+                  <NotesBlock
+                    id="notes"
+                    sections={legacyNoteSections}
+                    subjectId={subject ?? undefined}
+                    storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  />
+                )}
 
               {!activeChapter?.geoChapter1Data &&
                 !activeChapter?.geoChapter2Data &&
@@ -1331,23 +1347,25 @@ function NotesPage() {
                 !activeChapter?.chapter6Data &&
                 !activeChapter?.chapter8Data &&
                 !activeChapter?.chapter9Data && (
-              <div className="mt-10 flex justify-center animate-fade-up">
-                <button
-                  onClick={() =>
-                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
-                  }
-                  disabled={isRead}
-                  className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
-                    isRead
-                      ? "bg-emerald-500/20 text-emerald-200 cursor-default"
-                      : "bg-gradient-to-r from-primary to-accent text-white hover:scale-105"
-                  }`}
-                >
-                  <BookOpenCheck className="w-4 h-4" />
-                  {isRead ? "Marked as read ✓" : "Mark as Read"}
-                </button>
-              </div>
-              )}
+                  <div className="mt-10 flex justify-center animate-fade-up">
+                    <button
+                      onClick={() =>
+                        subject &&
+                        activeChapterKey &&
+                        markChapter(subject, activeChapterKey, "read")
+                      }
+                      disabled={isRead}
+                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
+                        isRead
+                          ? "bg-emerald-500/20 text-emerald-200 cursor-default"
+                          : "bg-gradient-to-r from-primary to-accent text-white hover:scale-105"
+                      }`}
+                    >
+                      <BookOpenCheck className="w-4 h-4" />
+                      {isRead ? "Marked as read ✓" : "Mark as Read"}
+                    </button>
+                  </div>
+                )}
             </>
           )}
         </>
@@ -1366,6 +1384,7 @@ function SubtopicView({
   isRead,
   onMarkRead,
   onBack,
+  notesContentRef,
 }: {
   subjectId: string;
   chapterKey: string;
@@ -1376,6 +1395,7 @@ function SubtopicView({
   isRead: boolean;
   onMarkRead: () => void;
   onBack: () => void;
+  notesContentRef: RefObject<HTMLDivElement | null>;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const chapterLabel =
@@ -1406,7 +1426,9 @@ function SubtopicView({
   }
 
   function scrollToOverview() {
-    document.getElementById("chapter-overview")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById("chapter-overview")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
@@ -1454,16 +1476,17 @@ function SubtopicView({
           scienceLang={scienceLang}
           currentContentType="notes"
         />
-
       </div>
 
       {chapterContent?.video && <VideoBlock id="video" video={chapterContent.video} />}
-      <NotesBlock
-        id="notes"
-        sections={subtopicSections}
-        subjectId={subjectId}
-        storageKey={`notes:${subjectId}:${chapterKey}:study-notes`}
-      />
+      <div ref={notesContentRef} data-notes-reading-content>
+        <NotesBlock
+          id="notes"
+          sections={subtopicSections}
+          subjectId={subjectId}
+          storageKey={`notes:${subjectId}:${chapterKey}:study-notes`}
+        />
+      </div>
 
       <div className="mt-10 flex justify-center">
         <button

@@ -39,7 +39,12 @@ export type NotesAccordionSection = {
 type DisplaySection = ScienceNotesSection & {
   id?: string;
   keywords?: string[];
+  progressId: string;
 };
+
+function stableSectionId(section: DisplaySection) {
+  return section.progressId;
+}
 
 function hasSignatureVisual(sub: ScienceNotesSubsection): boolean {
   return Boolean(sub.numberLine || sub.workedExample || sub.problemSolving);
@@ -114,10 +119,17 @@ export function NotesBlock({
 
   const displaySections = useMemo<DisplaySection[]>(() => {
     const structuredSections = Array.isArray(notes?.sections) ? notes.sections : undefined;
-    if (structuredSections) return structuredSections;
+    if (structuredSections) {
+      return structuredSections.map((section, index) => ({
+        ...section,
+        progressId:
+          "id" in section && typeof section.id === "string" ? section.id : `section-${index}`,
+      }));
+    }
     if (!Array.isArray(sections)) return [];
-    return sections.map((section) => ({
+    return sections.map((section, index) => ({
       id: section.id,
+      progressId: section.id ?? `section-${index}`,
       title: section.title,
       content: section.content,
       keywords: section.keywords,
@@ -173,13 +185,13 @@ export function NotesBlock({
       setOpenValue([]);
       return;
     }
-    const values = filteredSections.map((section) => section.id ?? section.title);
+    const values = filteredSections.map(stableSectionId);
     // Auto-expand the first section plus any section containing a signature
     // visual (number line, worked example, problem-solving flow) so those
     // are visible on load instead of hidden behind a collapsed accordion.
     const visualValues = filteredSections
       .filter((section) => section.subsections?.some(hasSignatureVisual))
-      .map((section) => section.id ?? section.title);
+      .map(stableSectionId);
     const defaults = Array.from(new Set([values[0], ...visualValues]));
     setOpenValue((current) => {
       const stillValid = current.filter((v) => values.includes(v));
@@ -191,7 +203,8 @@ export function NotesBlock({
 
   useEffect(() => {
     return () => {
-      if (scrollCorrectionTimer.current !== null) window.clearTimeout(scrollCorrectionTimer.current);
+      if (scrollCorrectionTimer.current !== null)
+        window.clearTimeout(scrollCorrectionTimer.current);
     };
   }, []);
 
@@ -220,7 +233,16 @@ export function NotesBlock({
 
   if (!isOpen) {
     return (
-      <div id={id} className="mx-auto mb-5 w-full max-w-5xl scroll-mt-24 animate-fade-up sm:mb-6">
+      <div
+        id={id}
+        data-notes-section-manifest={JSON.stringify(
+          displaySections.map((section) => ({
+            id: stableSectionId(section),
+            weight: Math.max(1, JSON.stringify(section).replace(/\s+/g, " ").length),
+          })),
+        )}
+        className="mx-auto mb-5 w-full max-w-5xl scroll-mt-24 animate-fade-up sm:mb-6"
+      >
         <button
           type="button"
           onClick={openNotes}
@@ -274,6 +296,12 @@ export function NotesBlock({
   return (
     <div
       id={id}
+      data-notes-section-manifest={JSON.stringify(
+        displaySections.map((section) => ({
+          id: stableSectionId(section),
+          weight: Math.max(1, JSON.stringify(section).replace(/\s+/g, " ").length),
+        })),
+      )}
       className="academy-surface mx-auto mb-8 w-full max-w-5xl scroll-mt-24 overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/70 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl animate-fade-up"
       style={{
         boxShadow: `0 20px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06)`,
@@ -403,7 +431,7 @@ export function NotesBlock({
               </div>
               <div className="max-h-[42vh] space-y-0.5 overflow-y-auto p-2 lg:max-h-none">
                 {filteredSections.map((section, i) => {
-                  const value = section.id ?? section.title;
+                  const value = stableSectionId(section);
                   const active = openValue.includes(value);
                   return (
                     <button
@@ -466,12 +494,17 @@ export function NotesBlock({
               className="min-w-0 space-y-2.5"
             >
               {filteredSections.map((section, i) => {
-                const value = section.id ?? section.title;
+                const value = stableSectionId(section);
                 const accent = SECTION_ACCENTS[i % SECTION_ACCENTS.length];
                 const isOpen = openValue.includes(value);
                 return (
                   <AccordionItem
                     id={`notes-section-${value}`}
+                    data-notes-section-id={value}
+                    data-notes-section-weight={Math.max(
+                      1,
+                      JSON.stringify(section).replace(/\s+/g, " ").length,
+                    )}
                     key={value}
                     value={value}
                     className={`scroll-mt-28 overflow-hidden rounded-2xl border transition-all duration-300 ${
@@ -741,10 +774,7 @@ function SubsectionBlock({
         </div>
       )}
       {sub.numberLine && "examples" in sub.numberLine && Array.isArray(sub.numberLine.examples) && (
-        <NumberLineDiagram
-          examples={sub.numberLine.examples}
-          subjectPalette={subjectPalette}
-        />
+        <NumberLineDiagram examples={sub.numberLine.examples} subjectPalette={subjectPalette} />
       )}
       {sub.workedExample && (
         <WorkedExampleCard example={sub.workedExample} subjectPalette={subjectPalette} />

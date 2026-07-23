@@ -2820,10 +2820,15 @@ export function getChapter(
       c.chapterKey === chapterKey &&
       (lang ? c.lang === lang : !c.lang || c.lang === lang),
   );
-  if (chapter?.subjectId === "sejarah" && chapter.form === "Form 2" && chapter.notes) {
-    return { ...chapter, notes: organizeSejarahF2Notes(chapter.notes) };
+  const resolvedChapter =
+    chapter?.subjectId === "sejarah" && chapter.form === "Form 2" && chapter.notes
+      ? { ...chapter, notes: organizeSejarahF2Notes(chapter.notes) }
+      : chapter;
+  if (resolvedChapter && !resolvedChapter.video) {
+    const video = getEducationalVideo(resolvedChapter.id, lang);
+    if (video) return { ...resolvedChapter, video };
   }
-  return chapter;
+  return resolvedChapter;
 }
 
 /** All chapter content rows for a given subject (used to surface "available" flags). */
@@ -2843,10 +2848,48 @@ export function getChaptersForSubject(
 export type RegisteredSubjectChapter = {
   key: string;
   label: string;
+  categoryLabel?: string;
   available: boolean;
   selectable: boolean;
   subtopics?: string[];
   isNew?: boolean;
+};
+
+const SEJARAH_CATEGORY_LABELS: Partial<
+  Record<ChapterContent["form"], Readonly<Record<string, string>>>
+> = {
+  "Form 1": {
+    "Chapter 1": "Prasejarah",
+    "Chapter 2": "Zaman Batu",
+    "Chapter 3": "Prasejarah",
+    "Chapter 4": "Tamadun Awal",
+    "Chapter 5": "Tamadun Dunia",
+    "Chapter 6": "Zaman Klasik",
+    "Chapter 7": "Zaman Pertengahan",
+    "Chapter 8": "Tamadun Islam",
+  },
+  "Form 2": {
+    "Chapter 1": "Kerajaan Alam Melayu",
+    "Chapter 2": "Kerajaan Alam Melayu",
+    "Chapter 3": "Kerajaan Alam Melayu",
+    "Chapter 4": "Kerajaan Alam Melayu",
+    "Chapter 5": "Kesultanan Melayu",
+    "Chapter 6": "Kesultanan Melayu",
+    "Chapter 7": "Kesultanan Melayu",
+    "Chapter 8": "Kerajaan Negeri Melayu",
+    "Chapter 9": "Kerajaan Negeri Melayu",
+    "Chapter 10": "Sarawak & Sabah",
+  },
+  "Form 3": {
+    "Chapter 1": "Peluasan Kuasa Barat",
+    "Chapter 2": "Peluasan Kuasa Barat",
+    "Chapter 3": "Pentadbiran Negeri Melayu",
+    "Chapter 4": "Pentadbiran Negeri Melayu",
+    "Chapter 5": "Pentadbiran Borneo",
+    "Chapter 6": "Kesan Pentadbiran Barat",
+    "Chapter 7": "Reaksi Tempatan terhadap Barat",
+    "Chapter 8": "Reaksi Tempatan terhadap Barat",
+  },
 };
 
 export type ResourceType = "notes" | "quiz" | "flashcards" | "mindMap";
@@ -2996,6 +3039,10 @@ export function getRegisteredSubjectChapters(
       return {
         key,
         label: chapterLabel(preferred, lang),
+        categoryLabel:
+          preferred.subjectId === "sejarah"
+            ? SEJARAH_CATEGORY_LABELS[preferred.form]?.[preferred.chapterKey]
+            : undefined,
         available,
         selectable: available,
         subtopics: preferred.subtopics?.map((subtopic) => subtopic.title),

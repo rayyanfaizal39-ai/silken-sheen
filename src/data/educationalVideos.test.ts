@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { VideoBlock } from "@/components/notes/VideoBlock";
-import { chapters } from "@/content/registry";
+import { chapters, getChapter } from "@/content/registry";
 import { educationalVideos, getEducationalVideo } from "./educationalVideos";
 
 const sejarahForm1 = [
@@ -14,6 +14,19 @@ const sejarahForm1 = [
   ["sejarah-f1-c6", "gSXFJYisA6w", undefined],
   ["sejarah-f1-c7", "aeLoGzzm85o", undefined],
   ["sejarah-f1-c8", "RIDZG6LTY5Y", 34],
+] as const;
+
+const sejarahForm2 = [
+  ["sejarah-f2-c1", "p6BhanQF6OE"],
+  ["sejarah-f2-c2", "i1UtsCwEqJc"],
+  ["sejarah-f2-c3", "TRgsYd5wo5I"],
+  ["sejarah-f2-c4", "FFi8JiF2TJU"],
+  ["sejarah-f2-c5", "GAZCHn6vK8U"],
+  ["sejarah-f2-c6", "vw6oMLOujxk"],
+  ["sejarah-f2-c7", "Fz8_K8o7gq0"],
+  ["sejarah-f2-c8", "pkviFyb56X0"],
+  ["sejarah-f2-c9", "tpwz9PDtWe4"],
+  ["sejarah-f2-c10", "UOM59qDl348"],
 ] as const;
 
 const scienceForm1 = [
@@ -73,6 +86,27 @@ describe("educational video registry", () => {
         expect(markup).toContain(`start=${startSeconds}`);
       }
     }
+  });
+
+  it("maps and resolves every Sejarah Tingkatan 2 chapter through the existing lookup", () => {
+    sejarahForm2.forEach(([chapterId, youtubeId], index) => {
+      const chapterNumber = index + 1;
+      const video = getEducationalVideo(chapterId);
+      const chapter = getChapter("sejarah", `Chapter ${chapterNumber}`, undefined, "Form 2");
+
+      expect(video?.title).toBe(`Sejarah Tingkatan 2 — Bab ${chapterNumber}`);
+      expect(video?.youtubeId).toBe(youtubeId);
+      expect(video?.startSeconds).toBeUndefined();
+      expect(chapter?.id).toBe(chapterId);
+      expect(chapter?.video?.youtubeId).toBe(youtubeId);
+
+      const markup = renderToStaticMarkup(createElement(VideoBlock, { video: video! }));
+      expect(markup.match(/<iframe/g)).toHaveLength(1);
+      expect(markup).toContain(`youtube-nocookie.com/embed/${youtubeId}?`);
+      expect(markup).toContain('loading="lazy"');
+      expect(markup).toContain("autoplay");
+      expect(markup).not.toContain("autoplay=1");
+    });
   });
 
   it("maps and renders exactly one intended video for every Sains Tingkatan 1 chapter", () => {

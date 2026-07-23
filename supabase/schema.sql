@@ -32,6 +32,101 @@ BEGIN
 END;
 $$;
 
+-- Account-scoped Notes reading progress. Kept separate from gamification,
+-- quiz, flashcard, and video activity so chapter rings reflect reading only.
+CREATE TABLE IF NOT EXISTS public.notes_reading_progress (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  subject TEXT NOT NULL,
+  form TEXT NOT NULL CHECK (form IN ('Form 1', 'Form 2', 'Form 3')),
+  chapter TEXT NOT NULL,
+  variant TEXT NOT NULL DEFAULT 'default',
+  progress_percent SMALLINT NOT NULL DEFAULT 0 CHECK (progress_percent BETWEEN 0 AND 100),
+  section_progress JSONB NOT NULL DEFAULT '{}'::JSONB,
+  completed BOOLEAN NOT NULL DEFAULT FALSE,
+  last_read_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE (user_id, subject, form, chapter, variant)
+);
+
+CREATE INDEX IF NOT EXISTS notes_reading_progress_scope_idx
+  ON public.notes_reading_progress (user_id, subject, form, variant);
+
+ALTER TABLE public.notes_reading_progress ENABLE ROW LEVEL SECURITY;
+
+CREATE OR REPLACE FUNCTION public.merge_notes_section_progress(previous JSONB, incoming JSONB)
+RETURNS JSONB
+LANGUAGE sql
+IMMUTABLE
+SET search_path = ''
+AS $$
+  SELECT COALESCE(
+    jsonb_object_agg(
+      keys.section_id,
+      GREATEST(
+        COALESCE((previous ->> keys.section_id)::NUMERIC, 0),
+        COALESCE((incoming ->> keys.section_id)::NUMERIC, 0)
+      )
+    ),
+    '{}'::JSONB
+  )
+  FROM (
+    SELECT jsonb_object_keys(COALESCE(previous, '{}'::JSONB)) AS section_id
+    UNION
+    SELECT jsonb_object_keys(COALESCE(incoming, '{}'::JSONB)) AS section_id
+  ) keys;
+$$;
+
+CREATE OR REPLACE FUNCTION public.keep_notes_progress_monotonic()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SET search_path = ''
+AS $$
+BEGIN
+  NEW.section_progress := public.merge_notes_section_progress(
+    OLD.section_progress,
+    NEW.section_progress
+  );
+  IF OLD.section_progress = '{}'::JSONB AND NEW.section_progress <> '{}'::JSONB THEN
+    NEW.completed := NEW.progress_percent >= 100;
+  ELSE
+    NEW.progress_percent := GREATEST(OLD.progress_percent, NEW.progress_percent);
+    NEW.completed := OLD.completed OR NEW.completed OR NEW.progress_percent >= 100;
+  END IF;
+  NEW.last_read_at := GREATEST(OLD.last_read_at, NEW.last_read_at);
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS keep_notes_progress_monotonic ON public.notes_reading_progress;
+CREATE TRIGGER keep_notes_progress_monotonic
+  BEFORE UPDATE ON public.notes_reading_progress
+  FOR EACH ROW EXECUTE FUNCTION public.keep_notes_progress_monotonic();
+
+DROP TRIGGER IF EXISTS set_notes_reading_progress_updated_at ON public.notes_reading_progress;
+CREATE TRIGGER set_notes_reading_progress_updated_at
+  BEFORE UPDATE ON public.notes_reading_progress
+  FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
+
+DROP POLICY IF EXISTS "Users can read their notes progress" ON public.notes_reading_progress;
+DROP POLICY IF EXISTS "Users can insert their notes progress" ON public.notes_reading_progress;
+DROP POLICY IF EXISTS "Users can update their notes progress" ON public.notes_reading_progress;
+
+CREATE POLICY "Users can read their notes progress"
+  ON public.notes_reading_progress FOR SELECT TO authenticated
+  USING ((SELECT auth.uid()) = user_id);
+CREATE POLICY "Users can insert their notes progress"
+  ON public.notes_reading_progress FOR INSERT TO authenticated
+  WITH CHECK ((SELECT auth.uid()) = user_id);
+CREATE POLICY "Users can update their notes progress"
+  ON public.notes_reading_progress FOR UPDATE TO authenticated
+  USING ((SELECT auth.uid()) = user_id)
+  WITH CHECK ((SELECT auth.uid()) = user_id);
+
+REVOKE ALL ON TABLE public.notes_reading_progress FROM anon;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.notes_reading_progress TO authenticated;
+
 DROP TRIGGER IF EXISTS on_user_progress_updated ON public.user_progress;
 CREATE TRIGGER on_user_progress_updated
   BEFORE UPDATE ON public.user_progress
