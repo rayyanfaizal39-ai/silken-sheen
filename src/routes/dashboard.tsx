@@ -25,7 +25,7 @@ import {
   getCompanionStageForXp,
 } from "@/hooks/use-progress";
 import { CompanionImage, getCompanionSpecies } from "@/companion";
-import { subjects, type Subject } from "@/data/subjects-meta";
+import { subjects } from "@/data/subjects-meta";
 import {
   Target,
   Star,
@@ -47,15 +47,13 @@ import {
   ClipboardList,
   PlayCircle,
 } from "lucide-react";
-import { AcademyPageShell } from "@/components/AcademyPage";
+import {
+  AcademyPageShell,
+  NotesSubjectCard,
+  type SubjectPlanetId,
+} from "@/components/AcademyPage";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
-import geographyArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 10_59_37 AM.png";
-import bmArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_15 AM.png";
-import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_47 AM.png";
-import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
-import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
-import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
 import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/dashboard")({
@@ -282,24 +280,13 @@ function DashboardPage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {subjects.map((s) => {
-            const xp = progress.subjectXp[s.id] ?? 0;
-            const acts = Object.entries(progress.chapterActivity)
-              .filter(([k]) => k.startsWith(`${s.id}:`))
-              .map(([, v]) => v);
-            const chapDone = acts.filter((a) => a.read && a.quiz && a.cards).length;
-            const chapStarted = acts.filter((a) => a.read || a.quiz || a.cards).length;
-            const pct = Math.min(100, Math.round((xp / 500) * 100));
-            return (
-              <SubjectWorldCard
-                key={s.id}
-                subject={s}
-                chapDone={chapDone}
-                chapStarted={chapStarted}
-                pct={pct}
-              />
-            );
-          })}
+          {subjects.map((subject) => (
+            <NotesSubjectCard
+              key={subject.id}
+              subjectId={subject.id as SubjectPlanetId}
+              title={subject.name}
+            />
+          ))}
         </div>
       </Card>
 
@@ -1017,73 +1004,6 @@ function TodayProgressGrid({
         <TodayStatGlassCard compact={compact} icon="⭐" label="XP Earned" value={totalXp} color="#FBBF24" glow="rgba(251,191,36,0.45)" />
       </div>
     </Card>
-  );
-}
-
-// ─── Subject Worlds ───────────────────────────────────────────────────────────
-
-const SUBJECT_WORLD_THEME: Record<string, { color: string; artwork: string }> = {
-  bm:        { color: "#C458A3", artwork: bmArtwork },
-  english:   { color: "#8E5ACF", artwork: englishArtwork },
-  math:      { color: "#C89B2C", artwork: mathArtwork },
-  science:   { color: "#1D5F9F", artwork: scienceArtwork },
-  sejarah:   { color: "#C97A3A", artwork: sejarahArtwork },
-  geography: { color: "#1FAE8B", artwork: geographyArtwork },
-};
-
-function SubjectWorldCard({
-  subject,
-  chapDone,
-  chapStarted,
-  pct,
-}: {
-  subject: Subject;
-  chapDone: number;
-  chapStarted: number;
-  pct: number;
-}) {
-  const theme = SUBJECT_WORLD_THEME[subject.id];
-
-  return (
-    <div
-      className="group relative flex h-[280px] flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#0B1220] transition-[border-color,background-color] duration-200 hover:border-white/[0.16] hover:bg-[#0E1727]"
-    >
-      {/* Artwork area */}
-      <div className="relative h-[52%] w-full shrink-0 overflow-hidden">
-        <img
-          src={theme.artwork}
-          alt=""
-          className="h-full w-full object-cover brightness-[0.72] transition-[filter] duration-200 group-hover:brightness-[0.8]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220] via-black/25 to-black/15" />
-        <span
-          className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/55 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white"
-        >
-          {pct}%
-        </span>
-      </div>
-
-      {/* Info area — name, chapter count, progress bar, continue button */}
-      <div className="flex min-h-0 flex-1 flex-col justify-between p-3">
-        <div>
-          <p className="text-sm font-bold text-white">{subject.name}</p>
-          <p className="text-[9px] font-bold uppercase tracking-wide" style={{ color: theme.color }}>
-            {chapStarted > 0 ? `${chapDone}/${chapStarted} chapters` : "Not started"}
-          </p>
-          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/[0.08]">
-            <div className="h-full rounded-full" style={{ width: `${pct}%`, background: theme.color }} />
-          </div>
-        </div>
-        <Link
-          to="/notes"
-          search={{ subject: subject.id, form: 1 } as Record<string, unknown>}
-          className="mt-2 flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-[11px] font-bold transition-[filter] hover:brightness-110"
-          style={{ background: `${theme.color}30`, color: theme.color }}
-        >
-          Continue <ArrowRight className="h-3 w-3" />
-        </Link>
-      </div>
-    </div>
   );
 }
 
