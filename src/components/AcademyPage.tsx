@@ -372,6 +372,97 @@ export function SubjectPlanetButton({
   );
 }
 
+// ─── Notes-style subject card with direct form links ─────────────────────────
+// Reuses the same artwork, palette, typography, spacing, and CTA treatment as
+// the Notes subject picker while keeping each destination independently
+// keyboard accessible.
+export function NotesSubjectCard({
+  subjectId,
+  title,
+  subtitle,
+}: {
+  subjectId: SubjectPlanetId;
+  title?: string;
+  subtitle?: string;
+}) {
+  const planet = subjectPlanetStyles[subjectId];
+  const formNumbers = [1, 2, 3] as const;
+
+  return (
+    <article
+      className="academy-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14]"
+      onMouseEnter={(event) => {
+        event.currentTarget.style.boxShadow = `0 20px 60px -15px ${planet.glow}`;
+      }}
+      onMouseLeave={(event) => {
+        event.currentTarget.style.boxShadow = "none";
+      }}
+    >
+      <div className="p-3 pb-0">
+        <PlanetCardArt subjectId={subjectId} planet={planet} />
+      </div>
+
+      <div className="flex flex-1 flex-col p-4 pt-3">
+        <div>
+          <h3 className="font-display text-lg font-bold leading-tight text-white">
+            {title ?? planet.name}
+          </h3>
+          <p className="mt-0.5 text-xs text-white/45">{subtitle ?? planet.label}</p>
+        </div>
+
+        <div className="mt-3">
+          <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">
+            Learning Journey · 3 Forms
+          </p>
+          <div className="grid grid-cols-3 gap-1.5">
+            {formNumbers.map((form) => (
+              <Link
+                key={form}
+                to="/notes"
+                search={{ subject: subjectId, form }}
+                aria-label={`Open ${title ?? planet.name} Form ${form} notes`}
+                className="flex min-h-11 items-center justify-center rounded-lg border px-2 py-2 text-xs font-bold transition-[background-color,border-color,color,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+                style={{
+                  borderColor: `${planet.accentFrom}30`,
+                  background: `${planet.accentFrom}12`,
+                  color: planet.color,
+                  ["--tw-ring-color" as string]: planet.color,
+                }}
+                onMouseEnter={(event) => {
+                  event.currentTarget.style.background = `${planet.accentFrom}22`;
+                  event.currentTarget.style.borderColor = `${planet.accentFrom}60`;
+                  event.currentTarget.style.boxShadow = `0 0 16px -5px ${planet.glow}`;
+                }}
+                onMouseLeave={(event) => {
+                  event.currentTarget.style.background = `${planet.accentFrom}12`;
+                  event.currentTarget.style.borderColor = `${planet.accentFrom}30`;
+                  event.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                F{form}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <Link
+          to="/notes"
+          search={{ subject: subjectId }}
+          aria-label={`Open ${title ?? planet.name} subject notes`}
+          className="mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-transform duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+          style={{
+            background: `linear-gradient(135deg, ${planet.accentFrom}, ${planet.accentTo})`,
+            boxShadow: `0 4px 20px -4px ${planet.glow}`,
+          }}
+        >
+          Open Subject
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
+    </article>
+  );
+}
+
 // ─── Subject world banner — rendered when entering a subject ──────────────────
 export function SubjectWorldBanner({ subjectId }: { subjectId: SubjectPlanetId }) {
   const planet = subjectPlanetStyles[subjectId];
