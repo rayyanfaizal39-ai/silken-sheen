@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { areMockPaymentsEnabled, isToyyibPayConfigured } from "./billing-config";
+import {
+  areMockPaymentsEnabled,
+  CHECKOUT_PLANS,
+  isToyyibPayConfigured,
+} from "./billing-config";
 import {
   assertVerifiedAmount,
   canAccessInvoice,
@@ -19,7 +23,7 @@ describe("invoice number generation", () => {
 
 describe("verified payment processing rules", () => {
   it("accepts a successful payment with the expected amount and currency", () => {
-    expect(() => assertVerifiedAmount(19, "MYR", 19, "myr")).not.toThrow();
+    expect(() => assertVerifiedAmount(29, "MYR", 29, "myr")).not.toThrow();
     expect(isAlreadyProcessed("pending")).toBe(false);
   });
 
@@ -28,7 +32,7 @@ describe("verified payment processing rules", () => {
   });
 
   it("rejects an incorrect payment amount", () => {
-    expect(() => assertVerifiedAmount(19, "MYR", 18.99, "MYR")).toThrow("payment_amount_mismatch");
+    expect(() => assertVerifiedAmount(29, "MYR", 28.99, "MYR")).toThrow("payment_amount_mismatch");
   });
 
   it("records failed payments without creating a paid state", () => {
@@ -61,26 +65,42 @@ describe("mock payment production restrictions", () => {
     ).toBe(false);
   });
 
-  it("requires every live checkout setting before enabling ToyyibPay", () => {
+  it("requires the Supabase Edge Function connection for ToyyibPay checkout", () => {
     expect(
       isToyyibPayConfigured({
-        TOYYIBPAY_SECRET_KEY: "secret",
-        TOYYIBPAY_CATEGORY_CODE: "category",
+        SUPABASE_URL: "https://project.supabase.co",
       }),
     ).toBe(false);
     expect(
       isToyyibPayConfigured({
-        TOYYIBPAY_SECRET_KEY: "secret",
-        TOYYIBPAY_CATEGORY_CODE: "category",
-        APPLICATION_URL: "https://example.com",
+        SUPABASE_URL: "https://project.supabase.co",
+        SUPABASE_ANON_KEY: "anon",
       }),
     ).toBe(true);
     expect(
       isToyyibPayConfigured({
-        TOYYIBPAY_SECRET_KEY: " ",
-        TOYYIBPAY_CATEGORY_CODE: "category",
-        APPLICATION_URL: "https://example.com",
+        SUPABASE_URL: " ",
+        SUPABASE_ANON_KEY: "anon",
       }),
     ).toBe(false);
+  });
+});
+
+describe("server-side checkout prices", () => {
+  it("offers only the approved monthly ToyyibPay sandbox plans", () => {
+    expect(CHECKOUT_PLANS).toEqual({
+      pro_monthly: {
+        plan: "pro",
+        interval: "monthly",
+        amount: 29,
+        label: "AcadeMY Pro Monthly",
+      },
+      premium_monthly: {
+        plan: "premium",
+        interval: "monthly",
+        amount: 59,
+        label: "AcadeMY Premium Monthly",
+      },
+    });
   });
 });

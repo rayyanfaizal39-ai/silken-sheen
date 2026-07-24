@@ -1,4 +1,14 @@
-import { escapeHtml, formatMoney, renderEmailLayout, type EmailContent } from "./email-brand.ts";
+import {
+  escapeAttribute,
+  escapeHtml,
+  formatMoney,
+  renderEmailLayout,
+  type EmailContent,
+} from "./email-brand.ts";
+import {
+  resolveInvoiceLegalDetails,
+  type InvoiceLegalDetails,
+} from "./invoice-brand.ts";
 
 export type InvoiceEmailData = {
   invoice_number: string;
@@ -9,15 +19,26 @@ export type InvoiceEmailData = {
   payment_reference: string;
 };
 
-export function buildInvoiceEmail(invoice: InvoiceEmailData): EmailContent {
+export function buildInvoiceEmail(
+  invoice: InvoiceEmailData,
+  legal: InvoiceLegalDetails = resolveInvoiceLegalDetails(() => undefined),
+): EmailContent {
   const total = formatMoney(Number(invoice.total), invoice.currency);
   const subject = `Payment confirmed — ${invoice.invoice_number}`;
+  const legalDetails = [
+    `<strong style="color:#f8fafc">${escapeHtml(legal.legalName)}</strong>`,
+    `SSM: ${escapeHtml(legal.registration)}`,
+    ...(legal.address ? [escapeHtml(legal.address)] : []),
+    `<a href="mailto:${escapeAttribute(legal.supportEmail)}" style="color:#c4b5fd;text-decoration:none">${escapeHtml(legal.supportEmail)}</a>`,
+    `<a href="https://${escapeAttribute(legal.website)}" style="color:#c4b5fd;text-decoration:none">${escapeHtml(legal.website)}</a>`,
+  ].join("<br>");
   const content = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:26px 0;border-collapse:separate;border-spacing:0;border:1px solid #29304d;border-radius:14px;background:#0f152a">
     <tr><td style="padding:18px 20px;border-bottom:1px solid #29304d;font-family:Arial,sans-serif;font-size:13px;line-height:20px;color:#9299b1">Amount paid</td><td align="right" style="padding:18px 20px;border-bottom:1px solid #29304d;font-family:Arial,sans-serif;font-size:18px;line-height:24px;font-weight:700;color:#f8df6b">${escapeHtml(total)}</td></tr>
     <tr><td style="padding:14px 20px;border-bottom:1px solid #29304d;font-family:Arial,sans-serif;font-size:13px;line-height:20px;color:#9299b1">Plan</td><td align="right" style="padding:14px 20px;border-bottom:1px solid #29304d;font-family:Arial,sans-serif;font-size:14px;line-height:20px;color:#f8fafc">${escapeHtml(invoice.description)}</td></tr>
     <tr><td style="padding:14px 20px;font-family:Arial,sans-serif;font-size:13px;line-height:20px;color:#9299b1">Payment reference</td><td align="right" style="padding:14px 20px;font-family:Arial,sans-serif;font-size:14px;line-height:20px;color:#f8fafc">${escapeHtml(invoice.payment_reference)}</td></tr>
   </table>
-  <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:26px;color:#d6d9e7">Your paid invoice is attached as a PDF for your records.</p>`;
+  <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:26px;color:#d6d9e7">Your paid invoice is attached as a PDF for your records.</p>
+  <p style="margin:24px 0 0;padding-top:20px;border-top:1px solid #29304d;font-family:Arial,sans-serif;font-size:12px;line-height:20px;color:#9299b1">${legalDetails}</p>`;
 
   return {
     subject,
@@ -39,6 +60,12 @@ export function buildInvoiceEmail(invoice: InvoiceEmailData): EmailContent {
       `Invoice: ${invoice.invoice_number}`,
       "",
       "Your paid invoice is attached as a PDF for your records.",
+      "",
+      legal.legalName,
+      `SSM: ${legal.registration}`,
+      ...(legal.address ? [legal.address] : []),
+      legal.supportEmail,
+      legal.website,
       "",
       "Need help? Reply to this email or contact admin@myacademy.my.",
     ].join("\n"),

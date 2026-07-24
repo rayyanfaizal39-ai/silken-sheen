@@ -19,12 +19,14 @@
 import { PLAN_FEATURES, type Feature, type Plan } from "@/config/features";
 
 /**
- * Translates the legacy billing value stored in `profiles.plan` into the
- * feature-plan vocabulary. Keep this compatibility decision here so feature
- * call sites never branch on billing strings. Until the planned six-tier
- * billing schema lands, `paid` represents the Captain parent experience.
+ * Translates billing values into the feature-plan vocabulary. Active
+ * subscriptions use pro/premium; profiles.plan still supplies free/paid for
+ * legacy accounts. Keep this mapping here so call sites never branch on plan
+ * names.
  */
 export function resolveStoredPlan(storedPlan: string | null | undefined): Plan {
+  if (storedPlan === "pro") return "explorer";
+  if (storedPlan === "premium") return "captain";
   if (storedPlan === "paid") return "captain";
   if (storedPlan && Object.prototype.hasOwnProperty.call(PLAN_FEATURES, storedPlan)) {
     return storedPlan as Plan;

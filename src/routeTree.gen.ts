@@ -15,6 +15,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SubjectsRouteImport } from './routes/subjects'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PaymentReturnRouteImport } from './routes/payment-return'
 import { Route as ParentDashboardRouteImport } from './routes/parent-dashboard'
 import { Route as ParentRouteImport } from './routes/parent'
 import { Route as NotesRouteImport } from './routes/notes'
@@ -37,7 +38,6 @@ import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
-import { Route as ApiToyyibpayCallbackRouteImport } from './routes/api.toyyibpay.callback'
 
 const UpgradeRoute = UpgradeRouteImport.update({
   id: '/upgrade',
@@ -67,6 +67,11 @@ const QuizzesRoute = QuizzesRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentReturnRoute = PaymentReturnRouteImport.update({
+  id: '/payment-return',
+  path: '/payment-return',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParentDashboardRoute = ParentDashboardRouteImport.update({
@@ -179,11 +184,6 @@ const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
   path: '/academy/landingpage3',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiToyyibpayCallbackRoute = ApiToyyibpayCallbackRouteImport.update({
-  id: '/api/toyyibpay/callback',
-  path: '/api/toyyibpay/callback',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -200,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
+  '/payment-return': typeof PaymentReturnRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
@@ -214,7 +215,6 @@ export interface FileRoutesByFullPath {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
-  '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -230,6 +230,7 @@ export interface FileRoutesByTo {
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
+  '/payment-return': typeof PaymentReturnRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
@@ -244,7 +245,6 @@ export interface FileRoutesByTo {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin': typeof AdminIndexRoute
-  '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -262,6 +262,7 @@ export interface FileRoutesById {
   '/notes': typeof NotesRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
+  '/payment-return': typeof PaymentReturnRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
@@ -276,7 +277,6 @@ export interface FileRoutesById {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
-  '/api/toyyibpay/callback': typeof ApiToyyibpayCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -295,6 +295,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/parent'
     | '/parent-dashboard'
+    | '/payment-return'
     | '/privacy'
     | '/quizzes'
     | '/subjects'
@@ -309,7 +310,6 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin/'
-    | '/api/toyyibpay/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -325,6 +325,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/parent'
     | '/parent-dashboard'
+    | '/payment-return'
     | '/privacy'
     | '/quizzes'
     | '/subjects'
@@ -339,7 +340,6 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin'
-    | '/api/toyyibpay/callback'
   id:
     | '__root__'
     | '/'
@@ -356,6 +356,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/parent'
     | '/parent-dashboard'
+    | '/payment-return'
     | '/privacy'
     | '/quizzes'
     | '/subjects'
@@ -370,7 +371,6 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin/'
-    | '/api/toyyibpay/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -388,6 +388,7 @@ export interface RootRouteChildren {
   NotesRoute: typeof NotesRoute
   ParentRoute: typeof ParentRoute
   ParentDashboardRoute: typeof ParentDashboardRoute
+  PaymentReturnRoute: typeof PaymentReturnRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizzesRoute: typeof QuizzesRoute
   SubjectsRoute: typeof SubjectsRoute
@@ -397,7 +398,6 @@ export interface RootRouteChildren {
   AcademyLandingpage3Route: typeof AcademyLandingpage3Route
   AuthCallbackRoute: typeof AuthCallbackRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
-  ApiToyyibpayCallbackRoute: typeof ApiToyyibpayCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -442,6 +442,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payment-return': {
+      id: '/payment-return'
+      path: '/payment-return'
+      fullPath: '/payment-return'
+      preLoaderRoute: typeof PaymentReturnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parent-dashboard': {
@@ -598,13 +605,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AcademyLandingpage3RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/toyyibpay/callback': {
-      id: '/api/toyyibpay/callback'
-      path: '/api/toyyibpay/callback'
-      fullPath: '/api/toyyibpay/callback'
-      preLoaderRoute: typeof ApiToyyibpayCallbackRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -641,6 +641,7 @@ const rootRouteChildren: RootRouteChildren = {
   NotesRoute: NotesRoute,
   ParentRoute: ParentRoute,
   ParentDashboardRoute: ParentDashboardRoute,
+  PaymentReturnRoute: PaymentReturnRoute,
   PrivacyRoute: PrivacyRoute,
   QuizzesRoute: QuizzesRoute,
   SubjectsRoute: SubjectsRoute,
@@ -650,7 +651,6 @@ const rootRouteChildren: RootRouteChildren = {
   AcademyLandingpage3Route: AcademyLandingpage3Route,
   AuthCallbackRoute: AuthCallbackRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
-  ApiToyyibpayCallbackRoute: ApiToyyibpayCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

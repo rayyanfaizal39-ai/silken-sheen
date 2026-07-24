@@ -686,12 +686,17 @@ async function insertQuizHistoryRow(
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
+    const { data: subscription, error: subscriptionError } = await supabase
+      .from("subscriptions")
       .select("plan")
-      .eq("id", user.id)
+      .eq("user_id", user.id)
+      .eq("status", "active")
       .maybeSingle();
-    if (profileError || !hasFeature(resolveStoredPlan(profile?.plan), "quiz_history")) return;
+    if (
+      subscriptionError ||
+      !hasFeature(resolveStoredPlan(subscription?.plan), "quiz_history")
+    )
+      return;
 
     const { error } = await supabase.from("quiz_history").insert({
       user_id: user.id,

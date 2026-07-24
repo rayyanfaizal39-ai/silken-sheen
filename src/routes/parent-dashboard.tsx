@@ -46,19 +46,27 @@ function ParentDashboardPage() {
     }
 
     setLoading(true);
-    const profileRequest = isSupabaseConfigured
-      ? supabase.from("profiles").select("plan").eq("id", user.id).maybeSingle()
+    const subscriptionRequest = isSupabaseConfigured
+      ? supabase
+          .from("subscriptions")
+          .select("plan")
+          .eq("user_id", user.id)
+          .eq("status", "active")
+          .maybeSingle()
       : Promise.resolve({ data: null, error: null });
 
     Promise.all([
       getStudentAnalytics(user.id, { progress, studentName: user.name, windowDays: 7 }),
-      profileRequest,
-    ]).then(([nextAnalytics, profileResult]) => {
+      subscriptionRequest,
+    ]).then(([nextAnalytics, subscriptionResult]) => {
       if (!active) return;
-      if (profileResult.error && import.meta.env.DEV) {
-        console.error("[parent-dashboard] profile plan query failed", profileResult.error);
+      if (subscriptionResult.error && import.meta.env.DEV) {
+        console.error(
+          "[parent-dashboard] subscription plan query failed",
+          subscriptionResult.error,
+        );
       }
-      setStoredPlan(profileResult.data?.plan ?? null);
+      setStoredPlan(subscriptionResult.data?.plan ?? null);
       setAnalytics(nextAnalytics);
       setLoading(false);
     }).catch((error: unknown) => {

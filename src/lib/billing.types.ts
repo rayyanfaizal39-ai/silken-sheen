@@ -1,7 +1,7 @@
 export type BillingPlan = "basic" | "pro" | "premium";
 export type PaidBillingPlan = Exclude<BillingPlan, "basic">;
 export type BillingInterval = "monthly" | "annual";
-export type CheckoutPlan = `${PaidBillingPlan}_${BillingInterval}`;
+export type CheckoutPlan = `${PaidBillingPlan}_monthly`;
 export type PaymentStatus = "pending" | "successful" | "failed" | "cancelled" | "refunded";
 export type SubscriptionStatus = "active" | "pending" | "expired" | "cancelled";
 export type MockPaymentOutcome = "successful" | "failed" | "cancelled";

@@ -3,11 +3,9 @@ import { z } from "zod";
 import {
   areMockPaymentsEnabled,
   CHECKOUT_PLANS,
-  isToyyibPayConfigured,
 } from "../lib/billing-config";
 import {
   createPendingPayment,
-  createToyyibPayBill,
   getSupabaseAdminClient,
   processVerifiedPayment,
 } from "../lib/billing.server";
@@ -22,7 +20,7 @@ import { getSupabaseServerClient } from "../lib/supabase.server";
 export type UpgradePlan = CheckoutPlan;
 
 const checkoutSchema = z.object({
-  plan: z.enum(["pro_monthly", "pro_annual", "premium_monthly", "premium_annual"]),
+  plan: z.enum(["pro_monthly", "premium_monthly"]),
   idempotencyKey: z.string().uuid(),
 });
 
@@ -45,30 +43,29 @@ export const createCheckout = createServerFn({ method: "POST" })
     const { supabase, user } = await requireUser();
     const mock = areMockPaymentsEnabled();
 
-    if (!mock && !isToyyibPayConfigured()) {
-      throw new Error("Payment checkout is not configured");
+    if (mock) {
+      const payment = await createPendingPayment({
+        userId: user.id,
+        checkoutPlan: data.plan,
+        provider: "mock",
+        idempotencyKey: data.idempotencyKey,
+      });
+      return { mode: "mock" as const, paymentId: payment.id };
     }
 
-    const payment = await createPendingPayment({
-      userId: user.id,
-      checkoutPlan: data.plan,
-      provider: mock ? "mock" : "toyyibpay",
-      idempotencyKey: data.idempotencyKey,
+    const checkout = await supabase.functions.invoke("create-toyyibpay-bill", {
+      body: data,
     });
-
-    if (mock) return { mode: "mock" as const, paymentId: payment.id };
-
-    const { data: profile, error } = await supabase
-      .from("profiles")
-      .select("full_name, email")
-      .eq("id", user.id)
-      .single();
-    if (error) throw error;
-    const bill = await createToyyibPayBill(payment, {
-      name: profile.full_name?.trim() || "AcadeMY Customer",
-      email: profile.email?.trim() || user.email || "",
-    });
-    return { mode: "toyyibpay" as const, paymentId: payment.id, checkoutUrl: bill.checkoutUrl };
+    if (checkout.error) throw new Error(`Checkout service failed: ${checkout.error.message}`);
+    const result = checkout.data as { paymentId?: unknown; checkoutUrl?: unknown };
+    if (typeof result.paymentId !== "string" || typeof result.checkoutUrl !== "string") {
+      throw new Error("Checkout service returned an invalid response");
+    }
+    return {
+      mode: "toyyibpay" as const,
+      paymentId: result.paymentId,
+      checkoutUrl: result.checkoutUrl,
+    };
   });
 
 export const simulateMockPayment = createServerFn({ method: "POST" })
@@ -192,6 +189,44 @@ export const getInvoiceDownloadUrl = createServerFn({ method: "POST" })
       });
     if (signed.error) throw signed.error;
     return { url: signed.data.signedUrl };
+  });
+
+export const getPaymentReturnStatus = createServerFn({ method: "POST" })
+  .validator((input: unknown) =>
+    z.object({ paymentId: z.string().uuid() }).parse(input),
+  )
+  .handler(async ({ data }) => {
+    const { supabase, user } = await requireUser();
+    const payment = await supabase
+      .from("payment_transactions")
+      .select("id, plan, amount, currency, payment_status")
+      .eq("id", data.paymentId)
+      .eq("user_id", user.id)
+      .eq("provider", "toyyibpay")
+      .single();
+    if (payment.error) throw new Error("Payment was not found");
+    const invoice =
+      payment.data.payment_status === "successful"
+        ? await supabase
+            .from("invoices")
+            .select("invoice_number")
+            .eq("payment_transaction_id", payment.data.id)
+            .maybeSingle()
+        : { data: null, error: null };
+    if (invoice.error) throw invoice.error;
+    return {
+      paymentId: payment.data.id as string,
+      plan: payment.data.plan as "pro" | "premium",
+      amount: Number(payment.data.amount),
+      currency: payment.data.currency as string,
+      status: payment.data.payment_status as
+        | "pending"
+        | "successful"
+        | "failed"
+        | "cancelled"
+        | "refunded",
+      invoiceNumber: invoice.data?.invoice_number ?? null,
+    };
   });
 
 export const billingPlans = CHECKOUT_PLANS;

@@ -44,14 +44,15 @@ export function useTrackerHistory() {
     setState({ ownerId, history: [], eligible: false, loading: true, error: null });
 
     void (async () => {
-      const profileResult = await supabase
-        .from("profiles")
+      const subscriptionResult = await supabase
+        .from("subscriptions")
         .select("plan")
-        .eq("id", ownerId)
+        .eq("user_id", ownerId)
+        .eq("status", "active")
         .maybeSingle();
 
       if (cancelled) return;
-      if (profileResult.error) {
+      if (subscriptionResult.error) {
         setState({
           ownerId,
           history: [],
@@ -62,7 +63,10 @@ export function useTrackerHistory() {
         return;
       }
 
-      const eligible = hasFeature(resolveStoredPlan(profileResult.data?.plan), "quiz_history");
+      const eligible = hasFeature(
+        resolveStoredPlan(subscriptionResult.data?.plan),
+        "quiz_history",
+      );
       if (!eligible) {
         setState({ ownerId, history: [], eligible: false, loading: false, error: null });
         return;

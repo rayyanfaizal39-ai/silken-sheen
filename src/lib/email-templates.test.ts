@@ -5,6 +5,7 @@ import {
   type AuthHookPayload,
 } from "../../supabase/functions/_shared/email-templates";
 import { EMAIL_FROM, EMAIL_REPLY_TO } from "../../supabase/functions/_shared/email-brand";
+import { resolveInvoiceLegalDetails } from "../../supabase/functions/_shared/invoice-brand";
 
 const authPayload = (overrides: Partial<AuthHookPayload["email_data"]> = {}): AuthHookPayload => ({
   user: { email: "student@example.com" },
@@ -25,14 +26,19 @@ describe("AcadeMY email templates", () => {
   });
 
   it("renders a responsive, branded invoice email and escapes customer data", () => {
-    const email = buildInvoiceEmail({
-      invoice_number: "ACAD-20260720-000001",
-      customer_name: "Alya <script>",
-      description: "AcadeMY Captain Monthly",
-      total: 49,
-      currency: "MYR",
-      payment_reference: "PAY-123",
-    });
+    const email = buildInvoiceEmail(
+      {
+        invoice_number: "ACAD-20260720-000001",
+        customer_name: "Alya <script>",
+        description: "AcadeMY Captain Monthly",
+        total: 49,
+        currency: "MYR",
+        payment_reference: "PAY-123",
+      },
+      resolveInvoiceLegalDetails((name) =>
+        name === "ACADEMY_SSM_NUMBER" ? "202601234567" : undefined,
+      ),
+    );
 
     expect(email.subject).toContain("ACAD-20260720-000001");
     expect(email.html).toContain("@media only screen and (max-width:640px)");
@@ -41,7 +47,20 @@ describe("AcadeMY email templates", () => {
     expect(email.html).toContain("#f5c518");
     expect(email.html).toContain("Alya &lt;script&gt;");
     expect(email.html).not.toContain("Alya <script>");
+    expect(email.html).toContain("Lumina My Academy Digital");
+    expect(email.html).toContain("SSM: 202601234567");
+    expect(email.html).toContain("support@myacademy.my");
+    expect(email.html).toContain("www.myacademy.my");
+    expect(email.html).not.toContain("[Business address]");
     expect(email.text).toContain("Payment reference: PAY-123");
+  });
+
+  it("treats a whitespace-only invoice address as missing", () => {
+    const legal = resolveInvoiceLegalDetails((name) =>
+      name === "ACADEMY_BUSINESS_ADDRESS" ? "   " : undefined,
+    );
+
+    expect(legal.address).toBeNull();
   });
 
   it("builds working Supabase verification and recovery links", () => {
