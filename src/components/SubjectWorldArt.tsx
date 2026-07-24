@@ -186,6 +186,116 @@ function BMWorldArtBase({ color }: { color: string }) {
   );
 }
 
+// ─── Bahasa Melayu subject card (modern language + literature) ─────────────────
+
+function BMCardArtBase({ color }: { color: string }) {
+  const pageSurface = `linear-gradient(145deg, rgba(255,255,255,0.18), ${color}18)`;
+  return (
+    <div
+      data-subject-art="bm-language-literature"
+      className="relative h-36 w-52 shrink-0 overflow-hidden rounded-2xl"
+      style={{
+        border: `1px solid ${color}28`,
+        background: `radial-gradient(circle at 70% 18%, ${color}24, transparent 42%), rgba(0,0,0,0.2)`,
+      }}
+    >
+      {/* Low-contrast alphabet and layered paper accents. */}
+      <span className="absolute left-4 top-3 font-display text-xl font-black" style={{ color, opacity: 0.12 }}>
+        A
+      </span>
+      <span className="absolute right-5 bottom-3 font-display text-lg font-black" style={{ color, opacity: 0.1 }}>
+        C
+      </span>
+      <div
+        className="absolute left-9 top-5 h-20 w-28 -rotate-3 rounded-xl"
+        style={{ border: `1px solid ${color}18`, background: `${color}08` }}
+      />
+      <div
+        className="absolute left-12 top-4 h-20 w-28 rotate-2 rounded-xl"
+        style={{ border: `1px solid ${color}20`, background: `${color}0b` }}
+      />
+
+      {/* Speech bubble with a compact quotation mark. */}
+      <div
+        className="absolute right-4 top-3 flex h-9 w-11 items-center justify-center rounded-2xl rounded-br-md"
+        style={{
+          border: `1px solid ${color}35`,
+          background: `${color}14`,
+          boxShadow: `0 0 16px ${color}18`,
+        }}
+      >
+        <span className="font-serif text-xl font-black leading-none" style={{ color, opacity: 0.7 }}>
+          “
+        </span>
+      </div>
+
+      {/* Open notebook: two layered pages, writing lines, and a central fold. */}
+      <div
+        className="absolute bottom-6 left-[18px] h-[76px] w-[86px] origin-bottom-right -rotate-3 rounded-l-xl rounded-br-md"
+        style={{
+          background: pageSurface,
+          border: `1px solid ${color}42`,
+          boxShadow: `0 10px 24px rgba(0,0,0,0.25), inset 0 1px rgba(255,255,255,0.12)`,
+        }}
+      >
+        {[26, 40, 54, 68].map((top, index) => (
+          <div
+            key={top}
+            className="absolute left-4 h-px rounded-full"
+            style={{
+              top: `${top}%`,
+              width: `${index === 3 ? 42 : 58}px`,
+              background: `${color}${index === 0 ? "48" : "30"}`,
+            }}
+          />
+        ))}
+      </div>
+      <div
+        className="absolute bottom-6 right-[18px] h-[76px] w-[86px] origin-bottom-left rotate-3 rounded-r-xl rounded-bl-md"
+        style={{
+          background: pageSurface,
+          border: `1px solid ${color}42`,
+          boxShadow: `0 10px 24px rgba(0,0,0,0.25), inset 0 1px rgba(255,255,255,0.12)`,
+        }}
+      >
+        {[26, 40, 54, 68].map((top, index) => (
+          <div
+            key={top}
+            className="absolute right-4 h-px rounded-full"
+            style={{
+              top: `${top}%`,
+              width: `${index === 3 ? 38 : 56}px`,
+              background: `${color}${index === 0 ? "48" : "30"}`,
+            }}
+          />
+        ))}
+      </div>
+      <div
+        className="absolute bottom-[25px] left-1/2 h-[72px] w-px -translate-x-1/2"
+        style={{ background: `linear-gradient(180deg, transparent, ${color}70, transparent)` }}
+      />
+
+      {/* Pencil crossing the page to make writing the primary action. */}
+      <div
+        className="absolute bottom-[25px] left-[58px] z-10 h-[7px] w-[104px] -rotate-[18deg] rounded-full"
+        style={{
+          background: `linear-gradient(90deg, #FDE68A 0 72%, ${color} 72% 90%, #F9A8D4 90%)`,
+          boxShadow: "0 4px 10px rgba(0,0,0,0.28)",
+        }}
+      >
+        <div
+          className="absolute -left-2 top-0 h-0 w-0"
+          style={{
+            borderBottom: "3.5px solid transparent",
+            borderRight: "9px solid #F4D7B2",
+            borderTop: "3.5px solid transparent",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 const ART_BY_SUBJECT: Record<string, (props: { color: string }) => ReactElement> = {
   math: MathWorldArtBase,
   science: ScienceWorldArtBase,
@@ -206,14 +316,19 @@ export function SubjectWorldArt({
   width = DESIGN_W,
   height = DESIGN_H,
   className = "",
+  variant = "default",
 }: {
   subjectId: string;
   color: string;
   width?: number;
   height?: number;
   className?: string;
+  variant?: "default" | "card";
 }) {
-  const ArtBase = ART_BY_SUBJECT[subjectId] ?? MathWorldArtBase;
+  const ArtBase =
+    subjectId === "bm" && variant === "card"
+      ? BMCardArtBase
+      : (ART_BY_SUBJECT[subjectId] ?? MathWorldArtBase);
   const scale = Math.min(width / DESIGN_W, height / DESIGN_H);
   return (
     <div className={`pointer-events-none relative overflow-hidden ${className}`} style={{ width, height }} aria-hidden>

@@ -166,7 +166,13 @@ export function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetI
 
       {/* World illustration — the subject's actual recognisable shape */}
       <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <SubjectWorldArt subjectId={subjectId} color={planet.color} width={196} height={118} />
+        <SubjectWorldArt
+          subjectId={subjectId}
+          color={planet.color}
+          width={196}
+          height={118}
+          variant="card"
+        />
       </div>
 
       {/* Small category icon badge — secondary accent, not the main identity */}
