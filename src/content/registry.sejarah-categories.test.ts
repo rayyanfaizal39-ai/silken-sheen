@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getChapter, getRegisteredSubjectChapters } from "./registry";
+import { formatChapterLabel, getChapter, getRegisteredSubjectChapters } from "./registry";
 
 const expectedCategories = {
   "Form 1": [
@@ -60,5 +60,23 @@ describe("Sejarah chapter category metadata", () => {
         (chapter) => chapter.categoryLabel === undefined,
       ),
     ).toBe(true);
+  });
+});
+
+describe("chapter label formatting", () => {
+  it("preserves numbering without duplicating an existing BM prefix", () => {
+    expect(formatChapterLabel("Chapter 1", "Bab 1: Biodiversiti", "bm")).toBe(
+      "Bab 1: Biodiversiti",
+    );
+  });
+
+  it("preserves numbering without duplicating an existing English prefix", () => {
+    expect(
+      formatChapterLabel(
+        "Chapter 1",
+        "Chapter 1: Introduction to Scientific Investigation",
+        "dlp",
+      ),
+    ).toBe("Chapter 1: Introduction to Scientific Investigation");
   });
 });

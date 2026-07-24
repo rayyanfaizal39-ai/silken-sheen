@@ -13,6 +13,7 @@ import {
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
 import {
+  formatChapterLabel,
   getChapter,
   getChaptersForSubject,
   getRegisteredSubjectChapters as getSubjectChapters,
@@ -393,9 +394,7 @@ function getMindMapChapters(subjectId: string, scienceLang: "bm" | "dlp" | undef
     if (!rows.has(chapter.chapterKey)) {
       rows.set(chapter.chapterKey, {
         key: chapter.chapterKey,
-        label: chapter.chapterKey.startsWith("Chapter ")
-          ? `${chapter.chapterKey}: ${chapter.title}`
-          : chapter.title,
+        label: formatChapterLabel(chapter.chapterKey, chapter.title, scienceLang),
         available: true,
         isNew: form === "Form 2",
       });

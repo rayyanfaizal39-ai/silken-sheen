@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
 import {
+  formatChapterLabel,
   getChapter,
   getRegisteredSubjectChapters as getSubjectChapters,
   getSubjectFormStats,
@@ -514,7 +515,9 @@ export function ContentHeader({
   );
   const chapterLabel =
     chapter?.label ??
-    (chapterContent ? `${chapterContent.chapterKey}: ${chapterContent.title}` : chapterKey);
+    (chapterContent
+      ? formatChapterLabel(chapterContent.chapterKey, chapterContent.title, scienceLang)
+      : chapterKey);
   const displayChapterLabel =
     mode === "quizzes" || mode === "flashcards" ? cleanLearningTitle(chapterLabel) : chapterLabel;
   const accent = getSubjectAccent(subjectId);
