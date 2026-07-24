@@ -10,11 +10,18 @@ import {
 } from "@/content/registry";
 import { ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
+import { cleanLearningTitle } from "@/lib/clean-learning-title";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type WorldTool = { icon: string; name: string; hint: string };
 type WorldBadge = { emoji: string; name: string; desc: string };
+
+function learningChapterLabel(label: string, resourceType: ResourceType) {
+  return resourceType === "quiz" || resourceType === "flashcards"
+    ? cleanLearningTitle(label)
+    : label;
+}
 
 type WorldConfig = {
   id: string;
@@ -696,6 +703,7 @@ function PathNode({
   chapter,
   index,
   config,
+  resourceType,
   pct,
   isComplete,
   isStarted,
@@ -703,6 +711,7 @@ function PathNode({
   chapter: ChapterEntry;
   index: number;
   config: WorldConfig;
+  resourceType: ResourceType;
   pct: number;
   isComplete: boolean;
   isStarted: boolean;
@@ -713,7 +722,7 @@ function PathNode({
     <div
       className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full transition-all duration-500 motion-reduce:transition-none"
       role="img"
-      aria-label={`${chapter.label} chapter progress: ${pct}%`}
+      aria-label={`${learningChapterLabel(chapter.label, resourceType)} chapter progress: ${pct}%`}
       style={{
         background: isComplete
           ? `radial-gradient(circle, ${config.from}55, ${config.to}22)`
@@ -888,7 +897,7 @@ function LocationCard({
       type="button"
       aria-label={
         canOpen
-          ? `Open ${chapter.label} ${resourceLabel(resourceType)}`
+          ? `Open ${learningChapterLabel(chapter.label, resourceType)} ${resourceLabel(resourceType)}`
           : undefined
       }
       onClick={() => canOpen && onSelect(chapter.key)}
@@ -958,7 +967,7 @@ function LocationCard({
 
         {/* KSSM chapter title */}
         <h2 className="font-display text-xs font-bold leading-snug text-white sm:text-sm">
-          {chapter.label}
+          {learningChapterLabel(chapter.label, resourceType)}
         </h2>
 
         {/* Status line */}
@@ -1075,6 +1084,7 @@ function VerticalPathMap({
                   chapter={chapter}
                   index={i}
                   config={config}
+                  resourceType={resourceType}
                   pct={pct}
                   isComplete={isComplete}
                   isStarted={isStarted}
@@ -1119,6 +1129,7 @@ function VerticalPathMap({
                       chapter={chapter}
                       index={i}
                       config={config}
+                      resourceType={resourceType}
                       pct={pct}
                       isComplete={isComplete}
                       isStarted={isStarted}
@@ -1132,6 +1143,7 @@ function VerticalPathMap({
                       chapter={chapter}
                       index={i}
                       config={config}
+                      resourceType={resourceType}
                       pct={pct}
                       isComplete={isComplete}
                       isStarted={isStarted}
@@ -1279,6 +1291,7 @@ function SejarahTimelineMap({
                   chapter={c}
                   index={i}
                   config={config}
+                  resourceType={resourceType}
                   pct={pct}
                   isComplete={isComplete}
                   isStarted={isStarted}
@@ -1311,7 +1324,7 @@ function SejarahTimelineMap({
                   data-chapter-card={c.key}
                   aria-label={
                     canOpen
-                      ? `Open ${c.label} ${resourceLabel(resourceType)}`
+                      ? `Open ${learningChapterLabel(c.label, resourceType)} ${resourceLabel(resourceType)}`
                       : undefined
                   }
                   onClick={() => canOpen && onSelect(c.key)}
@@ -1365,7 +1378,9 @@ function SejarahTimelineMap({
                         {c.categoryLabel}
                       </p>
                     )}
-                    <p className="text-[10px] font-bold leading-snug text-white/85">{c.label}</p>
+                    <p className="text-[10px] font-bold leading-snug text-white/85">
+                      {learningChapterLabel(c.label, resourceType)}
+                    </p>
                     <p
                       className="mt-1 text-[9px] font-semibold"
                       style={{
@@ -1454,7 +1469,7 @@ function ChapterCard({
       type="button"
       aria-label={
         canOpen
-          ? `Open ${chapter.label} ${resourceLabel(resourceType)}`
+          ? `Open ${learningChapterLabel(chapter.label, resourceType)} ${resourceLabel(resourceType)}`
           : undefined
       }
       onClick={() => canOpen && onSelect(chapter.key)}
@@ -1527,7 +1542,9 @@ function ChapterCard({
         )}
 
         {/* KSSM chapter title */}
-        <h2 className="font-display text-sm font-bold leading-snug text-white">{chapter.label}</h2>
+        <h2 className="font-display text-sm font-bold leading-snug text-white">
+          {learningChapterLabel(chapter.label, resourceType)}
+        </h2>
 
         {/* Content chips */}
         {chapter.available && notesCount > 0 && (

@@ -1,10 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
-import {
-  subjects,
-  forms,
-  type Form,
-} from "@/data/content";
+import { subjects, forms, type Form } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import {
   Heart,
@@ -31,6 +27,11 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import {
+  cleanLearningLabel,
+  cleanLearningQuestion,
+  cleanLearningTitle,
+} from "@/lib/clean-learning-title";
+import {
   normalizeFlashcardSetParam,
   normalizeFormParam,
   normalizeSubjectParam,
@@ -45,7 +46,12 @@ import {
   getRegisteredSubjectChapters as getSubjectChapters,
   hasFormResourceContent,
 } from "@/content/registry";
-import { AcademyHero, AcademyPageShell, SubjectWorldBanner, type SubjectPlanetId } from "@/components/AcademyPage";
+import {
+  AcademyHero,
+  AcademyPageShell,
+  SubjectWorldBanner,
+  type SubjectPlanetId,
+} from "@/components/AcademyPage";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
   ENGLISH_FLASHCARD_DECKS,
@@ -78,7 +84,9 @@ export const Route = createFileRoute("/flashcards")({
   head: ({ match }) => {
     const subjectId = (match.search as { subject?: string })?.subject;
     const subjectName = subjectSeoName(subjectId);
-    const title = subjectName ? `${subjectName} Flashcards — KSSM Form 1-3` : "KSSM Flashcards — Form 1-3 Revision Cards";
+    const title = subjectName
+      ? `${subjectName} Flashcards — KSSM Form 1-3`
+      : "KSSM Flashcards — Form 1-3 Revision Cards";
     const description = subjectName
       ? `Swipeable ${subjectName} flashcards for fast KSSM Form 1-3 revision, with favorites and spaced repetition.`
       : "Swipeable, flippable KSSM flashcards for fast Form 1-3 revision across Science, Math, English, Bahasa Melayu, Sejarah and Geografi.";
@@ -86,7 +94,13 @@ export const Route = createFileRoute("/flashcards")({
       title,
       description,
       path: "/flashcards",
-      keywords: ["KSSM flashcards", "Form 1 flashcards", "spaced repetition", "SPM preparation", ...subjectSeoKeywords(subjectId)],
+      keywords: [
+        "KSSM flashcards",
+        "Form 1 flashcards",
+        "spaced repetition",
+        "SPM preparation",
+        ...subjectSeoKeywords(subjectId),
+      ],
     });
   },
   component: FlashcardsPage,
@@ -1477,24 +1491,14 @@ const MATH_F1_C4_FLASHCARD_PAIRS: Record<
     mathCard("FSTB bagi 8 dan 12?", "4.", "HCF of 8 and 12?", "4."),
   ],
   practice: [
-    mathCard(
-      "Permudahkan 15 : 25.",
-      "3 : 5.",
-      "Simplify 15 : 25.",
-      "3 : 5.",
-    ),
+    mathCard("Permudahkan 15 : 25.", "3 : 5.", "Simplify 15 : 25.", "3 : 5."),
     mathCard(
       "Jika 5 buku berharga RM 20, harga 8 buku ialah?",
       "RM 32.",
       "If 5 books cost RM 20, the cost of 8 books is?",
       "RM 32.",
     ),
-    mathCard(
-      "Selesaikan 3/4 = x/12.",
-      "x = 9.",
-      "Solve 3/4 = x/12.",
-      "x = 9.",
-    ),
+    mathCard("Selesaikan 3/4 = x/12.", "x = 9.", "Solve 3/4 = x/12.", "x = 9."),
     mathCard(
       "Kereta bergerak 120 km dalam 2 jam. Apakah kelajuannya?",
       "60 km/j.",
@@ -1513,30 +1517,15 @@ const MATH_F1_C4_FLASHCARD_PAIRS: Record<
       "Convert RM 8 per m to RM per cm.",
       "RM 0.08 per cm.",
     ),
-    mathCard(
-      "Adakah 2 : 3 dan 8 : 12 setara?",
-      "Ya.",
-      "Are 2 : 3 and 8 : 12 equivalent?",
-      "Yes.",
-    ),
-    mathCard(
-      "Permudahkan 200 g : 1 kg.",
-      "1 : 5.",
-      "Simplify 200 g : 1 kg.",
-      "1 : 5.",
-    ),
+    mathCard("Adakah 2 : 3 dan 8 : 12 setara?", "Ya.", "Are 2 : 3 and 8 : 12 equivalent?", "Yes."),
+    mathCard("Permudahkan 200 g : 1 kg.", "1 : 5.", "Simplify 200 g : 1 kg.", "1 : 5."),
     mathCard(
       "Tulis 40% sebagai nisbah termudah.",
       "2 : 5.",
       "Write 40% as a simplest ratio.",
       "2 : 5.",
     ),
-    mathCard(
-      "5 pen = RM 15. Harga 3 pen?",
-      "RM 9.",
-      "5 pens = RM 15. Price of 3 pens?",
-      "RM 9.",
-    ),
+    mathCard("5 pen = RM 15. Harga 3 pen?", "RM 9.", "5 pens = RM 15. Price of 3 pens?", "RM 9."),
     mathCard(
       "Skala peta 1 : 1000. Jarak sebenar 5 cm pada peta ialah?",
       "5000 cm atau 50 m.",
@@ -1822,12 +1811,7 @@ const MATH_F1_C5_FLASHCARD_PAIRS: Record<
     mathCard("5y + 6y = ?", "11y.", "5y + 6y = ?", "11y."),
     mathCard("Permudahkan −(x + 4).", "−x − 4.", "Simplify −(x + 4).", "−x − 4."),
     mathCard("Permudahkan −(3a − 2b).", "−3a + 2b.", "Simplify −(3a − 2b).", "−3a + 2b."),
-    mathCard(
-      "Permudahkan 5x − (2x − 3).",
-      "3x + 3.",
-      "Simplify 5x − (2x − 3).",
-      "3x + 3.",
-    ),
+    mathCard("Permudahkan 5x − (2x − 3).", "3x + 3.", "Simplify 5x − (2x − 3).", "3x + 3."),
     mathCard("a × a² = ?", "a³.", "a × a² = ?", "a³."),
     mathCard("a⁵ ÷ a² = ?", "a³.", "a⁵ ÷ a² = ?", "a³."),
     mathCard("2a × 3a = ?", "6a².", "2a × 3a = ?", "6a²."),
@@ -2607,75 +2591,385 @@ const MATH_F1_C8_FLASHCARD_PAIRS: Record<
   Array<{ bm: [string, string]; dlp: [string, string] }>
 > = {
   concepts: [
-    mathCard("Apakah sudut?", "Sudut ialah ukuran putaran antara dua tembereng garis yang bertemu di satu titik (bucu).", "What is an angle?", "An angle is the measure of rotation between two line segments meeting at a point (vertex)."),
-    mathCard("Apakah sudut tirus?", "Sudut tirus ialah sudut yang lebih kecil daripada 90°. Contoh: 30°, 45°, 60°.", "What is an acute angle?", "An acute angle is an angle smaller than 90°. Examples: 30°, 45°, 60°."),
-    mathCard("Apakah sudut tegak?", "Sudut tegak ialah sudut yang tepat 90°. Ia ditandakan dengan simbol kotak kecil □.", "What is a right angle?", "A right angle is exactly 90°. It is marked with a small square symbol □."),
-    mathCard("Apakah sudut cakah?", "Sudut cakah ialah sudut yang lebih besar daripada 90° tetapi kurang daripada 180°. Contoh: 110°, 150°.", "What is an obtuse angle?", "An obtuse angle is greater than 90° but less than 180°. Examples: 110°, 150°."),
-    mathCard("Apakah sudut refleks?", "Sudut refleks ialah sudut yang lebih besar daripada 180° tetapi kurang daripada 360°. Contoh: 200°, 270°.", "What is a reflex angle?", "A reflex angle is greater than 180° but less than 360°. Examples: 200°, 270°."),
-    mathCard("Apakah sudut pelengkap?", "Sudut pelengkap ialah dua sudut yang berjumlah 90°. Setiap satu ialah pelengkap kepada yang lain.", "What are complementary angles?", "Complementary angles are two angles that sum to 90°. Each is the complement of the other."),
-    mathCard("Apakah sudut penggenap?", "Sudut penggenap ialah dua sudut yang berjumlah 180°. Setiap satu ialah penggenap kepada yang lain.", "What are supplementary angles?", "Supplementary angles are two angles that sum to 180°. Each is the supplement of the other."),
-    mathCard("Apakah sudut konjugat?", "Sudut konjugat ialah dua sudut yang berjumlah 360°. Mereka bersama-sama membentuk putaran lengkap.", "What are conjugate angles?", "Conjugate angles are two angles that sum to 360°. Together they form a complete turn."),
-    mathCard("Apakah sudut bertentang bucu?", "Sudut bertentang bucu ialah sudut-sudut yang berhadapan di titik persilangan dua garis. Sudut bertentang bucu adalah sama besar.", "What are vertically opposite angles?", "Vertically opposite angles are angles facing each other at the intersection of two lines. They are equal in size."),
-    mathCard("Apakah garis serenjang?", "Garis serenjang ialah dua garis yang bertemu pada sudut tepat 90°. Dilambangkan dengan simbol ⊥.", "What are perpendicular lines?", "Perpendicular lines are two lines that meet at exactly 90°. Denoted by the symbol ⊥."),
-    mathCard("Apakah garis selari?", "Garis selari ialah dua garis yang tidak bersilang walaupun dipanjangkan seberapa jauh. Jarak antara keduanya sentiasa sama.", "What are parallel lines?", "Parallel lines are two lines that never intersect even when extended. The distance between them is always the same."),
-    mathCard("Apakah garis rentas lintang?", "Garis rentas lintang ialah garis yang memotong dua atau lebih garis lain.", "What is a transversal?", "A transversal is a line that cuts across two or more other lines."),
-    mathCard("Apakah sudut sepadan?", "Sudut sepadan ialah sudut pada kedudukan yang sama di dua persilangan dengan garis rentas lintang. Sudut sepadan adalah sama besar (corak F).", "What are corresponding angles?", "Corresponding angles are in the same position at two intersections with a transversal. They are equal (F-pattern)."),
-    mathCard("Apakah sudut selang-seli?", "Sudut selang-seli ialah sudut di kawasan dalam garis selari pada sisi yang berlawanan garis rentas. Sudut selang-seli adalah sama besar (corak Z/N).", "What are alternate angles?", "Alternate angles are between parallel lines on opposite sides of the transversal. They are equal (Z/N-pattern)."),
-    mathCard("Apakah sudut pedalaman?", "Sudut pedalaman ialah sudut di kawasan dalam garis selari pada sisi yang sama garis rentas. Dua sudut pedalaman bersebelahan berjumlah 180° (corak C/U).", "What are interior angles?", "Interior angles are between parallel lines on the same side of the transversal. Two co-interior angles sum to 180° (C/U-pattern)."),
-    mathCard("Apakah sudut dongak?", "Sudut dongak ialah sudut yang diukur dari garisan ufuk ke atas ke arah objek. Pemerhati berada di bawah objek.", "What is the angle of elevation?", "The angle of elevation is measured from the horizontal upward to the object. The observer is below the object."),
-    mathCard("Apakah sudut tunduk?", "Sudut tunduk ialah sudut yang diukur dari garisan ufuk ke bawah ke arah objek. Pemerhati berada di atas objek.", "What is the angle of depression?", "The angle of depression is measured from the horizontal downward to the object. The observer is above the object."),
-    mathCard("Apakah protraktor?", "Protraktor ialah alat yang digunakan untuk mengukur dan melukis sudut dalam darjah (°).", "What is a protractor?", "A protractor is a tool used to measure and draw angles in degrees (°)."),
+    mathCard(
+      "Apakah sudut?",
+      "Sudut ialah ukuran putaran antara dua tembereng garis yang bertemu di satu titik (bucu).",
+      "What is an angle?",
+      "An angle is the measure of rotation between two line segments meeting at a point (vertex).",
+    ),
+    mathCard(
+      "Apakah sudut tirus?",
+      "Sudut tirus ialah sudut yang lebih kecil daripada 90°. Contoh: 30°, 45°, 60°.",
+      "What is an acute angle?",
+      "An acute angle is an angle smaller than 90°. Examples: 30°, 45°, 60°.",
+    ),
+    mathCard(
+      "Apakah sudut tegak?",
+      "Sudut tegak ialah sudut yang tepat 90°. Ia ditandakan dengan simbol kotak kecil □.",
+      "What is a right angle?",
+      "A right angle is exactly 90°. It is marked with a small square symbol □.",
+    ),
+    mathCard(
+      "Apakah sudut cakah?",
+      "Sudut cakah ialah sudut yang lebih besar daripada 90° tetapi kurang daripada 180°. Contoh: 110°, 150°.",
+      "What is an obtuse angle?",
+      "An obtuse angle is greater than 90° but less than 180°. Examples: 110°, 150°.",
+    ),
+    mathCard(
+      "Apakah sudut refleks?",
+      "Sudut refleks ialah sudut yang lebih besar daripada 180° tetapi kurang daripada 360°. Contoh: 200°, 270°.",
+      "What is a reflex angle?",
+      "A reflex angle is greater than 180° but less than 360°. Examples: 200°, 270°.",
+    ),
+    mathCard(
+      "Apakah sudut pelengkap?",
+      "Sudut pelengkap ialah dua sudut yang berjumlah 90°. Setiap satu ialah pelengkap kepada yang lain.",
+      "What are complementary angles?",
+      "Complementary angles are two angles that sum to 90°. Each is the complement of the other.",
+    ),
+    mathCard(
+      "Apakah sudut penggenap?",
+      "Sudut penggenap ialah dua sudut yang berjumlah 180°. Setiap satu ialah penggenap kepada yang lain.",
+      "What are supplementary angles?",
+      "Supplementary angles are two angles that sum to 180°. Each is the supplement of the other.",
+    ),
+    mathCard(
+      "Apakah sudut konjugat?",
+      "Sudut konjugat ialah dua sudut yang berjumlah 360°. Mereka bersama-sama membentuk putaran lengkap.",
+      "What are conjugate angles?",
+      "Conjugate angles are two angles that sum to 360°. Together they form a complete turn.",
+    ),
+    mathCard(
+      "Apakah sudut bertentang bucu?",
+      "Sudut bertentang bucu ialah sudut-sudut yang berhadapan di titik persilangan dua garis. Sudut bertentang bucu adalah sama besar.",
+      "What are vertically opposite angles?",
+      "Vertically opposite angles are angles facing each other at the intersection of two lines. They are equal in size.",
+    ),
+    mathCard(
+      "Apakah garis serenjang?",
+      "Garis serenjang ialah dua garis yang bertemu pada sudut tepat 90°. Dilambangkan dengan simbol ⊥.",
+      "What are perpendicular lines?",
+      "Perpendicular lines are two lines that meet at exactly 90°. Denoted by the symbol ⊥.",
+    ),
+    mathCard(
+      "Apakah garis selari?",
+      "Garis selari ialah dua garis yang tidak bersilang walaupun dipanjangkan seberapa jauh. Jarak antara keduanya sentiasa sama.",
+      "What are parallel lines?",
+      "Parallel lines are two lines that never intersect even when extended. The distance between them is always the same.",
+    ),
+    mathCard(
+      "Apakah garis rentas lintang?",
+      "Garis rentas lintang ialah garis yang memotong dua atau lebih garis lain.",
+      "What is a transversal?",
+      "A transversal is a line that cuts across two or more other lines.",
+    ),
+    mathCard(
+      "Apakah sudut sepadan?",
+      "Sudut sepadan ialah sudut pada kedudukan yang sama di dua persilangan dengan garis rentas lintang. Sudut sepadan adalah sama besar (corak F).",
+      "What are corresponding angles?",
+      "Corresponding angles are in the same position at two intersections with a transversal. They are equal (F-pattern).",
+    ),
+    mathCard(
+      "Apakah sudut selang-seli?",
+      "Sudut selang-seli ialah sudut di kawasan dalam garis selari pada sisi yang berlawanan garis rentas. Sudut selang-seli adalah sama besar (corak Z/N).",
+      "What are alternate angles?",
+      "Alternate angles are between parallel lines on opposite sides of the transversal. They are equal (Z/N-pattern).",
+    ),
+    mathCard(
+      "Apakah sudut pedalaman?",
+      "Sudut pedalaman ialah sudut di kawasan dalam garis selari pada sisi yang sama garis rentas. Dua sudut pedalaman bersebelahan berjumlah 180° (corak C/U).",
+      "What are interior angles?",
+      "Interior angles are between parallel lines on the same side of the transversal. Two co-interior angles sum to 180° (C/U-pattern).",
+    ),
+    mathCard(
+      "Apakah sudut dongak?",
+      "Sudut dongak ialah sudut yang diukur dari garisan ufuk ke atas ke arah objek. Pemerhati berada di bawah objek.",
+      "What is the angle of elevation?",
+      "The angle of elevation is measured from the horizontal upward to the object. The observer is below the object.",
+    ),
+    mathCard(
+      "Apakah sudut tunduk?",
+      "Sudut tunduk ialah sudut yang diukur dari garisan ufuk ke bawah ke arah objek. Pemerhati berada di atas objek.",
+      "What is the angle of depression?",
+      "The angle of depression is measured from the horizontal downward to the object. The observer is above the object.",
+    ),
+    mathCard(
+      "Apakah protraktor?",
+      "Protraktor ialah alat yang digunakan untuk mengukur dan melukis sudut dalam darjah (°).",
+      "What is a protractor?",
+      "A protractor is a tool used to measure and draw angles in degrees (°).",
+    ),
   ],
   operations: [
-    mathCard("Bagaimana menggunakan protraktor?", "Langkah 1: Letakkan titik tengah pada bucu. Langkah 2: Sejajarkan garisan dasar. Langkah 3: Baca darjah pada skala yang betul.", "How do you use a protractor?", "Step 1: Place centre at vertex. Step 2: Align baseline. Step 3: Read degrees on the correct scale."),
-    mathCard("Bagaimana mencari sudut pelengkap?", "Tolak sudut daripada 90°. Jika sudut = 35°, maka pelengkap = 90° − 35° = 55°.", "How do you find the complement of an angle?", "Subtract the angle from 90°. If angle = 35°, complement = 90° − 35° = 55°."),
-    mathCard("Bagaimana mencari sudut penggenap?", "Tolak sudut daripada 180°. Jika sudut = 70°, maka penggenap = 180° − 70° = 110°.", "How do you find the supplement of an angle?", "Subtract the angle from 180°. If angle = 70°, supplement = 180° − 70° = 110°."),
-    mathCard("Bagaimana mencari sudut konjugat?", "Tolak sudut daripada 360°. Jika sudut = 130°, maka konjugat = 360° − 130° = 230°.", "How do you find the conjugate of an angle?", "Subtract the angle from 360°. If angle = 130°, conjugate = 360° − 130° = 230°."),
-    mathCard("Bagaimana menggunakan sifat sudut pada garis lurus?", "Tetapkan jumlah semua sudut = 180°. Contoh: a + 65° = 180° → a = 115°.", "How do you use angles on a straight line?", "Set sum of all angles = 180°. Example: a + 65° = 180° → a = 115°."),
-    mathCard("Bagaimana menggunakan sifat putaran lengkap?", "Tetapkan jumlah semua sudut di sekeliling titik = 360°. Contoh: 120° + 80° + x = 360° → x = 160°.", "How do you use angles at a complete turn?", "Set sum of all angles around the point = 360°. Example: 120° + 80° + x = 360° → x = 160°."),
-    mathCard("Bagaimana menggunakan sudut bertentang bucu?", "Tetapkan sudut bertentang bucu = sama. Contoh: 3x = 75° → x = 25°.", "How do you use vertically opposite angles?", "Set vertically opposite angles as equal. Example: 3x = 75° → x = 25°."),
-    mathCard("Bagaimana mengenal pasti sudut sepadan (corak F)?", "Sudut sepadan berada pada kedudukan yang sama di dua persilangan — kedua-duanya di atas-kiri, atau kedua-duanya di bawah-kanan. Corak: huruf F.", "How do you identify corresponding angles (F-pattern)?", "Corresponding angles are in the same position at two intersections — both top-left or both bottom-right. Pattern: letter F."),
-    mathCard("Bagaimana mengenal pasti sudut selang-seli (corak Z)?", "Sudut selang-seli berada di kawasan dalam, pada sisi yang berlawanan garis rentas. Corak: huruf Z atau N.", "How do you identify alternate angles (Z-pattern)?", "Alternate angles are in the inner region, on opposite sides of the transversal. Pattern: letter Z or N."),
-    mathCard("Bagaimana mengenal pasti sudut pedalaman (corak C)?", "Sudut pedalaman berada di kawasan dalam, pada sisi yang sama garis rentas. Jumlah = 180°. Corak: huruf C atau U.", "How do you identify interior angles (C-pattern)?", "Interior angles are in the inner region, on the same side of the transversal. Sum = 180°. Pattern: letter C or U."),
-    mathCard("Cara menyelesaikan sudut dalam persilangan garis.", "1. Kenal pasti jenis sudut. 2. Tulis persamaan. 3. Selesaikan. 4. Semak semula.", "Steps to solve angles at intersecting lines.", "1. Identify the type of angles. 2. Write the equation. 3. Solve. 4. Check your answer."),
-    mathCard("Jika sudut sepadan = (3x + 10)° dan 70°, cari x.", "3x + 10 = 70 (sudut sepadan sama). 3x = 60. x = 20.", "If corresponding angles = (3x + 10)° and 70°, find x.", "3x + 10 = 70 (corresponding angles equal). 3x = 60. x = 20."),
-    mathCard("Jika sudut pedalaman = 65° dan (2y + 15)°, cari y.", "65 + (2y + 15) = 180 (sudut pedalaman berjumlah 180°). 2y + 80 = 180. 2y = 100. y = 50.", "If interior angles = 65° and (2y + 15)°, find y.", "65 + (2y + 15) = 180 (interior angles sum to 180°). 2y + 80 = 180. 2y = 100. y = 50."),
-    mathCard("Membezakan sudut dongak dan tunduk dalam masalah.", "Dongak: pemerhati di bawah, lihat ke atas. Tunduk: pemerhati di atas, lihat ke bawah. Kedua-duanya diukur dari garisan ufuk.", "Distinguishing elevation and depression in problems.", "Elevation: observer below, looking up. Depression: observer above, looking down. Both measured from the horizontal."),
-    mathCard("Melukis garis serenjang menggunakan protraktor.", "Lukis satu garis, letakkan pusat protraktor pada titik yang dikehendaki, tandakan 90°, lukis garisan melalui tanda tersebut.", "Drawing perpendicular lines using a protractor.", "Draw a line, place the protractor centre at the desired point, mark 90°, draw a line through the mark."),
-    mathCard("Menyelesaikan: (2x + 10)°, 40° dan (x − 5)° pada garis lurus.", "(2x + 10) + 40 + (x − 5) = 180. 3x + 45 = 180. 3x = 135. x = 45.", "Solve: (2x + 10)°, 40° and (x − 5)° on a straight line.", "(2x + 10) + 40 + (x − 5) = 180. 3x + 45 = 180. 3x = 135. x = 45."),
-    mathCard("Menyelesaikan: sudut selang-seli = (4m − 20)° dan 80°.", "4m − 20 = 80 (sudut selang-seli sama). 4m = 100. m = 25.", "Solve: alternate angles = (4m − 20)° and 80°.", "4m − 20 = 80 (alternate angles equal). 4m = 100. m = 25."),
+    mathCard(
+      "Bagaimana menggunakan protraktor?",
+      "Langkah 1: Letakkan titik tengah pada bucu. Langkah 2: Sejajarkan garisan dasar. Langkah 3: Baca darjah pada skala yang betul.",
+      "How do you use a protractor?",
+      "Step 1: Place centre at vertex. Step 2: Align baseline. Step 3: Read degrees on the correct scale.",
+    ),
+    mathCard(
+      "Bagaimana mencari sudut pelengkap?",
+      "Tolak sudut daripada 90°. Jika sudut = 35°, maka pelengkap = 90° − 35° = 55°.",
+      "How do you find the complement of an angle?",
+      "Subtract the angle from 90°. If angle = 35°, complement = 90° − 35° = 55°.",
+    ),
+    mathCard(
+      "Bagaimana mencari sudut penggenap?",
+      "Tolak sudut daripada 180°. Jika sudut = 70°, maka penggenap = 180° − 70° = 110°.",
+      "How do you find the supplement of an angle?",
+      "Subtract the angle from 180°. If angle = 70°, supplement = 180° − 70° = 110°.",
+    ),
+    mathCard(
+      "Bagaimana mencari sudut konjugat?",
+      "Tolak sudut daripada 360°. Jika sudut = 130°, maka konjugat = 360° − 130° = 230°.",
+      "How do you find the conjugate of an angle?",
+      "Subtract the angle from 360°. If angle = 130°, conjugate = 360° − 130° = 230°.",
+    ),
+    mathCard(
+      "Bagaimana menggunakan sifat sudut pada garis lurus?",
+      "Tetapkan jumlah semua sudut = 180°. Contoh: a + 65° = 180° → a = 115°.",
+      "How do you use angles on a straight line?",
+      "Set sum of all angles = 180°. Example: a + 65° = 180° → a = 115°.",
+    ),
+    mathCard(
+      "Bagaimana menggunakan sifat putaran lengkap?",
+      "Tetapkan jumlah semua sudut di sekeliling titik = 360°. Contoh: 120° + 80° + x = 360° → x = 160°.",
+      "How do you use angles at a complete turn?",
+      "Set sum of all angles around the point = 360°. Example: 120° + 80° + x = 360° → x = 160°.",
+    ),
+    mathCard(
+      "Bagaimana menggunakan sudut bertentang bucu?",
+      "Tetapkan sudut bertentang bucu = sama. Contoh: 3x = 75° → x = 25°.",
+      "How do you use vertically opposite angles?",
+      "Set vertically opposite angles as equal. Example: 3x = 75° → x = 25°.",
+    ),
+    mathCard(
+      "Bagaimana mengenal pasti sudut sepadan (corak F)?",
+      "Sudut sepadan berada pada kedudukan yang sama di dua persilangan — kedua-duanya di atas-kiri, atau kedua-duanya di bawah-kanan. Corak: huruf F.",
+      "How do you identify corresponding angles (F-pattern)?",
+      "Corresponding angles are in the same position at two intersections — both top-left or both bottom-right. Pattern: letter F.",
+    ),
+    mathCard(
+      "Bagaimana mengenal pasti sudut selang-seli (corak Z)?",
+      "Sudut selang-seli berada di kawasan dalam, pada sisi yang berlawanan garis rentas. Corak: huruf Z atau N.",
+      "How do you identify alternate angles (Z-pattern)?",
+      "Alternate angles are in the inner region, on opposite sides of the transversal. Pattern: letter Z or N.",
+    ),
+    mathCard(
+      "Bagaimana mengenal pasti sudut pedalaman (corak C)?",
+      "Sudut pedalaman berada di kawasan dalam, pada sisi yang sama garis rentas. Jumlah = 180°. Corak: huruf C atau U.",
+      "How do you identify interior angles (C-pattern)?",
+      "Interior angles are in the inner region, on the same side of the transversal. Sum = 180°. Pattern: letter C or U.",
+    ),
+    mathCard(
+      "Cara menyelesaikan sudut dalam persilangan garis.",
+      "1. Kenal pasti jenis sudut. 2. Tulis persamaan. 3. Selesaikan. 4. Semak semula.",
+      "Steps to solve angles at intersecting lines.",
+      "1. Identify the type of angles. 2. Write the equation. 3. Solve. 4. Check your answer.",
+    ),
+    mathCard(
+      "Jika sudut sepadan = (3x + 10)° dan 70°, cari x.",
+      "3x + 10 = 70 (sudut sepadan sama). 3x = 60. x = 20.",
+      "If corresponding angles = (3x + 10)° and 70°, find x.",
+      "3x + 10 = 70 (corresponding angles equal). 3x = 60. x = 20.",
+    ),
+    mathCard(
+      "Jika sudut pedalaman = 65° dan (2y + 15)°, cari y.",
+      "65 + (2y + 15) = 180 (sudut pedalaman berjumlah 180°). 2y + 80 = 180. 2y = 100. y = 50.",
+      "If interior angles = 65° and (2y + 15)°, find y.",
+      "65 + (2y + 15) = 180 (interior angles sum to 180°). 2y + 80 = 180. 2y = 100. y = 50.",
+    ),
+    mathCard(
+      "Membezakan sudut dongak dan tunduk dalam masalah.",
+      "Dongak: pemerhati di bawah, lihat ke atas. Tunduk: pemerhati di atas, lihat ke bawah. Kedua-duanya diukur dari garisan ufuk.",
+      "Distinguishing elevation and depression in problems.",
+      "Elevation: observer below, looking up. Depression: observer above, looking down. Both measured from the horizontal.",
+    ),
+    mathCard(
+      "Melukis garis serenjang menggunakan protraktor.",
+      "Lukis satu garis, letakkan pusat protraktor pada titik yang dikehendaki, tandakan 90°, lukis garisan melalui tanda tersebut.",
+      "Drawing perpendicular lines using a protractor.",
+      "Draw a line, place the protractor centre at the desired point, mark 90°, draw a line through the mark.",
+    ),
+    mathCard(
+      "Menyelesaikan: (2x + 10)°, 40° dan (x − 5)° pada garis lurus.",
+      "(2x + 10) + 40 + (x − 5) = 180. 3x + 45 = 180. 3x = 135. x = 45.",
+      "Solve: (2x + 10)°, 40° and (x − 5)° on a straight line.",
+      "(2x + 10) + 40 + (x − 5) = 180. 3x + 45 = 180. 3x = 135. x = 45.",
+    ),
+    mathCard(
+      "Menyelesaikan: sudut selang-seli = (4m − 20)° dan 80°.",
+      "4m − 20 = 80 (sudut selang-seli sama). 4m = 100. m = 25.",
+      "Solve: alternate angles = (4m − 20)° and 80°.",
+      "4m − 20 = 80 (alternate angles equal). 4m = 100. m = 25.",
+    ),
   ],
   facts: [
-    mathCard("Berapakah jumlah sudut pada garis lurus?", "180°. Semua sudut yang terbentuk di atas (atau bawah) garis lurus sentiasa berjumlah 180°.", "What is the sum of angles on a straight line?", "180°. All angles formed above (or below) a straight line always sum to 180°."),
-    mathCard("Berapakah jumlah sudut putaran lengkap?", "360°. Semua sudut di sekeliling satu titik sentiasa berjumlah 360°.", "What is the sum of angles in a complete turn?", "360°. All angles around a single point always sum to 360°."),
-    mathCard("Berapa banyak sudut terbentuk apabila dua garis bersilang?", "4 sudut. Dua pasangan sudut bertentang bucu dan dua pasangan sudut bersebelahan.", "How many angles are formed when two lines intersect?", "4 angles. Two pairs of vertically opposite angles and two pairs of adjacent angles."),
-    mathCard("Berapa banyak sudut terbentuk apabila garis rentas memotong dua garis selari?", "8 sudut. 4 di setiap titik persilangan.", "How many angles are formed when a transversal cuts two parallel lines?", "8 angles. 4 at each intersection point."),
-    mathCard("Nyatakan julat setiap jenis sudut.", "Tirus: 0°–90°. Tegak: 90°. Cakah: 90°–180°. Refleks: 180°–360°.", "State the range of each type of angle.", "Acute: 0°–90°. Right: 90°. Obtuse: 90°–180°. Reflex: 180°–360°."),
-    mathCard("Apakah sifat sudut bertentang bucu?", "Sudut bertentang bucu adalah SAMA BESAR. Jika satu sudut = 65°, maka sudut bertentang bucu juga = 65°.", "What is the property of vertically opposite angles?", "Vertically opposite angles are EQUAL. If one angle = 65°, the vertically opposite angle is also 65°."),
-    mathCard("Apakah sifat sudut sepadan pada garis selari?", "Sudut SEPADAN adalah SAMA BESAR apabila garis rentas memotong dua garis selari. Corak: F.", "What is the property of corresponding angles in parallel lines?", "CORRESPONDING angles are EQUAL when a transversal cuts two parallel lines. Pattern: F."),
-    mathCard("Apakah sifat sudut selang-seli pada garis selari?", "Sudut SELANG-SELI adalah SAMA BESAR apabila garis rentas memotong dua garis selari. Corak: Z/N.", "What is the property of alternate angles in parallel lines?", "ALTERNATE angles are EQUAL when a transversal cuts two parallel lines. Pattern: Z/N."),
-    mathCard("Apakah sifat sudut pedalaman pada garis selari?", "Sudut PEDALAMAN BERSEBELAHAN BERJUMLAH 180° apabila garis rentas memotong dua garis selari. Corak: C/U.", "What is the property of interior angles in parallel lines?", "CO-INTERIOR angles SUM TO 180° when a transversal cuts two parallel lines. Pattern: C/U."),
-    mathCard("Formula: pelengkap bagi sudut a.", "Pelengkap = 90° − a. Contoh: pelengkap 35° = 90° − 35° = 55°.", "Formula: complement of angle a.", "Complement = 90° − a. Example: complement of 35° = 90° − 35° = 55°."),
-    mathCard("Formula: penggenap bagi sudut a.", "Penggenap = 180° − a. Contoh: penggenap 70° = 180° − 70° = 110°.", "Formula: supplement of angle a.", "Supplement = 180° − a. Example: supplement of 70° = 180° − 70° = 110°."),
-    mathCard("Formula: konjugat bagi sudut a.", "Konjugat = 360° − a. Contoh: konjugat 120° = 360° − 120° = 240°.", "Formula: conjugate of angle a.", "Conjugate = 360° − a. Example: conjugate of 120° = 360° − 120° = 240°."),
-    mathCard("Apakah perbezaan garis serenjang dan selari?", "Serenjang: bertemu pada 90°. Selari: tidak bersilang, jarak sentiasa sama.", "What is the difference between perpendicular and parallel lines?", "Perpendicular: meet at 90°. Parallel: never intersect, distance always the same."),
+    mathCard(
+      "Berapakah jumlah sudut pada garis lurus?",
+      "180°. Semua sudut yang terbentuk di atas (atau bawah) garis lurus sentiasa berjumlah 180°.",
+      "What is the sum of angles on a straight line?",
+      "180°. All angles formed above (or below) a straight line always sum to 180°.",
+    ),
+    mathCard(
+      "Berapakah jumlah sudut putaran lengkap?",
+      "360°. Semua sudut di sekeliling satu titik sentiasa berjumlah 360°.",
+      "What is the sum of angles in a complete turn?",
+      "360°. All angles around a single point always sum to 360°.",
+    ),
+    mathCard(
+      "Berapa banyak sudut terbentuk apabila dua garis bersilang?",
+      "4 sudut. Dua pasangan sudut bertentang bucu dan dua pasangan sudut bersebelahan.",
+      "How many angles are formed when two lines intersect?",
+      "4 angles. Two pairs of vertically opposite angles and two pairs of adjacent angles.",
+    ),
+    mathCard(
+      "Berapa banyak sudut terbentuk apabila garis rentas memotong dua garis selari?",
+      "8 sudut. 4 di setiap titik persilangan.",
+      "How many angles are formed when a transversal cuts two parallel lines?",
+      "8 angles. 4 at each intersection point.",
+    ),
+    mathCard(
+      "Nyatakan julat setiap jenis sudut.",
+      "Tirus: 0°–90°. Tegak: 90°. Cakah: 90°–180°. Refleks: 180°–360°.",
+      "State the range of each type of angle.",
+      "Acute: 0°–90°. Right: 90°. Obtuse: 90°–180°. Reflex: 180°–360°.",
+    ),
+    mathCard(
+      "Apakah sifat sudut bertentang bucu?",
+      "Sudut bertentang bucu adalah SAMA BESAR. Jika satu sudut = 65°, maka sudut bertentang bucu juga = 65°.",
+      "What is the property of vertically opposite angles?",
+      "Vertically opposite angles are EQUAL. If one angle = 65°, the vertically opposite angle is also 65°.",
+    ),
+    mathCard(
+      "Apakah sifat sudut sepadan pada garis selari?",
+      "Sudut SEPADAN adalah SAMA BESAR apabila garis rentas memotong dua garis selari. Corak: F.",
+      "What is the property of corresponding angles in parallel lines?",
+      "CORRESPONDING angles are EQUAL when a transversal cuts two parallel lines. Pattern: F.",
+    ),
+    mathCard(
+      "Apakah sifat sudut selang-seli pada garis selari?",
+      "Sudut SELANG-SELI adalah SAMA BESAR apabila garis rentas memotong dua garis selari. Corak: Z/N.",
+      "What is the property of alternate angles in parallel lines?",
+      "ALTERNATE angles are EQUAL when a transversal cuts two parallel lines. Pattern: Z/N.",
+    ),
+    mathCard(
+      "Apakah sifat sudut pedalaman pada garis selari?",
+      "Sudut PEDALAMAN BERSEBELAHAN BERJUMLAH 180° apabila garis rentas memotong dua garis selari. Corak: C/U.",
+      "What is the property of interior angles in parallel lines?",
+      "CO-INTERIOR angles SUM TO 180° when a transversal cuts two parallel lines. Pattern: C/U.",
+    ),
+    mathCard(
+      "Formula: pelengkap bagi sudut a.",
+      "Pelengkap = 90° − a. Contoh: pelengkap 35° = 90° − 35° = 55°.",
+      "Formula: complement of angle a.",
+      "Complement = 90° − a. Example: complement of 35° = 90° − 35° = 55°.",
+    ),
+    mathCard(
+      "Formula: penggenap bagi sudut a.",
+      "Penggenap = 180° − a. Contoh: penggenap 70° = 180° − 70° = 110°.",
+      "Formula: supplement of angle a.",
+      "Supplement = 180° − a. Example: supplement of 70° = 180° − 70° = 110°.",
+    ),
+    mathCard(
+      "Formula: konjugat bagi sudut a.",
+      "Konjugat = 360° − a. Contoh: konjugat 120° = 360° − 120° = 240°.",
+      "Formula: conjugate of angle a.",
+      "Conjugate = 360° − a. Example: conjugate of 120° = 360° − 120° = 240°.",
+    ),
+    mathCard(
+      "Apakah perbezaan garis serenjang dan selari?",
+      "Serenjang: bertemu pada 90°. Selari: tidak bersilang, jarak sentiasa sama.",
+      "What is the difference between perpendicular and parallel lines?",
+      "Perpendicular: meet at 90°. Parallel: never intersect, distance always the same.",
+    ),
   ],
   practice: [
-    mathCard("Sudut pada garis lurus = 65° dan x. Cari x.", "x = 180° − 65° = 115°.", "Angles on a straight line: 65° and x. Find x.", "x = 180° − 65° = 115°."),
-    mathCard("Tiga sudut putaran lengkap: 90°, 150° dan y. Cari y.", "90° + 150° + y = 360°. y = 120°.", "Three angles at a point: 90°, 150° and y. Find y.", "90° + 150° + y = 360°. y = 120°."),
+    mathCard(
+      "Sudut pada garis lurus = 65° dan x. Cari x.",
+      "x = 180° − 65° = 115°.",
+      "Angles on a straight line: 65° and x. Find x.",
+      "x = 180° − 65° = 115°.",
+    ),
+    mathCard(
+      "Tiga sudut putaran lengkap: 90°, 150° dan y. Cari y.",
+      "90° + 150° + y = 360°. y = 120°.",
+      "Three angles at a point: 90°, 150° and y. Find y.",
+      "90° + 150° + y = 360°. y = 120°.",
+    ),
     mathCard("Pelengkap bagi 42°?", "90° − 42° = 48°.", "Complement of 42°?", "90° − 42° = 48°."),
-    mathCard("Penggenap bagi 115°?", "180° − 115° = 65°.", "Supplement of 115°?", "180° − 115° = 65°."),
-    mathCard("Konjugat bagi 250°?", "360° − 250° = 110°.", "Conjugate of 250°?", "360° − 250° = 110°."),
-    mathCard("Dua garis bersilang membentuk sudut 80° dan x (bertentang bucu). Cari x.", "x = 80° (sudut bertentang bucu adalah sama).", "Two lines intersect forming 80° and x (vertically opposite). Find x.", "x = 80° (vertically opposite angles are equal)."),
-    mathCard("Sudut bersebelahan = 130°. Cari sudut yang lain.", "180° − 130° = 50°.", "Adjacent angles: one is 130°. Find the other.", "180° − 130° = 50°."),
-    mathCard("Sudut sepadan = (2x + 5)° dan 85°. Cari x.", "2x + 5 = 85. 2x = 80. x = 40.", "Corresponding angles: (2x + 5)° and 85°. Find x.", "2x + 5 = 85. 2x = 80. x = 40."),
-    mathCard("Sudut selang-seli = (3y − 10)° dan 65°. Cari y.", "3y − 10 = 65. 3y = 75. y = 25.", "Alternate angles: (3y − 10)° and 65°. Find y.", "3y − 10 = 65. 3y = 75. y = 25."),
-    mathCard("Sudut pedalaman bersebelahan = 70° dan (2z + 10)°. Cari z.", "70 + (2z + 10) = 180. 2z + 80 = 180. 2z = 100. z = 50.", "Co-interior angles: 70° and (2z + 10)°. Find z.", "70 + (2z + 10) = 180. 2z + 80 = 180. 2z = 100. z = 50."),
-    mathCard("Jenis sudut: 135°?", "Sudut cakah (90° < 135° < 180°).", "Type of angle: 135°?", "Obtuse angle (90° < 135° < 180°)."),
-    mathCard("Jenis sudut: 215°?", "Sudut refleks (180° < 215° < 360°).", "Type of angle: 215°?", "Reflex angle (180° < 215° < 360°)."),
-    mathCard("Sudut dongak = 30°. Pemerhati berdiri di bawah bangunan. Apakah maksudnya?", "Pemerhati melihat ke atas bangunan pada sudut 30° dari garisan ufuk.", "Angle of elevation = 30°. Observer stands below a building. What does this mean?", "The observer looks up at the building at 30° from the horizontal line."),
-    mathCard("Sudut tunduk = 45°. Pemerhati berada di atas menara. Apakah maksudnya?", "Pemerhati melihat ke bawah pada sudut 45° dari garisan ufuk.", "Angle of depression = 45°. Observer is on top of a tower. What does this mean?", "The observer looks downward at 45° from the horizontal line."),
-    mathCard("Garis rentas memotong dua garis selari. Sudut = 110°. Cari sudut selang-seli dan sudut sepadan.", "Sudut selang-seli = 110° (sama). Sudut sepadan = 110° (sama).", "Transversal cuts two parallel lines. Angle = 110°. Find alternate and corresponding angles.", "Alternate angle = 110° (equal). Corresponding angle = 110° (equal)."),
+    mathCard(
+      "Penggenap bagi 115°?",
+      "180° − 115° = 65°.",
+      "Supplement of 115°?",
+      "180° − 115° = 65°.",
+    ),
+    mathCard(
+      "Konjugat bagi 250°?",
+      "360° − 250° = 110°.",
+      "Conjugate of 250°?",
+      "360° − 250° = 110°.",
+    ),
+    mathCard(
+      "Dua garis bersilang membentuk sudut 80° dan x (bertentang bucu). Cari x.",
+      "x = 80° (sudut bertentang bucu adalah sama).",
+      "Two lines intersect forming 80° and x (vertically opposite). Find x.",
+      "x = 80° (vertically opposite angles are equal).",
+    ),
+    mathCard(
+      "Sudut bersebelahan = 130°. Cari sudut yang lain.",
+      "180° − 130° = 50°.",
+      "Adjacent angles: one is 130°. Find the other.",
+      "180° − 130° = 50°.",
+    ),
+    mathCard(
+      "Sudut sepadan = (2x + 5)° dan 85°. Cari x.",
+      "2x + 5 = 85. 2x = 80. x = 40.",
+      "Corresponding angles: (2x + 5)° and 85°. Find x.",
+      "2x + 5 = 85. 2x = 80. x = 40.",
+    ),
+    mathCard(
+      "Sudut selang-seli = (3y − 10)° dan 65°. Cari y.",
+      "3y − 10 = 65. 3y = 75. y = 25.",
+      "Alternate angles: (3y − 10)° and 65°. Find y.",
+      "3y − 10 = 65. 3y = 75. y = 25.",
+    ),
+    mathCard(
+      "Sudut pedalaman bersebelahan = 70° dan (2z + 10)°. Cari z.",
+      "70 + (2z + 10) = 180. 2z + 80 = 180. 2z = 100. z = 50.",
+      "Co-interior angles: 70° and (2z + 10)°. Find z.",
+      "70 + (2z + 10) = 180. 2z + 80 = 180. 2z = 100. z = 50.",
+    ),
+    mathCard(
+      "Jenis sudut: 135°?",
+      "Sudut cakah (90° < 135° < 180°).",
+      "Type of angle: 135°?",
+      "Obtuse angle (90° < 135° < 180°).",
+    ),
+    mathCard(
+      "Jenis sudut: 215°?",
+      "Sudut refleks (180° < 215° < 360°).",
+      "Type of angle: 215°?",
+      "Reflex angle (180° < 215° < 360°).",
+    ),
+    mathCard(
+      "Sudut dongak = 30°. Pemerhati berdiri di bawah bangunan. Apakah maksudnya?",
+      "Pemerhati melihat ke atas bangunan pada sudut 30° dari garisan ufuk.",
+      "Angle of elevation = 30°. Observer stands below a building. What does this mean?",
+      "The observer looks up at the building at 30° from the horizontal line.",
+    ),
+    mathCard(
+      "Sudut tunduk = 45°. Pemerhati berada di atas menara. Apakah maksudnya?",
+      "Pemerhati melihat ke bawah pada sudut 45° dari garisan ufuk.",
+      "Angle of depression = 45°. Observer is on top of a tower. What does this mean?",
+      "The observer looks downward at 45° from the horizontal line.",
+    ),
+    mathCard(
+      "Garis rentas memotong dua garis selari. Sudut = 110°. Cari sudut selang-seli dan sudut sepadan.",
+      "Sudut selang-seli = 110° (sama). Sudut sepadan = 110° (sama).",
+      "Transversal cuts two parallel lines. Angle = 110°. Find alternate and corresponding angles.",
+      "Alternate angle = 110° (equal). Corresponding angle = 110° (equal).",
+    ),
   ],
 };
 
@@ -2684,350 +2978,1820 @@ const MATH_F1_C9_FLASHCARD_PAIRS: Record<
   Array<{ bm: [string, string]; dlp: [string, string] }>
 > = {
   concepts: [
-    mathCard("Apakah poligon?", "Poligon ialah bentuk 2D tertutup yang dibatasi oleh tiga atau lebih sisi lurus.", "What is a polygon?", "A polygon is a closed 2D shape bounded by three or more straight sides."),
-    mathCard("Apakah perbezaan poligon sekata dan tidak sekata?", "Sekata: semua sisi sama dan semua sudut sama. Tidak sekata: sisi atau sudut berbeza.", "What is the difference between regular and irregular polygons?", "Regular: all sides equal and all angles equal. Irregular: sides or angles differ."),
-    mathCard("Apakah pepenjuru poligon?", "Pepenjuru ialah tembereng garis yang menghubungkan dua bucu yang TIDAK bersebelahan.", "What is a diagonal of a polygon?", "A diagonal is a line segment connecting two NON-ADJACENT vertices."),
-    mathCard("Berapakah bilangan sisi segi tiga, sisi empat dan pentagon?", "Segi tiga = 3, Sisi empat = 4, Pentagon = 5.", "How many sides do a triangle, quadrilateral and pentagon have?", "Triangle = 3, Quadrilateral = 4, Pentagon = 5."),
-    mathCard("Apakah segi tiga sama sisi?", "Segi tiga sama sisi mempunyai 3 sisi sama panjang, 3 sudut = 60°, dan 3 garis simetri.", "What is an equilateral triangle?", "An equilateral triangle has 3 equal sides, all angles = 60°, and 3 lines of symmetry."),
-    mathCard("Apakah segi tiga sama kaki?", "Segi tiga sama kaki mempunyai 2 sisi sama, 2 sudut tapak sama, dan 1 garis simetri.", "What is an isosceles triangle?", "An isosceles triangle has 2 equal sides, 2 equal base angles, and 1 line of symmetry."),
-    mathCard("Apakah segi tiga tak sama kaki?", "Segi tiga tak sama kaki mempunyai semua sisi berbeza, semua sudut berbeza, dan tiada garis simetri.", "What is a scalene triangle?", "A scalene triangle has all sides different, all angles different, and no lines of symmetry."),
-    mathCard("Apakah segi tiga bersudut tegak?", "Segi tiga bersudut tegak mempunyai satu sudut 90°. Sisi terpanjang dipanggil hipotenus.", "What is a right-angled triangle?", "A right-angled triangle has one 90° angle. The longest side is called the hypotenuse."),
-    mathCard("Apakah segi tiga bersudut cakah?", "Segi tiga bersudut cakah mempunyai SATU sudut lebih besar daripada 90°.", "What is an obtuse-angled triangle?", "An obtuse-angled triangle has ONE angle greater than 90°."),
-    mathCard("Apakah segi tiga bersudut tirus?", "Segi tiga bersudut tirus mempunyai SEMUA TIGA sudut kurang daripada 90°.", "What is an acute-angled triangle?", "An acute-angled triangle has ALL THREE angles less than 90°."),
-    mathCard("Apakah segi empat tepat?", "Segi empat tepat mempunyai 4 sudut 90°, sisi bertentangan sama dan selari, dan 2 garis simetri.", "What is a rectangle?", "A rectangle has 4 right angles, opposite sides equal and parallel, and 2 lines of symmetry."),
-    mathCard("Apakah segi empat sama?", "Segi empat sama mempunyai 4 sisi sama, 4 sudut 90°, pepenjuru berserenjang, dan 4 garis simetri.", "What is a square?", "A square has 4 equal sides, 4 right angles, perpendicular diagonals, and 4 lines of symmetry."),
-    mathCard("Apakah jajaran genjang?", "Jajaran genjang mempunyai 2 pasang sisi bertentangan yang selari dan sama, sudut bertentangan sama, dan tiada garis simetri.", "What is a parallelogram?", "A parallelogram has 2 pairs of opposite parallel equal sides, opposite angles equal, and no lines of symmetry."),
-    mathCard("Apakah belah ketupat?", "Belah ketupat mempunyai 4 sisi sama, pepenjuru berserenjang, dan 2 garis simetri.", "What is a rhombus?", "A rhombus has 4 equal sides, perpendicular diagonals, and 2 lines of symmetry."),
-    mathCard("Apakah trapezium?", "Trapezium mempunyai tepat SATU pasang sisi yang selari.", "What is a trapezium?", "A trapezium has exactly ONE pair of parallel sides."),
-    mathCard("Apakah lelayang?", "Lelayang mempunyai DUA pasang sisi BERSEBELAHAN yang sama, pepenjuru berserenjang, dan 1 garis simetri.", "What is a kite?", "A kite has TWO pairs of ADJACENT equal sides, perpendicular diagonals, and 1 line of symmetry."),
-    mathCard("Apakah hipotenus?", "Hipotenus ialah sisi terpanjang segi tiga bersudut tegak — sisi yang bertentangan dengan sudut 90°.", "What is the hypotenuse?", "The hypotenuse is the longest side of a right-angled triangle — the side opposite the 90° angle."),
-    mathCard("Apakah garis simetri?", "Garis simetri ialah garis yang membahagi bentuk kepada dua bahagian yang sama (imej cermin antara satu sama lain).", "What is a line of symmetry?", "A line of symmetry divides a shape into two identical mirror-image halves."),
+    mathCard(
+      "Apakah poligon?",
+      "Poligon ialah bentuk 2D tertutup yang dibatasi oleh tiga atau lebih sisi lurus.",
+      "What is a polygon?",
+      "A polygon is a closed 2D shape bounded by three or more straight sides.",
+    ),
+    mathCard(
+      "Apakah perbezaan poligon sekata dan tidak sekata?",
+      "Sekata: semua sisi sama dan semua sudut sama. Tidak sekata: sisi atau sudut berbeza.",
+      "What is the difference between regular and irregular polygons?",
+      "Regular: all sides equal and all angles equal. Irregular: sides or angles differ.",
+    ),
+    mathCard(
+      "Apakah pepenjuru poligon?",
+      "Pepenjuru ialah tembereng garis yang menghubungkan dua bucu yang TIDAK bersebelahan.",
+      "What is a diagonal of a polygon?",
+      "A diagonal is a line segment connecting two NON-ADJACENT vertices.",
+    ),
+    mathCard(
+      "Berapakah bilangan sisi segi tiga, sisi empat dan pentagon?",
+      "Segi tiga = 3, Sisi empat = 4, Pentagon = 5.",
+      "How many sides do a triangle, quadrilateral and pentagon have?",
+      "Triangle = 3, Quadrilateral = 4, Pentagon = 5.",
+    ),
+    mathCard(
+      "Apakah segi tiga sama sisi?",
+      "Segi tiga sama sisi mempunyai 3 sisi sama panjang, 3 sudut = 60°, dan 3 garis simetri.",
+      "What is an equilateral triangle?",
+      "An equilateral triangle has 3 equal sides, all angles = 60°, and 3 lines of symmetry.",
+    ),
+    mathCard(
+      "Apakah segi tiga sama kaki?",
+      "Segi tiga sama kaki mempunyai 2 sisi sama, 2 sudut tapak sama, dan 1 garis simetri.",
+      "What is an isosceles triangle?",
+      "An isosceles triangle has 2 equal sides, 2 equal base angles, and 1 line of symmetry.",
+    ),
+    mathCard(
+      "Apakah segi tiga tak sama kaki?",
+      "Segi tiga tak sama kaki mempunyai semua sisi berbeza, semua sudut berbeza, dan tiada garis simetri.",
+      "What is a scalene triangle?",
+      "A scalene triangle has all sides different, all angles different, and no lines of symmetry.",
+    ),
+    mathCard(
+      "Apakah segi tiga bersudut tegak?",
+      "Segi tiga bersudut tegak mempunyai satu sudut 90°. Sisi terpanjang dipanggil hipotenus.",
+      "What is a right-angled triangle?",
+      "A right-angled triangle has one 90° angle. The longest side is called the hypotenuse.",
+    ),
+    mathCard(
+      "Apakah segi tiga bersudut cakah?",
+      "Segi tiga bersudut cakah mempunyai SATU sudut lebih besar daripada 90°.",
+      "What is an obtuse-angled triangle?",
+      "An obtuse-angled triangle has ONE angle greater than 90°.",
+    ),
+    mathCard(
+      "Apakah segi tiga bersudut tirus?",
+      "Segi tiga bersudut tirus mempunyai SEMUA TIGA sudut kurang daripada 90°.",
+      "What is an acute-angled triangle?",
+      "An acute-angled triangle has ALL THREE angles less than 90°.",
+    ),
+    mathCard(
+      "Apakah segi empat tepat?",
+      "Segi empat tepat mempunyai 4 sudut 90°, sisi bertentangan sama dan selari, dan 2 garis simetri.",
+      "What is a rectangle?",
+      "A rectangle has 4 right angles, opposite sides equal and parallel, and 2 lines of symmetry.",
+    ),
+    mathCard(
+      "Apakah segi empat sama?",
+      "Segi empat sama mempunyai 4 sisi sama, 4 sudut 90°, pepenjuru berserenjang, dan 4 garis simetri.",
+      "What is a square?",
+      "A square has 4 equal sides, 4 right angles, perpendicular diagonals, and 4 lines of symmetry.",
+    ),
+    mathCard(
+      "Apakah jajaran genjang?",
+      "Jajaran genjang mempunyai 2 pasang sisi bertentangan yang selari dan sama, sudut bertentangan sama, dan tiada garis simetri.",
+      "What is a parallelogram?",
+      "A parallelogram has 2 pairs of opposite parallel equal sides, opposite angles equal, and no lines of symmetry.",
+    ),
+    mathCard(
+      "Apakah belah ketupat?",
+      "Belah ketupat mempunyai 4 sisi sama, pepenjuru berserenjang, dan 2 garis simetri.",
+      "What is a rhombus?",
+      "A rhombus has 4 equal sides, perpendicular diagonals, and 2 lines of symmetry.",
+    ),
+    mathCard(
+      "Apakah trapezium?",
+      "Trapezium mempunyai tepat SATU pasang sisi yang selari.",
+      "What is a trapezium?",
+      "A trapezium has exactly ONE pair of parallel sides.",
+    ),
+    mathCard(
+      "Apakah lelayang?",
+      "Lelayang mempunyai DUA pasang sisi BERSEBELAHAN yang sama, pepenjuru berserenjang, dan 1 garis simetri.",
+      "What is a kite?",
+      "A kite has TWO pairs of ADJACENT equal sides, perpendicular diagonals, and 1 line of symmetry.",
+    ),
+    mathCard(
+      "Apakah hipotenus?",
+      "Hipotenus ialah sisi terpanjang segi tiga bersudut tegak — sisi yang bertentangan dengan sudut 90°.",
+      "What is the hypotenuse?",
+      "The hypotenuse is the longest side of a right-angled triangle — the side opposite the 90° angle.",
+    ),
+    mathCard(
+      "Apakah garis simetri?",
+      "Garis simetri ialah garis yang membahagi bentuk kepada dua bahagian yang sama (imej cermin antara satu sama lain).",
+      "What is a line of symmetry?",
+      "A line of symmetry divides a shape into two identical mirror-image halves.",
+    ),
   ],
   operations: [
-    mathCard("Bagaimana mengira bilangan pepenjuru?", "Guna formula: n(n − 3) / 2, di mana n ialah bilangan sisi.", "How do you calculate the number of diagonals?", "Use the formula: n(n − 3) / 2, where n is the number of sides."),
-    mathCard("Berapa pepenjuru bagi sisi empat?", "n = 4: 4(4 − 3)/2 = 4(1)/2 = 2 pepenjuru.", "How many diagonals does a quadrilateral have?", "n = 4: 4(4 − 3)/2 = 4(1)/2 = 2 diagonals."),
-    mathCard("Berapa pepenjuru bagi pentagon?", "n = 5: 5(5 − 3)/2 = 5(2)/2 = 5 pepenjuru.", "How many diagonals does a pentagon have?", "n = 5: 5(5 − 3)/2 = 5(2)/2 = 5 diagonals."),
-    mathCard("Berapa pepenjuru bagi heksagon?", "n = 6: 6(6 − 3)/2 = 6(3)/2 = 9 pepenjuru.", "How many diagonals does a hexagon have?", "n = 6: 6(6 − 3)/2 = 6(3)/2 = 9 diagonals."),
-    mathCard("Bagaimana mencari sudut ketiga segi tiga?", "Tolak dua sudut yang diketahui daripada 180°. Contoh: ∠C = 180° − ∠A − ∠B.", "How do you find the third angle of a triangle?", "Subtract the two known angles from 180°. Example: ∠C = 180° − ∠A − ∠B."),
-    mathCard("Bagaimana menggunakan sifat sudut luar segi tiga?", "Sudut luar = jumlah dua sudut dalam yang tidak bersebelahan. Contoh: jika ∠A = 40° dan ∠B = 60°, sudut luar di C = 100°.", "How do you use the exterior angle property of a triangle?", "Exterior angle = sum of two non-adjacent interior angles. Example: if ∠A = 40° and ∠B = 60°, exterior angle at C = 100°."),
-    mathCard("Bagaimana mencari sudut keempat sisi empat?", "Tolak tiga sudut yang diketahui daripada 360°. Contoh: ∠D = 360° − ∠A − ∠B − ∠C.", "How do you find the fourth angle of a quadrilateral?", "Subtract the three known angles from 360°. Example: ∠D = 360° − ∠A − ∠B − ∠C."),
-    mathCard("Bagaimana menggunakan sifat jajaran genjang?", "Sudut bertentangan sama, dan sudut bersebelahan berjumlah 180°. Jika ∠A = 75°, maka ∠C = 75° dan ∠B = 105°.", "How do you use parallelogram angle properties?", "Opposite angles equal, adjacent angles sum to 180°. If ∠A = 75°, then ∠C = 75° and ∠B = 105°."),
-    mathCard("Segi tiga sama kaki: dua sudut tapak = 55°. Cari sudut puncak.", "Sudut puncak = 180° − 55° − 55° = 70°.", "Isosceles triangle: two base angles = 55°. Find the apex angle.", "Apex angle = 180° − 55° − 55° = 70°."),
-    mathCard("Segi tiga bersudut tegak: dua sudut lain = 30° dan x. Cari x.", "30° + x = 90° (dua sudut bukan tegak berjumlah 90°). x = 60°.", "Right-angled triangle: two non-right angles = 30° and x. Find x.", "30° + x = 90° (two non-right angles sum to 90°). x = 60°."),
-    mathCard("Jajaran genjang ABCD: ∠A = 68°. Cari semua sudut.", "∠C = 68° (bertentangan). ∠B = ∠D = 180° − 68° = 112°.", "Parallelogram ABCD: ∠A = 68°. Find all angles.", "∠C = 68° (opposite). ∠B = ∠D = 180° − 68° = 112°."),
-    mathCard("Cara mengenal pasti segi tiga berdasarkan sisi.", "1 seretan (tick) = satu sisi. 2 seretan = sisi yang sama. 3 seretan = segi tiga tak sama kaki. Semua 1 seretan = sama sisi.", "How to identify triangles by their sides in a diagram.", "1 tick = one side. 2 ticks = equal sides. Same tick on all = equilateral. Mixed ticks = scalene."),
-    mathCard("Cara membezakan belah ketupat dan segi empat sama.", "Belah ketupat: 4 sisi sama, tiada sudut 90° (melainkan ianya segi empat sama). Segi empat sama: 4 sisi sama DENGAN 4 sudut 90°.", "How to distinguish a rhombus from a square.", "Rhombus: 4 equal sides, no 90° angles (unless it is a square). Square: 4 equal sides WITH 4 right angles."),
-    mathCard("Sudut luar segi tiga = (3x + 10)° dan dua sudut dalam berhadapan = 70° dan (x + 20)°. Cari x.", "3x + 10 = 70 + (x + 20). 3x + 10 = x + 90. 2x = 80. x = 40.", "Exterior angle = (3x + 10)°, two non-adjacent interior angles = 70° and (x + 20)°. Find x.", "3x + 10 = 70 + (x + 20). 3x + 10 = x + 90. 2x = 80. x = 40."),
-    mathCard("Sisi empat ABCD: ∠A = 80°, ∠B = 100°, ∠C = 75°. Cari ∠D.", "∠D = 360° − 80° − 100° − 75° = 105°.", "Quadrilateral ABCD: ∠A = 80°, ∠B = 100°, ∠C = 75°. Find ∠D.", "∠D = 360° − 80° − 100° − 75° = 105°."),
-    mathCard("Cari bilangan pepenjuru oktagon (n = 8).", "8(8 − 3)/2 = 8(5)/2 = 40/2 = 20 pepenjuru.", "Find the number of diagonals of an octagon (n = 8).", "8(8 − 3)/2 = 8(5)/2 = 40/2 = 20 diagonals."),
-    mathCard("Segi tiga PQR: ∠P = (2x + 5)°, ∠Q = (x + 10)°, ∠R = (3x − 15)°. Cari x.", "(2x + 5) + (x + 10) + (3x − 15) = 180. 6x = 180. x = 30.", "Triangle PQR: ∠P = (2x + 5)°, ∠Q = (x + 10)°, ∠R = (3x − 15)°. Find x.", "(2x + 5) + (x + 10) + (3x − 15) = 180. 6x = 180. x = 30."),
+    mathCard(
+      "Bagaimana mengira bilangan pepenjuru?",
+      "Guna formula: n(n − 3) / 2, di mana n ialah bilangan sisi.",
+      "How do you calculate the number of diagonals?",
+      "Use the formula: n(n − 3) / 2, where n is the number of sides.",
+    ),
+    mathCard(
+      "Berapa pepenjuru bagi sisi empat?",
+      "n = 4: 4(4 − 3)/2 = 4(1)/2 = 2 pepenjuru.",
+      "How many diagonals does a quadrilateral have?",
+      "n = 4: 4(4 − 3)/2 = 4(1)/2 = 2 diagonals.",
+    ),
+    mathCard(
+      "Berapa pepenjuru bagi pentagon?",
+      "n = 5: 5(5 − 3)/2 = 5(2)/2 = 5 pepenjuru.",
+      "How many diagonals does a pentagon have?",
+      "n = 5: 5(5 − 3)/2 = 5(2)/2 = 5 diagonals.",
+    ),
+    mathCard(
+      "Berapa pepenjuru bagi heksagon?",
+      "n = 6: 6(6 − 3)/2 = 6(3)/2 = 9 pepenjuru.",
+      "How many diagonals does a hexagon have?",
+      "n = 6: 6(6 − 3)/2 = 6(3)/2 = 9 diagonals.",
+    ),
+    mathCard(
+      "Bagaimana mencari sudut ketiga segi tiga?",
+      "Tolak dua sudut yang diketahui daripada 180°. Contoh: ∠C = 180° − ∠A − ∠B.",
+      "How do you find the third angle of a triangle?",
+      "Subtract the two known angles from 180°. Example: ∠C = 180° − ∠A − ∠B.",
+    ),
+    mathCard(
+      "Bagaimana menggunakan sifat sudut luar segi tiga?",
+      "Sudut luar = jumlah dua sudut dalam yang tidak bersebelahan. Contoh: jika ∠A = 40° dan ∠B = 60°, sudut luar di C = 100°.",
+      "How do you use the exterior angle property of a triangle?",
+      "Exterior angle = sum of two non-adjacent interior angles. Example: if ∠A = 40° and ∠B = 60°, exterior angle at C = 100°.",
+    ),
+    mathCard(
+      "Bagaimana mencari sudut keempat sisi empat?",
+      "Tolak tiga sudut yang diketahui daripada 360°. Contoh: ∠D = 360° − ∠A − ∠B − ∠C.",
+      "How do you find the fourth angle of a quadrilateral?",
+      "Subtract the three known angles from 360°. Example: ∠D = 360° − ∠A − ∠B − ∠C.",
+    ),
+    mathCard(
+      "Bagaimana menggunakan sifat jajaran genjang?",
+      "Sudut bertentangan sama, dan sudut bersebelahan berjumlah 180°. Jika ∠A = 75°, maka ∠C = 75° dan ∠B = 105°.",
+      "How do you use parallelogram angle properties?",
+      "Opposite angles equal, adjacent angles sum to 180°. If ∠A = 75°, then ∠C = 75° and ∠B = 105°.",
+    ),
+    mathCard(
+      "Segi tiga sama kaki: dua sudut tapak = 55°. Cari sudut puncak.",
+      "Sudut puncak = 180° − 55° − 55° = 70°.",
+      "Isosceles triangle: two base angles = 55°. Find the apex angle.",
+      "Apex angle = 180° − 55° − 55° = 70°.",
+    ),
+    mathCard(
+      "Segi tiga bersudut tegak: dua sudut lain = 30° dan x. Cari x.",
+      "30° + x = 90° (dua sudut bukan tegak berjumlah 90°). x = 60°.",
+      "Right-angled triangle: two non-right angles = 30° and x. Find x.",
+      "30° + x = 90° (two non-right angles sum to 90°). x = 60°.",
+    ),
+    mathCard(
+      "Jajaran genjang ABCD: ∠A = 68°. Cari semua sudut.",
+      "∠C = 68° (bertentangan). ∠B = ∠D = 180° − 68° = 112°.",
+      "Parallelogram ABCD: ∠A = 68°. Find all angles.",
+      "∠C = 68° (opposite). ∠B = ∠D = 180° − 68° = 112°.",
+    ),
+    mathCard(
+      "Cara mengenal pasti segi tiga berdasarkan sisi.",
+      "1 seretan (tick) = satu sisi. 2 seretan = sisi yang sama. 3 seretan = segi tiga tak sama kaki. Semua 1 seretan = sama sisi.",
+      "How to identify triangles by their sides in a diagram.",
+      "1 tick = one side. 2 ticks = equal sides. Same tick on all = equilateral. Mixed ticks = scalene.",
+    ),
+    mathCard(
+      "Cara membezakan belah ketupat dan segi empat sama.",
+      "Belah ketupat: 4 sisi sama, tiada sudut 90° (melainkan ianya segi empat sama). Segi empat sama: 4 sisi sama DENGAN 4 sudut 90°.",
+      "How to distinguish a rhombus from a square.",
+      "Rhombus: 4 equal sides, no 90° angles (unless it is a square). Square: 4 equal sides WITH 4 right angles.",
+    ),
+    mathCard(
+      "Sudut luar segi tiga = (3x + 10)° dan dua sudut dalam berhadapan = 70° dan (x + 20)°. Cari x.",
+      "3x + 10 = 70 + (x + 20). 3x + 10 = x + 90. 2x = 80. x = 40.",
+      "Exterior angle = (3x + 10)°, two non-adjacent interior angles = 70° and (x + 20)°. Find x.",
+      "3x + 10 = 70 + (x + 20). 3x + 10 = x + 90. 2x = 80. x = 40.",
+    ),
+    mathCard(
+      "Sisi empat ABCD: ∠A = 80°, ∠B = 100°, ∠C = 75°. Cari ∠D.",
+      "∠D = 360° − 80° − 100° − 75° = 105°.",
+      "Quadrilateral ABCD: ∠A = 80°, ∠B = 100°, ∠C = 75°. Find ∠D.",
+      "∠D = 360° − 80° − 100° − 75° = 105°.",
+    ),
+    mathCard(
+      "Cari bilangan pepenjuru oktagon (n = 8).",
+      "8(8 − 3)/2 = 8(5)/2 = 40/2 = 20 pepenjuru.",
+      "Find the number of diagonals of an octagon (n = 8).",
+      "8(8 − 3)/2 = 8(5)/2 = 40/2 = 20 diagonals.",
+    ),
+    mathCard(
+      "Segi tiga PQR: ∠P = (2x + 5)°, ∠Q = (x + 10)°, ∠R = (3x − 15)°. Cari x.",
+      "(2x + 5) + (x + 10) + (3x − 15) = 180. 6x = 180. x = 30.",
+      "Triangle PQR: ∠P = (2x + 5)°, ∠Q = (x + 10)°, ∠R = (3x − 15)°. Find x.",
+      "(2x + 5) + (x + 10) + (3x − 15) = 180. 6x = 180. x = 30.",
+    ),
   ],
   facts: [
-    mathCard("Berapakah jumlah sudut dalam segi tiga?", "Jumlah sudut dalam segi tiga = 180°. Ini berlaku untuk MANA-MANA segi tiga.", "What is the sum of interior angles of a triangle?", "Sum of interior angles of a triangle = 180°. This applies to ANY triangle."),
-    mathCard("Berapakah jumlah sudut dalam sisi empat?", "Jumlah sudut dalam sisi empat = 360°. Ini berlaku untuk MANA-MANA sisi empat.", "What is the sum of interior angles of a quadrilateral?", "Sum of interior angles of a quadrilateral = 360°. This applies to ANY quadrilateral."),
-    mathCard("Formula bilangan pepenjuru.", "Bilangan pepenjuru = n(n − 3) / 2, di mana n ialah bilangan sisi.", "Formula for number of diagonals.", "Number of diagonals = n(n − 3) / 2, where n is the number of sides."),
-    mathCard("Bilangan garis simetri: segi empat sama vs segi empat tepat.", "Segi empat sama: 4 garis simetri. Segi empat tepat: 2 garis simetri.", "Lines of symmetry: square vs rectangle.", "Square: 4 lines of symmetry. Rectangle: 2 lines of symmetry."),
-    mathCard("Bilangan garis simetri: jajaran genjang vs belah ketupat.", "Jajaran genjang: 0 garis simetri. Belah ketupat: 2 garis simetri.", "Lines of symmetry: parallelogram vs rhombus.", "Parallelogram: 0 lines of symmetry. Rhombus: 2 lines of symmetry."),
-    mathCard("Bilangan garis simetri pelbagai bentuk.", "Segi tiga sama sisi: 3. Segi empat sama: 4. Belah ketupat: 2. Lelayang: 1. Trapezium: 0. Jajaran genjang: 0.", "Lines of symmetry for various shapes.", "Equilateral triangle: 3. Square: 4. Rhombus: 2. Kite: 1. Trapezium: 0. Parallelogram: 0."),
-    mathCard("Apakah sifat pepenjuru segi empat sama?", "Pepenjuru segi empat sama adalah sama panjang, bersilang di tengah, berserenjang (90°), dan membahagi dua sudut bucu.", "What are the diagonal properties of a square?", "Diagonals of a square are equal in length, bisect each other, are perpendicular (90°), and bisect the corner angles."),
-    mathCard("Apakah sifat pepenjuru belah ketupat?", "Pepenjuru belah ketupat berserenjang (90°) dan bersilang di tengah, tetapi tidak sama panjang.", "What are the diagonal properties of a rhombus?", "Diagonals of a rhombus are perpendicular (90°) and bisect each other, but are NOT equal in length."),
-    mathCard("Apakah sifat pepenjuru segi empat tepat?", "Pepenjuru segi empat tepat adalah sama panjang dan bersilang di tengah, tetapi TIDAK berserenjang.", "What are the diagonal properties of a rectangle?", "Diagonals of a rectangle are equal in length and bisect each other, but are NOT perpendicular."),
-    mathCard("Apakah sifat pepenjuru lelayang?", "Satu pepenjuru membahagi dua pepenjuru yang lain. Pepenjuru berserenjang (90°). Pepenjuru tidak sama panjang.", "What are the diagonal properties of a kite?", "One diagonal bisects the other. Diagonals are perpendicular (90°). Diagonals are not equal in length."),
-    mathCard("Apakah sifat sudut jajaran genjang?", "Sudut bertentangan sama. Sudut bersebelahan berjumlah 180°.", "What are the angle properties of a parallelogram?", "Opposite angles are equal. Adjacent angles sum to 180°."),
-    mathCard("Nyatakan sifat sudut luar segi tiga.", "Sudut luar segi tiga = jumlah dua sudut dalam yang TIDAK bersebelahan (berhadapan).", "State the exterior angle property of a triangle.", "Exterior angle of a triangle = sum of the two NON-ADJACENT (opposite) interior angles."),
-    mathCard("Berapa banyak pepenjuru segi tiga mempunyai?", "Sifar (0). Semua bucu segi tiga adalah bersebelahan, jadi tiada dua bucu yang 'tidak bersebelahan'.", "How many diagonals does a triangle have?", "Zero (0). All vertices of a triangle are adjacent, so there are no 'non-adjacent' pairs of vertices."),
+    mathCard(
+      "Berapakah jumlah sudut dalam segi tiga?",
+      "Jumlah sudut dalam segi tiga = 180°. Ini berlaku untuk MANA-MANA segi tiga.",
+      "What is the sum of interior angles of a triangle?",
+      "Sum of interior angles of a triangle = 180°. This applies to ANY triangle.",
+    ),
+    mathCard(
+      "Berapakah jumlah sudut dalam sisi empat?",
+      "Jumlah sudut dalam sisi empat = 360°. Ini berlaku untuk MANA-MANA sisi empat.",
+      "What is the sum of interior angles of a quadrilateral?",
+      "Sum of interior angles of a quadrilateral = 360°. This applies to ANY quadrilateral.",
+    ),
+    mathCard(
+      "Formula bilangan pepenjuru.",
+      "Bilangan pepenjuru = n(n − 3) / 2, di mana n ialah bilangan sisi.",
+      "Formula for number of diagonals.",
+      "Number of diagonals = n(n − 3) / 2, where n is the number of sides.",
+    ),
+    mathCard(
+      "Bilangan garis simetri: segi empat sama vs segi empat tepat.",
+      "Segi empat sama: 4 garis simetri. Segi empat tepat: 2 garis simetri.",
+      "Lines of symmetry: square vs rectangle.",
+      "Square: 4 lines of symmetry. Rectangle: 2 lines of symmetry.",
+    ),
+    mathCard(
+      "Bilangan garis simetri: jajaran genjang vs belah ketupat.",
+      "Jajaran genjang: 0 garis simetri. Belah ketupat: 2 garis simetri.",
+      "Lines of symmetry: parallelogram vs rhombus.",
+      "Parallelogram: 0 lines of symmetry. Rhombus: 2 lines of symmetry.",
+    ),
+    mathCard(
+      "Bilangan garis simetri pelbagai bentuk.",
+      "Segi tiga sama sisi: 3. Segi empat sama: 4. Belah ketupat: 2. Lelayang: 1. Trapezium: 0. Jajaran genjang: 0.",
+      "Lines of symmetry for various shapes.",
+      "Equilateral triangle: 3. Square: 4. Rhombus: 2. Kite: 1. Trapezium: 0. Parallelogram: 0.",
+    ),
+    mathCard(
+      "Apakah sifat pepenjuru segi empat sama?",
+      "Pepenjuru segi empat sama adalah sama panjang, bersilang di tengah, berserenjang (90°), dan membahagi dua sudut bucu.",
+      "What are the diagonal properties of a square?",
+      "Diagonals of a square are equal in length, bisect each other, are perpendicular (90°), and bisect the corner angles.",
+    ),
+    mathCard(
+      "Apakah sifat pepenjuru belah ketupat?",
+      "Pepenjuru belah ketupat berserenjang (90°) dan bersilang di tengah, tetapi tidak sama panjang.",
+      "What are the diagonal properties of a rhombus?",
+      "Diagonals of a rhombus are perpendicular (90°) and bisect each other, but are NOT equal in length.",
+    ),
+    mathCard(
+      "Apakah sifat pepenjuru segi empat tepat?",
+      "Pepenjuru segi empat tepat adalah sama panjang dan bersilang di tengah, tetapi TIDAK berserenjang.",
+      "What are the diagonal properties of a rectangle?",
+      "Diagonals of a rectangle are equal in length and bisect each other, but are NOT perpendicular.",
+    ),
+    mathCard(
+      "Apakah sifat pepenjuru lelayang?",
+      "Satu pepenjuru membahagi dua pepenjuru yang lain. Pepenjuru berserenjang (90°). Pepenjuru tidak sama panjang.",
+      "What are the diagonal properties of a kite?",
+      "One diagonal bisects the other. Diagonals are perpendicular (90°). Diagonals are not equal in length.",
+    ),
+    mathCard(
+      "Apakah sifat sudut jajaran genjang?",
+      "Sudut bertentangan sama. Sudut bersebelahan berjumlah 180°.",
+      "What are the angle properties of a parallelogram?",
+      "Opposite angles are equal. Adjacent angles sum to 180°.",
+    ),
+    mathCard(
+      "Nyatakan sifat sudut luar segi tiga.",
+      "Sudut luar segi tiga = jumlah dua sudut dalam yang TIDAK bersebelahan (berhadapan).",
+      "State the exterior angle property of a triangle.",
+      "Exterior angle of a triangle = sum of the two NON-ADJACENT (opposite) interior angles.",
+    ),
+    mathCard(
+      "Berapa banyak pepenjuru segi tiga mempunyai?",
+      "Sifar (0). Semua bucu segi tiga adalah bersebelahan, jadi tiada dua bucu yang 'tidak bersebelahan'.",
+      "How many diagonals does a triangle have?",
+      "Zero (0). All vertices of a triangle are adjacent, so there are no 'non-adjacent' pairs of vertices.",
+    ),
   ],
   practice: [
-    mathCard("Cari bilangan pepenjuru heptagon.", "n = 7: 7(7 − 3)/2 = 7(4)/2 = 14 pepenjuru.", "Find the number of diagonals of a heptagon.", "n = 7: 7(7 − 3)/2 = 7(4)/2 = 14 diagonals."),
-    mathCard("Segi tiga: ∠A = 65°, ∠B = 70°. Cari ∠C.", "∠C = 180° − 65° − 70° = 45°.", "Triangle: ∠A = 65°, ∠B = 70°. Find ∠C.", "∠C = 180° − 65° − 70° = 45°."),
-    mathCard("Sisi empat: ∠A = 90°, ∠B = 80°, ∠C = 100°. Cari ∠D.", "∠D = 360° − 90° − 80° − 100° = 90°.", "Quadrilateral: ∠A = 90°, ∠B = 80°, ∠C = 100°. Find ∠D.", "∠D = 360° − 90° − 80° − 100° = 90°."),
-    mathCard("Sudut luar segi tiga = 115°. Satu sudut dalam berhadapan = 55°. Cari yang lain.", "115° − 55° = 60°.", "Exterior angle of a triangle = 115°. One non-adjacent interior angle = 55°. Find the other.", "115° − 55° = 60°."),
-    mathCard("Jajaran genjang: ∠A = 125°. Cari semua sudut lain.", "∠C = 125°. ∠B = ∠D = 180° − 125° = 55°.", "Parallelogram: ∠A = 125°. Find all other angles.", "∠C = 125°. ∠B = ∠D = 180° − 125° = 55°."),
-    mathCard("Segi tiga sama kaki: sudut puncak = 40°. Cari sudut tapak.", "(180° − 40°) / 2 = 140° / 2 = 70°.", "Isosceles triangle: apex angle = 40°. Find the base angles.", "(180° − 40°) / 2 = 140° / 2 = 70°."),
-    mathCard("Poligon dengan n = 10 (dekagon). Berapa pepenjuru?", "10(10 − 3)/2 = 10(7)/2 = 35 pepenjuru.", "Polygon with n = 10 (decagon). How many diagonals?", "10(10 − 3)/2 = 10(7)/2 = 35 diagonals."),
-    mathCard("Sebuah sisi empat mempunyai 3 sudut sama iaitu 85° setiap satu. Cari sudut keempat.", "360° − 85° − 85° − 85° = 105°.", "A quadrilateral has 3 equal angles of 85° each. Find the fourth angle.", "360° − 85° − 85° − 85° = 105°."),
-    mathCard("Segi tiga dengan sudut (2x)°, (3x)° dan (x + 30)°. Cari x.", "2x + 3x + x + 30 = 180. 6x + 30 = 180. 6x = 150. x = 25.", "Triangle with angles (2x)°, (3x)° and (x + 30)°. Find x.", "2x + 3x + x + 30 = 180. 6x + 30 = 180. 6x = 150. x = 25."),
-    mathCard("Namakan poligon dengan 9 sisi.", "Nonagon.", "Name the polygon with 9 sides.", "Nonagon."),
-    mathCard("Sebuah sisi empat mempunyai tepat satu pasang sisi selari. Apakah namanya?", "Trapezium.", "A quadrilateral has exactly one pair of parallel sides. What is it called?", "Trapezium."),
-    mathCard("Apakah sisi empat yang mempunyai 4 sisi sama tetapi sudut bukan 90°?", "Belah ketupat.", "What quadrilateral has 4 equal sides but angles not equal to 90°?", "Rhombus."),
-    mathCard("Bilangan garis simetri lelayang dan segi tiga sama kaki.", "Lelayang: 1 garis simetri. Segi tiga sama kaki: 1 garis simetri.", "Lines of symmetry for a kite and isosceles triangle.", "Kite: 1 line of symmetry. Isosceles triangle: 1 line of symmetry."),
+    mathCard(
+      "Cari bilangan pepenjuru heptagon.",
+      "n = 7: 7(7 − 3)/2 = 7(4)/2 = 14 pepenjuru.",
+      "Find the number of diagonals of a heptagon.",
+      "n = 7: 7(7 − 3)/2 = 7(4)/2 = 14 diagonals.",
+    ),
+    mathCard(
+      "Segi tiga: ∠A = 65°, ∠B = 70°. Cari ∠C.",
+      "∠C = 180° − 65° − 70° = 45°.",
+      "Triangle: ∠A = 65°, ∠B = 70°. Find ∠C.",
+      "∠C = 180° − 65° − 70° = 45°.",
+    ),
+    mathCard(
+      "Sisi empat: ∠A = 90°, ∠B = 80°, ∠C = 100°. Cari ∠D.",
+      "∠D = 360° − 90° − 80° − 100° = 90°.",
+      "Quadrilateral: ∠A = 90°, ∠B = 80°, ∠C = 100°. Find ∠D.",
+      "∠D = 360° − 90° − 80° − 100° = 90°.",
+    ),
+    mathCard(
+      "Sudut luar segi tiga = 115°. Satu sudut dalam berhadapan = 55°. Cari yang lain.",
+      "115° − 55° = 60°.",
+      "Exterior angle of a triangle = 115°. One non-adjacent interior angle = 55°. Find the other.",
+      "115° − 55° = 60°.",
+    ),
+    mathCard(
+      "Jajaran genjang: ∠A = 125°. Cari semua sudut lain.",
+      "∠C = 125°. ∠B = ∠D = 180° − 125° = 55°.",
+      "Parallelogram: ∠A = 125°. Find all other angles.",
+      "∠C = 125°. ∠B = ∠D = 180° − 125° = 55°.",
+    ),
+    mathCard(
+      "Segi tiga sama kaki: sudut puncak = 40°. Cari sudut tapak.",
+      "(180° − 40°) / 2 = 140° / 2 = 70°.",
+      "Isosceles triangle: apex angle = 40°. Find the base angles.",
+      "(180° − 40°) / 2 = 140° / 2 = 70°.",
+    ),
+    mathCard(
+      "Poligon dengan n = 10 (dekagon). Berapa pepenjuru?",
+      "10(10 − 3)/2 = 10(7)/2 = 35 pepenjuru.",
+      "Polygon with n = 10 (decagon). How many diagonals?",
+      "10(10 − 3)/2 = 10(7)/2 = 35 diagonals.",
+    ),
+    mathCard(
+      "Sebuah sisi empat mempunyai 3 sudut sama iaitu 85° setiap satu. Cari sudut keempat.",
+      "360° − 85° − 85° − 85° = 105°.",
+      "A quadrilateral has 3 equal angles of 85° each. Find the fourth angle.",
+      "360° − 85° − 85° − 85° = 105°.",
+    ),
+    mathCard(
+      "Segi tiga dengan sudut (2x)°, (3x)° dan (x + 30)°. Cari x.",
+      "2x + 3x + x + 30 = 180. 6x + 30 = 180. 6x = 150. x = 25.",
+      "Triangle with angles (2x)°, (3x)° and (x + 30)°. Find x.",
+      "2x + 3x + x + 30 = 180. 6x + 30 = 180. 6x = 150. x = 25.",
+    ),
+    mathCard(
+      "Namakan poligon dengan 9 sisi.",
+      "Nonagon.",
+      "Name the polygon with 9 sides.",
+      "Nonagon.",
+    ),
+    mathCard(
+      "Sebuah sisi empat mempunyai tepat satu pasang sisi selari. Apakah namanya?",
+      "Trapezium.",
+      "A quadrilateral has exactly one pair of parallel sides. What is it called?",
+      "Trapezium.",
+    ),
+    mathCard(
+      "Apakah sisi empat yang mempunyai 4 sisi sama tetapi sudut bukan 90°?",
+      "Belah ketupat.",
+      "What quadrilateral has 4 equal sides but angles not equal to 90°?",
+      "Rhombus.",
+    ),
+    mathCard(
+      "Bilangan garis simetri lelayang dan segi tiga sama kaki.",
+      "Lelayang: 1 garis simetri. Segi tiga sama kaki: 1 garis simetri.",
+      "Lines of symmetry for a kite and isosceles triangle.",
+      "Kite: 1 line of symmetry. Isosceles triangle: 1 line of symmetry.",
+    ),
   ],
 };
 
 const MATH_F1_C10_FLASHCARD_PAIRS = {
   concepts: [
-    mathCard("Apakah perimeter?", "Perimeter ialah jumlah panjang kesemua sisi luar sesuatu bentuk rata. Ia mengukur panjang sempadan bentuk tersebut.", "What is perimeter?", "Perimeter is the total length of all outer sides of a flat shape. It measures the length of the boundary."),
-    mathCard("Apakah luas?", "Luas ialah jumlah ruang di dalam sempadan sesuatu bentuk rata (2D). Ia mengukur kawasan yang diliputi bentuk tersebut.", "What is area?", "Area is the amount of space inside the boundary of a flat (2D) shape. It measures the region covered by the shape."),
-    mathCard("Apakah perbezaan antara perimeter dan luas?", "Perimeter: panjang sempadan (unit: cm, m). Luas: kawasan dalaman (unit: cm², m²). Kedua-duanya boleh berbeza walaupun untuk bentuk yang kelihatan serupa.", "What is the difference between perimeter and area?", "Perimeter: length of boundary (units: cm, m). Area: inner region (units: cm², m²). Both can differ even for shapes that look similar."),
-    mathCard("Dalam unit apakah perimeter diukur?", "Perimeter diukur dalam unit panjang satu dimensi: cm, m, mm, km.", "In what units is perimeter measured?", "Perimeter is measured in one-dimensional length units: cm, m, mm, km."),
-    mathCard("Dalam unit apakah luas diukur?", "Luas diukur dalam unit persegi (dua dimensi): cm², m², km².", "In what units is area measured?", "Area is measured in square units (two-dimensional): cm², m², km²."),
-    mathCard("Apakah bentuk komposit?", "Bentuk komposit ialah bentuk yang terbentuk daripada gabungan dua atau lebih bentuk mudah seperti segi tiga, segi empat tepat, atau trapezium.", "What is a composite shape?", "A composite shape is a shape formed by combining two or more simple shapes such as triangles, rectangles, or trapeziums."),
-    mathCard("Apakah yang dimaksudkan dengan tinggi berserenjang?", "Tinggi berserenjang ialah jarak yang diukur pada sudut tegak (90°) kepada tapak. Ini adalah tinggi BETUL untuk semua formula luas.", "What is meant by perpendicular height?", "Perpendicular height is the distance measured at a right angle (90°) to the base. This is the CORRECT height for all area formulas."),
-    mathCard("Bolehkah dua bentuk mempunyai perimeter yang sama tetapi luas berbeza?", "Ya. Contoh: Segi empat tepat 8×2 (perimeter 20 cm, luas 16 cm²) dan 5×5 (perimeter 20 cm, luas 25 cm²).", "Can two shapes have the same perimeter but different areas?", "Yes. Example: Rectangle 8×2 (perimeter 20 cm, area 16 cm²) and 5×5 (perimeter 20 cm, area 25 cm²)."),
-    mathCard("Apakah kaedah grid untuk menganggar luas?", "Lukis bentuk di atas kertas grid. Kira petak penuh = 1. Petak lebih separuh = 1. Petak kurang separuh = 0. Jumlahkan semua.", "What is the grid method for estimating area?", "Draw the shape on grid paper. Count full squares = 1. Squares more than half inside = 1. Squares less than half inside = 0. Add all counts."),
-    mathCard("Apakah hubungan antara 1 m² dan cm²?", "1 m² = 10 000 cm². Ini kerana 1 m = 100 cm, dan 100 × 100 = 10 000.", "What is the relationship between 1 m² and cm²?", "1 m² = 10 000 cm². This is because 1 m = 100 cm, and 100 × 100 = 10 000."),
-    mathCard("Apakah sisi selari trapezium dalam formula luas?", "Dua sisi yang SELARI antara satu sama lain, dilabelkan 'a' dan 'b'. Bukan semua sisi — hanya dua sisi yang selari.", "What are the parallel sides of a trapezium in the area formula?", "The two sides that are PARALLEL to each other, labelled 'a' and 'b'. Not all sides — only the two parallel sides."),
-    mathCard("Apakah pepenjuru lelayang dalam formula luas?", "d₁ dan d₂ ialah dua garisan yang menyilang di dalam lelayang pada sudut tegak (90°). Formula luas = ½ × d₁ × d₂.", "What are the diagonals of a kite in the area formula?", "d₁ and d₂ are the two lines crossing inside the kite at right angles (90°). Area formula = ½ × d₁ × d₂."),
-    mathCard("Apakah strategi dua kaedah untuk mengira luas bentuk komposit?", "1) TAMBAH: Bahagikan kepada bentuk mudah, kira luas setiap satu, tambahkan. 2) TOLAK: Mulakan dengan bentuk besar, tolak luas bahagian yang tidak diperlukan.", "What are the two strategies for finding the area of composite shapes?", "1) ADD: Split into simple shapes, calculate each area, add them. 2) SUBTRACT: Start with a large shape, subtract the unwanted areas."),
-    mathCard("Apakah yang berlaku kepada perimeter apabila luas tetap tetapi dimensi segi empat tepat diubah?", "Perimeter BERTAMBAH apabila dimensi menjadi semakin berbeza. Perimeter terkecil berlaku apabila bentuk adalah segi empat sama.", "What happens to perimeter when area is fixed but rectangle dimensions change?", "Perimeter INCREASES as dimensions become more different. Minimum perimeter occurs when the shape is a square."),
-    mathCard("Apakah yang berlaku kepada luas apabila perimeter tetap tetapi dimensi segi empat tepat diubah?", "Luas BERKURANG apabila dimensi menjadi semakin berbeza. Luas terbesar berlaku apabila bentuk adalah segi empat sama.", "What happens to area when perimeter is fixed but rectangle dimensions change?", "Area DECREASES as dimensions become more different. Maximum area occurs when the shape is a square."),
+    mathCard(
+      "Apakah perimeter?",
+      "Perimeter ialah jumlah panjang kesemua sisi luar sesuatu bentuk rata. Ia mengukur panjang sempadan bentuk tersebut.",
+      "What is perimeter?",
+      "Perimeter is the total length of all outer sides of a flat shape. It measures the length of the boundary.",
+    ),
+    mathCard(
+      "Apakah luas?",
+      "Luas ialah jumlah ruang di dalam sempadan sesuatu bentuk rata (2D). Ia mengukur kawasan yang diliputi bentuk tersebut.",
+      "What is area?",
+      "Area is the amount of space inside the boundary of a flat (2D) shape. It measures the region covered by the shape.",
+    ),
+    mathCard(
+      "Apakah perbezaan antara perimeter dan luas?",
+      "Perimeter: panjang sempadan (unit: cm, m). Luas: kawasan dalaman (unit: cm², m²). Kedua-duanya boleh berbeza walaupun untuk bentuk yang kelihatan serupa.",
+      "What is the difference between perimeter and area?",
+      "Perimeter: length of boundary (units: cm, m). Area: inner region (units: cm², m²). Both can differ even for shapes that look similar.",
+    ),
+    mathCard(
+      "Dalam unit apakah perimeter diukur?",
+      "Perimeter diukur dalam unit panjang satu dimensi: cm, m, mm, km.",
+      "In what units is perimeter measured?",
+      "Perimeter is measured in one-dimensional length units: cm, m, mm, km.",
+    ),
+    mathCard(
+      "Dalam unit apakah luas diukur?",
+      "Luas diukur dalam unit persegi (dua dimensi): cm², m², km².",
+      "In what units is area measured?",
+      "Area is measured in square units (two-dimensional): cm², m², km².",
+    ),
+    mathCard(
+      "Apakah bentuk komposit?",
+      "Bentuk komposit ialah bentuk yang terbentuk daripada gabungan dua atau lebih bentuk mudah seperti segi tiga, segi empat tepat, atau trapezium.",
+      "What is a composite shape?",
+      "A composite shape is a shape formed by combining two or more simple shapes such as triangles, rectangles, or trapeziums.",
+    ),
+    mathCard(
+      "Apakah yang dimaksudkan dengan tinggi berserenjang?",
+      "Tinggi berserenjang ialah jarak yang diukur pada sudut tegak (90°) kepada tapak. Ini adalah tinggi BETUL untuk semua formula luas.",
+      "What is meant by perpendicular height?",
+      "Perpendicular height is the distance measured at a right angle (90°) to the base. This is the CORRECT height for all area formulas.",
+    ),
+    mathCard(
+      "Bolehkah dua bentuk mempunyai perimeter yang sama tetapi luas berbeza?",
+      "Ya. Contoh: Segi empat tepat 8×2 (perimeter 20 cm, luas 16 cm²) dan 5×5 (perimeter 20 cm, luas 25 cm²).",
+      "Can two shapes have the same perimeter but different areas?",
+      "Yes. Example: Rectangle 8×2 (perimeter 20 cm, area 16 cm²) and 5×5 (perimeter 20 cm, area 25 cm²).",
+    ),
+    mathCard(
+      "Apakah kaedah grid untuk menganggar luas?",
+      "Lukis bentuk di atas kertas grid. Kira petak penuh = 1. Petak lebih separuh = 1. Petak kurang separuh = 0. Jumlahkan semua.",
+      "What is the grid method for estimating area?",
+      "Draw the shape on grid paper. Count full squares = 1. Squares more than half inside = 1. Squares less than half inside = 0. Add all counts.",
+    ),
+    mathCard(
+      "Apakah hubungan antara 1 m² dan cm²?",
+      "1 m² = 10 000 cm². Ini kerana 1 m = 100 cm, dan 100 × 100 = 10 000.",
+      "What is the relationship between 1 m² and cm²?",
+      "1 m² = 10 000 cm². This is because 1 m = 100 cm, and 100 × 100 = 10 000.",
+    ),
+    mathCard(
+      "Apakah sisi selari trapezium dalam formula luas?",
+      "Dua sisi yang SELARI antara satu sama lain, dilabelkan 'a' dan 'b'. Bukan semua sisi — hanya dua sisi yang selari.",
+      "What are the parallel sides of a trapezium in the area formula?",
+      "The two sides that are PARALLEL to each other, labelled 'a' and 'b'. Not all sides — only the two parallel sides.",
+    ),
+    mathCard(
+      "Apakah pepenjuru lelayang dalam formula luas?",
+      "d₁ dan d₂ ialah dua garisan yang menyilang di dalam lelayang pada sudut tegak (90°). Formula luas = ½ × d₁ × d₂.",
+      "What are the diagonals of a kite in the area formula?",
+      "d₁ and d₂ are the two lines crossing inside the kite at right angles (90°). Area formula = ½ × d₁ × d₂.",
+    ),
+    mathCard(
+      "Apakah strategi dua kaedah untuk mengira luas bentuk komposit?",
+      "1) TAMBAH: Bahagikan kepada bentuk mudah, kira luas setiap satu, tambahkan. 2) TOLAK: Mulakan dengan bentuk besar, tolak luas bahagian yang tidak diperlukan.",
+      "What are the two strategies for finding the area of composite shapes?",
+      "1) ADD: Split into simple shapes, calculate each area, add them. 2) SUBTRACT: Start with a large shape, subtract the unwanted areas.",
+    ),
+    mathCard(
+      "Apakah yang berlaku kepada perimeter apabila luas tetap tetapi dimensi segi empat tepat diubah?",
+      "Perimeter BERTAMBAH apabila dimensi menjadi semakin berbeza. Perimeter terkecil berlaku apabila bentuk adalah segi empat sama.",
+      "What happens to perimeter when area is fixed but rectangle dimensions change?",
+      "Perimeter INCREASES as dimensions become more different. Minimum perimeter occurs when the shape is a square.",
+    ),
+    mathCard(
+      "Apakah yang berlaku kepada luas apabila perimeter tetap tetapi dimensi segi empat tepat diubah?",
+      "Luas BERKURANG apabila dimensi menjadi semakin berbeza. Luas terbesar berlaku apabila bentuk adalah segi empat sama.",
+      "What happens to area when perimeter is fixed but rectangle dimensions change?",
+      "Area DECREASES as dimensions become more different. Maximum area occurs when the shape is a square.",
+    ),
   ],
   operations: [
-    mathCard("Apakah formula perimeter segi empat tepat?", "Perimeter = 2(p + l) atau Perimeter = 2p + 2l. Di mana p = panjang dan l = lebar.", "What is the formula for the perimeter of a rectangle?", "Perimeter = 2(l + w) or Perimeter = 2l + 2w. Where l = length and w = width."),
-    mathCard("Apakah formula perimeter segi empat sama?", "Perimeter = 4s. Di mana s = panjang sisi.", "What is the formula for the perimeter of a square?", "Perimeter = 4s. Where s = side length."),
-    mathCard("Apakah formula luas segi tiga?", "Luas = ½ × tapak × tinggi. Pastikan tinggi adalah berserenjang dengan tapak.", "What is the formula for the area of a triangle?", "Area = ½ × base × height. Make sure the height is perpendicular to the base."),
-    mathCard("Apakah formula luas segi empat selari?", "Luas = tapak × tinggi. Di mana tinggi adalah jarak berserenjang antara dua sisi selari.", "What is the formula for the area of a parallelogram?", "Area = base × height. Where height is the perpendicular distance between the two parallel sides."),
-    mathCard("Apakah formula luas trapezium?", "Luas = ½ × (a + b) × tinggi. Di mana a dan b ialah sisi selari, dan tinggi adalah jarak berserenjang antara keduanya.", "What is the formula for the area of a trapezium?", "Area = ½ × (a + b) × height. Where a and b are the parallel sides, and height is the perpendicular distance between them."),
-    mathCard("Apakah formula luas lelayang?", "Luas = ½ × d₁ × d₂. Di mana d₁ dan d₂ ialah dua pepenjuru lelayang.", "What is the formula for the area of a kite?", "Area = ½ × d₁ × d₂. Where d₁ and d₂ are the two diagonals of the kite."),
-    mathCard("Segi empat tepat panjang 9 cm, lebar 4 cm. Kira perimeter.", "Perimeter = 2(9 + 4) = 2(13) = 26 cm.", "Rectangle 9 cm long, 4 cm wide. Calculate the perimeter.", "Perimeter = 2(9 + 4) = 2(13) = 26 cm."),
-    mathCard("Segi tiga dengan tapak 12 cm dan tinggi 5 cm. Kira luas.", "Luas = ½ × 12 × 5 = ½ × 60 = 30 cm².", "Triangle with base 12 cm and height 5 cm. Calculate the area.", "Area = ½ × 12 × 5 = ½ × 60 = 30 cm²."),
-    mathCard("Jajaran genjang dengan tapak 8 cm dan tinggi 6 cm (sisi condong 7 cm). Kira luas.", "Luas = tapak × tinggi = 8 × 6 = 48 cm². Gunakan 6 cm (tinggi berserenjang), BUKAN 7 cm (sisi condong).", "Parallelogram with base 8 cm and height 6 cm (slant side 7 cm). Calculate the area.", "Area = base × height = 8 × 6 = 48 cm². Use 6 cm (perpendicular height), NOT 7 cm (slant side)."),
-    mathCard("Trapezium dengan sisi selari 9 cm dan 5 cm, tinggi 4 cm. Kira luas.", "Luas = ½ × (9 + 5) × 4 = ½ × 14 × 4 = ½ × 56 = 28 cm².", "Trapezium with parallel sides 9 cm and 5 cm, height 4 cm. Calculate the area.", "Area = ½ × (9 + 5) × 4 = ½ × 14 × 4 = ½ × 56 = 28 cm²."),
-    mathCard("Lelayang dengan pepenjuru 12 cm dan 7 cm. Kira luas.", "Luas = ½ × 12 × 7 = ½ × 84 = 42 cm².", "Kite with diagonals 12 cm and 7 cm. Calculate the area.", "Area = ½ × 12 × 7 = ½ × 84 = 42 cm²."),
-    mathCard("Segi tiga: luas = 36 cm², tinggi = 9 cm. Cari tapak.", "Luas = ½ × tapak × tinggi. 36 = ½ × tapak × 9. 36 = 4.5 × tapak. Tapak = 36 ÷ 4.5 = 8 cm.", "Triangle: area = 36 cm², height = 9 cm. Find the base.", "Area = ½ × base × height. 36 = ½ × base × 9. 36 = 4.5 × base. Base = 36 ÷ 4.5 = 8 cm."),
-    mathCard("Trapezium: luas = 60 cm², sisi selari = 8 cm dan 12 cm. Cari tinggi.", "60 = ½ × (8 + 12) × tinggi. 60 = ½ × 20 × tinggi. 60 = 10 × tinggi. Tinggi = 6 cm.", "Trapezium: area = 60 cm², parallel sides = 8 cm and 12 cm. Find the height.", "60 = ½ × (8 + 12) × height. 60 = ½ × 20 × height. 60 = 10 × height. Height = 6 cm."),
-    mathCard("Tukarkan 2.5 m² kepada cm².", "2.5 m² = 2.5 × 10 000 = 25 000 cm².", "Convert 2.5 m² to cm².", "2.5 m² = 2.5 × 10 000 = 25 000 cm²."),
-    mathCard("Tukarkan 80 000 cm² kepada m².", "80 000 cm² ÷ 10 000 = 8 m².", "Convert 80 000 cm² to m².", "80 000 cm² ÷ 10 000 = 8 m²."),
-    mathCard("Bentuk L: segi empat tepat besar 10 × 6 cm, segi empat tepat kecil 4 × 3 cm (ditambah). Kira jumlah luas.", "Luas = (10 × 6) + (4 × 3) = 60 + 12 = 72 cm².", "L-shape: large rectangle 10 × 6 cm, small rectangle 4 × 3 cm (added). Calculate total area.", "Area = (10 × 6) + (4 × 3) = 60 + 12 = 72 cm²."),
-    mathCard("Segi empat tepat 10 × 8 cm dengan lubang segi empat 2 × 3 cm. Kira luas baki.", "Luas baki = (10 × 8) − (2 × 3) = 80 − 6 = 74 cm².", "Rectangle 10 × 8 cm with a 2 × 3 cm rectangular hole. Calculate the remaining area.", "Remaining area = (10 × 8) − (2 × 3) = 80 − 6 = 74 cm²."),
+    mathCard(
+      "Apakah formula perimeter segi empat tepat?",
+      "Perimeter = 2(p + l) atau Perimeter = 2p + 2l. Di mana p = panjang dan l = lebar.",
+      "What is the formula for the perimeter of a rectangle?",
+      "Perimeter = 2(l + w) or Perimeter = 2l + 2w. Where l = length and w = width.",
+    ),
+    mathCard(
+      "Apakah formula perimeter segi empat sama?",
+      "Perimeter = 4s. Di mana s = panjang sisi.",
+      "What is the formula for the perimeter of a square?",
+      "Perimeter = 4s. Where s = side length.",
+    ),
+    mathCard(
+      "Apakah formula luas segi tiga?",
+      "Luas = ½ × tapak × tinggi. Pastikan tinggi adalah berserenjang dengan tapak.",
+      "What is the formula for the area of a triangle?",
+      "Area = ½ × base × height. Make sure the height is perpendicular to the base.",
+    ),
+    mathCard(
+      "Apakah formula luas segi empat selari?",
+      "Luas = tapak × tinggi. Di mana tinggi adalah jarak berserenjang antara dua sisi selari.",
+      "What is the formula for the area of a parallelogram?",
+      "Area = base × height. Where height is the perpendicular distance between the two parallel sides.",
+    ),
+    mathCard(
+      "Apakah formula luas trapezium?",
+      "Luas = ½ × (a + b) × tinggi. Di mana a dan b ialah sisi selari, dan tinggi adalah jarak berserenjang antara keduanya.",
+      "What is the formula for the area of a trapezium?",
+      "Area = ½ × (a + b) × height. Where a and b are the parallel sides, and height is the perpendicular distance between them.",
+    ),
+    mathCard(
+      "Apakah formula luas lelayang?",
+      "Luas = ½ × d₁ × d₂. Di mana d₁ dan d₂ ialah dua pepenjuru lelayang.",
+      "What is the formula for the area of a kite?",
+      "Area = ½ × d₁ × d₂. Where d₁ and d₂ are the two diagonals of the kite.",
+    ),
+    mathCard(
+      "Segi empat tepat panjang 9 cm, lebar 4 cm. Kira perimeter.",
+      "Perimeter = 2(9 + 4) = 2(13) = 26 cm.",
+      "Rectangle 9 cm long, 4 cm wide. Calculate the perimeter.",
+      "Perimeter = 2(9 + 4) = 2(13) = 26 cm.",
+    ),
+    mathCard(
+      "Segi tiga dengan tapak 12 cm dan tinggi 5 cm. Kira luas.",
+      "Luas = ½ × 12 × 5 = ½ × 60 = 30 cm².",
+      "Triangle with base 12 cm and height 5 cm. Calculate the area.",
+      "Area = ½ × 12 × 5 = ½ × 60 = 30 cm².",
+    ),
+    mathCard(
+      "Jajaran genjang dengan tapak 8 cm dan tinggi 6 cm (sisi condong 7 cm). Kira luas.",
+      "Luas = tapak × tinggi = 8 × 6 = 48 cm². Gunakan 6 cm (tinggi berserenjang), BUKAN 7 cm (sisi condong).",
+      "Parallelogram with base 8 cm and height 6 cm (slant side 7 cm). Calculate the area.",
+      "Area = base × height = 8 × 6 = 48 cm². Use 6 cm (perpendicular height), NOT 7 cm (slant side).",
+    ),
+    mathCard(
+      "Trapezium dengan sisi selari 9 cm dan 5 cm, tinggi 4 cm. Kira luas.",
+      "Luas = ½ × (9 + 5) × 4 = ½ × 14 × 4 = ½ × 56 = 28 cm².",
+      "Trapezium with parallel sides 9 cm and 5 cm, height 4 cm. Calculate the area.",
+      "Area = ½ × (9 + 5) × 4 = ½ × 14 × 4 = ½ × 56 = 28 cm².",
+    ),
+    mathCard(
+      "Lelayang dengan pepenjuru 12 cm dan 7 cm. Kira luas.",
+      "Luas = ½ × 12 × 7 = ½ × 84 = 42 cm².",
+      "Kite with diagonals 12 cm and 7 cm. Calculate the area.",
+      "Area = ½ × 12 × 7 = ½ × 84 = 42 cm².",
+    ),
+    mathCard(
+      "Segi tiga: luas = 36 cm², tinggi = 9 cm. Cari tapak.",
+      "Luas = ½ × tapak × tinggi. 36 = ½ × tapak × 9. 36 = 4.5 × tapak. Tapak = 36 ÷ 4.5 = 8 cm.",
+      "Triangle: area = 36 cm², height = 9 cm. Find the base.",
+      "Area = ½ × base × height. 36 = ½ × base × 9. 36 = 4.5 × base. Base = 36 ÷ 4.5 = 8 cm.",
+    ),
+    mathCard(
+      "Trapezium: luas = 60 cm², sisi selari = 8 cm dan 12 cm. Cari tinggi.",
+      "60 = ½ × (8 + 12) × tinggi. 60 = ½ × 20 × tinggi. 60 = 10 × tinggi. Tinggi = 6 cm.",
+      "Trapezium: area = 60 cm², parallel sides = 8 cm and 12 cm. Find the height.",
+      "60 = ½ × (8 + 12) × height. 60 = ½ × 20 × height. 60 = 10 × height. Height = 6 cm.",
+    ),
+    mathCard(
+      "Tukarkan 2.5 m² kepada cm².",
+      "2.5 m² = 2.5 × 10 000 = 25 000 cm².",
+      "Convert 2.5 m² to cm².",
+      "2.5 m² = 2.5 × 10 000 = 25 000 cm².",
+    ),
+    mathCard(
+      "Tukarkan 80 000 cm² kepada m².",
+      "80 000 cm² ÷ 10 000 = 8 m².",
+      "Convert 80 000 cm² to m².",
+      "80 000 cm² ÷ 10 000 = 8 m².",
+    ),
+    mathCard(
+      "Bentuk L: segi empat tepat besar 10 × 6 cm, segi empat tepat kecil 4 × 3 cm (ditambah). Kira jumlah luas.",
+      "Luas = (10 × 6) + (4 × 3) = 60 + 12 = 72 cm².",
+      "L-shape: large rectangle 10 × 6 cm, small rectangle 4 × 3 cm (added). Calculate total area.",
+      "Area = (10 × 6) + (4 × 3) = 60 + 12 = 72 cm².",
+    ),
+    mathCard(
+      "Segi empat tepat 10 × 8 cm dengan lubang segi empat 2 × 3 cm. Kira luas baki.",
+      "Luas baki = (10 × 8) − (2 × 3) = 80 − 6 = 74 cm².",
+      "Rectangle 10 × 8 cm with a 2 × 3 cm rectangular hole. Calculate the remaining area.",
+      "Remaining area = (10 × 8) − (2 × 3) = 80 − 6 = 74 cm².",
+    ),
   ],
   facts: [
-    mathCard("Nyatakan semua formula luas yang perlu diingati.", "Segi tiga: ½bh. Segi empat selari: bh. Trapezium: ½(a+b)h. Lelayang: ½d₁d₂. Segi empat tepat: p×l. Segi empat sama: s².", "State all area formulas to remember.", "Triangle: ½bh. Parallelogram: bh. Trapezium: ½(a+b)h. Kite: ½d₁d₂. Rectangle: l×w. Square: s²."),
-    mathCard("Mengapa formula luas segi tiga menggunakan ½?", "Kerana setiap segi tiga adalah separuh daripada segi empat selari yang mempunyai tapak dan tinggi yang sama.", "Why does the triangle area formula use ½?", "Because every triangle is half of a parallelogram with the same base and height."),
-    mathCard("Mengapa formula luas trapezium menggunakan ½(a+b)?", "Kerana dua trapezium yang sama digabungkan membentuk segi empat selari dengan tapak (a+b). Luas satu trapezium = separuh luas segi empat selari itu.", "Why does the trapezium area formula use ½(a+b)?", "Because two identical trapeziums combine to form a parallelogram with base (a+b). Area of one trapezium = half the area of that parallelogram."),
-    mathCard("Mengapa formula luas lelayang menggunakan ½d₁d₂?", "Kerana lelayang menempati separuh kawasan segi empat tepat yang mempunyai panjang d₁ dan lebar d₂.", "Why does the kite area formula use ½d₁d₂?", "Because a kite occupies half the area of a rectangle with length d₁ and width d₂."),
-    mathCard("Apakah formula luas juga digunakan untuk belah ketupat?", "Ya. Luas belah ketupat = ½ × d₁ × d₂, iaitu formula yang sama dengan lelayang, kerana pepenjuru belah ketupat juga berserenjang.", "Which area formula also applies to a rhombus?", "Yes. Area of rhombus = ½ × d₁ × d₂, the same formula as a kite, because a rhombus's diagonals are also perpendicular."),
-    mathCard("Apakah fakta kunci: perimeter tetap vs luas tetap?", "Perimeter tetap → luas TERBESAR = segi empat sama. Luas tetap → perimeter TERKECIL = segi empat sama.", "What is the key fact about fixed perimeter vs fixed area?", "Fixed perimeter → LARGEST area = square. Fixed area → SMALLEST perimeter = square."),
-    mathCard("Nyatakan peraturan anggaran grid.", "Petak penuh di dalam = kira sebagai 1. Lebih separuh di dalam = kira sebagai 1. Kurang separuh di dalam = kira sebagai 0. Luar bentuk = tidak dikira.", "State the grid estimation rules.", "Full square inside = count as 1. More than half inside = count as 1. Less than half inside = count as 0. Outside shape = not counted."),
-    mathCard("Berapakah 1 m² dalam cm²?", "1 m² = 10 000 cm². (Kerana 1 m = 100 cm, maka 1 m² = 100 cm × 100 cm = 10 000 cm²)", "How many cm² is 1 m²?", "1 m² = 10 000 cm². (Because 1 m = 100 cm, so 1 m² = 100 cm × 100 cm = 10 000 cm²)"),
-    mathCard("Apakah unit luas yang digunakan untuk bilik / bangunan?", "m² (meter persegi) digunakan untuk bilik, bangunan, dan kawasan bersaiz sederhana.", "What area unit is used for rooms / buildings?", "m² (square metres) is used for rooms, buildings and medium-sized areas."),
-    mathCard("Apakah unit luas yang digunakan untuk objek kecil seperti buku?", "cm² (sentimeter persegi) digunakan untuk objek kecil seperti buku, meja, dan kertas.", "What area unit is used for small objects like books?", "cm² (square centimetres) is used for small objects like books, tables and paper."),
-    mathCard("Apakah petua untuk tidak silap dalam soalan segi empat selari?", "Jangan gunakan sisi condong sebagai tinggi. Tinggi MESTI berserenjang (90°) dengan tapak.", "What is the tip to avoid mistakes in parallelogram questions?", "Do not use the slant side as the height. Height MUST be perpendicular (90°) to the base."),
-    mathCard("Apakah petua untuk tidak silap dalam soalan trapezium?", "Gunakan HANYA dua sisi yang SELARI (a dan b). Jangan tambahkan semua empat sisi dalam formula.", "What is the tip to avoid mistakes in trapezium questions?", "Use ONLY the two PARALLEL sides (a and b). Do not add all four sides into the formula."),
-    mathCard("Berikan contoh nyata penggunaan perimeter.", "Memasang pagar, membuat bingkai gambar, mengukur sempadan tanah, mengecat pinggiran.", "Give a real example of perimeter use.", "Installing fencing, making picture frames, measuring land boundaries, painting edges."),
-    mathCard("Berikan contoh nyata penggunaan luas.", "Membeli jubin lantai, mengira cat dinding, penanaman ladang, mereka bentuk taman.", "Give a real example of area use.", "Buying floor tiles, calculating wall paint, planting fields, designing gardens."),
+    mathCard(
+      "Nyatakan semua formula luas yang perlu diingati.",
+      "Segi tiga: ½bh. Segi empat selari: bh. Trapezium: ½(a+b)h. Lelayang: ½d₁d₂. Segi empat tepat: p×l. Segi empat sama: s².",
+      "State all area formulas to remember.",
+      "Triangle: ½bh. Parallelogram: bh. Trapezium: ½(a+b)h. Kite: ½d₁d₂. Rectangle: l×w. Square: s².",
+    ),
+    mathCard(
+      "Mengapa formula luas segi tiga menggunakan ½?",
+      "Kerana setiap segi tiga adalah separuh daripada segi empat selari yang mempunyai tapak dan tinggi yang sama.",
+      "Why does the triangle area formula use ½?",
+      "Because every triangle is half of a parallelogram with the same base and height.",
+    ),
+    mathCard(
+      "Mengapa formula luas trapezium menggunakan ½(a+b)?",
+      "Kerana dua trapezium yang sama digabungkan membentuk segi empat selari dengan tapak (a+b). Luas satu trapezium = separuh luas segi empat selari itu.",
+      "Why does the trapezium area formula use ½(a+b)?",
+      "Because two identical trapeziums combine to form a parallelogram with base (a+b). Area of one trapezium = half the area of that parallelogram.",
+    ),
+    mathCard(
+      "Mengapa formula luas lelayang menggunakan ½d₁d₂?",
+      "Kerana lelayang menempati separuh kawasan segi empat tepat yang mempunyai panjang d₁ dan lebar d₂.",
+      "Why does the kite area formula use ½d₁d₂?",
+      "Because a kite occupies half the area of a rectangle with length d₁ and width d₂.",
+    ),
+    mathCard(
+      "Apakah formula luas juga digunakan untuk belah ketupat?",
+      "Ya. Luas belah ketupat = ½ × d₁ × d₂, iaitu formula yang sama dengan lelayang, kerana pepenjuru belah ketupat juga berserenjang.",
+      "Which area formula also applies to a rhombus?",
+      "Yes. Area of rhombus = ½ × d₁ × d₂, the same formula as a kite, because a rhombus's diagonals are also perpendicular.",
+    ),
+    mathCard(
+      "Apakah fakta kunci: perimeter tetap vs luas tetap?",
+      "Perimeter tetap → luas TERBESAR = segi empat sama. Luas tetap → perimeter TERKECIL = segi empat sama.",
+      "What is the key fact about fixed perimeter vs fixed area?",
+      "Fixed perimeter → LARGEST area = square. Fixed area → SMALLEST perimeter = square.",
+    ),
+    mathCard(
+      "Nyatakan peraturan anggaran grid.",
+      "Petak penuh di dalam = kira sebagai 1. Lebih separuh di dalam = kira sebagai 1. Kurang separuh di dalam = kira sebagai 0. Luar bentuk = tidak dikira.",
+      "State the grid estimation rules.",
+      "Full square inside = count as 1. More than half inside = count as 1. Less than half inside = count as 0. Outside shape = not counted.",
+    ),
+    mathCard(
+      "Berapakah 1 m² dalam cm²?",
+      "1 m² = 10 000 cm². (Kerana 1 m = 100 cm, maka 1 m² = 100 cm × 100 cm = 10 000 cm²)",
+      "How many cm² is 1 m²?",
+      "1 m² = 10 000 cm². (Because 1 m = 100 cm, so 1 m² = 100 cm × 100 cm = 10 000 cm²)",
+    ),
+    mathCard(
+      "Apakah unit luas yang digunakan untuk bilik / bangunan?",
+      "m² (meter persegi) digunakan untuk bilik, bangunan, dan kawasan bersaiz sederhana.",
+      "What area unit is used for rooms / buildings?",
+      "m² (square metres) is used for rooms, buildings and medium-sized areas.",
+    ),
+    mathCard(
+      "Apakah unit luas yang digunakan untuk objek kecil seperti buku?",
+      "cm² (sentimeter persegi) digunakan untuk objek kecil seperti buku, meja, dan kertas.",
+      "What area unit is used for small objects like books?",
+      "cm² (square centimetres) is used for small objects like books, tables and paper.",
+    ),
+    mathCard(
+      "Apakah petua untuk tidak silap dalam soalan segi empat selari?",
+      "Jangan gunakan sisi condong sebagai tinggi. Tinggi MESTI berserenjang (90°) dengan tapak.",
+      "What is the tip to avoid mistakes in parallelogram questions?",
+      "Do not use the slant side as the height. Height MUST be perpendicular (90°) to the base.",
+    ),
+    mathCard(
+      "Apakah petua untuk tidak silap dalam soalan trapezium?",
+      "Gunakan HANYA dua sisi yang SELARI (a dan b). Jangan tambahkan semua empat sisi dalam formula.",
+      "What is the tip to avoid mistakes in trapezium questions?",
+      "Use ONLY the two PARALLEL sides (a and b). Do not add all four sides into the formula.",
+    ),
+    mathCard(
+      "Berikan contoh nyata penggunaan perimeter.",
+      "Memasang pagar, membuat bingkai gambar, mengukur sempadan tanah, mengecat pinggiran.",
+      "Give a real example of perimeter use.",
+      "Installing fencing, making picture frames, measuring land boundaries, painting edges.",
+    ),
+    mathCard(
+      "Berikan contoh nyata penggunaan luas.",
+      "Membeli jubin lantai, mengira cat dinding, penanaman ladang, mereka bentuk taman.",
+      "Give a real example of area use.",
+      "Buying floor tiles, calculating wall paint, planting fields, designing gardens.",
+    ),
   ],
   practice: [
-    mathCard("Segi empat sama berisi 7 cm. Kira perimeter dan luas.", "Perimeter = 4 × 7 = 28 cm. Luas = 7² = 49 cm².", "Square with side 7 cm. Calculate the perimeter and area.", "Perimeter = 4 × 7 = 28 cm. Area = 7² = 49 cm²."),
-    mathCard("Segi empat tepat 11 cm × 5 cm. Kira perimeter dan luas.", "Perimeter = 2(11 + 5) = 32 cm. Luas = 11 × 5 = 55 cm².", "Rectangle 11 cm × 5 cm. Calculate perimeter and area.", "Perimeter = 2(11 + 5) = 32 cm. Area = 11 × 5 = 55 cm²."),
-    mathCard("Segi tiga dengan tapak 14 cm dan tinggi 8 cm. Kira luas.", "Luas = ½ × 14 × 8 = ½ × 112 = 56 cm².", "Triangle with base 14 cm and height 8 cm. Calculate the area.", "Area = ½ × 14 × 8 = ½ × 112 = 56 cm²."),
-    mathCard("Trapezium dengan sisi selari 15 cm dan 9 cm, tinggi 6 cm. Kira luas.", "Luas = ½ × (15 + 9) × 6 = ½ × 24 × 6 = ½ × 144 = 72 cm².", "Trapezium with parallel sides 15 cm and 9 cm, height 6 cm. Calculate the area.", "Area = ½ × (15 + 9) × 6 = ½ × 24 × 6 = ½ × 144 = 72 cm²."),
-    mathCard("Lelayang dengan pepenjuru 16 cm dan 9 cm. Kira luas.", "Luas = ½ × 16 × 9 = ½ × 144 = 72 cm².", "Kite with diagonals 16 cm and 9 cm. Calculate the area.", "Area = ½ × 16 × 9 = ½ × 144 = 72 cm²."),
-    mathCard("Taman berbentuk segi empat tepat 25 m × 18 m. Berapa meter pagar diperlukan?", "Pagar = perimeter = 2(25 + 18) = 2(43) = 86 m.", "Rectangular garden 25 m × 18 m. How many metres of fencing are needed?", "Fencing = perimeter = 2(25 + 18) = 2(43) = 86 m."),
-    mathCard("Lelayang: luas = 54 cm², satu pepenjuru = 12 cm. Cari pepenjuru yang lain.", "54 = ½ × 12 × d₂. 54 = 6d₂. d₂ = 9 cm.", "Kite: area = 54 cm², one diagonal = 12 cm. Find the other diagonal.", "54 = ½ × 12 × d₂. 54 = 6d₂. d₂ = 9 cm."),
-    mathCard("Segi tiga: luas = 30 cm², tapak = 10 cm. Cari tinggi.", "30 = ½ × 10 × tinggi. 30 = 5 × tinggi. Tinggi = 6 cm.", "Triangle: area = 30 cm², base = 10 cm. Find the height.", "30 = ½ × 10 × height. 30 = 5 × height. Height = 6 cm."),
-    mathCard("Segi empat tepat 5 m × 4 m. Jubin 50 cm × 50 cm. Berapa jubin diperlukan?", "Luas bilik = 5 × 4 = 20 m². Luas jubin = 0.5 × 0.5 = 0.25 m². Bilangan = 20 ÷ 0.25 = 80 jubin.", "Rectangle 5 m × 4 m. Tiles 50 cm × 50 cm. How many tiles are needed?", "Room area = 5 × 4 = 20 m². Tile area = 0.5 × 0.5 = 0.25 m². Number = 20 ÷ 0.25 = 80 tiles."),
-    mathCard("Bentuk L: segi empat tepat besar 8 × 5 = 40 cm², segi empat tepat kecil 3 × 2 = 6 cm². Apakah luas jumlah?", "Jumlah luas = 40 + 6 = 46 cm².", "L-shape: large rectangle 8 × 5 = 40 cm², small rectangle 3 × 2 = 6 cm². What is the total area?", "Total area = 40 + 6 = 46 cm²."),
-    mathCard("Perimeter segi empat tepat = 36 cm. Panjang = 11 cm. Cari lebar.", "2(11 + l) = 36. 11 + l = 18. l = 7 cm.", "Perimeter of rectangle = 36 cm. Length = 11 cm. Find the width.", "2(11 + w) = 36. 11 + w = 18. w = 7 cm."),
-    mathCard("Apakah dimensi segi empat sama yang memberikan luas terbesar jika perimeter = 20 cm?", "Sisi segi empat sama = 20 ÷ 4 = 5 cm. Luas = 5 × 5 = 25 cm².", "What square dimensions give the largest area if perimeter = 20 cm?", "Square side = 20 ÷ 4 = 5 cm. Area = 5 × 5 = 25 cm²."),
-    mathCard("Jajaran genjang: luas = 72 cm², tapak = 9 cm. Cari tinggi.", "72 = 9 × tinggi. Tinggi = 72 ÷ 9 = 8 cm.", "Parallelogram: area = 72 cm², base = 9 cm. Find the height.", "72 = 9 × height. Height = 72 ÷ 9 = 8 cm."),
+    mathCard(
+      "Segi empat sama berisi 7 cm. Kira perimeter dan luas.",
+      "Perimeter = 4 × 7 = 28 cm. Luas = 7² = 49 cm².",
+      "Square with side 7 cm. Calculate the perimeter and area.",
+      "Perimeter = 4 × 7 = 28 cm. Area = 7² = 49 cm².",
+    ),
+    mathCard(
+      "Segi empat tepat 11 cm × 5 cm. Kira perimeter dan luas.",
+      "Perimeter = 2(11 + 5) = 32 cm. Luas = 11 × 5 = 55 cm².",
+      "Rectangle 11 cm × 5 cm. Calculate perimeter and area.",
+      "Perimeter = 2(11 + 5) = 32 cm. Area = 11 × 5 = 55 cm².",
+    ),
+    mathCard(
+      "Segi tiga dengan tapak 14 cm dan tinggi 8 cm. Kira luas.",
+      "Luas = ½ × 14 × 8 = ½ × 112 = 56 cm².",
+      "Triangle with base 14 cm and height 8 cm. Calculate the area.",
+      "Area = ½ × 14 × 8 = ½ × 112 = 56 cm².",
+    ),
+    mathCard(
+      "Trapezium dengan sisi selari 15 cm dan 9 cm, tinggi 6 cm. Kira luas.",
+      "Luas = ½ × (15 + 9) × 6 = ½ × 24 × 6 = ½ × 144 = 72 cm².",
+      "Trapezium with parallel sides 15 cm and 9 cm, height 6 cm. Calculate the area.",
+      "Area = ½ × (15 + 9) × 6 = ½ × 24 × 6 = ½ × 144 = 72 cm².",
+    ),
+    mathCard(
+      "Lelayang dengan pepenjuru 16 cm dan 9 cm. Kira luas.",
+      "Luas = ½ × 16 × 9 = ½ × 144 = 72 cm².",
+      "Kite with diagonals 16 cm and 9 cm. Calculate the area.",
+      "Area = ½ × 16 × 9 = ½ × 144 = 72 cm².",
+    ),
+    mathCard(
+      "Taman berbentuk segi empat tepat 25 m × 18 m. Berapa meter pagar diperlukan?",
+      "Pagar = perimeter = 2(25 + 18) = 2(43) = 86 m.",
+      "Rectangular garden 25 m × 18 m. How many metres of fencing are needed?",
+      "Fencing = perimeter = 2(25 + 18) = 2(43) = 86 m.",
+    ),
+    mathCard(
+      "Lelayang: luas = 54 cm², satu pepenjuru = 12 cm. Cari pepenjuru yang lain.",
+      "54 = ½ × 12 × d₂. 54 = 6d₂. d₂ = 9 cm.",
+      "Kite: area = 54 cm², one diagonal = 12 cm. Find the other diagonal.",
+      "54 = ½ × 12 × d₂. 54 = 6d₂. d₂ = 9 cm.",
+    ),
+    mathCard(
+      "Segi tiga: luas = 30 cm², tapak = 10 cm. Cari tinggi.",
+      "30 = ½ × 10 × tinggi. 30 = 5 × tinggi. Tinggi = 6 cm.",
+      "Triangle: area = 30 cm², base = 10 cm. Find the height.",
+      "30 = ½ × 10 × height. 30 = 5 × height. Height = 6 cm.",
+    ),
+    mathCard(
+      "Segi empat tepat 5 m × 4 m. Jubin 50 cm × 50 cm. Berapa jubin diperlukan?",
+      "Luas bilik = 5 × 4 = 20 m². Luas jubin = 0.5 × 0.5 = 0.25 m². Bilangan = 20 ÷ 0.25 = 80 jubin.",
+      "Rectangle 5 m × 4 m. Tiles 50 cm × 50 cm. How many tiles are needed?",
+      "Room area = 5 × 4 = 20 m². Tile area = 0.5 × 0.5 = 0.25 m². Number = 20 ÷ 0.25 = 80 tiles.",
+    ),
+    mathCard(
+      "Bentuk L: segi empat tepat besar 8 × 5 = 40 cm², segi empat tepat kecil 3 × 2 = 6 cm². Apakah luas jumlah?",
+      "Jumlah luas = 40 + 6 = 46 cm².",
+      "L-shape: large rectangle 8 × 5 = 40 cm², small rectangle 3 × 2 = 6 cm². What is the total area?",
+      "Total area = 40 + 6 = 46 cm².",
+    ),
+    mathCard(
+      "Perimeter segi empat tepat = 36 cm. Panjang = 11 cm. Cari lebar.",
+      "2(11 + l) = 36. 11 + l = 18. l = 7 cm.",
+      "Perimeter of rectangle = 36 cm. Length = 11 cm. Find the width.",
+      "2(11 + w) = 36. 11 + w = 18. w = 7 cm.",
+    ),
+    mathCard(
+      "Apakah dimensi segi empat sama yang memberikan luas terbesar jika perimeter = 20 cm?",
+      "Sisi segi empat sama = 20 ÷ 4 = 5 cm. Luas = 5 × 5 = 25 cm².",
+      "What square dimensions give the largest area if perimeter = 20 cm?",
+      "Square side = 20 ÷ 4 = 5 cm. Area = 5 × 5 = 25 cm².",
+    ),
+    mathCard(
+      "Jajaran genjang: luas = 72 cm², tapak = 9 cm. Cari tinggi.",
+      "72 = 9 × tinggi. Tinggi = 72 ÷ 9 = 8 cm.",
+      "Parallelogram: area = 72 cm², base = 9 cm. Find the height.",
+      "72 = 9 × height. Height = 72 ÷ 9 = 8 cm.",
+    ),
   ],
 };
 
 const MATH_F1_C11_FLASHCARD_PAIRS = {
   concepts: [
-    mathCard("Apakah set?", "Set ialah koleksi objek yang mempunyai ciri-ciri yang sama dan boleh ditakrifkan dengan jelas. Objek-objek di dalam set dipanggil unsur atau ahli.", "What is a set?", "A set is a collection of objects that share common characteristics and can be clearly defined. The objects inside a set are called elements or members."),
-    mathCard("Apakah unsur set?", "Unsur (atau ahli) ialah setiap objek yang berada di dalam sesebuah set. Unsur ditulis di dalam kurungan kurawal { } dan dipisahkan dengan koma.", "What is an element of a set?", "An element (or member) is every object that is inside a set. Elements are written inside curly braces { } and separated by commas."),
-    mathCard("Apakah set kosong?", "Set kosong ialah set yang tidak mengandungi sebarang unsur. Dilambangkan dengan ∅ atau {}.", "What is an empty set?", "An empty set is a set that contains no elements at all. It is represented by ∅ or {}."),
-    mathCard("Apakah set semesta?", "Set semesta (ξ) ialah set yang mengandungi semua unsur yang sedang dipertimbangkan dalam sesuatu perbincangan. Diwakili oleh segi empat tepat dalam gambar rajah Venn.", "What is a universal set?", "The universal set (ξ) is the set containing all elements under consideration in a particular discussion. It is represented by a rectangle in a Venn diagram."),
-    mathCard("Apakah pelengkap set A?", "Pelengkap A (ditulis A') ialah set semua unsur dalam set semesta (ξ) yang TIDAK berada dalam set A.", "What is the complement of set A?", "The complement of A (written A') is the set of all elements in the universal set (ξ) that are NOT in set A."),
-    mathCard("Apakah subset?", "Set B adalah subset set A (ditulis B ⊂ A) jika setiap unsur dalam B juga merupakan unsur dalam A.", "What is a subset?", "Set B is a subset of set A (written B ⊂ A) if every element in B is also an element in A."),
-    mathCard("Apakah gambar rajah Venn?", "Gambar rajah Venn ialah gambar rajah yang menggunakan bulatan untuk mewakili hubungan antara set secara visual. Segi empat tepat mewakili set semesta.", "What is a Venn diagram?", "A Venn diagram is a diagram that uses circles to visually represent relationships between sets. A rectangle represents the universal set."),
-    mathCard("Apakah kaedah perihalan untuk mewakili set?", "Kaedah perihalan menerangkan set menggunakan ayat. Contoh: 'A ialah set huruf vokal dalam perkataan MALAYSIA'.", "What is the description method for representing a set?", "The description method describes a set using a sentence. Example: 'A is the set of vowels in the word MALAYSIA'."),
-    mathCard("Apakah kaedah penyenaraian untuk mewakili set?", "Kaedah penyenaraian menyenaraikan semua unsur set di dalam kurungan kurawal { }, dipisahkan dengan koma. Contoh: A = {a, i}.", "What is the listing method for representing a set?", "The listing method lists all elements inside curly braces { }, separated by commas. Example: A = {a, i}."),
-    mathCard("Apakah tatatanda pembina set?", "Tatatanda pembina set menggunakan syarat matematik. Format: A = {x : syarat}. Dibaca 'set semua x di mana x memenuhi syarat'.", "What is set builder notation?", "Set builder notation uses a mathematical condition. Format: A = {x : condition}. Read as 'the set of all x where x satisfies the condition'."),
-    mathCard("Apakah maksud ':' dalam tatatanda pembina set?", "Titik bertindih ':' dalam tatatanda pembina set bermaksud 'di mana' atau 'dengan syarat bahawa'. Contoh: {x : x > 5} = 'set semua x di mana x lebih besar daripada 5'.", "What does ':' mean in set builder notation?", "The colon ':' in set builder notation means 'where' or 'such that'. Example: {x : x > 5} = 'the set of all x where x is greater than 5'."),
-    mathCard("Apakah set berasingan (disjoint)?", "Dua set adalah berasingan jika mereka tidak berkongsi sebarang unsur. Dalam gambar rajah Venn, bulatan mereka tidak bersentuhan.", "What are disjoint sets?", "Two sets are disjoint if they share no common elements. In a Venn diagram, their circles do not touch."),
-    mathCard("Apakah set sama?", "Dua set adalah sama (A = B) jika mereka mengandungi unsur yang sama persis. Susunan tidak penting.", "What are equal sets?", "Two sets are equal (A = B) if they contain exactly the same elements. Order does not matter."),
-    mathCard("Apa bezanya ∅, {0} dan {∅}?", "∅: set kosong, tiada unsur. {0}: set mengandungi satu unsur (nombor 0). {∅}: set mengandungi satu unsur (simbol set kosong).", "What is the difference between ∅, {0} and {∅}?", "∅: empty set, no elements. {0}: a set containing one element (the number 0). {∅}: a set containing one element (the empty set symbol)."),
-    mathCard("Apakah simbol untuk 'adalah unsur bagi' dan 'bukan unsur bagi'?", "∈ bermaksud 'adalah unsur bagi'. ∉ bermaksud 'bukan unsur bagi'. Contoh: 3 ∈ {1,2,3} dan 4 ∉ {1,2,3}.", "What are the symbols for 'is an element of' and 'is not an element of'?", "∈ means 'is an element of'. ∉ means 'is not an element of'. Example: 3 ∈ {1,2,3} and 4 ∉ {1,2,3}."),
+    mathCard(
+      "Apakah set?",
+      "Set ialah koleksi objek yang mempunyai ciri-ciri yang sama dan boleh ditakrifkan dengan jelas. Objek-objek di dalam set dipanggil unsur atau ahli.",
+      "What is a set?",
+      "A set is a collection of objects that share common characteristics and can be clearly defined. The objects inside a set are called elements or members.",
+    ),
+    mathCard(
+      "Apakah unsur set?",
+      "Unsur (atau ahli) ialah setiap objek yang berada di dalam sesebuah set. Unsur ditulis di dalam kurungan kurawal { } dan dipisahkan dengan koma.",
+      "What is an element of a set?",
+      "An element (or member) is every object that is inside a set. Elements are written inside curly braces { } and separated by commas.",
+    ),
+    mathCard(
+      "Apakah set kosong?",
+      "Set kosong ialah set yang tidak mengandungi sebarang unsur. Dilambangkan dengan ∅ atau {}.",
+      "What is an empty set?",
+      "An empty set is a set that contains no elements at all. It is represented by ∅ or {}.",
+    ),
+    mathCard(
+      "Apakah set semesta?",
+      "Set semesta (ξ) ialah set yang mengandungi semua unsur yang sedang dipertimbangkan dalam sesuatu perbincangan. Diwakili oleh segi empat tepat dalam gambar rajah Venn.",
+      "What is a universal set?",
+      "The universal set (ξ) is the set containing all elements under consideration in a particular discussion. It is represented by a rectangle in a Venn diagram.",
+    ),
+    mathCard(
+      "Apakah pelengkap set A?",
+      "Pelengkap A (ditulis A') ialah set semua unsur dalam set semesta (ξ) yang TIDAK berada dalam set A.",
+      "What is the complement of set A?",
+      "The complement of A (written A') is the set of all elements in the universal set (ξ) that are NOT in set A.",
+    ),
+    mathCard(
+      "Apakah subset?",
+      "Set B adalah subset set A (ditulis B ⊂ A) jika setiap unsur dalam B juga merupakan unsur dalam A.",
+      "What is a subset?",
+      "Set B is a subset of set A (written B ⊂ A) if every element in B is also an element in A.",
+    ),
+    mathCard(
+      "Apakah gambar rajah Venn?",
+      "Gambar rajah Venn ialah gambar rajah yang menggunakan bulatan untuk mewakili hubungan antara set secara visual. Segi empat tepat mewakili set semesta.",
+      "What is a Venn diagram?",
+      "A Venn diagram is a diagram that uses circles to visually represent relationships between sets. A rectangle represents the universal set.",
+    ),
+    mathCard(
+      "Apakah kaedah perihalan untuk mewakili set?",
+      "Kaedah perihalan menerangkan set menggunakan ayat. Contoh: 'A ialah set huruf vokal dalam perkataan MALAYSIA'.",
+      "What is the description method for representing a set?",
+      "The description method describes a set using a sentence. Example: 'A is the set of vowels in the word MALAYSIA'.",
+    ),
+    mathCard(
+      "Apakah kaedah penyenaraian untuk mewakili set?",
+      "Kaedah penyenaraian menyenaraikan semua unsur set di dalam kurungan kurawal { }, dipisahkan dengan koma. Contoh: A = {a, i}.",
+      "What is the listing method for representing a set?",
+      "The listing method lists all elements inside curly braces { }, separated by commas. Example: A = {a, i}.",
+    ),
+    mathCard(
+      "Apakah tatatanda pembina set?",
+      "Tatatanda pembina set menggunakan syarat matematik. Format: A = {x : syarat}. Dibaca 'set semua x di mana x memenuhi syarat'.",
+      "What is set builder notation?",
+      "Set builder notation uses a mathematical condition. Format: A = {x : condition}. Read as 'the set of all x where x satisfies the condition'.",
+    ),
+    mathCard(
+      "Apakah maksud ':' dalam tatatanda pembina set?",
+      "Titik bertindih ':' dalam tatatanda pembina set bermaksud 'di mana' atau 'dengan syarat bahawa'. Contoh: {x : x > 5} = 'set semua x di mana x lebih besar daripada 5'.",
+      "What does ':' mean in set builder notation?",
+      "The colon ':' in set builder notation means 'where' or 'such that'. Example: {x : x > 5} = 'the set of all x where x is greater than 5'.",
+    ),
+    mathCard(
+      "Apakah set berasingan (disjoint)?",
+      "Dua set adalah berasingan jika mereka tidak berkongsi sebarang unsur. Dalam gambar rajah Venn, bulatan mereka tidak bersentuhan.",
+      "What are disjoint sets?",
+      "Two sets are disjoint if they share no common elements. In a Venn diagram, their circles do not touch.",
+    ),
+    mathCard(
+      "Apakah set sama?",
+      "Dua set adalah sama (A = B) jika mereka mengandungi unsur yang sama persis. Susunan tidak penting.",
+      "What are equal sets?",
+      "Two sets are equal (A = B) if they contain exactly the same elements. Order does not matter.",
+    ),
+    mathCard(
+      "Apa bezanya ∅, {0} dan {∅}?",
+      "∅: set kosong, tiada unsur. {0}: set mengandungi satu unsur (nombor 0). {∅}: set mengandungi satu unsur (simbol set kosong).",
+      "What is the difference between ∅, {0} and {∅}?",
+      "∅: empty set, no elements. {0}: a set containing one element (the number 0). {∅}: a set containing one element (the empty set symbol).",
+    ),
+    mathCard(
+      "Apakah simbol untuk 'adalah unsur bagi' dan 'bukan unsur bagi'?",
+      "∈ bermaksud 'adalah unsur bagi'. ∉ bermaksud 'bukan unsur bagi'. Contoh: 3 ∈ {1,2,3} dan 4 ∉ {1,2,3}.",
+      "What are the symbols for 'is an element of' and 'is not an element of'?",
+      "∈ means 'is an element of'. ∉ means 'is not an element of'. Example: 3 ∈ {1,2,3} and 4 ∉ {1,2,3}.",
+    ),
   ],
   operations: [
-    mathCard("Senaraikan semua unsur set A jika A = {x : x ialah nombor perdana, x < 15}.", "A = {2, 3, 5, 7, 11, 13}. (Nombor perdana kurang daripada 15.)", "List all elements of set A where A = {x : x is a prime number, x < 15}.", "A = {2, 3, 5, 7, 11, 13}. (Prime numbers less than 15.)"),
-    mathCard("Cari n(A) jika A = {huruf dalam perkataan 'SEKOLAH'}.", "Huruf dalam SEKOLAH: S, E, K, O, L, A, H (tiada ulangan). n(A) = 7.", "Find n(A) if A = {letters in the word 'SCHOOL'}.", "Letters in SCHOOL: S, C, H, O, L (unique). n(A) = 5."),
-    mathCard("ξ = {1–10}, A = {2,4,6,8,10}. Cari A'.", "A' = unsur dalam ξ yang bukan dalam A = {1, 3, 5, 7, 9}.", "ξ = {1–10}, A = {2,4,6,8,10}. Find A'.", "A' = elements in ξ not in A = {1, 3, 5, 7, 9}."),
-    mathCard("Tentukan sama ada B ⊂ A: A = {1,2,3,4,5}, B = {1,3,5}.", "Semak: 1 ∈ A ✓, 3 ∈ A ✓, 5 ∈ A ✓. Semua unsur B ada dalam A → B ⊂ A. Ya.", "Determine whether B ⊂ A: A = {1,2,3,4,5}, B = {1,3,5}.", "Check: 1 ∈ A ✓, 3 ∈ A ✓, 5 ∈ A ✓. All elements of B are in A → B ⊂ A. Yes."),
-    mathCard("Adakah {2, 7} ⊂ {1, 2, 3, 7, 9}?", "Semak: 2 ∈ {1,2,3,7,9} ✓. 7 ∈ {1,2,3,7,9} ✓. Ya, {2,7} ⊂ {1,2,3,7,9}.", "Is {2, 7} ⊂ {1, 2, 3, 7, 9}?", "Check: 2 ∈ {1,2,3,7,9} ✓. 7 ∈ {1,2,3,7,9} ✓. Yes, {2,7} ⊂ {1,2,3,7,9}."),
-    mathCard("Adakah {a, b, c} = {c, a, b}?", "Ya, kedua-dua set mengandungi unsur yang sama (a, b, c). Susunan tidak penting dalam set.", "Is {a, b, c} = {c, a, b}?", "Yes, both sets contain the same elements (a, b, c). Order does not matter in a set."),
-    mathCard("Cari bilangan subset bagi A = {x, y, z}.", "n(A) = 3. Bilangan subset = 2³ = 8.", "Find the number of subsets of A = {x, y, z}.", "n(A) = 3. Number of subsets = 2³ = 8."),
-    mathCard("Senaraikan semua subset bagi {p, q}.", "Subset: ∅, {p}, {q}, {p, q}. Jumlah = 2² = 4 subset.", "List all subsets of {p, q}.", "Subsets: ∅, {p}, {q}, {p, q}. Total = 2² = 4 subsets."),
-    mathCard("ξ = {a,b,c,d,e,f}, B = {b,d,f}. Cari n(B').", "B' = {a,c,e}. n(B') = 3.", "ξ = {a,b,c,d,e,f}, B = {b,d,f}. Find n(B').", "B' = {a,c,e}. n(B') = 3."),
-    mathCard("Tukarkan ke kaedah penyenaraian: A = {x : x ialah nombor bulat, 3 ≤ x ≤ 8}.", "A = {3, 4, 5, 6, 7, 8}.", "Convert to listing method: A = {x : x is an integer, 3 ≤ x ≤ 8}.", "A = {3, 4, 5, 6, 7, 8}."),
-    mathCard("Tukarkan ke tatatanda pembina set: B = {2, 4, 6, 8, 10}.", "B = {x : x ialah nombor genap, 0 < x ≤ 10}.", "Convert to set builder notation: B = {2, 4, 6, 8, 10}.", "B = {x : x is an even number, 0 < x ≤ 10}."),
-    mathCard("Adakah {3, 5, 7} = {7, 5, 3, 5}?", "Buang ulangan: {7, 5, 3, 5} → {3, 5, 7}. Maka {3,5,7} = {3,5,7}. Ya, kedua-dua set sama.", "Is {3, 5, 7} = {7, 5, 3, 5}?", "Remove repeats: {7, 5, 3, 5} → {3, 5, 7}. So {3,5,7} = {3,5,7}. Yes, both sets are equal."),
-    mathCard("Jika n(A) = 5, berapakah bilangan subset A?", "Bilangan subset = 2⁵ = 32.", "If n(A) = 5, how many subsets does A have?", "Number of subsets = 2⁵ = 32."),
-    mathCard("ξ = {1,2,3,4,5,6,7,8,9,10}, A = {1,3,5,7,9}. Nyatakan n(A) dan n(A').", "n(A) = 5. n(A') = n(ξ) − n(A) = 10 − 5 = 5.", "ξ = {1,2,3,4,5,6,7,8,9,10}, A = {1,3,5,7,9}. State n(A) and n(A').", "n(A) = 5. n(A') = n(ξ) − n(A) = 10 − 5 = 5."),
-    mathCard("Adakah ∅ ⊂ {1, 2, 3}? Terangkan.", "Ya. Set kosong adalah subset SETIAP set, termasuk {1,2,3}. Ini adalah peraturan asas.", "Is ∅ ⊂ {1, 2, 3}? Explain.", "Yes. The empty set is a subset of EVERY set, including {1,2,3}. This is a fundamental rule."),
-    mathCard("Tentukan sama ada {6} ⊂ {1,2,3,4,5}.", "Semak: 6 ∉ {1,2,3,4,5}. Oleh kerana ada unsur dalam {6} yang tidak ada dalam set tersebut, {6} ⊄ {1,2,3,4,5}.", "Determine whether {6} ⊂ {1,2,3,4,5}.", "Check: 6 ∉ {1,2,3,4,5}. Since there is an element in {6} not in the set, {6} ⊄ {1,2,3,4,5}."),
-    mathCard("Cari semua subset bagi {1, 2, 3} yang mengandungi unsur 2.", "Subset yang mengandungi 2: {2}, {1,2}, {2,3}, {1,2,3}. Jumlah = 4 subset.", "Find all subsets of {1, 2, 3} that contain element 2.", "Subsets containing 2: {2}, {1,2}, {2,3}, {1,2,3}. Total = 4 subsets."),
+    mathCard(
+      "Senaraikan semua unsur set A jika A = {x : x ialah nombor perdana, x < 15}.",
+      "A = {2, 3, 5, 7, 11, 13}. (Nombor perdana kurang daripada 15.)",
+      "List all elements of set A where A = {x : x is a prime number, x < 15}.",
+      "A = {2, 3, 5, 7, 11, 13}. (Prime numbers less than 15.)",
+    ),
+    mathCard(
+      "Cari n(A) jika A = {huruf dalam perkataan 'SEKOLAH'}.",
+      "Huruf dalam SEKOLAH: S, E, K, O, L, A, H (tiada ulangan). n(A) = 7.",
+      "Find n(A) if A = {letters in the word 'SCHOOL'}.",
+      "Letters in SCHOOL: S, C, H, O, L (unique). n(A) = 5.",
+    ),
+    mathCard(
+      "ξ = {1–10}, A = {2,4,6,8,10}. Cari A'.",
+      "A' = unsur dalam ξ yang bukan dalam A = {1, 3, 5, 7, 9}.",
+      "ξ = {1–10}, A = {2,4,6,8,10}. Find A'.",
+      "A' = elements in ξ not in A = {1, 3, 5, 7, 9}.",
+    ),
+    mathCard(
+      "Tentukan sama ada B ⊂ A: A = {1,2,3,4,5}, B = {1,3,5}.",
+      "Semak: 1 ∈ A ✓, 3 ∈ A ✓, 5 ∈ A ✓. Semua unsur B ada dalam A → B ⊂ A. Ya.",
+      "Determine whether B ⊂ A: A = {1,2,3,4,5}, B = {1,3,5}.",
+      "Check: 1 ∈ A ✓, 3 ∈ A ✓, 5 ∈ A ✓. All elements of B are in A → B ⊂ A. Yes.",
+    ),
+    mathCard(
+      "Adakah {2, 7} ⊂ {1, 2, 3, 7, 9}?",
+      "Semak: 2 ∈ {1,2,3,7,9} ✓. 7 ∈ {1,2,3,7,9} ✓. Ya, {2,7} ⊂ {1,2,3,7,9}.",
+      "Is {2, 7} ⊂ {1, 2, 3, 7, 9}?",
+      "Check: 2 ∈ {1,2,3,7,9} ✓. 7 ∈ {1,2,3,7,9} ✓. Yes, {2,7} ⊂ {1,2,3,7,9}.",
+    ),
+    mathCard(
+      "Adakah {a, b, c} = {c, a, b}?",
+      "Ya, kedua-dua set mengandungi unsur yang sama (a, b, c). Susunan tidak penting dalam set.",
+      "Is {a, b, c} = {c, a, b}?",
+      "Yes, both sets contain the same elements (a, b, c). Order does not matter in a set.",
+    ),
+    mathCard(
+      "Cari bilangan subset bagi A = {x, y, z}.",
+      "n(A) = 3. Bilangan subset = 2³ = 8.",
+      "Find the number of subsets of A = {x, y, z}.",
+      "n(A) = 3. Number of subsets = 2³ = 8.",
+    ),
+    mathCard(
+      "Senaraikan semua subset bagi {p, q}.",
+      "Subset: ∅, {p}, {q}, {p, q}. Jumlah = 2² = 4 subset.",
+      "List all subsets of {p, q}.",
+      "Subsets: ∅, {p}, {q}, {p, q}. Total = 2² = 4 subsets.",
+    ),
+    mathCard(
+      "ξ = {a,b,c,d,e,f}, B = {b,d,f}. Cari n(B').",
+      "B' = {a,c,e}. n(B') = 3.",
+      "ξ = {a,b,c,d,e,f}, B = {b,d,f}. Find n(B').",
+      "B' = {a,c,e}. n(B') = 3.",
+    ),
+    mathCard(
+      "Tukarkan ke kaedah penyenaraian: A = {x : x ialah nombor bulat, 3 ≤ x ≤ 8}.",
+      "A = {3, 4, 5, 6, 7, 8}.",
+      "Convert to listing method: A = {x : x is an integer, 3 ≤ x ≤ 8}.",
+      "A = {3, 4, 5, 6, 7, 8}.",
+    ),
+    mathCard(
+      "Tukarkan ke tatatanda pembina set: B = {2, 4, 6, 8, 10}.",
+      "B = {x : x ialah nombor genap, 0 < x ≤ 10}.",
+      "Convert to set builder notation: B = {2, 4, 6, 8, 10}.",
+      "B = {x : x is an even number, 0 < x ≤ 10}.",
+    ),
+    mathCard(
+      "Adakah {3, 5, 7} = {7, 5, 3, 5}?",
+      "Buang ulangan: {7, 5, 3, 5} → {3, 5, 7}. Maka {3,5,7} = {3,5,7}. Ya, kedua-dua set sama.",
+      "Is {3, 5, 7} = {7, 5, 3, 5}?",
+      "Remove repeats: {7, 5, 3, 5} → {3, 5, 7}. So {3,5,7} = {3,5,7}. Yes, both sets are equal.",
+    ),
+    mathCard(
+      "Jika n(A) = 5, berapakah bilangan subset A?",
+      "Bilangan subset = 2⁵ = 32.",
+      "If n(A) = 5, how many subsets does A have?",
+      "Number of subsets = 2⁵ = 32.",
+    ),
+    mathCard(
+      "ξ = {1,2,3,4,5,6,7,8,9,10}, A = {1,3,5,7,9}. Nyatakan n(A) dan n(A').",
+      "n(A) = 5. n(A') = n(ξ) − n(A) = 10 − 5 = 5.",
+      "ξ = {1,2,3,4,5,6,7,8,9,10}, A = {1,3,5,7,9}. State n(A) and n(A').",
+      "n(A) = 5. n(A') = n(ξ) − n(A) = 10 − 5 = 5.",
+    ),
+    mathCard(
+      "Adakah ∅ ⊂ {1, 2, 3}? Terangkan.",
+      "Ya. Set kosong adalah subset SETIAP set, termasuk {1,2,3}. Ini adalah peraturan asas.",
+      "Is ∅ ⊂ {1, 2, 3}? Explain.",
+      "Yes. The empty set is a subset of EVERY set, including {1,2,3}. This is a fundamental rule.",
+    ),
+    mathCard(
+      "Tentukan sama ada {6} ⊂ {1,2,3,4,5}.",
+      "Semak: 6 ∉ {1,2,3,4,5}. Oleh kerana ada unsur dalam {6} yang tidak ada dalam set tersebut, {6} ⊄ {1,2,3,4,5}.",
+      "Determine whether {6} ⊂ {1,2,3,4,5}.",
+      "Check: 6 ∉ {1,2,3,4,5}. Since there is an element in {6} not in the set, {6} ⊄ {1,2,3,4,5}.",
+    ),
+    mathCard(
+      "Cari semua subset bagi {1, 2, 3} yang mengandungi unsur 2.",
+      "Subset yang mengandungi 2: {2}, {1,2}, {2,3}, {1,2,3}. Jumlah = 4 subset.",
+      "Find all subsets of {1, 2, 3} that contain element 2.",
+      "Subsets containing 2: {2}, {1,2}, {2,3}, {1,2,3}. Total = 4 subsets.",
+    ),
   ],
   facts: [
-    mathCard("Nyatakan peraturan: set kosong dan subset.", "PERATURAN: Set kosong (∅) adalah subset SETIAP set. ∅ ⊂ A untuk setiap set A.", "State the rule: empty set and subsets.", "RULE: The empty set (∅) is a subset of EVERY set. ∅ ⊂ A for every set A."),
-    mathCard("Nyatakan peraturan: setiap set dan subset dirinya sendiri.", "PERATURAN: Setiap set adalah subset dirinya sendiri. A ⊂ A untuk setiap set A.", "State the rule: every set is a subset of itself.", "RULE: Every set is a subset of itself. A ⊂ A for every set A."),
-    mathCard("Apakah formula bilangan subset?", "Bilangan subset = 2ⁿ, di mana n ialah bilangan unsur dalam set.", "What is the formula for the number of subsets?", "Number of subsets = 2ⁿ, where n is the number of elements in the set."),
-    mathCard("Berapakah bilangan subset set kosong?", "Bilangan subset ∅ = 2⁰ = 1. Set kosong hanya mempunyai satu subset, iaitu dirinya sendiri (∅).", "How many subsets does the empty set have?", "Number of subsets of ∅ = 2⁰ = 1. The empty set has only one subset — itself (∅)."),
-    mathCard("Apakah perbezaan antara unsur berulang dan set yang mengandunginya?", "Unsur berulang hanya dikira SEKALI dalam set. Contoh: huruf dalam 'LULUS' → {L, U, S}. n = 3, bukan 5.", "What is the key rule about repeated elements?", "Repeated elements are counted only ONCE in a set. Example: letters in 'LEVEL' → {L, E, V}. n = 3, not 5."),
-    mathCard("Apakah perbezaan antara susunan unsur dalam set?", "Susunan unsur tidak penting dalam set. {1,2,3} = {3,2,1} = {2,1,3}. Semua ini adalah set yang sama.", "What is the rule about the order of elements in a set?", "The order of elements does not matter in a set. {1,2,3} = {3,2,1} = {2,1,3}. All these are the same set."),
-    mathCard("Apakah yang dilambangkan oleh segi empat tepat dalam gambar rajah Venn?", "Segi empat tepat dalam gambar rajah Venn mewakili set semesta (ξ) — mengandungi semua unsur yang sedang dipertimbangkan.", "What does the rectangle represent in a Venn diagram?", "The rectangle in a Venn diagram represents the universal set (ξ) — it contains all elements under consideration."),
-    mathCard("Apakah yang dilambangkan oleh bulatan dalam gambar rajah Venn?", "Bulatan dalam gambar rajah Venn mewakili sesebuah set di dalam set semesta.", "What does the circle represent in a Venn diagram?", "A circle in a Venn diagram represents a set within the universal set."),
-    mathCard("Nyatakan hubungan antara n(A) dan n(A').", "n(A) + n(A') = n(ξ). Oleh itu n(A') = n(ξ) − n(A).", "State the relationship between n(A) and n(A').", "n(A) + n(A') = n(ξ). Therefore n(A') = n(ξ) − n(A)."),
-    mathCard("Apakah bilangan subset wajar (proper subsets) bagi set dengan n unsur?", "Bilangan subset wajar = 2ⁿ − 1. (Tidak termasuk set itu sendiri.)", "What is the number of proper subsets for a set with n elements?", "Number of proper subsets = 2ⁿ − 1. (Excluding the set itself.)"),
-    mathCard("Nyatakan tiga kaedah perwakilan set.", "1) Perihalan: guna ayat. 2) Penyenaraian: {unsur1, unsur2, ...}. 3) Tatatanda pembina set: {x : syarat}.", "State the three methods of representing a set.", "1) Description: use a sentence. 2) Listing: {element1, element2, ...}. 3) Set builder notation: {x : condition}."),
-    mathCard("Apakah n(∅)?", "n(∅) = 0. Set kosong tidak mengandungi sebarang unsur.", "What is n(∅)?", "n(∅) = 0. The empty set contains no elements."),
-    mathCard("Adakah {5} = 5?", "Tidak! {5} ialah set yang mengandungi unsur 5. 5 ialah nombor sahaja. Set dan unsurnya adalah berbeza.", "Is {5} = 5?", "No! {5} is a set containing the element 5. 5 is just a number. A set and its element are different things."),
-    mathCard("Apakah simbol set semesta?", "ξ (huruf Greek xi kecil). Set semesta diletakkan di sudut kiri atas segi empat tepat dalam gambar rajah Venn.", "What is the symbol for the universal set?", "ξ (lowercase Greek letter xi). The universal set is labelled at the top-left corner of the rectangle in a Venn diagram."),
+    mathCard(
+      "Nyatakan peraturan: set kosong dan subset.",
+      "PERATURAN: Set kosong (∅) adalah subset SETIAP set. ∅ ⊂ A untuk setiap set A.",
+      "State the rule: empty set and subsets.",
+      "RULE: The empty set (∅) is a subset of EVERY set. ∅ ⊂ A for every set A.",
+    ),
+    mathCard(
+      "Nyatakan peraturan: setiap set dan subset dirinya sendiri.",
+      "PERATURAN: Setiap set adalah subset dirinya sendiri. A ⊂ A untuk setiap set A.",
+      "State the rule: every set is a subset of itself.",
+      "RULE: Every set is a subset of itself. A ⊂ A for every set A.",
+    ),
+    mathCard(
+      "Apakah formula bilangan subset?",
+      "Bilangan subset = 2ⁿ, di mana n ialah bilangan unsur dalam set.",
+      "What is the formula for the number of subsets?",
+      "Number of subsets = 2ⁿ, where n is the number of elements in the set.",
+    ),
+    mathCard(
+      "Berapakah bilangan subset set kosong?",
+      "Bilangan subset ∅ = 2⁰ = 1. Set kosong hanya mempunyai satu subset, iaitu dirinya sendiri (∅).",
+      "How many subsets does the empty set have?",
+      "Number of subsets of ∅ = 2⁰ = 1. The empty set has only one subset — itself (∅).",
+    ),
+    mathCard(
+      "Apakah perbezaan antara unsur berulang dan set yang mengandunginya?",
+      "Unsur berulang hanya dikira SEKALI dalam set. Contoh: huruf dalam 'LULUS' → {L, U, S}. n = 3, bukan 5.",
+      "What is the key rule about repeated elements?",
+      "Repeated elements are counted only ONCE in a set. Example: letters in 'LEVEL' → {L, E, V}. n = 3, not 5.",
+    ),
+    mathCard(
+      "Apakah perbezaan antara susunan unsur dalam set?",
+      "Susunan unsur tidak penting dalam set. {1,2,3} = {3,2,1} = {2,1,3}. Semua ini adalah set yang sama.",
+      "What is the rule about the order of elements in a set?",
+      "The order of elements does not matter in a set. {1,2,3} = {3,2,1} = {2,1,3}. All these are the same set.",
+    ),
+    mathCard(
+      "Apakah yang dilambangkan oleh segi empat tepat dalam gambar rajah Venn?",
+      "Segi empat tepat dalam gambar rajah Venn mewakili set semesta (ξ) — mengandungi semua unsur yang sedang dipertimbangkan.",
+      "What does the rectangle represent in a Venn diagram?",
+      "The rectangle in a Venn diagram represents the universal set (ξ) — it contains all elements under consideration.",
+    ),
+    mathCard(
+      "Apakah yang dilambangkan oleh bulatan dalam gambar rajah Venn?",
+      "Bulatan dalam gambar rajah Venn mewakili sesebuah set di dalam set semesta.",
+      "What does the circle represent in a Venn diagram?",
+      "A circle in a Venn diagram represents a set within the universal set.",
+    ),
+    mathCard(
+      "Nyatakan hubungan antara n(A) dan n(A').",
+      "n(A) + n(A') = n(ξ). Oleh itu n(A') = n(ξ) − n(A).",
+      "State the relationship between n(A) and n(A').",
+      "n(A) + n(A') = n(ξ). Therefore n(A') = n(ξ) − n(A).",
+    ),
+    mathCard(
+      "Apakah bilangan subset wajar (proper subsets) bagi set dengan n unsur?",
+      "Bilangan subset wajar = 2ⁿ − 1. (Tidak termasuk set itu sendiri.)",
+      "What is the number of proper subsets for a set with n elements?",
+      "Number of proper subsets = 2ⁿ − 1. (Excluding the set itself.)",
+    ),
+    mathCard(
+      "Nyatakan tiga kaedah perwakilan set.",
+      "1) Perihalan: guna ayat. 2) Penyenaraian: {unsur1, unsur2, ...}. 3) Tatatanda pembina set: {x : syarat}.",
+      "State the three methods of representing a set.",
+      "1) Description: use a sentence. 2) Listing: {element1, element2, ...}. 3) Set builder notation: {x : condition}.",
+    ),
+    mathCard(
+      "Apakah n(∅)?",
+      "n(∅) = 0. Set kosong tidak mengandungi sebarang unsur.",
+      "What is n(∅)?",
+      "n(∅) = 0. The empty set contains no elements.",
+    ),
+    mathCard(
+      "Adakah {5} = 5?",
+      "Tidak! {5} ialah set yang mengandungi unsur 5. 5 ialah nombor sahaja. Set dan unsurnya adalah berbeza.",
+      "Is {5} = 5?",
+      "No! {5} is a set containing the element 5. 5 is just a number. A set and its element are different things.",
+    ),
+    mathCard(
+      "Apakah simbol set semesta?",
+      "ξ (huruf Greek xi kecil). Set semesta diletakkan di sudut kiri atas segi empat tepat dalam gambar rajah Venn.",
+      "What is the symbol for the universal set?",
+      "ξ (lowercase Greek letter xi). The universal set is labelled at the top-left corner of the rectangle in a Venn diagram.",
+    ),
   ],
   practice: [
-    mathCard("A = {huruf dalam 'MATEMATIK'}. Cari n(A).", "Huruf dalam MATEMATIK: M,A,T,E,M,A,T,I,K. Unik: {M,A,T,E,I,K}. n(A) = 6.", "A = {letters in 'MATHEMATICS'}. Find n(A).", "Letters: M,A,T,H,E,M,A,T,I,C,S. Unique: {M,A,T,H,E,I,C,S}. n(A) = 8."),
-    mathCard("ξ = {1,2,3,...,12}, P = {x : x ialah gandaan 3, x ≤ 12}. Cari P dan P'.", "P = {3,6,9,12}. P' = {1,2,4,5,7,8,10,11}.", "ξ = {1,2,...,12}, P = {x : x is a multiple of 3, x ≤ 12}. Find P and P'.", "P = {3,6,9,12}. P' = {1,2,4,5,7,8,10,11}."),
-    mathCard("Cari bilangan subset bagi {a, b, c, d, e}.", "n = 5. Bilangan subset = 2⁵ = 32.", "Find the number of subsets of {a, b, c, d, e}.", "n = 5. Number of subsets = 2⁵ = 32."),
-    mathCard("ξ = {bulatan, segi tiga, segi empat, pentagon, heksagon}. A = {bentuk dengan 4 sisi atau kurang}. Cari A dan A'.", "A = {segi tiga, segi empat}. A' = {bulatan, pentagon, heksagon}.", "ξ = {circle, triangle, square, pentagon, hexagon}. A = {shapes with 4 or fewer sides}. Find A and A'.", "A = {triangle, square}. A' = {circle, pentagon, hexagon}."),
-    mathCard("Adakah {2,4,6} = {6,2,4}? Adakah ia set kosong?", "Ya, {2,4,6} = {6,2,4} kerana mengandungi unsur yang sama. Tidak, ia bukan set kosong (n = 3).", "Is {2,4,6} = {6,2,4}? Is it an empty set?", "Yes, {2,4,6} = {6,2,4} because they contain the same elements. No, it is not empty (n = 3)."),
-    mathCard("Nyatakan 4 subset bagi {m, n} (senaraikan semua).", "∅, {m}, {n}, {m, n}. Jumlah = 2² = 4 subset.", "State all 4 subsets of {m, n}.", "∅, {m}, {n}, {m, n}. Total = 2² = 4 subsets."),
-    mathCard("ξ = {1,2,3,...,20}. A = {x : x ialah nombor genap}. Cari n(A) dan n(A').", "A = {2,4,6,8,10,12,14,16,18,20}. n(A) = 10. n(A') = 20 − 10 = 10.", "ξ = {1,2,...,20}. A = {x : x is an even number}. Find n(A) and n(A').", "A = {2,4,6,8,10,12,14,16,18,20}. n(A) = 10. n(A') = 20 − 10 = 10."),
-    mathCard("Tentukan semua subset satu unsur bagi {a, b, c, d}.", "{a}, {b}, {c}, {d}. (4 subset satu unsur — sama dengan bilangan unsur.)", "Determine all single-element subsets of {a, b, c, d}.", "{a}, {b}, {c}, {d}. (4 single-element subsets — equals the number of elements.)"),
-    mathCard("Set A mempunyai 64 subset. Berapakah n(A)?", "2ⁿ = 64. 2⁶ = 64. n(A) = 6.", "Set A has 64 subsets. What is n(A)?", "2ⁿ = 64. 2⁶ = 64. n(A) = 6."),
-    mathCard("Adakah {0} set kosong?", "Tidak. {0} mengandungi satu unsur iaitu nombor 0. n({0}) = 1. Set kosong ditulis ∅ atau {}.", "Is {0} an empty set?", "No. {0} contains one element — the number 0. n({0}) = 1. The empty set is written ∅ or {}."),
-    mathCard("ξ = {1,...,10}. A = {x : x adalah faktor 12 dan x ≤ 10}. Cari A, n(A) dan A'.", "Faktor 12: 1,2,3,4,6,12. Yang ≤ 10: A = {1,2,3,4,6}. n(A) = 5. A' = {5,7,8,9,10}.", "ξ = {1,...,10}. A = {x : x is a factor of 12 and x ≤ 10}. Find A, n(A) and A'.", "Factors of 12: 1,2,3,4,6,12. Those ≤ 10: A = {1,2,3,4,6}. n(A) = 5. A' = {5,7,8,9,10}."),
-    mathCard("Set M mempunyai 128 subset. Berapakah n(M)?", "2ⁿ = 128. 2⁷ = 128. n(M) = 7.", "Set M has 128 subsets. What is n(M)?", "2ⁿ = 128. 2⁷ = 128. n(M) = 7."),
-    mathCard("Adakah set {bulan yang mempunyai 30 hari} set kosong?", "Tidak. April, Jun, September dan November mempunyai 30 hari. n = 4.", "Is the set {months with 30 days} an empty set?", "No. April, June, September and November have 30 days. n = 4."),
+    mathCard(
+      "A = {huruf dalam 'MATEMATIK'}. Cari n(A).",
+      "Huruf dalam MATEMATIK: M,A,T,E,M,A,T,I,K. Unik: {M,A,T,E,I,K}. n(A) = 6.",
+      "A = {letters in 'MATHEMATICS'}. Find n(A).",
+      "Letters: M,A,T,H,E,M,A,T,I,C,S. Unique: {M,A,T,H,E,I,C,S}. n(A) = 8.",
+    ),
+    mathCard(
+      "ξ = {1,2,3,...,12}, P = {x : x ialah gandaan 3, x ≤ 12}. Cari P dan P'.",
+      "P = {3,6,9,12}. P' = {1,2,4,5,7,8,10,11}.",
+      "ξ = {1,2,...,12}, P = {x : x is a multiple of 3, x ≤ 12}. Find P and P'.",
+      "P = {3,6,9,12}. P' = {1,2,4,5,7,8,10,11}.",
+    ),
+    mathCard(
+      "Cari bilangan subset bagi {a, b, c, d, e}.",
+      "n = 5. Bilangan subset = 2⁵ = 32.",
+      "Find the number of subsets of {a, b, c, d, e}.",
+      "n = 5. Number of subsets = 2⁵ = 32.",
+    ),
+    mathCard(
+      "ξ = {bulatan, segi tiga, segi empat, pentagon, heksagon}. A = {bentuk dengan 4 sisi atau kurang}. Cari A dan A'.",
+      "A = {segi tiga, segi empat}. A' = {bulatan, pentagon, heksagon}.",
+      "ξ = {circle, triangle, square, pentagon, hexagon}. A = {shapes with 4 or fewer sides}. Find A and A'.",
+      "A = {triangle, square}. A' = {circle, pentagon, hexagon}.",
+    ),
+    mathCard(
+      "Adakah {2,4,6} = {6,2,4}? Adakah ia set kosong?",
+      "Ya, {2,4,6} = {6,2,4} kerana mengandungi unsur yang sama. Tidak, ia bukan set kosong (n = 3).",
+      "Is {2,4,6} = {6,2,4}? Is it an empty set?",
+      "Yes, {2,4,6} = {6,2,4} because they contain the same elements. No, it is not empty (n = 3).",
+    ),
+    mathCard(
+      "Nyatakan 4 subset bagi {m, n} (senaraikan semua).",
+      "∅, {m}, {n}, {m, n}. Jumlah = 2² = 4 subset.",
+      "State all 4 subsets of {m, n}.",
+      "∅, {m}, {n}, {m, n}. Total = 2² = 4 subsets.",
+    ),
+    mathCard(
+      "ξ = {1,2,3,...,20}. A = {x : x ialah nombor genap}. Cari n(A) dan n(A').",
+      "A = {2,4,6,8,10,12,14,16,18,20}. n(A) = 10. n(A') = 20 − 10 = 10.",
+      "ξ = {1,2,...,20}. A = {x : x is an even number}. Find n(A) and n(A').",
+      "A = {2,4,6,8,10,12,14,16,18,20}. n(A) = 10. n(A') = 20 − 10 = 10.",
+    ),
+    mathCard(
+      "Tentukan semua subset satu unsur bagi {a, b, c, d}.",
+      "{a}, {b}, {c}, {d}. (4 subset satu unsur — sama dengan bilangan unsur.)",
+      "Determine all single-element subsets of {a, b, c, d}.",
+      "{a}, {b}, {c}, {d}. (4 single-element subsets — equals the number of elements.)",
+    ),
+    mathCard(
+      "Set A mempunyai 64 subset. Berapakah n(A)?",
+      "2ⁿ = 64. 2⁶ = 64. n(A) = 6.",
+      "Set A has 64 subsets. What is n(A)?",
+      "2ⁿ = 64. 2⁶ = 64. n(A) = 6.",
+    ),
+    mathCard(
+      "Adakah {0} set kosong?",
+      "Tidak. {0} mengandungi satu unsur iaitu nombor 0. n({0}) = 1. Set kosong ditulis ∅ atau {}.",
+      "Is {0} an empty set?",
+      "No. {0} contains one element — the number 0. n({0}) = 1. The empty set is written ∅ or {}.",
+    ),
+    mathCard(
+      "ξ = {1,...,10}. A = {x : x adalah faktor 12 dan x ≤ 10}. Cari A, n(A) dan A'.",
+      "Faktor 12: 1,2,3,4,6,12. Yang ≤ 10: A = {1,2,3,4,6}. n(A) = 5. A' = {5,7,8,9,10}.",
+      "ξ = {1,...,10}. A = {x : x is a factor of 12 and x ≤ 10}. Find A, n(A) and A'.",
+      "Factors of 12: 1,2,3,4,6,12. Those ≤ 10: A = {1,2,3,4,6}. n(A) = 5. A' = {5,7,8,9,10}.",
+    ),
+    mathCard(
+      "Set M mempunyai 128 subset. Berapakah n(M)?",
+      "2ⁿ = 128. 2⁷ = 128. n(M) = 7.",
+      "Set M has 128 subsets. What is n(M)?",
+      "2ⁿ = 128. 2⁷ = 128. n(M) = 7.",
+    ),
+    mathCard(
+      "Adakah set {bulan yang mempunyai 30 hari} set kosong?",
+      "Tidak. April, Jun, September dan November mempunyai 30 hari. n = 4.",
+      "Is the set {months with 30 days} an empty set?",
+      "No. April, June, September and November have 30 days. n = 4.",
+    ),
   ],
 };
 
 const MATH_F1_C13_FLASHCARD_PAIRS = {
   concepts: [
-    mathCard("Apakah hipotenus?", "Hipotenus ialah sisi terpanjang dalam segi tiga bersudut tegak. Ia sentiasa bertentangan dengan sudut 90°.", "What is the hypotenuse?", "The hypotenuse is the longest side in a right-angled triangle. It is always opposite the 90° angle."),
-    mathCard("Apakah Teorem Pythagoras?", "Teorem Pythagoras menyatakan: c² = a² + b², di mana c ialah hipotenus dan a, b ialah dua sisi yang lain dalam segi tiga bersudut tegak.", "What is Pythagoras' Theorem?", "Pythagoras' Theorem states: c² = a² + b², where c is the hypotenuse and a, b are the other two sides of a right-angled triangle."),
-    mathCard("Apakah segi tiga bersudut tegak?", "Segi tiga bersudut tegak ialah segi tiga yang mempunyai TEPAT SATU sudut tegak (90°). Simbol □ menandakan sudut tegak.", "What is a right-angled triangle?", "A right-angled triangle is a triangle that has EXACTLY ONE right angle (90°). The □ symbol marks the right angle."),
-    mathCard("Di manakah hipotenus berada dalam segi tiga bersudut tegak?", "Hipotenus berada BERTENTANGAN dengan sudut 90°. Ia adalah sisi yang tidak membentuk sudut tegak.", "Where is the hypotenuse in a right-angled triangle?", "The hypotenuse is OPPOSITE the 90° angle. It is the side that does not form the right angle."),
-    mathCard("Apakah akas Teorem Pythagoras?", "Akas menyatakan: jika c² = a² + b² (c = sisi terpanjang), maka segi tiga adalah BERSUDUT TEGAK.", "What is the converse of Pythagoras' Theorem?", "The converse states: if c² = a² + b² (c = longest side), then the triangle IS RIGHT-ANGLED."),
-    mathCard("Apakah triple Pythagoras?", "Set tiga nombor bulat positif (a, b, c) yang memenuhi a² + b² = c². Contoh: 3-4-5, 5-12-13, 8-15-17, 7-24-25.", "What is a Pythagorean triple?", "A set of three positive integers (a, b, c) satisfying a² + b² = c². Examples: 3-4-5, 5-12-13, 8-15-17, 7-24-25."),
-    mathCard("Apakah segi tiga bersudut tirus?", "Segi tiga di mana SEMUA sudut kurang daripada 90°. Dikenal pasti dengan: c² < a² + b² (c = sisi terpanjang).", "What is an acute-angled triangle?", "A triangle where ALL angles are less than 90°. Identified by: c² < a² + b² (c = longest side)."),
-    mathCard("Apakah segi tiga bersudut cakah?", "Segi tiga yang mempunyai SATU sudut lebih besar daripada 90°. Dikenal pasti dengan: c² > a² + b² (c = sisi terpanjang).", "What is an obtuse-angled triangle?", "A triangle that has ONE angle greater than 90°. Identified by: c² > a² + b² (c = longest side)."),
-    mathCard("Bolehkah Teorem Pythagoras digunakan untuk semua segi tiga?", "TIDAK. Teorem Pythagoras HANYA boleh digunakan untuk segi tiga BERSUDUT TEGAK sahaja.", "Can Pythagoras' Theorem be used for all triangles?", "NO. Pythagoras' Theorem can ONLY be used for RIGHT-ANGLED triangles."),
-    mathCard("Apakah yang dimaksudkan dengan 'kaki' dalam segi tiga bersudut tegak?", "Kaki ialah dua sisi yang lebih pendek dalam segi tiga bersudut tegak — sisi yang membentuk sudut 90°. Hipotenus adalah sisi ketiga.", "What is meant by 'leg' in a right-angled triangle?", "Legs are the two shorter sides in a right-angled triangle — the sides that form the 90° angle. The hypotenuse is the third side."),
-    mathCard("Adakah hipotenus boleh menjadi kaki sudut tegak?", "TIDAK. Hipotenus sentiasa bertentangan dengan sudut 90°, BUKAN menjadi kaki sudut tegak. Kaki sudut tegak adalah dua sisi yang lebih pendek.", "Can the hypotenuse be a leg of the right angle?", "NO. The hypotenuse is always OPPOSITE the right angle, NOT a leg forming it. The legs are the two shorter sides."),
-    mathCard("Apakah aplikasi Teorem Pythagoras dalam pembinaan?", "Dalam pembinaan, Teorem Pythagoras digunakan untuk memastikan sudut tepat 90° — jika sisi 3m, 4m dan pepenjuru 5m, sudutnya adalah 90°.", "What is the application of Pythagoras' Theorem in construction?", "In construction, Pythagoras' Theorem is used to ensure 90° right angles — if sides are 3m, 4m and diagonal is 5m, the angle is exactly 90°."),
-    mathCard("Berapakah saiz sudut yang bertentangan dengan hipotenus?", "Sudut yang bertentangan dengan hipotenus sentiasa 90° (sudut tegak). Ini adalah definisi hipotenus.", "What is the size of the angle opposite the hypotenuse?", "The angle opposite the hypotenuse is always 90° (right angle). This is the definition of the hypotenuse."),
-    mathCard("Mengapa c² = a² + b² dan bukan a² = c² + b²?", "Kerana c ialah hipotenus (sisi terpanjang). Dalam rumus, hipotenus BERSENDIRIAN di satu sisi persamaan. a dan b (kaki) berada di sisi lain.", "Why is c² = a² + b² and not a² = c² + b²?", "Because c is the hypotenuse (longest side). In the formula, the hypotenuse is ALONE on one side of the equation. a and b (legs) are on the other side."),
-    mathCard("Apakah kegunaan triple Pythagoras dalam penyelesaian soalan?", "Jika anda mengenal triple Pythagoras (3-4-5, 5-12-13, dll.), anda boleh terus menulis jawapan TANPA pengiraan panjang — menjimatkan masa dalam peperiksaan.", "What is the use of Pythagorean triples in solving problems?", "If you recognise a Pythagorean triple (3-4-5, 5-12-13, etc.), you can write the answer DIRECTLY without lengthy calculation — saving time in exams."),
+    mathCard(
+      "Apakah hipotenus?",
+      "Hipotenus ialah sisi terpanjang dalam segi tiga bersudut tegak. Ia sentiasa bertentangan dengan sudut 90°.",
+      "What is the hypotenuse?",
+      "The hypotenuse is the longest side in a right-angled triangle. It is always opposite the 90° angle.",
+    ),
+    mathCard(
+      "Apakah Teorem Pythagoras?",
+      "Teorem Pythagoras menyatakan: c² = a² + b², di mana c ialah hipotenus dan a, b ialah dua sisi yang lain dalam segi tiga bersudut tegak.",
+      "What is Pythagoras' Theorem?",
+      "Pythagoras' Theorem states: c² = a² + b², where c is the hypotenuse and a, b are the other two sides of a right-angled triangle.",
+    ),
+    mathCard(
+      "Apakah segi tiga bersudut tegak?",
+      "Segi tiga bersudut tegak ialah segi tiga yang mempunyai TEPAT SATU sudut tegak (90°). Simbol □ menandakan sudut tegak.",
+      "What is a right-angled triangle?",
+      "A right-angled triangle is a triangle that has EXACTLY ONE right angle (90°). The □ symbol marks the right angle.",
+    ),
+    mathCard(
+      "Di manakah hipotenus berada dalam segi tiga bersudut tegak?",
+      "Hipotenus berada BERTENTANGAN dengan sudut 90°. Ia adalah sisi yang tidak membentuk sudut tegak.",
+      "Where is the hypotenuse in a right-angled triangle?",
+      "The hypotenuse is OPPOSITE the 90° angle. It is the side that does not form the right angle.",
+    ),
+    mathCard(
+      "Apakah akas Teorem Pythagoras?",
+      "Akas menyatakan: jika c² = a² + b² (c = sisi terpanjang), maka segi tiga adalah BERSUDUT TEGAK.",
+      "What is the converse of Pythagoras' Theorem?",
+      "The converse states: if c² = a² + b² (c = longest side), then the triangle IS RIGHT-ANGLED.",
+    ),
+    mathCard(
+      "Apakah triple Pythagoras?",
+      "Set tiga nombor bulat positif (a, b, c) yang memenuhi a² + b² = c². Contoh: 3-4-5, 5-12-13, 8-15-17, 7-24-25.",
+      "What is a Pythagorean triple?",
+      "A set of three positive integers (a, b, c) satisfying a² + b² = c². Examples: 3-4-5, 5-12-13, 8-15-17, 7-24-25.",
+    ),
+    mathCard(
+      "Apakah segi tiga bersudut tirus?",
+      "Segi tiga di mana SEMUA sudut kurang daripada 90°. Dikenal pasti dengan: c² < a² + b² (c = sisi terpanjang).",
+      "What is an acute-angled triangle?",
+      "A triangle where ALL angles are less than 90°. Identified by: c² < a² + b² (c = longest side).",
+    ),
+    mathCard(
+      "Apakah segi tiga bersudut cakah?",
+      "Segi tiga yang mempunyai SATU sudut lebih besar daripada 90°. Dikenal pasti dengan: c² > a² + b² (c = sisi terpanjang).",
+      "What is an obtuse-angled triangle?",
+      "A triangle that has ONE angle greater than 90°. Identified by: c² > a² + b² (c = longest side).",
+    ),
+    mathCard(
+      "Bolehkah Teorem Pythagoras digunakan untuk semua segi tiga?",
+      "TIDAK. Teorem Pythagoras HANYA boleh digunakan untuk segi tiga BERSUDUT TEGAK sahaja.",
+      "Can Pythagoras' Theorem be used for all triangles?",
+      "NO. Pythagoras' Theorem can ONLY be used for RIGHT-ANGLED triangles.",
+    ),
+    mathCard(
+      "Apakah yang dimaksudkan dengan 'kaki' dalam segi tiga bersudut tegak?",
+      "Kaki ialah dua sisi yang lebih pendek dalam segi tiga bersudut tegak — sisi yang membentuk sudut 90°. Hipotenus adalah sisi ketiga.",
+      "What is meant by 'leg' in a right-angled triangle?",
+      "Legs are the two shorter sides in a right-angled triangle — the sides that form the 90° angle. The hypotenuse is the third side.",
+    ),
+    mathCard(
+      "Adakah hipotenus boleh menjadi kaki sudut tegak?",
+      "TIDAK. Hipotenus sentiasa bertentangan dengan sudut 90°, BUKAN menjadi kaki sudut tegak. Kaki sudut tegak adalah dua sisi yang lebih pendek.",
+      "Can the hypotenuse be a leg of the right angle?",
+      "NO. The hypotenuse is always OPPOSITE the right angle, NOT a leg forming it. The legs are the two shorter sides.",
+    ),
+    mathCard(
+      "Apakah aplikasi Teorem Pythagoras dalam pembinaan?",
+      "Dalam pembinaan, Teorem Pythagoras digunakan untuk memastikan sudut tepat 90° — jika sisi 3m, 4m dan pepenjuru 5m, sudutnya adalah 90°.",
+      "What is the application of Pythagoras' Theorem in construction?",
+      "In construction, Pythagoras' Theorem is used to ensure 90° right angles — if sides are 3m, 4m and diagonal is 5m, the angle is exactly 90°.",
+    ),
+    mathCard(
+      "Berapakah saiz sudut yang bertentangan dengan hipotenus?",
+      "Sudut yang bertentangan dengan hipotenus sentiasa 90° (sudut tegak). Ini adalah definisi hipotenus.",
+      "What is the size of the angle opposite the hypotenuse?",
+      "The angle opposite the hypotenuse is always 90° (right angle). This is the definition of the hypotenuse.",
+    ),
+    mathCard(
+      "Mengapa c² = a² + b² dan bukan a² = c² + b²?",
+      "Kerana c ialah hipotenus (sisi terpanjang). Dalam rumus, hipotenus BERSENDIRIAN di satu sisi persamaan. a dan b (kaki) berada di sisi lain.",
+      "Why is c² = a² + b² and not a² = c² + b²?",
+      "Because c is the hypotenuse (longest side). In the formula, the hypotenuse is ALONE on one side of the equation. a and b (legs) are on the other side.",
+    ),
+    mathCard(
+      "Apakah kegunaan triple Pythagoras dalam penyelesaian soalan?",
+      "Jika anda mengenal triple Pythagoras (3-4-5, 5-12-13, dll.), anda boleh terus menulis jawapan TANPA pengiraan panjang — menjimatkan masa dalam peperiksaan.",
+      "What is the use of Pythagorean triples in solving problems?",
+      "If you recognise a Pythagorean triple (3-4-5, 5-12-13, etc.), you can write the answer DIRECTLY without lengthy calculation — saving time in exams.",
+    ),
   ],
   operations: [
-    mathCard("Rumus untuk mencari hipotenus c ialah:", "c = √(a² + b²). Langkah: kira a², kira b², tambah, kemudian ambil punca kuasa dua.", "The formula to find hypotenuse c is:", "c = √(a² + b²). Steps: calculate a², calculate b², add, then take the square root."),
-    mathCard("Rumus untuk mencari kaki a ialah:", "a = √(c² − b²). TOLAK, bukan tambah, kerana mencari sisi lebih pendek. c = hipotenus.", "The formula to find leg a is:", "a = √(c² − b²). SUBTRACT, not add, because we are finding the shorter side. c = hypotenuse."),
-    mathCard("Apakah langkah-langkah untuk mencari hipotenus?", "① Kenal pasti a dan b. ② Kira a² dan b². ③ Tambah: c² = a²+b². ④ Ambil punca kuasa dua: c = √(c²). ⑤ Semak: c > a dan c > b.", "What are the steps to find the hypotenuse?", "① Identify a and b. ② Calculate a² and b². ③ Add: c² = a²+b². ④ Take square root: c = √(c²). ⑤ Check: c > a and c > b."),
-    mathCard("Apakah langkah-langkah untuk mencari kaki yang tidak diketahui?", "① Kenal pasti c (hipotenus) dan kaki yang diketahui. ② Kira c². ③ Kira (kaki diketahui)². ④ TOLAK: kaki² = c² − (kaki diketahui)². ⑤ Ambil punca kuasa dua.", "What are the steps to find the missing leg?", "① Identify c (hypotenuse) and the known leg. ② Calculate c². ③ Calculate (known leg)². ④ SUBTRACT: leg² = c² − (known leg)². ⑤ Take square root."),
-    mathCard("Apakah langkah-langkah mengklasifikasikan segi tiga menggunakan akas?", "① Senarai 3 sisi. ② Kenal pasti c (terpanjang). ③ Kira c². ④ Kira a²+b². ⑤ Bandingkan: sama=tegak, kurang=tirus, lebih=cakah.", "What are the steps to classify a triangle using the converse?", "① List 3 sides. ② Identify c (longest). ③ Calculate c². ④ Calculate a²+b². ⑤ Compare: equal=right, less=acute, greater=obtuse."),
-    mathCard("Cara menggunakan akas Teorem Pythagoras untuk menentukan jenis segi tiga:", "Kira c² dan a²+b². Jika sama → tegak. Jika c² < a²+b² → tirus. Jika c² > a²+b² → cakah.", "How to use the converse of Pythagoras' Theorem to determine triangle type:", "Calculate c² and a²+b². If equal → right. If c² < a²+b² → acute. If c² > a²+b² → obtuse."),
-    mathCard("a = 3, b = 4. Cari c.", "c² = 3²+4² = 9+16 = 25. c = √25 = 5.", "a = 3, b = 4. Find c.", "c² = 3²+4² = 9+16 = 25. c = √25 = 5."),
-    mathCard("c = 13, a = 5. Cari b.", "b² = 13²−5² = 169−25 = 144. b = √144 = 12.", "c = 13, a = 5. Find b.", "b² = 13²−5² = 169−25 = 144. b = √144 = 12."),
-    mathCard("Bagaimana cara mencari pepenjuru segi empat tepat 6cm × 8cm?", "Pepenjuru = hipotenus. d² = 6²+8² = 36+64 = 100. d = √100 = 10 cm.", "How to find the diagonal of a 6cm × 8cm rectangle?", "Diagonal = hypotenuse. d² = 6²+8² = 36+64 = 100. d = √100 = 10 cm."),
-    mathCard("Tangga 10m bersandar pada dinding. Kaki tangga 6m dari dinding. Berapa ketinggian tangga pada dinding?", "h² = 10²−6² = 100−36 = 64. h = √64 = 8m.", "A 10m ladder leans on a wall. Base is 6m from wall. Find height on wall.", "h² = 10²−6² = 100−36 = 64. h = √64 = 8m."),
-    mathCard("Adakah 7, 24, 25 triple Pythagoras?", "7²+24² = 49+576 = 625 = 25². Ya, ia adalah triple Pythagoras!", "Is 7, 24, 25 a Pythagorean triple?", "7²+24² = 49+576 = 625 = 25². Yes, it is a Pythagorean triple!"),
-    mathCard("Apakah gandaan triple 3-4-5 yang lain?", "Gandakan setiap nombor dengan faktor yang sama: ×2 = (6,8,10), ×3 = (9,12,15), ×4 = (12,16,20), ×5 = (15,20,25).", "What are other multiples of the 3-4-5 triple?", "Multiply each number by the same factor: ×2 = (6,8,10), ×3 = (9,12,15), ×4 = (12,16,20), ×5 = (15,20,25)."),
-    mathCard("a = 8, b = 15. Cari c.", "c² = 8²+15² = 64+225 = 289. c = √289 = 17. Triple 8-15-17!", "a = 8, b = 15. Find c.", "c² = 8²+15² = 64+225 = 289. c = √289 = 17. The 8-15-17 triple!"),
-    mathCard("Segi tiga sama kaki dengan dua sisi = 10cm dan tapak = 12cm. Cari ketinggian.", "Bahagi tapak: 6cm. h²+6² = 10². h² = 100−36 = 64. h = 8cm.", "Isosceles triangle with two sides = 10cm and base = 12cm. Find height.", "Halve the base: 6cm. h²+6² = 10². h² = 100−36 = 64. h = 8cm."),
-    mathCard("Cara menentukan sama ada segi tiga 9, 40, 41 adalah bersudut tegak:", "c=41: c²=1681. a²+b²=81+1600=1681. 1681=1681 ✓. Bersudut tegak! (Triple 9-40-41).", "How to determine whether triangle 9, 40, 41 is right-angled:", "c=41: c²=1681. a²+b²=81+1600=1681. 1681=1681 ✓. Right-angled! (9-40-41 triple)."),
-    mathCard("Cara mencari sisi tidak diketahui dalam segi tiga bersudut tegak — kesilapan lazim:", "❌ SILAP: a² = c²+b² (menambah — salah!). ✅ BETUL: a² = c²−b² (menolak — betul, kerana mencari sisi lebih pendek).", "How to find the missing side in a right-angled triangle — common mistake:", "❌ WRONG: a² = c²+b² (adding — incorrect!). ✅ CORRECT: a² = c²−b² (subtracting — correct, because finding shorter side)."),
+    mathCard(
+      "Rumus untuk mencari hipotenus c ialah:",
+      "c = √(a² + b²). Langkah: kira a², kira b², tambah, kemudian ambil punca kuasa dua.",
+      "The formula to find hypotenuse c is:",
+      "c = √(a² + b²). Steps: calculate a², calculate b², add, then take the square root.",
+    ),
+    mathCard(
+      "Rumus untuk mencari kaki a ialah:",
+      "a = √(c² − b²). TOLAK, bukan tambah, kerana mencari sisi lebih pendek. c = hipotenus.",
+      "The formula to find leg a is:",
+      "a = √(c² − b²). SUBTRACT, not add, because we are finding the shorter side. c = hypotenuse.",
+    ),
+    mathCard(
+      "Apakah langkah-langkah untuk mencari hipotenus?",
+      "① Kenal pasti a dan b. ② Kira a² dan b². ③ Tambah: c² = a²+b². ④ Ambil punca kuasa dua: c = √(c²). ⑤ Semak: c > a dan c > b.",
+      "What are the steps to find the hypotenuse?",
+      "① Identify a and b. ② Calculate a² and b². ③ Add: c² = a²+b². ④ Take square root: c = √(c²). ⑤ Check: c > a and c > b.",
+    ),
+    mathCard(
+      "Apakah langkah-langkah untuk mencari kaki yang tidak diketahui?",
+      "① Kenal pasti c (hipotenus) dan kaki yang diketahui. ② Kira c². ③ Kira (kaki diketahui)². ④ TOLAK: kaki² = c² − (kaki diketahui)². ⑤ Ambil punca kuasa dua.",
+      "What are the steps to find the missing leg?",
+      "① Identify c (hypotenuse) and the known leg. ② Calculate c². ③ Calculate (known leg)². ④ SUBTRACT: leg² = c² − (known leg)². ⑤ Take square root.",
+    ),
+    mathCard(
+      "Apakah langkah-langkah mengklasifikasikan segi tiga menggunakan akas?",
+      "① Senarai 3 sisi. ② Kenal pasti c (terpanjang). ③ Kira c². ④ Kira a²+b². ⑤ Bandingkan: sama=tegak, kurang=tirus, lebih=cakah.",
+      "What are the steps to classify a triangle using the converse?",
+      "① List 3 sides. ② Identify c (longest). ③ Calculate c². ④ Calculate a²+b². ⑤ Compare: equal=right, less=acute, greater=obtuse.",
+    ),
+    mathCard(
+      "Cara menggunakan akas Teorem Pythagoras untuk menentukan jenis segi tiga:",
+      "Kira c² dan a²+b². Jika sama → tegak. Jika c² < a²+b² → tirus. Jika c² > a²+b² → cakah.",
+      "How to use the converse of Pythagoras' Theorem to determine triangle type:",
+      "Calculate c² and a²+b². If equal → right. If c² < a²+b² → acute. If c² > a²+b² → obtuse.",
+    ),
+    mathCard(
+      "a = 3, b = 4. Cari c.",
+      "c² = 3²+4² = 9+16 = 25. c = √25 = 5.",
+      "a = 3, b = 4. Find c.",
+      "c² = 3²+4² = 9+16 = 25. c = √25 = 5.",
+    ),
+    mathCard(
+      "c = 13, a = 5. Cari b.",
+      "b² = 13²−5² = 169−25 = 144. b = √144 = 12.",
+      "c = 13, a = 5. Find b.",
+      "b² = 13²−5² = 169−25 = 144. b = √144 = 12.",
+    ),
+    mathCard(
+      "Bagaimana cara mencari pepenjuru segi empat tepat 6cm × 8cm?",
+      "Pepenjuru = hipotenus. d² = 6²+8² = 36+64 = 100. d = √100 = 10 cm.",
+      "How to find the diagonal of a 6cm × 8cm rectangle?",
+      "Diagonal = hypotenuse. d² = 6²+8² = 36+64 = 100. d = √100 = 10 cm.",
+    ),
+    mathCard(
+      "Tangga 10m bersandar pada dinding. Kaki tangga 6m dari dinding. Berapa ketinggian tangga pada dinding?",
+      "h² = 10²−6² = 100−36 = 64. h = √64 = 8m.",
+      "A 10m ladder leans on a wall. Base is 6m from wall. Find height on wall.",
+      "h² = 10²−6² = 100−36 = 64. h = √64 = 8m.",
+    ),
+    mathCard(
+      "Adakah 7, 24, 25 triple Pythagoras?",
+      "7²+24² = 49+576 = 625 = 25². Ya, ia adalah triple Pythagoras!",
+      "Is 7, 24, 25 a Pythagorean triple?",
+      "7²+24² = 49+576 = 625 = 25². Yes, it is a Pythagorean triple!",
+    ),
+    mathCard(
+      "Apakah gandaan triple 3-4-5 yang lain?",
+      "Gandakan setiap nombor dengan faktor yang sama: ×2 = (6,8,10), ×3 = (9,12,15), ×4 = (12,16,20), ×5 = (15,20,25).",
+      "What are other multiples of the 3-4-5 triple?",
+      "Multiply each number by the same factor: ×2 = (6,8,10), ×3 = (9,12,15), ×4 = (12,16,20), ×5 = (15,20,25).",
+    ),
+    mathCard(
+      "a = 8, b = 15. Cari c.",
+      "c² = 8²+15² = 64+225 = 289. c = √289 = 17. Triple 8-15-17!",
+      "a = 8, b = 15. Find c.",
+      "c² = 8²+15² = 64+225 = 289. c = √289 = 17. The 8-15-17 triple!",
+    ),
+    mathCard(
+      "Segi tiga sama kaki dengan dua sisi = 10cm dan tapak = 12cm. Cari ketinggian.",
+      "Bahagi tapak: 6cm. h²+6² = 10². h² = 100−36 = 64. h = 8cm.",
+      "Isosceles triangle with two sides = 10cm and base = 12cm. Find height.",
+      "Halve the base: 6cm. h²+6² = 10². h² = 100−36 = 64. h = 8cm.",
+    ),
+    mathCard(
+      "Cara menentukan sama ada segi tiga 9, 40, 41 adalah bersudut tegak:",
+      "c=41: c²=1681. a²+b²=81+1600=1681. 1681=1681 ✓. Bersudut tegak! (Triple 9-40-41).",
+      "How to determine whether triangle 9, 40, 41 is right-angled:",
+      "c=41: c²=1681. a²+b²=81+1600=1681. 1681=1681 ✓. Right-angled! (9-40-41 triple).",
+    ),
+    mathCard(
+      "Cara mencari sisi tidak diketahui dalam segi tiga bersudut tegak — kesilapan lazim:",
+      "❌ SILAP: a² = c²+b² (menambah — salah!). ✅ BETUL: a² = c²−b² (menolak — betul, kerana mencari sisi lebih pendek).",
+      "How to find the missing side in a right-angled triangle — common mistake:",
+      "❌ WRONG: a² = c²+b² (adding — incorrect!). ✅ CORRECT: a² = c²−b² (subtracting — correct, because finding shorter side).",
+    ),
   ],
   facts: [
-    mathCard("Fakta: hipotenus sentiasa...", "...sisi TERPANJANG. Dan sentiasa BERTENTANGAN dengan sudut 90°. Tidak pernah menjadi kaki sudut tegak.", "Fact: the hypotenuse is always...", "...the LONGEST side. And always OPPOSITE the 90° angle. Never a leg forming the right angle."),
-    mathCard("Fakta: c² = a²+b² adalah BENAR hanya untuk...", "...segi tiga BERSUDUT TEGAK sahaja. Ia tidak berlaku untuk segi tiga tirus atau cakah.", "Fact: c² = a²+b² is TRUE only for...", "...RIGHT-ANGLED triangles only. It does not apply to acute or obtuse triangles."),
-    mathCard("Fakta: jika c² = a²+b², segi tiga adalah...", "...bersudut tegak. Ini adalah akas Teorem Pythagoras — bukan andaian, ia adalah fakta yang terbukti.", "Fact: if c² = a²+b², the triangle is...", "...right-angled. This is the converse of Pythagoras' Theorem — not an assumption, it is a proven fact."),
-    mathCard("Fakta: jika c² < a²+b², segi tiga adalah...", "...bersudut tirus (semua sudut < 90°). Sisi terpanjang 'tidak cukup panjang' untuk membentuk sudut tegak.", "Fact: if c² < a²+b², the triangle is...", "...acute-angled (all angles < 90°). The longest side is 'not long enough' to form a right angle."),
-    mathCard("Fakta: jika c² > a²+b², segi tiga adalah...", "...bersudut cakah (satu sudut > 90°). Sisi terpanjang 'terlalu panjang' — sudutnya melebihi 90°.", "Fact: if c² > a²+b², the triangle is...", "...obtuse-angled (one angle > 90°). The longest side is 'too long' — the angle exceeds 90°."),
-    mathCard("Fakta: gandaan triple Pythagoras...", "...juga merupakan triple Pythagoras. Cth: 3-4-5 × 2 = 6-8-10; 3-4-5 × 3 = 9-12-15. Semuanya bersudut tegak.", "Fact: multiples of Pythagorean triples...", "...are also Pythagorean triples. E.g.: 3-4-5 × 2 = 6-8-10; 3-4-5 × 3 = 9-12-15. All are right-angled."),
-    mathCard("Empat triple Pythagoras paling biasa yang perlu dihafal:", "(3, 4, 5) — paling biasa!\n(5, 12, 13)\n(8, 15, 17)\n(7, 24, 25)", "Four most common Pythagorean triples to memorise:", "(3, 4, 5) — most common!\n(5, 12, 13)\n(8, 15, 17)\n(7, 24, 25)"),
-    mathCard("Fakta: pepenjuru segi empat tepat...", "...boleh dicari menggunakan Teorem Pythagoras. Pepenjuru = hipotenus segi tiga bersudut tegak yang dibentuk oleh panjang dan lebar.", "Fact: the diagonal of a rectangle...", "...can be found using Pythagoras' Theorem. Diagonal = hypotenuse of the right-angled triangle formed by the length and width."),
-    mathCard("Fakta: ketinggian segi tiga sama kaki...", "...boleh dicari dengan Pythagoras. Bahagi tapak kepada dua, kemudian gunakan a²+h²=sisi² untuk mencari h.", "Fact: the height of an isosceles triangle...", "...can be found using Pythagoras. Halve the base, then use a²+h²=side² to find h."),
-    mathCard("Fakta: untuk menyemak jawapan hipotenus:", "Hipotenus MESTI lebih panjang daripada setiap kaki. Jika jawapan anda lebih pendek daripada salah satu kaki, ada kesilapan!", "Fact: to check the hypotenuse answer:", "The hypotenuse MUST be longer than each leg. If your answer is shorter than one of the legs, there is an error!"),
-    mathCard("Fakta: segi tiga tidak sah jika...", "...jumlah mana-mana dua sisi TIDAK lebih besar daripada sisi ketiga. Contoh: 1, 2, 10 bukan segi tiga kerana 1+2=3 < 10.", "Fact: a triangle is invalid if...", "...the sum of any two sides is NOT greater than the third side. Example: 1, 2, 10 is not a triangle because 1+2=3 < 10."),
-    mathCard("Fakta: Teorem Pythagoras digunakan dalam kehidupan seharian untuk...", "...tangga & dinding, tiang & wayar sokongan, jarak pepenjuru, saiz skrin TV, dan memastikan sudut tegak dalam pembinaan.", "Fact: Pythagoras' Theorem is used in daily life for...", "...ladders & walls, poles & support wires, diagonal distances, TV screen sizes, and ensuring right angles in construction."),
-    mathCard("Rumus ringkas untuk semua situasi:", "c² = a²+b² → hipotenus. a² = c²−b² → kaki. b² = c²−a² → kaki. Ingat: cari hipotenus TAMBAH; cari kaki TOLAK.", "Compact formula for all situations:", "c² = a²+b² → hypotenuse. a² = c²−b² → leg. b² = c²−a² → leg. Remember: finding hypotenuse ADD; finding leg SUBTRACT."),
-    mathCard("Fakta: saiz skrin TV diukur menggunakan...", "...pepenjuru, yang dikira menggunakan Teorem Pythagoras daripada lebar dan tinggi skrin.", "Fact: TV screen size is measured using...", "...the diagonal, which is calculated using Pythagoras' Theorem from the screen width and height."),
+    mathCard(
+      "Fakta: hipotenus sentiasa...",
+      "...sisi TERPANJANG. Dan sentiasa BERTENTANGAN dengan sudut 90°. Tidak pernah menjadi kaki sudut tegak.",
+      "Fact: the hypotenuse is always...",
+      "...the LONGEST side. And always OPPOSITE the 90° angle. Never a leg forming the right angle.",
+    ),
+    mathCard(
+      "Fakta: c² = a²+b² adalah BENAR hanya untuk...",
+      "...segi tiga BERSUDUT TEGAK sahaja. Ia tidak berlaku untuk segi tiga tirus atau cakah.",
+      "Fact: c² = a²+b² is TRUE only for...",
+      "...RIGHT-ANGLED triangles only. It does not apply to acute or obtuse triangles.",
+    ),
+    mathCard(
+      "Fakta: jika c² = a²+b², segi tiga adalah...",
+      "...bersudut tegak. Ini adalah akas Teorem Pythagoras — bukan andaian, ia adalah fakta yang terbukti.",
+      "Fact: if c² = a²+b², the triangle is...",
+      "...right-angled. This is the converse of Pythagoras' Theorem — not an assumption, it is a proven fact.",
+    ),
+    mathCard(
+      "Fakta: jika c² < a²+b², segi tiga adalah...",
+      "...bersudut tirus (semua sudut < 90°). Sisi terpanjang 'tidak cukup panjang' untuk membentuk sudut tegak.",
+      "Fact: if c² < a²+b², the triangle is...",
+      "...acute-angled (all angles < 90°). The longest side is 'not long enough' to form a right angle.",
+    ),
+    mathCard(
+      "Fakta: jika c² > a²+b², segi tiga adalah...",
+      "...bersudut cakah (satu sudut > 90°). Sisi terpanjang 'terlalu panjang' — sudutnya melebihi 90°.",
+      "Fact: if c² > a²+b², the triangle is...",
+      "...obtuse-angled (one angle > 90°). The longest side is 'too long' — the angle exceeds 90°.",
+    ),
+    mathCard(
+      "Fakta: gandaan triple Pythagoras...",
+      "...juga merupakan triple Pythagoras. Cth: 3-4-5 × 2 = 6-8-10; 3-4-5 × 3 = 9-12-15. Semuanya bersudut tegak.",
+      "Fact: multiples of Pythagorean triples...",
+      "...are also Pythagorean triples. E.g.: 3-4-5 × 2 = 6-8-10; 3-4-5 × 3 = 9-12-15. All are right-angled.",
+    ),
+    mathCard(
+      "Empat triple Pythagoras paling biasa yang perlu dihafal:",
+      "(3, 4, 5) — paling biasa!\n(5, 12, 13)\n(8, 15, 17)\n(7, 24, 25)",
+      "Four most common Pythagorean triples to memorise:",
+      "(3, 4, 5) — most common!\n(5, 12, 13)\n(8, 15, 17)\n(7, 24, 25)",
+    ),
+    mathCard(
+      "Fakta: pepenjuru segi empat tepat...",
+      "...boleh dicari menggunakan Teorem Pythagoras. Pepenjuru = hipotenus segi tiga bersudut tegak yang dibentuk oleh panjang dan lebar.",
+      "Fact: the diagonal of a rectangle...",
+      "...can be found using Pythagoras' Theorem. Diagonal = hypotenuse of the right-angled triangle formed by the length and width.",
+    ),
+    mathCard(
+      "Fakta: ketinggian segi tiga sama kaki...",
+      "...boleh dicari dengan Pythagoras. Bahagi tapak kepada dua, kemudian gunakan a²+h²=sisi² untuk mencari h.",
+      "Fact: the height of an isosceles triangle...",
+      "...can be found using Pythagoras. Halve the base, then use a²+h²=side² to find h.",
+    ),
+    mathCard(
+      "Fakta: untuk menyemak jawapan hipotenus:",
+      "Hipotenus MESTI lebih panjang daripada setiap kaki. Jika jawapan anda lebih pendek daripada salah satu kaki, ada kesilapan!",
+      "Fact: to check the hypotenuse answer:",
+      "The hypotenuse MUST be longer than each leg. If your answer is shorter than one of the legs, there is an error!",
+    ),
+    mathCard(
+      "Fakta: segi tiga tidak sah jika...",
+      "...jumlah mana-mana dua sisi TIDAK lebih besar daripada sisi ketiga. Contoh: 1, 2, 10 bukan segi tiga kerana 1+2=3 < 10.",
+      "Fact: a triangle is invalid if...",
+      "...the sum of any two sides is NOT greater than the third side. Example: 1, 2, 10 is not a triangle because 1+2=3 < 10.",
+    ),
+    mathCard(
+      "Fakta: Teorem Pythagoras digunakan dalam kehidupan seharian untuk...",
+      "...tangga & dinding, tiang & wayar sokongan, jarak pepenjuru, saiz skrin TV, dan memastikan sudut tegak dalam pembinaan.",
+      "Fact: Pythagoras' Theorem is used in daily life for...",
+      "...ladders & walls, poles & support wires, diagonal distances, TV screen sizes, and ensuring right angles in construction.",
+    ),
+    mathCard(
+      "Rumus ringkas untuk semua situasi:",
+      "c² = a²+b² → hipotenus. a² = c²−b² → kaki. b² = c²−a² → kaki. Ingat: cari hipotenus TAMBAH; cari kaki TOLAK.",
+      "Compact formula for all situations:",
+      "c² = a²+b² → hypotenuse. a² = c²−b² → leg. b² = c²−a² → leg. Remember: finding hypotenuse ADD; finding leg SUBTRACT.",
+    ),
+    mathCard(
+      "Fakta: saiz skrin TV diukur menggunakan...",
+      "...pepenjuru, yang dikira menggunakan Teorem Pythagoras daripada lebar dan tinggi skrin.",
+      "Fact: TV screen size is measured using...",
+      "...the diagonal, which is calculated using Pythagoras' Theorem from the screen width and height.",
+    ),
   ],
   practice: [
-    mathCard("a = 6, b = 8. Cari hipotenus c.", "c² = 36+64 = 100. c = 10.", "a = 6, b = 8. Find hypotenuse c.", "c² = 36+64 = 100. c = 10."),
-    mathCard("c = 10, a = 6. Cari b.", "b² = 100−36 = 64. b = 8.", "c = 10, a = 6. Find b.", "b² = 100−36 = 64. b = 8."),
-    mathCard("Adakah 5, 12, 13 merupakan triple Pythagoras?", "5²+12² = 25+144 = 169 = 13². Ya!", "Is 5, 12, 13 a Pythagorean triple?", "5²+12² = 25+144 = 169 = 13². Yes!"),
-    mathCard("Segi tiga 6, 8, 11 — jenis apakah?", "c=11: c²=121. a²+b²=36+64=100. 121 > 100 → Bersudut CAKAH.", "Triangle 6, 8, 11 — what type?", "c=11: c²=121. a²+b²=36+64=100. 121 > 100 → OBTUSE-angled."),
-    mathCard("Segi tiga 5, 6, 7 — jenis apakah?", "c=7: c²=49. a²+b²=25+36=61. 49 < 61 → Bersudut TIRUS.", "Triangle 5, 6, 7 — what type?", "c=7: c²=49. a²+b²=25+36=61. 49 < 61 → ACUTE-angled."),
-    mathCard("Segi empat tepat 9cm × 12cm. Cari pepenjuru.", "d² = 81+144 = 225. d = 15cm. (Triple 9-12-15, gandaan 3-4-5!)", "Rectangle 9cm × 12cm. Find the diagonal.", "d² = 81+144 = 225. d = 15cm. (9-12-15 triple, multiple of 3-4-5!)"),
-    mathCard("Tangga 5m. Kaki tangga 3m dari dinding. Berapa ketinggian pada dinding?", "h² = 25−9 = 16. h = 4m.", "5m ladder. Base 3m from wall. Find height on wall.", "h² = 25−9 = 16. h = 4m."),
-    mathCard("Adakah 6, 7, 10 bersudut tegak?", "c=10: c²=100. a²+b²=36+49=85. 100 ≠ 85 → BUKAN bersudut tegak. Kerana 100>85 → bersudut CAKAH.", "Is 6, 7, 10 right-angled?", "c=10: c²=100. a²+b²=36+49=85. 100 ≠ 85 → NOT right-angled. Since 100>85 → OBTUSE-angled."),
-    mathCard("a = 9, b = 40. Cari c.", "c² = 81+1600 = 1681. c = 41. (Triple 9-40-41!)", "a = 9, b = 40. Find c.", "c² = 81+1600 = 1681. c = 41. (9-40-41 triple!)"),
-    mathCard("c = 25, b = 24. Cari a.", "a² = 625−576 = 49. a = 7. (Triple 7-24-25!)", "c = 25, b = 24. Find a.", "a² = 625−576 = 49. a = 7. (7-24-25 triple!)"),
-    mathCard("Tiang 15m. Wayar dari puncak ke tanah, 9m dari kaki tiang. Berapa panjang wayar?", "Wayar² = 15²+9² = 225+81 = 306. Wayar = √306 ≈ 17.5m.", "15m pole. Wire from top to ground, 9m from base. Find wire length.", "Wire² = 15²+9² = 225+81 = 306. Wire = √306 ≈ 17.5m."),
-    mathCard("Segi tiga 10, 10, 14. Jenis apakah?", "c=14: c²=196. a²+b²=100+100=200. 196 < 200 → Bersudut TIRUS.", "Triangle 10, 10, 14. What type?", "c=14: c²=196. a²+b²=100+100=200. 196 < 200 → ACUTE-angled."),
+    mathCard(
+      "a = 6, b = 8. Cari hipotenus c.",
+      "c² = 36+64 = 100. c = 10.",
+      "a = 6, b = 8. Find hypotenuse c.",
+      "c² = 36+64 = 100. c = 10.",
+    ),
+    mathCard(
+      "c = 10, a = 6. Cari b.",
+      "b² = 100−36 = 64. b = 8.",
+      "c = 10, a = 6. Find b.",
+      "b² = 100−36 = 64. b = 8.",
+    ),
+    mathCard(
+      "Adakah 5, 12, 13 merupakan triple Pythagoras?",
+      "5²+12² = 25+144 = 169 = 13². Ya!",
+      "Is 5, 12, 13 a Pythagorean triple?",
+      "5²+12² = 25+144 = 169 = 13². Yes!",
+    ),
+    mathCard(
+      "Segi tiga 6, 8, 11 — jenis apakah?",
+      "c=11: c²=121. a²+b²=36+64=100. 121 > 100 → Bersudut CAKAH.",
+      "Triangle 6, 8, 11 — what type?",
+      "c=11: c²=121. a²+b²=36+64=100. 121 > 100 → OBTUSE-angled.",
+    ),
+    mathCard(
+      "Segi tiga 5, 6, 7 — jenis apakah?",
+      "c=7: c²=49. a²+b²=25+36=61. 49 < 61 → Bersudut TIRUS.",
+      "Triangle 5, 6, 7 — what type?",
+      "c=7: c²=49. a²+b²=25+36=61. 49 < 61 → ACUTE-angled.",
+    ),
+    mathCard(
+      "Segi empat tepat 9cm × 12cm. Cari pepenjuru.",
+      "d² = 81+144 = 225. d = 15cm. (Triple 9-12-15, gandaan 3-4-5!)",
+      "Rectangle 9cm × 12cm. Find the diagonal.",
+      "d² = 81+144 = 225. d = 15cm. (9-12-15 triple, multiple of 3-4-5!)",
+    ),
+    mathCard(
+      "Tangga 5m. Kaki tangga 3m dari dinding. Berapa ketinggian pada dinding?",
+      "h² = 25−9 = 16. h = 4m.",
+      "5m ladder. Base 3m from wall. Find height on wall.",
+      "h² = 25−9 = 16. h = 4m.",
+    ),
+    mathCard(
+      "Adakah 6, 7, 10 bersudut tegak?",
+      "c=10: c²=100. a²+b²=36+49=85. 100 ≠ 85 → BUKAN bersudut tegak. Kerana 100>85 → bersudut CAKAH.",
+      "Is 6, 7, 10 right-angled?",
+      "c=10: c²=100. a²+b²=36+49=85. 100 ≠ 85 → NOT right-angled. Since 100>85 → OBTUSE-angled.",
+    ),
+    mathCard(
+      "a = 9, b = 40. Cari c.",
+      "c² = 81+1600 = 1681. c = 41. (Triple 9-40-41!)",
+      "a = 9, b = 40. Find c.",
+      "c² = 81+1600 = 1681. c = 41. (9-40-41 triple!)",
+    ),
+    mathCard(
+      "c = 25, b = 24. Cari a.",
+      "a² = 625−576 = 49. a = 7. (Triple 7-24-25!)",
+      "c = 25, b = 24. Find a.",
+      "a² = 625−576 = 49. a = 7. (7-24-25 triple!)",
+    ),
+    mathCard(
+      "Tiang 15m. Wayar dari puncak ke tanah, 9m dari kaki tiang. Berapa panjang wayar?",
+      "Wayar² = 15²+9² = 225+81 = 306. Wayar = √306 ≈ 17.5m.",
+      "15m pole. Wire from top to ground, 9m from base. Find wire length.",
+      "Wire² = 15²+9² = 225+81 = 306. Wire = √306 ≈ 17.5m.",
+    ),
+    mathCard(
+      "Segi tiga 10, 10, 14. Jenis apakah?",
+      "c=14: c²=196. a²+b²=100+100=200. 196 < 200 → Bersudut TIRUS.",
+      "Triangle 10, 10, 14. What type?",
+      "c=14: c²=196. a²+b²=100+100=200. 196 < 200 → ACUTE-angled.",
+    ),
   ],
 };
 
 const MATH_F1_C12_FLASHCARD_PAIRS = {
   concepts: [
-    mathCard("Apakah pengendalian data?", "Pengendalian data ialah proses mengumpul, mengorganisasikan, mewakili dan mentafsir data untuk menjawab soalan atau membuat keputusan.", "What is data handling?", "Data handling is the process of collecting, organising, representing and interpreting data to answer questions or make decisions."),
-    mathCard("Apakah 4 peringkat pengendalian data?", "① Mengumpul data → ② Mengorganisasikan data → ③ Mewakili data → ④ Mentafsir data.", "What are the 4 stages of data handling?", "① Collecting data → ② Organising data → ③ Representing data → ④ Interpreting data."),
-    mathCard("Apakah soalan statistik?", "Soalan yang memerlukan pengumpulan data dan melibatkan variasi — berbeza daripada soalan dengan satu jawapan tetap.", "What is a statistical question?", "A question that requires data collection and involves variability — different from a question with one fixed answer."),
-    mathCard("Apakah data kategori?", "Data yang menerangkan kualiti atau jenis/kategori — bukan nombor. Contoh: kumpulan darah, warna, hobi.", "What is categorical data?", "Data that describes qualities or types/categories — not numbers. Examples: blood group, colour, hobby."),
-    mathCard("Apakah data berangka?", "Data yang melibatkan nombor dan boleh diukur atau dikira. Terbahagi kepada data diskret dan data berterusan.", "What is numerical data?", "Data that involves numbers and can be measured or counted. Divided into discrete data and continuous data."),
-    mathCard("Apakah data diskret?", "Data berangka yang hanya boleh mengambil nilai nombor bulat tertentu. Diperoleh melalui pengiraan. Contoh: bilangan anak, bilangan buku.", "What is discrete data?", "Numerical data that can only take specific whole number values. Obtained by counting. Examples: number of children, number of books."),
-    mathCard("Apakah data berterusan?", "Data berangka yang boleh mengambil mana-mana nilai dalam julat termasuk perpuluhan. Diperoleh melalui pengukuran. Contoh: tinggi, jisim, suhu.", "What is continuous data?", "Numerical data that can take any value in a range including decimals. Obtained by measurement. Examples: height, mass, temperature."),
-    mathCard("Apakah perbezaan antara data diskret dan berterusan?", "Diskret: nilai nombor bulat sahaja (dikira). Berterusan: boleh ada perpuluhan (diukur). Soalan panduan: bolehkah nilai ini ada perpuluhan?", "What is the difference between discrete and continuous data?", "Discrete: whole number values only (counted). Continuous: can have decimals (measured). Guiding question: can this value have a decimal?"),
-    mathCard("Apakah serakan data?", "Ukuran sejauh mana nilai-nilai dalam set data tersebar atau berbeza antara satu sama lain.", "What is data dispersion?", "A measure of how spread out or varied the values in a data set are from one another."),
-    mathCard("Apakah pencilan (outlier)?", "Nilai data yang jauh berbeza daripada nilai-nilai lain dalam set data. Dalam plot titik, ia kelihatan tersasing.", "What is an outlier?", "A data value that differs greatly from the other values in a data set. In a dot plot, it appears isolated from the cluster."),
-    mathCard("Apakah inferens?", "Kesimpulan logik yang dibuat berdasarkan data yang ada — melangkaui sekadar membaca nilai untuk membuat pernyataan yang lebih umum.", "What is an inference?", "A logical conclusion drawn from available data — going beyond simply reading values to make more general statements."),
-    mathCard("Apakah ramalan dalam statistik?", "Jangkaan tentang nilai atau kejadian masa hadapan berdasarkan corak atau trend dalam data sedia ada.", "What is a prediction in statistics?", "An expectation about a future value or event based on patterns or trends in existing data."),
-    mathCard("Apakah perwakilan data beretika?", "Memaparkan data secara jujur dan tepat tanpa mengelirukan pembaca — menggunakan skala konsisten dan paksi bermula dari sifar.", "What is ethical data representation?", "Presenting data honestly and accurately without misleading readers — using consistent scales and axes starting from zero."),
-    mathCard("Apakah yang dimaksudkan dengan trend dalam graf?", "Arah umum perubahan data — meningkat (trend positif), menurun (trend negatif), atau stabil (mendatar) dari kiri ke kanan.", "What does trend mean in a graph?", "The general direction of data change — increasing (positive trend), decreasing (negative trend), or stable (horizontal) from left to right."),
-    mathCard("Apakah mod kelas dalam histogram?", "Kelas yang mempunyai kekerapan tertinggi dalam histogram — palang yang paling tinggi.", "What is the modal class in a histogram?", "The class with the highest frequency in a histogram — the tallest bar."),
+    mathCard(
+      "Apakah pengendalian data?",
+      "Pengendalian data ialah proses mengumpul, mengorganisasikan, mewakili dan mentafsir data untuk menjawab soalan atau membuat keputusan.",
+      "What is data handling?",
+      "Data handling is the process of collecting, organising, representing and interpreting data to answer questions or make decisions.",
+    ),
+    mathCard(
+      "Apakah 4 peringkat pengendalian data?",
+      "① Mengumpul data → ② Mengorganisasikan data → ③ Mewakili data → ④ Mentafsir data.",
+      "What are the 4 stages of data handling?",
+      "① Collecting data → ② Organising data → ③ Representing data → ④ Interpreting data.",
+    ),
+    mathCard(
+      "Apakah soalan statistik?",
+      "Soalan yang memerlukan pengumpulan data dan melibatkan variasi — berbeza daripada soalan dengan satu jawapan tetap.",
+      "What is a statistical question?",
+      "A question that requires data collection and involves variability — different from a question with one fixed answer.",
+    ),
+    mathCard(
+      "Apakah data kategori?",
+      "Data yang menerangkan kualiti atau jenis/kategori — bukan nombor. Contoh: kumpulan darah, warna, hobi.",
+      "What is categorical data?",
+      "Data that describes qualities or types/categories — not numbers. Examples: blood group, colour, hobby.",
+    ),
+    mathCard(
+      "Apakah data berangka?",
+      "Data yang melibatkan nombor dan boleh diukur atau dikira. Terbahagi kepada data diskret dan data berterusan.",
+      "What is numerical data?",
+      "Data that involves numbers and can be measured or counted. Divided into discrete data and continuous data.",
+    ),
+    mathCard(
+      "Apakah data diskret?",
+      "Data berangka yang hanya boleh mengambil nilai nombor bulat tertentu. Diperoleh melalui pengiraan. Contoh: bilangan anak, bilangan buku.",
+      "What is discrete data?",
+      "Numerical data that can only take specific whole number values. Obtained by counting. Examples: number of children, number of books.",
+    ),
+    mathCard(
+      "Apakah data berterusan?",
+      "Data berangka yang boleh mengambil mana-mana nilai dalam julat termasuk perpuluhan. Diperoleh melalui pengukuran. Contoh: tinggi, jisim, suhu.",
+      "What is continuous data?",
+      "Numerical data that can take any value in a range including decimals. Obtained by measurement. Examples: height, mass, temperature.",
+    ),
+    mathCard(
+      "Apakah perbezaan antara data diskret dan berterusan?",
+      "Diskret: nilai nombor bulat sahaja (dikira). Berterusan: boleh ada perpuluhan (diukur). Soalan panduan: bolehkah nilai ini ada perpuluhan?",
+      "What is the difference between discrete and continuous data?",
+      "Discrete: whole number values only (counted). Continuous: can have decimals (measured). Guiding question: can this value have a decimal?",
+    ),
+    mathCard(
+      "Apakah serakan data?",
+      "Ukuran sejauh mana nilai-nilai dalam set data tersebar atau berbeza antara satu sama lain.",
+      "What is data dispersion?",
+      "A measure of how spread out or varied the values in a data set are from one another.",
+    ),
+    mathCard(
+      "Apakah pencilan (outlier)?",
+      "Nilai data yang jauh berbeza daripada nilai-nilai lain dalam set data. Dalam plot titik, ia kelihatan tersasing.",
+      "What is an outlier?",
+      "A data value that differs greatly from the other values in a data set. In a dot plot, it appears isolated from the cluster.",
+    ),
+    mathCard(
+      "Apakah inferens?",
+      "Kesimpulan logik yang dibuat berdasarkan data yang ada — melangkaui sekadar membaca nilai untuk membuat pernyataan yang lebih umum.",
+      "What is an inference?",
+      "A logical conclusion drawn from available data — going beyond simply reading values to make more general statements.",
+    ),
+    mathCard(
+      "Apakah ramalan dalam statistik?",
+      "Jangkaan tentang nilai atau kejadian masa hadapan berdasarkan corak atau trend dalam data sedia ada.",
+      "What is a prediction in statistics?",
+      "An expectation about a future value or event based on patterns or trends in existing data.",
+    ),
+    mathCard(
+      "Apakah perwakilan data beretika?",
+      "Memaparkan data secara jujur dan tepat tanpa mengelirukan pembaca — menggunakan skala konsisten dan paksi bermula dari sifar.",
+      "What is ethical data representation?",
+      "Presenting data honestly and accurately without misleading readers — using consistent scales and axes starting from zero.",
+    ),
+    mathCard(
+      "Apakah yang dimaksudkan dengan trend dalam graf?",
+      "Arah umum perubahan data — meningkat (trend positif), menurun (trend negatif), atau stabil (mendatar) dari kiri ke kanan.",
+      "What does trend mean in a graph?",
+      "The general direction of data change — increasing (positive trend), decreasing (negative trend), or stable (horizontal) from left to right.",
+    ),
+    mathCard(
+      "Apakah mod kelas dalam histogram?",
+      "Kelas yang mempunyai kekerapan tertinggi dalam histogram — palang yang paling tinggi.",
+      "What is the modal class in a histogram?",
+      "The class with the highest frequency in a histogram — the tallest bar.",
+    ),
   ],
   operations: [
-    mathCard("Apakah carta palang dan bilakah digunakannya?", "Carta menggunakan palang untuk membandingkan data kategori atau diskret. Ada ruang antara palang. Paksi-x: kategori, Paksi-y: kekerapan.", "What is a bar chart and when is it used?", "A chart using bars to compare categorical or discrete data. Has gaps between bars. x-axis: categories, y-axis: frequency."),
-    mathCard("Apakah carta pai dan bilakah digunakannya?", "Bulatan dibahagi kepada sektor untuk menunjukkan perkadaran setiap kategori daripada keseluruhan. Terbaik untuk 2–6 kategori.", "What is a pie chart and when is it used?", "A circle divided into sectors to show the proportion of each category from the whole. Best for 2–6 categories."),
-    mathCard("Apakah formula sudut sektor carta pai?", "Sudut sektor = (Kekerapan ÷ Jumlah Kekerapan) × 360°. Contoh: 12 daripada 40 → (12÷40) × 360° = 108°.", "What is the pie chart sector angle formula?", "Sector angle = (Frequency ÷ Total Frequency) × 360°. Example: 12 out of 40 → (12÷40) × 360° = 108°."),
-    mathCard("Apakah graf garis dan bilakah digunakannya?", "Graf menggunakan titik yang disambungkan dengan garis untuk menunjukkan perubahan data merentasi masa. Paksi-x: masa/urutan.", "What is a line graph and when is it used?", "A graph using connected points to show data changes over time. x-axis: time/sequence."),
-    mathCard("Apakah plot titik (dot plot)?", "Carta yang menggunakan titik di atas garis nombor untuk menunjukkan taburan data kecil. Setiap titik = satu nilai data.", "What is a dot plot?", "A chart using dots above a number line to show the distribution of small data sets. Each dot = one data value."),
-    mathCard("Apakah plot batang-dan-daun?", "Perwakilan data yang memisahkan nilai kepada batang (digit puluhan) dan daun (digit sa). Mengekalkan nilai asal data.", "What is a stem-and-leaf plot?", "A data representation that separates values into stem (tens digit) and leaf (units digit). Retains original data values."),
-    mathCard("Apakah histogram?", "Graf palang untuk data berterusan atau berkumpulan. TIADA ruang antara palang. Paksi-x: julat nilai berterusan.", "What is a histogram?", "A bar graph for continuous or grouped data. NO gaps between bars. x-axis: continuous value ranges."),
-    mathCard("Apakah poligon kekerapan?", "Graf garis yang dibina dengan menghubungkan titik tengah bahagian atas setiap palang histogram.", "What is a frequency polygon?", "A line graph constructed by connecting the midpoints of the tops of each histogram bar."),
-    mathCard("Bagaimanakah cara mengira titik tengah kelas?", "Titik tengah = (Had Bawah + Had Atas) ÷ 2. Contoh: Kelas 41–50 → titik tengah = (41+50) ÷ 2 = 45.5.", "How is a class midpoint calculated?", "Midpoint = (Lower Boundary + Upper Boundary) ÷ 2. Example: Class 41–50 → midpoint = (41+50) ÷ 2 = 45.5."),
-    mathCard("Apakah jadual kekerapan?", "Jadual yang mengorganisasikan data dengan menunjukkan setiap nilai/kelas bersama kekerapannya. Menggunakan lajur nilai, tanda turus dan kekerapan.", "What is a frequency table?", "A table that organises data by showing each value/class with its frequency. Uses columns for value, tally marks and frequency."),
-    mathCard("Bagaimanakah cara membina jadual kekerapan berkumpulan?", "① Tentukan julat data. ② Pilih lebar kelas yang sesuai. ③ Senaraikan kelas. ④ Kira kekerapan setiap kelas menggunakan tanda turus.", "How is a grouped frequency table constructed?", "① Determine data range. ② Choose appropriate class width. ③ List classes. ④ Count frequency of each class using tally marks."),
-    mathCard("Bagaimanakah cara membaca carta palang?", "① Lihat tajuk. ② Baca paksi-y untuk nilai kekerapan. ③ Baca paksi-x untuk kategori. ④ Bandingkan ketinggian palang.", "How is a bar chart read?", "① Look at the title. ② Read the y-axis for frequency values. ③ Read the x-axis for categories. ④ Compare bar heights."),
-    mathCard("Bagaimanakah cara membina plot batang-dan-daun?", "① Kenal pasti batang (puluhan). ② Tulis setiap batang. ③ Susun daun (digit sa) bagi setiap batang. ④ Tulis kunci. Contoh: 2|3 = 23.", "How is a stem-and-leaf plot constructed?", "① Identify stems (tens). ② Write each stem. ③ Arrange leaves (units) for each stem. ④ Write the key. Example: 2|3 = 23."),
-    mathCard("Apakah perbezaan antara carta palang dan histogram?", "Carta palang: ada ruang antara palang, untuk data kategori/diskret. Histogram: TIADA ruang, untuk data berkumpulan/berterusan.", "What is the difference between a bar chart and a histogram?", "Bar chart: has gaps between bars, for categorical/discrete data. Histogram: NO gaps, for grouped/continuous data."),
-    mathCard("Bagaimanakah cara mengira peratusan dalam carta pai?", "Peratusan = (Kekerapan ÷ Jumlah) × 100%. Contoh: 12 daripada 40 → (12÷40) × 100% = 30%.", "How is percentage calculated in a pie chart?", "Percentage = (Frequency ÷ Total) × 100%. Example: 12 out of 40 → (12÷40) × 100% = 30%."),
-    mathCard("Apakah 4 kaedah pengumpulan data?", "① Temu bual — soal jawab langsung. ② Pemerhatian — perhatikan dan catat. ③ Eksperimen — uji hipotesis. ④ Tinjauan — soal selidik kepada sampel.", "What are the 4 data collection methods?", "① Interviews — direct questioning. ② Observation — watch and record. ③ Experiments — test a hypothesis. ④ Surveys — questionnaires to a sample."),
-    mathCard("Bilakah tinjauan lebih baik daripada temu bual?", "Tinjauan lebih sesuai untuk sampel besar, lebih menjimatkan masa dan kos, boleh diedarkan secara bertulis atau dalam talian.", "When is a survey better than an interview?", "A survey is more suitable for large samples, more time- and cost-efficient, can be distributed in writing or online."),
+    mathCard(
+      "Apakah carta palang dan bilakah digunakannya?",
+      "Carta menggunakan palang untuk membandingkan data kategori atau diskret. Ada ruang antara palang. Paksi-x: kategori, Paksi-y: kekerapan.",
+      "What is a bar chart and when is it used?",
+      "A chart using bars to compare categorical or discrete data. Has gaps between bars. x-axis: categories, y-axis: frequency.",
+    ),
+    mathCard(
+      "Apakah carta pai dan bilakah digunakannya?",
+      "Bulatan dibahagi kepada sektor untuk menunjukkan perkadaran setiap kategori daripada keseluruhan. Terbaik untuk 2–6 kategori.",
+      "What is a pie chart and when is it used?",
+      "A circle divided into sectors to show the proportion of each category from the whole. Best for 2–6 categories.",
+    ),
+    mathCard(
+      "Apakah formula sudut sektor carta pai?",
+      "Sudut sektor = (Kekerapan ÷ Jumlah Kekerapan) × 360°. Contoh: 12 daripada 40 → (12÷40) × 360° = 108°.",
+      "What is the pie chart sector angle formula?",
+      "Sector angle = (Frequency ÷ Total Frequency) × 360°. Example: 12 out of 40 → (12÷40) × 360° = 108°.",
+    ),
+    mathCard(
+      "Apakah graf garis dan bilakah digunakannya?",
+      "Graf menggunakan titik yang disambungkan dengan garis untuk menunjukkan perubahan data merentasi masa. Paksi-x: masa/urutan.",
+      "What is a line graph and when is it used?",
+      "A graph using connected points to show data changes over time. x-axis: time/sequence.",
+    ),
+    mathCard(
+      "Apakah plot titik (dot plot)?",
+      "Carta yang menggunakan titik di atas garis nombor untuk menunjukkan taburan data kecil. Setiap titik = satu nilai data.",
+      "What is a dot plot?",
+      "A chart using dots above a number line to show the distribution of small data sets. Each dot = one data value.",
+    ),
+    mathCard(
+      "Apakah plot batang-dan-daun?",
+      "Perwakilan data yang memisahkan nilai kepada batang (digit puluhan) dan daun (digit sa). Mengekalkan nilai asal data.",
+      "What is a stem-and-leaf plot?",
+      "A data representation that separates values into stem (tens digit) and leaf (units digit). Retains original data values.",
+    ),
+    mathCard(
+      "Apakah histogram?",
+      "Graf palang untuk data berterusan atau berkumpulan. TIADA ruang antara palang. Paksi-x: julat nilai berterusan.",
+      "What is a histogram?",
+      "A bar graph for continuous or grouped data. NO gaps between bars. x-axis: continuous value ranges.",
+    ),
+    mathCard(
+      "Apakah poligon kekerapan?",
+      "Graf garis yang dibina dengan menghubungkan titik tengah bahagian atas setiap palang histogram.",
+      "What is a frequency polygon?",
+      "A line graph constructed by connecting the midpoints of the tops of each histogram bar.",
+    ),
+    mathCard(
+      "Bagaimanakah cara mengira titik tengah kelas?",
+      "Titik tengah = (Had Bawah + Had Atas) ÷ 2. Contoh: Kelas 41–50 → titik tengah = (41+50) ÷ 2 = 45.5.",
+      "How is a class midpoint calculated?",
+      "Midpoint = (Lower Boundary + Upper Boundary) ÷ 2. Example: Class 41–50 → midpoint = (41+50) ÷ 2 = 45.5.",
+    ),
+    mathCard(
+      "Apakah jadual kekerapan?",
+      "Jadual yang mengorganisasikan data dengan menunjukkan setiap nilai/kelas bersama kekerapannya. Menggunakan lajur nilai, tanda turus dan kekerapan.",
+      "What is a frequency table?",
+      "A table that organises data by showing each value/class with its frequency. Uses columns for value, tally marks and frequency.",
+    ),
+    mathCard(
+      "Bagaimanakah cara membina jadual kekerapan berkumpulan?",
+      "① Tentukan julat data. ② Pilih lebar kelas yang sesuai. ③ Senaraikan kelas. ④ Kira kekerapan setiap kelas menggunakan tanda turus.",
+      "How is a grouped frequency table constructed?",
+      "① Determine data range. ② Choose appropriate class width. ③ List classes. ④ Count frequency of each class using tally marks.",
+    ),
+    mathCard(
+      "Bagaimanakah cara membaca carta palang?",
+      "① Lihat tajuk. ② Baca paksi-y untuk nilai kekerapan. ③ Baca paksi-x untuk kategori. ④ Bandingkan ketinggian palang.",
+      "How is a bar chart read?",
+      "① Look at the title. ② Read the y-axis for frequency values. ③ Read the x-axis for categories. ④ Compare bar heights.",
+    ),
+    mathCard(
+      "Bagaimanakah cara membina plot batang-dan-daun?",
+      "① Kenal pasti batang (puluhan). ② Tulis setiap batang. ③ Susun daun (digit sa) bagi setiap batang. ④ Tulis kunci. Contoh: 2|3 = 23.",
+      "How is a stem-and-leaf plot constructed?",
+      "① Identify stems (tens). ② Write each stem. ③ Arrange leaves (units) for each stem. ④ Write the key. Example: 2|3 = 23.",
+    ),
+    mathCard(
+      "Apakah perbezaan antara carta palang dan histogram?",
+      "Carta palang: ada ruang antara palang, untuk data kategori/diskret. Histogram: TIADA ruang, untuk data berkumpulan/berterusan.",
+      "What is the difference between a bar chart and a histogram?",
+      "Bar chart: has gaps between bars, for categorical/discrete data. Histogram: NO gaps, for grouped/continuous data.",
+    ),
+    mathCard(
+      "Bagaimanakah cara mengira peratusan dalam carta pai?",
+      "Peratusan = (Kekerapan ÷ Jumlah) × 100%. Contoh: 12 daripada 40 → (12÷40) × 100% = 30%.",
+      "How is percentage calculated in a pie chart?",
+      "Percentage = (Frequency ÷ Total) × 100%. Example: 12 out of 40 → (12÷40) × 100% = 30%.",
+    ),
+    mathCard(
+      "Apakah 4 kaedah pengumpulan data?",
+      "① Temu bual — soal jawab langsung. ② Pemerhatian — perhatikan dan catat. ③ Eksperimen — uji hipotesis. ④ Tinjauan — soal selidik kepada sampel.",
+      "What are the 4 data collection methods?",
+      "① Interviews — direct questioning. ② Observation — watch and record. ③ Experiments — test a hypothesis. ④ Surveys — questionnaires to a sample.",
+    ),
+    mathCard(
+      "Bilakah tinjauan lebih baik daripada temu bual?",
+      "Tinjauan lebih sesuai untuk sampel besar, lebih menjimatkan masa dan kos, boleh diedarkan secara bertulis atau dalam talian.",
+      "When is a survey better than an interview?",
+      "A survey is more suitable for large samples, more time- and cost-efficient, can be distributed in writing or online.",
+    ),
   ],
   facts: [
-    mathCard("Histogram TIADA ruang antara palang — mengapa?", "Kerana data adalah berterusan/berkumpulan — nilai-nilai bersambungan tanpa jeda. Berbeza dengan carta palang (data berasingan/diskret).", "Histograms have NO gaps between bars — why?", "Because the data is continuous/grouped — values are connected without a break. Different from a bar chart (separate/discrete data)."),
-    mathCard("Fakta: set data dengan julat lebih kecil adalah lebih...", "...konsisten dan lebih boleh dipercayai. Julat kecil bermaksud nilai-nilai rapat antara satu sama lain.", "Fact: a data set with a smaller range is more...", "...consistent and more reliable. A small range means values are close to each other."),
-    mathCard("Fakta: plot batang-dan-daun mengekalkan nilai...", "...asal data. Berbeza dengan histogram yang mengumpulkan data dalam kelas, plot batang-dan-daun mengekalkan setiap nilai tepat.", "Fact: a stem-and-leaf plot retains the...", "...original data values. Unlike histograms that group data into classes, stem-and-leaf plots retain each exact value."),
-    mathCard("Fakta: poligon kekerapan berguna untuk...", "...membandingkan dua atau lebih set data berkumpulan pada graf yang sama, kerana berbilang polygon boleh diplot serentak.", "Fact: a frequency polygon is useful for...", "...comparing two or more grouped data sets on the same graph, as multiple polygons can be plotted simultaneously."),
-    mathCard("Fakta: carta pai paling sesuai untuk...", "...data yang terdiri daripada 2 hingga 6 kategori, apabila kita ingin menunjukkan perkadaran setiap bahagian daripada keseluruhan.", "Fact: a pie chart is best suited for...", "...data consisting of 2 to 6 categories, when we want to show the proportion of each part from the whole."),
-    mathCard("Fakta: perwakilan data beretika bermaksud...", "...paksi bermula dari sifar, skala konsisten, semua paksi berlabel, nilai tepat, dan tidak memilih-milih data untuk menyokong hujah.", "Fact: ethical data representation means...", "...axes starting from zero, consistent scales, all axes labelled, accurate values, and not cherry-picking data to support an argument."),
-    mathCard("Fakta: julat dipengaruhi oleh...", "...pencilan (outlier) — nilai yang sangat luar biasa boleh membesarkan julat secara ketara, walaupun nilai-nilai lain rapat.", "Fact: range is affected by...", "...outliers — an unusually extreme value can significantly increase the range, even if other values are close together."),
-    mathCard("Fakta: data kategori TIDAK boleh...", "...ditambah, ditolak atau didarab secara bermakna. Kita hanya boleh mengira bilangan ahli dalam setiap kategori.", "Fact: categorical data CANNOT be...", "...added, subtracted or multiplied meaningfully. We can only count the number of members in each category."),
-    mathCard("Julat = ?", "Julat = Nilai Tertinggi − Nilai Terendah. Ia mengukur jumlah penyebaran data dari nilai paling kecil ke paling besar.", "Range = ?", "Range = Highest Value − Lowest Value. It measures the total spread of data from the smallest to the largest value."),
-    mathCard("Sudut sektor carta pai = ?", "(Kekerapan ÷ Jumlah Kekerapan) × 360°. Jumlah semua sudut mesti bersamaan 360°.", "Pie chart sector angle = ?", "(Frequency ÷ Total Frequency) × 360°. The sum of all angles must equal 360°."),
-    mathCard("Titik tengah kelas = ?", "(Had Bawah + Had Atas) ÷ 2. Digunakan untuk membina poligon kekerapan dan analisis data berkumpulan.", "Class midpoint = ?", "(Lower Boundary + Upper Boundary) ÷ 2. Used to construct frequency polygons and analyse grouped data."),
-    mathCard("Graf garis menunjukkan trend — apakah 3 arah yang mungkin?", "① Trend menaik (garis condong ke atas kanan). ② Trend menurun (garis condong ke bawah kanan). ③ Stabil (garis mendatar).", "Line graphs show trends — what are the 3 possible directions?", "① Upward trend (line slopes up to right). ② Downward trend (line slopes down to right). ③ Stable (horizontal line)."),
-    mathCard("Apakah yang diperhatikan semasa mentafsir histogram?", "Bentuk taburan: loceng (normal), pencong kanan, pencong kiri, atau seragam. Kelas mod = palang tertinggi.", "What is observed when interpreting a histogram?", "Distribution shape: bell-shaped (normal), right-skewed, left-skewed, or uniform. Modal class = tallest bar."),
-    mathCard("Fakta: satu kelebihan pemerhatian berbanding temu bual ialah...", "...data lebih objektif kerana pengkaji tidak mengganggu tingkah laku subjek. Responden tidak boleh memberikan jawapan yang tidak jujur.", "Fact: one advantage of observation over interviews is...", "...data is more objective because the researcher does not disturb the subjects' behaviour. Respondents cannot give dishonest answers."),
+    mathCard(
+      "Histogram TIADA ruang antara palang — mengapa?",
+      "Kerana data adalah berterusan/berkumpulan — nilai-nilai bersambungan tanpa jeda. Berbeza dengan carta palang (data berasingan/diskret).",
+      "Histograms have NO gaps between bars — why?",
+      "Because the data is continuous/grouped — values are connected without a break. Different from a bar chart (separate/discrete data).",
+    ),
+    mathCard(
+      "Fakta: set data dengan julat lebih kecil adalah lebih...",
+      "...konsisten dan lebih boleh dipercayai. Julat kecil bermaksud nilai-nilai rapat antara satu sama lain.",
+      "Fact: a data set with a smaller range is more...",
+      "...consistent and more reliable. A small range means values are close to each other.",
+    ),
+    mathCard(
+      "Fakta: plot batang-dan-daun mengekalkan nilai...",
+      "...asal data. Berbeza dengan histogram yang mengumpulkan data dalam kelas, plot batang-dan-daun mengekalkan setiap nilai tepat.",
+      "Fact: a stem-and-leaf plot retains the...",
+      "...original data values. Unlike histograms that group data into classes, stem-and-leaf plots retain each exact value.",
+    ),
+    mathCard(
+      "Fakta: poligon kekerapan berguna untuk...",
+      "...membandingkan dua atau lebih set data berkumpulan pada graf yang sama, kerana berbilang polygon boleh diplot serentak.",
+      "Fact: a frequency polygon is useful for...",
+      "...comparing two or more grouped data sets on the same graph, as multiple polygons can be plotted simultaneously.",
+    ),
+    mathCard(
+      "Fakta: carta pai paling sesuai untuk...",
+      "...data yang terdiri daripada 2 hingga 6 kategori, apabila kita ingin menunjukkan perkadaran setiap bahagian daripada keseluruhan.",
+      "Fact: a pie chart is best suited for...",
+      "...data consisting of 2 to 6 categories, when we want to show the proportion of each part from the whole.",
+    ),
+    mathCard(
+      "Fakta: perwakilan data beretika bermaksud...",
+      "...paksi bermula dari sifar, skala konsisten, semua paksi berlabel, nilai tepat, dan tidak memilih-milih data untuk menyokong hujah.",
+      "Fact: ethical data representation means...",
+      "...axes starting from zero, consistent scales, all axes labelled, accurate values, and not cherry-picking data to support an argument.",
+    ),
+    mathCard(
+      "Fakta: julat dipengaruhi oleh...",
+      "...pencilan (outlier) — nilai yang sangat luar biasa boleh membesarkan julat secara ketara, walaupun nilai-nilai lain rapat.",
+      "Fact: range is affected by...",
+      "...outliers — an unusually extreme value can significantly increase the range, even if other values are close together.",
+    ),
+    mathCard(
+      "Fakta: data kategori TIDAK boleh...",
+      "...ditambah, ditolak atau didarab secara bermakna. Kita hanya boleh mengira bilangan ahli dalam setiap kategori.",
+      "Fact: categorical data CANNOT be...",
+      "...added, subtracted or multiplied meaningfully. We can only count the number of members in each category.",
+    ),
+    mathCard(
+      "Julat = ?",
+      "Julat = Nilai Tertinggi − Nilai Terendah. Ia mengukur jumlah penyebaran data dari nilai paling kecil ke paling besar.",
+      "Range = ?",
+      "Range = Highest Value − Lowest Value. It measures the total spread of data from the smallest to the largest value.",
+    ),
+    mathCard(
+      "Sudut sektor carta pai = ?",
+      "(Kekerapan ÷ Jumlah Kekerapan) × 360°. Jumlah semua sudut mesti bersamaan 360°.",
+      "Pie chart sector angle = ?",
+      "(Frequency ÷ Total Frequency) × 360°. The sum of all angles must equal 360°.",
+    ),
+    mathCard(
+      "Titik tengah kelas = ?",
+      "(Had Bawah + Had Atas) ÷ 2. Digunakan untuk membina poligon kekerapan dan analisis data berkumpulan.",
+      "Class midpoint = ?",
+      "(Lower Boundary + Upper Boundary) ÷ 2. Used to construct frequency polygons and analyse grouped data.",
+    ),
+    mathCard(
+      "Graf garis menunjukkan trend — apakah 3 arah yang mungkin?",
+      "① Trend menaik (garis condong ke atas kanan). ② Trend menurun (garis condong ke bawah kanan). ③ Stabil (garis mendatar).",
+      "Line graphs show trends — what are the 3 possible directions?",
+      "① Upward trend (line slopes up to right). ② Downward trend (line slopes down to right). ③ Stable (horizontal line).",
+    ),
+    mathCard(
+      "Apakah yang diperhatikan semasa mentafsir histogram?",
+      "Bentuk taburan: loceng (normal), pencong kanan, pencong kiri, atau seragam. Kelas mod = palang tertinggi.",
+      "What is observed when interpreting a histogram?",
+      "Distribution shape: bell-shaped (normal), right-skewed, left-skewed, or uniform. Modal class = tallest bar.",
+    ),
+    mathCard(
+      "Fakta: satu kelebihan pemerhatian berbanding temu bual ialah...",
+      "...data lebih objektif kerana pengkaji tidak mengganggu tingkah laku subjek. Responden tidak boleh memberikan jawapan yang tidak jujur.",
+      "Fact: one advantage of observation over interviews is...",
+      "...data is more objective because the researcher does not disturb the subjects' behaviour. Respondents cannot give dishonest answers.",
+    ),
   ],
   practice: [
-    mathCard("Data: 3, 7, 2, 9, 4, 8, 1. Cari julat.", "Tertinggi = 9, Terendah = 1. Julat = 9 − 1 = 8.", "Data: 3, 7, 2, 9, 4, 8, 1. Find the range.", "Highest = 9, Lowest = 1. Range = 9 − 1 = 8."),
-    mathCard("30 murid memilih warna kegemaran. Biru dipilih oleh 12 murid. Apakah sudut sektor biru dalam carta pai?", "(12÷30) × 360° = 0.4 × 360° = 144°.", "30 students choose their favourite colour. Blue is chosen by 12. What is the blue sector angle in the pie chart?", "(12÷30) × 360° = 0.4 × 360° = 144°."),
-    mathCard("Kelas 61–70 dalam jadual kekerapan. Apakah titik tengahnya?", "(61 + 70) ÷ 2 = 131 ÷ 2 = 65.5.", "Class 61–70 in a frequency table. What is its midpoint?", "(61 + 70) ÷ 2 = 131 ÷ 2 = 65.5."),
-    mathCard("Julat Kumpulan A = 15, Julat Kumpulan B = 28. Kumpulan manakah lebih konsisten?", "Kumpulan A lebih konsisten kerana julatnya lebih kecil (15 < 28). Julat lebih kecil = lebih konsisten.", "Range of Group A = 15, Range of Group B = 28. Which group is more consistent?", "Group A is more consistent because its range is smaller (15 < 28). Smaller range = more consistent."),
-    mathCard("50 murid dipilih dalam tinjauan. Matematik: 20, Sains: 15, BM: 10, Lain: 5. Apakah peratusan Matematik?", "(20÷50) × 100% = 40%.", "50 students are surveyed. Mathematics: 20, Science: 15, Malay: 10, Others: 5. What is the percentage for Mathematics?", "(20÷50) × 100% = 40%."),
-    mathCard("Plot batang-dan-daun: Batang 4, Daun 2, 5, 8. Apakah nilai-nilai ini?", "Batang 4 + Daun 2 = 42. Batang 4 + Daun 5 = 45. Batang 4 + Daun 8 = 48.", "Stem-and-leaf: Stem 4, Leaves 2, 5, 8. What are these values?", "Stem 4 + Leaf 2 = 42. Stem 4 + Leaf 5 = 45. Stem 4 + Leaf 8 = 48."),
-    mathCard("Markah 8 murid: 55, 60, 72, 48, 90, 65, 78, 83. Cari julat.", "Tertinggi = 90, Terendah = 48. Julat = 90 − 48 = 42 markah.", "Marks of 8 students: 55, 60, 72, 48, 90, 65, 78, 83. Find the range.", "Highest = 90, Lowest = 48. Range = 90 − 48 = 42 marks."),
-    mathCard("Apakah perwakilan yang paling sesuai untuk menunjukkan trend jualan bulanan selama setahun?", "Graf garis — kerana ia menunjukkan perubahan/trend data merentasi masa dengan jelas.", "What is the most suitable representation to show monthly sales trends over a year?", "Line graph — because it clearly shows data changes/trends over time."),
-    mathCard("Kekerapan kelas 51–60 = 8, jumlah = 40. Apakah peratusannya?", "(8÷40) × 100% = 20%.", "Frequency of class 51–60 = 8, total = 40. What is the percentage?", "(8÷40) × 100% = 20%."),
-    mathCard("Adakah 'bilangan buku dalam beg' data diskret atau berterusan?", "Diskret — kerana ia adalah bilangan (boleh dikira, nilai nombor bulat sahaja: 0, 1, 2, 3, ...). Tidak boleh ada 2.5 buku.", "Is 'number of books in a bag' discrete or continuous data?", "Discrete — because it is a count (whole numbers only: 0, 1, 2, 3, ...). Cannot have 2.5 books."),
-    mathCard("Adakah 'masa yang diambil untuk berlari 100m' data diskret atau berterusan?", "Berterusan — kerana ia adalah masa (ukuran). Boleh ada nilai perpuluhan seperti 12.47 saat.", "Is 'time taken to run 100m' discrete or continuous data?", "Continuous — because it is time (a measurement). Can have decimal values like 12.47 seconds."),
-    mathCard("Carta pai menunjukkan 4 kategori dengan sudut 90°, 120°, 80°, x°. Cari x.", "90 + 120 + 80 + x = 360. 290 + x = 360. x = 70°.", "A pie chart shows 4 categories with angles 90°, 120°, 80°, x°. Find x.", "90 + 120 + 80 + x = 360. 290 + x = 360. x = 70°."),
+    mathCard(
+      "Data: 3, 7, 2, 9, 4, 8, 1. Cari julat.",
+      "Tertinggi = 9, Terendah = 1. Julat = 9 − 1 = 8.",
+      "Data: 3, 7, 2, 9, 4, 8, 1. Find the range.",
+      "Highest = 9, Lowest = 1. Range = 9 − 1 = 8.",
+    ),
+    mathCard(
+      "30 murid memilih warna kegemaran. Biru dipilih oleh 12 murid. Apakah sudut sektor biru dalam carta pai?",
+      "(12÷30) × 360° = 0.4 × 360° = 144°.",
+      "30 students choose their favourite colour. Blue is chosen by 12. What is the blue sector angle in the pie chart?",
+      "(12÷30) × 360° = 0.4 × 360° = 144°.",
+    ),
+    mathCard(
+      "Kelas 61–70 dalam jadual kekerapan. Apakah titik tengahnya?",
+      "(61 + 70) ÷ 2 = 131 ÷ 2 = 65.5.",
+      "Class 61–70 in a frequency table. What is its midpoint?",
+      "(61 + 70) ÷ 2 = 131 ÷ 2 = 65.5.",
+    ),
+    mathCard(
+      "Julat Kumpulan A = 15, Julat Kumpulan B = 28. Kumpulan manakah lebih konsisten?",
+      "Kumpulan A lebih konsisten kerana julatnya lebih kecil (15 < 28). Julat lebih kecil = lebih konsisten.",
+      "Range of Group A = 15, Range of Group B = 28. Which group is more consistent?",
+      "Group A is more consistent because its range is smaller (15 < 28). Smaller range = more consistent.",
+    ),
+    mathCard(
+      "50 murid dipilih dalam tinjauan. Matematik: 20, Sains: 15, BM: 10, Lain: 5. Apakah peratusan Matematik?",
+      "(20÷50) × 100% = 40%.",
+      "50 students are surveyed. Mathematics: 20, Science: 15, Malay: 10, Others: 5. What is the percentage for Mathematics?",
+      "(20÷50) × 100% = 40%.",
+    ),
+    mathCard(
+      "Plot batang-dan-daun: Batang 4, Daun 2, 5, 8. Apakah nilai-nilai ini?",
+      "Batang 4 + Daun 2 = 42. Batang 4 + Daun 5 = 45. Batang 4 + Daun 8 = 48.",
+      "Stem-and-leaf: Stem 4, Leaves 2, 5, 8. What are these values?",
+      "Stem 4 + Leaf 2 = 42. Stem 4 + Leaf 5 = 45. Stem 4 + Leaf 8 = 48.",
+    ),
+    mathCard(
+      "Markah 8 murid: 55, 60, 72, 48, 90, 65, 78, 83. Cari julat.",
+      "Tertinggi = 90, Terendah = 48. Julat = 90 − 48 = 42 markah.",
+      "Marks of 8 students: 55, 60, 72, 48, 90, 65, 78, 83. Find the range.",
+      "Highest = 90, Lowest = 48. Range = 90 − 48 = 42 marks.",
+    ),
+    mathCard(
+      "Apakah perwakilan yang paling sesuai untuk menunjukkan trend jualan bulanan selama setahun?",
+      "Graf garis — kerana ia menunjukkan perubahan/trend data merentasi masa dengan jelas.",
+      "What is the most suitable representation to show monthly sales trends over a year?",
+      "Line graph — because it clearly shows data changes/trends over time.",
+    ),
+    mathCard(
+      "Kekerapan kelas 51–60 = 8, jumlah = 40. Apakah peratusannya?",
+      "(8÷40) × 100% = 20%.",
+      "Frequency of class 51–60 = 8, total = 40. What is the percentage?",
+      "(8÷40) × 100% = 20%.",
+    ),
+    mathCard(
+      "Adakah 'bilangan buku dalam beg' data diskret atau berterusan?",
+      "Diskret — kerana ia adalah bilangan (boleh dikira, nilai nombor bulat sahaja: 0, 1, 2, 3, ...). Tidak boleh ada 2.5 buku.",
+      "Is 'number of books in a bag' discrete or continuous data?",
+      "Discrete — because it is a count (whole numbers only: 0, 1, 2, 3, ...). Cannot have 2.5 books.",
+    ),
+    mathCard(
+      "Adakah 'masa yang diambil untuk berlari 100m' data diskret atau berterusan?",
+      "Berterusan — kerana ia adalah masa (ukuran). Boleh ada nilai perpuluhan seperti 12.47 saat.",
+      "Is 'time taken to run 100m' discrete or continuous data?",
+      "Continuous — because it is time (a measurement). Can have decimal values like 12.47 seconds.",
+    ),
+    mathCard(
+      "Carta pai menunjukkan 4 kategori dengan sudut 90°, 120°, 80°, x°. Cari x.",
+      "90 + 120 + 80 + x = 360. 290 + x = 360. x = 70°.",
+      "A pie chart shows 4 categories with angles 90°, 120°, 80°, x°. Find x.",
+      "90 + 120 + 80 + x = 360. 290 + x = 360. x = 70°.",
+    ),
   ],
 };
 
@@ -3251,7 +5015,7 @@ function MathFlashcardLanguagePicker({
           <ChevronLeft className="w-4 h-4" /> Back to chapters
         </button>
         <span className="text-sm font-semibold text-muted-foreground">
-          📐 Mathematics • {getMathFlashcardHeaderTitle(chapterKey)}
+          📐 Mathematics • {cleanLearningLabel(getMathFlashcardHeaderTitle(chapterKey))}
         </span>
       </div>
 
@@ -3264,7 +5028,7 @@ function MathFlashcardLanguagePicker({
             🌐 Pilih Bahasa / <span className="gradient-text">Choose Language</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Choose a language before opening the Chapter {chapterNumber} revision categories.
+            Choose a language before opening this chapter&apos;s revision categories.
           </p>
         </div>
 
@@ -3278,7 +5042,7 @@ function MathFlashcardLanguagePicker({
             <div className="relative mb-4 text-5xl">🇲🇾</div>
             <h3 className="relative font-display text-2xl font-bold">Bahasa Melayu</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
-              Kad ulang kaji Bab {chapterNumber} dalam Bahasa Melayu.
+              Kad ulang kaji untuk bab ini dalam Bahasa Melayu.
             </p>
           </button>
 
@@ -3291,7 +5055,7 @@ function MathFlashcardLanguagePicker({
             <div className="relative mb-4 text-5xl">🇬🇧</div>
             <h3 className="relative font-display text-2xl font-bold">DLP (English)</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
-              Chapter {chapterNumber} revision cards translated into English.
+              Revision cards for this chapter translated into English.
             </p>
           </button>
         </div>
@@ -3333,7 +5097,9 @@ function MathFlashcardCategoryPicker({
           <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
             {isDlp ? "Revision Categories" : "Kategori Ulang Kaji"}
           </p>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">{title}</h2>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">
+            {cleanLearningTitle(title)}
+          </h2>
           <p className="mt-3 text-sm text-muted-foreground">
             {isDlp
               ? "Choose a category. Each card keeps the same Science-style flip and swipe experience."
@@ -3348,14 +5114,14 @@ function MathFlashcardCategoryPicker({
               <button
                 key={category.id}
                 onClick={() => onSelect(category.id)}
-                aria-label={`Open ${copy.title} flashcards`}
+                aria-label={`Open ${cleanLearningLabel(copy.title)} flashcards`}
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
                 style={{ animationDelay: `${index * 70}ms` }}
               >
                 <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
                 <div className="relative mb-4 text-4xl">{category.icon}</div>
                 <h3 className="relative font-display text-xl font-bold">
-                  {category.icon} {copy.title}
+                  {category.icon} {cleanLearningTitle(copy.title)}
                 </h3>
                 <p className="relative mt-2 text-sm leading-6 text-muted-foreground">
                   {copy.purpose}
@@ -3376,7 +5142,9 @@ function EnglishFlashcardDeckPicker({
 }: {
   form: "Form 1" | "Form 2" | "Form 3";
   onBack: () => void;
-  onSelect: (deckId: EnglishFlashcardDeckId | EnglishFlashcardDeckIdF2 | EnglishFlashcardDeckIdF3) => void;
+  onSelect: (
+    deckId: EnglishFlashcardDeckId | EnglishFlashcardDeckIdF2 | EnglishFlashcardDeckIdF3,
+  ) => void;
 }) {
   const isForm2 = form === "Form 2";
   const isForm3 = form === "Form 3";
@@ -3414,14 +5182,17 @@ function EnglishFlashcardDeckPicker({
             {isForm3 ? "English Form 3" : isForm2 ? "English Form 2" : "English Form 1"}
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
-            Open <span className="gradient-text">{isForm3 ? "Form 3 Flashcards" : isForm2 ? "Form 2 Flashcards" : "Paper 1 Flashcards"}</span>
+            Open{" "}
+            <span className="gradient-text">
+              {isForm3 ? "Form 3 Flashcards" : isForm2 ? "Form 2 Flashcards" : "Paper 1 Flashcards"}
+            </span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
             {isForm3
               ? "Sharper UASA-level revision for Tingkatan 3 grammar, vocabulary, and exam techniques."
               : isForm2
-              ? "Quick revision for Tingkatan 2 grammar, reading, and writing skills."
-              : "Quick revision for high-frequency UASA Paper 1 skills."}
+                ? "Quick revision for Tingkatan 2 grammar, reading, and writing skills."
+                : "Quick revision for high-frequency UASA Paper 1 skills."}
           </p>
         </div>
 
@@ -3430,7 +5201,7 @@ function EnglishFlashcardDeckPicker({
             <button
               key={deck.id}
               onClick={() => onSelect(deck.id)}
-              aria-label={`Open ${deck.title}`}
+              aria-label={`Open ${cleanLearningLabel(deck.title)}`}
               className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
               style={{ animationDelay: `${index * 70}ms` }}
             >
@@ -3442,7 +5213,9 @@ function EnglishFlashcardDeckPicker({
               >
                 {deck.badge}
               </div>
-              <h3 className="relative font-display text-2xl font-bold">{deck.title}</h3>
+              <h3 className="relative font-display text-2xl font-bold">
+                {cleanLearningTitle(deck.title)}
+              </h3>
               <p className="relative mt-3 text-sm leading-7 text-slate-300">{deck.description}</p>
             </button>
           ))}
@@ -3472,7 +5245,9 @@ function FlashcardSetPicker({
         >
           <ArrowLeft className="h-4 w-4" /> Back
         </button>
-        <span className="text-sm font-semibold text-muted-foreground">{title}</span>
+        <span className="text-sm font-semibold text-muted-foreground">
+          {cleanLearningLabel(title)}
+        </span>
       </div>
 
       <div className="glass-strong rounded-3xl p-6 sm:p-8">
@@ -3480,27 +5255,33 @@ function FlashcardSetPicker({
           <p className="text-xs font-bold uppercase tracking-[0.28em] text-accent">
             Choose Flashcard Set
           </p>
-          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">{title}</h2>
+          <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
+            {cleanLearningTitle(title)}
+          </h2>
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {setOptions.map((set, index) => (
-            <button
-              key={set.index}
-              onClick={() => onSelect(set.index)}
-              aria-label={`Open Flashcards Set ${index + 1}`}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
-              style={{ animationDelay: `${index * 70}ms` }}
-            >
-              <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
-              <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-xl font-black shadow-lg">
-                {index + 1}
-              </div>
-              <h3 className="relative font-display text-2xl font-bold">
-                Flashcards Set {index + 1}
-              </h3>
-            </button>
-          ))}
+          {setOptions.map((set, index) => {
+            const displayTitle =
+              setOptions === FLASHCARD_SET_OPTIONS
+                ? ["Foundation Review", "Practice Review", "Challenge Review"][index]
+                : cleanLearningTitle(set.title);
+            return (
+              <button
+                key={set.index}
+                onClick={() => onSelect(set.index)}
+                aria-label={`Open ${displayTitle}`}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_32px_oklch(0.63_0.22_295_/_0.35)] animate-slide-up"
+                style={{ animationDelay: `${index * 70}ms` }}
+              >
+                <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
+                <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-xl font-black shadow-lg">
+                  {["F", "P", "C"][index]}
+                </div>
+                <h3 className="relative font-display text-2xl font-bold">{displayTitle}</h3>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -3638,12 +5419,7 @@ function FlashcardsPage() {
     if (subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
       return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
     }
-    if (
-      subject === "math" &&
-      chapter &&
-      MATH_FLASHCARD_BANKS[chapter] &&
-      mathFlashcardLang
-    ) {
+    if (subject === "math" && chapter && MATH_FLASHCARD_BANKS[chapter] && mathFlashcardLang) {
       return standardizeFlashcardDeck(
         MATH_FLASHCARD_CATEGORIES.flatMap((category) =>
           getMathFlashcards(chapter, mathFlashcardLang, category.id),
@@ -3652,23 +5428,15 @@ function FlashcardsPage() {
     }
     if (!subject || !chapter) return [];
     return getFlashcardDeckCards(subject, form, chapter, scienceLang ?? undefined);
-  }, [
-    subject,
-    chapter,
-    form,
-    scienceLang,
-    mathFlashcardLang,
-  ]);
+  }, [subject, chapter, form, scienceLang, mathFlashcardLang]);
   const hasSelectedChapterFlashcards =
     !!subject &&
     !!chapter &&
-    (hasMathFlashcards ||
-      hasFlashcardDeck(subject, form, chapter, scienceLang ?? undefined));
+    (hasMathFlashcards || hasFlashcardDeck(subject, form, chapter, scienceLang ?? undefined));
   const hasUpperFormFlashcardPath = !!(
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    ((!chapter &&
-      hasFormResourceContent(subject, form, "flashcards", scienceLang ?? undefined)) ||
+    ((!chapter && hasFormResourceContent(subject, form, "flashcards", scienceLang ?? undefined)) ||
       (chapter && hasSelectedChapterFlashcards))
   );
 
@@ -3683,7 +5451,7 @@ function FlashcardsPage() {
           ? SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS
           : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 5"
             ? SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS
-      : FLASHCARD_SET_OPTIONS;
+            : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     const setCards =
       shouldSplitFlashcards && selectedFlashcardSet !== null
@@ -3709,9 +5477,12 @@ function FlashcardsPage() {
   const pct = total > 0 ? Math.min(100, Math.round((done / total) * 100)) : 0;
   const flashcardSetTitle =
     subject === "english" && isEnglishFlashcardDeck
-      ? ((form === "Form 2" ? ENGLISH_FLASHCARD_DECKS_F2 : form === "Form 3" ? ENGLISH_FLASHCARD_DECKS_F3 : ENGLISH_FLASHCARD_DECKS).find(
-          (deck) => deck.id === chapter,
-        )?.title ?? "Paper 1 Flashcards")
+      ? ((form === "Form 2"
+          ? ENGLISH_FLASHCARD_DECKS_F2
+          : form === "Form 3"
+            ? ENGLISH_FLASHCARD_DECKS_F3
+            : ENGLISH_FLASHCARD_DECKS
+        ).find((deck) => deck.id === chapter)?.title ?? "Paper 1 Flashcards")
       : subject === "math" && chapter && mathFlashcardLang && mathFlashcardCategory
         ? (MATH_FLASHCARD_CATEGORIES.find((category) => category.id === mathFlashcardCategory)?.[
             mathFlashcardLang
@@ -3836,8 +5607,10 @@ function FlashcardsPage() {
     if (touchStart.current === null) return;
     const dx = swipeOffset;
     touchStart.current = null;
-    if (dx > 80) handleResponse(2);   // swipe right = Good
-    else if (dx < -80) handleResponse(0); // swipe left = Again
+    if (dx > 80)
+      handleResponse(2); // swipe right = Good
+    else if (dx < -80)
+      handleResponse(0); // swipe left = Again
     else setSwipeOffset(0);
   }
 
@@ -3970,7 +5743,12 @@ function FlashcardsPage() {
     );
   }
 
-  if (subject && (form === "Form 2" || form === "Form 3") && !hasUpperFormFlashcardPath && !needsScienceLang) {
+  if (
+    subject &&
+    (form === "Form 2" || form === "Form 3") &&
+    !hasUpperFormFlashcardPath &&
+    !needsScienceLang
+  ) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormComingSoon
@@ -4055,7 +5833,7 @@ function FlashcardsPage() {
                 Continue Studying
               </p>
               <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
-              <p className="mt-1 text-sm text-[#94A3B8]">Bab 7: Udara</p>
+              <p className="mt-1 text-sm text-[#94A3B8]">{cleanLearningLabel("Bab 7: Udara")}</p>
               <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
                 <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6]" />
               </div>
@@ -4074,9 +5852,9 @@ function FlashcardsPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
               {[
-                ["Recommended", "Science", "Bab 7: Udara"],
-                ["Recently Studied", "Mathematics", "Bab 3"],
-                ["Popular Deck", "Sejarah", "Bab 2"],
+                ["Recommended", "Science", "Udara"],
+                ["Recently Studied", "Mathematics", "Algebra Essentials"],
+                ["Popular Deck", "Sejarah", "Warisan Sejarah"],
               ].map(([badge, deckSubject, deckChapter]) => (
                 <div
                   key={badge}
@@ -4084,7 +5862,7 @@ function FlashcardsPage() {
                 >
                   <p className="text-xs font-bold uppercase tracking-wide text-accent">{badge}</p>
                   <h3 className="mt-2 font-display text-xl font-bold">{deckSubject}</h3>
-                  <p className="text-sm text-[#94A3B8]">{deckChapter}</p>
+                  <p className="text-sm text-[#94A3B8]">{cleanLearningLabel(deckChapter)}</p>
                 </div>
               ))}
             </div>
@@ -4162,9 +5940,7 @@ function FlashcardsPage() {
             mode="flashcards"
             isChapterAvailable={(chapterKey) =>
               hasFlashcardDeck(subject, form, chapterKey, scienceLang ?? undefined) ||
-              (subject === "math" &&
-                form === "Form 1" &&
-                Boolean(MATH_FLASHCARD_BANKS[chapterKey]))
+              (subject === "math" && form === "Form 1" && Boolean(MATH_FLASHCARD_BANKS[chapterKey]))
             }
             onSelect={(key) => {
               setChapter(key);
@@ -4173,7 +5949,9 @@ function FlashcardsPage() {
               setMathFlashcardCategory(null);
               resetSession();
               if (subject && setLastVisited) {
-                const chapMeta = getSubjectChapters(subject, scienceLang ?? undefined, form).find((c) => c.key === key);
+                const chapMeta = getSubjectChapters(subject, scienceLang ?? undefined, form).find(
+                  (c) => c.key === key,
+                );
                 setLastVisited({
                   subjectId: subject,
                   chapterKey: key,
@@ -4280,12 +6058,14 @@ function FlashcardsPage() {
                   : form === "Form 3"
                     ? "English Form 3 •"
                     : "English Form 1 •"}{" "}
-                {(form === "Form 2"
-                  ? ENGLISH_FLASHCARD_DECKS_F2
-                  : form === "Form 3"
-                    ? ENGLISH_FLASHCARD_DECKS_F3
-                    : ENGLISH_FLASHCARD_DECKS
-                ).find((deck) => deck.id === chapter)?.title ?? chapter}
+                {cleanLearningLabel(
+                  (form === "Form 2"
+                    ? ENGLISH_FLASHCARD_DECKS_F2
+                    : form === "Form 3"
+                      ? ENGLISH_FLASHCARD_DECKS_F3
+                      : ENGLISH_FLASHCARD_DECKS
+                  ).find((deck) => deck.id === chapter)?.title ?? chapter,
+                )}
               </span>
             </div>
           ) : (
@@ -4294,6 +6074,7 @@ function FlashcardsPage() {
               chapterKey={chapter}
               scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
               form={form}
+              mode="flashcards"
               onBack={() => {
                 if (shouldSplitFlashcards && selectedFlashcardSet !== null) {
                   resetSession();
@@ -4355,7 +6136,7 @@ function FlashcardsPage() {
                           : "bg-white/5 text-muted-foreground hover:bg-white/10"
                       }`}
                     >
-                      {category.icon} {category[mathFlashcardLang].title}
+                      {category.icon} {cleanLearningLabel(category[mathFlashcardLang].title)}
                     </button>
                   ))}
                 </div>
@@ -4363,40 +6144,40 @@ function FlashcardsPage() {
             )}
 
           {!isEnglishFlashcardDeck && (
-          <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
-            <div className="flex flex-wrap gap-2 items-center">
-              <select
-                value={form}
-                onChange={(e) => {
-                  setForm(e.target.value as FormFilter);
-                  resetSession();
-                }}
-                className="px-4 py-2 rounded-full bg-white/5 text-sm"
-              >
-                <option>All</option>
-                {forms.map((f) => (
-                  <option key={f}>{f}</option>
-                ))}
-              </select>
+            <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
+              <div className="flex flex-wrap gap-2 items-center">
+                <select
+                  value={form}
+                  onChange={(e) => {
+                    setForm(e.target.value as FormFilter);
+                    resetSession();
+                  }}
+                  className="px-4 py-2 rounded-full bg-white/5 text-sm"
+                >
+                  <option>All</option>
+                  {forms.map((f) => (
+                    <option key={f}>{f}</option>
+                  ))}
+                </select>
+                <button
+                  onClick={() => setFavOnly((v) => !v)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition ${favOnly ? "bg-rose-500/30 text-rose-200" : "bg-white/5 text-muted-foreground"}`}
+                >
+                  ❤ Favorites
+                </button>
+                <span className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 text-xs font-semibold">
+                  <span className="text-base">🔥</span>
+                  <span className="text-nova-yellow">{streak}</span>
+                  <span className="text-muted-foreground">streak</span>
+                </span>
+              </div>
               <button
-                onClick={() => setFavOnly((v) => !v)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${favOnly ? "bg-rose-500/30 text-rose-200" : "bg-white/5 text-muted-foreground"}`}
+                onClick={shuffle}
+                className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10"
               >
-                ❤ Favorites
+                <Shuffle className="w-4 h-4" /> Shuffle
               </button>
-              <span className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 text-xs font-semibold">
-                <span className="text-base">🔥</span>
-                <span className="text-nova-yellow">{streak}</span>
-                <span className="text-muted-foreground">streak</span>
-              </span>
             </div>
-            <button
-              onClick={shuffle}
-              className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10"
-            >
-              <Shuffle className="w-4 h-4" /> Shuffle
-            </button>
-          </div>
           )}
           {isEnglishFlashcardDeck && (
             <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
@@ -4523,7 +6304,11 @@ function FlashcardsPage() {
                   role="button"
                   tabIndex={0}
                   aria-pressed={flipped}
-                  aria-label={flipped ? "Flashcard answer shown. Press Enter to show question." : "Flashcard question shown. Press Enter to flip."}
+                  aria-label={
+                    flipped
+                      ? "Flashcard answer shown. Press Enter to show question."
+                      : "Flashcard question shown. Press Enter to flip."
+                  }
                   onClick={handleFlip}
                   onKeyDown={(event) => {
                     if (event.key === "Enter" || event.key === " ") {
@@ -4566,7 +6351,9 @@ function FlashcardsPage() {
                       style={{
                         backfaceVisibility: "hidden",
                         border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme ? `0 24px 70px -30px ${planetTheme.glow}` : undefined,
+                        boxShadow: planetTheme
+                          ? `0 24px 70px -30px ${planetTheme.glow}`
+                          : undefined,
                       }}
                     >
                       {shimmer && <div className="card-shimmer-overlay" />}
@@ -4597,7 +6384,7 @@ function FlashcardsPage() {
                       </div>
                       <div className="flex-1 flex items-center justify-center text-center">
                         <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">
-                          {current.front}
+                          {cleanLearningTitle(current.front)}
                         </p>
                       </div>
                       <p className="text-center text-xs text-muted-foreground">
@@ -4614,7 +6401,9 @@ function FlashcardsPage() {
                           ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
                           : undefined,
                         border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme ? `0 24px 70px -30px ${planetTheme.glow}` : undefined,
+                        boxShadow: planetTheme
+                          ? `0 24px 70px -30px ${planetTheme.glow}`
+                          : undefined,
                       }}
                     >
                       {shimmer && <div className="card-shimmer-overlay" />}
@@ -4628,7 +6417,7 @@ function FlashcardsPage() {
                         </span>
                       )}
                       <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">
-                        {current.back}
+                        {cleanLearningQuestion(current.back)}
                       </p>
                     </div>
                   </div>
@@ -4654,11 +6443,23 @@ function FlashcardsPage() {
 
               {/* Navigation row */}
               <div className="mt-6 flex items-center justify-center gap-3">
-                <button type="button" aria-label="Previous card" onClick={() => go(-1)} className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]">
+                <button
+                  type="button"
+                  aria-label="Previous card"
+                  onClick={() => go(-1)}
+                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+                >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
-                <span className="text-sm text-muted-foreground">{done + 1} / {total}</span>
-                <button type="button" aria-label="Next card" onClick={() => go(1)} className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]">
+                <span className="text-sm text-muted-foreground">
+                  {done + 1} / {total}
+                </span>
+                <button
+                  type="button"
+                  aria-label="Next card"
+                  onClick={() => go(1)}
+                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+                >
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>

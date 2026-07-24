@@ -45,8 +45,9 @@ describe("pre-activity quantity labels", () => {
         }),
       );
 
-      expect(markup).toContain(scienceLang === "bm" ? "Bab 1" : "Chapter 1");
-      expect(markup).toContain("aria-label=\"Open ");
+      expect(markup).toContain(scienceLang === "bm" ? "Biodiversiti" : "Biodiversity");
+      expect(markup).not.toContain(scienceLang === "bm" ? "Bab 1" : "Chapter 1");
+      expect(markup).toContain('aria-label="Open ');
       expect(markup).not.toMatch(/🃏\s*\d+/u);
       expect(markup).not.toMatch(/🧠\s*\d+\s*(q|Qs)?/iu);
       expect(markup).not.toMatch(/\d+\s+cards/i);
@@ -64,8 +65,9 @@ describe("pre-activity quantity labels", () => {
     expect(source).toContain('title: "Flashcards Set 2"');
     expect(source).toContain('title: "Flashcards Set 3"');
     expect(picker).toContain("onClick={() => onSelect(set.index)}");
-    expect(picker).toContain("aria-label={`Open Flashcards Set ${index + 1}`}");
-    expect(picker).toContain("Flashcards Set {index + 1}");
+    expect(picker).toContain("aria-label={`Open ${displayTitle}`}");
+    expect(picker).toContain('"Foundation Review", "Practice Review", "Challenge Review"');
+    expect(picker).toContain("{displayTitle}");
     expect(picker).not.toContain("{set.range}");
     expect(picker).not.toContain("{FLASHCARD_SET_SIZE} Cards");
   });
@@ -77,7 +79,9 @@ describe("pre-activity quantity labels", () => {
       "utf8",
     );
 
-    expect(quizSource).toContain("<span className=\"font-display text-sm font-bold\">{idx + 1}</span>");
+    expect(quizSource).toContain(
+      '<span className="font-display text-sm font-bold">{idx + 1}</span>',
+    );
     expect(quizSource).toContain('<span className="text-xs text-white/30">/ {total}</span>');
     expect(quizSource).toContain('aria-label="Quiz progress"');
     expect(flashcardSource).toContain("Card {done + 1} of {total}");

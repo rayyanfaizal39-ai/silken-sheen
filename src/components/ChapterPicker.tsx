@@ -23,15 +23,16 @@ import {
 import { getChapterFeatures } from "@/content/types";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
+import { cleanLearningLabel, cleanLearningTitle } from "@/lib/clean-learning-title";
 
 // Subject accent colors — must stay in sync with AcademyPage subjectPlanetStyles
 const SUBJECT_COLORS: Record<string, { color: string; glow: string; from: string; to: string }> = {
-  science:   { color: "#38BDF8", glow: "rgba(56,189,248,0.35)",   from: "#38BDF8", to: "#0EA5E9" },
-  sejarah:   { color: "#FB923C", glow: "rgba(251,146,60,0.35)",   from: "#FB923C", to: "#F97316" },
-  geography: { color: "#34D399", glow: "rgba(52,211,153,0.35)",   from: "#34D399", to: "#10B981" },
-  english:   { color: "#C084FC", glow: "rgba(192,132,252,0.35)",  from: "#C084FC", to: "#A855F7" },
-  math:      { color: "#FBBF24", glow: "rgba(251,191,36,0.35)",   from: "#FBBF24", to: "#F59E0B" },
-  bm:        { color: "#F472B6", glow: "rgba(244,114,182,0.35)",  from: "#F472B6", to: "#EC4899" },
+  science: { color: "#38BDF8", glow: "rgba(56,189,248,0.35)", from: "#38BDF8", to: "#0EA5E9" },
+  sejarah: { color: "#FB923C", glow: "rgba(251,146,60,0.35)", from: "#FB923C", to: "#F97316" },
+  geography: { color: "#34D399", glow: "rgba(52,211,153,0.35)", from: "#34D399", to: "#10B981" },
+  english: { color: "#C084FC", glow: "rgba(192,132,252,0.35)", from: "#C084FC", to: "#A855F7" },
+  math: { color: "#FBBF24", glow: "rgba(251,191,36,0.35)", from: "#FBBF24", to: "#F59E0B" },
+  bm: { color: "#F472B6", glow: "rgba(244,114,182,0.35)", from: "#F472B6", to: "#EC4899" },
 };
 
 function getSubjectAccent(subjectId: string) {
@@ -203,20 +204,18 @@ export function FormGrid({
 
       <div className="grid items-stretch gap-4 sm:grid-cols-3">
         {FORM_CARDS.map((item, index) => {
-          const isReady = hasFormResourceContent(
-            subjectId,
-            item.form,
-            resourceTypeForMode(mode),
-          ) || hasCustomFormResourceContent(subjectId, item.form, mode);
+          const isReady =
+            hasFormResourceContent(subjectId, item.form, resourceTypeForMode(mode)) ||
+            hasCustomFormResourceContent(subjectId, item.form, mode);
           const stat = formStats.find((s) => s.form === item.form);
-          const statLabel = stat
-            ? formStatLabel(mode, stat, isReady)
-            : item.description;
+          const statLabel = stat ? formStatLabel(mode, stat, isReady) : item.description;
           return (
             <button
               key={item.form}
               type="button"
-              aria-label={isReady ? `Open ${item.label} ${modeLabel(mode).toLowerCase()}` : undefined}
+              aria-label={
+                isReady ? `Open ${item.label} ${modeLabel(mode).toLowerCase()}` : undefined
+              }
               onClick={() => isReady && onSelect(item.form)}
               disabled={!isReady}
               className="group relative flex min-h-[190px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.22)] transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-white/[0.16] hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
@@ -288,6 +287,7 @@ export function ChapterGrid({
   const chapters = getSubjectChapters(subjectId, scienceLang, form);
   const { progress } = useProgress();
   const accent = getSubjectAccent(subjectId);
+  const cleanChapterText = mode === "quizzes" || mode === "flashcards";
 
   return (
     <AcademyPanel>
@@ -302,7 +302,9 @@ export function ChapterGrid({
         </button>
         <div className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
           <span className="text-sm">{subj?.emoji}</span>
-          <span className="text-sm font-bold" style={{ color: accent.color }}>{subj?.name}</span>
+          <span className="text-sm font-bold" style={{ color: accent.color }}>
+            {subj?.name}
+          </span>
         </div>
       </div>
 
@@ -321,13 +323,7 @@ export function ChapterGrid({
           {chapters.map((c, i) => {
             const resourceAvailable =
               isChapterAvailable?.(c.key) ??
-              hasResourceContent(
-                subjectId,
-                form,
-                c.key,
-                resourceTypeForMode(mode),
-                scienceLang,
-              );
+              hasResourceContent(subjectId, form, c.key, resourceTypeForMode(mode), scienceLang);
             const pct = chapterProgressPct(
               progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
             );
@@ -353,7 +349,7 @@ export function ChapterGrid({
                 type="button"
                 aria-label={
                   resourceAvailable
-                    ? `Open ${c.label} ${modeLabel(mode).toLowerCase()}`
+                    ? `Open ${cleanChapterText ? cleanLearningLabel(c.label) : c.label} ${modeLabel(mode).toLowerCase()}`
                     : undefined
                 }
                 key={c.key}
@@ -371,7 +367,8 @@ export function ChapterGrid({
                 onMouseEnter={(e) => {
                   if (resourceAvailable) {
                     (e.currentTarget as HTMLElement).style.borderColor = `${accent.color}45`;
-                    (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px -20px ${accent.glow}`;
+                    (e.currentTarget as HTMLElement).style.boxShadow =
+                      `0 20px 60px -20px ${accent.glow}`;
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -425,7 +422,7 @@ export function ChapterGrid({
 
                   {/* Chapter label */}
                   <h3 className="font-display text-base font-bold leading-snug text-white">
-                    {c.label}
+                    {cleanChapterText ? cleanLearningTitle(c.label) : c.label}
                   </h3>
 
                   {/* Feature chips */}
@@ -458,8 +455,8 @@ export function ChapterGrid({
                             color: isComplete
                               ? accent.color
                               : isStarted
-                              ? "rgba(255,255,255,0.55)"
-                              : "rgba(255,255,255,0.3)",
+                                ? "rgba(255,255,255,0.55)"
+                                : "rgba(255,255,255,0.3)",
                           }}
                         >
                           {status}
@@ -496,21 +493,30 @@ export function ContentHeader({
   onBack,
   scienceLang,
   form = "Form 1",
+  mode = "notes",
 }: {
   subjectId: string;
   chapterKey: string;
   onBack: () => void;
   scienceLang?: "bm" | "dlp";
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
+  mode?: LearningMode;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
     (c) => c.key === chapterKey,
   );
-  const chapterContent = getChapter(subjectId, chapterKey, scienceLang, form === "All" ? "Form 1" : form);
+  const chapterContent = getChapter(
+    subjectId,
+    chapterKey,
+    scienceLang,
+    form === "All" ? "Form 1" : form,
+  );
   const chapterLabel =
     chapter?.label ??
     (chapterContent ? `${chapterContent.chapterKey}: ${chapterContent.title}` : chapterKey);
+  const displayChapterLabel =
+    mode === "quizzes" || mode === "flashcards" ? cleanLearningTitle(chapterLabel) : chapterLabel;
   const accent = getSubjectAccent(subjectId);
 
   return (
@@ -530,7 +536,7 @@ export function ContentHeader({
           </span>
           <span className="text-white/30">•</span>
           <span className="max-w-[180px] truncate text-xs text-white/55">
-            {chapterLabel}
+            {displayChapterLabel}
           </span>
         </div>
       </div>
@@ -561,7 +567,7 @@ export function ContentHeader({
               {subj?.name} • Learning Content
             </p>
             <h2 className="mt-0.5 font-display text-xl font-bold leading-tight text-white">
-              {chapterLabel}
+              {displayChapterLabel}
             </h2>
           </div>
         </div>
@@ -655,6 +661,10 @@ export function ComingSoonScreen({
       : mode === "flashcards"
         ? ["Deck 1", "Deck 2", "Deck 3"]
         : (chapter?.subtopics ?? []);
+  const chapterLabel =
+    mode === "quizzes" || mode === "flashcards"
+      ? cleanLearningTitle(chapter?.label ?? chapterKey)
+      : (chapter?.label ?? chapterKey);
 
   return (
     <>
@@ -668,42 +678,42 @@ export function ComingSoonScreen({
         />
       )}
       <div className="animate-fade-up rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 px-5 py-12 text-center sm:px-8 sm:py-16">
-      <div className="mb-6 text-6xl animate-float-soft">🚧</div>
-      <h2 className="font-display text-2xl font-bold text-white">{chapter?.label ?? chapterKey}</h2>
-      <p className="mt-2 text-sm text-white/50">This chapter is coming soon. Stay tuned!</p>
-      <span className="mt-4 inline-flex rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-amber-300">
-        Available Soon
-      </span>
+        <div className="mb-6 text-6xl animate-float-soft">🚧</div>
+        <h2 className="font-display text-2xl font-bold text-white">{chapterLabel}</h2>
+        <p className="mt-2 text-sm text-white/50">This chapter is coming soon. Stay tuned!</p>
+        <span className="mt-4 inline-flex rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-amber-300">
+          Available Soon
+        </span>
 
-      {placeholderItems.length > 0 && (
-        <div className="mx-auto mt-8 grid max-w-3xl gap-3 text-left sm:grid-cols-2">
-          {placeholderItems.map((item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="font-display text-sm font-bold leading-snug text-white">{item}</h3>
-                <Lock className="h-4 w-4 shrink-0 text-white/30" />
+        {placeholderItems.length > 0 && (
+          <div className="mx-auto mt-8 grid max-w-3xl gap-3 text-left sm:grid-cols-2">
+            {placeholderItems.map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="font-display text-sm font-bold leading-snug text-white">{item}</h3>
+                  <Lock className="h-4 w-4 shrink-0 text-white/30" />
+                </div>
+                <div className="mt-4 min-h-12 rounded-xl border border-dashed border-white/[0.08] bg-black/10 p-3">
+                  <p className="text-xs font-semibold text-white/35">Coming Soon</p>
+                </div>
               </div>
-              <div className="mt-4 min-h-12 rounded-xl border border-dashed border-white/[0.08] bg-black/10 p-3">
-                <p className="text-xs font-semibold text-white/35">Coming Soon</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      <button
-        type="button"
-        onClick={onBack}
-        className="mt-8 inline-flex items-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
-        style={{
-          background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
-          boxShadow: `0 4px 20px -4px ${accent.glow}`,
-        }}
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to chapters
-      </button>
+            ))}
+          </div>
+        )}
+        <button
+          type="button"
+          onClick={onBack}
+          className="mt-8 inline-flex items-center gap-2 rounded-2xl px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+          style={{
+            background: `linear-gradient(135deg, ${accent.from}, ${accent.to})`,
+            boxShadow: `0 4px 20px -4px ${accent.glow}`,
+          }}
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to chapters
+        </button>
       </div>
     </>
   );
