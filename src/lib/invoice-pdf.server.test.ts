@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { generateInvoicePdf } from "./invoice-pdf.server";
 import type { InvoiceData } from "./billing.types";
 
@@ -25,6 +25,19 @@ const invoice: InvoiceData = {
   emailed_at: null,
 };
 
+const originalLegalName = process.env.ACADEMY_LEGAL_NAME;
+const originalSsmNumber = process.env.ACADEMY_SSM_NUMBER;
+const originalBusinessAddress = process.env.ACADEMY_BUSINESS_ADDRESS;
+
+afterEach(() => {
+  if (originalLegalName === undefined) delete process.env.ACADEMY_LEGAL_NAME;
+  else process.env.ACADEMY_LEGAL_NAME = originalLegalName;
+  if (originalSsmNumber === undefined) delete process.env.ACADEMY_SSM_NUMBER;
+  else process.env.ACADEMY_SSM_NUMBER = originalSsmNumber;
+  if (originalBusinessAddress === undefined) delete process.env.ACADEMY_BUSINESS_ADDRESS;
+  else process.env.ACADEMY_BUSINESS_ADDRESS = originalBusinessAddress;
+});
+
 describe("lightweight invoice PDF", () => {
   it("generates a compact valid PDF containing the invoice reference", async () => {
     const bytes = await generateInvoicePdf(invoice);
@@ -36,4 +49,23 @@ describe("lightweight invoice PDF", () => {
     expect(document).toContain("Test \\(Customer\\)");
     expect(bytes.byteLength).toBeLessThan(10_000);
   });
+
+  it.each([undefined, "   "])(
+    "omits the address but retains invoice identity when the address is %s",
+    async (address) => {
+      delete process.env.ACADEMY_LEGAL_NAME;
+      process.env.ACADEMY_SSM_NUMBER = "202601234567";
+      if (address === undefined) delete process.env.ACADEMY_BUSINESS_ADDRESS;
+      else process.env.ACADEMY_BUSINESS_ADDRESS = address;
+
+      const document = new TextDecoder().decode(await generateInvoicePdf(invoice));
+
+      expect(document).toContain("Lumina My Academy Digital");
+      expect(document).toContain("SSM: 202601234567");
+      expect(document).toContain("support@myacademy.my");
+      expect(document).toContain("www.myacademy.my");
+      expect(document).not.toContain("[Business address]");
+      expect(document).not.toContain("48 674 Td");
+    },
+  );
 });

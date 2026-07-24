@@ -1,5 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
 import { buildInvoiceEmail, type InvoiceEmailData } from "../_shared/email-templates.ts";
+import { resolveInvoiceLegalDetails } from "../_shared/invoice-brand.ts";
 import { sendWithResend } from "../_shared/resend.ts";
 
 type InvoiceRow = InvoiceEmailData & {
@@ -65,7 +66,10 @@ Deno.serve(async (request) => {
     let binary = "";
     for (const byte of attachment) binary += String.fromCharCode(byte);
 
-    const content = buildInvoiceEmail(invoice);
+    const content = buildInvoiceEmail(
+      invoice,
+      resolveInvoiceLegalDetails((name) => Deno.env.get(name)),
+    );
     const delivery = await sendWithResend(resendApiKey, {
       to: invoice.customer_email,
       ...content,

@@ -26,8 +26,6 @@ export const Route = createFileRoute("/upgrade")({
 
 // ─── Data ───────────────────────────────────────────────────────────────
 
-type Billing = "monthly" | "annual";
-
 type PlanKey = "basic" | "pro" | "premium";
 
 type Feature = { label: string; included: boolean };
@@ -197,16 +195,6 @@ function CtaButton({
 // ─── Page ───────────────────────────────────────────────────────────────
 
 function UpgradePage() {
-  const [billing, setBilling] = useState<Billing>("monthly");
-
-  const proPrice = billing === "monthly" ? "RM19" : "RM190";
-  const proPeriod = billing === "monthly" ? "/month" : "/year";
-  const premiumPrice = billing === "monthly" ? "RM49" : "RM490";
-  const premiumPeriod = billing === "monthly" ? "/month" : "/year";
-
-  const proPlan: UpgradePlan = billing === "monthly" ? "pro_monthly" : "pro_annual";
-  const premiumPlan: UpgradePlan = billing === "monthly" ? "premium_monthly" : "premium_annual";
-
   return (
     <AcademyPageShell>
       {/* ── Header ────────────────────────────────────────────────────── */}
@@ -222,32 +210,6 @@ function UpgradePage() {
           insights.
         </p>
 
-        {/* Billing toggle */}
-        <div className="mt-8 inline-flex rounded-full border border-white/[0.08] bg-[#0B1220]/70 p-1 backdrop-blur-2xl">
-          <button
-            type="button"
-            onClick={() => setBilling("monthly")}
-            className={`rounded-full px-5 py-2 text-xs font-bold transition-all sm:text-sm ${
-              billing === "monthly" ? "bg-white text-slate-900" : "text-white/60 hover:text-white"
-            }`}
-          >
-            Monthly
-          </button>
-          <button
-            type="button"
-            onClick={() => setBilling("annual")}
-            className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold transition-all sm:text-sm ${
-              billing === "annual"
-                ? "bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white shadow-[0_4px_16px_rgba(245,158,11,0.4)]"
-                : "text-white/60 hover:text-white"
-            }`}
-          >
-            Annual
-            <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] text-emerald-300">
-              2 months FREE
-            </span>
-          </button>
-        </div>
       </div>
 
       {/* ── Plan cards ─────────────────────────────────────────────────── */}
@@ -288,23 +250,10 @@ function UpgradePage() {
           </div>
           <p className="text-xs text-[#94A3B8]">Best for students</p>
           <div className="mt-5 mb-6">
-            <div className="flex items-baseline gap-2">
-              <span className="text-lg font-semibold text-white/40 line-through">
-                {billing === "monthly" ? "RM39" : "RM390"}
-              </span>
-              <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
-                50% OFF
-              </span>
-            </div>
             <p className="mt-1 text-4xl font-bold text-white">
-              {proPrice}
-              <span className="text-sm font-normal text-[#94A3B8]">{proPeriod}</span>
+              RM29
+              <span className="text-sm font-normal text-[#94A3B8]">/month</span>
             </p>
-            {billing === "annual" && (
-              <p className="mt-1 text-[11px] font-semibold text-emerald-300">
-                Save RM38 • Pay for 10 months, enjoy 12
-              </p>
-            )}
           </div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/50">
             Everything in Basic, plus:
@@ -315,7 +264,7 @@ function UpgradePage() {
             ))}
           </ul>
           <CtaButton
-            plan={proPlan}
+            plan="pro_monthly"
             label="Upgrade to Pro"
             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
           />
@@ -334,23 +283,10 @@ function UpgradePage() {
           </div>
           <p className="text-xs text-[#94A3B8]">Best for parents</p>
           <div className="mt-5 mb-6">
-            <div className="flex items-baseline gap-2">
-              <span className="text-lg font-semibold text-white/40 line-through">
-                {billing === "monthly" ? "RM79" : "RM790"}
-              </span>
-              <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
-                38% OFF
-              </span>
-            </div>
             <p className="mt-1 text-4xl font-bold text-white">
-              {premiumPrice}
-              <span className="text-sm font-normal text-[#94A3B8]">{premiumPeriod}</span>
+              RM59
+              <span className="text-sm font-normal text-[#94A3B8]">/month</span>
             </p>
-            {billing === "annual" && (
-              <p className="mt-1 text-[11px] font-semibold text-emerald-300">
-                Save RM98 • Pay for 10 months, enjoy 12
-              </p>
-            )}
           </div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/50">
             Everything in Pro, plus:
@@ -372,7 +308,7 @@ function UpgradePage() {
             </li>
           </ul>
           <CtaButton
-            plan={premiumPlan}
+            plan="premium_monthly"
             label="Upgrade to Premium"
             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#F59E0B] to-[#D97706] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(245,158,11,0.4)] transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
           />
