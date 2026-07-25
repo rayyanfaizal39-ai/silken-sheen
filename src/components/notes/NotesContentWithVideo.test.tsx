@@ -36,6 +36,22 @@ describe("NotesContentWithVideo", () => {
     expect(notesContainerEnd).toBeLessThan(markup.indexOf('id="video"'));
   });
 
+  it("places the stable pagination target after an optional chapter header", () => {
+    const markup = renderToStaticMarkup(
+      <NotesContentWithVideo
+        notesContentRef={createRef()}
+        header={<section data-chapter-hero>Chapter hero</section>}
+      >
+        <section data-paginated-notes>Paginated notes</section>
+      </NotesContentWithVideo>,
+    );
+
+    expect(markup.indexOf("data-chapter-hero")).toBeLessThan(markup.indexOf("data-notes-page-top"));
+    expect(markup.indexOf("data-notes-page-top")).toBeLessThan(
+      markup.indexOf("data-paginated-notes"),
+    );
+  });
+
   it("does not render an empty player for a chapter without video metadata", () => {
     const markup = renderToStaticMarkup(
       <NotesContentWithVideo notesContentRef={createRef()}>

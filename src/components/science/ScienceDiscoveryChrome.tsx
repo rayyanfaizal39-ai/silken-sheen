@@ -33,9 +33,25 @@ export const SCIENCE_LAB_META = [
   { modules: 9, minutes: 23, experiments: 2, difficulty: "Advanced" },
 ] as const;
 
-const LAB_ICONS = [Microscope, Dna, BrainCircuit, VenusAndMars, Atom, FlaskConical, Wind, Telescope, Earth];
+const LAB_ICONS = [
+  Microscope,
+  Dna,
+  BrainCircuit,
+  VenusAndMars,
+  Atom,
+  FlaskConical,
+  Wind,
+  Telescope,
+  Earth,
+];
 
-export function ScienceLabIllustration({ chapter, compact = false }: { chapter: number; compact?: boolean }) {
+export function ScienceLabIllustration({
+  chapter,
+  compact = false,
+}: {
+  chapter: number;
+  compact?: boolean;
+}) {
   const Icon = LAB_ICONS[(chapter - 1) % LAB_ICONS.length] ?? Microscope;
   return (
     <div className={`science-lab-illustration ${compact ? "is-compact" : ""}`} aria-hidden="true">
@@ -46,8 +62,26 @@ export function ScienceLabIllustration({ chapter, compact = false }: { chapter: 
             <stop offset="1" stopColor="#8BB8FF" stopOpacity="0.08" />
           </linearGradient>
         </defs>
-        <ellipse cx="110" cy="85" rx="82" ry="34" fill="none" stroke={`url(#lab-ring-${chapter})`} strokeWidth="1.4" />
-        <ellipse cx="110" cy="85" rx="64" ry="58" fill="none" stroke="#4FDFFF" strokeOpacity="0.22" strokeWidth="1" transform="rotate(34 110 85)" />
+        <ellipse
+          cx="110"
+          cy="85"
+          rx="82"
+          ry="34"
+          fill="none"
+          stroke={`url(#lab-ring-${chapter})`}
+          strokeWidth="1.4"
+        />
+        <ellipse
+          cx="110"
+          cy="85"
+          rx="64"
+          ry="58"
+          fill="none"
+          stroke="#4FDFFF"
+          strokeOpacity="0.22"
+          strokeWidth="1"
+          transform="rotate(34 110 85)"
+        />
         <circle cx="35" cy="76" r="3" fill="#4FDFFF" />
         <circle cx="172" cy="43" r="2.5" fill="#A8EEFF" />
         <circle cx="149" cy="123" r="2" fill="#4FDFFF" fillOpacity="0.7" />
@@ -110,10 +144,18 @@ export function ScienceDiscoveryChapterHeader({
   const bm = lang === "bm";
   const effectiveProgress = isRead ? 100 : Math.max(chapterProgress, readingProgress);
   const mastered = Math.min(meta.modules, Math.floor((meta.modules * effectiveProgress) / 100));
-  const experiments = Math.min(meta.experiments, Math.floor((meta.experiments * effectiveProgress) / 100));
+  const experiments = Math.min(
+    meta.experiments,
+    Math.floor((meta.experiments * effectiveProgress) / 100),
+  );
 
   return (
-    <section id={embedded ? "notes" : "chapter-overview"} className="science-discovery-hero" data-lang={lang}>
+    <section
+      id={embedded ? "notes" : "chapter-overview"}
+      className="science-discovery-hero"
+      data-lang={lang}
+      data-layout="compact"
+    >
       <div className="science-discovery-stars" aria-hidden="true" />
       <div className="science-discovery-particle science-particle-one" aria-hidden="true" />
       <div className="science-discovery-particle science-particle-two" aria-hidden="true" />
@@ -130,8 +172,12 @@ export function ScienceDiscoveryChapterHeader({
 
       <div className="science-discovery-hero-grid">
         <div className="science-discovery-hero-copy">
-          <div className="science-live-status"><span /> {bm ? "STESEN PENYELIDIKAN AKTIF" : "RESEARCH STATION ONLINE"}</div>
-          <p className="science-lab-kicker">{bm ? "Makmal Penyelidikan" : "Research Laboratory"} {String(chapter).padStart(2, "0")}</p>
+          <div className="science-live-status">
+            <span /> {bm ? "STESEN PENYELIDIKAN AKTIF" : "RESEARCH STATION ONLINE"}
+          </div>
+          <p className="science-lab-kicker">
+            {bm ? "Makmal Penyelidikan" : "Research Laboratory"} {String(chapter).padStart(2, "0")}
+          </p>
           <h1>{title}</h1>
           <p className="science-discovery-intro">
             {bm
@@ -139,9 +185,22 @@ export function ScienceDiscoveryChapterHeader({
               : "Enter the research modules, examine the evidence, and build your scientific understanding."}
           </p>
           <div className="science-hero-metadata">
-            <span><Clock3 /> {meta.minutes} {bm ? "min bacaan" : "min read"}</span>
-            <span><Sparkles /> {meta.modules} {bm ? "penemuan" : "discoveries"}</span>
-            <span><Gauge /> {bm ? (meta.difficulty === "Foundation" ? "Asas" : meta.difficulty === "Core" ? "Teras" : "Lanjutan") : meta.difficulty}</span>
+            <span>
+              <Clock3 /> {meta.minutes} {bm ? "min bacaan" : "min read"}
+            </span>
+            <span>
+              <Sparkles /> {meta.modules} {bm ? "penemuan" : "discoveries"}
+            </span>
+            <span>
+              <Gauge />{" "}
+              {bm
+                ? meta.difficulty === "Foundation"
+                  ? "Asas"
+                  : meta.difficulty === "Core"
+                    ? "Teras"
+                    : "Lanjutan"
+                : meta.difficulty}
+            </span>
           </div>
         </div>
         <ScienceLabIllustration chapter={chapter} />
@@ -149,14 +208,35 @@ export function ScienceDiscoveryChapterHeader({
 
       <div className="science-progress-console">
         <div className="science-console-heading">
-          <div><span>{bm ? "TELEMETRI MAKMAL" : "LAB TELEMETRY"}</span><h2>{bm ? "Kemajuan Penyelidikan" : "Research Progress"}</h2></div>
-          <p>{Math.round(effectiveProgress)}% {bm ? "diselaraskan" : "synchronised"}</p>
+          <div>
+            <span>{bm ? "TELEMETRI MAKMAL" : "LAB TELEMETRY"}</span>
+            <h2>{bm ? "Kemajuan Penyelidikan" : "Research Progress"}</h2>
+          </div>
+          <p>
+            {Math.round(effectiveProgress)}% {bm ? "diselaraskan" : "synchronised"}
+          </p>
         </div>
         <div className="science-progress-grid">
           <ProgressRing value={effectiveProgress} label={bm ? "Kemajuan" : "Research"} />
-          <div className="science-progress-datum"><BrainCircuit /><strong>{mastered}/{meta.modules}</strong><span>{bm ? "Konsep Dikuasai" : "Concepts Mastered"}</span></div>
-          <div className="science-progress-datum"><Eye /><strong>{mastered}</strong><span>{bm ? "Penemuan Dibuka" : "Discoveries Unlocked"}</span></div>
-          <div className="science-progress-datum"><FlaskConical /><strong>{experiments}/{meta.experiments}</strong><span>{bm ? "Eksperimen Selesai" : "Experiments Completed"}</span></div>
+          <div className="science-progress-datum">
+            <BrainCircuit />
+            <strong>
+              {mastered}/{meta.modules}
+            </strong>
+            <span>{bm ? "Konsep Dikuasai" : "Concepts Mastered"}</span>
+          </div>
+          <div className="science-progress-datum">
+            <Eye />
+            <strong>{mastered}</strong>
+            <span>{bm ? "Penemuan Dibuka" : "Discoveries Unlocked"}</span>
+          </div>
+          <div className="science-progress-datum">
+            <FlaskConical />
+            <strong>
+              {experiments}/{meta.experiments}
+            </strong>
+            <span>{bm ? "Eksperimen Selesai" : "Experiments Completed"}</span>
+          </div>
           <ProgressRing value={readingProgress} label={bm ? "Bacaan" : "Reading"} />
         </div>
       </div>
@@ -169,7 +249,9 @@ export function MiniInvestigation({ lang }: { lang: "en" | "bm" }) {
   return (
     <aside className="science-mini-investigation">
       <div className="science-mini-investigation-heading">
-        <div className="science-mini-icon"><Microscope /></div>
+        <div className="science-mini-icon">
+          <Microscope />
+        </div>
         <div>
           <p>{bm ? "JEDA RASA INGIN TAHU" : "CURIOSITY CHECKPOINT"}</p>
           <h3>{bm ? "Penyiasatan Mini" : "Mini Investigation"}</h3>
@@ -181,7 +263,9 @@ export function MiniInvestigation({ lang }: { lang: "en" | "bm" }) {
           : "What connections can you identify between the observations in this research module?"}
       </p>
       <details>
-        <summary><Lightbulb /> {bm ? "Dedahkan Panduan" : "Reveal Answer"}</summary>
+        <summary>
+          <Lightbulb /> {bm ? "Dedahkan Panduan" : "Reveal Answer"}
+        </summary>
         <p>
           {bm
             ? "Semak semula konsep dan bukti di atas, kemudian bandingkan dengan penjelasan anda sendiri."
@@ -193,8 +277,24 @@ export function MiniInvestigation({ lang }: { lang: "en" | "bm" }) {
 }
 
 const DISCOVERY_MODES = {
-  en: ["Observation", "Discovery", "Key Concept", "Real Life Connection", "Science Fact", "Remember This", "Experiment Tip"],
-  bm: ["Pemerhatian", "Penemuan", "Konsep Utama", "Hubungan Dunia Sebenar", "Fakta Sains", "Ingat Ini", "Tip Eksperimen"],
+  en: [
+    "Observation",
+    "Discovery",
+    "Key Concept",
+    "Real Life Connection",
+    "Science Fact",
+    "Remember This",
+    "Experiment Tip",
+  ],
+  bm: [
+    "Pemerhatian",
+    "Penemuan",
+    "Konsep Utama",
+    "Hubungan Dunia Sebenar",
+    "Fakta Sains",
+    "Ingat Ini",
+    "Tip Eksperimen",
+  ],
 } as const;
 
 export function ResearchModuleMeta({
@@ -213,9 +313,15 @@ export function ResearchModuleMeta({
   const minutes = Math.max(3, Math.round(22 / total));
   return (
     <div className="science-module-meta">
-      <span className="science-module-mode"><Sparkles /> {mode}</span>
-      <span><BookOpenCheck /> {bm ? "Objektif" : "Objective"}: {title}</span>
-      <span><Clock3 /> {minutes} min</span>
+      <span className="science-module-mode">
+        <Sparkles /> {mode}
+      </span>
+      <span>
+        <BookOpenCheck /> {bm ? "Objektif" : "Objective"}: {title}
+      </span>
+      <span>
+        <Clock3 /> {minutes} min
+      </span>
     </div>
   );
 }
