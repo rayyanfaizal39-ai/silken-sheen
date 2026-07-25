@@ -629,7 +629,14 @@ const GEOGRAPHY_F1_CHAPTER_TITLES: Record<number, string> = {
 
 function geographyFlashcardsFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
-  return allFlashcards.filter((f) => f.subjectId === "geography" && f.chapter === chapterKey);
+  const cardIdPrefix = `geo-f1-c${chapterNum}-`;
+  return allFlashcards.filter(
+    (f) =>
+      f.subjectId === "geography" &&
+      f.form === "Form 1" &&
+      f.chapter === chapterKey &&
+      f.id.startsWith(cardIdPrefix),
+  );
 }
 
 function geographyQuizzesFor(chapterNum: number) {

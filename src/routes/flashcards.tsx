@@ -116,9 +116,9 @@ const GENTLE = [
 
 const FLASHCARD_SET_SIZE = 20;
 const FLASHCARD_SET_OPTIONS: Array<{ index: FlashcardSetIndex; title: string; range: string }> = [
-  { index: 0, title: "Flashcards Set 1", range: "Cards 1-20" },
-  { index: 1, title: "Flashcards Set 2", range: "Cards 21-40" },
-  { index: 2, title: "Flashcards Set 3", range: "Cards 41-60" },
+  { index: 0, title: "Foundation Review", range: "Cards 1-20" },
+  { index: 1, title: "Practice Review", range: "Cards 21-40" },
+  { index: 2, title: "Challenge Review", range: "Cards 41-60" },
 ];
 
 const SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS: Array<{
@@ -5262,10 +5262,7 @@ function FlashcardSetPicker({
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {setOptions.map((set, index) => {
-            const displayTitle =
-              setOptions === FLASHCARD_SET_OPTIONS
-                ? ["Foundation Review", "Practice Review", "Challenge Review"][index]
-                : cleanLearningTitle(set.title);
+            const displayTitle = cleanLearningTitle(set.title);
             return (
               <button
                 key={set.index}
@@ -6330,7 +6327,7 @@ function FlashcardsPage() {
                   `}
                   style={{
                     perspective: "1500px",
-                    height: 360,
+                    height: "clamp(360px, 58dvh, 440px)",
                     transform: slideOut
                       ? undefined
                       : `translateX(${swipeOffset}px) rotate(${swipeOffset / 30}deg)`,
@@ -6347,7 +6344,7 @@ function FlashcardsPage() {
                   >
                     {/* front */}
                     <div
-                      className="absolute inset-0 glass-strong rounded-3xl p-8 flex flex-col overflow-hidden"
+                      className="absolute inset-0 glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
                       style={{
                         backfaceVisibility: "hidden",
                         border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
@@ -6383,7 +6380,7 @@ function FlashcardsPage() {
                         </button>
                       </div>
                       <div className="flex-1 flex items-center justify-center text-center">
-                        <p className="font-display text-3xl sm:text-4xl font-bold leading-tight">
+                        <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
                           {cleanLearningTitle(current.front)}
                         </p>
                       </div>
@@ -6393,7 +6390,7 @@ function FlashcardsPage() {
                     </div>
                     {/* back */}
                     <div
-                      className="absolute inset-0 glass-strong rounded-3xl p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
+                      className="absolute inset-0 glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
                       style={{
                         backfaceVisibility: "hidden",
                         transform: "rotateY(180deg)",
@@ -6416,7 +6413,7 @@ function FlashcardsPage() {
                           {planetTheme.decor[1] ?? planetTheme.decor[0]}
                         </span>
                       )}
-                      <p className="font-display text-2xl sm:text-3xl text-center leading-relaxed">
+                      <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
                         {cleanLearningQuestion(current.back)}
                       </p>
                     </div>
