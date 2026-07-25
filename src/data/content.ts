@@ -55,6 +55,24 @@ import { mathF2C13QuizzesBM } from "@/content/form2/math/chapter-13/quizzes-bm";
 import { mathF2C13QuizzesDLP } from "@/content/form2/math/chapter-13/quizzes-dlp";
 import { mathF2C13FlashcardsBM } from "@/content/form2/math/chapter-13/flashcards-bm";
 import { mathF2C13FlashcardsDLP } from "@/content/form2/math/chapter-13/flashcards-dlp";
+import { mathF3C1QuizzesBM } from "@/content/form3/math/chapter-1/quizzes-bm";
+import { mathF3C1QuizzesDLP } from "@/content/form3/math/chapter-1/quizzes-dlp";
+import { mathF3C2QuizzesBM } from "@/content/form3/math/chapter-2/quizzes-bm";
+import { mathF3C2QuizzesDLP } from "@/content/form3/math/chapter-2/quizzes-dlp";
+import { mathF3C3QuizzesBM } from "@/content/form3/math/chapter-3/quizzes-bm";
+import { mathF3C3QuizzesDLP } from "@/content/form3/math/chapter-3/quizzes-dlp";
+import { mathF3C4QuizzesBM } from "@/content/form3/math/chapter-4/quizzes-bm";
+import { mathF3C4QuizzesDLP } from "@/content/form3/math/chapter-4/quizzes-dlp";
+import { mathF3C5QuizzesBM } from "@/content/form3/math/chapter-5/quizzes-bm";
+import { mathF3C5QuizzesDLP } from "@/content/form3/math/chapter-5/quizzes-dlp";
+import { mathF3C6QuizzesBM } from "@/content/form3/math/chapter-6/quizzes-bm";
+import { mathF3C6QuizzesDLP } from "@/content/form3/math/chapter-6/quizzes-dlp";
+import { mathF3C7QuizzesBM } from "@/content/form3/math/chapter-7/quizzes-bm";
+import { mathF3C7QuizzesDLP } from "@/content/form3/math/chapter-7/quizzes-dlp";
+import { mathF3C8QuizzesBM } from "@/content/form3/math/chapter-8/quizzes-bm";
+import { mathF3C8QuizzesDLP } from "@/content/form3/math/chapter-8/quizzes-dlp";
+import { mathF3C9QuizzesBM } from "@/content/form3/math/chapter-9/quizzes-bm";
+import { mathF3C9QuizzesDLP } from "@/content/form3/math/chapter-9/quizzes-dlp";
 import { mathF3C1FlashcardsBM } from "@/content/form3/math/chapter-1/flashcards-bm";
 import { mathF3C1FlashcardsDLP } from "@/content/form3/math/chapter-1/flashcards-dlp";
 import { mathF3C2FlashcardsBM } from "@/content/form3/math/chapter-2/flashcards-bm";
@@ -15770,6 +15788,24 @@ export const quizzes: QuizQuestion[] = [
   ...mathF2C12QuizzesDLP,
   ...mathF2C13QuizzesBM,
   ...mathF2C13QuizzesDLP,
+  ...mathF3C1QuizzesBM,
+  ...mathF3C1QuizzesDLP,
+  ...mathF3C2QuizzesBM,
+  ...mathF3C2QuizzesDLP,
+  ...mathF3C3QuizzesBM,
+  ...mathF3C3QuizzesDLP,
+  ...mathF3C4QuizzesBM,
+  ...mathF3C4QuizzesDLP,
+  ...mathF3C5QuizzesBM,
+  ...mathF3C5QuizzesDLP,
+  ...mathF3C6QuizzesBM,
+  ...mathF3C6QuizzesDLP,
+  ...mathF3C7QuizzesBM,
+  ...mathF3C7QuizzesDLP,
+  ...mathF3C8QuizzesBM,
+  ...mathF3C8QuizzesDLP,
+  ...mathF3C9QuizzesBM,
+  ...mathF3C9QuizzesDLP,
   ...scienceF2C2QuizzesBM,
   ...scienceF2C2QuizzesDLP,
   ...scienceF2C3QuizzesBM,
