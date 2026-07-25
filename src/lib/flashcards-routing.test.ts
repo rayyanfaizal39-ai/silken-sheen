@@ -105,32 +105,92 @@ describe("Flashcards route resolution", () => {
     );
   });
 
+  it("registers Geography Form 1 Bab 5 as an unlocked three-deck chapter", () => {
+    const chapter = getRegisteredSubjectChapters("geography", undefined, "Form 1").find(
+      (item) => item.key === "Chapter 5",
+    );
+    const cards = getFlashcardDeckCards("geografi", "Form 1", "Bab 5");
+    const sets = splitFlashcardDeck(cards);
+
+    expect(chapter).toMatchObject({
+      key: "Chapter 5",
+      label: "Chapter 5: Bumi",
+      available: true,
+      selectable: true,
+    });
+    expect(hasFlashcardDeck("geography", 1, "Chapter 5")).toBe(true);
+    expect(cards).toHaveLength(60);
+    expect(sets).toHaveLength(3);
+    expect(sets.map((set) => set.length)).toEqual([20, 20, 20]);
+    expect(new Set(cards.map((card) => card.id)).size).toBe(60);
+    expect(cards.map((card) => card.id)).toEqual(
+      Array.from({ length: 60 }, (_, index) => `geo-f1-c5-fc${index + 1}`),
+    );
+  });
+
+  it("keeps Geography Form 1 Bab 5 content in Bahasa Melayu and source-verified order", () => {
+    const cards = getFlashcardDeckCards("geography", "Form 1", "Chapter 5");
+    const obviousEnglishPhrases =
+      /\b(?:What is|Which ocean|Why does|Explain the|How does|Name the)\b/i;
+
+    expect(cards).toHaveLength(60);
+    for (const card of cards) {
+      expect(card.front).not.toMatch(obviousEnglishPhrases);
+      expect(card.back).not.toMatch(obviousEnglishPhrases);
+    }
+
+    expect(cards[0]).toMatchObject({
+      id: "geo-f1-c5-fc1",
+      front: "Apakah maksud Atmosfera?",
+    });
+    expect(cards[19]).toMatchObject({
+      id: "geo-f1-c5-fc20",
+      front: "Apakah bahan utama yang membentuk lapisan Sima?",
+    });
+    expect(cards[20]).toMatchObject({
+      id: "geo-f1-c5-fc21",
+      front: "Di manakah letaknya lapisan Sial?",
+    });
+    expect(cards[33]?.back).toBe(
+      "Keluasan Benua Asia ialah kira-kira 55.8 juta kilometer persegi.",
+    );
+    expect(cards[40]).toMatchObject({
+      id: "geo-f1-c5-fc41",
+      front: "Jelaskan perbezaan antara lapisan Sial dengan lapisan Sima.",
+    });
+    expect(cards[59]).toMatchObject({
+      id: "geo-f1-c5-fc60",
+      front:
+        "Apakah yang berlaku apabila dua plat bergerak dari arah bertentangan dan menghasilkan daya mampatan?",
+    });
+  });
+
   it("preserves the supplied Practice Review card order", () => {
     const practiceReview = splitFlashcardDeck(
       getFlashcardDeckCards("geography", 1, "Chapter 1"),
     )[1];
 
     expect(practiceReview?.map((card) => card.front)).toEqual([
-      "If you are facing the direction of the sunrise, what direction is on your left-hand side?",
-      "What is the intermediate direction located exactly between West (Barat) and North (Utara)?",
-      "Why must a magnetic compass be kept away from iron objects during use?",
-      "In bearing measurements, what is the value in degrees for West (Barat)?",
-      "If a person turns 180° from facing North, which main direction will they face?",
-      "Name the three main parts of a magnetic compass.",
-      "What is the bearing value for North-East (Timur Laut)?",
-      "If you are facing the setting sun, what direction is directly behind you?",
-      "What tool is used to measure bearing sudutan on a map?",
-      "From which direction does a bearing measurement always start?",
-      "In which direction is a bearing measured using a protractor?",
-      "Point A is located at a bearing of 90° from Point B. What is the direction of Point A from Point B?",
-      "What is the intermediate direction between South (Selatan) and East (Timur)?",
-      "Why does a magnetic compass needle point North?",
-      "If you are facing North and turn 90° to your right, what direction will you face?",
-      "Between which two main directions is Barat Daya (South-West) located?",
-      "What is the definition of “Arah”?",
-      "If you stand facing East, which direction is directly to your right?",
-      "What is the standard unit used for stating a bearing?",
-      "What is the bearing for South (Selatan)?",
+      "Jika anda menghadap arah Matahari terbit, apakah arah di sebelah kiri anda?",
+      "Apakah arah mata angin perantaraan yang terletak tepat di antara Barat dengan Utara?",
+      "Mengapakah kompas magnetik mesti dijauhkan daripada objek besi semasa digunakan?",
+      "Dalam pengukuran bearing sudutan, berapakah nilai darjah bagi arah Barat?",
+      "Jika seseorang berpusing 180° daripada menghadap Utara, apakah arah mata angin utama yang akan dihadapinya?",
+      "Namakan tiga bahagian utama kompas magnetik.",
+      "Berapakah nilai bearing sudutan bagi arah Timur Laut?",
+      "Jika anda menghadap Matahari terbenam, apakah arah yang berada tepat di belakang anda?",
+      "Apakah alat yang digunakan untuk mengukur bearing sudutan pada peta?",
+      "Dari arah manakah pengukuran bearing sudutan sentiasa dimulakan?",
+      "Bearing sudutan diukur menggunakan jangka sudut mengikut arah yang mana?",
+      "Titik A terletak pada bearing sudutan 90° dari Titik B. Apakah arah Titik A dari Titik B?",
+      "Apakah arah mata angin perantaraan di antara Selatan dengan Timur?",
+      "Mengapakah jarum kompas magnetik menunjuk ke arah Utara?",
+      "Jika anda menghadap Utara dan berpusing 90° ke kanan, apakah arah yang akan anda hadapi?",
+      "Di antara dua arah mata angin utama yang manakah terletaknya Barat Daya?",
+      "Apakah definisi arah?",
+      "Jika anda berdiri menghadap Timur, apakah arah yang berada tepat di sebelah kanan anda?",
+      "Apakah unit piawai yang digunakan untuk menyatakan bearing sudutan?",
+      "Berapakah bearing sudutan bagi arah Selatan?",
     ]);
   });
 
@@ -140,27 +200,39 @@ describe("Flashcards route resolution", () => {
     )[2];
 
     expect(challengeReview?.map((card) => card.front)).toEqual([
-      "Explain the steps for orienting a magnetic compass correctly.",
-      "If the bearing of a school from a house is 315°, in which intermediate direction is the school located?",
-      "Which two civilizations were among the early inventors or users of the compass?",
-      "If you are facing a bearing of 225°, what direction is directly behind you?",
-      "How can a bearing greater than 180° be measured using a standard half-circle protractor?",
-      "A traveller is facing East and turns 225° clockwise. What is the traveller’s new direction?",
-      "Why is a compass generally more accurate than using the Sun to determine direction?",
-      "When measuring the bearing of Point X from Point Y, where must the centre of the protractor be placed?",
-      "What is the back bearing of an object located at a bearing of 60°?",
-      "Name two specialised compasses other than a standard magnetic compass.",
-      "What may happen if a magnetic compass is used inside a car?",
-      "If you face the setting sun and turn 90° to your left, what direction will you face?",
-      "How many degrees are there between North-East (Timur Laut) and South-East (Tenggara)?",
-      "What should be done before measuring the bearing between two points on a sketch map?",
-      "A location has a bearing of 135°. What is its intermediate direction?",
-      "What is the significance of the 0° or 360° point on a compass?",
-      "A student is facing South and turns 135° counter-clockwise. What direction is the student now facing?",
-      "A student records a bearing of 400°. Explain why this is not a valid standard bearing.",
-      "What direction is located 180° away from North-West (Barat Laut)?",
-      "You are at Point A, and Point B is directly North of you. What is the bearing of Point A from Point B?",
+      "Terangkan langkah-langkah untuk mengorientasikan kompas magnetik dengan betul.",
+      "Jika bearing sudutan sekolah dari rumah ialah 315°, di arah mata angin perantaraan manakah sekolah itu terletak?",
+      "Apakah dua tamadun yang merupakan antara pencipta atau pengguna awal kompas?",
+      "Jika anda menghadap bearing sudutan 225°, apakah arah yang berada tepat di belakang anda?",
+      "Bagaimanakah bearing sudutan yang melebihi 180° boleh diukur menggunakan jangka sudut separuh bulatan piawai?",
+      "Seorang pengembara menghadap Timur lalu berpusing 225° mengikut arah pusingan jam. Apakah arah baharu pengembara itu?",
+      "Mengapakah kompas secara umumnya lebih tepat berbanding dengan penggunaan Matahari untuk menentukan arah?",
+      "Semasa mengukur bearing sudutan Titik X dari Titik Y, di manakah pusat jangka sudut mesti diletakkan?",
+      "Berapakah bearing belakang bagi objek yang terletak pada bearing sudutan 60°?",
+      "Namakan dua kompas khusus selain kompas magnetik piawai.",
+      "Apakah yang mungkin berlaku jika kompas magnetik digunakan di dalam kereta?",
+      "Jika anda menghadap Matahari terbenam dan berpusing 90° ke kiri, apakah arah yang akan anda hadapi?",
+      "Berapakah nilai darjah di antara Timur Laut dengan Tenggara?",
+      "Apakah yang perlu dilakukan sebelum mengukur bearing sudutan di antara dua titik pada peta lakar?",
+      "Sebuah lokasi mempunyai bearing sudutan 135°. Apakah arah mata angin perantaraannya?",
+      "Apakah kepentingan titik 0° atau 360° pada kompas?",
+      "Seorang murid menghadap Selatan lalu berpusing 135° melawan arah pusingan jam. Apakah arah yang dihadapinya sekarang?",
+      "Seorang murid mencatatkan bearing sudutan 400°. Terangkan mengapa nilai ini bukan bearing sudutan piawai yang sah.",
+      "Apakah arah yang terletak 180° dari Barat Laut?",
+      "Anda berada di Titik A dan Titik B terletak tepat di sebelah Utara anda. Berapakah bearing sudutan Titik A dari Titik B?",
     ]);
+  });
+
+  it("keeps every Geography Form 1 Bab 1 question and answer in Bahasa Melayu", () => {
+    const cards = getFlashcardDeckCards("geography", "Form 1", "Chapter 1");
+    const obviousEnglishPhrases =
+      /\b(?:What|Which|Why|If you|The direction|The bearing|You will)\b/i;
+
+    expect(cards).toHaveLength(60);
+    for (const card of cards) {
+      expect(card.front).not.toMatch(obviousEnglishPhrases);
+      expect(card.back).not.toMatch(obviousEnglishPhrases);
+    }
   });
 
   it("normalizes direct set links and rejects invalid set numbers", () => {

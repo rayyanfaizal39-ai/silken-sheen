@@ -61,12 +61,11 @@ describe("pre-activity quantity labels", () => {
       source.indexOf("function FlashcardsPage"),
     );
 
-    expect(source).toContain('title: "Flashcards Set 1"');
-    expect(source).toContain('title: "Flashcards Set 2"');
-    expect(source).toContain('title: "Flashcards Set 3"');
+    expect(source.match(/title: "Foundation Review"/g)).toHaveLength(1);
+    expect(source.match(/title: "Practice Review"/g)).toHaveLength(1);
+    expect(source.match(/title: "Challenge Review"/g)).toHaveLength(1);
     expect(picker).toContain("onClick={() => onSelect(set.index)}");
     expect(picker).toContain("aria-label={`Open ${displayTitle}`}");
-    expect(picker).toContain('"Foundation Review", "Practice Review", "Challenge Review"');
     expect(picker).toContain("{displayTitle}");
     expect(picker).not.toContain("{set.range}");
     expect(picker).not.toContain("{FLASHCARD_SET_SIZE} Cards");
