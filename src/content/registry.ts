@@ -12,9 +12,7 @@ import { englishF2Paper1MindMap, englishF2Paper2MindMap } from "@/content/form2/
 import { englishF3C1Notes } from "@/content/form3/english/chapter-1/notes";
 import { englishF3C2Notes } from "@/content/form3/english/chapter-2/notes";
 import { englishF3Paper1MindMap, englishF3Paper2MindMap } from "@/content/form3/english/mindmaps";
-import { getEnglishQuizSetF3 } from "@/data/english-f3-quiz-sets";
 import { ENGLISH_FLASHCARD_DECK_CARDS_F3 } from "@/data/english-f3-flashcard-decks";
-import { ENGLISH_QUIZ_QUESTIONS_F2 } from "@/data/english-f2-quiz-sets";
 import { ENGLISH_FLASHCARD_DECK_CARDS_F2 } from "@/data/english-f2-flashcard-decks";
 import {
   flashcards as allFlashcards,
@@ -43,6 +41,12 @@ import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { getEducationalVideo } from "@/data/educationalVideos";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { getQuizQuestionCount } from "@/lib/quiz-counts";
+import {
+  createQuizKey,
+  defaultQuizLanguage,
+  formNumber,
+  validateQuizQuestions,
+} from "@/lib/quiz-identity";
 import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
 import { chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
@@ -572,12 +576,6 @@ function englishQuizzesFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form
   return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey && q.form === form);
 }
 
-function englishQuizzesForF2(chapterKey: string) {
-  if (chapterKey === "Chapter 1") return ENGLISH_QUIZ_QUESTIONS_F2["objective-a"];
-  if (chapterKey === "Chapter 2") return ENGLISH_QUIZ_QUESTIONS_F2["objective-b"];
-  return [];
-}
-
 function sejarahFlashcardsFor(chapterNum: number) {
   return allFlashcards.filter(
     (f) => f.subjectId === "sejarah" && sejarahChapterFromId(f.id) === chapterNum,
@@ -585,7 +583,10 @@ function sejarahFlashcardsFor(chapterNum: number) {
 }
 function sejarahQuizzesFor(chapterNum: number) {
   return allQuizzes.filter(
-    (q) => q.subjectId === "sejarah" && sejarahChapterFromId(q.id) === chapterNum,
+    (q) =>
+      q.subjectId === "sejarah" &&
+      q.form === "Form 1" &&
+      sejarahChapterFromId(q.id) === chapterNum,
   );
 }
 
@@ -642,7 +643,14 @@ function geographyFlashcardsFor(chapterNum: number) {
 
 function geographyQuizzesFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
-  return allQuizzes.filter((q) => q.subjectId === "geography" && q.chapter === chapterKey);
+  const questionIdPrefix = `geo-f1-c${chapterNum}-`;
+  return allQuizzes.filter(
+    (q) =>
+      q.subjectId === "geography" &&
+      q.form === "Form 1" &&
+      q.chapter === chapterKey &&
+      q.id.startsWith(questionIdPrefix),
+  );
 }
 
 function geographyF2FlashcardsFor(chapterNum: number) {
@@ -2284,7 +2292,6 @@ export const chapters: ChapterContent[] = [
     title: "Paper 1 - Reading & Language Awareness",
     englishData: englishF2C1Notes,
     flashcards: englishFlashcardsForF2("Chapter 1"),
-    quiz: englishQuizzesForF2("Chapter 1"),
     mindMap: { data: englishF2Paper1MindMap, title: "Paper 1 - Reading & Language Awareness" },
   },
   {
@@ -2295,7 +2302,6 @@ export const chapters: ChapterContent[] = [
     title: "Paper 2 - Writing",
     englishData: englishF2C2Notes,
     flashcards: englishFlashcardsForF2("Chapter 2"),
-    quiz: englishQuizzesForF2("Chapter 2"),
     mindMap: { data: englishF2Paper2MindMap, title: "Paper 2 - Writing" },
   },
 
@@ -2308,7 +2314,6 @@ export const chapters: ChapterContent[] = [
     title: "Paper 1 - Reading & Language Awareness",
     englishData: englishF3C1Notes,
     flashcards: englishFlashcardsForF3("Chapter 1"),
-    quiz: getEnglishQuizSetF3("uasa-set-1"),
     mindMap: { data: englishF3Paper1MindMap, title: "Paper 1 - Reading & Language Awareness" },
   },
   {
@@ -2858,18 +2863,46 @@ export function getChapterQuizQuestions(
   chapterKey: string,
   lang?: "bm" | "dlp",
 ) {
+  if (form === "All") {
+    if (import.meta.env.DEV) {
+      console.error(
+        `[quiz-registry] Rejected quiz lookup without an explicit form: ${subjectId}/${chapterKey}`,
+      );
+    }
+    return [];
+  }
+
   const registeredQuestions =
-    form === "All" ? [] : (getChapter(subjectId, chapterKey, lang, form)?.quiz ?? []);
+    getChapter(subjectId, chapterKey, lang, form)?.quiz ?? [];
 
   const legacyQuestions = allQuizzes.filter(
     (question) =>
       question.subjectId === subjectId &&
       getItemChapterKey(question) === chapterKey &&
-      (form === "All" || question.form === form) &&
-      (!lang || !question.lang || question.lang === lang),
+      question.form === form &&
+      (!lang || (question.lang ?? defaultQuizLanguage(question.subjectId)) === lang),
   );
 
   const resolvedQuestions = registeredQuestions.length > 0 ? registeredQuestions : legacyQuestions;
+  const language = lang ?? defaultQuizLanguage(subjectId);
+  const identity = {
+    subject: subjectId,
+    form: formNumber(form),
+    chapter: chapterKey,
+    language,
+    set: "default",
+  } as const;
+  const issues = validateQuizQuestions(identity, resolvedQuestions);
+
+  if (issues.length > 0) {
+    if (import.meta.env.DEV) {
+      console.error("[quiz-registry] Blocked mismatched quiz content", {
+        requestedQuizKey: createQuizKey(identity),
+        issues: issues.slice(0, 10),
+      });
+    }
+    return [];
+  }
 
   return resolvedQuestions;
 }
@@ -2978,6 +3011,16 @@ const EXTERNALLY_STORED_RESOURCES: Partial<
       subjectId: "science",
       form: "Form 1",
       chapterKeys: Array.from({ length: 9 }, (_, i) => `Chapter ${i + 1}`),
+    },
+    {
+      subjectId: "english",
+      form: "Form 2",
+      chapterKeys: ["Chapter 1", "Chapter 2"],
+    },
+    {
+      subjectId: "english",
+      form: "Form 3",
+      chapterKeys: ["Chapter 1", "Chapter 2"],
     },
   ],
 };

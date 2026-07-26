@@ -89,6 +89,9 @@ import {
 } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { QuizStreakCelebration } from "@/features/quiz-streak/QuizStreakCelebration";
+import { useQuizStreak } from "@/features/quiz-streak/useQuizStreak";
+import { orderQuestionsByDifficulty } from "@/features/quiz/difficulty/quizDifficulty";
 
 // ─── Navigation state ─────────────────────────────────────────────────────────
 
@@ -160,40 +163,16 @@ type ObjectiveSetCollection =
   | typeof OBJEKTIF_SETS_FORM2
   | typeof OBJEKTIF_SETS_FORM3;
 
-function shuffleItems<T>(items: T[]): T[] {
-  const next = [...items];
-  for (let i = next.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [next[i], next[j]] = [next[j], next[i]];
-  }
-  return next;
-}
-
 function buildObjectiveQuestions(questions: QuizQuestion[]): QuizQuestion[] {
-  const isBahasaMelayuQuiz = questions.every((question) => {
-    const subjectId = question.subjectId.toLowerCase();
-    return subjectId === "bm" || subjectId === "bahasa-melayu" || subjectId === "bahasa melayu";
-  });
-
-  if (isBahasaMelayuQuiz) {
-    return questions.map((question) => ({
-      ...question,
-      options: [...question.options],
-    }));
+  const ordered = orderQuestionsByDifficulty(questions);
+  if (import.meta.env.DEV && ordered.issues.length > 0) {
+    console.error("[quiz-difficulty] Invalid Bahasa Melayu difficulty metadata", ordered.issues);
   }
-
-  const groups = [
-    shuffleItems(questions.slice(0, 5)),
-    shuffleItems(questions.slice(5, 10)),
-    questions.slice(10, 15),
-  ];
-  return groups.flatMap((group) =>
-    group.map((question) => {
-      const correctAnswer = question.options[question.answerIndex];
-      const options = shuffleItems(question.options);
-      return { ...question, options, answerIndex: options.indexOf(correctAnswer) };
-    }),
-  );
+  // BM option order is intentionally preserved; only question order is shuffled.
+  return ordered.questions.map((question) => ({
+    ...question,
+    options: [...question.options],
+  }));
 }
 
 function gradeFromPct(pct: number) {
@@ -577,6 +556,7 @@ function ObjektifKuizView({
   const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
   const [timeLeft, setTimeLeft] = useState(totalSeconds);
   const [earnedXp, setEarnedXp] = useState(0);
+  const quizStreak = useQuizStreak(`bm:${formLabel}:${set.id}`);
 
   const q = quizQuestions[current];
   const correct = answers.filter((a, i) => a === quizQuestions[i]?.answerIndex).length;
@@ -603,6 +583,10 @@ function ObjektifKuizView({
     const next = [...answers];
     next[current] = idx;
     setAnswers(next);
+    quizStreak.confirmAnswer({
+      questionId: `bm:${set.id}:${current}`,
+      correct: idx === q.answerIndex,
+    });
   }
 
   function handleNext() {
@@ -629,6 +613,7 @@ function ObjektifKuizView({
   }
 
   function handleRestart() {
+    quizStreak.resetStreak();
     setQuizQuestions(buildObjectiveQuestions(questions));
     setCurrent(0);
     setSelected(null);
@@ -644,12 +629,17 @@ function ObjektifKuizView({
     handleRestart();
   }
 
+  function handleExit() {
+    quizStreak.resetStreak();
+    onBack();
+  }
+
   if (phase === "intro") {
     return (
       <div>
         <PageHeader
           breadcrumb={["Bahasa Melayu", "Kertas 1", cleanLearningLabel(`Objektif ${set.label}`)]}
-          onBack={onBack}
+          onBack={handleExit}
           accent={set.color}
         />
         <div
@@ -710,7 +700,7 @@ function ObjektifKuizView({
       <div>
         <PageHeader
           breadcrumb={["Bahasa Melayu", "Kertas 1", cleanLearningLabel(`Objektif ${set.label}`)]}
-          onBack={onBack}
+          onBack={handleExit}
           accent={set.color}
         />
         <div
@@ -834,12 +824,13 @@ function ObjektifKuizView({
   const timerPct = (timeLeft / totalSeconds) * 100;
 
   return (
-    <div>
+    <div data-quiz-combo-surface className="relative">
       <PageHeader
         breadcrumb={["Bahasa Melayu", "Kertas 1", cleanLearningLabel(`Objektif ${set.label}`)]}
-        onBack={onBack}
+        onBack={handleExit}
         accent={set.color}
       />
+      <QuizStreakCelebration streak={quizStreak.streak} celebration={quizStreak.celebration} />
 
       {/* Progress bar */}
       <div className="mb-5">
@@ -847,12 +838,19 @@ function ObjektifKuizView({
           <span className="text-xs font-bold text-white/40">
             Soalan {current + 1} / {quizQuestions.length}
           </span>
-          <span
-            className="inline-flex items-center gap-1 text-xs font-bold"
-            style={{ color: timeLeft <= 10 ? "#FB7185" : set.color }}
-          >
-            <Clock className="h-3.5 w-3.5" /> {timeLeft}s
-          </span>
+          <div className="flex items-center gap-2">
+            {quizStreak.streak >= 2 && (
+              <span className="text-[10px] font-black text-violet-200">
+                x{quizStreak.streak} COMBO
+              </span>
+            )}
+            <span
+              className="inline-flex items-center gap-1 text-xs font-bold"
+              style={{ color: timeLeft <= 10 ? "#FB7185" : set.color }}
+            >
+              <Clock className="h-3.5 w-3.5" /> {timeLeft}s
+            </span>
+          </div>
         </div>
         <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
           <div
@@ -874,7 +872,7 @@ function ObjektifKuizView({
       {/* Question card */}
       <div
         key={q.id}
-        className="mb-4 rounded-[1.5rem] border p-5 animate-question-reveal"
+        className="relative mb-4 overflow-hidden rounded-[1.5rem] border p-5 animate-question-reveal"
         style={{ borderColor: `${set.color}25`, background: `${set.color}08` }}
       >
         <span

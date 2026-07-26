@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, type Difficulty, type Form, type QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { useCikgu } from "@/context/cikgu-context";
@@ -75,6 +75,15 @@ import {
   type EnglishQuizSetMeta,
 } from "@/data/english-f1-quiz-sets";
 import {
+  ENGLISH_QUIZ_PAPERS_F2,
+  ENGLISH_QUIZ_SETS_F2,
+  getEnglishQuizSetF2,
+  getEnglishQuizSetsForPaperF2,
+  type EnglishQuizPaperIdF2,
+  type EnglishQuizSetIdF2,
+  type EnglishQuizSetMetaF2,
+} from "@/data/english-f2-quiz-sets";
+import {
   ENGLISH_QUIZ_PAPERS_F3,
   ENGLISH_QUIZ_SETS_F3,
   getEnglishQuizSetF3,
@@ -86,6 +95,12 @@ import {
 import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
+import { QuizStreakCelebration } from "@/features/quiz-streak/QuizStreakCelebration";
+import { useQuizStreak } from "@/features/quiz-streak/useQuizStreak";
+import {
+  orderQuestionsByDifficulty,
+  shuffleQuestionOptions,
+} from "@/features/quiz/difficulty/quizDifficulty";
 
 export const Route = createFileRoute("/quizzes")({
   head: ({ match }) => {
@@ -18958,12 +18973,17 @@ const MATH_QUIZ_BANKS: Partial<
 };
 
 interface ShuffledQuestion {
+  id?: string;
   question: string;
   options: string[];
   answerIndex: number;
   explanation?: string;
   difficulty: Difficulty;
   subjectId: string;
+  form?: Form;
+  chapter?: string;
+  lang?: MathQuizLang;
+  set?: MathObjectiveId;
   visualKey?: string;
   image?: string;
 }
@@ -19006,10 +19026,6 @@ function QuizzesPage() {
   // Hall of Fame's real Monthly XP ranking.
   const [xpEarned, setXpEarned] = useState(0);
   const [done, setDone] = useState(false);
-  const [streak, setStreak] = useState(0);
-  const [combo, setCombo] = useState(0);
-  const [comboShow, setComboShow] = useState<number | null>(null);
-  const [screenShake, setScreenShake] = useState(false);
   // Background music is now handled globally by BgMusicController.
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
@@ -19023,6 +19039,7 @@ function QuizzesPage() {
   );
   const [englishPaperId, setEnglishPaperId] = useState<EnglishQuizPaperId | null>(null);
   const [englishSetId, setEnglishSetId] = useState<EnglishQuizSetId | null>(null);
+  const [englishSetIdF2, setEnglishSetIdF2] = useState<EnglishQuizSetIdF2 | null>(null);
   const [englishSetIdF3, setEnglishSetIdF3] = useState<EnglishQuizSetIdF3 | null>(null);
   const [englishPhase, setEnglishPhase] = useState<MathObjectivePhase>("select");
   const [englishShuffledQuestions, setEnglishShuffledQuestions] = useState<
@@ -19030,7 +19047,10 @@ function QuizzesPage() {
   >(null);
   const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
   const [timeLeft, setTimeLeft] = useState(0);
-  const comboTimer = useRef<number | null>(null);
+  const quizStreak = useQuizStreak(
+    `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none"}`,
+  );
+  const confirmStreakAnswer = quizStreak.confirmAnswer;
 
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
@@ -19118,12 +19138,25 @@ function QuizzesPage() {
   const mathObjectiveQuestions = useMemo(() => {
     const lang = mathQuizLang ?? "bm";
     if (!chapter || !mathObjectiveId) return [];
-    return MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? [];
+    const questions = MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? [];
+    const chapterNumber = Number(chapter.replace("Chapter ", ""));
+    return questions.map((question, questionIndex) => ({
+      ...question,
+      id: `math-f1-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
+      form: "Form 1" as const,
+      chapter,
+      lang,
+      set: mathObjectiveId,
+    }));
   }, [chapter, mathObjectiveId, mathQuizLang]);
   const currentMathQuestion = mathShuffledQuestions?.[idx] ?? null;
   const selectedEnglishSet = useMemo(
     () => ENGLISH_QUIZ_SETS.find((set) => set.id === englishSetId) ?? null,
     [englishSetId],
+  );
+  const selectedEnglishSetF2 = useMemo(
+    () => ENGLISH_QUIZ_SETS_F2.find((set) => set.id === englishSetIdF2) ?? null,
+    [englishSetIdF2],
   );
   const selectedEnglishSetF3 = useMemo(
     () => ENGLISH_QUIZ_SETS_F3.find((set) => set.id === englishSetIdF3) ?? null,
@@ -19133,12 +19166,15 @@ function QuizzesPage() {
     () => (englishSetId ? getEnglishQuizSet(englishSetId) : []),
     [englishSetId],
   );
+  const englishSetQuestionsF2 = useMemo(
+    () => (englishSetIdF2 ? getEnglishQuizSetF2(englishSetIdF2) : []),
+    [englishSetIdF2],
+  );
   const englishSetQuestionsF3 = useMemo(
     () => (englishSetIdF3 ? getEnglishQuizSetF3(englishSetIdF3) : []),
     [englishSetIdF3],
   );
   const currentEnglishQuestion = englishShuffledQuestions?.[idx] ?? null;
-  const englishIsForm3 = subject === "english" && form === "Form 3";
 
   // Countdown timer per question (only when timer mode enabled)
   useEffect(() => {
@@ -19150,9 +19186,10 @@ function QuizzesPage() {
         if (t <= 1) {
           clearInterval(interval);
           setSelected(-1);
-          setStreak(0);
-          setCombo(0);
-          triggerShake();
+          confirmStreakAnswer({
+            questionId: `regular:${subject}:${chapter}:${idx}`,
+            correct: false,
+          });
           setFeedback({ kind: "wrong", msg: "Masa tamat! ⏰" });
           return 0;
         }
@@ -19160,7 +19197,17 @@ function QuizzesPage() {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [idx, current, done, timerPref, questionSeconds, selected]);
+  }, [
+    idx,
+    current,
+    done,
+    timerPref,
+    questionSeconds,
+    selected,
+    subject,
+    chapter,
+    confirmStreakAnswer,
+  ]);
 
   // Build shuffled questions when quiz starts
   useEffect(() => {
@@ -19180,15 +19227,6 @@ function QuizzesPage() {
 
   // Background music lifecycle handled globally by BgMusicController.
 
-  function triggerShake() {
-    setScreenShake(true);
-    window.setTimeout(() => setScreenShake(false), 600);
-  }
-
-  function shuffleQuestions(arr: QuizQuestion[]): QuizQuestion[] {
-    return [...arr].sort(() => Math.random() - 0.5);
-  }
-
   // TODO(smart-quiz-memory): this is where question selection happens today
   // — `rawPool` is the fixed, hand-authored question set for a chapter
   // (from src/content/**), shuffled with no memory of what a student has
@@ -19203,49 +19241,22 @@ function QuizzesPage() {
   //     prefer question_bank rows the student hasn't seen recently instead
   //     of (or blended with) the static rawPool — i.e. avoid repeating the
   //     exact same question too often.
-  // None of this is implemented yet — rawPool/shuffleQuestions stay exactly
+  // None of this is implemented yet — rawPool selection stays exactly
   // as they are; this comment documents where that logic will plug in.
   function buildShuffledPool(rawPool: QuizQuestion[]): ShuffledQuestion[] {
-    // When no specific difficulty is chosen, progress the learner through
-    // every Easy question first, then Medium, then Hard — shuffled within
-    // each tier — instead of mixing all difficulties together.
-    const ordered =
-      diff === "All"
-        ? [
-            ...shuffleQuestions(rawPool.filter((q) => q.difficulty === "Easy")),
-            ...shuffleQuestions(rawPool.filter((q) => q.difficulty === "Medium")),
-            ...shuffleQuestions(rawPool.filter((q) => q.difficulty === "Hard")),
-          ]
-        : shuffleQuestions(rawPool);
-    return ordered.map((q) => {
-      const correctOption = q.options[q.answerIndex];
-      const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-      const newAnswerIndex = shuffledOptions.indexOf(correctOption);
-      return {
-        question: q.question,
-        options: shuffledOptions,
-        answerIndex: newAnswerIndex,
-        explanation: q.explanation,
-        difficulty: q.difficulty,
-        subjectId: q.subjectId,
-        visualKey: q.visualKey,
-        image: q.image,
-      };
-    });
+    const ordered = orderQuestionsByDifficulty(rawPool);
+    if (import.meta.env.DEV && ordered.issues.length > 0) {
+      console.error("[quiz-difficulty] Invalid difficulty metadata", ordered.issues);
+    }
+    return ordered.questions.map((question) => shuffleQuestionOptions(question));
   }
 
   function buildShuffledMathPool(rawPool: ShuffledQuestion[]): ShuffledQuestion[] {
-    const shuffledQuestions = [...rawPool].sort(() => Math.random() - 0.5);
-    return shuffledQuestions.map((q) => {
-      const shuffledOptions = q.options
-        .map((option, originalIndex) => ({ option, originalIndex }))
-        .sort(() => Math.random() - 0.5);
-      return {
-        ...q,
-        options: shuffledOptions.map((entry) => entry.option),
-        answerIndex: shuffledOptions.findIndex((entry) => entry.originalIndex === q.answerIndex),
-      };
-    });
+    const ordered = orderQuestionsByDifficulty(rawPool);
+    if (import.meta.env.DEV && ordered.issues.length > 0) {
+      console.error("[quiz-difficulty] Invalid Mathematics difficulty metadata", ordered.issues);
+    }
+    return ordered.questions.map((question) => shuffleQuestionOptions(question));
   }
 
   function reshuffle() {
@@ -19256,9 +19267,7 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
-    setStreak(0);
-    setCombo(0);
-    setComboShow(null);
+    quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(questionSeconds);
     setAnimatedScore(0);
@@ -19271,26 +19280,23 @@ function QuizzesPage() {
     if (correct) {
       const gain = current.difficulty === "Hard" ? 30 : current.difficulty === "Medium" ? 20 : 10;
       setScore((s) => s + 1);
-      setStreak((s) => s + 1);
-      const newCombo = combo + 1;
-      setCombo(newCombo);
       addXp(gain, current.subjectId);
       setXpEarned((x) => x + gain);
       sfx.success();
-      if (newCombo >= 2) {
-        setComboShow(newCombo);
-        sfx.combo(newCombo);
-        if (comboTimer.current) window.clearTimeout(comboTimer.current);
-        comboTimer.current = window.setTimeout(() => setComboShow(null), 1100);
-      }
+      quizStreak.confirmAnswer({
+        questionId: `regular:${subject}:${chapter}:${idx}`,
+        correct: true,
+        xpAwarded: gain,
+      });
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
       });
     } else {
-      setStreak(0);
-      setCombo(0);
-      triggerShake();
+      quizStreak.confirmAnswer({
+        questionId: `regular:${subject}:${chapter}:${idx}`,
+        correct: false,
+      });
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
@@ -19336,9 +19342,7 @@ function QuizzesPage() {
     setScore(0);
     setXpEarned(0);
     setDone(false);
-    setStreak(0);
-    setCombo(0);
-    setComboShow(null);
+    quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(questionSeconds);
     setAnimatedScore(0);
@@ -19350,6 +19354,7 @@ function QuizzesPage() {
     setMathShuffledQuestions(null);
     setEnglishPaperId(null);
     setEnglishSetId(null);
+    setEnglishSetIdF2(null);
     setEnglishSetIdF3(null);
     setEnglishPhase("select");
     setEnglishShuffledQuestions(null);
@@ -19361,9 +19366,7 @@ function QuizzesPage() {
     setScore(0);
     setXpEarned(0);
     setDone(false);
-    setStreak(0);
-    setCombo(0);
-    setComboShow(null);
+    quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(questionSeconds);
     setAnimatedScore(0);
@@ -19380,9 +19383,7 @@ function QuizzesPage() {
     setScore(0);
     setXpEarned(0);
     setDone(false);
-    setStreak(0);
-    setCombo(0);
-    setComboShow(null);
+    quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(0);
     setAnimatedScore(0);
@@ -19404,28 +19405,24 @@ function QuizzesPage() {
             ? 20
             : 10;
       setScore((s) => s + 1);
-      setStreak((s) => s + 1);
-      const newCombo = combo + 1;
-      setCombo(newCombo);
       addXp(gain, currentMathQuestion.subjectId);
       setXpEarned((x) => x + gain);
       sfx.success();
-
-      if (newCombo >= 2) {
-        setComboShow(newCombo);
-        sfx.combo(newCombo);
-        if (comboTimer.current) window.clearTimeout(comboTimer.current);
-        comboTimer.current = window.setTimeout(() => setComboShow(null), 1100);
-      }
+      quizStreak.confirmAnswer({
+        questionId: `math:${chapter}:${mathObjectiveId}:${idx}`,
+        correct: true,
+        xpAwarded: gain,
+      });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
       });
     } else {
-      setStreak(0);
-      setCombo(0);
-      triggerShake();
+      quizStreak.confirmAnswer({
+        questionId: `math:${chapter}:${mathObjectiveId}:${idx}`,
+        correct: false,
+      });
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
@@ -19472,9 +19469,7 @@ function QuizzesPage() {
     setScore(0);
     setXpEarned(0);
     setDone(false);
-    setStreak(0);
-    setCombo(0);
-    setComboShow(null);
+    quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(0);
     setAnimatedScore(0);
@@ -19489,13 +19484,26 @@ function QuizzesPage() {
     setScore(0);
     setXpEarned(0);
     setDone(false);
-    setStreak(0);
-    setCombo(0);
-    setComboShow(null);
+    quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(0);
     setAnimatedScore(0);
     setEnglishShuffledQuestions(buildShuffledPool(englishSetQuestionsF3));
+    setEnglishPhase("quiz");
+  }
+
+  function startEnglishQuizF2() {
+    if (englishSetQuestionsF2.length === 0) return;
+    setIdx(0);
+    setSelected(null);
+    setScore(0);
+    setXpEarned(0);
+    setDone(false);
+    quizStreak.resetStreak();
+    setFeedback(null);
+    setTimeLeft(0);
+    setAnimatedScore(0);
+    setEnglishShuffledQuestions(buildShuffledPool(englishSetQuestionsF2));
     setEnglishPhase("quiz");
   }
 
@@ -19513,28 +19521,24 @@ function QuizzesPage() {
             ? 20
             : 10;
       setScore((s) => s + 1);
-      setStreak((s) => s + 1);
-      const newCombo = combo + 1;
-      setCombo(newCombo);
       addXp(gain, currentEnglishQuestion.subjectId);
       setXpEarned((x) => x + gain);
       sfx.success();
-
-      if (newCombo >= 2) {
-        setComboShow(newCombo);
-        sfx.combo(newCombo);
-        if (comboTimer.current) window.clearTimeout(comboTimer.current);
-        comboTimer.current = window.setTimeout(() => setComboShow(null), 1100);
-      }
+      quizStreak.confirmAnswer({
+        questionId: `english:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3}:${idx}`,
+        correct: true,
+        xpAwarded: gain,
+      });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
       });
     } else {
-      setStreak(0);
-      setCombo(0);
-      triggerShake();
+      quizStreak.confirmAnswer({
+        questionId: `english:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3}:${idx}`,
+        correct: false,
+      });
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
@@ -19543,7 +19547,19 @@ function QuizzesPage() {
   }
 
   function nextEnglishQuizQuestion() {
-    const total = englishShuffledQuestions?.length ?? englishSetQuestions.length;
+    const activeEnglishQuestions =
+      form === "Form 2"
+        ? englishSetQuestionsF2
+        : form === "Form 3"
+          ? englishSetQuestionsF3
+          : englishSetQuestions;
+    const activeEnglishSet =
+      form === "Form 2"
+        ? selectedEnglishSetF2
+        : form === "Form 3"
+          ? selectedEnglishSetF3
+          : selectedEnglishSet;
+    const total = englishShuffledQuestions?.length ?? activeEnglishQuestions.length;
 
     if (idx + 1 >= total) {
       setDone(true);
@@ -19559,13 +19575,13 @@ function QuizzesPage() {
               : 10;
         recordQuizResult({
           subjectId: "english",
-          chapterKey: selectedEnglishSet?.title ?? "English Form 1",
+          chapterKey: activeEnglishSet?.title ?? `English ${form}`,
           correct: score + (lastWasCorrect ? 1 : 0),
           total,
           xpEarned: xpEarned + (lastWasCorrect ? lastGain : 0),
         });
       }
-      if (selectedEnglishSet) markChapter("english", selectedEnglishSet.title, "quiz");
+      if (activeEnglishSet) markChapter("english", activeEnglishSet.title, "quiz");
       return;
     }
 
@@ -19676,20 +19692,8 @@ function QuizzesPage() {
   if (subject === "english" && !chapter) {
     const englishIsForm3 = form === "Form 3";
     return (
-      <AcademyPageShell
-        subjectId={planetSubjectId}
-        className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}
-      >
-        {comboShow !== null && (
-          <div
-            key={comboShow}
-            className="pointer-events-none fixed left-1/2 top-1/3 z-50 -translate-x-1/2 -translate-y-1/2 animate-combo-pop"
-          >
-            <div className="font-display text-7xl sm:text-8xl font-extrabold gradient-text drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.8)]">
-              COMBO x{comboShow}
-            </div>
-          </div>
-        )}
+      <AcademyPageShell subjectId={planetSubjectId} className="max-w-7xl">
+        <QuizStreakCelebration streak={quizStreak.streak} celebration={quizStreak.celebration} />
 
         {englishIsForm3 ? (
           englishSetIdF3 && selectedEnglishSetF3 && englishPhase !== "select" ? (
@@ -19739,7 +19743,10 @@ function QuizzesPage() {
                 score={score}
                 onAnswer={answerEnglishQuiz}
                 onNext={nextEnglishQuizQuestion}
-                onBack={() => setEnglishPhase("intro")}
+                onBack={() => {
+                  quizStreak.resetStreak();
+                  setEnglishPhase("intro");
+                }}
               />
             )
           ) : (
@@ -19753,6 +19760,76 @@ function QuizzesPage() {
               }}
               onSelect={(setId) => {
                 setEnglishSetIdF3(setId);
+                setEnglishPhase("intro");
+                resetRegularQuiz();
+              }}
+            />
+          )
+        ) : form === "Form 2" ? (
+          englishSetIdF2 && selectedEnglishSetF2 && englishPhase !== "select" ? (
+            englishPhase === "intro" ? (
+              <EnglishSetIntroScreenF2
+                quizSet={selectedEnglishSetF2}
+                onBack={() => {
+                  setEnglishSetIdF2(null);
+                  setEnglishPhase("select");
+                }}
+                onStart={startEnglishQuizF2}
+              />
+            ) : englishPhase === "results" ? (
+              <EnglishResultsScreenF2
+                quizSet={selectedEnglishSetF2}
+                score={score}
+                total={englishShuffledQuestions?.length ?? englishSetQuestionsF2.length}
+                onBack={() => {
+                  setEnglishSetIdF2(null);
+                  setEnglishPhase("select");
+                }}
+                onRetry={() => {
+                  resetRegularQuiz();
+                  setEnglishPhase("intro");
+                }}
+              />
+            ) : (
+              <EnglishQuizScreenF2
+                quizSet={selectedEnglishSetF2}
+                questions={
+                  englishShuffledQuestions ??
+                  englishSetQuestionsF2.map((q) => ({
+                    question: q.question,
+                    options: q.options,
+                    answerIndex: q.answerIndex,
+                    explanation: q.explanation,
+                    difficulty: q.difficulty,
+                    subjectId: q.subjectId,
+                    visualKey: q.visualKey,
+                    image: q.image,
+                  }))
+                }
+                current={currentEnglishQuestion}
+                idx={idx}
+                selected={selected}
+                feedback={feedback}
+                score={score}
+                onAnswer={answerEnglishQuiz}
+                onNext={nextEnglishQuizQuestion}
+                onBack={() => {
+                  quizStreak.resetStreak();
+                  setEnglishPhase("intro");
+                }}
+              />
+            )
+          ) : (
+            <EnglishSetSelectionScreenF2
+              paperId="paper-1"
+              onBack={() => {
+                setSubject(null);
+                setEnglishSetIdF2(null);
+                setEnglishPhase("select");
+                resetRegularQuiz();
+              }}
+              onSelect={(setId) => {
+                setEnglishSetIdF2(setId);
                 setEnglishPhase("intro");
                 resetRegularQuiz();
               }}
@@ -19804,7 +19881,10 @@ function QuizzesPage() {
               score={score}
               onAnswer={answerEnglishQuiz}
               onNext={nextEnglishQuizQuestion}
-              onBack={() => setEnglishPhase("intro")}
+              onBack={() => {
+                quizStreak.resetStreak();
+                setEnglishPhase("intro");
+              }}
             />
           )
         ) : (
@@ -19851,21 +19931,8 @@ function QuizzesPage() {
   }
 
   return (
-    <AcademyPageShell
-      subjectId={planetSubjectId}
-      className={`max-w-7xl ${screenShake ? "animate-screen-shake" : ""}`}
-    >
-      {/* Combo overlay */}
-      {comboShow !== null && (
-        <div
-          key={comboShow}
-          className="pointer-events-none fixed left-1/2 top-1/3 z-50 -translate-x-1/2 -translate-y-1/2 animate-combo-pop"
-        >
-          <div className="font-display text-7xl sm:text-8xl font-extrabold gradient-text drop-shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.8)]">
-            COMBO x{comboShow}
-          </div>
-        </div>
-      )}
+    <AcademyPageShell subjectId={planetSubjectId} className="max-w-7xl">
+      <QuizStreakCelebration streak={quizStreak.streak} celebration={quizStreak.celebration} />
       <AcademyHero
         eyebrow="Quiz arena"
         title="Take a"
@@ -20105,7 +20172,10 @@ function QuizzesPage() {
               score={score}
               onAnswer={answerMathObjective}
               onNext={nextMathObjectiveQuestion}
-              onBack={() => setMathObjectivePhase("intro")}
+              onBack={() => {
+                quizStreak.resetStreak();
+                setMathObjectivePhase("intro");
+              }}
             />
           ) : (
             <MathObjectiveQuestionsComingSoonScreen
@@ -20171,7 +20241,7 @@ function QuizzesPage() {
             <div className="flex flex-wrap gap-2 items-center">
               {subject === "sejarah" ? (
                 <div className="flex gap-1">
-                  {(["All", "Form 1", "Form 2", "Form 3"] as const).map((f) => (
+                  {(["Form 1", "Form 2", "Form 3"] as const).map((f) => (
                     <button
                       key={f}
                       onClick={() => {
@@ -20198,7 +20268,6 @@ function QuizzesPage() {
                     }}
                     className="px-4 py-2 rounded-full bg-white/5 text-sm"
                   >
-                    <option>All</option>
                     {forms.map((f) => (
                       <option key={f}>{f}</option>
                     ))}
@@ -20234,8 +20303,10 @@ function QuizzesPage() {
               </button>
               {/* Music toggle removed — background music is adaptive and global. */}
               <span className="text-muted-foreground">XP</span>
-              <span className="font-bold text-nova-yellow">{progress.xp}</span>
-              <span className="text-muted-foreground">🔥 {streak}</span>
+              <span data-quiz-xp-target className="font-bold text-nova-yellow">
+                {progress.xp}
+              </span>
+              <span className="text-muted-foreground">🔥 {quizStreak.streak}</span>
             </div>
           </div>
           <p className="text-center text-xs text-muted-foreground mb-6 animate-fade-up">
@@ -20321,7 +20392,7 @@ function QuizzesPage() {
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-2">
                       <Flame className="h-4 w-4 text-orange-400" />
-                      <span className="text-sm font-bold text-orange-300">{streak}</span>
+                      <span className="text-sm font-bold text-orange-300">{quizStreak.streak}</span>
                       <span className="text-xs text-white/40">Combo</span>
                     </div>
                   </div>
@@ -20352,6 +20423,7 @@ function QuizzesPage() {
             current && (
               <div
                 key={idx}
+                data-quiz-combo-surface
                 className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
                   feedback?.kind === "wrong"
                     ? "animate-shake"
@@ -20766,13 +20838,17 @@ function EnglishSetSelectionScreen({
   paperId,
   onBack,
   onSelect,
+  paperOverride,
+  setsOverride,
 }: {
   paperId: EnglishQuizPaperId;
   onBack: () => void;
   onSelect: (setId: EnglishQuizSetId) => void;
+  paperOverride?: (typeof ENGLISH_QUIZ_PAPERS)[number];
+  setsOverride?: EnglishQuizSetMeta[];
 }) {
-  const paper = ENGLISH_QUIZ_PAPERS.find((item) => item.id === paperId);
-  const sets = getEnglishQuizSetsForPaper(paperId);
+  const paper = paperOverride ?? ENGLISH_QUIZ_PAPERS.find((item) => item.id === paperId);
+  const sets = setsOverride ?? getEnglishQuizSetsForPaper(paperId);
 
   return (
     <div className="animate-fade-up">
@@ -20882,7 +20958,7 @@ function EnglishSetIntroScreen({
           >
             {quizSet.badge}
           </div>
-          <p className="text-sm font-bold text-cyan-200">English Form 1 Quizzes</p>
+          <p className="text-sm font-bold text-cyan-200">{formLabel} Quizzes</p>
           <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
             {cleanLearningTitle(quizSet.title)}
           </h2>
@@ -20918,6 +20994,76 @@ function EnglishSetIntroScreen({
         </div>
       </div>
     </div>
+  );
+}
+
+function EnglishSetSelectionScreenF2({
+  paperId,
+  onBack,
+  onSelect,
+}: {
+  paperId: EnglishQuizPaperIdF2;
+  onBack: () => void;
+  onSelect: (setId: EnglishQuizSetIdF2) => void;
+}) {
+  const paper = ENGLISH_QUIZ_PAPERS_F2.find((item) => item.id === paperId);
+  const sets = getEnglishQuizSetsForPaperF2(paperId);
+  return (
+    <EnglishSetSelectionScreen
+      paperId={paperId}
+      onBack={onBack}
+      onSelect={(setId) => onSelect(setId as EnglishQuizSetIdF2)}
+      paperOverride={paper}
+      setsOverride={sets}
+    />
+  );
+}
+
+function EnglishSetIntroScreenF2(props: {
+  quizSet: EnglishQuizSetMetaF2;
+  onBack: () => void;
+  onStart: () => void;
+}) {
+  return (
+    <EnglishSetIntroScreen
+      {...(props as unknown as Parameters<typeof EnglishSetIntroScreen>[0])}
+      formLabel="English Form 2"
+    />
+  );
+}
+
+function EnglishQuizScreenF2(props: {
+  quizSet: EnglishQuizSetMetaF2;
+  questions: ShuffledQuestion[];
+  current: ShuffledQuestion | null;
+  idx: number;
+  selected: number | null;
+  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  score: number;
+  onAnswer: (index: number) => void;
+  onNext: () => void;
+  onBack: () => void;
+}) {
+  return (
+    <EnglishQuizScreen
+      {...(props as unknown as Parameters<typeof EnglishQuizScreen>[0])}
+      formLabel="English Form 2"
+    />
+  );
+}
+
+function EnglishResultsScreenF2(props: {
+  quizSet: EnglishQuizSetMetaF2;
+  score: number;
+  total: number;
+  onBack: () => void;
+  onRetry: () => void;
+}) {
+  return (
+    <EnglishResultsScreen
+      {...(props as unknown as Parameters<typeof EnglishResultsScreen>[0])}
+      formLabel="English Form 2"
+    />
   );
 }
 
@@ -21106,6 +21252,7 @@ function EnglishQuizScreen({
 
       <div
         key={idx}
+        data-quiz-combo-surface
         className={`quiz-q-enter relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 shadow-[0_24px_80px_rgba(0,0,0,0.4)] backdrop-blur-2xl ${
           feedback?.kind === "wrong"
             ? "animate-shake"
@@ -22211,6 +22358,7 @@ function MathObjectiveQuizScreen({
 
       <div
         key={idx}
+        data-quiz-combo-surface
         className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
           feedback?.kind === "wrong"
             ? "animate-shake"

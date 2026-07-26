@@ -14544,7 +14544,7 @@ export const quizzes: QuizQuestion[] = [
       "SPAHL (Sistem Penuaian Air Hujan) ialah mekanisasi mengumpul dan menyimpan air hujan dari bumbung untuk kegunaan bukan domestik seperti mencuci tangki tandas dan menyiram laman.",
   },
   {
-    id: "geo-f1-c13-q18",
+    id: "geo-f1-c12-q18",
     subjectId: "geography",
     form: "Form 1",
     difficulty: "Easy",
