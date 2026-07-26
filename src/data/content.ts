@@ -2682,7 +2682,7 @@ Ulang istilah penting seperti polis, monarki, oligarki, aristokrasi, tirani, dem
     chapter: "Chapter 3",
     title: "Peta Lakar",
     summary:
-      "Peta lakar ialah gambaran permukaan bumi yang dilukis dari pandangan atas bagi mewakili sesuatu kawasan yang luas dengan menggunakan simbol geografi bagi menggantikan lukisan objek rumit supaya maklumat lebih mudah dibaca dan difahami. Sebuah peta lakar yang lengkap dan berkualiti wajib mempunyai lima elemen utama, iaitu Tajuk yang ditulis dengan huruf besar di bahagian atas dan digariskan untuk menyatakan isi kandungan peta; Bingkai berupa garisan luar yang melingkari peta untuk menandakan had kawasan; Arah Mata Angin yang menunjukkan orientasi peta (biasanya arah Utara); Simbol untuk mewakili ciri geografi bagi menjimatkan ruang; serta Petunjuk untuk menjelaskan makna di sebalik setiap simbol yang digunakan. Jenis-jenis simbol dalam peta lakar dibahagikan kepada empat kategori utama, iaitu Simbol Titik untuk kedudukan spesifik seperti masjid, kuil, gereja, tanda aras, atau stesen trigonometri; Simbol Garisan untuk ciri memanjang seperti jalan raya, sungai, jalan kereta api, dan sempadan; Simbol Kawasan untuk ruang yang luas seperti sawah padi, hutan, kelapa sawit, dan getah; serta Simbol Bergambar yang berbentuk lukisan ringkas menyerupai objek asal seperti gambar pokok kelapa. Penggunaan singkatan seperti B.P. (Balai Polis), Sek. (Sekolah), Hosp. (Hospital), P.P. / Pej. Pos (Pejabat Pos), Kg. (Kampung), dan Pt. (Parit) turut diaplikasikan bagi menjimatkan ruang petempatan bangunan awam. Seterusnya, kandungan peta lakar diklasifikasikan kepada dua ciri pandang darat utama, iaitu Ciri Pandang Darat Fizikal (semula jadi) yang merangkumi bentuk muka bumi (tanah tinggi, tanah pamah, bukit, lembah), saliran (sungai, tasik, paya bakau, paya air tawar), dan tumbuhan semula jadi (hutan rimba, belukar) tanpa campur tangan manusia. Manakala Ciri Pandang Darat Budaya (buatan manusia) merujuk kepada hasil aktiviti manusia seperti petempatan (rumah, bandar), sistem pengangkutan (jalan raya, jalan kereta api, jambatan, jeti), kegiatan ekonomi (sawah padi, ladang kelapa sawit, kilang, lombong), serta kemudahan sosial. Terdapat hubung kait yang rapat antara kedua-dua ciri ini kerana manusia membina ciri budaya berdasarkan potensi ciri fizikal sedia ada, seperti memilih kawasan tanah pamah yang subur untuk penanaman padi, petempatan, dan jalan raya; kawasan pinggir laut untuk aktiviti perikanan dan jeti; serta kawasan tanah tinggi untuk pelancongan dan penanaman teh. Akhir sekali, langkah-langkah melukis peta lakar yang sistematik bermula dengan memilih tajuk kawasan, melukis bingkai peta, menentukan simbol yang sesuai, memplotkan ciri-ciri geografi mengikut kedudukan yang betul dengan mendahulukan ciri fizikal sebelum ciri budaya, serta melengkapkan petunjuk dan arah mata angin.",
+      "Peta lakar ialah gambaran permukaan bumi yang dilukis dari pandangan atas bagi mewakili sesuatu kawasan yang luas dengan menggunakan simbol geografi bagi menggantikan lukisan objek rumit supaya maklumat lebih mudah dibaca dan difahami. Sebuah peta lakar yang lengkap dan berkualiti wajib mempunyai lima elemen utama, iaitu Tajuk yang ditulis dengan huruf besar di bahagian atas dan digariskan untuk menyatakan isi kandungan peta; Pemidang berupa garisan luar yang melingkari peta untuk menandakan had kawasan; Arah Mata Angin yang menunjukkan orientasi peta (biasanya arah Utara); Simbol untuk mewakili ciri geografi bagi menjimatkan ruang; serta Petunjuk untuk menjelaskan makna di sebalik setiap simbol yang digunakan. Jenis-jenis simbol dalam peta lakar dibahagikan kepada empat kategori utama, iaitu Simbol Titik untuk kedudukan spesifik seperti masjid, kuil, gereja, tanda aras, atau stesen trigonometri; Simbol Garisan untuk ciri memanjang seperti jalan raya, sungai, jalan kereta api, dan sempadan; Simbol Kawasan untuk ruang yang luas seperti sawah padi, hutan, kelapa sawit, dan getah; serta Simbol Bergambar yang berbentuk lukisan ringkas menyerupai objek asal seperti gambar pokok kelapa. Penggunaan singkatan seperti B.P. (Balai Polis), Sek. (Sekolah), Hosp. (Hospital), P.P. / Pej. Pos (Pejabat Pos), Kg. (Kampung), dan Pt. (Parit) turut diaplikasikan bagi menjimatkan ruang petempatan bangunan awam. Seterusnya, kandungan peta lakar diklasifikasikan kepada dua ciri pandang darat utama, iaitu Ciri Pandang Darat Fizikal (semula jadi) yang merangkumi bentuk muka bumi (tanah tinggi, tanah pamah, bukit, lembah), saliran (sungai, tasik, paya bakau, paya air tawar), dan tumbuhan semula jadi (hutan rimba, belukar) tanpa campur tangan manusia. Manakala Ciri Pandang Darat Budaya (buatan manusia) merujuk kepada hasil aktiviti manusia seperti petempatan (rumah, bandar), sistem pengangkutan (jalan raya, jalan kereta api, jambatan, jeti), kegiatan ekonomi (sawah padi, ladang kelapa sawit, kilang, lombong), serta kemudahan sosial. Terdapat hubung kait yang rapat antara kedua-dua ciri ini kerana manusia membina ciri budaya berdasarkan potensi ciri fizikal sedia ada, seperti memilih kawasan tanah pamah yang subur untuk penanaman padi, petempatan, dan jalan raya; kawasan pinggir laut untuk aktiviti perikanan dan jeti; serta kawasan tanah tinggi untuk pelancongan dan penanaman teh. Akhir sekali, langkah-langkah melukis peta lakar yang sistematik bermula dengan memilih tajuk kawasan, melukis pemidang peta, menentukan simbol yang sesuai, memplotkan ciri-ciri geografi mengikut kedudukan yang betul dengan mendahulukan ciri fizikal sebelum ciri budaya, serta melengkapkan petunjuk dan arah mata angin.",
     keywords: [
       "Peta Lakar",
       "Ciri Pandang Darat Fizikal",
@@ -2693,7 +2693,7 @@ Ulang istilah penting seperti polis, monarki, oligarki, aristokrasi, tirani, dem
       "Simbol Bergambar",
       "Singkatan Peta",
       "Petunjuk Peta",
-      "Bingkai Peta",
+      "Pemidang Peta",
       "Tanah Pamah",
       "Saliran",
       "Titik Rujukan",
@@ -9497,13 +9497,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Antara berikut, yang manakah merupakan ciri peta lakar yang lengkap?",
     options: [
       "Nama pelukis, tarikh, dan warna.",
-      "Tajuk, bingkai, arah mata angin, simbol, dan petunjuk.",
+      "Tajuk, pemidang, arah mata angin, simbol, dan petunjuk.",
       "Gambar foto, skala, dan koordinat GPS.",
       "Hanya tajuk dan lukisan.",
     ],
     answerIndex: 1,
     explanation:
-      "Kelima-lima komponen (tajuk, bingkai, arah mata angin, simbol, dan petunjuk) wajib ada supaya peta lakar tersebut dikira lengkap dan boleh dibaca secara sistematik.",
+      "Kelima-lima komponen (tajuk, pemidang, arah mata angin, simbol, dan petunjuk) wajib ada supaya peta lakar tersebut dikira lengkap dan boleh dibaca secara sistematik.",
   },
   {
     id: "geo-f1-c3-q3",
@@ -9868,13 +9868,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Langkah pertama untuk melukis peta lakar ialah...?",
     options: [
       "Melukis petunjuk.",
-      "Menentukan tajuk dan melukis bingkai peta.",
+      "Menentukan tajuk dan melukis pemidang peta.",
       "Mewarnakan peta dengan warna hijau.",
       "Melukis semua rumah.",
     ],
     answerIndex: 1,
     explanation:
-      "Prosedur awal melukis peta lakar wajib dimulakan dengan menentukan nama tajuk kawasan serta membina kotak bingkai luar peta terlebih dahulu.",
+      "Prosedur awal melukis peta lakar wajib dimulakan dengan menentukan nama tajuk kawasan serta membina pemidang peta terlebih dahulu.",
   },
   {
     id: "geo-f1-c3-q28",
@@ -14544,7 +14544,7 @@ export const quizzes: QuizQuestion[] = [
       "SPAHL (Sistem Penuaian Air Hujan) ialah mekanisasi mengumpul dan menyimpan air hujan dari bumbung untuk kegunaan bukan domestik seperti mencuci tangki tandas dan menyiram laman.",
   },
   {
-    id: "geo-f1-c13-q18",
+    id: "geo-f1-c12-q18",
     subjectId: "geography",
     form: "Form 1",
     difficulty: "Easy",
@@ -26301,7 +26301,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 3",
     front:
       "Senaraikan lima ciri atau elemen utama yang wajib ada pada sebuah peta lakar yang lengkap.",
-    back: "Tajuk, bingkai, arah mata angin, simbol, dan petunjuk.",
+    back: "Tajuk, pemidang, arah mata angin, simbol, dan petunjuk.",
   },
   {
     id: "geo-f1-c3-fc5",
@@ -26324,7 +26324,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 3",
-    front: "Apakah fungsi 'Bingkai' dalam peta lakar?",
+    front: "Apakah fungsi 'Pemidang' dalam peta lakar?",
     back: "Berfungsi untuk menjadikan peta kelihatan lebih kemas dan menandakan had sempadan kawasan yang dipetakan.",
   },
   {
@@ -26703,7 +26703,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     front: "Apakah langkah kedua dalam melukis peta lakar?",
-    back: "Tentukan bingkai peta dengan melukis garisan sempadan luar berbentuk empat segi.",
+    back: "Tentukan pemidang peta dengan melukis garisan sempadan luar berbentuk empat segi.",
   },
   {
     id: "geo-f1-c3-fc55",

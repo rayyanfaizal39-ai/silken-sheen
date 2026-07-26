@@ -6,12 +6,20 @@ let muted = false;
 let lastHover = 0;
 let lastClick = 0;
 
+function notifyImportantSoundEffect(durationMs = 500) {
+  if (typeof window === "undefined" || muted) return;
+  window.dispatchEvent(
+    new CustomEvent("academy:important-sound-effect", { detail: { durationMs } }),
+  );
+}
+
 function getCtx(): AudioContext | null {
   if (typeof window === "undefined") return null;
   if (muted) return null;
   if (!ctx) {
-    const AC =
-      (window as any).AudioContext || (window as any).webkitAudioContext;
+    const audioWindow = window as Window &
+      typeof globalThis & { webkitAudioContext?: typeof AudioContext };
+    const AC = audioWindow.AudioContext || audioWindow.webkitAudioContext;
     if (!AC) return null;
     try {
       ctx = new AC();
@@ -64,43 +72,46 @@ export const sfx = {
     tone(520, 0.07, "triangle", 0.05, 260);
   },
   success() {
+    notifyImportantSoundEffect(400);
     tone(660, 0.09, "triangle", 0.05);
     setTimeout(() => tone(880, 0.12, "triangle", 0.05), 80);
   },
   levelUp() {
+    notifyImportantSoundEffect(650);
     const notes = [523.25, 659.25, 783.99, 1046.5]; // C E G C
-    notes.forEach((f, i) =>
-      setTimeout(() => tone(f, 0.18, "triangle", 0.06), i * 90),
-    );
+    notes.forEach((f, i) => setTimeout(() => tone(f, 0.18, "triangle", 0.06), i * 90));
   },
   combo(n: number) {
+    notifyImportantSoundEffect(450);
     const base = 440 + Math.min(n, 8) * 80;
     tone(base, 0.1, "square", 0.04);
     setTimeout(() => tone(base * 1.5, 0.12, "triangle", 0.05), 70);
   },
   perfect() {
+    notifyImportantSoundEffect(750);
     const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
-    notes.forEach((f, i) =>
-      setTimeout(() => tone(f, 0.22, "triangle", 0.07), i * 80),
-    );
+    notes.forEach((f, i) => setTimeout(() => tone(f, 0.22, "triangle", 0.07), i * 80));
   },
   whoosh() {
+    notifyImportantSoundEffect(400);
     tone(720, 0.22, "sine", 0.045, 180);
   },
   ding() {
+    notifyImportantSoundEffect(450);
     tone(880, 0.1, "triangle", 0.06);
     setTimeout(() => tone(1318.5, 0.18, "triangle", 0.055), 70);
   },
   whomp() {
+    notifyImportantSoundEffect(400);
     tone(220, 0.22, "sine", 0.05, 90);
   },
   fanfare() {
+    notifyImportantSoundEffect(900);
     const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98];
-    notes.forEach((f, i) =>
-      setTimeout(() => tone(f, 0.26, "triangle", 0.07), i * 95),
-    );
+    notes.forEach((f, i) => setTimeout(() => tone(f, 0.26, "triangle", 0.07), i * 95));
   },
   streak(n: number) {
+    notifyImportantSoundEffect(n >= 10 ? 650 : 450);
     const base = 520 + Math.min(n, 12) * 60;
     tone(base, 0.12, "triangle", 0.05);
     setTimeout(() => tone(base * 1.5, 0.16, "triangle", 0.055), 90);
@@ -118,16 +129,19 @@ export function initSfxPreference() {
   if (typeof window === "undefined") return;
   try {
     muted = localStorage.getItem("learnnova-sfx-muted") === "1";
-  } catch {}
+  } catch {
+    // Preference storage is optional.
+  }
 }
 
 export function toggleSfxMuted() {
   muted = !muted;
   try {
     localStorage.setItem("learnnova-sfx-muted", muted ? "1" : "0");
-  } catch {}
+  } catch {
+    // Preference storage is optional.
+  }
   return muted;
 }
 
-// Ambient background music has moved to src/lib/bg-music.ts (adaptive engine).
-
+// BackgroundMusicProvider listens for the important-effect event above.

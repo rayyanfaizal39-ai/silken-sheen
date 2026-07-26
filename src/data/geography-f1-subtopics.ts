@@ -109,8 +109,8 @@ export const geographyF1Subtopics: Record<string, Subtopic[]> = {
       num: 1,
       title: "3.1 Ciri-ciri Peta Lakar",
       summary:
-        "Peta lakar ialah gambaran permukaan bumi yang dilukis dari pandangan atas untuk mewakili kawasan luas menggunakan simbol bagi menggantikan lukisan rumit. Lima ciri utama peta lakar yang lengkap: (1) Tajuk — ditulis dengan huruf besar di bahagian atas dan digariskan; (2) Bingkai — garisan luar yang mengelilingi peta untuk menandakan had kawasan; (3) Arah Mata Angin — menunjukkan orientasi peta (biasanya Utara); (4) Simbol — mewakili ciri geografi untuk menjimatkan ruang; (5) Petunjuk — menjelaskan maksud setiap simbol yang digunakan.",
-      keywords: ["Peta Lakar", "Tajuk", "Bingkai", "Arah Mata Angin", "Simbol", "Petunjuk"],
+        "Peta lakar ialah gambaran permukaan bumi yang dilukis dari pandangan atas untuk mewakili kawasan luas menggunakan simbol bagi menggantikan lukisan rumit. Lima ciri utama peta lakar yang lengkap: (1) Tajuk — ditulis dengan huruf besar di bahagian atas dan digariskan; (2) Pemidang — garisan luar yang mengelilingi peta untuk menandakan had kawasan; (3) Arah Mata Angin — menunjukkan orientasi peta (biasanya Utara); (4) Simbol — mewakili ciri geografi untuk menjimatkan ruang; (5) Petunjuk — menjelaskan maksud setiap simbol yang digunakan.",
+      keywords: ["Peta Lakar", "Tajuk", "Pemidang", "Arah Mata Angin", "Simbol", "Petunjuk"],
     },
     {
       key: "geo-c3-s2",
@@ -146,7 +146,7 @@ export const geographyF1Subtopics: Record<string, Subtopic[]> = {
       num: 4,
       title: "3.4 Langkah-langkah Melukis Peta Lakar",
       summary:
-        "Langkah sistematik melukis peta lakar: (1) pilih tajuk kawasan; (2) lukis bingkai peta; (3) tentukan simbol yang sesuai; (4) plotkan ciri-ciri geografi mengikut kedudukan yang betul, dengan mendahulukan ciri fizikal sebelum ciri budaya; (5) lengkapkan petunjuk dan arah mata angin. Susunan ini memastikan peta mudah dibaca dan tidak bertindih.",
+        "Langkah sistematik melukis peta lakar: (1) pilih tajuk kawasan; (2) lukis pemidang peta; (3) tentukan simbol yang sesuai; (4) plotkan ciri-ciri geografi mengikut kedudukan yang betul, dengan mendahulukan ciri fizikal sebelum ciri budaya; (5) lengkapkan petunjuk dan arah mata angin. Susunan ini memastikan peta mudah dibaca dan tidak bertindih.",
       keywords: ["Melukis Peta", "Langkah Sistematik", "Ciri Fizikal Dahulu", "Petunjuk"],
     },
   ],

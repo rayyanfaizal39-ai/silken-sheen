@@ -126,6 +126,21 @@ export default defineConfig({
           skipWaiting: true,
           runtimeCaching: [
             {
+              // Stream the study soundtrack on first use, then serve its full
+              // response from a dedicated cache. Range support keeps seeking
+              // compatible with Safari and installed PWAs without precaching
+              // the MP3 during installation.
+              urlPattern: ({ url, sameOrigin }) =>
+                sameOrigin && url.pathname === "/audio/infinite-papercraft-galaxy.mp3",
+              handler: "CacheFirst",
+              options: {
+                cacheName: "academy-study-audio",
+                rangeRequests: true,
+                expiration: { maxEntries: 1, maxAgeSeconds: 60 * 60 * 24 * 30 },
+                cacheableResponse: { statuses: [200] },
+              },
+            },
+            {
               // Google Fonts stylesheets
               urlPattern: ({ url }) => url.origin === "https://fonts.googleapis.com",
               handler: "StaleWhileRevalidate",

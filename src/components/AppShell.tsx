@@ -37,6 +37,9 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { AcademyLogo } from "@/components/AcademyLogo";
 import { isRouteActive } from "@/lib/study-routing";
 import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-access";
+import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicControl";
+import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
+import { isStudentMusicRoute } from "@/lib/audio/studentMusicRoutes";
 
 const navItems = [
   {
@@ -265,11 +268,24 @@ function SidebarBottom() {
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { lastRankUp } = useProgress();
 
   if (pathname.startsWith("/academy/") || pathname.startsWith("/admin") || pathname === "/") {
     return <>{children}</>;
   }
+
+  const shell = <AppShellLayout pathname={pathname}>{children}</AppShellLayout>;
+  if (!isStudentMusicRoute(pathname)) return shell;
+
+  return (
+    <BackgroundMusicProvider>
+      {shell}
+      <BackgroundMusicControl />
+    </BackgroundMusicProvider>
+  );
+}
+
+function AppShellLayout({ children, pathname }: { children: ReactNode; pathname: string }) {
+  const { lastRankUp } = useProgress();
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">
