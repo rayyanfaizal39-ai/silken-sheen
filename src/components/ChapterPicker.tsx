@@ -521,6 +521,8 @@ export function ContentHeader({
   const displayChapterLabel =
     mode === "quizzes" || mode === "flashcards" ? cleanLearningTitle(chapterLabel) : chapterLabel;
   const accent = getSubjectAccent(subjectId);
+  const categoryLabel = chapter?.categoryLabel ?? chapterContent?.categoryLabel;
+  const modeLabel = mode === "mindmaps" ? "Peta Minda" : undefined;
 
   return (
     <div className="mb-5 animate-fade-up">
@@ -530,18 +532,40 @@ export function ContentHeader({
           onClick={onBack}
           className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/70 transition-all hover:-translate-x-0.5 hover:bg-white/[0.10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to chapters
+          <ArrowLeft className="h-4 w-4" />{" "}
+          {categoryLabel ? `Back to ${categoryLabel}` : "Back to chapters"}
         </button>
-        <div className="flex min-w-0 items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex min-w-0 flex-wrap items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-3 py-1.5"
+        >
           <span className="text-sm">{subj?.emoji}</span>
           <span className="text-sm font-bold" style={{ color: accent.color }}>
             {subj?.name}
           </span>
-          <span className="text-white/30">•</span>
-          <span className="max-w-[180px] truncate text-xs text-white/55">
+          {modeLabel && (
+            <>
+              <span aria-hidden="true" className="text-white/30">
+                ›
+              </span>
+              <span className="text-xs text-white/55">{modeLabel}</span>
+            </>
+          )}
+          {categoryLabel && (
+            <>
+              <span aria-hidden="true" className="text-white/30">
+                ›
+              </span>
+              <span className="text-xs text-white/55">{categoryLabel}</span>
+            </>
+          )}
+          <span aria-hidden="true" className="text-white/30">
+            ›
+          </span>
+          <span aria-current="page" className="max-w-[180px] truncate text-xs text-white/70">
             {displayChapterLabel}
           </span>
-        </div>
+        </nav>
       </div>
 
       {/* Chapter banner */}
@@ -567,7 +591,9 @@ export function ContentHeader({
               className="text-xs font-bold uppercase tracking-widest"
               style={{ color: accent.color }}
             >
-              {subj?.name} • Learning Content
+              {categoryLabel
+                ? `${categoryLabel} ${subj?.name}`
+                : `${subj?.name} • Learning Content`}
             </p>
             <h2 className="mt-0.5 font-display text-xl font-bold leading-tight text-white">
               {displayChapterLabel}

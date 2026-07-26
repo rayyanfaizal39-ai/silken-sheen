@@ -10,7 +10,7 @@ import { geographyF1Subtopics } from "./geography-f1-subtopics";
 import { notes } from "./notes";
 import { quizzes } from "./quizzes";
 
-function geographyChapter3<T extends { subjectId: string; form: string; chapter: string }>(
+function geographyChapter3<T extends { subjectId: string; form: string; chapter?: string }>(
   items: T[],
 ) {
   return items.filter(

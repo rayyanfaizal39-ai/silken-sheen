@@ -18,12 +18,14 @@ export function MindMapBlock({
   id,
   storageKey,
   palette,
+  mobileLayout,
 }: {
   data: MindNode;
   title: string;
   id?: string;
   storageKey?: string;
   palette?: MindMapPalette;
+  mobileLayout?: "canvas" | "learning-path";
 }) {
   const stateKey = storageKey ?? `notes:mind-map:${id ?? title}`;
   const [isOpen, setIsOpen] = useState(() => readStoredOpen(stateKey));
@@ -89,10 +91,11 @@ export function MindMapBlock({
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2 px-2">
           <p className="text-sm font-semibold text-white">{title}</p>
           <p className="text-xs text-muted-foreground">
-            Tap a node to expand • Pinch or scroll to zoom • Drag to pan • Use Prev/Next to step through
+            Tap a node to expand • Pinch or scroll to zoom • Drag to pan • Use Prev/Next to step
+            through
           </p>
         </div>
-        <MindMap data={data} height={640} palette={palette} />
+        <MindMap data={data} height={640} palette={palette} mobileLayout={mobileLayout} />
       </div>
     </div>
   );

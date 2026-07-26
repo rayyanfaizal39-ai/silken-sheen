@@ -17,6 +17,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export type MindNode = {
   id: string;
   label: string;
+  /** Optional concise explanation shown inside the node below its title. */
+  summary?: string;
   children?: MindNode[];
 };
 
@@ -37,12 +39,14 @@ function normalizeMindNode(value: unknown): MindNode {
         .map((child) => normalizeMindNode(child))
         .filter((child) => child !== EMPTY_MIND_NODE)
     : [];
-  return children.length
-    ? { id: candidate.id, label: candidate.label, children }
-    : {
-        id: candidate.id,
-        label: candidate.label,
-      };
+  const normalized: MindNode = {
+    id: candidate.id,
+    label: candidate.label,
+    ...(typeof candidate.summary === "string" && candidate.summary.trim()
+      ? { summary: candidate.summary }
+      : {}),
+  };
+  return children.length ? { ...normalized, children } : normalized;
 }
 
 type Pos = { x: number; y: number; w: number; h: number };
@@ -92,8 +96,9 @@ function measureCtx(): CanvasRenderingContext2D | null {
   return _ctx;
 }
 
-function measureNode(label: string, depth: number): { w: number; h: number } {
-  const safeLabel = typeof label === "string" ? label : "";
+function measureNode(node: MindNode, depth: number): { w: number; h: number } {
+  const safeLabel = typeof node.label === "string" ? node.label : "";
+  const safeSummary = typeof node.summary === "string" ? node.summary : "";
   const ctx = measureCtx();
   const hasChildrenAffordance = 26; // space for the +/x circle
   if (!ctx) {
@@ -102,13 +107,20 @@ function measureNode(label: string, depth: number): { w: number; h: number } {
       MAX_W,
       Math.max(MIN_W, safeLabel.length * 7.5 + PAD_X * 2 + hasChildrenAffordance),
     );
-    return { w: approx, h: 56 };
+    const summaryLines = safeSummary ? Math.max(1, Math.ceil(safeSummary.length / 34)) : 0;
+    return { w: approx, h: 56 + summaryLines * 16 };
   }
   ctx.font = fontForDepth(depth);
   const singleLine = ctx.measureText(safeLabel).width;
   const desired = singleLine + PAD_X * 2 + hasChildrenAffordance;
   if (desired <= MAX_W) {
-    return { w: Math.max(MIN_W, Math.ceil(desired)), h: Math.max(48, LINE_H + V_PAD * 2) };
+    const summaryLines = safeSummary
+      ? Math.max(1, Math.ceil((safeSummary.length * 6.5) / Math.max(MIN_W, desired)))
+      : 0;
+    return {
+      w: Math.max(MIN_W, Math.ceil(desired)),
+      h: Math.max(48, LINE_H + V_PAD * 2 + summaryLines * 16),
+    };
   }
   // need to wrap: choose width = MAX_W, compute lines greedily
   const maxTextW = MAX_W - PAD_X * 2 - hasChildrenAffordance;
@@ -130,7 +142,11 @@ function measureNode(label: string, depth: number): { w: number; h: number } {
       }
     }
   }
-  return { w: MAX_W, h: Math.max(48, lines * LINE_H + V_PAD * 2) };
+  const summaryLines = safeSummary ? Math.max(1, Math.ceil((safeSummary.length * 6.5) / MAX_W)) : 0;
+  return {
+    w: MAX_W,
+    h: Math.max(48, lines * LINE_H + V_PAD * 2 + summaryLines * 16),
+  };
 }
 
 function subtreeHeight(
@@ -233,14 +249,84 @@ type CameraRequest = {
   mode: "toggle" | "focus" | "reset";
 };
 
+function MobileLearningNode({
+  node,
+  depth,
+  expanded,
+  onToggle,
+}: {
+  node: MindNode;
+  depth: number;
+  expanded: Set<string>;
+  onToggle: (id: string) => void;
+}) {
+  const hasChildren = !!node.children?.length;
+  const isExpanded = expanded.has(node.id);
+
+  return (
+    <li className="relative min-w-0">
+      {depth > 1 && (
+        <span
+          aria-hidden="true"
+          className="absolute -left-4 top-0 h-6 w-4 rounded-bl-xl border-b border-l border-cyan-300/30"
+        />
+      )}
+      <button
+        type="button"
+        onClick={() => hasChildren && onToggle(node.id)}
+        aria-expanded={hasChildren ? isExpanded : undefined}
+        className={`flex min-h-11 w-full min-w-0 items-start justify-between gap-3 rounded-2xl border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80 ${
+          depth === 1
+            ? "border-cyan-300/25 bg-cyan-400/10 text-white"
+            : "border-white/10 bg-white/[0.045] text-white/90"
+        }`}
+      >
+        <span className="min-w-0 flex-1">
+          <span className="block break-words text-sm font-bold leading-5">{node.label}</span>
+          {node.summary && (
+            <span className="mt-1.5 block break-words text-xs font-medium leading-5 text-white/65">
+              {node.summary}
+            </span>
+          )}
+        </span>
+        {hasChildren && (
+          <span
+            aria-hidden="true"
+            className={`mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/10 text-sm transition-transform ${
+              isExpanded ? "rotate-45" : ""
+            }`}
+          >
+            +
+          </span>
+        )}
+      </button>
+      {hasChildren && isExpanded && (
+        <ul className="ml-4 mt-3 space-y-3 border-l border-cyan-300/20 pl-4">
+          {node.children?.map((child) => (
+            <MobileLearningNode
+              key={child.id}
+              node={child}
+              depth={depth + 1}
+              expanded={expanded}
+              onToggle={onToggle}
+            />
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
 export function MindMap({
   data: inputData,
   height = "85dvh",
   palette,
+  mobileLayout = "canvas",
 }: {
   data?: MindNode;
   height?: number | string;
   palette?: MindMapPalette;
+  mobileLayout?: "canvas" | "learning-path";
 }) {
   const data = useMemo(() => normalizeMindNode(inputData), [inputData]);
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([data.id]));
@@ -286,7 +372,7 @@ export function MindMap({
     const s = new Map<string, { w: number; h: number }>();
     const all: { node: MindNode; depth: number }[] = [];
     collectAllNodes(data, 0, all);
-    for (const { node, depth } of all) s.set(node.id, measureNode(node.label, depth));
+    for (const { node, depth } of all) s.set(node.id, measureNode(node, depth));
     return s;
   }, [data]);
 
@@ -597,7 +683,7 @@ export function MindMap({
             ? "rgba(250,204,21,0.7)"
             : isRom
               ? "rgba(250,204,21,0.7)"
-              : palette.accentBorder ?? "rgba(59,130,246,0.6)";
+              : (palette.accentBorder ?? "rgba(59,130,246,0.6)");
       const glow = isMesir
         ? "0 0 22px rgba(16,185,129,0.35)"
         : isIndus
@@ -606,7 +692,7 @@ export function MindMap({
             ? "0 0 22px rgba(250,204,21,0.35)"
             : isRom
               ? "0 0 22px rgba(250,204,21,0.35)"
-              : palette.accentGlow ?? "0 0 22px rgba(59,130,246,0.5)";
+              : (palette.accentGlow ?? "0 0 22px rgba(59,130,246,0.5)");
       return {
         bg,
         text,
@@ -807,7 +893,10 @@ export function MindMap({
       (el.clientWidth - padding * 2) / Math.max(1, width),
       (el.clientHeight - padding * 2) / Math.max(1, height),
     );
-    const nextScale = Math.max(0.45, Math.min(1.4, Math.max(currentScale, Math.min(1.12, fitScale))));
+    const nextScale = Math.max(
+      0.45,
+      Math.min(1.4, Math.max(currentScale, Math.min(1.12, fitScale))),
+    );
     const centerX = (bounds.minX + bounds.maxX) / 2;
     const centerY = (bounds.minY + bounds.maxY) / 2;
     animateCamera(
@@ -824,10 +913,7 @@ export function MindMap({
     goToMainTopic();
   }, [centerOnNode, goToMainTopic, selectedId]);
 
-  const orderedVisibleIds = useMemo(
-    () => visibleNodes.map(({ node }) => node.id),
-    [visibleNodes],
-  );
+  const orderedVisibleIds = useMemo(() => visibleNodes.map(({ node }) => node.id), [visibleNodes]);
 
   const stepNode = useCallback(
     (direction: 1 | -1) => {
@@ -881,6 +967,54 @@ export function MindMap({
   const toolbarButtonClass =
     "inline-flex min-h-11 flex-none items-center gap-1.5 rounded-full bg-white/10 px-3 py-2 text-xs font-semibold backdrop-blur transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60";
 
+  if (isMobile && mobileLayout === "learning-path" && data.id !== EMPTY_MIND_NODE.id) {
+    return (
+      <section
+        className="w-full min-w-0 overflow-x-hidden rounded-2xl border border-white/10 bg-slate-950/55 p-3 pb-[calc(1rem+env(safe-area-inset-bottom))]"
+        aria-label={`Peta minda ${data.label}`}
+      >
+        <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
+          <button type="button" onClick={expandAll} className={toolbarButtonClass}>
+            <ChevronsUpDown className="h-3.5 w-3.5" /> Buka semua
+          </button>
+          <button type="button" onClick={collapseAll} className={toolbarButtonClass}>
+            <ChevronsDownUp className="h-3.5 w-3.5" /> Tutup semua
+          </button>
+        </div>
+
+        <div
+          className="rounded-2xl border p-5 text-center text-white"
+          style={{
+            background: resolvedPalette.root,
+            borderColor: resolvedPalette.accentBorder,
+            boxShadow: resolvedPalette.accentGlow,
+          }}
+        >
+          <h3 className="break-words text-base font-black tracking-wide">{data.label}</h3>
+          {data.summary && (
+            <p className="mt-2 break-words text-sm font-medium leading-6 text-white/85">
+              {data.summary}
+            </p>
+          )}
+        </div>
+
+        {data.children?.length ? (
+          <ul className="relative mt-5 space-y-4 border-l border-cyan-300/30 pl-4">
+            {data.children.map((child) => (
+              <MobileLearningNode
+                key={child.id}
+                node={child}
+                depth={1}
+                expanded={expanded}
+                onToggle={toggle}
+              />
+            ))}
+          </ul>
+        ) : null}
+      </section>
+    );
+  }
+
   const canvasContent = (
     <div
       className="relative flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 glass-strong"
@@ -896,12 +1030,13 @@ export function MindMap({
         {breadcrumbTrail.length > 0 && (
           <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-white/70">
             {breadcrumbTrail.map((label, index) => (
-              <span key={`${label}-${index}`} className="flex items-center gap-1.5 whitespace-nowrap">
+              <span
+                key={`${label}-${index}`}
+                className="flex items-center gap-1.5 whitespace-nowrap"
+              >
                 {index > 0 && <ChevronRight className="h-3 w-3 shrink-0 text-white/30" />}
                 <span
-                  className={
-                    index === breadcrumbTrail.length - 1 ? "text-white" : "text-white/55"
-                  }
+                  className={index === breadcrumbTrail.length - 1 ? "text-white" : "text-white/55"}
                 >
                   {label}
                 </span>
@@ -930,11 +1065,7 @@ export function MindMap({
           >
             Next <ChevronRight className="h-3.5 w-3.5" />
           </button>
-          <button
-            onClick={goToMainTopic}
-            className={toolbarButtonClass}
-            title="Back to main topic"
-          >
+          <button onClick={goToMainTopic} className={toolbarButtonClass} title="Back to main topic">
             <Home className="h-3.5 w-3.5" /> Main topic
           </button>
           <button onClick={expandAll} className={toolbarButtonClass}>
@@ -946,319 +1077,338 @@ export function MindMap({
           <button onClick={resetView} className={toolbarButtonClass}>
             <Maximize2 className="h-3.5 w-3.5" /> Reset
           </button>
-          <button
-            onClick={() => setShowMinimap((value) => !value)}
-            className={toolbarButtonClass}
-          >
+          <button onClick={() => setShowMinimap((value) => !value)} className={toolbarButtonClass}>
             <MapIcon className="h-3.5 w-3.5" /> Map
           </button>
           {isMobile && !mobileFullscreen && (
-            <button
-              onClick={() => setMobileFullscreen(true)}
-              className={toolbarButtonClass}
-            >
+            <button onClick={() => setMobileFullscreen(true)} className={toolbarButtonClass}>
               <Maximize2 className="h-3.5 w-3.5" /> Fullscreen
             </button>
           )}
         </div>
       </div>
       <div className="relative min-h-0 flex-1 overflow-hidden">
-      <div className="absolute bottom-3 right-3 z-20 flex flex-col gap-2">
-        <button
-          onClick={() => {
-            const el = containerRef.current;
-            if (el)
-              zoomAt(
-                el.getBoundingClientRect().left + el.clientWidth / 2,
-                el.getBoundingClientRect().top + el.clientHeight / 2,
-                1.2,
-              );
-          }}
-          className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
-          title="Zoom in"
-          aria-label="Zoom in"
-        >
-          <Plus className="w-4 h-4" />
-        </button>
-        <button
-          onClick={() => {
-            const el = containerRef.current;
-            if (el)
-              zoomAt(
-                el.getBoundingClientRect().left + el.clientWidth / 2,
-                el.getBoundingClientRect().top + el.clientHeight / 2,
-                1 / 1.2,
-              );
-          }}
-          className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
-          title="Zoom out"
-          aria-label="Zoom out"
-        >
-          <Minus className="w-4 h-4" />
-        </button>
-        <button
-          onClick={centerSelected}
-          className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
-          title="Center current node"
-          aria-label="Center current node"
-        >
-          <Locate className="w-4 h-4" />
-        </button>
-      </div>
+        <div className="absolute bottom-3 right-3 z-20 flex flex-col gap-2">
+          <button
+            onClick={() => {
+              const el = containerRef.current;
+              if (el)
+                zoomAt(
+                  el.getBoundingClientRect().left + el.clientWidth / 2,
+                  el.getBoundingClientRect().top + el.clientHeight / 2,
+                  1.2,
+                );
+            }}
+            className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+            title="Zoom in"
+            aria-label="Zoom in"
+          >
+            <Plus className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => {
+              const el = containerRef.current;
+              if (el)
+                zoomAt(
+                  el.getBoundingClientRect().left + el.clientWidth / 2,
+                  el.getBoundingClientRect().top + el.clientHeight / 2,
+                  1 / 1.2,
+                );
+            }}
+            className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+            title="Zoom out"
+            aria-label="Zoom out"
+          >
+            <Minus className="w-4 h-4" />
+          </button>
+          <button
+            onClick={centerSelected}
+            className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center justify-center"
+            title="Center current node"
+            aria-label="Center current node"
+          >
+            <Locate className="w-4 h-4" />
+          </button>
+        </div>
 
-      <div
-        ref={containerRef}
-        className="absolute inset-0 cursor-grab active:cursor-grabbing select-none touch-none"
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(30,41,59,0.6) 0%, rgba(15,23,42,0.9) 70%)",
-        }}
-      >
         <div
+          ref={containerRef}
+          className="absolute inset-0 cursor-grab active:cursor-grabbing select-none touch-none"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
           style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            transformOrigin: "0 0",
-            transform: `translate(${tx}px, ${ty}px) scale(${scale})`,
-            transition: "none",
+            background:
+              "radial-gradient(ellipse at center, rgba(30,41,59,0.6) 0%, rgba(15,23,42,0.9) 70%)",
           }}
         >
-          <svg
-            width={svgW}
-            height={svgH}
+          <div
             style={{
               position: "absolute",
-              left: minX,
-              top: minY,
-              overflow: "visible",
-              pointerEvents: "none",
+              left: 0,
+              top: 0,
+              transformOrigin: "0 0",
+              transform: `translate(${tx}px, ${ty}px) scale(${scale})`,
+              transition: "none",
             }}
           >
-            {displayedNodes.map(({ node }, i) => {
-              const to = node.id;
-              const from = treeMaps.parents.get(to);
-              if (!from || !displayedIds.has(from)) return null;
-              const a = layout.positions.get(from) ?? previousPositions.current.get(from);
-              const target = layout.positions.get(to) ?? layout.positions.get(from);
-              const b = target ?? previousPositions.current.get(to);
-              if (!a || !b) return null;
-              const x1 = a.x + a.w - minX;
-              const y1 = a.y - minY;
-              const x2 = b.x - minX;
-              const y2 = b.y - minY;
-              const midX = (x1 + x2) / 2;
-              const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
-              const revealDelay = revealDelays.get(to) ?? 0;
-              const isEntering = revealDelays.has(to);
-              const isExiting = exitingIds.has(to);
-              return (
-                <path
-                  key={`${from}-${to}-${i}`}
-                  d={d}
-                  fill="none"
-                  stroke="url(#mm-edge)"
-                  strokeWidth={1.6}
-                  strokeLinecap="round"
-                  style={{
-                    strokeDasharray: 600,
-                    strokeDashoffset: isExiting ? 600 : 0,
-                    animation: isEntering
-                      ? `mm-draw 620ms cubic-bezier(0.22, 1, 0.36, 1) ${revealDelay}ms both`
-                      : "none",
-                    opacity: isExiting
-                      ? 0
-                      : activeIds.size && (!activeIds.has(from) || !activeIds.has(to))
-                        ? 0.32
-                        : 1,
-                    transition:
-                      "stroke-dashoffset 620ms cubic-bezier(0.22, 1, 0.36, 1), opacity 480ms ease",
-                  }}
-                />
-              );
-            })}
-            <defs>
-              <linearGradient id="mm-edge" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor={resolvedPalette.edgeStart} stopOpacity="0.9" />
-                <stop offset="100%" stopColor={resolvedPalette.edgeEnd} stopOpacity="0.7" />
-              </linearGradient>
-            </defs>
-          </svg>
+            <svg
+              width={svgW}
+              height={svgH}
+              aria-hidden="true"
+              focusable="false"
+              style={{
+                position: "absolute",
+                left: minX,
+                top: minY,
+                overflow: "visible",
+                pointerEvents: "none",
+              }}
+            >
+              {displayedNodes.map(({ node }, i) => {
+                const to = node.id;
+                const from = treeMaps.parents.get(to);
+                if (!from || !displayedIds.has(from)) return null;
+                const a = layout.positions.get(from) ?? previousPositions.current.get(from);
+                const target = layout.positions.get(to) ?? layout.positions.get(from);
+                const b = target ?? previousPositions.current.get(to);
+                if (!a || !b) return null;
+                const x1 = a.x + a.w - minX;
+                const y1 = a.y - minY;
+                const x2 = b.x - minX;
+                const y2 = b.y - minY;
+                const midX = (x1 + x2) / 2;
+                const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
+                const revealDelay = revealDelays.get(to) ?? 0;
+                const isEntering = revealDelays.has(to);
+                const isExiting = exitingIds.has(to);
+                return (
+                  <path
+                    key={`${from}-${to}-${i}`}
+                    d={d}
+                    fill="none"
+                    stroke="url(#mm-edge)"
+                    strokeWidth={1.6}
+                    strokeLinecap="round"
+                    style={{
+                      strokeDasharray: 600,
+                      strokeDashoffset: isExiting ? 600 : 0,
+                      animation: isEntering
+                        ? `mm-draw 620ms cubic-bezier(0.22, 1, 0.36, 1) ${revealDelay}ms both`
+                        : "none",
+                      opacity: isExiting
+                        ? 0
+                        : activeIds.size && (!activeIds.has(from) || !activeIds.has(to))
+                          ? 0.32
+                          : 1,
+                      transition:
+                        "stroke-dashoffset 620ms cubic-bezier(0.22, 1, 0.36, 1), opacity 480ms ease",
+                    }}
+                  />
+                );
+              })}
+              <defs>
+                <linearGradient id="mm-edge" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor={resolvedPalette.edgeStart} stopOpacity="0.9" />
+                  <stop offset="100%" stopColor={resolvedPalette.edgeEnd} stopOpacity="0.7" />
+                </linearGradient>
+              </defs>
+            </svg>
 
-          {displayedNodes.map(({ node, depth }) => {
-            const parentId = treeMaps.parents.get(node.id);
-            const parentPos = parentId
-              ? (layout.positions.get(parentId) ?? previousPositions.current.get(parentId))
-              : undefined;
-            const p = exitingIds.has(node.id)
-              ? (parentPos ?? previousPositions.current.get(node.id))
-              : enteringIds.has(node.id)
-                ? (parentPos ?? layout.positions.get(node.id))
-                : (layout.positions.get(node.id) ?? previousPositions.current.get(node.id));
-            if (!p) return null;
-            const hasChildren = !!node.children?.length;
-            const isExpanded = expanded.has(node.id);
-            const isSelected = selectedId === node.id;
-            const isDimmed = !!selectedId && !activeIds.has(node.id);
-            const isEntering = enteringIds.has(node.id);
-            const isExiting = exitingIds.has(node.id);
-            const revealDelay = revealDelays.get(node.id) ?? 0;
-            const s = nodeStyle(node, depth, hasChildren, isExpanded, resolvedPalette);
-            return (
-              <button
-                key={node.id}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedId(node.id);
-                  if (hasChildren) toggle(node.id);
-                }}
-                onDoubleClick={(e) => {
-                  e.stopPropagation();
-                  zoomToNode(node.id);
-                }}
-                onPointerDown={(e) => e.stopPropagation()}
-                className="absolute group"
-                style={{
-                  left: p.x,
-                  top: p.y - p.h / 2,
-                  width: p.w,
-                  minHeight: p.h,
-                  background: s.bg,
-                  color: s.text,
-                  border: `1px solid ${s.border}`,
-                  borderRadius: 14,
-                  boxShadow: isSelected ? `${s.glow}, 0 0 0 2px rgba(255,255,255,0.45)` : s.glow,
-                  padding: `${V_PAD / 2}px ${PAD_X / 2 + 6}px`,
-                  fontSize: depth === 0 ? 15 : depth === 1 ? 13.5 : 12.5,
-                  fontWeight: depth <= 1 ? 700 : 600,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 8,
-                  cursor: hasChildren ? "pointer" : "default",
-                  textAlign: "left",
-                  lineHeight: `${LINE_H}px`,
-                  opacity: isEntering || isExiting ? 0 : isDimmed ? 0.45 : 1,
-                  transform: isEntering || isExiting ? "scale(0.84)" : "scale(1)",
-                  transitionDelay: `${revealDelay}ms`,
-                  transition:
-                    "left 540ms cubic-bezier(0.22, 1, 0.36, 1), top 540ms cubic-bezier(0.22, 1, 0.36, 1), opacity 460ms ease, transform 460ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s, filter 0.2s",
-                  whiteSpace: "normal",
-                  overflow: "visible",
-                  wordBreak: "break-word",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.filter = "brightness(1.15)";
-                  if (!isEntering && !isExiting)
-                    (e.currentTarget as HTMLElement).style.transform = "scale(1.04)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.filter = "";
-                  (e.currentTarget as HTMLElement).style.transform = "";
-                }}
-              >
-                <span
+            {displayedNodes.map(({ node, depth }) => {
+              const parentId = treeMaps.parents.get(node.id);
+              const parentPos = parentId
+                ? (layout.positions.get(parentId) ?? previousPositions.current.get(parentId))
+                : undefined;
+              const p = exitingIds.has(node.id)
+                ? (parentPos ?? previousPositions.current.get(node.id))
+                : enteringIds.has(node.id)
+                  ? (parentPos ?? layout.positions.get(node.id))
+                  : (layout.positions.get(node.id) ?? previousPositions.current.get(node.id));
+              if (!p) return null;
+              const hasChildren = !!node.children?.length;
+              const isExpanded = expanded.has(node.id);
+              const isSelected = selectedId === node.id;
+              const isDimmed = !!selectedId && !activeIds.has(node.id);
+              const isEntering = enteringIds.has(node.id);
+              const isExiting = exitingIds.has(node.id);
+              const revealDelay = revealDelays.get(node.id) ?? 0;
+              const s = nodeStyle(node, depth, hasChildren, isExpanded, resolvedPalette);
+              return (
+                <button
+                  key={node.id}
+                  type="button"
+                  aria-expanded={hasChildren ? isExpanded : undefined}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedId(node.id);
+                    if (hasChildren) toggle(node.id);
+                  }}
+                  onDoubleClick={(e) => {
+                    e.stopPropagation();
+                    zoomToNode(node.id);
+                  }}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="absolute group"
                   style={{
-                    flex: 1,
+                    left: p.x,
+                    top: p.y - p.h / 2,
+                    width: p.w,
+                    minHeight: p.h,
+                    background: s.bg,
+                    color: s.text,
+                    border: `1px solid ${s.border}`,
+                    borderRadius: 14,
+                    boxShadow: isSelected ? `${s.glow}, 0 0 0 2px rgba(255,255,255,0.45)` : s.glow,
+                    padding: `${V_PAD / 2}px ${PAD_X / 2 + 6}px`,
+                    fontSize: depth === 0 ? 15 : depth === 1 ? 13.5 : 12.5,
+                    fontWeight: depth <= 1 ? 700 : 600,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 8,
+                    cursor: hasChildren ? "pointer" : "default",
+                    textAlign: "left",
+                    lineHeight: `${LINE_H}px`,
+                    opacity: isEntering || isExiting ? 0 : isDimmed ? 0.45 : 1,
+                    transform: isEntering || isExiting ? "scale(0.84)" : "scale(1)",
+                    transitionDelay: `${revealDelay}ms`,
+                    transition:
+                      "left 540ms cubic-bezier(0.22, 1, 0.36, 1), top 540ms cubic-bezier(0.22, 1, 0.36, 1), opacity 460ms ease, transform 460ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s, filter 0.2s",
                     whiteSpace: "normal",
                     overflow: "visible",
-                    textOverflow: "clip",
                     wordBreak: "break-word",
                   }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.filter = "brightness(1.15)";
+                    if (!isEntering && !isExiting)
+                      (e.currentTarget as HTMLElement).style.transform = "scale(1.04)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.filter = "";
+                    (e.currentTarget as HTMLElement).style.transform = "";
+                  }}
                 >
-                  {node.label}
-                </span>
-                {hasChildren && (
                   <span
                     style={{
-                      fontSize: 10,
-                      width: 18,
-                      height: 18,
-                      borderRadius: 999,
-                      background: "rgba(255,255,255,0.15)",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      transition: "transform 0.25s",
-                      transform: isExpanded ? "rotate(45deg)" : "rotate(0deg)",
-                      flexShrink: 0,
+                      flex: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: node.summary ? 4 : 0,
+                      whiteSpace: "normal",
+                      overflow: "visible",
+                      textOverflow: "clip",
+                      wordBreak: "break-word",
                     }}
                   >
-                    +
+                    <span>{node.label}</span>
+                    {node.summary && (
+                      <span
+                        style={{
+                          fontSize: depth === 0 ? 11.5 : 11,
+                          fontWeight: 500,
+                          lineHeight: "16px",
+                          opacity: 0.82,
+                        }}
+                      >
+                        {node.summary}
+                      </span>
+                    )}
                   </span>
-                )}
-              </button>
-            );
-          })}
+                  {hasChildren && (
+                    <span
+                      style={{
+                        fontSize: 10,
+                        width: 18,
+                        height: 18,
+                        borderRadius: 999,
+                        background: "rgba(255,255,255,0.15)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transition: "transform 0.25s",
+                        transform: isExpanded ? "rotate(45deg)" : "rotate(0deg)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      +
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      {showMinimap && (
-        <button
-          type="button"
-          className="absolute bottom-3 left-3 z-20 rounded-xl border border-white/10 bg-slate-950/75 p-2 backdrop-blur-md shadow-xl"
-          style={{ width: minimapW + 16, height: minimapH + 16 }}
-          aria-label="Mindmap minimap navigation"
-          onClick={(event) => {
-            const rect = event.currentTarget.getBoundingClientRect();
-            const mapX = minX + (event.clientX - rect.left - 8) / minimapScale;
-            const mapY = minY + (event.clientY - rect.top - 8) / minimapScale;
-            moveCameraTo(mapX, mapY);
-          }}
-        >
-          <svg width={minimapW} height={minimapH} className="block overflow-hidden rounded-lg">
-            {layout.edges.map(({ from, to }) => {
-              const a = layout.positions.get(from);
-              const b = layout.positions.get(to);
-              if (!a || !b) return null;
-              return (
-                <line
-                  key={`mini-${from}-${to}`}
-                  x1={(a.x + a.w - minX) * minimapScale}
-                  y1={(a.y - minY) * minimapScale}
-                  x2={(b.x - minX) * minimapScale}
-                  y2={(b.y - minY) * minimapScale}
-                  stroke={resolvedPalette.edgeEnd}
-                  strokeOpacity="0.45"
-                  strokeWidth="1"
-                />
-              );
-            })}
-            {visibleNodes.map(({ node }) => {
-              const p = layout.positions.get(node.id);
-              if (!p) return null;
-              return (
+        {showMinimap && (
+          <button
+            type="button"
+            className="absolute bottom-3 left-3 z-20 rounded-xl border border-white/10 bg-slate-950/75 p-2 backdrop-blur-md shadow-xl"
+            style={{ width: minimapW + 16, height: minimapH + 16 }}
+            aria-label="Mindmap minimap navigation"
+            onClick={(event) => {
+              const rect = event.currentTarget.getBoundingClientRect();
+              const mapX = minX + (event.clientX - rect.left - 8) / minimapScale;
+              const mapY = minY + (event.clientY - rect.top - 8) / minimapScale;
+              moveCameraTo(mapX, mapY);
+            }}
+          >
+            <svg
+              width={minimapW}
+              height={minimapH}
+              className="block overflow-hidden rounded-lg"
+              aria-hidden="true"
+              focusable="false"
+            >
+              {layout.edges.map(({ from, to }) => {
+                const a = layout.positions.get(from);
+                const b = layout.positions.get(to);
+                if (!a || !b) return null;
+                return (
+                  <line
+                    key={`mini-${from}-${to}`}
+                    x1={(a.x + a.w - minX) * minimapScale}
+                    y1={(a.y - minY) * minimapScale}
+                    x2={(b.x - minX) * minimapScale}
+                    y2={(b.y - minY) * minimapScale}
+                    stroke={resolvedPalette.edgeEnd}
+                    strokeOpacity="0.45"
+                    strokeWidth="1"
+                  />
+                );
+              })}
+              {visibleNodes.map(({ node }) => {
+                const p = layout.positions.get(node.id);
+                if (!p) return null;
+                return (
+                  <rect
+                    key={`mini-${node.id}`}
+                    x={(p.x - minX) * minimapScale}
+                    y={(p.y - p.h / 2 - minY) * minimapScale}
+                    width={Math.max(2, p.w * minimapScale)}
+                    height={Math.max(2, p.h * minimapScale)}
+                    rx="1.5"
+                    fill={node.id === data.id ? resolvedPalette.edgeStart : resolvedPalette.edgeEnd}
+                    opacity={selectedId && !activeIds.has(node.id) ? 0.3 : 0.8}
+                  />
+                );
+              })}
+              {viewport && (
                 <rect
-                  key={`mini-${node.id}`}
-                  x={(p.x - minX) * minimapScale}
-                  y={(p.y - p.h / 2 - minY) * minimapScale}
-                  width={Math.max(2, p.w * minimapScale)}
-                  height={Math.max(2, p.h * minimapScale)}
-                  rx="1.5"
-                  fill={node.id === data.id ? resolvedPalette.edgeStart : resolvedPalette.edgeEnd}
-                  opacity={selectedId && !activeIds.has(node.id) ? 0.3 : 0.8}
+                  x={viewport.x}
+                  y={viewport.y}
+                  width={viewport.w}
+                  height={viewport.h}
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.8)"
+                  strokeWidth="1"
+                  rx="2"
                 />
-              );
-            })}
-            {viewport && (
-              <rect
-                x={viewport.x}
-                y={viewport.y}
-                width={viewport.w}
-                height={viewport.h}
-                fill="rgba(255,255,255,0.06)"
-                stroke="rgba(255,255,255,0.8)"
-                strokeWidth="1"
-                rx="2"
-              />
-            )}
-          </svg>
-        </button>
-      )}
+              )}
+            </svg>
+          </button>
+        )}
       </div>
 
       <style>{`

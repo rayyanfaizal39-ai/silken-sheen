@@ -1,10 +1,5 @@
 import type { MindNode } from "@/components/MindMap";
-import type {
-  Form,
-  ScienceChapter2Notes,
-  Flashcard,
-  QuizQuestion,
-} from "@/data/content";
+import type { Form, ScienceChapter2Notes, Flashcard, QuizQuestion } from "@/data/content";
 import type { Subtopic } from "@/data/sejarah-f1-subtopics";
 import type { EnglishChapterData } from "@/data/english-types";
 import type { Bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
@@ -84,6 +79,10 @@ export type ChapterContent = {
   chapterKey: string; // e.g. "Chapter 1", matches getSubjectChapters().key
   /** Display title (used in headings & feature bar). */
   title: string;
+  /** Optional concise description used by resource-library cards. */
+  description?: string;
+  /** Optional curriculum grouping, such as Tatabahasa. */
+  categoryLabel?: string;
   /** Optional Science language scope. */
   lang?: "bm" | "dlp";
   video?: VideoBlock;
@@ -192,14 +191,11 @@ export type ChapterContent = {
   subtopics?: Subtopic[];
 };
 
-export type ChapterFeatureKey =
-  | "notes"
-  | "flashcards"
-  | "quiz"
-  | "mindMap"
-  | "video";
+export type ChapterFeatureKey = "notes" | "flashcards" | "quiz" | "mindMap" | "video";
 
-export function getChapterFeatures(c: ChapterContent | undefined): Record<ChapterFeatureKey, boolean> {
+export function getChapterFeatures(
+  c: ChapterContent | undefined,
+): Record<ChapterFeatureKey, boolean> {
   return {
     notes:
       !!c?.notes ||

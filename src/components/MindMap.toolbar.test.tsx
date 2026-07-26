@@ -5,6 +5,7 @@ import { MindMap, type MindNode } from "./MindMap";
 const mindMap: MindNode = {
   id: "main",
   label: "Main topic",
+  summary: "A concise central summary",
   children: [
     {
       id: "first",
@@ -31,6 +32,8 @@ describe("MindMap toolbar layout", () => {
     expect(markup).toContain("Collapse all");
     expect(markup).toContain("Reset");
     expect(markup).toContain("Map");
+    expect(markup).toContain("A concise central summary");
+    expect(markup).toContain('aria-expanded="true"');
   });
 
   it("keeps the interactive canvas in a separate clipped flex region", () => {

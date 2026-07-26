@@ -55,17 +55,25 @@ export const Route = createFileRoute("/mindmaps")({
   validateSearch: searchSchema,
   head: ({ match }) => {
     const subjectName = subjectSeoName(match.search.subject);
-    if (
-      normalizeSubjectParam(match.search.subject) === "bm" &&
-      match.search.chapter === "Kata Nama"
-    ) {
-      return seoMeta({
-        title: "Kata Nama — Peta Minda Tatabahasa Bahasa Melayu",
+    const bmTopic = {
+      "Kata Nama": {
         description:
           "Peta minda Kata Nama untuk Tingkatan 1, 2 dan 3: definisi, Kata Nama Am, Kata Nama Khas, kesalahan lazim, tip UASA dan nota ejaan.",
+        keywords: ["Kata Nama", "kata nama am", "kata nama khas"],
+      },
+      "Kata Kerja": {
+        description:
+          "Peta minda Kata Kerja untuk Tingkatan 1, 2 dan 3: transitif, tak transitif, bentuk kata kerja, ayat aktif dan pasif, kesalahan lazim serta tip UASA.",
+        keywords: ["Kata Kerja", "kata kerja transitif", "kata kerja tak transitif"],
+      },
+    }[match.search.chapter as "Kata Nama" | "Kata Kerja"];
+    if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
+      return seoMeta({
+        title: `${match.search.chapter} — Peta Minda Tatabahasa Bahasa Melayu`,
+        description: bmTopic.description,
         path: "/mindmaps",
         keywords: [
-          "Kata Nama",
+          ...bmTopic.keywords,
           "Peta Minda Bahasa Melayu",
           "Tatabahasa Tingkatan 1",
           "Tatabahasa Tingkatan 2",
@@ -283,6 +291,7 @@ function MindMapsPage() {
             chapterKey={activeChapterKey}
             scienceLang={activeScienceLang}
             form={form}
+            mode="mindmaps"
             onBack={backToChapters}
           />
           <ChapterContentTabs
@@ -299,6 +308,7 @@ function MindMapsPage() {
               title={activeChapter.mindMap.title}
               storageKey={`mindmaps:${subject}:${form}:${activeChapterKey}`}
               palette={mindMapPalette}
+              mobileLayout={subject === "bm" ? "learning-path" : "canvas"}
             />
           ) : (
             <MindMapComingSoon onBack={backToChapters} />
@@ -324,6 +334,7 @@ function MindMapChapterGrid({
 }) {
   const subj = subjects.find((candidate) => candidate.id === subjectId);
   const chapters = getMindMapChapters(subjectId, scienceLang, form);
+  const isBahasaMelayu = subjectId === "bm";
 
   return (
     <AcademyPanel>
@@ -333,18 +344,31 @@ function MindMapChapterGrid({
           onClick={onBack}
           className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/70 transition-all hover:-translate-x-0.5 hover:bg-white/[0.10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to forms
+          <ArrowLeft className="h-4 w-4" />{" "}
+          {isBahasaMelayu ? "Kembali ke tingkatan" : "Back to forms"}
         </button>
         <div className="flex items-center gap-2 rounded-xl border border-cyan-300/15 bg-cyan-300/[0.06] px-3 py-1.5">
           <Network className="h-4 w-4 text-cyan-200" />
-          <span className="text-xs font-bold text-cyan-100">{form} Mind Maps</span>
+          <span className="text-xs font-bold text-cyan-100">
+            {isBahasaMelayu ? `${form} • Tatabahasa` : `${form} Mind Maps`}
+          </span>
         </div>
       </div>
 
       <AcademySectionHeader
-        eyebrow="Mind Map Library"
-        title={subj ? `${subj.name} Mind Maps` : "Mind Maps"}
-        description="Choose a chapter and open its interactive visual learning map."
+        eyebrow={isBahasaMelayu ? "Peta Minda • Tatabahasa" : "Mind Map Library"}
+        title={
+          isBahasaMelayu
+            ? "Tatabahasa Bahasa Melayu"
+            : subj
+              ? `${subj.name} Mind Maps`
+              : "Mind Maps"
+        }
+        description={
+          isBahasaMelayu
+            ? "Pilih topik dan buka peta minda visual yang interaktif."
+            : "Choose a chapter and open its interactive visual learning map."
+        }
       />
 
       {chapters.length === 0 ? (
@@ -372,7 +396,9 @@ function MindMapChapterGrid({
                 type="button"
                 onClick={() => hasMindMap && onSelect(chapter.key)}
                 disabled={!hasMindMap}
-                className="group relative flex min-h-[210px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.20)] backdrop-blur-2xl transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_24px_80px_rgba(14,165,233,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
+                className={`group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.20)] backdrop-blur-2xl transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_24px_80px_rgba(14,165,233,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 ${
+                  isBahasaMelayu ? "min-h-[190px]" : "min-h-[210px]"
+                }`}
                 style={{ animationDelay: `${index * 55}ms` }}
               >
                 <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-300/10 blur-3xl transition-opacity group-hover:bg-cyan-300/16" />
@@ -387,23 +413,32 @@ function MindMapChapterGrid({
                         : "border-white/10 bg-white/[0.04] text-white/50"
                     }`}
                   >
-                    {hasMindMap ? "Interactive" : "Coming Soon"}
+                    {hasMindMap
+                      ? isBahasaMelayu
+                        ? "Interaktif"
+                        : "Interactive"
+                      : isBahasaMelayu
+                        ? "Akan Datang"
+                        : "Coming Soon"}
                   </span>
                 </div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/55">
-                  Chapter {index + 1}
-                </p>
+                {!isBahasaMelayu && (
+                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/55">
+                    Chapter {index + 1}
+                  </p>
+                )}
                 <h3 className="mt-2 font-display text-lg font-bold leading-snug text-white">
                   {chapter.label}
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-white/55">
-                  {hasMindMap
-                    ? "Open the chapter's visual learning map."
-                    : "This chapter's interactive mind map is currently being prepared."}
+                  {chapter.description ??
+                    (hasMindMap
+                      ? "Open the chapter's visual learning map."
+                      : "This chapter's interactive mind map is currently being prepared.")}
                 </p>
                 <span className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-4 py-2 text-xs font-bold text-white shadow-[0_12px_28px_rgba(14,165,233,0.18)] transition-transform group-hover:scale-105">
                   <GitFork className="h-3.5 w-3.5" />
-                  Open Mind Map
+                  {isBahasaMelayu ? "Buka Peta Minda" : "Open Mind Map"}
                 </span>
               </button>
             );
@@ -417,10 +452,23 @@ function MindMapChapterGrid({
 function getMindMapChapters(subjectId: string, scienceLang: "bm" | "dlp" | undefined, form: Form) {
   const rows = new Map<
     string,
-    { key: string; label: string; available: boolean; isNew?: boolean }
+    {
+      key: string;
+      label: string;
+      description?: string;
+      categoryLabel?: string;
+      available: boolean;
+      isNew?: boolean;
+    }
   >();
 
   for (const chapter of getSubjectChapters(subjectId, scienceLang, form)) {
+    if (
+      subjectId === "bm" &&
+      !hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang)
+    ) {
+      continue;
+    }
     rows.set(chapter.key, chapter);
   }
 

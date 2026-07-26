@@ -231,6 +231,7 @@ import { scienceF1C8MindMapDLP } from "@/content/form1/science/chapter-8/mindmap
 import { scienceF1C9MindMapBM } from "@/content/form1/science/chapter-9/mindmap-bm";
 import { scienceF1C9MindMapDLP } from "@/content/form1/science/chapter-9/mindmap-dlp";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
+import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -590,9 +591,7 @@ function sejarahFlashcardsFor(chapterNum: number) {
 function sejarahQuizzesFor(chapterNum: number) {
   return allQuizzes.filter(
     (q) =>
-      q.subjectId === "sejarah" &&
-      q.form === "Form 1" &&
-      sejarahChapterFromId(q.id) === chapterNum,
+      q.subjectId === "sejarah" && q.form === "Form 1" && sejarahChapterFromId(q.id) === chapterNum,
   );
 }
 
@@ -2374,6 +2373,8 @@ export const chapters: ChapterContent[] = [
     form: "Form 1",
     chapterKey: "Kata Nama",
     title: "Kata Nama",
+    description: "Perkataan yang menamakan orang, haiwan, benda, tempat atau konsep.",
+    categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
   },
   {
@@ -2382,6 +2383,8 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Kata Nama",
     title: "Kata Nama",
+    description: "Perkataan yang menamakan orang, haiwan, benda, tempat atau konsep.",
+    categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
   },
   {
@@ -2390,7 +2393,39 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Kata Nama",
     title: "Kata Nama",
+    description: "Perkataan yang menamakan orang, haiwan, benda, tempat atau konsep.",
+    categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
+  },
+  {
+    id: "bm-f1-kata-kerja-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kata Kerja",
+    title: "Kata Kerja",
+    description: "Perkataan yang menerangkan perbuatan, keadaan atau proses.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataKerjaMindMap, title: "Kata Kerja" },
+  },
+  {
+    id: "bm-f2-kata-kerja-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Kerja",
+    title: "Kata Kerja",
+    description: "Perkataan yang menerangkan perbuatan, keadaan atau proses.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataKerjaMindMap, title: "Kata Kerja" },
+  },
+  {
+    id: "bm-f3-kata-kerja-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kata Kerja",
+    title: "Kata Kerja",
+    description: "Perkataan yang menerangkan perbuatan, keadaan atau proses.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataKerjaMindMap, title: "Kata Kerja" },
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
@@ -2938,8 +2973,7 @@ export function getChapterQuizQuestions(
     return [];
   }
 
-  const registeredQuestions =
-    getChapter(subjectId, chapterKey, lang, form)?.quiz ?? [];
+  const registeredQuestions = getChapter(subjectId, chapterKey, lang, form)?.quiz ?? [];
 
   const legacyQuestions = allQuizzes.filter(
     (question) =>
@@ -2990,6 +3024,7 @@ export function getChaptersForSubject(
 export type RegisteredSubjectChapter = {
   key: string;
   label: string;
+  description?: string;
   categoryLabel?: string;
   available: boolean;
   selectable: boolean;
@@ -3201,10 +3236,12 @@ export function getRegisteredSubjectChapters(
       return {
         key,
         label: chapterLabel(preferred, lang),
+        description: preferred.description,
         categoryLabel:
-          preferred.subjectId === "sejarah"
+          preferred.categoryLabel ??
+          (preferred.subjectId === "sejarah"
             ? SEJARAH_CATEGORY_LABELS[preferred.form]?.[preferred.chapterKey]
-            : undefined,
+            : undefined),
         available,
         selectable: available,
         subtopics: preferred.subtopics?.map((subtopic) => subtopic.title),
