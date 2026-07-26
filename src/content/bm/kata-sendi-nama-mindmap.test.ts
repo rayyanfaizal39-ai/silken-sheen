@@ -40,18 +40,19 @@ describe("Bahasa Melayu Kata Sendi Nama mind map", () => {
     expect(hasFormResourceContent("bm", form, "mindMap")).toBe(true);
   });
 
-  it.each(forms)("appears fourth in the active Tatabahasa library for %s", (form) => {
+  it.each(forms)("appears fifth in the active Tatabahasa library for %s", (form) => {
     const topics = getRegisteredSubjectChapters("bm", undefined, form)
       .filter((chapter) => getChapter("bm", chapter.key, undefined, form)?.mindMap)
-      .slice(0, 4);
+      .slice(0, 5);
 
     expect(topics.map((topic) => topic.key)).toEqual([
       "Kata Nama",
+      "Kata Ganti Nama",
       "Kata Kerja",
       "Kata Adjektif",
       "Kata Sendi Nama",
     ]);
-    expect(topics[3]).toMatchObject({
+    expect(topics[4]).toMatchObject({
       label: "Kata Sendi Nama",
       description,
       categoryLabel: "Tatabahasa",

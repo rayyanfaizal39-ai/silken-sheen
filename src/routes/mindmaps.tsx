@@ -61,6 +61,16 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Kata Nama untuk Tingkatan 1, 2 dan 3: definisi, Kata Nama Am, Kata Nama Khas, kesalahan lazim, tip UASA dan nota ejaan.",
         keywords: ["Kata Nama", "kata nama am", "kata nama khas"],
       },
+      "Kata Ganti Nama": {
+        description:
+          "Peta minda Kata Ganti Nama untuk Tingkatan 1, 2 dan 3: kata ganti nama diri, kata ganti nama tunjuk, pemilihan mengikut konteks, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Kata Ganti Nama",
+          "kata ganti nama diri",
+          "kata ganti nama tunjuk",
+          "kami dan kita",
+        ],
+      },
       "Kata Kerja": {
         description:
           "Peta minda Kata Kerja untuk Tingkatan 1, 2 dan 3: transitif, tak transitif, bentuk kata kerja, ayat aktif dan pasif, kesalahan lazim serta tip UASA.",
@@ -76,7 +86,14 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Kata Sendi Nama untuk Tingkatan 1, 2 dan 3: fungsi di, dari dan daripada, ke dan kepada, Frasa Sendi Nama, kesalahan lazim serta tip UASA.",
         keywords: ["Kata Sendi Nama", "frasa sendi nama", "dari dan daripada", "ke dan kepada"],
       },
-    }[match.search.chapter as "Kata Nama" | "Kata Kerja" | "Kata Adjektif" | "Kata Sendi Nama"];
+    }[
+      match.search.chapter as
+        | "Kata Nama"
+        | "Kata Ganti Nama"
+        | "Kata Kerja"
+        | "Kata Adjektif"
+        | "Kata Sendi Nama"
+    ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
         title: `${match.search.chapter} — Peta Minda Tatabahasa Bahasa Melayu`,

@@ -30,13 +30,14 @@ describe("Bahasa Melayu Kata Adjektif mind map", () => {
     expect(hasFormResourceContent("bm", form, "mindMap")).toBe(true);
   });
 
-  it.each(forms)("appears third after Kata Nama and Kata Kerja for %s", (form) => {
+  it.each(forms)("appears fourth in the active Tatabahasa order for %s", (form) => {
     const topics = getRegisteredSubjectChapters("bm", undefined, form)
       .filter((chapter) => getChapter("bm", chapter.key, undefined, form)?.mindMap)
-      .slice(0, 3);
+      .slice(0, 4);
 
     expect(topics).toEqual([
       expect.objectContaining({ key: "Kata Nama", categoryLabel: "Tatabahasa" }),
+      expect.objectContaining({ key: "Kata Ganti Nama", categoryLabel: "Tatabahasa" }),
       expect.objectContaining({ key: "Kata Kerja", categoryLabel: "Tatabahasa" }),
       expect.objectContaining({
         key: "Kata Adjektif",

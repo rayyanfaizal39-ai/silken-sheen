@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
+import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
 import { MindMap, type MindNode } from "./MindMap";
 
@@ -90,6 +91,26 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(10);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Kata Ganti Nama path in order without child details", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuKataGantiNamaMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuKataGantiNamaMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda KATA GANTI NAMA"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain("Perkataan yang digunakan untuk menggantikan kata nama dalam ayat.");
+    expect(markup).not.toContain("Merujuk kepada orang yang bercakap:");
+    expect(markup).not.toContain("Menunjukkan sesuatu yang dekat.");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(8);
     expect(markup).not.toContain("touch-none");
   });
 });

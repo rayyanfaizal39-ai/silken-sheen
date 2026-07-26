@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
+import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
@@ -13,6 +14,7 @@ import {
 
 const tatabahasaMindMaps = [
   ["Kata Nama", bahasaMelayuKataNamaMindMap],
+  ["Kata Ganti Nama", bahasaMelayuKataGantiNamaMindMap],
   ["Kata Kerja", bahasaMelayuKataKerjaMindMap],
   ["Kata Adjektif", bahasaMelayuKataAdjektifMindMap],
   ["Kata Sendi Nama", bahasaMelayuKataSendiNamaMindMap],
@@ -134,6 +136,36 @@ describe("MindMap reusable hierarchy", () => {
     const frasaBranch = data.children?.find((branch) => branch.label === "Frasa Sendi Nama");
     expect(visibleLabels(data, new Set([data.id, frasaBranch?.id ?? ""]))).toEqual(
       expect.arrayContaining(["Maksud", "Formula", "Pola Ayat", "Contoh"]),
+    );
+  });
+
+  it("reveals Kata Ganti Nama person categories only through their matching branch", () => {
+    const data = bahasaMelayuKataGantiNamaMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Orang Pertama");
+    expect(overview).not.toContain("ini");
+    expect(overview).not.toContain("Situasi Rasmi");
+
+    const diriBranch = data.children?.find((branch) => branch.label === "Kata Ganti Nama Diri");
+    const diriOpen = getVisibleMindNodes(data, new Set([data.id, diriBranch?.id ?? ""]));
+    expect(diriOpen.map(({ node }) => node.label)).toEqual(
+      expect.arrayContaining(["Maksud", "Orang Pertama", "Orang Kedua", "Orang Ketiga"]),
+    );
+    expect(diriOpen.find(({ node }) => node.label === "Orang Pertama")?.node.summary).toBe(
+      "Merujuk kepada orang yang bercakap: saya, aku, kami dan kita.",
+    );
+
+    const tunjukBranch = data.children?.find((branch) => branch.label === "Kata Ganti Nama Tunjuk");
+    expect(visibleLabels(data, new Set([data.id, tunjukBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["ini", "itu", "sini, situ dan sana"]),
+    );
+
+    const contextBranch = data.children?.find(
+      (branch) => branch.label === "Pemilihan Mengikut Konteks",
+    );
+    expect(visibleLabels(data, new Set([data.id, contextBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Situasi Rasmi", "Situasi Tidak Formal", "Bilangan", "Kesantunan"]),
     );
   });
 });

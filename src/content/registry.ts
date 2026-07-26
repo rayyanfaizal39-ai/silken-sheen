@@ -231,6 +231,7 @@ import { scienceF1C8MindMapDLP } from "@/content/form1/science/chapter-8/mindmap
 import { scienceF1C9MindMapBM } from "@/content/form1/science/chapter-9/mindmap-bm";
 import { scienceF1C9MindMapDLP } from "@/content/form1/science/chapter-9/mindmap-dlp";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
+import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
@@ -2398,6 +2399,39 @@ export const chapters: ChapterContent[] = [
     description: "Perkataan yang menamakan orang, haiwan, benda, tempat atau konsep.",
     categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
+  },
+  {
+    id: "bm-f1-kata-ganti-nama-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kata Ganti Nama",
+    title: "Kata Ganti Nama",
+    description:
+      "Perkataan yang digunakan untuk menggantikan kata nama supaya ayat tidak berulang.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataGantiNamaMindMap, title: "Kata Ganti Nama" },
+  },
+  {
+    id: "bm-f2-kata-ganti-nama-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Ganti Nama",
+    title: "Kata Ganti Nama",
+    description:
+      "Perkataan yang digunakan untuk menggantikan kata nama supaya ayat tidak berulang.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataGantiNamaMindMap, title: "Kata Ganti Nama" },
+  },
+  {
+    id: "bm-f3-kata-ganti-nama-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kata Ganti Nama",
+    title: "Kata Ganti Nama",
+    description:
+      "Perkataan yang digunakan untuk menggantikan kata nama supaya ayat tidak berulang.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataGantiNamaMindMap, title: "Kata Ganti Nama" },
   },
   {
     id: "bm-f1-kata-kerja-mindmap",

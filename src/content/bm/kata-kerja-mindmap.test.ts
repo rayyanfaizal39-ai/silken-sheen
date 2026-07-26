@@ -27,14 +27,18 @@ describe("Bahasa Melayu Kata Kerja mind map", () => {
     expect(hasFormResourceContent("bm", form, "mindMap")).toBe(true);
   });
 
-  it.each(forms)("keeps Kata Nama and Kata Kerja as the first completed topics for %s", (form) => {
+  it.each(forms)("places Kata Kerja third after the two noun topics for %s", (form) => {
     const topics = getRegisteredSubjectChapters("bm", undefined, form)
       .filter((chapter) => getChapter("bm", chapter.key, undefined, form)?.mindMap)
-      .slice(0, 2);
+      .slice(0, 3);
 
     expect(topics).toEqual([
       expect.objectContaining({
         key: "Kata Nama",
+        categoryLabel: "Tatabahasa",
+      }),
+      expect.objectContaining({
+        key: "Kata Ganti Nama",
         categoryLabel: "Tatabahasa",
       }),
       expect.objectContaining({
