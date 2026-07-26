@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
+import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
 import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
@@ -186,6 +187,30 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(12);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Imbuhan path in order without child details", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuImbuhanMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuImbuhanMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda IMBUHAN"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Imbuhan ialah unsur yang ditambahkan pada kata dasar untuk menghasilkan kata terbitan",
+    );
+    expect(markup).not.toContain(
+      "Imbuhan ialah unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan.",
+    );
+    expect(markup).not.toContain("meN- • ber- • di-");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(10);
     expect(markup).not.toContain("touch-none");
   });
 });

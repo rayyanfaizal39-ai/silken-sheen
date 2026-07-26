@@ -238,6 +238,7 @@ import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-m
 import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
 import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
+import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2627,6 +2628,39 @@ export const chapters: ChapterContent[] = [
       "Perkataan yang digunakan bersama kata bilangan untuk membilang manusia, haiwan atau benda mengikut bentuk dan sifatnya.",
     categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuPenjodohBilanganMindMap, title: "Penjodoh Bilangan" },
+  },
+  {
+    id: "bm-f1-imbuhan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Imbuhan",
+    title: "Imbuhan",
+    description:
+      "Unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan yang membawa makna tertentu.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
+  },
+  {
+    id: "bm-f2-imbuhan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Imbuhan",
+    title: "Imbuhan",
+    description:
+      "Unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan yang membawa makna tertentu.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
+  },
+  {
+    id: "bm-f3-imbuhan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Imbuhan",
+    title: "Imbuhan",
+    description:
+      "Unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan yang membawa makna tertentu.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)

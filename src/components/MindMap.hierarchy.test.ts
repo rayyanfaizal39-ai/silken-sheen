@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
 import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
@@ -24,6 +25,7 @@ const tatabahasaMindMaps = [
   ["Kata Hubung", bahasaMelayuKataHubungMindMap],
   ["Kata Bilangan", bahasaMelayuKataBilanganMindMap],
   ["Penjodoh Bilangan", bahasaMelayuPenjodohBilanganMindMap],
+  ["Imbuhan", bahasaMelayuImbuhanMindMap],
 ] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
@@ -261,6 +263,30 @@ describe("MindMap reusable hierarchy", () => {
         "Nota",
         "Penjodoh Bilangan",
       ]),
+    );
+  });
+
+  it("reveals Imbuhan rules only through their matching branches", () => {
+    const data = bahasaMelayuImbuhanMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("Fungsi Ringkas");
+    expect(overview).not.toContain("Kata Nama Khas");
+
+    const prefixBranch = data.children?.find((branch) => branch.label === "Imbuhan Awalan");
+    expect(visibleLabels(data, new Set([data.id, prefixBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Contoh", "Contoh Perkataan", "Fungsi Ringkas"]),
+    );
+
+    const suffixBranch = data.children?.find((branch) => branch.label === "Imbuhan Akhiran");
+    expect(visibleLabels(data, new Set([data.id, suffixBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Contoh", "Pembentukan Perkataan", "Nota Ejaan"]),
+    );
+
+    const borrowedBranch = data.children?.find((branch) => branch.label === "Imbuhan Pinjaman");
+    expect(visibleLabels(data, new Set([data.id, borrowedBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Contoh", "Contoh Perkataan", "Kata Nama Khas"]),
     );
   });
 

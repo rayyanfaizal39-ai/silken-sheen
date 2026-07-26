@@ -111,6 +111,11 @@ export const Route = createFileRoute("/mindmaps")({
           "orang ekor buah helai",
         ],
       },
+      Imbuhan: {
+        description:
+          "Peta minda Imbuhan untuk Tingkatan 1, 2 dan 3: awalan, akhiran, apitan, sisipan, imbuhan pinjaman, fungsi, kesalahan lazim dan tip UASA.",
+        keywords: ["Imbuhan", "jenis imbuhan", "imbuhan KSSM", "awalan akhiran apitan sisipan"],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -121,6 +126,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Kata Hubung"
         | "Kata Bilangan"
         | "Penjodoh Bilangan"
+        | "Imbuhan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
