@@ -8,7 +8,12 @@ interface NavItem {
   icon: string;
   label: string;
   active?: boolean;
-  to?: "/admin/cikgu-intel" | "/admin/content-library" | "/admin/users" | "/admin/reports";
+  to?:
+    | "/admin/cikgu-intel"
+    | "/admin/content-library"
+    | "/admin/content/quiz-importer"
+    | "/admin/users"
+    | "/admin/reports";
 }
 
 const NAV: { group: string; items: NavItem[] }[] = [
@@ -29,6 +34,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
       { icon: "🧩", label: "Chapters" },
       { icon: "🧠", label: "Cikgu AI Intel", to: "/admin/cikgu-intel" },
       { icon: "🗂", label: "Content Library", to: "/admin/content-library" },
+      { icon: "Q", label: "Quiz Importer", to: "/admin/content/quiz-importer" },
     ],
   },
   {
@@ -45,7 +51,7 @@ export function AdminShell({ profile, children }: { profile: AdminProfile; child
 
   async function handleLogout() {
     await signOut();
-    await navigate({ to: "/admin/login", replace: true });
+    await navigate({ to: "/admin/login", search: { denied: false }, replace: true });
   }
 
   return (

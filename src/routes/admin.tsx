@@ -47,7 +47,7 @@ function AdminLayout() {
         queryError: "No authenticated Supabase user was found.",
         redirectReason: "no_authenticated_user",
       });
-      void navigate({ to: "/admin/login", replace: true });
+      void navigate({ to: "/admin/login", search: { denied: false }, replace: true });
       return;
     }
 

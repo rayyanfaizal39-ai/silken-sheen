@@ -1,8 +1,6 @@
 import { useEffect, useRef } from "react";
 import { sfx, initSfxPreference } from "@/lib/sounds";
-import { useProgress } from "@/hooks/use-progress";
-
-const XP_MILESTONE = 100; // every 100 XP triggers level-up sound
+import { getCompanionLevelProgress, useProgress } from "@/hooks/use-progress";
 
 function isInteractive(el: EventTarget | null): HTMLElement | null {
   if (!(el instanceof HTMLElement)) return null;
@@ -38,7 +36,7 @@ export function SoundFx() {
   }, []);
 
   useEffect(() => {
-    const level = Math.floor(progress.xp / XP_MILESTONE);
+    const level = getCompanionLevelProgress(progress.xp).currentLevel;
     if (lastLevelRef.current === null) {
       lastLevelRef.current = level;
       return;

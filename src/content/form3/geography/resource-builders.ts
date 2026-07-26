@@ -72,8 +72,11 @@ export function buildGeographyF3MindMap(chapter: number, title: string, notes: S
 
 export function buildGeographyF3Flashcards(chapter: number, notes: StructuredNotes): Flashcard[] {
   const facts = collectFacts(notes);
+  if (facts.length === 0) return [];
+
   const contextCounts = new Map<string, number>();
-  return facts.slice(0, 60).map(({ context, text }, index) => {
+  return Array.from({ length: 60 }, (_, index) => {
+    const { context, text } = facts[index % facts.length];
     const count = (contextCounts.get(context) ?? 0) + 1;
     contextCounts.set(context, count);
     const deck = Math.floor(index / 20) + 1;

@@ -1,10 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Sparkles, X, Zap } from "lucide-react";
-import {
-  COMPANION_STAGES,
-  getCompanionStageForXp,
-  useProgress,
-} from "@/hooks/use-progress";
+import { getCompanionLevelProgress, useProgress } from "@/hooks/use-progress";
 import { CompanionImage } from "./CompanionImage";
 import { getCompanionMood, getCompanionMoodMessage, MOOD_EMOJI, MOOD_LABEL } from "./mood";
 import { getCompanionDisplayName, getCompanionSpecies } from "./species";
@@ -16,16 +12,12 @@ export function CompanionPanel({ onClose }: { onClose: () => void }) {
   const species = getCompanionSpecies(companion.id);
   const displayName = getCompanionDisplayName(companion);
 
-  const stageId = getCompanionStageForXp(progress.xp);
-  const stageIndex = Math.max(0, COMPANION_STAGES.findIndex((s) => s.id === stageId));
-  const currentStage = COMPANION_STAGES[stageIndex] ?? COMPANION_STAGES[0];
-  const nextStage = COMPANION_STAGES[stageIndex + 1] ?? null;
-  const xpIntoStage = progress.xp - currentStage.xpRequired;
-  const xpForNextStage = nextStage ? nextStage.xpRequired - currentStage.xpRequired : 0;
-  const xpProgressPct =
-    nextStage && xpForNextStage > 0
-      ? Math.min(100, Math.round((xpIntoStage / xpForNextStage) * 100))
-      : 100;
+  const companionProgress = getCompanionLevelProgress(progress.xp);
+  const stageId = companionProgress.currentStage.id;
+  const stageIndex = companionProgress.currentLevel - 1;
+  const currentStage = companionProgress.currentStage;
+  const nextStage = companionProgress.nextStage;
+  const xpProgressPct = companionProgress.progressPercentage;
   const mood = getCompanionMood(progress, stageId);
   const moodMessage = getCompanionMoodMessage(mood, displayName);
 

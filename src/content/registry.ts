@@ -175,6 +175,7 @@ import { geographyF2C10Notes } from "@/content/form2/geography/chapter-10/notes"
 import { geographyF3C1Notes } from "@/content/form3/geography/chapter-1/notes";
 import { geographyF3C2Notes } from "@/content/form3/geography/chapter-2/notes";
 import { geographyF3C3Notes } from "@/content/form3/geography/chapter-3/notes";
+import { geographyF3C3Flashcards } from "@/content/form3/geography/chapter-3/flashcards";
 import { geographyF3C4Notes } from "@/content/form3/geography/chapter-4/notes";
 import { geographyF3C5Notes } from "@/content/form3/geography/chapter-5/notes";
 import { geographyF3C6Notes } from "@/content/form3/geography/chapter-6/notes";
@@ -224,6 +225,7 @@ import { scienceF1C8MindMapBM } from "@/content/form1/science/chapter-8/mindmap-
 import { scienceF1C8MindMapDLP } from "@/content/form1/science/chapter-8/mindmap-dlp";
 import { scienceF1C9MindMapBM } from "@/content/form1/science/chapter-9/mindmap-bm";
 import { scienceF1C9MindMapDLP } from "@/content/form1/science/chapter-9/mindmap-dlp";
+import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -415,7 +417,6 @@ import { mathF2C11NotesDLP } from "@/content/form2/math/chapter-11/notes-dlp";
 import { mathF2C11MindMapBM } from "@/content/form2/math/chapter-11/mindmap-bm";
 import { mathF2C11MindMapDLP } from "@/content/form2/math/chapter-11/mindmap-dlp";
 
-
 import { mathF2C2QuizzesBM } from "@/content/form2/math/chapter-2/quizzes-bm";
 import { mathF2C2QuizzesDLP } from "@/content/form2/math/chapter-2/quizzes-dlp";
 import { mathF2C2FlashcardsBM } from "@/content/form2/math/chapter-2/flashcards-bm";
@@ -547,9 +548,10 @@ import { mathF3C9QuizzesDLP } from "@/content/form3/math/chapter-9/quizzes-dlp";
 import { mathF3C9FlashcardsBM } from "@/content/form3/math/chapter-9/flashcards-bm";
 import { mathF3C9FlashcardsDLP } from "@/content/form3/math/chapter-9/flashcards-dlp";
 
-
 function englishFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
-  return allFlashcards.filter((f) => f.subjectId === "english" && f.chapter === chapterKey && f.form === form);
+  return allFlashcards.filter(
+    (f) => f.subjectId === "english" && f.chapter === chapterKey && f.form === form,
+  );
 }
 
 function englishFlashcardsForF2(chapterKey: string) {
@@ -565,10 +567,14 @@ function englishFlashcardsForF3(chapterKey: string) {
 }
 
 function bmFlashcardsFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
-  return allFlashcards.filter((f) => f.subjectId === "bm" && f.chapter === chapterKey && f.form === form);
+  return allFlashcards.filter(
+    (f) => f.subjectId === "bm" && f.chapter === chapterKey && f.form === form,
+  );
 }
 function englishQuizzesFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form 1") {
-  return allQuizzes.filter((q) => q.subjectId === "english" && q.chapter === chapterKey && q.form === form);
+  return allQuizzes.filter(
+    (q) => q.subjectId === "english" && q.chapter === chapterKey && q.form === form,
+  );
 }
 
 function englishQuizzesForF2(chapterKey: string) {
@@ -724,11 +730,26 @@ function geography(
 export const chapters: ChapterContent[] = [
   ...scienceF3ChapterContent,
   // Sejarah Form 1
-  { ...sejarah(1, "Mengenali Sejarah", mengenaliSejarahMindMap, "Mengenali Sejarah"), sejChapter1Data: sej1Content },
-  { ...sejarah(2, "Zaman Air Batu", zamanAirBatuMindMap, "Zaman Air Batu"), sejChapter2Data: sej2Content },
-  { ...sejarah(3, "Zaman Prasejarah", zamanPrasejarahMindMap, "Zaman Prasejarah"), sejChapter3Data: sej3Content },
-  { ...sejarah(4, "Mengenali Tamadun", mengenaliTamadunMindMap, "Mengenali Tamadun"), sejChapter4Data: sej4Content },
-  { ...sejarah(5, "Tamadun Awal Dunia", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"), sejChapter5Data: sej5Content },
+  {
+    ...sejarah(1, "Mengenali Sejarah", mengenaliSejarahMindMap, "Mengenali Sejarah"),
+    sejChapter1Data: sej1Content,
+  },
+  {
+    ...sejarah(2, "Zaman Air Batu", zamanAirBatuMindMap, "Zaman Air Batu"),
+    sejChapter2Data: sej2Content,
+  },
+  {
+    ...sejarah(3, "Zaman Prasejarah", zamanPrasejarahMindMap, "Zaman Prasejarah"),
+    sejChapter3Data: sej3Content,
+  },
+  {
+    ...sejarah(4, "Mengenali Tamadun", mengenaliTamadunMindMap, "Mengenali Tamadun"),
+    sejChapter4Data: sej4Content,
+  },
+  {
+    ...sejarah(5, "Tamadun Awal Dunia", tamadunAwalDuniaMindMap, "Tamadun Awal Dunia"),
+    sejChapter5Data: sej5Content,
+  },
   {
     ...sejarah(
       6,
@@ -739,21 +760,11 @@ export const chapters: ChapterContent[] = [
     sejChapter6Data: sej6Content,
   },
   {
-    ...sejarah(
-      7,
-      "Tamadun India dan China",
-      tamadunIndiaChinaMindMap,
-      "Tamadun India dan China",
-    ),
+    ...sejarah(7, "Tamadun India dan China", tamadunIndiaChinaMindMap, "Tamadun India dan China"),
     sejChapter7Data: sej7Content,
   },
   {
-    ...sejarah(
-      8,
-      "Tamadun Islam",
-      tamadunIslamSumbanganMindMap,
-      "Tamadun Islam dan Sumbangannya",
-    ),
+    ...sejarah(8, "Tamadun Islam", tamadunIslamSumbanganMindMap, "Tamadun Islam dan Sumbangannya"),
     sejChapter8Data: sej8Content,
   },
 
@@ -912,7 +923,10 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
     sej3Chapter4Data: sej3Ch4Content,
-    mindMap: { data: sejarahF3C4MindMap, title: "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu" },
+    mindMap: {
+      data: sejarahF3C4MindMap,
+      title: "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+    },
     flashcards: sejarahF3FlashcardsFor(4),
     quiz: sejarahF3QuizzesFor(4),
   },
@@ -934,7 +948,10 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial",
     sej3Chapter6Data: sej3Ch6Content,
-    mindMap: { data: sejarahF3C6MindMap, title: "Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial" },
+    mindMap: {
+      data: sejarahF3C6MindMap,
+      title: "Kesan Pentadbiran Barat terhadap Ekonomi dan Sosial",
+    },
     flashcards: sejarahF3FlashcardsFor(6),
     quiz: sejarahF3QuizzesFor(6),
   },
@@ -956,7 +973,10 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat",
     sej3Chapter8Data: sej3Ch8Content,
-    mindMap: { data: sejarahF3C8MindMap, title: "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat" },
+    mindMap: {
+      data: sejarahF3C8MindMap,
+      title: "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat",
+    },
     flashcards: sejarahF3FlashcardsFor(8),
     quiz: sejarahF3QuizzesFor(8),
   },
@@ -971,8 +991,14 @@ export const chapters: ChapterContent[] = [
   { ...geography(7, geoF1C7MindMap, "Saliran"), geoChapter7Data: geo7Content },
   { ...geography(8, geoF1C8MindMap, "Penduduk di Malaysia"), geoChapter8Data: geo8Content },
   { ...geography(9, geoF1C9MindMap, "Petempatan di Malaysia"), geoChapter9Data: geo9Content },
-  { ...geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"), geoChapter10Data: geo10Content },
-  { ...geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"), geoChapter11Data: geo11Content },
+  {
+    ...geography(10, geoF1C10MindMap, "Bentuk Muka Bumi dan Saliran di Asia Tenggara"),
+    geoChapter10Data: geo10Content,
+  },
+  {
+    ...geography(11, geoF1C11MindMap, "Penduduk dan Petempatan di Asia Tenggara"),
+    geoChapter11Data: geo11Content,
+  },
   { ...geography(12, geoF1C12MindMap, "Sumber Air"), geoChapter12Data: geo12Content },
   { ...geography(13, geoF1C13MindMap, "Sisa Domestik"), geoChapter13Data: geo13Content },
 
@@ -1126,10 +1152,15 @@ export const chapters: ChapterContent[] = [
     subjectId: "geography",
     form: "Form 3",
     chapterKey: "Chapter 3",
-    title: "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
+    title:
+      "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
     notes: geographyF3C3Notes,
-    mindMap: { data: geoF3C3MindMap, title: "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar" },
-    flashcards: geographyF3FlashcardsFor(3),
+    mindMap: {
+      data: geoF3C3MindMap,
+      title:
+        "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
+    },
+    flashcards: geographyF3C3Flashcards,
     quiz: geographyF3QuizzesFor(3),
   },
   {
@@ -1183,7 +1214,10 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
     notes: geographyF3C8Notes,
-    mindMap: { data: geoF3C8MindMap, title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia" },
+    mindMap: {
+      data: geoF3C8MindMap,
+      title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
+    },
     flashcards: geographyF3FlashcardsFor(8),
     quiz: geographyF3QuizzesFor(8),
   },
@@ -1194,7 +1228,10 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
     notes: geographyF3C9Notes,
-    mindMap: { data: geoF3C9MindMap, title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia" },
+    mindMap: {
+      data: geoF3C9MindMap,
+      title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
+    },
     flashcards: geographyF3FlashcardsFor(9),
     quiz: geographyF3QuizzesFor(9),
   },
@@ -1280,7 +1317,10 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
     lang: "bm",
-    mindMap: { data: mathF1C3MindMapBM, title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga & Punca Kuasa Tiga" },
+    mindMap: {
+      data: mathF1C3MindMapBM,
+      title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga & Punca Kuasa Tiga",
+    },
     notes: mathF1C3NotesBM,
   },
   {
@@ -2321,6 +2361,32 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: englishF3Paper2MindMap, title: "Paper 2 - Writing" },
   },
 
+  // Bahasa Melayu mind maps use the same registered chapter pipeline as Science.
+  {
+    id: "bm-f1-kata-nama-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kata Nama",
+    title: "Kata Nama",
+    mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
+  },
+  {
+    id: "bm-f2-kata-nama-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Nama",
+    title: "Kata Nama",
+    mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
+  },
+  {
+    id: "bm-f3-kata-nama-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kata Nama",
+    title: "Kata Nama",
+    mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
+  },
+
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
   {
     id: "bm-f1-karangan-pendek",
@@ -2926,7 +2992,10 @@ function chapterNumberFromKey(chapterKey: string) {
 // disabled. Register externally-stored content here rather than special-casing
 // a subject in the UI layer.
 const EXTERNALLY_STORED_RESOURCES: Partial<
-  Record<ResourceType, Array<{ subjectId: string; form: ChapterContent["form"]; chapterKeys: string[] }>>
+  Record<
+    ResourceType,
+    Array<{ subjectId: string; form: ChapterContent["form"]; chapterKeys: string[] }>
+  >
 > = {
   flashcards: [
     {
@@ -2968,7 +3037,11 @@ function hasExternallyStoredResource(chapter: ChapterContent, resourceType: Reso
 function chapterHasResourceContent(chapter: ChapterContent, resourceType: ResourceType) {
   if (resourceType === "notes") {
     if (getChapterFeatures(chapter).notes) return true;
-    if (chapter.subjectId === "science" && chapter.form === "Form 1" && chapter.chapterKey === "Chapter 1") {
+    if (
+      chapter.subjectId === "science" &&
+      chapter.form === "Form 1" &&
+      chapter.chapterKey === "Chapter 1"
+    ) {
       return allNotes.some(
         (note) =>
           note.subjectId === "science" &&
@@ -2983,7 +3056,9 @@ function chapterHasResourceContent(chapter: ChapterContent, resourceType: Resour
     return Boolean(chapter.quiz?.length) || hasExternallyStoredResource(chapter, "quiz");
   }
   if (resourceType === "flashcards") {
-    return Boolean(chapter.flashcards?.length) || hasExternallyStoredResource(chapter, "flashcards");
+    return (
+      Boolean(chapter.flashcards?.length) || hasExternallyStoredResource(chapter, "flashcards")
+    );
   }
   return Boolean(chapter.mindMap);
 }
@@ -2991,19 +3066,11 @@ function chapterHasResourceContent(chapter: ChapterContent, resourceType: Resour
 function chapterHasContent(chapter: ChapterContent) {
   const features = getChapterFeatures(chapter);
   return Boolean(
-    features.notes ||
-      features.mindMap ||
-      features.video ||
-      features.flashcards ||
-      features.quiz,
+    features.notes || features.mindMap || features.video || features.flashcards || features.quiz,
   );
 }
 
-export function formatChapterLabel(
-  chapterKey: string,
-  title: string,
-  lang?: "bm" | "dlp",
-) {
+export function formatChapterLabel(chapterKey: string, title: string, lang?: "bm" | "dlp") {
   const chapterNumber = chapterNumberFromKey(chapterKey);
   if (!Number.isFinite(chapterNumber) || chapterNumber === Number.MAX_SAFE_INTEGER) {
     return title;
@@ -3057,7 +3124,8 @@ export function getRegisteredSubjectChapters(
   return Array.from(byChapter.entries())
     .sort(([a], [b]) => chapterNumberFromKey(a) - chapterNumberFromKey(b))
     .map(([key, group]) => {
-      const preferred = (lang ? group.find((chapter) => chapter.lang === lang) : undefined) ?? group[0];
+      const preferred =
+        (lang ? group.find((chapter) => chapter.lang === lang) : undefined) ?? group[0];
       const available = group.some(chapterHasContent);
       return {
         key,

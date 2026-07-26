@@ -22,6 +22,7 @@ import {
   type CompanionStageId,
   type BadgeDef,
   type Progress,
+  getCompanionLevelProgress,
   getCompanionStageForXp,
 } from "@/hooks/use-progress";
 import { CompanionImage, getCompanionSpecies } from "@/companion";
@@ -1067,11 +1068,11 @@ function CosmicCompanionCard({
   xp: number;
   companionId: CompanionId;
 }) {
-  const stageId = getCompanionStageForXp(xp);
-  const stageIndex = Math.max(0, COMPANION_STAGES.findIndex((s) => s.id === stageId));
-  const stage = COMPANION_STAGES[stageIndex] ?? COMPANION_STAGES[0];
-  const nextStage = COMPANION_STAGES[stageIndex + 1] ?? null;
-  const xpNeeded = nextStage ? Math.max(0, nextStage.xpRequired - xp) : 0;
+  const companionProgress = getCompanionLevelProgress(xp);
+  const stageId = companionProgress.currentStage.id;
+  const stage = companionProgress.currentStage;
+  const nextStage = companionProgress.nextStage;
+  const xpNeeded = companionProgress.remainingXp;
   const species = getCompanionSpecies(companionId);
 
   return (

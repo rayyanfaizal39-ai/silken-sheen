@@ -55,7 +55,27 @@ export const Route = createFileRoute("/mindmaps")({
   validateSearch: searchSchema,
   head: ({ match }) => {
     const subjectName = subjectSeoName(match.search.subject);
-    const title = subjectName ? `${subjectName} Mind Maps — KSSM Form 1-3` : "KSSM Mind Maps — Visual Chapter Revision";
+    if (
+      normalizeSubjectParam(match.search.subject) === "bm" &&
+      match.search.chapter === "Kata Nama"
+    ) {
+      return seoMeta({
+        title: "Kata Nama — Peta Minda Tatabahasa Bahasa Melayu",
+        description:
+          "Peta minda Kata Nama untuk Tingkatan 1, 2 dan 3: definisi, Kata Nama Am, Kata Nama Khas, kesalahan lazim, tip UASA dan nota ejaan.",
+        path: "/mindmaps",
+        keywords: [
+          "Kata Nama",
+          "Peta Minda Bahasa Melayu",
+          "Tatabahasa Tingkatan 1",
+          "Tatabahasa Tingkatan 2",
+          "Tatabahasa Tingkatan 3",
+        ],
+      });
+    }
+    const title = subjectName
+      ? `${subjectName} Mind Maps — KSSM Form 1-3`
+      : "KSSM Mind Maps — Visual Chapter Revision";
     const description = subjectName
       ? `Visual ${subjectName} mind maps for KSSM Form 1-3 — explore every chapter's key concepts at a glance.`
       : "Explore every KSSM chapter visually through interactive mind maps — Science, Math, English, Bahasa Melayu, Sejarah and Geografi, Form 1-3.";
@@ -63,7 +83,12 @@ export const Route = createFileRoute("/mindmaps")({
       title,
       description,
       path: "/mindmaps",
-      keywords: ["KSSM mind maps", "visual notes Form 1", "concept maps", ...subjectSeoKeywords(match.search.subject)],
+      keywords: [
+        "KSSM mind maps",
+        "visual notes Form 1",
+        "concept maps",
+        ...subjectSeoKeywords(match.search.subject),
+      ],
     });
   },
   component: MindMapsPage,
@@ -114,7 +139,11 @@ function MindMapsPage() {
   function chooseSubject(subjectId: string) {
     setChapter(null);
     void navigate({
-      search: () => ({ subject: subjectId, form: undefined, chapter: undefined }),
+      search: () => ({
+        subject: subjectId,
+        form: undefined,
+        chapter: undefined,
+      }),
     });
   }
 
@@ -144,7 +173,13 @@ function MindMapsPage() {
 
   function backToSubjects() {
     setChapter(null);
-    void navigate({ search: () => ({ subject: undefined, form: undefined, chapter: undefined }) });
+    void navigate({
+      search: () => ({
+        subject: undefined,
+        form: undefined,
+        chapter: undefined,
+      }),
+    });
   }
 
   function backToForms() {
@@ -231,7 +266,8 @@ function MindMapsPage() {
             onBack={backToForms}
           />
         </>
-      ) : chapterMeta && !hasResourceContent(subject, form, activeChapterKey, "mindMap", activeScienceLang) ? (
+      ) : chapterMeta &&
+        !hasResourceContent(subject, form, activeChapterKey, "mindMap", activeScienceLang) ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={activeChapterKey}
@@ -401,7 +437,9 @@ function getMindMapChapters(subjectId: string, scienceLang: "bm" | "dlp" | undef
     }
   }
 
-  return Array.from(rows.values()).sort((a, b) => chapterSortValue(a.key) - chapterSortValue(b.key));
+  return Array.from(rows.values()).sort(
+    (a, b) => chapterSortValue(a.key) - chapterSortValue(b.key),
+  );
 }
 
 function chapterSortValue(key: string) {

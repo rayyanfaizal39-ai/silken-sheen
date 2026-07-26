@@ -6,7 +6,7 @@ import {
   type CompanionId,
   type CompanionStageId,
   getCompanionDaysTogether,
-  getCompanionStageForXp,
+  getCompanionLevelProgress,
   useProgress,
 } from "@/hooks/use-progress";
 import {
@@ -65,17 +65,13 @@ function CosmicCompanionPage() {
   const dailyMessage = useCompanionMessage();
 
   // Stage is always derived from XP, so the artwork updates automatically as the student earns XP.
-  const currentStageId = getCompanionStageForXp(progress.xp);
-  const stageIndex = Math.max(0, COMPANION_STAGES.findIndex((stage) => stage.id === currentStageId));
-  const currentStage = COMPANION_STAGES[stageIndex] ?? COMPANION_STAGES[0];
-  const nextStage = COMPANION_STAGES[stageIndex + 1] ?? null;
-  const stageStart = currentStage.xpRequired;
-  const stageGoal = nextStage?.xpRequired ?? currentStage.xpRequired;
-  const span = Math.max(1, stageGoal - stageStart);
-  const progressPct = nextStage
-    ? Math.max(0, Math.min(100, Math.round(((progress.xp - stageStart) / span) * 100)))
-    : 100;
-  const xpNeeded = nextStage ? Math.max(0, nextStage.xpRequired - progress.xp) : 0;
+  const companionProgress = getCompanionLevelProgress(progress.xp);
+  const currentStageId = companionProgress.currentStage.id;
+  const stageIndex = companionProgress.currentLevel - 1;
+  const currentStage = companionProgress.currentStage;
+  const nextStage = companionProgress.nextStage;
+  const progressPct = companionProgress.progressPercentage;
+  const xpNeeded = companionProgress.remainingXp;
 
   const mood = getCompanionMood(progress, currentStageId);
   const moodMessage = getCompanionMoodMessage(mood, displayName);

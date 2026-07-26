@@ -17,7 +17,12 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
-import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
+import {
+  useProgress,
+  getRank,
+  getChessRating,
+  getCompanionLevelProgress,
+} from "@/hooks/use-progress";
 import { rankArtwork, rankImageScale } from "@/data/rankArtwork";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -468,6 +473,7 @@ function HeaderAuthAction() {
 
 function HeaderCompanion() {
   const { progress } = useProgress();
+  const companionLevel = getCompanionLevelProgress(progress.xp).currentLevel;
   return (
     <Link
       to="/companion"
@@ -476,7 +482,7 @@ function HeaderCompanion() {
     >
       <Sparkles className="h-4 w-4 text-[#F0ABFC]" />
       <span className="text-sm font-bold tabular-nums text-white">
-        {progress.companion ? `Lv ${progress.companion.level}` : "Egg"}
+        {progress.companion ? `Lv ${companionLevel}` : "Egg"}
       </span>
     </Link>
   );

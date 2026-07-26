@@ -73,19 +73,67 @@ export const COMPANION_STAGES: Array<{
   xpRequired: number;
 }> = [
   { id: "egg", name: "Egg", xpRequired: 0 },
-  { id: "blobling", name: "Blobling", xpRequired: 500 },
-  { id: "sprout", name: "Sprout", xpRequired: 1500 },
-  { id: "cadet", name: "Cadet", xpRequired: 3000 },
-  { id: "guardian", name: "Guardian", xpRequired: 6000 },
+  { id: "blobling", name: "Blobling", xpRequired: 400 },
+  { id: "sprout", name: "Sprout", xpRequired: 1600 },
+  { id: "cadet", name: "Cadet", xpRequired: 4200 },
+  { id: "guardian", name: "Guardian", xpRequired: 9000 },
 ];
+
+export interface CompanionLevelProgress {
+  currentLevel: number;
+  currentStage: (typeof COMPANION_STAGES)[number];
+  nextLevel: number | null;
+  nextStage: (typeof COMPANION_STAGES)[number] | null;
+  remainingXp: number;
+  progressPercentage: number;
+}
+
+/**
+ * Companion levels are derived from cumulative XP. XP itself is persisted
+ * unchanged in localStorage and Supabase, so threshold updates are a zero-data
+ * migration: existing users keep every point they have earned.
+ */
+export function getCompanionLevelProgress(xp: number): CompanionLevelProgress {
+  const safeXp = Number.isNaN(xp) ? 0 : Math.max(0, xp);
+  let currentIndex = 0;
+  for (let index = 1; index < COMPANION_STAGES.length; index += 1) {
+    if (safeXp >= COMPANION_STAGES[index].xpRequired) currentIndex = index;
+  }
+  const currentStage = COMPANION_STAGES[currentIndex];
+  const nextStage = COMPANION_STAGES[currentIndex + 1] ?? null;
+  if (!nextStage) {
+    return {
+      currentLevel: currentIndex + 1,
+      currentStage,
+      nextLevel: null,
+      nextStage: null,
+      remainingXp: 0,
+      progressPercentage: 100,
+    };
+  }
+  const levelSpan = nextStage.xpRequired - currentStage.xpRequired;
+  const xpIntoLevel = safeXp - currentStage.xpRequired;
+  const progressPercentage = Math.min(99, Math.floor((xpIntoLevel / levelSpan) * 100));
+  return {
+    currentLevel: currentIndex + 1,
+    currentStage,
+    nextLevel: currentIndex + 2,
+    nextStage,
+    remainingXp: Math.max(0, nextStage.xpRequired - safeXp),
+    progressPercentage: Math.max(0, progressPercentage),
+  };
+}
 
 /** The companion's display stage is always derived from XP, so its image updates automatically. */
 export function getCompanionStageForXp(xp: number): CompanionStageId {
-  let stage = COMPANION_STAGES[0];
-  for (const s of COMPANION_STAGES) {
-    if (xp >= s.xpRequired) stage = s;
-  }
-  return stage.id;
+  return getCompanionLevelProgress(xp).currentStage.id;
+}
+
+export function getCompanionEvolutionTransition(fromXp: number, toXp: number) {
+  if (toXp <= fromXp) return null;
+  const fromStage = getCompanionStageForXp(fromXp);
+  const toStage = getCompanionStageForXp(toXp);
+  return fromStage === toStage ? null : { fromStage, toStage };
 }
 
 // ─── Transient progression-loop events (rank up / companion evolution) ─────────
@@ -281,6 +329,13 @@ export function getRankProgress(xp: number): number {
   return Math.min(100, Math.round((into / range) * 100));
 }
 
+export function getRankUpTransition(fromXp: number, toXp: number) {
+  if (toXp <= fromXp) return null;
+  const fromRank = getRank(fromXp);
+  const toRank = getRank(toXp);
+  return fromRank.id === toRank.id ? null : { fromRank, toRank };
+}
+
 // ─── Badge definitions ────────────────────────────────────────────────────────
 export interface BadgeDef {
   id: string;
@@ -421,6 +476,20 @@ export const ALL_BADGES: BadgeDef[] = [
 
 export function getBadgeDef(id: string): BadgeDef | undefined {
   return ALL_BADGES.find((b) => b.id === id);
+}
+
+export function applyXpMilestoneBadges(badges: string[], xp: number): string[] {
+  const next = [...badges];
+  const milestones: Array<[number, string]> = [
+    [100, "xp100"],
+    [500, "scholar"],
+    [1000, "xp1000"],
+    [5000, "xp5000"],
+  ];
+  for (const [threshold, badgeId] of milestones) {
+    if (xp >= threshold && !next.includes(badgeId)) next.push(badgeId);
+  }
+  return next;
 }
 
 // ─── Daily missions ───────────────────────────────────────────────────────────
@@ -851,12 +920,11 @@ export function useProgress() {
     (prev: Progress, next: Progress) => {
       if (next.xp === prev.xp) return;
 
-      const prevRank = getRank(prev.xp);
-      const nextRank = getRank(next.xp);
-      if (prevRank.id !== nextRank.id) {
+      const rankUp = getRankUpTransition(prev.xp, next.xp);
+      if (rankUp) {
         setLastRankUp({
-          fromRank: prevRank.id,
-          toRank: nextRank.id,
+          fromRank: rankUp.fromRank.id,
+          toRank: rankUp.toRank.id,
           xpGained: next.xp - prev.xp,
           timestamp: Date.now(),
         });
@@ -864,12 +932,11 @@ export function useProgress() {
 
       const companion = next.companion ?? prev.companion;
       if (companion) {
-        const prevStage = getCompanionStageForXp(prev.xp);
-        const nextStage = getCompanionStageForXp(next.xp);
-        if (prevStage !== nextStage) {
+        const evolution = getCompanionEvolutionTransition(prev.xp, next.xp);
+        if (evolution) {
           setLastCompanionEvolution({
-            fromStage: prevStage,
-            toStage: nextStage,
+            fromStage: evolution.fromStage,
+            toStage: evolution.toStage,
             companionId: companion.id,
             timestamp: Date.now(),
           });
@@ -933,7 +1000,7 @@ export function useProgress() {
           streak = prev.lastActive === yest ? streak + 1 : 1;
         }
         const newXp = prev.xp + amount;
-        const newBadges = [...prev.badges];
+        let newBadges = [...prev.badges];
 
         // Starter
         if (!newBadges.includes("starter") && prev.quizzesTaken === 0) newBadges.push("starter");
@@ -941,11 +1008,9 @@ export function useProgress() {
         if (!newBadges.includes("streak3") && streak >= 3) newBadges.push("streak3");
         if (!newBadges.includes("streak7") && streak >= 7) newBadges.push("streak7");
         if (!newBadges.includes("streak30") && streak >= 30) newBadges.push("streak30");
-        // XP milestones
-        if (!newBadges.includes("xp100") && newXp >= 100) newBadges.push("xp100");
-        if (!newBadges.includes("scholar") && newXp >= 500) newBadges.push("scholar");
-        if (!newBadges.includes("xp1000") && newXp >= 1000) newBadges.push("xp1000");
-        if (!newBadges.includes("xp5000") && newXp >= 5000) newBadges.push("xp5000");
+        // XP milestone rewards remain based on total XP and are intentionally
+        // independent from companion level thresholds.
+        newBadges = applyXpMilestoneBadges(newBadges, newXp);
 
         const next: Progress = {
           ...prev,

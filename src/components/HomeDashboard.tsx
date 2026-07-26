@@ -30,8 +30,7 @@ import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
 import {
   useProgress,
-  COMPANION_STAGES,
-  getCompanionStageForXp,
+  getCompanionLevelProgress,
   getRank,
   getNextRank,
   getRankProgress,
@@ -127,7 +126,7 @@ const WORLD_PORTALS = [
 type WorldPortal = (typeof WORLD_PORTALS)[number];
 
 // ─── Quick access tiles ───────────────────────────────────────────────────────
-const QUICK_ACCESS = [
+export const QUICK_ACCESS = [
   {
     title: "Notes",
     description: "Smart KSSM chapter summaries",
@@ -155,7 +154,7 @@ const QUICK_ACCESS = [
   {
     title: "Mind Maps",
     description: "Visual concept connections",
-    to: "/notes" as const,
+    to: "/mindmaps" as const,
     icon: Compass,
     color: "#10B981",
     gradient: "from-emerald-500/20 to-teal-500/20",
@@ -263,7 +262,10 @@ function WorldPortalCard({
           consistent visual system instead of Home showing a thinner, flatter
           version of the same subject identity. */}
       <div className="relative w-full shrink-0 p-3 pb-0">
-        <PlanetCardArt subjectId={world.id as SubjectPlanetId} planet={subjectPlanetStyles[world.id as SubjectPlanetId]} />
+        <PlanetCardArt
+          subjectId={world.id as SubjectPlanetId}
+          planet={subjectPlanetStyles[world.id as SubjectPlanetId]}
+        />
         {isCurrentWorld && (
           <span
             className="absolute left-5 top-5 rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-widest"
@@ -410,9 +412,7 @@ function HeroWorldStrip() {
   );
 }
 
-
 // ─── Rank progression card (desktop hero overlay) ────────────────────────────
-
 
 function HeroRankCard() {
   const { progress } = useProgress();
@@ -520,12 +520,9 @@ export function HomeDashboard() {
     done: mission ? Math.min(m.current(mission), m.target) : 0,
   }));
   const missionsComplete = missionState.reduce((n, m) => n + (m.done >= m.target ? 1 : 0), 0);
-  const companionStageIndex = Math.max(
-    0,
-    COMPANION_STAGES.findIndex((stage) => stage.id === getCompanionStageForXp(progress.xp)),
-  );
-  const companionStage = COMPANION_STAGES[companionStageIndex] ?? COMPANION_STAGES[0];
-  const nextCompanionStage = COMPANION_STAGES[companionStageIndex + 1] ?? null;
+  const companionProgress = getCompanionLevelProgress(progress.xp);
+  const companionStage = companionProgress.currentStage;
+  const nextCompanionStage = companionProgress.nextStage;
   const companionName = progress.companion ? getCompanionDisplayName(progress.companion) : "Nova";
   const companionDailyMessage = useCompanionMessage();
 
@@ -585,7 +582,6 @@ export function HomeDashboard() {
                 filter: "blur(20px)",
               }}
             />
-
 
             {/* Universe eyebrow */}
             <p className="mb-3 text-[10px] font-black uppercase tracking-[0.3em] text-[#818CF8]/60">
@@ -650,7 +646,6 @@ export function HomeDashboard() {
                   🌍 Explore Worlds
                 </Link>
               )}
-
             </div>
 
             {/* World portal mini-strip */}
@@ -682,7 +677,10 @@ export function HomeDashboard() {
         aria-labelledby="about-academy-heading"
         className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6"
       >
-        <h2 id="about-academy-heading" className="font-display text-lg font-bold text-white sm:text-xl">
+        <h2
+          id="about-academy-heading"
+          className="font-display text-lg font-bold text-white sm:text-xl"
+        >
           What is AcadeMY?
         </h2>
         <p className="mt-2 max-w-3xl text-sm leading-7 text-white/60">
@@ -691,25 +689,32 @@ export function HomeDashboard() {
         </p>
         <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
           <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <NotebookPen className="h-4 w-4 shrink-0 text-[#60A5FA]" /> Study interactive, KSSM-aligned notes
+            <NotebookPen className="h-4 w-4 shrink-0 text-[#60A5FA]" /> Study interactive,
+            KSSM-aligned notes
           </li>
           <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <BrainCircuit className="h-4 w-4 shrink-0 text-[#FBBF24]" /> Complete quizzes with instant feedback
+            <BrainCircuit className="h-4 w-4 shrink-0 text-[#FBBF24]" /> Complete quizzes with
+            instant feedback
           </li>
           <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <Layers className="h-4 w-4 shrink-0 text-[#A855F7]" /> Review flashcards with spaced repetition
+            <Layers className="h-4 w-4 shrink-0 text-[#A855F7]" /> Review flashcards with spaced
+            repetition
           </li>
           <li className="flex items-center gap-2.5 text-sm text-white/70">
-            <LineChart className="h-4 w-4 shrink-0 text-[#34D399]" /> Track learning progress, XP, and streaks
+            <LineChart className="h-4 w-4 shrink-0 text-[#34D399]" /> Track learning progress, XP,
+            and streaks
           </li>
         </ul>
         <div className="mt-4 flex items-start gap-2.5 rounded-2xl border border-white/[0.07] bg-white/[0.03] px-4 py-3">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#818CF8]" />
           <p className="text-xs leading-6 text-white/50">
-            Students can optionally sign in with Google to securely save their learning progress
-            and sync it across devices. We use Google Sign-In only to authenticate your account
-            and save your progress — we do not request unnecessary Google data. See our{" "}
-            <a href="/privacy" className="text-white/75 underline underline-offset-2 hover:text-white">
+            Students can optionally sign in with Google to securely save their learning progress and
+            sync it across devices. We use Google Sign-In only to authenticate your account and save
+            your progress — we do not request unnecessary Google data. See our{" "}
+            <a
+              href="/privacy"
+              className="text-white/75 underline underline-offset-2 hover:text-white"
+            >
               Privacy Policy
             </a>{" "}
             for details.
@@ -846,15 +851,27 @@ export function HomeDashboard() {
             {/* Orbiting sparkles */}
             <span
               className="cosmic-companion-sparkle absolute h-1.5 w-1.5 rounded-full bg-[#F0ABFC] shadow-[0_0_10px_rgba(240,171,252,0.9)]"
-              style={{ ["--sparkle-start" as any]: "0deg", ["--sparkle-radius" as any]: "88px", ["--sparkle-duration" as any]: "9s" }}
+              style={{
+                ["--sparkle-start" as any]: "0deg",
+                ["--sparkle-radius" as any]: "88px",
+                ["--sparkle-duration" as any]: "9s",
+              }}
             />
             <span
               className="cosmic-companion-sparkle absolute h-1 w-1 rounded-full bg-[#A5B4FC] shadow-[0_0_10px_rgba(165,180,252,0.9)]"
-              style={{ ["--sparkle-start" as any]: "140deg", ["--sparkle-radius" as any]: "78px", ["--sparkle-duration" as any]: "12s" }}
+              style={{
+                ["--sparkle-start" as any]: "140deg",
+                ["--sparkle-radius" as any]: "78px",
+                ["--sparkle-duration" as any]: "12s",
+              }}
             />
             <span
               className="cosmic-companion-sparkle absolute h-1 w-1 rounded-full bg-[#67E8F9] shadow-[0_0_10px_rgba(103,232,249,0.9)]"
-              style={{ ["--sparkle-start" as any]: "245deg", ["--sparkle-radius" as any]: "92px", ["--sparkle-duration" as any]: "14s" }}
+              style={{
+                ["--sparkle-start" as any]: "245deg",
+                ["--sparkle-radius" as any]: "92px",
+                ["--sparkle-duration" as any]: "14s",
+              }}
             />
 
             <div className="cosmic-companion-egg-anim relative flex h-40 w-40 items-center justify-center">

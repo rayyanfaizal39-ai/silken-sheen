@@ -28,7 +28,6 @@ import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
-import { Route as CommandCenterPreviewRouteImport } from './routes/command-center-preview'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
@@ -40,6 +39,7 @@ import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
+import { Route as AdminContentQuizImporterRouteImport } from './routes/admin.content.quiz-importer'
 
 const UpgradeRoute = UpgradeRouteImport.update({
   id: '/upgrade',
@@ -136,11 +136,6 @@ const CompanionRoute = CompanionRouteImport.update({
   path: '/companion',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CommandCenterPreviewRoute = CommandCenterPreviewRouteImport.update({
-  id: '/command-center-preview',
-  path: '/command-center-preview',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -196,11 +191,16 @@ const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
   path: '/academy/landingpage3',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminContentQuizImporterRoute =
+  AdminContentQuizImporterRouteImport.update({
+    id: '/content/quiz-importer',
+    path: '/content/quiz-importer',
+    getParentRoute: () => AdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
-  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -229,10 +229,10 @@ export interface FileRoutesByFullPath {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -261,12 +261,12 @@ export interface FileRoutesByTo {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
-  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -295,13 +295,13 @@ export interface FileRoutesById {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
-    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -330,10 +330,10 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin/'
+    | '/admin/content/quiz-importer'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -362,11 +362,11 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin'
+    | '/admin/content/quiz-importer'
   id:
     | '__root__'
     | '/'
     | '/admin'
-    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -395,12 +395,12 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin/'
+    | '/admin/content/quiz-importer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
-  CommandCenterPreviewRoute: typeof CommandCenterPreviewRoute
   CompanionRoute: typeof CompanionRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
@@ -561,13 +561,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/command-center-preview': {
-      id: '/command-center-preview'
-      path: '/command-center-preview'
-      fullPath: '/command-center-preview'
-      preLoaderRoute: typeof CommandCenterPreviewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -645,6 +638,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AcademyLandingpage3RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/content/quiz-importer': {
+      id: '/admin/content/quiz-importer'
+      path: '/content/quiz-importer'
+      fullPath: '/admin/content/quiz-importer'
+      preLoaderRoute: typeof AdminContentQuizImporterRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
@@ -654,6 +654,7 @@ interface AdminRouteChildren {
   AdminReportsRoute: typeof AdminReportsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminContentQuizImporterRoute: typeof AdminContentQuizImporterRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
@@ -662,6 +663,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminReportsRoute: AdminReportsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminContentQuizImporterRoute: AdminContentQuizImporterRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
@@ -669,7 +671,6 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
-  CommandCenterPreviewRoute: CommandCenterPreviewRoute,
   CompanionRoute: CompanionRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,

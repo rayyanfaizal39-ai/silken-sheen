@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { COMPANION_STAGES, getCompanionStageForXp, useProgress } from "@/hooks/use-progress";
+import { getCompanionLevelProgress, useProgress } from "@/hooks/use-progress";
 import { CompanionImage } from "./CompanionImage";
 import { CompanionPanel } from "./CompanionPanel";
 import { getCompanionDisplayName } from "./species";
@@ -13,16 +13,10 @@ export function CompanionWidget() {
   if (!companion) return null;
 
   const displayName = getCompanionDisplayName(companion);
-  const stageId = getCompanionStageForXp(progress.xp);
-  const stageIndex = Math.max(0, COMPANION_STAGES.findIndex((s) => s.id === stageId));
-  const currentStage = COMPANION_STAGES[stageIndex] ?? COMPANION_STAGES[0];
-  const nextStage = COMPANION_STAGES[stageIndex + 1] ?? null;
-  const xpIntoStage = progress.xp - currentStage.xpRequired;
-  const xpForNextStage = nextStage ? nextStage.xpRequired - currentStage.xpRequired : 0;
-  const xpProgressPct =
-    nextStage && xpForNextStage > 0
-      ? Math.min(100, Math.round((xpIntoStage / xpForNextStage) * 100))
-      : 100;
+  const companionProgress = getCompanionLevelProgress(progress.xp);
+  const stageId = companionProgress.currentStage.id;
+  const stageIndex = companionProgress.currentLevel - 1;
+  const xpProgressPct = companionProgress.progressPercentage;
 
   return (
     <>

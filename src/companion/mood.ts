@@ -4,7 +4,7 @@
 // storage of its own.
 
 import type { CompanionStageId, Progress } from "@/hooks/use-progress";
-import { COMPANION_STAGES } from "@/hooks/use-progress";
+import { getCompanionLevelProgress } from "@/hooks/use-progress";
 
 export type CompanionMood = "happy" | "sleepy" | "excited";
 
@@ -32,12 +32,14 @@ function moodMessage(mood: CompanionMood, name: string): string {
 }
 
 export function getCompanionMood(progress: Progress, stage: CompanionStageId): CompanionMood {
-  const stageIndex = Math.max(0, COMPANION_STAGES.findIndex((s) => s.id === stage));
-  const nextStage = COMPANION_STAGES[stageIndex + 1];
+  const companionProgress = getCompanionLevelProgress(progress.xp);
 
-  if (nextStage) {
-    const xpRemaining = nextStage.xpRequired - progress.xp;
-    if (xpRemaining <= 150) return "excited";
+  if (
+    companionProgress.currentStage.id === stage &&
+    companionProgress.nextStage &&
+    companionProgress.remainingXp <= 150
+  ) {
+    return "excited";
   }
   if (progress.streak === 0) return "sleepy";
   return "happy";
