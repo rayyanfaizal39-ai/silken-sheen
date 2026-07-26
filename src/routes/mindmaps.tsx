@@ -66,7 +66,12 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Kata Kerja untuk Tingkatan 1, 2 dan 3: transitif, tak transitif, bentuk kata kerja, ayat aktif dan pasif, kesalahan lazim serta tip UASA.",
         keywords: ["Kata Kerja", "kata kerja transitif", "kata kerja tak transitif"],
       },
-    }[match.search.chapter as "Kata Nama" | "Kata Kerja"];
+      "Kata Adjektif": {
+        description:
+          "Peta minda Kata Adjektif untuk Tingkatan 1, 2 dan 3: definisi, fungsi, Frasa Adjektif, kosa kata, kesalahan lazim dan tip UASA.",
+        keywords: ["Kata Adjektif", "frasa adjektif", "contoh kata adjektif"],
+      },
+    }[match.search.chapter as "Kata Nama" | "Kata Kerja" | "Kata Adjektif"];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
         title: `${match.search.chapter} — Peta Minda Tatabahasa Bahasa Melayu`,

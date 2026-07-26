@@ -232,6 +232,7 @@ import { scienceF1C9MindMapBM } from "@/content/form1/science/chapter-9/mindmap-
 import { scienceF1C9MindMapDLP } from "@/content/form1/science/chapter-9/mindmap-dlp";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
+import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2426,6 +2427,36 @@ export const chapters: ChapterContent[] = [
     description: "Perkataan yang menerangkan perbuatan, keadaan atau proses.",
     categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuKataKerjaMindMap, title: "Kata Kerja" },
+  },
+  {
+    id: "bm-f1-kata-adjektif-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kata Adjektif",
+    title: "Kata Adjektif",
+    description: "Perkataan yang menerangkan sifat, keadaan atau kualiti sesuatu kata nama.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataAdjektifMindMap, title: "Kata Adjektif" },
+  },
+  {
+    id: "bm-f2-kata-adjektif-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Adjektif",
+    title: "Kata Adjektif",
+    description: "Perkataan yang menerangkan sifat, keadaan atau kualiti sesuatu kata nama.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataAdjektifMindMap, title: "Kata Adjektif" },
+  },
+  {
+    id: "bm-f3-kata-adjektif-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kata Adjektif",
+    title: "Kata Adjektif",
+    description: "Perkataan yang menerangkan sifat, keadaan atau kualiti sesuatu kata nama.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataAdjektifMindMap, title: "Kata Adjektif" },
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
