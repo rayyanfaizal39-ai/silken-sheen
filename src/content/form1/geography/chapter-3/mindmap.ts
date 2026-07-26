@@ -9,7 +9,7 @@ export const geoF1C3MindMap: MindNode = {
       label: "Ciri-ciri Peta Lakar (5)",
       children: [
         { id: "c1-1", label: "Tajuk — huruf besar, atas, digariskan" },
-        { id: "c1-2", label: "Bingkai — garisan luar kawasan" },
+        { id: "c1-2", label: "Pemidang — garisan luar kawasan" },
         { id: "c1-3", label: "Arah Mata Angin — orientasi peta" },
         { id: "c1-4", label: "Simbol — wakili ciri geografi" },
         { id: "c1-5", label: "Petunjuk — maksud setiap simbol" },
@@ -93,7 +93,7 @@ export const geoF1C3MindMap: MindNode = {
       label: "Langkah Melukis Peta Lakar",
       children: [
         { id: "c4-1", label: "1. Pilih tajuk kawasan" },
-        { id: "c4-2", label: "2. Lukis bingkai peta" },
+        { id: "c4-2", label: "2. Lukis pemidang peta" },
         { id: "c4-3", label: "3. Tentukan simbol yang sesuai" },
         { id: "c4-4", label: "4. Plot ciri geografi (fizikal dahulu)" },
         { id: "c4-5", label: "5. Lengkapkan petunjuk & arah mata angin" },

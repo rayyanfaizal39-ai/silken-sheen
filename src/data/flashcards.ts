@@ -7303,7 +7303,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 3",
     front:
       "Senaraikan lima ciri atau elemen utama yang wajib ada pada sebuah peta lakar yang lengkap.",
-    back: "Tajuk, bingkai, arah mata angin, simbol, dan petunjuk.",
+    back: "Tajuk, pemidang, arah mata angin, simbol, dan petunjuk.",
   },
   {
     id: "geo-f1-c3-fc5",
@@ -7326,7 +7326,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 3",
-    front: "Apakah fungsi 'Bingkai' dalam peta lakar?",
+    front: "Apakah fungsi 'Pemidang' dalam peta lakar?",
     back: "Berfungsi untuk menjadikan peta kelihatan lebih kemas dan menandakan had sempadan kawasan yang dipetakan.",
   },
   {
@@ -7705,7 +7705,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     front: "Apakah langkah kedua dalam melukis peta lakar?",
-    back: "Tentukan bingkai peta dengan melukis garisan sempadan luar berbentuk empat segi.",
+    back: "Tentukan pemidang peta dengan melukis garisan sempadan luar berbentuk empat segi.",
   },
   {
     id: "geo-f1-c3-fc55",

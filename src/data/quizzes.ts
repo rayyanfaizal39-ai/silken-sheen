@@ -6487,13 +6487,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Antara berikut, yang manakah merupakan ciri peta lakar yang lengkap?",
     options: [
       "Nama pelukis, tarikh, dan warna.",
-      "Tajuk, bingkai, arah mata angin, simbol, dan petunjuk.",
+      "Tajuk, pemidang, arah mata angin, simbol, dan petunjuk.",
       "Gambar foto, skala, dan koordinat GPS.",
       "Hanya tajuk dan lukisan.",
     ],
     answerIndex: 1,
     explanation:
-      "Kelima-lima komponen (tajuk, bingkai, arah mata angin, simbol, dan petunjuk) wajib ada supaya peta lakar tersebut dikira lengkap dan boleh dibaca secara sistematik.",
+      "Kelima-lima komponen (tajuk, pemidang, arah mata angin, simbol, dan petunjuk) wajib ada supaya peta lakar tersebut dikira lengkap dan boleh dibaca secara sistematik.",
   },
   {
     id: "geo-f1-c3-q3",
@@ -6858,13 +6858,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Langkah pertama untuk melukis peta lakar ialah...?",
     options: [
       "Melukis petunjuk.",
-      "Menentukan tajuk dan melukis bingkai peta.",
+      "Menentukan tajuk dan melukis pemidang peta.",
       "Mewarnakan peta dengan warna hijau.",
       "Melukis semua rumah.",
     ],
     answerIndex: 1,
     explanation:
-      "Prosedur awal melukis peta lakar wajib dimulakan dengan menentukan nama tajuk kawasan serta membina kotak bingkai luar peta terlebih dahulu.",
+      "Prosedur awal melukis peta lakar wajib dimulakan dengan menentukan nama tajuk kawasan serta membina pemidang peta terlebih dahulu.",
   },
   {
     id: "geo-f1-c3-q28",
