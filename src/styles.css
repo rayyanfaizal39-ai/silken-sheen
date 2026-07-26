@@ -3690,6 +3690,49 @@
   text-overflow: ellipsis;
 }
 
+/* Phone-only density refinement. Keep the existing tablet/desktop nav
+   untouched while distributing all six mobile destinations evenly. */
+@media (max-width: 767px) {
+  .space-nav-shell.mobile-nav-shell {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    padding-inline: 4px;
+  }
+
+  .space-nav-shell.mobile-nav-shell > div {
+    width: 100%;
+    max-width: none;
+    gap: 0;
+  }
+
+  .space-nav-shell .space-nav-item {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 0;
+    overflow: hidden;
+  }
+
+  .space-nav-shell .space-nav-item > svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+  }
+
+  .space-nav-shell .space-nav-label {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 1px;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 1;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .astronaut-scene,
   .hero-copy-arrive,
