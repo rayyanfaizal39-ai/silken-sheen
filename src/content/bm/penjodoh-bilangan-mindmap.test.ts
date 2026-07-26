@@ -40,10 +40,10 @@ describe("Bahasa Melayu Penjodoh Bilangan mind map", () => {
     expect(hasFormResourceContent("bm", form, "mindMap")).toBe(true);
   });
 
-  it.each(forms)("appears seventh in the active Tatabahasa library for %s", (form) => {
+  it.each(forms)("appears eighth in the active Tatabahasa library for %s", (form) => {
     const topics = getRegisteredSubjectChapters("bm", undefined, form)
       .filter((chapter) => getChapter("bm", chapter.key, undefined, form)?.mindMap)
-      .slice(0, 7);
+      .slice(0, 8);
 
     expect(topics.map((topic) => topic.key)).toEqual([
       "Kata Nama",
@@ -52,9 +52,10 @@ describe("Bahasa Melayu Penjodoh Bilangan mind map", () => {
       "Kata Adjektif",
       "Kata Sendi Nama",
       "Kata Hubung",
+      "Kata Bilangan",
       "Penjodoh Bilangan",
     ]);
-    expect(topics[6]).toMatchObject({
+    expect(topics[7]).toMatchObject({
       label: "Penjodoh Bilangan",
       description,
       categoryLabel: "Tatabahasa",

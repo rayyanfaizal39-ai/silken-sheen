@@ -236,6 +236,7 @@ import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
 import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
+import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 
 // Mathematics F1 mind maps (BM)
@@ -2560,6 +2561,39 @@ export const chapters: ChapterContent[] = [
       "Perkataan yang menghubungkan kata, frasa atau klausa untuk membentuk ayat yang gramatis.",
     categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuKataHubungMindMap, title: "Kata Hubung" },
+  },
+  {
+    id: "bm-f1-kata-bilangan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kata Bilangan",
+    title: "Kata Bilangan",
+    description:
+      "Perkataan yang digunakan untuk menyatakan jumlah, bilangan, pecahan, himpunan atau urutan sesuatu kata nama.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataBilanganMindMap, title: "Kata Bilangan" },
+  },
+  {
+    id: "bm-f2-kata-bilangan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Bilangan",
+    title: "Kata Bilangan",
+    description:
+      "Perkataan yang digunakan untuk menyatakan jumlah, bilangan, pecahan, himpunan atau urutan sesuatu kata nama.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataBilanganMindMap, title: "Kata Bilangan" },
+  },
+  {
+    id: "bm-f3-kata-bilangan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kata Bilangan",
+    title: "Kata Bilangan",
+    description:
+      "Perkataan yang digunakan untuk menyatakan jumlah, bilangan, pecahan, himpunan atau urutan sesuatu kata nama.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataBilanganMindMap, title: "Kata Bilangan" },
   },
   {
     id: "bm-f1-penjodoh-bilangan-mindmap",

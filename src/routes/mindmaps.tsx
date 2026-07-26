@@ -91,6 +91,16 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Kata Hubung untuk Tingkatan 1, 2 dan 3: definisi, fungsi, jenis kata hubung, ayat majmuk, kesalahan lazim dan tip UASA.",
         keywords: ["Kata Hubung", "jenis kata hubung", "ayat majmuk", "kata hubung KSSM"],
       },
+      "Kata Bilangan": {
+        description:
+          "Peta minda Kata Bilangan untuk Tingkatan 1, 2 dan 3: bilangan tentu, tak tentu, himpunan, pisahan, tingkat, pecahan, ejaan dan tip UASA.",
+        keywords: [
+          "Kata Bilangan",
+          "jenis kata bilangan",
+          "kata bilangan KSSM",
+          "kata bilangan tentu dan tak tentu",
+        ],
+      },
       "Penjodoh Bilangan": {
         description:
           "Peta minda Penjodoh Bilangan untuk Tingkatan 1, 2 dan 3: cara penggunaan, padanan mengikut manusia, haiwan, bentuk dan kumpulan, kesalahan lazim serta tip UASA.",
@@ -109,6 +119,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Kata Adjektif"
         | "Kata Sendi Nama"
         | "Kata Hubung"
+        | "Kata Bilangan"
         | "Penjodoh Bilangan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {

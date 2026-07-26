@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
+import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
 import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
@@ -21,6 +22,7 @@ const tatabahasaMindMaps = [
   ["Kata Adjektif", bahasaMelayuKataAdjektifMindMap],
   ["Kata Sendi Nama", bahasaMelayuKataSendiNamaMindMap],
   ["Kata Hubung", bahasaMelayuKataHubungMindMap],
+  ["Kata Bilangan", bahasaMelayuKataBilanganMindMap],
   ["Penjodoh Bilangan", bahasaMelayuPenjodohBilanganMindMap],
 ] as const;
 
@@ -209,6 +211,55 @@ describe("MindMap reusable hierarchy", () => {
         "Penggunaan pada Kata Abstrak",
         "Menggandakan Bilangan",
         "Menghafal Tanpa Memahami",
+      ]),
+    );
+  });
+
+  it("reveals Kata Bilangan categories only through their matching branches", () => {
+    const data = bahasaMelayuKataBilanganMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("Bentuk Gandaan");
+    expect(overview).not.toContain("Dengan Angka");
+
+    const indefiniteBranch = data.children?.find(
+      (branch) => branch.label === "Kata Bilangan Tak Tentu",
+    );
+    expect(visibleLabels(data, new Set([data.id, indefiniteBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Maksud",
+        "Contoh",
+        "beberapa",
+        "semua",
+        "ramai",
+        "para",
+        "segala",
+        "Nota Perbandingan",
+      ]),
+    );
+
+    const spellingBranch = data.children?.find((branch) => branch.label === "Ejaan");
+    expect(visibleLabels(data, new Set([data.id, spellingBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "ke- dengan Angka",
+        "Angka dengan -an",
+        "Gandaan",
+        "Nombor dan Perkataan",
+        "Konsisten",
+      ]),
+    );
+
+    const relationshipBranch = data.children?.find(
+      (branch) => branch.label === "Hubungan dengan Penjodoh Bilangan",
+    );
+    expect(visibleLabels(data, new Set([data.id, relationshipBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Struktur Umum",
+        "Tanpa Penjodoh Bilangan",
+        "Bezakan",
+        "Nota",
+        "Penjodoh Bilangan",
       ]),
     );
   });

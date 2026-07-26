@@ -2,6 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
+import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
 import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
@@ -161,6 +162,30 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(11);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Kata Bilangan path in order without child details", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuKataBilanganMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuKataBilanganMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda KATA BILANGAN"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Perkataan yang digunakan untuk membilang atau menyatakan jumlah sesuatu kata nama.",
+    );
+    expect(markup).not.toContain(
+      "Kata bilangan ialah perkataan yang digunakan untuk membilang atau menyatakan jumlah",
+    );
+    expect(markup).not.toContain("satu • dua • tiga");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(12);
     expect(markup).not.toContain("touch-none");
   });
 });
