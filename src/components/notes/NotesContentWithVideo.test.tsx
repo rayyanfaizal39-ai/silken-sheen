@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import { NotesContentWithVideo } from "./NotesContentWithVideo";
+import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
 
 const chapterVideo = {
   title: "Chapter 1 video",
@@ -11,9 +12,11 @@ const chapterVideo = {
 
 function render(video = chapterVideo) {
   return renderToStaticMarkup(
-    <NotesContentWithVideo notesContentRef={createRef()} video={video}>
-      <section data-final-notes-section>Final Notes section</section>
-    </NotesContentWithVideo>,
+    <BackgroundMusicProvider>
+      <NotesContentWithVideo notesContentRef={createRef()} video={video}>
+        <section data-final-notes-section>Final Notes section</section>
+      </NotesContentWithVideo>
+    </BackgroundMusicProvider>,
   );
 }
 
@@ -27,6 +30,7 @@ describe("NotesContentWithVideo", () => {
     expect(markup.indexOf("data-final-notes-section")).toBeLessThan(markup.indexOf('id="video"'));
     expect(markup.match(/id="video"/g)).toHaveLength(1);
     expect(markup).toContain("p6BhanQF6OE");
+    expect(markup).toContain("enablejsapi=1");
   });
 
   it("keeps the video outside the progress-tracked Notes container", () => {
