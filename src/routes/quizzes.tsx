@@ -1,14 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  subjects,
-  forms,
-  quizzes,
-  getItemChapterKey,
-  type Difficulty,
-  type Form,
-  type QuizQuestion,
-} from "@/data/content";
+import { subjects, forms, type Difficulty, type Form, type QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { useCikgu } from "@/context/cikgu-context";
 import {
@@ -47,6 +39,7 @@ import {
 } from "@/lib/clean-learning-title";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
+  getChapterQuizQuestions,
   getRegisteredSubjectChapters as getSubjectChapters,
   hasFormResourceContent,
   hasResourceContent,
@@ -19087,14 +19080,18 @@ function QuizzesPage() {
 
   const pool = useMemo(() => {
     if (!subject || !chapter) return [];
-    return quizzes.filter((q) => {
-      if (q.subjectId !== subject) return false;
-      if (getItemChapterKey(q) !== chapter) return false;
-      if (isBilingualSubject && scienceLang && q.lang && q.lang !== scienceLang) return false;
-      if (form !== "All" && q.form !== form) return false;
+    const loadedQuestions = getChapterQuizQuestions(
+      subject,
+      form,
+      chapter,
+      isBilingualSubject ? (scienceLang ?? undefined) : undefined,
+    );
+    const filteredQuestions = loadedQuestions.filter((q) => {
       if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
+
+    return filteredQuestions;
   }, [subject, chapter, form, diff, scienceLang, isBilingualSubject]);
   const hasSelectedChapterQuiz =
     !!subject &&
@@ -20145,6 +20142,7 @@ function QuizzesPage() {
       ) : !timerPref ? (
         <QuizSettingsScreen
           subjectId={subject}
+          form={form}
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           onBack={() => {
@@ -20626,19 +20624,23 @@ function QuizzesPage() {
 
 function QuizSettingsScreen({
   subjectId,
+  form,
   chapterKey,
   scienceLang,
   onBack,
   onStart,
 }: {
   subjectId: string;
+  form: FormFilter;
   chapterKey: string;
   scienceLang?: "bm" | "dlp";
   onBack: () => void;
   onStart: (pref: { mode: TimerMode; seconds: number }) => void;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
+    (candidate) => candidate.key === chapterKey,
+  );
   const [mode, setMode] = useState<TimerMode | null>(null);
   const [seconds, setSeconds] = useState<number>(30);
 

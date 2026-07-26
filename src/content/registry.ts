@@ -36,6 +36,7 @@ import {
   scienceF1C8NotesDLP,
   scienceF1C9NotesBM,
   scienceF1C9NotesDLP,
+  getItemChapterKey,
   sejarahChapterFromId,
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
@@ -2844,6 +2845,33 @@ export function getChapter(
     if (video) return { ...resolvedChapter, video };
   }
   return resolvedChapter;
+}
+
+/**
+ * Resolve the question bank through the same chapter registry used by chapter
+ * discovery and readiness checks. Older subjects still keep their questions in
+ * the legacy flat data array, so retain that as a compatibility fallback.
+ */
+export function getChapterQuizQuestions(
+  subjectId: string,
+  form: ChapterContent["form"] | "All",
+  chapterKey: string,
+  lang?: "bm" | "dlp",
+) {
+  const registeredQuestions =
+    form === "All" ? [] : (getChapter(subjectId, chapterKey, lang, form)?.quiz ?? []);
+
+  const legacyQuestions = allQuizzes.filter(
+    (question) =>
+      question.subjectId === subjectId &&
+      getItemChapterKey(question) === chapterKey &&
+      (form === "All" || question.form === form) &&
+      (!lang || !question.lang || question.lang === lang),
+  );
+
+  const resolvedQuestions = registeredQuestions.length > 0 ? registeredQuestions : legacyQuestions;
+
+  return resolvedQuestions;
 }
 
 /** All chapter content rows for a given subject (used to surface "available" flags). */
