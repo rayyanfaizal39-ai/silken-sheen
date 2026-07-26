@@ -21,10 +21,9 @@ const form1And3Topics = [
   "Penanda Wacana",
 ] as const;
 
-const form2Topics = [
-  "Frasa Nama",
-  "Frasa Kerja",
-  "Frasa Adjektif",
+const form2Topics = ["Frasa Nama", "Frasa Kerja", "Frasa Adjektif"] as const;
+
+const removedForm2Topics = [
   "Frasa Sendi Nama",
   "Klausa",
   "Pola Ayat Dasar",
@@ -59,7 +58,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
   });
 
-  it("registers Frasa Nama as the only active Form 2 syntax topic", () => {
+  it("keeps Frasa Nama active and unchanged in the Form 2 syntax library", () => {
     const topics = tatabahasaTopics("Form 2");
     const frasaNama = getChapter("bm", "Frasa Nama", undefined, "Form 2");
 
@@ -79,25 +78,12 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
       available: true,
       selectable: true,
     });
-    expect(topics.slice(1).every((topic) => !topic.available && !topic.selectable)).toBe(true);
     expect(hasFormResourceContent("bm", "Form 2", "mindMap")).toBe(true);
   });
 
-  it("registers inactive cards without placeholder lesson content", () => {
-    form2Topics.slice(1).forEach((key) => {
-      const chapter = getChapter("bm", key, undefined, "Form 2");
-
-      expect(chapter).toMatchObject({
-        chapterKey: key,
-        title: key,
-        categoryLabel: "Tatabahasa",
-      });
-      expect(chapter).not.toHaveProperty("description");
-      expect(chapter).not.toHaveProperty("mindMap");
-      expect(chapter).not.toHaveProperty("notes");
-      expect(chapter).not.toHaveProperty("quiz");
-      expect(chapter).not.toHaveProperty("flashcards");
-      expect(chapter).not.toHaveProperty("video");
+  it("does not register future Form 2 topic cards before their lessons are added", () => {
+    removedForm2Topics.forEach((key) => {
+      expect(getChapter("bm", key, undefined, "Form 2")).toBeUndefined();
     });
   });
 
@@ -120,22 +106,15 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     });
   });
 
-  it("uses stable IDs for the ten Form 2 syntax cards", () => {
+  it("uses stable IDs for the current three-card Form 2 syntax library", () => {
     expect(
       getChaptersForSubject("bm", undefined, "Form 2")
         .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
         .map((chapter) => chapter.id),
     ).toEqual([
       "bm-f2-frasa-nama-mindmap",
-      "bm-f2-frasa-kerja-topic",
+      "bm-f2-frasa-kerja-mindmap",
       "bm-f2-frasa-adjektif-topic",
-      "bm-f2-frasa-sendi-nama-topic",
-      "bm-f2-klausa-topic",
-      "bm-f2-pola-ayat-dasar-topic",
-      "bm-f2-ayat-tunggal-topic",
-      "bm-f2-ayat-majmuk-topic",
-      "bm-f2-subjek-predikat-topic",
-      "bm-f2-ragam-ayat-topic",
     ]);
   });
 

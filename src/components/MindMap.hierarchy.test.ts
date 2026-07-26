@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
@@ -30,6 +31,7 @@ const tatabahasaMindMaps = [
   ["Imbuhan", bahasaMelayuImbuhanMindMap],
   ["Penanda Wacana", bahasaMelayuPenandaWacanaMindMap],
   ["Frasa Nama (Form 2)", bahasaMelayuForm2FrasaNamaMindMap],
+  ["Frasa Kerja (Form 2)", bahasaMelayuForm2FrasaKerjaMindMap],
 ] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
@@ -177,6 +179,49 @@ describe("MindMap reusable hierarchy", () => {
         "Contoh 1",
         "Contoh 2",
         "Contoh 3",
+      ]),
+    );
+  });
+
+  it("reveals Frasa Kerja syntax only through its matching branches", () => {
+    const data = bahasaMelayuForm2FrasaKerjaMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("Kata Bantu Aspek");
+    expect(overview).not.toContain("Frasa Sendi Nama");
+    expect(overview).not.toContain("FN + FS");
+
+    const definitionBranch = data.children?.find((branch) => branch.label === "Definisi");
+    expect(visibleLabels(data, new Set([data.id, definitionBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Inti Frasa", "Contoh", "Peranan dalam Sintaksis"]),
+    );
+
+    const auxiliaryBranch = data.children?.find((branch) => branch.label === "Dengan Kata Bantu");
+    expect(visibleLabels(data, new Set([data.id, auxiliaryBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Kata Bantu Aspek", "Kata Bantu Ragam", "Contoh Ayat"]),
+    );
+
+    const compareBranch = data.children?.find((branch) => branch.label === "Bezakan Jenis Frasa");
+    expect(visibleLabels(data, new Set([data.id, compareBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Frasa Kerja",
+        "Frasa Sendi Nama",
+        "Frasa Adjektif",
+        "Frasa Nama",
+        "Rumus",
+      ]),
+    );
+
+    const tipBranch = data.children?.find((branch) => branch.label === "Tip UASA");
+    expect(visibleLabels(data, new Set([data.id, tipBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Cari Subjek",
+        "Cari Kata Kerja Inti",
+        "Ambil Keseluruhan Predikat",
+        "Tentukan Pola",
+        "Bezakan Frasa",
+        "Bina Ayat Gramatis",
       ]),
     );
   });

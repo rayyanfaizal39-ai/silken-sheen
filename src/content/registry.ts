@@ -241,6 +241,7 @@ import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilan
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
+import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2580,12 +2581,15 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuForm2FrasaNamaMindMap, title: "Frasa Nama" },
   },
   {
-    id: "bm-f2-frasa-kerja-topic",
+    id: "bm-f2-frasa-kerja-mindmap",
     subjectId: "bm",
     form: "Form 2",
     chapterKey: "Frasa Kerja",
     title: "Frasa Kerja",
+    description:
+      "Binaan yang mempunyai kata kerja sebagai inti dan lazimnya berfungsi sebagai predikat dalam ayat.",
     categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuForm2FrasaKerjaMindMap, title: "Frasa Kerja" },
   },
   {
     id: "bm-f2-frasa-adjektif-topic",
@@ -2593,62 +2597,6 @@ export const chapters: ChapterContent[] = [
     form: "Form 2",
     chapterKey: "Frasa Adjektif",
     title: "Frasa Adjektif",
-    categoryLabel: "Tatabahasa",
-  },
-  {
-    id: "bm-f2-frasa-sendi-nama-topic",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Frasa Sendi Nama",
-    title: "Frasa Sendi Nama",
-    categoryLabel: "Tatabahasa",
-  },
-  {
-    id: "bm-f2-klausa-topic",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Klausa",
-    title: "Klausa",
-    categoryLabel: "Tatabahasa",
-  },
-  {
-    id: "bm-f2-pola-ayat-dasar-topic",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Pola Ayat Dasar",
-    title: "Pola Ayat Dasar",
-    categoryLabel: "Tatabahasa",
-  },
-  {
-    id: "bm-f2-ayat-tunggal-topic",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Ayat Tunggal",
-    title: "Ayat Tunggal",
-    categoryLabel: "Tatabahasa",
-  },
-  {
-    id: "bm-f2-ayat-majmuk-topic",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Ayat Majmuk",
-    title: "Ayat Majmuk",
-    categoryLabel: "Tatabahasa",
-  },
-  {
-    id: "bm-f2-subjek-predikat-topic",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Subjek dan Predikat",
-    title: "Subjek dan Predikat",
-    categoryLabel: "Tatabahasa",
-  },
-  {
-    id: "bm-f2-ragam-ayat-topic",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Ragam Ayat",
-    title: "Ragam Ayat",
     categoryLabel: "Tatabahasa",
   },
 

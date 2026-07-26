@@ -136,6 +136,11 @@ export const Route = createFileRoute("/mindmaps")({
           "subjek dan predikat",
         ],
       },
+      "Frasa Kerja": {
+        description:
+          "Peta minda Frasa Kerja Tingkatan 2: kata kerja inti, kata bantu, objek, pelengkap, pola FN + FK, perbandingan jenis frasa, kesalahan lazim dan tip UASA.",
+        keywords: ["Frasa Kerja", "frasa kerja Tingkatan 2", "kata kerja inti", "pola FN FK"],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -149,6 +154,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Imbuhan"
         | "Penanda Wacana"
         | "Frasa Nama"
+        | "Frasa Kerja"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({

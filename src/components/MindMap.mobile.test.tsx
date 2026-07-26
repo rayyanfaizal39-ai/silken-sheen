@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
+import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
@@ -262,6 +263,29 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(9);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Form 2 Frasa Kerja path without horizontal overflow or child leakage", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuForm2FrasaKerjaMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuForm2FrasaKerjaMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda FRASA KERJA"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Frasa kerja ialah binaan yang terdiri daripada satu atau beberapa perkataan dengan kata kerja sebagai intinya.",
+    );
+    expect(markup).not.toContain("Kata kerja ialah unsur utama dalam frasa kerja.");
+    expect(markup).not.toContain("Kata Bantu Aspek");
+    expect(markup).not.toContain("Mereka pergi ke hospital.");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(12);
     expect(markup).not.toContain("touch-none");
   });
 });
