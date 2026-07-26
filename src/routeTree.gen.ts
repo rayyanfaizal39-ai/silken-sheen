@@ -33,6 +33,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
@@ -159,6 +160,11 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin_/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -212,6 +218,7 @@ export interface FileRoutesByFullPath {
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
@@ -242,6 +249,7 @@ export interface FileRoutesByTo {
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin': typeof AdminIndexRoute
@@ -274,6 +282,7 @@ export interface FileRoutesById {
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/admin_/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
@@ -307,6 +316,7 @@ export interface FileRouteTypes {
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/users'
+    | '/admin/login'
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin/'
@@ -337,6 +347,7 @@ export interface FileRouteTypes {
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/users'
+    | '/admin/login'
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin'
@@ -368,6 +379,7 @@ export interface FileRouteTypes {
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/users'
+    | '/admin_/login'
     | '/auth/callback'
     | '/auth/reset-password'
     | '/admin/'
@@ -396,6 +408,7 @@ export interface RootRouteChildren {
   TrackerRoute: typeof TrackerRoute
   UpgradeRoute: typeof UpgradeRoute
   AcademyLandingpage3Route: typeof AcademyLandingpage3Route
+  AdminLoginRoute: typeof AdminLoginRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
 }
@@ -570,6 +583,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin_/login': {
+      id: '/admin_/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/users': {
       id: '/admin/users'
       path: '/users'
@@ -649,6 +669,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackerRoute: TrackerRoute,
   UpgradeRoute: UpgradeRoute,
   AcademyLandingpage3Route: AcademyLandingpage3Route,
+  AdminLoginRoute: AdminLoginRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
 }

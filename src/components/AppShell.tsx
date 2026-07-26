@@ -11,11 +11,12 @@ import {
   LogOut,
   Network,
   Radar,
+  ShieldCheck,
   Sparkles,
   Trophy,
   Zap,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useProgress, getRank, getChessRating } from "@/hooks/use-progress";
 import { rankArtwork, rankImageScale } from "@/data/rankArtwork";
 import { useAuth } from "@/context/auth-context";
@@ -30,6 +31,7 @@ import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolu
 import { SiteFooter } from "@/components/SiteFooter";
 import { AcademyLogo } from "@/components/AcademyLogo";
 import { isRouteActive } from "@/lib/study-routing";
+import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-access";
 
 const navItems = [
   {
@@ -141,6 +143,25 @@ function SidebarBottom() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hideSignIn = pathname === "/" || pathname.startsWith("/dashboard");
   const rank = getRank(progress.xp);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setIsAdmin(false);
+    if (!user) return;
+
+    void getProfileForAdminCheck(user.id)
+      .then((profile) => {
+        if (!cancelled) setIsAdmin(hasAdministratorRole(profile));
+      })
+      .catch(() => {
+        if (!cancelled) setIsAdmin(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
 
   return (
     <div className="mt-auto space-y-3">
@@ -164,6 +185,15 @@ function SidebarBottom() {
               <p className="truncate text-[10px] text-white/40">{user.email}</p>
             </div>
           </div>
+          {isAdmin && (
+            <Link
+              to="/admin"
+              className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-violet-400/20 bg-violet-400/10 px-3 py-1.5 text-[11px] font-semibold text-violet-200 transition-colors hover:bg-violet-400/20 hover:text-white"
+            >
+              <ShieldCheck className="h-3 w-3" />
+              Admin Portal
+            </Link>
+          )}
           <button
             type="button"
             onClick={() => void signOut()}
@@ -232,7 +262,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { lastRankUp } = useProgress();
 
-  if (pathname.startsWith("/academy/") || pathname === "/") {
+  if (pathname.startsWith("/academy/") || pathname.startsWith("/admin") || pathname === "/") {
     return <>{children}</>;
   }
 

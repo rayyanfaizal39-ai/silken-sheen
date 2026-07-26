@@ -1,7 +1,8 @@
 import { useState, type ReactNode } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import type { AdminProfile } from "../../lib/admin.types";
 import { AcademyLogo } from "../AcademyLogo";
+import { useAuth } from "../../context/auth-context";
 
 interface NavItem {
   icon: string;
@@ -39,6 +40,13 @@ const NAV: { group: string; items: NavItem[] }[] = [
 export function AdminShell({ profile, children }: { profile: AdminProfile; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const navigate = useNavigate();
+  const { signOut } = useAuth();
+
+  async function handleLogout() {
+    await signOut();
+    await navigate({ to: "/admin/login", replace: true });
+  }
 
   return (
     <div className="admin-root">
@@ -78,6 +86,14 @@ export function AdminShell({ profile, children }: { profile: AdminProfile; child
             Signed in as
             <br />
             <strong style={{ color: "var(--muted)" }}>{profile.full_name || profile.email}</strong>
+            <button
+              type="button"
+              className="btn"
+              style={{ display: "block", marginTop: 10, width: "100%" }}
+              onClick={() => void handleLogout()}
+            >
+              Sign out
+            </button>
           </div>
         </aside>
 

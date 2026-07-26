@@ -25,7 +25,7 @@ interface AuthContextValue {
   session: Session | null;
   loading: boolean;
   isConfigured: boolean;
-  signInWithGoogle: () => Promise<void>;
+  signInWithGoogle: (returnTo?: "/admin/login") => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
   requestPasswordReset: (email: string) => Promise<void>;
@@ -106,7 +106,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signInWithGoogle = useCallback(async () => {
+  const signInWithGoogle = useCallback(async (returnTo?: "/admin/login") => {
     if (!isSupabaseConfigured) {
       throw new Error("Supabase is not configured");
     }
@@ -132,7 +132,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           })()
         : window.location.origin;
 
-    const redirectTo = `${origin}/auth/callback`;
+    const redirectTo = returnTo
+      ? `${origin}/auth/callback?next=${encodeURIComponent(returnTo)}`
+      : `${origin}/auth/callback`;
     console.info("[Auth] Google OAuth request started", { redirectTo, inIframe });
 
     if (inIframe) {

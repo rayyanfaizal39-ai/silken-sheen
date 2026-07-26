@@ -12,15 +12,15 @@ function AuthCallbackPage() {
   const navigate = useNavigate();
   const exchangeStarted = useRef(false);
   const initialCode = useRef(
-    typeof window !== "undefined"
-      ? new URLSearchParams(window.location.search).get("code")
-      : null,
+    typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("code") : null,
   );
-  const nextPath = useRef<"/auth/reset-password" | "/home">(
-    typeof window !== "undefined" &&
-      new URLSearchParams(window.location.search).get("next") === "/auth/reset-password"
-      ? "/auth/reset-password"
-      : "/home",
+  const nextPath = useRef<"/auth/reset-password" | "/admin/login" | "/home">(
+    (() => {
+      if (typeof window === "undefined") return "/home";
+      const next = new URLSearchParams(window.location.search).get("next");
+      if (next === "/auth/reset-password" || next === "/admin/login") return next;
+      return "/home";
+    })(),
   );
   const [callbackError, setCallbackError] = useState<string | null>(null);
   const [exchangeComplete, setExchangeComplete] = useState(!initialCode.current);
