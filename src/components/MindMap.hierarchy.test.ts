@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
+import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
 import {
   calculateMindMapLayout,
   getExpandableMindNodeIds,
@@ -14,6 +15,7 @@ const tatabahasaMindMaps = [
   ["Kata Nama", bahasaMelayuKataNamaMindMap],
   ["Kata Kerja", bahasaMelayuKataKerjaMindMap],
   ["Kata Adjektif", bahasaMelayuKataAdjektifMindMap],
+  ["Kata Sendi Nama", bahasaMelayuKataSendiNamaMindMap],
 ] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
@@ -101,6 +103,38 @@ describe("MindMap reusable hierarchy", () => {
     ].forEach((detail) => {
       expect(content.filter((entry) => entry === detail)).toHaveLength(1);
     });
+  });
+
+  it("reveals Kata Sendi Nama rules only through their matching branches", () => {
+    const data = bahasaMelayuKataSendiNamaMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Kegunaan");
+    expect(overview).not.toContain("dari");
+    expect(overview).not.toContain("Formula");
+
+    const diBranch = data.children?.find((branch) => branch.label === "di");
+    const diOpen = getVisibleMindNodes(data, new Set([data.id, diBranch?.id ?? ""]));
+    expect(diOpen.find(({ node }) => node.label === "Kegunaan")?.node.summary).toBe(
+      "Digunakan untuk menunjukkan tempat atau lokasi.",
+    );
+    expect(diOpen.map(({ node }) => node.label)).toEqual(
+      expect.arrayContaining(["Contoh", "Nota Ejaan", "Bezakan dengan Imbuhan di-"]),
+    );
+
+    const dariBranch = data.children?.find((branch) => branch.label === "dari / daripada");
+    const dariOpen = getVisibleMindNodes(data, new Set([data.id, dariBranch?.id ?? ""]));
+    expect(dariOpen.find(({ node }) => node.label === "dari")?.node.summary).toBe(
+      "Gunakan rumus ATM: Arah, Tempat, Masa.",
+    );
+    expect(dariOpen.map(({ node }) => node.label)).toEqual(
+      expect.arrayContaining(["daripada", "Perbandingan Ringkas"]),
+    );
+
+    const frasaBranch = data.children?.find((branch) => branch.label === "Frasa Sendi Nama");
+    expect(visibleLabels(data, new Set([data.id, frasaBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Formula", "Pola Ayat", "Contoh"]),
+    );
   });
 });
 

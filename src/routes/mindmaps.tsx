@@ -71,7 +71,12 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Kata Adjektif untuk Tingkatan 1, 2 dan 3: definisi, fungsi, Frasa Adjektif, kosa kata, kesalahan lazim dan tip UASA.",
         keywords: ["Kata Adjektif", "frasa adjektif", "contoh kata adjektif"],
       },
-    }[match.search.chapter as "Kata Nama" | "Kata Kerja" | "Kata Adjektif"];
+      "Kata Sendi Nama": {
+        description:
+          "Peta minda Kata Sendi Nama untuk Tingkatan 1, 2 dan 3: fungsi di, dari dan daripada, ke dan kepada, Frasa Sendi Nama, kesalahan lazim serta tip UASA.",
+        keywords: ["Kata Sendi Nama", "frasa sendi nama", "dari dan daripada", "ke dan kepada"],
+      },
+    }[match.search.chapter as "Kata Nama" | "Kata Kerja" | "Kata Adjektif" | "Kata Sendi Nama"];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
         title: `${match.search.chapter} — Peta Minda Tatabahasa Bahasa Melayu`,

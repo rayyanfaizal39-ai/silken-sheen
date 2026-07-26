@@ -913,10 +913,17 @@ export function MindMap({
           : Math.max(0.45, Math.min(currentScale, fitScale));
       const centerX = (bounds.minX + bounds.maxX) / 2;
       const centerY = (bounds.minY + bounds.maxY) / 2;
-      const viewportTargetX = request.mode === "reset" ? cw / 2 : cw * 0.57;
+      const requestedPosition = layout.positions.get(request.id);
+      const rootPosition = layout.positions.get(data.id);
+      const viewportTargetX =
+        request.mode === "reset"
+          ? cw / 2
+          : requestedPosition && rootPosition && requestedPosition.x < rootPosition.x
+            ? cw * 0.43
+            : cw * 0.57;
       animateCamera(viewportTargetX - centerX * nextScale, ch / 2 - centerY * nextScale, nextScale);
     }
-  }, [animateCamera, layout, maxX, maxY, minX, minY, svgH, svgW, treeMaps, visibleIds]);
+  }, [animateCamera, data.id, layout, maxX, maxY, minX, minY, svgH, svgW, treeMaps, visibleIds]);
 
   useEffect(() => {
     initialViewDone.current = false;
@@ -952,14 +959,21 @@ export function MindMap({
       pendingCamera.current = null;
       setSelectedId(id);
       const nextScale = Math.min(1.4, Math.max(1.05, cameraState.current.scale * 1.18));
+      const rootPosition = layout.positions.get(data.id);
+      const viewportTargetX =
+        rootPosition && p.x < rootPosition.x
+          ? el.clientWidth * 0.46
+          : rootPosition && p.x > rootPosition.x
+            ? el.clientWidth * 0.54
+            : el.clientWidth / 2;
       animateCamera(
-        el.clientWidth * 0.54 - (p.x + p.w / 2) * nextScale,
+        viewportTargetX - (p.x + p.w / 2) * nextScale,
         el.clientHeight / 2 - p.y * nextScale,
         nextScale,
         720,
       );
     },
-    [animateCamera, layout.positions],
+    [animateCamera, data.id, layout.positions],
   );
 
   // Center the camera on a node without changing zoom or expand state.
@@ -1016,7 +1030,7 @@ export function MindMap({
     const centerX = (bounds.minX + bounds.maxX) / 2;
     const centerY = (bounds.minY + bounds.maxY) / 2;
     animateCamera(
-      el.clientWidth * 0.57 - centerX * nextScale,
+      el.clientWidth / 2 - centerX * nextScale,
       el.clientHeight / 2 - centerY * nextScale,
       nextScale,
     );
