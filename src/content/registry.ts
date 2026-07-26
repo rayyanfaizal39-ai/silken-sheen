@@ -239,6 +239,8 @@ import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap"
 import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
+import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
+import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2385,16 +2387,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
   },
   {
-    id: "bm-f2-kata-nama-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Kata Nama",
-    title: "Kata Nama",
-    description: "Perkataan yang menamakan orang, haiwan, benda, tempat atau konsep.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuKataNamaMindMap, title: "Kata Nama" },
-  },
-  {
     id: "bm-f3-kata-nama-mindmap",
     subjectId: "bm",
     form: "Form 3",
@@ -2408,17 +2400,6 @@ export const chapters: ChapterContent[] = [
     id: "bm-f1-kata-ganti-nama-mindmap",
     subjectId: "bm",
     form: "Form 1",
-    chapterKey: "Kata Ganti Nama",
-    title: "Kata Ganti Nama",
-    description:
-      "Perkataan yang digunakan untuk menggantikan kata nama supaya ayat tidak berulang.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuKataGantiNamaMindMap, title: "Kata Ganti Nama" },
-  },
-  {
-    id: "bm-f2-kata-ganti-nama-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
     chapterKey: "Kata Ganti Nama",
     title: "Kata Ganti Nama",
     description:
@@ -2448,16 +2429,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuKataKerjaMindMap, title: "Kata Kerja" },
   },
   {
-    id: "bm-f2-kata-kerja-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Kata Kerja",
-    title: "Kata Kerja",
-    description: "Perkataan yang menerangkan perbuatan, keadaan atau proses.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuKataKerjaMindMap, title: "Kata Kerja" },
-  },
-  {
     id: "bm-f3-kata-kerja-mindmap",
     subjectId: "bm",
     form: "Form 3",
@@ -2478,16 +2449,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuKataAdjektifMindMap, title: "Kata Adjektif" },
   },
   {
-    id: "bm-f2-kata-adjektif-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Kata Adjektif",
-    title: "Kata Adjektif",
-    description: "Perkataan yang menerangkan sifat, keadaan atau kualiti sesuatu kata nama.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuKataAdjektifMindMap, title: "Kata Adjektif" },
-  },
-  {
     id: "bm-f3-kata-adjektif-mindmap",
     subjectId: "bm",
     form: "Form 3",
@@ -2501,17 +2462,6 @@ export const chapters: ChapterContent[] = [
     id: "bm-f1-kata-sendi-nama-mindmap",
     subjectId: "bm",
     form: "Form 1",
-    chapterKey: "Kata Sendi Nama",
-    title: "Kata Sendi Nama",
-    description:
-      "Perkataan yang hadir di hadapan kata nama atau frasa nama untuk menunjukkan tempat, arah, masa atau hubungan.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuKataSendiNamaMindMap, title: "Kata Sendi Nama" },
-  },
-  {
-    id: "bm-f2-kata-sendi-nama-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
     chapterKey: "Kata Sendi Nama",
     title: "Kata Sendi Nama",
     description:
@@ -2542,17 +2492,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuKataHubungMindMap, title: "Kata Hubung" },
   },
   {
-    id: "bm-f2-kata-hubung-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Kata Hubung",
-    title: "Kata Hubung",
-    description:
-      "Perkataan yang menghubungkan kata, frasa atau klausa untuk membentuk ayat yang gramatis.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuKataHubungMindMap, title: "Kata Hubung" },
-  },
-  {
     id: "bm-f3-kata-hubung-mindmap",
     subjectId: "bm",
     form: "Form 3",
@@ -2567,17 +2506,6 @@ export const chapters: ChapterContent[] = [
     id: "bm-f1-kata-bilangan-mindmap",
     subjectId: "bm",
     form: "Form 1",
-    chapterKey: "Kata Bilangan",
-    title: "Kata Bilangan",
-    description:
-      "Perkataan yang digunakan untuk menyatakan jumlah, bilangan, pecahan, himpunan atau urutan sesuatu kata nama.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuKataBilanganMindMap, title: "Kata Bilangan" },
-  },
-  {
-    id: "bm-f2-kata-bilangan-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
     chapterKey: "Kata Bilangan",
     title: "Kata Bilangan",
     description:
@@ -2608,17 +2536,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuPenjodohBilanganMindMap, title: "Penjodoh Bilangan" },
   },
   {
-    id: "bm-f2-penjodoh-bilangan-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Penjodoh Bilangan",
-    title: "Penjodoh Bilangan",
-    description:
-      "Perkataan yang digunakan bersama kata bilangan untuk membilang manusia, haiwan atau benda mengikut bentuk dan sifatnya.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuPenjodohBilanganMindMap, title: "Penjodoh Bilangan" },
-  },
-  {
     id: "bm-f3-penjodoh-bilangan-mindmap",
     subjectId: "bm",
     form: "Form 3",
@@ -2641,17 +2558,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
   },
   {
-    id: "bm-f2-imbuhan-mindmap",
-    subjectId: "bm",
-    form: "Form 2",
-    chapterKey: "Imbuhan",
-    title: "Imbuhan",
-    description:
-      "Unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan yang membawa makna tertentu.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
-  },
-  {
     id: "bm-f3-imbuhan-mindmap",
     subjectId: "bm",
     form: "Form 3",
@@ -2661,6 +2567,89 @@ export const chapters: ChapterContent[] = [
       "Unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan yang membawa makna tertentu.",
     categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
+  },
+  {
+    id: "bm-f2-frasa-nama-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Frasa Nama",
+    title: "Frasa Nama",
+    description:
+      "Binaan yang mempunyai kata nama sebagai inti dan berfungsi membentuk subjek atau predikat dalam ayat.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuForm2FrasaNamaMindMap, title: "Frasa Nama" },
+  },
+  {
+    id: "bm-f2-frasa-kerja-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Frasa Kerja",
+    title: "Frasa Kerja",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-frasa-adjektif-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Frasa Adjektif",
+    title: "Frasa Adjektif",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-frasa-sendi-nama-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Frasa Sendi Nama",
+    title: "Frasa Sendi Nama",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-klausa-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Klausa",
+    title: "Klausa",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-pola-ayat-dasar-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Pola Ayat Dasar",
+    title: "Pola Ayat Dasar",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-ayat-tunggal-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Tunggal",
+    title: "Ayat Tunggal",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-ayat-majmuk-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Majmuk",
+    title: "Ayat Majmuk",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-subjek-predikat-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Subjek dan Predikat",
+    title: "Subjek dan Predikat",
+    categoryLabel: "Tatabahasa",
+  },
+  {
+    id: "bm-f2-ragam-ayat-topic",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ragam Ayat",
+    title: "Ragam Ayat",
+    categoryLabel: "Tatabahasa",
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)
@@ -2686,6 +2675,10 @@ export const chapters: ChapterContent[] = [
     form: "Form 1",
     chapterKey: "Penanda Wacana",
     title: "Penanda Wacana",
+    description:
+      "Perkataan atau frasa yang menghubungkan idea supaya penulisan menjadi tersusun, lancar dan mudah difahami.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
     flashcards: bmFlashcardsFor("Penanda Wacana"),
   },
   {
@@ -2757,6 +2750,17 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Penanda Wacana",
     title: "Penanda Wacana",
     flashcards: bmFlashcardsFor("Penanda Wacana", "Form 2"),
+  },
+  {
+    id: "bm-f3-penanda-wacana",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Penanda Wacana",
+    title: "Penanda Wacana",
+    description:
+      "Perkataan atau frasa yang menghubungkan idea supaya penulisan menjadi tersusun, lancar dan mudah difahami.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
   },
   {
     id: "bm-f2-peribahasa",

@@ -1,11 +1,13 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
+import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
 import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mindmap";
 import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
+import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 import { MindMap, type MindNode } from "./MindMap";
 
@@ -211,6 +213,55 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(10);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Penanda Wacana path in order without child details", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuPenandaWacanaMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuPenandaWacanaMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda PENANDA WACANA"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Perkataan atau rangkaian perkataan yang menghubungkan ayat dan perenggan",
+    );
+    expect(markup).not.toContain(
+      "Penanda wacana ialah perkataan atau rangkaian perkataan yang digunakan untuk menghubungkan",
+    );
+    expect(markup).not.toContain("Selain itu • Di samping itu • Seterusnya");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(11);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Form 2 Frasa Nama path without leaking lesson details", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuForm2FrasaNamaMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuForm2FrasaNamaMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda FRASA NAMA"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Frasa nama ialah binaan yang terdiri daripada satu atau beberapa perkataan dengan kata nama sebagai intinya.",
+    );
+    expect(markup).not.toContain(
+      "Kata nama yang menjadi unsur utama dan tidak boleh digugurkan tanpa menjejaskan maksud frasa.",
+    );
+    expect(markup).not.toContain("FN + FK");
+    expect(markup).not.toContain("Murid itu membaca buku.");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(9);
     expect(markup).not.toContain("touch-none");
   });
 });

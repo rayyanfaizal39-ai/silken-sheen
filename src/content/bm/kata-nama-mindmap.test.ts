@@ -6,7 +6,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuKataNamaMindMap } from "./kata-nama-mindmap";
 
-const forms = ["Form 1", "Form 2", "Form 3"] as const;
+const forms = ["Form 1", "Form 3"] as const;
 
 describe("Bahasa Melayu Kata Nama mind map", () => {
   it.each(forms)("registers Kata Nama through the shared %s chapter pipeline", (form) => {

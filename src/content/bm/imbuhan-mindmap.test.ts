@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuImbuhanMindMap } from "./imbuhan-mindmap";
 
-const forms = ["Form 1", "Form 2", "Form 3"] as const;
+const forms = ["Form 1", "Form 3"] as const;
 const description =
   "Unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan yang membawa makna tertentu.";
 
@@ -65,12 +65,12 @@ describe("Bahasa Melayu Imbuhan mind map", () => {
     });
   });
 
-  it("uses stable registry IDs for the three applicable forms", () => {
+  it("uses stable registry IDs for the two applicable forms", () => {
     expect(
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.chapterKey === "Imbuhan")
         .map((chapter) => chapter.id),
-    ).toEqual(["bm-f1-imbuhan-mindmap", "bm-f2-imbuhan-mindmap", "bm-f3-imbuhan-mindmap"]);
+    ).toEqual(["bm-f1-imbuhan-mindmap", "bm-f3-imbuhan-mindmap"]);
   });
 
   it("contains the required central summary and ten title-only branches", () => {

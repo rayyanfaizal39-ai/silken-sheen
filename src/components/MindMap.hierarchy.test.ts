@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
@@ -7,6 +8,7 @@ import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap"
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
+import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 import {
   calculateMindMapLayout,
@@ -26,6 +28,8 @@ const tatabahasaMindMaps = [
   ["Kata Bilangan", bahasaMelayuKataBilanganMindMap],
   ["Penjodoh Bilangan", bahasaMelayuPenjodohBilanganMindMap],
   ["Imbuhan", bahasaMelayuImbuhanMindMap],
+  ["Penanda Wacana", bahasaMelayuPenandaWacanaMindMap],
+  ["Frasa Nama (Form 2)", bahasaMelayuForm2FrasaNamaMindMap],
 ] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
@@ -144,6 +148,36 @@ describe("MindMap reusable hierarchy", () => {
     const frasaBranch = data.children?.find((branch) => branch.label === "Frasa Sendi Nama");
     expect(visibleLabels(data, new Set([data.id, frasaBranch?.id ?? ""]))).toEqual(
       expect.arrayContaining(["Maksud", "Formula", "Pola Ayat", "Contoh"]),
+    );
+  });
+
+  it("reveals Frasa Nama structure and sentence roles only through their matching branches", () => {
+    const data = bahasaMelayuForm2FrasaNamaMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("FN + FK");
+    expect(overview).not.toContain("Kenal Pasti Seluruh Frasa");
+
+    const definitionBranch = data.children?.find((branch) => branch.label === "Definisi");
+    expect(visibleLabels(data, new Set([data.id, definitionBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Inti Frasa", "Contoh"]),
+    );
+
+    const patternBranch = data.children?.find((branch) => branch.label === "Pola Ayat Dasar");
+    expect(visibleLabels(data, new Set([data.id, patternBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["FN + FK", "FN + FA", "FN + FS", "FN + FN"]),
+    );
+
+    const subjectBranch = data.children?.find((branch) => branch.label === "Sebagai Subjek");
+    expect(visibleLabels(data, new Set([data.id, subjectBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Penerangan",
+        "Kenal Pasti Seluruh Frasa",
+        "Contoh 1",
+        "Contoh 2",
+        "Contoh 3",
+      ]),
     );
   });
 
@@ -287,6 +321,49 @@ describe("MindMap reusable hierarchy", () => {
     const borrowedBranch = data.children?.find((branch) => branch.label === "Imbuhan Pinjaman");
     expect(visibleLabels(data, new Set([data.id, borrowedBranch?.id ?? ""]))).toEqual(
       expect.arrayContaining(["Maksud", "Contoh", "Contoh Perkataan", "Kata Nama Khas"]),
+    );
+  });
+
+  it("reveals Penanda Wacana guidance only through its matching branches", () => {
+    const data = bahasaMelayuPenandaWacanaMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Memulakan Perenggan");
+    expect(overview).not.toContain("Marcapada");
+    expect(overview).not.toContain("Persamaan");
+
+    const openingBranch = data.children?.find((branch) => branch.label === "Memulakan Idea");
+    expect(visibleLabels(data, new Set([data.id, openingBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Memulakan Perenggan", "Contoh Ayat", "Kegunaan"]),
+    );
+
+    const vocabularyBranch = data.children?.find(
+      (branch) => branch.label === "Kosa Kata Aras Tinggi",
+    );
+    expect(visibleLabels(data, new Set([data.id, vocabularyBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Marcapada",
+        "Sementelahan",
+        "Izharnya",
+        "Seyogia",
+        "Kendatipun",
+        "Kosa Kata Lanjutan",
+      ]),
+    );
+
+    const relationshipBranch = data.children?.find(
+      (branch) => branch.label === "Hubungan dengan Kata Hubung",
+    );
+    const differenceBranch = relationshipBranch?.children?.find(
+      (branch) => branch.label === "Perbezaan",
+    );
+    expect(
+      visibleLabels(
+        data,
+        new Set([data.id, relationshipBranch?.id ?? "", differenceBranch?.id ?? ""]),
+      ),
+    ).toEqual(
+      expect.arrayContaining(["Persamaan", "Perbezaan", "Kata Hubung", "Penanda Wacana", "Nota"]),
     );
   });
 

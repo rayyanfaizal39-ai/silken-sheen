@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuKataHubungMindMap } from "./kata-hubung-mindmap";
 
-const forms = ["Form 1", "Form 2", "Form 3"] as const;
+const forms = ["Form 1", "Form 3"] as const;
 const description =
   "Perkataan yang menghubungkan kata, frasa atau klausa untuk membentuk ayat yang gramatis.";
 
@@ -62,16 +62,12 @@ describe("Bahasa Melayu Kata Hubung mind map", () => {
     });
   });
 
-  it("uses stable registry IDs for the three applicable forms", () => {
+  it("uses stable registry IDs for the two applicable forms", () => {
     expect(
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.chapterKey === "Kata Hubung")
         .map((chapter) => chapter.id),
-    ).toEqual([
-      "bm-f1-kata-hubung-mindmap",
-      "bm-f2-kata-hubung-mindmap",
-      "bm-f3-kata-hubung-mindmap",
-    ]);
+    ).toEqual(["bm-f1-kata-hubung-mindmap", "bm-f3-kata-hubung-mindmap"]);
   });
 
   it("contains the required central summary and eight title-only branches", () => {

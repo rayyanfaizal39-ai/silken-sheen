@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuKataSendiNamaMindMap } from "./kata-sendi-nama-mindmap";
 
-const forms = ["Form 1", "Form 2", "Form 3"] as const;
+const forms = ["Form 1", "Form 3"] as const;
 const description =
   "Perkataan yang hadir di hadapan kata nama atau frasa nama untuk menunjukkan tempat, arah, masa atau hubungan.";
 
@@ -61,16 +61,12 @@ describe("Bahasa Melayu Kata Sendi Nama mind map", () => {
     });
   });
 
-  it("uses stable registry IDs for the three applicable forms", () => {
+  it("uses stable registry IDs for the two applicable forms", () => {
     expect(
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.chapterKey === "Kata Sendi Nama")
         .map((chapter) => chapter.id),
-    ).toEqual([
-      "bm-f1-kata-sendi-nama-mindmap",
-      "bm-f2-kata-sendi-nama-mindmap",
-      "bm-f3-kata-sendi-nama-mindmap",
-    ]);
+    ).toEqual(["bm-f1-kata-sendi-nama-mindmap", "bm-f3-kata-sendi-nama-mindmap"]);
   });
 
   it("contains the required central summary and ten title-only branches", () => {

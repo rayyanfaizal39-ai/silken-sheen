@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuKataBilanganMindMap } from "./kata-bilangan-mindmap";
 
-const forms = ["Form 1", "Form 2", "Form 3"] as const;
+const forms = ["Form 1", "Form 3"] as const;
 const description =
   "Perkataan yang digunakan untuk menyatakan jumlah, bilangan, pecahan, himpunan atau urutan sesuatu kata nama.";
 
@@ -64,16 +64,12 @@ describe("Bahasa Melayu Kata Bilangan mind map", () => {
     });
   });
 
-  it("uses stable registry IDs for the three applicable forms", () => {
+  it("uses stable registry IDs for the two applicable forms", () => {
     expect(
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.chapterKey === "Kata Bilangan")
         .map((chapter) => chapter.id),
-    ).toEqual([
-      "bm-f1-kata-bilangan-mindmap",
-      "bm-f2-kata-bilangan-mindmap",
-      "bm-f3-kata-bilangan-mindmap",
-    ]);
+    ).toEqual(["bm-f1-kata-bilangan-mindmap", "bm-f3-kata-bilangan-mindmap"]);
   });
 
   it("contains the required central summary and twelve title-only branches", () => {

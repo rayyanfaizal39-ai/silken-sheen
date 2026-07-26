@@ -116,6 +116,26 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Imbuhan untuk Tingkatan 1, 2 dan 3: awalan, akhiran, apitan, sisipan, imbuhan pinjaman, fungsi, kesalahan lazim dan tip UASA.",
         keywords: ["Imbuhan", "jenis imbuhan", "imbuhan KSSM", "awalan akhiran apitan sisipan"],
       },
+      "Penanda Wacana": {
+        description:
+          "Peta minda Penanda Wacana untuk Tingkatan 1, 2 dan 3: memulakan idea, penambahan, sebab dan akibat, contoh, kesimpulan, kosa kata lanjutan serta tip UASA.",
+        keywords: [
+          "Penanda Wacana",
+          "contoh penanda wacana",
+          "penanda wacana KSSM",
+          "penanda wacana karangan",
+        ],
+      },
+      "Frasa Nama": {
+        description:
+          "Peta minda Frasa Nama Tingkatan 2: definisi, inti dan penerang, fungsi sebagai subjek atau predikat, pola ayat dasar, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Frasa Nama",
+          "frasa nama Tingkatan 2",
+          "pola ayat dasar",
+          "subjek dan predikat",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -127,6 +147,8 @@ export const Route = createFileRoute("/mindmaps")({
         | "Kata Bilangan"
         | "Penjodoh Bilangan"
         | "Imbuhan"
+        | "Penanda Wacana"
+        | "Frasa Nama"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
@@ -524,10 +546,8 @@ function getMindMapChapters(subjectId: string, scienceLang: "bm" | "dlp" | undef
   >();
 
   for (const chapter of getSubjectChapters(subjectId, scienceLang, form)) {
-    if (
-      subjectId === "bm" &&
-      !hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang)
-    ) {
+    const hasMindMap = hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang);
+    if (subjectId === "bm" && !hasMindMap && chapter.categoryLabel !== "Tatabahasa") {
       continue;
     }
     rows.set(chapter.key, chapter);
