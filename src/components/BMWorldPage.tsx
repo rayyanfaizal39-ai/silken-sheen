@@ -46,12 +46,25 @@ import {
   bmF1ObjektifKuiz2,
   bmF1ObjektifKuiz3,
 } from "@/data/bm-f1-objektif-quizzes";
-import { bmF2ObjektifKuiz1, bmF2ObjektifKuiz2, bmF2ObjektifKuiz3 } from "@/data/bm-f2-objektif-quizzes";
-import { bmF3ObjektifKuiz1, bmF3ObjektifKuiz2, bmF3ObjektifKuiz3 } from "@/data/bm-f3-objektif-quizzes";
+import {
+  bmF2ObjektifKuiz1,
+  bmF2ObjektifKuiz2,
+  bmF2ObjektifKuiz3,
+} from "@/data/bm-f2-objektif-quizzes";
+import {
+  bmF3ObjektifKuiz1,
+  bmF3ObjektifKuiz2,
+  bmF3ObjektifKuiz3,
+} from "@/data/bm-f3-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { sfx } from "@/lib/sounds";
 import { getQuizQuestionCount } from "@/lib/quiz-counts";
+import {
+  cleanLearningLabel,
+  cleanLearningQuestion,
+  cleanLearningTitle,
+} from "@/lib/clean-learning-title";
 import { SistemBahasaTopicDetail } from "@/components/SistemBahasaTopicDetail";
 import { KaranganPendekHub } from "@/components/KaranganPendekHub";
 import { KaranganPanjangHub } from "@/components/KaranganPanjangHub";
@@ -62,7 +75,11 @@ import { getModelKarangan } from "@/data/bm-model-karangan-hub";
 import { PenandaWacanaLengkapHub } from "@/components/PenandaWacanaLengkapHub";
 import { PeribahasaBankLengkapHub } from "@/components/PeribahasaBankLengkapHub";
 import { EssayImprovementPlusSections } from "@/components/EssayImprovementPlusSections";
-import { Kertas2FolderTemplate, Kertas2HubGrid, splitIntoKertas2Folders } from "@/components/Kertas2FolderTemplate";
+import {
+  Kertas2FolderTemplate,
+  Kertas2HubGrid,
+  splitIntoKertas2Folders,
+} from "@/components/Kertas2FolderTemplate";
 import { ExamSkillLanding, type MissionDefinition } from "@/components/exam-skill/MissionLearning";
 import {
   Accordion,
@@ -113,11 +130,35 @@ const OBJEKTIF_SETS_FORM2 = [
   { id: "bm-f2-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF2ObjektifKuiz3 },
 ] as const;
 const OBJEKTIF_SETS_FORM3 = [
-  { id: "bm-f3-obj1", label: "Set A", badge: "A", color: "#818CF8", questions: bmF3ObjektifKuiz1, ready: true },
-  { id: "bm-f3-obj2", label: "Set B", badge: "B", color: "#34D399", questions: bmF3ObjektifKuiz2, ready: true },
-  { id: "bm-f3-obj3", label: "Set C", badge: "C", color: "#F472B6", questions: bmF3ObjektifKuiz3, ready: true },
+  {
+    id: "bm-f3-obj1",
+    label: "Set A",
+    badge: "A",
+    color: "#818CF8",
+    questions: bmF3ObjektifKuiz1,
+    ready: true,
+  },
+  {
+    id: "bm-f3-obj2",
+    label: "Set B",
+    badge: "B",
+    color: "#34D399",
+    questions: bmF3ObjektifKuiz2,
+    ready: true,
+  },
+  {
+    id: "bm-f3-obj3",
+    label: "Set C",
+    badge: "C",
+    color: "#F472B6",
+    questions: bmF3ObjektifKuiz3,
+    ready: true,
+  },
 ] as const;
-type ObjectiveSetCollection = typeof OBJEKTIF_SETS | typeof OBJEKTIF_SETS_FORM2 | typeof OBJEKTIF_SETS_FORM3;
+type ObjectiveSetCollection =
+  | typeof OBJEKTIF_SETS
+  | typeof OBJEKTIF_SETS_FORM2
+  | typeof OBJEKTIF_SETS_FORM3;
 
 function shuffleItems<T>(items: T[]): T[] {
   const next = [...items];
@@ -607,7 +648,7 @@ function ObjektifKuizView({
     return (
       <div>
         <PageHeader
-          breadcrumb={["Bahasa Melayu", "Kertas 1", `Objektif ${set.label}`]}
+          breadcrumb={["Bahasa Melayu", "Kertas 1", cleanLearningLabel(`Objektif ${set.label}`)]}
           onBack={onBack}
           accent={set.color}
         />
@@ -621,7 +662,9 @@ function ObjektifKuizView({
           >
             {set.badge}
           </div>
-          <h2 className="font-display text-2xl font-bold text-white">Kuiz Objektif {set.label}</h2>
+          <h2 className="font-display text-2xl font-bold text-white">
+            {cleanLearningTitle(`Kuiz Objektif ${set.label}`)}
+          </h2>
           <p className="mt-1 text-sm text-white/50">
             Kertas 1 Bahagian A — Format UASA {formLabel}
           </p>
@@ -666,7 +709,7 @@ function ObjektifKuizView({
     return (
       <div>
         <PageHeader
-          breadcrumb={["Bahasa Melayu", "Kertas 1", `Objektif ${set.label}`]}
+          breadcrumb={["Bahasa Melayu", "Kertas 1", cleanLearningLabel(`Objektif ${set.label}`)]}
           onBack={onBack}
           accent={set.color}
         />
@@ -693,7 +736,9 @@ function ObjektifKuizView({
           )}
           <p className="text-5xl mb-3">{passed ? "🏆" : "💪"}</p>
           <h2 className="font-display text-2xl font-bold text-white">{grade.message}</h2>
-          <p className="mt-1 text-sm text-white/50">Kuiz Objektif {set.label} selesai</p>
+          <p className="mt-1 text-sm text-white/50">
+            {cleanLearningTitle(`Kuiz Objektif ${set.label} selesai`)}
+          </p>
 
           <div
             className="mx-auto mt-6 flex h-28 w-28 items-center justify-center rounded-full text-3xl font-black text-white animate-score-reveal"
@@ -751,7 +796,7 @@ function ObjektifKuizView({
                   )}
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-semibold text-white/80 line-clamp-1">
-                      S{i + 1}. {question.question.split("\n")[0]}
+                      S{i + 1}. {cleanLearningQuestion(question.question.split("\n")[0])}
                     </p>
                     {!isCorrect && (
                       <p className="mt-0.5 text-[10px] text-white/40">
@@ -791,7 +836,7 @@ function ObjektifKuizView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["Bahasa Melayu", "Kertas 1", `Objektif ${set.label}`]}
+        breadcrumb={["Bahasa Melayu", "Kertas 1", cleanLearningLabel(`Objektif ${set.label}`)]}
         onBack={onBack}
         accent={set.color}
       />
@@ -839,7 +884,7 @@ function ObjektifKuizView({
           Soalan {current + 1}
         </span>
         <p className="text-sm font-semibold leading-relaxed text-white whitespace-pre-line">
-          {q.question}
+          {cleanLearningQuestion(q.question)}
         </p>
       </div>
 
@@ -1053,7 +1098,7 @@ function K1QuizView({
                         className="text-xs font-black uppercase tracking-[0.18em]"
                         style={{ color: meta.color }}
                       >
-                        {meta.title}
+                        {cleanLearningLabel(meta.title)}
                       </p>
                       <h3 className="mt-1 font-display text-xl font-bold text-white">
                         {meta.subtitle}
@@ -1126,7 +1171,27 @@ function KertasView({
   onSelectHub: (hubId: string) => void;
   onBack: () => void;
 }) {
-  if (kertas.id === "k2") return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.label]} onBack={onBack} accent={kertas.color} /><Kertas2HubGrid hubs={kertas.hubs.map(hub => ({ id: hub.id, label: hub.label, description: hub.description, icon: hub.icon, color: hub.color, count: `${hub.topics.length} topik` }))} onSelect={onSelectHub} /></div>;
+  if (kertas.id === "k2")
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", kertas.label]}
+          onBack={onBack}
+          accent={kertas.color}
+        />
+        <Kertas2HubGrid
+          hubs={kertas.hubs.map((hub) => ({
+            id: hub.id,
+            label: hub.label,
+            description: hub.description,
+            icon: hub.icon,
+            color: hub.color,
+            count: `${hub.topics.length} topik`,
+          }))}
+          onSelect={onSelectHub}
+        />
+      </div>
+    );
   return (
     <div>
       <PageHeader
@@ -1218,16 +1283,67 @@ function HubView({
   onBack: () => void;
 }) {
   if (kertas.id === "k2") {
-    const items = hub.topics.map(topic => ({ id: topic.id, title: topic.label, description: topic.description, badge: topic.badge }));
-    return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><Kertas2FolderTemplate title={hub.label} subtitle={hub.description} groups={splitIntoKertas2Folders(items)} onSelectItem={onSelectTopic} /></div>;
+    const items = hub.topics.map((topic) => ({
+      id: topic.id,
+      title: topic.label,
+      description: topic.description,
+      badge: topic.badge,
+    }));
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]}
+          onBack={onBack}
+          accent={hub.color}
+        />
+        <Kertas2FolderTemplate
+          title={hub.label}
+          subtitle={hub.description}
+          groups={splitIntoKertas2Folders(items)}
+          onSelectItem={onSelectTopic}
+        />
+      </div>
+    );
   }
   if (kertas.id === "k1" && hub.id === "rumusan") {
     const missions: MissionDefinition[] = [
-      { number: "01", title: "Formula Markah Penuh", description: "Learn the structure and scoring formula.", icon: Star, color: "#FBBF24" },
-      { number: "02", title: "Teknik Menjawab Ringkasan", description: "Learn how to find isi, use penanda wacana and write clearly.", icon: PenTool, color: "#60A5FA" },
-      { number: "03", title: "Penguasaan Ringkasan", description: "Practise examples, avoid mistakes and check readiness.", icon: Brain, color: "#C084FC" },
+      {
+        number: "01",
+        title: "Formula Markah Penuh",
+        description: "Learn the structure and scoring formula.",
+        icon: Star,
+        color: "#FBBF24",
+      },
+      {
+        number: "02",
+        title: "Teknik Menjawab Ringkasan",
+        description: "Learn how to find isi, use penanda wacana and write clearly.",
+        icon: PenTool,
+        color: "#60A5FA",
+      },
+      {
+        number: "03",
+        title: "Penguasaan Ringkasan",
+        description: "Practise examples, avoid mistakes and check readiness.",
+        icon: Brain,
+        color: "#C084FC",
+      },
     ];
-    return <div><PageHeader breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]} onBack={onBack} accent={hub.color} /><ExamSkillLanding title="Ringkasan" subtitle="Bahagian C: Kuasai isi penting, penanda wacana dan teknik menjawab mengikut format UASA." missions={missions} onSelect={index => onSelectTopic(hub.topics[index].id)} /></div>;
+    return (
+      <div>
+        <PageHeader
+          breadcrumb={["Bahasa Melayu", kertas.shortLabel, hub.label]}
+          onBack={onBack}
+          accent={hub.color}
+        />
+        <ExamSkillLanding
+          title="Ringkasan"
+          subtitle="Bahagian C: Kuasai isi penting, penanda wacana dan teknik menjawab mengikut format UASA."
+          missions={missions}
+          onSelect={(index) => onSelectTopic(hub.topics[index].id)}
+        />
+      </div>
+    );
   }
 
   return (
@@ -3201,52 +3317,348 @@ const RANGKA_JAWAPAN_CUACA = [
   { pw: "Akhir sekali,", isi: "cuaca panas boleh menyebabkan strok haba." },
 ];
 
-function ExamKeyword({ children, color = "#FBBF24" }: { children: React.ReactNode; color?: string }) {
-  return <span className="inline-flex rounded-full border px-2.5 py-1 text-[10px] font-black" style={{ color, borderColor: `${color}35`, background: `${color}12` }}>{children}</span>;
+function ExamKeyword({
+  children,
+  color = "#FBBF24",
+}: {
+  children: React.ReactNode;
+  color?: string;
+}) {
+  return (
+    <span
+      className="inline-flex rounded-full border px-2.5 py-1 text-[10px] font-black"
+      style={{ color, borderColor: `${color}35`, background: `${color}12` }}
+    >
+      {children}
+    </span>
+  );
 }
 
 function ExamplePair({ wrong, right }: { wrong: string; right: string }) {
-  return <div className="grid gap-3 sm:grid-cols-2"><div className="rounded-2xl border border-rose-400/20 bg-rose-400/[0.055] p-4"><p className="text-[10px] font-black uppercase tracking-widest text-rose-300">Contoh Salah</p><p className="mt-2 text-sm leading-6 text-white/65">{wrong}</p></div><div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.055] p-4"><p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">Contoh Betul</p><p className="mt-2 text-sm leading-6 text-white/75">{right}</p></div></div>;
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      <div className="rounded-2xl border border-rose-400/20 bg-rose-400/[0.055] p-4">
+        <p className="text-[10px] font-black uppercase tracking-widest text-rose-300">
+          Contoh Salah
+        </p>
+        <p className="mt-2 text-sm leading-6 text-white/65">{wrong}</p>
+      </div>
+      <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.055] p-4">
+        <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">
+          Contoh Betul
+        </p>
+        <p className="mt-2 text-sm leading-6 text-white/75">{right}</p>
+      </div>
+    </div>
+  );
 }
 
 function QuickScore({ items }: { items: string[] }) {
-  return <div className="rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.045] p-5"><p className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-300">Skor Pantas · Apa perlu diingat?</p><div className="mt-3 grid gap-2 sm:grid-cols-2">{items.map(item => <div key={item} className="flex items-start gap-2 text-sm text-white/70"><CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />{item}</div>)}</div></div>;
+  return (
+    <div className="rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.045] p-5">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-300">
+        Skor Pantas · Apa perlu diingat?
+      </p>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {items.map((item) => (
+          <div key={item} className="flex items-start gap-2 text-sm text-white/70">
+            <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function ErrorCallout({ items }: { items: string[] }) {
-  return <div className="rounded-2xl border border-rose-400/20 bg-rose-400/[0.045] p-5"><p className="text-[10px] font-black uppercase tracking-[0.18em] text-rose-300">Kesalahan Lazim</p><div className="mt-3 grid gap-2 sm:grid-cols-2">{items.map(item => <div key={item} className="flex items-start gap-2 text-sm text-white/65"><XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />{item}</div>)}</div></div>;
+  return (
+    <div className="rounded-2xl border border-rose-400/20 bg-rose-400/[0.045] p-5">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-rose-300">
+        Kesalahan Lazim
+      </p>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {items.map((item) => (
+          <div key={item} className="flex items-start gap-2 text-sm text-white/65">
+            <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function NextStudy({ title }: { title: string }) {
-  return <div className="border-y border-white/[0.07] py-5"><p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/35">Seterusnya</p><div className="mt-2 flex items-center justify-between gap-3 rounded-xl border border-indigo-300/15 bg-indigo-300/[0.05] px-4 py-3"><span className="flex items-center gap-2 text-sm font-bold text-indigo-100"><BookOpen className="h-4 w-4 text-indigo-300" />{title}</span><ArrowRight className="h-4 w-4 text-indigo-300" /></div></div>;
+  return (
+    <div className="border-y border-white/[0.07] py-5">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/35">Seterusnya</p>
+      <div className="mt-2 flex items-center justify-between gap-3 rounded-xl border border-indigo-300/15 bg-indigo-300/[0.05] px-4 py-3">
+        <span className="flex items-center gap-2 text-sm font-bold text-indigo-100">
+          <BookOpen className="h-4 w-4 text-indigo-300" />
+          {title}
+        </span>
+        <ArrowRight className="h-4 w-4 text-indigo-300" />
+      </div>
+    </div>
+  );
 }
 
 const GOLDEN_RINGKASAN_STEPS = [
-  { title: "Baca soalan", detail: "Baca arahan sehingga jelas perkara yang diminta.", keyword: "Soalan", icon: BookOpen, color: "#60A5FA" },
-  { title: "Kenal pasti kata kunci", detail: "Tentukan perkataan yang menjadi fokus jawapan.", keyword: "Kata kunci", icon: Target, color: "#FBBF24" },
-  { title: "Gariskan isi penting", detail: "Pilih enam isi yang tepat dan berkaitan sahaja.", keyword: "Isi penting", icon: PenTool, color: "#34D399" },
-  { title: "Susun isi menggunakan penanda wacana", detail: "Hubungkan isi supaya jawapan lancar dan teratur.", keyword: "Penanda wacana", icon: MessageCircle, color: "#C084FC" },
-  { title: "Semak had perkataan", detail: "Pastikan jawapan tidak melebihi had yang diberikan.", keyword: "100 patah perkataan", icon: Clock, color: "#FB923C" },
-  { title: "Semak jawapan", detail: "Periksa isi, ayat sendiri, ejaan dan tanda baca.", keyword: "Markah penuh", icon: CheckCircle2, color: "#F472B6" },
+  {
+    title: "Baca soalan",
+    detail: "Baca arahan sehingga jelas perkara yang diminta.",
+    keyword: "Soalan",
+    icon: BookOpen,
+    color: "#60A5FA",
+  },
+  {
+    title: "Kenal pasti kata kunci",
+    detail: "Tentukan perkataan yang menjadi fokus jawapan.",
+    keyword: "Kata kunci",
+    icon: Target,
+    color: "#FBBF24",
+  },
+  {
+    title: "Gariskan isi penting",
+    detail: "Pilih enam isi yang tepat dan berkaitan sahaja.",
+    keyword: "Isi penting",
+    icon: PenTool,
+    color: "#34D399",
+  },
+  {
+    title: "Susun isi menggunakan penanda wacana",
+    detail: "Hubungkan isi supaya jawapan lancar dan teratur.",
+    keyword: "Penanda wacana",
+    icon: MessageCircle,
+    color: "#C084FC",
+  },
+  {
+    title: "Semak had perkataan",
+    detail: "Pastikan jawapan tidak melebihi had yang diberikan.",
+    keyword: "100 patah perkataan",
+    icon: Clock,
+    color: "#FB923C",
+  },
+  {
+    title: "Semak jawapan",
+    detail: "Periksa isi, ayat sendiri, ejaan dan tanda baca.",
+    keyword: "Markah penuh",
+    icon: CheckCircle2,
+    color: "#F472B6",
+  },
 ] as const;
 
 function RangkaRingkasanDetail({ color }: { color: string }) {
-  return <div className="space-y-10">
-    <section className="relative overflow-hidden rounded-[1.75rem] border border-amber-300/20 bg-[#15130d] p-5 sm:p-7"><div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(251,191,36,0.16),transparent_45%),radial-gradient(circle_at_8%_100%,rgba(129,140,248,0.1),transparent_42%)]" /><div className="relative"><div className="flex items-start gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-300/[0.1] text-amber-300"><Trophy className="h-6 w-6" /></span><div><p className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-300">Golden Standard</p><h2 className="mt-1 font-display text-2xl font-black text-white">Formula Markah Penuh</h2><p className="mt-2 max-w-xl text-sm leading-6 text-white/60">Enam langkah ringkas untuk membina jawapan Ringkasan yang tepat, tersusun dan mudah disemak.</p></div></div><div className="mt-5 flex flex-wrap gap-2"><ExamKeyword>Kata kunci</ExamKeyword><ExamKeyword color="#34D399">Isi penting</ExamKeyword><ExamKeyword color="#C084FC">Penanda wacana</ExamKeyword><ExamKeyword color="#60A5FA">Ayat sendiri</ExamKeyword><ExamKeyword color="#FB923C">100 patah perkataan</ExamKeyword></div></div></section>
+  return (
+    <div className="space-y-10">
+      <section className="relative overflow-hidden rounded-[1.75rem] border border-amber-300/20 bg-[#15130d] p-5 sm:p-7">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(251,191,36,0.16),transparent_45%),radial-gradient(circle_at_8%_100%,rgba(129,140,248,0.1),transparent_42%)]" />
+        <div className="relative">
+          <div className="flex items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-300/[0.1] text-amber-300">
+              <Trophy className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-300">
+                Golden Standard
+              </p>
+              <h2 className="mt-1 font-display text-2xl font-black text-white">
+                Formula Markah Penuh
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-6 text-white/60">
+                Enam langkah ringkas untuk membina jawapan Ringkasan yang tepat, tersusun dan mudah
+                disemak.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <ExamKeyword>Kata kunci</ExamKeyword>
+            <ExamKeyword color="#34D399">Isi penting</ExamKeyword>
+            <ExamKeyword color="#C084FC">Penanda wacana</ExamKeyword>
+            <ExamKeyword color="#60A5FA">Ayat sendiri</ExamKeyword>
+            <ExamKeyword color="#FB923C">100 patah perkataan</ExamKeyword>
+          </div>
+        </div>
+      </section>
 
-    <section className="space-y-6"><div className="mx-auto max-w-2xl space-y-2">{GOLDEN_RINGKASAN_STEPS.map((step, index) => <div key={step.title}><article className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]"><div className="flex items-start gap-4"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border" style={{ color: step.color, borderColor: `${step.color}30`, background: `${step.color}12` }}><step.icon className="h-5 w-5" /></span><div><div className="flex flex-wrap items-center gap-2"><span className="text-[10px] font-black text-white/30">0{index + 1}</span><h3 className="font-bold text-white">{step.title}</h3><ExamKeyword color={step.color}>{step.keyword}</ExamKeyword></div><p className="mt-2 text-sm leading-6 text-white/60">{step.detail}</p></div></div></article>{index < GOLDEN_RINGKASAN_STEPS.length - 1 && <div className="py-1 text-center text-amber-300/30">↓</div>}</div>)}</div>
-      <ExamplePair wrong="Terus membaca petikan tanpa memahami kehendak soalan." right="Baca soalan dahulu dan tandakan kata kunci: kesan cuaca panas." />
-      <QuickScore items={["Cari kata kunci dahulu", "Ambil isi penting sahaja", "Gunakan penanda wacana", "Semak jawapan sebelum hantar"]} />
-      <ErrorCallout items={["Terus menyalin petikan", "Mengambil isi di luar kata kunci", "Tidak menyemak had perkataan", "Tidak menyemak ejaan"]} />
-      <NextStudy title="Teknik Menjawab Ringkasan" />
-    </section>
+      <section className="space-y-6">
+        <div className="mx-auto max-w-2xl space-y-2">
+          {GOLDEN_RINGKASAN_STEPS.map((step, index) => (
+            <div key={step.title}>
+              <article className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]">
+                <div className="flex items-start gap-4">
+                  <span
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border"
+                    style={{
+                      color: step.color,
+                      borderColor: `${step.color}30`,
+                      background: `${step.color}12`,
+                    }}
+                  >
+                    <step.icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[10px] font-black text-white/30">0{index + 1}</span>
+                      <h3 className="font-bold text-white">{step.title}</h3>
+                      <ExamKeyword color={step.color}>{step.keyword}</ExamKeyword>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-white/60">{step.detail}</p>
+                  </div>
+                </div>
+              </article>
+              {index < GOLDEN_RINGKASAN_STEPS.length - 1 && (
+                <div className="py-1 text-center text-amber-300/30">↓</div>
+              )}
+            </div>
+          ))}
+        </div>
+        <ExamplePair
+          wrong="Terus membaca petikan tanpa memahami kehendak soalan."
+          right="Baca soalan dahulu dan tandakan kata kunci: kesan cuaca panas."
+        />
+        <QuickScore
+          items={[
+            "Cari kata kunci dahulu",
+            "Ambil isi penting sahaja",
+            "Gunakan penanda wacana",
+            "Semak jawapan sebelum hantar",
+          ]}
+        />
+        <ErrorCallout
+          items={[
+            "Terus menyalin petikan",
+            "Mengambil isi di luar kata kunci",
+            "Tidak menyemak had perkataan",
+            "Tidak menyemak ejaan",
+          ]}
+        />
+        <NextStudy title="Teknik Menjawab Ringkasan" />
+      </section>
 
-    <section className="space-y-6"><div><p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-300">Pilih Isi</p><h2 className="mt-1 font-display text-xl font-bold text-white">Cara mencari isi penting</h2></div><div className="grid gap-3 sm:grid-cols-2">{RANGKA_ISI_CUACA.map((isi, index) => <article key={isi} className="flex items-start gap-3 rounded-2xl border border-emerald-300/12 bg-emerald-300/[0.04] p-4"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-300/[0.1] text-[10px] font-black text-emerald-300">{index + 1}</span><p className="text-sm leading-6 text-white/70">{isi}</p></article>)}</div><ExamplePair wrong="Cuaca panas berlaku pada musim tertentu. (Tidak menjawab kesan)" right="Cuaca panas membahayakan kesihatan manusia. (Menjawab kata kunci kesan)" /><QuickScore items={["Pilih enam isi", "Pastikan setiap isi menjawab kata kunci", "Jangan ambil contoh sebagai isi", "Gunakan ayat sendiri"]} /><ErrorCallout items={["Isi tidak berkaitan", "Contoh dianggap sebagai isi", "Isi yang sama diulang", "Menyalin ayat bulat-bulat"]} /><NextStudy title="Susun Isi dengan Penanda Wacana" /></section>
+      <section className="space-y-6">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-300">
+            Pilih Isi
+          </p>
+          <h2 className="mt-1 font-display text-xl font-bold text-white">
+            Cara mencari isi penting
+          </h2>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {RANGKA_ISI_CUACA.map((isi, index) => (
+            <article
+              key={isi}
+              className="flex items-start gap-3 rounded-2xl border border-emerald-300/12 bg-emerald-300/[0.04] p-4"
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-300/[0.1] text-[10px] font-black text-emerald-300">
+                {index + 1}
+              </span>
+              <p className="text-sm leading-6 text-white/70">{isi}</p>
+            </article>
+          ))}
+        </div>
+        <ExamplePair
+          wrong="Cuaca panas berlaku pada musim tertentu. (Tidak menjawab kesan)"
+          right="Cuaca panas membahayakan kesihatan manusia. (Menjawab kata kunci kesan)"
+        />
+        <QuickScore
+          items={[
+            "Pilih enam isi",
+            "Pastikan setiap isi menjawab kata kunci",
+            "Jangan ambil contoh sebagai isi",
+            "Gunakan ayat sendiri",
+          ]}
+        />
+        <ErrorCallout
+          items={[
+            "Isi tidak berkaitan",
+            "Contoh dianggap sebagai isi",
+            "Isi yang sama diulang",
+            "Menyalin ayat bulat-bulat",
+          ]}
+        />
+        <NextStudy title="Susun Isi dengan Penanda Wacana" />
+      </section>
 
-    <section className="space-y-6"><div><p className="text-[10px] font-black uppercase tracking-[0.2em] text-purple-300">Bina Jawapan</p><h2 className="mt-1 font-display text-xl font-bold text-white">Susun isi dengan penanda wacana</h2></div><div className="space-y-2">{RANGKA_JAWAPAN_CUACA.map((item, index) => <div key={item.pw} className="flex items-start gap-3 rounded-xl border border-purple-300/12 bg-purple-300/[0.04] p-3"><ExamKeyword color={["#A78BFA", "#38BDF8", "#34D399", "#FBBF24", "#F472B6", "#FB923C"][index]}>{item.pw}</ExamKeyword><p className="text-sm leading-6 text-white/65">{item.isi}</p></div>)}</div><ExamplePair wrong="Cuaca panas membahayakan kesihatan. Cuaca panas menjejaskan aktiviti. Cuaca panas mengurangkan sumber air." right="Antara kesannya ialah cuaca panas membahayakan kesihatan. Selain itu, aktiviti harian turut terjejas. Seterusnya, sumber air semakin berkurangan." /><div className="rounded-2xl border border-indigo-300/20 bg-indigo-300/[0.055] p-5"><div className="mb-3 flex flex-wrap gap-2"><ExamKeyword color="#60A5FA">Ayat sendiri</ExamKeyword><ExamKeyword color="#FB923C">55 patah perkataan</ExamKeyword></div><p className="text-sm leading-7 text-white/75">{RANGKA_JAWAPAN_CUACA.map(item => `${item.pw} ${item.isi}`).join(" ")}</p></div><QuickScore items={["Mulakan dengan Antara", "Pelbagaikan penanda wacana", "Tulis dalam satu perenggan", "Semak 100 patah perkataan"]} /><ErrorCallout items={RANGKA_KESALAHAN.slice(2)} /><NextStudy title="Latihan Ringkasan Interaktif" /></section>
+      <section className="space-y-6">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-purple-300">
+            Bina Jawapan
+          </p>
+          <h2 className="mt-1 font-display text-xl font-bold text-white">
+            Susun isi dengan penanda wacana
+          </h2>
+        </div>
+        <div className="space-y-2">
+          {RANGKA_JAWAPAN_CUACA.map((item, index) => (
+            <div
+              key={item.pw}
+              className="flex items-start gap-3 rounded-xl border border-purple-300/12 bg-purple-300/[0.04] p-3"
+            >
+              <ExamKeyword
+                color={["#A78BFA", "#38BDF8", "#34D399", "#FBBF24", "#F472B6", "#FB923C"][index]}
+              >
+                {item.pw}
+              </ExamKeyword>
+              <p className="text-sm leading-6 text-white/65">{item.isi}</p>
+            </div>
+          ))}
+        </div>
+        <ExamplePair
+          wrong="Cuaca panas membahayakan kesihatan. Cuaca panas menjejaskan aktiviti. Cuaca panas mengurangkan sumber air."
+          right="Antara kesannya ialah cuaca panas membahayakan kesihatan. Selain itu, aktiviti harian turut terjejas. Seterusnya, sumber air semakin berkurangan."
+        />
+        <div className="rounded-2xl border border-indigo-300/20 bg-indigo-300/[0.055] p-5">
+          <div className="mb-3 flex flex-wrap gap-2">
+            <ExamKeyword color="#60A5FA">Ayat sendiri</ExamKeyword>
+            <ExamKeyword color="#FB923C">55 patah perkataan</ExamKeyword>
+          </div>
+          <p className="text-sm leading-7 text-white/75">
+            {RANGKA_JAWAPAN_CUACA.map((item) => `${item.pw} ${item.isi}`).join(" ")}
+          </p>
+        </div>
+        <QuickScore
+          items={[
+            "Mulakan dengan Antara",
+            "Pelbagaikan penanda wacana",
+            "Tulis dalam satu perenggan",
+            "Semak 100 patah perkataan",
+          ]}
+        />
+        <ErrorCallout items={RANGKA_KESALAHAN.slice(2)} />
+        <NextStudy title="Latihan Ringkasan Interaktif" />
+      </section>
 
-    <section className="rounded-[1.75rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/[0.08] to-indigo-300/[0.04] p-5 sm:p-7"><p className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-300">Ringkasan Akhir · 30 Saat</p><h2 className="mt-1 font-display text-xl font-bold text-white">Dalam peperiksaan</h2><div className="mt-5 grid gap-2 sm:grid-cols-2">{["Baca soalan", "Cari kata kunci", "Gariskan isi", "Gunakan ayat sendiri", "Gunakan penanda wacana", "Semak 100 patah perkataan"].map((item, index) => <div key={item} className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-black/10 p-3"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-300/[0.1] text-[10px] font-black text-cyan-300">{index + 1}</span><span className="text-sm font-semibold text-white/75">{item}</span></div>)}</div></section>
-  </div>;
+      <section className="rounded-[1.75rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/[0.08] to-indigo-300/[0.04] p-5 sm:p-7">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-300">
+          Ringkasan Akhir · 30 Saat
+        </p>
+        <h2 className="mt-1 font-display text-xl font-bold text-white">Dalam peperiksaan</h2>
+        <div className="mt-5 grid gap-2 sm:grid-cols-2">
+          {[
+            "Baca soalan",
+            "Cari kata kunci",
+            "Gariskan isi",
+            "Gunakan ayat sendiri",
+            "Gunakan penanda wacana",
+            "Semak 100 patah perkataan",
+          ].map((item, index) => (
+            <div
+              key={item}
+              className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-black/10 p-3"
+            >
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-300/[0.1] text-[10px] font-black text-cyan-300">
+                {index + 1}
+              </span>
+              <span className="text-sm font-semibold text-white/75">{item}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
 }
 
 function RangkaRingkasanLegacyDetail({ color }: { color: string }) {
@@ -3399,7 +3811,9 @@ function RangkaRingkasanLegacyDetail({ color }: { color: string }) {
           <div>
             <div className="mb-2 flex items-center gap-2">
               <span className="text-base">📌</span>
-              <p className="text-[10px] font-black tracking-wide text-white/40">Jawapan Ringkasan</p>
+              <p className="text-[10px] font-black tracking-wide text-white/40">
+                Jawapan Ringkasan
+              </p>
             </div>
             <div className="rounded-2xl border border-[#6366F1]/25 bg-[#6366F1]/8 p-5">
               <p className="text-sm leading-relaxed text-white/80">
@@ -4784,7 +5198,8 @@ export function BMWorldPage({
   mode?: "default" | "quiz";
   quizForm?: 1 | 2 | 3;
 }) {
-  const objectiveSets: ObjectiveSetCollection = quizForm === 3 ? OBJEKTIF_SETS_FORM3 : quizForm === 2 ? OBJEKTIF_SETS_FORM2 : OBJEKTIF_SETS;
+  const objectiveSets: ObjectiveSetCollection =
+    quizForm === 3 ? OBJEKTIF_SETS_FORM3 : quizForm === 2 ? OBJEKTIF_SETS_FORM2 : OBJEKTIF_SETS;
   const [history, setHistory] = useState<BMScreen[]>([
     mode === "quiz" ? { type: "k1-quiz" } : { type: "landing" },
   ]);

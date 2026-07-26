@@ -31,7 +31,14 @@ describe("NotesSummaryHeroGate", () => {
     },
   );
 
-  it("keeps the existing generic hero for a non-Science chapter", () => {
-    expect(renderView("sejarah", "Bab 1")).toContain("Summary Notes");
+  it.each(["Chapter 1", "Bab 1"])(
+    "removes the generic hero from a Sejarah chapter selected as %s",
+    (chapterKey) => {
+      expect(renderView("sejarah", chapterKey)).not.toContain("Summary Notes");
+    },
+  );
+
+  it("keeps the generic hero for subjects without a dedicated chapter hero", () => {
+    expect(renderView("geography", "Chapter 1")).toContain("Summary Notes");
   });
 });

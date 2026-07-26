@@ -1,5 +1,6 @@
 import type { ChapterContent } from "./types";
 import { getChapterFeatures } from "./types";
+import { cleanLearningTitle } from "@/lib/clean-learning-title";
 import { scienceF3ChapterContent } from "@/content/form3/science/registration";
 import type { MindNode } from "@/components/MindMap";
 import { englishF1C1Notes } from "@/content/form1/english/chapter-1/notes";
@@ -628,7 +629,14 @@ const GEOGRAPHY_F1_CHAPTER_TITLES: Record<number, string> = {
 
 function geographyFlashcardsFor(chapterNum: number) {
   const chapterKey = `Chapter ${chapterNum}`;
-  return allFlashcards.filter((f) => f.subjectId === "geography" && f.chapter === chapterKey);
+  const cardIdPrefix = `geo-f1-c${chapterNum}-`;
+  return allFlashcards.filter(
+    (f) =>
+      f.subjectId === "geography" &&
+      f.form === "Form 1" &&
+      f.chapter === chapterKey &&
+      f.id.startsWith(cardIdPrefix),
+  );
 }
 
 function geographyQuizzesFor(chapterNum: number) {
@@ -2991,13 +2999,21 @@ function chapterHasContent(chapter: ChapterContent) {
   );
 }
 
-function chapterLabel(chapter: ChapterContent, lang?: "bm" | "dlp") {
-  const chapterNumber = chapterNumberFromKey(chapter.chapterKey);
+export function formatChapterLabel(
+  chapterKey: string,
+  title: string,
+  lang?: "bm" | "dlp",
+) {
+  const chapterNumber = chapterNumberFromKey(chapterKey);
   if (!Number.isFinite(chapterNumber) || chapterNumber === Number.MAX_SAFE_INTEGER) {
-    return chapter.title;
+    return title;
   }
   const prefix = lang === "bm" ? "Bab" : "Chapter";
-  return `${prefix} ${chapterNumber}: ${chapter.title}`;
+  return `${prefix} ${chapterNumber}: ${cleanLearningTitle(title)}`;
+}
+
+function chapterLabel(chapter: ChapterContent, lang?: "bm" | "dlp") {
+  return formatChapterLabel(chapter.chapterKey, chapter.title, lang);
 }
 
 export function hasResourceContent(

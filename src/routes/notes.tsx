@@ -29,6 +29,7 @@ import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { NotesContentWithVideo } from "@/components/notes/NotesContentWithVideo";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
 import { NotesSummaryHeroGate } from "@/components/notes/NotesSummaryHeroGate";
+import { SejarahChapterHero } from "@/components/notes/SejarahChapterHero";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
 import { Bab7NotesBlock } from "@/components/notes/Bab7NotesBlock";
 import { GeoChapter1NotesBlock } from "@/components/notes/GeoChapter1NotesBlock";
@@ -274,6 +275,7 @@ function NotesPage() {
       ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
       : false;
   const isScienceDiscovery = subject === "science" && form === "Form 1" && !!activeChapterKey;
+  const isSejarahChapter = subject === "sejarah" && !!activeChapterKey;
   const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
@@ -479,10 +481,23 @@ function NotesPage() {
   }
 
   return (
-    <AcademyPageShell subjectId={planetSubjectId}>
+    <AcademyPageShell
+      subjectId={planetSubjectId}
+      rootClassName={
+        isSejarahChapter
+          ? "sejarah-notes-page"
+          : isScienceDiscovery
+            ? "science-notes-page"
+            : undefined
+      }
+    >
       {/* Reading progress bar */}
       {subject && activeChapterKey && (
-        <div className="fixed top-0 left-0 right-0 h-1 z-40 bg-transparent">
+        <div
+          className={`fixed top-0 left-0 right-0 h-1 z-40 bg-transparent ${
+            isSejarahChapter ? "sejarah-reading-progress" : ""
+          }`}
+        >
           <div
             className="h-full bg-gradient-to-r from-primary via-accent to-nova-yellow transition-all"
             style={{ width: `${scrollPct}%` }}
@@ -570,9 +585,11 @@ function NotesPage() {
               ]}
             />
           </NotesSummaryHeroGate>
-          <div className="mb-7 flex justify-center">
-            <DailyQuote />
-          </div>
+          {!isSejarahChapter && (
+            <div className="mb-7 flex justify-center">
+              <DailyQuote />
+            </div>
+          )}
         </>
       )}
 
@@ -683,8 +700,18 @@ function NotesPage() {
               onBack={() => selectChapter(null)}
             />
 
-            {subject && chapterArtwork && (
+            {subject && chapterArtwork && !isSejarahChapter && (
               <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} />
+            )}
+            {isSejarahChapter && (
+              <SejarahChapterHero
+                form={form}
+                chapterKey={activeChapterKey}
+                title={activeChapter?.title ?? chapterMeta?.label ?? activeChapterKey}
+                readingProgress={scrollPct}
+                chapterProgress={activeChapterProgress}
+                isRead={isRead}
+              />
             )}
             <ChapterContentTabs
               subjectId={subject}
@@ -698,19 +725,27 @@ function NotesPage() {
           <NotesContentWithVideo
             notesContentRef={notesContentRef}
             video={activeChapter?.video}
-            className={isScienceDiscovery ? "science-discovery-notes" : undefined}
+            header={
+              isScienceDiscovery ? (
+                <ScienceDiscoveryChapterHeader
+                  chapterKey={activeChapterKey}
+                  title={chapterMeta?.label ?? activeChapter?.title ?? activeChapterKey}
+                  lang={scienceLang === "bm" ? "bm" : "dlp"}
+                  readingProgress={scrollPct}
+                  chapterProgress={activeChapterProgress}
+                  isRead={isRead}
+                  embedded
+                />
+              ) : undefined
+            }
+            className={
+              isScienceDiscovery
+                ? "science-discovery-notes"
+                : isSejarahChapter
+                  ? "sejarah-archive-notes"
+                  : undefined
+            }
           >
-            {isScienceDiscovery && (
-              <ScienceDiscoveryChapterHeader
-                chapterKey={activeChapterKey}
-                title={chapterMeta?.label ?? activeChapter?.title ?? activeChapterKey}
-                lang={scienceLang === "bm" ? "bm" : "dlp"}
-                readingProgress={scrollPct}
-                chapterProgress={activeChapterProgress}
-                isRead={isRead}
-                embedded
-              />
-            )}
             {activeChapter?.sejChapter1Data ? (
               <SejChapter1NotesBlock
                 id="notes"

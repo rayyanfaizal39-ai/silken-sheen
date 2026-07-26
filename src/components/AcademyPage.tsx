@@ -528,15 +528,19 @@ export function SubjectWorldBanner({ subjectId }: { subjectId: SubjectPlanetId }
 export function AcademyPageShell({
   children,
   className = "max-w-7xl",
+  rootClassName,
   subjectId,
 }: {
   children: ReactNode;
   className?: string;
+  rootClassName?: string;
   /** When set, the page keeps that subject's planet atmosphere instead of the generic backdrop. */
   subjectId?: PlanetSubjectId;
 }) {
   return (
-    <section className="relative isolate min-h-svh overflow-x-clip px-4 pb-[calc(var(--mobile-content-bottom)+1rem)] pt-7 text-white sm:px-8 sm:pt-10 md:py-14">
+    <section
+      className={`relative isolate min-h-svh overflow-x-clip px-4 pb-[calc(var(--mobile-content-bottom)+1rem)] pt-7 text-white sm:px-8 sm:pt-10 md:py-14 ${rootClassName ?? ""}`}
+    >
       {subjectId ? <PlanetEnvironment subjectId={subjectId} /> : <AcademyBackdrop />}
       <div className={`relative z-10 mx-auto w-full ${className}`}>{children}</div>
     </section>

@@ -1,6 +1,7 @@
 import type { ReactNode, RefObject } from "react";
 
 import type { VideoBlock as VideoBlockData } from "@/content/types";
+import { useNotesPaginationScroll } from "@/hooks/useNotesPaginationScroll";
 
 import { VideoBlock } from "./VideoBlock";
 
@@ -9,6 +10,7 @@ interface NotesContentWithVideoProps {
   notesContentRef: RefObject<HTMLDivElement | null>;
   video?: VideoBlockData;
   className?: string;
+  header?: ReactNode;
 }
 
 export function NotesContentWithVideo({
@@ -16,10 +18,25 @@ export function NotesContentWithVideo({
   notesContentRef,
   video,
   className,
+  header,
 }: NotesContentWithVideoProps) {
+  const { notePageTopRef, onPaginationClickCapture } = useNotesPaginationScroll();
+
   return (
     <>
-      <div ref={notesContentRef} data-notes-reading-content className={className}>
+      <div
+        ref={notesContentRef}
+        data-notes-reading-content
+        className={className}
+        onClickCapture={onPaginationClickCapture}
+      >
+        {header}
+        <div
+          ref={notePageTopRef}
+          data-notes-page-top
+          className="notes-page-scroll-target"
+          aria-hidden="true"
+        />
         {children}
       </div>
       {video && <VideoBlock id="video" video={video} />}

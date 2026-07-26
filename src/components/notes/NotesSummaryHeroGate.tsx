@@ -11,7 +11,8 @@ export function NotesSummaryHeroGate({
   chapterKey,
   children,
 }: NotesSummaryHeroGateProps) {
-  const isScienceChapterView = subjectId === "science" && Boolean(chapterKey);
+  const hasDedicatedChapterHero =
+    (subjectId === "science" || subjectId === "sejarah") && Boolean(chapterKey);
 
-  return isScienceChapterView ? null : children;
+  return hasDedicatedChapterHero ? null : children;
 }

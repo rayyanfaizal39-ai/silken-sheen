@@ -878,92 +878,91 @@ export function MindMap({
       }
     : null;
 
+  const toolbarButtonClass =
+    "inline-flex min-h-11 flex-none items-center gap-1.5 rounded-full bg-white/10 px-3 py-2 text-xs font-semibold backdrop-blur transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60";
+
   const canvasContent = (
     <div
-      className="relative w-full glass-strong rounded-2xl border border-white/10"
+      className="relative flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 glass-strong"
       style={{
         width: "100%",
         height: mobileFullscreen ? "100%" : typeof height === "number" ? `${height}px` : height,
         minHeight: mobileFullscreen ? "100%" : 700,
-        display: "block",
         position: "relative",
-        overflow: "hidden",
         zIndex: 10,
       }}
     >
-      {breadcrumbTrail.length > 0 && (
-        <div className="absolute left-3 top-3 z-20 flex max-w-[64%] items-center gap-1.5 overflow-x-auto rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-white/70 backdrop-blur-md sm:max-w-[55%]">
-          {breadcrumbTrail.map((label, index) => (
-            <span key={`${label}-${index}`} className="flex items-center gap-1.5 whitespace-nowrap">
-              {index > 0 && <ChevronRight className="h-3 w-3 shrink-0 text-white/30" />}
-              <span
-                className={
-                  index === breadcrumbTrail.length - 1 ? "text-white" : "text-white/55"
-                }
-              >
-                {label}
+      <div className="flex flex-none flex-col gap-2 border-b border-white/10 bg-slate-950/55 p-3 backdrop-blur-md">
+        {breadcrumbTrail.length > 0 && (
+          <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-white/70">
+            {breadcrumbTrail.map((label, index) => (
+              <span key={`${label}-${index}`} className="flex items-center gap-1.5 whitespace-nowrap">
+                {index > 0 && <ChevronRight className="h-3 w-3 shrink-0 text-white/30" />}
+                <span
+                  className={
+                    index === breadcrumbTrail.length - 1 ? "text-white" : "text-white/55"
+                  }
+                >
+                  {label}
+                </span>
               </span>
-            </span>
-          ))}
-        </div>
-      )}
-      <div className="absolute top-3 right-3 z-20 flex flex-wrap justify-end gap-2">
-        <button
-          onClick={() => stepNode(-1)}
-          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-          title="Previous node"
-          aria-label="Go to previous node"
-        >
-          <ChevronLeft className="w-3.5 h-3.5" /> Prev
-        </button>
-        <button
-          onClick={() => stepNode(1)}
-          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-          title="Next node"
-          aria-label="Go to next node"
-        >
-          Next <ChevronRight className="w-3.5 h-3.5" />
-        </button>
-        <button
-          onClick={goToMainTopic}
-          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-          title="Back to main topic"
-        >
-          <Home className="w-3.5 h-3.5" /> Main topic
-        </button>
-        <button
-          onClick={expandAll}
-          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-        >
-          <ChevronsUpDown className="w-3.5 h-3.5" /> Expand all
-        </button>
-        <button
-          onClick={collapseAll}
-          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-        >
-          <ChevronsDownUp className="w-3.5 h-3.5" /> Collapse all
-        </button>
-        <button
-          onClick={resetView}
-          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-        >
-          <Maximize2 className="w-3.5 h-3.5" /> Reset
-        </button>
-        <button
-          onClick={() => setShowMinimap((value) => !value)}
-          className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-        >
-          <MapIcon className="w-3.5 h-3.5" /> Map
-        </button>
-        {isMobile && !mobileFullscreen && (
-          <button
-            onClick={() => setMobileFullscreen(true)}
-            className="min-h-9 px-3 py-2 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 backdrop-blur inline-flex items-center gap-1.5 transition"
-          >
-            <Maximize2 className="w-3.5 h-3.5" /> Fullscreen
-          </button>
+            ))}
+          </div>
         )}
+        <div
+          className="flex flex-wrap items-center gap-2"
+          role="toolbar"
+          aria-label="Mind map navigation and view controls"
+        >
+          <button
+            onClick={() => stepNode(-1)}
+            className={toolbarButtonClass}
+            title="Previous node"
+            aria-label="Go to previous node"
+          >
+            <ChevronLeft className="h-3.5 w-3.5" /> Prev
+          </button>
+          <button
+            onClick={() => stepNode(1)}
+            className={toolbarButtonClass}
+            title="Next node"
+            aria-label="Go to next node"
+          >
+            Next <ChevronRight className="h-3.5 w-3.5" />
+          </button>
+          <button
+            onClick={goToMainTopic}
+            className={toolbarButtonClass}
+            title="Back to main topic"
+          >
+            <Home className="h-3.5 w-3.5" /> Main topic
+          </button>
+          <button onClick={expandAll} className={toolbarButtonClass}>
+            <ChevronsUpDown className="h-3.5 w-3.5" /> Expand all
+          </button>
+          <button onClick={collapseAll} className={toolbarButtonClass}>
+            <ChevronsDownUp className="h-3.5 w-3.5" /> Collapse all
+          </button>
+          <button onClick={resetView} className={toolbarButtonClass}>
+            <Maximize2 className="h-3.5 w-3.5" /> Reset
+          </button>
+          <button
+            onClick={() => setShowMinimap((value) => !value)}
+            className={toolbarButtonClass}
+          >
+            <MapIcon className="h-3.5 w-3.5" /> Map
+          </button>
+          {isMobile && !mobileFullscreen && (
+            <button
+              onClick={() => setMobileFullscreen(true)}
+              className={toolbarButtonClass}
+            >
+              <Maximize2 className="h-3.5 w-3.5" /> Fullscreen
+            </button>
+          )}
+        </div>
       </div>
+      <div className="relative min-h-0 flex-1 overflow-hidden">
       <div className="absolute bottom-3 right-3 z-20 flex flex-col gap-2">
         <button
           onClick={() => {
@@ -1260,6 +1259,7 @@ export function MindMap({
           </svg>
         </button>
       )}
+      </div>
 
       <style>{`
         @keyframes mm-draw { from { stroke-dashoffset: 600; opacity: 0; } to { stroke-dashoffset: 0; opacity: 1; } }
