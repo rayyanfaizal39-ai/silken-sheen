@@ -9,8 +9,12 @@ import { bahasaMelayuKataAdjektifMindMap } from "./kata-adjektif-mindmap";
 
 const forms = ["Form 1", "Form 2", "Form 3"] as const;
 
-function flattenLabels(node: MindNode): string[] {
-  return [node.label, ...(node.children?.flatMap(flattenLabels) ?? [])];
+function flattenContent(node: MindNode): string[] {
+  return [
+    node.label,
+    ...(node.summary ? [node.summary] : []),
+    ...(node.children?.flatMap(flattenContent) ?? []),
+  ];
 }
 
 describe("Bahasa Melayu Kata Adjektif mind map", () => {
@@ -59,14 +63,14 @@ describe("Bahasa Melayu Kata Adjektif mind map", () => {
   });
 
   it("includes the required sentence analysis, vocabulary and usage cautions", () => {
-    const labels = flattenLabels(bahasaMelayuKataAdjektifMindMap).join("\n");
+    const content = flattenContent(bahasaMelayuKataAdjektifMindMap).join("\n");
 
-    expect(labels).toContain("Frasa Nama: Cuaca hari ini");
-    expect(labels).toContain("Frasa Adjektif: sangat indah");
-    expect(labels).toContain('Contoh lain: "Adik sangat rajin."');
-    expect(labels).toContain("Murid itu mengamalkan akhlak mahmudah.");
-    expect(labels).toContain("Pastikan ayat menunjukkan maksud sebenar kata adjektif.");
-    expect(labels).toContain("Bagaimana sifatnya? → Kata Adjektif");
-    expect(labels).not.toContain("setiap perkataan deskriptif ialah kata adjektif");
+    expect(content).toContain("Frasa Nama: Cuaca hari ini");
+    expect(content).toContain("Frasa Adjektif: sangat indah");
+    expect(content).toContain('"Adik sangat rajin."');
+    expect(content).toContain("Murid itu mengamalkan akhlak mahmudah.");
+    expect(content).toContain("Pastikan ayat menunjukkan maksud sebenar kata adjektif.");
+    expect(content).toContain("Bagaimana sifatnya? → Kata Adjektif");
+    expect(content).not.toContain("setiap perkataan deskriptif ialah kata adjektif");
   });
 });

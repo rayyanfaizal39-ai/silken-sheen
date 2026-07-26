@@ -17,7 +17,10 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export type MindNode = {
   id: string;
   label: string;
-  /** Optional concise explanation shown inside the node below its title. */
+  /**
+   * Optional concise supporting content. The root and detail nodes may display
+   * it, but first-level branches are always title-only navigation nodes.
+   */
   summary?: string;
   children?: MindNode[];
 };
@@ -49,9 +52,9 @@ function normalizeMindNode(value: unknown): MindNode {
   return children.length ? { ...normalized, children } : normalized;
 }
 
-type Pos = { x: number; y: number; w: number; h: number };
-type LayoutResult = {
-  positions: Map<string, Pos>;
+export type MindMapPosition = { x: number; y: number; w: number; h: number };
+export type MindMapLayoutResult = {
+  positions: Map<string, MindMapPosition>;
   height: number;
   edges: { from: string; to: string }[];
 };
@@ -78,8 +81,15 @@ const V_GAP = 28; // vertical gap between siblings
 const PAD_X = 28; // horizontal padding inside a node
 const MIN_W = 132;
 const MAX_W = 280;
+const FIRST_LEVEL_MIN_W = 188;
+const FIRST_LEVEL_MAX_W = 300;
 const LINE_H = 19;
 const V_PAD = 20; // vertical padding inside a node (total)
+
+function visibleSummary(node: MindNode, depth: number) {
+  if (depth === 1) return "";
+  return typeof node.summary === "string" ? node.summary.trim() : "";
+}
 
 function fontForDepth(depth: number) {
   const size = depth === 0 ? 15 : depth === 1 ? 13.5 : 12.5;
@@ -98,14 +108,16 @@ function measureCtx(): CanvasRenderingContext2D | null {
 
 function measureNode(node: MindNode, depth: number): { w: number; h: number } {
   const safeLabel = typeof node.label === "string" ? node.label : "";
-  const safeSummary = typeof node.summary === "string" ? node.summary : "";
+  const safeSummary = visibleSummary(node, depth);
   const ctx = measureCtx();
-  const hasChildrenAffordance = 26; // space for the +/x circle
+  const hasChildrenAffordance = node.children?.length ? 26 : 0;
+  const minWidth = depth === 1 ? FIRST_LEVEL_MIN_W : MIN_W;
+  const maxWidth = depth === 1 ? FIRST_LEVEL_MAX_W : MAX_W;
   if (!ctx) {
     // SSR fallback estimate
     const approx = Math.min(
-      MAX_W,
-      Math.max(MIN_W, safeLabel.length * 7.5 + PAD_X * 2 + hasChildrenAffordance),
+      maxWidth,
+      Math.max(minWidth, safeLabel.length * 7.5 + PAD_X * 2 + hasChildrenAffordance),
     );
     const summaryLines = safeSummary ? Math.max(1, Math.ceil(safeSummary.length / 34)) : 0;
     return { w: approx, h: 56 + summaryLines * 16 };
@@ -113,17 +125,17 @@ function measureNode(node: MindNode, depth: number): { w: number; h: number } {
   ctx.font = fontForDepth(depth);
   const singleLine = ctx.measureText(safeLabel).width;
   const desired = singleLine + PAD_X * 2 + hasChildrenAffordance;
-  if (desired <= MAX_W) {
+  if (desired <= maxWidth) {
     const summaryLines = safeSummary
-      ? Math.max(1, Math.ceil((safeSummary.length * 6.5) / Math.max(MIN_W, desired)))
+      ? Math.max(1, Math.ceil((safeSummary.length * 6.5) / Math.max(minWidth, desired)))
       : 0;
     return {
-      w: Math.max(MIN_W, Math.ceil(desired)),
+      w: Math.max(minWidth, Math.ceil(desired)),
       h: Math.max(48, LINE_H + V_PAD * 2 + summaryLines * 16),
     };
   }
-  // need to wrap: choose width = MAX_W, compute lines greedily
-  const maxTextW = MAX_W - PAD_X * 2 - hasChildrenAffordance;
+  // Need to wrap: choose the depth-specific max width and compute lines greedily.
+  const maxTextW = maxWidth - PAD_X * 2 - hasChildrenAffordance;
   const words = safeLabel.split(/\s+/);
   let lines = 1;
   let cur = "";
@@ -142,36 +154,48 @@ function measureNode(node: MindNode, depth: number): { w: number; h: number } {
       }
     }
   }
-  const summaryLines = safeSummary ? Math.max(1, Math.ceil((safeSummary.length * 6.5) / MAX_W)) : 0;
+  const summaryLines = safeSummary
+    ? Math.max(1, Math.ceil((safeSummary.length * 6.5) / maxWidth))
+    : 0;
   return {
-    w: MAX_W,
+    w: maxWidth,
     h: Math.max(48, lines * LINE_H + V_PAD * 2 + summaryLines * 16),
   };
 }
 
 function subtreeHeight(
   node: MindNode,
-  expanded: Set<string>,
-  sizes: Map<string, { w: number; h: number }>,
-  depth: number,
+  expanded: ReadonlySet<string>,
+  sizes: ReadonlyMap<string, { w: number; h: number }>,
 ): number {
   const own = sizes.get(node.id)?.h ?? 48;
   if (!node.children || node.children.length === 0 || !expanded.has(node.id)) return own;
   const childrenTotal = node.children.reduce(
-    (sum, c, i) => sum + subtreeHeight(c, expanded, sizes, depth + 1) + (i > 0 ? V_GAP : 0),
+    (sum, child, index) => sum + subtreeHeight(child, expanded, sizes) + (index > 0 ? V_GAP : 0),
     0,
   );
   return Math.max(own, childrenTotal);
 }
 
-function layoutTree(
+type LayoutDirection = -1 | 1;
+
+function childX(
+  parentX: number,
+  parentSize: { w: number; h: number },
+  childSize: { w: number; h: number },
+  direction: LayoutDirection,
+) {
+  return direction === 1 ? parentX + parentSize.w + H_GAP : parentX - H_GAP - childSize.w;
+}
+
+function layoutDirectionalTree(
   node: MindNode,
-  depth: number,
   xStart: number,
   yStart: number,
-  expanded: Set<string>,
-  sizes: Map<string, { w: number; h: number }>,
-  out: LayoutResult,
+  direction: LayoutDirection,
+  expanded: ReadonlySet<string>,
+  sizes: ReadonlyMap<string, { w: number; h: number }>,
+  out: MindMapLayoutResult,
 ): { centerY: number; height: number } {
   const size = sizes.get(node.id) ?? { w: MIN_W, h: 48 };
   const x = xStart;
@@ -182,24 +206,110 @@ function layoutTree(
     return { centerY, height: size.h };
   }
 
-  const childX = x + size.w + H_GAP;
-  // compute total children height
-  let total = 0;
-  const childHeights = node.children.map((c) => subtreeHeight(c, expanded, sizes, depth + 1));
-  total = childHeights.reduce((s, h, i) => s + h + (i > 0 ? V_GAP : 0), 0);
+  const childHeights = node.children.map((child) => subtreeHeight(child, expanded, sizes));
+  const total = childHeights.reduce(
+    (sum, height, index) => sum + height + (index > 0 ? V_GAP : 0),
+    0,
+  );
   const ownH = size.h;
   const blockH = Math.max(total, ownH);
   let cursor = yStart + (blockH - total) / 2;
   const childCenters: number[] = [];
-  node.children.forEach((child, i) => {
-    const { centerY } = layoutTree(child, depth + 1, childX, cursor, expanded, sizes, out);
+  node.children.forEach((child, index) => {
+    const nextSize = sizes.get(child.id) ?? { w: MIN_W, h: 48 };
+    const { centerY } = layoutDirectionalTree(
+      child,
+      childX(x, size, nextSize, direction),
+      cursor,
+      direction,
+      expanded,
+      sizes,
+      out,
+    );
     childCenters.push(centerY);
     out.edges.push({ from: node.id, to: child.id });
-    cursor += childHeights[i] + V_GAP;
+    cursor += childHeights[index] + V_GAP;
   });
   const centerY = (childCenters[0] + childCenters[childCenters.length - 1]) / 2;
   out.positions.set(node.id, { x, y: centerY, w: size.w, h: size.h });
   return { centerY, height: blockH };
+}
+
+function totalSideHeight(items: Array<{ height: number }>) {
+  return items.reduce((sum, item, index) => sum + item.height + (index > 0 ? V_GAP : 0), 0);
+}
+
+export function calculateMindMapLayout(
+  data: MindNode,
+  expanded: ReadonlySet<string>,
+  measuredSizes?: ReadonlyMap<string, { w: number; h: number }>,
+): MindMapLayoutResult {
+  const sizes =
+    measuredSizes ??
+    (() => {
+      const result = new Map<string, { w: number; h: number }>();
+      const nodes: { node: MindNode; depth: number }[] = [];
+      collectAllNodes(data, 0, nodes);
+      nodes.forEach(({ node, depth }) => result.set(node.id, measureNode(node, depth)));
+      return result;
+    })();
+  const out: MindMapLayoutResult = { positions: new Map(), height: 0, edges: [] };
+  const rootSize = sizes.get(data.id) ?? { w: MIN_W, h: 48 };
+
+  if (!data.children?.length || !expanded.has(data.id)) {
+    out.positions.set(data.id, {
+      x: 0,
+      y: rootSize.h / 2,
+      w: rootSize.w,
+      h: rootSize.h,
+    });
+    out.height = rootSize.h;
+    return out;
+  }
+
+  const left: Array<{ node: MindNode; height: number }> = [];
+  const right: Array<{ node: MindNode; height: number }> = [];
+
+  data.children.forEach((node, index) => {
+    const height = subtreeHeight(node, expanded, sizes);
+    // Keep a stable side assignment as branches expand so nodes never jump
+    // across the root. Alternating source order also keeps both sides balanced.
+    const target = index % 2 === 0 ? left : right;
+    target.push({ node, height });
+  });
+
+  const leftTotal = totalSideHeight(left);
+  const rightTotal = totalSideHeight(right);
+  const layoutHeight = Math.max(rootSize.h, leftTotal, rightTotal);
+  const rootCenterY = layoutHeight / 2;
+  out.positions.set(data.id, { x: 0, y: rootCenterY, w: rootSize.w, h: rootSize.h });
+
+  const layoutSide = (
+    items: Array<{ node: MindNode; height: number }>,
+    direction: LayoutDirection,
+    sideHeight: number,
+  ) => {
+    let cursor = (layoutHeight - sideHeight) / 2;
+    items.forEach(({ node, height }) => {
+      const nodeSize = sizes.get(node.id) ?? { w: MIN_W, h: 48 };
+      layoutDirectionalTree(
+        node,
+        childX(0, rootSize, nodeSize, direction),
+        cursor,
+        direction,
+        expanded,
+        sizes,
+        out,
+      );
+      out.edges.push({ from: data.id, to: node.id });
+      cursor += height + V_GAP;
+    });
+  };
+
+  layoutSide(left, -1, leftTotal);
+  layoutSide(right, 1, rightTotal);
+  out.height = layoutHeight;
+  return out;
 }
 
 function collectExpandableIds(node: MindNode, out: Set<string>) {
@@ -209,9 +319,25 @@ function collectExpandableIds(node: MindNode, out: Set<string>) {
   }
 }
 
+export function getExpandableMindNodeIds(node: MindNode) {
+  const ids = new Set<string>();
+  collectExpandableIds(node, ids);
+  return ids;
+}
+
 function collectAllNodes(node: MindNode, depth: number, out: { node: MindNode; depth: number }[]) {
   out.push({ node, depth });
   node.children?.forEach((c) => collectAllNodes(c, depth + 1, out));
+}
+
+export function getVisibleMindNodes(data: MindNode, expanded: ReadonlySet<string>) {
+  const result: { node: MindNode; depth: number }[] = [];
+  function walk(node: MindNode, depth: number) {
+    result.push({ node, depth });
+    if (expanded.has(node.id)) node.children?.forEach((child) => walk(child, depth + 1));
+  }
+  walk(data, 0);
+  return result;
 }
 
 function collectTreeMaps(
@@ -227,10 +353,10 @@ function collectTreeMaps(
   });
 }
 
-function boundsForIds(ids: Iterable<string>, positions: Map<string, Pos>) {
+function boundsForIds(ids: Iterable<string>, positions: Map<string, MindMapPosition>) {
   const items = Array.from(ids)
     .map((id) => positions.get(id))
-    .filter(Boolean) as Pos[];
+    .filter(Boolean) as MindMapPosition[];
   if (!items.length) return null;
   return {
     minX: Math.min(...items.map((p) => p.x)),
@@ -262,6 +388,7 @@ function MobileLearningNode({
 }) {
   const hasChildren = !!node.children?.length;
   const isExpanded = expanded.has(node.id);
+  const summary = visibleSummary(node, depth);
 
   return (
     <li className="relative min-w-0">
@@ -273,6 +400,8 @@ function MobileLearningNode({
       )}
       <button
         type="button"
+        data-mindmap-depth={depth}
+        data-node-id={node.id}
         onClick={() => hasChildren && onToggle(node.id)}
         aria-expanded={hasChildren ? isExpanded : undefined}
         className={`flex min-h-11 w-full min-w-0 items-start justify-between gap-3 rounded-2xl border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80 ${
@@ -283,9 +412,9 @@ function MobileLearningNode({
       >
         <span className="min-w-0 flex-1">
           <span className="block break-words text-sm font-bold leading-5">{node.label}</span>
-          {node.summary && (
+          {summary && (
             <span className="mt-1.5 block break-words text-xs font-medium leading-5 text-white/65">
-              {node.summary}
+              {summary}
             </span>
           )}
         </span>
@@ -357,7 +486,7 @@ export function MindMap({
   const pendingCamera = useRef<CameraRequest | null>(null);
   const initialViewDone = useRef(false);
   const previousVisibleIds = useRef<Set<string>>(new Set([data.id]));
-  const previousPositions = useRef<Map<string, Pos>>(new Map());
+  const previousPositions = useRef<Map<string, MindMapPosition>>(new Map());
   const cameraState = useRef({ tx, ty, scale });
 
   const treeMaps = useMemo(() => {
@@ -377,21 +506,10 @@ export function MindMap({
   }, [data]);
 
   const layout = useMemo(() => {
-    const out: LayoutResult = { positions: new Map(), height: 0, edges: [] };
-    const { height: h } = layoutTree(data, 0, 0, 0, expanded, sizes, out);
-    out.height = h;
-    return out;
+    return calculateMindMapLayout(data, expanded, sizes);
   }, [data, expanded, sizes]);
 
-  const visibleNodes = useMemo(() => {
-    const result: { node: MindNode; depth: number }[] = [];
-    function walk(n: MindNode, d: number) {
-      result.push({ node: n, depth: d });
-      if (expanded.has(n.id)) n.children?.forEach((c) => walk(c, d + 1));
-    }
-    walk(data, 0);
-    return result;
-  }, [data, expanded]);
+  const visibleNodes = useMemo(() => getVisibleMindNodes(data, expanded), [data, expanded]);
 
   const visibleIds = useMemo(
     () => new Set(visibleNodes.map(({ node }) => node.id)),
@@ -461,11 +579,9 @@ export function MindMap({
   }, []);
 
   const expandAll = useCallback(() => {
-    const s = new Set<string>();
-    collectExpandableIds(data, s);
     pendingCamera.current = { id: data.id, mode: "reset" };
     setSelectedId(data.id);
-    setExpanded(s);
+    setExpanded(getExpandableMindNodeIds(data));
   }, [data]);
 
   const collapseAll = useCallback(() => {
@@ -1174,9 +1290,10 @@ export function MindMap({
                 const target = layout.positions.get(to) ?? layout.positions.get(from);
                 const b = target ?? previousPositions.current.get(to);
                 if (!a || !b) return null;
-                const x1 = a.x + a.w - minX;
+                const growsRight = b.x >= a.x;
+                const x1 = (growsRight ? a.x + a.w : a.x) - minX;
                 const y1 = a.y - minY;
-                const x2 = b.x - minX;
+                const x2 = (growsRight ? b.x : b.x + b.w) - minX;
                 const y2 = b.y - minY;
                 const midX = (x1 + x2) / 2;
                 const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
@@ -1235,11 +1352,16 @@ export function MindMap({
               const isExiting = exitingIds.has(node.id);
               const revealDelay = revealDelays.get(node.id) ?? 0;
               const s = nodeStyle(node, depth, hasChildren, isExpanded, resolvedPalette);
+              const summary = visibleSummary(node, depth);
               return (
                 <button
                   key={node.id}
                   type="button"
+                  data-mindmap-depth={depth}
+                  data-node-id={node.id}
                   aria-expanded={hasChildren ? isExpanded : undefined}
+                  aria-hidden={isExiting || undefined}
+                  tabIndex={isExiting ? -1 : undefined}
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedId(node.id);
@@ -1250,7 +1372,7 @@ export function MindMap({
                     zoomToNode(node.id);
                   }}
                   onPointerDown={(e) => e.stopPropagation()}
-                  className="absolute group"
+                  className="absolute group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   style={{
                     left: p.x,
                     top: p.y - p.h / 2,
@@ -1295,7 +1417,7 @@ export function MindMap({
                       flex: 1,
                       display: "flex",
                       flexDirection: "column",
-                      gap: node.summary ? 4 : 0,
+                      gap: summary ? 4 : 0,
                       whiteSpace: "normal",
                       overflow: "visible",
                       textOverflow: "clip",
@@ -1303,7 +1425,7 @@ export function MindMap({
                     }}
                   >
                     <span>{node.label}</span>
-                    {node.summary && (
+                    {summary && (
                       <span
                         style={{
                           fontSize: depth === 0 ? 11.5 : 11,
@@ -1312,7 +1434,7 @@ export function MindMap({
                           opacity: 0.82,
                         }}
                       >
-                        {node.summary}
+                        {summary}
                       </span>
                     )}
                   </span>
@@ -1365,12 +1487,13 @@ export function MindMap({
                 const a = layout.positions.get(from);
                 const b = layout.positions.get(to);
                 if (!a || !b) return null;
+                const growsRight = b.x >= a.x;
                 return (
                   <line
                     key={`mini-${from}-${to}`}
-                    x1={(a.x + a.w - minX) * minimapScale}
+                    x1={((growsRight ? a.x + a.w : a.x) - minX) * minimapScale}
                     y1={(a.y - minY) * minimapScale}
-                    x2={(b.x - minX) * minimapScale}
+                    x2={((growsRight ? b.x : b.x + b.w) - minX) * minimapScale}
                     y2={(b.y - minY) * minimapScale}
                     stroke={resolvedPalette.edgeEnd}
                     strokeOpacity="0.45"

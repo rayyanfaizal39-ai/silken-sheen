@@ -8,27 +8,47 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-definisi",
       label: "Definisi",
-      summary: "Menerangkan sesuatu perbuatan, keadaan atau proses.",
       children: [
         {
           id: "bm-kata-kerja-definisi-maksud",
-          label:
-            "Kata kerja ialah perkataan yang menerangkan sesuatu perbuatan, keadaan atau proses.",
+          label: "Maksud",
+          children: [
+            {
+              id: "bm-kata-kerja-definisi-maksud-huraian",
+              label:
+                "Kata kerja ialah perkataan yang menerangkan sesuatu perbuatan, keadaan atau proses.",
+            },
+          ],
         },
         {
           id: "bm-kata-kerja-definisi-contoh",
-          label: "Contoh: membaca, duduk, berubah, menguruskan",
+          label: "Contoh Ringkas",
+          children: [
+            {
+              id: "bm-kata-kerja-definisi-contoh-senarai",
+              label: "membaca • duduk • berubah • menguruskan",
+            },
+          ],
         },
       ],
     },
     {
       id: "bm-kata-kerja-transitif",
       label: "Kata Kerja Transitif",
-      summary: "Memerlukan objek untuk melengkapkan maksud ayat.",
       children: [
         {
           id: "bm-kata-kerja-transitif-ciri",
-          label: "Objek biasanya hadir selepas kata kerja untuk melengkapkan maksud ayat.",
+          label: "Ciri",
+          children: [
+            {
+              id: "bm-kata-kerja-transitif-ciri-huraian",
+              label: "Memerlukan objek untuk melengkapkan maksud ayat.",
+            },
+            {
+              id: "bm-kata-kerja-transitif-ciri-kedudukan",
+              label: "Objek biasanya hadir selepas kata kerja.",
+            },
+          ],
         },
         {
           id: "bm-kata-kerja-transitif-pola",
@@ -61,11 +81,16 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-tak-transitif",
       label: "Kata Kerja Tak Transitif",
-      summary: "Tidak memerlukan objek.",
       children: [
         {
           id: "bm-kata-kerja-tak-transitif-ciri",
-          label: "Boleh melengkapkan predikat tanpa diikuti objek.",
+          label: "Ciri",
+          children: [
+            {
+              id: "bm-kata-kerja-tak-transitif-ciri-huraian",
+              label: "Tidak memerlukan objek dan boleh melengkapkan predikat tanpa diikuti objek.",
+            },
+          ],
         },
         {
           id: "bm-kata-kerja-tak-transitif-duduk",
@@ -108,8 +133,17 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-bentuk",
       label: "Bentuk Kata Kerja",
-      summary: "Kata kerja boleh hadir tanpa imbuhan atau menerima imbuhan.",
       children: [
+        {
+          id: "bm-kata-kerja-bentuk-gambaran",
+          label: "Gambaran Umum",
+          children: [
+            {
+              id: "bm-kata-kerja-bentuk-gambaran-huraian",
+              label: "Kata kerja boleh hadir tanpa imbuhan atau menerima imbuhan.",
+            },
+          ],
+        },
         {
           id: "bm-kata-kerja-tunggal",
           label: "Kata Kerja Tunggal",
@@ -145,8 +179,17 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-dalam-ayat",
       label: "Kata Kerja dalam Ayat",
-      summary: "Unsur utama Frasa Kerja yang lazimnya berfungsi sebagai predikat.",
       children: [
+        {
+          id: "bm-kata-kerja-dalam-ayat-peranan",
+          label: "Peranan",
+          children: [
+            {
+              id: "bm-kata-kerja-dalam-ayat-peranan-huraian",
+              label: "Unsur utama Frasa Kerja yang lazimnya berfungsi sebagai predikat.",
+            },
+          ],
+        },
         {
           id: "bm-kata-kerja-dalam-ayat-pola",
           label: "Struktur lazim: Frasa Nama + Frasa Kerja",
@@ -170,8 +213,17 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-aktif-pasif",
       label: "Ayat Aktif dan Ayat Pasif",
-      summary: "Pengenalan kepada hubungan ayat aktif dengan ayat pasif.",
       children: [
+        {
+          id: "bm-kata-kerja-aktif-pasif-pengenalan",
+          label: "Pengenalan",
+          children: [
+            {
+              id: "bm-kata-kerja-aktif-pasif-pengenalan-huraian",
+              label: "Pengenalan kepada hubungan ayat aktif dengan ayat pasif.",
+            },
+          ],
+        },
         {
           id: "bm-kata-kerja-aktif",
           label: "Ayat Aktif",
@@ -215,8 +267,17 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-kesalahan",
       label: "Kesalahan Lazim",
-      summary: "Semak objek, imbuhan dan fungsi perkataan dalam ayat.",
       children: [
+        {
+          id: "bm-kata-kerja-kesalahan-semakan",
+          label: "Semakan Umum",
+          children: [
+            {
+              id: "bm-kata-kerja-kesalahan-semakan-huraian",
+              label: "Semak objek, imbuhan dan fungsi perkataan dalam ayat.",
+            },
+          ],
+        },
         {
           id: "bm-kata-kerja-kesalahan-objek",
           label: "1. Kata kerja transitif tanpa objek",
@@ -275,8 +336,17 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-tip-uasa",
       label: "Tip UASA",
-      summary: "Kenal pasti fungsi kata kerja melalui maksud dan struktur ayat.",
       children: [
+        {
+          id: "bm-kata-kerja-tip-uasa-strategi",
+          label: "Strategi",
+          children: [
+            {
+              id: "bm-kata-kerja-tip-uasa-strategi-huraian",
+              label: "Kenal pasti fungsi kata kerja melalui maksud dan struktur ayat.",
+            },
+          ],
+        },
         {
           id: "bm-kata-kerja-tip-uasa-1",
           label: "Cari perkataan yang menunjukkan perbuatan, keadaan atau proses.",
@@ -306,19 +376,24 @@ export const bahasaMelayuKataKerjaMindMap: MindNode = {
     {
       id: "bm-kata-kerja-ingat",
       label: "Ingat!",
-      summary: "Kata Kerja = perbuatan, keadaan atau proses.",
       children: [
         {
-          id: "bm-kata-kerja-ingat-maksud",
-          label: "Kata Kerja = perbuatan, keadaan atau proses",
-        },
-        {
-          id: "bm-kata-kerja-ingat-transitif",
-          label: "Transitif → ada objek",
-        },
-        {
-          id: "bm-kata-kerja-ingat-tak-transitif",
-          label: "Tak transitif → tidak perlu objek",
+          id: "bm-kata-kerja-ingat-rumus",
+          label: "Rumus",
+          children: [
+            {
+              id: "bm-kata-kerja-ingat-maksud",
+              label: "Kata Kerja = perbuatan, keadaan atau proses",
+            },
+            {
+              id: "bm-kata-kerja-ingat-transitif",
+              label: "Transitif → ada objek",
+            },
+            {
+              id: "bm-kata-kerja-ingat-tak-transitif",
+              label: "Tak transitif → tidak perlu objek",
+            },
+          ],
         },
       ],
     },

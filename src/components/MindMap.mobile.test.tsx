@@ -10,12 +10,12 @@ vi.mock("@/hooks/use-mobile", () => ({
 const mobileMindMap: MindNode = {
   id: "kata-kerja",
   label: "KATA KERJA",
-  summary: "Perkataan yang menerangkan perbuatan, keadaan atau proses.",
+  summary: "Central summary stays visible.",
   children: [
     {
       id: "definisi",
       label: "Definisi",
-      summary: "Menerangkan perbuatan, keadaan atau proses.",
+      summary: "This first-level summary must stay hidden.",
       children: [{ id: "contoh", label: "Contoh: membaca" }],
     },
   ],
@@ -32,7 +32,10 @@ describe("MindMap mobile learning path", () => {
     expect(markup).toContain("env(safe-area-inset-bottom)");
     expect(markup).toContain("KATA KERJA");
     expect(markup).toContain("Definisi");
-    expect(markup).toContain("Menerangkan perbuatan, keadaan atau proses.");
+    expect(markup).toContain("Central summary stays visible.");
+    expect(markup).not.toContain("This first-level summary must stay hidden.");
+    expect(markup).not.toContain("Contoh: membaca");
+    expect(markup).toContain('data-mindmap-depth="1"');
     expect(markup).toContain('aria-expanded="false"');
     expect(markup).not.toContain("touch-none");
   });
@@ -57,6 +60,9 @@ describe("MindMap mobile learning path", () => {
     expect(markup).toContain("env(safe-area-inset-bottom)");
     expect(markup).toContain(
       "Perkataan yang menerangkan sifat, keadaan atau kualiti sesuatu kata nama.",
+    );
+    expect(markup).not.toContain(
+      "Kata adjektif menerangkan sifat, keadaan atau kualiti bagi sesuatu kata nama atau frasa nama.",
     );
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));

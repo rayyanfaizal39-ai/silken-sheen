@@ -9,8 +9,14 @@ export const bahasaMelayuKataNamaMindMap: MindNode = {
       label: "Definisi",
       children: [
         {
-          id: "bm-kata-nama-definisi-1",
-          label: "Nama orang, haiwan, benda, tempat atau konsep",
+          id: "bm-kata-nama-definisi-maksud",
+          label: "Maksud",
+          children: [
+            {
+              id: "bm-kata-nama-definisi-maksud-huraian",
+              label: "Nama orang, haiwan, benda, tempat atau konsep",
+            },
+          ],
         },
       ],
     },
