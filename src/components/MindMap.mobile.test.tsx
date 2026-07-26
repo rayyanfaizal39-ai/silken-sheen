@@ -2,7 +2,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
+import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
+import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 import { MindMap, type MindNode } from "./MindMap";
 
 vi.mock("@/hooks/use-mobile", () => ({
@@ -111,6 +113,54 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(8);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Kata Hubung path in order without child details", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuKataHubungMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuKataHubungMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda KATA HUBUNG"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Perkataan yang menghubungkan kata, frasa atau klausa dalam sesuatu ayat.",
+    );
+    expect(markup).not.toContain(
+      "Kata hubung ialah perkataan yang menghubungkan kata, frasa atau klausa",
+    );
+    expect(markup).not.toContain("dan • serta");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(8);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Penjodoh Bilangan path in order without child details", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuPenjodohBilanganMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuPenjodohBilanganMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda PENJODOH BILANGAN"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Perkataan yang digunakan bersama kata bilangan untuk membilang kata nama konkrit.",
+    );
+    expect(markup).not.toContain(
+      "Penjodoh bilangan ialah perkataan yang digunakan bersama kata bilangan",
+    );
+    expect(markup).not.toContain("seorang guru");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(11);
     expect(markup).not.toContain("touch-none");
   });
 });

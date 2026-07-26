@@ -235,6 +235,8 @@ import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-m
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
+import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
+import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2525,6 +2527,72 @@ export const chapters: ChapterContent[] = [
       "Perkataan yang hadir di hadapan kata nama atau frasa nama untuk menunjukkan tempat, arah, masa atau hubungan.",
     categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuKataSendiNamaMindMap, title: "Kata Sendi Nama" },
+  },
+  {
+    id: "bm-f1-kata-hubung-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kata Hubung",
+    title: "Kata Hubung",
+    description:
+      "Perkataan yang menghubungkan kata, frasa atau klausa untuk membentuk ayat yang gramatis.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataHubungMindMap, title: "Kata Hubung" },
+  },
+  {
+    id: "bm-f2-kata-hubung-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Hubung",
+    title: "Kata Hubung",
+    description:
+      "Perkataan yang menghubungkan kata, frasa atau klausa untuk membentuk ayat yang gramatis.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataHubungMindMap, title: "Kata Hubung" },
+  },
+  {
+    id: "bm-f3-kata-hubung-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kata Hubung",
+    title: "Kata Hubung",
+    description:
+      "Perkataan yang menghubungkan kata, frasa atau klausa untuk membentuk ayat yang gramatis.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuKataHubungMindMap, title: "Kata Hubung" },
+  },
+  {
+    id: "bm-f1-penjodoh-bilangan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Penjodoh Bilangan",
+    title: "Penjodoh Bilangan",
+    description:
+      "Perkataan yang digunakan bersama kata bilangan untuk membilang manusia, haiwan atau benda mengikut bentuk dan sifatnya.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuPenjodohBilanganMindMap, title: "Penjodoh Bilangan" },
+  },
+  {
+    id: "bm-f2-penjodoh-bilangan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Penjodoh Bilangan",
+    title: "Penjodoh Bilangan",
+    description:
+      "Perkataan yang digunakan bersama kata bilangan untuk membilang manusia, haiwan atau benda mengikut bentuk dan sifatnya.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuPenjodohBilanganMindMap, title: "Penjodoh Bilangan" },
+  },
+  {
+    id: "bm-f3-penjodoh-bilangan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Penjodoh Bilangan",
+    title: "Penjodoh Bilangan",
+    description:
+      "Perkataan yang digunakan bersama kata bilangan untuk membilang manusia, haiwan atau benda mengikut bentuk dan sifatnya.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuPenjodohBilanganMindMap, title: "Penjodoh Bilangan" },
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)

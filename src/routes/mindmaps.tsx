@@ -86,6 +86,21 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Kata Sendi Nama untuk Tingkatan 1, 2 dan 3: fungsi di, dari dan daripada, ke dan kepada, Frasa Sendi Nama, kesalahan lazim serta tip UASA.",
         keywords: ["Kata Sendi Nama", "frasa sendi nama", "dari dan daripada", "ke dan kepada"],
       },
+      "Kata Hubung": {
+        description:
+          "Peta minda Kata Hubung untuk Tingkatan 1, 2 dan 3: definisi, fungsi, jenis kata hubung, ayat majmuk, kesalahan lazim dan tip UASA.",
+        keywords: ["Kata Hubung", "jenis kata hubung", "ayat majmuk", "kata hubung KSSM"],
+      },
+      "Penjodoh Bilangan": {
+        description:
+          "Peta minda Penjodoh Bilangan untuk Tingkatan 1, 2 dan 3: cara penggunaan, padanan mengikut manusia, haiwan, bentuk dan kumpulan, kesalahan lazim serta tip UASA.",
+        keywords: [
+          "Penjodoh Bilangan",
+          "contoh penjodoh bilangan",
+          "penjodoh bilangan KSSM",
+          "orang ekor buah helai",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -93,6 +108,8 @@ export const Route = createFileRoute("/mindmaps")({
         | "Kata Kerja"
         | "Kata Adjektif"
         | "Kata Sendi Nama"
+        | "Kata Hubung"
+        | "Penjodoh Bilangan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({

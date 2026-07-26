@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { bahasaMelayuKataAdjektifMindMap } from "@/content/bm/kata-adjektif-mindmap";
 import { bahasaMelayuKataGantiNamaMindMap } from "@/content/bm/kata-ganti-nama-mindmap";
+import { bahasaMelayuKataHubungMindMap } from "@/content/bm/kata-hubung-mindmap";
 import { bahasaMelayuKataKerjaMindMap } from "@/content/bm/kata-kerja-mindmap";
 import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
+import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 import {
   calculateMindMapLayout,
   getExpandableMindNodeIds,
@@ -18,6 +20,8 @@ const tatabahasaMindMaps = [
   ["Kata Kerja", bahasaMelayuKataKerjaMindMap],
   ["Kata Adjektif", bahasaMelayuKataAdjektifMindMap],
   ["Kata Sendi Nama", bahasaMelayuKataSendiNamaMindMap],
+  ["Kata Hubung", bahasaMelayuKataHubungMindMap],
+  ["Penjodoh Bilangan", bahasaMelayuPenjodohBilanganMindMap],
 ] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
@@ -136,6 +140,76 @@ describe("MindMap reusable hierarchy", () => {
     const frasaBranch = data.children?.find((branch) => branch.label === "Frasa Sendi Nama");
     expect(visibleLabels(data, new Set([data.id, frasaBranch?.id ?? ""]))).toEqual(
       expect.arrayContaining(["Maksud", "Formula", "Pola Ayat", "Contoh"]),
+    );
+  });
+
+  it("reveals Kata Hubung explanations only through their matching branches", () => {
+    const data = bahasaMelayuKataHubungMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("Gabungan");
+    expect(overview).not.toContain("Peranan");
+
+    const typesBranch = data.children?.find((branch) => branch.label === "Jenis Kata Hubung");
+    expect(visibleLabels(data, new Set([data.id, typesBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Gabungan",
+        "Pilihan",
+        "Sebab",
+        "Tujuan",
+        "Pertentangan",
+        "Perbandingan",
+      ]),
+    );
+
+    const compoundBranch = data.children?.find((branch) => branch.label === "Dalam Ayat Majmuk");
+    expect(visibleLabels(data, new Set([data.id, compoundBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Peranan", "Formula", "Contoh", "Contoh 2"]),
+    );
+
+    const discourseBranch = data.children?.find((branch) => branch.label === "Penanda Wacana");
+    expect(visibleLabels(data, new Set([data.id, discourseBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Pengenalan", "Contoh", "Nota"]),
+    );
+  });
+
+  it("reveals Penjodoh Bilangan classifiers only through their matching branches", () => {
+    const data = bahasaMelayuPenjodohBilanganMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("orang");
+    expect(overview).not.toContain("helai");
+
+    const definitionBranch = data.children?.find((branch) => branch.label === "Definisi");
+    expect(visibleLabels(data, new Set([data.id, definitionBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Maksud", "Fungsi", "Struktur"]),
+    );
+
+    const shapeBranch = data.children?.find((branch) => branch.label === "Benda Mengikut Bentuk");
+    expect(visibleLabels(data, new Set([data.id, shapeBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "helai",
+        "batang",
+        "bilah",
+        "utas",
+        "keping",
+        "butir",
+        "biji",
+        "Nota Perbandingan",
+      ]),
+    );
+
+    const errorBranch = data.children?.find((branch) => branch.label === "Kesalahan Lazim");
+    expect(visibleLabels(data, new Set([data.id, errorBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Salah Penjodoh Bilangan",
+        "Tidak Sesuai dengan Bentuk",
+        "Penggunaan pada Kata Abstrak",
+        "Menggandakan Bilangan",
+        "Menghafal Tanpa Memahami",
+      ]),
     );
   });
 
