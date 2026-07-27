@@ -248,6 +248,7 @@ import { bahasaMelayuForm2AyatPasifMindMap } from "@/content/bm/ayat-pasif-form2
 import { bahasaMelayuForm2AyatTunggalMindMap } from "@/content/bm/ayat-tunggal-form2-mindmap";
 import { bahasaMelayuForm2AyatMajmukMindMap } from "@/content/bm/ayat-majmuk-form2-mindmap";
 import { bahasaMelayuForm2ImbuhanLanjutanMindMap } from "@/content/bm/imbuhan-lanjutan-form2-mindmap";
+import { bahasaMelayuForm2KataPemeriMindMap } from "@/content/bm/kata-pemeri-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2690,6 +2691,19 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2ImbuhanLanjutanMindMap,
       title: "Imbuhan Lanjutan",
+    },
+  },
+  {
+    id: "bm-f2-kata-pemeri-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Pemeri",
+    title: "Kata Pemeri",
+    description: 'Penggunaan "ialah" dan "adalah" mengikut jenis frasa yang betul.',
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2KataPemeriMindMap,
+      title: "Kata Pemeri",
     },
   },
 

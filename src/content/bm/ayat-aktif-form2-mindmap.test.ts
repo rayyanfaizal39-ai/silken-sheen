@@ -25,6 +25,7 @@ const form2Topics = [
   "Ayat Tunggal",
   "Ayat Majmuk",
   "Imbuhan Lanjutan",
+  "Kata Pemeri",
 ] as const;
 
 const removedForm2Topics = [
@@ -52,32 +53,13 @@ function flattenContent(node: MindNode): string {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Aktif mind map", () => {
-  it("keeps exactly eight Form 2 cards active without changing Forms 1 and 3", () => {
+  it("keeps exactly nine Form 2 cards active without changing Forms 1 and 3", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics.map((topic) => topic.available)).toEqual([
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-    ]);
-    expect(topics.map((topic) => topic.selectable)).toEqual([
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-    ]);
+    expect(topics.every((topic) => topic.available && topic.selectable)).toBe(true);
     removedForm2Topics.forEach((key) => {
       expect(getChapter("bm", key, undefined, "Form 2")).toBeUndefined();
     });

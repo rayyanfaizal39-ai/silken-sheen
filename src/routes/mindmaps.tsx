@@ -300,7 +300,8 @@ function MindMapsPage() {
       activeChapterKey === "Ayat Pasif" ||
       activeChapterKey === "Ayat Tunggal" ||
       activeChapterKey === "Ayat Majmuk" ||
-      activeChapterKey === "Imbuhan Lanjutan");
+      activeChapterKey === "Imbuhan Lanjutan" ||
+      activeChapterKey === "Kata Pemeri");
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
   const mindMapPalette = planetTheme
