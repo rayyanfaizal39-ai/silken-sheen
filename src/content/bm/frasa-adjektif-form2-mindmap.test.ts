@@ -24,6 +24,7 @@ const form2Topics = [
   "Ayat Pasif",
   "Ayat Tunggal",
   "Ayat Majmuk",
+  "Imbuhan Lanjutan",
 ] as const;
 
 function tatabahasaTopics(form: "Form 1" | "Form 2" | "Form 3") {
@@ -57,8 +58,10 @@ describe("Bahasa Melayu Form 2 Frasa Adjektif mind map", () => {
       true,
       true,
       true,
+      true,
     ]);
     expect(topics.map((topic) => topic.selectable)).toEqual([
+      true,
       true,
       true,
       true,

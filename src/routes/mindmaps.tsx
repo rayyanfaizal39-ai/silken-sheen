@@ -192,6 +192,17 @@ export const Route = createFileRoute("/mindmaps")({
           "penggabungan dan pencerakinan ayat",
         ],
       },
+      "Imbuhan Lanjutan": {
+        description:
+          "Peta minda Imbuhan Lanjutan Tingkatan 2: imbuhan pinjaman, sisipan, perubahan meN- dan peN-, peluluhan huruf, ejaan kata terbitan dan tip UASA.",
+        keywords: [
+          "Imbuhan Lanjutan",
+          "imbuhan lanjutan Tingkatan 2",
+          "imbuhan pinjaman dan sisipan",
+          "peluluhan huruf meN peN",
+          "ejaan kata terbitan",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -211,6 +222,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Ayat Pasif"
         | "Ayat Tunggal"
         | "Ayat Majmuk"
+        | "Imbuhan Lanjutan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
@@ -287,7 +299,8 @@ function MindMapsPage() {
       activeChapterKey === "Ayat Aktif" ||
       activeChapterKey === "Ayat Pasif" ||
       activeChapterKey === "Ayat Tunggal" ||
-      activeChapterKey === "Ayat Majmuk");
+      activeChapterKey === "Ayat Majmuk" ||
+      activeChapterKey === "Imbuhan Lanjutan");
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
   const mindMapPalette = planetTheme

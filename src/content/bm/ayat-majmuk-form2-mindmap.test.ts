@@ -34,6 +34,7 @@ const form2Topics = [
   "Ayat Pasif",
   "Ayat Tunggal",
   "Ayat Majmuk",
+  "Imbuhan Lanjutan",
 ] as const;
 
 const removedForm2Topics = [
@@ -67,13 +68,13 @@ function findBranch(label: string) {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Majmuk mind map", () => {
-  it("registers exactly seven active Form 2 cards while preserving Forms 1 and 3", () => {
+  it("registers exactly eight active Form 2 cards while preserving Forms 1 and 3", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics).toHaveLength(7);
+    expect(topics).toHaveLength(8);
     expect(topics.every((topic) => topic.available && topic.selectable)).toBe(true);
     removedForm2Topics.forEach((key) => {
       expect(getChapter("bm", key, undefined, "Form 2")).toBeUndefined();
@@ -106,12 +107,12 @@ describe("Bahasa Melayu Form 2 Ayat Majmuk mind map", () => {
     expect(getChapter("bm", "Ayat Majmuk", undefined, "Form 3")).toBeUndefined();
   });
 
-  it("places Ayat Tunggal immediately before the final Ayat Majmuk topic", () => {
+  it("places Ayat Majmuk immediately before Imbuhan Lanjutan", () => {
     const ids = getChaptersForSubject("bm", undefined, "Form 2")
       .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
       .map((chapter) => chapter.id);
 
-    expect(ids.slice(-2)).toEqual(["bm-f2-ayat-tunggal-mindmap", "bm-f2-ayat-majmuk-mindmap"]);
+    expect(ids.slice(-2)).toEqual(["bm-f2-ayat-majmuk-mindmap", "bm-f2-imbuhan-lanjutan-mindmap"]);
   });
 
   it("uses the required identity and thirteen title-only first-level branches", () => {

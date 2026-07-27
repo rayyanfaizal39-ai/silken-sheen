@@ -24,6 +24,7 @@ const form2Topics = [
   "Ayat Pasif",
   "Ayat Tunggal",
   "Ayat Majmuk",
+  "Imbuhan Lanjutan",
 ] as const;
 
 const removedForm2Topics = [
@@ -51,7 +52,7 @@ function flattenContent(node: MindNode): string {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Pasif mind map", () => {
-  it("keeps all seven Form 2 Tatabahasa cards active without changing Forms 1 and 3", () => {
+  it("keeps all eight Form 2 Tatabahasa cards active without changing Forms 1 and 3", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
 
@@ -65,8 +66,10 @@ describe("Bahasa Melayu Form 2 Ayat Pasif mind map", () => {
       true,
       true,
       true,
+      true,
     ]);
     expect(topics.map((topic) => topic.selectable)).toEqual([
+      true,
       true,
       true,
       true,

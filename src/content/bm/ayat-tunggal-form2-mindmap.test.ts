@@ -29,6 +29,7 @@ const form2Topics = [
   "Ayat Pasif",
   "Ayat Tunggal",
   "Ayat Majmuk",
+  "Imbuhan Lanjutan",
 ] as const;
 
 const removedForm2Topics = [
@@ -62,7 +63,7 @@ function branch(label: string) {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Tunggal mind map", () => {
-  it("registers exactly seven active Form 2 Tatabahasa cards without changing Forms 1 and 3", () => {
+  it("registers exactly eight active Form 2 Tatabahasa cards without changing Forms 1 and 3", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
 
@@ -76,8 +77,10 @@ describe("Bahasa Melayu Form 2 Ayat Tunggal mind map", () => {
       true,
       true,
       true,
+      true,
     ]);
     expect(topics.map((topic) => topic.selectable)).toEqual([
+      true,
       true,
       true,
       true,
@@ -122,8 +125,11 @@ describe("Bahasa Melayu Form 2 Ayat Tunggal mind map", () => {
     const ids = getChaptersForSubject("bm", undefined, "Form 2")
       .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
       .map((chapter) => chapter.id);
-    expect(ids.at(-2)).toBe("bm-f2-ayat-tunggal-mindmap");
-    expect(ids.at(-1)).toBe("bm-f2-ayat-majmuk-mindmap");
+    expect(ids.slice(-3)).toEqual([
+      "bm-f2-ayat-tunggal-mindmap",
+      "bm-f2-ayat-majmuk-mindmap",
+      "bm-f2-imbuhan-lanjutan-mindmap",
+    ]);
   });
 
   it("contains the exact identity and eleven title-only first-level branches", () => {

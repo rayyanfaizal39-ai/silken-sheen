@@ -13,6 +13,7 @@ const form2Topics = [
   "Ayat Pasif",
   "Ayat Tunggal",
   "Ayat Majmuk",
+  "Imbuhan Lanjutan",
 ] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
@@ -28,7 +29,7 @@ function flattenContent(node: MindNode): string[] {
 }
 
 describe("Bahasa Melayu Form 2 Frasa Kerja mind map", () => {
-  it("registers exactly seven Form 2 topic cards with the required active states", () => {
+  it("registers exactly eight Form 2 topic cards with the required active states", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (chapter) => chapter.categoryLabel === "Tatabahasa",
     );
@@ -42,8 +43,10 @@ describe("Bahasa Melayu Form 2 Frasa Kerja mind map", () => {
       true,
       true,
       true,
+      true,
     ]);
     expect(topics.map((topic) => topic.selectable)).toEqual([
+      true,
       true,
       true,
       true,

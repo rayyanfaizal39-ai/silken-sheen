@@ -247,6 +247,7 @@ import { bahasaMelayuForm2AyatAktifMindMap } from "@/content/bm/ayat-aktif-form2
 import { bahasaMelayuForm2AyatPasifMindMap } from "@/content/bm/ayat-pasif-form2-mindmap";
 import { bahasaMelayuForm2AyatTunggalMindMap } from "@/content/bm/ayat-tunggal-form2-mindmap";
 import { bahasaMelayuForm2AyatMajmukMindMap } from "@/content/bm/ayat-majmuk-form2-mindmap";
+import { bahasaMelayuForm2ImbuhanLanjutanMindMap } from "@/content/bm/imbuhan-lanjutan-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2675,6 +2676,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2AyatMajmukMindMap,
       title: "Ayat Majmuk",
+    },
+  },
+  {
+    id: "bm-f2-imbuhan-lanjutan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Imbuhan Lanjutan",
+    title: "Imbuhan Lanjutan",
+    description:
+      "Penggunaan imbuhan yang lebih kompleks, termasuk imbuhan pinjaman, sisipan, perubahan bentuk kata dan peraturan ejaan dalam pembentukan kata terbitan.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2ImbuhanLanjutanMindMap,
+      title: "Imbuhan Lanjutan",
     },
   },
 
