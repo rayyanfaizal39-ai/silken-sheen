@@ -773,7 +773,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  will-change: transform;
   backface-visibility: hidden;
 }
 .cinematic-landing-root .lworld__bg-overlay {
@@ -934,8 +933,9 @@
 /* idle wrapper — paused until the layout settles, so CSS and GSAP never
    drive the same transform during the handoff or zoom-out */
 .cinematic-landing-root .lworld__planet-idle {
-  animation: cine-lworld-float 11s ease-in-out infinite;
+  animation: cine-lworld-float 12s cubic-bezier(0.37, 0, 0.63, 1) infinite;
   animation-play-state: paused;
+  transform-origin: 50% 55%;
   will-change: transform;
 }
 .cinematic-landing-root .lworld__planet-holder {
@@ -996,7 +996,7 @@
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -5px, 0) rotate(0.12deg);
   }
 }
 /* mirrors the hero's closing purple glow so the handoff frame matches, then clears */
@@ -1167,12 +1167,13 @@
   box-shadow:
     0 5px 12px rgba(6, 2, 20, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  touch-action: manipulation;
   transition:
-    color 0.3s ease,
-    background 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    color 180ms ease,
+    background 220ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms ease,
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 220ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .cinematic-landing-root .lworld__tab::after {
   content: "";
@@ -1184,7 +1185,7 @@
   border-radius: 2px;
   background: var(--gold);
   transform: translateX(-50%);
-  transition: width 0.35s ease;
+  transition: width 220ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 @media (hover: hover) and (pointer: fine) {
   .cinematic-landing-root .lworld__tab:hover {
@@ -1208,6 +1209,10 @@
 }
 .cinematic-landing-root .lworld__tab.is-active::after {
   width: 44%;
+}
+.cinematic-landing-root .lworld__tab:active {
+  transform: translate3d(0, 0, 0) scale(0.98);
+  transition-duration: 120ms;
 }
 
 /* ---- final Learning World summary banner ---- */
@@ -1263,6 +1268,9 @@
 .cinematic-landing-root .lworld__ecosystem-button:focus-visible {
   outline: 3px solid var(--violet-bright);
   outline-offset: -4px;
+}
+.cinematic-landing-root .lworld__ecosystem-button:active::before {
+  opacity: 0.18;
 }
 @media (max-width: 1023px) {
   .cinematic-landing-root .lworld__ecosystem {
@@ -3371,6 +3379,11 @@
   .cinematic-landing-root .lworld__feature.is-active {
     opacity: 1;
     visibility: visible;
+  }
+  .cinematic-landing-root .lworld__tab,
+  .cinematic-landing-root .lworld__tab.is-active,
+  .cinematic-landing-root .lworld__tab:active {
+    transform: none;
   }
   .cinematic-landing-root .cine-button:active {
     transform: none;

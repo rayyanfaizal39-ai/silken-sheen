@@ -105,6 +105,7 @@ const MOTES = [
 export default function LearningPlanetScene() {
   const rootRef = useRef<HTMLDivElement>(null);
   const stRef = useRef<CinematicScrollTrigger | null>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
@@ -169,6 +170,22 @@ export default function LearningPlanetScene() {
       behavior: reducedMotion ? "auto" : "smooth",
     });
   }, [motion]);
+
+  useEffect(() => {
+    const tabs = tabsRef.current;
+    const tab = tabRefs.current[active];
+    if (!tabs || !tab || window.matchMedia("(min-width: 901px)").matches) return;
+
+    const maxScrollLeft = Math.max(0, tabs.scrollWidth - tabs.clientWidth);
+    const centeredLeft = tab.offsetLeft - (tabs.clientWidth - tab.offsetWidth) / 2;
+    const left = Math.max(0, Math.min(centeredLeft, maxScrollLeft));
+    if (Math.abs(tabs.scrollLeft - left) < 1) return;
+
+    tabs.scrollTo({
+      left,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
+  }, [active]);
 
   useEffect(() => {
     if (!motion) return;
@@ -376,12 +393,11 @@ export default function LearningPlanetScene() {
       );
     }, root);
 
-    // Decode the planet textures (framing depends on their size) and every card
-    // up front, so a card is never mid-decode when its transition begins.
+    // Decode only the two planet textures whose intrinsic pixels are required
+    // for the opening handoff. The fixed-ratio card stage already reserves its
+    // geometry, so card decoding does not need to delay the refresh.
     const imgs = Array.from(
-      root.querySelectorAll<HTMLImageElement>(
-        ".lworld__planet, .lworld__hero-planet-img, .lworld__feature",
-      ),
+      root.querySelectorAll<HTMLImageElement>(".lworld__planet, .lworld__hero-planet-img"),
     );
     let cancelled = false;
     Promise.all(
@@ -535,7 +551,12 @@ export default function LearningPlanetScene() {
               </span>
             </div>
 
-            <div className="lworld__tabs" role="tablist" aria-label="Learning World features">
+            <div
+              ref={tabsRef}
+              className="lworld__tabs"
+              role="tablist"
+              aria-label="Learning World features"
+            >
               {FEATURES.map((f, i) => (
                 <button
                   key={f.key}
