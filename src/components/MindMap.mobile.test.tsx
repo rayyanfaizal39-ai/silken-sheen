@@ -1,6 +1,9 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
+import { bahasaMelayuForm2AyatAktifMindMap } from "@/content/bm/ayat-aktif-form2-mindmap";
 import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjektif-form2-mindmap";
+import { bahasaMelayuForm2AyatPasifMindMap } from "@/content/bm/ayat-pasif-form2-mindmap";
+import { bahasaMelayuForm2AyatTunggalMindMap } from "@/content/bm/ayat-tunggal-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
@@ -310,6 +313,75 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(10);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Form 2 Ayat Pasif path in order without child leakage", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuForm2AyatPasifMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuForm2AyatPasifMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda AYAT PASIF"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Ayat pasif ialah ayat yang memberikan penekanan kepada objek atau pihak yang menerima sesuatu perbuatan.",
+    );
+    expect(markup).not.toContain("Buku itu saya baca.");
+    expect(markup).not.toContain("Buku itu awak baca.");
+    expect(markup).not.toContain("Pintu itu telah dikunci.");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(11);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Form 2 Ayat Aktif path in order without child leakage", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuForm2AyatAktifMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuForm2AyatAktifMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda AYAT AKTIF"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Ayat aktif ialah ayat yang menekankan pelaku sebagai subjek yang melakukan sesuatu perbuatan.",
+    );
+    expect(markup).not.toContain("Aiman membaca buku itu.");
+    expect(markup).not.toContain("Pelaku + Kata Kerja Transitif + Objek");
+    expect(markup).not.toContain("Di bilik ditidur oleh adik.");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(12);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Form 2 Ayat Tunggal path in order without child leakage", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuForm2AyatTunggalMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuForm2AyatTunggalMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda AYAT TUNGGAL"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Ayat tunggal ialah ayat yang mempunyai satu subjek dan satu predikat serta membawa satu maksud yang lengkap.",
+    );
+    expect(markup).not.toContain("Ayat tunggal tidak semestinya pendek.");
+    expect(markup).not.toContain("FN + FN");
+    expect(markup).not.toContain("Di dalam kelas mereka belajar.");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(11);
     expect(markup).not.toContain("touch-none");
   });
 });

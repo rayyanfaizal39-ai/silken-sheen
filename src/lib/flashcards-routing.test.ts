@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { getChapter, getRegisteredSubjectChapters, hasFormResourceContent } from "@/content/registry";
+import {
+  getChapter,
+  getRegisteredSubjectChapters,
+  hasFormResourceContent,
+} from "@/content/registry";
 import { flashcards, getItemChapterKey } from "@/data/content";
 import {
   getStudyRouteMode,
@@ -128,7 +132,7 @@ describe("Flashcards route resolution", () => {
     );
   });
 
-  it("routes Geography Form 3 Bab 3 to its generated three-deck flashcards", () => {
+  it("routes Geography Form 3 Bab 3 to all 65 replacement flashcards", () => {
     const chapter = getRegisteredSubjectChapters("geography", undefined, "Form 3").find(
       (item) => item.key === "Chapter 3",
     );
@@ -140,11 +144,53 @@ describe("Flashcards route resolution", () => {
       available: true,
       selectable: true,
     });
-    expect(getChapter("geography", "Chapter 3", undefined, "Form 3")?.flashcards).toHaveLength(60);
+    expect(getChapter("geography", "Chapter 3", undefined, "Form 3")?.flashcards).toHaveLength(65);
     expect(hasFlashcardDeck("geography", 3, "Chapter 3")).toBe(true);
-    expect(cards).toHaveLength(60);
-    expect(sets.map((set) => set.length)).toEqual([20, 20, 20]);
+    expect(cards).toHaveLength(65);
+    expect(sets).toEqual([]);
     expect(cards.every((card) => card.id.startsWith("geo-f3-c3-f"))).toBe(true);
+  });
+
+  it("routes Geography Form 3 Bab 4 to all 65 replacement flashcards", () => {
+    const chapter = getRegisteredSubjectChapters("geography", undefined, "Form 3").find(
+      (item) => item.key === "Chapter 4",
+    );
+    const cards = getFlashcardDeckCards("geografi", "Form 3", "Bab 4");
+
+    expect(chapter).toMatchObject({
+      key: "Chapter 4",
+      label: "Chapter 4: Tumbuh-tumbuhan Semula Jadi di Malaysia",
+      available: true,
+      selectable: true,
+    });
+    expect(getChapter("geography", "Chapter 4", undefined, "Form 3")?.flashcards).toHaveLength(65);
+    expect(hasFlashcardDeck("geography", 3, "Chapter 4")).toBe(true);
+    expect(cards).toHaveLength(65);
+    expect(cards.map((card) => card.id)).toEqual(
+      Array.from({ length: 65 }, (_, index) => `geo-f3-c4-f${index + 1}`),
+    );
+    expect(splitFlashcardDeck(cards)).toEqual([]);
+  });
+
+  it("routes Geography Form 3 Bab 2 to its complete single 20-card deck", () => {
+    const chapter = getRegisteredSubjectChapters("geography", undefined, "Form 3").find(
+      (item) => item.key === "Chapter 2",
+    );
+    const cards = getFlashcardDeckCards("geografi", "Form 3", "Bab 2");
+
+    expect(chapter).toMatchObject({
+      key: "Chapter 2",
+      label: "Chapter 2: Carta Pai",
+      available: true,
+      selectable: true,
+    });
+    expect(getChapter("geography", "Chapter 2", undefined, "Form 3")?.flashcards).toHaveLength(20);
+    expect(hasFlashcardDeck("geography", 3, "Chapter 2")).toBe(true);
+    expect(cards).toHaveLength(20);
+    expect(cards.map((card) => card.id)).toEqual(
+      Array.from({ length: 20 }, (_, index) => `geo-f3-c2-f${index + 1}`),
+    );
+    expect(splitFlashcardDeck(cards)).toEqual([]);
   });
 
   it("keeps Geography Form 1 Bab 5 content in Bahasa Melayu and source-verified order", () => {

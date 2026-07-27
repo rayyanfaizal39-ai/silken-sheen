@@ -16,7 +16,17 @@ const form1And3Topics = [
   "Penanda Wacana",
 ] as const;
 
-const form2Topics = ["Frasa Nama", "Frasa Kerja", "Frasa Adjektif"] as const;
+const form2Topics = [
+  "Frasa Nama",
+  "Frasa Kerja",
+  "Frasa Adjektif",
+  "Ayat Aktif",
+  "Ayat Pasif",
+  "Ayat Tunggal",
+  "Ayat Majmuk",
+  "Imbuhan Lanjutan",
+  "Kata Pemeri",
+] as const;
 
 function tatabahasaTopics(form: "Form 1" | "Form 2" | "Form 3") {
   return getRegisteredSubjectChapters("bm", undefined, form).filter(
@@ -41,8 +51,7 @@ describe("Bahasa Melayu Form 2 Frasa Adjektif mind map", () => {
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics.map((topic) => topic.available)).toEqual([true, true, true]);
-    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, true]);
+    expect(topics.every((topic) => topic.available && topic.selectable)).toBe(true);
   });
 
   it("registers the exact Frasa Adjektif card and only its mind-map resource", () => {

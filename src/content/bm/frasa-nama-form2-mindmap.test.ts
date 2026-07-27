@@ -21,14 +21,22 @@ const form1And3Topics = [
   "Penanda Wacana",
 ] as const;
 
-const form2Topics = ["Frasa Nama", "Frasa Kerja", "Frasa Adjektif"] as const;
+const form2Topics = [
+  "Frasa Nama",
+  "Frasa Kerja",
+  "Frasa Adjektif",
+  "Ayat Aktif",
+  "Ayat Pasif",
+  "Ayat Tunggal",
+  "Ayat Majmuk",
+  "Imbuhan Lanjutan",
+  "Kata Pemeri",
+] as const;
 
 const removedForm2Topics = [
   "Frasa Sendi Nama",
   "Klausa",
   "Pola Ayat Dasar",
-  "Ayat Tunggal",
-  "Ayat Majmuk",
   "Subjek dan Predikat",
   "Ragam Ayat",
 ] as const;
@@ -106,7 +114,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     });
   });
 
-  it("uses stable IDs for the current three-card Form 2 syntax library", () => {
+  it("uses stable IDs for the current nine-card Form 2 syntax library", () => {
     expect(
       getChaptersForSubject("bm", undefined, "Form 2")
         .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
@@ -115,6 +123,12 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
       "bm-f2-frasa-nama-mindmap",
       "bm-f2-frasa-kerja-mindmap",
       "bm-f2-frasa-adjektif-mindmap",
+      "bm-f2-ayat-aktif-mindmap",
+      "bm-f2-ayat-pasif-mindmap",
+      "bm-f2-ayat-tunggal-mindmap",
+      "bm-f2-ayat-majmuk-mindmap",
+      "bm-f2-imbuhan-lanjutan-mindmap",
+      "bm-f2-kata-pemeri-mindmap",
     ]);
   });
 

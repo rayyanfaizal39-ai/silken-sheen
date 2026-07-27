@@ -243,6 +243,12 @@ import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mi
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjektif-form2-mindmap";
+import { bahasaMelayuForm2AyatAktifMindMap } from "@/content/bm/ayat-aktif-form2-mindmap";
+import { bahasaMelayuForm2AyatPasifMindMap } from "@/content/bm/ayat-pasif-form2-mindmap";
+import { bahasaMelayuForm2AyatTunggalMindMap } from "@/content/bm/ayat-tunggal-form2-mindmap";
+import { bahasaMelayuForm2AyatMajmukMindMap } from "@/content/bm/ayat-majmuk-form2-mindmap";
+import { bahasaMelayuForm2ImbuhanLanjutanMindMap } from "@/content/bm/imbuhan-lanjutan-form2-mindmap";
+import { bahasaMelayuForm2KataPemeriMindMap } from "@/content/bm/kata-pemeri-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -1150,6 +1156,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 1",
     title: "Jadual dan Graf",
+    video: getEducationalVideo("geography-f3-c1"),
     notes: geographyF3C1Notes,
     mindMap: { data: geoF3C1MindMap, title: "Jadual dan Graf" },
     flashcards: geographyF3FlashcardsFor(1),
@@ -1161,6 +1168,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 2",
     title: "Carta Pai",
+    video: getEducationalVideo("geography-f3-c2"),
     notes: geographyF3C2Notes,
     mindMap: { data: geoF3C2MindMap, title: "Carta Pai" },
     flashcards: geographyF3FlashcardsFor(2),
@@ -1173,6 +1181,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title:
       "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
+    video: getEducationalVideo("geography-f3-c3"),
     notes: geographyF3C3Notes,
     mindMap: {
       data: geoF3C3MindMap,
@@ -1188,6 +1197,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 4",
     title: "Tumbuh-tumbuhan Semula Jadi di Malaysia",
+    video: getEducationalVideo("geography-f3-c4"),
     notes: geographyF3C4Notes,
     mindMap: { data: geoF3C4MindMap, title: "Tumbuh-tumbuhan Semula Jadi di Malaysia" },
     flashcards: geographyF3FlashcardsFor(4),
@@ -1199,6 +1209,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 5",
     title: "Hidupan Liar di Malaysia",
+    video: getEducationalVideo("geography-f3-c5"),
     notes: geographyF3C5Notes,
     mindMap: { data: geoF3C5MindMap, title: "Hidupan Liar di Malaysia" },
     flashcards: geographyF3FlashcardsFor(5),
@@ -1210,6 +1221,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 6",
     title: "Sumber Semula Jadi di Malaysia",
+    video: getEducationalVideo("geography-f3-c6"),
     notes: geographyF3C6Notes,
     mindMap: { data: geoF3C6MindMap, title: "Sumber Semula Jadi di Malaysia" },
     flashcards: geographyF3FlashcardsFor(6),
@@ -1221,6 +1233,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 7",
     title: "Kegiatan Ekonomi di Malaysia",
+    video: getEducationalVideo("geography-f3-c7"),
     notes: geographyF3C7Notes,
     mindMap: { data: geoF3C7MindMap, title: "Kegiatan Ekonomi di Malaysia" },
     flashcards: geographyF3FlashcardsFor(7),
@@ -1232,6 +1245,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 8",
     title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
+    video: getEducationalVideo("geography-f3-c8"),
     notes: geographyF3C8Notes,
     mindMap: {
       data: geoF3C8MindMap,
@@ -1246,6 +1260,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 9",
     title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
+    video: getEducationalVideo("geography-f3-c9"),
     notes: geographyF3C9Notes,
     mindMap: {
       data: geoF3C9MindMap,
@@ -1260,6 +1275,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 10",
     title: "Sumber Hutan",
+    video: getEducationalVideo("geography-f3-c10"),
     notes: geographyF3C10Notes,
     mindMap: { data: geoF3C10MindMap, title: "Sumber Hutan" },
     flashcards: geographyF3FlashcardsFor(10),
@@ -1271,6 +1287,7 @@ export const chapters: ChapterContent[] = [
     form: "Form 3",
     chapterKey: "Chapter 11",
     title: "Kitar Semula",
+    video: getEducationalVideo("geography-f3-c11"),
     notes: geographyF3C11Notes,
     mindMap: { data: geoF3C11MindMap, title: "Kitar Semula" },
     flashcards: geographyF3FlashcardsFor(11),
@@ -2604,6 +2621,89 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2FrasaAdjektifMindMap,
       title: "Frasa Adjektif",
+    },
+  },
+  {
+    id: "bm-f2-ayat-aktif-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Aktif",
+    title: "Ayat Aktif",
+    description:
+      "Ayat yang mengutamakan pelaku sebagai subjek yang melakukan sesuatu perbuatan atau tindakan.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2AyatAktifMindMap,
+      title: "Ayat Aktif",
+    },
+  },
+  {
+    id: "bm-f2-ayat-pasif-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Pasif",
+    title: "Ayat Pasif",
+    description:
+      "Ayat yang mengutamakan benda atau pihak yang menerima perbuatan, manakala pelaku dinyatakan kemudian atau difahami melalui konteks.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2AyatPasifMindMap,
+      title: "Ayat Pasif",
+    },
+  },
+  {
+    id: "bm-f2-ayat-tunggal-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Tunggal",
+    title: "Ayat Tunggal",
+    description:
+      "Ayat yang mempunyai satu subjek dan satu predikat serta menyampaikan satu maksud yang lengkap.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2AyatTunggalMindMap,
+      title: "Ayat Tunggal",
+    },
+  },
+  {
+    id: "bm-f2-ayat-majmuk-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Majmuk",
+    title: "Ayat Majmuk",
+    description:
+      "Ayat yang dibina dengan menggabungkan dua atau lebih ayat tunggal atau klausa untuk menyampaikan maklumat yang lebih lengkap.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2AyatMajmukMindMap,
+      title: "Ayat Majmuk",
+    },
+  },
+  {
+    id: "bm-f2-imbuhan-lanjutan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Imbuhan Lanjutan",
+    title: "Imbuhan Lanjutan",
+    description:
+      "Penggunaan imbuhan yang lebih kompleks, termasuk imbuhan pinjaman, sisipan, perubahan bentuk kata dan peraturan ejaan dalam pembentukan kata terbitan.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2ImbuhanLanjutanMindMap,
+      title: "Imbuhan Lanjutan",
+    },
+  },
+  {
+    id: "bm-f2-kata-pemeri-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kata Pemeri",
+    title: "Kata Pemeri",
+    description: 'Penggunaan "ialah" dan "adalah" mengikut jenis frasa yang betul.',
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2KataPemeriMindMap,
+      title: "Kata Pemeri",
     },
   },
 

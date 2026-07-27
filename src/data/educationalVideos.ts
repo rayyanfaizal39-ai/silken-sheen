@@ -118,6 +118,54 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
     captionLang: "ms",
     hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
   },
+  "sejarah-f3-c1": {
+    title: "Sejarah Tingkatan 3 — Bab 1",
+    youtubeId: "t1DrJ2PJ9tg",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f3-c2": {
+    title: "Sejarah Tingkatan 3 — Bab 2",
+    youtubeId: "u2quMaHwCgg",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f3-c3": {
+    title: "Sejarah Tingkatan 3 — Bab 3",
+    youtubeId: "fUDaUyr7Asg",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f3-c4": {
+    title: "Sejarah Tingkatan 3 — Bab 4",
+    youtubeId: "eRe4E-KBt7c",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f3-c5": {
+    title: "Sejarah Tingkatan 3 — Bab 5",
+    youtubeId: "nJnO5d9x3Zw",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f3-c6": {
+    title: "Sejarah Tingkatan 3 — Bab 6",
+    youtubeId: "al3-03vDA8A",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f3-c7": {
+    title: "Sejarah Tingkatan 3 — Bab 7",
+    youtubeId: "uvr8e7vyQPA",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "sejarah-f3-c8": {
+    title: "Sejarah Tingkatan 3 — Bab 8",
+    youtubeId: "CRnb1ZwIaa8",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
   "geography-f1-c1": {
     title: "Geografi Tingkatan 1 — Bab 1",
     youtubeId: "JUuZvLnZZ9g",
@@ -256,6 +304,72 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
   "geography-f2-c10": {
     title: "Geografi Tingkatan 2 — Bab 10",
     youtubeId: "A5iMUl-8zIY",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c1": {
+    title: "Geografi Tingkatan 3 — Bab 1",
+    youtubeId: "VG7WUYrkSB4",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c2": {
+    title: "Geografi Tingkatan 3 — Bab 2",
+    youtubeId: "WaSl1F3yWiA",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c3": {
+    title: "Geografi Tingkatan 3 — Bab 3",
+    youtubeId: "EAK7QXE1_Jk",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c4": {
+    title: "Geografi Tingkatan 3 — Bab 4",
+    youtubeId: "uGw-q2l6HSc",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c5": {
+    title: "Geografi Tingkatan 3 — Bab 5",
+    youtubeId: "Dz_KnRpBeS8",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c6": {
+    title: "Geografi Tingkatan 3 — Bab 6",
+    youtubeId: "8KEj28TDxXo",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c7": {
+    title: "Geografi Tingkatan 3 — Bab 7",
+    youtubeId: "GI1rOYAney4",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c8": {
+    title: "Geografi Tingkatan 3 — Bab 8",
+    youtubeId: "eBQGQv2qOB4",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c9": {
+    title: "Geografi Tingkatan 3 — Bab 9",
+    youtubeId: "3yJ_Ae5M8RQ",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c10": {
+    title: "Geografi Tingkatan 3 — Bab 10",
+    youtubeId: "ut2aIluQ5Nk",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "geography-f3-c11": {
+    title: "Geografi Tingkatan 3 — Bab 11",
+    youtubeId: "Y9KFUpoFqq4",
     captionLang: "ms",
     hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
   },
@@ -445,8 +559,73 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
     captionLang: "ms",
     hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
   },
+  "science-f3-c1-bm": {
+    title: "Sains Tingkatan 3 — Bab 1",
+    youtubeId: "huOA8Rh3Kic",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c2-bm": {
+    title: "Sains Tingkatan 3 — Bab 2",
+    youtubeId: "WS_B_yPZr-k",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c3-bm": {
+    title: "Sains Tingkatan 3 — Bab 3",
+    youtubeId: "ZS1XZObBPhw",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c4-bm": {
+    title: "Sains Tingkatan 3 — Bab 4",
+    youtubeId: "gje83wDW7qA",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c5-bm": {
+    title: "Sains Tingkatan 3 — Bab 5",
+    youtubeId: "4mG68H-BS4M",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c6-bm": {
+    title: "Sains Tingkatan 3 — Bab 6",
+    youtubeId: "IlcszWVOPl4",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c7-bm": {
+    title: "Sains Tingkatan 3 — Bab 7",
+    youtubeId: "DrpSAT4ii8c",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c8-bm": {
+    title: "Sains Tingkatan 3 — Bab 8",
+    youtubeId: "_L6E5sEY73w",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c9-bm": {
+    title: "Sains Tingkatan 3 — Bab 9",
+    youtubeId: "zZYro0tp_8w",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
+  "science-f3-c10-bm": {
+    title: "Sains Tingkatan 3 — Bab 10",
+    youtubeId: "v8mB8zsAC8w",
+    captionLang: "ms",
+    hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+  },
 };
 
-export function getEducationalVideo(chapterId: string, language?: string): EducationalVideo | undefined {
-  return (language && educationalVideos[`${chapterId}-${language}`]) || educationalVideos[chapterId];
+export function getEducationalVideo(
+  chapterId: string,
+  language?: string,
+): EducationalVideo | undefined {
+  return (
+    (language && educationalVideos[`${chapterId}-${language}`]) || educationalVideos[chapterId]
+  );
 }
