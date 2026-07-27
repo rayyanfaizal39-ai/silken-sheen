@@ -10,12 +10,9 @@ describe("flashcard content audit", () => {
     const counts = new Map<string, { count: number; ids: Set<string> }>();
 
     for (const card of flashcards) {
-      const key = [
-        card.subjectId,
-        card.form,
-        getItemChapterKey(card),
-        card.lang ?? "default",
-      ].join("|");
+      const key = [card.subjectId, card.form, getItemChapterKey(card), card.lang ?? "default"].join(
+        "|",
+      );
       const entry = counts.get(key) ?? { count: 0, ids: new Set<string>() };
       entry.count += 1;
       entry.ids.add(card.id);
@@ -60,10 +57,12 @@ describe("flashcard content audit", () => {
       }));
       const standardized = standardizeFlashcardDeck(source);
 
-      expect(standardized).toHaveLength(60);
-      expect(splitFlashcardDeck(standardized).map((set) => set.length)).toEqual([
-        20, 20, 20,
-      ]);
+      expect(standardized).toHaveLength(entry.ids.size);
+      if (entry.ids.size === 60) {
+        expect(splitFlashcardDeck(standardized).map((set) => set.length)).toEqual([20, 20, 20]);
+      } else {
+        expect(splitFlashcardDeck(standardized)).toEqual([]);
+      }
     }
   });
 
@@ -82,5 +81,18 @@ describe("flashcard content audit", () => {
 
     expect(standardizeFlashcardDeck(incomplete)).toEqual([]);
     expect(splitFlashcardDeck(duplicated)).toEqual([]);
+  });
+
+  it("accepts one complete unique 20-card deck without treating it as three sets", () => {
+    const sample = flashcards.slice(0, 1);
+    if (!sample[0]) throw new Error("The flashcard registry must not be empty.");
+
+    const singleSet = Array.from({ length: 20 }, (_, index) => ({
+      ...sample[0],
+      id: `audit-single-set-${index + 1}`,
+    }));
+
+    expect(standardizeFlashcardDeck(singleSet)).toHaveLength(20);
+    expect(splitFlashcardDeck(singleSet)).toEqual([]);
   });
 });

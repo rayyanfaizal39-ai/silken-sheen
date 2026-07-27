@@ -151,6 +151,37 @@ export const Route = createFileRoute("/mindmaps")({
           "pola FN FA",
         ],
       },
+      "Ayat Aktif": {
+        description:
+          "Peta minda Ayat Aktif Tingkatan 2: struktur ayat, ayat aktif transitif dan tak transitif, imbuhan meN- dan ber-, objek dan pelengkap, penukaran ayat, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Ayat Aktif",
+          "ayat aktif Tingkatan 2",
+          "ayat aktif transitif dan tak transitif",
+          "penukaran ayat aktif kepada pasif",
+        ],
+      },
+      "Ayat Pasif": {
+        description:
+          "Peta minda Ayat Pasif Tingkatan 2: perbezaan ayat aktif dan pasif, pasif diri pertama, kedua dan ketiga, imbuhan ter- dan ke-...-an, penukaran ayat, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Ayat Pasif",
+          "ayat pasif Tingkatan 2",
+          "pasif diri pertama kedua ketiga",
+          "penukaran ayat aktif kepada pasif",
+        ],
+      },
+      "Ayat Tunggal": {
+        description:
+          "Peta minda Ayat Tunggal Tingkatan 2: subjek dan predikat, empat pola ayat dasar, susunan biasa dan songsang, pencerakinan, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Ayat Tunggal",
+          "ayat tunggal Tingkatan 2",
+          "subjek dan predikat",
+          "pola ayat dasar",
+          "pencerakinan ayat",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -166,6 +197,9 @@ export const Route = createFileRoute("/mindmaps")({
         | "Frasa Nama"
         | "Frasa Kerja"
         | "Frasa Adjektif"
+        | "Ayat Aktif"
+        | "Ayat Pasif"
+        | "Ayat Tunggal"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
@@ -229,6 +263,19 @@ function MindMapsPage() {
     subject && activeChapterKey
       ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
       : undefined;
+  const activeChapterIndex = activeChapterKey
+    ? subjectChapters.findIndex((candidate) => candidate.key === activeChapterKey)
+    : -1;
+  const previousTopic =
+    activeChapterIndex > 0 ? subjectChapters[activeChapterIndex - 1] : undefined;
+  const nextTopic = activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
+  const showForm2TopicNavigation =
+    subject === "bm" &&
+    form === "Form 2" &&
+    (activeChapterKey === "Frasa Adjektif" ||
+      activeChapterKey === "Ayat Aktif" ||
+      activeChapterKey === "Ayat Pasif" ||
+      activeChapterKey === "Ayat Tunggal");
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
   const mindMapPalette = planetTheme
@@ -411,14 +458,16 @@ function MindMapsPage() {
                 palette={mindMapPalette}
                 mobileLayout={subject === "bm" ? "learning-path" : "canvas"}
               />
-              {subject === "bm" && form === "Form 2" && activeChapterKey === "Frasa Adjektif" && (
+              {showForm2TopicNavigation && (
                 <nav
                   aria-label="Navigasi topik Tatabahasa"
                   className="mb-8 grid gap-3 sm:grid-cols-2"
                 >
                   <button
                     type="button"
-                    onClick={() => chooseChapter("Frasa Kerja")}
+                    onClick={() => previousTopic && chooseChapter(previousTopic.key)}
+                    disabled={!previousTopic}
+                    aria-disabled={!previousTopic}
                     className="group inline-flex min-h-16 items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-left transition-all duration-200 hover:border-cyan-300/30 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
                   >
                     <ChevronLeft
@@ -429,25 +478,48 @@ function MindMapsPage() {
                       <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
                         Sebelumnya
                       </span>
-                      <span className="mt-0.5 block text-sm font-bold text-white">Frasa Kerja</span>
-                    </span>
-                  </button>
-                  <button
-                    type="button"
-                    disabled
-                    aria-disabled="true"
-                    className="inline-flex min-h-16 cursor-not-allowed items-center justify-end gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.025] px-4 py-3 text-right opacity-50"
-                  >
-                    <span>
-                      <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
-                        Seterusnya
-                      </span>
-                      <span className="mt-0.5 block text-sm font-bold text-white/60">
-                        Tiada topik seterusnya
+                      <span className="mt-0.5 block text-sm font-bold text-white">
+                        {previousTopic?.key ?? "Tiada topik sebelumnya"}
                       </span>
                     </span>
-                    <ChevronRight aria-hidden="true" className="h-5 w-5 shrink-0 text-white/35" />
                   </button>
+                  {nextTopic ? (
+                    <button
+                      type="button"
+                      onClick={() => chooseChapter(nextTopic.key)}
+                      className="group inline-flex min-h-16 items-center justify-end gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-right transition-all duration-200 hover:border-cyan-300/30 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
+                    >
+                      <span>
+                        <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
+                          Seterusnya
+                        </span>
+                        <span className="mt-0.5 block text-sm font-bold text-white">
+                          {nextTopic.key}
+                        </span>
+                      </span>
+                      <ChevronRight
+                        aria-hidden="true"
+                        className="h-5 w-5 shrink-0 text-cyan-200 transition-transform group-hover:translate-x-0.5"
+                      />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled
+                      aria-disabled="true"
+                      className="inline-flex min-h-16 cursor-not-allowed items-center justify-end gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.025] px-4 py-3 text-right opacity-50"
+                    >
+                      <span>
+                        <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
+                          Seterusnya
+                        </span>
+                        <span className="mt-0.5 block text-sm font-bold text-white/60">
+                          Tiada topik seterusnya
+                        </span>
+                      </span>
+                      <ChevronRight aria-hidden="true" className="h-5 w-5 shrink-0 text-white/35" />
+                    </button>
+                  )}
                 </nav>
               )}
             </>

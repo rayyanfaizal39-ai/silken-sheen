@@ -5,7 +5,14 @@ import { bahasaMelayuForm2FrasaAdjektifMindMap } from "./frasa-adjektif-form2-mi
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "./frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "./frasa-nama-form2-mindmap";
 
-const form2Topics = ["Frasa Nama", "Frasa Kerja", "Frasa Adjektif"] as const;
+const form2Topics = [
+  "Frasa Nama",
+  "Frasa Kerja",
+  "Frasa Adjektif",
+  "Ayat Aktif",
+  "Ayat Pasif",
+  "Ayat Tunggal",
+] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
   return [node, ...(node.children?.flatMap(collectNodes) ?? [])];
@@ -20,14 +27,14 @@ function flattenContent(node: MindNode): string[] {
 }
 
 describe("Bahasa Melayu Form 2 Frasa Kerja mind map", () => {
-  it("registers exactly three Form 2 topic cards with the required active states", () => {
+  it("registers exactly six Form 2 topic cards with the required active states", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (chapter) => chapter.categoryLabel === "Tatabahasa",
     );
 
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics.map((topic) => topic.available)).toEqual([true, true, true]);
-    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, true]);
+    expect(topics.map((topic) => topic.available)).toEqual([true, true, true, true, true, true]);
+    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, true, true, true, true]);
   });
 
   it("registers the exact Frasa Kerja card and typed mind-map source", () => {

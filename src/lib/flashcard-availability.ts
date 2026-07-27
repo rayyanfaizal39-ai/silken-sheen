@@ -1,11 +1,10 @@
 import { getChapter } from "@/content/registry";
 import { flashcards, getItemChapterKey, type Flashcard, type Form } from "@/data/content";
 
-import {
-  normalizeChapterParam,
-  normalizeFormParam,
-  normalizeSubjectParam,
-} from "./study-routing";
+import { normalizeChapterParam, normalizeFormParam, normalizeSubjectParam } from "./study-routing";
+
+const SINGLE_SET_DECK_SIZE = 20;
+const THREE_SET_DECK_SIZE = 60;
 
 export function hasFlashcardDeck(
   subjectValue: unknown,
@@ -19,7 +18,7 @@ export function hasFlashcardDeck(
 
   if (!subjectId || !chapterKey) return false;
 
-  return getFlashcardDeckCards(subjectId, form, chapterKey, language).length === 60;
+  return getFlashcardDeckCards(subjectId, form, chapterKey, language).length > 0;
 }
 
 export function getFlashcardDeckCards(
@@ -34,8 +33,7 @@ export function getFlashcardDeckCards(
 
   if (!subjectId || !chapterKey) return [];
 
-  const registeredCards =
-    getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [];
+  const registeredCards = getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [];
   const legacyCards = flashcards.filter((card) => {
     if (card.subjectId !== subjectId || card.form !== form) return false;
     if (normalizeChapterParam(getItemChapterKey(card)) !== chapterKey) return false;
@@ -49,10 +47,22 @@ export function getFlashcardDeckCards(
 
 export function standardizeFlashcardDeck(cards: Flashcard[]) {
   const uniqueCards = [...new Map(cards.map((card) => [card.id, card])).values()];
-  return uniqueCards.length >= 60 ? uniqueCards.slice(0, 60) : [];
+  if (uniqueCards.length >= THREE_SET_DECK_SIZE) {
+    return uniqueCards;
+  }
+  return uniqueCards.length === SINGLE_SET_DECK_SIZE ? uniqueCards : [];
 }
 
 export function splitFlashcardDeck(cards: Flashcard[]) {
-  if (cards.length !== 60 || new Set(cards.map((card) => card.id)).size !== 60) return [];
-  return [cards.slice(0, 20), cards.slice(20, 40), cards.slice(40, 60)] as const;
+  if (
+    cards.length !== THREE_SET_DECK_SIZE ||
+    new Set(cards.map((card) => card.id)).size !== THREE_SET_DECK_SIZE
+  ) {
+    return [];
+  }
+  return [
+    cards.slice(0, SINGLE_SET_DECK_SIZE),
+    cards.slice(SINGLE_SET_DECK_SIZE, SINGLE_SET_DECK_SIZE * 2),
+    cards.slice(SINGLE_SET_DECK_SIZE * 2, THREE_SET_DECK_SIZE),
+  ] as const;
 }

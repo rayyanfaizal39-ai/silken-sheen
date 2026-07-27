@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { bahasaMelayuForm2AyatAktifMindMap } from "@/content/bm/ayat-aktif-form2-mindmap";
 import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjektif-form2-mindmap";
+import { bahasaMelayuForm2AyatPasifMindMap } from "@/content/bm/ayat-pasif-form2-mindmap";
+import { bahasaMelayuForm2AyatTunggalMindMap } from "@/content/bm/ayat-tunggal-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
@@ -34,6 +37,9 @@ const tatabahasaMindMaps = [
   ["Frasa Nama (Form 2)", bahasaMelayuForm2FrasaNamaMindMap],
   ["Frasa Kerja (Form 2)", bahasaMelayuForm2FrasaKerjaMindMap],
   ["Frasa Adjektif (Form 2)", bahasaMelayuForm2FrasaAdjektifMindMap],
+  ["Ayat Aktif (Form 2)", bahasaMelayuForm2AyatAktifMindMap],
+  ["Ayat Pasif (Form 2)", bahasaMelayuForm2AyatPasifMindMap],
+  ["Ayat Tunggal (Form 2)", bahasaMelayuForm2AyatTunggalMindMap],
 ] as const;
 
 function collectNodes(node: MindNode): MindNode[] {
@@ -266,6 +272,132 @@ describe("MindMap reusable hierarchy", () => {
         "Bezakan dengan Kata Kerja",
         "Tentukan Pola",
         "Bina Ayat Lengkap",
+      ]),
+    );
+  });
+
+  it("reveals Ayat Pasif rules only through their matching branches", () => {
+    const data = bahasaMelayuForm2AyatPasifMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("Rumus Asas");
+    expect(overview).not.toContain("Langkah 1: Cari Pelaku");
+    expect(overview).not.toContain("Mengekalkan meN-");
+
+    const thirdPersonBranch = data.children?.find((branch) => branch.label === "Pasif Diri Ketiga");
+    expect(visibleLabels(data, new Set([data.id, thirdPersonBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Pelaku",
+        "Rumus Asas",
+        "Contoh",
+        "Dengan Kata Bantu",
+        'Penggunaan "oleh"',
+        "Ejaan di-",
+      ]),
+    );
+
+    const conversionBranch = data.children?.find((branch) => branch.label === "Penukaran Ayat");
+    expect(visibleLabels(data, new Set([data.id, conversionBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Langkah 1: Cari Pelaku",
+        "Langkah 2: Cari Kata Kerja Transitif",
+        "Langkah 3: Cari Objek",
+        "Langkah 4: Tentukan Jenis Pelaku",
+        "Langkah 5: Susun Ayat Pasif",
+        "Syarat Penukaran Terus",
+      ]),
+    );
+
+    const errorBranch = data.children?.find((branch) => branch.label === "Kesalahan Lazim");
+    expect(visibleLabels(data, new Set([data.id, errorBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Mengekalkan meN-",
+        "Menggunakan di- untuk Diri Pertama",
+        "Salah Susunan Diri Kedua",
+        "Memisahkan Awalan di-",
+        "Menggugurkan Kata Bantu",
+      ]),
+    );
+  });
+
+  it("reveals Ayat Aktif syntax only through its matching branches", () => {
+    const data = bahasaMelayuForm2AyatAktifMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("Struktur Umum");
+    expect(overview).not.toContain("Contoh Tanpa Pelengkap");
+    expect(overview).not.toContain("Langkah 1: Cari Pelaku");
+
+    const structureBranch = data.children?.find((branch) => branch.label === "Struktur Ayat");
+    expect(visibleLabels(data, new Set([data.id, structureBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Struktur Umum",
+        "Contoh Transitif",
+        "Contoh Tak Transitif",
+        "Subjek",
+        "Predikat",
+      ]),
+    );
+
+    const intransitiveBranch = data.children?.find(
+      (branch) => branch.label === "Ayat Aktif Tak Transitif",
+    );
+    expect(visibleLabels(data, new Set([data.id, intransitiveBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Maksud",
+        "Contoh Tanpa Pelengkap",
+        "Contoh dengan Keterangan",
+        "Contoh dengan Pelengkap",
+        "Tidak Boleh Dipasifkan Secara Biasa",
+      ]),
+    );
+
+    const conversionBranch = data.children?.find((branch) => branch.label === "Penukaran Ayat");
+    expect(visibleLabels(data, new Set([data.id, conversionBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Langkah 1: Cari Pelaku",
+        "Langkah 4: Pastikan Transitif",
+        "Langkah 6: Tukar kepada Pasif",
+        "Contoh Orang Pertama",
+        "Contoh Orang Kedua",
+        "Contoh Orang Ketiga",
+        "Penukaran Pasif kepada Aktif",
+      ]),
+    );
+  });
+
+  it("reveals Ayat Tunggal syntax only through its matching branches", () => {
+    const data = bahasaMelayuForm2AyatTunggalMindMap;
+    const overview = visibleLabels(data, new Set([data.id]));
+
+    expect(overview).not.toContain("Maksud");
+    expect(overview).not.toContain("FN + FN");
+    expect(overview).not.toContain("Contoh Seluruh Predikat");
+    expect(overview).not.toContain("Ayat Tunggal 1");
+
+    const subjectBranch = data.children?.find((branch) => branch.label === "Subjek dan Predikat");
+    expect(visibleLabels(data, new Set([data.id, subjectBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["Subjek", "Predikat", "Cari Sempadan Frasa", "Formula", "Nota"]),
+    );
+
+    const patternBranch = data.children?.find((branch) => branch.label === "Pola Ayat Dasar");
+    expect(visibleLabels(data, new Set([data.id, patternBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining(["FN + FN", "FN + FK", "FN + FA", "FN + FS", "Nota"]),
+    );
+
+    const pencerakinanBranch = data.children?.find((branch) => branch.label === "Pencerakinan");
+    expect(visibleLabels(data, new Set([data.id, pencerakinanBranch?.id ?? ""]))).toEqual(
+      expect.arrayContaining([
+        "Maksud",
+        "Contoh Asal",
+        "Ayat Tunggal 1",
+        "Ayat Tunggal 2",
+        "Kekalkan Maksud",
+        "Kekalkan Maklumat",
+        "Contoh Subjek Sama",
+        "Nota",
       ]),
     );
   });
