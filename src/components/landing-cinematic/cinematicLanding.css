@@ -1,0 +1,3590 @@
+/* ============================================================
+   AcadeMY — cinematic landing
+   ============================================================ */
+
+.cinematic-landing-root {
+  --paper-1: #110734;
+  --paper-2: #201054;
+  --paper-3: #49218b;
+  --paper-4: #7940c1;
+  --paper-5: #b463ea;
+
+  --bg-deep: #08031c;
+  --violet: #7940c1;
+  --violet-bright: #b463ea;
+  --primary: #5b21e6;
+  --gold: #f5b301;
+  --ink: #17102e;
+  --ink-soft: #4d4468;
+  --surface-light: #f7f5ff;
+
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* One shared container system. Sections opt in with
+     `max-width: var(--shell-max); padding-inline: var(--shell-pad)`. */
+  --shell-max: 1360px;
+  --shell-pad: 20px;
+
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: #f4f1ff;
+  line-height: 1.5;
+  min-height: 100svh;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-x: none;
+}
+
+.cinematic-landing-root,
+.cinematic-landing-root *,
+.cinematic-landing-root *::before,
+.cinematic-landing-root *::after {
+  box-sizing: border-box;
+}
+
+.cinematic-landing-root img {
+  display: block;
+  max-width: 100%;
+}
+
+.cinematic-landing-root a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cinematic-landing-root button {
+  color: inherit;
+  font: inherit;
+}
+
+.cinematic-landing-root button,
+.cinematic-landing-root a {
+  touch-action: manipulation;
+}
+
+.cinematic-landing-root :focus-visible {
+  outline: 3px solid #f5b301;
+  outline-offset: 4px;
+}
+
+.cinematic-landing-root .cine-skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #17102e;
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform 180ms ease-out;
+}
+
+.cinematic-landing-root .cine-skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.cinematic-landing-root .cta__footer-link {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cinematic-landing-root .pfocus__need svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+}
+.cinematic-landing-root .pfocus__win svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+/* shell padding steps: mobile → tablet → desktop → large desktop */
+@media (min-width: 768px) {
+  .cinematic-landing-root {
+    --shell-pad: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  .cinematic-landing-root {
+    --shell-pad: 48px;
+  }
+}
+/* 1440 content box leaves room for four 300px+ benefit cards plus gaps */
+@media (min-width: 1600px) {
+  .cinematic-landing-root {
+    --shell-pad: 56px;
+    --shell-max: 1440px;
+  }
+}
+
+/* native anchor jumps + keyboard focus clear the fixed nav */
+.cinematic-landing-root {
+  scroll-padding-top: 88px;
+}
+.cinematic-landing-root h1,
+.cinematic-landing-root h2,
+.cinematic-landing-root h3 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.cinematic-landing-root p {
+  margin: 0;
+}
+
+/* ---------- masked line reveals ---------- */
+.cinematic-landing-root .cine-reveal-line {
+  display: block;
+  overflow: hidden;
+}
+.cinematic-landing-root .cine-reveal-line__inner {
+  display: block;
+  will-change: transform;
+}
+
+/* ---------- buttons ---------- */
+.cinematic-landing-root .cine-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  padding: 0.72rem 1.5rem;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition:
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    background 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.cinematic-landing-root .cine-button--lg {
+  padding: 0.95rem 2.1rem;
+  font-size: 1.02rem;
+}
+.cinematic-landing-root .cine-button--primary {
+  background: linear-gradient(135deg, #6c2bd9 0%, #8b3df0 55%, #a355f5 100%);
+  color: #fff;
+  box-shadow:
+    0 10px 30px rgba(108, 43, 217, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+.cinematic-landing-root .cine-button--ghost {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #f1ecff;
+  backdrop-filter: blur(6px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .cine-button--primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 16px 40px rgba(139, 61, 240, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .cinematic-landing-root .cine-button--ghost:hover {
+    border-color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateY(-2px);
+  }
+}
+.cinematic-landing-root .cine-button:active {
+  transform: scale(0.98);
+}
+
+/* ---------- logo ---------- */
+.cinematic-landing-root .cine-academy-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+}
+.cinematic-landing-root .cine-academy-logo__mark {
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 0.6rem;
+  background: linear-gradient(145deg, #5b21e6, #6d2df0);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 1.25rem;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 14px rgba(91, 33, 230, 0.5);
+}
+.cinematic-landing-root .cine-academy-logo__word {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.cinematic-landing-root .cine-academy-logo__word em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+/* ---------- navigation ---------- */
+.cinematic-landing-root .cine-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem clamp(1.2rem, 4vw, 3rem);
+  transition:
+    background 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease;
+}
+.cinematic-landing-root .cine-nav.is-solid {
+  background: rgba(10, 5, 30, 0.72);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(180, 99, 234, 0.16);
+}
+.cinematic-landing-root .cine-nav__logo {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.cinematic-landing-root .cine-nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1.8rem);
+}
+.cinematic-landing-root .cine-nav__link {
+  position: relative;
+  background: none;
+  border: 0;
+  color: rgba(244, 241, 255, 0.82);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.35rem 0.2rem;
+  /* a wrapped link would make the whole bar two lines tall */
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+/* underline marker for hover + in-view section */
+.cinematic-landing-root .cine-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  right: 0.2rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--violet-bright);
+  transform: scaleX(0);
+  transform-origin: 50% 50%;
+  transition: transform 0.28s ease;
+}
+.cinematic-landing-root .cine-nav__link.is-active::after {
+  transform: scaleX(1);
+}
+.cinematic-landing-root .cine-nav__link.is-active {
+  color: #fff;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .cine-nav__link:hover {
+    color: #fff;
+  }
+  .cinematic-landing-root .cine-nav__link:hover::after {
+    transform: scaleX(1);
+  }
+}
+/* keyboard focus must be visible on every interactive nav control */
+.cinematic-landing-root .cine-nav__link:focus-visible,
+.cinematic-landing-root .cine-nav__logo:focus-visible,
+.cinematic-landing-root .cine-nav__burger:focus-visible,
+.cinematic-landing-root .cine-nav .cine-button:focus-visible {
+  outline: 2px solid var(--violet-bright);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+.cinematic-landing-root .cine-nav__auth {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.cinematic-landing-root .cine-nav__auth--mobile {
+  display: none;
+}
+.cinematic-landing-root .cine-nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cinematic-landing-root .cine-nav__burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 2px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+.cinematic-landing-root .cine-nav__burger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.cinematic-landing-root .cine-nav__burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.cinematic-landing-root .cine-nav__burger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- atmospheric background ---------- */
+.cinematic-landing-root .atmo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.cinematic-landing-root .atmo__base {
+  position: absolute;
+  inset: -4%;
+  background:
+    radial-gradient(120% 90% at 70% 110%, rgba(73, 33, 139, 0.5) 0%, transparent 55%),
+    radial-gradient(90% 70% at 12% -6%, rgba(32, 16, 84, 0.85) 0%, transparent 60%),
+    linear-gradient(180deg, #060218 0%, #0c052a 52%, #140939 100%);
+}
+/* Ambient glow. A radial-gradient is already soft-edged, so the old
+   `filter: blur(70px)` on a 55vw layer was paying for a full-screen blur pass
+   per section to achieve what extra colour stops do for free. */
+.cinematic-landing-root .atmo__nebula {
+  position: absolute;
+  border-radius: 50%;
+}
+.cinematic-landing-root .atmo__nebula--a {
+  width: 55vw;
+  height: 42vh;
+  left: -12vw;
+  top: -8vh;
+  background: radial-gradient(
+    closest-side,
+    rgba(122, 64, 193, 0.34) 0%,
+    rgba(122, 64, 193, 0.2) 38%,
+    rgba(122, 64, 193, 0.07) 66%,
+    transparent 82%
+  );
+}
+.cinematic-landing-root .atmo__nebula--b {
+  width: 48vw;
+  height: 38vh;
+  right: -10vw;
+  bottom: 4vh;
+  background: radial-gradient(
+    closest-side,
+    rgba(180, 99, 234, 0.22) 0%,
+    rgba(180, 99, 234, 0.13) 40%,
+    rgba(180, 99, 234, 0.05) 68%,
+    transparent 84%
+  );
+}
+.cinematic-landing-root .atmo--cta .atmo__nebula--b {
+  bottom: -12vh;
+}
+.cinematic-landing-root .atmo__stars {
+  position: absolute;
+  inset: 0;
+}
+/* static by default — only .atmo__star--live (3 per section) twinkles */
+.cinematic-landing-root .atmo__star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+}
+.cinematic-landing-root .atmo__star--live {
+  animation: cine-star-twinkle 4s ease-in-out infinite;
+}
+@keyframes cine-star-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+.cinematic-landing-root .atmo__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   SCENE 1 — HERO
+   ============================================================ */
+.cinematic-landing-root .hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.cinematic-landing-root .hero__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.cinematic-landing-root .hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+}
+.cinematic-landing-root .hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 2, 24, 0.3) 0%,
+    rgba(6, 2, 24, 0.05) 35%,
+    rgba(6, 2, 24, 0.12) 65%,
+    rgba(6, 2, 24, 0.4) 100%
+  );
+}
+.cinematic-landing-root .hero__planet {
+  position: absolute;
+  top: -14%;
+  right: -16%;
+  width: clamp(320px, 42vw, 700px);
+  /* above the rocket so, as it swells, it physically sweeps over and hides the
+     rocket behind its edge (never a fade) */
+  z-index: 6;
+  will-change: transform;
+}
+.cinematic-landing-root .hero__planet-img {
+  width: 100%;
+  display: block;
+}
+.cinematic-landing-root .hero__planet-glow {
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(140, 70, 210, 0.22),
+    rgba(100, 50, 180, 0.08) 55%,
+    transparent 75%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+.cinematic-landing-root .hero__terrain {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 36vh;
+  z-index: 4;
+  pointer-events: none;
+}
+.cinematic-landing-root .hero__terrain-layer {
+  position: absolute;
+  bottom: 0;
+  /* DevTools-verified (CSS.getMatchedStylesForNode): Tailwind's preflight
+     rule `img, svg, canvas, video { max-width: 100% }` matches this <svg> and
+     was silently clamping the rendered width back down to 100% of
+     .hero__terrain no matter what `width` percentage was set here (132%,
+     140%, ...) — the bleed never actually rendered. `max-width` doesn't
+     compete with `width` in specificity; it clamps the used value after
+     `width` is resolved, so raising `width` alone could never have fixed it. */
+  max-width: none;
+  left: -20%;
+  width: 140%;
+  filter: drop-shadow(0 -6px 18px rgba(4, 1, 16, 0.45));
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.cinematic-landing-root .hero__rocket {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: clamp(120px, 13vw, 180px);
+  /* stable, visible default; GSAP overrides transform for centring + motion */
+  transform: translateX(-50%);
+  opacity: 1;
+  visibility: visible;
+  z-index: 5;
+  pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+.cinematic-landing-root .hero__rocket-bob {
+  position: relative;
+  width: 100%;
+  animation: cine-rocket-bob 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+.cinematic-landing-root .hero__rocket-img {
+  display: block;
+  width: 100%;
+  opacity: 1;
+  visibility: visible;
+  /* fallback aim before JS runs / in reduced motion; GSAP overrides with the
+     geometrically computed angle toward the planet */
+  transform: rotate(-30deg);
+  backface-visibility: hidden;
+  filter: drop-shadow(0 18px 22px rgba(24, 10, 52, 0.5));
+}
+.cinematic-landing-root .hero__rocket-particle {
+  position: absolute;
+  left: 40%;
+  bottom: 12%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--violet-bright);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: cine-rocket-trail 2.4s ease-in-out infinite;
+}
+.cinematic-landing-root .hero__rocket-particle:nth-child(3) {
+  left: 32%;
+  bottom: 16%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 0.6s;
+}
+.cinematic-landing-root .hero__rocket-particle:nth-child(4) {
+  left: 45%;
+  bottom: 9%;
+  width: 4px;
+  height: 4px;
+  animation-delay: 1.2s;
+}
+.cinematic-landing-root .hero__rocket-particle:nth-child(5) {
+  left: 36%;
+  bottom: 14%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 1.8s;
+}
+@keyframes cine-rocket-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+@keyframes cine-rocket-trail {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-9px, 28px) scale(0.35);
+  }
+}
+.cinematic-landing-root .hero__content {
+  position: relative;
+  z-index: 6;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 0 clamp(1.6rem, 7vw, 8rem);
+  padding-bottom: 8vh;
+  max-width: 720px;
+}
+.cinematic-landing-root .hero__eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(0.68rem, 1.1vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--violet-bright);
+  margin-bottom: 1.3rem;
+}
+.cinematic-landing-root .hero__title {
+  font-size: clamp(2.2rem, 5.6vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+.cinematic-landing-root .hero__title em {
+  font-style: normal;
+  background: linear-gradient(100deg, var(--violet-bright), #e0b3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.cinematic-landing-root .hero__support {
+  max-width: 520px;
+  margin-top: 1.4rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  line-height: 1.65;
+  color: rgba(238, 232, 255, 0.78);
+}
+.cinematic-landing-root .hero__ctas {
+  display: flex;
+  gap: 0.9rem;
+  margin-top: 2.1rem;
+  flex-wrap: wrap;
+}
+.cinematic-landing-root .hero__hint {
+  position: absolute;
+  bottom: 2.2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cinematic-landing-root .hero__hint-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 255, 0.55);
+}
+.cinematic-landing-root .hero__hint-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, rgba(180, 99, 234, 0.9), transparent);
+  animation: cine-hint-drop 2.2s ease-in-out infinite;
+}
+@keyframes cine-hint-drop {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.cinematic-landing-root .hero__haze {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    80% 80% at 50% 50%,
+    rgba(122, 64, 193, 0.55) 0%,
+    rgba(17, 7, 52, 0.9) 100%
+  );
+}
+.cinematic-landing-root .hero__portal {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* flat purple field that matches the next section's background exactly, so the
+     planet's colour becomes that background with no visible seam */
+  background: linear-gradient(180deg, #110734 0%, #180a44 60%, #201054 100%);
+}
+.cinematic-landing-root .hero__portal-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60vmin;
+  height: 60vmin;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0.4;
+  background: radial-gradient(closest-side, rgba(180, 99, 234, 0.5), transparent 72%);
+}
+.cinematic-landing-root .hero__dark {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  background: #030110;
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   SCENE 1.5 — LEARNING WORLD (cinematic planet reveal)
+   ============================================================ */
+.cinematic-landing-root .lworld {
+  position: relative;
+  /* Pull this section up over the hero's final viewport so it begins pinning
+     the instant the hero's pin ends. Without this there is a full viewport of
+     scroll where the hero slides out and this slides in — the visible "extra
+     transition". */
+  margin-top: -100vh;
+  margin-top: -100svh;
+  overflow: clip;
+  background: #08031c;
+}
+.cinematic-landing-root .lworld__cinematic {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #08031c;
+}
+.cinematic-landing-root .lworld__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.cinematic-landing-root .lworld__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  backface-visibility: hidden;
+}
+.cinematic-landing-root .lworld__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 2, 24, 0.32) 0%,
+    rgba(6, 2, 24, 0.06) 45%,
+    rgba(6, 2, 24, 0.38) 100%
+  );
+}
+/* ---- middle-distance depth: ring, paper stars, drifting motes ---- */
+.cinematic-landing-root .lworld__depth {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.cinematic-landing-root .lworld__ring {
+  position: absolute;
+  left: 62%;
+  top: 48%;
+  width: 62vmin;
+  height: 62vmin;
+  border: 1px solid rgba(180, 99, 234, 0.16);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-14deg) scaleY(0.42);
+}
+.cinematic-landing-root .lworld__ribbon {
+  position: absolute;
+  left: 46%;
+  top: 24%;
+  width: 46vmax;
+  height: 15vmin;
+  border-radius: 50%;
+  /* gradient stops do the softening; no blur pass needed */
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(150, 90, 220, 0.06) 22%,
+    rgba(150, 90, 220, 0.11) 42%,
+    rgba(190, 120, 240, 0.07) 62%,
+    rgba(190, 120, 240, 0.03) 80%,
+    transparent 100%
+  );
+  transform: rotate(-11deg);
+}
+.cinematic-landing-root .lworld__star {
+  position: absolute;
+  background: rgba(238, 226, 255, 0.62);
+  /* four-point paper star */
+  clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+  opacity: 0.5;
+}
+/* only two of the six twinkle */
+.cinematic-landing-root .lworld__star--live {
+  opacity: 1;
+  animation: cine-lworld-twinkle 7s ease-in-out infinite;
+}
+@keyframes cine-lworld-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+.cinematic-landing-root .lworld__mote {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(214, 190, 255, 0.5);
+  opacity: 0.3;
+}
+/* only one mote drifts */
+.cinematic-landing-root .lworld__mote--live {
+  opacity: 1;
+  animation: cine-lworld-drift 22s ease-in-out infinite;
+}
+@keyframes cine-lworld-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate3d(14px, -22px, 0);
+    opacity: 0.6;
+  }
+}
+
+/* ---- paper-strip orbit linking the active card to the planet ---- */
+.cinematic-landing-root .lworld__orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.cinematic-landing-root .lworld__orbit-path {
+  fill: none;
+  stroke: rgba(196, 156, 245, 0.85);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 13 11;
+  opacity: 0.22;
+  will-change: opacity;
+}
+.cinematic-landing-root .lworld__orbit-star {
+  fill: var(--gold);
+  opacity: 0.9;
+}
+.cinematic-landing-root .lworld__orbit-marker {
+  will-change: transform, opacity;
+}
+
+/* The hero's own planet, continued at its exact closing framing so this
+   section's first frame is identical to the hero's last. Geometry below must
+   stay in sync with .hero__planet (including its breakpoints). */
+.cinematic-landing-root .lworld__hero-planet {
+  position: absolute;
+  top: -14%;
+  right: -16%;
+  width: clamp(320px, 42vw, 700px);
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+.cinematic-landing-root .lworld__hero-planet-img {
+  display: block;
+  width: 100%;
+}
+/* scene wrapper — positioning + clipping only */
+.cinematic-landing-root .lworld__planet-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+/* scroll wrapper — sole owner of the scrubbed scale + x/y */
+.cinematic-landing-root .lworld__planet-scroll {
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+/* idle wrapper — paused until the layout settles, so CSS and GSAP never
+   drive the same transform during the handoff or zoom-out */
+.cinematic-landing-root .lworld__planet-idle {
+  animation: cine-lworld-float 12s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  animation-play-state: paused;
+  transform-origin: 50% 55%;
+  will-change: transform;
+}
+.cinematic-landing-root .lworld__planet-holder {
+  position: relative;
+  display: block;
+}
+.cinematic-landing-root .lworld__planet {
+  display: block;
+  /* trimmed ~7% so the active feature card stays the focal point */
+  width: clamp(390px, 33vw, 555px);
+  height: auto;
+  /* the artwork is square — declaring it means offsetHeight is correct on the
+     very first layout, before the image has loaded, so the handoff scale is
+     never measured against a zero-height element */
+  aspect-ratio: 1 / 1;
+  filter: drop-shadow(0 30px 90px rgba(60, 20, 120, 0.5));
+}
+/* ---- landmark nodes: the planet reacts to the selected feature ---- */
+.cinematic-landing-root .lworld__nodes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cinematic-landing-root .lworld__node {
+  position: absolute;
+  width: 0;
+  height: 0;
+  will-change: transform, opacity;
+}
+.cinematic-landing-root .lworld__node-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, #fff6d8 0%, var(--gold) 48%, #b06fe8 100%);
+  box-shadow:
+    0 0 9px rgba(245, 179, 1, 0.55),
+    0 0 16px rgba(180, 99, 234, 0.5);
+}
+.cinematic-landing-root .lworld__node-halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 179, 1, 0.5);
+  background: radial-gradient(closest-side, rgba(180, 99, 234, 0.26), transparent 70%);
+  will-change: transform, opacity;
+}
+@keyframes cine-lworld-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0) rotate(0.12deg);
+  }
+}
+/* mirrors the hero's closing purple glow so the handoff frame matches, then clears */
+.cinematic-landing-root .lworld__haze {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    80% 80% at 50% 50%,
+    rgba(122, 64, 193, 0.55) 0%,
+    rgba(17, 7, 52, 0.9) 100%
+  );
+}
+.cinematic-landing-root .lworld__content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(1.4rem, 5vw, 5rem);
+}
+.cinematic-landing-root .lworld__content-inner {
+  /* left column carries the heading + papercraft card grid */
+  width: min(56%, 760px);
+}
+.cinematic-landing-root .lworld__eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(0.64rem, 0.95vw, 0.76rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--violet-bright);
+  margin-bottom: 0.65rem;
+}
+.cinematic-landing-root .lworld__title {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #fff;
+  text-wrap: balance;
+}
+.cinematic-landing-root .lworld__desc {
+  margin-top: 0.7rem;
+  max-width: 34em;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.55;
+  color: rgba(238, 232, 255, 0.76);
+}
+/* ---- single-card showcase: one large papercraft card at a time ---- */
+.cinematic-landing-root .lworld__stage {
+  position: relative;
+  width: clamp(520px, 41vw, 680px);
+  max-width: 100%;
+  /* Fixed stage sized to the median of the cleaned cards (aspects 1.47–1.65),
+     so every card contains with minimal letterbox and switching never shifts
+     the layout. Cards are aligned by their visible bounds via object-fit. */
+  aspect-ratio: 31 / 20;
+  margin-top: clamp(0.5rem, 1.2vh, 0.9rem);
+}
+/* offset paper layers peeking out behind the card — papercraft stacking,
+   never a rectangular UI panel */
+/* Sized to the CARD's drawn box (the artwork is letterboxed inside the 3:2
+   stage), then rotated and pushed out far enough to actually peek — otherwise
+   the layers sit entirely behind the card and are never seen. */
+.cinematic-landing-root .lworld__stage-paper {
+  position: absolute;
+  inset: 6% 0;
+  border-radius: 16px;
+  will-change: opacity;
+}
+.cinematic-landing-root .lworld__stage-paper--purple {
+  background: linear-gradient(150deg, #55299a, #3b1c72);
+  transform: rotate(-2.2deg) translate3d(-24px, 20px, 0);
+  box-shadow: 0 22px 44px rgba(6, 2, 20, 0.5);
+}
+.cinematic-landing-root .lworld__stage-paper--cream {
+  background: linear-gradient(150deg, #efe4cf, #ddcdb1);
+  transform: rotate(1.6deg) translate3d(22px, -16px, 0);
+  box-shadow: 0 16px 34px rgba(6, 2, 20, 0.38);
+  opacity: 0.9;
+}
+/* tiny paper stars scattered around the stage */
+.cinematic-landing-root .lworld__stage-star {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: rgba(245, 179, 1, 0.85);
+  clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+  filter: drop-shadow(0 2px 3px rgba(6, 2, 20, 0.45));
+}
+.cinematic-landing-root .lworld__stage-star--1 {
+  left: -18px;
+  top: 12%;
+  transform: rotate(-12deg);
+}
+.cinematic-landing-root .lworld__stage-star--2 {
+  right: -14px;
+  top: 4%;
+  width: 9px;
+  height: 9px;
+  background: rgba(214, 190, 255, 0.9);
+}
+.cinematic-landing-root .lworld__stage-star--3 {
+  left: 6%;
+  bottom: -14px;
+  width: 8px;
+  height: 8px;
+  background: rgba(214, 190, 255, 0.8);
+}
+/* small papercraft progress chip */
+.cinematic-landing-root .lworld__progress {
+  position: absolute;
+  right: 2%;
+  top: -1.45rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #f4efff;
+  background: linear-gradient(150deg, rgba(85, 41, 154, 0.92), rgba(59, 28, 114, 0.92));
+  border: 1px solid rgba(180, 99, 234, 0.4);
+  border-radius: 6px;
+  padding: 0.22rem 0.6rem;
+  box-shadow: 0 6px 14px rgba(6, 2, 20, 0.45);
+}
+.cinematic-landing-root .lworld__progress i {
+  font-style: normal;
+  color: rgba(238, 232, 255, 0.45);
+  margin: 0 0.1rem;
+}
+.cinematic-landing-root .lworld__feature {
+  /* stacked in place; only one is visible/interactive at a time (autoAlpha
+     toggles visibility, so hidden cards are out of the a11y tree too) */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* transparent PNGs — never a panel behind them, never cropped or stretched */
+  object-fit: contain;
+  object-position: center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+/* ---- feature tabs: papercraft chips with an active underline ---- */
+.cinematic-landing-root .lworld__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  /* pulled in closer to the card */
+  margin-top: clamp(0.5rem, 1.3vh, 0.85rem);
+}
+.cinematic-landing-root .lworld__tab {
+  position: relative;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-size: 0.79rem;
+  font-weight: 600;
+  color: rgba(238, 232, 255, 0.72);
+  background: linear-gradient(150deg, rgba(52, 27, 108, 0.72), rgba(34, 16, 76, 0.72));
+  border: 1px solid rgba(180, 99, 234, 0.26);
+  /* softly irregular corners read as cut paper rather than a UI pill */
+  border-radius: 11px 9px 12px 8px;
+  padding: 0.56rem 1.15rem 0.62rem;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow:
+    0 5px 12px rgba(6, 2, 20, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  touch-action: manipulation;
+  transition:
+    color 180ms ease,
+    background 220ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms ease,
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.cinematic-landing-root .lworld__tab::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.3rem;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gold);
+  transform: translateX(-50%);
+  transition: width 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .lworld__tab:hover {
+    color: #fff;
+    border-color: rgba(180, 99, 234, 0.48);
+    transform: translate3d(0, -1px, 0);
+  }
+}
+.cinematic-landing-root .lworld__tab:focus-visible {
+  outline: 2px solid var(--violet-bright);
+  outline-offset: 3px;
+}
+.cinematic-landing-root .lworld__tab.is-active {
+  color: #fff;
+  background: linear-gradient(145deg, var(--paper-4), var(--paper-5));
+  border-color: rgba(245, 179, 1, 0.35);
+  box-shadow:
+    0 8px 18px rgba(122, 64, 193, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translate3d(0, -2px, 0);
+}
+.cinematic-landing-root .lworld__tab.is-active::after {
+  width: 44%;
+}
+.cinematic-landing-root .lworld__tab:active {
+  transform: translate3d(0, 0, 0) scale(0.98);
+  transition-duration: 120ms;
+}
+
+/* ---- final Learning World summary banner ---- */
+.cinematic-landing-root .lworld__ecosystem {
+  position: relative;
+  z-index: 6;
+  margin-top: 12px;
+  padding: 0 0 6px;
+}
+.cinematic-landing-root .lworld__ecosystem-frame {
+  position: relative;
+  width: 82%;
+  max-width: 1100px;
+  margin-inline: auto;
+  pointer-events: none;
+}
+.cinematic-landing-root .lworld__ecosystem-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+.cinematic-landing-root .lworld__ecosystem-button {
+  position: absolute;
+  left: 80.301%;
+  top: 62.731%;
+  width: 16.64%;
+  height: 18.981%;
+  padding: 0;
+  border: 0;
+  border-radius: 8% / 30%;
+  clip-path: inset(0 round 8% / 30%);
+  color: transparent;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+.cinematic-landing-root .lworld__ecosystem-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .lworld__ecosystem-button:hover::before {
+    opacity: 0.12;
+  }
+}
+.cinematic-landing-root .lworld__ecosystem-button:focus-visible {
+  outline: 3px solid var(--violet-bright);
+  outline-offset: -4px;
+}
+.cinematic-landing-root .lworld__ecosystem-button:active::before {
+  opacity: 0.18;
+}
+@media (max-width: 1023px) {
+  .cinematic-landing-root .lworld__ecosystem {
+    margin-top: 12px;
+    padding-bottom: 6px;
+  }
+  .cinematic-landing-root .lworld__ecosystem-frame {
+    width: 88%;
+  }
+}
+@media (max-width: 767px) {
+  .cinematic-landing-root .lworld__ecosystem {
+    margin-top: 12px;
+    padding-bottom: 6px;
+  }
+  .cinematic-landing-root .lworld__ecosystem-frame {
+    width: calc(100% - 24px);
+    max-width: none;
+  }
+}
+
+/* ============================================================
+   SCENE 2 — LEARNING WORLD
+   ============================================================ */
+/* Content-driven height: this section is no longer pinned and no longer has a
+   multi-viewport scroll range. Its height is exactly heading + grid + trust +
+   padding, so no empty viewport can appear before or after the cards. */
+.cinematic-landing-root .world {
+  position: relative;
+  /* clip is for the decorative atmosphere/hills only — the real layout below is
+     sized to fit, so nothing of substance is ever hidden by it */
+  overflow: clip;
+  padding-top: clamp(84px, 10vh, 130px);
+  padding-bottom: clamp(110px, 14vh, 180px);
+}
+.cinematic-landing-root .world .atmo__base {
+  background:
+    radial-gradient(110% 80% at 50% 115%, rgba(73, 33, 139, 0.55) 0%, transparent 60%),
+    linear-gradient(180deg, #110734 0%, #150941 55%, #1c0c4d 100%);
+}
+.cinematic-landing-root .world__content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--shell-pad);
+}
+.cinematic-landing-root .world__eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(0.66rem, 1vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--violet-bright);
+  margin-bottom: 10px;
+}
+.cinematic-landing-root .world__title {
+  /* mobile ~32–42px · tablet ~38–52px · desktop up to 66px */
+  font-size: clamp(32px, 4.6vw, 66px);
+  font-weight: 700;
+  line-height: 1.06;
+  color: #fff;
+  text-wrap: balance;
+}
+.cinematic-landing-root .world__accent {
+  color: var(--violet-bright);
+}
+.cinematic-landing-root .world__desc {
+  max-width: 700px;
+  margin-top: 14px;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.55;
+  color: rgba(238, 232, 255, 0.8);
+}
+
+/* ---- papercraft benefit cards ----
+   WIDTH-driven, not height-driven. Each artwork already carries its own frame
+   and text, so it is rendered whole: width 100%, height auto, intrinsic ratio.
+   The grid columns are sized to the card (not stretched), and the grid itself
+   is centred, so cards never inflate to fill an oversized column. */
+.cinematic-landing-root .world__benefits {
+  display: grid;
+  /* mobile default: one card per row, centred, max 360px */
+  grid-template-columns: minmax(0, 360px);
+  justify-content: center;
+  align-items: end; /* bottoms align within each row */
+  gap: 24px;
+  margin-top: 30px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+.cinematic-landing-root .world__benefit {
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+  backface-visibility: hidden;
+}
+/* inner wrapper owns the hover lift, so it never collides with the figure's
+   GSAP entrance transform */
+.cinematic-landing-root .world__benefit-lift {
+  display: block;
+  transition: transform 0.35s ease;
+}
+.cinematic-landing-root .world__benefit-img {
+  display: block;
+  width: 100%;
+  height: auto; /* never a fixed height — the artwork is never cropped */
+  object-fit: contain;
+  margin: 0 auto;
+}
+/* each card's own true ratio → height reserved before a lazy image loads, so
+   the grid does not shift. These MUST match the real asset dimensions. */
+.cinematic-landing-root .world__benefit:nth-child(1) .world__benefit-img {
+  aspect-ratio: 420 / 575;
+}
+.cinematic-landing-root .world__benefit:nth-child(2) .world__benefit-img {
+  aspect-ratio: 620 / 981;
+}
+.cinematic-landing-root .world__benefit:nth-child(3) .world__benefit-img {
+  aspect-ratio: 355 / 563;
+}
+.cinematic-landing-root .world__benefit:nth-child(4) .world__benefit-img {
+  aspect-ratio: 405 / 577;
+}
+
+/* tablet portrait and up: two columns, sized to the card, centred */
+@media (min-width: 700px) {
+  .cinematic-landing-root .world__benefits {
+    grid-template-columns: repeat(2, minmax(0, 330px));
+    gap: 32px 34px;
+    margin-top: 36px;
+  }
+}
+/* standard desktop / laptop: still two columns — four across would push each
+   card below the width at which its embedded text stays readable */
+@media (min-width: 1024px) {
+  .cinematic-landing-root .world__benefits {
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    gap: 36px 48px;
+    margin-top: 40px;
+  }
+}
+/* very wide desktop: four in one row, each still 300–320px */
+@media (min-width: 1600px) {
+  .cinematic-landing-root .world__benefits {
+    grid-template-columns: repeat(4, minmax(0, 320px));
+    gap: 32px;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cinematic-landing-root .world__benefit:hover .world__benefit-lift {
+    transform: translate3d(0, -6px, 0) scale(1.015);
+  }
+}
+
+/* ---- trust strip: a real cream papercraft strip ---- */
+.cinematic-landing-root .world__trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 20px;
+  margin-top: 15px; /* cards → trust (12–18px) */
+  width: min(1040px, 82vw);
+  min-height: 54px;
+  padding: 12px 24px;
+  margin-inline: auto;
+  border-radius: 14px;
+  background:
+    radial-gradient(130% 130% at 12% 0%, rgba(255, 255, 255, 0.5), transparent 46%),
+    linear-gradient(158deg, #f4ecda 0%, #e7d9bd 100%);
+  border: 1.5px solid rgba(122, 64, 193, 0.3);
+  box-shadow:
+    0 16px 34px rgba(6, 2, 20, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.05vw, 17px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--violet);
+}
+.cinematic-landing-root .world__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+.cinematic-landing-root .world__trust-item:not(:first-child)::before {
+  content: "◆";
+  margin-right: 13px;
+  font-size: 0.6em;
+  color: var(--gold);
+}
+.cinematic-landing-root .world__trust-check {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--paper-4);
+}
+.cinematic-landing-root .world__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #110734 0%, #180a44 60%, #201054 100%);
+}
+
+/* ============================================================
+   SCENE 3 — COMPANION
+   ============================================================ */
+.cinematic-landing-root .companion {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.cinematic-landing-root .companion .atmo__base {
+  background:
+    radial-gradient(80% 60% at 30% 50%, rgba(32, 16, 84, 0.9) 0%, transparent 65%),
+    linear-gradient(180deg, #1c0c4d 0%, #0d0530 55%, #0a0426 100%);
+}
+.cinematic-landing-root .companion__layout {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  /* reference proportions: text ~42% · visual ~58% */
+  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  align-items: center;
+  gap: clamp(40px, 4vw, 70px);
+  padding: 0 clamp(1.4rem, 4vw, 3.5rem);
+  max-width: 1360px;
+  margin: 0 auto;
+}
+/* text column renders first (left); visual stage sits right */
+.cinematic-landing-root .companion__stage {
+  position: relative;
+  height: min(72vh, 640px);
+  display: grid;
+  place-items: center;
+}
+.cinematic-landing-root .companion__rim {
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(
+    closest-side,
+    rgba(180, 99, 234, 0.5),
+    rgba(122, 64, 193, 0.12) 60%,
+    transparent 75%
+  );
+}
+.cinematic-landing-root .companion__figure {
+  /* reference: 470–590px tall; scales down on short laptops.
+     max-width keeps the tutor narrower than the book on tall/narrow
+     viewports — object-fit: contain re-fits instead of squashing. */
+  height: clamp(360px, 56vh, 590px);
+  width: auto;
+  max-width: 72%;
+  object-fit: contain;
+  will-change: transform;
+}
+/* inline-SVG sparkles; `color` drives the fill via currentColor */
+.cinematic-landing-root .companion__particle {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  color: var(--gold);
+  opacity: 0;
+  filter: drop-shadow(0 2px 6px rgba(245, 179, 1, 0.45));
+}
+.cinematic-landing-root .companion__particle:nth-child(odd) {
+  color: var(--violet-bright);
+  filter: drop-shadow(0 2px 6px rgba(180, 99, 234, 0.5));
+}
+.cinematic-landing-root .companion__copy {
+  max-width: 520px;
+}
+.cinematic-landing-root .companion__title {
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #fff;
+}
+.cinematic-landing-root .companion__body {
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: rgba(238, 232, 255, 0.75);
+}
+.cinematic-landing-root .companion__steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.6rem;
+}
+.cinematic-landing-root .companion__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #efe7ff;
+  background: rgba(122, 64, 193, 0.2);
+  border: 1px solid rgba(180, 99, 234, 0.35);
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+}
+.cinematic-landing-root .companion__step em {
+  font-style: normal;
+  color: var(--violet-bright);
+}
+.cinematic-landing-root .companion__ranks {
+  display: flex;
+  gap: clamp(0.6rem, 1.6vw, 1.4rem);
+  margin-top: 1.8rem;
+}
+.cinematic-landing-root .companion__rank {
+  margin: 0;
+  text-align: center;
+}
+.cinematic-landing-root .companion__rank img {
+  width: clamp(52px, 6vw, 74px);
+  height: clamp(52px, 6vw, 74px);
+  object-fit: contain;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 30%, rgba(180, 99, 234, 0.25), rgba(17, 7, 52, 0.8));
+  border: 1px solid rgba(180, 99, 234, 0.28);
+  padding: 6px;
+}
+.cinematic-landing-root .companion__rank figcaption {
+  margin-top: 0.45rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: rgba(238, 232, 255, 0.6);
+}
+
+/* ---- Cikgu AI content inside the restored Companion structure ----
+   Additive only: no change to .companion layout, height, stage or timeline. */
+.cinematic-landing-root .companion__eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.66rem, 1vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--violet-bright);
+  margin-bottom: 0.7rem;
+}
+.cinematic-landing-root .companion__heading {
+  font-size: clamp(2.1rem, 5vw, 4.6rem); /* ~34px → 78px */
+  font-weight: 700;
+  line-height: 0.99;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+/* open book: the foundation beneath the tutor, visible on both sides.
+   Centred with auto margins rather than translateX so GSAP owns `transform`. */
+.cinematic-landing-root .companion__book {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4%;
+  margin-inline: auto;
+  /* wider than the tutor (max-width: 72%) so the pages read on both sides */
+  width: min(92%, 540px);
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 18px 34px rgba(6, 2, 20, 0.5));
+}
+.cinematic-landing-root .companion__figure {
+  position: relative;
+  z-index: 1;
+  /* Idle float uses the independent `translate` property, NOT `transform`:
+     GSAP owns transform on this element for the scroll entrance, and sharing
+     the channel would strand the tutor mid-tween. */
+  animation: cine-cikgu-float 5s ease-in-out infinite;
+}
+@keyframes cine-cikgu-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+/* ---- papercraft terrain at the true section bottom ----
+   z-index 1 keeps it behind .companion__layout (z-index 2), so it can never
+   sit in front of the CTA, the book, the question cards or the conversation
+   card. The wrapper clips; the page never widens. */
+.cinematic-landing-root .companion__terrain {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* behind every part of .companion__layout (z-index 2) */
+  z-index: 1;
+  height: clamp(105px, 13vh, 175px);
+  pointer-events: none;
+  overflow: hidden;
+  /* the clipped base dissolves into the deep purple instead of ending on a
+     hard horizontal edge against the Parents section */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+  transform-origin: bottom center;
+}
+.cinematic-landing-root .companion__terrain-img {
+  /* The asset is 1400x341 (4.11:1) with its ridge silhouette in the TOP third
+     and a solid body below. Anchoring the image's TOP to the wrapper shows that
+     ridge line; the solid body simply continues past the clip. (Anchoring the
+     bottom instead cropped the ridges off and left a flat-topped wall.) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto; /* natural ratio — never squashed, never object-fit:fill */
+}
+/* the CTA reuses the .companion__step reveal, styled as the primary action */
+.cinematic-landing-root .companion__cta {
+  min-height: 44px;
+  color: #2a1a04;
+  background: linear-gradient(145deg, #f5b301, #ffc93c);
+  border-color: rgba(245, 179, 1, 0.5);
+  font-weight: 700;
+  /* the hover lift uses the independent `translate` property: GSAP owns
+     `transform` on .companion__step, and a transition on the same channel
+     strands the CTA mid-tween. */
+  transition:
+    translate 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.cinematic-landing-root .companion__cta em {
+  font-style: normal;
+  transition: transform 0.25s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .companion__cta:hover {
+    translate: 0 -3px;
+    box-shadow: 0 14px 26px rgba(245, 179, 1, 0.4);
+  }
+  .cinematic-landing-root .companion__cta:hover em {
+    transform: translateX(4px);
+  }
+}
+.cinematic-landing-root .companion__cta:active {
+  translate: 0;
+  scale: 0.98;
+}
+.cinematic-landing-root .companion__trust {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: rgba(238, 232, 255, 0.6);
+}
+.cinematic-landing-root .companion__trust i {
+  font-style: normal;
+  color: var(--gold);
+  margin: 0 0.3rem;
+}
+/* ---- floating question cards: positioned around the tutor, inside the
+   stage. They reuse the .companion__rank reveal target, so rotation uses the
+   independent `rotate` property — GSAP owns `transform` (y/opacity). ---- */
+.cinematic-landing-root .companion__question {
+  position: absolute;
+  z-index: 3;
+  max-width: 48%;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.85rem;
+  border-radius: 11px 8px 12px 9px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2c1358;
+  background:
+    radial-gradient(130% 130% at 15% 0%, rgba(255, 255, 255, 0.55), transparent 48%),
+    linear-gradient(155deg, #f6efdd 0%, #e8dabe 100%);
+  border: 1px solid rgba(122, 64, 193, 0.26);
+  box-shadow:
+    0 10px 20px rgba(6, 2, 20, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+/* above and left of the head, clear of the graduation cap */
+.cinematic-landing-root .companion__question--1 {
+  top: 3%;
+  left: 1%;
+  rotate: -3.5deg;
+}
+/* left, below the teaching pointer */
+.cinematic-landing-root .companion__question--2 {
+  top: 33%;
+  left: -2%;
+  rotate: 2.5deg;
+}
+/* right side, clear of the open hand */
+.cinematic-landing-root .companion__question--3 {
+  top: 15%;
+  right: -1%;
+  rotate: 3.5deg;
+}
+
+/* conversation card: lower-right of the visual column, reuses the final
+   .companion__rank reveal */
+.cinematic-landing-root .companion__convo {
+  position: absolute;
+  right: -3%;
+  bottom: -4%;
+  z-index: 4;
+  width: min(94%, 460px);
+  /* the card unfolds downward from its top edge */
+  transform-origin: top center;
+  padding: 0.95rem 1.1rem;
+  border-radius: 16px 13px 17px 14px;
+  text-align: left;
+  background:
+    radial-gradient(130% 120% at 12% 0%, rgba(255, 255, 255, 0.5), transparent 46%),
+    linear-gradient(155deg, #f6efdd 0%, #e7d8bc 100%);
+  border: 1.5px solid rgba(122, 64, 193, 0.28);
+  box-shadow:
+    0 20px 40px rgba(6, 2, 20, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.cinematic-landing-root .companion__convo-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #2c1358;
+}
+.cinematic-landing-root .companion__convo-row + .companion__convo-row {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed rgba(122, 64, 193, 0.3);
+}
+.cinematic-landing-root .companion__convo-who {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b3fae;
+  background: rgba(122, 64, 193, 0.12);
+  border-radius: 7px 5px 8px 6px;
+  padding: 0.24rem 0.45rem;
+  white-space: nowrap;
+}
+.cinematic-landing-root .companion__convo-who--ai {
+  color: #8a5c12;
+  background: rgba(245, 179, 1, 0.18);
+}
+
+/* tablet: terrain proportionally shorter, content padded clear of it */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .cinematic-landing-root .companion__terrain {
+    height: clamp(90px, 12vh, 130px);
+  }
+  .cinematic-landing-root .companion__layout {
+    padding-bottom: clamp(100px, 13vh, 140px);
+  }
+}
+/* reduced motion: terrain is simply present, in its final resting position */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-landing-root .companion__terrain {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   SCENE 4 — PARENTS
+   ============================================================ */
+.cinematic-landing-root .parents {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #0a0426;
+}
+.cinematic-landing-root .parents__sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 55% at 65% 20%, rgba(122, 64, 193, 0.4) 0%, transparent 60%),
+    linear-gradient(180deg, #0a0426 0%, #140939 100%);
+}
+.cinematic-landing-root .parents__panel {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-light);
+  will-change: transform;
+  overflow: hidden;
+}
+.cinematic-landing-root .parents__inner {
+  height: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(4rem, 9vh, 7rem) clamp(1.4rem, 5vw, 3rem) 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.4rem, 3.5vh, 2.6rem);
+}
+.cinematic-landing-root .parents__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 1.5rem;
+}
+.cinematic-landing-root .parents__title {
+  font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.cinematic-landing-root .parents__body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 430px;
+  justify-self: end;
+}
+.cinematic-landing-root .parents__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2.4vw, 1.8rem);
+  align-items: start;
+  perspective: 1400px;
+}
+.cinematic-landing-root .pdash {
+  background: #fff;
+  border-radius: 22px;
+  border: 1px solid #e9e4fb;
+  box-shadow: 0 30px 70px rgba(41, 20, 100, 0.14);
+  padding: clamp(1.1rem, 2vw, 1.7rem);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ---------- weekly parent report (email) ---------- */
+.cinematic-landing-root .preport {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  overflow: hidden;
+}
+.cinematic-landing-root .preport__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  /* keep its natural height in the flex column (the progress track uses
+     .preport__track so it can no longer collide with this rule) */
+  flex: none;
+  padding: 0.6rem 0.9rem;
+  background: linear-gradient(120deg, #12073a 0%, #1d0f52 100%);
+}
+.cinematic-landing-root .preport__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: #fff;
+}
+.cinematic-landing-root .preport__brand em {
+  font-style: normal;
+  color: var(--gold);
+}
+.cinematic-landing-root .preport__brand-mark {
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.4rem;
+  background: linear-gradient(145deg, #5b21e6, #6d2df0);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.cinematic-landing-root .preport__badge {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2a1a04;
+  background: var(--gold);
+  border-radius: 999px;
+  padding: 0.22rem 0.6rem;
+  white-space: nowrap;
+}
+.cinematic-landing-root .preport__intro {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 clamp(0.85rem, 1.5vw, 1.15rem);
+}
+.cinematic-landing-root .preport__avatar {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #fff;
+  background: linear-gradient(145deg, var(--paper-4), var(--paper-5));
+}
+.cinematic-landing-root .preport__intro-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.cinematic-landing-root .preport__intro-meta {
+  font-size: 0.7rem;
+  color: #8d84ad;
+}
+.cinematic-landing-root .preport__momentum {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 clamp(0.85rem, 1.5vw, 1.15rem);
+  padding: 0.6rem 0.75rem;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #f4efff 0%, #efe7fe 100%);
+  border: 1px solid #e5dbfb;
+}
+.cinematic-landing-root .preport__ring {
+  width: 54px;
+  height: 54px;
+  flex: none;
+}
+.cinematic-landing-root .preport__ring-label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--ink);
+}
+.cinematic-landing-root .preport__momentum-copy strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.cinematic-landing-root .preport__momentum-copy p {
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.cinematic-landing-root .preport__section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--ink);
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--paper-4);
+  margin: 0.1rem clamp(0.85rem, 1.5vw, 1.15rem) 0;
+}
+.cinematic-landing-root .preport__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0 clamp(0.85rem, 1.5vw, 1.15rem);
+}
+.cinematic-landing-root .preport__metric {
+  border: 1px solid #ece7fb;
+  border-radius: 12px;
+  padding: 0.55rem 0.6rem 0.6rem;
+  background: #fff;
+  will-change: transform, opacity;
+}
+.cinematic-landing-root .preport__metric-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+}
+.cinematic-landing-root .preport__metric-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8d84ad;
+  line-height: 1.2;
+}
+.cinematic-landing-root .preport__metric-icon {
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
+  border-radius: 7px;
+  background: #f1eafd;
+  color: #6c2bd9;
+}
+.cinematic-landing-root .preport__metric-icon svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+.cinematic-landing-root .preport__metric-value {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.cinematic-landing-root .preport__metric-meta {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.62rem;
+  color: var(--ink-soft);
+}
+.cinematic-landing-root .preport__metric-meta--good {
+  color: #14934a;
+}
+.cinematic-landing-root .preport__metric-meta--violet {
+  color: #7940c1;
+}
+.cinematic-landing-root .preport__metric-meta--gold {
+  color: #b47f00;
+}
+.cinematic-landing-root .preport__metric-meta--info {
+  color: #8d84ad;
+}
+.cinematic-landing-root .preport__consistency {
+  margin: 0.2rem clamp(0.85rem, 1.5vw, 1.15rem) 0;
+}
+.cinematic-landing-root .preport__consistency-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.cinematic-landing-root .preport__consistency-head .preport__section-title {
+  margin: 0;
+}
+.cinematic-landing-root .preport__pill {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #7a5600;
+  background: #fdf0cc;
+  border-radius: 999px;
+  padding: 0.16rem 0.55rem;
+  white-space: nowrap;
+}
+.cinematic-landing-root .preport__days {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+.cinematic-landing-root .preport__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  will-change: transform, opacity;
+}
+.cinematic-landing-root .preport__day-bubble {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  color: #b9b0d4;
+  background: #f1eef8;
+}
+.cinematic-landing-root .preport__day.is-active .preport__day-bubble {
+  color: #fff;
+  background: linear-gradient(145deg, #6c2bd9, #8b3df0);
+  box-shadow: 0 4px 10px rgba(108, 43, 217, 0.32);
+}
+.cinematic-landing-root .preport__day-label {
+  font-size: 0.6rem;
+  color: #8d84ad;
+}
+.cinematic-landing-root .preport__subjects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  margin: 0 clamp(0.85rem, 1.5vw, 1.15rem) clamp(0.85rem, 1.5vw, 1.15rem);
+}
+.cinematic-landing-root .preport__subject-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+.cinematic-landing-root .preport__subject-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.74rem;
+  color: var(--ink);
+}
+.cinematic-landing-root .preport__tag {
+  font-size: 0.56rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.1rem 0.42rem;
+}
+.cinematic-landing-root .preport__tag--improving {
+  color: #0e7a3c;
+  background: #ddf3e6;
+}
+.cinematic-landing-root .preport__tag--strong {
+  color: #5b21e6;
+  background: #ece3fd;
+}
+.cinematic-landing-root .preport__tag--revision {
+  color: #9a6a00;
+  background: #fdf0cc;
+}
+.cinematic-landing-root .preport__delta {
+  margin-left: auto;
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: #14934a;
+}
+.cinematic-landing-root .preport__delta.is-down {
+  color: #c2540a;
+}
+.cinematic-landing-root .preport__track {
+  display: block;
+  height: 7px;
+  border-radius: 999px;
+  background: #efeafd;
+  overflow: hidden;
+}
+.cinematic-landing-root .preport__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transform-origin: left center;
+  will-change: transform;
+}
+.cinematic-landing-root .preport__bar-fill--improving {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+}
+.cinematic-landing-root .preport__bar-fill--strong {
+  background: linear-gradient(90deg, #6c2bd9, #a355f5);
+}
+.cinematic-landing-root .preport__bar-fill--revision {
+  background: linear-gradient(90deg, #d99a00, #f5b301);
+}
+
+/* ---------- side column: insight, focus areas, next week ---------- */
+.cinematic-landing-root .parents__side {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.7rem, 1.6vw, 1.1rem);
+}
+.cinematic-landing-root .parents__side-card {
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid #e9e4fb;
+  box-shadow: 0 20px 46px rgba(41, 20, 100, 0.1);
+  padding: 0.95rem 1.05rem;
+}
+.cinematic-landing-root .parents__side-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8d84ad;
+}
+.cinematic-landing-root .pinsight {
+  background: linear-gradient(140deg, #150a3f 0%, #1e1058 100%);
+  border-color: rgba(180, 99, 234, 0.35);
+  border-left: 3px solid var(--paper-5);
+}
+.cinematic-landing-root .pinsight__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e6d4ff;
+  background: rgba(180, 99, 234, 0.2);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+.cinematic-landing-root .pinsight__finding {
+  display: block;
+  margin-top: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  line-height: 1.35;
+  color: #fff;
+}
+.cinematic-landing-root .pinsight__body {
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: rgba(238, 232, 255, 0.72);
+}
+.cinematic-landing-root .pfocus {
+  background: #fdf8ec;
+  border-color: #f2e6c4;
+}
+.cinematic-landing-root .pfocus__win,
+.cinematic-landing-root .pfocus__need {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: #7a5600;
+}
+.cinematic-landing-root .pfocus__need {
+  margin-top: 0.55rem;
+  color: #a1490b;
+}
+.cinematic-landing-root .pfocus__need strong {
+  color: var(--ink);
+}
+.cinematic-landing-root .pfocus__text {
+  margin-top: 0.22rem;
+  font-size: 0.71rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.cinematic-landing-root .pplan__list {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.cinematic-landing-root .pplan__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.cinematic-landing-root .pplan__num {
+  display: grid;
+  place-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  flex: none;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(145deg, #5b21e6, #8b3df0);
+}
+.cinematic-landing-root .pplan__cta {
+  display: block;
+  min-height: 44px;
+  margin-top: 0.8rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #2a1a04;
+  background: linear-gradient(145deg, #f5b301, #ffc93c);
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 8px 20px rgba(245, 179, 1, 0.32);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .pplan__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(245, 179, 1, 0.42);
+  }
+}
+.cinematic-landing-root .pplan__cta:active {
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   SCENE 5 — KSSM
+   ============================================================ */
+.cinematic-landing-root .kssm {
+  position: relative;
+  background: linear-gradient(180deg, var(--surface-light) 0%, #efeafd 100%);
+  padding: clamp(4.5rem, 11vh, 8rem) 0;
+}
+.cinematic-landing-root .kssm__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(1.4rem, 5vw, 3rem);
+}
+.cinematic-landing-root .kssm__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto clamp(2.2rem, 6vh, 3.6rem);
+}
+.cinematic-landing-root .kssm__eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 1rem;
+}
+.cinematic-landing-root .kssm__header h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.cinematic-landing-root .kssm__body {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.cinematic-landing-root .kssm__grid {
+  /* 3 × 2 desktop → 2 × 3 tablet → 1 × 6 mobile (see breakpoints) */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cinematic-landing-root .kssm__card {
+  /* equal visual height + aligned titles regardless of name length */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100%;
+  background: #fff;
+  border: 1px solid #e9e4fb;
+  border-radius: 18px;
+  padding: 1.4rem 1.4rem 1.3rem;
+  box-shadow: 0 14px 30px rgba(41, 20, 100, 0.08);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .kssm__card:hover {
+    transform: translateY(-4px);
+    border-color: #ddd4f7;
+    box-shadow: 0 22px 44px rgba(41, 20, 100, 0.14);
+  }
+  .cinematic-landing-root .kssm__card:hover .kssm__tile {
+    transform: translateY(-2px);
+  }
+  .cinematic-landing-root .kssm__card:hover .kssm__meta::after {
+    width: 18px;
+    opacity: 1;
+  }
+}
+.cinematic-landing-root .kssm__card:focus-within {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+}
+/* ---- layered papercraft icon tile ---- */
+.cinematic-landing-root .kssm__tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  color: #fff;
+  background: var(--subject, var(--paper-4));
+  box-shadow:
+    0 6px 12px -2px rgba(41, 20, 100, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  transition: transform 0.22s ease;
+}
+/* offset darker paper layer peeking out behind the tile */
+.cinematic-landing-root .kssm__tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 15px;
+  background: var(--subject-deep, #3c1c76);
+  transform: rotate(-5deg) translate(-3px, 3px);
+}
+.cinematic-landing-root .kssm__tile svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+/* subject accents — used only on the tile + a small hover accent */
+.cinematic-landing-root .kssm__card--science {
+  --subject: #1d5f9f;
+  --subject-deep: #14456f;
+}
+.cinematic-landing-root .kssm__card--maths {
+  --subject: #a97d14;
+  --subject-deep: #7d5c0d;
+}
+.cinematic-landing-root .kssm__card--sejarah {
+  --subject: #b4632a;
+  --subject-deep: #83461c;
+}
+.cinematic-landing-root .kssm__card--geography {
+  --subject: #12836a;
+  --subject-deep: #0b5c4a;
+}
+.cinematic-landing-root .kssm__card--bm {
+  --subject: #4b4fbf;
+  --subject-deep: #33368c;
+}
+.cinematic-landing-root .kssm__card--english {
+  --subject: #8e5acf;
+  --subject-deep: #653d96;
+}
+.cinematic-landing-root .kssm__name {
+  font-size: 1.1rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.cinematic-landing-root .kssm__meta {
+  position: relative;
+  margin-top: auto;
+  padding-top: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+/* small accent line that grows on hover (decorative only) */
+.cinematic-landing-root .kssm__meta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  opacity: 0;
+  background: var(--subject, var(--paper-4));
+  transition:
+    width 0.22s ease,
+    opacity 0.22s ease;
+}
+
+/* ---------- transition bands ---------- */
+.cinematic-landing-root .scene-transition {
+  height: clamp(160px, 30vh, 300px);
+}
+.cinematic-landing-root .scene-transition--light-to-dark {
+  background: linear-gradient(180deg, #efeafd 0%, #6d5ba8 34%, #241257 68%, #0c052a 100%);
+}
+.cinematic-landing-root .scene-transition--dark-to-light {
+  background: linear-gradient(180deg, #0c052a 0%, #6d5ba8 55%, #efeafd 100%);
+}
+
+/* ============================================================
+   SCENE 6 — FINAL CTA
+   ============================================================ */
+.cinematic-landing-root .cta {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(5rem, 14vh, 9rem) 1.4rem clamp(1.4rem, 4vh, 2.5rem);
+}
+.cinematic-landing-root .cta__planet {
+  position: absolute;
+  left: 50%;
+  bottom: -38vmin;
+  width: clamp(420px, 74vmin, 900px);
+  transform: translateX(-50%);
+  filter: drop-shadow(0 -20px 90px rgba(122, 64, 193, 0.5));
+  opacity: 0.95;
+  z-index: 1;
+}
+.cinematic-landing-root .cta__terrain {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.cinematic-landing-root .cta__terrain svg {
+  display: block;
+  width: 104%;
+  margin-left: -2%;
+}
+.cinematic-landing-root .cta__terrain svg:first-child {
+  height: 16vh;
+}
+.cinematic-landing-root .cta__terrain svg:last-child {
+  height: 9vh;
+  margin-top: -8vh;
+}
+.cinematic-landing-root .cta__content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 720px;
+}
+.cinematic-landing-root .cta__title {
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: #fff;
+  text-wrap: balance;
+}
+.cinematic-landing-root .cta__body {
+  margin-top: 1.2rem;
+  font-size: clamp(0.98rem, 1.4vw, 1.1rem);
+  line-height: 1.65;
+  color: rgba(238, 232, 255, 0.78);
+}
+.cinematic-landing-root .cta__buttons {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.1rem;
+}
+.cinematic-landing-root .cta__nova {
+  position: absolute;
+  right: clamp(4vw, 10vw, 14vw);
+  bottom: 24vh;
+  width: clamp(90px, 12vw, 150px);
+  z-index: 4;
+  filter: drop-shadow(0 14px 34px rgba(122, 64, 193, 0.5));
+}
+.cinematic-landing-root .cta__footer {
+  position: relative;
+  z-index: 6;
+  margin-top: auto;
+  width: min(1180px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: clamp(3rem, 9vh, 5rem);
+  flex-wrap: wrap;
+}
+.cinematic-landing-root .cta__footer .cine-academy-logo__word {
+  font-size: 1.05rem;
+}
+.cinematic-landing-root .cta__footer .cine-academy-logo__mark {
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: 1rem;
+}
+.cinematic-landing-root .cta__footer-note {
+  font-size: 0.78rem;
+  color: rgba(238, 232, 255, 0.5);
+}
+.cinematic-landing-root .cta__footer-links {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.85rem;
+  color: rgba(238, 232, 255, 0.72);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cinematic-landing-root .cta__footer-link:hover {
+    color: #fff;
+  }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  /* (Why Choose responsive lives in the dedicated ≤1279 / ≤767 blocks below) */
+
+  /* original Companion mobile behaviour — restored verbatim */
+  .cinematic-landing-root .companion__layout {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 0.6rem;
+    text-align: center;
+    padding-top: 8vh;
+    /* clears the bottom terrain band */
+    padding-bottom: clamp(66px, 10vh, 100px);
+  }
+  .cinematic-landing-root .companion__stage {
+    height: min(40vh, 340px);
+    /* visual above the copy when stacked */
+    order: -1;
+    align-content: start;
+  }
+  .cinematic-landing-root .companion__figure {
+    height: clamp(150px, 23vh, 250px);
+  }
+  .cinematic-landing-root .companion__book {
+    width: min(78%, 340px);
+    /* clears the conversation card pinned to the stage bottom */
+    bottom: 40%;
+  }
+  .cinematic-landing-root .companion__copy {
+    margin: 0 auto;
+  }
+  .cinematic-landing-root .companion__steps,
+  .cinematic-landing-root .companion__ranks {
+    justify-content: center;
+  }
+  /* the three floating pills have nowhere to float beside a stacked tutor —
+     the conversation card carries the same message and stays */
+  .cinematic-landing-root .companion__question {
+    display: none;
+  }
+  .cinematic-landing-root .companion__convo {
+    /* both offsets 0 so margin-inline: auto has free space to centre with */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+    text-align: left;
+    padding: 0.75rem 0.9rem;
+  }
+  .cinematic-landing-root .companion__convo-row {
+    font-size: 0.82rem;
+  }
+  /* Terrain stays bottom-anchored but shrinks, and the layout reserves real
+     padding for it, so it never sits under the trust line or the CTA. */
+  .cinematic-landing-root .companion__terrain {
+    height: clamp(55px, 9vh, 90px);
+  }
+
+  /* Learning World stacks: copy, then planet, then card, then tabs */
+  .cinematic-landing-root .lworld__planet {
+    width: clamp(230px, 34vw, 330px);
+  }
+  /* the long connector doesn't map to a stacked layout — simplify it right
+     down, and drop the middle-distance ring/ribbon clutter */
+  .cinematic-landing-root .lworld__orbit-path {
+    stroke-width: 2;
+    opacity: 0.16;
+  }
+  .cinematic-landing-root .lworld__ribbon {
+    display: none;
+  }
+  .cinematic-landing-root .lworld__stage-paper--purple {
+    transform: rotate(-1.2deg) translate3d(-9px, 8px, 0);
+  }
+  .cinematic-landing-root .lworld__stage-paper--cream {
+    transform: rotate(0.8deg) translate3d(7px, -6px, 0);
+  }
+  .cinematic-landing-root .lworld__content {
+    align-items: stretch;
+    padding: 9vh clamp(1rem, 4vw, 2rem) 3vh;
+  }
+  .cinematic-landing-root .lworld__content-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .cinematic-landing-root .lworld__stage {
+    width: min(92vw, 620px);
+    /* leaves the band between the copy and the card for the planet */
+    margin-top: auto;
+  }
+  .cinematic-landing-root .lworld__tabs {
+    flex-wrap: nowrap;
+    align-self: stretch;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.2rem;
+  }
+  .cinematic-landing-root .lworld__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cinematic-landing-root .hero__planet,
+  .cinematic-landing-root .lworld__hero-planet {
+    top: -10%;
+    right: -18%;
+    width: clamp(280px, 38vw, 440px);
+  }
+  .cinematic-landing-root .parents__header {
+    grid-template-columns: 1fr;
+  }
+  .cinematic-landing-root .parents__body {
+    justify-self: start;
+  }
+  .cinematic-landing-root .parents__grid {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  .cinematic-landing-root .parents__side {
+    flex-direction: row;
+  }
+  .cinematic-landing-root .parents__side-card {
+    flex: 1;
+  }
+  .cinematic-landing-root .kssm__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---- navigation switches to the burger menu at 900px ----
+   Five links + logo + two auth buttons start crowding well before 720px, so the
+   nav has its own breakpoint, independent of the layout rules below. */
+@media (max-width: 900px) {
+  /* backdrop-filter on the bar would become the containing block for the fixed
+     menu below, collapsing the overlay to the bar's own height. The open menu
+     supplies its own blur + opaque background, so the bar drops both. */
+  .cinematic-landing-root .cine-nav.is-menu-open,
+  .cinematic-landing-root .cine-nav.is-menu-open.is-solid {
+    backdrop-filter: none;
+    background: transparent;
+    box-shadow: none;
+  }
+  .cinematic-landing-root .cine-nav__links {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.6rem;
+    background: rgba(8, 3, 28, 0.96);
+    backdrop-filter: blur(18px);
+    opacity: 0;
+    pointer-events: none;
+    /* visibility (not just opacity) so the closed menu's links leave the
+       keyboard tab order entirely */
+    visibility: hidden;
+    transition:
+      opacity 0.35s ease,
+      visibility 0s linear 0.35s;
+    /* the menu must clear the bar and the notch, and scroll when a short
+       landscape viewport cannot fit every link */
+    padding: calc(env(safe-area-inset-top, 0px) + 76px) max(env(safe-area-inset-right, 0px), 20px)
+      calc(env(safe-area-inset-bottom, 0px) + 28px) max(env(safe-area-inset-left, 0px), 20px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  .cinematic-landing-root .cine-nav__links.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity 0.35s ease,
+      visibility 0s;
+  }
+  .cinematic-landing-root .cine-nav__link {
+    font-size: 1.3rem;
+    font-family: var(--font-display);
+    /* ~44px touch target */
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    flex: 0 0 auto;
+  }
+  /* the sliding underline reads as clutter in the stacked menu */
+  .cinematic-landing-root .cine-nav__link::after {
+    display: none;
+  }
+  .cinematic-landing-root .cine-nav__link.is-active {
+    color: var(--violet-bright);
+  }
+  .cinematic-landing-root .cine-nav__auth--desktop {
+    display: none;
+  }
+  .cinematic-landing-root .cine-nav__auth--mobile {
+    display: flex;
+    margin-top: 0.8rem;
+  }
+  .cinematic-landing-root .cine-nav__burger {
+    display: flex;
+    /* stays clickable above the full-screen menu layer */
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .cinematic-landing-root .hero__planet,
+  .cinematic-landing-root .lworld__hero-planet {
+    top: -8%;
+    right: -22%;
+    width: clamp(200px, 55vw, 320px);
+  }
+  .cinematic-landing-root .hero__content {
+    max-width: none;
+    padding-bottom: 10vh;
+  }
+  .cinematic-landing-root .hero__rocket {
+    width: clamp(78px, 24vw, 110px);
+    bottom: 9%;
+  }
+  .cinematic-landing-root .hero__title {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+  }
+  .cinematic-landing-root .lworld__planet {
+    width: clamp(180px, 44vw, 250px);
+  }
+  .cinematic-landing-root .lworld__content {
+    padding: 7vh 1rem 2.5vh;
+  }
+  .cinematic-landing-root .lworld__stage {
+    width: 92vw;
+  }
+  /* hide the long connecting path; a short decorative arc hints at it instead */
+  .cinematic-landing-root .lworld__orbit {
+    display: none;
+  }
+  .cinematic-landing-root .lworld__stage::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.1rem;
+    width: 46%;
+    height: 1.6rem;
+    transform: translateX(-50%);
+    border-top: 2px dashed rgba(196, 156, 245, 0.3);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    pointer-events: none;
+  }
+  .cinematic-landing-root .lworld__stage-star--1,
+  .cinematic-landing-root .lworld__stage-star--2 {
+    display: none;
+  }
+  .cinematic-landing-root .lworld__progress {
+    top: -1.3rem;
+    font-size: 0.62rem;
+  }
+  .cinematic-landing-root .lworld__desc {
+    font-size: 0.86rem;
+    margin-top: 0.6rem;
+  }
+  .cinematic-landing-root .lworld__tab {
+    font-size: 0.7rem;
+    padding: 0.34rem 0.72rem;
+  }
+
+  /* (Why Choose mobile lives in the dedicated ≤767 block below) */
+  .cinematic-landing-root .preport__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cinematic-landing-root .parents__side {
+    flex-direction: column;
+  }
+  .cinematic-landing-root .parents__inner {
+    overflow-y: auto;
+  }
+  .cinematic-landing-root .kssm__grid {
+    grid-template-columns: 1fr;
+  }
+  .cinematic-landing-root .cta__nova {
+    right: 6vw;
+    bottom: 18vh;
+    width: 84px;
+  }
+  .cinematic-landing-root .cta__footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   Short viewports — keep the pinned parent report inside the fold
+   ============================================================ */
+/* (Why Choose short-desktop handling is built into the base height clamp's
+   420px floor + the section's own scroll — no separate shrink needed.) */
+
+@media (max-height: 820px) {
+  .cinematic-landing-root .parents__inner {
+    padding-top: clamp(2.6rem, 6vh, 4rem);
+    gap: clamp(0.9rem, 2vh, 1.4rem);
+  }
+  .cinematic-landing-root .parents__title {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+  }
+  .cinematic-landing-root .parents__body {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .cinematic-landing-root .preport {
+    gap: 0.45rem;
+  }
+  .cinematic-landing-root .preport__momentum {
+    padding: 0.5rem 0.65rem;
+  }
+  .cinematic-landing-root .preport__momentum-copy p {
+    font-size: 0.68rem;
+  }
+  .cinematic-landing-root .preport__ring {
+    width: 46px;
+    height: 46px;
+  }
+  .cinematic-landing-root .preport__metric {
+    padding: 0.45rem 0.5rem 0.5rem;
+  }
+  .cinematic-landing-root .preport__metric-value {
+    font-size: 0.95rem;
+  }
+  .cinematic-landing-root .preport__day-bubble {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+  .cinematic-landing-root .parents__side-card {
+    padding: 0.8rem 0.9rem;
+  }
+  .cinematic-landing-root .pinsight__finding {
+    font-size: 0.8rem;
+  }
+  .cinematic-landing-root .pplan__cta {
+    margin-top: 0.6rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* ============================================================
+   Why Choose — trust strip / heading only.
+   The card grid itself is defined once, mobile-first, beside
+   .world__benefits above. No fixed card heights anywhere.
+   ============================================================ */
+@media (max-width: 1279px) {
+  .cinematic-landing-root .world__trust {
+    width: min(92vw, 640px);
+  }
+}
+@media (max-width: 767px) {
+  .cinematic-landing-root .world__trust {
+    width: 100%;
+    font-size: 14px;
+    gap: 5px 14px;
+  }
+  /* one card per row, never wider than the readable ceiling */
+  .cinematic-landing-root .world__benefits {
+    grid-template-columns: minmax(0, min(100%, 360px));
+    gap: 22px;
+  }
+}
+
+/* ============================================================
+   Papercraft decorations (public/assets/decor/*.webp)
+   Purely decorative: aria-hidden, alt="", never interactive, always behind
+   the section's own content, and deliberately low-contrast so they stay
+   secondary. One asset per section — the two cloud variants are never used
+   in the same section.
+   ============================================================ */
+.cinematic-landing-root .cine-decor {
+  position: absolute;
+  display: block;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  /* soft-edged art on a dark ground: keep it a whisper, not a subject */
+  will-change: auto;
+}
+
+/* ---- coded decorations: dotted trails ----
+   Inline SVG, no asset. Dots drift along the path very slowly (CSS keyframes,
+   no JS loop). Always behind content and never across text. */
+.cinematic-landing-root .trail {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
+}
+.cinematic-landing-root .trail__path {
+  fill: none;
+  opacity: 0.42;
+  /* 1px round cap on a 2px stroke = a dot */
+  animation: cine-trail-drift 26s linear infinite;
+}
+@keyframes cine-trail-drift {
+  to {
+    stroke-dashoffset: -260;
+  }
+}
+.cinematic-landing-root .trail--cikgu {
+  top: 9%;
+  left: 1.5%;
+  width: clamp(150px, 21vw, 320px);
+  height: clamp(85px, 12vw, 180px);
+  z-index: 1;
+}
+.cinematic-landing-root .trail--cta {
+  left: 3%;
+  bottom: 24vh;
+  width: clamp(150px, 20vw, 300px);
+  height: clamp(70px, 10vw, 150px);
+  z-index: 3;
+}
+.cinematic-landing-root .trail--cta .trail__path {
+  stroke: var(--gold);
+  opacity: 0.3;
+}
+
+/* ---- coded decorations: paper fragments ----
+   Small clip-path shards with a paper edge and a short directional shadow.
+   Three per section maximum, always in empty gutters. */
+.cinematic-landing-root .frag {
+  position: absolute;
+  pointer-events: none;
+  background: linear-gradient(150deg, var(--paper-4), var(--paper-3));
+  filter: drop-shadow(2px 3px 3px rgba(6, 2, 20, 0.5));
+  opacity: 0.5;
+  z-index: 1;
+}
+/* All three sit in the far-left gutter, outside the copy column (which starts
+   at ~4% and runs to ~42%), so they never cross the headline or controls. */
+/* small triangle */
+.cinematic-landing-root .frag--1 {
+  top: 30%;
+  left: 1.4%;
+  width: 13px;
+  height: 13px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  rotate: 14deg;
+}
+/* folded diamond */
+.cinematic-landing-root .frag--2 {
+  bottom: 24%;
+  left: 2.2%;
+  width: 11px;
+  height: 16px;
+  clip-path: polygon(50% 0%, 100% 42%, 50% 100%, 0% 42%);
+  rotate: -12deg;
+  opacity: 0.38;
+}
+/* short paper strip */
+.cinematic-landing-root .frag--3 {
+  top: 47%;
+  left: 0.8%;
+  width: 19px;
+  height: 7px;
+  clip-path: polygon(0% 0%, 100% 22%, 96% 100%, 4% 76%);
+  rotate: -6deg;
+  opacity: 0.34;
+  background: linear-gradient(150deg, var(--paper-5), var(--paper-4));
+}
+
+/* Why Choose — one dark cloud bank drifting behind the heading */
+.cinematic-landing-root .cine-decor--why-cloud {
+  top: clamp(40px, 7vh, 96px);
+  right: -3%;
+  width: clamp(190px, 26vw, 380px);
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Cikgu AI — a single paper plane, echoing the "ask a question" idea */
+.cinematic-landing-root .cine-decor--cikgu-plane {
+  top: 16%;
+  left: 4%;
+  width: clamp(64px, 8vw, 128px);
+  opacity: 0.55;
+  z-index: 1;
+  rotate: -8deg;
+  filter: drop-shadow(0 10px 22px rgba(6, 2, 20, 0.45));
+}
+
+/* Parents — one light cloud bank, matching the calmer environment */
+.cinematic-landing-root .cine-decor--parents-cloud {
+  top: clamp(24px, 6vh, 80px);
+  left: -4%;
+  width: clamp(180px, 24vw, 360px);
+  opacity: 0.22;
+  z-index: 1;
+}
+
+/* KSSM — a small gold sparkle cluster beside the heading. Sits clear of the
+   fixed nav bar, and a touch stronger because this section is light. */
+.cinematic-landing-root .cine-decor--kssm-sparkles {
+  top: clamp(76px, 11vh, 140px);
+  right: clamp(12px, 5vw, 80px);
+  width: clamp(52px, 7vw, 104px);
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Final CTA — the only rocket on the page besides the hero's own */
+.cinematic-landing-root .cine-decor--cta-rocket {
+  left: clamp(4vw, 9vw, 13vw);
+  bottom: 26vh;
+  width: clamp(74px, 10vw, 132px);
+  opacity: 0.85;
+  z-index: 4;
+  rotate: -6deg;
+  filter: drop-shadow(0 14px 30px rgba(122, 64, 193, 0.45));
+}
+
+/* tablet: fewer, quieter */
+@media (max-width: 1024px) {
+  .cinematic-landing-root .trail__path {
+    opacity: 0.3;
+    animation-duration: 34s;
+  }
+  .cinematic-landing-root .frag--3 {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  /* decoration is the first thing to give way when space is tight */
+  .cinematic-landing-root .cine-decor--why-cloud,
+  .cinematic-landing-root .cine-decor--parents-cloud {
+    opacity: 0.18;
+  }
+  .cinematic-landing-root .cine-decor--cikgu-plane,
+  .cinematic-landing-root .cine-decor--kssm-sparkles {
+    display: none;
+  }
+  .cinematic-landing-root .cine-decor--cta-rocket {
+    width: clamp(58px, 14vw, 92px);
+    bottom: 30vh;
+    opacity: 0.75;
+  }
+  /* the dotted trails guide assets that are hidden or repositioned here, and
+     the narrow gutters they live in no longer exist */
+  .cinematic-landing-root .trail,
+  .cinematic-landing-root .frag {
+    display: none;
+  }
+}
+
+/* reduced motion: decoration is present but completely still */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-landing-root .trail__path,
+  .cinematic-landing-root .atmo__star--live,
+  .cinematic-landing-root .lworld__star--live,
+  .cinematic-landing-root .lworld__mote--live {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Very short phones (e.g. 320x568). Declared AFTER the max-width:900px block
+   so it wins the cascade: the stacked scene + copy cannot fit at the normal
+   sizes, so every part steps down together and the terrain thins out.
+   ============================================================ */
+@media (max-width: 900px) and (max-height: 660px) {
+  .cinematic-landing-root .companion__layout {
+    padding-top: 3vh;
+    padding-bottom: 52px;
+    gap: 0.25rem;
+  }
+  .cinematic-landing-root .companion__stage {
+    height: min(30vh, 180px);
+  }
+  .cinematic-landing-root .companion__figure {
+    height: clamp(96px, 15vh, 150px);
+  }
+  .cinematic-landing-root .companion__book {
+    width: min(68%, 240px);
+    bottom: 34%;
+  }
+  .cinematic-landing-root .companion__terrain {
+    height: 44px;
+  }
+  .cinematic-landing-root .companion__convo {
+    padding: 0.45rem 0.6rem;
+  }
+  .cinematic-landing-root .companion__convo-row {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+  .cinematic-landing-root .companion__convo-row + .companion__convo-row {
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+  }
+  .cinematic-landing-root .companion__heading {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+  }
+  .cinematic-landing-root .companion__body {
+    font-size: 0.86rem;
+    margin-top: 0.6rem;
+  }
+  .cinematic-landing-root .companion__steps {
+    margin-top: 0.7rem;
+    gap: 0.35rem;
+  }
+  .cinematic-landing-root .companion__step {
+    font-size: 0.78rem;
+    padding: 0.32rem 0.7rem;
+  }
+}
+
+/* Landscape phones (wide but very short, e.g. 844x390): a single stacked
+   column cannot fit in the pinned viewport height, so the two-column
+   composition comes back — text left, scene right — just smaller. */
+@media (max-width: 900px) and (max-height: 660px) and (min-width: 640px) {
+  .cinematic-landing-root .companion__layout {
+    grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+    align-content: center;
+    align-items: center;
+    text-align: left;
+    gap: 18px;
+    padding-top: 2vh;
+    padding-bottom: 52px;
+  }
+  .cinematic-landing-root .companion__stage {
+    order: 0; /* back beside the copy, not above it */
+    height: min(62vh, 240px);
+    align-content: center;
+  }
+  .cinematic-landing-root .companion__copy {
+    margin: 0;
+  }
+  .cinematic-landing-root .companion__steps {
+    justify-content: flex-start;
+  }
+  .cinematic-landing-root .companion__figure {
+    height: clamp(110px, 40vh, 175px);
+  }
+  .cinematic-landing-root .companion__book {
+    width: min(88%, 250px);
+    bottom: 4%;
+  }
+  /* the floating pills have no room beside a 240px stage */
+  .cinematic-landing-root .companion__question {
+    display: none;
+  }
+  .cinematic-landing-root .companion__convo {
+    left: auto;
+    right: -2%;
+    bottom: -8%;
+    width: min(100%, 300px);
+    margin-inline: 0;
+    padding: 0.45rem 0.6rem;
+  }
+}
+
+/* ============================================================
+   Reduced motion — show everything, skip the cinema
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-landing-root .hero__dark,
+  .cinematic-landing-root .hero__haze,
+  .cinematic-landing-root .hero__portal,
+  .cinematic-landing-root .world__veil {
+    display: none;
+  }
+  .cinematic-landing-root .hero,
+  .cinematic-landing-root .world,
+  .cinematic-landing-root .companion,
+  .cinematic-landing-root .parents {
+    height: auto;
+    min-height: 100svh;
+  }
+  .cinematic-landing-root .lworld {
+    margin-top: 0;
+  }
+  .cinematic-landing-root .lworld__cinematic {
+    height: auto;
+    min-height: 100svh;
+  }
+  .cinematic-landing-root .lworld__content {
+    min-height: 100svh;
+  }
+  .cinematic-landing-root .lworld__hero-planet,
+  .cinematic-landing-root .lworld__haze {
+    display: none;
+  }
+  .cinematic-landing-root .lworld__planet-scene,
+  .cinematic-landing-root .lworld__stage-paper,
+  .cinematic-landing-root .lworld__stage-star,
+  .cinematic-landing-root .lworld__progress {
+    opacity: 1;
+    visibility: visible;
+  }
+  .cinematic-landing-root .lworld__planet-scroll {
+    transform: none;
+  }
+  .cinematic-landing-root .lworld__planet-idle {
+    animation: none;
+  }
+  .cinematic-landing-root .lworld__feature {
+    opacity: 0;
+    visibility: hidden;
+    transform: none;
+  }
+  .cinematic-landing-root .lworld__feature.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .cinematic-landing-root .lworld__tab,
+  .cinematic-landing-root .lworld__tab.is-active,
+  .cinematic-landing-root .lworld__tab:active {
+    transform: none;
+  }
+  .cinematic-landing-root .cine-button:active {
+    transform: none;
+  }
+  .cinematic-landing-root .companion__cta:active {
+    translate: none;
+    scale: 1;
+  }
+  .cinematic-landing-root .pplan__cta:active {
+    transform: none;
+  }
+  .cinematic-landing-root .atmo__star,
+  .cinematic-landing-root .hero__hint-line,
+  .cinematic-landing-root .hero__rocket-bob,
+  .cinematic-landing-root .hero__rocket-particle,
+  .cinematic-landing-root .companion__figure {
+    animation: none;
+  }
+  /* every Cikgu AI element rests at its final, visible state */
+  .cinematic-landing-root .companion__figure {
+    translate: none;
+  }
+  .cinematic-landing-root .companion__terrain,
+  .cinematic-landing-root .companion__convo,
+  .cinematic-landing-root .companion__question,
+  .cinematic-landing-root .companion__book {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   Natural-flow layouts for Why Choose, Cikgu AI and Parents.
+   Desktop (1024px+) retains the original pinned scene layouts.
+   ============================================================ */
+@media (max-width: 1023px) {
+  /* Why Choose already uses content-driven sizing; make that contract explicit
+     so the following Cikgu scene cannot be pulled into its card grid. */
+  .cinematic-landing-root .world--why {
+    height: auto;
+    min-height: 0;
+  }
+  .cinematic-landing-root .world--why .world__content,
+  .cinematic-landing-root .world--why .world__benefits,
+  .cinematic-landing-root .world--why .world__benefit {
+    position: relative;
+    height: auto;
+    min-height: 0;
+  }
+  .cinematic-landing-root .world--why .world__veil {
+    display: none;
+  }
+
+  /* Cikgu AI becomes one content-sized document-flow section. */
+  .cinematic-landing-root .companion--cikgu {
+    height: auto;
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__layout {
+    height: auto;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: normal;
+    align-items: start;
+    gap: clamp(1.4rem, 4vw, 2.2rem);
+    padding: clamp(6.5rem, 12svh, 8rem) clamp(1rem, 4vw, 2rem)
+      clamp(6rem, 12svh, 8rem);
+    text-align: center;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__copy {
+    display: contents;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__title,
+  .cinematic-landing-root .companion--cikgu .companion__body,
+  .cinematic-landing-root .companion--cikgu .companion__steps {
+    width: min(100%, 680px);
+    margin-inline: auto;
+    justify-self: center;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__title {
+    order: 1;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__body {
+    order: 2;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__stage {
+    order: 3;
+    position: relative;
+    width: min(100%, 680px);
+    height: auto;
+    min-height: 0;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    gap: 0.75rem;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__steps {
+    order: 4;
+    justify-content: center;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__trust {
+    order: 5;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__rim {
+    width: min(76vw, 500px);
+    opacity: 0.35;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__book,
+  .cinematic-landing-root .companion--cikgu .companion__figure {
+    grid-area: 1 / 1;
+    align-self: end;
+    justify-self: center;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__book {
+    position: relative;
+    inset: auto;
+    width: min(100%, 540px);
+    margin: 0;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__figure {
+    position: relative;
+    width: min(72%, 400px);
+    max-width: none;
+    height: auto;
+    margin-bottom: clamp(1.5rem, 6vw, 3.5rem);
+  }
+  .cinematic-landing-root .companion--cikgu .companion__question {
+    position: static;
+    display: inline-flex;
+    max-width: min(100%, 420px);
+    justify-self: center;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__convo {
+    position: static;
+    width: min(100%, 520px);
+    max-width: none;
+    margin: 0.25rem auto 0;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__particle {
+    display: none;
+  }
+
+  /* Parent report and its side cards all contribute to the section height. */
+  .cinematic-landing-root .parents {
+    height: auto;
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  .cinematic-landing-root .parents__panel {
+    position: relative;
+    inset: auto;
+    min-height: 0;
+    overflow: visible;
+    will-change: auto;
+  }
+  .cinematic-landing-root .parents__inner {
+    height: auto;
+    min-height: 0;
+    padding: clamp(6.5rem, 12svh, 8rem) clamp(1rem, 4vw, 2rem)
+      clamp(3.5rem, 8svh, 5.5rem);
+    overflow: visible;
+  }
+  .cinematic-landing-root .parents__header,
+  .cinematic-landing-root .parents__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cinematic-landing-root .parents__body {
+    justify-self: start;
+  }
+  .cinematic-landing-root .parents__grid {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    perspective: none;
+  }
+  .cinematic-landing-root .pdash {
+    width: 100%;
+    max-width: 780px;
+    min-width: 0;
+    margin-inline: auto;
+    overflow: visible;
+    transform-style: flat;
+    will-change: auto;
+  }
+  .cinematic-landing-root .preport__bar {
+    flex-wrap: wrap;
+  }
+  .cinematic-landing-root .parents__side {
+    width: 100%;
+    max-width: 780px;
+    min-width: 0;
+    margin-inline: auto;
+    flex-direction: column;
+  }
+  .cinematic-landing-root .parents__side-card {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+}

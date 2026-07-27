@@ -269,7 +269,11 @@ function SidebarBottom() {
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  if (pathname.startsWith("/academy/") || pathname.startsWith("/admin") || pathname === "/") {
+  if (
+    pathname.startsWith("/academy/") ||
+    pathname.startsWith("/admin") ||
+    pathname === "/"
+  ) {
     return <>{children}</>;
   }
 
