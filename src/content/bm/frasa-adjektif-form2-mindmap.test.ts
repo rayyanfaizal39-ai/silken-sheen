@@ -26,6 +26,7 @@ const form2Topics = [
   "Ayat Majmuk",
   "Imbuhan Lanjutan",
   "Kata Pemeri",
+  "Kesalahan Tatabahasa Lazim",
 ] as const;
 
 function tatabahasaTopics(form: "Form 1" | "Form 2" | "Form 3") {

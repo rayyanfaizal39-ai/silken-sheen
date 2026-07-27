@@ -36,6 +36,7 @@ const form2Topics = [
   "Ayat Majmuk",
   "Imbuhan Lanjutan",
   "Kata Pemeri",
+  "Kesalahan Tatabahasa Lazim",
 ] as const;
 
 const removedForm2Topics = [
@@ -69,13 +70,13 @@ function findBranch(label: string) {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Majmuk mind map", () => {
-  it("registers exactly nine active Form 2 cards while preserving Forms 1 and 3", () => {
+  it("registers exactly ten active Form 2 cards while preserving Forms 1 and 3", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics).toHaveLength(9);
+    expect(topics).toHaveLength(10);
     expect(topics.every((topic) => topic.available && topic.selectable)).toBe(true);
     removedForm2Topics.forEach((key) => {
       expect(getChapter("bm", key, undefined, "Form 2")).toBeUndefined();

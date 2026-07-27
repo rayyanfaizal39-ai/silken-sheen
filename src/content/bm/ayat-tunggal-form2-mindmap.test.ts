@@ -31,6 +31,7 @@ const form2Topics = [
   "Ayat Majmuk",
   "Imbuhan Lanjutan",
   "Kata Pemeri",
+  "Kesalahan Tatabahasa Lazim",
 ] as const;
 
 const removedForm2Topics = [
@@ -64,7 +65,7 @@ function branch(label: string) {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Tunggal mind map", () => {
-  it("registers exactly nine active Form 2 Tatabahasa cards without changing Forms 1 and 3", () => {
+  it("registers exactly ten active Form 2 Tatabahasa cards without changing Forms 1 and 3", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
 
@@ -107,11 +108,12 @@ describe("Bahasa Melayu Form 2 Ayat Tunggal mind map", () => {
     const ids = getChaptersForSubject("bm", undefined, "Form 2")
       .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
       .map((chapter) => chapter.id);
-    expect(ids.slice(-4)).toEqual([
+    expect(ids.slice(-5)).toEqual([
       "bm-f2-ayat-tunggal-mindmap",
       "bm-f2-ayat-majmuk-mindmap",
       "bm-f2-imbuhan-lanjutan-mindmap",
       "bm-f2-kata-pemeri-mindmap",
+      "bm-f2-kesalahan-tatabahasa-lazim-mindmap",
     ]);
   });
 

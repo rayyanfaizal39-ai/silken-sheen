@@ -249,6 +249,7 @@ import { bahasaMelayuForm2AyatTunggalMindMap } from "@/content/bm/ayat-tunggal-f
 import { bahasaMelayuForm2AyatMajmukMindMap } from "@/content/bm/ayat-majmuk-form2-mindmap";
 import { bahasaMelayuForm2ImbuhanLanjutanMindMap } from "@/content/bm/imbuhan-lanjutan-form2-mindmap";
 import { bahasaMelayuForm2KataPemeriMindMap } from "@/content/bm/kata-pemeri-form2-mindmap";
+import { bahasaMelayuForm2KesalahanTatabahasaLazimMindMap } from "@/content/bm/kesalahan-tatabahasa-lazim-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2704,6 +2705,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2KataPemeriMindMap,
       title: "Kata Pemeri",
+    },
+  },
+  {
+    id: "bm-f2-kesalahan-tatabahasa-lazim-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kesalahan Tatabahasa Lazim",
+    title: "Kesalahan Tatabahasa Lazim",
+    description:
+      "Kesalahan umum dalam ejaan, imbuhan, kata tugas, binaan ayat dan penggunaan bahasa yang perlu dikenal pasti serta dibetulkan.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2KesalahanTatabahasaLazimMindMap,
+      title: "Kesalahan Tatabahasa Lazim",
     },
   },
 

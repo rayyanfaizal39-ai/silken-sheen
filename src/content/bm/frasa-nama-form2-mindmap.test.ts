@@ -31,6 +31,7 @@ const form2Topics = [
   "Ayat Majmuk",
   "Imbuhan Lanjutan",
   "Kata Pemeri",
+  "Kesalahan Tatabahasa Lazim",
 ] as const;
 
 const removedForm2Topics = [
@@ -114,7 +115,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     });
   });
 
-  it("uses stable IDs for the current nine-card Form 2 syntax library", () => {
+  it("uses stable IDs for the current ten-card Form 2 syntax library", () => {
     expect(
       getChaptersForSubject("bm", undefined, "Form 2")
         .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
@@ -129,6 +130,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
       "bm-f2-ayat-majmuk-mindmap",
       "bm-f2-imbuhan-lanjutan-mindmap",
       "bm-f2-kata-pemeri-mindmap",
+      "bm-f2-kesalahan-tatabahasa-lazim-mindmap",
     ]);
   });
 
