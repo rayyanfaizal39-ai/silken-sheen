@@ -22,6 +22,7 @@ import { Route as NotesRouteImport } from './routes/notes'
 import { Route as MindmapsRouteImport } from './routes/mindmaps'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as LandingPreviewRouteImport } from './routes/landing-preview'
 import { Route as LandingRouteImport } from './routes/landing'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
@@ -104,6 +105,11 @@ const LoginRoute = LoginRouteImport.update({
 const LeaderboardRoute = LeaderboardRouteImport.update({
   id: '/leaderboard',
   path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingPreviewRoute = LandingPreviewRouteImport.update({
+  id: '/landing-preview',
+  path: '/landing-preview',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingRoute = LandingRouteImport.update({
@@ -207,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/flashcards': typeof FlashcardsRoute
   '/home': typeof HomeRoute
   '/landing': typeof LandingRoute
+  '/landing-preview': typeof LandingPreviewRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
@@ -239,6 +246,7 @@ export interface FileRoutesByTo {
   '/flashcards': typeof FlashcardsRoute
   '/home': typeof HomeRoute
   '/landing': typeof LandingRoute
+  '/landing-preview': typeof LandingPreviewRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
@@ -273,6 +281,7 @@ export interface FileRoutesById {
   '/flashcards': typeof FlashcardsRoute
   '/home': typeof HomeRoute
   '/landing': typeof LandingRoute
+  '/landing-preview': typeof LandingPreviewRoute
   '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
@@ -308,6 +317,7 @@ export interface FileRouteTypes {
     | '/flashcards'
     | '/home'
     | '/landing'
+    | '/landing-preview'
     | '/leaderboard'
     | '/login'
     | '/mindmaps'
@@ -340,6 +350,7 @@ export interface FileRouteTypes {
     | '/flashcards'
     | '/home'
     | '/landing'
+    | '/landing-preview'
     | '/leaderboard'
     | '/login'
     | '/mindmaps'
@@ -373,6 +384,7 @@ export interface FileRouteTypes {
     | '/flashcards'
     | '/home'
     | '/landing'
+    | '/landing-preview'
     | '/leaderboard'
     | '/login'
     | '/mindmaps'
@@ -407,6 +419,7 @@ export interface RootRouteChildren {
   FlashcardsRoute: typeof FlashcardsRoute
   HomeRoute: typeof HomeRoute
   LandingRoute: typeof LandingRoute
+  LandingPreviewRoute: typeof LandingPreviewRoute
   LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
   MindmapsRoute: typeof MindmapsRoute
@@ -517,6 +530,13 @@ declare module '@tanstack/react-router' {
       path: '/leaderboard'
       fullPath: '/leaderboard'
       preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing-preview': {
+      id: '/landing-preview'
+      path: '/landing-preview'
+      fullPath: '/landing-preview'
+      preLoaderRoute: typeof LandingPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/landing': {
@@ -677,6 +697,7 @@ const rootRouteChildren: RootRouteChildren = {
   FlashcardsRoute: FlashcardsRoute,
   HomeRoute: HomeRoute,
   LandingRoute: LandingRoute,
+  LandingPreviewRoute: LandingPreviewRoute,
   LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
   MindmapsRoute: MindmapsRoute,
