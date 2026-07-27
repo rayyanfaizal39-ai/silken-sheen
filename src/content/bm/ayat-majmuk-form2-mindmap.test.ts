@@ -13,7 +13,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuForm2AyatMajmukMindMap } from "./ayat-majmuk-form2-mindmap";
 
-const form1And3Topics = [
+const form1Topics = [
   "Kata Nama",
   "Kata Ganti Nama",
   "Kata Kerja",
@@ -70,9 +70,9 @@ function findBranch(label: string) {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Majmuk mind map", () => {
-  it("registers exactly ten active Form 2 cards while preserving Forms 1 and 3", () => {
-    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
-    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
+  it("registers ten active Form 2 cards alongside the dedicated Forms 1 and 3 registries", () => {
+    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
+    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);

@@ -3,7 +3,7 @@ import type { MindNode } from "@/components/MindMap";
 import { getChapter, getRegisteredSubjectChapters, hasResourceContent } from "@/content/registry";
 import { bahasaMelayuForm2AyatPasifMindMap } from "./ayat-pasif-form2-mindmap";
 
-const form1And3Topics = [
+const form1Topics = [
   "Kata Nama",
   "Kata Ganti Nama",
   "Kata Kerja",
@@ -54,9 +54,9 @@ function flattenContent(node: MindNode): string {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Pasif mind map", () => {
-  it("keeps all ten Form 2 Tatabahasa cards active without changing Forms 1 and 3", () => {
-    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
-    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
+  it("keeps all ten Form 2 cards active alongside the dedicated Forms 1 and 3 registries", () => {
+    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
+    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);

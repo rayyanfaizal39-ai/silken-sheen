@@ -8,7 +8,7 @@ import {
 import { bahasaMelayuKataNamaMindMap } from "./kata-nama-mindmap";
 import { bahasaMelayuKataKerjaMindMap } from "./kata-kerja-mindmap";
 
-const forms = ["Form 1", "Form 3"] as const;
+const forms = ["Form 1"] as const;
 
 function flattenLabels(node: MindNode): string[] {
   return [node.label, ...(node.children?.flatMap(flattenLabels) ?? [])];

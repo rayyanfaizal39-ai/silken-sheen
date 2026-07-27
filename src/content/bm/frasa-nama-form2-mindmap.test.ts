@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "./frasa-nama-form2-mindmap";
 
-const form1And3Topics = [
+const form1Topics = [
   "Kata Nama",
   "Kata Ganti Nama",
   "Kata Kerja",
@@ -62,9 +62,9 @@ function flattenContent(node: MindNode): string[] {
 
 describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
   it("replaces only the Form 2 Tatabahasa topic list", () => {
-    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
+    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
     expect(tatabahasaTopics("Form 2").map((topic) => topic.key)).toEqual(form2Topics);
-    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
+    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
   });
 
   it("keeps Frasa Nama active and unchanged in the Form 2 syntax library", () => {
@@ -97,7 +97,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
   });
 
   it("removes inherited Form 2 mind maps while preserving its Penanda Wacana flashcards", () => {
-    form1And3Topics.slice(0, 9).forEach((key) => {
+    form1Topics.slice(0, 9).forEach((key) => {
       expect(getChapter("bm", key, undefined, "Form 2")).toBeUndefined();
     });
 
@@ -107,11 +107,9 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     expect(penandaWacana).not.toHaveProperty("categoryLabel");
   });
 
-  it("keeps all ten original topics active for Form 1 and Form 3", () => {
-    (["Form 1", "Form 3"] as const).forEach((form) => {
-      form1And3Topics.forEach((key) => {
-        expect(getChapter("bm", key, undefined, form)?.mindMap).toBeDefined();
-      });
+  it("keeps all ten original topics active for Form 1", () => {
+    form1Topics.forEach((key) => {
+      expect(getChapter("bm", key, undefined, "Form 1")?.mindMap).toBeDefined();
     });
   });
 

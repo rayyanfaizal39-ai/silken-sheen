@@ -292,17 +292,18 @@ function MindMapsPage() {
   const previousTopic =
     activeChapterIndex > 0 ? subjectChapters[activeChapterIndex - 1] : undefined;
   const nextTopic = activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
-  const showForm2TopicNavigation =
+  const showBmTopicNavigation =
     subject === "bm" &&
-    form === "Form 2" &&
-    (activeChapterKey === "Frasa Adjektif" ||
-      activeChapterKey === "Ayat Aktif" ||
-      activeChapterKey === "Ayat Pasif" ||
-      activeChapterKey === "Ayat Tunggal" ||
-      activeChapterKey === "Ayat Majmuk" ||
-      activeChapterKey === "Imbuhan Lanjutan" ||
-      activeChapterKey === "Kata Pemeri" ||
-      activeChapterKey === "Kesalahan Tatabahasa Lazim");
+    ((form === "Form 2" &&
+      (activeChapterKey === "Frasa Adjektif" ||
+        activeChapterKey === "Ayat Aktif" ||
+        activeChapterKey === "Ayat Pasif" ||
+        activeChapterKey === "Ayat Tunggal" ||
+        activeChapterKey === "Ayat Majmuk" ||
+        activeChapterKey === "Imbuhan Lanjutan" ||
+        activeChapterKey === "Kata Pemeri" ||
+        activeChapterKey === "Kesalahan Tatabahasa Lazim")) ||
+      (form === "Form 3" && activeChapterKey === "Jenis Ayat"));
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
   const mindMapPalette = planetTheme
@@ -485,7 +486,7 @@ function MindMapsPage() {
                 palette={mindMapPalette}
                 mobileLayout={subject === "bm" ? "learning-path" : "canvas"}
               />
-              {showForm2TopicNavigation && (
+              {showBmTopicNavigation && (
                 <nav
                   aria-label="Navigasi topik Tatabahasa"
                   className="mb-8 grid gap-3 sm:grid-cols-2"

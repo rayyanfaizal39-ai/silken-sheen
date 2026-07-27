@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuKataGantiNamaMindMap } from "./kata-ganti-nama-mindmap";
 
-const forms = ["Form 1", "Form 3"] as const;
+const forms = ["Form 1"] as const;
 const description =
   "Perkataan yang digunakan untuk menggantikan kata nama supaya ayat tidak berulang.";
 
@@ -61,12 +61,12 @@ describe("Bahasa Melayu Kata Ganti Nama mind map", () => {
     });
   });
 
-  it("uses stable registry IDs for the two applicable forms", () => {
+  it("uses the stable Form 1 registry ID", () => {
     expect(
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.chapterKey === "Kata Ganti Nama")
         .map((chapter) => chapter.id),
-    ).toEqual(["bm-f1-kata-ganti-nama-mindmap", "bm-f3-kata-ganti-nama-mindmap"]);
+    ).toEqual(["bm-f1-kata-ganti-nama-mindmap"]);
   });
 
   it("contains the required central summary and eight title-only branches", () => {
