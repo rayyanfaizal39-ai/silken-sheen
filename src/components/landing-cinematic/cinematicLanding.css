@@ -736,7 +736,10 @@
 .cinematic-landing-root .hero__dark {
   position: absolute;
   inset: 0;
-  z-index: 12;
+  /* below .hero__content (z-index 6) so this decorative fade-from-black
+     curtain can never cover the essential headline/CTAs while it clears,
+     however long the entrance script takes to load and run */
+  z-index: 5;
   background: #030110;
   opacity: 1;
   pointer-events: none;

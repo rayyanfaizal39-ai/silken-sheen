@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuPenandaWacanaMindMap } from "./penanda-wacana-mindmap";
 
-const forms = ["Form 1", "Form 3"] as const;
+const forms = ["Form 1"] as const;
 const description =
   "Perkataan atau frasa yang menghubungkan idea supaya penulisan menjadi tersusun, lancar dan mudah difahami.";
 
@@ -70,7 +70,7 @@ describe("Bahasa Melayu Penanda Wacana mind map", () => {
     const chapters = getChaptersForSubject("bm").filter(
       (chapter) => chapter.chapterKey === "Penanda Wacana",
     );
-    const flashcardOrder = (form: "Form 1" | "Form 2" | "Form 3") => {
+    const flashcardOrder = (form: "Form 1" | "Form 2") => {
       const keys = getRegisteredSubjectChapters("bm", undefined, form).map(
         (chapter) => chapter.key,
       );
@@ -82,9 +82,8 @@ describe("Bahasa Melayu Penanda Wacana mind map", () => {
     expect(chapters.map((chapter) => chapter.id)).toEqual([
       "bm-f1-penanda-wacana",
       "bm-f2-penanda-wacana",
-      "bm-f3-penanda-wacana",
     ]);
-    expect(chapters).toHaveLength(3);
+    expect(chapters).toHaveLength(2);
     expect(chapters[0]).toHaveProperty("flashcards");
     expect(chapters[0].flashcards?.length).toBeGreaterThan(0);
     expect(chapters[1]).toHaveProperty("flashcards");

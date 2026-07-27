@@ -8,7 +8,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuPenjodohBilanganMindMap } from "./penjodoh-bilangan-mindmap";
 
-const forms = ["Form 1", "Form 3"] as const;
+const forms = ["Form 1"] as const;
 const description =
   "Perkataan yang digunakan bersama kata bilangan untuk membilang manusia, haiwan atau benda mengikut bentuk dan sifatnya.";
 
@@ -64,12 +64,12 @@ describe("Bahasa Melayu Penjodoh Bilangan mind map", () => {
     });
   });
 
-  it("uses stable registry IDs for the two applicable forms", () => {
+  it("uses the stable Form 1 registry ID", () => {
     expect(
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.chapterKey === "Penjodoh Bilangan")
         .map((chapter) => chapter.id),
-    ).toEqual(["bm-f1-penjodoh-bilangan-mindmap", "bm-f3-penjodoh-bilangan-mindmap"]);
+    ).toEqual(["bm-f1-penjodoh-bilangan-mindmap"]);
   });
 
   it("contains the required central summary and eleven title-only branches", () => {

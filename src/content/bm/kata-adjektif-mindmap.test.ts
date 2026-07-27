@@ -7,7 +7,7 @@ import {
 } from "@/content/registry";
 import { bahasaMelayuKataAdjektifMindMap } from "./kata-adjektif-mindmap";
 
-const forms = ["Form 1", "Form 3"] as const;
+const forms = ["Form 1"] as const;
 
 function flattenContent(node: MindNode): string[] {
   return [

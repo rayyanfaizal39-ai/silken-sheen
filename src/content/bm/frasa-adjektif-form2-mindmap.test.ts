@@ -3,7 +3,7 @@ import type { MindNode } from "@/components/MindMap";
 import { getChapter, getRegisteredSubjectChapters, hasResourceContent } from "@/content/registry";
 import { bahasaMelayuForm2FrasaAdjektifMindMap } from "./frasa-adjektif-form2-mindmap";
 
-const form1And3Topics = [
+const form1Topics = [
   "Kata Nama",
   "Kata Ganti Nama",
   "Kata Kerja",
@@ -23,6 +23,10 @@ const form2Topics = [
   "Ayat Aktif",
   "Ayat Pasif",
   "Ayat Tunggal",
+  "Ayat Majmuk",
+  "Imbuhan Lanjutan",
+  "Kata Pemeri",
+  "Kesalahan Tatabahasa Lazim",
 ] as const;
 
 function tatabahasaTopics(form: "Form 1" | "Form 2" | "Form 3") {
@@ -42,14 +46,13 @@ function flattenContent(node: MindNode): string {
 }
 
 describe("Bahasa Melayu Form 2 Frasa Adjektif mind map", () => {
-  it("activates exactly the third Form 2 Tatabahasa card without changing Forms 1 and 3", () => {
-    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
-    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
+  it("keeps the Form 2 registry alongside the dedicated Forms 1 and 3 registries", () => {
+    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
+    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics.map((topic) => topic.available)).toEqual([true, true, true, true, true, true]);
-    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, true, true, true, true]);
+    expect(topics.every((topic) => topic.available && topic.selectable)).toBe(true);
   });
 
   it("registers the exact Frasa Adjektif card and only its mind-map resource", () => {

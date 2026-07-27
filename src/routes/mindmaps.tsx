@@ -182,6 +182,27 @@ export const Route = createFileRoute("/mindmaps")({
           "pencerakinan ayat",
         ],
       },
+      "Ayat Majmuk": {
+        description:
+          "Peta minda Ayat Majmuk Tingkatan 2: gabungan, pancangan, campuran, kata hubung, penggabungan, pencerakinan, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Ayat Majmuk",
+          "ayat majmuk Tingkatan 2",
+          "ayat majmuk gabungan pancangan campuran",
+          "penggabungan dan pencerakinan ayat",
+        ],
+      },
+      "Imbuhan Lanjutan": {
+        description:
+          "Peta minda Imbuhan Lanjutan Tingkatan 2: imbuhan pinjaman, sisipan, perubahan meN- dan peN-, peluluhan huruf, ejaan kata terbitan dan tip UASA.",
+        keywords: [
+          "Imbuhan Lanjutan",
+          "imbuhan lanjutan Tingkatan 2",
+          "imbuhan pinjaman dan sisipan",
+          "peluluhan huruf meN peN",
+          "ejaan kata terbitan",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -200,6 +221,8 @@ export const Route = createFileRoute("/mindmaps")({
         | "Ayat Aktif"
         | "Ayat Pasif"
         | "Ayat Tunggal"
+        | "Ayat Majmuk"
+        | "Imbuhan Lanjutan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
@@ -269,13 +292,18 @@ function MindMapsPage() {
   const previousTopic =
     activeChapterIndex > 0 ? subjectChapters[activeChapterIndex - 1] : undefined;
   const nextTopic = activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
-  const showForm2TopicNavigation =
+  const showBmTopicNavigation =
     subject === "bm" &&
-    form === "Form 2" &&
-    (activeChapterKey === "Frasa Adjektif" ||
-      activeChapterKey === "Ayat Aktif" ||
-      activeChapterKey === "Ayat Pasif" ||
-      activeChapterKey === "Ayat Tunggal");
+    ((form === "Form 2" &&
+      (activeChapterKey === "Frasa Adjektif" ||
+        activeChapterKey === "Ayat Aktif" ||
+        activeChapterKey === "Ayat Pasif" ||
+        activeChapterKey === "Ayat Tunggal" ||
+        activeChapterKey === "Ayat Majmuk" ||
+        activeChapterKey === "Imbuhan Lanjutan" ||
+        activeChapterKey === "Kata Pemeri" ||
+        activeChapterKey === "Kesalahan Tatabahasa Lazim")) ||
+      (form === "Form 3" && activeChapterKey === "Jenis Ayat"));
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
   const mindMapPalette = planetTheme
@@ -458,7 +486,7 @@ function MindMapsPage() {
                 palette={mindMapPalette}
                 mobileLayout={subject === "bm" ? "learning-path" : "canvas"}
               />
-              {showForm2TopicNavigation && (
+              {showBmTopicNavigation && (
                 <nav
                   aria-label="Navigasi topik Tatabahasa"
                   className="mb-8 grid gap-3 sm:grid-cols-2"

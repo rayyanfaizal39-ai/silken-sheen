@@ -29,7 +29,15 @@ function GoogleIcon() {
 
 type Mode = "signin" | "signup" | "reset";
 
-export function SignInModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function SignInModal({
+  open,
+  onClose,
+  initialMode = "signin",
+}: {
+  open: boolean;
+  onClose: () => void;
+  initialMode?: Mode;
+}) {
   const {
     signInWithGoogle,
     signInWithEmail,
@@ -38,7 +46,7 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     isConfigured,
     user,
   } = useAuth();
-  const [mode, setMode] = useState<Mode>("signin");
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState<"email" | "google" | null>(null);
@@ -65,13 +73,14 @@ export function SignInModal({ open, onClose }: { open: boolean; onClose: () => v
     };
   }, [open, onClose]);
 
-  // Reset state when reopened
+  // Reset state when reopened, honoring whichever mode the trigger requested
   useEffect(() => {
     if (open) {
+      setMode(initialMode);
       setError(null);
       setNotice(null);
     }
-  }, [open]);
+  }, [open, initialMode]);
 
   if (!open || typeof document === "undefined") return null;
 

@@ -28,7 +28,7 @@ export function CinematicAuthCta({
   }
 
   return (
-    <button className={className} type="button" onClick={open}>
+    <button className={className} type="button" onClick={() => open("signup")}>
       {children}
     </button>
   );

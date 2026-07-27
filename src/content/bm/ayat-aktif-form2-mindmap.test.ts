@@ -3,7 +3,7 @@ import type { MindNode } from "@/components/MindMap";
 import { getChapter, getRegisteredSubjectChapters, hasResourceContent } from "@/content/registry";
 import { bahasaMelayuForm2AyatAktifMindMap } from "./ayat-aktif-form2-mindmap";
 
-const form1And3Topics = [
+const form1Topics = [
   "Kata Nama",
   "Kata Ganti Nama",
   "Kata Kerja",
@@ -23,13 +23,16 @@ const form2Topics = [
   "Ayat Aktif",
   "Ayat Pasif",
   "Ayat Tunggal",
+  "Ayat Majmuk",
+  "Imbuhan Lanjutan",
+  "Kata Pemeri",
+  "Kesalahan Tatabahasa Lazim",
 ] as const;
 
 const removedForm2Topics = [
   "Frasa Sendi Nama",
   "Klausa",
   "Pola Ayat Dasar",
-  "Ayat Majmuk",
   "Subjek dan Predikat",
   "Ragam Ayat",
 ] as const;
@@ -51,14 +54,13 @@ function flattenContent(node: MindNode): string {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Aktif mind map", () => {
-  it("activates exactly six Form 2 cards without changing Forms 1 and 3", () => {
-    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
-    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
+  it("keeps exactly ten Form 2 cards active alongside the dedicated Forms 1 and 3 registries", () => {
+    expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
+    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics.map((topic) => topic.available)).toEqual([true, true, true, true, true, true]);
-    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, true, true, true, true]);
+    expect(topics.every((topic) => topic.available && topic.selectable)).toBe(true);
     removedForm2Topics.forEach((key) => {
       expect(getChapter("bm", key, undefined, "Form 2")).toBeUndefined();
     });
