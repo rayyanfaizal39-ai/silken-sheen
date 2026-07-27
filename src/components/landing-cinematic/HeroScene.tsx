@@ -83,14 +83,9 @@ export default function HeroScene() {
             { yPercent: 100, duration: 1.5, stagger: 0.13, ease: "power2.out" },
             1.0,
           )
-          .from(q(".hero__eyebrow"), { y: 26, opacity: 0, duration: 0.9 }, 2.0)
-          .from(
-            q(".hero__title .cine-reveal-line__inner"),
-            { yPercent: 115, duration: 1.1, stagger: 0.14, ease: "power2.out" },
-            2.2,
-          )
-          .from(q(".hero__support"), { y: 28, opacity: 0, duration: 1 }, 2.8)
-          .from(q(".hero__ctas"), { y: 24, opacity: 0, duration: 0.9 }, 3.15)
+          // Essential content (eyebrow, title, support copy, CTAs) is intentionally
+          // never GSAP-hidden here: it must read and be clickable immediately from
+          // CSS alone, not depend on this script loading/running at all.
           .from(q(".hero__rocket"), { scale: 0.9, duration: 1.3 }, 2.7)
           .from(q(".hero__hint"), { opacity: 0, duration: 0.8 }, 3.5);
 
