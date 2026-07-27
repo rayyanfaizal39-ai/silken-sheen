@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { MindNode } from "@/components/MindMap";
 import { getChapter, getRegisteredSubjectChapters, hasResourceContent } from "@/content/registry";
+import { bahasaMelayuForm2FrasaAdjektifMindMap } from "./frasa-adjektif-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "./frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "./frasa-nama-form2-mindmap";
 
@@ -25,8 +26,8 @@ describe("Bahasa Melayu Form 2 Frasa Kerja mind map", () => {
     );
 
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics.map((topic) => topic.available)).toEqual([true, true, false]);
-    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, false]);
+    expect(topics.map((topic) => topic.available)).toEqual([true, true, true]);
+    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, true]);
   });
 
   it("registers the exact Frasa Kerja card and typed mind-map source", () => {
@@ -57,18 +58,22 @@ describe("Bahasa Melayu Form 2 Frasa Kerja mind map", () => {
     expect(getChapter("bm", "Frasa Kerja", undefined, "Form 3")).toBeUndefined();
   });
 
-  it("keeps Frasa Nama active and Frasa Adjektif inactive without placeholder content", () => {
+  it("keeps Frasa Nama and Frasa Adjektif active without adding unrelated resources", () => {
     const frasaNama = getChapter("bm", "Frasa Nama", undefined, "Form 2");
     const frasaAdjektif = getChapter("bm", "Frasa Adjektif", undefined, "Form 2");
 
     expect(frasaNama?.mindMap?.data).toBe(bahasaMelayuForm2FrasaNamaMindMap);
     expect(frasaAdjektif).toMatchObject({
-      id: "bm-f2-frasa-adjektif-topic",
+      id: "bm-f2-frasa-adjektif-mindmap",
       title: "Frasa Adjektif",
+      description:
+        "Binaan yang mempunyai kata adjektif sebagai inti dan lazimnya berfungsi sebagai predikat dalam ayat.",
       categoryLabel: "Tatabahasa",
+      mindMap: {
+        data: bahasaMelayuForm2FrasaAdjektifMindMap,
+        title: "Frasa Adjektif",
+      },
     });
-    expect(frasaAdjektif).not.toHaveProperty("description");
-    expect(frasaAdjektif).not.toHaveProperty("mindMap");
     expect(frasaAdjektif).not.toHaveProperty("notes");
     expect(frasaAdjektif).not.toHaveProperty("quiz");
     expect(frasaAdjektif).not.toHaveProperty("flashcards");

@@ -242,6 +242,7 @@ import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
+import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjektif-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2592,12 +2593,18 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuForm2FrasaKerjaMindMap, title: "Frasa Kerja" },
   },
   {
-    id: "bm-f2-frasa-adjektif-topic",
+    id: "bm-f2-frasa-adjektif-mindmap",
     subjectId: "bm",
     form: "Form 2",
     chapterKey: "Frasa Adjektif",
     title: "Frasa Adjektif",
+    description:
+      "Binaan yang mempunyai kata adjektif sebagai inti dan lazimnya berfungsi sebagai predikat dalam ayat.",
     categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2FrasaAdjektifMindMap,
+      title: "Frasa Adjektif",
+    },
   },
 
   // Bahasa Melayu Form 1 — Flashcards-only decks (no notes/quiz/mindmap registered here)

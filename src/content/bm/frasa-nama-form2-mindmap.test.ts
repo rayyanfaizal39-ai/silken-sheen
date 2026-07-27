@@ -114,7 +114,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     ).toEqual([
       "bm-f2-frasa-nama-mindmap",
       "bm-f2-frasa-kerja-mindmap",
-      "bm-f2-frasa-adjektif-topic",
+      "bm-f2-frasa-adjektif-mindmap",
     ]);
   });
 

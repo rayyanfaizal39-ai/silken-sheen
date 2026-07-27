@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
+import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjektif-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
@@ -286,6 +287,29 @@ describe("MindMap mobile learning path", () => {
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(12);
+    expect(markup).not.toContain("touch-none");
+  });
+
+  it("renders the collapsed Form 2 Frasa Adjektif path without horizontal overflow or child leakage", () => {
+    const markup = renderToStaticMarkup(
+      <MindMap data={bahasaMelayuForm2FrasaAdjektifMindMap} mobileLayout="learning-path" />,
+    );
+    const branchPositions = (bahasaMelayuForm2FrasaAdjektifMindMap.children ?? []).map((branch) =>
+      markup.indexOf(`data-node-id="${branch.id}"`),
+    );
+
+    expect(markup).toContain('aria-label="Peta minda FRASA ADJEKTIF"');
+    expect(markup).toContain("overflow-x-hidden");
+    expect(markup).toContain("env(safe-area-inset-bottom)");
+    expect(markup).toContain(
+      "Frasa adjektif ialah binaan yang terdiri daripada satu atau beberapa perkataan dengan kata adjektif sebagai intinya.",
+    );
+    expect(markup).not.toContain("Kata adjektif menjadi unsur utama frasa adjektif.");
+    expect(markup).not.toContain("sangat • amat • terlalu • agak");
+    expect(markup).not.toContain("Rakan-rakan dalam keadaan sugul.");
+    expect(branchPositions.every((position) => position >= 0)).toBe(true);
+    expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
+    expect(markup.match(/aria-expanded="false"/g)).toHaveLength(10);
     expect(markup).not.toContain("touch-none");
   });
 });

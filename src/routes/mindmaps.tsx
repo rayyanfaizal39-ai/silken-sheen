@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { ArrowLeft, GitFork, Network, Rocket } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, GitFork, Network, Rocket } from "lucide-react";
 import { subjects, type Form } from "@/data/subjects-meta";
 import {
   SubjectGrid,
@@ -141,6 +141,16 @@ export const Route = createFileRoute("/mindmaps")({
           "Peta minda Frasa Kerja Tingkatan 2: kata kerja inti, kata bantu, objek, pelengkap, pola FN + FK, perbandingan jenis frasa, kesalahan lazim dan tip UASA.",
         keywords: ["Frasa Kerja", "frasa kerja Tingkatan 2", "kata kerja inti", "pola FN FK"],
       },
+      "Frasa Adjektif": {
+        description:
+          "Peta minda Frasa Adjektif Tingkatan 2: kata adjektif inti, struktur frasa, kata penguat, pola FN + FA, perbandingan jenis frasa, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Frasa Adjektif",
+          "frasa adjektif Tingkatan 2",
+          "kata adjektif inti",
+          "pola FN FA",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -155,6 +165,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Penanda Wacana"
         | "Frasa Nama"
         | "Frasa Kerja"
+        | "Frasa Adjektif"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
@@ -391,14 +402,55 @@ function MindMapsPage() {
             currentContentType="mindmaps"
           />
           {activeChapter?.mindMap ? (
-            <MindMapBlock
-              id="mindMap"
-              data={activeChapter.mindMap.data}
-              title={activeChapter.mindMap.title}
-              storageKey={`mindmaps:${subject}:${form}:${activeChapterKey}`}
-              palette={mindMapPalette}
-              mobileLayout={subject === "bm" ? "learning-path" : "canvas"}
-            />
+            <>
+              <MindMapBlock
+                id="mindMap"
+                data={activeChapter.mindMap.data}
+                title={activeChapter.mindMap.title}
+                storageKey={`mindmaps:${subject}:${form}:${activeChapterKey}`}
+                palette={mindMapPalette}
+                mobileLayout={subject === "bm" ? "learning-path" : "canvas"}
+              />
+              {subject === "bm" && form === "Form 2" && activeChapterKey === "Frasa Adjektif" && (
+                <nav
+                  aria-label="Navigasi topik Tatabahasa"
+                  className="mb-8 grid gap-3 sm:grid-cols-2"
+                >
+                  <button
+                    type="button"
+                    onClick={() => chooseChapter("Frasa Kerja")}
+                    className="group inline-flex min-h-16 items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-left transition-all duration-200 hover:border-cyan-300/30 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
+                  >
+                    <ChevronLeft
+                      aria-hidden="true"
+                      className="h-5 w-5 shrink-0 text-cyan-200 transition-transform group-hover:-translate-x-0.5"
+                    />
+                    <span>
+                      <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
+                        Sebelumnya
+                      </span>
+                      <span className="mt-0.5 block text-sm font-bold text-white">Frasa Kerja</span>
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    disabled
+                    aria-disabled="true"
+                    className="inline-flex min-h-16 cursor-not-allowed items-center justify-end gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.025] px-4 py-3 text-right opacity-50"
+                  >
+                    <span>
+                      <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
+                        Seterusnya
+                      </span>
+                      <span className="mt-0.5 block text-sm font-bold text-white/60">
+                        Tiada topik seterusnya
+                      </span>
+                    </span>
+                    <ChevronRight aria-hidden="true" className="h-5 w-5 shrink-0 text-white/35" />
+                  </button>
+                </nav>
+              )}
+            </>
           ) : (
             <MindMapComingSoon onBack={backToChapters} />
           )}
