@@ -214,7 +214,7 @@ function SidebarBottom() {
       ) : isConfigured && !hideSignIn ? (
         <button
           type="button"
-          onClick={openSignIn}
+          onClick={() => openSignIn()}
           className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.09] bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white"
         >
           <LogIn className="h-3.5 w-3.5" />
@@ -482,7 +482,7 @@ function HeaderAuthAction() {
   return (
     <button
       type="button"
-      onClick={open}
+      onClick={() => open()}
       className="flex items-center gap-1.5 rounded-xl border border-[#8B5CF6]/40 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-3 py-1.5 text-xs font-bold text-white shadow-[0_0_18px_rgba(139,92,246,0.45)] transition-transform hover:scale-105"
     >
       <LogIn className="h-3.5 w-3.5" />
