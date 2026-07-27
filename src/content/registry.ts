@@ -246,6 +246,7 @@ import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjekt
 import { bahasaMelayuForm2AyatAktifMindMap } from "@/content/bm/ayat-aktif-form2-mindmap";
 import { bahasaMelayuForm2AyatPasifMindMap } from "@/content/bm/ayat-pasif-form2-mindmap";
 import { bahasaMelayuForm2AyatTunggalMindMap } from "@/content/bm/ayat-tunggal-form2-mindmap";
+import { bahasaMelayuForm2AyatMajmukMindMap } from "@/content/bm/ayat-majmuk-form2-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2660,6 +2661,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2AyatTunggalMindMap,
       title: "Ayat Tunggal",
+    },
+  },
+  {
+    id: "bm-f2-ayat-majmuk-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Majmuk",
+    title: "Ayat Majmuk",
+    description:
+      "Ayat yang dibina dengan menggabungkan dua atau lebih ayat tunggal atau klausa untuk menyampaikan maklumat yang lebih lengkap.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm2AyatMajmukMindMap,
+      title: "Ayat Majmuk",
     },
   },
 

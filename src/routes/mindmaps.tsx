@@ -182,6 +182,16 @@ export const Route = createFileRoute("/mindmaps")({
           "pencerakinan ayat",
         ],
       },
+      "Ayat Majmuk": {
+        description:
+          "Peta minda Ayat Majmuk Tingkatan 2: gabungan, pancangan, campuran, kata hubung, penggabungan, pencerakinan, kesalahan lazim dan tip UASA.",
+        keywords: [
+          "Ayat Majmuk",
+          "ayat majmuk Tingkatan 2",
+          "ayat majmuk gabungan pancangan campuran",
+          "penggabungan dan pencerakinan ayat",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -200,6 +210,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Ayat Aktif"
         | "Ayat Pasif"
         | "Ayat Tunggal"
+        | "Ayat Majmuk"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       return seoMeta({
@@ -275,7 +286,8 @@ function MindMapsPage() {
     (activeChapterKey === "Frasa Adjektif" ||
       activeChapterKey === "Ayat Aktif" ||
       activeChapterKey === "Ayat Pasif" ||
-      activeChapterKey === "Ayat Tunggal");
+      activeChapterKey === "Ayat Tunggal" ||
+      activeChapterKey === "Ayat Majmuk");
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
   const mindMapPalette = planetTheme

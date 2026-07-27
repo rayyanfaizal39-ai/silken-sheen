@@ -28,13 +28,13 @@ const form2Topics = [
   "Ayat Aktif",
   "Ayat Pasif",
   "Ayat Tunggal",
+  "Ayat Majmuk",
 ] as const;
 
 const removedForm2Topics = [
   "Frasa Sendi Nama",
   "Klausa",
   "Pola Ayat Dasar",
-  "Ayat Majmuk",
   "Subjek dan Predikat",
   "Ragam Ayat",
 ] as const;
@@ -62,14 +62,30 @@ function branch(label: string) {
 }
 
 describe("Bahasa Melayu Form 2 Ayat Tunggal mind map", () => {
-  it("registers exactly six active Form 2 Tatabahasa cards without changing Forms 1 and 3", () => {
+  it("registers exactly seven active Form 2 Tatabahasa cards without changing Forms 1 and 3", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1And3Topics);
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(form1And3Topics);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);
-    expect(topics.map((topic) => topic.available)).toEqual([true, true, true, true, true, true]);
-    expect(topics.map((topic) => topic.selectable)).toEqual([true, true, true, true, true, true]);
+    expect(topics.map((topic) => topic.available)).toEqual([
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+    ]);
+    expect(topics.map((topic) => topic.selectable)).toEqual([
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+    ]);
     removedForm2Topics.forEach((key) => {
       expect(getChapter("bm", key, undefined, "Form 2")).toBeUndefined();
     });
@@ -99,15 +115,15 @@ describe("Bahasa Melayu Form 2 Ayat Tunggal mind map", () => {
     expect(chapter).not.toHaveProperty("video");
   });
 
-  it("keeps Ayat Tunggal exclusive to Form 2 and last in its sequence", () => {
+  it("keeps Ayat Tunggal exclusive to Form 2 and directly before Ayat Majmuk", () => {
     expect(getChapter("bm", "Ayat Tunggal", undefined, "Form 1")).toBeUndefined();
     expect(getChapter("bm", "Ayat Tunggal", undefined, "Form 3")).toBeUndefined();
 
     const ids = getChaptersForSubject("bm", undefined, "Form 2")
       .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
       .map((chapter) => chapter.id);
-    expect(ids.at(-2)).toBe("bm-f2-ayat-pasif-mindmap");
-    expect(ids.at(-1)).toBe("bm-f2-ayat-tunggal-mindmap");
+    expect(ids.at(-2)).toBe("bm-f2-ayat-tunggal-mindmap");
+    expect(ids.at(-1)).toBe("bm-f2-ayat-majmuk-mindmap");
   });
 
   it("contains the exact identity and eleven title-only first-level branches", () => {

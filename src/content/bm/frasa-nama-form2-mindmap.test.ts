@@ -28,13 +28,13 @@ const form2Topics = [
   "Ayat Aktif",
   "Ayat Pasif",
   "Ayat Tunggal",
+  "Ayat Majmuk",
 ] as const;
 
 const removedForm2Topics = [
   "Frasa Sendi Nama",
   "Klausa",
   "Pola Ayat Dasar",
-  "Ayat Majmuk",
   "Subjek dan Predikat",
   "Ragam Ayat",
 ] as const;
@@ -112,7 +112,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     });
   });
 
-  it("uses stable IDs for the current six-card Form 2 syntax library", () => {
+  it("uses stable IDs for the current seven-card Form 2 syntax library", () => {
     expect(
       getChaptersForSubject("bm", undefined, "Form 2")
         .filter((chapter) => chapter.categoryLabel === "Tatabahasa")
@@ -124,6 +124,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
       "bm-f2-ayat-aktif-mindmap",
       "bm-f2-ayat-pasif-mindmap",
       "bm-f2-ayat-tunggal-mindmap",
+      "bm-f2-ayat-majmuk-mindmap",
     ]);
   });
 
