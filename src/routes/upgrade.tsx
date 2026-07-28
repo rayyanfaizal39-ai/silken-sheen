@@ -6,6 +6,7 @@ import { useAuth } from "@/context/auth-context";
 import { createCheckout, simulateMockPayment, type UpgradePlan } from "./-upgrade.server";
 import { seoMeta } from "@/lib/seo";
 import { MySubscription } from "@/components/billing/MySubscription";
+import { StudentRating } from "@/components/ratings/StudentRating";
 
 export const Route = createFileRoute("/upgrade")({
   head: () =>
@@ -31,41 +32,36 @@ type PlanKey = "basic" | "pro" | "premium";
 type Feature = { label: string; included: boolean };
 
 const BASIC_FEATURES: Feature[] = [
-  { label: "All Notes", included: true },
-  { label: "All Flashcards", included: true },
-  { label: "All Mind Maps", included: true },
-  { label: "All Videos", included: true },
-  { label: "Practice Quizzes", included: true },
-  { label: "Save Progress", included: false },
-  { label: "Cikgu AI", included: false },
-  { label: "AI Tracker", included: false },
-  { label: "Parent Dashboard", included: false },
-  { label: "Weekly Parent Reports", included: false },
+  { label: "Chapter 1 Notes", included: true },
+  { label: "Chapter 1 Video Lessons", included: true },
+  { label: "Chapter 1 Mind Maps", included: true },
+  { label: "Chapter 1 Flashcards", included: true },
+  { label: "Chapter 1 Quizzes", included: true },
+  { label: "Available for Form 1, Form 2 and Form 3", included: true },
 ];
 
 const PRO_FEATURES: Feature[] = [
-  { label: "Save Learning Progress", included: true },
-  { label: "Sync Progress Across Devices", included: true },
-  { label: "Quiz History", included: true },
-  { label: "Learning Streak", included: true },
-  { label: "XP & Companion Progress", included: true },
-  { label: "Unlimited Cikgu AI", included: true },
-  { label: "AI Tracker", included: true },
-  { label: "Personalized Study Recommendations", included: true },
-  { label: "Weak Topic Detection", included: true },
-  { label: "Learning Analytics", included: true },
+  { label: "All chapters for Form 1, Form 2 and Form 3", included: true },
+  { label: "Full notes", included: true },
+  { label: "All video lessons", included: true },
+  { label: "All mind maps", included: true },
+  { label: "All flashcards", included: true },
+  { label: "All quizzes", included: true },
+  { label: "Cikgu AI", included: true },
+  { label: "Progress tracking", included: true },
+  { label: "XP, streaks and leaderboard", included: true },
+  { label: "Companion growth", included: true },
+  { label: "Personalised learning recommendations", included: true },
 ];
 
 const PREMIUM_FEATURES: Feature[] = [
+  { label: "Everything in Pro", included: true },
   { label: "Parent Dashboard", included: true },
-  { label: "Weekly AI Progress Email", included: true },
-  { label: "Learning Progress Monitoring", included: true },
-  { label: "Subject Performance Analysis", included: true },
-  { label: "Weak Topic Alerts", included: true },
-  { label: "AI Learning Recommendations", included: true },
-  { label: "Achievement Tracking", included: true },
-  { label: "Learning Streak Monitoring", included: true },
-  { label: "Parent Insights", included: true },
+  { label: "Weekly parent reports", included: true },
+  { label: "Detailed progress analytics", included: true },
+  { label: "Strong and weak topic analysis", included: true },
+  { label: "Study-time tracking", included: true },
+  { label: "Parent recommendations and alerts", included: true },
 ];
 
 const WEEKLY_REPORT_ITEMS = [
@@ -77,23 +73,6 @@ const WEEKLY_REPORT_ITEMS = [
   { icon: "📝", label: "Quiz Performance" },
   { icon: "🤖", label: "AI Recommendations" },
   { icon: "❤️", label: "Encouragement & Next Steps" },
-];
-
-const COMPARISON: Array<{ feature: string; basic: boolean; pro: boolean; premium: boolean }> = [
-  { feature: "Notes", basic: true, pro: true, premium: true },
-  { feature: "Flashcards", basic: true, pro: true, premium: true },
-  { feature: "Mind Maps", basic: true, pro: true, premium: true },
-  { feature: "NotebookLM Videos", basic: true, pro: true, premium: true },
-  { feature: "Practice Quizzes", basic: true, pro: true, premium: true },
-  { feature: "Save Progress", basic: false, pro: true, premium: true },
-  { feature: "Quiz History", basic: false, pro: true, premium: true },
-  { feature: "XP & Companion", basic: true, pro: true, premium: true },
-  { feature: "Cikgu AI", basic: false, pro: true, premium: true },
-  { feature: "AI Tracker", basic: false, pro: true, premium: true },
-  { feature: "Learning Analytics", basic: false, pro: true, premium: true },
-  { feature: "Parent Dashboard", basic: false, pro: false, premium: true },
-  { feature: "Weekly Parent Email", basic: false, pro: false, premium: true },
-  { feature: "AI Parent Insights", basic: false, pro: false, premium: true },
 ];
 
 // ─── Small UI bits ─────────────────────────────────────────────────────
@@ -206,11 +185,11 @@ function UpgradePage() {
           Choose the plan that fits your journey
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-sm text-[#94A3B8] sm:text-base">
-          Every student gets full learning content free. Upgrade for AI, analytics and parent
-          insights.
+          Complete Chapter 1 access, free.
         </p>
-
       </div>
+
+      <StudentRating />
 
       {/* ── Plan cards ─────────────────────────────────────────────────── */}
       <div id="pricing-plans" className="mx-auto grid max-w-6xl scroll-mt-24 gap-6 lg:grid-cols-3">
@@ -220,16 +199,21 @@ function UpgradePage() {
             <span className="text-2xl">🆓</span>
             <p className="font-display text-lg font-bold text-white">Basic</p>
           </div>
-          <p className="text-xs text-[#94A3B8]">Perfect for students to start learning</p>
+          <p className="text-xs text-[#94A3B8]">
+            Explore the complete first chapter of every subject for free.
+          </p>
           <div className="mt-5 mb-6">
             <p className="text-4xl font-bold text-white">FREE</p>
             <p className="mt-1 text-xs text-[#94A3B8]">Forever</p>
           </div>
-          <ul className="mb-8 flex-1 space-y-2.5">
+          <ul className="mb-4 flex-1 space-y-2.5">
             {BASIC_FEATURES.map((f) => (
               <FeatureRow key={f.label} {...f} />
             ))}
           </ul>
+          <p className="mb-6 text-xs font-semibold text-white/60">
+            Chapter 2 and later chapters require Pro.
+          </p>
           <CtaButton
             plan={null}
             label="Start Learning Free"
@@ -248,16 +232,13 @@ function UpgradePage() {
             <Rocket className="h-5 w-5 text-[#A78BFA]" />
             <p className="font-display text-lg font-bold text-white">Pro</p>
           </div>
-          <p className="text-xs text-[#94A3B8]">Best for students</p>
+          <p className="text-xs text-[#94A3B8]">Unlock the complete AcadeMY learning library.</p>
           <div className="mt-5 mb-6">
             <p className="mt-1 text-4xl font-bold text-white">
               RM29
               <span className="text-sm font-normal text-[#94A3B8]">/month</span>
             </p>
           </div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/50">
-            Everything in Basic, plus:
-          </p>
           <ul className="mb-8 flex-1 space-y-2.5">
             {PRO_FEATURES.map((f) => (
               <FeatureRow key={f.label} {...f} />
@@ -265,7 +246,7 @@ function UpgradePage() {
           </ul>
           <CtaButton
             plan="pro_monthly"
-            label="Upgrade to Pro"
+            label="Unlock the Complete Library"
             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
           />
         </div>
@@ -281,31 +262,19 @@ function UpgradePage() {
             <span className="text-2xl">👨‍👩‍👧</span>
             <p className="font-display text-lg font-bold text-white">Premium</p>
           </div>
-          <p className="text-xs text-[#94A3B8]">Best for parents</p>
+          <p className="text-xs text-[#94A3B8]">
+            Complete learning support for students and parents.
+          </p>
           <div className="mt-5 mb-6">
             <p className="mt-1 text-4xl font-bold text-white">
               RM59
               <span className="text-sm font-normal text-[#94A3B8]">/month</span>
             </p>
           </div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/50">
-            Everything in Pro, plus:
-          </p>
           <ul className="mb-6 flex-1 space-y-2.5">
             {PREMIUM_FEATURES.map((f) => (
               <FeatureRow key={f.label} {...f} />
             ))}
-            <li className="flex items-start gap-3 text-sm">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F59E0B]/20 text-[#F59E0B]">
-                🚀
-              </span>
-              <span className="text-white/85">
-                Early Risk Detection
-                <span className="ml-1 rounded-full bg-white/[0.08] px-1.5 py-0.5 text-[10px] text-white/60">
-                  Coming Soon
-                </span>
-              </span>
-            </li>
           </ul>
           <CtaButton
             plan="premium_monthly"
@@ -341,59 +310,6 @@ function UpgradePage() {
         </div>
       </div>
 
-      {/* ── Comparison Table ─────────────────────────────────────────────── */}
-      <div className="mx-auto mt-14 max-w-4xl">
-        <div className="mb-6 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#A78BFA]">
-            Full Comparison
-          </p>
-          <h2 className="mt-2 font-display text-2xl font-bold text-white sm:text-3xl">
-            What's in each plan
-          </h2>
-        </div>
-        <div className="overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 backdrop-blur-2xl">
-          <div className="grid grid-cols-4 border-b border-white/[0.08] bg-white/[0.03]">
-            <div className="p-4 text-xs font-bold uppercase tracking-wider text-white/60">
-              Feature
-            </div>
-            <div className="p-4 text-center text-xs font-bold text-white/70">Basic</div>
-            <div className="p-4 text-center text-xs font-bold text-[#A78BFA]">⭐ Pro</div>
-            <div className="p-4 text-center text-xs font-bold text-[#F59E0B]">👨‍👩‍👧 Premium</div>
-          </div>
-          {COMPARISON.map((row, i) => (
-            <div
-              key={row.feature}
-              className={`grid grid-cols-4 items-center ${
-                i !== COMPARISON.length - 1 ? "border-b border-white/[0.05]" : ""
-              }`}
-            >
-              <div className="p-4 text-sm text-white/85">{row.feature}</div>
-              <div className="flex justify-center p-4">
-                {row.basic ? (
-                  <Check className="h-4 w-4 text-emerald-400" />
-                ) : (
-                  <X className="h-4 w-4 text-white/25" />
-                )}
-              </div>
-              <div className="flex justify-center p-4">
-                {row.pro ? (
-                  <Check className="h-4 w-4 text-emerald-400" />
-                ) : (
-                  <X className="h-4 w-4 text-white/25" />
-                )}
-              </div>
-              <div className="flex justify-center p-4">
-                {row.premium ? (
-                  <Check className="h-4 w-4 text-emerald-400" />
-                ) : (
-                  <X className="h-4 w-4 text-white/25" />
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── Why this structure works ────────────────────────────────────── */}
       <div className="mx-auto mt-14 max-w-4xl">
         <div className="grid gap-4 sm:grid-cols-3">
@@ -401,7 +317,7 @@ function UpgradePage() {
             {
               icon: "🆓",
               title: "Basic",
-              text: "Every student gets full learning content free — so parents can see the value before paying.",
+              text: "Complete Chapter 1 access, free.",
             },
             {
               icon: "⭐",

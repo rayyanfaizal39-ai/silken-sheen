@@ -25,7 +25,7 @@ interface AuthContextValue {
   session: Session | null;
   loading: boolean;
   isConfigured: boolean;
-  signInWithGoogle: (returnTo?: "/admin/login") => Promise<void>;
+  signInWithGoogle: (returnTo?: "/admin/login" | "/upgrade") => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
   requestPasswordReset: (email: string) => Promise<void>;
@@ -106,7 +106,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signInWithGoogle = useCallback(async (returnTo?: "/admin/login") => {
+  const signInWithGoogle = useCallback(async (returnTo?: "/admin/login" | "/upgrade") => {
     if (!isSupabaseConfigured) {
       throw new Error("Supabase is not configured");
     }
