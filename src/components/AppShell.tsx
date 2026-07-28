@@ -2,6 +2,7 @@
 import {
   BookOpen,
   Brain,
+  CreditCard,
   Flame,
   Gauge,
   Home,
@@ -202,6 +203,13 @@ function SidebarBottom() {
               Admin Portal
             </Link>
           )}
+          <Link
+            to="/account/billing"
+            className="flex min-h-11 w-full items-center justify-center gap-1.5 rounded-xl border border-[#F2622E]/20 bg-[#F2622E]/10 px-3 py-2 text-[11px] font-semibold text-[#FFB394] transition-colors hover:bg-[#F2622E]/15 hover:text-white"
+          >
+            <CreditCard className="h-3.5 w-3.5" />
+            Account &amp; Billing
+          </Link>
           <button
             type="button"
             onClick={() => void signOut()}

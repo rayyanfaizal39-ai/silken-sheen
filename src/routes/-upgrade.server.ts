@@ -1,9 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import {
-  areMockPaymentsEnabled,
-  CHECKOUT_PLANS,
-} from "../lib/billing-config";
+import { areMockPaymentsEnabled, CHECKOUT_PLANS } from "../lib/billing-config";
 import {
   createPendingPayment,
   getSupabaseAdminClient,
@@ -20,13 +17,21 @@ import { getSupabaseServerClient } from "../lib/supabase.server";
 export type UpgradePlan = CheckoutPlan;
 
 const checkoutSchema = z.object({
-  plan: z.enum(["pro_monthly", "premium_monthly"]),
+  plan: z.enum(["pro_monthly", "premium_monthly", "pro_annual", "premium_annual"]),
   idempotencyKey: z.string().uuid(),
 });
 
 const mockSchema = z.object({
   paymentId: z.string().uuid(),
   outcome: z.enum(["successful", "failed", "cancelled"]),
+});
+
+const invoiceSchema = z.object({
+  invoiceNumber: z.string().regex(/^ACAD-\d{8}-\d{6}$/),
+});
+
+const resendInvoiceSchema = invoiceSchema.extend({
+  requestId: z.string().uuid(),
 });
 
 async function requireUser() {
@@ -123,7 +128,7 @@ export const getSubscriptionOverview = createServerFn({ method: "GET" }).handler
       supabase
         .from("payment_transactions")
         .select(
-          "id, plan, billing_interval, amount, currency, payment_status, provider_transaction_id, paid_at, created_at",
+          "id, plan, billing_interval, amount, currency, payment_status, payment_method, provider_transaction_id, paid_at, created_at",
         )
         .eq("user_id", user.id)
         .order("created_at", { ascending: false })
@@ -169,9 +174,7 @@ export const cancelSubscription = createServerFn({ method: "POST" }).handler(asy
 });
 
 export const getInvoiceDownloadUrl = createServerFn({ method: "POST" })
-  .validator((input: unknown) =>
-    z.object({ invoiceNumber: z.string().regex(/^ACAD-\d{8}-\d{6}$/) }).parse(input),
-  )
+  .validator((input: unknown) => invoiceSchema.parse(input))
   .handler(async ({ data }) => {
     const { supabase } = await requireUser();
     const invoice = await supabase
@@ -191,10 +194,32 @@ export const getInvoiceDownloadUrl = createServerFn({ method: "POST" })
     return { url: signed.data.signedUrl };
   });
 
+export const resendInvoiceEmail = createServerFn({ method: "POST" })
+  .validator((input: unknown) => resendInvoiceSchema.parse(input))
+  .handler(async ({ data }) => {
+    const { supabase, user } = await requireUser();
+    const invoice = await supabase
+      .from("invoices")
+      .select("id, customer_email")
+      .eq("invoice_number", data.invoiceNumber)
+      .eq("user_id", user.id)
+      .single();
+    if (invoice.error || !invoice.data) throw new Error("Invoice is not available");
+
+    const admin = getSupabaseAdminClient();
+    const delivery = await admin.functions.invoke("send-invoice-email", {
+      body: {
+        invoiceId: invoice.data.id,
+        resend: true,
+        requestId: data.requestId,
+      },
+    });
+    if (delivery.error) throw new Error(`Invoice email delivery failed: ${delivery.error.message}`);
+    return { sent: true, email: invoice.data.customer_email as string };
+  });
+
 export const getPaymentReturnStatus = createServerFn({ method: "POST" })
-  .validator((input: unknown) =>
-    z.object({ paymentId: z.string().uuid() }).parse(input),
-  )
+  .validator((input: unknown) => z.object({ paymentId: z.string().uuid() }).parse(input))
   .handler(async ({ data }) => {
     const { supabase, user } = await requireUser();
     const payment = await supabase

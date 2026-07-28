@@ -59,7 +59,7 @@ Deno.serve(async (request) => {
       idempotencyKey?: unknown;
     };
     if (!isCheckoutPlan(body.plan)) {
-      return response({ error: "A supported monthly plan is required" }, 400);
+      return response({ error: "A supported billing plan is required" }, 400);
     }
     if (typeof body.idempotencyKey !== "string" || !uuidPattern.test(body.idempotencyKey)) {
       return response({ error: "A valid idempotency key is required" }, 400);

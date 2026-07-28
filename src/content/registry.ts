@@ -240,6 +240,7 @@ import { bahasaMelayuKataBilanganMindMap } from "@/content/bm/kata-bilangan-mind
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
+import { bahasaMelayuSimpulanBahasaMindMap } from "@/content/bm/simpulan-bahasa-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjektif-form2-mindmap";
@@ -2537,6 +2538,16 @@ export const chapters: ChapterContent[] = [
       "Unsur yang ditambahkan pada kata dasar untuk membentuk kata terbitan yang membawa makna tertentu.",
     categoryLabel: "Tatabahasa",
     mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
+  },
+  {
+    id: "bm-f1-simpulan-bahasa-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Simpulan Bahasa",
+    title: "Simpulan Bahasa",
+    description: "Ungkapan ringkas yang membawa maksud kiasan dan digunakan mengikut konteks.",
+    categoryLabel: "Peribahasa",
+    mindMap: { data: bahasaMelayuSimpulanBahasaMindMap, title: "Simpulan Bahasa" },
   },
   {
     id: "bm-f2-frasa-nama-mindmap",

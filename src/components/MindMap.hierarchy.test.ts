@@ -15,6 +15,7 @@ import { bahasaMelayuKataNamaMindMap } from "@/content/bm/kata-nama-mindmap";
 import { bahasaMelayuKataSendiNamaMindMap } from "@/content/bm/kata-sendi-nama-mindmap";
 import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
 import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilangan-mindmap";
+import { bahasaMelayuSimpulanBahasaMindMap } from "@/content/bm/simpulan-bahasa-mindmap";
 import {
   calculateMindMapLayout,
   getExpandableMindNodeIds,
@@ -34,6 +35,7 @@ const tatabahasaMindMaps = [
   ["Penjodoh Bilangan", bahasaMelayuPenjodohBilanganMindMap],
   ["Imbuhan", bahasaMelayuImbuhanMindMap],
   ["Penanda Wacana", bahasaMelayuPenandaWacanaMindMap],
+  ["Simpulan Bahasa (Form 1)", bahasaMelayuSimpulanBahasaMindMap],
   ["Frasa Nama (Form 2)", bahasaMelayuForm2FrasaNamaMindMap],
   ["Frasa Kerja (Form 2)", bahasaMelayuForm2FrasaKerjaMindMap],
   ["Frasa Adjektif (Form 2)", bahasaMelayuForm2FrasaAdjektifMindMap],

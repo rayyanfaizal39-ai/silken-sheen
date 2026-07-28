@@ -1,7 +1,7 @@
 export type BillingPlan = "basic" | "pro" | "premium";
 export type PaidBillingPlan = Exclude<BillingPlan, "basic">;
 export type BillingInterval = "monthly" | "annual";
-export type CheckoutPlan = `${PaidBillingPlan}_monthly`;
+export type CheckoutPlan = `${PaidBillingPlan}_${BillingInterval}`;
 export type PaymentStatus = "pending" | "successful" | "failed" | "cancelled" | "refunded";
 export type SubscriptionStatus = "active" | "pending" | "expired" | "cancelled";
 export type MockPaymentOutcome = "successful" | "failed" | "cancelled";
@@ -24,6 +24,7 @@ export interface PaymentHistoryItem {
   amount: number;
   currency: string;
   payment_status: PaymentStatus;
+  payment_method: string | null;
   provider_transaction_id: string | null;
   paid_at: string | null;
   created_at: string;

@@ -37,12 +37,25 @@ Deno.serve(async (request) => {
   }
 
   let invoiceId: string;
+  let resend = false;
+  let requestId: string | null = null;
   try {
-    const body = (await request.json()) as { invoiceId?: unknown };
+    const body = (await request.json()) as {
+      invoiceId?: unknown;
+      resend?: unknown;
+      requestId?: unknown;
+    };
     if (typeof body.invoiceId !== "string" || !/^[0-9a-f-]{36}$/i.test(body.invoiceId)) {
       return response({ error: "A valid invoiceId is required" }, 400);
     }
     invoiceId = body.invoiceId;
+    resend = body.resend === true;
+    if (resend) {
+      if (typeof body.requestId !== "string" || !/^[0-9a-f-]{36}$/i.test(body.requestId)) {
+        return response({ error: "A valid requestId is required when resending" }, 400);
+      }
+      requestId = body.requestId;
+    }
   } catch {
     return response({ error: "Invalid JSON body" }, 400);
   }
@@ -56,7 +69,7 @@ Deno.serve(async (request) => {
     return response({ error: "Invoice not found" }, 404);
   }
   const invoice = result.data as InvoiceRow;
-  if (invoice.emailed_at) return response({ sent: false, reason: "already_sent" });
+  if (invoice.emailed_at && !resend) return response({ sent: false, reason: "already_sent" });
   if (!invoice.pdf_storage_path) return response({ error: "Invoice PDF is not ready" }, 409);
 
   try {
@@ -73,7 +86,9 @@ Deno.serve(async (request) => {
     const delivery = await sendWithResend(resendApiKey, {
       to: invoice.customer_email,
       ...content,
-      idempotencyKey: `academy-invoice-${invoice.invoice_number}`,
+      idempotencyKey: resend
+        ? `academy-invoice-${invoice.invoice_number}-resend-${requestId}`
+        : `academy-invoice-${invoice.invoice_number}`,
       attachments: [
         {
           filename: `${invoice.invoice_number}.pdf`,
@@ -86,11 +101,12 @@ Deno.serve(async (request) => {
       ],
     });
 
-    const update = await admin
+    let updateQuery = admin
       .from("invoices")
       .update({ emailed_at: new Date().toISOString() })
-      .eq("id", invoice.id)
-      .is("emailed_at", null);
+      .eq("id", invoice.id);
+    if (!resend) updateQuery = updateQuery.is("emailed_at", null);
+    const update = await updateQuery;
     if (update.error) throw update.error;
 
     console.info(
@@ -98,6 +114,7 @@ Deno.serve(async (request) => {
         scope: "email",
         event: "invoice_email_sent",
         invoiceId: invoice.id,
+        resend,
         messageId: delivery.id,
       }),
     );

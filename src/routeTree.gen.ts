@@ -40,6 +40,7 @@ import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
+import { Route as AccountBillingRouteImport } from './routes/account.billing'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
 import { Route as AdminContentQuizImporterRouteImport } from './routes/admin.content.quiz-importer'
 
@@ -198,6 +199,11 @@ const AdminCikguIntelRoute = AdminCikguIntelRouteImport.update({
   path: '/cikgu-intel',
   getParentRoute: () => AdminRoute,
 } as any)
+const AccountBillingRoute = AccountBillingRouteImport.update({
+  id: '/account/billing',
+  path: '/account/billing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
   id: '/academy/landingpage3',
   path: '/academy/landingpage3',
@@ -235,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
+  '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -269,6 +276,7 @@ export interface FileRoutesByTo {
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
+  '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -305,6 +313,7 @@ export interface FileRoutesById {
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
+  '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -342,6 +351,7 @@ export interface FileRouteTypes {
     | '/tracker'
     | '/upgrade'
     | '/academy/landingpage3'
+    | '/account/billing'
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
@@ -376,6 +386,7 @@ export interface FileRouteTypes {
     | '/tracker'
     | '/upgrade'
     | '/academy/landingpage3'
+    | '/account/billing'
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
@@ -411,6 +422,7 @@ export interface FileRouteTypes {
     | '/tracker'
     | '/upgrade'
     | '/academy/landingpage3'
+    | '/account/billing'
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
@@ -447,6 +459,7 @@ export interface RootRouteChildren {
   TrackerRoute: typeof TrackerRoute
   UpgradeRoute: typeof UpgradeRoute
   AcademyLandingpage3Route: typeof AcademyLandingpage3Route
+  AccountBillingRoute: typeof AccountBillingRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
@@ -671,6 +684,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCikguIntelRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/account/billing': {
+      id: '/account/billing'
+      path: '/account/billing'
+      fullPath: '/account/billing'
+      preLoaderRoute: typeof AccountBillingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/academy/landingpage3': {
       id: '/academy/landingpage3'
       path: '/academy/landingpage3'
@@ -733,6 +753,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackerRoute: TrackerRoute,
   UpgradeRoute: UpgradeRoute,
   AcademyLandingpage3Route: AcademyLandingpage3Route,
+  AccountBillingRoute: AccountBillingRoute,
   AdminLoginRoute: AdminLoginRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,

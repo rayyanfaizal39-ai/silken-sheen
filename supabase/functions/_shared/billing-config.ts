@@ -17,6 +17,18 @@ export const CHECKOUT_PLANS = {
     amount: 59,
     label: "AcadeMY Premium Monthly",
   },
+  pro_annual: {
+    plan: "pro",
+    interval: "annual",
+    amount: 300,
+    label: "AcadeMY Pro Annual",
+  },
+  premium_annual: {
+    plan: "premium",
+    interval: "annual",
+    amount: 660,
+    label: "AcadeMY Premium Annual",
+  },
 } as const;
 
 export type ToyyibPayCheckoutPlan = keyof typeof CHECKOUT_PLANS;

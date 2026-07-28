@@ -27,6 +27,5 @@ export function isToyyibPayConfigured(env: NodeJS.ProcessEnv = process.env) {
 }
 
 export function toCheckoutPlan(plan: PaidBillingPlan, interval: BillingInterval): CheckoutPlan {
-  if (interval !== "monthly") throw new Error("Only monthly checkout is available");
   return `${plan}_${interval}`;
 }

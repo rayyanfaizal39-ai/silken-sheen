@@ -203,6 +203,16 @@ export const Route = createFileRoute("/mindmaps")({
           "ejaan kata terbitan",
         ],
       },
+      "Simpulan Bahasa": {
+        description:
+          "Peta minda Simpulan Bahasa Tingkatan 1: maksud, huraian, contoh ayat, situasi penggunaan, kesalahan lazim, teknik mengingat dan teknik menjawab UASA.",
+        keywords: [
+          "Simpulan Bahasa",
+          "simpulan bahasa Tingkatan 1",
+          "Peribahasa Bahasa Melayu",
+          "contoh ayat simpulan bahasa",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -223,18 +233,20 @@ export const Route = createFileRoute("/mindmaps")({
         | "Ayat Tunggal"
         | "Ayat Majmuk"
         | "Imbuhan Lanjutan"
+        | "Simpulan Bahasa"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
+      const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
       return seoMeta({
-        title: `${match.search.chapter} — Peta Minda Tatabahasa Bahasa Melayu`,
+        title: `${match.search.chapter} — Peta Minda ${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Bahasa Melayu`,
         description: bmTopic.description,
         path: "/mindmaps",
         keywords: [
           ...bmTopic.keywords,
           "Peta Minda Bahasa Melayu",
-          "Tatabahasa Tingkatan 1",
-          "Tatabahasa Tingkatan 2",
-          "Tatabahasa Tingkatan 3",
+          `${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Tingkatan 1`,
+          `${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Tingkatan 2`,
+          `${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Tingkatan 3`,
         ],
       });
     }
@@ -579,6 +591,74 @@ function MindMapChapterGrid({
   const subj = subjects.find((candidate) => candidate.id === subjectId);
   const chapters = getMindMapChapters(subjectId, scienceLang, form);
   const isBahasaMelayu = subjectId === "bm";
+  const bahasaMelayuCategories = ["Tatabahasa", "Peribahasa"] as const;
+  const [activeBahasaMelayuCategory, setActiveBahasaMelayuCategory] =
+    useState<(typeof bahasaMelayuCategories)[number]>("Tatabahasa");
+
+  useEffect(() => {
+    setActiveBahasaMelayuCategory("Tatabahasa");
+  }, [form, subjectId]);
+
+  const activeCategoryChapters = chapters.filter(
+    (chapter) =>
+      !isBahasaMelayu || (chapter.categoryLabel ?? "Tatabahasa") === activeBahasaMelayuCategory,
+  );
+
+  const renderChapterCard = (chapter: (typeof chapters)[number], index: number) => {
+    const hasMindMap = hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang);
+    return (
+      <button
+        key={chapter.key}
+        type="button"
+        onClick={() => hasMindMap && onSelect(chapter.key)}
+        disabled={!hasMindMap}
+        className={`group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.20)] backdrop-blur-2xl transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_24px_80px_rgba(14,165,233,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 ${
+          isBahasaMelayu ? "min-h-[190px]" : "min-h-[210px]"
+        }`}
+        style={{ animationDelay: `${index * 55}ms` }}
+      >
+        <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-300/10 blur-3xl transition-opacity group-hover:bg-cyan-300/16" />
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 shadow-[0_0_26px_rgba(34,211,238,0.12)]">
+            <Network className="h-5 w-5 text-cyan-200" />
+          </div>
+          <span
+            className={`rounded-full border px-3 py-1 text-[10px] font-black uppercase tracking-wide ${
+              hasMindMap
+                ? "border-cyan-300/25 bg-cyan-300/10 text-cyan-100"
+                : "border-white/10 bg-white/[0.04] text-white/50"
+            }`}
+          >
+            {hasMindMap
+              ? isBahasaMelayu
+                ? "Interaktif"
+                : "Interactive"
+              : isBahasaMelayu
+                ? "Akan Datang"
+                : "Coming Soon"}
+          </span>
+        </div>
+        {!isBahasaMelayu && (
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/55">
+            Chapter {index + 1}
+          </p>
+        )}
+        <h3 className="mt-2 font-display text-lg font-bold leading-snug text-white">
+          {chapter.label}
+        </h3>
+        <p className="mt-3 text-sm leading-6 text-white/55">
+          {chapter.description ??
+            (hasMindMap
+              ? "Open the chapter's visual learning map."
+              : "This chapter's interactive mind map is currently being prepared.")}
+        </p>
+        <span className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-4 py-2 text-xs font-bold text-white shadow-[0_12px_28px_rgba(14,165,233,0.18)] transition-transform group-hover:scale-105">
+          <GitFork className="h-3.5 w-3.5" />
+          {isBahasaMelayu ? "Buka Peta Minda" : "Open Mind Map"}
+        </span>
+      </button>
+    );
+  };
 
   return (
     <AcademyPanel>
@@ -594,26 +674,50 @@ function MindMapChapterGrid({
         <div className="flex items-center gap-2 rounded-xl border border-cyan-300/15 bg-cyan-300/[0.06] px-3 py-1.5">
           <Network className="h-4 w-4 text-cyan-200" />
           <span className="text-xs font-bold text-cyan-100">
-            {isBahasaMelayu ? `${form} • Tatabahasa` : `${form} Mind Maps`}
+            {isBahasaMelayu ? `${form} • Bahasa Melayu` : `${form} Mind Maps`}
           </span>
         </div>
       </div>
 
       <AcademySectionHeader
-        eyebrow={isBahasaMelayu ? "Peta Minda • Tatabahasa" : "Mind Map Library"}
-        title={
-          isBahasaMelayu
-            ? "Tatabahasa Bahasa Melayu"
-            : subj
-              ? `${subj.name} Mind Maps`
-              : "Mind Maps"
-        }
+        eyebrow={isBahasaMelayu ? "Peta Minda • Bahasa Melayu" : "Mind Map Library"}
+        title={isBahasaMelayu ? "Bahasa Melayu" : subj ? `${subj.name} Mind Maps` : "Mind Maps"}
         description={
           isBahasaMelayu
             ? "Pilih topik dan buka peta minda visual yang interaktif."
             : "Choose a chapter and open its interactive visual learning map."
         }
       />
+
+      {isBahasaMelayu && (
+        <div
+          role="tablist"
+          aria-label="Kategori peta minda Bahasa Melayu"
+          className="mb-8 grid grid-cols-2 gap-2 rounded-2xl border border-white/[0.08] bg-[#08101D]/70 p-2 sm:inline-grid sm:min-w-[360px]"
+        >
+          {bahasaMelayuCategories.map((category) => {
+            const isActive = activeBahasaMelayuCategory === category;
+            return (
+              <button
+                key={category}
+                id={`bm-category-tab-${category.toLowerCase()}`}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-controls="bm-category-panel"
+                onClick={() => setActiveBahasaMelayuCategory(category)}
+                className={`min-h-12 rounded-xl px-4 py-2.5 text-sm font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 ${
+                  isActive
+                    ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-[0_10px_28px_rgba(14,165,233,0.22)]"
+                    : "text-white/60 hover:bg-white/[0.06] hover:text-white"
+                }`}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {chapters.length === 0 ? (
         <div className="rounded-[2rem] border border-white/[0.06] bg-white/[0.02] py-20 text-center">
@@ -623,70 +727,32 @@ function MindMapChapterGrid({
             This form's interactive mind maps are currently being prepared.
           </p>
         </div>
+      ) : isBahasaMelayu ? (
+        <div
+          id="bm-category-panel"
+          role="tabpanel"
+          aria-labelledby={`bm-category-tab-${activeBahasaMelayuCategory.toLowerCase()}`}
+          className="animate-fade-up"
+        >
+          {activeCategoryChapters.length > 0 ? (
+            <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {activeCategoryChapters.map(renderChapterCard)}
+            </div>
+          ) : (
+            <div className="rounded-[1.75rem] border border-dashed border-white/[0.08] bg-white/[0.02] px-5 py-12 text-center">
+              <Rocket className="mx-auto mb-3 h-8 w-8 text-cyan-200/70" />
+              <p className="font-display text-lg font-bold text-white/75">
+                {activeBahasaMelayuCategory}
+              </p>
+              <p className="mt-2 text-sm font-semibold text-white/45">
+                Kandungan untuk {form} akan datang.
+              </p>
+            </div>
+          )}
+        </div>
       ) : (
         <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {chapters.map((chapter, index) => {
-            const chapterContent = getChapter(subjectId, chapter.key, scienceLang, form);
-            const hasMindMap = hasResourceContent(
-              subjectId,
-              form,
-              chapter.key,
-              "mindMap",
-              scienceLang,
-            );
-            return (
-              <button
-                key={chapter.key}
-                type="button"
-                onClick={() => hasMindMap && onSelect(chapter.key)}
-                disabled={!hasMindMap}
-                className={`group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.20)] backdrop-blur-2xl transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_24px_80px_rgba(14,165,233,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 ${
-                  isBahasaMelayu ? "min-h-[190px]" : "min-h-[210px]"
-                }`}
-                style={{ animationDelay: `${index * 55}ms` }}
-              >
-                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-300/10 blur-3xl transition-opacity group-hover:bg-cyan-300/16" />
-                <div className="mb-5 flex items-center justify-between gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 shadow-[0_0_26px_rgba(34,211,238,0.12)]">
-                    <Network className="h-5 w-5 text-cyan-200" />
-                  </div>
-                  <span
-                    className={`rounded-full border px-3 py-1 text-[10px] font-black uppercase tracking-wide ${
-                      hasMindMap
-                        ? "border-cyan-300/25 bg-cyan-300/10 text-cyan-100"
-                        : "border-white/10 bg-white/[0.04] text-white/50"
-                    }`}
-                  >
-                    {hasMindMap
-                      ? isBahasaMelayu
-                        ? "Interaktif"
-                        : "Interactive"
-                      : isBahasaMelayu
-                        ? "Akan Datang"
-                        : "Coming Soon"}
-                  </span>
-                </div>
-                {!isBahasaMelayu && (
-                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/55">
-                    Chapter {index + 1}
-                  </p>
-                )}
-                <h3 className="mt-2 font-display text-lg font-bold leading-snug text-white">
-                  {chapter.label}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-white/55">
-                  {chapter.description ??
-                    (hasMindMap
-                      ? "Open the chapter's visual learning map."
-                      : "This chapter's interactive mind map is currently being prepared.")}
-                </p>
-                <span className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-4 py-2 text-xs font-bold text-white shadow-[0_12px_28px_rgba(14,165,233,0.18)] transition-transform group-hover:scale-105">
-                  <GitFork className="h-3.5 w-3.5" />
-                  {isBahasaMelayu ? "Buka Peta Minda" : "Open Mind Map"}
-                </span>
-              </button>
-            );
-          })}
+          {chapters.map(renderChapterCard)}
         </div>
       )}
     </AcademyPanel>

@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  areMockPaymentsEnabled,
-  CHECKOUT_PLANS,
-  isToyyibPayConfigured,
-} from "./billing-config";
+import { areMockPaymentsEnabled, CHECKOUT_PLANS, isToyyibPayConfigured } from "./billing-config";
 import {
   assertVerifiedAmount,
   canAccessInvoice,
@@ -87,7 +83,7 @@ describe("mock payment production restrictions", () => {
 });
 
 describe("server-side checkout prices", () => {
-  it("offers only the approved monthly ToyyibPay sandbox plans", () => {
+  it("offers the approved monthly and annual ToyyibPay sandbox plans", () => {
     expect(CHECKOUT_PLANS).toEqual({
       pro_monthly: {
         plan: "pro",
@@ -100,6 +96,18 @@ describe("server-side checkout prices", () => {
         interval: "monthly",
         amount: 59,
         label: "AcadeMY Premium Monthly",
+      },
+      pro_annual: {
+        plan: "pro",
+        interval: "annual",
+        amount: 300,
+        label: "AcadeMY Pro Annual",
+      },
+      premium_annual: {
+        plan: "premium",
+        interval: "annual",
+        amount: 660,
+        label: "AcadeMY Premium Annual",
       },
     });
   });
