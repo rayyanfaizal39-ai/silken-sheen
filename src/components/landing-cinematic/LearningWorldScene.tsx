@@ -115,16 +115,6 @@ export default function LearningWorldScene() {
             0,
           )
           .to(q(".world__trust"), { autoAlpha: 1, y: 0, duration: 0.55 }, 0.5);
-
-        // terrain settles last, tied to the bottom of the grid
-        gsap.from(q(".world__hill"), {
-          yPercent: 22,
-          autoAlpha: 0,
-          duration: 0.7,
-          stagger: 0.07,
-          ease: "power2.out",
-          scrollTrigger: { trigger: grid, start: "bottom 95%", once: true },
-        });
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
@@ -134,7 +124,7 @@ export default function LearningWorldScene() {
       mm.add("(max-width: 1023px)", () => {
         gsap.set(
           q(
-            ".world__eyebrow, .world__title .cine-reveal-line__inner, .world__desc, .world__benefit, .world__trust, .world__hill",
+            ".world__eyebrow, .world__title .cine-reveal-line__inner, .world__desc, .world__benefit, .world__trust",
           ),
           { clearProps: "transform,opacity,visibility" },
         );
