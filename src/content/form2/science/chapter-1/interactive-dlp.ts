@@ -1,4 +1,9 @@
 import type { DichotomousQuestion, SciF2C1Content } from "./interactive-types";
+import rafflesiaImg from "@/assets/notes/form2-science/chapter-1/rafflesia.jpg";
+import habitatSeaImg from "@/assets/notes/form2-science/chapter-1/sea.jpg";
+import habitatDesertImg from "@/assets/notes/form2-science/chapter-1/desert.jpg";
+import habitatPolarImg from "@/assets/notes/form2-science/chapter-1/polar.jpg";
+import habitatSoilImg from "@/assets/notes/form2-science/chapter-1/soil.jpg";
 
 const dichotomousKeyDLP: DichotomousQuestion = {
   type: "question",
@@ -43,7 +48,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
   blogHighlight: {
     title: "🌸 Science Blog — The Rafflesia",
     body: "Malaysia is home to the world's largest flower, the parasitic rafflesia — it has no leaves, no roots, and releases a rotting smell to attract pollinators when in full bloom.",
-    imagePath: "form2-science/chapter-1/rafflesia.jpg",
+    imagePath: rafflesiaImg,
   },
   keywords: [
     {
@@ -91,28 +96,28 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       icon: "🏜️",
       label: "Desert",
       fact: "Species here cope with scorching days, cold nights, and almost no water.",
-      imagePath: "form2-science/chapter-1/habitat-desert.jpg",
+      imagePath: habitatDesertImg,
     },
     {
       id: "polar",
       icon: "❄️",
       label: "Polar regions",
       fact: "Thick fur, fat layers and huddling behaviour fight extreme cold.",
-      imagePath: "form2-science/chapter-1/habitat-polar.jpg",
+      imagePath: habitatPolarImg,
     },
     {
       id: "soil",
       icon: "🪱",
       label: "Soil",
       fact: "Home to decomposers and burrowers that recycle nutrients unseen.",
-      imagePath: "form2-science/chapter-1/habitat-soil.jpg",
+      imagePath: habitatSoilImg,
     },
     {
       id: "sea",
       icon: "🌊",
       label: "Sea",
       fact: "From plankton to whales — the largest habitat by volume on Earth.",
-      imagePath: "form2-science/chapter-1/habitat-sea.jpg",
+      imagePath: habitatSeaImg,
     },
   ],
   importance: [

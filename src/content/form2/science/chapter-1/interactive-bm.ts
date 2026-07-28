@@ -1,4 +1,9 @@
 import type { DichotomousQuestion, SciF2C1Content } from "./interactive-types";
+import rafflesiaImg from "@/assets/notes/form2-science/chapter-1/rafflesia.jpg";
+import habitatSeaImg from "@/assets/notes/form2-science/chapter-1/sea.jpg";
+import habitatDesertImg from "@/assets/notes/form2-science/chapter-1/desert.jpg";
+import habitatPolarImg from "@/assets/notes/form2-science/chapter-1/polar.jpg";
+import habitatSoilImg from "@/assets/notes/form2-science/chapter-1/soil.jpg";
 
 const dichotomousKeyBM: DichotomousQuestion = {
   type: "question",
@@ -43,7 +48,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
   blogHighlight: {
     title: "🌸 Blog Sains — Bunga Rafflesia",
     body: "Malaysia merupakan habitat bagi bunga terbesar di dunia, iaitu bunga rafflesia — tumbuhan parasit ini tidak mempunyai daun atau akar, dan mengeluarkan bau seperti bahan reput semasa berbunga sepenuhnya untuk menarik pendebunga.",
-    imagePath: "form2-science/chapter-1/rafflesia.jpg",
+    imagePath: rafflesiaImg,
   },
   keywords: [
     {
@@ -91,28 +96,28 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
       icon: "🏜️",
       label: "Gurun",
       fact: "Organisma di sini menghadapi siang yang panas terik, malam yang sejuk, dan hampir tiada air.",
-      imagePath: "form2-science/chapter-1/habitat-desert.jpg",
+      imagePath: habitatDesertImg,
     },
     {
       id: "polar",
       icon: "❄️",
       label: "Kawasan Kutub",
       fact: "Bulu tebal, lapisan lemak dan tingkah laku berhimpit membantu menentang kesejukan melampau.",
-      imagePath: "form2-science/chapter-1/habitat-polar.jpg",
+      imagePath: habitatPolarImg,
     },
     {
       id: "soil",
       icon: "🪱",
       label: "Tanah",
       fact: "Habitat pengurai dan organisma penggali yang mengitar semula nutrien secara senyap.",
-      imagePath: "form2-science/chapter-1/habitat-soil.jpg",
+      imagePath: habitatSoilImg,
     },
     {
       id: "sea",
       icon: "🌊",
       label: "Laut",
       fact: "Daripada plankton kepada paus — habitat terbesar mengikut isi padu di Bumi.",
-      imagePath: "form2-science/chapter-1/habitat-sea.jpg",
+      imagePath: habitatSeaImg,
     },
   ],
   importance: [
