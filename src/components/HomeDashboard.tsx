@@ -28,6 +28,7 @@ import { useMemo, useState, type CSSProperties } from "react";
 import { useEffect } from "react";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { Avatar } from "@/components/Avatar";
+import { RankBadge } from "@/components/RankBadge";
 import {
   useProgress,
   getCompanionLevelProgress,
@@ -425,12 +426,7 @@ function HeroRankCard() {
       <div className="rounded-[1.5rem] border border-white/[0.12] bg-[#050816]/80 p-4 shadow-[0_24px_64px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
         <div className="mb-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2.5">
-            <div
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl"
-              style={{ background: `${rank.color}1A`, boxShadow: `0 0 16px ${rank.color}55` }}
-            >
-              {rank.emoji}
-            </div>
+            <RankBadge rank={rank} size={40} />
             <div>
               <p className="text-[9px] font-black uppercase tracking-[0.18em] text-white/30">
                 Your Rank
@@ -467,7 +463,7 @@ function HeroRankCard() {
               />
             </div>
             <div className="mt-3 flex items-center gap-2.5 rounded-xl border border-white/[0.07] bg-white/[0.04] p-2">
-              <span className="text-base">{nextRank.emoji}</span>
+              <RankBadge rank={nextRank} size={40} />
               <div className="min-w-0">
                 <p className="text-[9px] font-black uppercase tracking-[0.16em] text-white/25">
                   Next Rank

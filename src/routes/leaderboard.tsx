@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Trophy, Crown, Sparkles, Rocket, TrendingUp, RefreshCw } from "lucide-react";
 import { useProgress, getRank } from "@/hooks/use-progress";
+import { RankBadge } from "@/components/RankBadge";
 import { useAuth } from "@/context/auth-context";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import type {
@@ -377,7 +378,7 @@ function StudentRankCard({
       className="flex flex-wrap items-center gap-4 rounded-2xl border px-4 py-4 backdrop-blur-xl"
       style={{ borderColor: `${cosmicRank.color}44`, background: cosmicRank.glowColor }}
     >
-      <span className="text-2xl">{cosmicRank.emoji}</span>
+      <RankBadge rank={cosmicRank} size={48} />
       <div className="min-w-0 flex-1">
         <p className="text-xs font-bold text-white/60">Your position</p>
         <p className="mt-0.5 text-xs font-bold text-white/75">{student.name} · You</p>
@@ -434,7 +435,8 @@ function CosmicRankBadge({ xp, small = false }: { xp: number; small?: boolean })
         boxShadow: `0 0 6px ${r.glowColor}`,
       }}
     >
-      {r.emoji} {r.name}
+      <RankBadge rank={r} size={small ? 40 : 48} />
+      {r.name}
     </span>
   );
 }
@@ -508,7 +510,8 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
           className="flex items-center gap-1 text-xs font-black tabular-nums"
           style={{ color: r.color }}
         >
-          {r.emoji} {r.name}
+          <RankBadge rank={r} size={40} />
+          {r.name}
         </span>
       </td>
     </tr>

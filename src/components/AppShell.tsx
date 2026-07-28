@@ -24,7 +24,7 @@ import {
   getChessRating,
   getCompanionLevelProgress,
 } from "@/hooks/use-progress";
-import { rankArtwork, rankImageScale } from "@/data/rankArtwork";
+import { RankBadge } from "@/components/RankBadge";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { GalaxySearch } from "@/components/GalaxySearch";
@@ -237,7 +237,7 @@ function SidebarBottom() {
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-lg"
             style={{ background: `${rank.color}22` }}
           >
-            {rank.emoji}
+            <RankBadge rank={rank} size={32} />
           </div>
           <div className="min-w-0 flex-1">
             <p className="truncate text-xs font-bold" style={{ color: rank.color }}>
@@ -399,7 +399,7 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
               to="/dashboard"
               className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2 py-1.5 text-sm transition-colors hover:bg-white/[0.10]"
             >
-              <RankBadge />
+              <HeaderRankBadge />
             </Link>
           </div>
         </header>
@@ -517,17 +517,8 @@ function HeaderCompanion() {
   );
 }
 
-function RankBadge() {
+function HeaderRankBadge() {
   const { progress } = useProgress();
   const rank = getRank(progress.xp);
-  return (
-    <div className="flex items-center gap-2">
-      <img
-        src={rankArtwork[rank.id]}
-        alt={rank.name}
-        className="h-7 w-7 object-contain"
-        style={{ transform: `scale(${rankImageScale[rank.id] ?? 1})` }}
-      />
-    </div>
-  );
+  return <RankBadge rank={rank} size={28} />;
 }

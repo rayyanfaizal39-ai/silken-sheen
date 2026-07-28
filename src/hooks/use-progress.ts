@@ -1,6 +1,23 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
+import {
+  RANKS,
+  getRank,
+  getNextRank,
+  getRankProgress,
+  type SpaceRank,
+} from "@/data/rankAssets";
+
+export {
+  RANKS,
+  RANKS as SPACE_RANKS,
+  RANKS as CHESS_RANKS,
+  getRank,
+  getNextRank,
+  getRankProgress,
+  type SpaceRank,
+};
 
 const KEY = "learnnova-progress-v1";
 const SYNC_DEBOUNCE_MS = 2000;
@@ -208,125 +225,9 @@ export interface MissionProgress {
   flashcardsDone: number;
 }
 
-// ─── Cosmic Rank system (Cadet → Cosmic Legend, 1000–3000 rating) ───────────────
-export interface SpaceRank {
-  id: string;
-  name: string;
-  /** Celestial emoji shown in rank slots across the app. */
-  emoji: string;
-  minXp: number;
-  maxXp: number;
-  /** Elo-style rating displayed to the student. */
-  minRating: number;
-  maxRating: number;
-  color: string;
-  /** CSS color for the bottom glow ring — brighter at high rank, dim at low. */
-  glowColor: string;
-  description: string;
-}
-
-export const SPACE_RANKS: SpaceRank[] = [
-  {
-    id: "cadet",
-    name: "Space Cadet",
-    emoji: "🚀",
-    minXp: 0,
-    maxXp: 449,
-    minRating: 1000,
-    maxRating: 1449,
-    color: "#94A3B8",
-    glowColor: "rgba(148,163,184,0.45)",
-    description: "Every journey begins with a single launch",
-  },
-  {
-    id: "planet-voyager",
-    name: "Planet Voyager",
-    emoji: "🪐",
-    minXp: 450,
-    maxXp: 749,
-    minRating: 1450,
-    maxRating: 1749,
-    color: "#34D399",
-    glowColor: "rgba(52,211,153,0.65)",
-    description: "Orbiting whole worlds of discovery",
-  },
-  {
-    id: "star-captain",
-    name: "Star Captain",
-    emoji: "⭐",
-    minXp: 750,
-    maxXp: 1099,
-    minRating: 1750,
-    maxRating: 2099,
-    color: "#FBBF24",
-    glowColor: "rgba(251,191,36,0.7)",
-    description: "Commanding constellations of skill",
-  },
-  {
-    id: "galaxy-guardian",
-    name: "Galaxy Guardian",
-    emoji: "🌌",
-    minXp: 1100,
-    maxXp: 1599,
-    minRating: 2100,
-    maxRating: 2599,
-    color: "#A78BFA",
-    glowColor: "rgba(167,139,250,0.75)",
-    description: "Protector of knowledge across the universe",
-  },
-  {
-    id: "celestial-master",
-    name: "Celestial Master",
-    emoji: "🔮",
-    minXp: 1600,
-    maxXp: 2199,
-    minRating: 2600,
-    maxRating: 2899,
-    color: "#F472B6",
-    glowColor: "rgba(244,114,182,0.8)",
-    description: "Master of the celestial arts and sciences",
-  },
-  {
-    id: "cosmic-legend",
-    name: "Cosmic Legend",
-    emoji: "🌟",
-    minXp: 2200,
-    maxXp: Infinity,
-    minRating: 2900,
-    maxRating: 3000,
-    color: "#F0ABFC",
-    glowColor: "rgba(240,171,252,0.88)",
-    description: "Among the rarest minds in the universe",
-  },
-];
-
-/** Backwards-compat alias used across the app. */
-export const CHESS_RANKS = SPACE_RANKS;
-
 /** Convert XP to chess.com-style Elo rating (1000 starting, 3000 max). */
 export function getChessRating(xp: number): number {
   return Math.min(3000, 1000 + xp);
-}
-
-export function getRank(xp: number): SpaceRank {
-  for (let i = SPACE_RANKS.length - 1; i >= 0; i--) {
-    if (xp >= SPACE_RANKS[i].minXp) return SPACE_RANKS[i];
-  }
-  return SPACE_RANKS[0];
-}
-
-export function getNextRank(xp: number): SpaceRank | null {
-  const current = getRank(xp);
-  const idx = SPACE_RANKS.findIndex((r) => r.id === current.id);
-  return idx < SPACE_RANKS.length - 1 ? SPACE_RANKS[idx + 1] : null;
-}
-
-export function getRankProgress(xp: number): number {
-  const rank = getRank(xp);
-  if (rank.maxXp === Infinity) return 100;
-  const range = rank.maxXp - rank.minXp + 1;
-  const into = xp - rank.minXp;
-  return Math.min(100, Math.round((into / range) * 100));
 }
 
 export function getRankUpTransition(fromXp: number, toXp: number) {

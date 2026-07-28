@@ -16,6 +16,7 @@ import type {
 } from '../lib/admin.types';
 import { Panel, Pill, StatCard, fmtDate, timeAgo } from '../components/admin/ui';
 import { getRank, getBadgeDef } from '../hooks/use-progress';
+import { RankBadge } from '../components/RankBadge';
 
 export const Route = createFileRoute('/admin/users')({
   loader: async () => {
@@ -342,7 +343,7 @@ function UsersPage() {
                     <td><Pill kind={u.role}>{u.role}</Pill></td>
                     <td><Pill kind={u.plan}>{u.plan}</Pill></td>
                     <td>{u.xp.toLocaleString()}</td>
-                    <td>{rank.emoji} {rank.name}</td>
+                    <td><span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><RankBadge rank={rank} size={40} />{rank.name}</span></td>
                     <td>{u.streak}d</td>
                     <td>{u.avg_score_pct != null ? `${Math.round(u.avg_score_pct)}%` : '—'}</td>
                     <td style={{ color: 'var(--muted)' }}>{bytesAgo(u.last_login_at)}</td>
@@ -472,7 +473,13 @@ function ProfilePanel({ profile }: { profile: AdminUserProfile }) {
         <InfoRow label="Joined" value={fmtDate(profile.created_at)} />
         <InfoRow label="Last Active" value={bytesAgo(profile.last_login_at)} />
         <InfoRow label="Current XP" value={profile.xp.toLocaleString()} />
-        <InfoRow label="Cosmic Rank" value={`${rank.emoji} ${rank.name}`} />
+        <div>
+          <div style={{ color: 'var(--muted)', fontSize: 12, marginBottom: 6 }}>Cosmic Rank</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <RankBadge rank={rank} size={48} />
+            <span>{rank.name}</span>
+          </div>
+        </div>
         {/* Intentionally left blank: Companion has no dedicated table yet
             (today it's just an ad-hoc jsonb shape referenced in analytics.ts).
             Wire this once the Companion system gets its own table. */}

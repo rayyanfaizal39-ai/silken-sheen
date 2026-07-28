@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { rankArtwork, rankImageScale } from "@/data/rankArtwork";
+import { RankBadge } from "@/components/RankBadge";
 import {
   useProgress,
   getRank,
@@ -47,6 +47,7 @@ import {
   Clock3,
   ClipboardList,
   PlayCircle,
+  Lock,
 } from "lucide-react";
 import {
   AcademyPageShell,
@@ -1154,25 +1155,16 @@ const COSMIC_PARTICLE_SPECKS = [
 
 /** Premium glow theme per rank — purely presentational, independent of XP/threshold data. */
 const RANK_GLOW_THEME: Record<string, { glow: string; soft: string; rainbow?: boolean }> = {
-  cadet: { glow: "#22D3EE", soft: "rgba(34,211,238,0.55)" }, // Space Cadet — cyan
+  "space-cadet": { glow: "#60A5FA", soft: "rgba(59,130,246,0.5)" },
+  "moon-explorer": { glow: "#22D3EE", soft: "rgba(34,211,238,0.52)" },
   "planet-voyager": { glow: "#2DD4BF", soft: "rgba(45,212,191,0.55)" }, // teal
   "star-captain": { glow: "#FBBF24", soft: "rgba(251,191,36,0.6)" }, // gold
   "galaxy-guardian": { glow: "#A78BFA", soft: "rgba(167,139,250,0.6)" }, // purple
-  "celestial-master": { glow: "#F5E9C8", soft: "rgba(245,233,200,0.65)" }, // white-gold
   "cosmic-legend": { glow: "#F0ABFC", soft: "rgba(240,171,252,0.7)", rainbow: true }, // cosmic rainbow
 };
 function getRankTheme(id: string) {
-  return RANK_GLOW_THEME[id] ?? RANK_GLOW_THEME.cadet;
+  return RANK_GLOW_THEME[id] ?? RANK_GLOW_THEME["space-cadet"];
 }
-
-/** Keeps the locked figures visually varied without changing their layout boxes. */
-const LOCKED_RANK_SILHOUETTE_SCALE: Record<string, number> = {
-  "planet-voyager": 0.88,
-  "star-captain": 0.96,
-  "galaxy-guardian": 1.08,
-  "celestial-master": 1,
-  "cosmic-legend": 1.12,
-};
 
 /** Small twinkling sparkles scattered around a spotlighted portrait. */
 const RANK_SPARKLE_POSITIONS = [
@@ -1263,21 +1255,12 @@ function CosmicPlanet({
         </>
       )}
       {spotlight && <RankSparkles />}
-      <img
-        src={rankArtwork[rank.id]}
-        alt={locked ? "" : rank.name}
-        aria-hidden={locked || undefined}
-        className="cosmic-planet-img cosmic-planet-artwork-img"
-        style={{ transform: `scale(${rankImageScale[rank.id] ?? 1})` }}
-      />
-      <img
-        src={rankArtwork[rank.id]}
-        alt=""
-        aria-hidden="true"
-        className="cosmic-planet-img cosmic-planet-silhouette-img"
-        style={{ transform: `scale(${LOCKED_RANK_SILHOUETTE_SCALE[rank.id] ?? 1})` }}
-      />
-      <span className="cosmic-planet-mystery-mark" aria-hidden="true">?</span>
+      <RankBadge rank={rank} size="82%" locked={locked} className="cosmic-planet-img" />
+      {locked && (
+        <span className="absolute bottom-0.5 right-0.5 z-20 grid h-6 w-6 place-items-center rounded-full border border-white/15 bg-[#050816]/90 text-white/65">
+          <Lock className="h-3 w-3" aria-hidden />
+        </span>
+      )}
     </div>
   );
 }
@@ -1287,80 +1270,83 @@ function CosmicPlanet({
  *  larger than the shared base size, with a glow; completed ranks stay full color,
  *  locked ranks render as solid mystery silhouettes. */
 function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; currentId: string; xp: number }) {
-  const BASE_SIZE = 96;
-  const CURRENT_SIZE = 124;
+  const BASE_SIZE = 64;
+  const CURRENT_SIZE = 72;
   const rows = [ranks.slice(0, 3), ranks.slice(3, 6)];
 
   return (
-    <Card className="relative flex h-[380px] flex-col overflow-hidden">
+    <Card className="relative flex h-[300px] flex-col overflow-hidden">
       <SectionLabel>Cosmic Journey</SectionLabel>
       {/* Scattered stars + floating particles */}
       <div className="pointer-events-none absolute inset-0">
-        {COSMIC_STAR_SPECKS.map((s, i) => (
+        {COSMIC_STAR_SPECKS.map((star, index) => (
           <span
-            key={i}
+            key={index}
             className="cosmic-star-dot"
             style={{
-              left: s.left,
-              top: s.top,
-              width: s.size,
-              height: s.size,
-              animationDuration: `${s.dur}s`,
-              animationDelay: `${s.delay}s`,
+              left: star.left,
+              top: star.top,
+              width: star.size,
+              height: star.size,
+              animationDuration: `${star.dur}s`,
+              animationDelay: `${star.delay}s`,
             }}
           />
         ))}
-        {COSMIC_PARTICLE_SPECKS.map((p, i) => (
+        {COSMIC_PARTICLE_SPECKS.map((particle, index) => (
           <span
-            key={i}
+            key={index}
             className="cosmic-particle-dot"
             style={{
-              left: p.left,
-              top: p.top,
-              width: p.size,
-              height: p.size,
-              background: p.color,
-              animationDuration: `${p.dur}s`,
-              animationDelay: `${p.delay}s`,
+              left: particle.left,
+              top: particle.top,
+              width: particle.size,
+              height: particle.size,
+              background: particle.color,
+              animationDuration: `${particle.dur}s`,
+              animationDelay: `${particle.delay}s`,
             }}
           />
         ))}
       </div>
 
-      <div className="relative z-10 mt-2 flex flex-1 flex-col items-center justify-center gap-3">
-        {rows.map((row, rowIdx) => (
-          <div key={rowIdx} className="flex items-center justify-center gap-1">
-            {row.map((r, i) => {
-              const done = xp >= r.minXp;
-              const isCurrent = r.id === currentId;
-              const theme = getRankTheme(r.id);
-              const next = row[i + 1];
-              const nextDone = next ? xp >= next.minXp : false;
+      <div className="relative z-10 mt-1 flex flex-1 flex-col items-center justify-center gap-2">
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex items-center justify-center gap-1">
+            {row.map((rank, index) => {
+              const unlocked = xp >= rank.minXp;
+              const isCurrent = rank.id === currentId;
+              const theme = getRankTheme(rank.id);
+              const next = row[index + 1];
+              const nextUnlocked = next ? xp >= next.minXp : false;
               const nextTheme = next ? getRankTheme(next.id) : null;
-              const lineUnlocked = Boolean(nextDone && nextTheme);
+              const lineUnlocked = Boolean(nextUnlocked && nextTheme);
               return (
-                <div key={r.id} className="flex shrink-0 items-center">
-                  <div className="flex w-[108px] shrink-0 flex-col items-center gap-1">
-                    <div className="flex h-[134px] w-[134px] shrink-0 items-center justify-center">
+                <div key={rank.id} className="flex shrink-0 items-center">
+                  <div className="flex w-[72px] shrink-0 flex-col items-center gap-1 sm:w-[96px]">
+                    <div className="flex h-[70px] w-[70px] shrink-0 items-center justify-center sm:h-[82px] sm:w-[82px]">
                       <CosmicPlanet
-                        rank={r}
-                        size={isCurrent ? CURRENT_SIZE : BASE_SIZE}
+                        rank={rank}
+                        size={isCurrent ? `clamp(64px, 18vw, ${CURRENT_SIZE}px)` : `clamp(56px, 16vw, ${BASE_SIZE}px)`}
                         current={isCurrent}
-                        locked={!done}
+                        locked={!unlocked}
                         floaty={isCurrent}
-                        glowSmall={done && !isCurrent}
+                        glowSmall={unlocked && !isCurrent}
                       />
                     </div>
                     <span
-                      className="max-w-[96px] truncate text-center text-[11px] font-bold leading-tight"
-                      style={{ color: isCurrent ? theme.glow : done ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.3)" }}
+                      className="max-w-[72px] truncate text-center text-[9px] font-bold leading-tight sm:max-w-[96px] sm:text-[10px]"
+                      style={{ color: isCurrent ? theme.glow : unlocked ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.3)" }}
                     >
-                      {r.name}
+                      {rank.name}
+                    </span>
+                    <span className="h-3 text-[8px] font-bold uppercase tracking-wide text-white/30">
+                      {isCurrent ? "Current Rank" : unlocked ? "Unlocked" : `${rank.minXp.toLocaleString()} XP`}
                     </span>
                   </div>
                   {next && (
                     <span
-                      className="cosmic-journey-line mx-1 w-6 shrink-0 sm:w-9"
+                      className="cosmic-journey-line mx-1 w-4 shrink-0 sm:w-10"
                       style={{
                         ["--from-color" as string]: lineUnlocked ? theme.glow : "rgba(139,92,246,0.14)",
                         ["--to-color" as string]: lineUnlocked && nextTheme ? nextTheme.glow : "rgba(139,92,246,0.08)",
