@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check } from "lucide-react";
 
 export function SelfReflectionChecklist({
@@ -24,12 +24,15 @@ export function SelfReflectionChecklist({
     }
     return items.map(() => false);
   });
+  const wasComplete = useRef(checked.length > 0 && checked.every(Boolean));
 
   useEffect(() => {
     if (storageKey && typeof window !== "undefined") {
       window.localStorage.setItem(storageKey, JSON.stringify(checked));
     }
-    if (checked.length > 0 && checked.every(Boolean)) onAllComplete?.();
+    const isComplete = checked.length > 0 && checked.every(Boolean);
+    if (isComplete && !wasComplete.current) onAllComplete?.();
+    wasComplete.current = isComplete;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
 

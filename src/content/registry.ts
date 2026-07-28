@@ -288,6 +288,8 @@ import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-
 import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
 import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
 import { scienceF2C2FlashcardsDLP } from "@/content/form2/science/chapter-2/flashcards-dlp";
+import { scienceF2C2InteractiveBM } from "@/content/form2/science/chapter-2/interactive-bm";
+import { scienceF2C2InteractiveDLP } from "@/content/form2/science/chapter-2/interactive-dlp";
 
 // Sains F2 Bab 3 (Nutrisi / Nutrition)
 import { scienceF2C3NotesBM } from "@/content/form2/science/chapter-3/notes-bm";
@@ -298,6 +300,8 @@ import { scienceF2C3QuizzesBM } from "@/content/form2/science/chapter-3/quizzes-
 import { scienceF2C3QuizzesDLP } from "@/content/form2/science/chapter-3/quizzes-dlp";
 import { scienceF2C3FlashcardsBM } from "@/content/form2/science/chapter-3/flashcards-bm";
 import { scienceF2C3FlashcardsDLP } from "@/content/form2/science/chapter-3/flashcards-dlp";
+import { scienceF2C3InteractiveBM } from "@/content/form2/science/chapter-3/interactive-bm";
+import { scienceF2C3InteractiveDLP } from "@/content/form2/science/chapter-3/interactive-dlp";
 import { scienceF2C4NotesBM } from "@/content/form2/science/chapter-4/notes-bm";
 import { scienceF2C4NotesDLP } from "@/content/form2/science/chapter-4/notes-dlp";
 import { scienceF2C4MindMapBM } from "@/content/form2/science/chapter-4/mindmap-bm";
@@ -306,6 +310,8 @@ import { scienceF2C4QuizzesBM } from "@/content/form2/science/chapter-4/quizzes-
 import { scienceF2C4QuizzesDLP } from "@/content/form2/science/chapter-4/quizzes-dlp";
 import { scienceF2C4FlashcardsBM } from "@/content/form2/science/chapter-4/flashcards-bm";
 import { scienceF2C4FlashcardsDLP } from "@/content/form2/science/chapter-4/flashcards-dlp";
+import { scienceF2C4InteractiveBM } from "@/content/form2/science/chapter-4/interactive-bm";
+import { scienceF2C4InteractiveDLP } from "@/content/form2/science/chapter-4/interactive-dlp";
 import { scienceF2C5NotesBM } from "@/content/form2/science/chapter-5/notes-bm";
 import { scienceF2C5NotesDLP } from "@/content/form2/science/chapter-5/notes-dlp";
 import { scienceF2C5MindMapBM } from "@/content/form2/science/chapter-5/mindmap-bm";
@@ -2823,6 +2829,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c2"),
     mindMap: { data: scienceF2C2MindMapBM, title: "Ekosistem" },
     notes: scienceF2C2NotesBM,
+    sciF2InteractiveData: scienceF2C2InteractiveBM,
     flashcards: scienceF2C2FlashcardsBM,
     quiz: scienceF2C2QuizzesBM,
   },
@@ -2836,6 +2843,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c2", "dlp"),
     mindMap: { data: scienceF2C2MindMapDLP, title: "Ecosystem" },
     notes: scienceF2C2NotesDLP,
+    sciF2InteractiveData: scienceF2C2InteractiveDLP,
     flashcards: scienceF2C2FlashcardsDLP,
     quiz: scienceF2C2QuizzesDLP,
   },
@@ -2851,6 +2859,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c3"),
     mindMap: { data: scienceF2C3MindMapBM, title: "Nutrisi" },
     notes: scienceF2C3NotesBM,
+    sciF2InteractiveData: scienceF2C3InteractiveBM,
     flashcards: scienceF2C3FlashcardsBM,
     quiz: scienceF2C3QuizzesBM,
   },
@@ -2864,6 +2873,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c3", "dlp"),
     mindMap: { data: scienceF2C3MindMapDLP, title: "Nutrition" },
     notes: scienceF2C3NotesDLP,
+    sciF2InteractiveData: scienceF2C3InteractiveDLP,
     flashcards: scienceF2C3FlashcardsDLP,
     quiz: scienceF2C3QuizzesDLP,
   },
@@ -2879,6 +2889,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c4"),
     mindMap: { data: scienceF2C4MindMapBM, title: "Kesihatan Manusia" },
     notes: scienceF2C4NotesBM,
+    sciF2InteractiveData: scienceF2C4InteractiveBM,
     flashcards: scienceF2C4FlashcardsBM,
     quiz: scienceF2C4QuizzesBM,
   },
@@ -2892,6 +2903,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c4", "dlp"),
     mindMap: { data: scienceF2C4MindMapDLP, title: "Human Health" },
     notes: scienceF2C4NotesDLP,
+    sciF2InteractiveData: scienceF2C4InteractiveDLP,
     flashcards: scienceF2C4FlashcardsDLP,
     quiz: scienceF2C4QuizzesDLP,
   },
