@@ -79,6 +79,7 @@ import { Chapter5NotesBlock } from "@/components/notes/Chapter5NotesBlock";
 import { Chapter6NotesBlock } from "@/components/notes/Chapter6NotesBlock";
 import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
 import { Chapter9NotesBlock } from "@/components/notes/Chapter9NotesBlock";
+import { ScienceF2Chapter1NotesBlock } from "@/components/notes/ScienceF2Chapter1NotesBlock";
 import {
   MiniInvestigation,
   ScienceDiscoveryChapterHeader,
@@ -274,7 +275,10 @@ function NotesPage() {
     subject && activeChapterKey
       ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
       : false;
-  const isScienceDiscovery = subject === "science" && form === "Form 1" && !!activeChapterKey;
+  const isScienceF2C1 =
+    subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 1" && !!activeChapter?.sciF2C1Data;
+  const isScienceDiscovery =
+    (subject === "science" && form === "Form 1" && !!activeChapterKey) || isScienceF2C1;
   const isSejarahChapter = subject === "sejarah" && !!activeChapterKey;
   const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
@@ -735,6 +739,11 @@ function NotesPage() {
                   chapterProgress={activeChapterProgress}
                   isRead={isRead}
                   embedded
+                  metaOverride={
+                    isScienceF2C1
+                      ? { modules: 12, minutes: 22, experiments: 2, difficulty: "Core" }
+                      : undefined
+                  }
                 />
               ) : undefined
             }
@@ -1229,6 +1238,17 @@ function NotesPage() {
                 id="science-notes-content"
                 content={activeChapter.chapter9Data}
                 lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sciF2C1Data ? (
+              <ScienceF2Chapter1NotesBlock
+                id="science-notes-content"
+                content={activeChapter.sciF2C1Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
                 storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                 isRead={isRead}
                 onMarkRead={() =>

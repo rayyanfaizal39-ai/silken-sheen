@@ -276,6 +276,8 @@ import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-
 import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
 import { scienceF2C1FlashcardsBM } from "@/content/form2/science/chapter-1/flashcards-bm";
 import { scienceF2C1FlashcardsDLP } from "@/content/form2/science/chapter-1/flashcards-dlp";
+import { scienceF2C1InteractiveBM } from "@/content/form2/science/chapter-1/interactive-bm";
+import { scienceF2C1InteractiveDLP } from "@/content/form2/science/chapter-1/interactive-dlp";
 
 // Sains F2 Bab 2 (Ekosistem / Ecosystem)
 import { scienceF2C2NotesBM } from "@/content/form2/science/chapter-2/notes-bm";
@@ -2791,6 +2793,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c1"),
     mindMap: { data: scienceF2C1MindMapBM, title: "Biodiversiti" },
     notes: scienceF2C1NotesBM,
+    sciF2C1Data: scienceF2C1InteractiveBM,
     flashcards: scienceF2C1FlashcardsBM,
     quiz: scienceF2C1QuizzesBM,
   },
@@ -2804,6 +2807,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c1", "dlp"),
     mindMap: { data: scienceF2C1MindMapDLP, title: "Biodiversity" },
     notes: scienceF2C1NotesDLP,
+    sciF2C1Data: scienceF2C1InteractiveDLP,
     flashcards: scienceF2C1FlashcardsDLP,
     quiz: scienceF2C1QuizzesDLP,
   },
