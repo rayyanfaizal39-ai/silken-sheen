@@ -56,7 +56,10 @@ function flattenContent(node: MindNode): string {
 describe("Bahasa Melayu Form 2 Ayat Aktif mind map", () => {
   it("keeps exactly ten Form 2 cards active alongside the dedicated Forms 1 and 3 registries", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
-    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
+    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual([
+      "Jenis Ayat",
+      "Ragam Ayat",
+    ]);
 
     const topics = tatabahasaTopics("Form 2");
     expect(topics.map((topic) => topic.key)).toEqual(form2Topics);

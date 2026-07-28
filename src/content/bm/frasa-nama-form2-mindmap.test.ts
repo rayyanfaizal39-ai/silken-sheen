@@ -64,7 +64,10 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
   it("replaces only the Form 2 Tatabahasa topic list", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
     expect(tatabahasaTopics("Form 2").map((topic) => topic.key)).toEqual(form2Topics);
-    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
+    expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual([
+      "Jenis Ayat",
+      "Ragam Ayat",
+    ]);
   });
 
   it("keeps Frasa Nama active and unchanged in the Form 2 syntax library", () => {

@@ -60,13 +60,13 @@ function findBranch(label: string) {
 }
 
 describe("Bahasa Melayu Form 3 Jenis Ayat mind map", () => {
-  it("replaces the inherited Form 1 registry with exactly one active Form 3 topic", () => {
+  it("keeps the inherited registries isolated and exposes exactly two Form 3 topics", () => {
     expect(tatabahasaTopics("Form 1").map((topic) => topic.key)).toEqual(form1Topics);
     expect(tatabahasaTopics("Form 2").map((topic) => topic.key)).toEqual(form2Topics);
 
     const topics = tatabahasaTopics("Form 3");
-    expect(topics.map((topic) => topic.key)).toEqual(["Jenis Ayat"]);
-    expect(topics).toHaveLength(1);
+    expect(topics.map((topic) => topic.key)).toEqual(["Jenis Ayat", "Ragam Ayat"]);
+    expect(topics).toHaveLength(2);
     expect(topics[0]).toMatchObject({
       key: "Jenis Ayat",
       label: "Jenis Ayat",
@@ -87,7 +87,7 @@ describe("Bahasa Melayu Form 3 Jenis Ayat mind map", () => {
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.form === "Form 3" && chapter.categoryLabel === "Tatabahasa")
         .map((chapter) => chapter.id),
-    ).toEqual(["bm-f3-jenis-ayat-mindmap"]);
+    ).toEqual(["bm-f3-jenis-ayat-mindmap", "bm-f3-ragam-ayat-mindmap"]);
   });
 
   it("registers only the required Form 3 Jenis Ayat mind-map resource", () => {
