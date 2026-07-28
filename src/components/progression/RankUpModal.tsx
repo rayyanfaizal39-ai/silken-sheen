@@ -1,4 +1,5 @@
 import { useProgress, SPACE_RANKS } from "@/hooks/use-progress";
+import { RankBadge } from "@/components/RankBadge";
 
 /** Global celebration shown whenever a student's Cosmic Rank advances. */
 export function RankUpModal() {
@@ -37,13 +38,13 @@ export function RankUpModal() {
         <div className="relative z-10 mt-4 flex items-center justify-center gap-3">
           {fromRank && (
             <span className="flex flex-col items-center gap-1 opacity-50">
-              <span className="text-3xl">{fromRank.emoji}</span>
+              <RankBadge rank={fromRank} size={96} />
               <span className="text-[10px] font-bold text-white/60">{fromRank.name}</span>
             </span>
           )}
           {fromRank && <span className="text-xl text-white/30">→</span>}
           <span className="flex flex-col items-center gap-1">
-            <span className="text-4xl">{toRank.emoji}</span>
+            <RankBadge rank={toRank} size="clamp(180px, 52vw, 220px)" />
           </span>
         </div>
 

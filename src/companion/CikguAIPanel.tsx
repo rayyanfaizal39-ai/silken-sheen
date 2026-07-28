@@ -19,6 +19,7 @@ import {
   VolumeX,
 } from "lucide-react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { RankBadge } from "@/components/RankBadge";
 import { cn } from "@/lib/utils";
 import { getRank, type SpaceRank } from "@/hooks/use-progress";
 import {
@@ -239,9 +240,10 @@ function Header({
           </button>
         )}
         <span
-          className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white/80"
+          className="inline-flex items-center gap-1.5 rounded-full py-1 pl-1 pr-2.5 text-[10px] font-semibold uppercase tracking-wide text-white/80"
           style={{ background: `${rank.color}26`, border: `1px solid ${rank.color}55` }}
         >
+          <RankBadge rank={rank} size={40} />
           {rank.name}
         </span>
       </div>
