@@ -8,8 +8,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { VitePWA } from "vite-plugin-pwa";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-// Used by both the Vercel SSR deploy path (dist/server/server.js) and the
-// Cloudflare Worker deploy path (dist/server/index.mjs) below.
+// Nitro's cloudflare-module preset emits it as dist/server/index.mjs; the Pages
+// packaging step copies that output to dist/client/_worker.js/index.js.
 export default defineConfig({
   // Cloudflare deploy target: production is the Cloudflare Pages project
   // "academymy" (git-integrated build, myacademy.my / www.myacademy.my), NOT
