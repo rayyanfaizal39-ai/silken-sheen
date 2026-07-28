@@ -11,57 +11,164 @@ type SimpulanBahasaEntry = {
   berkaitan: string;
 };
 
-function simpulanBahasa({
-  id,
-  label,
-  maksud,
-  huraian,
-  contohAyat,
-  situasi,
-  kesalahan,
-  berkaitan,
-}: SimpulanBahasaEntry): MindNode {
+function simpulanBahasa(entry: SimpulanBahasaEntry): MindNode {
+  const id = `bm-simpulan-bahasa-${entry.id}`;
   return {
-    id: `bm-simpulan-bahasa-${id}`,
-    label,
+    id,
+    label: entry.label,
     children: [
-      {
-        id: `bm-simpulan-bahasa-${id}-maksud`,
-        label: "Maksud",
-        summary: maksud,
-      },
-      {
-        id: `bm-simpulan-bahasa-${id}-huraian`,
-        label: "Huraian",
-        summary: huraian,
-      },
-      {
-        id: `bm-simpulan-bahasa-${id}-contoh-ayat`,
-        label: "Contoh Ayat",
-        summary: contohAyat,
-      },
-      {
-        id: `bm-simpulan-bahasa-${id}-situasi`,
-        label: "Situasi Penggunaan",
-        summary: situasi,
-      },
-      ...(kesalahan
-        ? [
-            {
-              id: `bm-simpulan-bahasa-${id}-kesalahan`,
-              label: "Kesalahan Lazim",
-              summary: kesalahan,
-            },
-          ]
+      { id: `${id}-maksud`, label: "Maksud", summary: entry.maksud },
+      { id: `${id}-huraian`, label: "Huraian", summary: entry.huraian },
+      { id: `${id}-contoh-ayat`, label: "Contoh Ayat", summary: entry.contohAyat },
+      { id: `${id}-situasi`, label: "Situasi Penggunaan", summary: entry.situasi },
+      ...(entry.kesalahan
+        ? [{ id: `${id}-kesalahan`, label: "Kesalahan Lazim", summary: entry.kesalahan }]
         : []),
-      {
-        id: `bm-simpulan-bahasa-${id}-berkaitan`,
-        label: "Berkaitan",
-        summary: berkaitan,
-      },
+      { id: `${id}-berkaitan`, label: "Berkaitan", summary: entry.berkaitan },
     ],
   };
 }
+
+const simpulanBahasaEntries: SimpulanBahasaEntry[] = [
+  {
+    id: "katak-di-bawah-tempurung",
+    label: "Katak di bawah tempurung",
+    maksud: "Orang yang cetek pengetahuan dan kurang mengetahui hal di luar lingkungannya.",
+    huraian:
+      "Menggambarkan seseorang yang tidak terdedah kepada dunia luar lalu beranggapan pengetahuannya sudah mencukupi.",
+    contohAyat:
+      '"Rajin-rajinlah membaca dan meneroka ilmu baharu agar kita tidak menjadi seperti katak di bawah tempurung."',
+    situasi: "Digunakan apabila seseorang kurang pendedahan, pengalaman atau pengetahuan am.",
+    kesalahan:
+      "Jangan gunakan untuk seseorang yang sekadar pemalu; ungkapan ini menekankan pengetahuan atau pengalaman yang terbatas.",
+    berkaitan: "Cetek pengetahuan • kurang pendedahan • berpandangan sempit",
+  },
+  {
+    id: "mendabik-dada",
+    label: "Mendabik dada",
+    maksud: "Membanggakan diri atau bercakap dengan sombong tentang kelebihan sendiri.",
+    huraian:
+      "Perbuatan menunjuk-nunjukkan kejayaan, kebolehan atau kedudukan dengan rasa terlalu bangga.",
+    contohAyat:
+      '"Walaupun memenangi pertandingan itu, Faris tidak pernah mendabik dada di hadapan rakan-rakannya."',
+    situasi: "Digunakan ketika seseorang bermegah-megah atau meninggikan diri.",
+    kesalahan:
+      "Jangan samakan dengan rasa bangga yang wajar; mendabik dada membawa nada negatif dan sombong.",
+    berkaitan: "Bermegah-megah • besar kepala • sombong",
+  },
+  {
+    id: "membuka-mata",
+    label: "Membuka mata",
+    maksud: "Menyedarkan atau memberikan kefahaman tentang sesuatu perkara.",
+    huraian:
+      "Pengalaman atau maklumat baharu menyebabkan seseorang memahami kenyataan yang sebelum itu tidak disedarinya.",
+    contohAyat:
+      '"Lawatan ke pusat pemuliharaan itu membuka mata kami tentang pentingnya melindungi hidupan liar."',
+    situasi: "Digunakan apabila sesuatu pengalaman menimbulkan kesedaran atau kefahaman baharu.",
+    kesalahan: "Bezakan makna kiasan dengan perbuatan membuka kelopak mata secara fizikal.",
+    berkaitan: "Memberi kesedaran • menyedarkan • menginsafkan",
+  },
+  {
+    id: "ambil-berat",
+    label: "Ambil berat",
+    maksud: "Memberikan perhatian yang bersungguh-sungguh terhadap seseorang atau sesuatu.",
+    huraian:
+      "Menunjukkan sikap peduli dengan mengetahui keadaan, membantu atau memastikan sesuatu diurus dengan baik.",
+    contohAyat:
+      '"Ibu bapa perlu mengambil berat tentang perkembangan pelajaran dan emosi anak-anak."',
+    situasi: "Digunakan apabila seseorang menunjukkan perhatian, kepedulian atau tanggungjawab.",
+    kesalahan:
+      'Jangan keliru dengan "ambil mudah", yang bermaksud memandang ringan sesuatu perkara.',
+    berkaitan: "Prihatin • peduli • memberi perhatian",
+  },
+  {
+    id: "membawang",
+    label: "Membawang",
+    maksud: "Berbual atau bergosip tentang hal orang lain.",
+    huraian:
+      "Ungkapan tidak formal yang merujuk kepada perbualan panjang, khususnya tentang cerita atau khabar orang lain.",
+    contohAyat:
+      '"Mereka dinasihati supaya tidak membawang tentang masalah peribadi rakan sekelas."',
+    situasi:
+      "Sesuai dalam konteks perbualan tidak formal tentang tabiat bergosip atau bercerita.",
+    kesalahan:
+      "Elakkan dalam penulisan rasmi jika perkataan yang lebih baku seperti bergosip atau mengumpat lebih sesuai.",
+    berkaitan: "Bergosip • mengumpat • berbual-bual",
+  },
+  {
+    id: "panas-baran",
+    label: "Panas baran",
+    maksud: "Sifat seseorang yang cepat marah.",
+    huraian:
+      "Merujuk kepada orang yang mudah hilang sabar atau naik marah walaupun disebabkan perkara kecil.",
+    contohAyat:
+      '"Sikap panas baran Harun menyebabkan rakan-rakannya takut untuk berbincang dengannya."',
+    situasi: "Digunakan untuk menerangkan sifat seseorang yang mudah marah.",
+    kesalahan:
+      "Jangan gunakan untuk kemarahan sekali-sekala; ungkapan ini biasanya menerangkan sifat atau tabiat.",
+    berkaitan: "Cepat marah • naik darah • hilang sabar",
+  },
+  {
+    id: "darah-daging",
+    label: "Darah daging",
+    maksud: "Anak atau saudara kandung sendiri.",
+    huraian:
+      "Menunjukkan hubungan kekeluargaan yang sangat rapat melalui keturunan atau pertalian darah.",
+    contohAyat: '"Walau apa-apa pun yang berlaku, Amir tetap darah daging keluarga itu."',
+    situasi: "Digunakan apabila menegaskan pertalian keluarga atau keturunan.",
+    kesalahan:
+      "Jangan gunakan semata-mata untuk sahabat rapat kerana ungkapan ini menekankan pertalian darah.",
+    berkaitan: "Saudara kandung • pertalian darah • keluarga sendiri",
+  },
+  {
+    id: "selok-belok",
+    label: "Selok-belok",
+    maksud: "Hal-hal terperinci atau cara-cara yang berkaitan dengan sesuatu perkara.",
+    huraian: "Merujuk kepada pengetahuan menyeluruh tentang proses, keadaan atau bidang tertentu.",
+    contohAyat:
+      '"Puan Aida memahami selok-belok perniagaan dalam talian setelah bertahun-tahun mengusahakannya."',
+    situasi:
+      "Digunakan untuk menerangkan pengetahuan mendalam tentang sesuatu bidang atau urusan.",
+    berkaitan: "Hal-ehwal • liku-liku • perincian",
+  },
+  {
+    id: "jalan-mudah",
+    label: "Jalan mudah",
+    maksud: "Cara yang paling mudah untuk menyelesaikan sesuatu perkara.",
+    huraian:
+      "Merujuk kepada pilihan yang memerlukan usaha, masa atau kesukaran yang lebih sedikit.",
+    contohAyat:
+      '"Meniru bukanlah jalan mudah yang wajar dipilih untuk memperoleh keputusan cemerlang."',
+    situasi: "Digunakan ketika membincangkan pilihan atau kaedah penyelesaian.",
+    kesalahan:
+      "Pastikan konteks menunjukkan suatu cara atau penyelesaian, bukan jalan raya yang mudah dilalui.",
+    berkaitan: "Cara mudah • jalan singkat • penyelesaian",
+  },
+  {
+    id: "modal-insan",
+    label: "Modal insan",
+    maksud: "Sumber manusia yang mempunyai ilmu, kemahiran dan nilai berkualiti.",
+    huraian:
+      "Merujuk kepada keupayaan manusia sebagai aset penting dalam pembangunan masyarakat dan negara.",
+    contohAyat:
+      '"Pendidikan yang berkualiti penting untuk melahirkan modal insan yang berilmu dan berkemahiran."',
+    situasi: "Digunakan dalam konteks pendidikan, pekerjaan, pembangunan dan kemajuan negara.",
+    kesalahan:
+      "Jangan tafsirkan modal sebagai wang; dalam ungkapan ini, manusia dilihat sebagai sumber bernilai.",
+    berkaitan: "Sumber manusia • tenaga mahir • pembangunan insan",
+  },
+  {
+    id: "anak-watan",
+    label: "Anak watan",
+    maksud: "Penduduk asal atau orang yang dilahirkan di sesebuah negeri atau negara.",
+    huraian: "Menunjukkan hubungan seseorang dengan tempat asal, negeri atau tanah airnya.",
+    contohAyat: '"Sebagai anak watan Malaysia, kita hendaklah memelihara keharmonian negara."',
+    situasi: "Digunakan ketika menyatakan asal-usul atau jati diri seseorang.",
+    kesalahan:
+      'Jangan tafsirkan perkataan "anak" sebagai kanak-kanak; ungkapan ini boleh merujuk kepada orang dewasa.',
+    berkaitan: "Penduduk asal • rakyat tempatan • tanah air",
+  },
+];
 
 export const bahasaMelayuSimpulanBahasaMindMap: MindNode = {
   id: "bm-simpulan-bahasa-root",
@@ -149,145 +256,7 @@ export const bahasaMelayuSimpulanBahasaMindMap: MindNode = {
         },
       ],
     },
-    simpulanBahasa({
-      id: "katak-di-bawah-tempurung",
-      label: "Katak di bawah tempurung",
-      maksud: "Orang yang cetek pengetahuan dan kurang mengetahui hal di luar lingkungannya.",
-      huraian:
-        "Menggambarkan seseorang yang tidak terdedah kepada dunia luar lalu beranggapan pengetahuannya sudah mencukupi.",
-      contohAyat:
-        '"Rajin-rajinlah membaca dan meneroka ilmu baharu agar kita tidak menjadi seperti katak di bawah tempurung."',
-      situasi: "Digunakan apabila seseorang kurang pendedahan, pengalaman atau pengetahuan am.",
-      kesalahan:
-        "Jangan gunakan untuk seseorang yang sekadar pemalu; ungkapan ini menekankan pengetahuan atau pengalaman yang terbatas.",
-      berkaitan: "Cetek pengetahuan • kurang pendedahan • berpandangan sempit",
-    }),
-    simpulanBahasa({
-      id: "mendabik-dada",
-      label: "Mendabik dada",
-      maksud: "Membanggakan diri atau bercakap dengan sombong tentang kelebihan sendiri.",
-      huraian:
-        "Perbuatan menunjuk-nunjukkan kejayaan, kebolehan atau kedudukan dengan rasa terlalu bangga.",
-      contohAyat:
-        '"Walaupun memenangi pertandingan itu, Faris tidak pernah mendabik dada di hadapan rakan-rakannya."',
-      situasi: "Digunakan ketika seseorang bermegah-megah atau meninggikan diri.",
-      kesalahan:
-        "Jangan samakan dengan rasa bangga yang wajar; mendabik dada membawa nada negatif dan sombong.",
-      berkaitan: "Bermegah-megah • besar kepala • sombong",
-    }),
-    simpulanBahasa({
-      id: "membuka-mata",
-      label: "Membuka mata",
-      maksud: "Menyedarkan atau memberikan kefahaman tentang sesuatu perkara.",
-      huraian:
-        "Pengalaman atau maklumat baharu menyebabkan seseorang memahami kenyataan yang sebelum itu tidak disedarinya.",
-      contohAyat:
-        '"Lawatan ke pusat pemuliharaan itu membuka mata kami tentang pentingnya melindungi hidupan liar."',
-      situasi: "Digunakan apabila sesuatu pengalaman menimbulkan kesedaran atau kefahaman baharu.",
-      kesalahan: "Bezakan makna kiasan dengan perbuatan membuka kelopak mata secara fizikal.",
-      berkaitan: "Memberi kesedaran • menyedarkan • menginsafkan",
-    }),
-    simpulanBahasa({
-      id: "ambil-berat",
-      label: "Ambil berat",
-      maksud: "Memberikan perhatian yang bersungguh-sungguh terhadap seseorang atau sesuatu.",
-      huraian:
-        "Menunjukkan sikap peduli dengan mengetahui keadaan, membantu atau memastikan sesuatu diurus dengan baik.",
-      contohAyat:
-        '"Ibu bapa perlu mengambil berat tentang perkembangan pelajaran dan emosi anak-anak."',
-      situasi: "Digunakan apabila seseorang menunjukkan perhatian, kepedulian atau tanggungjawab.",
-      kesalahan:
-        'Jangan keliru dengan "ambil mudah", yang bermaksud memandang ringan sesuatu perkara.',
-      berkaitan: "Prihatin • peduli • memberi perhatian",
-    }),
-    simpulanBahasa({
-      id: "membawang",
-      label: "Membawang",
-      maksud: "Berbual atau bergosip tentang hal orang lain.",
-      huraian:
-        "Ungkapan tidak formal yang merujuk kepada perbualan panjang, khususnya tentang cerita atau khabar orang lain.",
-      contohAyat:
-        '"Mereka dinasihati supaya tidak membawang tentang masalah peribadi rakan sekelas."',
-      situasi:
-        "Sesuai dalam konteks perbualan tidak formal tentang tabiat bergosip atau bercerita.",
-      kesalahan:
-        "Elakkan dalam penulisan rasmi jika perkataan yang lebih baku seperti bergosip atau mengumpat lebih sesuai.",
-      berkaitan: "Bergosip • mengumpat • berbual-bual",
-    }),
-    simpulanBahasa({
-      id: "panas-baran",
-      label: "Panas baran",
-      maksud: "Sifat seseorang yang cepat marah.",
-      huraian:
-        "Merujuk kepada orang yang mudah hilang sabar atau naik marah walaupun disebabkan perkara kecil.",
-      contohAyat:
-        '"Sikap panas baran Harun menyebabkan rakan-rakannya takut untuk berbincang dengannya."',
-      situasi: "Digunakan untuk menerangkan sifat seseorang yang mudah marah.",
-      kesalahan:
-        "Jangan gunakan untuk kemarahan sekali-sekala; ungkapan ini biasanya menerangkan sifat atau tabiat.",
-      berkaitan: "Cepat marah • naik darah • hilang sabar",
-    }),
-    simpulanBahasa({
-      id: "darah-daging",
-      label: "Darah daging",
-      maksud: "Anak atau saudara kandung sendiri.",
-      huraian:
-        "Menunjukkan hubungan kekeluargaan yang sangat rapat melalui keturunan atau pertalian darah.",
-      contohAyat: '"Walau apa-apa pun yang berlaku, Amir tetap darah daging keluarga itu."',
-      situasi: "Digunakan apabila menegaskan pertalian keluarga atau keturunan.",
-      kesalahan:
-        "Jangan gunakan semata-mata untuk sahabat rapat kerana ungkapan ini menekankan pertalian darah.",
-      berkaitan: "Saudara kandung • pertalian darah • keluarga sendiri",
-    }),
-    simpulanBahasa({
-      id: "selok-belok",
-      label: "Selok-belok",
-      maksud: "Hal-hal terperinci atau cara-cara yang berkaitan dengan sesuatu perkara.",
-      huraian:
-        "Merujuk kepada pengetahuan menyeluruh tentang proses, keadaan atau bidang tertentu.",
-      contohAyat:
-        '"Puan Aida memahami selok-belok perniagaan dalam talian setelah bertahun-tahun mengusahakannya."',
-      situasi:
-        "Digunakan untuk menerangkan pengetahuan mendalam tentang sesuatu bidang atau urusan.",
-      berkaitan: "Hal-ehwal • liku-liku • perincian",
-    }),
-    simpulanBahasa({
-      id: "jalan-mudah",
-      label: "Jalan mudah",
-      maksud: "Cara yang paling mudah untuk menyelesaikan sesuatu perkara.",
-      huraian:
-        "Merujuk kepada pilihan yang memerlukan usaha, masa atau kesukaran yang lebih sedikit.",
-      contohAyat:
-        '"Meniru bukanlah jalan mudah yang wajar dipilih untuk memperoleh keputusan cemerlang."',
-      situasi: "Digunakan ketika membincangkan pilihan atau kaedah penyelesaian.",
-      kesalahan:
-        "Pastikan konteks menunjukkan suatu cara atau penyelesaian, bukan jalan raya yang mudah dilalui.",
-      berkaitan: "Cara mudah • jalan singkat • penyelesaian",
-    }),
-    simpulanBahasa({
-      id: "modal-insan",
-      label: "Modal insan",
-      maksud: "Sumber manusia yang mempunyai ilmu, kemahiran dan nilai berkualiti.",
-      huraian:
-        "Merujuk kepada keupayaan manusia sebagai aset penting dalam pembangunan masyarakat dan negara.",
-      contohAyat:
-        '"Pendidikan yang berkualiti penting untuk melahirkan modal insan yang berilmu dan berkemahiran."',
-      situasi: "Digunakan dalam konteks pendidikan, pekerjaan, pembangunan dan kemajuan negara.",
-      kesalahan:
-        "Jangan tafsirkan modal sebagai wang; dalam ungkapan ini, manusia dilihat sebagai sumber bernilai.",
-      berkaitan: "Sumber manusia • tenaga mahir • pembangunan insan",
-    }),
-    simpulanBahasa({
-      id: "anak-watan",
-      label: "Anak watan",
-      maksud: "Penduduk asal atau orang yang dilahirkan di sesebuah negeri atau negara.",
-      huraian: "Menunjukkan hubungan seseorang dengan tempat asal, negeri atau tanah airnya.",
-      contohAyat: '"Sebagai anak watan Malaysia, kita hendaklah memelihara keharmonian negara."',
-      situasi: "Digunakan ketika menyatakan asal-usul atau jati diri seseorang.",
-      kesalahan:
-        'Jangan tafsirkan perkataan "anak" sebagai kanak-kanak; ungkapan ini boleh merujuk kepada orang dewasa.',
-      berkaitan: "Penduduk asal • rakyat tempatan • tanah air",
-    }),
+    ...simpulanBahasaEntries.map(simpulanBahasa),
     {
       id: "bm-simpulan-bahasa-kesalahan-lazim",
       label: "Kesalahan Lazim",

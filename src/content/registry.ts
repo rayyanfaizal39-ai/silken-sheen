@@ -241,6 +241,7 @@ import { bahasaMelayuPenjodohBilanganMindMap } from "@/content/bm/penjodoh-bilan
 import { bahasaMelayuImbuhanMindMap } from "@/content/bm/imbuhan-mindmap";
 import { bahasaMelayuPenandaWacanaMindMap } from "@/content/bm/penanda-wacana-mindmap";
 import { bahasaMelayuSimpulanBahasaMindMap } from "@/content/bm/simpulan-bahasa-mindmap";
+import { bahasaMelayuForm2PerumpamaanMindMap } from "@/content/bm/perumpamaan-form2-mindmap";
 import { bahasaMelayuForm2FrasaNamaMindMap } from "@/content/bm/frasa-nama-form2-mindmap";
 import { bahasaMelayuForm2FrasaKerjaMindMap } from "@/content/bm/frasa-kerja-form2-mindmap";
 import { bahasaMelayuForm2FrasaAdjektifMindMap } from "@/content/bm/frasa-adjektif-form2-mindmap";
@@ -2554,6 +2555,17 @@ export const chapters: ChapterContent[] = [
     description: "Ungkapan ringkas yang membawa maksud kiasan dan digunakan mengikut konteks.",
     categoryLabel: "Peribahasa",
     mindMap: { data: bahasaMelayuSimpulanBahasaMindMap, title: "Simpulan Bahasa" },
+  },
+  {
+    id: "bm-f2-perumpamaan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Perumpamaan",
+    title: "Perumpamaan",
+    description:
+      "Peribahasa yang membandingkan sesuatu dengan perkara lain untuk menyampaikan maksud secara jelas dan berkesan.",
+    categoryLabel: "Peribahasa",
+    mindMap: { data: bahasaMelayuForm2PerumpamaanMindMap, title: "Perumpamaan" },
   },
   {
     id: "bm-f2-frasa-nama-mindmap",
