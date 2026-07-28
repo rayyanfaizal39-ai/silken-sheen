@@ -303,7 +303,10 @@ function MindMapsPage() {
         activeChapterKey === "Imbuhan Lanjutan" ||
         activeChapterKey === "Kata Pemeri" ||
         activeChapterKey === "Kesalahan Tatabahasa Lazim")) ||
-      (form === "Form 3" && activeChapterKey === "Jenis Ayat"));
+      (form === "Form 3" &&
+        (activeChapterKey === "Jenis Ayat" ||
+          activeChapterKey === "Ragam Ayat" ||
+          activeChapterKey === "Cakap Ajuk dan Cakap Pindah")));
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
   const mindMapPalette = planetTheme
