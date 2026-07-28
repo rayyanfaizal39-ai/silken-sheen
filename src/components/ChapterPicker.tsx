@@ -177,6 +177,7 @@ export function FormGrid({
   const subj = subjects.find((s) => s.id === subjectId);
   const accent = getSubjectAccent(subjectId);
   const formStats = getSubjectFormStats(subjectId);
+  const hideFormProgressText = subjectId === "bm" && mode === "mindmaps";
 
   return (
     <AcademyPanel>
@@ -256,9 +257,11 @@ export function FormGrid({
                 {isReady ? "Ready" : item.badge}
               </span>
               <h3 className="font-display text-xl font-bold text-white">{item.label}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/55">
-                {isReady ? statLabel : item.description}
-              </p>
+              {!hideFormProgressText && (
+                <p className="mt-2 text-sm leading-relaxed text-white/55">
+                  {isReady ? statLabel : item.description}
+                </p>
+              )}
             </button>
           );
         })}
