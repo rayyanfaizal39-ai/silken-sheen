@@ -51,6 +51,7 @@ import type { Sej3Ch6Content } from "@/content/form3/sejarah/chapter-6/sej3ch6-c
 import type { Sej3Ch7Content } from "@/content/form3/sejarah/chapter-7/sej3ch7-content";
 import type { Sej3Ch8Content } from "@/content/form3/sejarah/chapter-8/sej3ch8-content";
 import type { SciF2C1Content } from "@/content/form2/science/chapter-1/interactive-types";
+import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -189,6 +190,8 @@ export type ChapterContent = {
   sej3Chapter8Data?: Sej3Ch8Content;
   /** Science Form 2 Bab 1 (Biodiversiti/Biodiversity) interactive learning experience — layered on top of `notes`. */
   sciF2C1Data?: SciF2C1Content;
+  /** Science Form 2 Chapters 2–4 interactive learning experience. */
+  sciF2InteractiveData?: ScienceF2InteractiveContent;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
