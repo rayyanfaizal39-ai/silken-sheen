@@ -15,6 +15,7 @@ const SITE_URL = "https://www.myacademy.my";
 
 const PUBLIC_ROUTES = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
+  { path: "/explore-academy", priority: "0.8", changefreq: "monthly" },
   { path: "/subjects", priority: "0.9", changefreq: "monthly" },
   { path: "/notes", priority: "0.8", changefreq: "weekly" },
   { path: "/quizzes", priority: "0.8", changefreq: "weekly" },

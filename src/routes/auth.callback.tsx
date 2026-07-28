@@ -14,11 +14,12 @@ function AuthCallbackPage() {
   const initialCode = useRef(
     typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("code") : null,
   );
-  const nextPath = useRef<"/auth/reset-password" | "/admin/login" | "/home">(
+  const nextPath = useRef<"/auth/reset-password" | "/admin/login" | "/upgrade" | "/home">(
     (() => {
       if (typeof window === "undefined") return "/home";
       const next = new URLSearchParams(window.location.search).get("next");
-      if (next === "/auth/reset-password" || next === "/admin/login") return next;
+      if (next === "/auth/reset-password" || next === "/admin/login" || next === "/upgrade")
+        return next;
       return "/home";
     })(),
   );

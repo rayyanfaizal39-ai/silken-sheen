@@ -50,6 +50,7 @@ import type { Sej3Ch5Content } from "@/content/form3/sejarah/chapter-5/sej3ch5-c
 import type { Sej3Ch6Content } from "@/content/form3/sejarah/chapter-6/sej3ch6-content";
 import type { Sej3Ch7Content } from "@/content/form3/sejarah/chapter-7/sej3ch7-content";
 import type { Sej3Ch8Content } from "@/content/form3/sejarah/chapter-8/sej3ch8-content";
+import type { SciF2C1Content } from "@/content/form2/science/chapter-1/interactive-types";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -186,6 +187,8 @@ export type ChapterContent = {
   sej3Chapter7Data?: Sej3Ch7Content;
   /** Sejarah Form 3 Bab 8 (Kebijaksanaan Raja dan Pembesar Melayu) chunked learning experience. BM-only. */
   sej3Chapter8Data?: Sej3Ch8Content;
+  /** Science Form 2 Bab 1 (Biodiversiti/Biodiversity) interactive learning experience — layered on top of `notes`. */
+  sciF2C1Data?: SciF2C1Content;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];
@@ -248,6 +251,7 @@ export function getChapterFeatures(
       !!c?.sej3Chapter6Data ||
       !!c?.sej3Chapter7Data ||
       !!c?.sej3Chapter8Data ||
+      !!c?.sciF2C1Data ||
       !!c?.subtopics?.length,
     flashcards: !!c?.flashcards?.length,
     quiz: !!c?.quiz?.length,

@@ -263,13 +263,14 @@ export default function HeroScene() {
           <CinematicAuthCta className="cine-button cine-button--primary cine-button--lg">
             Start Your Journey
           </CinematicAuthCta>
-          <button
+          <a
             className="cine-button cine-button--ghost cine-button--lg"
-            type="button"
-            onClick={() => motion?.scrollToSection("#why-academy")}
+            href="/explore-academy"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Explore AcadeMY
-          </button>
+          </a>
         </div>
       </div>
 

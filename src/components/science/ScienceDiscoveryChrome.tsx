@@ -128,6 +128,7 @@ export function ScienceDiscoveryChapterHeader({
   embedded = false,
   onBack,
   onChangeLang,
+  metaOverride,
 }: {
   chapterKey: string;
   title: string;
@@ -138,9 +139,12 @@ export function ScienceDiscoveryChapterHeader({
   embedded?: boolean;
   onBack?: () => void;
   onChangeLang?: () => void;
+  /** Overrides the Form-1-indexed SCIENCE_LAB_META lookup — needed whenever
+   * chapterKey collides with a Form 1 chapter number (e.g. Form 2 Chapter 1). */
+  metaOverride?: { modules: number; minutes: number; experiments: number; difficulty: string };
 }) {
   const chapter = Number(chapterKey.match(/\d+/)?.[0] ?? 1);
-  const meta = SCIENCE_LAB_META[chapter - 1] ?? SCIENCE_LAB_META[0];
+  const meta = metaOverride ?? SCIENCE_LAB_META[chapter - 1] ?? SCIENCE_LAB_META[0];
   const bm = lang === "bm";
   const effectiveProgress = isRead ? 100 : Math.max(chapterProgress, readingProgress);
   const mastered = Math.min(meta.modules, Math.floor((meta.modules * effectiveProgress) / 100));

@@ -496,22 +496,27 @@ function StarField() {
 function LoginPage() {
   const { user, loading, isConfigured, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const returnTo =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("next") === "/upgrade"
+      ? "/upgrade"
+      : "/home";
   const [signing, setSigning] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // If already logged in, go home
+  // If already logged in, continue to the safe requested route.
   useEffect(() => {
     if (!loading && user) {
-      void navigate({ to: "/home" });
+      void navigate({ to: returnTo });
     }
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, returnTo]);
 
   async function handleGoogle() {
     console.info("[Auth] Google login button clicked");
     setError(null);
     setSigning(true);
     try {
-      await signInWithGoogle();
+      await signInWithGoogle(returnTo === "/upgrade" ? "/upgrade" : undefined);
       // Page will redirect to Google — spinner stays
     } catch (cause) {
       console.error("[Auth] Google login failed before redirect", cause);

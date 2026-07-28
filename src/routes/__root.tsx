@@ -168,7 +168,8 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const pathname = router.state.location.pathname;
-  const isMarketingPage = pathname === "/" || pathname.startsWith("/academy/");
+  const isMarketingPage =
+    pathname === "/" || pathname === "/explore-academy" || pathname.startsWith("/academy/");
   // Marketing pages provide their own atmosphere and sound behavior.
   return (
     <QueryClientProvider client={queryClient}>
