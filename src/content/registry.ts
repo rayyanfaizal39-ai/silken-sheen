@@ -252,6 +252,7 @@ import { bahasaMelayuForm2KataPemeriMindMap } from "@/content/bm/kata-pemeri-for
 import { bahasaMelayuForm2KesalahanTatabahasaLazimMindMap } from "@/content/bm/kesalahan-tatabahasa-lazim-form2-mindmap";
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
+import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2435,6 +2436,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm3RagamAyatMindMap,
       title: "Ragam Ayat",
+    },
+  },
+  {
+    id: "bm-f3-cakap-ajuk-cakap-pindah-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Cakap Ajuk dan Cakap Pindah",
+    title: "Cakap Ajuk dan Cakap Pindah",
+    description:
+      "Menukarkan percakapan langsung kepada bentuk laporan dan sebaliknya tanpa mengubah maksud asal.",
+    categoryLabel: "Tatabahasa",
+    mindMap: {
+      data: bahasaMelayuForm3CakapAjukCakapPindahMindMap,
+      title: "Cakap Ajuk dan Cakap Pindah",
     },
   },
   {

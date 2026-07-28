@@ -67,6 +67,7 @@ describe("Bahasa Melayu Form 2 Frasa Nama mind map", () => {
     expect(tatabahasaTopics("Form 3").map((topic) => topic.key)).toEqual([
       "Jenis Ayat",
       "Ragam Ayat",
+      "Cakap Ajuk dan Cakap Pindah",
     ]);
   });
 

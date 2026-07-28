@@ -66,8 +66,12 @@ describe("Bahasa Melayu Form 3 Ragam Ayat mind map", () => {
     expect(tatabahasaTopics("Form 2").map((topic) => topic.key)).toEqual(form2Topics);
 
     const topics = tatabahasaTopics("Form 3");
-    expect(topics.map((topic) => topic.key)).toEqual(["Jenis Ayat", "Ragam Ayat"]);
-    expect(topics).toHaveLength(2);
+    expect(topics.map((topic) => topic.key)).toEqual([
+      "Jenis Ayat",
+      "Ragam Ayat",
+      "Cakap Ajuk dan Cakap Pindah",
+    ]);
+    expect(topics).toHaveLength(3);
     expect(topics[1]).toMatchObject({
       key: "Ragam Ayat",
       label: "Ragam Ayat",
@@ -111,7 +115,11 @@ describe("Bahasa Melayu Form 3 Ragam Ayat mind map", () => {
       getChaptersForSubject("bm")
         .filter((chapter) => chapter.form === "Form 3" && chapter.categoryLabel === "Tatabahasa")
         .map((chapter) => chapter.id),
-    ).toEqual(["bm-f3-jenis-ayat-mindmap", "bm-f3-ragam-ayat-mindmap"]);
+    ).toEqual([
+      "bm-f3-jenis-ayat-mindmap",
+      "bm-f3-ragam-ayat-mindmap",
+      "bm-f3-cakap-ajuk-cakap-pindah-mindmap",
+    ]);
   });
 
   it("uses the required identity and ten title-only first-level branches", () => {
