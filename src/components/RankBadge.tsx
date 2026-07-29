@@ -6,6 +6,7 @@ type RankBadgeProps = {
   rank: SpaceRank | string;
   size?: number | string;
   className?: string;
+  imageClassName?: string;
   locked?: boolean;
 };
 
@@ -13,6 +14,7 @@ export function RankBadge({
   rank,
   size = 48,
   className,
+  imageClassName,
   locked = false,
 }: RankBadgeProps) {
   const rankName = typeof rank === "string" ? rank : rank.name;
@@ -38,7 +40,7 @@ export function RankBadge({
         src={src}
         alt={locked ? "" : `${rankName} rank badge`}
         aria-hidden={locked || undefined}
-        className="h-[92%] w-[92%] object-contain"
+        className={cn("h-[92%] w-[92%] object-contain", imageClassName)}
         draggable={false}
       />
     </span>

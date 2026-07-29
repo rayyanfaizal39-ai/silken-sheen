@@ -1255,7 +1255,13 @@ function CosmicPlanet({
         </>
       )}
       {spotlight && <RankSparkles />}
-      <RankBadge rank={rank} size="82%" locked={locked} className="cosmic-planet-img" />
+      <RankBadge
+        rank={rank}
+        size="100%"
+        locked={locked}
+        className="cosmic-planet-img rank-icon-wrapper"
+        imageClassName="rank-icon-image"
+      />
       {locked && (
         <span className="absolute bottom-0.5 right-0.5 z-20 grid h-6 w-6 place-items-center rounded-full border border-white/15 bg-[#050816]/90 text-white/65">
           <Lock className="h-3 w-3" aria-hidden />

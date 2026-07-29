@@ -520,5 +520,12 @@ function HeaderCompanion() {
 function HeaderRankBadge() {
   const { progress } = useProgress();
   const rank = getRank(progress.xp);
-  return <RankBadge rank={rank} size={28} />;
+  return (
+    <RankBadge
+      rank={rank}
+      size={28}
+      className="header-rank-icon-wrapper"
+      imageClassName="header-rank-icon-image"
+    />
+  );
 }
