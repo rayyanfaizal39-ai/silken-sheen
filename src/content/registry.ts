@@ -255,6 +255,9 @@ import { bahasaMelayuForm2KesalahanTatabahasaLazimMindMap } from "@/content/bm/k
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
+import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mindmap";
+import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
+import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2458,6 +2461,48 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm3CakapAjukCakapPindahMindMap,
       title: "Cakap Ajuk dan Cakap Pindah",
+    },
+  },
+  {
+    id: "bm-f3-pepatah-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Pepatah",
+    title: "Pepatah",
+    description:
+      "Maksud, penggunaan, kesalahan lazim dan teknik UASA bagi pepatah dalam bahan Bahasa Melayu Tingkatan 3.",
+    categoryLabel: "Peribahasa",
+    mindMap: {
+      data: bahasaMelayuForm3PepatahMindMap,
+      title: "Pepatah",
+    },
+  },
+  {
+    id: "bm-f3-bidalan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Bidalan",
+    title: "Bidalan",
+    description:
+      "Maksud, penggunaan, kesalahan lazim dan teknik UASA bagi bidalan dalam bahan Bahasa Melayu Tingkatan 3.",
+    categoryLabel: "Peribahasa",
+    mindMap: {
+      data: bahasaMelayuForm3BidalanMindMap,
+      title: "Bidalan",
+    },
+  },
+  {
+    id: "bm-f3-kata-hikmat-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kata Hikmat",
+    title: "Kata Hikmat",
+    description:
+      "Maksud, penggunaan, perbandingan kategori dan teknik UASA bagi kata hikmat dalam bahan Bahasa Melayu Tingkatan 3.",
+    categoryLabel: "Peribahasa",
+    mindMap: {
+      data: bahasaMelayuForm3KataHikmatMindMap,
+      title: "Kata Hikmat",
     },
   },
   {
