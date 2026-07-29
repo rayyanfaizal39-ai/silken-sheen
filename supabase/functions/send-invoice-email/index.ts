@@ -10,7 +10,12 @@ type InvoiceRow = InvoiceEmailData & {
   emailed_at: string | null;
 };
 
-const jsonHeaders = { "Content-Type": "application/json" };
+const corsHeaders = {
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Origin": "*",
+};
+const jsonHeaders = { ...corsHeaders, "Content-Type": "application/json" };
 
 function response(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: jsonHeaders });
@@ -23,17 +28,16 @@ function hasServiceRoleCredential(request: Request, serviceRoleKey: string) {
 }
 
 Deno.serve(async (request) => {
+  if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (request.method !== "POST") return response({ error: "Method not allowed" }, 405);
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+  const anonKey = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
   const resendApiKey = Deno.env.get("RESEND_API_KEY") ?? "";
-  if (!supabaseUrl || !serviceRoleKey || !resendApiKey) {
+  if (!supabaseUrl || !anonKey || !serviceRoleKey || !resendApiKey) {
     console.error("[send-invoice-email] required secret is missing");
     return response({ error: "Email delivery is not configured" }, 500);
-  }
-  if (!hasServiceRoleCredential(request, serviceRoleKey)) {
-    return response({ error: "Unauthorized" }, 401);
   }
 
   let invoiceId: string;
@@ -58,6 +62,43 @@ Deno.serve(async (request) => {
     }
   } catch {
     return response({ error: "Invalid JSON body" }, 400);
+  }
+
+  const serviceRequest = hasServiceRoleCredential(request, serviceRoleKey);
+  if (!serviceRequest) {
+    const authorization = request.headers.get("authorization") ?? "";
+    if (!authorization.toLowerCase().startsWith("bearer ")) {
+      return response({ error: "You must be signed in to resend a receipt" }, 401);
+    }
+    if (!resend) {
+      return response({ error: "Authenticated users may only resend an existing receipt" }, 403);
+    }
+
+    const authenticated = createClient(supabaseUrl, anonKey, {
+      global: { headers: { Authorization: authorization } },
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+    const {
+      data: { user },
+      error: userError,
+    } = await authenticated.auth.getUser();
+    if (userError || !user) {
+      return response({ error: "You must be signed in to resend a receipt" }, 401);
+    }
+
+    const ownership = await authenticated
+      .from("invoices")
+      .select("id")
+      .eq("id", invoiceId)
+      .eq("user_id", user.id)
+      .maybeSingle();
+    if (ownership.error) {
+      console.error("[send-invoice-email] ownership lookup failed", ownership.error);
+      return response({ error: "Receipt resend is temporarily unavailable" }, 500);
+    }
+    if (!ownership.data) {
+      return response({ error: "Invoice is not available" }, 404);
+    }
   }
 
   const admin = createClient(supabaseUrl, serviceRoleKey, {

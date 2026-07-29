@@ -47,6 +47,7 @@ describe("lightweight invoice PDF", () => {
     expect(document.endsWith("%%EOF\n")).toBe(true);
     expect(document).toContain("ACAD-20260716-000001");
     expect(document).toContain("Test \\(Customer\\)");
+    expect(document).toContain("/Subtype /Image");
     expect(bytes.byteLength).toBeLessThan(10_000);
   });
 

@@ -135,7 +135,7 @@ export const getSubscriptionOverview = createServerFn({ method: "GET" }).handler
         .limit(50),
       supabase
         .from("invoices")
-        .select("invoice_number, payment_transaction_id")
+        .select("id, invoice_number, payment_transaction_id")
         .eq("user_id", user.id),
     ]);
     if (subscriptionResult.error) throw subscriptionResult.error;
@@ -144,7 +144,7 @@ export const getSubscriptionOverview = createServerFn({ method: "GET" }).handler
     const invoices = new Map(
       (invoicesResult.data ?? []).map((invoice) => [
         invoice.payment_transaction_id,
-        { invoice_number: invoice.invoice_number },
+        { id: invoice.id, invoice_number: invoice.invoice_number },
       ]),
     );
     const payments = (paymentsResult.data ?? []).map((payment) => {
@@ -172,27 +172,6 @@ export const cancelSubscription = createServerFn({ method: "POST" }).handler(asy
   if (error) throw error;
   return { cancelled: true };
 });
-
-export const getInvoiceDownloadUrl = createServerFn({ method: "POST" })
-  .validator((input: unknown) => invoiceSchema.parse(input))
-  .handler(async ({ data }) => {
-    const { supabase } = await requireUser();
-    const invoice = await supabase
-      .from("invoices")
-      .select("pdf_storage_path, invoice_number")
-      .eq("invoice_number", data.invoiceNumber)
-      .single();
-    if (invoice.error || !invoice.data?.pdf_storage_path)
-      throw new Error("Invoice is not available");
-    const admin = getSupabaseAdminClient();
-    const signed = await admin.storage
-      .from("invoices")
-      .createSignedUrl(invoice.data.pdf_storage_path, 60, {
-        download: `${invoice.data.invoice_number}.pdf`,
-      });
-    if (signed.error) throw signed.error;
-    return { url: signed.data.signedUrl };
-  });
 
 export const resendInvoiceEmail = createServerFn({ method: "POST" })
   .validator((input: unknown) => resendInvoiceSchema.parse(input))
