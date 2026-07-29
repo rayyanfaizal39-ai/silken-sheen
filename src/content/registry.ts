@@ -259,6 +259,7 @@ import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mind
 import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
 import { bahasaMelayuForm1AsasPenulisanMindMap } from "@/content/bm/asas-penulisan-form1-mindmap";
+import { bahasaMelayuForm1MembinaPerengganMindMap } from "@/content/bm/membina-perenggan-form1-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2626,6 +2627,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm1AsasPenulisanMindMap,
       title: "Asas Penulisan",
+    },
+  },
+  {
+    id: "bm-f1-membina-perenggan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Membina Perenggan",
+    title: "Membina Perenggan",
+    description:
+      "Membina perenggan berkesan menggunakan ayat topik, huraian, contoh dan penegasan serta teknik UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1MembinaPerengganMindMap,
+      title: "Membina Perenggan",
     },
   },
   {
