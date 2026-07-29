@@ -23,6 +23,10 @@ import {
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import {
+  getBahasaMelayuMindMapCategories,
+  type BahasaMelayuMindMapCategory,
+} from "@/lib/bm-mindmap-categories";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
   AcademyHero,
@@ -591,9 +595,9 @@ function MindMapChapterGrid({
   const subj = subjects.find((candidate) => candidate.id === subjectId);
   const chapters = getMindMapChapters(subjectId, scienceLang, form);
   const isBahasaMelayu = subjectId === "bm";
-  const bahasaMelayuCategories = ["Tatabahasa", "Peribahasa"] as const;
+  const bahasaMelayuCategories = getBahasaMelayuMindMapCategories(form);
   const [activeBahasaMelayuCategory, setActiveBahasaMelayuCategory] =
-    useState<(typeof bahasaMelayuCategories)[number]>("Tatabahasa");
+    useState<BahasaMelayuMindMapCategory>("Tatabahasa");
 
   useEffect(() => {
     setActiveBahasaMelayuCategory("Tatabahasa");
@@ -693,7 +697,11 @@ function MindMapChapterGrid({
         <div
           role="tablist"
           aria-label="Kategori peta minda Bahasa Melayu"
-          className="mb-8 grid grid-cols-2 gap-2 rounded-2xl border border-white/[0.08] bg-[#08101D]/70 p-2 sm:inline-grid sm:min-w-[360px]"
+          className={`mb-8 grid gap-2 rounded-2xl border border-white/[0.08] bg-[#08101D]/70 p-2 sm:inline-grid ${
+            bahasaMelayuCategories.length === 3
+              ? "grid-cols-3 sm:min-w-[540px]"
+              : "grid-cols-2 sm:min-w-[360px]"
+          }`}
         >
           {bahasaMelayuCategories.map((category) => {
             const isActive = activeBahasaMelayuCategory === category;
@@ -706,7 +714,7 @@ function MindMapChapterGrid({
                 aria-selected={isActive}
                 aria-controls="bm-category-panel"
                 onClick={() => setActiveBahasaMelayuCategory(category)}
-                className={`min-h-12 rounded-xl px-4 py-2.5 text-sm font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 ${
+                className={`min-h-12 rounded-xl px-2 py-2.5 text-xs font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 sm:px-4 sm:text-sm ${
                   isActive
                     ? "bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-[0_10px_28px_rgba(14,165,233,0.22)]"
                     : "text-white/60 hover:bg-white/[0.06] hover:text-white"

@@ -258,6 +258,7 @@ import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap
 import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mindmap";
 import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
+import { bahasaMelayuForm1AsasPenulisanMindMap } from "@/content/bm/asas-penulisan-form1-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2592,6 +2593,18 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
   },
   {
+    id: "bm-f1-penanda-wacana",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Penanda Wacana",
+    title: "Penanda Wacana",
+    description:
+      "Perkataan atau frasa yang menghubungkan idea supaya penulisan menjadi tersusun, lancar dan mudah difahami.",
+    categoryLabel: "Tatabahasa",
+    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
+    flashcards: bmFlashcardsFor("Penanda Wacana"),
+  },
+  {
     id: "bm-f1-simpulan-bahasa-mindmap",
     subjectId: "bm",
     form: "Form 1",
@@ -2600,6 +2613,20 @@ export const chapters: ChapterContent[] = [
     description: "Ungkapan ringkas yang membawa maksud kiasan dan digunakan mengikut konteks.",
     categoryLabel: "Peribahasa",
     mindMap: { data: bahasaMelayuSimpulanBahasaMindMap, title: "Simpulan Bahasa" },
+  },
+  {
+    id: "bm-f1-asas-penulisan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Asas Penulisan",
+    title: "Asas Penulisan",
+    description:
+      "Konsep asas, perancangan, pengembangan isi, kesalahan lazim dan teknik UASA untuk penulisan Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1AsasPenulisanMindMap,
+      title: "Asas Penulisan",
+    },
   },
   {
     id: "bm-f2-perumpamaan-mindmap",
@@ -2762,18 +2789,6 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Karangan Panjang",
     title: "Karangan Panjang",
     flashcards: bmFlashcardsFor("Karangan Panjang"),
-  },
-  {
-    id: "bm-f1-penanda-wacana",
-    subjectId: "bm",
-    form: "Form 1",
-    chapterKey: "Penanda Wacana",
-    title: "Penanda Wacana",
-    description:
-      "Perkataan atau frasa yang menghubungkan idea supaya penulisan menjadi tersusun, lancar dan mudah difahami.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
-    flashcards: bmFlashcardsFor("Penanda Wacana"),
   },
   {
     id: "bm-f1-peribahasa",
