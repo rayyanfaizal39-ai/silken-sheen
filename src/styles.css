@@ -7032,7 +7032,9 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  overflow: hidden;
+  overflow: visible;
+  background: transparent;
+  border: 0;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -7047,16 +7049,88 @@
   transform-origin: center;
   overflow: visible;
 }
-.cosmic-planet-img > img {
-  width: 92%;
-  height: 92%;
+.rank-icon-wrapper {
+  --rank-icon-scale: 2.2;
+  position: relative;
+  overflow: visible !important;
+  border-radius: 50%;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rank-icon-image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
   object-fit: contain;
+  object-position: center;
+  display: block;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transform: scale(var(--rank-icon-scale)) !important;
   transform-origin: center;
 }
+.rank-icon-wrapper[data-rank="Space Cadet"] {
+  --rank-icon-scale: 2.4;
+}
+.rank-icon-wrapper[data-rank="Moon Explorer"] {
+  --rank-icon-scale: 2.7;
+}
+.rank-icon-wrapper[data-rank="Planet Voyager"] {
+  --rank-icon-scale: 3.05;
+}
+.rank-icon-wrapper[data-rank="Star Captain"] {
+  --rank-icon-scale: 2.3;
+}
+.header-rank-icon-wrapper {
+  --header-rank-icon-scale: 2.45;
+  position: relative;
+  overflow: hidden !important;
+  border-radius: 50%;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-rank-icon-image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transform: scale(var(--header-rank-icon-scale)) !important;
+  transform-origin: center;
+}
+.header-rank-icon-wrapper[data-rank="Space Cadet"] {
+  --header-rank-icon-scale: 2.75;
+}
+.header-rank-icon-wrapper[data-rank="Moon Explorer"] {
+  --header-rank-icon-scale: 3.05;
+}
+.header-rank-icon-wrapper[data-rank="Planet Voyager"] {
+  --header-rank-icon-scale: 3.15;
+}
+.header-rank-icon-wrapper[data-rank="Star Captain"] {
+  --header-rank-icon-scale: 2.6;
+}
 .cosmic-planet-locked {
-  overflow: hidden;
-  border: 1px solid rgba(167, 139, 250, 0.28);
-  background: rgba(2, 0, 7, 0.78);
+  overflow: visible;
+  border: 0;
+  background: transparent;
   box-shadow: 0 0 10px 1px rgba(139, 92, 246, 0.18);
 }
 .cosmic-planet-silhouette-img {
