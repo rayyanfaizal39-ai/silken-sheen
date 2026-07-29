@@ -97,7 +97,7 @@ async function ensureInvoiceAssets(admin: SupabaseClient, invoiceId: string) {
   let storagePath = invoice.pdf_storage_path as string | null;
 
   if (!storagePath) {
-    const pdf = generateInvoicePdf(
+    const pdf = await generateInvoicePdf(
       invoice,
       resolveInvoiceLegalDetails((name) => Deno.env.get(name)),
     );

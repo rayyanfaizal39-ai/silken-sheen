@@ -128,7 +128,10 @@ function serializePdf(objects: string[]) {
   return new TextEncoder().encode(output);
 }
 
-export function generateInvoicePdf(invoice: InvoicePdfData, legal: InvoiceLegalDetails) {
+export async function generateInvoicePdf(
+  invoice: InvoicePdfData,
+  legal: InvoiceLegalDetails,
+): Promise<Uint8Array>  {
   const content = buildContent(invoice, legal);
   const objects = [
     "<< /Type /Catalog /Pages 2 0 R >>",

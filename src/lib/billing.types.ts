@@ -28,7 +28,7 @@ export interface PaymentHistoryItem {
   provider_transaction_id: string | null;
   paid_at: string | null;
   created_at: string;
-  invoice: { invoice_number: string } | null;
+  invoice: { id: string; invoice_number: string } | null;
 }
 
 export interface SubscriptionOverview {

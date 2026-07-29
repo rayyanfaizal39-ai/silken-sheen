@@ -1,25 +1,14 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import {
-  AlertCircle,
-  Check,
-  Download,
-  Loader2,
-  Mail,
-  RefreshCw,
-  ShieldCheck,
-} from "lucide-react";
+import { AlertCircle, Check, Download, Loader2, Mail, RefreshCw, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import {
   useSubscriptionOverview,
   type SubscriptionOverviewState,
 } from "@/hooks/use-subscription-overview";
 import type { BillingInterval, BillingPlan, PaymentHistoryItem } from "@/lib/billing.types";
-import {
-  cancelSubscription,
-  getInvoiceDownloadUrl,
-  resendInvoiceEmail,
-} from "@/routes/-upgrade.server";
+import { supabase } from "@/lib/supabase";
+import { cancelSubscription } from "@/routes/-upgrade.server";
 
 function formatDate(value: string | null | undefined) {
   if (!value) return "Not available";
@@ -62,13 +51,41 @@ function paymentMethodLabel(payment: PaymentHistoryItem | undefined) {
   return payment.payment_method;
 }
 
-function Notice({
-  tone,
-  children,
-}: {
-  tone: "success" | "error";
-  children: ReactNode;
-}) {
+async function invoiceDownloadError(error: unknown) {
+  if (error && typeof error === "object" && "context" in error) {
+    const context = (error as { context?: unknown }).context;
+    if (context instanceof Response) {
+      try {
+        const payload = (await context.clone().json()) as { error?: unknown };
+        if (typeof payload.error === "string" && payload.error.trim()) {
+          return payload.error;
+        }
+      } catch {
+        // The fallback below is intentionally safe for non-JSON failures.
+      }
+    }
+  }
+  return "We couldn't prepare the latest receipt. Please try again.";
+}
+
+async function invoiceResendError(error: unknown) {
+  if (error && typeof error === "object" && "context" in error) {
+    const context = (error as { context?: unknown }).context;
+    if (context instanceof Response) {
+      try {
+        const payload = (await context.clone().json()) as { error?: unknown };
+        if (typeof payload.error === "string" && payload.error.trim()) {
+          return payload.error;
+        }
+      } catch {
+        // The fallback below is intentionally safe for non-JSON failures.
+      }
+    }
+  }
+  return "We couldn't resend the receipt. Please try again or contact support.";
+}
+
+function Notice({ tone, children }: { tone: "success" | "error"; children: ReactNode }) {
   return (
     <div className={`billing-notice is-${tone}`} role={tone === "error" ? "alert" : "status"}>
       {tone === "success" ? <Check aria-hidden="true" /> : <AlertCircle aria-hidden="true" />}
@@ -104,7 +121,7 @@ export function MySubscriptionContent({
     () => overview?.payments.find((payment) => payment.payment_status === "successful"),
     [overview?.payments],
   );
-  const latestInvoiceNumber = latestSuccessfulPayment?.invoice?.invoice_number ?? null;
+  const latestInvoiceId = latestSuccessfulPayment?.invoice?.id ?? null;
   const interval = subscription?.billing_interval;
   const intervalLabel = intervalName(interval);
   const priceSuffix = interval === "annual" ? "/ year" : interval === "monthly" ? "/ month" : "";
@@ -142,33 +159,50 @@ export function MySubscriptionContent({
   }
 
   async function handleDownload() {
-    if (!latestInvoiceNumber) return;
+    if (!latestInvoiceId) return;
     resetFeedback();
     setAction("download");
     try {
-      const { url } = await getInvoiceDownloadUrl({
-        data: { invoiceNumber: latestInvoiceNumber },
+      const result = await supabase.functions.invoke("get-invoice-download-url", {
+        body: { invoiceId: latestInvoiceId },
       });
-      window.location.assign(url);
+      if (result.error) throw result.error;
+      if (!result.data || typeof result.data.url !== "string") {
+        throw new Error("Invoice download service returned an invalid response");
+      }
+      window.location.assign(result.data.url);
     } catch (error) {
-      console.error("[billing] invoice download failed", error);
-      setActionError("We couldn't prepare the latest receipt. Please try again.");
+      if (import.meta.env.DEV) {
+        console.error("[billing] invoice download failed", error);
+      }
+      setActionError(await invoiceDownloadError(error));
+    } finally {
       setAction(null);
     }
   }
 
   async function handleResend() {
-    if (!latestInvoiceNumber) return;
+    if (!latestInvoiceId) return;
     resetFeedback();
     setAction("resend");
     try {
-      await resendInvoiceEmail({
-        data: { invoiceNumber: latestInvoiceNumber, requestId: crypto.randomUUID() },
+      const result = await supabase.functions.invoke("send-invoice-email", {
+        body: {
+          invoiceId: latestInvoiceId,
+          resend: true,
+          requestId: crypto.randomUUID(),
+        },
       });
+      if (result.error) throw result.error;
+      if (!result.data || result.data.sent !== true) {
+        throw new Error("Invoice email service returned an invalid response");
+      }
       setSuccess(`The latest receipt was sent to ${user?.email ?? "your account email"}.`);
     } catch (error) {
-      console.error("[billing] invoice resend failed", error);
-      setActionError("We couldn't resend the receipt. Please try again or contact support.");
+      if (import.meta.env.DEV) {
+        console.error("[billing] invoice resend failed", error);
+      }
+      setActionError(await invoiceResendError(error));
     } finally {
       setAction(null);
     }
@@ -231,9 +265,7 @@ export function MySubscriptionContent({
             <div className="billing-price-row">
               <div className="billing-price">
                 <strong>
-                  {subscription
-                    ? formatMoney(subscription.amount, subscription.currency)
-                    : "RM0"}
+                  {subscription ? formatMoney(subscription.amount, subscription.currency) : "RM0"}
                 </strong>
                 <span>{priceSuffix}</span>
               </div>
@@ -250,7 +282,9 @@ export function MySubscriptionContent({
               <div>
                 <dt>{isActive ? "Renewal / expiry" : "Plan status"}</dt>
                 <dd>{isActive ? formatDate(subscription?.current_period_end) : "No paid plan"}</dd>
-                <small>{isActive ? "Your current paid period" : "Free access stays available"}</small>
+                <small>
+                  {isActive ? "Your current paid period" : "Free access stays available"}
+                </small>
               </div>
               <div>
                 <dt>Payment method</dt>
@@ -283,7 +317,7 @@ export function MySubscriptionContent({
             </dl>
 
             <div className="billing-actions">
-              {latestInvoiceNumber ? (
+              {latestInvoiceId ? (
                 <button
                   type="button"
                   className="billing-button is-primary"
@@ -302,7 +336,7 @@ export function MySubscriptionContent({
                   View paid plans
                 </Link>
               )}
-              {latestInvoiceNumber ? (
+              {latestInvoiceId ? (
                 <button
                   type="button"
                   className="billing-button"
