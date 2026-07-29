@@ -136,7 +136,7 @@ Deno.serve(async (request) => {
       billExternalReferenceNo: payment.id,
       billTo: customerName.slice(0, 100),
       billEmail: customerEmail.slice(0, 100),
-      billPhone: "",
+      billPhone: "60111111111",
       billPaymentChannel: "0",
       billExpiryDays: "1",
     });
@@ -145,14 +145,33 @@ Deno.serve(async (request) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: createBillBody,
     });
+    const raw = await billResponse.text();
+    let parsedResponse: unknown;
+    try {
+      parsedResponse = JSON.parse(raw);
+    } catch {
+      parsedResponse = null;
+    }
+    console.info(
+      JSON.stringify({
+        scope: "billing",
+        event: "toyyibpay_response",
+        httpStatus: billResponse.status,
+        responseHeaders: Object.fromEntries(billResponse.headers.entries()),
+        contentType: billResponse.headers.get("content-type"),
+        rawResponse: raw,
+        parsedResponse,
+      }),
+    );
     if (!billResponse.ok) {
       throw new Error(`ToyyibPay bill creation failed (${billResponse.status})`);
     }
-    const billPayload = (await billResponse.json()) as Array<{ BillCode?: unknown }>;
     const billCode =
-      typeof billPayload[0]?.BillCode === "string" ? billPayload[0].BillCode.trim() : "";
+      Array.isArray(parsedResponse) && typeof parsedResponse[0]?.BillCode === "string"
+        ? parsedResponse[0].BillCode.trim()
+        : "";
     if (!billCode || !/^[a-z0-9_-]+$/i.test(billCode)) {
-      throw new Error("ToyyibPay returned no valid bill code");
+      throw new Error(`ToyyibPay response: ${raw}`);
     }
 
     const update = await admin
