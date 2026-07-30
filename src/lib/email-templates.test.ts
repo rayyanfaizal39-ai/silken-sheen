@@ -21,8 +21,8 @@ const authPayload = (overrides: Partial<AuthHookPayload["email_data"]> = {}): Au
 
 describe("AcadeMY email templates", () => {
   it("uses the canonical sender identity", () => {
-    expect(EMAIL_FROM).toBe("AcadeMY <hello@myacademy.my>");
-    expect(EMAIL_REPLY_TO).toBe("admin@myacademy.my");
+    expect(EMAIL_FROM).toBe("AcadeMY <noreply@myacademy.my>");
+    expect(EMAIL_REPLY_TO).toBe("support@myacademy.my");
   });
 
   it("renders a responsive, branded invoice email and escapes customer data", () => {

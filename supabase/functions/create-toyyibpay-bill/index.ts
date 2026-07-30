@@ -1,4 +1,9 @@
-import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+/// <reference lib="deno.window" />
+
+// Provide a loose declaration for Deno to satisfy TypeScript environments
+declare const Deno: any;
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
 import {
   BILLING_CURRENCY,
   CHECKOUT_PLANS,
@@ -28,7 +33,7 @@ function sandboxCheckoutUrl(billCode: string) {
   return `${TOYYIBPAY_SANDBOX_URL}/${encodeURIComponent(billCode)}`;
 }
 
-Deno.serve(async (request) => {
+Deno.serve(async (request: Request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (request.method !== "POST") return response({ error: "Method not allowed" }, 405);
 
@@ -83,6 +88,7 @@ Deno.serve(async (request) => {
       { onConflict: "idempotency_key", ignoreDuplicates: true },
     );
     if (insert.error) throw insert.error;
+  
 
     const paymentResult = await admin
       .from("payment_transactions")
@@ -129,7 +135,10 @@ Deno.serve(async (request) => {
       billName: selected.label.replace(/[^a-z0-9 _]/gi, "").slice(0, 30),
       billDescription: `${selected.label} subscription`.replace(/[^a-z0-9 _]/gi, "").slice(0, 100),
       billPriceSetting: "1",
-      billPayorInfo: "1",
+      // The application profile does not require a phone number. Let ToyyibPay
+      // collect any missing payer details on its checkout page instead of
+      // rejecting bill creation because billPhone is empty.
+      billPayorInfo: "0",
       billAmount: String(selected.amount * 100),
       billReturnUrl: `${applicationUrl}/payment-return`,
       billCallbackUrl: `${supabaseUrl}/functions/v1/toyyibpay-callback`,
@@ -145,6 +154,7 @@ Deno.serve(async (request) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: createBillBody,
     });
+    const billResponseText = await billResponse.text();
     const raw = await billResponse.text();
     let parsedResponse: unknown;
     try {
@@ -164,14 +174,22 @@ Deno.serve(async (request) => {
       }),
     );
     if (!billResponse.ok) {
-      throw new Error(`ToyyibPay bill creation failed (${billResponse.status})`);
+      throw new Error(
+        `ToyyibPay bill creation failed (${billResponse.status}): ${billResponseText.slice(0, 300)}`,
+      );
+    }
+    let billPayload: Array<{ BillCode?: unknown }>;
+    try {
+      billPayload = JSON.parse(billResponseText) as Array<{ BillCode?: unknown }>;
+    } catch {
+      throw new Error(`ToyyibPay returned invalid JSON: ${billResponseText.slice(0, 300)}`);
     }
     const billCode =
-      Array.isArray(parsedResponse) && typeof parsedResponse[0]?.BillCode === "string"
-        ? parsedResponse[0].BillCode.trim()
+      Array.isArray(billPayload) && typeof billPayload[0]?.BillCode === "string"
+        ? billPayload[0].BillCode.trim()
         : "";
     if (!billCode || !/^[a-z0-9_-]+$/i.test(billCode)) {
-      throw new Error(`ToyyibPay response: ${raw}`);
+      throw new Error(`ToyyibPay returned no valid bill code: ${billResponseText.slice(0, 300)}`);
     }
 
     const update = await admin
