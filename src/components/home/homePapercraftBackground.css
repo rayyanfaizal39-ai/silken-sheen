@@ -1,0 +1,292 @@
+.home-papercraft-bg {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  overflow-x: clip;
+  color: rgb(241 245 249);
+  background:
+    radial-gradient(circle at 16% 30%, rgba(92, 55, 170, 0.12), transparent 28%),
+    linear-gradient(180deg, #050817 0%, #100827 48%, #1a0a35 100%);
+}
+
+.home-papercraft-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -6;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.035),
+    inset 0 -90px 160px rgba(49, 18, 92, 0.18);
+}
+
+.home-papercraft-texture,
+.home-stars,
+.home-paper-planet,
+.home-paper-corner,
+.home-paper-hills {
+  position: fixed;
+  z-index: -5;
+  pointer-events: none;
+}
+
+.home-papercraft-texture {
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    repeating-linear-gradient(87deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(3deg, rgba(0, 0, 0, 0.025) 0 1px, transparent 1px 7px);
+  mix-blend-mode: soft-light;
+}
+
+.home-stars {
+  inset: 0;
+  opacity: 0.42;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.65) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(160, 133, 237, 0.75) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(101, 221, 238, 0.55) 0 1px, transparent 1.4px);
+  background-position:
+    9px 17px,
+    43px 69px,
+    77px 31px;
+  background-size:
+    103px 127px,
+    151px 173px,
+    211px 197px;
+}
+
+.home-stars::before,
+.home-stars::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  opacity: 0.36;
+  background:
+    linear-gradient(90deg, transparent 42%, #e8ddff 42% 58%, transparent 58%),
+    linear-gradient(transparent 42%, #e8ddff 42% 58%, transparent 58%);
+}
+
+.home-stars::before {
+  left: 14%;
+  top: 24%;
+}
+
+.home-stars::after {
+  right: 29%;
+  top: 13%;
+  transform: scale(0.72);
+}
+
+.home-hanging-star {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: clamp(52px, 8vw, 112px);
+  background: linear-gradient(rgba(206, 190, 255, 0.28), rgba(206, 190, 255, 0.06));
+}
+
+.home-hanging-star::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 17px;
+  aspect-ratio: 1;
+  transform: translateX(-50%) rotate(45deg);
+  border-radius: 3px 8px 3px 8px;
+  background: linear-gradient(145deg, #f3dd67, #b778dd);
+  box-shadow:
+    inset 2px 2px rgba(255, 255, 255, 0.25),
+    0 5px 12px rgba(8, 3, 25, 0.38);
+}
+
+.home-hanging-star--one {
+  left: 8%;
+}
+
+.home-hanging-star--two {
+  left: 43%;
+  height: clamp(32px, 5vw, 72px);
+}
+
+.home-hanging-star--three {
+  right: 20%;
+  height: clamp(64px, 9vw, 130px);
+}
+
+.home-paper-planet {
+  top: clamp(70px, 9vw, 128px);
+  right: clamp(-130px, -7vw, -72px);
+  width: clamp(190px, 23vw, 350px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  opacity: 0.72;
+  background:
+    radial-gradient(circle at 33% 26%, rgba(255, 255, 255, 0.2) 0 3%, transparent 3.5%),
+    radial-gradient(ellipse at 66% 62%, #4b237e 0 11%, transparent 11.5%),
+    linear-gradient(145deg, #9666df 0%, #6434ac 45%, #35175f 100%);
+  box-shadow:
+    inset 12px 10px 0 rgba(255, 255, 255, 0.06),
+    inset -18px -16px 0 rgba(23, 7, 52, 0.2),
+    0 22px 48px rgba(5, 2, 19, 0.38);
+}
+
+.home-paper-planet::before,
+.home-paper-planet::after,
+.home-paper-planet span {
+  content: "";
+  position: absolute;
+  left: -12%;
+  width: 124%;
+  height: 16%;
+  border-radius: 50%;
+  transform: rotate(-10deg);
+  background: rgba(211, 168, 244, 0.22);
+  box-shadow: inset 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.home-paper-planet::before {
+  top: 28%;
+}
+
+.home-paper-planet::after {
+  top: 52%;
+  transform: rotate(8deg);
+  background: rgba(39, 15, 76, 0.22);
+}
+
+.home-paper-planet span {
+  top: 69%;
+  transform: rotate(-4deg);
+}
+
+.home-paper-hills {
+  left: -4vw;
+  right: -4vw;
+  bottom: 0;
+  height: clamp(60px, 10vw, 145px);
+  transform-origin: bottom;
+  clip-path: polygon(0 50%, 9% 28%, 19% 48%, 31% 20%, 43% 49%, 57% 30%, 69% 53%, 82% 21%, 91% 45%, 100% 25%, 100% 100%, 0 100%);
+}
+
+.home-paper-hills--back {
+  z-index: -4;
+  bottom: 28px;
+  opacity: 0.38;
+  background: #59309a;
+}
+
+.home-paper-hills--middle {
+  z-index: -3;
+  height: clamp(50px, 8vw, 118px);
+  opacity: 0.52;
+  background: #3f1d78;
+  clip-path: polygon(0 48%, 13% 25%, 27% 52%, 39% 29%, 54% 55%, 67% 32%, 79% 57%, 92% 30%, 100% 45%, 100% 100%, 0 100%);
+}
+
+.home-paper-hills--front {
+  z-index: -2;
+  height: clamp(36px, 6vw, 88px);
+  opacity: 0.7;
+  background: #28114e;
+  box-shadow: 0 -8px 22px rgba(6, 2, 18, 0.18);
+}
+
+.home-paper-corner {
+  bottom: 22px;
+  width: 92px;
+  height: 58px;
+  opacity: 0.35;
+  background:
+    radial-gradient(ellipse at 18% 100%, #130a2b 0 18%, transparent 19%),
+    radial-gradient(ellipse at 52% 100%, #211044 0 23%, transparent 24%),
+    radial-gradient(ellipse at 88% 100%, #160a30 0 15%, transparent 16%);
+}
+
+.home-paper-corner--left {
+  left: 2%;
+}
+
+.home-paper-corner--right {
+  right: 2%;
+  transform: scaleX(-1);
+}
+
+.home-content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .home-paper-planet {
+    right: -105px;
+    width: clamp(170px, 28vw, 240px);
+    opacity: 0.56;
+  }
+
+  .home-hanging-star--two {
+    display: none;
+  }
+
+  .home-paper-hills {
+    opacity: 0.28;
+  }
+
+  .home-paper-hills--front {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-paper-planet,
+  .home-hanging-star--two,
+  .home-hanging-star--three,
+  .home-paper-corner--right,
+  .home-paper-hills--back {
+    display: none;
+  }
+
+  .home-stars {
+    opacity: 0.28;
+  }
+
+  .home-hanging-star--one {
+    left: 84%;
+    height: 48px;
+    opacity: 0.65;
+  }
+
+  .home-paper-hills {
+    left: -12vw;
+    right: -12vw;
+    height: 48px;
+  }
+
+  .home-paper-hills--middle {
+    bottom: 12px;
+    opacity: 0.22;
+  }
+
+  .home-paper-hills--front {
+    opacity: 0.38;
+  }
+
+  .home-paper-corner--left {
+    bottom: 8px;
+    left: -18px;
+    transform: scale(0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-papercraft-bg *,
+  .home-papercraft-bg::before,
+  .home-papercraft-bg::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
