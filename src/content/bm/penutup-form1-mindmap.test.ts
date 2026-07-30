@@ -37,7 +37,16 @@ describe("Bahasa Melayu Form 1 Penutup mind map", () => {
       getRegisteredSubjectChapters("bm", undefined, "Form 1")
         .filter((topic) => topic.categoryLabel === "Penulisan")
         .map((topic) => topic.key),
-    ).toEqual(["Asas Penulisan", "Membina Perenggan", "Pendahuluan", "Penutup"]);
+    ).toEqual([
+      "Asas Penulisan",
+      "Membina Perenggan",
+      "Pendahuluan",
+      "Penutup",
+      "Penanda Wacana",
+      "Karangan Berpandukan Gambar",
+      "Karangan Respons Terbuka",
+      "Mengedit dan Menyemak Karangan",
+    ]);
   });
 
   it("contains all eight requested expandable sections", () => {

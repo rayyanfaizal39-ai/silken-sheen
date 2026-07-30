@@ -252,9 +252,18 @@ import { bahasaMelayuForm2AyatMajmukMindMap } from "@/content/bm/ayat-majmuk-for
 import { bahasaMelayuForm2ImbuhanLanjutanMindMap } from "@/content/bm/imbuhan-lanjutan-form2-mindmap";
 import { bahasaMelayuForm2KataPemeriMindMap } from "@/content/bm/kata-pemeri-form2-mindmap";
 import { bahasaMelayuForm2KesalahanTatabahasaLazimMindMap } from "@/content/bm/kesalahan-tatabahasa-lazim-form2-mindmap";
+import { bahasaMelayuForm2MengembangkanIsiKaranganMindMap } from "@/content/bm/mengembangkan-isi-karangan-form2-mindmap";
+import { bahasaMelayuForm2PerbendaharaanKataMindMap } from "@/content/bm/perbendaharaan-kata-form2-mindmap";
+import { bahasaMelayuForm2AyatGramatisMindMap } from "@/content/bm/ayat-gramatis-form2-mindmap";
+import { bahasaMelayuForm2TeknikMengolahIdeaMindMap } from "@/content/bm/teknik-mengolah-idea-form2-mindmap";
+import { bahasaMelayuForm2KaranganBerpandukanBahanMindMap } from "@/content/bm/karangan-berpandukan-bahan-form2-mindmap";
+import { bahasaMelayuForm2KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form2-mindmap";
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
+import { bahasaMelayuForm3StrategiMenjawabUasaMindMap } from "@/content/bm/strategi-menjawab-uasa-form3-mindmap";
+import { bahasaMelayuForm3AnalisisKehendakSoalanMindMap } from "@/content/bm/analisis-kehendak-soalan-form3-mindmap";
+import { bahasaMelayuForm3TeknikMenjanaIdeaKbatMindMap } from "@/content/bm/teknik-menjana-idea-kbat-form3-mindmap";
 import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mindmap";
 import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
@@ -262,6 +271,9 @@ import { bahasaMelayuForm1AsasPenulisanMindMap } from "@/content/bm/asas-penulis
 import { bahasaMelayuForm1MembinaPerengganMindMap } from "@/content/bm/membina-perenggan-form1-mindmap";
 import { bahasaMelayuForm1PendahuluanMindMap } from "@/content/bm/pendahuluan-form1-mindmap";
 import { bahasaMelayuForm1PenutupMindMap } from "@/content/bm/penutup-form1-mindmap";
+import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/karangan-berpandukan-gambar-form1-mindmap";
+import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form1-mindmap";
+import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/mengedit-menyemak-karangan-form1-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2468,6 +2480,48 @@ export const chapters: ChapterContent[] = [
     },
   },
   {
+    id: "bm-f3-strategi-menjawab-uasa-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Strategi Menjawab UASA",
+    title: "Strategi Menjawab UASA",
+    description:
+      "Strategi praktikal menganalisis soalan, mengurus masa, merancang, menulis dan menyemak komponen Penulisan UASA Tingkatan 3.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm3StrategiMenjawabUasaMindMap,
+      title: "Strategi Menjawab UASA",
+    },
+  },
+  {
+    id: "bm-f3-analisis-kehendak-soalan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Analisis Kehendak Soalan",
+    title: "Analisis Kehendak Soalan",
+    description:
+      "Menganalisis tema, format, tugasan, kata tugas dan kata kunci supaya jawapan Penulisan UASA Tingkatan 3 tepat serta relevan.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm3AnalisisKehendakSoalanMindMap,
+      title: "Analisis Kehendak Soalan",
+    },
+  },
+  {
+    id: "bm-f3-teknik-menjana-idea-kbat-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Teknik Menjana Idea KBAT",
+    title: "Teknik Menjana Idea KBAT",
+    description:
+      "Menjana, mengembangkan dan menyokong idea KBAT dengan hubungan sebab, kesan, cadangan, contoh dan hujah yang mantap.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm3TeknikMenjanaIdeaKbatMindMap,
+      title: "Teknik Menjana Idea KBAT",
+    },
+  },
+  {
     id: "bm-f3-pepatah-mindmap",
     subjectId: "bm",
     form: "Form 3",
@@ -2596,18 +2650,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
   },
   {
-    id: "bm-f1-penanda-wacana",
-    subjectId: "bm",
-    form: "Form 1",
-    chapterKey: "Penanda Wacana",
-    title: "Penanda Wacana",
-    description:
-      "Perkataan atau frasa yang menghubungkan idea supaya penulisan menjadi tersusun, lancar dan mudah difahami.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
-    flashcards: bmFlashcardsFor("Penanda Wacana"),
-  },
-  {
     id: "bm-f1-simpulan-bahasa-mindmap",
     subjectId: "bm",
     form: "Form 1",
@@ -2671,6 +2713,144 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm1PenutupMindMap,
       title: "Penutup",
+    },
+  },
+  {
+    id: "bm-f1-penanda-wacana",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Penanda Wacana",
+    title: "Penanda Wacana",
+    description:
+      "Menggunakan penanda wacana secara tepat untuk memulakan, menambah, membandingkan dan menghubungkan idea dalam penulisan Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
+    flashcards: bmFlashcardsFor("Penanda Wacana"),
+  },
+  {
+    id: "bm-f1-karangan-berpandukan-gambar-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Karangan Berpandukan Gambar",
+    title: "Karangan Berpandukan Gambar",
+    description:
+      "Mentafsir gambar, memilih isi, menyusun urutan dan menghasilkan karangan yang lengkap serta menepati arahan UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1KaranganBerpandukanGambarMindMap,
+      title: "Karangan Berpandukan Gambar",
+    },
+  },
+  {
+    id: "bm-f1-karangan-respons-terbuka-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Karangan Respons Terbuka",
+    title: "Karangan Respons Terbuka",
+    description:
+      "Memahami soalan, merancang dan mengembangkan isi serta menghasilkan karangan respons terbuka yang lengkap untuk UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1KaranganResponsTerbukaMindMap,
+      title: "Karangan Respons Terbuka",
+    },
+  },
+  {
+    id: "bm-f1-mengedit-menyemak-karangan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Mengedit dan Menyemak Karangan",
+    title: "Mengedit dan Menyemak Karangan",
+    description:
+      "Menyemak isi, tatabahasa, ejaan, tanda baca, ayat dan perenggan serta menggunakan senarai semak sebelum menghantar karangan UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1MengeditMenyemakKaranganMindMap,
+      title: "Mengedit dan Menyemak Karangan",
+    },
+  },
+  {
+    id: "bm-f2-mengembangkan-isi-karangan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Mengembangkan Isi Karangan",
+    title: "Mengembangkan Isi Karangan",
+    description:
+      "Mengembangkan idea menjadi perenggan matang melalui teknik 5W1H, huraian, contoh, kesan, cadangan dan panduan UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2MengembangkanIsiKaranganMindMap,
+      title: "Mengembangkan Isi Karangan",
+    },
+  },
+  {
+    id: "bm-f2-perbendaharaan-kata-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Perbendaharaan Kata",
+    title: "Perbendaharaan Kata",
+    description:
+      "Memperluas kosa kata penulisan melalui sinonim, antonim, kata dan ungkapan menarik serta pemilihan bahasa formal yang tepat untuk UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2PerbendaharaanKataMindMap,
+      title: "Perbendaharaan Kata",
+    },
+  },
+  {
+    id: "bm-f2-ayat-gramatis-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Gramatis",
+    title: "Ayat Gramatis",
+    description:
+      "Membina ayat yang lengkap, jelas dan bervariasi melalui ayat mudah, ayat majmuk, variasi struktur, penggabungan ayat serta teknik UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2AyatGramatisMindMap,
+      title: "Ayat Gramatis",
+    },
+  },
+  {
+    id: "bm-f2-teknik-mengolah-idea-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Teknik Mengolah Idea",
+    title: "Teknik Mengolah Idea",
+    description:
+      "Memilih, mengembangkan, menyusun dan menghubungkan idea menggunakan penanda wacana, contoh relevan serta teknik UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2TeknikMengolahIdeaMindMap,
+      title: "Teknik Mengolah Idea",
+    },
+  },
+  {
+    id: "bm-f2-karangan-berpandukan-bahan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Berpandukan Bahan",
+    title: "Karangan Berpandukan Bahan",
+    description:
+      "Mentafsir bahan rangsangan, memilih dan menghubungkan maklumat serta menghasilkan karangan lengkap berdasarkan bahan untuk UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2KaranganBerpandukanBahanMindMap,
+      title: "Karangan Berpandukan Bahan",
+    },
+  },
+  {
+    id: "bm-f2-karangan-respons-terbuka-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Respons Terbuka",
+    title: "Karangan Respons Terbuka",
+    description:
+      "Memahami kehendak soalan, merancang dan mengembangkan isi secara matang serta menghasilkan karangan respons terbuka berkualiti untuk UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2KaranganResponsTerbukaMindMap,
+      title: "Karangan Respons Terbuka",
     },
   },
   {

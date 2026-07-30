@@ -6,29 +6,29 @@ import {
   type MindNode,
 } from "@/components/MindMap";
 import { getChapter, getRegisteredSubjectChapters, hasResourceContent } from "@/content/registry";
-import { bahasaMelayuForm1PendahuluanMindMap } from "./pendahuluan-form1-mindmap";
+import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "./karangan-respons-terbuka-form1-mindmap";
 
 function collectNodes(node: MindNode): MindNode[] {
   return [node, ...(node.children?.flatMap(collectNodes) ?? [])];
 }
 
-describe("Bahasa Melayu Form 1 Pendahuluan mind map", () => {
-  it("registers Pendahuluan under Penulisan for Form 1", () => {
-    const chapter = getChapter("bm", "Pendahuluan", undefined, "Form 1");
+describe("Bahasa Melayu Form 1 Karangan Respons Terbuka mind map", () => {
+  it("registers under Penulisan after Karangan Berpandukan Gambar", () => {
+    const chapter = getChapter("bm", "Karangan Respons Terbuka", undefined, "Form 1");
 
     expect(chapter).toMatchObject({
-      id: "bm-f1-pendahuluan-mindmap",
+      id: "bm-f1-karangan-respons-terbuka-mindmap",
       subjectId: "bm",
       form: "Form 1",
-      chapterKey: "Pendahuluan",
-      title: "Pendahuluan",
+      chapterKey: "Karangan Respons Terbuka",
+      title: "Karangan Respons Terbuka",
       categoryLabel: "Penulisan",
       mindMap: {
-        data: bahasaMelayuForm1PendahuluanMindMap,
-        title: "Pendahuluan",
+        data: bahasaMelayuForm1KaranganResponsTerbukaMindMap,
+        title: "Karangan Respons Terbuka",
       },
     });
-    expect(hasResourceContent("bm", "Form 1", "Pendahuluan", "mindMap")).toBe(true);
+    expect(hasResourceContent("bm", "Form 1", "Karangan Respons Terbuka", "mindMap")).toBe(true);
     expect(chapter).not.toHaveProperty("notes");
     expect(chapter).not.toHaveProperty("flashcards");
     expect(chapter).not.toHaveProperty("quiz");
@@ -49,17 +49,22 @@ describe("Bahasa Melayu Form 1 Pendahuluan mind map", () => {
     ]);
   });
 
-  it("contains all eight requested expandable sections", () => {
-    expect(bahasaMelayuForm1PendahuluanMindMap).toMatchObject({
-      id: "bm-f1-pendahuluan-root",
-      label: "PENDAHULUAN",
+  it("contains all eleven requested expandable sections", () => {
+    expect(bahasaMelayuForm1KaranganResponsTerbukaMindMap).toMatchObject({
+      id: "bm-f1-karangan-respons-terbuka-root",
+      label: "KARANGAN RESPONS TERBUKA",
     });
-    expect(bahasaMelayuForm1PendahuluanMindMap.children?.map((item) => item.label)).toEqual([
-      "Apa Itu Pendahuluan?",
-      "Tujuan Pendahuluan",
-      "Ciri-ciri Pendahuluan yang Baik",
-      "Jenis Pendahuluan",
-      "Cara Menulis Pendahuluan",
+    expect(
+      bahasaMelayuForm1KaranganResponsTerbukaMindMap.children?.map((item) => item.label),
+    ).toEqual([
+      "Apa Itu Karangan Respons Terbuka?",
+      "Cara Memahami Kehendak Soalan",
+      "Mengenal Pasti Kata Kunci",
+      "Merancang Isi Karangan",
+      "Membina Pendahuluan",
+      "Mengembangkan Isi",
+      "Menulis Penutup",
+      "Menyemak Semula Karangan",
       "Kesalahan Lazim",
       "Teknik Mengingat",
       "Teknik Menjawab UASA",
@@ -67,7 +72,7 @@ describe("Bahasa Melayu Form 1 Pendahuluan mind map", () => {
   });
 
   it("provides every required learning field for each section", () => {
-    bahasaMelayuForm1PendahuluanMindMap.children?.forEach((section) => {
+    bahasaMelayuForm1KaranganResponsTerbukaMindMap.children?.forEach((section) => {
       const labels = section.children?.map((item) => item.label) ?? [];
 
       expect(labels).toContain("Penerangan");
@@ -82,18 +87,20 @@ describe("Bahasa Melayu Form 1 Pendahuluan mind map", () => {
   });
 
   it("has unique node IDs and supports progressive expansion", () => {
-    const nodes = collectNodes(bahasaMelayuForm1PendahuluanMindMap);
+    const nodes = collectNodes(bahasaMelayuForm1KaranganResponsTerbukaMindMap);
     const ids = nodes.map((node) => node.id);
 
     expect(new Set(ids).size).toBe(ids.length);
-    expect(getVisibleMindNodes(bahasaMelayuForm1PendahuluanMindMap, new Set())).toHaveLength(1);
+    expect(
+      getVisibleMindNodes(bahasaMelayuForm1KaranganResponsTerbukaMindMap, new Set()),
+    ).toHaveLength(1);
 
-    const expanded = getExpandableMindNodeIds(bahasaMelayuForm1PendahuluanMindMap);
-    expect(getVisibleMindNodes(bahasaMelayuForm1PendahuluanMindMap, expanded)).toHaveLength(
-      nodes.length,
-    );
+    const expanded = getExpandableMindNodeIds(bahasaMelayuForm1KaranganResponsTerbukaMindMap);
+    expect(
+      getVisibleMindNodes(bahasaMelayuForm1KaranganResponsTerbukaMindMap, expanded),
+    ).toHaveLength(nodes.length);
     expect(() =>
-      calculateMindMapLayout(bahasaMelayuForm1PendahuluanMindMap, expanded),
+      calculateMindMapLayout(bahasaMelayuForm1KaranganResponsTerbukaMindMap, expanded),
     ).not.toThrow();
   });
 });

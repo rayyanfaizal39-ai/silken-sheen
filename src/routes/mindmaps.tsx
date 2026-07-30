@@ -237,6 +237,116 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Karangan Berpandukan Gambar": {
+        description:
+          "Peta minda Karangan Berpandukan Gambar Tingkatan 1: tafsiran gambar, pemilihan isi, urutan idea, pengembangan perenggan dan teknik menjawab UASA.",
+        keywords: [
+          "Karangan Berpandukan Gambar",
+          "karangan gambar Tingkatan 1",
+          "cara mentafsir gambar",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Karangan Respons Terbuka": {
+        description:
+          "Peta minda Karangan Respons Terbuka Tingkatan 1 dan 2: memahami soalan, merancang isi, mengembangkan perenggan, menyemak jawapan dan teknik UASA.",
+        keywords: [
+          "Karangan Respons Terbuka",
+          "karangan respons terbuka Tingkatan 1 dan 2",
+          "cara merancang karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Mengedit dan Menyemak Karangan": {
+        description:
+          "Peta minda Mengedit dan Menyemak Karangan Tingkatan 1: semakan isi, bahasa, ejaan, tanda baca, ayat, perenggan dan teknik UASA.",
+        keywords: [
+          "Mengedit dan Menyemak Karangan",
+          "semakan karangan Tingkatan 1",
+          "senarai semak karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Mengembangkan Isi Karangan": {
+        description:
+          "Peta minda Mengembangkan Isi Karangan Tingkatan 2: teknik 5W1H, huraian, contoh, kesan, cadangan, kesalahan lazim dan teknik UASA.",
+        keywords: [
+          "Mengembangkan Isi Karangan",
+          "pengembangan isi Tingkatan 2",
+          "teknik 5W1H karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Perbendaharaan Kata": {
+        description:
+          "Peta minda Perbendaharaan Kata Tingkatan 2: sinonim, antonim, kata dan ungkapan menarik, bahasa formal, kesalahan lazim dan teknik UASA.",
+        keywords: [
+          "Perbendaharaan Kata",
+          "kosa kata Tingkatan 2",
+          "sinonim dan antonim Bahasa Melayu",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Ayat Gramatis": {
+        description:
+          "Peta minda Ayat Gramatis Tingkatan 2: ciri ayat gramatis, ayat mudah, ayat majmuk, variasi struktur, penggabungan ayat dan teknik UASA.",
+        keywords: [
+          "Ayat Gramatis",
+          "ayat gramatis Tingkatan 2",
+          "ayat mudah dan ayat majmuk",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Teknik Mengolah Idea": {
+        description:
+          "Peta minda Teknik Mengolah Idea Tingkatan 2: idea utama, pengembangan, susunan logik, penanda wacana, contoh dan teknik UASA.",
+        keywords: [
+          "Teknik Mengolah Idea",
+          "mengolah idea Tingkatan 2",
+          "menyusun idea karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Karangan Berpandukan Bahan": {
+        description:
+          "Peta minda Karangan Berpandukan Bahan Tingkatan 2: jenis rangsangan, arahan, maklumat penting, pengolahan isi dan teknik UASA.",
+        keywords: [
+          "Karangan Berpandukan Bahan",
+          "bahan rangsangan Tingkatan 2",
+          "karangan bahan grafik",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Strategi Menjawab UASA": {
+        description:
+          "Peta minda Strategi Menjawab UASA Tingkatan 3: format penulisan, analisis arahan, pengurusan masa, perancangan, pengembangan isi dan semakan.",
+        keywords: [
+          "Strategi Menjawab UASA",
+          "Penulisan UASA Tingkatan 3",
+          "teknik peperiksaan Bahasa Melayu",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Analisis Kehendak Soalan": {
+        description:
+          "Peta minda Analisis Kehendak Soalan Tingkatan 3: kata tugas, kata kunci, tema, format, tafsiran tugasan, perancangan dan teknik UASA.",
+        keywords: [
+          "Analisis Kehendak Soalan",
+          "kata tugas Bahasa Melayu",
+          "teknik TFT Tingkatan 3",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
+      "Teknik Menjana Idea KBAT": {
+        description:
+          "Peta minda Teknik Menjana Idea KBAT Tingkatan 3: 5W1H, pengembangan idea, hubungan sebab-kesan, contoh relevan, hujah dan teknik UASA.",
+        keywords: [
+          "Teknik Menjana Idea KBAT",
+          "KBAT Penulisan Tingkatan 3",
+          "cara membina hujah",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -260,11 +370,35 @@ export const Route = createFileRoute("/mindmaps")({
         | "Simpulan Bahasa"
         | "Pendahuluan"
         | "Penutup"
+        | "Karangan Berpandukan Gambar"
+        | "Karangan Respons Terbuka"
+        | "Mengedit dan Menyemak Karangan"
+        | "Mengembangkan Isi Karangan"
+        | "Perbendaharaan Kata"
+        | "Ayat Gramatis"
+        | "Teknik Mengolah Idea"
+        | "Karangan Berpandukan Bahan"
+        | "Strategi Menjawab UASA"
+        | "Analisis Kehendak Soalan"
+        | "Teknik Menjana Idea KBAT"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
       const bmCategory =
-        match.search.chapter === "Pendahuluan" || match.search.chapter === "Penutup"
+        match.search.chapter === "Pendahuluan" ||
+        match.search.chapter === "Penutup" ||
+        match.search.chapter === "Penanda Wacana" ||
+        match.search.chapter === "Karangan Berpandukan Gambar" ||
+        match.search.chapter === "Karangan Respons Terbuka" ||
+        match.search.chapter === "Mengedit dan Menyemak Karangan" ||
+        match.search.chapter === "Mengembangkan Isi Karangan" ||
+        match.search.chapter === "Perbendaharaan Kata" ||
+        match.search.chapter === "Ayat Gramatis" ||
+        match.search.chapter === "Teknik Mengolah Idea" ||
+        match.search.chapter === "Karangan Berpandukan Bahan" ||
+        match.search.chapter === "Strategi Menjawab UASA" ||
+        match.search.chapter === "Analisis Kehendak Soalan" ||
+        match.search.chapter === "Teknik Menjana Idea KBAT"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
