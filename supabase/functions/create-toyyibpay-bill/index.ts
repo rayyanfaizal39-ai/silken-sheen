@@ -1,4 +1,9 @@
-import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+/// <reference lib="deno.window" />
+
+// Provide a loose declaration for Deno to satisfy TypeScript environments
+declare const Deno: any;
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
 import {
   BILLING_CURRENCY,
   CHECKOUT_PLANS,
@@ -28,7 +33,7 @@ function sandboxCheckoutUrl(billCode: string) {
   return `${TOYYIBPAY_SANDBOX_URL}/${encodeURIComponent(billCode)}`;
 }
 
-Deno.serve(async (request) => {
+Deno.serve(async (request: Request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (request.method !== "POST") return response({ error: "Method not allowed" }, 405);
 
@@ -185,11 +190,6 @@ Deno.serve(async (request) => {
         : "";
     if (!billCode || !/^[a-z0-9_-]+$/i.test(billCode)) {
       throw new Error(`ToyyibPay returned no valid bill code: ${billResponseText.slice(0, 300)}`);
-      Array.isArray(parsedResponse) && typeof parsedResponse[0]?.BillCode === "string"
-        ? parsedResponse[0].BillCode.trim()
-        : "";
-    if (!billCode || !/^[a-z0-9_-]+$/i.test(billCode)) {
-      throw new Error(`ToyyibPay response: ${raw}`);
     }
 
     const update = await admin
