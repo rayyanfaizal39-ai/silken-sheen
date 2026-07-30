@@ -15,11 +15,13 @@ export function StudentRating() {
   const [summary, setSummary] = useState<StudentRatingSummary | null>(null);
   const [selectedRating, setSelectedRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
+  const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [commentSubmitted, setCommentSubmitted] = useState(false);
 
   const loadRatings = useCallback(async () => {
     setLoading(true);
@@ -66,6 +68,7 @@ export function StudentRating() {
     setHoveredRating(0);
     setSubmitting(true);
     setSubmitted(false);
+    setCommentSubmitted(false);
     setSubmissionError(null);
 
     try {
@@ -76,6 +79,32 @@ export function StudentRating() {
     } catch {
       setSelectedRating(previousRating);
       setSubmissionError("Your rating could not be saved. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function submitComment() {
+    if (authLoading || submitting || !selectedRating) return;
+    if (!user) {
+      window.location.assign(`/login?next=${encodeURIComponent("/upgrade")}`);
+      return;
+    }
+
+    setSubmitting(true);
+    setSubmitted(false);
+    setCommentSubmitted(false);
+    setSubmissionError(null);
+
+    try {
+      const saved = await submitStudentRating({
+        data: { rating: selectedRating, comment },
+      });
+      setSelectedRating(saved.rating);
+      setCommentSubmitted(Boolean(comment.trim()));
+      setSubmitted(true);
+    } catch {
+      setSubmissionError("Your comment could not be saved. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -145,9 +174,48 @@ export function StudentRating() {
             )}
           </div>
 
+          <div className="mt-4 max-w-xl">
+            <div className="flex items-center justify-between gap-3">
+              <label
+                htmlFor="student-rating-comment"
+                className="text-sm font-semibold text-white/80"
+              >
+                Optional comment
+              </label>
+              <span className="text-xs tabular-nums text-white/45">{comment.length} / 300</span>
+            </div>
+            <textarea
+              id="student-rating-comment"
+              value={comment}
+              maxLength={300}
+              rows={3}
+              disabled={authLoading || submitting}
+              placeholder="Share your experience with AcadeMY"
+              onChange={(event) => {
+                setComment(event.target.value);
+                setSubmitted(false);
+                setCommentSubmitted(false);
+                setSubmissionError(null);
+              }}
+              className="mt-2 block min-h-24 w-full resize-y rounded-xl border border-[#A78BFA]/30 bg-[#070D19]/65 px-4 py-3 text-base leading-6 text-white outline-none transition-colors placeholder:text-white/35 focus:border-[#A78BFA]/70 focus:ring-2 focus:ring-[#8B5CF6]/35 disabled:cursor-wait disabled:opacity-60"
+            />
+            <button
+              type="button"
+              disabled={authLoading || submitting || !user || !selectedRating || !comment.trim()}
+              onClick={() => void submitComment()}
+              className="mt-3 inline-flex min-h-11 items-center justify-center rounded-xl border border-[#A78BFA]/30 bg-[#8B5CF6]/20 px-4 text-sm font-semibold text-white transition-colors hover:bg-[#8B5CF6]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1220] disabled:cursor-not-allowed disabled:opacity-45"
+            >
+              Save comment
+            </button>
+          </div>
+
           <div className="mt-3 min-h-5 text-sm" aria-live="polite">
             {submitted ? (
-              <p className="font-semibold text-emerald-300">Thank you for rating AcadeMY!</p>
+              <p className="font-semibold text-emerald-300">
+                {commentSubmitted
+                  ? "Thank you! Your comment is pending review."
+                  : "Thank you for rating AcadeMY!"}
+              </p>
             ) : submissionError ? (
               <p className="text-red-300">{submissionError}</p>
             ) : !authLoading && !user ? (

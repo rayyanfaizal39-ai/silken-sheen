@@ -10,6 +10,7 @@ export interface StudentRatingSummary {
 
 const ratingSchema = z.object({
   rating: z.number().int().min(1).max(5),
+  comment: z.string().max(300).optional(),
 });
 
 async function requireStudent() {
@@ -71,15 +72,25 @@ export const submitStudentRating = createServerFn({ method: "POST" })
   .validator((input: unknown) => ratingSchema.parse(input))
   .handler(async ({ data }): Promise<{ rating: number }> => {
     const { supabase, user } = await requireStudent();
+    const comment = data.comment?.trim() || null;
+    const ratingUpdate: {
+      user_id: string;
+      rating: number;
+      comment?: string | null;
+      comment_status?: "none" | "pending";
+    } = {
+      user_id: user.id,
+      rating: data.rating,
+    };
+
+    if (data.comment !== undefined) {
+      ratingUpdate.comment = comment;
+      ratingUpdate.comment_status = comment ? "pending" : "none";
+    }
+
     const result = await supabase
       .from("student_ratings")
-      .upsert(
-        {
-          user_id: user.id,
-          rating: data.rating,
-        },
-        { onConflict: "user_id" },
-      )
+      .upsert(ratingUpdate, { onConflict: "user_id" })
       .select("rating")
       .single();
 
