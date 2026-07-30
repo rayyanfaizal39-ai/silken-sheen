@@ -18,7 +18,6 @@ const form1Topics = [
   "Kata Bilangan",
   "Penjodoh Bilangan",
   "Imbuhan",
-  "Penanda Wacana",
 ] as const;
 
 const form2Topics = [

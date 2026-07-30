@@ -252,6 +252,8 @@ import { bahasaMelayuForm2AyatMajmukMindMap } from "@/content/bm/ayat-majmuk-for
 import { bahasaMelayuForm2ImbuhanLanjutanMindMap } from "@/content/bm/imbuhan-lanjutan-form2-mindmap";
 import { bahasaMelayuForm2KataPemeriMindMap } from "@/content/bm/kata-pemeri-form2-mindmap";
 import { bahasaMelayuForm2KesalahanTatabahasaLazimMindMap } from "@/content/bm/kesalahan-tatabahasa-lazim-form2-mindmap";
+import { bahasaMelayuForm2MengembangkanIsiKaranganMindMap } from "@/content/bm/mengembangkan-isi-karangan-form2-mindmap";
+import { bahasaMelayuForm2PerbendaharaanKataMindMap } from "@/content/bm/perbendaharaan-kata-form2-mindmap";
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
@@ -2716,6 +2718,34 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm1MengeditMenyemakKaranganMindMap,
       title: "Mengedit dan Menyemak Karangan",
+    },
+  },
+  {
+    id: "bm-f2-mengembangkan-isi-karangan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Mengembangkan Isi Karangan",
+    title: "Mengembangkan Isi Karangan",
+    description:
+      "Mengembangkan idea menjadi perenggan matang melalui teknik 5W1H, huraian, contoh, kesan, cadangan dan panduan UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2MengembangkanIsiKaranganMindMap,
+      title: "Mengembangkan Isi Karangan",
+    },
+  },
+  {
+    id: "bm-f2-perbendaharaan-kata-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Perbendaharaan Kata",
+    title: "Perbendaharaan Kata",
+    description:
+      "Memperluas kosa kata penulisan melalui sinonim, antonim, kata dan ungkapan menarik serta pemilihan bahasa formal yang tepat untuk UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2PerbendaharaanKataMindMap,
+      title: "Perbendaharaan Kata",
     },
   },
   {
