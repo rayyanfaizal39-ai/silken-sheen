@@ -37,7 +37,12 @@ describe("Bahasa Melayu Form 2 Perbendaharaan Kata mind map", () => {
       getRegisteredSubjectChapters("bm", undefined, "Form 2")
         .filter((topic) => topic.categoryLabel === "Penulisan")
         .map((topic) => topic.key),
-    ).toEqual(["Mengembangkan Isi Karangan", "Perbendaharaan Kata", "Ayat Gramatis"]);
+    ).toEqual([
+      "Mengembangkan Isi Karangan",
+      "Perbendaharaan Kata",
+      "Ayat Gramatis",
+      "Teknik Mengolah Idea",
+    ]);
   });
 
   it("contains all ten requested expandable sections", () => {

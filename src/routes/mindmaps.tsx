@@ -297,6 +297,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Teknik Mengolah Idea": {
+        description:
+          "Peta minda Teknik Mengolah Idea Tingkatan 2: idea utama, pengembangan, susunan logik, penanda wacana, contoh dan teknik UASA.",
+        keywords: [
+          "Teknik Mengolah Idea",
+          "mengolah idea Tingkatan 2",
+          "menyusun idea karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -326,6 +336,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Mengembangkan Isi Karangan"
         | "Perbendaharaan Kata"
         | "Ayat Gramatis"
+        | "Teknik Mengolah Idea"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -338,7 +349,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Mengedit dan Menyemak Karangan" ||
         match.search.chapter === "Mengembangkan Isi Karangan" ||
         match.search.chapter === "Perbendaharaan Kata" ||
-        match.search.chapter === "Ayat Gramatis"
+        match.search.chapter === "Ayat Gramatis" ||
+        match.search.chapter === "Teknik Mengolah Idea"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"

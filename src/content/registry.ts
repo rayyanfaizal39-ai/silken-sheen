@@ -255,6 +255,7 @@ import { bahasaMelayuForm2KesalahanTatabahasaLazimMindMap } from "@/content/bm/k
 import { bahasaMelayuForm2MengembangkanIsiKaranganMindMap } from "@/content/bm/mengembangkan-isi-karangan-form2-mindmap";
 import { bahasaMelayuForm2PerbendaharaanKataMindMap } from "@/content/bm/perbendaharaan-kata-form2-mindmap";
 import { bahasaMelayuForm2AyatGramatisMindMap } from "@/content/bm/ayat-gramatis-form2-mindmap";
+import { bahasaMelayuForm2TeknikMengolahIdeaMindMap } from "@/content/bm/teknik-mengolah-idea-form2-mindmap";
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
@@ -2761,6 +2762,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2AyatGramatisMindMap,
       title: "Ayat Gramatis",
+    },
+  },
+  {
+    id: "bm-f2-teknik-mengolah-idea-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Teknik Mengolah Idea",
+    title: "Teknik Mengolah Idea",
+    description:
+      "Memilih, mengembangkan, menyusun dan menghubungkan idea menggunakan penanda wacana, contoh relevan serta teknik UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2TeknikMengolahIdeaMindMap,
+      title: "Teknik Mengolah Idea",
     },
   },
   {

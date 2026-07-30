@@ -38,7 +38,12 @@ describe("Bahasa Melayu Form 2 Mengembangkan Isi Karangan mind map", () => {
       getRegisteredSubjectChapters("bm", undefined, "Form 2")
         .filter((topic) => topic.categoryLabel === "Penulisan")
         .map((topic) => topic.key),
-    ).toEqual(["Mengembangkan Isi Karangan", "Perbendaharaan Kata", "Ayat Gramatis"]);
+    ).toEqual([
+      "Mengembangkan Isi Karangan",
+      "Perbendaharaan Kata",
+      "Ayat Gramatis",
+      "Teknik Mengolah Idea",
+    ]);
     expect(getBahasaMelayuMindMapCategories("Form 2")).toContain("Penulisan");
   });
 
