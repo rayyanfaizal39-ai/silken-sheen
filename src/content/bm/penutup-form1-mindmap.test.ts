@@ -6,29 +6,29 @@ import {
   type MindNode,
 } from "@/components/MindMap";
 import { getChapter, getRegisteredSubjectChapters, hasResourceContent } from "@/content/registry";
-import { bahasaMelayuForm1MembinaPerengganMindMap } from "./membina-perenggan-form1-mindmap";
+import { bahasaMelayuForm1PenutupMindMap } from "./penutup-form1-mindmap";
 
 function collectNodes(node: MindNode): MindNode[] {
   return [node, ...(node.children?.flatMap(collectNodes) ?? [])];
 }
 
-describe("Bahasa Melayu Form 1 Membina Perenggan mind map", () => {
-  it("registers after Asas Penulisan under the third category", () => {
-    const chapter = getChapter("bm", "Membina Perenggan", undefined, "Form 1");
+describe("Bahasa Melayu Form 1 Penutup mind map", () => {
+  it("registers Penutup after Pendahuluan under Penulisan", () => {
+    const chapter = getChapter("bm", "Penutup", undefined, "Form 1");
 
     expect(chapter).toMatchObject({
-      id: "bm-f1-membina-perenggan-mindmap",
+      id: "bm-f1-penutup-mindmap",
       subjectId: "bm",
       form: "Form 1",
-      chapterKey: "Membina Perenggan",
-      title: "Membina Perenggan",
+      chapterKey: "Penutup",
+      title: "Penutup",
       categoryLabel: "Penulisan",
       mindMap: {
-        data: bahasaMelayuForm1MembinaPerengganMindMap,
-        title: "Membina Perenggan",
+        data: bahasaMelayuForm1PenutupMindMap,
+        title: "Penutup",
       },
     });
-    expect(hasResourceContent("bm", "Form 1", "Membina Perenggan", "mindMap")).toBe(true);
+    expect(hasResourceContent("bm", "Form 1", "Penutup", "mindMap")).toBe(true);
     expect(chapter).not.toHaveProperty("notes");
     expect(chapter).not.toHaveProperty("flashcards");
     expect(chapter).not.toHaveProperty("quiz");
@@ -40,26 +40,25 @@ describe("Bahasa Melayu Form 1 Membina Perenggan mind map", () => {
     ).toEqual(["Asas Penulisan", "Membina Perenggan", "Pendahuluan", "Penutup"]);
   });
 
-  it("contains all nine requested expandable sections", () => {
-    expect(bahasaMelayuForm1MembinaPerengganMindMap).toMatchObject({
-      id: "bm-f1-membina-perenggan-root",
-      label: "MEMBINA PERENGGAN",
+  it("contains all eight requested expandable sections", () => {
+    expect(bahasaMelayuForm1PenutupMindMap).toMatchObject({
+      id: "bm-f1-penutup-root",
+      label: "PENUTUP",
     });
-    expect(bahasaMelayuForm1MembinaPerengganMindMap.children?.map((item) => item.label)).toEqual([
-      "Apa Itu Perenggan?",
-      "Struktur Perenggan",
-      "Ayat Topik",
-      "Ayat Huraian",
-      "Ayat Contoh",
-      "Ayat Penegas",
+    expect(bahasaMelayuForm1PenutupMindMap.children?.map((item) => item.label)).toEqual([
+      "Apa Itu Penutup?",
+      "Tujuan Penutup",
+      "Ciri-ciri Penutup yang Baik",
+      "Cara Menulis Penutup",
+      "Jenis Penutup",
       "Kesalahan Lazim",
       "Teknik Mengingat",
       "Teknik Menjawab UASA",
     ]);
   });
 
-  it("provides the required learning fields for every section", () => {
-    bahasaMelayuForm1MembinaPerengganMindMap.children?.forEach((section) => {
+  it("provides every required learning field for each section", () => {
+    bahasaMelayuForm1PenutupMindMap.children?.forEach((section) => {
       const labels = section.children?.map((item) => item.label) ?? [];
 
       expect(labels).toContain("Penerangan");
@@ -74,20 +73,16 @@ describe("Bahasa Melayu Form 1 Membina Perenggan mind map", () => {
   });
 
   it("has unique node IDs and supports progressive expansion", () => {
-    const nodes = collectNodes(bahasaMelayuForm1MembinaPerengganMindMap);
+    const nodes = collectNodes(bahasaMelayuForm1PenutupMindMap);
     const ids = nodes.map((node) => node.id);
 
     expect(new Set(ids).size).toBe(ids.length);
-    expect(getVisibleMindNodes(bahasaMelayuForm1MembinaPerengganMindMap, new Set())).toHaveLength(
-      1,
-    );
+    expect(getVisibleMindNodes(bahasaMelayuForm1PenutupMindMap, new Set())).toHaveLength(1);
 
-    const expanded = getExpandableMindNodeIds(bahasaMelayuForm1MembinaPerengganMindMap);
-    expect(getVisibleMindNodes(bahasaMelayuForm1MembinaPerengganMindMap, expanded)).toHaveLength(
+    const expanded = getExpandableMindNodeIds(bahasaMelayuForm1PenutupMindMap);
+    expect(getVisibleMindNodes(bahasaMelayuForm1PenutupMindMap, expanded)).toHaveLength(
       nodes.length,
     );
-    expect(() =>
-      calculateMindMapLayout(bahasaMelayuForm1MembinaPerengganMindMap, expanded),
-    ).not.toThrow();
+    expect(() => calculateMindMapLayout(bahasaMelayuForm1PenutupMindMap, expanded)).not.toThrow();
   });
 });

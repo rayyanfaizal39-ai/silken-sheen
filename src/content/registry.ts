@@ -260,6 +260,8 @@ import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mind
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
 import { bahasaMelayuForm1AsasPenulisanMindMap } from "@/content/bm/asas-penulisan-form1-mindmap";
 import { bahasaMelayuForm1MembinaPerengganMindMap } from "@/content/bm/membina-perenggan-form1-mindmap";
+import { bahasaMelayuForm1PendahuluanMindMap } from "@/content/bm/pendahuluan-form1-mindmap";
+import { bahasaMelayuForm1PenutupMindMap } from "@/content/bm/penutup-form1-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2641,6 +2643,34 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm1MembinaPerengganMindMap,
       title: "Membina Perenggan",
+    },
+  },
+  {
+    id: "bm-f1-pendahuluan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Pendahuluan",
+    title: "Pendahuluan",
+    description:
+      "Membina pendahuluan karangan yang tepat, jelas dan tersusun menggunakan tema, huraian dan fokus serta teknik UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1PendahuluanMindMap,
+      title: "Pendahuluan",
+    },
+  },
+  {
+    id: "bm-f1-penutup-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Penutup",
+    title: "Penutup",
+    description:
+      "Membina penutup karangan yang lengkap menggunakan rumusan, penegasan, cadangan dan harapan serta teknik UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1PenutupMindMap,
+      title: "Penutup",
     },
   },
   {
