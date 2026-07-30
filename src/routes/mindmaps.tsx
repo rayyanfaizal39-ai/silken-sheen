@@ -249,10 +249,10 @@ export const Route = createFileRoute("/mindmaps")({
       },
       "Karangan Respons Terbuka": {
         description:
-          "Peta minda Karangan Respons Terbuka Tingkatan 1: memahami soalan, merancang isi, mengembangkan perenggan, menyemak jawapan dan teknik UASA.",
+          "Peta minda Karangan Respons Terbuka Tingkatan 1 dan 2: memahami soalan, merancang isi, mengembangkan perenggan, menyemak jawapan dan teknik UASA.",
         keywords: [
           "Karangan Respons Terbuka",
-          "karangan respons terbuka Tingkatan 1",
+          "karangan respons terbuka Tingkatan 1 dan 2",
           "cara merancang karangan",
           "penulisan Bahasa Melayu KSSM",
         ],

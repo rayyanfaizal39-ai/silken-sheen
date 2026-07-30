@@ -257,6 +257,7 @@ import { bahasaMelayuForm2PerbendaharaanKataMindMap } from "@/content/bm/perbend
 import { bahasaMelayuForm2AyatGramatisMindMap } from "@/content/bm/ayat-gramatis-form2-mindmap";
 import { bahasaMelayuForm2TeknikMengolahIdeaMindMap } from "@/content/bm/teknik-mengolah-idea-form2-mindmap";
 import { bahasaMelayuForm2KaranganBerpandukanBahanMindMap } from "@/content/bm/karangan-berpandukan-bahan-form2-mindmap";
+import { bahasaMelayuForm2KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form2-mindmap";
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
@@ -2791,6 +2792,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2KaranganBerpandukanBahanMindMap,
       title: "Karangan Berpandukan Bahan",
+    },
+  },
+  {
+    id: "bm-f2-karangan-respons-terbuka-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Respons Terbuka",
+    title: "Karangan Respons Terbuka",
+    description:
+      "Memahami kehendak soalan, merancang dan mengembangkan isi secara matang serta menghasilkan karangan respons terbuka berkualiti untuk UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2KaranganResponsTerbukaMindMap,
+      title: "Karangan Respons Terbuka",
     },
   },
   {

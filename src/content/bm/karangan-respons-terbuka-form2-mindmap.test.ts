@@ -6,7 +6,7 @@ import {
   type MindNode,
 } from "@/components/MindMap";
 import { getChapter, getRegisteredSubjectChapters, hasResourceContent } from "@/content/registry";
-import { bahasaMelayuForm2KaranganBerpandukanBahanMindMap } from "./karangan-berpandukan-bahan-form2-mindmap";
+import { bahasaMelayuForm2KaranganResponsTerbukaMindMap } from "./karangan-respons-terbuka-form2-mindmap";
 
 const penulisanTopics = [
   "Mengembangkan Isi Karangan",
@@ -21,23 +21,23 @@ function collectNodes(node: MindNode): MindNode[] {
   return [node, ...(node.children?.flatMap(collectNodes) ?? [])];
 }
 
-describe("Bahasa Melayu Form 2 Karangan Berpandukan Bahan mind map", () => {
-  it("registers under Penulisan after Teknik Mengolah Idea", () => {
-    const chapter = getChapter("bm", "Karangan Berpandukan Bahan", undefined, "Form 2");
+describe("Bahasa Melayu Form 2 Karangan Respons Terbuka mind map", () => {
+  it("registers under Penulisan after Karangan Berpandukan Bahan", () => {
+    const chapter = getChapter("bm", "Karangan Respons Terbuka", undefined, "Form 2");
 
     expect(chapter).toMatchObject({
-      id: "bm-f2-karangan-berpandukan-bahan-mindmap",
+      id: "bm-f2-karangan-respons-terbuka-mindmap",
       subjectId: "bm",
       form: "Form 2",
-      chapterKey: "Karangan Berpandukan Bahan",
-      title: "Karangan Berpandukan Bahan",
+      chapterKey: "Karangan Respons Terbuka",
+      title: "Karangan Respons Terbuka",
       categoryLabel: "Penulisan",
       mindMap: {
-        data: bahasaMelayuForm2KaranganBerpandukanBahanMindMap,
-        title: "Karangan Berpandukan Bahan",
+        data: bahasaMelayuForm2KaranganResponsTerbukaMindMap,
+        title: "Karangan Respons Terbuka",
       },
     });
-    expect(hasResourceContent("bm", "Form 2", "Karangan Berpandukan Bahan", "mindMap")).toBe(true);
+    expect(hasResourceContent("bm", "Form 2", "Karangan Respons Terbuka", "mindMap")).toBe(true);
     expect(chapter).not.toHaveProperty("notes");
     expect(chapter).not.toHaveProperty("flashcards");
     expect(chapter).not.toHaveProperty("quiz");
@@ -49,23 +49,22 @@ describe("Bahasa Melayu Form 2 Karangan Berpandukan Bahan mind map", () => {
     ).toEqual(penulisanTopics);
   });
 
-  it("contains all twelve requested expandable sections", () => {
-    expect(bahasaMelayuForm2KaranganBerpandukanBahanMindMap).toMatchObject({
-      id: "bm-f2-karangan-berpandukan-bahan-root",
-      label: "KARANGAN BERPANDUKAN BAHAN",
+  it("contains all eleven requested expandable sections", () => {
+    expect(bahasaMelayuForm2KaranganResponsTerbukaMindMap).toMatchObject({
+      id: "bm-f2-karangan-respons-terbuka-root",
+      label: "KARANGAN RESPONS TERBUKA",
     });
     expect(
-      bahasaMelayuForm2KaranganBerpandukanBahanMindMap.children?.map((item) => item.label),
+      bahasaMelayuForm2KaranganResponsTerbukaMindMap.children?.map((item) => item.label),
     ).toEqual([
-      "Apa Itu Karangan Berpandukan Bahan?",
-      "Jenis-jenis Bahan Rangsangan",
-      "Cara Memahami Arahan Soalan",
-      "Mengenal Pasti Maklumat Penting",
-      "Menghubungkan Maklumat daripada Bahan",
+      "Apa Itu Karangan Respons Terbuka?",
+      "Memahami Kehendak Soalan",
+      "Mengenal Pasti Kata Tugas",
       "Merancang Isi Karangan",
-      "Membina Pendahuluan",
-      "Mengembangkan Isi",
-      "Menulis Penutup",
+      "Menulis Pendahuluan yang Berkesan",
+      "Mengembangkan Isi Secara Matang",
+      "Menulis Penutup yang Mantap",
+      "Menyemak dan Menambah Baik Karangan",
       "Kesalahan Lazim",
       "Teknik Mengingat",
       "Teknik Menjawab UASA",
@@ -73,7 +72,7 @@ describe("Bahasa Melayu Form 2 Karangan Berpandukan Bahan mind map", () => {
   });
 
   it("provides every required learning field for each section", () => {
-    bahasaMelayuForm2KaranganBerpandukanBahanMindMap.children?.forEach((section) => {
+    bahasaMelayuForm2KaranganResponsTerbukaMindMap.children?.forEach((section) => {
       const labels = section.children?.map((item) => item.label) ?? [];
 
       expect(labels).toContain("Penerangan");
@@ -88,20 +87,20 @@ describe("Bahasa Melayu Form 2 Karangan Berpandukan Bahan mind map", () => {
   });
 
   it("has unique node IDs and supports progressive expansion", () => {
-    const nodes = collectNodes(bahasaMelayuForm2KaranganBerpandukanBahanMindMap);
+    const nodes = collectNodes(bahasaMelayuForm2KaranganResponsTerbukaMindMap);
     const ids = nodes.map((node) => node.id);
 
     expect(new Set(ids).size).toBe(ids.length);
     expect(
-      getVisibleMindNodes(bahasaMelayuForm2KaranganBerpandukanBahanMindMap, new Set()),
+      getVisibleMindNodes(bahasaMelayuForm2KaranganResponsTerbukaMindMap, new Set()),
     ).toHaveLength(1);
 
-    const expanded = getExpandableMindNodeIds(bahasaMelayuForm2KaranganBerpandukanBahanMindMap);
+    const expanded = getExpandableMindNodeIds(bahasaMelayuForm2KaranganResponsTerbukaMindMap);
     expect(
-      getVisibleMindNodes(bahasaMelayuForm2KaranganBerpandukanBahanMindMap, expanded),
+      getVisibleMindNodes(bahasaMelayuForm2KaranganResponsTerbukaMindMap, expanded),
     ).toHaveLength(nodes.length);
     expect(() =>
-      calculateMindMapLayout(bahasaMelayuForm2KaranganBerpandukanBahanMindMap, expanded),
+      calculateMindMapLayout(bahasaMelayuForm2KaranganResponsTerbukaMindMap, expanded),
     ).not.toThrow();
   });
 });

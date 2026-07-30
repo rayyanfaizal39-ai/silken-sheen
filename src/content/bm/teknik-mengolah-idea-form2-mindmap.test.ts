@@ -14,6 +14,7 @@ const penulisanTopics = [
   "Ayat Gramatis",
   "Teknik Mengolah Idea",
   "Karangan Berpandukan Bahan",
+  "Karangan Respons Terbuka",
 ];
 
 function collectNodes(node: MindNode): MindNode[] {
