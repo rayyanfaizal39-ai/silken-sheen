@@ -13,6 +13,7 @@ const penulisanTopics = [
   "Perbendaharaan Kata",
   "Ayat Gramatis",
   "Teknik Mengolah Idea",
+  "Karangan Berpandukan Bahan",
 ];
 
 function collectNodes(node: MindNode): MindNode[] {

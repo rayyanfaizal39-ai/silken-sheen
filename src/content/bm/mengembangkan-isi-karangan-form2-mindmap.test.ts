@@ -43,6 +43,7 @@ describe("Bahasa Melayu Form 2 Mengembangkan Isi Karangan mind map", () => {
       "Perbendaharaan Kata",
       "Ayat Gramatis",
       "Teknik Mengolah Idea",
+      "Karangan Berpandukan Bahan",
     ]);
     expect(getBahasaMelayuMindMapCategories("Form 2")).toContain("Penulisan");
   });

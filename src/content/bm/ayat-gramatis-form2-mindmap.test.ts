@@ -42,6 +42,7 @@ describe("Bahasa Melayu Form 2 Ayat Gramatis mind map", () => {
       "Perbendaharaan Kata",
       "Ayat Gramatis",
       "Teknik Mengolah Idea",
+      "Karangan Berpandukan Bahan",
     ]);
   });
 

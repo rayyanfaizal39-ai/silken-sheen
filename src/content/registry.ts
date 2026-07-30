@@ -256,6 +256,7 @@ import { bahasaMelayuForm2MengembangkanIsiKaranganMindMap } from "@/content/bm/m
 import { bahasaMelayuForm2PerbendaharaanKataMindMap } from "@/content/bm/perbendaharaan-kata-form2-mindmap";
 import { bahasaMelayuForm2AyatGramatisMindMap } from "@/content/bm/ayat-gramatis-form2-mindmap";
 import { bahasaMelayuForm2TeknikMengolahIdeaMindMap } from "@/content/bm/teknik-mengolah-idea-form2-mindmap";
+import { bahasaMelayuForm2KaranganBerpandukanBahanMindMap } from "@/content/bm/karangan-berpandukan-bahan-form2-mindmap";
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
@@ -2776,6 +2777,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2TeknikMengolahIdeaMindMap,
       title: "Teknik Mengolah Idea",
+    },
+  },
+  {
+    id: "bm-f2-karangan-berpandukan-bahan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Karangan Berpandukan Bahan",
+    title: "Karangan Berpandukan Bahan",
+    description:
+      "Mentafsir bahan rangsangan, memilih dan menghubungkan maklumat serta menghasilkan karangan lengkap berdasarkan bahan untuk UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2KaranganBerpandukanBahanMindMap,
+      title: "Karangan Berpandukan Bahan",
     },
   },
   {

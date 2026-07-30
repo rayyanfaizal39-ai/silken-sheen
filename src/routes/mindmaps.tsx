@@ -307,6 +307,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Karangan Berpandukan Bahan": {
+        description:
+          "Peta minda Karangan Berpandukan Bahan Tingkatan 2: jenis rangsangan, arahan, maklumat penting, pengolahan isi dan teknik UASA.",
+        keywords: [
+          "Karangan Berpandukan Bahan",
+          "bahan rangsangan Tingkatan 2",
+          "karangan bahan grafik",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -337,6 +347,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Perbendaharaan Kata"
         | "Ayat Gramatis"
         | "Teknik Mengolah Idea"
+        | "Karangan Berpandukan Bahan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -350,7 +361,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Mengembangkan Isi Karangan" ||
         match.search.chapter === "Perbendaharaan Kata" ||
         match.search.chapter === "Ayat Gramatis" ||
-        match.search.chapter === "Teknik Mengolah Idea"
+        match.search.chapter === "Teknik Mengolah Idea" ||
+        match.search.chapter === "Karangan Berpandukan Bahan"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
