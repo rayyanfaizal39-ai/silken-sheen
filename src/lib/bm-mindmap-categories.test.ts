@@ -10,12 +10,16 @@ describe("Bahasa Melayu mind-map categories", () => {
     ]);
   });
 
-  it("does not add an empty Penulisan tab to other forms", () => {
+  it("shows Penulisan for Forms 2 and 3", () => {
     expect(getBahasaMelayuMindMapCategories("Form 2")).toEqual([
       "Tatabahasa",
       "Peribahasa",
       "Penulisan",
     ]);
-    expect(getBahasaMelayuMindMapCategories("Form 3")).toEqual(["Tatabahasa", "Peribahasa"]);
+    expect(getBahasaMelayuMindMapCategories("Form 3")).toEqual([
+      "Tatabahasa",
+      "Peribahasa",
+      "Penulisan",
+    ]);
   });
 });

@@ -317,6 +317,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Strategi Menjawab UASA": {
+        description:
+          "Peta minda Strategi Menjawab UASA Tingkatan 3: format penulisan, analisis arahan, pengurusan masa, perancangan, pengembangan isi dan semakan.",
+        keywords: [
+          "Strategi Menjawab UASA",
+          "Penulisan UASA Tingkatan 3",
+          "teknik peperiksaan Bahasa Melayu",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -348,6 +358,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Ayat Gramatis"
         | "Teknik Mengolah Idea"
         | "Karangan Berpandukan Bahan"
+        | "Strategi Menjawab UASA"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -362,7 +373,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Perbendaharaan Kata" ||
         match.search.chapter === "Ayat Gramatis" ||
         match.search.chapter === "Teknik Mengolah Idea" ||
-        match.search.chapter === "Karangan Berpandukan Bahan"
+        match.search.chapter === "Karangan Berpandukan Bahan" ||
+        match.search.chapter === "Strategi Menjawab UASA"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"

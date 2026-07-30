@@ -261,6 +261,7 @@ import { bahasaMelayuForm2KaranganResponsTerbukaMindMap } from "@/content/bm/kar
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
+import { bahasaMelayuForm3StrategiMenjawabUasaMindMap } from "@/content/bm/strategi-menjawab-uasa-form3-mindmap";
 import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mindmap";
 import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
@@ -2474,6 +2475,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm3CakapAjukCakapPindahMindMap,
       title: "Cakap Ajuk dan Cakap Pindah",
+    },
+  },
+  {
+    id: "bm-f3-strategi-menjawab-uasa-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Strategi Menjawab UASA",
+    title: "Strategi Menjawab UASA",
+    description:
+      "Strategi praktikal menganalisis soalan, mengurus masa, merancang, menulis dan menyemak komponen Penulisan UASA Tingkatan 3.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm3StrategiMenjawabUasaMindMap,
+      title: "Strategi Menjawab UASA",
     },
   },
   {

@@ -8,5 +8,7 @@ const WRITING_CATEGORIES = ["Tatabahasa", "Peribahasa", "Penulisan"] as const;
 export function getBahasaMelayuMindMapCategories(
   form: Form,
 ): readonly BahasaMelayuMindMapCategory[] {
-  return form === "Form 1" || form === "Form 2" ? WRITING_CATEGORIES : DEFAULT_CATEGORIES;
+  return form === "Form 1" || form === "Form 2" || form === "Form 3"
+    ? WRITING_CATEGORIES
+    : DEFAULT_CATEGORIES;
 }
