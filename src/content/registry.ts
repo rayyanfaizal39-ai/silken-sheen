@@ -263,6 +263,7 @@ import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
 import { bahasaMelayuForm3StrategiMenjawabUasaMindMap } from "@/content/bm/strategi-menjawab-uasa-form3-mindmap";
 import { bahasaMelayuForm3AnalisisKehendakSoalanMindMap } from "@/content/bm/analisis-kehendak-soalan-form3-mindmap";
+import { bahasaMelayuForm3TeknikMenjanaIdeaKbatMindMap } from "@/content/bm/teknik-menjana-idea-kbat-form3-mindmap";
 import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mindmap";
 import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
@@ -2504,6 +2505,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm3AnalisisKehendakSoalanMindMap,
       title: "Analisis Kehendak Soalan",
+    },
+  },
+  {
+    id: "bm-f3-teknik-menjana-idea-kbat-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Teknik Menjana Idea KBAT",
+    title: "Teknik Menjana Idea KBAT",
+    description:
+      "Menjana, mengembangkan dan menyokong idea KBAT dengan hubungan sebab, kesan, cadangan, contoh dan hujah yang mantap.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm3TeknikMenjanaIdeaKbatMindMap,
+      title: "Teknik Menjana Idea KBAT",
     },
   },
   {

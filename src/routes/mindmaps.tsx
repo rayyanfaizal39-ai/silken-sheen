@@ -337,6 +337,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Teknik Menjana Idea KBAT": {
+        description:
+          "Peta minda Teknik Menjana Idea KBAT Tingkatan 3: 5W1H, pengembangan idea, hubungan sebab-kesan, contoh relevan, hujah dan teknik UASA.",
+        keywords: [
+          "Teknik Menjana Idea KBAT",
+          "KBAT Penulisan Tingkatan 3",
+          "cara membina hujah",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -370,6 +380,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Karangan Berpandukan Bahan"
         | "Strategi Menjawab UASA"
         | "Analisis Kehendak Soalan"
+        | "Teknik Menjana Idea KBAT"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -386,7 +397,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Teknik Mengolah Idea" ||
         match.search.chapter === "Karangan Berpandukan Bahan" ||
         match.search.chapter === "Strategi Menjawab UASA" ||
-        match.search.chapter === "Analisis Kehendak Soalan"
+        match.search.chapter === "Analisis Kehendak Soalan" ||
+        match.search.chapter === "Teknik Menjana Idea KBAT"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
