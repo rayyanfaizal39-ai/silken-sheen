@@ -267,6 +267,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Mengembangkan Isi Karangan": {
+        description:
+          "Peta minda Mengembangkan Isi Karangan Tingkatan 2: teknik 5W1H, huraian, contoh, kesan, cadangan, kesalahan lazim dan teknik UASA.",
+        keywords: [
+          "Mengembangkan Isi Karangan",
+          "pengembangan isi Tingkatan 2",
+          "teknik 5W1H karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -293,6 +303,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Karangan Berpandukan Gambar"
         | "Karangan Respons Terbuka"
         | "Mengedit dan Menyemak Karangan"
+        | "Mengembangkan Isi Karangan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -302,7 +313,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Penanda Wacana" ||
         match.search.chapter === "Karangan Berpandukan Gambar" ||
         match.search.chapter === "Karangan Respons Terbuka" ||
-        match.search.chapter === "Mengedit dan Menyemak Karangan"
+        match.search.chapter === "Mengedit dan Menyemak Karangan" ||
+        match.search.chapter === "Mengembangkan Isi Karangan"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
