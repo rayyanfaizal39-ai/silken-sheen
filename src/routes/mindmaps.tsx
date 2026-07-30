@@ -217,6 +217,16 @@ export const Route = createFileRoute("/mindmaps")({
           "contoh ayat simpulan bahasa",
         ],
       },
+      Pendahuluan: {
+        description:
+          "Peta minda Pendahuluan Tingkatan 1: tujuan, ciri-ciri, jenis, langkah menulis, kesalahan lazim, teknik mengingat dan teknik menjawab UASA.",
+        keywords: [
+          "Pendahuluan",
+          "pendahuluan karangan Tingkatan 1",
+          "cara menulis pendahuluan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -238,19 +248,26 @@ export const Route = createFileRoute("/mindmaps")({
         | "Ayat Majmuk"
         | "Imbuhan Lanjutan"
         | "Simpulan Bahasa"
+        | "Pendahuluan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
+      const bmCategory =
+        match.search.chapter === "Pendahuluan"
+          ? "Penulisan"
+          : isPeribahasa
+            ? "Peribahasa"
+            : "Tatabahasa";
       return seoMeta({
-        title: `${match.search.chapter} — Peta Minda ${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Bahasa Melayu`,
+        title: `${match.search.chapter} — Peta Minda ${bmCategory} Bahasa Melayu`,
         description: bmTopic.description,
         path: "/mindmaps",
         keywords: [
           ...bmTopic.keywords,
           "Peta Minda Bahasa Melayu",
-          `${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Tingkatan 1`,
-          `${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Tingkatan 2`,
-          `${isPeribahasa ? "Peribahasa" : "Tatabahasa"} Tingkatan 3`,
+          `${bmCategory} Tingkatan 1`,
+          `${bmCategory} Tingkatan 2`,
+          `${bmCategory} Tingkatan 3`,
         ],
       });
     }
