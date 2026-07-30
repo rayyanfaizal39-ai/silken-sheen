@@ -37,7 +37,7 @@ describe("Bahasa Melayu Form 3 Strategi Menjawab UASA mind map", () => {
       getRegisteredSubjectChapters("bm", undefined, "Form 3")
         .filter((topic) => topic.categoryLabel === "Penulisan")
         .map((topic) => topic.key),
-    ).toEqual(["Strategi Menjawab UASA"]);
+    ).toEqual(["Strategi Menjawab UASA", "Analisis Kehendak Soalan"]);
     expect(getBahasaMelayuMindMapCategories("Form 3")).toContain("Penulisan");
   });
 

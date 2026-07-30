@@ -327,6 +327,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Analisis Kehendak Soalan": {
+        description:
+          "Peta minda Analisis Kehendak Soalan Tingkatan 3: kata tugas, kata kunci, tema, format, tafsiran tugasan, perancangan dan teknik UASA.",
+        keywords: [
+          "Analisis Kehendak Soalan",
+          "kata tugas Bahasa Melayu",
+          "teknik TFT Tingkatan 3",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -359,6 +369,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Teknik Mengolah Idea"
         | "Karangan Berpandukan Bahan"
         | "Strategi Menjawab UASA"
+        | "Analisis Kehendak Soalan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -374,7 +385,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Ayat Gramatis" ||
         match.search.chapter === "Teknik Mengolah Idea" ||
         match.search.chapter === "Karangan Berpandukan Bahan" ||
-        match.search.chapter === "Strategi Menjawab UASA"
+        match.search.chapter === "Strategi Menjawab UASA" ||
+        match.search.chapter === "Analisis Kehendak Soalan"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"

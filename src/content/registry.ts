@@ -262,6 +262,7 @@ import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
 import { bahasaMelayuForm3StrategiMenjawabUasaMindMap } from "@/content/bm/strategi-menjawab-uasa-form3-mindmap";
+import { bahasaMelayuForm3AnalisisKehendakSoalanMindMap } from "@/content/bm/analisis-kehendak-soalan-form3-mindmap";
 import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mindmap";
 import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
@@ -2489,6 +2490,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm3StrategiMenjawabUasaMindMap,
       title: "Strategi Menjawab UASA",
+    },
+  },
+  {
+    id: "bm-f3-analisis-kehendak-soalan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Analisis Kehendak Soalan",
+    title: "Analisis Kehendak Soalan",
+    description:
+      "Menganalisis tema, format, tugasan, kata tugas dan kata kunci supaya jawapan Penulisan UASA Tingkatan 3 tepat serta relevan.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm3AnalisisKehendakSoalanMindMap,
+      title: "Analisis Kehendak Soalan",
     },
   },
   {
