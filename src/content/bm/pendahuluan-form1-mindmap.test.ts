@@ -37,7 +37,7 @@ describe("Bahasa Melayu Form 1 Pendahuluan mind map", () => {
       getRegisteredSubjectChapters("bm", undefined, "Form 1")
         .filter((topic) => topic.categoryLabel === "Penulisan")
         .map((topic) => topic.key),
-    ).toEqual(["Asas Penulisan", "Membina Perenggan", "Pendahuluan"]);
+    ).toEqual(["Asas Penulisan", "Membina Perenggan", "Pendahuluan", "Penutup"]);
   });
 
   it("contains all eight requested expandable sections", () => {

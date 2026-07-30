@@ -227,6 +227,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      Penutup: {
+        description:
+          "Peta minda Penutup Tingkatan 1: tujuan, ciri-ciri, langkah menulis, jenis penutup, kesalahan lazim, teknik mengingat dan teknik menjawab UASA.",
+        keywords: [
+          "Penutup",
+          "penutup karangan Tingkatan 1",
+          "cara menulis penutup",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -249,11 +259,12 @@ export const Route = createFileRoute("/mindmaps")({
         | "Imbuhan Lanjutan"
         | "Simpulan Bahasa"
         | "Pendahuluan"
+        | "Penutup"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
       const bmCategory =
-        match.search.chapter === "Pendahuluan"
+        match.search.chapter === "Pendahuluan" || match.search.chapter === "Penutup"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
