@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import { HomeImagePlaceholder } from "@/components/home/HomeImagePlaceholder";
 import { HomePapercraftBackground } from "@/components/home/HomePapercraftBackground";
+import { HomeContinueLearning } from "@/components/home/HomeContinueLearning";
 import { useAuth } from "@/context/auth-context";
 import { useCikgu } from "@/context/cikgu-context";
 import { getCompanionLevelProgress, getRank, useProgress } from "@/hooks/use-progress";
@@ -98,32 +99,7 @@ export function CommandCenterHome() {
         </section>
 
         <div className="home-skeleton__split home-skeleton__split--learning">
-          <section
-            className="home-skeleton__card home-skeleton__continue"
-            aria-labelledby="continue-title"
-          >
-            <HomeImagePlaceholder label="CONTINUE LEARNING ARTWORK" aspectRatio="4 / 3" />
-            <div className="home-skeleton__continue-copy">
-              <p className="home-skeleton__section-label">Continue learning</p>
-              <h2 id="continue-title">Chapter title</h2>
-              <dl className="home-skeleton__meta">
-                <div>
-                  <dt>Subject</dt>
-                  <dd>Subject</dd>
-                </div>
-                <div>
-                  <dt>Form</dt>
-                  <dd>Form</dd>
-                </div>
-              </dl>
-              <div className="home-skeleton__progress" aria-label="Progress placeholder">
-                <span />
-              </div>
-              <button className="home-skeleton__secondary-button" type="button">
-                Resume
-              </button>
-            </div>
-          </section>
+          <HomeContinueLearning />
 
           <section
             className="home-skeleton__card home-skeleton__bulletin"
