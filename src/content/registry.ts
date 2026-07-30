@@ -254,6 +254,7 @@ import { bahasaMelayuForm2KataPemeriMindMap } from "@/content/bm/kata-pemeri-for
 import { bahasaMelayuForm2KesalahanTatabahasaLazimMindMap } from "@/content/bm/kesalahan-tatabahasa-lazim-form2-mindmap";
 import { bahasaMelayuForm2MengembangkanIsiKaranganMindMap } from "@/content/bm/mengembangkan-isi-karangan-form2-mindmap";
 import { bahasaMelayuForm2PerbendaharaanKataMindMap } from "@/content/bm/perbendaharaan-kata-form2-mindmap";
+import { bahasaMelayuForm2AyatGramatisMindMap } from "@/content/bm/ayat-gramatis-form2-mindmap";
 import { bahasaMelayuForm3JenisAyatMindMap } from "@/content/bm/jenis-ayat-form3-mindmap";
 import { bahasaMelayuForm3RagamAyatMindMap } from "@/content/bm/ragam-ayat-form3-mindmap";
 import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap-ajuk-cakap-pindah-form3-mindmap";
@@ -2746,6 +2747,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm2PerbendaharaanKataMindMap,
       title: "Perbendaharaan Kata",
+    },
+  },
+  {
+    id: "bm-f2-ayat-gramatis-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Ayat Gramatis",
+    title: "Ayat Gramatis",
+    description:
+      "Membina ayat yang lengkap, jelas dan bervariasi melalui ayat mudah, ayat majmuk, variasi struktur, penggabungan ayat serta teknik UASA Tingkatan 2.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm2AyatGramatisMindMap,
+      title: "Ayat Gramatis",
     },
   },
   {

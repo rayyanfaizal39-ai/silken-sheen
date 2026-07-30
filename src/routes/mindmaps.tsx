@@ -287,6 +287,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Ayat Gramatis": {
+        description:
+          "Peta minda Ayat Gramatis Tingkatan 2: ciri ayat gramatis, ayat mudah, ayat majmuk, variasi struktur, penggabungan ayat dan teknik UASA.",
+        keywords: [
+          "Ayat Gramatis",
+          "ayat gramatis Tingkatan 2",
+          "ayat mudah dan ayat majmuk",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -315,6 +325,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Mengedit dan Menyemak Karangan"
         | "Mengembangkan Isi Karangan"
         | "Perbendaharaan Kata"
+        | "Ayat Gramatis"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -326,7 +337,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Karangan Respons Terbuka" ||
         match.search.chapter === "Mengedit dan Menyemak Karangan" ||
         match.search.chapter === "Mengembangkan Isi Karangan" ||
-        match.search.chapter === "Perbendaharaan Kata"
+        match.search.chapter === "Perbendaharaan Kata" ||
+        match.search.chapter === "Ayat Gramatis"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
