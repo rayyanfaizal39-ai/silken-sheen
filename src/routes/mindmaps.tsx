@@ -237,6 +237,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Karangan Berpandukan Gambar": {
+        description:
+          "Peta minda Karangan Berpandukan Gambar Tingkatan 1: tafsiran gambar, pemilihan isi, urutan idea, pengembangan perenggan dan teknik menjawab UASA.",
+        keywords: [
+          "Karangan Berpandukan Gambar",
+          "karangan gambar Tingkatan 1",
+          "cara mentafsir gambar",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -260,11 +270,15 @@ export const Route = createFileRoute("/mindmaps")({
         | "Simpulan Bahasa"
         | "Pendahuluan"
         | "Penutup"
+        | "Karangan Berpandukan Gambar"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
       const bmCategory =
-        match.search.chapter === "Pendahuluan" || match.search.chapter === "Penutup"
+        match.search.chapter === "Pendahuluan" ||
+        match.search.chapter === "Penutup" ||
+        match.search.chapter === "Penanda Wacana" ||
+        match.search.chapter === "Karangan Berpandukan Gambar"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"

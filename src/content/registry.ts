@@ -262,6 +262,7 @@ import { bahasaMelayuForm1AsasPenulisanMindMap } from "@/content/bm/asas-penulis
 import { bahasaMelayuForm1MembinaPerengganMindMap } from "@/content/bm/membina-perenggan-form1-mindmap";
 import { bahasaMelayuForm1PendahuluanMindMap } from "@/content/bm/pendahuluan-form1-mindmap";
 import { bahasaMelayuForm1PenutupMindMap } from "@/content/bm/penutup-form1-mindmap";
+import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/karangan-berpandukan-gambar-form1-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2596,18 +2597,6 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuImbuhanMindMap, title: "Imbuhan" },
   },
   {
-    id: "bm-f1-penanda-wacana",
-    subjectId: "bm",
-    form: "Form 1",
-    chapterKey: "Penanda Wacana",
-    title: "Penanda Wacana",
-    description:
-      "Perkataan atau frasa yang menghubungkan idea supaya penulisan menjadi tersusun, lancar dan mudah difahami.",
-    categoryLabel: "Tatabahasa",
-    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
-    flashcards: bmFlashcardsFor("Penanda Wacana"),
-  },
-  {
     id: "bm-f1-simpulan-bahasa-mindmap",
     subjectId: "bm",
     form: "Form 1",
@@ -2671,6 +2660,32 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm1PenutupMindMap,
       title: "Penutup",
+    },
+  },
+  {
+    id: "bm-f1-penanda-wacana",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Penanda Wacana",
+    title: "Penanda Wacana",
+    description:
+      "Menggunakan penanda wacana secara tepat untuk memulakan, menambah, membandingkan dan menghubungkan idea dalam penulisan Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: { data: bahasaMelayuPenandaWacanaMindMap, title: "Penanda Wacana" },
+    flashcards: bmFlashcardsFor("Penanda Wacana"),
+  },
+  {
+    id: "bm-f1-karangan-berpandukan-gambar-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Karangan Berpandukan Gambar",
+    title: "Karangan Berpandukan Gambar",
+    description:
+      "Mentafsir gambar, memilih isi, menyusun urutan dan menghasilkan karangan yang lengkap serta menepati arahan UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1KaranganBerpandukanGambarMindMap,
+      title: "Karangan Berpandukan Gambar",
     },
   },
   {

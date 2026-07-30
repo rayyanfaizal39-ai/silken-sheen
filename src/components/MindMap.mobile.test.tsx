@@ -233,12 +233,12 @@ describe("MindMap mobile learning path", () => {
     expect(markup).toContain("overflow-x-hidden");
     expect(markup).toContain("env(safe-area-inset-bottom)");
     expect(markup).toContain(
-      "Perkataan atau rangkaian perkataan yang menghubungkan ayat dan perenggan",
+      "Perkataan atau rangkaian perkataan yang menghubungkan idea, ayat dan perenggan",
     );
     expect(markup).not.toContain(
-      "Penanda wacana ialah perkataan atau rangkaian perkataan yang digunakan untuk menghubungkan",
+      "Penanda wacana ialah perkataan atau rangkaian perkataan yang menunjukkan hubungan",
     );
-    expect(markup).not.toContain("Selain itu • Di samping itu • Seterusnya");
+    expect(markup).not.toContain("Selain itu • Di samping itu • Tambahan pula");
     expect(branchPositions.every((position) => position >= 0)).toBe(true);
     expect(branchPositions).toEqual([...branchPositions].sort((a, b) => a - b));
     expect(markup.match(/aria-expanded="false"/g)).toHaveLength(11);
