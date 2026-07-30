@@ -247,6 +247,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Karangan Respons Terbuka": {
+        description:
+          "Peta minda Karangan Respons Terbuka Tingkatan 1: memahami soalan, merancang isi, mengembangkan perenggan, menyemak jawapan dan teknik UASA.",
+        keywords: [
+          "Karangan Respons Terbuka",
+          "karangan respons terbuka Tingkatan 1",
+          "cara merancang karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -271,6 +281,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Pendahuluan"
         | "Penutup"
         | "Karangan Berpandukan Gambar"
+        | "Karangan Respons Terbuka"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -278,7 +289,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Pendahuluan" ||
         match.search.chapter === "Penutup" ||
         match.search.chapter === "Penanda Wacana" ||
-        match.search.chapter === "Karangan Berpandukan Gambar"
+        match.search.chapter === "Karangan Berpandukan Gambar" ||
+        match.search.chapter === "Karangan Respons Terbuka"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"

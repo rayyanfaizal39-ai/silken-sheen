@@ -44,6 +44,7 @@ describe("Bahasa Melayu Form 1 Membina Perenggan mind map", () => {
       "Penutup",
       "Penanda Wacana",
       "Karangan Berpandukan Gambar",
+      "Karangan Respons Terbuka",
     ]);
   });
 

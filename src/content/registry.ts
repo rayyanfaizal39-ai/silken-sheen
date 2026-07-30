@@ -263,6 +263,7 @@ import { bahasaMelayuForm1MembinaPerengganMindMap } from "@/content/bm/membina-p
 import { bahasaMelayuForm1PendahuluanMindMap } from "@/content/bm/pendahuluan-form1-mindmap";
 import { bahasaMelayuForm1PenutupMindMap } from "@/content/bm/penutup-form1-mindmap";
 import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/karangan-berpandukan-gambar-form1-mindmap";
+import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form1-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2686,6 +2687,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm1KaranganBerpandukanGambarMindMap,
       title: "Karangan Berpandukan Gambar",
+    },
+  },
+  {
+    id: "bm-f1-karangan-respons-terbuka-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Karangan Respons Terbuka",
+    title: "Karangan Respons Terbuka",
+    description:
+      "Memahami soalan, merancang dan mengembangkan isi serta menghasilkan karangan respons terbuka yang lengkap untuk UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1KaranganResponsTerbukaMindMap,
+      title: "Karangan Respons Terbuka",
     },
   },
   {
