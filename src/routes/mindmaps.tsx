@@ -277,6 +277,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Perbendaharaan Kata": {
+        description:
+          "Peta minda Perbendaharaan Kata Tingkatan 2: sinonim, antonim, kata dan ungkapan menarik, bahasa formal, kesalahan lazim dan teknik UASA.",
+        keywords: [
+          "Perbendaharaan Kata",
+          "kosa kata Tingkatan 2",
+          "sinonim dan antonim Bahasa Melayu",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -304,6 +314,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Karangan Respons Terbuka"
         | "Mengedit dan Menyemak Karangan"
         | "Mengembangkan Isi Karangan"
+        | "Perbendaharaan Kata"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -314,7 +325,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Karangan Berpandukan Gambar" ||
         match.search.chapter === "Karangan Respons Terbuka" ||
         match.search.chapter === "Mengedit dan Menyemak Karangan" ||
-        match.search.chapter === "Mengembangkan Isi Karangan"
+        match.search.chapter === "Mengembangkan Isi Karangan" ||
+        match.search.chapter === "Perbendaharaan Kata"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
