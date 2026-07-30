@@ -45,6 +45,7 @@ describe("Bahasa Melayu Form 1 Karangan Respons Terbuka mind map", () => {
       "Penanda Wacana",
       "Karangan Berpandukan Gambar",
       "Karangan Respons Terbuka",
+      "Mengedit dan Menyemak Karangan",
     ]);
   });
 

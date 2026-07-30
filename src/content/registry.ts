@@ -264,6 +264,7 @@ import { bahasaMelayuForm1PendahuluanMindMap } from "@/content/bm/pendahuluan-fo
 import { bahasaMelayuForm1PenutupMindMap } from "@/content/bm/penutup-form1-mindmap";
 import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/karangan-berpandukan-gambar-form1-mindmap";
 import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form1-mindmap";
+import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/mengedit-menyemak-karangan-form1-mindmap";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2701,6 +2702,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm1KaranganResponsTerbukaMindMap,
       title: "Karangan Respons Terbuka",
+    },
+  },
+  {
+    id: "bm-f1-mengedit-menyemak-karangan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Mengedit dan Menyemak Karangan",
+    title: "Mengedit dan Menyemak Karangan",
+    description:
+      "Menyemak isi, tatabahasa, ejaan, tanda baca, ayat dan perenggan serta menggunakan senarai semak sebelum menghantar karangan UASA Tingkatan 1.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm1MengeditMenyemakKaranganMindMap,
+      title: "Mengedit dan Menyemak Karangan",
     },
   },
   {

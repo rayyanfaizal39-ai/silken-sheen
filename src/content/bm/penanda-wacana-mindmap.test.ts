@@ -55,6 +55,7 @@ describe("Bahasa Melayu Form 1 Penanda Wacana mind map", () => {
       "Penanda Wacana",
       "Karangan Berpandukan Gambar",
       "Karangan Respons Terbuka",
+      "Mengedit dan Menyemak Karangan",
     ]);
   });
 

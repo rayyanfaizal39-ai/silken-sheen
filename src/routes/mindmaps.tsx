@@ -257,6 +257,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Mengedit dan Menyemak Karangan": {
+        description:
+          "Peta minda Mengedit dan Menyemak Karangan Tingkatan 1: semakan isi, bahasa, ejaan, tanda baca, ayat, perenggan dan teknik UASA.",
+        keywords: [
+          "Mengedit dan Menyemak Karangan",
+          "semakan karangan Tingkatan 1",
+          "senarai semak karangan",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -282,6 +292,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Penutup"
         | "Karangan Berpandukan Gambar"
         | "Karangan Respons Terbuka"
+        | "Mengedit dan Menyemak Karangan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -290,7 +301,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Penutup" ||
         match.search.chapter === "Penanda Wacana" ||
         match.search.chapter === "Karangan Berpandukan Gambar" ||
-        match.search.chapter === "Karangan Respons Terbuka"
+        match.search.chapter === "Karangan Respons Terbuka" ||
+        match.search.chapter === "Mengedit dan Menyemak Karangan"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
