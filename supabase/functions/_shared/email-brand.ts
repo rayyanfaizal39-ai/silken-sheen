@@ -1,5 +1,5 @@
-export const EMAIL_FROM = "AcadeMY <hello@myacademy.my>";
-export const EMAIL_REPLY_TO = "admin@myacademy.my";
+export const EMAIL_FROM = "AcadeMY <noreply@myacademy.my>";
+export const EMAIL_REPLY_TO = "support@myacademy.my";
 
 export interface EmailContent {
   subject: string;

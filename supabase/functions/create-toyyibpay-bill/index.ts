@@ -83,6 +83,7 @@ Deno.serve(async (request) => {
       { onConflict: "idempotency_key", ignoreDuplicates: true },
     );
     if (insert.error) throw insert.error;
+  
 
     const paymentResult = await admin
       .from("payment_transactions")
@@ -129,7 +130,10 @@ Deno.serve(async (request) => {
       billName: selected.label.replace(/[^a-z0-9 _]/gi, "").slice(0, 30),
       billDescription: `${selected.label} subscription`.replace(/[^a-z0-9 _]/gi, "").slice(0, 100),
       billPriceSetting: "1",
-      billPayorInfo: "1",
+      // The application profile does not require a phone number. Let ToyyibPay
+      // collect any missing payer details on its checkout page instead of
+      // rejecting bill creation because billPhone is empty.
+      billPayorInfo: "0",
       billAmount: String(selected.amount * 100),
       billReturnUrl: `${applicationUrl}/payment-return`,
       billCallbackUrl: `${supabaseUrl}/functions/v1/toyyibpay-callback`,
@@ -145,6 +149,7 @@ Deno.serve(async (request) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: createBillBody,
     });
+    const billResponseText = await billResponse.text();
     const raw = await billResponse.text();
     let parsedResponse: unknown;
     try {
@@ -164,9 +169,22 @@ Deno.serve(async (request) => {
       }),
     );
     if (!billResponse.ok) {
-      throw new Error(`ToyyibPay bill creation failed (${billResponse.status})`);
+      throw new Error(
+        `ToyyibPay bill creation failed (${billResponse.status}): ${billResponseText.slice(0, 300)}`,
+      );
+    }
+    let billPayload: Array<{ BillCode?: unknown }>;
+    try {
+      billPayload = JSON.parse(billResponseText) as Array<{ BillCode?: unknown }>;
+    } catch {
+      throw new Error(`ToyyibPay returned invalid JSON: ${billResponseText.slice(0, 300)}`);
     }
     const billCode =
+      Array.isArray(billPayload) && typeof billPayload[0]?.BillCode === "string"
+        ? billPayload[0].BillCode.trim()
+        : "";
+    if (!billCode || !/^[a-z0-9_-]+$/i.test(billCode)) {
+      throw new Error(`ToyyibPay returned no valid bill code: ${billResponseText.slice(0, 300)}`);
       Array.isArray(parsedResponse) && typeof parsedResponse[0]?.BillCode === "string"
         ? parsedResponse[0].BillCode.trim()
         : "";
