@@ -159,10 +159,13 @@ import { geoF1C13MindMap } from "@/content/form1/geography/chapter-13/mindmap";
 // Geografi F2
 import { geoF2C1MindMap } from "@/content/form2/geography/chapter-1/mindmap";
 import { geographyF2C1Notes } from "@/content/form2/geography/chapter-1/notes";
+import { geographyF2C1Interactive } from "@/content/form2/geography/chapter-1/interactive";
 import { geoF2C2MindMap } from "@/content/form2/geography/chapter-2/mindmap";
 import { geographyF2C2Notes } from "@/content/form2/geography/chapter-2/notes";
+import { geographyF2C2Interactive } from "@/content/form2/geography/chapter-2/interactive";
 import { geoF2C3MindMap } from "@/content/form2/geography/chapter-3/mindmap";
 import { geographyF2C3Notes } from "@/content/form2/geography/chapter-3/notes";
+import { geographyF2C3Interactive } from "@/content/form2/geography/chapter-3/interactive";
 import { geoF2C4MindMap } from "@/content/form2/geography/chapter-4/mindmap";
 import { geographyF2C4Notes } from "@/content/form2/geography/chapter-4/notes";
 import { geoF2C5MindMap } from "@/content/form2/geography/chapter-5/mindmap";
@@ -1087,6 +1090,7 @@ export const chapters: ChapterContent[] = [
     title: "Skala dan Jarak",
     video: getEducationalVideo("geography-f2-c1"),
     notes: geographyF2C1Notes,
+    geoF2InteractiveData: geographyF2C1Interactive,
     mindMap: { data: geoF2C1MindMap, title: "Skala dan Jarak" },
     flashcards: geographyF2FlashcardsFor(1),
     quiz: geographyF2QuizzesFor(1),
@@ -1099,6 +1103,7 @@ export const chapters: ChapterContent[] = [
     title: "Peta Topografi",
     video: getEducationalVideo("geography-f2-c2"),
     notes: geographyF2C2Notes,
+    geoF2InteractiveData: geographyF2C2Interactive,
     mindMap: { data: geoF2C2MindMap, title: "Peta Topografi" },
     flashcards: geographyF2FlashcardsFor(2),
     quiz: geographyF2QuizzesFor(2),
@@ -1111,6 +1116,7 @@ export const chapters: ChapterContent[] = [
     title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim",
     video: getEducationalVideo("geography-f2-c3"),
     notes: geographyF2C3Notes,
+    geoF2InteractiveData: geographyF2C3Interactive,
     mindMap: { data: geoF2C3MindMap, title: "Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim" },
     flashcards: geographyF2FlashcardsFor(3),
     quiz: geographyF2QuizzesFor(3),

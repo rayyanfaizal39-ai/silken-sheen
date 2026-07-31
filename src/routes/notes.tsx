@@ -87,6 +87,9 @@ import { ScienceF2Chapter10NotesBlock } from "@/components/notes/ScienceF2Chapte
 import { ScienceF2Chapter11NotesBlock } from "@/components/notes/ScienceF2Chapter11NotesBlock";
 import { ScienceF2Chapter12NotesBlock } from "@/components/notes/ScienceF2Chapter12NotesBlock";
 import { ScienceF2Chapter13NotesBlock } from "@/components/notes/ScienceF2Chapter13NotesBlock";
+import { Geo2Chapter1NotesBlock } from "@/components/notes/Geo2Chapter1NotesBlock";
+import { Geo2Chapter2NotesBlock } from "@/components/notes/Geo2Chapter2NotesBlock";
+import { Geo2Chapter3NotesBlock } from "@/components/notes/Geo2Chapter3NotesBlock";
 import {
   MiniInvestigation,
   ScienceDiscoveryChapterHeader,
@@ -1159,6 +1162,32 @@ function NotesPage() {
                   subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
                 }
               />
+            ) : activeChapter?.geoF2InteractiveData ? (
+              activeChapter.geoF2InteractiveData.chapter === 1 ? (
+                <Geo2Chapter1NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF2InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : activeChapter.geoF2InteractiveData.chapter === 2 ? (
+                <Geo2Chapter2NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF2InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : (
+                <Geo2Chapter3NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF2InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              )
             ) : activeChapter?.bab7Data ? (
               <Bab7NotesBlock
                 id="science-notes-content"
