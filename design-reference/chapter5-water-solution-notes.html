@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 5: Water and Solution</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Theme 2 · Exploration of Elements in Nature &nbsp;/&nbsp; <b>Form 2 Science</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Chapter Mission</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP earned</div>
+    <div class="ch-num">Chapter 5</div>
+    <h1>Water and Solution</h1>
+    <p class="sub">Water looks simple — but its chemistry explains everything from insects walking on ponds to how your tap water gets clean.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Source</b>What is the main source of water?</div>
+      <div class="q-card"><b>Mixtures</b>How is a suspension formed?</div>
+      <div class="q-card"><b>Safety</b>How is water made safe to drink?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>5.1 Physical Properties</span><span id="progressPct">8%</span><span>5.3 Purification</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🌊 Science Blog — The Dead Sea</h3>
+    <p>At 430.5 metres below sea level, the Dead Sea is the lowest point on Earth. Because it's landlocked, incoming river water evaporates fast and leaves salt behind — making the water so dense that people float on the surface without even trying.</p>
+  </div>
+
+  <!-- ================= 5.1 ================= -->
+  <div class="section" id="sec-5-1" onmouseenter="visit('s51')">
+    <div class="section-head"><span class="num">5.1</span><h2>Physical Characteristics of Water</h2></div>
+
+    <div class="card">
+      <h3>What makes pure water "pure"</h3>
+      <p>Pure water is colourless, odourless and tasteless, and stays liquid at room temperature. It boils at exactly 100°C, freezes at 0°C, and has a density of 1 g/cm³ — these fixed values are actually how we test whether water has anything dissolved in it, since impurities shift them.</p>
+      <div class="aside"><b>Why insects can "walk" on water</b>Water molecules pull on each other at the surface — called surface tension — strongly enough that light insects like the daddy longlegs can rest on top without sinking. That same pulling force, working between water and a plant's xylem walls, is what drags water up from roots to leaves — a phenomenon called capillary action.</div>
+    </div>
+
+    <div class="card">
+      <h3>What water is actually made of</h3>
+      <p>Water is a compound — two hydrogen atoms bonded to one oxygen atom, H₂O. Split it apart using electrolysis and you get the proof: oxygen gas collects at the anode, hydrogen gas at the cathode, in a 1:2 ratio of oxygen to hydrogen by volume.</p>
+    </div>
+
+    <div class="card">
+      <h3>Changing state</h3>
+      <p>Water shifts between solid, liquid and gas by absorbing or releasing heat. Tap each change to see which direction the heat moves.</p>
+      <div class="flip-grid" id="stateGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>Why does salty soup take longer to boil?</h3>
+      <p>Dissolved impurities change water's melting and boiling points — salt actually <b style="color:#fff;">lowers</b> the melting point of ice but <b style="color:#fff;">raises</b> the boiling point of water. That's why a pot of plain water boils faster than one with salt or soup stock in it.</p>
+    </div>
+
+    <div class="card">
+      <h3>What speeds up evaporation</h3>
+      <p>Evaporation happens right at the water's surface, at any temperature — it's just the fastest-moving molecules escaping into the air. Four factors change how quickly that happens. Tap each to see how.</p>
+      <div class="flip-grid" id="evapGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 5.1</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>1. How could Ikram check whether a bottle of water is pure?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Test its boiling point and freezing point — pure water boils at exactly 100°C and freezes at exactly 0°C. Any shift suggests dissolved impurities.</div></div>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>2. Why do we feel cold right after sweating?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Sweat evaporating off your skin absorbs heat from your body to do so — that heat loss is what feels cold.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 5.2 ================= -->
+  <div class="section" id="sec-5-2" onmouseenter="visit('s52')">
+    <div class="section-head"><span class="num">5.2</span><h2>Solution and Rate of Solubility</h2></div>
+
+    <div class="card">
+      <h3>Solute, solvent, solution</h3>
+      <p>When sugar dissolves in water, the sugar is the <b style="color:#fff;">solute</b> (the substance dissolving), water is the <b style="color:#fff;">solvent</b> (the liquid doing the dissolving), and sugar water is the <b style="color:#fff;">solution</b> they form together.</p>
+      <p style="margin-top:10px;">Add more and more solute, and the solution moves through three stages:</p>
+      <div class="compare-wrap">
+        <div class="compare-row" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="compare-col left"><h4>💧 Dilute</h4><dl><dd>Little solute</dd><dd>Can dissolve much more</dd></dl></div>
+          <div class="compare-col right"><h4>🧪 Concentrated</h4><dl><dd>More solute</dd><dd>Can still dissolve a bit more</dd></dl></div>
+          <div class="compare-col left"><h4>⚗️ Saturated</h4><dl><dd>Excess solute</dd><dd>No more dissolves — forms a precipitate</dd></dl></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Solution, suspension, or colloid?</h3>
+      <p>Not everything that mixes with water actually dissolves. Tap each type to see what tells them apart.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showMix(this,'solution')">Solution</div>
+        <div class="toggle-opt" onclick="showMix(this,'suspension')">Suspension</div>
+        <div class="toggle-opt" onclick="showMix(this,'colloid')">Colloid</div>
+      </div>
+      <div class="toggle-panel show" id="solution">Solute particles are tiny enough to disperse evenly — the mixture looks clear/transparent, light passes through, and nothing is left behind when filtered. E.g. copper sulphate dissolved in water.</div>
+      <div class="toggle-panel" id="suspension">Solute particles are too large to dissolve — the mixture looks cloudy, blocks light, settles over time, and leaves a residue when filtered. E.g. chalk powder in water, or muddy river water.</div>
+      <div class="toggle-panel" id="colloid">Particles are in between — evenly dispersed but neither fully clear nor settling out. E.g. milk and mayonnaise (emulsions), shaving foam (foam).</div>
+    </div>
+
+    <div class="card">
+      <h3>What speeds up dissolving</h3>
+      <p>Solubility is the maximum amount of solute that can dissolve in 100 ml of solvent at a given temperature. Three factors speed up how fast — not how much — dissolves:</p>
+      <div class="flip-grid" id="solubilityGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>Why water dissolves almost anything</h3>
+      <p>Water is called the <b style="color:#fff;">universal solvent</b> because it dissolves such a huge range of solids, liquids and gases — used everywhere from fertiliser uptake in plant roots to soft drink production. For substances water can't dissolve, we turn to organic (carbon-based) solvents instead.</p>
+      <div class="example-chips"><span>Alcohol → perfume, antiseptic</span><span>Kerosene → lamp oil</span><span>Acetone → nail varnish remover</span><span>Turpentine → paint thinner</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 5.2</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>1. Why is hot water better for dissolving coffee than cold water?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Higher temperature gives particles more energy to move and mix faster — increasing the rate of solubility.</div></div>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>2. Milk looks uniform but isn't a true solution. What is it?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">A colloid — an emulsion, specifically. It doesn't separate like a suspension, but it's not a clear solution either.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 5.3 ================= -->
+  <div class="section" id="sec-5-3" onmouseenter="visit('s53')">
+    <div class="section-head"><span class="num">5.3</span><h2>Water Purification and Water Supply</h2></div>
+
+    <div class="card">
+      <h3>Why raw water isn't safe to drink</h3>
+      <p>Even though water covers two-thirds of Earth's surface, most of it carries impurities, microorganisms and dissolved substances that make it unsafe straight from the source. Four core methods clean it up. Tap each to see what it removes.</p>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🔥 Boiling</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Kills microorganisms through heat.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🧪 Chlorination</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Chlorine added to kill microorganisms in the water supply.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🧻 Filtration</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Separates suspended particles like leaves and sediment from the water.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>♨️ Distillation</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Separates suspended particles AND dissolved substances, while also killing microorganisms — the most thorough method.</p></div></div>
+    </div>
+
+    <div class="card">
+      <h3>🚰 Follow water from river to tap</h3>
+      <p>Step through the water supply system to see what happens at each stage.</p>
+      <div class="journey-track">
+        <div class="journey-line"></div>
+        <div class="journey-fill" id="journeyFill"></div>
+        <div class="journey-stops" id="journeyStops"></div>
+      </div>
+      <div class="journey-detail" id="journeyDetail"></div>
+      <div class="journey-nav">
+        <div class="journey-nav-btn" id="journeyPrev" onclick="journeyStep(-1)">← Back</div>
+        <div class="journey-nav-btn" id="journeyNext" onclick="journeyStep(1)">Next →</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🌊 Match the pollutant to the fix</h3>
+      <p>Pick a pollution source, then pick how it's tackled.</p>
+      <div class="matcher-wrap">
+        <div class="matcher-col"><h5>Water pollutant</h5><div id="matcherTypes"></div></div>
+        <div class="matcher-col"><h5>Way to overcome it</h5><div id="matcherExamples"></div></div>
+      </div>
+      <div class="matcher-progress" id="matcherProgress">0 / 4 matched</div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 5.3</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Which purification method both removes dissolved substances AND kills microorganisms?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Distillation — it's the only method that does both at once.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Chapter Map</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Water &amp; Solution</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Physical Properties</h5><ul><li>Boiling/freezing point, density</li><li>Surface tension, capillary action</li><li>Evaporation factors</li></ul></div>
+          <div class="mm-branch"><h5>Solution &amp; Solubility</h5><ul><li>Solute, solvent, solution</li><li>Solution vs suspension vs colloid</li><li>Universal &amp; organic solvents</li></ul></div>
+          <div class="mm-branch"><h5>Purification &amp; Supply</h5><ul><li>Boiling, chlorination, filtration, distillation</li><li>Water supply system stages</li><li>Water sustainability</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Self-Reflection</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can explain the physical characteristics of water and its evaporation process.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can explain solution, solubility and colloids with examples.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can demonstrate water purification methods and the water supply system.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can justify why water sustainability matters for healthy living.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Quick Quiz</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">True or false: Milk is a true solution because it looks uniform.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,false)">True</div>
+        <div class="tf-btn" onclick="answerTF(this,true)">False</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Milk is a colloid (an emulsion) — it's uniform but the particles are neither fully dissolved nor settling out like a suspension.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">Which water purification method removes dissolved substances as well as suspended particles?</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Boiling</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Filtration</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">Distillation</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Chlorination</div>
+      <div class="quiz-feedback" id="fb2">Distillation evaporates and re-condenses water, leaving both dissolved substances and suspended particles behind.</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Ready for Summative Practice 5?</h3>
+    <p>Particle diagrams, water purification sequencing, and a HOTS poster challenge on water pollution await.</p>
+    <div class="cta-btn">Continue Mission →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*22, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+
+const kwData = [
+  ["Compound","A substance made of two or more elements chemically combined, like water (H₂O)."],
+  ["Capillary action","Water rising up a narrow space (like plant xylem) due to cohesive and adhesive forces."],
+  ["Solubility","The maximum amount of solute that can dissolve in 100 ml of solvent at a given temperature."],
+  ["Suspension","A cloudy mixture where solute particles don't dissolve and eventually settle."],
+  ["Emulsion","A type of colloid — tiny droplets of one liquid dispersed in another, like milk."],
+  ["Saturated solution","A solution that can't dissolve any more solute — excess forms a precipitate."],
+  ["Universal solvent","Water's nickname, earned by its ability to dissolve almost any substance."],
+  ["Oxidation","Adding oxygen to water to remove unpleasant smell and taste during purification."],
+  ["Chlorination","Adding chlorine to water to kill microorganisms."],
+  ["Water sustainability","Managing water resources responsibly so supply stays safe and sufficient long-term."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* state change flip cards */
+const states = [
+  ["🧊","Melting","Solid → liquid. Heat is absorbed."],
+  ["💧","Freezing","Liquid → solid. Heat is released."],
+  ["💨","Evaporation/Boiling","Liquid → gas. Heat is absorbed."],
+  ["☁️","Condensation","Gas → liquid. Heat is released."]
+];
+const stateGrid = document.getElementById('stateGrid');
+states.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:26px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:8px;">${name}</div></div>
+    <div class="flip-face flip-back">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s51'); };
+  stateGrid.appendChild(c);
+});
+
+/* evaporation factor flip cards */
+const evapFactors = [
+  ["💨","Humidity","Drier air holds more escaping water molecules — lower humidity means faster evaporation."],
+  ["🌡️","Temperature","Higher temperature gives surface molecules more energy to escape into the air."],
+  ["📐","Surface area","A larger exposed surface lets more molecules escape at once."],
+  ["🌬️","Air movement","Moving air sweeps away water vapour, letting more evaporation happen."]
+];
+const evapGrid = document.getElementById('evapGrid');
+evapFactors.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:26px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:8px;">${name}</div></div>
+    <div class="flip-face flip-back">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s51'); };
+  evapGrid.appendChild(c);
+});
+
+/* solution/suspension/colloid toggle */
+function showMix(el,type){
+  document.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s52');
+}
+
+/* solubility factor flip cards */
+const solFactors = [
+  ["🌡️","Temperature","Hotter solvent = faster-moving particles = faster dissolving."],
+  ["🥄","Rate of stirring","Faster stirring brings solute and solvent particles together quicker."],
+  ["🔬","Size of solute","Smaller particles have more surface area exposed — dissolving faster."]
+];
+const solGrid = document.getElementById('solubilityGrid');
+solFactors.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:26px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:8px;">${name}</div></div>
+    <div class="flip-face flip-back">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s52'); };
+  solGrid.appendChild(c);
+});
+
+/* accordion / reveal / reflect */
+function toggleAcc(head){ head.parentElement.classList.toggle('open'); visit('s53'); }
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* water supply journey */
+const journeyStops = [
+  ["Reservoir","💧","Raw water is collected from rivers or rainfall at a reservoir."],
+  ["Filtration","🧻","Large debris like branches and leaves are screened out first."],
+  ["Coagulation","🧪","Alum makes mud particles clump together; slaked lime reduces acidity."],
+  ["Sedimentation","⬇️","The clumped particles settle to the bottom of the tank."],
+  ["Filtration","🔍","A finer sand filter removes remaining suspended particles."],
+  ["Chlorination & Fluoridation","🧫","Chlorine kills microorganisms; fluoride is added to help prevent tooth decay."],
+  ["To homes","🏠","Clean water is pumped through a storage tank out to consumers."]
+];
+let journeyIdx = 0;
+function renderJourney(){
+  const stopsEl = document.getElementById('journeyStops');
+  stopsEl.innerHTML = '';
+  journeyStops.forEach(([name,icon],i)=>{
+    const s = document.createElement('div');
+    s.className = 'journey-stop' + (i===journeyIdx?' active':(i<journeyIdx?' past':''));
+    s.innerHTML = `<div class="journey-dot">${icon}</div><div class="journey-label">${name}</div>`;
+    s.onclick = ()=>{ journeyIdx = i; renderJourney(); };
+    stopsEl.appendChild(s);
+  });
+  document.getElementById('journeyFill').style.width = (journeyIdx/(journeyStops.length-1))*90 + '%';
+  document.getElementById('journeyDetail').innerHTML = `<b>${journeyStops[journeyIdx][0]}</b>${journeyStops[journeyIdx][2]}`;
+  document.getElementById('journeyPrev').toggleAttribute('disabled', journeyIdx===0);
+  document.getElementById('journeyNext').toggleAttribute('disabled', journeyIdx===journeyStops.length-1);
+  visit('s53');
+}
+function journeyStep(dir){
+  journeyIdx = Math.max(0, Math.min(journeyStops.length-1, journeyIdx+dir));
+  renderJourney();
+}
+renderJourney();
+
+/* pollutant matcher */
+const pollutantPairs = [
+  ["🏠 Domestic waste","Upgrade sewerage systems and improve rural sanitation"],
+  ["🏭 Industrial waste","Enforce laws requiring treatment before discharge into rivers"],
+  ["🌾 Agricultural chemicals","Educate farmers to use biodegradable fertilisers and pesticides"],
+  ["🛢️ Oil spillage","Contain spills at sea and improve air surveillance"]
+];
+let matcherSelectedType = null, matcherMatched = 0;
+function buildMatcher(){
+  const typesEl = document.getElementById('matcherTypes');
+  const exEl = document.getElementById('matcherExamples');
+  const shuffledEx = shuffle(pollutantPairs);
+  pollutantPairs.forEach(([type])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = type;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched')) return;
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');
+      matcherSelectedType = type;
+    };
+    typesEl.appendChild(d);
+  });
+  shuffledEx.forEach(([type,example])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = example;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched') || !matcherSelectedType) return;
+      if(d.dataset.type === matcherSelectedType){
+        d.classList.add('matched');
+        typesEl.querySelector(`[data-type="${CSS.escape(matcherSelectedType)}"]`).classList.add('matched');
+        matcherMatched++;
+        document.getElementById('matcherProgress').textContent = matcherMatched + ' / 4 matched';
+        if(matcherMatched===4) xp += 20, document.getElementById('xpCount').textContent = xp;
+      } else {
+        d.classList.add('wrong-flash');
+        setTimeout(()=>d.classList.remove('wrong-flash'), 500);
+      }
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      matcherSelectedType = null;
+      visit('s53');
+    };
+    exEl.appendChild(d);
+  });
+}
+buildMatcher();
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>

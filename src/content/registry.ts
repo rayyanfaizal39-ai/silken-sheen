@@ -343,6 +343,8 @@ import { scienceF2C5QuizzesBM } from "@/content/form2/science/chapter-5/quizzes-
 import { scienceF2C5QuizzesDLP } from "@/content/form2/science/chapter-5/quizzes-dlp";
 import { scienceF2C5FlashcardsBM } from "@/content/form2/science/chapter-5/flashcards-bm";
 import { scienceF2C5FlashcardsDLP } from "@/content/form2/science/chapter-5/flashcards-dlp";
+import { scienceF2C5InteractiveBM } from "@/content/form2/science/chapter-5/interactive-bm";
+import { scienceF2C5InteractiveDLP } from "@/content/form2/science/chapter-5/interactive-dlp";
 import { scienceF2C6NotesBM } from "@/content/form2/science/chapter-6/notes-bm";
 import { scienceF2C6NotesDLP } from "@/content/form2/science/chapter-6/notes-dlp";
 import { scienceF2C6MindMapBM } from "@/content/form2/science/chapter-6/mindmap-bm";
@@ -351,6 +353,8 @@ import { scienceF2C6QuizzesBM } from "@/content/form2/science/chapter-6/quizzes-
 import { scienceF2C6QuizzesDLP } from "@/content/form2/science/chapter-6/quizzes-dlp";
 import { scienceF2C6FlashcardsBM } from "@/content/form2/science/chapter-6/flashcards-bm";
 import { scienceF2C6FlashcardsDLP } from "@/content/form2/science/chapter-6/flashcards-dlp";
+import { scienceF2C6InteractiveBM } from "@/content/form2/science/chapter-6/interactive-bm";
+import { scienceF2C6InteractiveDLP } from "@/content/form2/science/chapter-6/interactive-dlp";
 import { scienceF2C7NotesBM } from "@/content/form2/science/chapter-7/notes-bm";
 import { scienceF2C7NotesDLP } from "@/content/form2/science/chapter-7/notes-dlp";
 import { scienceF2C7MindMapBM } from "@/content/form2/science/chapter-7/mindmap-bm";
@@ -359,6 +363,8 @@ import { scienceF2C7QuizzesBM } from "@/content/form2/science/chapter-7/quizzes-
 import { scienceF2C7QuizzesDLP } from "@/content/form2/science/chapter-7/quizzes-dlp";
 import { scienceF2C7FlashcardsBM } from "@/content/form2/science/chapter-7/flashcards-bm";
 import { scienceF2C7FlashcardsDLP } from "@/content/form2/science/chapter-7/flashcards-dlp";
+import { scienceF2C7InteractiveBM } from "@/content/form2/science/chapter-7/interactive-bm";
+import { scienceF2C7InteractiveDLP } from "@/content/form2/science/chapter-7/interactive-dlp";
 import { scienceF2C8NotesBM } from "@/content/form2/science/chapter-8/notes-bm";
 import { scienceF2C8NotesDLP } from "@/content/form2/science/chapter-8/notes-dlp";
 import { scienceF2C8MindMapBM } from "@/content/form2/science/chapter-8/mindmap-bm";
@@ -3257,6 +3263,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c5"),
     mindMap: { data: scienceF2C5MindMapBM, title: "Air dan Larutan" },
     notes: scienceF2C5NotesBM,
+    sciF2InteractiveData: scienceF2C5InteractiveBM,
     flashcards: scienceF2C5FlashcardsBM,
     quiz: scienceF2C5QuizzesBM,
   },
@@ -3270,6 +3277,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c5", "dlp"),
     mindMap: { data: scienceF2C5MindMapDLP, title: "Water and Solution" },
     notes: scienceF2C5NotesDLP,
+    sciF2InteractiveData: scienceF2C5InteractiveDLP,
     flashcards: scienceF2C5FlashcardsDLP,
     quiz: scienceF2C5QuizzesDLP,
   },
@@ -3285,6 +3293,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c6"),
     mindMap: { data: scienceF2C6MindMapBM, title: "Asid dan Alkali" },
     notes: scienceF2C6NotesBM,
+    sciF2InteractiveData: scienceF2C6InteractiveBM,
     flashcards: scienceF2C6FlashcardsBM,
     quiz: scienceF2C6QuizzesBM,
   },
@@ -3298,6 +3307,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c6", "dlp"),
     mindMap: { data: scienceF2C6MindMapDLP, title: "Acid and Alkali" },
     notes: scienceF2C6NotesDLP,
+    sciF2InteractiveData: scienceF2C6InteractiveDLP,
     flashcards: scienceF2C6FlashcardsDLP,
     quiz: scienceF2C6QuizzesDLP,
   },
@@ -3313,6 +3323,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c7"),
     mindMap: { data: scienceF2C7MindMapBM, title: "Elektrik dan Kemagnetan" },
     notes: scienceF2C7NotesBM,
+    sciF2InteractiveData: scienceF2C7InteractiveBM,
     flashcards: scienceF2C7FlashcardsBM,
     quiz: scienceF2C7QuizzesBM,
   },
@@ -3326,6 +3337,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c7", "dlp"),
     mindMap: { data: scienceF2C7MindMapDLP, title: "Electricity and Magnetism" },
     notes: scienceF2C7NotesDLP,
+    sciF2InteractiveData: scienceF2C7InteractiveDLP,
     flashcards: scienceF2C7FlashcardsDLP,
     quiz: scienceF2C7QuizzesDLP,
   },

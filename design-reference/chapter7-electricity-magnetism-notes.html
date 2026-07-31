@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 7: Electricity and Magnetism</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Theme 3 · Energy and Sustainability of Life &nbsp;/&nbsp; <b>Form 2 Science</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Chapter Mission</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP earned</div>
+    <div class="ch-num">Chapter 7</div>
+    <h1>Electricity and Magnetism</h1>
+    <p class="sub">Static shocks, glowing bulbs, and compasses that always point north — all governed by the same handful of rules.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Foundations</b>What is electricity and magnetism?</div>
+      <div class="q-card"><b>Direction</b>Why does a compass always point north-south?</div>
+      <div class="q-card"><b>Application</b>How can wind generate electricity?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>7.1 Electricity</span><span id="progressPct">8%</span><span>7.3 Magnetism</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">⚡ Science Blog — The Electric Eel</h3>
+    <p>An electric eel packs around 6,000 special cells called electrocytes, letting it discharge up to 600 volts — enough to stun predators, catch prey, and even navigate its murky habitat where eyesight barely helps.</p>
+  </div>
+
+  <!-- ================= 7.1 ================= -->
+  <div class="section" id="sec-7-1" onmouseenter="visit('s71')">
+    <div class="section-head"><span class="num">7.1</span><h2>Electricity</h2></div>
+
+    <div class="card">
+      <h3>What energy actually means</h3>
+      <p>Energy is simply the ability to do work — measured in joules (J). It never gets created or destroyed, only changes form. Tap each form to see where you'd find it.</p>
+      <div class="flip-grid" id="energyGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+      <p style="margin-top:14px; font-size:13px; color:var(--faint);">Where it all comes from:</p>
+      <div class="example-chips"><span>☀️ The Sun</span><span>💨 Wind</span><span>💧 Water</span><span>🌋 Geothermal</span><span>🌊 Wave</span><span>☢️ Radioactive substance</span><span>🌱 Biomass</span><span>⛽ Fossil fuel</span></div>
+    </div>
+
+    <div class="card">
+      <h3>The static shock you feel on a doorknob</h3>
+      <p>Rub two different materials together and electrons transfer between them — the object that gains electrons becomes negatively charged, the one that loses them becomes positively charged. That imbalance is an electrostatic charge, and it's exactly what causes the shock when you touch metal after walking on carpet.</p>
+      <div class="aside"><b>The rule that governs it all</b>Like charges repel each other. Opposite charges attract. That single rule explains everything from why a charged comb picks up paper, to how an electroscope's gold leaf diverges to reveal a charge, to how lightning forms between charged clouds and the ground.</div>
+    </div>
+
+    <div class="card">
+      <h3>Naming the electrical quantities</h3>
+      <p>Three quantities describe any circuit, each with its own unit and measuring tool:</p>
+      <div class="compare-wrap">
+        <div class="compare-row" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="compare-col left"><h4>⚡ Current</h4><dl><dd>Rate of flow of charge</dd><dd>Unit: ampere (A)</dd><dd>Measured by ammeter</dd></dl></div>
+          <div class="compare-col right"><h4>🔋 Voltage</h4><dl><dd>Potential difference</dd><dd>Unit: volt (V)</dd><dd>Measured by voltmeter</dd></dl></div>
+          <div class="compare-col left"><h4>🚧 Resistance</h4><dl><dd>Opposition to current flow</dd><dd>Unit: ohm (Ω)</dd><dd>Calculated via Ohm's Law</dd></dl></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🧮 Ohm's Law calculator</h3>
+      <p>Ohm's Law ties all three together: <b style="color:#fff;">V = IR</b>. Enter any two values to find the third.</p>
+      <div class="calc-wrap">
+        <div class="calc-field"><label>Voltage (V)</label><input type="number" id="ohmV" placeholder="—"></div>
+        <div class="calc-field"><label>Current (A)</label><input type="number" id="ohmI" placeholder="—"></div>
+        <div class="calc-field"><label>Resistance (Ω)</label><input type="number" id="ohmR" placeholder="—"></div>
+        <div class="calc-result" id="ohmResult">Fill in any two</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 7.1</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>1. A car bulb draws 0.025 A at 12 V. What's its resistance?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">R = V ÷ I = 12 ÷ 0.025 = 480 Ω. Try it in the calculator above!</div></div>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>2. Why doesn't a Van de Graaff generator shock feel as dangerous as a wall socket shock?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Static electricity carries very little current even at high voltage — it's the current (amps), not voltage alone, that determines danger.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 7.2 ================= -->
+  <div class="section" id="sec-7-2" onmouseenter="visit('s72')">
+    <div class="section-head"><span class="num">7.2</span><h2>Series and Parallel Circuits</h2></div>
+
+    <div class="card">
+      <h3>One path, or many?</h3>
+      <p>A <b style="color:#fff;">series circuit</b> connects components one after another in a single loop — break it anywhere and everything stops. A <b style="color:#fff;">parallel circuit</b> splits into multiple separate paths — each branch keeps working even if another fails. That's exactly why your home's wiring is parallel: one blown bulb shouldn't kill power to the whole house.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showCircuit(this,'series')">Series</div>
+        <div class="toggle-opt" onclick="showCircuit(this,'parallel')">Parallel</div>
+      </div>
+      <div class="toggle-panel show" id="series">
+        <b style="color:#fff;">Current:</b> same everywhere (I = I₁ = I₂) &nbsp;|&nbsp; <b style="color:#fff;">Voltage:</b> splits across components (V = V₁ + V₂) &nbsp;|&nbsp; <b style="color:#fff;">Resistance:</b> adds up (R = R₁ + R₂)<br><br>
+        <b style="color:#fff;">Upside:</b> simple, one switch controls everything. <b style="color:#fff;">Downside:</b> one broken component kills the whole circuit.
+      </div>
+      <div class="toggle-panel" id="parallel">
+        <b style="color:#fff;">Current:</b> splits across branches (I = I₁ + I₂) &nbsp;|&nbsp; <b style="color:#fff;">Voltage:</b> same across every branch (V = V₁ = V₂) &nbsp;|&nbsp; <b style="color:#fff;">Resistance:</b> 1/R = 1/R₁ + 1/R₂<br><br>
+        <b style="color:#fff;">Upside:</b> each appliance works independently. <b style="color:#fff;">Downside:</b> can't adjust voltage per appliance individually.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🔌 Compare effective resistance</h3>
+      <p>Enter two resistor values and see how differently series and parallel combine them.</p>
+      <div class="calc-wrap">
+        <div class="calc-field"><label>R₁ (Ω)</label><input type="number" id="r1" value="2"></div>
+        <div class="calc-field"><label>R₂ (Ω)</label><input type="number" id="r2" value="2"></div>
+      </div>
+      <div style="display:flex; gap:14px; margin-top:14px; flex-wrap:wrap;">
+        <div class="calc-result" id="seriesResult">Series: —</div>
+        <div class="calc-result" id="parallelResult">Parallel: —</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 7.2</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Why is a fire alarm system usually wired in series, not parallel?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">In series, any single break (like a triggered sensor) affects the whole circuit — perfect for a system that needs to trip and alert immediately.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 7.3 ================= -->
+  <div class="section" id="sec-7-3" onmouseenter="visit('s73')">
+    <div class="section-head"><span class="num">7.3</span><h2>Magnetism</h2></div>
+
+    <div class="card">
+      <h3>What makes something a magnet</h3>
+      <p>Every magnet shares the same four properties. Tap each one.</p>
+      <div class="flip-grid" id="magnetGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>Field lines never lie</h3>
+      <p>The space around a magnet where its force acts is called the magnetic field, mapped out by field lines. These lines always run from north to south pole, get closer together where the field is stronger, and never cross one another.</p>
+    </div>
+
+    <div class="card">
+      <h3>Turning electricity into magnetism</h3>
+      <p>An electromagnet is a temporary magnet — it only works while current flows through it. The right-hand grip rule tells you the direction of the magnetic field around a straight current-carrying wire: curl your right hand's fingers in the direction of the field, and your thumb points the direction of conventional current.</p>
+      <div class="flip-grid" id="electromagnetGrid" style="grid-template-columns:repeat(2,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>Magnets and electromagnets at work</h3>
+      <div class="example-chips"><span>🧭 Compass needle</span><span>💳 Credit card magnetic strip</span><span>🚪 Electromagnetic door lock</span><span>🔔 Electric bell</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 7.3</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>An electromagnet used to lift scrap metal has a coil with many turns. Why?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">More turns of the coil increase the strength of the magnetic field — letting it lift heavier loads.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Chapter Map</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Electricity &amp; Magnetism</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Electricity</h5><ul><li>Energy forms &amp; sources</li><li>Electrostatic charges</li><li>Current, voltage, Ohm's Law</li></ul></div>
+          <div class="mm-branch"><h5>Circuits</h5><ul><li>Series: same current</li><li>Parallel: same voltage</li><li>Resistance combines differently</li></ul></div>
+          <div class="mm-branch"><h5>Magnetism</h5><ul><li>Poles, field lines</li><li>Electromagnets</li><li>Real-world applications</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Self-Reflection</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can describe energy, its forms and its sources.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can explain electrostatic charges and Ohm's Law.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can compare current, voltage and resistance in series and parallel circuits.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can describe magnet properties and electromagnets, with real examples.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Quick Quiz</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">True or false: In a parallel circuit, the voltage across each branch is the same.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,true)">True</div>
+        <div class="tf-btn" onclick="answerTF(this,false)">False</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Correct — every branch in a parallel circuit gets the same voltage as the source.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">What determines the direction of a magnetic field around a straight current-carrying wire?</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">The material of the wire</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">The direction of current flow (right-hand grip rule)</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">The wire's length</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">The number of dry cells</div>
+      <div class="quiz-feedback" id="fb2">The right-hand grip rule: point your thumb in the current's direction, and your curled fingers show the magnetic field direction.</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Ready for Summative Practice 7?</h3>
+    <p>Circuit calculations, a crossword puzzle, and a HOTS challenge on electromagnet design await.</p>
+    <div class="cta-btn">Continue Mission →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*22, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+const kwData = [
+  ["Electric current","The rate of flow of electric charges through a conductor, measured in amperes."],
+  ["Electric charge","A property of matter — positive (proton) or negative (electron) — that creates electric force."],
+  ["Electrostatic","Static electric charge built up on an object's surface, not flowing as current."],
+  ["Ohm's Law","The rule that V = IR — voltage equals current times resistance."],
+  ["Parallel circuit","A circuit split into multiple paths, each with the same voltage."],
+  ["Series circuit","A circuit with a single path, where current is the same throughout."],
+  ["Resistors","Components that resist the flow of electric current."],
+  ["Magnetic field","The region around a magnet where its magnetic force acts."],
+  ["Magnet","An object with north and south poles that attracts magnetic materials."],
+  ["Electromagnet","A temporary magnet created when electric current flows through a coil."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* forms of energy flip cards */
+const energyForms = [
+  ["🔊","Sound","Vibrations carrying energy through air, like a speaker."],
+  ["🏃","Kinetic","Energy of motion — a running chicken, a moving car."],
+  ["🔌","Electrical","Energy carried by flowing electric charge."],
+  ["⛰️","Gravitational potential","Stored energy due to height — a book on a shelf."],
+  ["🎯","Elastic potential","Stored energy in a stretched or compressed object, like a spring."],
+  ["💡","Light","Energy radiated as visible light, like a bulb."],
+  ["☢️","Nuclear","Energy stored in the nucleus of atoms."],
+  ["🔥","Heat","Energy transferred due to temperature difference."],
+  ["🧪","Chemical","Energy stored in chemical bonds, like in food or fuel."]
+];
+const energyGrid = document.getElementById('energyGrid');
+energyForms.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12.5px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:12px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s71'); };
+  energyGrid.appendChild(c);
+});
+
+/* Ohm's law calculator */
+const ohmV = document.getElementById('ohmV');
+const ohmI = document.getElementById('ohmI');
+const ohmR = document.getElementById('ohmR');
+const ohmResult = document.getElementById('ohmResult');
+function calcOhm(){
+  const v = parseFloat(ohmV.value), i = parseFloat(ohmI.value), r = parseFloat(ohmR.value);
+  const filled = [!isNaN(v), !isNaN(i), !isNaN(r)].filter(Boolean).length;
+  if(filled < 2){ ohmResult.textContent = 'Fill in any two'; return; }
+  if(isNaN(v)){ ohmResult.textContent = `V = ${(i*r).toFixed(2)} V`; }
+  else if(isNaN(i)){ ohmResult.textContent = `I = ${(v/r).toFixed(3)} A`; }
+  else if(isNaN(r)){ ohmResult.textContent = `R = ${(v/i).toFixed(2)} Ω`; }
+  else { ohmResult.textContent = `V = ${(i*r).toFixed(2)} V (check)`; }
+  visit('s71');
+}
+[ohmV, ohmI, ohmR].forEach(el=>el.addEventListener('input', calcOhm));
+
+/* series/parallel toggle */
+function showCircuit(el,type){
+  document.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s72');
+}
+
+/* series/parallel resistance calculator */
+const r1El = document.getElementById('r1');
+const r2El = document.getElementById('r2');
+const seriesResult = document.getElementById('seriesResult');
+const parallelResult = document.getElementById('parallelResult');
+function calcResistance(){
+  const r1 = parseFloat(r1El.value), r2 = parseFloat(r2El.value);
+  if(isNaN(r1) || isNaN(r2) || r1<=0 || r2<=0){
+    seriesResult.textContent = 'Series: —';
+    parallelResult.textContent = 'Parallel: —';
+    return;
+  }
+  const series = r1 + r2;
+  const parallel = 1/((1/r1)+(1/r2));
+  seriesResult.textContent = `Series: ${series.toFixed(2)} Ω`;
+  parallelResult.textContent = `Parallel: ${parallel.toFixed(2)} Ω`;
+  visit('s72');
+}
+[r1El, r2El].forEach(el=>el.addEventListener('input', calcResistance));
+calcResistance();
+
+/* magnet property flip cards */
+const magnetProps = [
+  ["🧲","Attracts magnetic materials","Iron, steel, cobalt and nickel are drawn to it."],
+  ["🔴🔵","Has two poles","Every magnet has a north pole and a south pole."],
+  ["↔️","Like repels, unlike attracts","Two north poles push apart; north and south pull together."],
+  ["🧭","Points north-south when free","A freely suspended magnet always settles pointing north-south — the basis of a compass."]
+];
+const magnetGrid = document.getElementById('magnetGrid');
+magnetProps.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:12px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s73'); };
+  magnetGrid.appendChild(c);
+});
+
+/* electromagnet strength factor flip cards */
+const emFactors = [
+  ["⚡","More current","A larger current flowing through the coil creates a stronger magnetic field."],
+  ["🌀","More coil turns","More turns of wire around the core also strengthens the magnetic field."]
+];
+const emGrid = document.getElementById('electromagnetGrid');
+emFactors.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:8px; font-size:13px;">${name}</div></div>
+    <div class="flip-face flip-back">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s73'); };
+  emGrid.appendChild(c);
+});
+
+/* accordion / reveal / reflect */
+function toggleAcc(head){ head.parentElement.classList.toggle('open'); const sec = head.closest('.section'); if(sec) visit(sec.id.replace('sec-','s').replace(/-/g,'')); }
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>
