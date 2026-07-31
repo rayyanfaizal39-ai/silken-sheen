@@ -11,16 +11,8 @@ import {
   Rocket,
 } from "lucide-react";
 import { useProgress, chapterActivityKey, chapterProgressPct } from "@/hooks/use-progress";
-import {
-  formatChapterLabel,
-  getChapter,
-  getRegisteredSubjectChapters as getSubjectChapters,
-  getSubjectFormStats,
-  hasFormResourceContent,
-  hasResourceContent,
-  type FormStat,
-  type ResourceType,
-} from "@/content/registry";
+import type { FormStat, ResourceType } from "@/content/registry";
+import { useContentRegistry } from "@/hooks/use-content-registry";
 import { getChapterFeatures } from "@/content/types";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
@@ -176,7 +168,8 @@ export function FormGrid({
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
   const accent = getSubjectAccent(subjectId);
-  const formStats = getSubjectFormStats(subjectId);
+  const registry = useContentRegistry();
+  const formStats = registry ? registry.getSubjectFormStats(subjectId) : [];
   const hideFormProgressText = subjectId === "bm" && mode === "mindmaps";
 
   return (
@@ -207,7 +200,8 @@ export function FormGrid({
       <div className="grid items-stretch gap-4 sm:grid-cols-3">
         {FORM_CARDS.map((item, index) => {
           const isReady =
-            hasFormResourceContent(subjectId, item.form, resourceTypeForMode(mode)) ||
+            (!!registry &&
+              registry.hasFormResourceContent(subjectId, item.form, resourceTypeForMode(mode))) ||
             hasCustomFormResourceContent(subjectId, item.form, mode);
           const stat = formStats.find((s) => s.form === item.form);
           const statLabel = stat ? formStatLabel(mode, stat, isReady) : item.description;
@@ -288,7 +282,10 @@ export function ChapterGrid({
   isChapterAvailable?: (chapterKey: string) => boolean;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapters = getSubjectChapters(subjectId, scienceLang, form);
+  const registry = useContentRegistry();
+  const chapters = registry
+    ? registry.getRegisteredSubjectChapters(subjectId, scienceLang, form)
+    : [];
   const { progress } = useProgress();
   const accent = getSubjectAccent(subjectId);
   const cleanChapterText = mode === "quizzes" || mode === "flashcards";
@@ -327,11 +324,18 @@ export function ChapterGrid({
           {chapters.map((c, i) => {
             const resourceAvailable =
               isChapterAvailable?.(c.key) ??
-              hasResourceContent(subjectId, form, c.key, resourceTypeForMode(mode), scienceLang);
+              (!!registry &&
+                registry.hasResourceContent(
+                  subjectId,
+                  form,
+                  c.key,
+                  resourceTypeForMode(mode),
+                  scienceLang,
+                ));
             const pct = chapterProgressPct(
               progress.chapterActivity[chapterActivityKey(subjectId, c.key)],
             );
-            const chapterContent = getChapter(
+            const chapterContent = registry?.getChapter(
               subjectId,
               c.key,
               scienceLang,
@@ -507,10 +511,11 @@ export function ContentHeader({
   mode?: LearningMode;
 }) {
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
-    (c) => c.key === chapterKey,
-  );
-  const chapterContent = getChapter(
+  const registry = useContentRegistry();
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang, form)
+    .find((c) => c.key === chapterKey);
+  const chapterContent = registry?.getChapter(
     subjectId,
     chapterKey,
     scienceLang,
@@ -518,8 +523,8 @@ export function ContentHeader({
   );
   const chapterLabel =
     chapter?.label ??
-    (chapterContent
-      ? formatChapterLabel(chapterContent.chapterKey, chapterContent.title, scienceLang)
+    (chapterContent && registry
+      ? registry.formatChapterLabel(chapterContent.chapterKey, chapterContent.title, scienceLang)
       : chapterKey);
   const displayChapterLabel =
     mode === "quizzes" || mode === "flashcards" ? cleanLearningTitle(chapterLabel) : chapterLabel;
@@ -683,9 +688,10 @@ export function ComingSoonScreen({
   form?: "Form 1" | "Form 2" | "Form 3" | "All";
   mode?: "notes" | "quizzes" | "flashcards" | "mindmaps";
 }) {
-  const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
-    (c) => c.key === chapterKey,
-  );
+  const registry = useContentRegistry();
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang, form)
+    .find((c) => c.key === chapterKey);
   const accent = getSubjectAccent(subjectId);
   const placeholderItems =
     mode === "quizzes"

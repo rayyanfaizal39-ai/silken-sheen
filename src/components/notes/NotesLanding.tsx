@@ -6,7 +6,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { AcademyHero } from "@/components/AcademyPage";
 import type { Progress } from "@/hooks/use-progress";
 import { chapterProgressPct, chapterActivityKey } from "@/hooks/use-progress";
-import { getFormChapterCount } from "@/content/registry";
+import { useContentRegistry } from "@/hooks/use-content-registry";
 
 const SUBJECT_ACCENT: Record<string, { text: string; bar: string; ring: string }> = {
   bm: { text: "text-rose-300", bar: "from-rose-500 to-orange-500", ring: "ring-rose-500/40" },
@@ -79,16 +79,18 @@ export function NotesLanding({ progress, onSelectSubject, onContinueReading }: N
     return out.slice(0, 4);
   }, [progress]);
 
+  const registry = useContentRegistry();
   const subjectChapterCounts = useMemo(() => {
     const counts: Record<string, number> = {};
+    if (!registry) return counts;
     for (const subject of subjects) {
       counts[subject.id] =
-        getFormChapterCount(subject.id, "Form 1") +
-        getFormChapterCount(subject.id, "Form 2") +
-        getFormChapterCount(subject.id, "Form 3");
+        registry.getFormChapterCount(subject.id, "Form 1") +
+        registry.getFormChapterCount(subject.id, "Form 2") +
+        registry.getFormChapterCount(subject.id, "Form 3");
     }
     return counts;
-  }, []);
+  }, [registry]);
 
   return (
     <div>

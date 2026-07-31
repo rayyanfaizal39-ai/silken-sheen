@@ -2,23 +2,15 @@ import { createServerFn } from '@tanstack/react-start';
 import { getSupabaseServerClient, isSupabaseServerConfigured } from '../lib/supabase.server';
 import { checkContentLibraryBucket } from './-admin.server';
 import type { ReportsData, ReportsLearningInsights } from '../lib/admin.types';
-
-// `subjects`/`chapters` (../data/content, ../content/registry) pull in the
-// entire curriculum content tree (every subject/chapter's notes, quizzes,
-// flashcards — several MB). Since this file exports a createServerFn, a
-// static top-level import here gets bundled into the single always-loaded
-// server-function registry chunk that every SSR request pays to parse on
-// cold start, even requests that never call getReportsData (e.g. "/",
-// "/login"). Dynamic imports inside the handler keep that weight out of the
-// eager bundle and load it only when an admin actually opens Reports.
-async function loadContentRegistry() {
-  const [{ subjects }, { chapters }, { getChapterFeatures }] = await Promise.all([
-    import('../data/content'),
-    import('../content/registry'),
-    import('../content/types'),
-  ]);
-  return { subjects, chapters, getChapterFeatures };
-}
+// `../content/registry` / `../data/content` pull in the entire curriculum
+// content tree (every subject/chapter's notes, quizzes, flashcards — several
+// MB). This server function only ever needed aggregate counts (how many
+// chapters have notes/quizzes/flashcards/mindmaps published), not the actual
+// content — so those counts are precomputed at build time by
+// scripts/generate-content-stats.ts into this tiny generated module instead
+// of pulling the full registry into the deployed Worker just for this
+// admin-only page. Regenerated automatically by `npm run build`.
+import { CONTENT_STATS } from '../lib/content-stats.generated';
 
 // AcadeMY Mission Intelligence — see docs/DATABASE_MAP.md for the tables
 // this reads (profiles, user_progress, quiz_history, payments,
@@ -57,7 +49,6 @@ function startOfMonthIso(): string {
 
 export const getReportsData = createServerFn({ method: 'GET' }).handler(
   async (): Promise<ReportsData> => {
-    const { subjects, chapters, getChapterFeatures } = await loadContentRegistry();
     const supabase = getSupabaseServerClient();
     const empty: ReportsData = {
       mission_brief: {
@@ -95,8 +86,8 @@ export const getReportsData = createServerFn({ method: 'GET' }).handler(
         system_health: 'degraded',
       },
       content_status: {
-        total_subjects: subjects.length,
-        total_chapters: chapters.length,
+        total_subjects: CONTENT_STATS.totalSubjects,
+        total_chapters: CONTENT_STATS.totalChapters,
         content_library_files: 0,
         published_notes: 0,
         published_quizzes: 0,
@@ -120,16 +111,15 @@ export const getReportsData = createServerFn({ method: 'GET' }).handler(
     const monthAgo = startOfMonthIso();
     const thirtyDaysAgo = daysAgoIso(30);
 
-    // ── Content status: static registry data (chapters aren't DB rows) ──
-    let publishedNotes = 0, publishedQuizzes = 0, publishedFlashcards = 0, publishedMindmaps = 0, missing = 0;
-    for (const c of chapters) {
-      const f = getChapterFeatures(c);
-      if (f.notes) publishedNotes++;
-      if (f.quiz) publishedQuizzes++;
-      if (f.flashcards) publishedFlashcards++;
-      if (f.mindMap) publishedMindmaps++;
-      if (!(f.notes && f.quiz && f.flashcards && f.mindMap)) missing++;
-    }
+    // ── Content status: precomputed at build time from the curriculum
+    // registry (see scripts/generate-content-stats.ts) rather than read live
+    // here — chapters aren't DB rows, and this keeps the multi-MB registry
+    // out of this server function's deployed bundle.
+    const publishedNotes = CONTENT_STATS.publishedNotes;
+    const publishedQuizzes = CONTENT_STATS.publishedQuizzes;
+    const publishedFlashcards = CONTENT_STATS.publishedFlashcards;
+    const publishedMindmaps = CONTENT_STATS.publishedMindmaps;
+    const missing = CONTENT_STATS.missingContent;
 
     // ── Platform health ──
     const bucketExists = await checkContentLibraryBucket().catch(() => false);
@@ -323,8 +313,8 @@ export const getReportsData = createServerFn({ method: 'GET' }).handler(
         system_health: databaseOk && authConfigured && bucketExists ? 'operational' : 'degraded',
       },
       content_status: {
-        total_subjects: subjects.length,
-        total_chapters: chapters.length,
+        total_subjects: CONTENT_STATS.totalSubjects,
+        total_chapters: CONTENT_STATS.totalChapters,
         content_library_files: contentLibraryFilesRes?.count ?? 0,
         published_notes: publishedNotes,
         published_quizzes: publishedQuizzes,

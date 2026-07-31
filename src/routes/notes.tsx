@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
-import { notes, getItemChapterKey } from "@/data/content";
 import { subjects, type Form } from "@/data/subjects-meta";
 import { BookOpenCheck, ArrowLeft, ArrowUp, Compass } from "lucide-react";
 import { z } from "zod";
@@ -19,12 +18,8 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
-import {
-  getChapter,
-  getRegisteredSubjectChapters as getSubjectChapters,
-  hasFormResourceContent,
-  hasResourceContent,
-} from "@/content/registry";
+import type { ContentRegistryModule } from "@/hooks/use-content-registry";
+import { useContentRegistry, useContentDataModule } from "@/hooks/use-content-registry";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { NotesContentWithVideo } from "@/components/notes/NotesContentWithVideo";
 import { NotesBlock, type NotesAccordionSection } from "@/components/notes/NotesBlock";
@@ -208,6 +203,8 @@ function SubjectFeatureArtwork({ subjectId, src }: { subjectId: string; src: str
 }
 
 function NotesPage() {
+  const registry = useContentRegistry();
+  const dataModule = useContentDataModule();
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const normalizedSubject = normalizeSubjectParam(search.subject);
@@ -237,12 +234,15 @@ function NotesPage() {
     userId: notesProgressUserId,
     recordProgress: recordNotesProgress,
   } = useNotesProgressScope(notesProgressScope);
-  const subjectChapters = subject ? getSubjectChapters(subject, activeScienceLang, form) : [];
+  const subjectChapters =
+    subject && registry
+      ? registry.getRegisteredSubjectChapters(subject, activeScienceLang, form)
+      : [];
   const activeChapterKey =
     chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
   const activeChapter =
     subject && activeChapterKey
-      ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
+      ? (registry?.getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
       : undefined;
   const hasSubtopics =
     form === "Form 1" &&
@@ -310,15 +310,15 @@ function NotesPage() {
   }, [subject, form, normalizedChapter]);
 
   const filtered = useMemo(() => {
-    if (!subject || !activeChapterKey) return [];
-    return notes.filter((n) => {
+    if (!subject || !activeChapterKey || !dataModule) return [];
+    return dataModule.notes.filter((n) => {
       if (n.subjectId !== subject) return false;
-      if (getItemChapterKey(n) !== activeChapterKey) return false;
+      if (dataModule.getItemChapterKey(n) !== activeChapterKey) return false;
       if (n.form !== form) return false;
       if (isBilingualSubject && n.lang && scienceLang && n.lang !== scienceLang) return false;
       return true;
     });
-  }, [subject, activeChapterKey, form, scienceLang, isBilingualSubject]);
+  }, [subject, activeChapterKey, form, scienceLang, isBilingualSubject, dataModule]);
 
   const legacyNoteSections = useMemo<NotesAccordionSection[]>(
     () =>
@@ -333,7 +333,8 @@ function NotesPage() {
   const hasNotesContent =
     !!subject &&
     !!activeChapterKey &&
-    (hasResourceContent(subject, form, activeChapterKey, "notes", activeScienceLang) ||
+    ((!!registry &&
+      registry.hasResourceContent(subject, form, activeChapterKey, "notes", activeScienceLang)) ||
       legacyNoteSections.length > 0);
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -420,7 +421,8 @@ function NotesPage() {
   if (
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    !hasFormResourceContent(subject, form, "notes", activeScienceLang) &&
+    !!registry &&
+    !registry.hasFormResourceContent(subject, form, "notes", activeScienceLang) &&
     !needsScienceLang
   ) {
     return (
@@ -467,9 +469,9 @@ function NotesPage() {
         onSelectChapter={(key) => {
           selectChapter(key);
           if (setLastVisited) {
-            const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
-              (c) => c.key === key,
-            );
+            const chapMeta = registry
+              ?.getRegisteredSubjectChapters(subject, activeScienceLang, form)
+              .find((c) => c.key === key);
             setLastVisited({
               subjectId: subject,
               chapterKey: key,
@@ -656,9 +658,9 @@ function NotesPage() {
             onSelect={(key) => {
               selectChapter(key);
               if (subject && setLastVisited) {
-                const chapMeta = getSubjectChapters(subject, activeScienceLang, form).find(
-                  (c) => c.key === key,
-                );
+                const chapMeta = registry
+                  ?.getRegisteredSubjectChapters(subject, activeScienceLang, form)
+                  .find((c) => c.key === key);
                 setLastVisited({
                   subjectId: subject,
                   chapterKey: key,
@@ -1538,7 +1540,7 @@ function SubtopicView({
   subjectId: string;
   chapterKey: string;
   subtopics: Subtopic[];
-  chapterContent: ReturnType<typeof getChapter>;
+  chapterContent: ReturnType<ContentRegistryModule["getChapter"]> | undefined;
   form: Form;
   scienceLang?: "bm" | "dlp";
   isRead: boolean;
@@ -1546,9 +1548,11 @@ function SubtopicView({
   onBack: () => void;
   notesContentRef: RefObject<HTMLDivElement | null>;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((s) => s.id === subjectId);
   const chapterLabel =
-    getSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ?? chapterKey;
+    registry?.getRegisteredSubjectChapters(subjectId).find((c) => c.key === chapterKey)?.label ??
+    chapterKey;
   const subtopicSections = useMemo<NotesAccordionSection[]>(
     () =>
       (Array.isArray(subtopics) ? subtopics : []).map((subtopic) => ({

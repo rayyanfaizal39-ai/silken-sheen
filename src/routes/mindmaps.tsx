@@ -12,14 +12,7 @@ import {
 } from "@/components/ChapterPicker";
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
-import {
-  formatChapterLabel,
-  getChapter,
-  getChaptersForSubject,
-  getRegisteredSubjectChapters as getSubjectChapters,
-  hasFormResourceContent,
-  hasResourceContent,
-} from "@/content/registry";
+import { useContentRegistry, type ContentRegistryModule } from "@/hooks/use-content-registry";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
@@ -438,6 +431,7 @@ export const Route = createFileRoute("/mindmaps")({
 });
 
 function MindMapsPage() {
+  const registry = useContentRegistry();
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const normalizedSubject = normalizeSubjectParam(search.subject);
@@ -452,7 +446,9 @@ function MindMapsPage() {
   const isBilingualSubject = subject === "science" || subject === "math";
   const needsScienceLang = isBilingualSubject && !scienceLang;
   const activeScienceLang = isBilingualSubject ? (scienceLang ?? undefined) : undefined;
-  const subjectChapters = subject ? getMindMapChapters(subject, activeScienceLang, form) : [];
+  const subjectChapters = subject
+    ? getMindMapChapters(subject, activeScienceLang, form, registry)
+    : [];
   const activeChapterKey =
     chapter && subjectChapters.some((candidate) => candidate.key === chapter) ? chapter : null;
   const chapterMeta =
@@ -462,7 +458,7 @@ function MindMapsPage() {
   const missingChapter = !!(subject && chapter && !activeChapterKey);
   const activeChapter =
     subject && activeChapterKey
-      ? (getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
+      ? (registry?.getChapter(subject, activeChapterKey, activeScienceLang, form) ?? undefined)
       : undefined;
   const activeChapterIndex = activeChapterKey
     ? subjectChapters.findIndex((candidate) => candidate.key === activeChapterKey)
@@ -580,7 +576,8 @@ function MindMapsPage() {
   if (
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    !hasFormResourceContent(subject, form, "mindMap", activeScienceLang) &&
+    !!registry &&
+    !registry.hasFormResourceContent(subject, form, "mindMap", activeScienceLang) &&
     !needsScienceLang
   ) {
     return (
@@ -631,7 +628,14 @@ function MindMapsPage() {
           />
         </>
       ) : chapterMeta &&
-        !hasResourceContent(subject, form, activeChapterKey, "mindMap", activeScienceLang) ? (
+        (!registry ||
+          !registry.hasResourceContent(
+            subject,
+            form,
+            activeChapterKey,
+            "mindMap",
+            activeScienceLang,
+          )) ? (
         <ComingSoonScreen
           subjectId={subject}
           chapterKey={activeChapterKey}
@@ -754,8 +758,9 @@ function MindMapChapterGrid({
   onSelect: (key: string) => void;
   onBack: () => void;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((candidate) => candidate.id === subjectId);
-  const chapters = getMindMapChapters(subjectId, scienceLang, form);
+  const chapters = getMindMapChapters(subjectId, scienceLang, form, registry);
   const isBahasaMelayu = subjectId === "bm";
   const bahasaMelayuCategories = getBahasaMelayuMindMapCategories(form);
   const [activeBahasaMelayuCategory, setActiveBahasaMelayuCategory] =
@@ -771,7 +776,8 @@ function MindMapChapterGrid({
   );
 
   const renderChapterCard = (chapter: (typeof chapters)[number], index: number) => {
-    const hasMindMap = hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang);
+    const hasMindMap =
+      !!registry && registry.hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang);
     return (
       <button
         key={chapter.key}
@@ -929,7 +935,12 @@ function MindMapChapterGrid({
   );
 }
 
-function getMindMapChapters(subjectId: string, scienceLang: "bm" | "dlp" | undefined, form: Form) {
+function getMindMapChapters(
+  subjectId: string,
+  scienceLang: "bm" | "dlp" | undefined,
+  form: Form,
+  registry: ContentRegistryModule | null,
+) {
   const rows = new Map<
     string,
     {
@@ -942,21 +953,29 @@ function getMindMapChapters(subjectId: string, scienceLang: "bm" | "dlp" | undef
     }
   >();
 
-  for (const chapter of getSubjectChapters(subjectId, scienceLang, form)) {
-    const hasMindMap = hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang);
+  if (!registry) return [];
+
+  for (const chapter of registry.getRegisteredSubjectChapters(subjectId, scienceLang, form)) {
+    const hasMindMap = registry.hasResourceContent(
+      subjectId,
+      form,
+      chapter.key,
+      "mindMap",
+      scienceLang,
+    );
     if (subjectId === "bm" && !hasMindMap && chapter.categoryLabel !== "Tatabahasa") {
       continue;
     }
     rows.set(chapter.key, chapter);
   }
 
-  for (const chapter of getChaptersForSubject(subjectId, scienceLang).filter(
+  for (const chapter of registry.getChaptersForSubject(subjectId, scienceLang).filter(
     (candidate) => candidate.form === form && !!candidate.mindMap,
   )) {
     if (!rows.has(chapter.chapterKey)) {
       rows.set(chapter.chapterKey, {
         key: chapter.chapterKey,
-        label: formatChapterLabel(chapter.chapterKey, chapter.title, scienceLang),
+        label: registry.formatChapterLabel(chapter.chapterKey, chapter.title, scienceLang),
         available: true,
         isNew: form === "Form 2",
       });

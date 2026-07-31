@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { BookOpen, CircleHelp, Layers3, Network } from "lucide-react";
-import type { Form } from "@/data/content";
-import { hasResourceContent, type ResourceType } from "@/content/registry";
+import type { Form } from "@/data/subjects-meta";
+import type { ResourceType } from "@/content/registry";
+import { useContentRegistry } from "@/hooks/use-content-registry";
 
 export type ChapterContentType = "notes" | "flashcards" | "quizzes" | "mindmaps";
 
@@ -48,6 +49,7 @@ export function ChapterContentTabs({
   scienceLang?: "bm" | "dlp";
   currentContentType: ChapterContentType;
 }) {
+  const registry = useContentRegistry();
   const isBm = scienceLang === "bm" || (!scienceLang && subjectId !== "english");
   const formSearch = form === "All" ? undefined : Number(form.replace("Form ", ""));
 
@@ -58,7 +60,9 @@ export function ChapterContentTabs({
     >
       {TABS.map(({ type, resource, to, Icon, en, bm }) => {
         const label = isBm ? bm : en;
-        const available = hasResourceContent(subjectId, form, chapterKey, resource, scienceLang);
+        const available =
+          !!registry &&
+          registry.hasResourceContent(subjectId, form, chapterKey, resource, scienceLang);
         const active = type === currentContentType;
         const sharedClassName =
           "inline-flex min-h-11 w-full touch-manipulation items-center justify-center gap-2 rounded-full border px-3 py-2 text-center text-xs font-semibold transition-[background-color,border-color,color,box-shadow,opacity] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1220] sm:text-sm";

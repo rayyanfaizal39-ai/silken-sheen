@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { subjects, forms, type Difficulty, type Form, type QuizQuestion } from "@/data/content";
+import { subjects, forms, type Form } from "@/data/subjects-meta";
+import type { Difficulty, QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { useCikgu } from "@/context/cikgu-context";
 import {
@@ -38,12 +39,7 @@ import {
   cleanLearningTitle,
 } from "@/lib/clean-learning-title";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import {
-  getChapterQuizQuestions,
-  getRegisteredSubjectChapters as getSubjectChapters,
-  hasFormResourceContent,
-  hasResourceContent,
-} from "@/content/registry";
+import { useContentRegistry } from "@/hooks/use-content-registry";
 import {
   AcademyHero,
   AcademyPageShell,
@@ -19003,6 +18999,7 @@ function readStudySearch() {
 }
 
 function QuizzesPage() {
+  const registry = useContentRegistry();
   const navigate = Route.useNavigate();
   const routeSearch = Route.useSearch() as {
     subject?: string;
@@ -19091,16 +19088,17 @@ function QuizzesPage() {
   }
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
-  const subjectChaptersForForm = subject
-    ? getSubjectChapters(subject, scienceLang ?? undefined, form)
-    : [];
+  const subjectChaptersForForm =
+    subject && registry
+      ? registry.getRegisteredSubjectChapters(subject, scienceLang ?? undefined, form)
+      : [];
   const chapterMeta =
     subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
   const missingChapter = !!(subject && chapter && !chapterMeta);
 
   const pool = useMemo(() => {
-    if (!subject || !chapter) return [];
-    const loadedQuestions = getChapterQuizQuestions(
+    if (!subject || !chapter || !registry) return [];
+    const loadedQuestions = registry.getChapterQuizQuestions(
       subject,
       form,
       chapter,
@@ -19112,12 +19110,13 @@ function QuizzesPage() {
     });
 
     return filteredQuestions;
-  }, [subject, chapter, form, diff, scienceLang, isBilingualSubject]);
+  }, [subject, chapter, form, diff, scienceLang, isBilingualSubject, registry]);
   const hasSelectedChapterQuiz =
     !!subject &&
     !!chapter &&
     ((subject === "math" && form === "Form 1" && !!MATH_QUIZ_BANKS[chapter]) ||
-      hasResourceContent(subject, form, chapter, "quiz", scienceLang ?? undefined) ||
+      (!!registry &&
+        registry.hasResourceContent(subject, form, chapter, "quiz", scienceLang ?? undefined)) ||
       pool.length > 0);
 
   // Data-driven readiness check for Form 2/3 quizzes: a subject/form is ready
@@ -19125,7 +19124,9 @@ function QuizzesPage() {
   const hasUpperFormQuizPath = !!(
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    ((!chapter && hasFormResourceContent(subject, form, "quiz", scienceLang ?? undefined)) ||
+    ((!chapter &&
+      !!registry &&
+      registry.hasFormResourceContent(subject, form, "quiz", scienceLang ?? undefined)) ||
       (chapter && hasSelectedChapterQuiz))
   );
 
@@ -20709,10 +20710,11 @@ function QuizSettingsScreen({
   onBack: () => void;
   onStart: (pref: { mode: TimerMode; seconds: number }) => void;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang, form).find(
-    (candidate) => candidate.key === chapterKey,
-  );
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang, form)
+    .find((candidate) => candidate.key === chapterKey);
   const [mode, setMode] = useState<TimerMode | null>(null);
   const [seconds, setSeconds] = useState<number>(30);
 
@@ -21585,8 +21587,11 @@ function MathQuizLanguagePicker({
   onBack: () => void;
   onSelect: (lang: MathQuizLang) => void;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang)
+    .find((c) => c.key === chapterKey);
 
   return (
     <div className="animate-fade-up">
@@ -21660,8 +21665,11 @@ function MathObjectiveSelectionScreen({
   onBack: () => void;
   onSelect: (objectiveId: MathObjectiveId) => void;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang)
+    .find((c) => c.key === chapterKey);
 
   return (
     <div className="animate-fade-up">
@@ -21746,8 +21754,11 @@ function MathObjectiveIntroScreen({
   onBack: () => void;
   onStart: () => void;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang)
+    .find((c) => c.key === chapterKey);
   const isFoundation = objective.id === "objective-1";
   const isPractice = objective.id === "objective-2";
   const isChallenge = objective.id === "objective-3";
@@ -21757,8 +21768,12 @@ function MathObjectiveIntroScreen({
   const isChapter4 = chapterKey === "Chapter 4";
   const isChapter5 = chapterKey === "Chapter 5";
   const isChapter6 = chapterKey === "Chapter 6";
-  const chapterBmEntry = getSubjectChapters(subjectId, "bm").find((c) => c.key === chapterKey);
-  const chapterDlpEntry = getSubjectChapters(subjectId, "dlp").find((c) => c.key === chapterKey);
+  const chapterBmEntry = registry
+    ?.getRegisteredSubjectChapters(subjectId, "bm")
+    .find((c) => c.key === chapterKey);
+  const chapterDlpEntry = registry
+    ?.getRegisteredSubjectChapters(subjectId, "dlp")
+    .find((c) => c.key === chapterKey);
   const chapterTitle = cleanLearningTitle(
     isDlp ? (chapterDlpEntry?.label ?? chapterKey) : (chapterBmEntry?.label ?? chapterKey),
   );
@@ -22328,8 +22343,11 @@ function MathObjectiveQuizScreen({
   onNext: () => void;
   onBack: () => void;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang)
+    .find((c) => c.key === chapterKey);
   const total = questions.length;
   const isDlp = quizLang === "dlp";
 
@@ -22529,8 +22547,11 @@ function MathObjectiveQuestionsComingSoonScreen({
   onBack: () => void;
   onBackToObjectives: () => void;
 }) {
+  const registry = useContentRegistry();
   const subj = subjects.find((s) => s.id === subjectId);
-  const chapter = getSubjectChapters(subjectId, scienceLang).find((c) => c.key === chapterKey);
+  const chapter = registry
+    ?.getRegisteredSubjectChapters(subjectId, scienceLang)
+    .find((c) => c.key === chapterKey);
 
   return (
     <div className="animate-fade-up">
@@ -22618,14 +22639,19 @@ function MathObjectiveResultsScreen({
   onBack: () => void;
   onRetry: () => void;
 }) {
+  const registry = useContentRegistry();
   const wrong = Math.max(0, total - score);
   const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
   const isPractice = objective?.id === "objective-2";
   const isChallenge = objective?.id === "objective-3";
   const isDlp = quizLang === "dlp";
   const isChapter2 = chapterKey === "Chapter 2";
-  const resultChapterBm = getSubjectChapters("math", "bm").find((c) => c.key === chapterKey);
-  const resultChapterDlp = getSubjectChapters("math", "dlp").find((c) => c.key === chapterKey);
+  const resultChapterBm = registry
+    ?.getRegisteredSubjectChapters("math", "bm")
+    .find((c) => c.key === chapterKey);
+  const resultChapterDlp = registry
+    ?.getRegisteredSubjectChapters("math", "dlp")
+    .find((c) => c.key === chapterKey);
   const chapterName = cleanLearningTitle(
     isDlp ? (resultChapterDlp?.label ?? chapterKey) : (resultChapterBm?.label ?? chapterKey),
   );

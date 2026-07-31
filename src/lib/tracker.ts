@@ -3,7 +3,11 @@
 // weakest chapters, momentum, and plain-language recommendations. Powers the
 // Tracker route, the Home weakness teaser, and the Parent Report.
 
-import { subjects, getSubjectChapters } from "@/data/content";
+// subjects comes from the tiny standalone metadata module, not the multi-MB
+// @/data/content curriculum barrel — importing that here would drag the full
+// notes/quizzes/flashcards dataset into every SSR route that renders Tracker
+// or Parent Report stats (parent.tsx, tracker.tsx are always server-rendered).
+import { subjects } from "@/data/subjects-meta";
 import { QUIZ_PASS_PCT, type QuizResult } from "@/hooks/use-progress";
 
 export interface SubjectStat {
@@ -45,13 +49,11 @@ function subjectName(id: string): string {
   return subjects.find((s) => s.id === id)?.name ?? id;
 }
 
-function chapterLabel(subjectId: string, chapterKey: string): string {
-  try {
-    const ch = getSubjectChapters(subjectId).find((c) => c.key === chapterKey);
-    return ch?.label ?? chapterKey;
-  } catch {
-    return chapterKey;
-  }
+// Chapter keys (e.g. "Chapter 3", "Frasa Adjektif") are already human-readable,
+// so the weak-spot/report label just uses the key directly rather than looking
+// up a prettified title from the curriculum registry.
+function chapterLabel(_subjectId: string, chapterKey: string): string {
+  return chapterKey;
 }
 
 function avg(nums: number[]): number {

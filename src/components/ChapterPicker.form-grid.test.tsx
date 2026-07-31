@@ -1,6 +1,19 @@
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import * as registryModule from "@/content/registry";
+import * as dataModule from "@/data/content";
 import { FormGrid } from "./ChapterPicker";
+
+// FormGrid loads @/content/registry lazily (client-only dynamic import) to
+// keep the multi-MB curriculum registry out of the SSR bundle — see
+// src/hooks/use-content-registry.ts. renderToStaticMarkup never runs effects,
+// so without this mock the hook would stay null and every card would render
+// as unavailable. Substituting a synchronous resolution here lets this test
+// keep asserting on real chapter/readiness data through a single render pass.
+vi.mock("@/hooks/use-content-registry", () => ({
+  useContentRegistry: () => registryModule,
+  useContentDataModule: () => dataModule,
+}));
 
 const noop = () => undefined;
 

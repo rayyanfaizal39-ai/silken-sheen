@@ -1,8 +1,48 @@
 import { describe, expect, it } from "vitest";
 
 import { getChapter } from "@/content/registry";
+import * as registryModule from "@/content/registry";
 import { flashcards } from "@/data/content";
-import { getFlashcardDeckCards, hasFlashcardDeck } from "@/lib/flashcard-availability";
+import * as dataModule from "@/data/content";
+import {
+  getFlashcardDeckCards as getFlashcardDeckCardsWithModules,
+  hasFlashcardDeck as hasFlashcardDeckWithModules,
+} from "@/lib/flashcard-availability";
+
+// Test-only wrappers: production callers load the registry/data modules
+// lazily (client-only dynamic import); tests bind the real modules
+// synchronously instead of re-testing the async loading path.
+function hasFlashcardDeck(
+  subjectValue: unknown,
+  formValue: unknown,
+  chapterValue: unknown,
+  language?: "bm" | "dlp",
+) {
+  return hasFlashcardDeckWithModules(
+    subjectValue,
+    formValue,
+    chapterValue,
+    language,
+    registryModule,
+    dataModule,
+  );
+}
+
+function getFlashcardDeckCards(
+  subjectValue: unknown,
+  formValue: unknown,
+  chapterValue: unknown,
+  language?: "bm" | "dlp",
+) {
+  return getFlashcardDeckCardsWithModules(
+    subjectValue,
+    formValue,
+    chapterValue,
+    language,
+    registryModule,
+    dataModule,
+  );
+}
 
 import { geographyF3C9Flashcards } from "./flashcards";
 

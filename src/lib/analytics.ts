@@ -69,7 +69,9 @@ import {
   type CardMasteryRecord,
 } from "@/hooks/use-progress";
 import { analyzeProgress, withinDays, type SubjectStat, type WeakSpot } from "@/lib/tracker";
-import { subjects } from "@/data/content";
+// Tiny standalone metadata module, not the multi-MB @/data/content curriculum
+// barrel — this file is imported by parent-dashboard.tsx (always SSR'd).
+import { subjects } from "@/data/subjects-meta";
 
 // ─── Public types ───────────────────────────────────────────────────────
 

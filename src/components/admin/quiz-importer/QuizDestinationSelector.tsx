@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { learningForms } from "@/content/metadata/forms";
 import { subjects } from "@/data/subjects-meta";
 import { getQuizDestinationPath } from "@/lib/quiz-importer/convertToExistingQuizSchema";
 import { getCanonicalQuizChapters } from "@/lib/quiz-importer/destinationMetadata";
+import { useContentRegistry } from "@/hooks/use-content-registry";
 import type { QuizDestination } from "@/lib/quiz-importer/types";
 
 interface Props {
@@ -19,7 +20,20 @@ const QUIZ_SETS = [
 ];
 
 export function QuizDestinationSelector({ destination, onChange, onContinue }: Props) {
-  const chapters = useMemo(() => getCanonicalQuizChapters(destination), [destination]);
+  const registry = useContentRegistry();
+  const chapters = useMemo(
+    () => getCanonicalQuizChapters(destination, registry),
+    [destination, registry],
+  );
+
+  // chapterKey starts empty (registry isn't loaded on first render) — once
+  // the chapter list resolves, default to the first canonical chapter.
+  useEffect(() => {
+    if (chapters.length === 0) return;
+    if (chapters.some((chapter) => chapter.key === destination.chapterKey)) return;
+    onChange({ ...destination, chapterKey: chapters[0].key });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chapters]);
 
   function update(
     patch: Partial<
@@ -31,7 +45,7 @@ export function QuizDestinationSelector({ destination, onChange, onContinue }: P
   ) {
     const next = { ...destination, ...patch };
     if (patch.language || patch.form || patch.subjectId) {
-      const nextChapters = getCanonicalQuizChapters(next);
+      const nextChapters = getCanonicalQuizChapters(next, registry);
       if (!nextChapters.some((chapter) => chapter.key === next.chapterKey)) {
         next.chapterKey = nextChapters[0]?.key ?? "";
       }

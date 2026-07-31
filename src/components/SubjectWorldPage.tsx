@@ -2,12 +2,11 @@ import type { CSSProperties } from "react";
 import { ArrowLeft, CheckCircle2, Lock, Sparkles } from "lucide-react";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { selectNotesAwareProgress, type NotesProgressMap } from "@/lib/notes-reading-progress";
+import type { ResourceType } from "@/content/registry";
 import {
-  getChapter,
-  getRegisteredSubjectChapters as getSubjectChapters,
-  hasResourceContent,
-  type ResourceType,
-} from "@/content/registry";
+  useContentRegistry as useRegistry,
+  type ContentRegistryModule as RegistryModule,
+} from "@/hooks/use-content-registry";
 import { ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { cleanLearningTitle } from "@/lib/clean-learning-title";
@@ -651,7 +650,7 @@ function WorldStats({
 
 // ─── Chapter map types ───────────────────────────────────────────────────────
 
-type ChapterEntry = ReturnType<typeof getSubjectChapters>[number];
+type ChapterEntry = ReturnType<RegistryModule["getRegisteredSubjectChapters"]>[number];
 type ProgressMap = ReturnType<typeof useProgress>["progress"];
 
 type MapProps = {
@@ -686,8 +685,10 @@ function canOpenChapter(
   form: "Form 1" | "Form 2" | "Form 3" | "All",
   scienceLang: "bm" | "dlp" | undefined,
   resourceType: ResourceType,
+  registry: RegistryModule | null,
 ) {
-  return hasResourceContent(subjectId, form, chapter.key, resourceType, scienceLang);
+  if (!registry) return false;
+  return registry.hasResourceContent(subjectId, form, chapter.key, resourceType, scienceLang);
 }
 
 function resourceLabel(resourceType?: ResourceType) {
@@ -839,14 +840,15 @@ function LocationCard({
   const isStarted = pct > 0;
   const location = LOCATIONS[subjectId]?.[chapter.key];
 
-  const chapterContent = getChapter(
+  const registry = useRegistry();
+  const chapterContent = registry?.getChapter(
     subjectId,
     chapter.key,
     scienceLang,
     form === "All" ? "Form 1" : form,
   );
   const notesCount = chapterContent?.notes?.sections?.length ?? 0;
-  const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType);
+  const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType, registry);
 
   // Form 1 Geography chapters — and Science chapters across all three forms —
   // get their concept-art photo in a fixed-size strip pinned to the card's
@@ -1188,6 +1190,7 @@ function SejarahTimelineMap({
   notesProgress,
   onSelect,
 }: MapProps) {
+  const registry = useRegistry();
   const NODE_W = 164;
   const totalW = Math.max(chapters.length * NODE_W, 640);
 
@@ -1311,7 +1314,7 @@ function SejarahTimelineMap({
               subjectId,
               c.key,
             );
-            const canOpen = canOpenChapter(c, subjectId, form, scienceLang, resourceType);
+            const canOpen = canOpenChapter(c, subjectId, form, scienceLang, resourceType, registry);
             const bgImage = eraBackgrounds?.[c.key];
             return (
               <div
@@ -1455,14 +1458,22 @@ function ChapterCard({
   const isStarted = pct > 0;
   const location = LOCATIONS[subjectId]?.[chapter.key];
 
-  const chapterContent = getChapter(
+  const registry = useRegistry();
+  const chapterContent = registry?.getChapter(
     subjectId,
     chapter.key,
     scienceLang,
     form === "All" ? "Form 1" : form,
   );
   const notesCount = chapterContent?.notes?.sections?.length ?? 0;
-  const canOpen = canOpenChapter(chapter, subjectId, form, scienceLang, resourceType ?? "notes");
+  const canOpen = canOpenChapter(
+    chapter,
+    subjectId,
+    form,
+    scienceLang,
+    resourceType ?? "notes",
+    registry,
+  );
 
   return (
     <button
@@ -1619,7 +1630,8 @@ export function SubjectWorldPage({
   notesProgressLoading?: boolean;
 }) {
   const config = WORLDS[subjectId] ?? WORLDS.math;
-  const chapters = getSubjectChapters(subjectId, scienceLang, form);
+  const registry = useRegistry();
+  const chapters = registry ? registry.getRegisteredSubjectChapters(subjectId, scienceLang, form) : [];
   const { progress } = useProgress();
 
   const completedCount = chapters.filter(
@@ -1627,9 +1639,11 @@ export function SubjectWorldPage({
   ).length;
 
   // Average progress across all available chapters
-  const availableChapters = chapters.filter((c) =>
-    hasResourceContent(subjectId, form, c.key, resourceType, scienceLang),
-  );
+  const availableChapters = registry
+    ? chapters.filter((c) =>
+        registry.hasResourceContent(subjectId, form, c.key, resourceType, scienceLang),
+      )
+    : [];
   const overallPct =
     availableChapters.length > 0
       ? Math.round(

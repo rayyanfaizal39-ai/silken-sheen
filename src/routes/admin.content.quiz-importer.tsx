@@ -6,11 +6,10 @@ import { QuizImportSummary } from "@/components/admin/quiz-importer/QuizImportSu
 import { QuizPasteInput } from "@/components/admin/quiz-importer/QuizPasteInput";
 import { QuizPreviewEditor } from "@/components/admin/quiz-importer/QuizPreviewEditor";
 import "@/components/admin/quiz-importer/quiz-importer.css";
-import { getChaptersForSubject } from "@/content/registry";
+import { useContentRegistry, type ContentRegistryModule } from "@/hooks/use-content-registry";
 import { quizzes as legacyQuizzes } from "@/data/quizzes";
 import type { QuizQuestion } from "@/data/types";
 import { createQuizExportPackage } from "@/lib/quiz-importer/convertToExistingQuizSchema";
-import { getCanonicalQuizChapters } from "@/lib/quiz-importer/destinationMetadata";
 import { detectQuizDuplicates } from "@/lib/quiz-importer/detectQuizDuplicates";
 import { parseNotebookLmQuiz } from "@/lib/quiz-importer/parseNotebookLmQuiz";
 import type {
@@ -38,20 +37,23 @@ const STEP_LABELS = ["Destination", "Paste quiz", "Preview & validate", "Import 
 const DRAFT_STORAGE_KEY = "academy.quiz-importer.paste-draft";
 
 function initialDestination(): QuizDestination {
-  return {
-    ...INITIAL_DESTINATION_BASE,
-    chapterKey: getCanonicalQuizChapters(INITIAL_DESTINATION_BASE)[0]?.key ?? "",
-  };
+  // chapterKey starts empty — the registry (and therefore the canonical
+  // chapter list) only resolves after the client-only dynamic import in
+  // QuizDestinationSelector completes; it self-corrects to the first
+  // available chapter once that happens (see its effect below).
+  return { ...INITIAL_DESTINATION_BASE, chapterKey: "" };
 }
 
-function existingQuestionsForDestination(destination: QuizDestination): QuizQuestion[] {
-  const registryQuestions = getChaptersForSubject(
-    destination.subjectId,
-    destination.language,
-    destination.form,
-  )
-    .filter((chapter) => chapter.chapterKey === destination.chapterKey)
-    .flatMap((chapter) => chapter.quiz ?? []);
+function existingQuestionsForDestination(
+  destination: QuizDestination,
+  registry: ContentRegistryModule | null,
+): QuizQuestion[] {
+  const registryQuestions = registry
+    ? registry
+        .getChaptersForSubject(destination.subjectId, destination.language, destination.form)
+        .filter((chapter) => chapter.chapterKey === destination.chapterKey)
+        .flatMap((chapter) => chapter.quiz ?? [])
+    : [];
   const legacyQuestions = legacyQuizzes.filter(
     (question) =>
       question.subjectId === destination.subjectId &&
@@ -79,6 +81,7 @@ function downloadPackage(result: QuizExportPackage) {
 }
 
 function QuizImporterPage() {
+  const registry = useContentRegistry();
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [destination, setDestination] = useState<QuizDestination>(initialDestination);
   const [paste, setPaste] = useState("");
@@ -101,8 +104,8 @@ function QuizImporterPage() {
   }, [paste]);
 
   const existingQuestions = useMemo(
-    () => existingQuestionsForDestination(destination),
-    [destination],
+    () => existingQuestionsForDestination(destination, registry),
+    [destination, registry],
   );
   const validations = useMemo(() => validateImportedQuiz(questions), [questions]);
   const duplicates = useMemo(

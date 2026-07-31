@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
-import { subjects, forms, type Form } from "@/data/content";
+import { subjects, forms, type Form } from "@/data/subjects-meta";
 import { useProgress } from "@/hooks/use-progress";
 import {
   Heart,
@@ -42,10 +42,7 @@ import {
   splitFlashcardDeck,
   standardizeFlashcardDeck,
 } from "@/lib/flashcard-availability";
-import {
-  getRegisteredSubjectChapters as getSubjectChapters,
-  hasFormResourceContent,
-} from "@/content/registry";
+import { useContentRegistry, useContentDataModule } from "@/hooks/use-content-registry";
 import {
   AcademyHero,
   AcademyPageShell,
@@ -5286,6 +5283,8 @@ function FlashcardSetPicker({
 }
 
 function FlashcardsPage() {
+  const registry = useContentRegistry();
+  const dataModule = useContentDataModule();
   const navigate = Route.useNavigate();
   const routeSearch = Route.useSearch() as {
     subject?: string;
@@ -5393,9 +5392,10 @@ function FlashcardsPage() {
   const isEnglishFlashcardDeckF3 = subject === "english" && isEnglishFlashcardDeckIdF3(chapter);
   const needsScienceLang = isBilingualSubject && !scienceLang;
 
-  const subjectChaptersForForm = subject
-    ? getSubjectChapters(subject, scienceLang ?? undefined, form)
-    : [];
+  const subjectChaptersForForm =
+    subject && registry
+      ? registry.getRegisteredSubjectChapters(subject, scienceLang ?? undefined, form)
+      : [];
   const chapterMeta =
     subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
   const missingChapter = !!(
@@ -5424,16 +5424,19 @@ function FlashcardsPage() {
       );
     }
     if (!subject || !chapter) return [];
-    return getFlashcardDeckCards(subject, form, chapter, scienceLang ?? undefined);
-  }, [subject, chapter, form, scienceLang, mathFlashcardLang]);
+    return getFlashcardDeckCards(subject, form, chapter, scienceLang ?? undefined, registry, dataModule);
+  }, [subject, chapter, form, scienceLang, mathFlashcardLang, registry, dataModule]);
   const hasSelectedChapterFlashcards =
     !!subject &&
     !!chapter &&
-    (hasMathFlashcards || hasFlashcardDeck(subject, form, chapter, scienceLang ?? undefined));
+    (hasMathFlashcards ||
+      hasFlashcardDeck(subject, form, chapter, scienceLang ?? undefined, registry, dataModule));
   const hasUpperFormFlashcardPath = !!(
     subject &&
     (form === "Form 2" || form === "Form 3") &&
-    ((!chapter && hasFormResourceContent(subject, form, "flashcards", scienceLang ?? undefined)) ||
+    ((!chapter &&
+      !!registry &&
+      registry.hasFormResourceContent(subject, form, "flashcards", scienceLang ?? undefined)) ||
       (chapter && hasSelectedChapterFlashcards))
   );
 
@@ -5936,7 +5939,7 @@ function FlashcardsPage() {
             form={form}
             mode="flashcards"
             isChapterAvailable={(chapterKey) =>
-              hasFlashcardDeck(subject, form, chapterKey, scienceLang ?? undefined) ||
+              hasFlashcardDeck(subject, form, chapterKey, scienceLang ?? undefined, registry, dataModule) ||
               (subject === "math" && form === "Form 1" && Boolean(MATH_FLASHCARD_BANKS[chapterKey]))
             }
             onSelect={(key) => {
@@ -5946,9 +5949,9 @@ function FlashcardsPage() {
               setMathFlashcardCategory(null);
               resetSession();
               if (subject && setLastVisited) {
-                const chapMeta = getSubjectChapters(subject, scienceLang ?? undefined, form).find(
-                  (c) => c.key === key,
-                );
+                const chapMeta = registry
+                  ?.getRegisteredSubjectChapters(subject, scienceLang ?? undefined, form)
+                  .find((c) => c.key === key);
                 setLastVisited({
                   subjectId: subject,
                   chapterKey: key,

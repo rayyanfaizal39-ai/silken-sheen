@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && node scripts/generate-static-shell.js && node scripts/generate-sitemap.js && node scripts/patch-wrangler-assets.js && node scripts/build-pages-worker.js",
-    "build:dev": "vite build --mode development && node scripts/generate-static-shell.js && node scripts/generate-sitemap.js && node scripts/patch-wrangler-assets.js && node scripts/build-pages-worker.js",
+    "build": "vite-node scripts/generate-content-stats.ts && vite build && node scripts/generate-static-shell.js && node scripts/generate-sitemap.js && node scripts/patch-wrangler-assets.js && node scripts/build-pages-worker.js",
+    "build:dev": "vite-node scripts/generate-content-stats.ts && vite build --mode development && node scripts/generate-static-shell.js && node scripts/generate-sitemap.js && node scripts/patch-wrangler-assets.js && node scripts/build-pages-worker.js",
     "email:dev": "email dev --dir src/emails/templates",
     "preview": "wrangler pages dev dist/client --ip 127.0.0.1 --port 4173",
     "test": "vitest run",

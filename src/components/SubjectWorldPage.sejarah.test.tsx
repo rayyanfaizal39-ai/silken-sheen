@@ -1,7 +1,21 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import * as registryModule from "@/content/registry";
+import * as dataModule from "@/data/content";
 import { SubjectWorldPage } from "./SubjectWorldPage";
+
+// SubjectWorldPage loads @/content/registry lazily (client-only dynamic
+// import) to keep the multi-MB curriculum registry out of the SSR bundle —
+// see src/hooks/use-content-registry.ts. renderToStaticMarkup never runs
+// effects, so without this mock the hook would stay null and no chapter
+// content would render. Substituting a synchronous resolution here lets
+// this test keep asserting on real chapter/progress data through a single
+// render pass.
+vi.mock("@/hooks/use-content-registry", () => ({
+  useContentRegistry: () => registryModule,
+  useContentDataModule: () => dataModule,
+}));
 
 function renderSejarah(
   form: "Form 1" | "Form 2" | "Form 3",

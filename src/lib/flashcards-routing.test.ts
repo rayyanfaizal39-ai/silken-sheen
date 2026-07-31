@@ -5,7 +5,9 @@ import {
   getRegisteredSubjectChapters,
   hasFormResourceContent,
 } from "@/content/registry";
+import * as registryModule from "@/content/registry";
 import { flashcards, getItemChapterKey } from "@/data/content";
+import * as dataModule from "@/data/content";
 import {
   getStudyRouteMode,
   isRouteActive,
@@ -14,10 +16,46 @@ import {
   normalizeSubjectParam,
 } from "@/lib/study-routing";
 import {
-  getFlashcardDeckCards,
-  hasFlashcardDeck,
+  getFlashcardDeckCards as getFlashcardDeckCardsWithModules,
+  hasFlashcardDeck as hasFlashcardDeckWithModules,
   splitFlashcardDeck,
 } from "@/lib/flashcard-availability";
+
+// Test-only wrappers: production callers load the registry/data modules
+// lazily (client-only dynamic import, see src/hooks/use-content-registry.ts)
+// to keep them out of the SSR bundle; tests run in Node and can bind the
+// real modules synchronously instead of re-testing the async loading path.
+function hasFlashcardDeck(
+  subjectValue: unknown,
+  formValue: unknown,
+  chapterValue: unknown,
+  language?: "bm" | "dlp",
+) {
+  return hasFlashcardDeckWithModules(
+    subjectValue,
+    formValue,
+    chapterValue,
+    language,
+    registryModule,
+    dataModule,
+  );
+}
+
+function getFlashcardDeckCards(
+  subjectValue: unknown,
+  formValue: unknown,
+  chapterValue: unknown,
+  language?: "bm" | "dlp",
+) {
+  return getFlashcardDeckCardsWithModules(
+    subjectValue,
+    formValue,
+    chapterValue,
+    language,
+    registryModule,
+    dataModule,
+  );
+}
 
 describe("Flashcards route resolution", () => {
   it("keeps Notes, Flashcards, and Quizzes as distinct route modes", () => {
