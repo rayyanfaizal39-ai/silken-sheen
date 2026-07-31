@@ -403,6 +403,8 @@ import { scienceF2C11QuizzesBM } from "@/content/form2/science/chapter-11/quizze
 import { scienceF2C11QuizzesDLP } from "@/content/form2/science/chapter-11/quizzes-dlp";
 import { scienceF2C11FlashcardsBM } from "@/content/form2/science/chapter-11/flashcards-bm";
 import { scienceF2C11FlashcardsDLP } from "@/content/form2/science/chapter-11/flashcards-dlp";
+import { scienceF2C11InteractiveBM } from "@/content/form2/science/chapter-11/interactive-bm";
+import { scienceF2C11InteractiveDLP } from "@/content/form2/science/chapter-11/interactive-dlp";
 import { scienceF2C12NotesBM } from "@/content/form2/science/chapter-12/notes-bm";
 import { scienceF2C12NotesDLP } from "@/content/form2/science/chapter-12/notes-dlp";
 import { scienceF2C12MindMapBM } from "@/content/form2/science/chapter-12/mindmap-bm";
@@ -411,6 +413,8 @@ import { scienceF2C12QuizzesBM } from "@/content/form2/science/chapter-12/quizze
 import { scienceF2C12QuizzesDLP } from "@/content/form2/science/chapter-12/quizzes-dlp";
 import { scienceF2C12FlashcardsBM } from "@/content/form2/science/chapter-12/flashcards-bm";
 import { scienceF2C12FlashcardsDLP } from "@/content/form2/science/chapter-12/flashcards-dlp";
+import { scienceF2C12InteractiveBM } from "@/content/form2/science/chapter-12/interactive-bm";
+import { scienceF2C12InteractiveDLP } from "@/content/form2/science/chapter-12/interactive-dlp";
 import { scienceF2C13NotesBM } from "@/content/form2/science/chapter-13/notes-bm";
 import { scienceF2C13NotesDLP } from "@/content/form2/science/chapter-13/notes-dlp";
 import { scienceF2C13MindMapBM } from "@/content/form2/science/chapter-13/mindmap-bm";
@@ -419,6 +423,8 @@ import { scienceF2C13QuizzesBM } from "@/content/form2/science/chapter-13/quizze
 import { scienceF2C13QuizzesDLP } from "@/content/form2/science/chapter-13/quizzes-dlp";
 import { scienceF2C13FlashcardsBM } from "@/content/form2/science/chapter-13/flashcards-bm";
 import { scienceF2C13FlashcardsDLP } from "@/content/form2/science/chapter-13/flashcards-dlp";
+import { scienceF2C13InteractiveBM } from "@/content/form2/science/chapter-13/interactive-bm";
+import { scienceF2C13InteractiveDLP } from "@/content/form2/science/chapter-13/interactive-dlp";
 
 // Mathematics F1 mind maps (DLP)
 import { mathF1C1MindMapDLP } from "@/content/form1/math/chapter-1/mindmap-dlp";
@@ -3449,6 +3455,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c11"),
     mindMap: { data: scienceF2C11MindMapBM, title: "Bintang dan Galaksi dalam Alam Semesta" },
     notes: scienceF2C11NotesBM,
+    sciF2InteractiveData: scienceF2C11InteractiveBM,
     flashcards: scienceF2C11FlashcardsBM,
     quiz: scienceF2C11QuizzesBM,
   },
@@ -3462,6 +3469,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c11", "dlp"),
     mindMap: { data: scienceF2C11MindMapDLP, title: "Stars and Galaxies in the Universe" },
     notes: scienceF2C11NotesDLP,
+    sciF2InteractiveData: scienceF2C11InteractiveDLP,
     flashcards: scienceF2C11FlashcardsDLP,
     quiz: scienceF2C11QuizzesDLP,
   },
@@ -3477,6 +3485,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c12"),
     mindMap: { data: scienceF2C12MindMapBM, title: "Sistem Suria" },
     notes: scienceF2C12NotesBM,
+    sciF2InteractiveData: scienceF2C12InteractiveBM,
     flashcards: scienceF2C12FlashcardsBM,
     quiz: scienceF2C12QuizzesBM,
   },
@@ -3490,6 +3499,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c12", "dlp"),
     mindMap: { data: scienceF2C12MindMapDLP, title: "Solar System" },
     notes: scienceF2C12NotesDLP,
+    sciF2InteractiveData: scienceF2C12InteractiveDLP,
     flashcards: scienceF2C12FlashcardsDLP,
     quiz: scienceF2C12QuizzesDLP,
   },
@@ -3505,6 +3515,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c13"),
     mindMap: { data: scienceF2C13MindMapBM, title: "Meteoroid, Asteroid, Komet" },
     notes: scienceF2C13NotesBM,
+    sciF2InteractiveData: scienceF2C13InteractiveBM,
     flashcards: scienceF2C13FlashcardsBM,
     quiz: scienceF2C13QuizzesBM,
   },
@@ -3518,6 +3529,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c13", "dlp"),
     mindMap: { data: scienceF2C13MindMapDLP, title: "Meteoroid, Asteroid, Comet" },
     notes: scienceF2C13NotesDLP,
+    sciF2InteractiveData: scienceF2C13InteractiveDLP,
     flashcards: scienceF2C13FlashcardsDLP,
     quiz: scienceF2C13QuizzesDLP,
   },

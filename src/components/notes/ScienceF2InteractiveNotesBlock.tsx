@@ -12,6 +12,9 @@ import { ResistanceComparator } from "@/components/notes/blocks/ResistanceCompar
 import { TwoFieldCalculator } from "@/components/notes/blocks/TwoFieldCalculator";
 import { BuoyancySimulator } from "@/components/notes/blocks/BuoyancySimulator";
 import { WaveVisualizer } from "@/components/notes/blocks/WaveVisualizer";
+import { GalaxyCardGrid } from "@/components/notes/blocks/GalaxyCardGrid";
+import { PlanetSphereList } from "@/components/notes/blocks/PlanetSphereList";
+import { AuLightYearCalculator } from "@/components/notes/blocks/AuLightYearCalculator";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
@@ -175,6 +178,20 @@ export function ScienceF2InteractiveNotesBlock({
             </div>
           )}
           {section.flipCards && <FlipCardGrid items={section.flipCards} />}
+          {section.galaxyCards && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.galaxyCards.title}</h3>
+              <p className="mb-1 text-[13px] leading-relaxed text-muted-foreground">{section.galaxyCards.instruction}</p>
+              <GalaxyCardGrid cards={section.galaxyCards.cards} />
+            </div>
+          )}
+          {section.planets && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.planets.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.planets.instruction}</p>
+              <PlanetSphereList planets={section.planets.planets} />
+            </div>
+          )}
           {section.accordions && (
             <Accordion type="single" collapsible>
               {section.accordions.map((item, i) => (
@@ -201,7 +218,12 @@ export function ScienceF2InteractiveNotesBlock({
             <div>
               <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.phSlider.title}</h3>
               <p className="text-[13px] leading-relaxed text-muted-foreground">{section.phSlider.instruction}</p>
-              <PhScaleSlider scale={section.phSlider.scale} />
+              <PhScaleSlider
+                scale={section.phSlider.scale}
+                gradient={section.phSlider.gradient}
+                unitLabel={section.phSlider.unitLabel}
+                initialValue={section.phSlider.initialValue}
+              />
             </div>
           )}
           {section.calculators?.map((calc, i) => (
@@ -212,6 +234,8 @@ export function ScienceF2InteractiveNotesBlock({
                 <OhmsLawCalculator lang={lang} />
               ) : calc.type === "resistance-comparator" ? (
                 <ResistanceComparator lang={lang} defaultR1={calc.defaultR1} defaultR2={calc.defaultR2} />
+              ) : calc.type === "au-light-year" ? (
+                <AuLightYearCalculator defaultKm={calc.defaultKm} />
               ) : (
                 <TwoFieldCalculator
                   fieldA={calc.fieldA}
@@ -246,6 +270,14 @@ export function ScienceF2InteractiveNotesBlock({
           {section.sequence && (
             <div>
               <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.sequence.title}</h3>
+              {section.sequence.bannerImage && (
+                <img
+                  src={getNotesImageUrl(section.sequence.bannerImage)}
+                  alt={section.sequence.title}
+                  className="mb-3 aspect-video w-full rounded-2xl object-cover"
+                  loading="lazy"
+                />
+              )}
               <Journey steps={section.sequence.steps} instruction={section.sequence.instruction} />
             </div>
           )}
