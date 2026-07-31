@@ -8,9 +8,13 @@ function clampToScale(value: number, min: number, max: number) {
 export function PhScaleSlider({
   scale,
   initialValue = 7,
+  gradient,
+  unitLabel = "pH",
 }: {
   scale: PhScalePoint[];
   initialValue?: number;
+  gradient?: string;
+  unitLabel?: string;
 }) {
   const min = scale[0]?.value ?? 0;
   const max = scale[scale.length - 1]?.value ?? 14;
@@ -55,7 +59,7 @@ export function PhScaleSlider({
           if (e.key === "ArrowRight" || e.key === "ArrowUp") setValue((v) => clampToScale(v + 1, min, max));
         }}
         className="relative h-6 cursor-pointer touch-none rounded-full"
-        style={{ background: "linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff)" }}
+        style={{ background: gradient ?? "linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff)" }}
       >
         <div
           className="absolute -top-2 h-10 w-1 -translate-x-1/2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]"
@@ -70,7 +74,7 @@ export function PhScaleSlider({
       {current && (
         <div className="mt-4 rounded-xl border border-border bg-card/60 p-3.5 text-center text-[13.5px] text-muted-foreground">
           <b className="font-display block text-base text-foreground">
-            pH {current.value} — {current.name}
+            {unitLabel ? `${unitLabel} ${current.value} — ${current.name}` : current.name}
           </b>
           {current.description}
         </div>

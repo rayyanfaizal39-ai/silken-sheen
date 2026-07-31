@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 12: Solar System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Theme 4 · Earth and Space Exploration &nbsp;/&nbsp; <b>Form 2 Science</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Chapter Mission</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP earned</div>
+    <div class="ch-num">Chapter 12</div>
+    <h1>Solar System</h1>
+    <p class="sub">Eight planets, one Sun, and only one world we know of that can support life — and there are reasons for that.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Planets</b>What planets make up our solar system?</div>
+      <div class="q-card"><b>Hypothetical</b>What if the Earth stopped rotating?</div>
+      <div class="q-card"><b>Life</b>Could another planet support life like Earth does?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>Distances</span><span id="progressPct">8%</span><span>Earth's fit for life</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🪐 Science Blog — A Possible 9th Planet</h3>
+    <p>In early 2016, astronomers spotted signs of a possible new planet in our solar system — estimated at roughly 10 times Earth's mass. It's still just a research hypothesis, not a confirmed discovery.</p>
+  </div>
+
+  <!-- ================= DISTANCES ================= -->
+  <div class="section" id="sec-12-1" onmouseenter="visit('s121')">
+    <div class="section-head"><span class="num">12.1</span><h2>Measuring the Solar System</h2></div>
+
+    <div class="card">
+      <h3>Why kilometres aren't enough</h3>
+      <p>Space is so vast that kilometres become impractical. Instead, astronomers use two special units:</p>
+      <div class="compare-wrap">
+        <div class="compare-row">
+          <div class="compare-col left"><h4>📏 Astronomical Unit (A.U.)</h4><dl><dd>The average Earth-Sun distance</dd><dd>1 A.U. = 1.5 × 10⁸ km</dd></dl></div>
+          <div class="compare-col right"><h4>💫 Light Year (ly)</h4><dl><dd>Distance light travels in one year</dd><dd>1 ly = 9.5 × 10¹² km</dd></dl></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🧮 Convert a distance yourself</h3>
+      <p>Enter any distance in kilometres to see it in A.U. and light years.</p>
+      <div class="calc-wrap">
+        <div class="calc-field"><label>Distance (km)</label><input type="number" id="distKm" placeholder="e.g. 227900000"></div>
+        <div class="calc-result" id="distResult">Enter a distance</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>A star is 4.37 light years from the Sun. Roughly how far is that in km?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">4.37 × 9.5 × 10¹² km ≈ 4.15 × 10¹³ km — try it in the calculator above using the light year figure.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= PLANETS ================= -->
+  <div class="section" id="sec-12-2" onmouseenter="visit('s122')">
+    <div class="section-head"><span class="num">12.1</span><h2>The Eight Planets</h2></div>
+
+    <div class="card">
+      <h3>Tap a planet to see its profile</h3>
+      <p>Each planet has a wildly different story — from Mercury's airless extremes to Jupiter's role as Earth's cosmic bodyguard.</p>
+      <div id="planetList"></div>
+    </div>
+
+    <div class="card">
+      <h3>Closer to the Sun ≠ always hotter</h3>
+      <p>You'd expect temperature to simply track distance from the Sun — but atmosphere changes everything. Tap each case.</p>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>☿️ Mercury — no atmosphere</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Sun-facing side scorches past 427°C; the dark side plunges to -173°C, with nothing to trap or spread the heat.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>♀️ Venus — thick CO₂ atmosphere</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Despite being farther from the Sun than Mercury, Venus is the hottest planet — its thick carbon dioxide traps heat in a runaway greenhouse effect, reaching 462°C.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>♂️ Mars — thin atmosphere</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Has an atmosphere, but at less than 1% of Earth's pressure it barely affects temperature — Mars still swings between -143°C and 35°C.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🪐 The gas giants</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Jupiter, Saturn, Uranus and Neptune sit so far from the Sun that they receive very little sunlight — their surface temperatures are extremely low regardless of size.</p></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Mass, density, and how strong gravity feels</h3>
+      <p>A planet's surface gravity depends on both its mass <i>and</i> its density — not size alone. That's why Saturn, despite being enormous, has weaker gravity than Earth: it's a low-density "gas giant." Jupiter, on the other hand, is so massive that its gravity is far stronger than Earth's even with a similarly low density — strong enough that it deflects incoming asteroids and comets, effectively shielding Earth.</p>
+    </div>
+
+    <div class="card">
+      <h3>Farther out takes longer</h3>
+      <p>The further a planet sits from the Sun, the longer its orbit takes. Mercury circles the Sun in just 88 days. Neptune, the farthest, takes 164.8 years.</p>
+    </div>
+
+    <div class="card">
+      <h3>Which way do planets spin?</h3>
+      <p>Every planet rotates west to east — except two. Tap to see which.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showRotation(this,'normal')">Most planets</div>
+        <div class="toggle-opt" onclick="showRotation(this,'venus')">Venus</div>
+        <div class="toggle-opt" onclick="showRotation(this,'uranus')">Uranus</div>
+      </div>
+      <div class="toggle-panel show" id="normal">Rotates west to east — the Sun rises in the east and sets in the west, just like on Earth.</div>
+      <div class="toggle-panel" id="venus">Rotates east to west — the opposite direction. On Venus, the Sun would rise in the west.</div>
+      <div class="toggle-panel" id="uranus">Rotates almost completely on its side — its axis is tilted nearly parallel to its orbit, unlike any other planet.</div>
+    </div>
+
+    <div class="card">
+      <h3>What if Earth stopped rotating?</h3>
+      <p>Earth's rotation causes day/night cycles and tides. Stop it, and things get strange fast:</p>
+      <div class="example-chips">
+        <span>🌗 Extremely long days and nights on opposite sides</span>
+        <span>🏜️ More desert on the permanently sun-facing side</span>
+        <span>🌊 Changed tide patterns</span>
+        <span>🥶 Extreme cold on the permanently dark side</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>The Moon — Earth's only natural satellite</h3>
+      <p>The Moon takes about 27 days both to rotate on its own axis and to orbit the Earth — meaning the same side always faces us. That's why we never see the "far side" of the Moon from Earth.</p>
+    </div>
+
+    <div class="card">
+      <h3>🌍 Why Earth, and not the others?</h3>
+      <p>Tap each factor that makes Earth uniquely suited for life.</p>
+      <div class="flip-grid" id="earthGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>Our footprint on the planet</h3>
+      <p>An <b style="color:#fff;">ecological footprint</b> measures how much land and water it takes to support our needs — and how much the Earth can absorb of our waste and regenerate. When our footprint exceeds what Earth can renew, resources deplete.</p>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Venus is called Earth's "twin" in size — so why no life there?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Its thick CO₂ atmosphere traps heat in a runaway greenhouse effect, pushing surface temperatures to 462°C — far too hot for life as we know it.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Chapter Map</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Solar System</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Measuring Distance</h5><ul><li>Astronomical unit (A.U.)</li><li>Light year (ly)</li></ul></div>
+          <div class="mm-branch"><h5>Planet Characteristics</h5><ul><li>Distance, mass, density, gravity</li><li>Temperature &amp; atmosphere</li><li>Rotation direction &amp; orbit time</li></ul></div>
+          <div class="mm-branch"><h5>Earth's Uniqueness</h5><ul><li>Water, oxygen, temperature range</li><li>Protective atmosphere</li><li>Ecological footprint</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Self-Reflection</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can compare planet distances using A.U. and light years.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can compare and contrast the planets and Earth.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can reason through hypothetical situations about the solar system.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can justify why Earth is the most suitable planet for life.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Quick Quiz</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">True or false: Venus is the hottest planet in the solar system, even though Mercury is closer to the Sun.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,true)">True</div>
+        <div class="tf-btn" onclick="answerTF(this,false)">False</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Correct — Venus's thick CO₂ atmosphere traps heat far more effectively than Mercury's total lack of atmosphere.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">Which planet rotates on its side, almost parallel to its orbit?</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Venus</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">Uranus</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Saturn</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Mars</div>
+      <div class="quiz-feedback" id="fb2">Uranus — a truly unique tilt among all eight planets.</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Ready for Summative Practice 12?</h3>
+    <p>Distance calculations, planet-hunting reasoning, and a HOTS challenge on Europa's hidden ocean await.</p>
+    <div class="cta-btn">Continue Mission →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*22, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+const kwData = [
+  ["Solar system","The Sun and everything that orbits it — 8 planets, moons, asteroids and comets."],
+  ["Astronomical unit","The average Earth-Sun distance — 1.5 × 10⁸ km."],
+  ["Light years","The distance light travels in one year — 9.5 × 10¹² km."],
+  ["Planets","Large bodies that orbit the Sun and have cleared their orbital path."],
+  ["Ecological footprint","A measure of how much land/water is needed to support human demand, versus what Earth can renew."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* AU / ly calculator */
+const distKm = document.getElementById('distKm');
+const distResult = document.getElementById('distResult');
+function calcDist(){
+  const km = parseFloat(distKm.value);
+  if(isNaN(km) || km<=0){ distResult.textContent = 'Enter a distance'; return; }
+  const au = km / 1.5e8;
+  const ly = km / 9.5e12;
+  distResult.innerHTML = `${au.toExponential(2)} A.U.<br>${ly.toExponential(2)} ly`;
+  visit('s121');
+}
+distKm.addEventListener('input', calcDist);
+
+/* planet data + CSS spheres */
+const planets = [
+  ["Mercury", "radial-gradient(circle at 35% 30%, #b8b0a8, #8c8478 60%, #5c564c)", 34,
+    "The smallest, closest planet to the Sun — airless, cratered, and scorched on one side while freezing on the other.",
+    {"Distance":"57.9 million km","Diameter":"4,879 km","Gravity":"3.7 m/s²","Moons":"0","Orbit time":"88 days"}],
+  ["Venus", "radial-gradient(circle at 35% 30%, #f0d9a0, #d8b370 60%, #a8895a)", 44,
+    "Earth's 'twin' in size, but a runaway greenhouse effect makes it the hottest planet — and it spins backwards.",
+    {"Distance":"108.2 million km","Diameter":"12,104 km","Gravity":"8.87 m/s²","Moons":"0","Orbit time":"224.7 days"}],
+  ["Earth", "radial-gradient(circle at 35% 30%, #6fc3e8, #2f8fce 45%, #1f5c8f 70%, #2f9e52)", 46,
+    "The only known planet with life — thanks to liquid water, a breathable atmosphere, and a temperature range that stays livable.",
+    {"Distance":"149.6 million km","Diameter":"12,756 km","Gravity":"9.8 m/s²","Moons":"1","Orbit time":"365 days"}],
+  ["Mars", "radial-gradient(circle at 35% 30%, #e08858, #c1440e 55%, #8a3009)", 38,
+    "The 'Red Planet' — reddish dust and sand, polar ice caps, and two small moons, Phobos and Deimos.",
+    {"Distance":"227.9 million km","Diameter":"6,794 km","Gravity":"3.71 m/s²","Moons":"2","Orbit time":"687 days"}],
+  ["Jupiter", "repeating-linear-gradient(0deg, #d9b78c 0px, #d9b78c 6px, #b8905c 6px, #b8905c 12px)", 78,
+    "The largest planet by far — its powerful gravity deflects asteroids and comets, effectively shielding Earth.",
+    {"Distance":"778.3 million km","Diameter":"142,984 km","Gravity":"24.79 m/s²","Moons":"67+","Orbit time":"11.9 years"}],
+  ["Saturn", "radial-gradient(circle at 35% 30%, #f0dfb0, #d9c088 60%, #a89060)", 70,
+    "Famous for its dramatic ring system made of ice and rock — a low-density 'gas giant' with weaker gravity than Earth despite its size.",
+    {"Distance":"1,427 million km","Diameter":"120,536 km","Gravity":"10.44 m/s²","Moons":"62+","Orbit time":"29.5 years"},"rings"],
+  ["Uranus", "radial-gradient(circle at 35% 30%, #b8ecec, #7fd0d0 60%, #4fa0a0)", 60,
+    "Unlike any other planet — it rotates almost completely on its side, with an axis nearly parallel to its orbit.",
+    {"Distance":"2,871 million km","Diameter":"51,118 km","Gravity":"8.69 m/s²","Moons":"27+","Orbit time":"84 years"},"rings"],
+  ["Neptune", "radial-gradient(circle at 35% 30%, #7ea8f0, #3f5fd0 60%, #2a3f9a)", 58,
+    "The farthest planet from the Sun — a deep blue 'gas giant' taking nearly 165 years to complete a single orbit.",
+    {"Distance":"4,497 million km","Diameter":"49,528 km","Gravity":"11.15 m/s²","Moons":"14+","Orbit time":"164.8 years"}]
+];
+const planetList = document.getElementById('planetList');
+planets.forEach(([name,bg,size,fact,facts,rings])=>{
+  const card = document.createElement('div');
+  card.className = 'planet-card';
+  const factsHtml = Object.entries(facts).map(([k,v])=>`<div>${k}: <b>${v}</b></div>`).join('');
+  card.innerHTML = `
+    <div class="planet-sphere${rings?' rings':''}" style="width:${size}px; height:${size}px; background:${bg};"></div>
+    <div class="info">
+      <h4>${name}</h4>
+      <p>${fact}</p>
+      <div class="planet-detail"><div class="planet-facts">${factsHtml}</div></div>
+    </div>`;
+  card.onclick = ()=>{ card.classList.toggle('open'); visit('s122'); };
+  planetList.appendChild(card);
+});
+
+/* rotation toggle */
+function showRotation(el,type){
+  document.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s122');
+}
+
+/* Earth suitability flip cards */
+const earthFacts = [
+  ["💧","Liquid water","Essential for every living process we know of."],
+  ["🌬️","Oxygen-rich atmosphere","Supports respiration for countless species."],
+  ["🌡️","Balanced temperature","Not too hot, not too cold — stays within a livable range."],
+  ["🛡️","Protective atmosphere","Blocks harmful UV rays and radiation from space."],
+  ["⚖️","Right gravity","Strong enough to hold an atmosphere without crushing life."],
+  ["☀️","Steady sunlight","Powers photosynthesis, the base of most food chains."]
+];
+const earthGrid = document.getElementById('earthGrid');
+earthFacts.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12.5px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:12px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s122'); };
+  earthGrid.appendChild(c);
+});
+
+/* accordion / reveal / reflect */
+function toggleAcc(head){ head.parentElement.classList.toggle('open'); const sec = head.closest('.section'); if(sec) visit(sec.id.replace('sec-','s').replace(/-/g,'')); }
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>

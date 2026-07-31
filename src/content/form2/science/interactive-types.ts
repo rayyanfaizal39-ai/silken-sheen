@@ -22,6 +22,11 @@ export type PhSliderBlock = {
   title: string;
   instruction: string;
   scale: PhScalePoint[];
+  /** CSS gradient override for the track — defaults to the pH red→violet gradient. */
+  gradient?: string;
+  /** Prefix shown before the value in the readout, e.g. "pH". Omit to show just the name/description. */
+  unitLabel?: string;
+  initialValue?: number;
 };
 
 export type CalculatorBlock =
@@ -42,6 +47,12 @@ export type CalculatorBlock =
       operation: "multiply" | "divide";
       resultLabel: string;
       resultUnit: string;
+    }
+  | {
+      type: "au-light-year";
+      title: string;
+      instruction: string;
+      defaultKm?: number;
     };
 
 export type BuoyancyMaterial = {
@@ -63,6 +74,38 @@ export type WaveVisualizerBlock = {
   instruction: string;
 };
 
+export type GalaxyCard = {
+  id: string;
+  /** Resolved image path (bundled asset import or Supabase-bucket-relative string). */
+  image: string;
+  name: string;
+  example: string;
+};
+
+export type GalaxyCardsBlock = {
+  title: string;
+  instruction: string;
+  cards: GalaxyCard[];
+};
+
+export type PlanetSphere = {
+  id: string;
+  name: string;
+  /** CSS `background` value for the radial-gradient sphere — no image needed. */
+  gradient: string;
+  /** Sphere diameter in px. */
+  size: number;
+  rings?: boolean;
+  fact: string;
+  facts: { label: string; value: string }[];
+};
+
+export type PlanetSpheresBlock = {
+  title: string;
+  instruction: string;
+  planets: PlanetSphere[];
+};
+
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
@@ -75,6 +118,8 @@ export type ScienceInteractiveSection = {
   calculators?: CalculatorBlock[];
   buoyancy?: BuoyancyBlock;
   waveVisualizer?: WaveVisualizerBlock;
+  galaxyCards?: GalaxyCardsBlock;
+  planets?: PlanetSpheresBlock;
   matcher?: {
     title: string;
     instruction: string;
@@ -83,6 +128,8 @@ export type ScienceInteractiveSection = {
   sequence?: {
     title: string;
     instruction: string;
+    /** Resolved image path shown as a banner above the journey stepper. */
+    bannerImage?: string;
     steps: ScienceInteractiveCard[];
   };
   comparison?: {
@@ -93,7 +140,7 @@ export type ScienceInteractiveSection = {
 };
 
 export type ScienceF2InteractiveContent = {
-  chapter: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  chapter: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
   blogHighlight: { title: string; body: string; imagePath: string };
   keywords: string[];
   sections: ScienceInteractiveSection[];
