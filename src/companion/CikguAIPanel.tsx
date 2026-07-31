@@ -109,7 +109,7 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
     if (view === "home") {
       speak([
         "Welcome back, Commander!",
-        "I'm Cikgu AI. I'm here to make learning more exciting.",
+        "I'm Ace. I'm here to make learning more exciting.",
         "What would you like to explore today?",
       ]);
     } else if (view === "fact") {
@@ -213,7 +213,7 @@ function Header({
       <div className="min-w-0">
         <div className="flex items-center gap-2">
           <Rocket className="h-4 w-4 text-[#A78BFA]" aria-hidden />
-          <span className="text-base font-bold text-white">Cikgu AI</span>
+          <span className="text-base font-bold text-white">Ace</span>
           <span className="relative flex h-2 w-2" aria-label="Online">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
@@ -226,7 +226,7 @@ function Header({
           <button
             type="button"
             onClick={onToggleVoice}
-            aria-label={voiceOn ? "Mute Cikgu AI's voice" : "Unmute Cikgu AI's voice"}
+            aria-label={voiceOn ? "Mute Ace's voice" : "Unmute Ace's voice"}
             aria-pressed={voiceOn}
             title={voiceOn ? "Voice on" : "Voice off"}
             className={cn(
@@ -282,7 +282,7 @@ function HomeView({
       <div className="glass-strong mb-5 rounded-2xl border border-white/10 p-4 text-center">
         <p className="text-sm font-bold text-white">Welcome back, Commander!</p>
         <p className="mt-1.5 text-xs leading-relaxed text-white/65">
-          I'm Cikgu AI. I'm here to make learning more exciting. What would you like to explore
+          I'm Ace. I'm here to make learning more exciting. What would you like to explore
           today?
         </p>
       </div>
@@ -613,7 +613,7 @@ function KnowledgeView({
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B5CF6] opacity-50" />
             <span className="relative inline-flex h-8 w-8 rounded-full bg-[#8B5CF6]/30" />
           </span>
-          <p className="text-sm text-white/60">Cikgu AI is thinking…</p>
+          <p className="text-sm text-white/60">Ace is thinking…</p>
         </div>
       )}
 

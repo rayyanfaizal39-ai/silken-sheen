@@ -1625,7 +1625,7 @@
   color: rgba(238, 232, 255, 0.6);
 }
 
-/* ---- Cikgu AI content inside the restored Companion structure ----
+/* ---- Ace content inside the restored Companion structure ----
    Additive only: no change to .companion layout, height, stage or timeline. */
 .cinematic-landing-root .companion__eyebrow {
   display: block;
@@ -3148,7 +3148,7 @@
   z-index: 1;
 }
 
-/* Cikgu AI — a single paper plane, echoing the "ask a question" idea */
+/* Ace — a single paper plane, echoing the "ask a question" idea */
 .cinematic-landing-root .cine-decor--cikgu-plane {
   top: 16%;
   left: 4%;
@@ -3405,7 +3405,7 @@
   .cinematic-landing-root .companion__figure {
     animation: none;
   }
-  /* every Cikgu AI element rests at its final, visible state */
+  /* every Ace element rests at its final, visible state */
   .cinematic-landing-root .companion__figure {
     translate: none;
   }
@@ -3419,7 +3419,7 @@
 }
 
 /* ============================================================
-   Natural-flow layouts for Why Choose, Cikgu AI and Parents.
+   Natural-flow layouts for Why Choose, Ace and Parents.
    Desktop (1024px+) retains the original pinned scene layouts.
    ============================================================ */
 @media (max-width: 1023px) {
@@ -3440,7 +3440,7 @@
     display: none;
   }
 
-  /* Cikgu AI becomes one content-sized document-flow section. */
+  /* Ace becomes one content-sized document-flow section. */
   .cinematic-landing-root .companion--cikgu {
     height: auto;
     min-height: 0;

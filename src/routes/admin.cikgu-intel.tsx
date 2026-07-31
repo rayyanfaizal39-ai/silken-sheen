@@ -56,17 +56,17 @@ function CikguIntelPage() {
   return (
     <div className="admin-content">
       <Panel
-        title="Content · Cikgu AI Intel"
+        title="Content · Ace Intel"
         badge={<span className="chip chip-orange">{entries.length} shown</span>}
       >
-        <p style={{ marginBottom: 16 }}>Cikgu AI Intel Manager</p>
+        <p style={{ marginBottom: 16 }}>Ace Intel Manager</p>
 
         {/* ── Filters ── */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
           <input
             type="text"
             placeholder="Search by title or content…"
-            aria-label="Search Cikgu AI content"
+            aria-label="Search Ace content"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{ flex: '1 1 260px' }}

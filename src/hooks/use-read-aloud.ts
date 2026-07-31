@@ -12,7 +12,10 @@ const LANG_CODE: Record<ReadAloudLang, string> = {
   bm: "ms-MY",
   en: "en-US",
 };
-
+const isMobile = () => {
+  if (typeof window === "undefined") return false;
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+};
 export function isReadAloudSupported() {
   return (
     typeof window !== "undefined" &&
@@ -73,7 +76,7 @@ export function useReadAloud() {
     utter.lang = langRef.current;
     const voice = pickVoice(langRef.current);
     if (voice) utter.voice = voice;
-    utter.rate = 0.98;
+    utter.rate = isMobile() ? 1.0 : 1.2;
     utter.onend = () => {
       if (generation !== generationRef.current) return;
       indexRef.current += 1;

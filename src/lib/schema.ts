@@ -25,7 +25,7 @@ export function educationalOrganizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      "AcadeMY is a KSSM-aligned learning platform for Malaysian Form 1–3 students, offering notes, quizzes, flashcards, mind maps, and an AI tutor (Cikgu AI) in Bahasa Melayu and English/DLP.",
+      "AcadeMY is a KSSM-aligned learning platform for Malaysian Form 1–3 students, offering notes, quizzes, flashcards, mind maps, and an AI tutor (Ace) in Bahasa Melayu and English/DLP.",
     areaServed: {
       "@type": "Country",
       name: "Malaysia",

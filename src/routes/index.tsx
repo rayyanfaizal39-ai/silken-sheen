@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
     const metadata = seoMeta({
       title: "Malaysia's Interstellar Learning Platform — KSSM Form 1-3",
       description:
-        "AI-powered KSSM learning platform for Malaysian Form 1-3 students. Notes, flashcards, quizzes, mind maps and Cikgu AI tutor — free to start.",
+        "AI-powered KSSM learning platform for Malaysian Form 1-3 students. Notes, flashcards, quizzes, mind maps and Ace tutor — free to start.",
       path: "/",
       keywords: [
         "Malaysia learning platform",
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
         "KSSM flashcards",
         "SPM preparation",
         "PT3 preparation",
-        "Cikgu AI",
+        "Ace",
         "AI tutor Malaysia",
         "student learning platform Malaysia",
       ],

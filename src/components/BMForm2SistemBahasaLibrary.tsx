@@ -181,7 +181,7 @@ function TopicContent({ topic, color }: { topic: GrammarTopic; color: string }) 
           <p className="text-sm leading-6 text-white/70">{topic.uasaTip}</p>
         </InfoBox>
         <InfoBox color="#F472B6">
-          <SectionTitle icon={<MessageCircle className="h-4 w-4" />} color="#F9A8D4">🤖 Cikgu AI</SectionTitle>
+          <SectionTitle icon={<MessageCircle className="h-4 w-4" />} color="#F9A8D4">🤖 Ace</SectionTitle>
           <p className="text-sm leading-6 text-white/70">{topic.cikgu}</p>
         </InfoBox>
       </div>

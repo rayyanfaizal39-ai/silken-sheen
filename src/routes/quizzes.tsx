@@ -20643,7 +20643,7 @@ function QuizzesPage() {
                   </div>
                 )}
 
-                {/* ── Cikgu AI wrong-answer explainer ── */}
+                {/* ── Ace wrong-answer explainer ── */}
                 {selected !== null && feedback?.kind === "wrong" && (
                   <div className="mx-6 mb-4 animate-fade-up">
                     <button
@@ -20668,7 +20668,7 @@ function QuizzesPage() {
                       className="w-full flex items-center justify-center gap-2.5 rounded-2xl border border-[#6366F1]/30 bg-[#6366F1]/10 py-3 text-sm font-semibold text-[#A5B4FC] transition-all hover:bg-[#6366F1]/20 hover:border-[#6366F1]/50 active:scale-[0.99]"
                     >
                       <span className="text-base">👨‍🚀</span>
-                      Cikgu AI — Kenapa jawapan saya salah?
+                      Ace — Kenapa jawapan saya salah?
                     </button>
                   </div>
                 )}

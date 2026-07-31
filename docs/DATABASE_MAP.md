@@ -39,7 +39,7 @@ One row per completed quiz attempt: `user_id`, `subject_id`, `chapter_key`, `sco
 ### `knowledge_engine`
 213 rows today. Bite-sized "discoveries" — `title`, `category`, `content`, `reflection`, `subject`/`form`/`chapter` tags, `reading_time`, `difficulty`, `published` flag.
 
-**Used by:** Admin → "Cikgu AI Intel" tab (`src/routes/admin.cikgu-intel.tsx`), public-facing Cikgu AI feature (`published = true` rows only, via the `myacademy` RLS policy).
+**Used by:** Admin → "Ace Intel" tab (`src/routes/admin.cikgu-intel.tsx`), public-facing Ace feature (`published = true` rows only, via the `myacademy` RLS policy).
 **This is the AcadeMY Brain's current "Knowledge Engine" pillar** — the only piece of the Brain that's real today; Analytics/Recommendation Engine pillars are still ad-hoc code in `src/lib/analytics.ts`, not dedicated tables.
 
 ## How they connect
@@ -70,7 +70,7 @@ There are currently **no foreign keys between `quiz_history`/`knowledge_engine` 
 | Users | `/admin` (tab) | `profiles` |
 | Payments | `/admin` (tab) | `payments`, `profiles` (join) |
 | Quiz activity | `/admin` (tab) | `quiz_history` *(currently broken — see note above)* |
-| Cikgu AI Intel | `/admin/cikgu-intel` | `knowledge_engine` |
+| Ace Intel | `/admin/cikgu-intel` | `knowledge_engine` |
 | **Content Library** *(new, this task)* | `/admin/content-library` | `content_library` (new table, proposed below) + Storage bucket `content-library` |
 
 ## Which future features these support
