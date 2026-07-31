@@ -373,6 +373,8 @@ import { scienceF2C8QuizzesBM } from "@/content/form2/science/chapter-8/quizzes-
 import { scienceF2C8QuizzesDLP } from "@/content/form2/science/chapter-8/quizzes-dlp";
 import { scienceF2C8FlashcardsBM } from "@/content/form2/science/chapter-8/flashcards-bm";
 import { scienceF2C8FlashcardsDLP } from "@/content/form2/science/chapter-8/flashcards-dlp";
+import { scienceF2C8InteractiveBM } from "@/content/form2/science/chapter-8/interactive-bm";
+import { scienceF2C8InteractiveDLP } from "@/content/form2/science/chapter-8/interactive-dlp";
 import { scienceF2C9NotesBM } from "@/content/form2/science/chapter-9/notes-bm";
 import { scienceF2C9NotesDLP } from "@/content/form2/science/chapter-9/notes-dlp";
 import { scienceF2C9MindMapBM } from "@/content/form2/science/chapter-9/mindmap-bm";
@@ -381,6 +383,8 @@ import { scienceF2C9QuizzesBM } from "@/content/form2/science/chapter-9/quizzes-
 import { scienceF2C9QuizzesDLP } from "@/content/form2/science/chapter-9/quizzes-dlp";
 import { scienceF2C9FlashcardsBM } from "@/content/form2/science/chapter-9/flashcards-bm";
 import { scienceF2C9FlashcardsDLP } from "@/content/form2/science/chapter-9/flashcards-dlp";
+import { scienceF2C9InteractiveBM } from "@/content/form2/science/chapter-9/interactive-bm";
+import { scienceF2C9InteractiveDLP } from "@/content/form2/science/chapter-9/interactive-dlp";
 import { scienceF2C10NotesBM } from "@/content/form2/science/chapter-10/notes-bm";
 import { scienceF2C10NotesDLP } from "@/content/form2/science/chapter-10/notes-dlp";
 import { scienceF2C10MindMapBM } from "@/content/form2/science/chapter-10/mindmap-bm";
@@ -389,6 +393,8 @@ import { scienceF2C10QuizzesBM } from "@/content/form2/science/chapter-10/quizze
 import { scienceF2C10QuizzesDLP } from "@/content/form2/science/chapter-10/quizzes-dlp";
 import { scienceF2C10FlashcardsBM } from "@/content/form2/science/chapter-10/flashcards-bm";
 import { scienceF2C10FlashcardsDLP } from "@/content/form2/science/chapter-10/flashcards-dlp";
+import { scienceF2C10InteractiveBM } from "@/content/form2/science/chapter-10/interactive-bm";
+import { scienceF2C10InteractiveDLP } from "@/content/form2/science/chapter-10/interactive-dlp";
 import { scienceF2C11NotesBM } from "@/content/form2/science/chapter-11/notes-bm";
 import { scienceF2C11NotesDLP } from "@/content/form2/science/chapter-11/notes-dlp";
 import { scienceF2C11MindMapBM } from "@/content/form2/science/chapter-11/mindmap-bm";
@@ -3353,6 +3359,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c8"),
     mindMap: { data: scienceF2C8MindMapBM, title: "Daya dan Gerakan" },
     notes: scienceF2C8NotesBM,
+    sciF2InteractiveData: scienceF2C8InteractiveBM,
     flashcards: scienceF2C8FlashcardsBM,
     quiz: scienceF2C8QuizzesBM,
   },
@@ -3366,6 +3373,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c8", "dlp"),
     mindMap: { data: scienceF2C8MindMapDLP, title: "Force and Motion" },
     notes: scienceF2C8NotesDLP,
+    sciF2InteractiveData: scienceF2C8InteractiveDLP,
     flashcards: scienceF2C8FlashcardsDLP,
     quiz: scienceF2C8QuizzesDLP,
   },
@@ -3381,6 +3389,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c9"),
     mindMap: { data: scienceF2C9MindMapBM, title: "Haba" },
     notes: scienceF2C9NotesBM,
+    sciF2InteractiveData: scienceF2C9InteractiveBM,
     flashcards: scienceF2C9FlashcardsBM,
     quiz: scienceF2C9QuizzesBM,
   },
@@ -3394,6 +3403,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c9", "dlp"),
     mindMap: { data: scienceF2C9MindMapDLP, title: "Heat" },
     notes: scienceF2C9NotesDLP,
+    sciF2InteractiveData: scienceF2C9InteractiveDLP,
     flashcards: scienceF2C9FlashcardsDLP,
     quiz: scienceF2C9QuizzesDLP,
   },
@@ -3409,6 +3419,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c10"),
     mindMap: { data: scienceF2C10MindMapBM, title: "Gelombang Bunyi" },
     notes: scienceF2C10NotesBM,
+    sciF2InteractiveData: scienceF2C10InteractiveBM,
     flashcards: scienceF2C10FlashcardsBM,
     quiz: scienceF2C10QuizzesBM,
   },
@@ -3422,6 +3433,7 @@ export const chapters: ChapterContent[] = [
     video: getEducationalVideo("science-f2-c10", "dlp"),
     mindMap: { data: scienceF2C10MindMapDLP, title: "Sound Waves" },
     notes: scienceF2C10NotesDLP,
+    sciF2InteractiveData: scienceF2C10InteractiveDLP,
     flashcards: scienceF2C10FlashcardsDLP,
     quiz: scienceF2C10QuizzesDLP,
   },

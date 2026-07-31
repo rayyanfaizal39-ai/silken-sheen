@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 9: Heat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Theme 3 · Energy and Sustainability of Life &nbsp;/&nbsp; <b>Form 2 Science</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Chapter Mission</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP earned</div>
+    <div class="ch-num">Chapter 9</div>
+    <h1>Heat</h1>
+    <p class="sub">From sea breezes to bimetallic fire alarms — heat is always moving, and it always follows the same rules.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Why</b>Why does a thick glass crack with hot water?</div>
+      <div class="q-card"><b>Sensing</b>How do thermometers actually work?</div>
+      <div class="q-card"><b>Nature</b>Why is a bonfire lit on a cold night?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>9.1 Temperature</span><span id="progressPct">8%</span><span>9.4 Absorption</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🐻‍❄️ Science Blog — Invisible Polar Bears</h3>
+    <p>Infrared cameras detect heat radiating off animals — but polar bears trap heat so effectively under their fur and fat that they're almost invisible to thermal imaging, even in freezing habitats.</p>
+  </div>
+
+  <!-- ================= 9.1 ================= -->
+  <div class="section" id="sec-9-1" onmouseenter="visit('s91')">
+    <div class="section-head"><span class="num">9.1</span><h2>Relationship between Temperature and Heat</h2></div>
+
+    <div class="card">
+      <h3>Heat and temperature aren't the same thing</h3>
+      <p>Heat is a form of <b style="color:#fff;">energy</b> that flows from a hotter region to a colder one — measured in joules. Temperature is just the <b style="color:#fff;">degree of hotness or coldness</b> — measured in °C or kelvin. Two beakers of water at the same temperature can hold very different amounts of heat, depending on how much water there is.</p>
+      <div class="compare-wrap">
+        <div class="compare-row">
+          <div class="compare-col left"><h4>🔥 Heat</h4><dl><dd>A form of energy</dd><dd>Unit: joule (J)</dd><dd>Depends on material, quantity, and temperature</dd></dl></div>
+          <div class="compare-col right"><h4>🌡️ Temperature</h4><dl><dd>Degree of hotness/coldness</dd><dd>Unit: °C or K</dd><dd>Depends on particle movement</dd></dl></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 9.1</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Is touch a reliable way to check if someone has a fever?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Not really — touch is subjective and affected by your own hand's temperature. A thermometer gives an objective reading.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 9.2 ================= -->
+  <div class="section" id="sec-9-2" onmouseenter="visit('s92')">
+    <div class="section-head"><span class="num">9.2</span><h2>Heat Flow and Thermal Equilibrium</h2></div>
+
+    <div class="card">
+      <h3>Three ways heat travels</h3>
+      <p>Heat always moves from hot to cold, through one of three routes. Tap each.</p>
+      <div class="flip-grid" id="heatFlowGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>🌬️ Why the coast gets a breeze — day vs night</h3>
+      <p>Land and sea heat up and cool down at different rates — that difference drives a real convection current you can feel. Tap to switch between day and night.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showBreeze(this,'day')">☀️ Daytime</div>
+        <div class="toggle-opt" onclick="showBreeze(this,'night')">🌙 Nighttime</div>
+      </div>
+      <div class="toggle-panel show" id="day"><b style="color:#fff;">Sea breeze:</b> the Sun heats land faster than sea. Warm air over land rises, and cooler, denser air from the sea rushes in to replace it — creating a breeze blowing from sea to land.</div>
+      <div class="toggle-panel" id="night"><b style="color:#fff;">Land breeze:</b> land cools faster than sea at night. Warmer air over the sea rises, and cooler air from land moves out to replace it — creating a breeze blowing from land to sea.</div>
+    </div>
+
+    <div class="card">
+      <h3>🔌 Match the conductor or insulator to its job</h3>
+      <p>Pick a material, then pick the everyday item that uses it.</p>
+      <div class="matcher-wrap">
+        <div class="matcher-col"><h5>Material type</h5><div id="matcherTypes"></div></div>
+        <div class="matcher-col"><h5>Everyday item</h5><div id="matcherExamples"></div></div>
+      </div>
+      <div class="matcher-progress" id="matcherProgress">0 / 4 matched</div>
+    </div>
+
+    <div class="card">
+      <h3>When heat flow stops</h3>
+      <p>Two objects in contact keep exchanging heat until there's no more <i>net</i> transfer between them — at that point they're in <b style="color:#fff;">thermal equilibrium</b> and share the same temperature.</p>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 9.2</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Why is the heating coil in an electric kettle placed at the bottom?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Heated water at the bottom becomes less dense and rises, setting up a convection current that heats the whole kettle efficiently.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 9.3 ================= -->
+  <div class="section" id="sec-9-3" onmouseenter="visit('s93')">
+    <div class="section-head"><span class="num">9.3</span><h2>Principle of Expansion and Contraction of Matter</h2></div>
+
+    <div class="card">
+      <h3>Heat makes particles move — and spread out</h3>
+      <p>In a solid, heating makes particles vibrate faster and push further apart — the object <b style="color:#fff;">expands</b>. Cooling does the reverse — particles move closer and it <b style="color:#fff;">contracts</b>. Liquids and gases work the same way, just with particles that are already free to move.</p>
+    </div>
+
+    <div class="card">
+      <h3>Built to expand — on purpose</h3>
+      <p>Engineers design around this principle constantly. Tap each example.</p>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🚂 Railway track gaps</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Small gaps between rail sections let tracks expand in heat without buckling.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🌉 Steel bridge rollers</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>One end sits on rollers with a gap, letting the whole bridge expand safely in hot weather.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🔔 Bimetallic strip fire alarm</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Two different metals expand at different rates when heated — the strip bends toward a contact point, completing a circuit that triggers the alarm.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🌡️ Mercury thermometers</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Mercury expands and contracts predictably with temperature, which is exactly what makes it useful for measuring heat.</p></div></div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 9.3</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>A bottle lid is stuck tight. How does the expansion principle help open it?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Submerging the lid in hot water makes the metal expand slightly, loosening its grip so it twists off more easily.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 9.4 ================= -->
+  <div class="section" id="sec-9-4" onmouseenter="visit('s94')">
+    <div class="section-head"><span class="num">9.4</span><h2>Surface Type and Heat Absorption/Emission</h2></div>
+
+    <div class="card">
+      <h3>Dark and dull beats light and shiny</h3>
+      <p>How well a surface absorbs or radiates heat depends on its colour and texture. Tap each type.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showSurface(this,'dark')">Dark, dull surface</div>
+        <div class="toggle-opt" onclick="showSurface(this,'light')">Light, shiny surface</div>
+      </div>
+      <div class="toggle-panel show" id="dark">Absorbs and radiates heat well. That's why solar water heaters use dark panels, and why a black car feels hotter inside on a sunny day.</div>
+      <div class="toggle-panel" id="light">Absorbs and radiates heat poorly — it reflects more instead. That's exactly why fuel tank trucks are painted white or silver, to keep fuel from evaporating in the heat.</div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 9.4</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Why does bright clothing feel cooler than dark clothing in hot weather?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Bright, light-coloured surfaces absorb less heat from the sun than dark surfaces do.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Chapter Map</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Heat</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Heat vs Temperature</h5><ul><li>Heat = energy (J)</li><li>Temperature = degree of hot/cold (°C, K)</li></ul></div>
+          <div class="mm-branch"><h5>Heat Flow</h5><ul><li>Conduction, convection, radiation</li><li>Land/sea breeze</li><li>Conductors vs insulators</li></ul></div>
+          <div class="mm-branch"><h5>Expansion &amp; Surfaces</h5><ul><li>Solids, liquids, gases expand when heated</li><li>Bimetallic strips, rail gaps</li><li>Dark/dull absorb &amp; radiate best</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Self-Reflection</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can compare heat and temperature.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can explain heat flow, thermal equilibrium and conductors/insulators.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can explain expansion and contraction of matter with daily-life uses.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can demonstrate how surface type affects heat absorption and emission.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Quick Quiz</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">True or false: Heat and temperature mean exactly the same thing.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,false)">True</div>
+        <div class="tf-btn" onclick="answerTF(this,true)">False</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Heat is a form of energy; temperature is a measure of hotness/coldness — related, but not the same.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">Which heat transfer method needs no medium at all?</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Conduction</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Convection</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">Radiation</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">All of these</div>
+      <div class="quiz-feedback" id="fb2">Radiation is how heat from the Sun crosses empty space to reach Earth — no medium required.</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Ready for Summative Practice 9?</h3>
+    <p>Convection reasoning, insulation design challenges, and a HOTS blanket-design problem await.</p>
+    <div class="cta-btn">Continue Mission →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*22, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+
+const kwData = [
+  ["Heat","A form of energy that flows from a hotter region to a colder region."],
+  ["Temperature","The degree of hotness or coldness of an object."],
+  ["Conduction","Heat transfer through a solid, particle to particle."],
+  ["Convection","Heat transfer through the movement of liquid or gas."],
+  ["Radiation","Heat transfer without any medium — even through empty space."],
+  ["Heat conductor","A material that allows heat to flow through easily."],
+  ["Heat insulator","A material that resists heat flow."],
+  ["Expansion","An increase in volume as a substance is heated."],
+  ["Contraction","A decrease in volume as a substance cools."],
+  ["Land breeze / Sea breeze","Natural convection currents caused by land and sea heating/cooling at different rates."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* heat flow flip cards */
+const heatFlows = [
+  ["🔗","Conduction","Heat passes particle to particle through a solid — like a metal spoon warming up in hot soup."],
+  ["🌀","Convection","Heated fluid (liquid or gas) rises and circulates, carrying heat with it — like water boiling in a pot."],
+  ["☀️","Radiation","Heat travels without needing any medium at all — like sunlight crossing empty space to reach Earth."]
+];
+const heatFlowGrid = document.getElementById('heatFlowGrid');
+heatFlows.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:26px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:8px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:12.5px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s92'); };
+  heatFlowGrid.appendChild(c);
+});
+
+/* day/night breeze toggle */
+function showBreeze(el,type){
+  document.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s92');
+}
+
+/* conductor/insulator matcher */
+const conductorPairs = [
+  ["🔥 Heat conductor","Metal pan base — cooks food quickly"],
+  ["🔥 Heat conductor","Iron's metal sole plate — irons clothes fast"],
+  ["🧊 Heat insulator","Oven gloves — protects hands from hot trays"],
+  ["🧊 Heat insulator","Ice box wall (fibreglass/polystyrene) — keeps things cool"]
+];
+let matcherSelectedType = null, matcherMatched = 0;
+function buildMatcher(){
+  const typesEl = document.getElementById('matcherTypes');
+  const exEl = document.getElementById('matcherExamples');
+  const uniqueTypes = [...new Set(conductorPairs.map(p=>p[0]))];
+  uniqueTypes.forEach(type=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = type;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched')) return;
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');
+      matcherSelectedType = type;
+    };
+    typesEl.appendChild(d);
+  });
+  shuffle(conductorPairs).forEach(([type,example])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = example;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched') || !matcherSelectedType) return;
+      if(d.dataset.type === matcherSelectedType){
+        d.classList.add('matched');
+        matcherMatched++;
+        document.getElementById('matcherProgress').textContent = matcherMatched + ' / 4 matched';
+        const remaining = [...exEl.querySelectorAll('.matcher-item')].filter(x=>!x.classList.contains('matched') && x.dataset.type===matcherSelectedType);
+        if(remaining.length===0){
+          typesEl.querySelector(`[data-type="${CSS.escape(matcherSelectedType)}"]`).classList.add('matched');
+        }
+        if(matcherMatched===4) xp += 20, document.getElementById('xpCount').textContent = xp;
+      } else {
+        d.classList.add('wrong-flash');
+        setTimeout(()=>d.classList.remove('wrong-flash'), 500);
+      }
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      matcherSelectedType = null;
+      visit('s92');
+    };
+    exEl.appendChild(d);
+  });
+}
+buildMatcher();
+
+/* surface toggle */
+function showSurface(el,type){
+  document.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s94');
+}
+
+/* accordion / reveal / reflect */
+function toggleAcc(head){ head.parentElement.classList.toggle('open'); const sec = head.closest('.section'); if(sec) visit(sec.id.replace('sec-','s').replace(/-/g,'')); }
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>

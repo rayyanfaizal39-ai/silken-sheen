@@ -9,6 +9,9 @@ import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { PhScaleSlider } from "@/components/notes/blocks/PhScaleSlider";
 import { OhmsLawCalculator } from "@/components/notes/blocks/OhmsLawCalculator";
 import { ResistanceComparator } from "@/components/notes/blocks/ResistanceComparator";
+import { TwoFieldCalculator } from "@/components/notes/blocks/TwoFieldCalculator";
+import { BuoyancySimulator } from "@/components/notes/blocks/BuoyancySimulator";
+import { WaveVisualizer } from "@/components/notes/blocks/WaveVisualizer";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
@@ -201,19 +204,37 @@ export function ScienceF2InteractiveNotesBlock({
               <PhScaleSlider scale={section.phSlider.scale} />
             </div>
           )}
-          {section.calculator && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.calculator.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.calculator.instruction}</p>
-              {section.calculator.type === "ohms-law" ? (
+          {section.calculators?.map((calc, i) => (
+            <div key={`${section.number}-calc-${i}`}>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
+              {calc.type === "ohms-law" ? (
                 <OhmsLawCalculator lang={lang} />
+              ) : calc.type === "resistance-comparator" ? (
+                <ResistanceComparator lang={lang} defaultR1={calc.defaultR1} defaultR2={calc.defaultR2} />
               ) : (
-                <ResistanceComparator
-                  lang={lang}
-                  defaultR1={section.calculator.defaultR1}
-                  defaultR2={section.calculator.defaultR2}
+                <TwoFieldCalculator
+                  fieldA={calc.fieldA}
+                  fieldB={calc.fieldB}
+                  operation={calc.operation}
+                  resultLabel={calc.resultLabel}
+                  resultUnit={calc.resultUnit}
                 />
               )}
+            </div>
+          ))}
+          {section.buoyancy && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.buoyancy.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.buoyancy.instruction}</p>
+              <BuoyancySimulator materials={section.buoyancy.materials} lang={lang} />
+            </div>
+          )}
+          {section.waveVisualizer && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.waveVisualizer.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.waveVisualizer.instruction}</p>
+              <WaveVisualizer lang={lang} />
             </div>
           )}
           {section.matcher && (

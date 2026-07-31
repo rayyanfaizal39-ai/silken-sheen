@@ -86,6 +86,9 @@ import { ScienceF2Chapter4NotesBlock } from "@/components/notes/ScienceF2Chapter
 import { ScienceF2Chapter5NotesBlock } from "@/components/notes/ScienceF2Chapter5NotesBlock";
 import { ScienceF2Chapter6NotesBlock } from "@/components/notes/ScienceF2Chapter6NotesBlock";
 import { ScienceF2Chapter7NotesBlock } from "@/components/notes/ScienceF2Chapter7NotesBlock";
+import { ScienceF2Chapter8NotesBlock } from "@/components/notes/ScienceF2Chapter8NotesBlock";
+import { ScienceF2Chapter9NotesBlock } from "@/components/notes/ScienceF2Chapter9NotesBlock";
+import { ScienceF2Chapter10NotesBlock } from "@/components/notes/ScienceF2Chapter10NotesBlock";
 import {
   MiniInvestigation,
   ScienceDiscoveryChapterHeader,
@@ -1307,8 +1310,35 @@ function NotesPage() {
                   isRead={isRead}
                   onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
                 />
-              ) : (
+              ) : activeChapter.sciF2InteractiveData.chapter === 7 ? (
                 <ScienceF2Chapter7NotesBlock
+                  id="science-notes-content"
+                  content={activeChapter.sciF2InteractiveData}
+                  lang={scienceLang === "dlp" ? "en" : "bm"}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : activeChapter.sciF2InteractiveData.chapter === 8 ? (
+                <ScienceF2Chapter8NotesBlock
+                  id="science-notes-content"
+                  content={activeChapter.sciF2InteractiveData}
+                  lang={scienceLang === "dlp" ? "en" : "bm"}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : activeChapter.sciF2InteractiveData.chapter === 9 ? (
+                <ScienceF2Chapter9NotesBlock
+                  id="science-notes-content"
+                  content={activeChapter.sciF2InteractiveData}
+                  lang={scienceLang === "dlp" ? "en" : "bm"}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : (
+                <ScienceF2Chapter10NotesBlock
                   id="science-notes-content"
                   content={activeChapter.sciF2InteractiveData}
                   lang={scienceLang === "dlp" ? "en" : "bm"}

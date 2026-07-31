@@ -50,11 +50,13 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
         { id: "heat", icon: "🔥", label: "Heat", fact: "Energy transferred due to a temperature difference." },
         { id: "chemical", icon: "🧪", label: "Chemical", fact: "Energy stored in chemical bonds, like in food or fuel." },
       ],
-      calculator: {
-        type: "ohms-law",
-        title: "🧮 Ohm's Law calculator",
-        instruction: "Ohm's Law ties all three quantities together: V = IR. Enter any two values to find the third.",
-      },
+      calculators: [
+        {
+          type: "ohms-law",
+          title: "🧮 Ohm's Law calculator",
+          instruction: "Ohm's Law ties all three quantities together: V = IR. Enter any two values to find the third.",
+        },
+      ],
       checks: [
         { question: "A car bulb draws 0.025 A at 12 V. What's its resistance?", hint: "R = V ÷ I = 12 ÷ 0.025 = 480 Ω. Try it in the calculator above!" },
         { question: "Why doesn't a Van de Graaff generator shock feel as dangerous as a wall socket shock?", hint: "Static electricity carries very little current even at high voltage — it's the current (amps), not voltage alone, that determines danger." },
@@ -75,13 +77,15 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           body: "Voltage is the same across every branch (V = V₁ = V₂); current splits across branches (I = I₁ + I₂); effective resistance is found from 1/R = 1/R₁ + 1/R₂. Advantage: each appliance works and switches independently. Disadvantage: the voltage across each appliance can't be adjusted individually — it's fixed by the source.",
         },
       ],
-      calculator: {
-        type: "resistance-comparator",
-        title: "🔌 Compare effective resistance",
-        instruction: "Enter two resistor values and see how differently series and parallel combine them.",
-        defaultR1: 2,
-        defaultR2: 2,
-      },
+      calculators: [
+        {
+          type: "resistance-comparator",
+          title: "🔌 Compare effective resistance",
+          instruction: "Enter two resistor values and see how differently series and parallel combine them.",
+          defaultR1: 2,
+          defaultR2: 2,
+        },
+      ],
       checks: [
         { question: "Why is a fire alarm system usually wired in series, not parallel?", hint: "In series, any single break (like a triggered sensor) affects the whole circuit — perfect for a system that needs to trip and alert immediately." },
       ],

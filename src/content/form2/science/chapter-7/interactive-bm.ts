@@ -50,11 +50,13 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
         { id: "heat", icon: "🔥", label: "Haba", fact: "Tenaga yang berpindah disebabkan perbezaan suhu." },
         { id: "chemical", icon: "🧪", label: "Kimia", fact: "Tenaga tersimpan dalam ikatan kimia, seperti dalam makanan atau bahan api." },
       ],
-      calculator: {
-        type: "ohms-law",
-        title: "🧮 Kalkulator Hukum Ohm",
-        instruction: "Hukum Ohm menghubungkan ketiga-tiga kuantiti: V = IR. Masukkan mana-mana dua nilai untuk mencari yang ketiga.",
-      },
+      calculators: [
+        {
+          type: "ohms-law",
+          title: "🧮 Kalkulator Hukum Ohm",
+          instruction: "Hukum Ohm menghubungkan ketiga-tiga kuantiti: V = IR. Masukkan mana-mana dua nilai untuk mencari yang ketiga.",
+        },
+      ],
       checks: [
         { question: "Sebuah mentol kereta mengalirkan arus 0.025 A pada 12 V. Berapakah rintangannya?", hint: "R = V ÷ I = 12 ÷ 0.025 = 480 Ω. Cuba dalam kalkulator di atas!" },
         { question: "Mengapakah renjatan daripada penjana Van de Graaff tidak terasa sebahaya renjatan daripada palam dinding?", hint: "Elektrik statik membawa arus yang sangat kecil walaupun pada voltan tinggi — arus (ampere), bukan voltan semata-mata, yang menentukan bahaya." },
@@ -75,13 +77,15 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           body: "Voltan sama merentasi setiap cabang (V = V₁ = V₂); arus terbahagi merentasi cabang (I = I₁ + I₂); rintangan berkesan dikira melalui 1/R = 1/R₁ + 1/R₂. Kelebihan: setiap alat berfungsi dan dihidup/dimatikan secara berasingan. Kekurangan: voltan setiap alat tidak boleh diselaraskan secara berasingan — ia tetap sama dengan sumber.",
         },
       ],
-      calculator: {
-        type: "resistance-comparator",
-        title: "🔌 Bandingkan rintangan berkesan",
-        instruction: "Masukkan dua nilai perintang dan lihat bagaimana litar bersiri dan selari menggabungkannya secara berbeza.",
-        defaultR1: 2,
-        defaultR2: 2,
-      },
+      calculators: [
+        {
+          type: "resistance-comparator",
+          title: "🔌 Bandingkan rintangan berkesan",
+          instruction: "Masukkan dua nilai perintang dan lihat bagaimana litar bersiri dan selari menggabungkannya secara berbeza.",
+          defaultR1: 2,
+          defaultR2: 2,
+        },
+      ],
       checks: [
         { question: "Mengapakah sistem penggera kebakaran biasanya didawaikan secara bersiri, bukan selari?", hint: "Dalam litar bersiri, sebarang putusan tunggal (seperti sensor yang tercetus) menjejaskan keseluruhan litar — sesuai untuk sistem yang perlu tercetus dan memberi amaran serta-merta." },
       ],
