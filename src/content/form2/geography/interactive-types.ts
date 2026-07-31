@@ -1,4 +1,5 @@
 import type { GridReferenceBlock } from "@/components/notes/blocks/GridReferenceReader";
+import type { ZoneExplorerBlock } from "@/components/notes/blocks/ZoneExplorer";
 
 export type GeoInteractiveCard = {
   title: string;
@@ -72,6 +73,7 @@ export type GeoInteractiveSection = {
   intro?: string;
   cards?: GeoInteractiveCard[];
   flipCards?: GeoFlipCardItem[];
+  zoneExplorer?: ZoneExplorerBlock;
   accordions?: GeoAccordionItem[];
   tabGroups?: GeoTabGroup[];
   calculators?: GeoCalculatorBlock[];
@@ -85,7 +87,7 @@ export type GeoInteractiveSection = {
 };
 
 export type GeoF2InteractiveContent = {
-  chapter: 1 | 2 | 3 | 4 | 5 | 6;
+  chapter: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   blogHighlight: {
     title: string;
     body: string;

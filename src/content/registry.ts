@@ -177,12 +177,16 @@ import { geographyF2C6Notes } from "@/content/form2/geography/chapter-6/notes";
 import { geographyF2C6Interactive } from "@/content/form2/geography/chapter-6/interactive";
 import { geoF2C7MindMap } from "@/content/form2/geography/chapter-7/mindmap";
 import { geographyF2C7Notes } from "@/content/form2/geography/chapter-7/notes";
+import { geographyF2C7Interactive } from "@/content/form2/geography/chapter-7/interactive";
 import { geoF2C8MindMap } from "@/content/form2/geography/chapter-8/mindmap";
 import { geographyF2C8Notes } from "@/content/form2/geography/chapter-8/notes";
+import { geographyF2C8Interactive } from "@/content/form2/geography/chapter-8/interactive";
 import { geoF2C9MindMap } from "@/content/form2/geography/chapter-9/mindmap";
 import { geographyF2C9Notes } from "@/content/form2/geography/chapter-9/notes";
+import { geographyF2C9Interactive } from "@/content/form2/geography/chapter-9/interactive";
 import { geoF2C10MindMap } from "@/content/form2/geography/chapter-10/mindmap";
 import { geographyF2C10Notes } from "@/content/form2/geography/chapter-10/notes";
+import { geographyF2C10Interactive } from "@/content/form2/geography/chapter-10/interactive";
 import { geographyF3C1Notes } from "@/content/form3/geography/chapter-1/notes";
 import { geographyF3C2Notes } from "@/content/form3/geography/chapter-2/notes";
 import { geographyF3C3Notes } from "@/content/form3/geography/chapter-3/notes";
@@ -1171,6 +1175,7 @@ export const chapters: ChapterContent[] = [
     title: "Kepelbagaian Iklim dan Pengaruhnya terhadap Kegiatan Manusia di Asia",
     video: getEducationalVideo("geography-f2-c7"),
     notes: geographyF2C7Notes,
+    geoF2InteractiveData: geographyF2C7Interactive,
     mindMap: { data: geoF2C7MindMap, title: "Kepelbagaian Iklim di Asia" },
     flashcards: geographyF2FlashcardsFor(7),
     quiz: geographyF2QuizzesFor(7),
@@ -1183,6 +1188,7 @@ export const chapters: ChapterContent[] = [
     title: "Jenis dan Kemajuan Pengangkutan di Asia",
     video: getEducationalVideo("geography-f2-c8"),
     notes: geographyF2C8Notes,
+    geoF2InteractiveData: geographyF2C8Interactive,
     mindMap: { data: geoF2C8MindMap, title: "Jenis dan Kemajuan Pengangkutan di Asia" },
     flashcards: geographyF2FlashcardsFor(8),
     quiz: geographyF2QuizzesFor(8),
@@ -1195,6 +1201,7 @@ export const chapters: ChapterContent[] = [
     title: "Pemanasan Global",
     video: getEducationalVideo("geography-f2-c9"),
     notes: geographyF2C9Notes,
+    geoF2InteractiveData: geographyF2C9Interactive,
     mindMap: { data: geoF2C9MindMap, title: "Pemanasan Global" },
     flashcards: geographyF2FlashcardsFor(9),
     quiz: geographyF2QuizzesFor(9),
@@ -1207,6 +1214,7 @@ export const chapters: ChapterContent[] = [
     title: "Teknologi Hijau",
     video: getEducationalVideo("geography-f2-c10"),
     notes: geographyF2C10Notes,
+    geoF2InteractiveData: geographyF2C10Interactive,
     mindMap: { data: geoF2C10MindMap, title: "Teknologi Hijau" },
     flashcards: geographyF2FlashcardsFor(10),
     quiz: geographyF2QuizzesFor(10),

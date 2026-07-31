@@ -8,6 +8,7 @@ import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectio
 import { TwoFieldCalculator } from "@/components/notes/blocks/TwoFieldCalculator";
 import { Journey } from "@/components/notes/blocks/Journey";
 import { GridReferenceReader } from "@/components/notes/blocks/GridReferenceReader";
+import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
 import type { GeoF2InteractiveContent, GeoMiniQuizItem } from "@/content/form2/geography/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
@@ -115,6 +116,13 @@ export function GeoF2InteractiveNotesBlock({
             </div>
           )}
           {section.flipCards && <FlipCardGrid items={section.flipCards} />}
+          {section.zoneExplorer && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.zoneExplorer.title}</h3>
+              <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{section.zoneExplorer.instruction}</p>
+              <ZoneExplorer block={section.zoneExplorer} />
+            </div>
+          )}
           {section.accordions && (
             <Accordion type="single" collapsible>
               {section.accordions.map((item, i) => (
