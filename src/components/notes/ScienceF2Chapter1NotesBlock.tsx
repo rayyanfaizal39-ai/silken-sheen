@@ -24,6 +24,7 @@ const COPY: Record<
   {
     section11: string;
     section12: string;
+    biodiversityIntro: string;
     habitatsIntro: string;
     importanceIntro: string;
     keepingAliveIntro: string;
@@ -41,6 +42,7 @@ const COPY: Record<
     animalTreeHead: string;
     animalTreeIntro: string;
     plantTreeHead: string;
+    plantTreeIntro: string;
     starMapHead: string;
     starMapIntro: string;
     chapterMapHead: string;
@@ -53,7 +55,9 @@ const COPY: Record<
   en: {
     section11: "1.1 Diversity of Organisms",
     section12: "1.2 Classification of Organisms",
-    habitatsIntro: "Same planet, wildly different homes — tap a habitat to see how life adapts to it.",
+    biodiversityIntro:
+      "Biodiversity is the variety of organisms on Earth — microorganisms, animals and plants — and it exists because habitats and climates differ so much, from deserts to polar regions to soil to the sea. Organisms living in different habitats have evolved different characteristics that let them survive and thrive there independently. Biodiversity also includes genetic diversity: the variation within a single species, caused by differences in the genes of individual organisms. Malaysia's hot, humid equatorial climate makes it an especially rich habitat for life, which is why it is recognised as one of the world's 12 megabiodiversity countries.",
+    habitatsIntro: "Tap a habitat below to see how its climate shapes the organisms that live there.",
     importanceIntro: "Six reasons biodiversity underpins everyday life — tap each to expand.",
     keepingAliveIntro:
       "Deforestation for timber and development puts biodiversity at risk. Malaysia manages this through law, protected space, and active breeding programmes.",
@@ -68,10 +72,12 @@ const COPY: Record<
     revealHint: "Reveal hint",
     whySortHead: "Why sort living things at all?",
     whySortBody:
-      "Animals and plants can be grouped into smaller and smaller sets based on shared and differing traits — this is what lets a biologist identify an unfamiliar organism quickly and consistently.",
+      "You just met dozens of organisms in the habitats above — classification is how biologists make sense of that variety. Animals and plants are sorted into smaller and smaller groups based on traits they share and traits that set them apart, so an unfamiliar organism can be identified quickly and consistently. Animals split first into invertebrates (no backbone) and vertebrates (with a backbone), and vertebrates split further into fish, amphibians, reptiles, birds and mammals. Plants split first into non-flowering and flowering plants, and flowering plants split further into monocotyledons and dicotyledons.",
     animalTreeHead: "Animal Kingdom — build the tree yourself",
     animalTreeIntro: "Start at the top and choose a branch to explore each group.",
     plantTreeHead: "Plant Kingdom",
+    plantTreeIntro:
+      "Plants are classified as non-flowering or flowering. Non-flowering plants reproduce with spores or cones and include mosses (non-vascular, no internal tubes to carry water), ferns and conifers (both vascular, with true roots, stems and leaves). Flowering plants produce flowers that develop into fruit containing seeds, and each seed's cotyledon count tells you which group it belongs to: one cotyledon means monocotyledon (fibrous roots, parallel leaf veins, e.g. paddy and maize), two cotyledons means dicotyledon (a tap root, net-like leaf veins, e.g. tomato and durian).",
     starMapHead: "⭐ Build a dichotomous key — Star Map",
     starMapIntro:
       "A dichotomous key sorts organisms with a chain of either/or questions. Answer each one to narrow the sky down to a single organism.",
@@ -84,7 +90,9 @@ const COPY: Record<
   bm: {
     section11: "1.1 Kepelbagaian Organisma",
     section12: "1.2 Klasifikasi Organisma",
-    habitatsIntro: "Planet yang sama, rumah yang jauh berbeza — ketik satu habitat untuk melihat cara hidupan menyesuaikan diri.",
+    biodiversityIntro:
+      "Biodiversiti ialah kepelbagaian organisma di Bumi — mikroorganisma, haiwan dan tumbuhan — dan ia wujud kerana habitat serta iklim yang jauh berbeza, daripada gurun, kawasan kutub, tanah hinggalah laut. Organisma yang hidup dalam habitat berlainan mempunyai ciri-ciri berbeza yang membolehkan mereka menyesuaikan diri dan terus hidup secara berdikari di situ. Biodiversiti turut merangkumi kepelbagaian genetik: variasi dalam sesuatu spesies yang sama, disebabkan oleh perbezaan pada gen setiap organisma. Iklim khatulistiwa Malaysia yang panas dan lembap menjadikannya habitat yang sangat kaya dengan hidupan, itulah sebabnya Malaysia diiktiraf sebagai salah satu daripada 12 negara megabiodiversiti di dunia.",
+    habitatsIntro: "Ketik satu habitat di bawah untuk melihat cara iklimnya membentuk organisma yang hidup di situ.",
     importanceIntro: "Enam sebab biodiversiti menyokong kehidupan harian — ketik untuk kembangkan.",
     keepingAliveIntro:
       "Penebangan hutan untuk balak dan pembangunan meletakkan biodiversiti dalam risiko. Malaysia menguruskannya melalui undang-undang, kawasan perlindungan, dan program pembiakan aktif.",
@@ -99,10 +107,12 @@ const COPY: Record<
     revealHint: "Dedahkan panduan",
     whySortHead: "Mengapa perlu mengelaskan hidupan?",
     whySortBody:
-      "Haiwan dan tumbuhan boleh dikumpulkan kepada set yang lebih kecil berdasarkan ciri yang dikongsi dan berbeza — ini membolehkan ahli biologi mengenal pasti organisma yang tidak dikenali dengan cepat dan konsisten.",
+      "Anda baru sahaja bertemu berpuluh-puluh organisma dalam habitat di atas — klasifikasi ialah cara ahli biologi memahami kepelbagaian itu. Haiwan dan tumbuhan dikumpulkan kepada set yang lebih kecil berdasarkan ciri yang dikongsi dan ciri yang membezakan, supaya organisma yang tidak dikenali dapat dikenal pasti dengan cepat dan konsisten. Haiwan mula-mula dibahagikan kepada invertebrata (tiada tulang belakang) dan vertebrata (ada tulang belakang), dan vertebrata dibahagikan lagi kepada ikan, amfibia, reptilia, burung dan mamalia. Tumbuhan pula mula-mula dibahagikan kepada tumbuhan tidak berbunga dan tumbuhan berbunga, dan tumbuhan berbunga dibahagikan lagi kepada monokotiledon dan dikotiledon.",
     animalTreeHead: "Kerajaan Haiwan — bina pokok anda sendiri",
     animalTreeIntro: "Mula dari atas dan pilih cabang untuk meneroka setiap kumpulan.",
     plantTreeHead: "Kerajaan Tumbuhan",
+    plantTreeIntro:
+      "Tumbuhan diklasifikasikan sebagai tidak berbunga atau berbunga. Tumbuhan tidak berbunga membiak melalui spora atau kon, termasuk lumut (tidak berpembuluh, tiada saluran dalaman untuk mengangkut air) serta paku pakis dan konifer (kedua-duanya berpembuluh, mempunyai akar, batang dan daun yang sebenar). Tumbuhan berbunga menghasilkan bunga yang berkembang menjadi buah berisi biji benih, dan bilangan kotiledon pada biji benih menentukan kumpulannya: satu kotiledon bermaksud monokotiledon (akar serabut, daun berurat selari, contoh padi dan jagung), dua kotiledon bermaksud dikotiledon (akar tunjang, daun berurat jaring, contoh tomato dan durian).",
     starMapHead: "⭐ Bina kekunci dikotomi — Peta Bintang",
     starMapIntro:
       "Kekunci dikotomi mengelaskan organisma melalui satu siri soalan ya/tidak. Jawab setiap satu untuk mengecilkan langit kepada satu organisma sahaja.",
@@ -236,6 +246,8 @@ export function ScienceF2Chapter1NotesBlock({
       <div className="flex flex-col gap-5">
         <h2 className="font-display text-xl font-bold text-foreground">{t.section11}</h2>
 
+        <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.biodiversityIntro}</p>
+
         <div>
           <p className="mb-3 text-[13.5px] text-muted-foreground">{t.habitatsIntro}</p>
           <FlipCardGrid items={content.habitats} />
@@ -315,7 +327,8 @@ export function ScienceF2Chapter1NotesBlock({
         </div>
 
         <div>
-          <h3 className="font-display mb-3 text-base font-bold text-foreground">{t.plantTreeHead}</h3>
+          <h3 className="font-display mb-1 text-base font-bold text-foreground">{t.plantTreeHead}</h3>
+          <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">{t.plantTreeIntro}</p>
           <ClassificationTree branches={content.plantBranches} compareColumns={content.cotyledonCompare} />
         </div>
 

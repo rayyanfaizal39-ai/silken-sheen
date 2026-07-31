@@ -60,7 +60,16 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.3",
       title: "Interdependence and Interaction",
-      intro: "Species form populations, populations form communities, and communities interacting with non-living components form an ecosystem.",
+      intro: "Species form populations, populations form communities, and communities together with non-living components (water, air, soil) form an ecosystem. Within an ecosystem, organisms depend on and interact with each other in different ways — both sides benefit (mutualism), only one benefits without affecting the other (commensalism), one benefits while harming the other (parasitism), one feeds on the other (predator-prey), or both compete for limited basic needs such as food, water, light and space (competition).",
+      cards: [
+        { title: "Mutualism", body: "Both organisms benefit. Example: clownfish get protection from a sea anemone; the anemone gets food scraps and nutrients from the clownfish." },
+        { title: "Commensalism", body: "One organism (the commensal) benefits; the other is unaffected. Example: a remora fish attaches to a shark and eats its food scraps without harming it." },
+        { title: "Parasitism", body: "One organism (the parasite) benefits; the host is harmed. Example: a tapeworm lives in a human intestine and absorbs nutrients from its host." },
+        { title: "Predator-prey", body: "One organism (the predator) hunts and eats another (the prey). Example: an owl hunts and eats rats." },
+        { title: "Competition", body: "Organisms in the same habitat compete for a limited supply of basic needs such as light, water, space, food or mates." },
+        { title: "Biological control", body: "Natural predators, parasites or pathogens reduce pests: owls control rats, guppies eat mosquito larvae and ladybirds eat aphids." },
+        { title: "Population factors", body: "Disease, predators, food supply and weather can increase or decrease a population." },
+      ],
       flipCards: [
         { id: "tropical", icon: "", label: "Tropical", fact: "High rainfall and sunlight throughout the year support dense, diverse life.", imagePath: tropicalImage },
         { id: "desert", icon: "", label: "Desert", fact: "Organisms conserve water and tolerate extreme daytime heat.", imagePath: desertImage },
@@ -78,10 +87,6 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
           { id: "competition", label: "Competition", match: "Plants compete for light, water and space" },
         ],
       },
-      cards: [
-        { title: "Biological control", body: "Natural predators, parasites or pathogens reduce pests: owls control rats, guppies eat mosquito larvae and ladybirds eat aphids." },
-        { title: "Population factors", body: "Disease, predators, food supply and weather can increase or decrease a population." },
-      ],
       checks: [
         { question: "Distinguish mutualism from commensalism.", hint: "In mutualism both benefit; in commensalism one benefits and the other is unaffected." },
         { question: "Why can biological control be safer than pesticides?", hint: "It avoids chemical pollution, but introduced species still need careful management." },
@@ -90,6 +95,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.4",
       title: "Role of Humans in Maintaining a Balanced Nature",
+      intro: "The ecosystems you studied in 2.1–2.3 can be disrupted by human activity itself. Logging causes habitat loss and soil erosion; industry pollutes air, water and soil and causes acid rain; intensive agriculture pollutes water sources with pesticides and excess fertiliser; poor waste disposal causes pollution and flash floods. Humans are therefore responsible for conserving and maintaining a balanced nature so ecosystems stay stable and productive for all living things.",
       comparison: {
         title: "What our activities cost nature",
         columns: [

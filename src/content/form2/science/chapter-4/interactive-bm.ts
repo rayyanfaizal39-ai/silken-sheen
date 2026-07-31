@@ -7,7 +7,13 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
   keywords: ["Patogen", "Penyakit berjangkit", "Penyakit tidak berjangkit", "Vektor", "Antigen", "Antibodi", "Keimunan", "Vaksin"],
   sections: [
     {
-      number: "4.1", title: "Penyakit Berjangkit dan Penyakit Tidak Berjangkit", intro: "Penyakit berbeza dari segi punca, penularan dan pencegahan. Penyakit berjangkit boleh merebak; penyakit tidak berjangkit tidak boleh.",
+      number: "4.1", title: "Penyakit Berjangkit dan Penyakit Tidak Berjangkit", intro: "Penyakit ialah keadaan tidak normal pada badan yang menyebabkan rasa tidak selesa atau kesukaran berfungsi. Penyakit berjangkit disebabkan oleh patogen (bakteria, virus, kulat atau protozoa) yang dipindahkan daripada orang yang dijangkiti kepada orang lain melalui medium dan vektor — jadi ia BOLEH merebak antara individu (contoh: denggi, malaria, tibi, selesema). Penyakit tidak berjangkit pula disebabkan oleh faktor genetik, gaya hidup, pemakanan atau persekitaran — ia TIDAK merebak antara individu (contoh: diabetes, kanser, hipertensi).",
+      cards: [
+        { title: "Vektor Aedes", body: "Nyamuk Aedes membawa virus denggi dan virus Zika." },
+        { title: "Vektor Anopheles", body: "Nyamuk Anopheles betina membawa Plasmodium malariae, patogen penyebab malaria." },
+        { title: "Tikus", body: "Tikus membawa bakteria Leptospira sp., penyebab leptospirosis, melalui air kencingnya yang mencemari air dan tanah." },
+        { title: "Lipas dan lalat", body: "Lipas dan lalat membawa bakteria Salmonella typhi daripada bahan buangan kepada makanan, menyebabkan kepialu (typhoid)." },
+      ],
       comparison: { title: "Dua jenis penyakit yang sangat berbeza", columns: [
         { title: "Berjangkit", body: "Disebabkan patogen seperti bakteria, virus, kulat dan protozoa. Boleh tersebar secara langsung atau tidak langsung." },
         { title: "Tidak berjangkit", body: "Disebabkan faktor genetik, gaya hidup, pemakanan atau persekitaran. Contoh: diabetes, kanser dan hipertensi." },
@@ -16,10 +22,10 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
         { title: "Penularan melalui udara", body: "Titisan membawa tuberkulosis, influenza dan cacar air. Tutup batuk, alirkan udara dan elakkan tempat sesak ketika wabak." },
         { title: "Air dan makanan", body: "Air atau makanan tercemar menyebarkan kolera dan tifoid. Gunakan air bersih, masak makanan sempurna dan jaga kebersihan." },
         { title: "Sentuhan", body: "Sentuhan kulit, bendalir badan atau objek tercemar memindahkan patogen. Basuh tangan dan jangan berkongsi barang peribadi." },
-        { title: "Vektor", body: "Nyamuk, lalat dan haiwan lain membawa patogen antara perumah. Hapuskan tempat pembiakan dan kawal populasi vektor." },
+        { title: "Vektor", body: "Nyamuk, tikus, lipas dan lalat membawa patogen antara perumah. Hapuskan tempat pembiakan dan kawal populasi vektor." },
       ],
       matcher: { title: "Padankan vektor dengan patogennya", instruction: "Pilih vektor, kemudian penyakit atau patogen yang dibawanya.", pairs: [
-        { id: "aedes", label: "Nyamuk Aedes", match: "Virus denggi dan Zika" }, { id: "anopheles", label: "Nyamuk Anopheles", match: "Plasmodium penyebab malaria" }, { id: "fly", label: "Lalat rumah", match: "Bakteria kolera pada makanan tercemar" }, { id: "rat", label: "Pinjal tikus", match: "Bakteria penyebab hawar" },
+        { id: "aedes", label: "Nyamuk Aedes", match: "Virus denggi dan Zika" }, { id: "anopheles", label: "Nyamuk Anopheles", match: "Plasmodium malariae penyebab malaria" }, { id: "fly", label: "Lipas dan lalat", match: "Salmonella typhi penyebab kepialu" }, { id: "rat", label: "Tikus", match: "Leptospira sp. penyebab leptospirosis" },
       ]},
       sequence: { title: "Tiga peringkat pencegahan", instruction: "Pencegahan bertindak sebelum, semasa dan selepas jangkitan.", steps: [
         { title: "Primer", body: "Cegah penyakit sebelum berlaku melalui sanitasi, tabiat sihat, vaksinasi dan kawalan vektor." }, { title: "Sekunder", body: "Kesan penyakit awal melalui saringan, diagnosis, pengasingan dan rawatan segera." }, { title: "Tertier", body: "Kurangkan komplikasi dan pulihkan fungsi melalui penjagaan jangka panjang serta rehabilitasi." },

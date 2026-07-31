@@ -21,10 +21,16 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         { title: "Deficiency examples", body: "Vitamin C deficiency causes scurvy; vitamin D deficiency causes rickets; iron deficiency causes anaemia." },
         { title: "Key roles", body: "Calcium strengthens bones and teeth; iron forms haemoglobin; iodine supports thyroid hormone production." },
       ]},
+      accordions: [
+        { title: "🧪 How do food tests work?", body: "Laboratory tests are used to detect the presence of a particular food class in a sample. Each test uses a specific reagent that reacts only with a certain nutrient and produces an observable colour change or precipitate — this is the 'positive result' that shows the nutrient is present in the sample." },
+        { title: "Starch and sugar tests", body: "Starch: add iodine solution directly to the sample at room temperature — the colour turns blue-black if positive. Reducing sugar: add Benedict's solution, then HEAT in a water bath — the colour changes from blue to green/yellow/brick-red precipitate if positive." },
+        { title: "Protein and fat tests", body: "Protein: add Millon's reagent, then heat in a water bath — a brick-red precipitate/colour shows a positive result. Fat: mix the sample with ethanol, then pour into water — a cloudy, milky-white emulsion forms if positive." },
+        { title: "⚠️ Safety precaution", body: "Ethanol is flammable, so heating for Benedict's and Millon's tests is done in a water bath, not over a direct flame." },
+      ],
       matcher: { title: "Match the food test", instruction: "Match each nutrient with its reagent and positive result.", pairs: [
         { id: "starch", label: "Starch", match: "Iodine solution → blue-black" },
         { id: "sugar", label: "Reducing sugar", match: "Benedict's solution + heat → brick-red precipitate" },
-        { id: "protein", label: "Protein", match: "Biuret test → violet" },
+        { id: "protein", label: "Protein", match: "Millon's reagent + heat → brick-red" },
         { id: "fat", label: "Fat", match: "Ethanol emulsion test → milky white" },
       ]},
       checks: [{ question: "Why is fibre important although it is not digested?", hint: "It adds bulk and stimulates peristalsis." }, { question: "Which food class provides the most energy per gram?", hint: "Fat provides 37 kJ (9 kcal) per gram." }],

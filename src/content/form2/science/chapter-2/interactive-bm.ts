@@ -37,7 +37,16 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       checks: [{ question: "Namakan dua proses yang mengembalikan karbon dioksida ke atmosfera.", hint: "Respirasi, penguraian dan pembakaran." }, { question: "Mengapakah pengurai penting dalam kitar nutrien?", hint: "Pengurai membebaskan mineral daripada bahan mati supaya boleh digunakan semula oleh pengeluar." }],
     },
     {
-      number: "2.3", title: "Kebergantungan dan Interaksi", intro: "Spesies membentuk populasi, populasi membentuk komuniti, dan komuniti bersama komponen bukan hidup membentuk ekosistem.",
+      number: "2.3", title: "Kebergantungan dan Interaksi", intro: "Spesies membentuk populasi, populasi membentuk komuniti, dan komuniti bersama komponen bukan hidup (air, udara, tanah) membentuk ekosistem. Dalam sesuatu ekosistem, organisma saling bergantung dan berinteraksi dengan cara yang berbeza-beza — sama ada kedua-dua pihak untung (simbiosis mutualisme), hanya satu untung tanpa menjejaskan yang lain (komensalisme), satu untung dengan merugikan yang lain (parasitisme), satu memakan yang lain (mangsa-pemangsa), atau kedua-dua bersaing untuk keperluan asas yang terhad seperti makanan, air, cahaya dan ruang (persaingan).",
+      cards: [
+        { title: "Mutualisme", body: "Kedua-dua organisma untung. Contoh: ikan badut mendapat perlindungan daripada anemon laut; anemon laut mendapat sisa makanan dan nutrien daripada ikan badut." },
+        { title: "Komensalisme", body: "Satu organisma (komensal) untung; yang satu lagi tidak terjejas. Contoh: ikan remora melekat pada jerung dan makan sisa makanannya, tanpa memudaratkan jerung." },
+        { title: "Parasitisme", body: "Satu organisma (parasit) untung; perumah rugi. Contoh: cacing pita hidup dalam usus manusia dan menyerap nutrien daripada perumahnya." },
+        { title: "Mangsa–pemangsa", body: "Satu organisma (pemangsa) memburu dan memakan organisma lain (mangsa). Contoh: burung hantu memburu dan memakan tikus." },
+        { title: "Persaingan", body: "Organisma dalam habitat yang sama bersaing untuk bekalan keperluan asas yang terhad seperti cahaya, air, ruang, makanan atau pasangan." },
+        { title: "Kawalan biologi", body: "Pemangsa, parasit atau patogen semula jadi mengurangkan perosak: burung hantu mengawal tikus, gupi makan larva nyamuk dan kumbang kepik makan afid." },
+        { title: "Faktor populasi", body: "Penyakit, pemangsa, bekalan makanan dan cuaca boleh menaikkan atau menurunkan saiz populasi." },
+      ],
       flipCards: [
         { id: "tropical", icon: "", label: "Tropika", fact: "Hujan dan cahaya matahari tinggi sepanjang tahun menyokong hidupan yang padat dan pelbagai.", imagePath: tropicalImage },
         { id: "desert", icon: "", label: "Gurun", fact: "Organisma menjimatkan air dan menahan kepanasan siang yang melampau.", imagePath: desertImage },
@@ -51,11 +60,10 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         { id: "predation", label: "Mangsa–pemangsa", match: "Burung hantu memburu dan makan tikus" },
         { id: "competition", label: "Persaingan", match: "Tumbuhan bersaing untuk cahaya, air dan ruang" },
       ]},
-      cards: [{ title: "Kawalan biologi", body: "Pemangsa, parasit atau patogen semula jadi mengurangkan perosak: burung hantu mengawal tikus, gupi makan larva nyamuk dan kumbang kepik makan afid." }, { title: "Faktor populasi", body: "Penyakit, pemangsa, bekalan makanan dan cuaca boleh menaikkan atau menurunkan saiz populasi." }],
       checks: [{ question: "Bezakan mutualisme daripada komensalisme.", hint: "Mutualisme: kedua-duanya untung; komensalisme: satu untung, satu tidak terjejas." }, { question: "Mengapakah kawalan biologi boleh lebih selamat daripada racun perosak?", hint: "Tiada pencemaran kimia, tetapi spesies yang diperkenalkan masih perlu diurus dengan teliti." }],
     },
     {
-      number: "2.4", title: "Peranan Manusia dalam Mengekalkan Keseimbangan Alam",
+      number: "2.4", title: "Peranan Manusia dalam Mengekalkan Keseimbangan Alam", intro: "Ekosistem yang telah dipelajari dalam 2.1–2.3 boleh terjejas oleh aktiviti manusia sendiri. Pembalakan menyebabkan kehilangan habitat dan hakisan tanah; perindustrian mencemarkan udara, air dan tanah serta menyebabkan hujan asid; pertanian intensif mencemarkan sumber air dengan racun perosak dan baja berlebihan; pelupusan sisa yang lemah menyebabkan pencemaran dan banjir kilat. Oleh itu manusia bertanggungjawab memulihara dan mengekalkan keseimbangan alam supaya ekosistem terus stabil dan produktif untuk semua hidupan.",
       comparison: { title: "Kos aktiviti manusia terhadap alam", columns: [
         { title: "Tekanan manusia", body: "Pembalakan menyebabkan kehilangan habitat dan hakisan; perindustrian menyebabkan pencemaran dan hujan asid; pertanian intensif mencemarkan air; pelupusan sisa lemah menyebabkan pencemaran dan banjir kilat." },
         { title: "Memulihkan keseimbangan", body: "Kuatkuasakan undang-undang alam sekitar, tingkatkan kesedaran, amalkan 5R dan gunakan kawalan biologi secara bertanggungjawab." },
