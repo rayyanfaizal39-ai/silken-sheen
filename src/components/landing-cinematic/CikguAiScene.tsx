@@ -8,12 +8,12 @@ import { useCinematicMotion } from "./cinematicMotionContext";
 import AtmosphericBackground from "./AtmosphericBackground";
 
 /**
- * Cikgu AI — the original Companion desktop engine. Its GSAP timeline and
+ * Ace — the original Companion desktop engine. Its GSAP timeline and
  * ScrollTrigger config (pin, scrub, +=300%) remain intact at 1024px and above;
  * smaller viewports use the natural-flow layout defined in the scoped CSS.
  *
  * Animation-target mapping (old → new):
- *   .companion__figure   → Cikgu AI tutor (silhouette → full-colour reveal)
+ *   .companion__figure   → Ace tutor (silhouette → full-colour reveal)
  *   .companion__rim      → violet glow behind the tutor
  *   .companion__particle → gold paper sparkles
  *   .companion__title    → eyebrow + headline (staggered reveal lines)
@@ -251,7 +251,7 @@ export default function CikguAiScene() {
                 <span className="cine-reveal-line__inner">Stuck? Ask</span>
               </span>
               <span className="cine-reveal-line">
-                <span className="cine-reveal-line__inner">Cikgu AI.</span>
+                <span className="cine-reveal-line__inner">Ace.</span>
               </span>
             </h2>
           </div>
@@ -271,12 +271,12 @@ export default function CikguAiScene() {
               className="companion__step companion__cta"
               authenticatedLabel={
                 <>
-                  Try Cikgu AI <em aria-hidden="true">→</em>
+                  Try Ace <em aria-hidden="true">→</em>
                 </>
               }
               authenticatedTo="/notes"
             >
-              Try Cikgu AI <em aria-hidden="true">→</em>
+              Try Ace <em aria-hidden="true">→</em>
             </CinematicAuthCta>
           </div>
 
@@ -305,7 +305,7 @@ export default function CikguAiScene() {
           <img
             className="companion__figure"
             src={cikguAiTutor}
-            alt="Cikgu AI, the AcadeMY robot tutor, holding a teaching pointer"
+            alt="Ace, the AcadeMY robot tutor, holding a teaching pointer"
             width={620}
             height={669}
             loading="lazy"
@@ -331,7 +331,7 @@ export default function CikguAiScene() {
               <span>I still don’t understand photosynthesis.</span>
             </p>
             <p className="companion__convo-row">
-              <span className="companion__convo-who companion__convo-who--ai">Cikgu AI</span>
+              <span className="companion__convo-who companion__convo-who--ai">Ace</span>
               <span>
                 Think of a leaf as a tiny food factory. Let’s break it into three simple steps.
               </span>

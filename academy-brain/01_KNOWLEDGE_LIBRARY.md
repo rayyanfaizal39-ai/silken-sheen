@@ -6,7 +6,7 @@ The AcadeMY Knowledge Library is the approved academic knowledge source for:
 
 - automatic quiz generation
 - shuffled paid quizzes
-- Cikgu AI answers
+- Ace answers
 - flashcard generation
 - explanations
 - weak-topic revision

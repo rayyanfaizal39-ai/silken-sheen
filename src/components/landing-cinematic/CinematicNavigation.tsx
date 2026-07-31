@@ -7,7 +7,7 @@ import { useCinematicMotion } from "./cinematicMotionContext";
 const LINKS = [
   { label: "Learning World", target: "#learning-world" },
   { label: "Why AcadeMY", target: "#why-academy" },
-  { label: "Cikgu AI", target: "#cikgu-ai" },
+  { label: "Ace", target: "#cikgu-ai" },
   { label: "Parents", target: "#parents" },
   { label: "KSSM", target: "#kssm" },
 ];

@@ -45,7 +45,7 @@ Inside the engine, on init, install passive listeners:
 
 - `document.addEventListener('play', …, true)` on any `<video>` or non-bg `<audio>` element → duck.
 - Corresponding `pause`/`ended` → check if any media is still playing; if none, unduck.
-- Monkey-patch `window.speechSynthesis.speak` to duck on start and unduck on `utterance.onend`/`onerror` (covers Cikgu AI read-aloud).
+- Monkey-patch `window.speechSynthesis.speak` to duck on start and unduck on `utterance.onend`/`onerror` (covers Ace read-aloud).
 - Expose `duck('cikgu-ai')` / `unduck('cikgu-ai')` for streaming-audio call sites that don't go through `<audio>`/speechSynthesis (e.g. NotebookLM WebSocket) — I'll wire these where such sites exist.
 
 Ducking uses a reference-counted set of reasons; music resumes only when the set is empty.

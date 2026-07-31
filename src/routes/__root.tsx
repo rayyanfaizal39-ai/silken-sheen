@@ -97,7 +97,7 @@ function ErrorComponent({ error, info, reset }: ErrorComponentProps) {
 
 const ROOT_TITLE = "AcadeMY — Malaysia's Interstellar Learning Platform (KSSM Form 1-3)";
 const ROOT_DESCRIPTION =
-  "AI-powered KSSM learning platform for Malaysian Form 1-3 students. Notes, quizzes, flashcards, mind maps and Cikgu AI tutor in Bahasa Melayu & English/DLP — free to start.";
+  "AI-powered KSSM learning platform for Malaysian Form 1-3 students. Notes, quizzes, flashcards, mind maps and Ace tutor in Bahasa Melayu & English/DLP — free to start.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -109,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "keywords",
         content:
-          "KSSM notes, KSSM quiz, KSSM flashcards, SPM preparation, PT3 preparation, Form 1 notes, Form 2 notes, Form 3 notes, Cikgu AI, AI tutor Malaysia, student learning platform Malaysia, Malaysia learning platform",
+          "KSSM notes, KSSM quiz, KSSM flashcards, SPM preparation, PT3 preparation, Form 1 notes, Form 2 notes, Form 3 notes, Ace, AI tutor Malaysia, student learning platform Malaysia, Malaysia learning platform",
       },
       { name: "robots", content: "index, follow" },
       { name: "theme-color", content: "#050816" },

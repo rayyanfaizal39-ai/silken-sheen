@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Check, Crown, Sparkles, Zap, BarChart3, MessageCircle, ShieldCheck } from "lucide-react";
 
 const CAPTAIN_PERKS = [
-  { icon: MessageCircle, label: "Unlimited Cikgu AI tutor" },
+  { icon: MessageCircle, label: "Unlimited Ace tutor" },
   { icon: BarChart3, label: "Deep progress insights & weekly reports" },
   { icon: Zap, label: "Priority AI answers + faster mind maps" },
   { icon: ShieldCheck, label: "Parent Dashboard & family view" },
@@ -64,7 +64,7 @@ export function UpgradePanel() {
             name="Cadet"
             tag="Free forever"
             price="RM 0"
-            perks={["All KSSM notes & mind maps", "Daily quizzes & flashcards", "5 Cikgu AI questions / day"]}
+            perks={["All KSSM notes & mind maps", "Daily quizzes & flashcards", "5 Ace questions / day"]}
             ctaLabel="Continue as Cadet"
             ctaTo="/subjects"
             variant="ghost"
@@ -74,7 +74,7 @@ export function UpgradePanel() {
             tag="Most popular"
             price="RM 19"
             priceSuffix="/mo"
-            perks={["Everything in Cadet", "Unlimited Cikgu AI + priority", "Insights, reports & Parent view"]}
+            perks={["Everything in Cadet", "Unlimited Ace + priority", "Insights, reports & Parent view"]}
             ctaLabel="Upgrade now"
             ctaTo="/upgrade"
             variant="primary"

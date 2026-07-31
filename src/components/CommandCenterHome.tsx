@@ -152,7 +152,7 @@ export function CommandCenterHome() {
               <HomeImagePlaceholder label="CIKGU AI ARTWORK" aspectRatio="1 / 1" />
               <span>
                 <MessageCircle aria-hidden="true" />
-                Cikgu AI
+                Ace
               </span>
             </button>
           </div>

@@ -328,7 +328,7 @@ function InsightsTab({
           </div>
           <div>
             <p className="font-bold text-sm text-white">Jana Plan Ulangkaji</p>
-            <p className="text-[11px] text-white/60">Cikgu AI akan analisis kemajuan kamu</p>
+            <p className="text-[11px] text-white/60">Ace akan analisis kemajuan kamu</p>
           </div>
         </div>
       </button>
@@ -398,7 +398,7 @@ export function CikguAI() {
   useEffect(() => {
     if (isOpen && messages.length === 0 && !pendingMessage) {
       const greeting =
-        "Hai! Saya Cikgu AI 👨‍🚀 Boleh tanya saya apa sahaja tentang pelajaran. Nak faham sesuatu konsep, atau perlukan bantuan? Jom belajar sama-sama! 🌟";
+        "Hai! Saya Ace 👨‍🚀 Boleh tanya saya apa sahaja tentang pelajaran. Nak faham sesuatu konsep, atau perlukan bantuan? Jom belajar sama-sama! 🌟";
       setMessages([{ role: "assistant", content: greeting, ts: Date.now() }]);
     }
   }, [isOpen, messages.length, pendingMessage]);
@@ -527,12 +527,12 @@ export function CikguAI() {
               className="max-w-[200px] rounded-2xl border border-white/10 bg-[#080E1C]/90 px-4 py-2.5 text-sm font-medium text-white shadow-2xl backdrop-blur-xl animate-fade-up"
               style={{ boxShadow: "0 8px 32px rgba(99,102,241,0.3)" }}
             >
-              Ada soalan? Tanya Cikgu AI! 👨‍🚀
+              Ada soalan? Tanya Ace! 👨‍🚀
             </div>
           )}
           <button
             onClick={openWithTip}
-            aria-label="Buka Cikgu AI"
+            aria-label="Buka Ace"
             className="group relative flex h-14 w-14 items-center justify-center rounded-2xl text-xl shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95"
             style={{
               background: "linear-gradient(135deg, #6366F1, #8B5CF6)",
@@ -543,7 +543,7 @@ export function CikguAI() {
             <span className="absolute inset-0 rounded-2xl animate-ping opacity-20 bg-[#8B5CF6]" style={{ animationDuration: "3s" }} />
             <span className="relative z-10">👨‍🚀</span>
           </button>
-          <span className="text-[10px] font-bold text-white/40 tracking-wide">Cikgu AI</span>
+          <span className="text-[10px] font-bold text-white/40 tracking-wide">Ace</span>
         </div>
       )}
 
@@ -576,7 +576,7 @@ export function CikguAI() {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-display font-bold text-sm text-white">Cikgu AI</span>
+                    <span className="font-display font-bold text-sm text-white">Ace</span>
                     {/* Mode badge */}
                     <span
                       className="rounded-full px-2 py-0.5 text-[9px] font-bold"
@@ -655,7 +655,7 @@ export function CikguAI() {
                 <div className="text-4xl mb-3">🎯</div>
                 <p className="font-bold text-white text-sm">Pelan Ulangkaji Peribadi</p>
                 <p className="text-xs text-white/40 mt-1 leading-5">
-                  Cikgu AI akan analisis kemajuan kamu dan bina pelan ulangkaji mengikut kelemahan kamu.
+                  Ace akan analisis kemajuan kamu dan bina pelan ulangkaji mengikut kelemahan kamu.
                 </p>
               </div>
 
@@ -749,7 +749,7 @@ export function CikguAI() {
                         {m.role === "assistant" && (
                           <>
                             <span className="text-[10px] font-semibold" style={{ color: modeInfo.color }}>
-                              Cikgu AI
+                              Ace
                             </span>
                             <button
                               onClick={() => void copyMsg(i, m.content)}
@@ -842,7 +842,7 @@ export function CikguAI() {
                     value={input}
                     onChange={(e) => setInput(e.target.value.slice(0, 500))}
                     onKeyDown={onKeyDown}
-                    placeholder="Tanya Cikgu AI..."
+                    placeholder="Tanya Ace..."
                     rows={1}
                     maxLength={500}
                     className="flex-1 resize-none rounded-2xl border border-white/[0.08] bg-white/[0.05] px-3.5 py-2.5 text-sm text-white placeholder:text-white/25 focus:border-[#6366F1]/50 focus:outline-none max-h-28"

@@ -303,7 +303,7 @@ function DashboardPage() {
         <QuickActionsCard lastVisited={progress.lastVisited} />
       </div>
 
-      {/* ── ROW 5 — Companion Evolution / Mastery & Cikgu AI ──────────── */}
+      {/* ── ROW 5 — Companion Evolution / Mastery & Ace ──────────── */}
       <div className="mb-6 grid gap-6 lg:grid-cols-2">
         <CosmicCompanionCard xp={progress.xp} companionId={companionId} />
         <div className="space-y-4">
@@ -320,7 +320,7 @@ function DashboardPage() {
             </div>
           </Card>
 
-          {/* Cikgu AI CTA */}
+          {/* Ace CTA */}
           <div
             className="rounded-[2rem] border border-[#6366F1]/25 bg-gradient-to-br from-[#6366F1]/15 to-[#8B5CF6]/15 p-5 backdrop-blur-2xl"
           >
@@ -333,7 +333,7 @@ function DashboardPage() {
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <p className="font-bold text-sm text-white">Cikgu AI</p>
+                  <p className="font-bold text-sm text-white">Ace</p>
                   <Sparkles className="h-3 w-3 text-[#FBBF24]" />
                 </div>
                 <p className="text-[10px] text-white/40">Your personal AI tutor</p>

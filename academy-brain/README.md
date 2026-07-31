@@ -11,7 +11,7 @@ This folder contains the complete blueprint for the intelligence system powering
 AcadeMY Brain is the central intelligence platform that powers:
 
 - 📚 Knowledge Library
-- 🤖 Cikgu AI
+- 🤖 Ace
 - 🎯 Unlimited Smart Quizzes
 - 📝 Automatic Question Generation
 - 🃏 Flashcard Generation

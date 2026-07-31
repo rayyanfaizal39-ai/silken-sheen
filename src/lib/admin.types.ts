@@ -80,7 +80,7 @@ export interface KnowledgeEngineRow {
   created_at: string | null;
 }
 
-// Filter payload for the Cikgu AI Intel table — separate from AdminFilters
+// Filter payload for the Ace Intel table — separate from AdminFilters
 // since "category" here is a knowledge_engine-specific facet, not a subject.
 export interface KnowledgeEngineFilters {
   search?: string | null;

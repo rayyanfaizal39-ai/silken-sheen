@@ -32,7 +32,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
     items: [
       { icon: "📚", label: "Subjects" },
       { icon: "🧩", label: "Chapters" },
-      { icon: "🧠", label: "Cikgu AI Intel", to: "/admin/cikgu-intel" },
+      { icon: "🧠", label: "Ace Intel", to: "/admin/cikgu-intel" },
       { icon: "🗂", label: "Content Library", to: "/admin/content-library" },
       { icon: "Q", label: "Quiz Importer", to: "/admin/content/quiz-importer" },
     ],

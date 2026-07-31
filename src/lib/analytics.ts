@@ -207,7 +207,7 @@ const MOCK_QUIZ_HISTORY: QuizResult[] = [
 
 const MOCK_RECENT_ACTIVITY: RecentActivity[] = [
   { id: "ra1", subjectId: "math", chapterKey: "algebra-3", type: "quiz", label: "Completed Quiz: Algebra Chapter 3", timestamp: Date.now() - 2 * 3_600_000 },
-  { id: "ra2", subjectId: "science", chapterKey: "tidal-forces", type: "notes", label: "Cikgu AI session: Tidal Forces", timestamp: Date.now() - 4 * 3_600_000 },
+  { id: "ra2", subjectId: "science", chapterKey: "tidal-forces", type: "notes", label: "Ace session: Tidal Forces", timestamp: Date.now() - 4 * 3_600_000 },
   { id: "ra3", subjectId: "sejarah", chapterKey: "tokoh-sejarah", type: "flashcards", label: "Flashcard review: Tokoh Sejarah", timestamp: Date.now() - 26 * 3_600_000 },
   { id: "ra4", subjectId: "english", chapterKey: "essay-writing", type: "quiz", label: "Perfect score: Essay Writing Test", timestamp: Date.now() - 48 * 3_600_000 },
 ];
