@@ -168,10 +168,13 @@ import { geographyF2C3Notes } from "@/content/form2/geography/chapter-3/notes";
 import { geographyF2C3Interactive } from "@/content/form2/geography/chapter-3/interactive";
 import { geoF2C4MindMap } from "@/content/form2/geography/chapter-4/mindmap";
 import { geographyF2C4Notes } from "@/content/form2/geography/chapter-4/notes";
+import { geographyF2C4Interactive } from "@/content/form2/geography/chapter-4/interactive";
 import { geoF2C5MindMap } from "@/content/form2/geography/chapter-5/mindmap";
 import { geographyF2C5Notes } from "@/content/form2/geography/chapter-5/notes";
+import { geographyF2C5Interactive } from "@/content/form2/geography/chapter-5/interactive";
 import { geoF2C6MindMap } from "@/content/form2/geography/chapter-6/mindmap";
 import { geographyF2C6Notes } from "@/content/form2/geography/chapter-6/notes";
+import { geographyF2C6Interactive } from "@/content/form2/geography/chapter-6/interactive";
 import { geoF2C7MindMap } from "@/content/form2/geography/chapter-7/mindmap";
 import { geographyF2C7Notes } from "@/content/form2/geography/chapter-7/notes";
 import { geoF2C8MindMap } from "@/content/form2/geography/chapter-8/mindmap";
@@ -1129,6 +1132,7 @@ export const chapters: ChapterContent[] = [
     title: "Cuaca dan Iklim di Malaysia",
     video: getEducationalVideo("geography-f2-c4"),
     notes: geographyF2C4Notes,
+    geoF2InteractiveData: geographyF2C4Interactive,
     mindMap: { data: geoF2C4MindMap, title: "Cuaca dan Iklim di Malaysia" },
     flashcards: geographyF2FlashcardsFor(4),
     quiz: geographyF2QuizzesFor(4),
@@ -1141,6 +1145,7 @@ export const chapters: ChapterContent[] = [
     title: "Pengangkutan di Malaysia",
     video: getEducationalVideo("geography-f2-c5"),
     notes: geographyF2C5Notes,
+    geoF2InteractiveData: geographyF2C5Interactive,
     mindMap: { data: geoF2C5MindMap, title: "Pengangkutan di Malaysia" },
     flashcards: geographyF2FlashcardsFor(5),
     quiz: geographyF2QuizzesFor(5),
@@ -1153,6 +1158,7 @@ export const chapters: ChapterContent[] = [
     title: "Telekomunikasi di Malaysia",
     video: getEducationalVideo("geography-f2-c6"),
     notes: geographyF2C6Notes,
+    geoF2InteractiveData: geographyF2C6Interactive,
     mindMap: { data: geoF2C6MindMap, title: "Telekomunikasi di Malaysia" },
     flashcards: geographyF2FlashcardsFor(6),
     quiz: geographyF2QuizzesFor(6),

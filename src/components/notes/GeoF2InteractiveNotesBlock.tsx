@@ -125,18 +125,22 @@ export function GeoF2InteractiveNotesBlock({
               ))}
             </Accordion>
           )}
-          {section.tabs && (
-            <Tabs defaultValue="tab-0">
-              <TabsList className="h-auto max-w-full flex-wrap justify-start">
-                {section.tabs.map((tab, i) => <TabsTrigger key={tab.title} value={`tab-${i}`}>{tab.title}</TabsTrigger>)}
-              </TabsList>
-              {section.tabs.map((tab, i) => (
-                <TabsContent key={tab.title} value={`tab-${i}`} className="text-[13.5px] leading-relaxed text-muted-foreground">
-                  {tab.body}
-                </TabsContent>
-              ))}
-            </Tabs>
-          )}
+          {section.tabGroups?.map((group, gi) => (
+            <div key={`${section.number}-tabgroup-${gi}`}>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{group.title}</h3>
+              {group.instruction && <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{group.instruction}</p>}
+              <Tabs defaultValue="tab-0">
+                <TabsList className="h-auto max-w-full flex-wrap justify-start">
+                  {group.tabs.map((tab, i) => <TabsTrigger key={tab.title} value={`tab-${i}`}>{tab.title}</TabsTrigger>)}
+                </TabsList>
+                {group.tabs.map((tab, i) => (
+                  <TabsContent key={tab.title} value={`tab-${i}`} className="text-[13.5px] leading-relaxed text-muted-foreground">
+                    {tab.body}
+                  </TabsContent>
+                ))}
+              </Tabs>
+            </div>
+          ))}
           {section.sequence && (
             <div>
               <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.sequence.title}</h3>

@@ -34,14 +34,19 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
       title: "Garisan Timuran dan Garisan Utaraan",
       intro:
         "Garisan grid ialah garisan-garisan dalam peta topografi yang dilukis secara menegak dan melintang, terbahagi kepada dua jenis: garisan timuran dan garisan utaraan.",
-      tabs: [
+      tabGroups: [
         {
-          title: "Garisan Timuran",
-          body: "Garisan grid yang dilukis secara menegak, menunjukkan kedudukan sesuatu tempat ke arah timur. Nilainya bertambah ke arah timur.",
-        },
-        {
-          title: "Garisan Utaraan",
-          body: "Garisan grid yang dilukis secara melintang, menunjukkan kedudukan sesuatu tempat ke arah utara. Nilainya bertambah ke arah utara.",
+          title: "Garisan grid dalam peta",
+          tabs: [
+            {
+              title: "Garisan Timuran",
+              body: "Garisan grid yang dilukis secara menegak, menunjukkan kedudukan sesuatu tempat ke arah timur. Nilainya bertambah ke arah timur.",
+            },
+            {
+              title: "Garisan Utaraan",
+              body: "Garisan grid yang dilukis secara melintang, menunjukkan kedudukan sesuatu tempat ke arah utara. Nilainya bertambah ke arah utara.",
+            },
+          ],
         },
       ],
       checks: [

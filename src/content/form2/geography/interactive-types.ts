@@ -23,6 +23,18 @@ export type GeoTabItem = {
   body: string;
 };
 
+/**
+ * A single independently-scoped toggle group. Sections can render more than one of
+ * these (e.g. a monsoon-wind toggle AND a separate day/night breeze toggle in the same
+ * subtopic) — each renders as its own component instance, so state never leaks between
+ * groups the way a global DOM-query-based toggle would.
+ */
+export type GeoTabGroup = {
+  title: string;
+  instruction?: string;
+  tabs: GeoTabItem[];
+};
+
 export type GeoCheckItem = {
   question: string;
   hint: string;
@@ -61,7 +73,7 @@ export type GeoInteractiveSection = {
   cards?: GeoInteractiveCard[];
   flipCards?: GeoFlipCardItem[];
   accordions?: GeoAccordionItem[];
-  tabs?: GeoTabItem[];
+  tabGroups?: GeoTabGroup[];
   calculators?: GeoCalculatorBlock[];
   gridReference?: GridReferenceBlock;
   sequence?: {
@@ -73,7 +85,7 @@ export type GeoInteractiveSection = {
 };
 
 export type GeoF2InteractiveContent = {
-  chapter: 1 | 2 | 3;
+  chapter: 1 | 2 | 3 | 4 | 5 | 6;
   blogHighlight: {
     title: string;
     body: string;

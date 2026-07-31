@@ -56,14 +56,19 @@ export const geographyF2C1Interactive: GeoF2InteractiveContent = {
       title: "Jarak",
       intro:
         "Jarak ialah ukuran jauh atau dekatnya sesuatu tempat dengan tempat yang lain. Jarak terbahagi kepada dua jenis: jarak mutlak (diukur dalam unit tetap seperti meter atau kilometer, nilainya tidak berubah tidak kira jenis pengangkutan) dan jarak relatif (diukur berdasarkan masa, kos atau jenis pengangkutan yang digunakan, dan boleh berubah-ubah). Dua orang murid yang tinggal sama jauh (jarak mutlak) dari sekolah boleh mengambil masa yang sangat berbeza untuk sampai — bergantung sama ada mereka berjalan kaki, menaiki bas, atau dihantar dengan kereta. Itulah sebabnya perancangan harian (memilih pengangkutan, merancang waktu keluar rumah) lebih bergantung kepada jarak relatif berbanding jarak mutlak semata-mata.",
-      tabs: [
+      tabGroups: [
         {
-          title: "Jarak Mutlak",
-          body: "Ukuran jauh di antara dua tempat yang dinyatakan dalam unit seperti meter atau kilometer. Nilainya tetap dan tidak berubah walau apa pun cara pengangkutan yang digunakan. Contoh: Jarak dari Ipoh ke Bidor = 66 km.",
-        },
-        {
-          title: "Jarak Relatif",
-          body: "Jarak berdasarkan kos dan masa perjalanan — tidak tetap dan berubah-ubah mengikut jenis pengangkutan. Contoh: Tambang bas dari Ipoh ke Bidor = RM6.60; masa perjalanan dengan kereta = 1 jam 10 minit.",
+          title: "Dua cara mengukur \"jauh\"",
+          tabs: [
+            {
+              title: "Jarak Mutlak",
+              body: "Ukuran jauh di antara dua tempat yang dinyatakan dalam unit seperti meter atau kilometer. Nilainya tetap dan tidak berubah walau apa pun cara pengangkutan yang digunakan. Contoh: Jarak dari Ipoh ke Bidor = 66 km.",
+            },
+            {
+              title: "Jarak Relatif",
+              body: "Jarak berdasarkan kos dan masa perjalanan — tidak tetap dan berubah-ubah mengikut jenis pengangkutan. Contoh: Tambang bas dari Ipoh ke Bidor = RM6.60; masa perjalanan dengan kereta = 1 jam 10 minit.",
+            },
+          ],
         },
       ],
       checks: [
@@ -78,14 +83,19 @@ export const geographyF2C1Interactive: GeoF2InteractiveContent = {
       title: "Menentukan Jarak Sebenar Menggunakan Skala",
       intro:
         "Jarak di antara dua tempat pada peta boleh berbentuk lurus (seperti jalan raya lurus) atau melengkung (seperti sungai berliku), dan setiap satu memerlukan alat pengukuran yang berbeza. Jarak lurus diukur menggunakan pembaris atau jangka tolok — letakkan kedua-dua hujung jangka tolok pada dua titik, kemudian pindahkan ke atas skala lurus peta tanpa mengubah bukaannya untuk membaca ukurannya. Jarak melengkung pula diukur menggunakan benang atau jalur kertas — ikutkan benang mengikut lengkungan sungai atau jalan, kemudian rentangkan benang itu di atas pembaris untuk mendapatkan ukurannya. Contohnya, jarak di antara sekolah dengan pejabat pos diukur menggunakan jangka tolok ialah 6 cm, dan skala peta ialah 1 cm mewakili 2 km — maka jarak sebenar = 6 × 2 km = 12 km.",
-      tabs: [
+      tabGroups: [
         {
-          title: "Jarak Lurus",
-          body: "Diukur menggunakan pembaris atau jangka tolok — letakkan kedua-dua hujung jangka tolok pada dua titik, kemudian pindahkan ke atas skala lurus peta untuk membaca ukurannya.",
-        },
-        {
-          title: "Jarak Melengkung",
-          body: "Diukur menggunakan benang atau jalur kertas — ikutkan benang mengikut lengkungan sungai atau jalan, kemudian rentangkan benang itu di atas pembaris untuk mendapatkan ukurannya.",
+          title: "Jarak lurus atau jarak melengkung?",
+          tabs: [
+            {
+              title: "Jarak Lurus",
+              body: "Diukur menggunakan pembaris atau jangka tolok — letakkan kedua-dua hujung jangka tolok pada dua titik, kemudian pindahkan ke atas skala lurus peta untuk membaca ukurannya.",
+            },
+            {
+              title: "Jarak Melengkung",
+              body: "Diukur menggunakan benang atau jalur kertas — ikutkan benang mengikut lengkungan sungai atau jalan, kemudian rentangkan benang itu di atas pembaris untuk mendapatkan ukurannya.",
+            },
+          ],
         },
       ],
       checks: [

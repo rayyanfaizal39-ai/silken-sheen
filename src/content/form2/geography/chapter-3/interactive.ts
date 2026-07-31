@@ -59,14 +59,19 @@ export const geographyF2C3Interactive: GeoF2InteractiveContent = {
           body: "Tarikan graviti Bulan (dan Matahari) menarik jasad air di Bumi, menyebabkan sebahagian kawasan mengalami air pasang manakala kawasan lain mengalami air surut pada masa yang sama — berlaku dua kali pasang dan dua kali surut dalam tempoh 24 jam.",
         },
       ],
-      tabs: [
+      tabGroups: [
         {
-          title: "Pasang Perbani",
-          body: "Berlaku apabila Bulan, Bumi dan Matahari berada dalam kedudukan satu garis lurus — menghasilkan air pasang besar.",
-        },
-        {
-          title: "Pasang Anak",
-          body: "Berlaku apabila Bulan, Matahari dan Bumi berada pada sudut tegak antara satu sama lain — menghasilkan pasang yang lebih kecil.",
+          title: "🌊 Dua jenis pasang surut",
+          tabs: [
+            {
+              title: "Pasang Perbani",
+              body: "Berlaku apabila Bulan, Bumi dan Matahari berada dalam kedudukan satu garis lurus — menghasilkan air pasang besar.",
+            },
+            {
+              title: "Pasang Anak",
+              body: "Berlaku apabila Bulan, Matahari dan Bumi berada pada sudut tegak antara satu sama lain — menghasilkan pasang yang lebih kecil.",
+            },
+          ],
         },
       ],
       checks: [
@@ -107,14 +112,19 @@ export const geographyF2C3Interactive: GeoF2InteractiveContent = {
           },
         ],
       },
-      tabs: [
+      tabGroups: [
         {
-          title: "Gerhana Bulan",
-          body: "Bumi berada di antara Matahari dan Bulan (Matahari–Bumi–Bulan segaris) — bayang-bayang Bumi menutupi Bulan, menghalang cahaya Matahari daripada terpancar ke Bulan.",
-        },
-        {
-          title: "Gerhana Matahari",
-          body: "Bulan berada di antara Matahari dan Bumi (Matahari–Bulan–Bumi segaris) — bayang-bayang Bulan melindungi sebahagian Bumi. Kerana Bulan lebih kecil daripada Bumi, gerhana matahari hanya kelihatan di kawasan tertentu (zon umbra/penumbra), tidak meliputi seluruh permukaan Bumi.",
+          title: "🌑 Fenomena gerhana",
+          tabs: [
+            {
+              title: "Gerhana Bulan",
+              body: "Bumi berada di antara Matahari dan Bulan (Matahari–Bumi–Bulan segaris) — bayang-bayang Bumi menutupi Bulan, menghalang cahaya Matahari daripada terpancar ke Bulan.",
+            },
+            {
+              title: "Gerhana Matahari",
+              body: "Bulan berada di antara Matahari dan Bumi (Matahari–Bulan–Bumi segaris) — bayang-bayang Bulan melindungi sebahagian Bumi. Kerana Bulan lebih kecil daripada Bumi, gerhana matahari hanya kelihatan di kawasan tertentu (zon umbra/penumbra), tidak meliputi seluruh permukaan Bumi.",
+            },
+          ],
         },
       ],
       checks: [

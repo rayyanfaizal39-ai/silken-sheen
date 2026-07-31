@@ -90,6 +90,9 @@ import { ScienceF2Chapter13NotesBlock } from "@/components/notes/ScienceF2Chapte
 import { Geo2Chapter1NotesBlock } from "@/components/notes/Geo2Chapter1NotesBlock";
 import { Geo2Chapter2NotesBlock } from "@/components/notes/Geo2Chapter2NotesBlock";
 import { Geo2Chapter3NotesBlock } from "@/components/notes/Geo2Chapter3NotesBlock";
+import { Geo2Chapter4NotesBlock } from "@/components/notes/Geo2Chapter4NotesBlock";
+import { Geo2Chapter5NotesBlock } from "@/components/notes/Geo2Chapter5NotesBlock";
+import { Geo2Chapter6NotesBlock } from "@/components/notes/Geo2Chapter6NotesBlock";
 import {
   MiniInvestigation,
   ScienceDiscoveryChapterHeader,
@@ -1179,8 +1182,32 @@ function NotesPage() {
                   isRead={isRead}
                   onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
                 />
-              ) : (
+              ) : activeChapter.geoF2InteractiveData.chapter === 3 ? (
                 <Geo2Chapter3NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF2InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : activeChapter.geoF2InteractiveData.chapter === 4 ? (
+                <Geo2Chapter4NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF2InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : activeChapter.geoF2InteractiveData.chapter === 5 ? (
+                <Geo2Chapter5NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF2InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                />
+              ) : (
+                <Geo2Chapter6NotesBlock
                   id="notes"
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
