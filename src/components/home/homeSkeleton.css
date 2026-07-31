@@ -42,7 +42,7 @@
 .home-hero-background {
   z-index: 0;
   background-image: url("/assets/ranks/home/academy-station-hero.png");
-  background-position: center right;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   filter: brightness(1.08) saturate(1.06);
@@ -558,13 +558,19 @@
   margin-top: 0;
 }
 
+@media (max-width: 1440px) {
+  .home-hero-background {
+    background-position: 65% center;
+  }
+}
+
 @media (max-width: 1024px) {
   .home-hero {
     min-height: clamp(500px, 65vw, 580px);
   }
 
   .home-hero-background {
-    background-position: 58% center;
+    background-position: 68% center;
   }
 
   .home-hero-content {
@@ -596,7 +602,7 @@
   }
 
   .home-hero-background {
-    background-position: 66% center;
+    background-position: 72% center;
   }
 
   .home-hero-overlay {
@@ -641,10 +647,6 @@
 }
 
 @media (max-width: 520px) {
-  .home-hero-background {
-    background-position: 68% center;
-  }
-
   .home-hero-content {
     padding: 1.6rem 1.25rem;
   }
