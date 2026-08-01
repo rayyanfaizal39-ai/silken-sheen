@@ -7,6 +7,11 @@ import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectio
 import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { TogglePanels } from "@/components/notes/blocks/TogglePanels";
 import { BloodTypeChecker } from "@/components/notes/blocks/BloodTypeChecker";
+import { RankedRevealList } from "@/components/notes/blocks/RankedRevealList";
+import { Journey } from "@/components/notes/blocks/Journey";
+import { TransformerCalculator } from "@/components/notes/blocks/TransformerCalculator";
+import { EnergyEfficiencyCalculator } from "@/components/notes/blocks/EnergyEfficiencyCalculator";
+import { ElectricityCostCalculator } from "@/components/notes/blocks/ElectricityCostCalculator";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF3InteractiveContent } from "@/content/form3/science/interactive-types";
 import { useProgress } from "@/hooks/use-progress";
@@ -128,13 +133,13 @@ export function ScienceF3InteractiveNotesBlock({
               ))}
             </Accordion>
           )}
-          {section.toggle && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.toggle.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.toggle.instruction}</p>
-              <TogglePanels options={section.toggle.options} />
+          {section.toggles?.map((toggle, i) => (
+            <div key={`${section.number}-toggle-${i}`}>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{toggle.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{toggle.instruction}</p>
+              <TogglePanels options={toggle.options} />
             </div>
-          )}
+          ))}
           {section.matcher && (
             <div>
               <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.matcher.title}</h3>
@@ -148,6 +153,32 @@ export function ScienceF3InteractiveNotesBlock({
               <BloodTypeChecker lang={lang} />
             </div>
           )}
+          {section.ladder && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.ladder.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.ladder.instruction}</p>
+              <RankedRevealList items={section.ladder.items.map((item) => ({ symbol: item.symbol, name: item.name, fact: item.fact, highlight: item.highlight }))} />
+            </div>
+          )}
+          {section.sequence && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.sequence.title}</h3>
+              <Journey steps={section.sequence.steps} instruction={section.sequence.instruction} />
+            </div>
+          )}
+          {section.calculators?.map((calc, i) => (
+            <div key={`${section.number}-calc-${i}`}>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
+              {calc.type === "transformer" ? (
+                <TransformerCalculator lang={lang} defaultVp={calc.defaultVp} defaultNp={calc.defaultNp} defaultNs={calc.defaultNs} />
+              ) : calc.type === "energy-efficiency" ? (
+                <EnergyEfficiencyCalculator lang={lang} defaultUsefulOutput={calc.defaultUsefulOutput} defaultInputSupplied={calc.defaultInputSupplied} />
+              ) : (
+                <ElectricityCostCalculator lang={lang} defaultPowerKw={calc.defaultPowerKw} defaultTimeH={calc.defaultTimeH} defaultRateSen={calc.defaultRateSen} />
+              )}
+            </div>
+          ))}
           {section.comparison && (
             <div>
               <h3 className="font-display mb-3 text-base font-bold text-foreground">{section.comparison.title}</h3>

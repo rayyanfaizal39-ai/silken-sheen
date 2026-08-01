@@ -9,6 +9,12 @@ import { scienceF3C2InteractiveBM } from "./chapter-2/interactive-bm";
 import { scienceF3C2InteractiveDLP } from "./chapter-2/interactive-dlp";
 import { scienceF3C3InteractiveBM } from "./chapter-3/interactive-bm";
 import { scienceF3C3InteractiveDLP } from "./chapter-3/interactive-dlp";
+import { scienceF3C4InteractiveBM } from "./chapter-4/interactive-bm";
+import { scienceF3C4InteractiveDLP } from "./chapter-4/interactive-dlp";
+import { scienceF3C5InteractiveBM } from "./chapter-5/interactive-bm";
+import { scienceF3C5InteractiveDLP } from "./chapter-5/interactive-dlp";
+import { scienceF3C6InteractiveBM } from "./chapter-6/interactive-bm";
+import { scienceF3C6InteractiveDLP } from "./chapter-6/interactive-dlp";
 
 import { scienceF3C1NotesBM } from "./chapter-1/notes-bm";
 import { scienceF3C1NotesDLP } from "./chapter-1/notes-dlp";
@@ -114,6 +120,9 @@ const interactive: Partial<Record<number, readonly [ScienceF3InteractiveContent,
   1: [scienceF3C1InteractiveBM, scienceF3C1InteractiveDLP],
   2: [scienceF3C2InteractiveBM, scienceF3C2InteractiveDLP],
   3: [scienceF3C3InteractiveBM, scienceF3C3InteractiveDLP],
+  4: [scienceF3C4InteractiveBM, scienceF3C4InteractiveDLP],
+  5: [scienceF3C5InteractiveBM, scienceF3C5InteractiveDLP],
+  6: [scienceF3C6InteractiveBM, scienceF3C6InteractiveDLP],
 };
 
 export const scienceF3ChapterContent: ChapterContent[] = scienceF3Chapters.flatMap(

@@ -31,22 +31,24 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
           { title: "Sistem Saraf Periferi", body: "12 pasang saraf kranium yang menghubungkan otak dengan organ deria dan organ dalaman, serta 31 pasang saraf tunjang yang menghubungkan saraf tunjang dengan otot rangka." },
         ],
       },
-      toggle: {
-        title: "Pilihan sedar, atau refleks automatik?",
-        instruction: "Setiap gerak balas badan anda tergolong dalam salah satu daripada dua kategori. Ketik untuk membandingkan.",
-        options: [
-          {
-            id: "terkawal",
-            label: "Tindakan Terkawal",
-            body: "Tindakan sedar yang dikawal oleh otak — membaca, menulis, berjalan, makan. Aliran impuls: rangsangan → afektor → impuls saraf → otak → impuls saraf → efektor → gerak balas.",
-          },
-          {
-            id: "luarkawal",
-            label: "Tindakan Luar Kawal",
-            body: "Tindakan automatik tanpa pemikiran sedar, terbahagi kepada dua jenis. Melibatkan medula oblongata: degupan jantung, pernafasan, peristalsis. Tindakan refleks, melalui saraf tunjang: menarik tangan daripada objek panas, bersin.",
-          },
-        ],
-      },
+      toggles: [
+        {
+          title: "Pilihan sedar, atau refleks automatik?",
+          instruction: "Setiap gerak balas badan anda tergolong dalam salah satu daripada dua kategori. Ketik untuk membandingkan.",
+          options: [
+            {
+              id: "terkawal",
+              label: "Tindakan Terkawal",
+              body: "Tindakan sedar yang dikawal oleh otak — membaca, menulis, berjalan, makan. Aliran impuls: rangsangan → afektor → impuls saraf → otak → impuls saraf → efektor → gerak balas.",
+            },
+            {
+              id: "luarkawal",
+              label: "Tindakan Luar Kawal",
+              body: "Tindakan automatik tanpa pemikiran sedar, terbahagi kepada dua jenis. Melibatkan medula oblongata: degupan jantung, pernafasan, peristalsis. Tindakan refleks, melalui saraf tunjang: menarik tangan daripada objek panas, bersin.",
+            },
+          ],
+        },
+      ],
       checks: [
         { question: "Bermain badminton — tindakan terkawal atau tindakan luar kawal?", hint: "Tindakan terkawal — ia adalah tindakan sedar yang dikawal oleh otak, walaupun ia berlaku dengan pantas." },
         { question: "Apakah yang berlaku sekiranya otak seseorang mengalami kecederaan?", hint: "Bergantung kepada keterukan, seseorang itu mungkin lumpuh sementara, sebahagian, atau sepenuhnya, atau kehilangan kawalan terhadap fungsi badan tertentu." },
@@ -106,22 +108,24 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
       title: "Kepentingan Gerak Balas terhadap Rangsangan dalam Haiwan Lain",
       intro:
         "Kedudukan mata haiwan pada kepalanya menentukan bagaimana ia bertahan hidup. Oleh kerana satu telinga sentiasa lebih dekat kepada sumber bunyi, ia menerima bunyi tersebut sesaat lebih awal dan lebih kuat berbanding telinga yang satu lagi — otak menggunakan perbezaan kecil ini, iaitu pendengaran stereofonik, untuk mengesan dengan tepat arah datangnya sesuatu bunyi, membantu pemangsa mengesan mangsa dan mangsa mengesan serta melarikan diri daripada pemangsa.",
-      toggle: {
-        title: "Mata pemangsa lawan mata mangsa",
-        instruction: "Ketik untuk membandingkan penglihatan stereoskopik dan monokular.",
-        options: [
-          {
-            id: "stereo",
-            label: "Penglihatan Stereoskopik",
-            body: "Kedua-dua mata menghadap depan dengan medan penglihatan yang bertindih dengan banyak, menghasilkan imej 3D yang membolehkan otak menganggar jarak, saiz dan kedalaman dengan tepat. Inilah sebabnya manusia dan kebanyakan pemangsa (kucing, burung hantu) memilikinya — sesuai untuk memburu.",
-          },
-          {
-            id: "mono",
-            label: "Penglihatan Monokular",
-            body: "Mata terletak di kedua-dua belah kepala dengan pertindihan yang sedikit atau tiada langsung. Medan penglihatan yang luas membolehkan haiwan mengesan bahaya dari hampir semua arah, walaupun persepsi kedalaman terjejas. Kebanyakan mangsa (arnab, ayam) bergantung kepada ini untuk terus hidup.",
-          },
-        ],
-      },
+      toggles: [
+        {
+          title: "Mata pemangsa lawan mata mangsa",
+          instruction: "Ketik untuk membandingkan penglihatan stereoskopik dan monokular.",
+          options: [
+            {
+              id: "stereo",
+              label: "Penglihatan Stereoskopik",
+              body: "Kedua-dua mata menghadap depan dengan medan penglihatan yang bertindih dengan banyak, menghasilkan imej 3D yang membolehkan otak menganggar jarak, saiz dan kedalaman dengan tepat. Inilah sebabnya manusia dan kebanyakan pemangsa (kucing, burung hantu) memilikinya — sesuai untuk memburu.",
+            },
+            {
+              id: "mono",
+              label: "Penglihatan Monokular",
+              body: "Mata terletak di kedua-dua belah kepala dengan pertindihan yang sedikit atau tiada langsung. Medan penglihatan yang luas membolehkan haiwan mengesan bahaya dari hampir semua arah, walaupun persepsi kedalaman terjejas. Kebanyakan mangsa (arnab, ayam) bergantung kepada ini untuk terus hidup.",
+            },
+          ],
+        },
+      ],
       flipCards: [
         { id: "elephant", icon: "🐘", label: "Gajah", fact: "16 – 12,000 Hz — julat terendah dalam kumpulan ini, sesuai mengesan deruman dalam." },
         { id: "dog", icon: "🐕", label: "Anjing", fact: "67 – 45,000 Hz — terkenal mampu mendengar wisel 'senyap' yang tidak dapat didengar manusia." },

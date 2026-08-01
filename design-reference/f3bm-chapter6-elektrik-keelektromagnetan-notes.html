@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Bab 6: Elektrik dan Keelektromagnetan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Tema 3 · Tenaga dan Kemampanan Hidup &nbsp;/&nbsp; <b>Sains Tingkatan 3</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Misi Bab</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP diperoleh</div>
+    <div class="ch-num">Bab 6</div>
+    <h1>Elektrik dan Keelektromagnetan</h1>
+    <p class="sub">Daripada turbin yang berputar sehingga plag di dinding rumah anda — jejaki laluan sebenar yang dilalui elektrik, dan apa sebenarnya kosnya kepada anda.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Sumber</b>Apakah sumber tenaga boleh diperbaharui dan tidak boleh diperbaharui?</div>
+      <div class="q-card"><b>Transformer</b>Apakah fungsi transformer injak naik dan injak turun?</div>
+      <div class="q-card"><b>Kos</b>Bagaimana kos penggunaan tenaga elektrik dikira?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>6.1 Penjanaan</span><span id="progressPct">6%</span><span>6.4 Kos</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">⚛️ Galeri Sains — Persoalan Nuklear Malaysia</h3>
+    <p>Agensi Nuklear Malaysia pernah mencadangkan idea sebuah stesen jana kuasa nuklear menjelang 2030 untuk memenuhi permintaan tenaga elektrik negara yang semakin meningkat — satu keputusan yang menimbang keselamatan tenaga berbanding kebimbangan keselamatan awam, dan Malaysia masih belum membuat keputusan muktamad.</p>
+  </div>
+
+  <!-- ================= 6.1 ================= -->
+  <div class="section" id="sec-6-1" onmouseenter="visit('s61')">
+    <div class="section-head"><span class="num">6.1</span><h2>Penjanaan Tenaga Elektrik</h2></div>
+
+    <div class="card">
+      <h3>Dari mana sebenarnya kuasa itu datang</h3>
+      <p>Setiap sumber tenaga yang digunakan untuk menjana elektrik tergolong dalam salah satu daripada dua kumpulan.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showEnergySource(this,'renewable')">Boleh Diperbaharui</div>
+        <div class="toggle-opt" onclick="showEnergySource(this,'nonrenewable')">Tidak Boleh Diperbaharui</div>
+      </div>
+      <div class="toggle-panel show" id="renewable">Sumber yang boleh digantikan secara berterusan dan tidak akan habis: hidro, ombak, suria, air pasang surut, angin, biojisim, geoterma. Malaysia merupakan negara pertama dalam sektor perindustrian biojisim di rantau Asia Tenggara, memanfaatkan sisa kelapa sawit, hutan, getah dan sekam padi.</div>
+      <div class="toggle-panel" id="nonrenewable">Sumber yang tidak boleh digantikan dan akhirnya akan habis: nuklear, arang batu, gas asli, petroleum.</div>
+    </div>
+
+    <div class="card">
+      <h3>1831: bagaimana Faraday mula-mula menghasilkan arus</h3>
+      <p>Gerakkan sebatang magnet secara relatif kepada gegelung dawai (atau sebaliknya) supaya garis medan magnetnya "dipotong" — dan arus aruhan akan terhasil, dapat dikesan pada galvanometer. Setiap penjana di dunia dibina berasaskan prinsip inilah.</p>
+    </div>
+
+    <div class="card">
+      <h3>⚡ Enam cara sebuah stesen jana kuasa menghasilkan elektrik</h3>
+      <p>Ketik setiap jenis untuk melihat rantaian pertukaran tenaga penuhnya.</p>
+      <div class="flip-grid" id="powerStationGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>Arus terus atau arus ulang-alik?</h3>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showCurrent(this,'dc')">Arus Terus (a.t.)</div>
+        <div class="toggle-opt" onclick="showCurrent(this,'ac')">Arus Ulang-alik (a.u.)</div>
+      </div>
+      <div class="toggle-panel show" id="dc">Mengalir dalam SATU arah sahaja. Sumber: sel suria, akumulator, bateri. Digunakan dalam: lampu suluh, kalkulator, kereta mainan.</div>
+      <div class="toggle-panel" id="ac">Sentiasa menukar arah secara berterusan. Dijana oleh kebanyakan stesen jana kuasa. Digunakan dalam: pemanggang roti, pengering rambut, penyaman udara.</div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 6.1</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Apakah rantaian pertukaran tenaga yang menjana kuasa sebuah stesen hidroelektrik?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Tenaga keupayaan graviti (air tersimpan) → tenaga kinetik (air mengalir memutar turbin) → tenaga elektrik (penjana).</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 6.2 ================= -->
+  <div class="section" id="sec-6-2" onmouseenter="visit('s62')">
+    <div class="section-head"><span class="num">6.2</span><h2>Transformer</h2></div>
+
+    <div class="card">
+      <h3>Mengubah voltan tanpa mengubah frekuensi</h3>
+      <p>Sebuah transformer mengubah voltan arus ulang-alik menggunakan dua gegelung dililit pada teras ferum yang sama — tetapi ia hanya berfungsi pada a.u., tidak sekali-kali pada a.t.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showTransformer(this,'stepup')">Injak Naik</div>
+        <div class="toggle-opt" onclick="showTransformer(this,'stepdown')">Injak Turun</div>
+      </div>
+      <div class="toggle-panel show" id="stepup">Voltan output LEBIH TINGGI daripada voltan input. Gegelung sekunder mempunyai LEBIH BANYAK lilitan berbanding gegelung primer. Digunakan untuk meningkatkan voltan bagi penghantaran jarak jauh.</div>
+      <div class="toggle-panel" id="stepdown">Voltan output LEBIH RENDAH daripada voltan input. Gegelung sekunder mempunyai LEBIH SEDIKIT lilitan berbanding gegelung primer. Digunakan dalam pengecas telefon bimbit, regulator kipas siling.</div>
+    </div>
+
+    <div class="card">
+      <h3>🧮 Kalkulator persamaan transformer</h3>
+      <p><b style="color:#fff;">Vp/Vs = Np/Ns</b> — masukkan mana-mana tiga nilai untuk mencari nilai keempat.</p>
+      <div class="calc-wrap">
+        <div class="calc-field"><label>Voltan primer, Vp (V)</label><input type="number" id="vp" value="240"></div>
+        <div class="calc-field"><label>Lilitan primer, Np</label><input type="number" id="np" value="120"></div>
+        <div class="calc-field"><label>Lilitan sekunder, Ns</label><input type="number" id="ns" value="20"></div>
+        <div class="calc-result" id="transformerResult">Vs = —</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 6.2</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Mengapakah transformer hanya boleh digunakan dengan a.u., tidak sekali-kali a.t.?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Transformer memerlukan medan magnet yang sentiasa BERUBAH untuk mengaruhkan arus dalam gegelung sekunder — arus terus menghasilkan medan yang tetap dan tidak berubah, jadi tiada aruhan berlaku.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 6.3 ================= -->
+  <div class="section" id="sec-6-3" onmouseenter="visit('s63')">
+    <div class="section-head"><span class="num">6.3</span><h2>Penghantaran dan Pengagihan Tenaga Elektrik</h2></div>
+
+    <div class="card">
+      <h3>⚡ Ikuti perjalanan elektrik daripada stesen jana kuasa ke rumah anda</h3>
+      <p>Langkah demi langkah, ikuti perjalanan elektrik merentasi Rangkaian Grid Nasional.</p>
+      <div class="journey-track">
+        <div class="journey-line"></div>
+        <div class="journey-fill" id="journeyFill"></div>
+        <div class="journey-stops" id="journeyStops"></div>
+      </div>
+      <div class="journey-detail" id="journeyDetail"></div>
+      <div class="journey-nav">
+        <div class="journey-nav-btn" id="journeyPrev" onclick="journeyStep(-1)">← Kembali</div>
+        <div class="journey-nav-btn" id="journeyNext" onclick="journeyStep(1)">Seterusnya →</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🛡️ Komponen keselamatan dalam pendawaian rumah anda</h3>
+      <p>Ketik setiap satu untuk melihat apa yang dilindunginya.</p>
+      <div class="flip-grid" id="safetyGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 6.3</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Mengapakah cerek elektrik dipasang dengan fius 13 A dan bukan fius 3 A?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Arus operasi normal cerek adalah lebih kurang 11.34 A — fius 13 A berada sedikit di atas nilai itu dengan selamat, manakala fius 3 A akan terbakar serta-merta semasa penggunaan normal.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 6.4 ================= -->
+  <div class="section" id="sec-6-4" onmouseenter="visit('s64')">
+    <div class="section-head"><span class="num">6.4</span><h2>Mengira Kos Penggunaan Tenaga Elektrik</h2></div>
+
+    <div class="card">
+      <h3>Kecekapan tenaga — berapa banyak yang benar-benar berguna</h3>
+      <p><b style="color:#fff;">Kecekapan tenaga = (Output tenaga berguna ÷ Input tenaga dibekalkan) × 100%</b>. Mentol filamen lama hanya menukar ~10% tenaga elektriknya kepada cahaya — selebihnya terbazir sebagai haba. Mentol LED mencapai ~90%.</p>
+      <div class="calc-wrap">
+        <div class="calc-field"><label>Output berguna (J)</label><input type="number" id="usefulOutput" value="8"></div>
+        <div class="calc-field"><label>Input dibekalkan (J)</label><input type="number" id="inputSupplied" value="100"></div>
+        <div class="calc-result" id="efficiencyResult">— %</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>💰 Kira bil elektrik anda</h3>
+      <p><b style="color:#fff;">Tenaga elektrik digunakan (kWj) = Kuasa (kW) × Masa (j)</b> — 1 kWj selalunya dipanggil "1 unit."</p>
+      <div class="calc-wrap">
+        <div class="calc-field"><label>Kuasa (kW)</label><input type="number" id="powerKw" value="2"></div>
+        <div class="calc-field"><label>Masa (jam)</label><input type="number" id="timeH" value="0.167" step="0.01"></div>
+        <div class="calc-field"><label>Kadar (sen/unit)</label><input type="number" id="rateSen" value="21"></div>
+        <div class="calc-result" id="costResult">— sen</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Bagaimana rupa bangunan hijau</h3>
+      <div class="example-chips">
+        <span>🌬️ Pengudaraan cekap untuk kurangkan penggunaan penyaman udara/kipas</span><span>☀️ Pencahayaan semula jadi dimaksimumkan</span><span>🔋 Panel suria untuk bekalan boleh diperbaharui</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 6.4</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Sebuah periuk nasi 800 W beroperasi selama 30 minit. Berapakah tenaga yang digunakan, dalam kWj?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">0.8 kW × 0.5 j = 0.4 kWj. Cuba dalam kalkulator di atas!</div></div>
+    </div>
+  </div>
+
+  <!-- ================= RINGKASAN ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Peta Minda Bab</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Elektrik dan Keelektromagnetan</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Penjanaan</h5><ul><li>Boleh/tidak boleh diperbaharui</li><li>6 jenis stesen jana kuasa</li><li>a.t. lawan a.u.</li></ul></div>
+          <div class="mm-branch"><h5>Transformer &amp; Grid</h5><ul><li>Injak naik/turun, Vp/Vs=Np/Ns</li><li>Laluan Rangkaian Grid Nasional</li><li>Fius, MCB, ELCB, dawai bumi</li></ul></div>
+          <div class="mm-branch"><h5>Kos &amp; Kecekapan</h5><ul><li>Peratus kecekapan tenaga</li><li>Pengiraan kos kWj</li><li>Konsep bangunan hijau</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= REFLEKSI KENDIRI ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Refleksi Kendiri</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan bagaimana tenaga elektrik dijana daripada pelbagai sumber tenaga.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan fungsi transformer injak naik dan injak turun serta mengaplikasikan persamaan transformer.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan sistem penghantaran dan pengagihan, serta komponen keselamatan dalam pendawaian rumah.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat mengira kecekapan tenaga dan kos penggunaan tenaga elektrik.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= KUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Kuiz Ringkas</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">Betul atau salah: Voltan arus ulang-alik paling tinggi pada peringkat Rangkaian Grid Nasional.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,true)">Betul</div>
+        <div class="tf-btn" onclick="answerTF(this,false)">Salah</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Betul — voltan dinaikkan ke tahap tertinggi untuk penghantaran jarak jauh yang cekap, kemudian diturunkan semula untuk pengguna.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">Alat manakah yang melebur dan memutuskan bekalan apabila arus melebihi nilai selamat?</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">Fius</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Transformer</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Dawai bumi</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Penjana</div>
+      <div class="quiz-feedback" id="fb2">Fius mengandungi dawai nipis yang menjadi panas dan melebur apabila arus melebihi nilai kadarnya, memutuskan litar tersebut.</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Bersedia untuk Praktis Sumatif 6?</h3>
+    <p>Pelabelan litar, pengiraan transformer, dan cabaran HOTS audit tenaga rumah menanti anda.</p>
+    <div class="cta-btn">Teruskan Misi →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(6 + Object.keys(visited).length*16, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+const kwData = [
+  ["Arus aruhan","Arus elektrik yang terhasil apabila medan magnet dipotong oleh konduktor."],
+  ["Arus terus","Arus elektrik yang mengalir dalam satu arah sahaja."],
+  ["Arus ulang-alik","Arus elektrik yang sentiasa menukar arah secara berterusan."],
+  ["Transformer","Alat yang mengubah voltan arus ulang-alik."],
+  ["Rangkaian Grid Nasional","Rangkaian kabel penghantaran yang membawa elektrik voltan tinggi merentasi negara."],
+  ["Kilowatt-jam (kWj)","Unit tenaga elektrik — 1 kilowatt digunakan selama 1 jam, juga dipanggil '1 unit'."],
+  ["Kecekapan tenaga","Peratusan input tenaga yang ditukar kepada output tenaga berguna."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* renewable/non-renewable toggle */
+function showEnergySource(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s61');
+}
+
+/* power station flip cards */
+const powerStations = [
+  ["🔥","Terma (bahan api fosil)","Tenaga kimia → Haba → Tenaga kinetik (stim memutar turbin) → Tenaga elektrik."],
+  ["☀️","Suria","Tenaga suria → Tenaga elektrik secara terus, melalui panel suria."],
+  ["💧","Hidroelektrik","Tenaga keupayaan graviti (air empangan) → Tenaga kinetik (turbin) → Tenaga elektrik."],
+  ["💨","Angin","Tenaga kinetik (angin menggerakkan bilah) → Tenaga elektrik."],
+  ["☢️","Nuklear","Tenaga nuklear → Haba → Tenaga kinetik (stim memutar turbin) → Tenaga elektrik."],
+  ["🌱","Biojisim","Tenaga kimia (pembakaran metana) → Haba → Tenaga kinetik → Tenaga elektrik."]
+];
+const psGrid = document.getElementById('powerStationGrid');
+powerStations.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:10.5px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s61'); };
+  psGrid.appendChild(c);
+});
+
+/* a.t./a.u. toggle */
+function showCurrent(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s61');
+}
+
+/* injak naik/turun toggle */
+function showTransformer(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s62');
+}
+
+/* transformer equation calculator */
+const vpEl = document.getElementById('vp'), npEl = document.getElementById('np'), nsEl = document.getElementById('ns');
+function calcTransformer(){
+  const vp = parseFloat(vpEl.value), np = parseFloat(npEl.value), ns = parseFloat(nsEl.value);
+  const resultEl = document.getElementById('transformerResult');
+  if(isNaN(vp) || isNaN(np) || isNaN(ns) || np===0){ resultEl.textContent = 'Vs = —'; return; }
+  const vs = vp * ns / np;
+  resultEl.textContent = `Vs = ${vs.toFixed(2)} V`;
+  visit('s62');
+}
+[vpEl, npEl, nsEl].forEach(el=>el.addEventListener('input', calcTransformer));
+calcTransformer();
+
+/* transmission journey */
+const journeyStops = [
+  ["Stesen jana kuasa","🏭","Arus ulang-alik dijana, biasanya pada 11 kV hingga 25 kV."],
+  ["Transformer injak naik","⬆️","Voltan dinaikkan secara mendadak (cth. kepada 132 kV–500 kV) untuk meminimumkan kehilangan tenaga semasa penghantaran jarak jauh."],
+  ["Rangkaian Grid Nasional","🗼","Arus voltan tinggi merentasi negara melalui menara penghantaran (pilon)."],
+  ["Zon suis &amp; pencawang utama","🔀","Membolehkan elektrik dialihkan ke pencawang cabang, atau bahagian tertentu dimatikan untuk penyelenggaraan tanpa mengganggu bekalan."],
+  ["Transformer injak turun","⬇️","Voltan diturunkan secara beransur-ansur melalui satu siri transformer injak turun di pencawang."],
+  ["Pengguna","🏠","Voltan akhir dibekalkan: 33 kV (industri berat), 11 kV (industri ringan), 240 V (rumah, pejabat)."]
+];
+let journeyIdx = 0;
+function renderJourney(){
+  const stopsEl = document.getElementById('journeyStops');
+  stopsEl.innerHTML = '';
+  journeyStops.forEach(([name,icon],i)=>{
+    const s = document.createElement('div');
+    s.className = 'journey-stop' + (i===journeyIdx?' active':(i<journeyIdx?' past':''));
+    s.innerHTML = `<div class="journey-dot">${icon}</div><div class="journey-label">${name}</div>`;
+    s.onclick = ()=>{ journeyIdx = i; renderJourney(); };
+    stopsEl.appendChild(s);
+  });
+  document.getElementById('journeyFill').style.width = (journeyIdx/(journeyStops.length-1))*90 + '%';
+  document.getElementById('journeyDetail').innerHTML = `<b>${journeyStops[journeyIdx][0]}</b>${journeyStops[journeyIdx][2]}`;
+  document.getElementById('journeyPrev').toggleAttribute('disabled', journeyIdx===0);
+  document.getElementById('journeyNext').toggleAttribute('disabled', journeyIdx===journeyStops.length-1);
+  visit('s63');
+}
+function journeyStep(dir){
+  journeyIdx = Math.max(0, Math.min(journeyStops.length-1, journeyIdx+dir));
+  renderJourney();
+}
+renderJourney();
+
+/* safety component flip cards */
+const safetyComponents = [
+  ["🔥","Fius","Dawai nipis yang melebur dan memutuskan bekalan apabila arus melebihi nilai kadarnya."],
+  ["⚡","MCB","Miniature Circuit Breaker — mengasingkan litar akhir kepada peralatan berbeza, boleh diset semula (tidak seperti fius)."],
+  ["💧","ELCB","Earth Leakage Circuit Breaker — memutuskan kuasa serta-merta jika arus bocor ke bumi, melindungi daripada kejutan elektrik."],
+  ["🌍","Dawai bumi","Menyambungkan bekas logam peralatan ke bumi — mengalihkan arus rosak daripada seseorang yang menyentuhnya."],
+  ["⛈️","Penghantar kilat","Menyediakan laluan selamat untuk sambaran kilat menuju ke bumi, melindungi bangunan."],
+  ["🔌","Plag 3 pin","Membawa dawai hidup, neutral DAN bumi — digunakan untuk peralatan berkuasa tinggi seperti cerek."]
+];
+const safetyGrid = document.getElementById('safetyGrid');
+safetyComponents.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:22px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:11.5px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:10.5px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s63'); };
+  safetyGrid.appendChild(c);
+});
+
+/* energy efficiency calculator */
+const usefulEl = document.getElementById('usefulOutput'), inputEl = document.getElementById('inputSupplied');
+function calcEfficiency(){
+  const u = parseFloat(usefulEl.value), i = parseFloat(inputEl.value);
+  const resultEl = document.getElementById('efficiencyResult');
+  if(isNaN(u) || isNaN(i) || i===0){ resultEl.textContent = '— %'; return; }
+  resultEl.textContent = `${((u/i)*100).toFixed(1)} %`;
+  visit('s64');
+}
+[usefulEl, inputEl].forEach(el=>el.addEventListener('input', calcEfficiency));
+calcEfficiency();
+
+/* electricity cost calculator */
+const powerEl = document.getElementById('powerKw'), timeEl = document.getElementById('timeH'), rateEl = document.getElementById('rateSen');
+function calcCost(){
+  const p = parseFloat(powerEl.value), t = parseFloat(timeEl.value), r = parseFloat(rateEl.value);
+  const resultEl = document.getElementById('costResult');
+  if(isNaN(p) || isNaN(t) || isNaN(r)){ resultEl.textContent = '— sen'; return; }
+  const kwh = p * t;
+  const cost = kwh * r;
+  resultEl.textContent = `${kwh.toFixed(3)} kWj → ${cost.toFixed(1)} sen`;
+  visit('s64');
+}
+[powerEl, timeEl, rateEl].forEach(el=>el.addEventListener('input', calcCost));
+calcCost();
+
+/* accordion / reveal / reflect */
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>

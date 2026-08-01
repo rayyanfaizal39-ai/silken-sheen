@@ -31,22 +31,24 @@ export const scienceF3C1InteractiveDLP: ScienceF3InteractiveContent = {
           { title: "Peripheral Nervous System", body: "12 pairs of cranial nerves connecting the brain to sensory and internal organs, and 31 pairs of spinal nerves connecting the spinal cord to skeletal muscles." },
         ],
       },
-      toggle: {
-        title: "Conscious choice, or automatic reflex?",
-        instruction: "Every response your body makes falls into one of two categories. Tap to compare.",
-        options: [
-          {
-            id: "voluntary",
-            label: "Voluntary Action",
-            body: "A conscious action controlled by the brain — reading, writing, walking, eating. Pathway: stimulus → affector → nerve impulse → brain → nerve impulse → effector → response.",
-          },
-          {
-            id: "involuntary",
-            label: "Involuntary Action",
-            body: "An automatic action needing no conscious thought, split into two types. Involving the medulla oblongata: heartbeat, breathing, peristalsis. Reflex actions, via the spinal cord: withdrawing a hand from a hot object, sneezing.",
-          },
-        ],
-      },
+      toggles: [
+        {
+          title: "Conscious choice, or automatic reflex?",
+          instruction: "Every response your body makes falls into one of two categories. Tap to compare.",
+          options: [
+            {
+              id: "voluntary",
+              label: "Voluntary Action",
+              body: "A conscious action controlled by the brain — reading, writing, walking, eating. Pathway: stimulus → affector → nerve impulse → brain → nerve impulse → effector → response.",
+            },
+            {
+              id: "involuntary",
+              label: "Involuntary Action",
+              body: "An automatic action needing no conscious thought, split into two types. Involving the medulla oblongata: heartbeat, breathing, peristalsis. Reflex actions, via the spinal cord: withdrawing a hand from a hot object, sneezing.",
+            },
+          ],
+        },
+      ],
       checks: [
         { question: "Playing badminton — voluntary or involuntary?", hint: "Voluntary — it's a conscious action controlled by the brain, even though it happens fast." },
         { question: "What happens if a person's brain is injured?", hint: "Depending on severity, the person may become temporarily, partially, or completely paralysed, or lose control of certain body functions." },
@@ -106,22 +108,24 @@ export const scienceF3C1InteractiveDLP: ScienceF3InteractiveContent = {
       title: "Importance of Responses to Stimuli in Animals",
       intro:
         "Where an animal's eyes sit on its head says everything about how it survives. Because one ear is always slightly closer to a sound source, it receives that sound a fraction of a second earlier and louder than the other — the brain uses this tiny difference, stereophonic hearing, to pinpoint exactly where a sound is coming from, helping predators locate prey and prey detect and escape predators.",
-      toggle: {
-        title: "Predator eyes vs. prey eyes",
-        instruction: "Tap to compare stereoscopic and monocular vision.",
-        options: [
-          {
-            id: "stereo",
-            label: "Stereoscopic Vision",
-            body: "Both eyes face forward with heavily overlapping fields of view, producing 3D images that let the brain judge distance, size and depth accurately. This is why humans and most predators (cats, owls) have it — perfect for hunting.",
-          },
-          {
-            id: "mono",
-            label: "Monocular Vision",
-            body: "Eyes sit on opposite sides of the head with little to no overlap. A wide field of view lets the animal spot danger from almost any direction, though depth perception suffers. Most prey animals (rabbits, chickens) rely on this to survive.",
-          },
-        ],
-      },
+      toggles: [
+        {
+          title: "Predator eyes vs. prey eyes",
+          instruction: "Tap to compare stereoscopic and monocular vision.",
+          options: [
+            {
+              id: "stereo",
+              label: "Stereoscopic Vision",
+              body: "Both eyes face forward with heavily overlapping fields of view, producing 3D images that let the brain judge distance, size and depth accurately. This is why humans and most predators (cats, owls) have it — perfect for hunting.",
+            },
+            {
+              id: "mono",
+              label: "Monocular Vision",
+              body: "Eyes sit on opposite sides of the head with little to no overlap. A wide field of view lets the animal spot danger from almost any direction, though depth perception suffers. Most prey animals (rabbits, chickens) rely on this to survive.",
+            },
+          ],
+        },
+      ],
       flipCards: [
         { id: "elephant", icon: "🐘", label: "Elephant", fact: "16 – 12,000 Hz — the lowest range of the group, good for detecting deep rumbles." },
         { id: "dog", icon: "🐕", label: "Dog", fact: "67 – 45,000 Hz — famously able to hear a 'silent' dog whistle humans can't." },

@@ -16,14 +16,16 @@ export const scienceF3C2InteractiveDLP: ScienceF3InteractiveContent = {
       cards: [
         { title: "I can remember!", body: "The human respiratory system functions to supply oxygen and remove carbon dioxide from the body's cells." },
       ],
-      toggle: {
-        title: "Inhale or exhale?",
-        instruction: "Tap to see exactly what your ribcage, diaphragm and lungs do at each stage.",
-        options: [
-          { id: "inhale", label: "Inhalation", body: "Intercostal muscles contract, pulling the rib cage up and out. The diaphragm contracts and flattens downward. Together, this enlarges the thoracic cavity, lowering air pressure inside — so higher outside air pressure forces air into the lungs." },
-          { id: "exhale", label: "Exhalation", body: "Intercostal muscles relax, and the rib cage moves down and in. The diaphragm relaxes and curves upward. This shrinks the thoracic cavity, raising air pressure inside — pushing air back out of the lungs." },
-        ],
-      },
+      toggles: [
+        {
+          title: "Inhale or exhale?",
+          instruction: "Tap to see exactly what your ribcage, diaphragm and lungs do at each stage.",
+          options: [
+            { id: "inhale", label: "Inhalation", body: "Intercostal muscles contract, pulling the rib cage up and out. The diaphragm contracts and flattens downward. Together, this enlarges the thoracic cavity, lowering air pressure inside — so higher outside air pressure forces air into the lungs." },
+            { id: "exhale", label: "Exhalation", body: "Intercostal muscles relax, and the rib cage moves down and in. The diaphragm relaxes and curves upward. This shrinks the thoracic cavity, raising air pressure inside — pushing air back out of the lungs." },
+          ],
+        },
+      ],
       comparison: {
         title: "What the theory predicts",
         columns: [
@@ -95,14 +97,16 @@ export const scienceF3C2InteractiveDLP: ScienceF3InteractiveContent = {
       title: "Gaseous Exchange in Plants",
       intro:
         "Gas exchange in plants happens mainly through stomata in the leaves, controlled by a pair of guard cells. Whether the stoma is open depends on osmosis. Haze and dust settling on stomata block gaseous exchange and reduce photosynthesis, and acidic gases like sulphur dioxide dissolve in rain to form acid rain — killing plant cells and making soil less fertile.",
-      toggle: {
-        title: "Plants breathe too — through their stomata",
-        instruction: "Tap to compare daytime and night-time stomata.",
-        options: [
-          { id: "day", label: "☀️ Daytime", body: "Guard cells photosynthesise, raising their glucose concentration. Water diffuses in via osmosis, making guard cells turgid and curved — this opens the stoma." },
-          { id: "night", label: "🌙 Night / Hot Day", body: "Water diffuses out of guard cells via osmosis, making them flaccid and straight — this closes the stoma, reducing water loss." },
-        ],
-      },
+      toggles: [
+        {
+          title: "Plants breathe too — through their stomata",
+          instruction: "Tap to compare daytime and night-time stomata.",
+          options: [
+            { id: "day", label: "☀️ Daytime", body: "Guard cells photosynthesise, raising their glucose concentration. Water diffuses in via osmosis, making guard cells turgid and curved — this opens the stoma." },
+            { id: "night", label: "🌙 Night / Hot Day", body: "Water diffuses out of guard cells via osmosis, making them flaccid and straight — this closes the stoma, reducing water loss." },
+          ],
+        },
+      ],
       checks: [
         { question: "Why do stomata close on very hot days, even during daylight?", hint: "To limit water loss through transpiration — excessive heat can cause the plant to lose water faster than its roots can replace it." },
       ],

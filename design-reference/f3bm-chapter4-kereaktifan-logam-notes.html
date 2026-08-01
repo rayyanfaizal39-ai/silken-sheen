@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Bab 4: Kereaktifan Logam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Tema 2 · Penerokaan Unsur dalam Alam &nbsp;/&nbsp; <b>Sains Tingkatan 3</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Misi Bab</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP diperoleh</div>
+    <div class="ch-num">Bab 4</div>
+    <h1>Kereaktifan Logam</h1>
+    <p class="sub">Emas kekal utuh dalam tanah selama 40,000 tahun sedangkan ferum berkarat dalam satu musim — satu siri kereaktifan menjelaskan sebabnya, dan bagaimana setiap logam diekstrak daripada bumi.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Mineral</b>Apakah mineral, dan dari mana asalnya?</div>
+      <div class="q-card"><b>Kereaktifan</b>Apakah siri kereaktifan logam?</div>
+      <div class="q-card"><b>Pengekstrakan</b>Bagaimana timah diekstrak di Malaysia?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>4.1 Mineral</span><span id="progressPct">8%</span><span>4.3 Pengekstrakan</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🥇 Galeri Sains — Logam Pertama Digunakan Manusia</h3>
+    <p>Rekod menunjukkan emas ialah logam pertama yang digunakan manusia, ditemui dalam bentuk unsur tulen di sebuah gua di Sepanyol sejak 40,000 SM — kerana emas berada di kedudukan paling bawah dalam siri kereaktifan dan hampir tidak bertindak balas dengan apa-apa, ia kekal hampir tidak tersentuh selama beribu-ribu tahun.</p>
+  </div>
+
+  <!-- ================= 4.1 ================= -->
+  <div class="section" id="sec-4-1" onmouseenter="visit('s41')">
+    <div class="section-head"><span class="num">4.1</span><h2>Kepelbagaian Mineral</h2></div>
+
+    <div class="card">
+      <h3>Apa sebenarnya yang ada dalam batuan</h3>
+      <p>Mineral ialah unsur atau sebatian pepejal semula jadi dengan struktur kristal yang tetap. Ia hadir dalam dua bentuk:</p>
+      <div class="compare-wrap">
+        <div class="compare-row">
+          <div class="compare-col left"><h4>⚛️ Unsur</h4><dl><dd>Emas, perak — ditemui tulen di alam semula jadi</dd></dl></div>
+          <div class="compare-col right"><h4>🧪 Sebatian</h4><dl><dd>Bauksit (aluminium oksida), hematit (ferum(III) oksida), galena (plumbum(II) sulfida), kasiterit (timah(IV) oksida)</dd></dl></div>
+        </div>
+      </div>
+      <div class="aside"><b>Maklumat Sains</b>Mineralogi — kajian tentang mineral — merupakan bidang sains yang sentiasa aktif, kerana bilangan dan sifat mineral yang diketahui terus bertambah.</div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 4.1</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Adakah batu kapur (kalsium karbonat) unsur atau sebatian? Bagaimana anda boleh membuktikannya?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Sebatian — memanaskannya atau mereaksikannya dengan asid membebaskan gas karbon dioksida (disahkan oleh air kapur menjadi keruh), membuktikan ia terdiri daripada kalsium, karbon dan oksigen yang bergabung.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 4.2 ================= -->
+  <div class="section" id="sec-4-2" onmouseenter="visit('s42')">
+    <div class="section-head"><span class="num">4.2</span><h2>Siri Kereaktifan Logam</h2></div>
+
+    <div class="card">
+      <h3>Disusun mengikut sejauh mana ia "mahu" bertindak balas</h3>
+      <p>Logam disusun dalam siri kereaktifan berdasarkan sejauh mana ia bertindak balas dengan oksigen — magnesium terbakar dengan nyalaan terang, manakala ferum hanya berbara perlahan. Karbon dan hidrogen (bukan logam) juga diletakkan dalam siri ini, kerana kereaktifannya boleh dibandingkan dengan cara yang sama.</p>
+      <p style="margin-top:8px; font-size:13px; color:var(--muted);">Ketik mana-mana unsur dalam tangga untuk melihat tindak balasnya.</p>
+      <div class="ladder-wrap" id="reactivityLadder"></div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 4.2</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Karbon dapat menurunkan zink oksida dan aluminium oksida tetapi tidak plumbum(II) oksida. Apakah yang ini menunjukkan tentang kedudukan karbon?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Tunggu — jika karbon dapat menurunkan zink oksida, ini bermakna karbon lebih reaktif daripada zink. Tetapi karbon tidak dapat menurunkan aluminium oksida, bermakna aluminium lebih reaktif daripada karbon. Jadi karbon terletak antara aluminium dan zink dalam siri tersebut.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 4.3 ================= -->
+  <div class="section" id="sec-4-3" onmouseenter="visit('s43')">
+    <div class="section-head"><span class="num">4.3</span><h2>Pengekstrakan Logam daripada Bijihnya</h2></div>
+
+    <div class="card">
+      <h3>Kedudukan dalam siri menentukan kaedah pengekstrakan</h3>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showExtraction(this,'electrolysis')">Atas Karbon</div>
+        <div class="toggle-opt" onclick="showExtraction(this,'carbon')">Bawah Karbon</div>
+        <div class="toggle-opt" onclick="showExtraction(this,'heat')">Sangat Tidak Reaktif</div>
+      </div>
+      <div class="toggle-panel show" id="electrolysis">Logam seperti kalium, natrium, kalsium, magnesium dan aluminium terlalu reaktif untuk disesarkan oleh karbon — ia diekstrak melalui <b style="color:#fff;">elektrolisis</b> sebatian leburnya.</div>
+      <div class="toggle-panel" id="carbon">Logam seperti zink, ferum, timah dan plumbum kurang reaktif daripada karbon — karbon dapat menyesarkannya daripada oksidanya melalui <b style="color:#fff;">penurunan</b> dalam relau.</div>
+      <div class="toggle-panel" id="heat">Logam seperti raksa dan perak begitu tidak reaktif sehingga hampir tidak membentuk sebatian — selalunya diekstrak melalui <b style="color:#fff;">pemanasan terus</b>. Emas wujud sebagai unsur tulen dalam kerak Bumi, tidak memerlukan sebarang kimia pengekstrakan.</div>
+    </div>
+
+    <div class="card">
+      <h3>🏭 Langkah demi langkah pengekstrakan ferum dalam relau bagas</h3>
+      <p>Ikuti bagaimana bijih ferum menjadi ferum lebur.</p>
+      <div class="journey-track">
+        <div class="journey-line"></div>
+        <div class="journey-fill" id="journeyFill"></div>
+        <div class="journey-stops" id="journeyStops"></div>
+      </div>
+      <div class="journey-detail" id="journeyDetail"></div>
+      <div class="journey-nav">
+        <div class="journey-nav-btn" id="journeyPrev" onclick="journeyStep(-1)">← Kembali</div>
+        <div class="journey-nav-btn" id="journeyNext" onclick="journeyStep(1)">Seterusnya →</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Apa yang dikorbankan oleh perlombongan kepada alam</h3>
+      <div class="example-chips">
+        <span>💨 Pencemaran udara akibat pembakaran bahan api</span><span>💧 Pencemaran air akibat pencucian bijih</span><span>🏔️ Hakisan tanih akibat perlombongan bijih</span><span>🔊 Pencemaran bunyi daripada jentera</span><span>🏚️ Kemusnahan habitat akibat pembinaan lombong</span><span>⚡ Penggunaan tenaga elektrik yang besar</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 4.3</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Mengapakah sanga lebur terapung di atas ferum lebur dalam relau bagas?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Sanga lebur kurang tumpat berbanding ferum lebur, jadi ia secara semula jadi naik dan terpisah di bahagian atas — memudahkan ia disadap secara berasingan.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= RINGKASAN ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Peta Minda Bab</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Kereaktifan Logam</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Mineral</h5><ul><li>Unsur: emas, perak</li><li>Sebatian: bauksit, hematit, galena</li></ul></div>
+          <div class="mm-branch"><h5>Siri Kereaktifan</h5><ul><li>K, Na, Ca, Mg, Al, C, Zn, H, Fe, Sn, Pb, Cu, Hg, Ag, Au</li><li>Karbon &amp; hidrogen disertakan</li></ul></div>
+          <div class="mm-branch"><h5>Pengekstrakan</h5><ul><li>Atas karbon: elektrolisis</li><li>Bawah karbon: penurunan</li><li>Sangat tidak reaktif: pemanasan terus</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= REFLEKSI KENDIRI ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Refleksi Kendiri</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan mineral yang terdapat dalam kerak Bumi dengan contoh.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat membina siri kereaktifan logam dan menentukan kedudukan karbon serta hidrogen.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menyatakan pengekstrakan logam daripada bijihnya, dan menjana idea untuk isu perlombongan.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= KUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Kuiz Ringkas</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">Betul atau salah: Kalium diekstrak daripada bijihnya menggunakan penurunan karbon.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,false)">Betul</div>
+        <div class="tf-btn" onclick="answerTF(this,true)">Salah</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Kalium terletak jauh di atas karbon dalam siri kereaktifan — ia mesti diekstrak melalui elektrolisis, bukan penurunan karbon.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">Bahan apakah yang ditambah ke dalam relau bagas untuk menyingkirkan bendasing pasir sebagai sanga?</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Kok</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">Batu kapur</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Bijih ferum</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Udara panas</div>
+      <div class="quiz-feedback" id="fb2">Batu kapur terurai membentuk kalsium oksida, yang bertindak balas dengan bendasing pasir (silikon dioksida) membentuk sanga (kalsium silikat).</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Bersedia untuk Praktis Sumatif 4?</h3>
+    <p>Pengelasan mineral, pelabelan relau bagas, dan cabaran HOTS membina model 3D menanti anda.</p>
+    <div class="cta-btn">Teruskan Misi →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*30, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+const kwData = [
+  ["Mineral","Unsur atau sebatian pepejal semula jadi dengan struktur kristal yang tetap."],
+  ["Siri kereaktifan logam","Senarai logam disusun mengikut sejauh mana ia bertindak balas dengan oksigen."],
+  ["Pengekstrakan logam","Proses memperoleh logam daripada bijihnya."],
+  ["Relau bagas","Relau industri yang digunakan untuk mengekstrak ferum daripada bijihnya melalui penurunan."],
+  ["Sanga","Bahan buangan yang terbentuk apabila batu kapur bertindak balas dengan bendasing, cth. kalsium silikat."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* reactivity ladder */
+const reactivityData = [
+  ["K","Kalium",false,"Bertindak balas secara meletup dan segera dengan oksigen — tidak pernah ditemui tulen di alam semula jadi."],
+  ["Na","Natrium",false,"Bertindak balas dengan giat dengan oksigen, terbakar dengan nyalaan."],
+  ["Ca","Kalsium",false,"Bertindak balas agak giat dengan oksigen."],
+  ["Mg","Magnesium",false,"Terbakar dengan nyalaan putih terang dalam oksigen."],
+  ["Al","Aluminium",false,"Bertindak balas dengan oksigen membentuk lapisan oksida pelindung, melambatkan tindak balas selanjutnya."],
+  ["C","Karbon",true,"Bukan logam yang diletakkan sebagai rujukan — digunakan untuk mengekstrak logam di bawahnya."],
+  ["Zn","Zink",false,"Berbara dan bertindak balas secara sederhana dengan oksigen apabila dipanaskan."],
+  ["H","Hidrogen",true,"Bukan logam — dapat menurunkan oksida logam di bawahnya, seperti ferum(III) oksida, kepada logam."],
+  ["Fe","Ferum",false,"Berbara perlahan dengan oksigen — inilah yang menyebabkan pengaratan berlaku dari semasa ke semasa."],
+  ["Sn","Timah",false,"Bertindak balas perlahan dan lemah dengan oksigen."],
+  ["Pb","Plumbum",false,"Bertindak balas sangat perlahan dengan oksigen."],
+  ["Cu","Kuprum",false,"Hampir tidak bertindak balas dengan oksigen — hanya kusam secara perlahan."],
+  ["Hg","Raksa",false,"Sangat tidak reaktif — salah satu daripada sedikit logam yang cecair pada suhu bilik."],
+  ["Ag","Perak",false,"Sangat tidak reaktif — kekal berkilat lebih lama berbanding kebanyakan logam."],
+  ["Au","Emas",false,"Logam paling tidak reaktif — hampir tidak bertindak balas dengan oksigen sama sekali, kekal tulen selama beribu tahun."]
+];
+const ladderEl = document.getElementById('reactivityLadder');
+reactivityData.forEach(([sym,name,isNonmetal,fact])=>{
+  const item = document.createElement('div');
+  item.className = 'ladder-item' + (isNonmetal ? ' nonmetal' : '');
+  item.innerHTML = `<div class="sym">${sym}</div><div class="name">${name}</div><div class="ladder-detail">${fact}</div>`;
+  item.onclick = ()=>{ item.classList.toggle('open'); visit('s42'); };
+  ladderEl.appendChild(item);
+});
+
+/* extraction toggle */
+function showExtraction(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s43');
+}
+
+/* blast furnace journey */
+const journeyStops = [
+  ["Bahan cas ditambah","📥","Campuran bijih ferum pekat, kok dan batu kapur dimasukkan ke dalam relau dari bahagian atas."],
+  ["Udara panas ditiup masuk","💨","Tiupan udara yang sangat panas dipam masuk melalui bahagian bawah relau."],
+  ["Kok terbakar","🔥","Kok (karbon) bertindak balas dengan oksigen dalam udara panas menghasilkan karbon dioksida dan haba."],
+  ["Karbon monoksida terbentuk","♻️","Karbon dioksida bertindak balas dengan lebih banyak kok panas membentuk karbon monoksida — agen penurunan yang kuat."],
+  ["Oksida ferum diturunkan","⚙️","Karbon monoksida dan karbon kedua-duanya menurunkan oksida ferum kepada ferum lebur."],
+  ["Sanga terbentuk","🧱","Batu kapur terurai menjadi kalsium oksida, yang bertindak balas dengan bendasing pasir membentuk sanga."],
+  ["Ferum &amp; sanga lebur disadap","🌊","Ferum lebur tenggelam ke bawah dan disadap ke dalam acuan; sanga lebur yang kurang tumpat terapung di atasnya dan disadap secara berasingan."]
+];
+let journeyIdx = 0;
+function renderJourney(){
+  const stopsEl = document.getElementById('journeyStops');
+  stopsEl.innerHTML = '';
+  journeyStops.forEach(([name,icon],i)=>{
+    const s = document.createElement('div');
+    s.className = 'journey-stop' + (i===journeyIdx?' active':(i<journeyIdx?' past':''));
+    s.innerHTML = `<div class="journey-dot">${icon}</div><div class="journey-label">${name}</div>`;
+    s.onclick = ()=>{ journeyIdx = i; renderJourney(); };
+    stopsEl.appendChild(s);
+  });
+  document.getElementById('journeyFill').style.width = (journeyIdx/(journeyStops.length-1))*90 + '%';
+  document.getElementById('journeyDetail').innerHTML = `<b>${journeyStops[journeyIdx][0]}</b>${journeyStops[journeyIdx][2]}`;
+  document.getElementById('journeyPrev').toggleAttribute('disabled', journeyIdx===0);
+  document.getElementById('journeyNext').toggleAttribute('disabled', journeyIdx===journeyStops.length-1);
+  visit('s43');
+}
+function journeyStep(dir){
+  journeyIdx = Math.max(0, Math.min(journeyStops.length-1, journeyIdx+dir));
+  renderJourney();
+}
+renderJourney();
+
+/* reveal / reflect */
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>

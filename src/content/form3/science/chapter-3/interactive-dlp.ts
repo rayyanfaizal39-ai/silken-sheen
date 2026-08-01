@@ -39,14 +39,16 @@ export const scienceF3C3InteractiveDLP: ScienceF3InteractiveContent = {
         { title: "Left atrium", body: "Receives oxygenated blood from the lungs via the pulmonary vein, then forces it into the left ventricle." },
         { title: "Left ventricle", body: "Has the thickest muscular wall — pumps oxygenated blood out through the aorta to the whole body except the lungs." },
       ],
-      toggle: {
-        title: "The 'lub-dub' sound of your own heartbeat",
-        instruction: "Tap to compare systole and diastole.",
-        options: [
-          { id: "systole", label: "Systole ('Lub')", body: "Ventricles contract, closing the tricuspid and bicuspid valves — producing the 'lub' sound. The pressure reading of blood flowing OUT of the heart is the systolic pressure." },
-          { id: "diastole", label: "Diastole ('Dub')", body: "Ventricles relax, closing the semilunar valves at the aorta and pulmonary artery — producing the 'dub' sound. The pressure reading of blood flowing INTO the heart is the diastolic pressure." },
-        ],
-      },
+      toggles: [
+        {
+          title: "The 'lub-dub' sound of your own heartbeat",
+          instruction: "Tap to compare systole and diastole.",
+          options: [
+            { id: "systole", label: "Systole ('Lub')", body: "Ventricles contract, closing the tricuspid and bicuspid valves — producing the 'lub' sound. The pressure reading of blood flowing OUT of the heart is the systolic pressure." },
+            { id: "diastole", label: "Diastole ('Dub')", body: "Ventricles relax, closing the semilunar valves at the aorta and pulmonary artery — producing the 'dub' sound. The pressure reading of blood flowing INTO the heart is the diastolic pressure." },
+          ],
+        },
+      ],
       cards: [
         { title: "Physical activity", body: "More vigorous activity raises pulse rate." },
         { title: "Gender", body: "Women average 78–82 bpm; men average 70–72 bpm." },

@@ -16,14 +16,16 @@ export const scienceF3C2InteractiveBM: ScienceF3InteractiveContent = {
       cards: [
         { title: "Saya boleh ingat!", body: "Sistem respirasi manusia berfungsi membekalkan oksigen dan menyingkirkan karbon dioksida daripada sel badan." },
       ],
-      toggle: {
-        title: "Sedut atau hembus?",
-        instruction: "Ketik untuk melihat apa yang dilakukan oleh sangkar rusuk, diafragma dan paru-paru anda pada setiap peringkat.",
-        options: [
-          { id: "sedut", label: "Penyedutan", body: "Otot interkosta berkontraksi, menarik sangkar rusuk ke atas dan ke luar. Diafragma berkontraksi dan mendatar ke bawah. Bersama-sama, ini membesarkan rongga toraks, menurunkan tekanan udara di dalamnya — jadi tekanan udara luar yang lebih tinggi memaksa udara masuk ke paru-paru." },
-          { id: "hembus", label: "Penghembusan", body: "Otot interkosta berelaksasi, dan sangkar rusuk bergerak ke bawah dan ke dalam. Diafragma berelaksasi dan melengkung ke atas. Ini mengecilkan rongga toraks, meningkatkan tekanan udara di dalamnya — menolak udara keluar dari paru-paru." },
-        ],
-      },
+      toggles: [
+        {
+          title: "Sedut atau hembus?",
+          instruction: "Ketik untuk melihat apa yang dilakukan oleh sangkar rusuk, diafragma dan paru-paru anda pada setiap peringkat.",
+          options: [
+            { id: "sedut", label: "Penyedutan", body: "Otot interkosta berkontraksi, menarik sangkar rusuk ke atas dan ke luar. Diafragma berkontraksi dan mendatar ke bawah. Bersama-sama, ini membesarkan rongga toraks, menurunkan tekanan udara di dalamnya — jadi tekanan udara luar yang lebih tinggi memaksa udara masuk ke paru-paru." },
+            { id: "hembus", label: "Penghembusan", body: "Otot interkosta berelaksasi, dan sangkar rusuk bergerak ke bawah dan ke dalam. Diafragma berelaksasi dan melengkung ke atas. Ini mengecilkan rongga toraks, meningkatkan tekanan udara di dalamnya — menolak udara keluar dari paru-paru." },
+          ],
+        },
+      ],
       comparison: {
         title: "Apa yang diramalkan oleh teori",
         columns: [
@@ -95,14 +97,16 @@ export const scienceF3C2InteractiveBM: ScienceF3InteractiveContent = {
       title: "Pertukaran Gas dalam Tumbuhan",
       intro:
         "Pertukaran gas dalam tumbuhan berlaku terutamanya melalui stoma pada daun, dikawal oleh sepasang sel pengawal. Sama ada stoma terbuka bergantung kepada osmosis. Jerebu dan debu yang mendap pada stoma menghalang pertukaran gas dan mengurangkan fotosintesis, dan gas berasid seperti sulfur dioksida larut dalam hujan membentuk hujan asid — membunuh sel tumbuhan dan menjadikan tanah kurang subur.",
-      toggle: {
-        title: "Tumbuhan juga bernafas — melalui stomanya",
-        instruction: "Ketik untuk membandingkan stoma siang dan malam.",
-        options: [
-          { id: "siang", label: "☀️ Siang", body: "Sel pengawal menjalankan fotosintesis, meningkatkan kepekatan glukosanya. Air meresap masuk melalui osmosis, menjadikan sel pengawal turgid dan melengkung — ini membuka stoma." },
-          { id: "malam", label: "🌙 Malam / Hari Panas", body: "Air meresap keluar daripada sel pengawal melalui osmosis, menjadikannya lembik dan lurus — ini menutup stoma, mengurangkan kehilangan air." },
-        ],
-      },
+      toggles: [
+        {
+          title: "Tumbuhan juga bernafas — melalui stomanya",
+          instruction: "Ketik untuk membandingkan stoma siang dan malam.",
+          options: [
+            { id: "siang", label: "☀️ Siang", body: "Sel pengawal menjalankan fotosintesis, meningkatkan kepekatan glukosanya. Air meresap masuk melalui osmosis, menjadikan sel pengawal turgid dan melengkung — ini membuka stoma." },
+            { id: "malam", label: "🌙 Malam / Hari Panas", body: "Air meresap keluar daripada sel pengawal melalui osmosis, menjadikannya lembik dan lurus — ini menutup stoma, mengurangkan kehilangan air." },
+          ],
+        },
+      ],
       checks: [
         { question: "Mengapakah stoma menutup pada hari yang sangat panas, walaupun pada waktu siang?", hint: "Untuk mengehadkan kehilangan air melalui transpirasi — haba berlebihan boleh menyebabkan tumbuhan kehilangan air lebih pantas daripada yang dapat digantikan oleh akarnya." },
       ],

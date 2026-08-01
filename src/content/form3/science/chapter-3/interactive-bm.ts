@@ -39,14 +39,16 @@ export const scienceF3C3InteractiveBM: ScienceF3InteractiveContent = {
         { title: "Atrium kiri", body: "Menerima darah beroksigen daripada paru-paru melalui vena pulmonari, kemudian memaksanya masuk ke ventrikel kiri." },
         { title: "Ventrikel kiri", body: "Mempunyai dinding otot paling tebal — mengepam darah beroksigen keluar melalui aorta ke seluruh badan kecuali paru-paru." },
       ],
-      toggle: {
-        title: "Bunyi 'lab-dab' degupan jantung anda sendiri",
-        instruction: "Ketik untuk membandingkan sistol dan diastol.",
-        options: [
-          { id: "sistol", label: "Sistol ('Lab')", body: "Ventrikel berkontraksi, menutup injap trikuspid dan bikuspid — menghasilkan bunyi 'lab'. Bacaan tekanan darah yang mengalir KELUAR daripada jantung ialah tekanan sistolik." },
-          { id: "diastol", label: "Diastol ('Dab')", body: "Ventrikel berelaksasi, menutup injap semilunar di aorta dan arteri pulmonari — menghasilkan bunyi 'dab'. Bacaan tekanan darah yang mengalir MASUK ke jantung ialah tekanan diastolik." },
-        ],
-      },
+      toggles: [
+        {
+          title: "Bunyi 'lab-dab' degupan jantung anda sendiri",
+          instruction: "Ketik untuk membandingkan sistol dan diastol.",
+          options: [
+            { id: "sistol", label: "Sistol ('Lab')", body: "Ventrikel berkontraksi, menutup injap trikuspid dan bikuspid — menghasilkan bunyi 'lab'. Bacaan tekanan darah yang mengalir KELUAR daripada jantung ialah tekanan sistolik." },
+            { id: "diastol", label: "Diastol ('Dab')", body: "Ventrikel berelaksasi, menutup injap semilunar di aorta dan arteri pulmonari — menghasilkan bunyi 'dab'. Bacaan tekanan darah yang mengalir MASUK ke jantung ialah tekanan diastolik." },
+          ],
+        },
+      ],
       cards: [
         { title: "Aktiviti fizikal", body: "Aktiviti yang lebih giat meningkatkan kadar denyutan nadi." },
         { title: "Jantina", body: "Wanita purata 78–82 dpm; lelaki purata 70–72 dpm." },
