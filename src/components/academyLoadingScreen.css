@@ -1,0 +1,200 @@
+.academy-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  padding: 2rem 1.5rem calc(2rem + env(safe-area-inset-bottom));
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 15%, rgba(109, 40, 255, 0.28), transparent 60%),
+    radial-gradient(90% 70% at 80% 90%, rgba(56, 24, 140, 0.35), transparent 65%),
+    #050816;
+  color: #e9e6ff;
+  opacity: 1;
+  transition: opacity 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.academy-loader--leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Stars ─────────────────────────────────────────────────────────── */
+.academy-loader__stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.academy-loader__star {
+  position: absolute;
+  border-radius: 999px;
+  background: #ffffff;
+  opacity: 0.35;
+  animation-name: academy-loader-twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes academy-loader-twinkle {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.1);
+  }
+}
+
+/* ── Logo stage + orbits ───────────────────────────────────────────── */
+.academy-loader__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(160px, 42vw, 220px);
+  height: clamp(160px, 42vw, 220px);
+}
+
+.academy-loader__glow {
+  position: absolute;
+  inset: 22%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.55), transparent 70%);
+  filter: blur(18px);
+  animation: academy-loader-pulse 3.6s ease-in-out infinite;
+}
+
+@keyframes academy-loader-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+.academy-loader__orbit {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  animation: academy-loader-spin linear infinite;
+}
+
+.academy-loader__orbit--outer {
+  inset: 0;
+  animation-duration: 14s;
+}
+
+.academy-loader__orbit--inner {
+  inset: 20%;
+  border-color: rgba(244, 180, 0, 0.22);
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+
+.academy-loader__satellite {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 999px;
+  background: #a78bfa;
+  box-shadow: 0 0 14px rgba(167, 139, 250, 0.9);
+}
+
+.academy-loader__satellite--small {
+  width: 7px;
+  height: 7px;
+  top: -3.5px;
+  margin-left: -3.5px;
+  background: #f4b400;
+  box-shadow: 0 0 12px rgba(244, 180, 0, 0.85);
+}
+
+@keyframes academy-loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.academy-loader__logo {
+  position: relative;
+  width: clamp(56px, 15vw, 76px);
+  height: auto;
+  animation: academy-loader-float 5s ease-in-out infinite;
+}
+
+@keyframes academy-loader-float {
+  0%,
+  100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* ── Copy + progress bar ───────────────────────────────────────────── */
+.academy-loader__message {
+  margin: 0;
+  max-width: 22rem;
+  text-align: center;
+  font-size: clamp(0.95rem, 2.6vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(233, 230, 255, 0.86);
+}
+
+.academy-loader__bar {
+  position: relative;
+  width: min(220px, 60vw);
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(167, 139, 250, 0.18);
+  overflow: hidden;
+}
+
+.academy-loader__bar > span {
+  position: absolute;
+  inset-block: 0;
+  width: 42%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #a78bfa, #f4b400, transparent);
+  animation: academy-loader-sweep 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes academy-loader-sweep {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(260%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .academy-loader,
+  .academy-loader * {
+    animation: none !important;
+    transition-duration: 200ms !important;
+  }
+  .academy-loader__bar > span {
+    transform: none;
+    width: 100%;
+    opacity: 0.6;
+  }
+}

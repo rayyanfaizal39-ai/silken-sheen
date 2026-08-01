@@ -1,0 +1,75 @@
+.home-section-skeleton {
+  display: grid;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .home-section-skeleton {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+.home-section-skeleton__art {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 1rem;
+}
+
+.home-section-skeleton__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.home-section-skeleton__line {
+  display: block;
+  height: 0.85rem;
+  border-radius: 999px;
+}
+
+.home-section-skeleton__line--label {
+  width: 35%;
+  height: 0.65rem;
+}
+
+.home-section-skeleton__line:nth-of-type(3) {
+  width: 85%;
+}
+
+.home-section-skeleton__line:nth-of-type(4) {
+  width: 65%;
+}
+
+.home-section-skeleton__line--button {
+  width: 45%;
+  height: 2.4rem;
+  border-radius: 999px;
+  margin-top: 0.4rem;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(167, 139, 250, 0.16) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: home-section-shimmer 1500ms ease-in-out infinite;
+}
+
+@keyframes home-section-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer {
+    animation: none;
+  }
+}

@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Brain, Layers3 } from "lucide-react";
 import { useEffect, useState, type CSSProperties } from "react";
 import { HomeImagePlaceholder } from "@/components/home/HomeImagePlaceholder";
+import { HomeSectionSkeleton } from "@/components/home/HomeSectionSkeleton";
 import {
   chapterActivityKey,
   chapterProgressPct,
@@ -80,6 +81,10 @@ function getNextActivity(type: RecentActivity["type"]) {
 export function HomeContinueLearning() {
   const { progress } = useProgress();
   const [registryLabel, setRegistryLabel] = useState<string | null>(null);
+  // Progress lives in client storage; show a skeleton until it's readable so
+  // this non-critical section can keep loading after the boot loader fades.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
   const recentActivity = progress.recentActivity;
   const latest =
     [progress.lastVisited, ...(recentActivity ?? [])]
@@ -108,6 +113,10 @@ export function HomeContinueLearning() {
       active = false;
     };
   }, [latest, recentActivity]);
+
+  if (!hydrated) {
+    return <HomeSectionSkeleton label="Loading continue learning" />;
+  }
 
   if (!latest) {
     return (

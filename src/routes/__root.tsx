@@ -12,6 +12,8 @@ import {
 
 import appCss from "../styles.css?url";
 import { AppShell } from "@/components/AppShell";
+import { AppBootGate } from "@/components/AppBootGate";
+
 import { PwaUpdatePrompt } from "@/components/PwaUpdatePrompt";
 import { ParticleBg } from "@/components/ParticleBg";
 import { SoundFx } from "@/components/SoundFx";
@@ -181,19 +183,22 @@ function RootComponent() {
       <AuthProvider>
         <SignInModalProvider>
           <CikguProvider>
-            {!isMarketingPage && (
-              <>
-                <ParticleBg />
-                <SoundFx />
-              </>
-            )}
-            <AppShell>
-              <Outlet />
-            </AppShell>
-            <PwaUpdatePrompt />
+            <AppBootGate>
+              {!isMarketingPage && (
+                <>
+                  <ParticleBg />
+                  <SoundFx />
+                </>
+              )}
+              <AppShell>
+                <Outlet />
+              </AppShell>
+              <PwaUpdatePrompt />
+            </AppBootGate>
           </CikguProvider>
         </SignInModalProvider>
       </AuthProvider>
+
     </QueryClientProvider>
   );
 }
