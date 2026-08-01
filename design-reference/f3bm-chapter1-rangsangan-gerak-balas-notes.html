@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Bab 1: Rangsangan dan Gerak Balas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Tema 1 · Penyenggaraan dan Kesinambungan Hidup &nbsp;/&nbsp; <b>Sains Tingkatan 3</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Misi Bab</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP diperoleh</div>
+    <div class="ch-num">Bab 1</div>
+    <h1>Rangsangan dan Gerak Balas</h1>
+    <p class="sub">Dari pergerakan bulu tenis sehingga daun Mimosa yang layu apabila disentuh — setiap hidupan bertahan dengan mengesan perubahan dan bertindak balas dengan pantas.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Sistem Saraf</b>Apakah yang anda tahu tentang sistem saraf manusia?</div>
+      <div class="q-card"><b>Tumbuhan</b>Bagaimana rangsangan berkait dengan gerak balas dalam tumbuhan?</div>
+      <div class="q-card"><b>Haiwan</b>Mengapa jenis penglihatan berbeza antara haiwan?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>1.1 Sistem Saraf</span><span id="progressPct">8%</span><span>1.4 Haiwan</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🏃 Galeri Sains — Masa Tindak Balas Usain Bolt</h3>
+    <p>Pada final larian 100 m Sukan Olimpik 2016, masa tindak balas peraih pingat emas, Usain Bolt, ialah 0.155 saat. Sesiapa yang masa tindak balasnya kurang daripada 0.1 saat akan didiskualifikasi — kerana itu lebih pantas daripada yang mampu dicapai oleh sistem saraf manusia, bermakna ia mesti merupakan permulaan awal (false start).</p>
+  </div>
+
+  <!-- ================= 1.1 ================= -->
+  <div class="section" id="sec-1-1" onmouseenter="visit('s11')">
+    <div class="section-head"><span class="num">1.1</span><h2>Sistem Saraf Manusia</h2></div>
+
+    <div class="card">
+      <h3>Pusat kawalan badan anda</h3>
+      <p>Sistem saraf manusia mengesan rangsangan, menghantar impuls, mentafsir impuls, dan menghasilkan gerak balas yang sesuai — semuanya dalam sepersekian saat. Ia dibina daripada dua bahagian yang saling berhubung:</p>
+      <div class="compare-wrap">
+        <div class="compare-row">
+          <div class="compare-col left"><h4>🧠 Sistem Saraf Pusat</h4><dl><dd>Otak</dd><dd>Saraf tunjang</dd></dl></div>
+          <div class="compare-col right"><h4>🕸️ Sistem Saraf Periferi</h4><dl><dd>12 pasang saraf kranium (otak ↔ organ deria/organ dalaman)</dd><dd>31 pasang saraf tunjang (saraf tunjang ↔ otot rangka)</dd></dl></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>⚡ Pilihan sedar, atau refleks automatik?</h3>
+      <p>Setiap gerak balas badan anda tergolong dalam salah satu daripada dua kategori. Ketik untuk membandingkan.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showAction(this,'terkawal')">Tindakan Terkawal</div>
+        <div class="toggle-opt" onclick="showAction(this,'luarkawal')">Tindakan Luar Kawal</div>
+      </div>
+      <div class="toggle-panel show" id="terkawal">Tindakan sedar yang dikawal oleh otak — membaca, menulis, berjalan, makan. Aliran impuls: rangsangan → afektor → impuls saraf → <b style="color:#fff;">otak</b> → impuls saraf → efektor → gerak balas.</div>
+      <div class="toggle-panel" id="luarkawal">Tindakan automatik tanpa pemikiran sedar — terbahagi kepada dua jenis. <b style="color:#fff;">Melibatkan medula oblongata:</b> degupan jantung, pernafasan, peristalsis. <b style="color:#fff;">Tindakan refleks (melalui saraf tunjang):</b> menarik tangan daripada objek panas, bersin.</div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 1.1</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Bermain badminton — tindakan terkawal atau tindakan luar kawal?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Tindakan terkawal — ia adalah tindakan sedar yang dikawal oleh otak, walaupun ia berlaku dengan pantas.</div></div>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Apakah yang berlaku sekiranya otak seseorang mengalami kecederaan?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Bergantung kepada keterukan, seseorang itu mungkin lumpuh sementara, sebahagian, atau sepenuhnya, atau kehilangan kawalan terhadap fungsi badan tertentu.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 1.2 ================= -->
+  <div class="section" id="sec-1-2" onmouseenter="visit('s12')">
+    <div class="section-head"><span class="num">1.2</span><h2>Rangsangan dan Gerak Balas dalam Manusia</h2></div>
+
+    <div class="card">
+      <h3>Lima tingkap kepada dunia</h3>
+      <p>Manusia mengesan rangsangan — cahaya, bunyi, bahan kimia, sentuhan — melalui lima organ deria. Ketik setiap satu untuk melihat struktur dan fungsinya.</p>
+      <div class="senses-grid" id="sensesGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>👓 Padankan kecacatan penglihatan dengan pembetulannya</h3>
+      <p>Pilih satu kecacatan, kemudian pilih kanta yang membetulkannya.</p>
+      <div class="matcher-wrap">
+        <div class="matcher-col"><h5>Kecacatan penglihatan</h5><div id="matcherTypes"></div></div>
+        <div class="matcher-col"><h5>Pembetulan</h5><div id="matcherExamples"></div></div>
+      </div>
+      <div class="matcher-progress" id="matcherProgress">0 / 3 dipadankan</div>
+    </div>
+
+    <div class="card">
+      <h3>Apabila deria mencapai hadnya</h3>
+      <p>Ketik setiap faktor yang boleh menjejaskan pendengaran dan penglihatan.</p>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>👁️ Batasan penglihatan</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Kita tidak dapat melihat objek yang sangat kecil (mikroorganisma) atau yang sangat jauh (planet Musytari). Ilusi optik berlaku apabila otak salah mentafsir objek akibat gangguan visual. Bintik buta tiada fotoreseptor sama sekali, jadi imej yang jatuh di situ tidak dapat dilihat.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>👂 Batasan pendengaran</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Telinga manusia hanya dapat mengesan 20 Hz hingga 20,000 Hz. Semakin tua usia seseorang, gegendang telinga menjadi kurang elastik dan julat frekuensi ini semakin sempit.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>⏳ Penuaan</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Kepekaan penglihatan dan pendengaran semula jadi merosot dengan usia — kanta mata menjadi tegar, gegendang telinga kehilangan keanjalan.</p></div></div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 1.2</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Mengapakah hujung jari, bukan tapak tangan, digunakan untuk membaca Braille?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Hujung jari mempunyai bilangan reseptor sentuhan yang banyak dan epidermis yang nipis, menjadikannya jauh lebih peka terhadap sentuhan berbanding tapak tangan.</div></div>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Mengapakah makanan panas selalunya lebih enak?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Deria bau menyumbang besar kepada persepsi rasa — haba melepaskan lebih banyak molekul aroma, dan gabungan isyarat bau + rasa ditafsir oleh otak sebagai rasa yang lebih penuh.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 1.3 ================= -->
+  <div class="section" id="sec-1-3" onmouseenter="visit('s13')">
+    <div class="section-head"><span class="num">1.3</span><h2>Rangsangan dan Gerak Balas dalam Tumbuhan</h2></div>
+
+    <div class="card">
+      <h3>Tumbuhan juga bertindak balas — cuma lebih perlahan</h3>
+      <p>Tumbuhan mengesan cahaya, air, graviti dan sentuhan, lalu bertindak balas dengan dua cara: <b style="color:#fff;">tropisme</b> (gerak balas pertumbuhan berarah yang perlahan) dan <b style="color:#fff;">gerak balas nasti</b> (gerak balas pantas yang tidak bergantung kepada arah rangsangan).</p>
+    </div>
+
+    <div class="card">
+      <h3>🌱 Padankan tropisme dengan rangsangannya</h3>
+      <p>Pilih satu jenis tropisme, kemudian pilih rangsangan yang sepadan.</p>
+      <div class="matcher-wrap">
+        <div class="matcher-col"><h5>Jenis tropisme</h5><div id="tropismTypes"></div></div>
+        <div class="matcher-col"><h5>Rangsangan &amp; arah</h5><div id="tropismExamples"></div></div>
+      </div>
+      <div class="matcher-progress" id="tropismProgress">0 / 4 dipadankan</div>
+    </div>
+
+    <div class="card">
+      <h3>Gerak balas nasti — respons yang pantas</h3>
+      <p>Berbeza daripada tropisme, gerak balas nasti tidak bergantung kepada arah rangsangan, dan ia berlaku dengan cepat. Mimosa sp. melipat daunnya ke dalam sebaik disentuh — mekanisme pertahanan terhadap musuh dan angin kencang.</p>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 1.3</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Mengapakah geotropisme positif pada akar penting untuk kemandirian tumbuhan?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Pertumbuhan ke bawah mengikut arah graviti membolehkan akar menambatkan tumbuhan dengan kukuh di dalam tanah dan mencapai air serta mineral jauh di dalam tanah.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 1.4 ================= -->
+  <div class="section" id="sec-1-4" onmouseenter="visit('s14')">
+    <div class="section-head"><span class="num">1.4</span><h2>Kepentingan Gerak Balas terhadap Rangsangan dalam Haiwan Lain</h2></div>
+
+    <div class="card">
+      <h3>👀 Mata pemangsa lawan mata mangsa</h3>
+      <p>Kedudukan mata haiwan pada kepalanya menentukan bagaimana ia bertahan hidup. Ketik untuk membandingkan.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showVision(this,'stereo')">Penglihatan Stereoskopik</div>
+        <div class="toggle-opt" onclick="showVision(this,'mono')">Penglihatan Monokular</div>
+      </div>
+      <div class="toggle-panel show" id="stereo">Kedua-dua mata menghadap depan dengan medan penglihatan yang bertindih dengan banyak — menghasilkan imej 3D yang membolehkan otak menganggar jarak, saiz dan kedalaman dengan tepat. Inilah sebabnya <b style="color:#fff;">manusia dan kebanyakan pemangsa</b> (kucing, burung hantu) memilikinya — sesuai untuk memburu.</div>
+      <div class="toggle-panel" id="mono">Mata terletak di kedua-dua belah kepala dengan pertindihan yang sedikit atau tiada langsung — medan penglihatan yang luas membolehkan haiwan mengesan bahaya dari hampir semua arah, walaupun persepsi kedalaman terjejas. <b style="color:#fff;">Kebanyakan mangsa</b> (arnab, ayam) bergantung kepada ini untuk terus hidup.</div>
+    </div>
+
+    <div class="card">
+      <h3>Pendengaran stereofonik — mengesan lokasi bunyi dengan dua telinga</h3>
+      <p>Oleh kerana satu telinga sentiasa lebih dekat kepada sumber bunyi, ia menerima bunyi tersebut sesaat lebih awal dan lebih kuat berbanding telinga yang satu lagi. Otak menggunakan perbezaan kecil ini untuk mengesan dengan tepat arah datangnya sesuatu bunyi — membantu pemangsa mengesan mangsa, dan mangsa mengesan serta melarikan diri daripada pemangsa.</p>
+    </div>
+
+    <div class="card">
+      <h3>Bukan semua haiwan mendengar julat yang sama</h3>
+      <p>Ketik setiap haiwan untuk melihat julat frekuensi pendengarannya.</p>
+      <div class="flip-grid" id="hearingGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>Uji Diri — 1.4</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Jenis penglihatan apakah yang dijangka dimiliki oleh helang (pemangsa utama), dan mengapa?</span><span class="reveal-tag">Lihat petunjuk</span></div>
+        <div class="reveal-a">Penglihatan stereoskopik — persepsi kedalaman yang tepat penting untuk menganggar jarak semasa menukik untuk menangkap mangsa.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= RINGKASAN ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Peta Minda Bab</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Rangsangan dan Gerak Balas</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Manusia</h5><ul><li>Sistem saraf pusat + periferi</li><li>Tindakan terkawal/luar kawal</li><li>5 organ deria</li></ul></div>
+          <div class="mm-branch"><h5>Tumbuhan</h5><ul><li>Tropisme: foto/geo/hidro/tigmo</li><li>Gerak balas nasti</li></ul></div>
+          <div class="mm-branch"><h5>Haiwan Lain</h5><ul><li>Penglihatan stereoskopik lawan monokular</li><li>Pendengaran stereofonik</li><li>Julat frekuensi pendengaran berbeza</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= REFLEKSI KENDIRI ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Refleksi Kendiri</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan struktur dan fungsi sistem saraf manusia.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan mekanisme pendengaran dan penglihatan, serta gabungan dan batasan deria.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan bagaimana tumbuhan bertindak balas terhadap rangsangan untuk memastikan kemandirian.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Saya dapat menerangkan bagaimana organ deria memastikan kemandirian haiwan di Bumi.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= KUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Kuiz Ringkas</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">Betul atau salah: Gerak balas nasti, seperti tropisme, sentiasa bergantung kepada arah rangsangan.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,false)">Betul</div>
+        <div class="tf-btn" onclick="answerTF(this,true)">Salah</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Gerak balas nasti TIDAK bergantung kepada arah rangsangan — itulah yang membezakannya daripada tropisme.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">Mata arnab terletak di kedua-dua belah kepalanya. Apakah jenis penglihatan yang dimilikinya?</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Penglihatan stereoskopik</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">Penglihatan monokular</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Penglihatan stereofonik</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Penglihatan binokular</div>
+      <div class="quiz-feedback" id="fb2">Penglihatan monokular — medan penglihatan yang luas membantu haiwan mangsa seperti arnab mengesan pemangsa dari hampir semua arah.</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Bersedia untuk Praktis Sumatif 1?</h3>
+    <p>Pelabelan sistem saraf, rajah kecacatan mata, dan cabaran HOTS mencipta kanta menanti anda.</p>
+    <div class="cta-btn">Teruskan Misi →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*22, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+
+const kwData = [
+  ["Rangsangan","Perubahan dalam persekitaran yang dikesan oleh organisma."],
+  ["Gerak balas","Reaksi yang dihasilkan oleh organisma selepas mengesan rangsangan."],
+  ["Afektor (reseptor)","Struktur yang mengesan rangsangan dan menghasilkan impuls saraf."],
+  ["Efektor","Otot atau kelenjar yang melaksanakan gerak balas."],
+  ["Tindakan terkawal","Tindakan sedar yang dikawal oleh otak."],
+  ["Tindakan luar kawal","Tindakan automatik tanpa pemikiran sedar."],
+  ["Tropisme","Gerak balas pertumbuhan berarah tumbuhan ke arah atau menjauhi rangsangan."],
+  ["Gerak balas nasti","Gerak balas tumbuhan terhadap rangsangan yang tidak bergantung kepada arahnya."],
+  ["Penglihatan stereoskopik","Penglihatan dengan medan pandangan yang bertindih banyak, memberi persepsi kedalaman tepat."],
+  ["Penglihatan monokular","Penglihatan dengan pertindihan sedikit/tiada antara medan pandangan, memberi sudut pandangan luas."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* tindakan terkawal/luar kawal toggle */
+function showAction(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s11');
+}
+
+/* 5 senses flip cards */
+const senses = [
+  ["👁️","Mata","Mengesan cahaya. Sel rod mengesan keamatan cahaya; sel kon (merah/hijau/biru) mengesan warna dalam cahaya terang."],
+  ["👂","Telinga","Mengesan bunyi. Telinga luar mengumpul, telinga tengah mengamplifikasi, telinga dalam (koklea) menukarkannya kepada impuls saraf."],
+  ["👃","Hidung","Mengesan bau. ~10 juta sel deria di rongga hidung melarutkan bahan kimia udara dalam mukus."],
+  ["👅","Lidah","Mengesan rasa melalui tunas rasa pada papila — manis, masin, masam, pahit, umami."],
+  ["🖐️","Kulit","Organ deria terbesar. Lima jenis reseptor mengesan kesakitan, haba, sejuk, sentuhan dan tekanan."]
+];
+const sensesGrid = document.getElementById('sensesGrid');
+senses.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12.5px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:11.5px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s12'); };
+  sensesGrid.appendChild(c);
+});
+
+/* eye defect matcher */
+const defectPairs = [
+  ["Rabun jauh","Kanta cekung"],
+  ["Rabun dekat","Kanta cembung"],
+  ["Astigmatisme","Kanta silinder"]
+];
+let matcherSelectedType = null, matcherMatched = 0;
+function buildMatcher(){
+  const typesEl = document.getElementById('matcherTypes');
+  const exEl = document.getElementById('matcherExamples');
+  defectPairs.forEach(([type])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = type;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched')) return;
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');
+      matcherSelectedType = type;
+    };
+    typesEl.appendChild(d);
+  });
+  shuffle(defectPairs).forEach(([type,example])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = example;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched') || !matcherSelectedType) return;
+      if(d.dataset.type === matcherSelectedType){
+        d.classList.add('matched');
+        typesEl.querySelector(`[data-type="${CSS.escape(matcherSelectedType)}"]`).classList.add('matched');
+        matcherMatched++;
+        document.getElementById('matcherProgress').textContent = matcherMatched + ' / 3 dipadankan';
+        if(matcherMatched===3) xp += 20, document.getElementById('xpCount').textContent = xp;
+      } else {
+        d.classList.add('wrong-flash');
+        setTimeout(()=>d.classList.remove('wrong-flash'), 500);
+      }
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      matcherSelectedType = null;
+      visit('s12');
+    };
+    exEl.appendChild(d);
+  });
+}
+buildMatcher();
+
+/* tropism matcher */
+const tropismPairs = [
+  ["Fototropisme","Cahaya — pucuk membesar ke arahnya"],
+  ["Geotropisme","Graviti — akar membesar ke arahnya, pucuk membesar menjauhinya"],
+  ["Hidrotropisme","Air — akar membesar ke arahnya"],
+  ["Tigmotropisme","Sentuhan — sulur membelit objek"]
+];
+let tropismSelectedType = null, tropismMatched = 0;
+function buildTropismMatcher(){
+  const typesEl = document.getElementById('tropismTypes');
+  const exEl = document.getElementById('tropismExamples');
+  tropismPairs.forEach(([type])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = type;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched')) return;
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');
+      tropismSelectedType = type;
+    };
+    typesEl.appendChild(d);
+  });
+  shuffle(tropismPairs).forEach(([type,example])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = example;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched') || !tropismSelectedType) return;
+      if(d.dataset.type === tropismSelectedType){
+        d.classList.add('matched');
+        typesEl.querySelector(`[data-type="${CSS.escape(tropismSelectedType)}"]`).classList.add('matched');
+        tropismMatched++;
+        document.getElementById('tropismProgress').textContent = tropismMatched + ' / 4 dipadankan';
+        if(tropismMatched===4) xp += 20, document.getElementById('xpCount').textContent = xp;
+      } else {
+        d.classList.add('wrong-flash');
+        setTimeout(()=>d.classList.remove('wrong-flash'), 500);
+      }
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      tropismSelectedType = null;
+      visit('s13');
+    };
+    exEl.appendChild(d);
+  });
+}
+buildTropismMatcher();
+
+/* vision toggle */
+function showVision(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s14');
+}
+
+/* hearing frequency flip cards */
+const hearingAnimals = [
+  ["🐘","Gajah","16 – 12,000 Hz — julat terendah dalam kumpulan ini, sesuai mengesan deruman dalam."],
+  ["🐕","Anjing","67 – 45,000 Hz — terkenal mampu mendengar wisel 'senyap' yang tidak dapat didengar manusia."],
+  ["🦇","Kelawar","2,000 – 110,000 Hz — julat terluas dan tertinggi, penting untuk ekolokasi dalam gelap."],
+  ["🐬","Lumba-lumba","40 – 100,000 Hz — pendengaran frekuensi sangat tinggi untuk sonar bawah air."],
+  ["🦭","Singa laut","450 – 50,000 Hz — sesuai untuk bunyi di udara dan bawah air."],
+  ["🐀","Tikus","200 – 80,000 Hz — peka terhadap bunyi ultrasonik yang dihasilkan tikus lain."]
+];
+const hearingGrid = document.getElementById('hearingGrid');
+hearingAnimals.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12.5px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:11px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s14'); };
+  hearingGrid.appendChild(c);
+});
+
+/* accordion / reveal / reflect */
+function toggleAcc(head){ head.parentElement.classList.toggle('open'); visit('s12'); }
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>

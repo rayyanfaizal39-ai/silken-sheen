@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 2: Respiration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">Theme 1 · Maintenance and Continuity of Life &nbsp;/&nbsp; <b>Form 3 Science</b></div>
+
+  <div class="hero">
+    <span class="theme-tag">● Chapter Mission</span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> XP earned</div>
+    <div class="ch-num">Chapter 2</div>
+    <h1>Respiration</h1>
+    <p class="sub">Every breath is a two-way trade — oxygen in, carbon dioxide out — and the whole system is built to make that trade as efficient as possible.</p>
+
+    <div class="questions">
+      <div class="q-card"><b>Structure</b>What are the parts of the human respiratory system?</div>
+      <div class="q-card"><b>Disease</b>What are respiratory diseases, and what causes them?</div>
+      <div class="q-card"><b>Adaptation</b>How do different organisms adapt to breathe?</div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span>2.1 Structure</span><span id="progressPct">8%</span><span>2.5 Plants</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🏔️ Science Gallery — Training Thin Air</h3>
+    <p>Athletes train at high altitude or in hypoxic rooms where oxygen is scarcer — this forces the body to release stored red blood cells and produce more of them, boosting oxygen-carrying capacity and respiratory efficiency for competition.</p>
+  </div>
+
+  <!-- ================= 2.1 ================= -->
+  <div class="section" id="sec-2-1" onmouseenter="visit('s21')">
+    <div class="section-head"><span class="num">2.1</span><h2>Human Respiratory System</h2></div>
+
+    <div class="card">
+      <h3>The path air takes</h3>
+      <p>Breathing is the process of inhaling and exhaling air by the lungs. Air travels: <b style="color:#fff;">nostrils → nasal cavity → pharynx → larynx → trachea → bronchus → bronchiole → alveolus</b> — where the actual gas exchange happens.</p>
+      <div class="aside"><b>I can remember!</b>The human respiratory system functions to supply oxygen and remove carbon dioxide from the body's cells.</div>
+    </div>
+
+    <div class="card">
+      <h3>🫁 Inhale or exhale?</h3>
+      <p>Tap to see exactly what your ribcage, diaphragm and lungs do at each stage.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showBreath(this,'inhale')">Inhalation</div>
+        <div class="toggle-opt" onclick="showBreath(this,'exhale')">Exhalation</div>
+      </div>
+      <div class="toggle-panel show" id="inhale">Intercostal muscles contract, pulling the rib cage up and out. The diaphragm contracts and flattens downward. Together, this enlarges the thoracic cavity, lowering air pressure inside — so higher outside air pressure forces air into the lungs.</div>
+      <div class="toggle-panel" id="exhale">Intercostal muscles relax, and the rib cage moves down and in. The diaphragm relaxes and curves upward. This shrinks the thoracic cavity, raising air pressure inside — pushing air back out of the lungs.</div>
+    </div>
+
+    <div class="card">
+      <h3>What the theory predicts</h3>
+      <div class="compare-wrap">
+        <div class="compare-row">
+          <div class="compare-col left"><h4>💨 Inhaled air</h4><dl><dd>Higher oxygen %</dd><dd>Lower carbon dioxide %</dd></dl></div>
+          <div class="compare-col right"><h4>😮‍💨 Exhaled air</h4><dl><dd>Lower oxygen %</dd><dd>Higher carbon dioxide %</dd></dl></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 2.1</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Which structure opens or closes the trachea during swallowing?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">The epiglottis — it drops down to close the trachea while swallowing, and moves up to open it during breathing.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 2.2 ================= -->
+  <div class="section" id="sec-2-2" onmouseenter="visit('s22')">
+    <div class="section-head"><span class="num">2.2</span><h2>Movement and Exchange of Gases in the Human Body</h2></div>
+
+    <div class="card">
+      <h3>From alveolus to body cell, in six steps</h3>
+      <p>Oxygen diffuses from the alveolus (higher concentration) into the blood, where haemoglobin forms an unstable compound called <b style="color:#fff;">oxyhaemoglobin</b>. At the body cells, oxyhaemoglobin decomposes to release oxygen for cellular respiration, and carbon dioxide diffuses back the other way.</p>
+      <div class="reaction-row"><div class="reaction-box">Haemoglobin</div><div class="reaction-arrow">+</div><div class="reaction-box">Oxygen</div><div class="reaction-arrow">→</div><div class="reaction-box">Oxyhaemoglobin</div></div>
+      <div class="reaction-row"><div class="reaction-box">Glucose</div><div class="reaction-arrow">+</div><div class="reaction-box">Oxygen</div><div class="reaction-arrow">→</div><div class="reaction-box">CO₂ + Water + Energy</div></div>
+    </div>
+
+    <div class="card">
+      <h3>Why the alveolus is built for the job</h3>
+      <p>Tap each adaptation.</p>
+      <div class="flip-grid" id="alveolarGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 2.2</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>What happens to gaseous exchange efficiency at high altitude?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">It decreases — lower oxygen concentration in the air reduces the concentration gradient driving diffusion into the blood.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 2.3 ================= -->
+  <div class="section" id="sec-2-3" onmouseenter="visit('s23')">
+    <div class="section-head"><span class="num">2.3</span><h2>Health of Human Respiratory System</h2></div>
+
+    <div class="card">
+      <h3>What's in the air that hurts us</h3>
+      <p>Cigarette tar, carbon monoxide, sulphur dioxide, nitrogen dioxide, haze, dust and pollen can all damage the respiratory system. Tap each to see how.</p>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🚬 Cigarette tar</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Sticks to and kills cells along the air passage, increases mucus production, and is a leading cause of lung cancer.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>☠️ Carbon monoxide</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Combines with haemoglobin to form stable carboxyhaemoglobin — this blocks oxygen transport, starving body cells of the energy they need.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>🏭 Sulphur &amp; nitrogen dioxide</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Released from burning coal and vehicle fuel — irritates the air passage, causing coughing, breathing difficulty, bronchitis and asthma.</p></div></div>
+      <div class="acc-item"><div class="acc-head" onclick="toggleAcc(this)"><span>😷 Haze, dust &amp; pollen</span><span class="chev">▾</span></div>
+        <div class="acc-body"><p>Fine solid particles suspended in the air that irritate the respiratory system and trigger asthma.</p></div></div>
+    </div>
+
+    <div class="card">
+      <h3>🫁 Match the disease to its cause</h3>
+      <p>Pick a respiratory disease, then pick what it's caused by.</p>
+      <div class="matcher-wrap">
+        <div class="matcher-col"><h5>Disease</h5><div id="matcherTypes"></div></div>
+        <div class="matcher-col"><h5>Cause</h5><div id="matcherExamples"></div></div>
+      </div>
+      <div class="matcher-progress" id="matcherProgress">0 / 4 matched</div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 2.3</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>What is a passive smoker?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Someone who doesn't smoke but inhales cigarette smoke from people around them — they experience the same harmful respiratory effects as the smoker.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 2.4 ================= -->
+  <div class="section" id="sec-2-4" onmouseenter="visit('s24')">
+    <div class="section-head"><span class="num">2.4</span><h2>Adaptations in Respiratory Systems</h2></div>
+
+    <div class="card">
+      <h3>Three universal requirements</h3>
+      <p>Whatever the organism, an efficient respiratory surface needs to be moist, thin, and have a large surface area. Tap each organism to see its unique adaptation.</p>
+      <div class="flip-grid" id="adaptationGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 2.4</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Why don't insects need their circulatory system to help with respiration?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">Their trachea system delivers oxygen directly to tissues through tracheoles — bypassing the need for blood to carry respiratory gases at all.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= 2.5 ================= -->
+  <div class="section" id="sec-2-5" onmouseenter="visit('s25')">
+    <div class="section-head"><span class="num">2.5</span><h2>Gaseous Exchange in Plants</h2></div>
+
+    <div class="card">
+      <h3>Plants breathe too — through their stomata</h3>
+      <p>Gas exchange in plants happens mainly through stomata in the leaves, controlled by a pair of guard cells. Whether the stoma is open depends on osmosis.</p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showStoma(this,'day')">☀️ Daytime</div>
+        <div class="toggle-opt" onclick="showStoma(this,'night')">🌙 Night / Hot Day</div>
+      </div>
+      <div class="toggle-panel show" id="day">Guard cells photosynthesise, raising their glucose concentration. Water diffuses in via osmosis, making guard cells turgid and curved — this <b style="color:#fff;">opens</b> the stoma.</div>
+      <div class="toggle-panel" id="night">Water diffuses out of guard cells via osmosis, making them flaccid and straight — this <b style="color:#fff;">closes</b> the stoma, reducing water loss.</div>
+    </div>
+
+    <div class="card">
+      <h3>Why unpolluted air matters to plants</h3>
+      <p>Haze and dust settling on stomata block gaseous exchange and reduce photosynthesis. Acidic gases like sulphur dioxide dissolve in rain to form acid rain — killing plant cells and making soil less fertile.</p>
+    </div>
+
+    <div class="card">
+      <h3>Check yourself — 2.5</h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)"><span>Why do stomata close on very hot days, even during daylight?</span><span class="reveal-tag">Reveal hint</span></div>
+        <div class="reveal-a">To limit water loss through transpiration — excessive heat can cause the plant to lose water faster than its roots can replace it.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2>Chapter Map</h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center">Respiration</div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5>Human System</h5><ul><li>Nostrils → alveolus</li><li>Inhalation/exhalation mechanism</li><li>Oxyhaemoglobin exchange</li></ul></div>
+          <div class="mm-branch"><h5>Health</h5><ul><li>Harmful substances</li><li>Asthma, bronchitis, emphysema, lung cancer</li></ul></div>
+          <div class="mm-branch"><h5>Adaptations</h5><ul><li>Frog: moist skin</li><li>Fish: gills</li><li>Insects: trachea</li><li>Plants: stomata</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2>Self-Reflection</h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can draw and describe the human respiratory system and breathing mechanism.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can describe the movement and exchange of oxygen and carbon dioxide in the human body.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can communicate substances harmful to the respiratory system and their diseases.</p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>I can justify how respiratory systems adapt in different situations, including in plants.</p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2>Quick Quiz</h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q">True or false: The percentage of carbon dioxide in exhaled air is less than in inhaled air.</div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,false)">True</div>
+        <div class="tf-btn" onclick="answerTF(this,true)">False</div>
+      </div>
+      <div class="quiz-feedback" id="fb1">Exhaled air has MORE carbon dioxide than inhaled air — the opposite of oxygen.</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q">Which gas combines with haemoglobin to form a stable compound that blocks oxygen transport?</div>
+      <div class="mc-opt" onclick="answerMC(this,true)">Carbon monoxide</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Carbon dioxide</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Nitrogen dioxide</div>
+      <div class="mc-opt" onclick="answerMC(this,false)">Sulphur dioxide</div>
+      <div class="quiz-feedback" id="fb2">Carbon monoxide forms stable carboxyhaemoglobin, unlike normal oxyhaemoglobin — permanently blocking that haemoglobin from carrying oxygen.</div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3>Ready for Summative Practice 2?</h3>
+    <p>Gas percentage reasoning, respiratory disease case studies, and a HOTS graph-analysis challenge await.</p>
+    <div class="cta-btn">Continue Mission →</div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*22, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+
+const kwData = [
+  ["Alveolus","A tiny air sac in the lungs where gaseous exchange with blood occurs."],
+  ["Diaphragm","A sheet of muscle below the lungs that drives breathing movements."],
+  ["Oxyhaemoglobin","An unstable compound formed when oxygen binds to haemoglobin."],
+  ["Diffusion","Movement of particles from high to low concentration."],
+  ["Cellular respiration","The process of oxidising glucose in cells to release energy."],
+  ["Emphysema","A disease where alveoli are damaged by harmful substances, reducing gas exchange."],
+  ["Stoma","A pore in the leaf epidermis, controlled by guard cells, for gas exchange."]
+];
+const kwWrap = document.getElementById('keywords');
+kwData.forEach(([term,def])=>{
+  const d = document.createElement('div');
+  d.className='kw';
+  d.innerHTML = term + '<div class="tip">'+def+'</div>';
+  d.onclick = ()=>{ d.classList.toggle('open'); };
+  kwWrap.appendChild(d);
+});
+
+/* inhale/exhale toggle */
+function showBreath(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s21');
+}
+
+/* alveolar adaptation flip cards */
+const alveolar = [
+  ["🧱","Thin walls","Alveolus and capillary walls are just one cell thick, speeding up diffusion."],
+  ["💧","Moist surface","Lets respiratory gases dissolve before diffusing across."],
+  ["📐","Huge surface area","Millions of alveoli in the lungs provide massive total area for exchange."],
+  ["🕸️","Capillary network","A dense mesh of capillaries wraps every alveolus, maximising exchange rate."]
+];
+const alveolarGrid = document.getElementById('alveolarGrid');
+alveolar.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12.5px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:12px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s22'); };
+  alveolarGrid.appendChild(c);
+});
+
+/* disease matcher */
+const diseasePairs = [
+  ["Asthma","Dust, pollen, haze and smoke — wheezing and shortness of breath"],
+  ["Bronchitis","Cigarette tar irritants inflaming the bronchus"],
+  ["Emphysema","Damaged alveoli from harmful smoke particles"],
+  ["Lung cancer","Carcinogens like cigarette tar"]
+];
+let matcherSelectedType = null, matcherMatched = 0;
+function buildMatcher(){
+  const typesEl = document.getElementById('matcherTypes');
+  const exEl = document.getElementById('matcherExamples');
+  diseasePairs.forEach(([type])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = type;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched')) return;
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');
+      matcherSelectedType = type;
+    };
+    typesEl.appendChild(d);
+  });
+  shuffle(diseasePairs).forEach(([type,example])=>{
+    const d = document.createElement('div');
+    d.className = 'matcher-item';
+    d.textContent = example;
+    d.dataset.type = type;
+    d.onclick = ()=>{
+      if(d.classList.contains('matched') || !matcherSelectedType) return;
+      if(d.dataset.type === matcherSelectedType){
+        d.classList.add('matched');
+        typesEl.querySelector(`[data-type="${CSS.escape(matcherSelectedType)}"]`).classList.add('matched');
+        matcherMatched++;
+        document.getElementById('matcherProgress').textContent = matcherMatched + ' / 4 matched';
+        if(matcherMatched===4) xp += 20, document.getElementById('xpCount').textContent = xp;
+      } else {
+        d.classList.add('wrong-flash');
+        setTimeout(()=>d.classList.remove('wrong-flash'), 500);
+      }
+      typesEl.querySelectorAll('.matcher-item').forEach(x=>x.classList.remove('selected'));
+      matcherSelectedType = null;
+      visit('s23');
+    };
+    exEl.appendChild(d);
+  });
+}
+buildMatcher();
+
+/* adaptation flip cards */
+const adaptations = [
+  ["🐸","Frog — Moist skin","Thin, permeable, mucus-covered skin over a dense capillary network lets gases dissolve and diffuse easily, on top of using lungs."],
+  ["🐟","Fish — Gills","Fine filaments covered in flat lamellae give huge surface area; constant water flow keeps gases dissolving and diffusing."],
+  ["🦗","Insects — Trachea","Air tubes (trachea) branch into moist tracheoles that deliver oxygen straight to tissues through spiracle openings."]
+];
+const adaptGrid = document.getElementById('adaptationGrid');
+adaptations.forEach(([icon,name,fact])=>{
+  const c = document.createElement('div');
+  c.className='flip-card';
+  c.innerHTML = `<div class="flip-inner">
+    <div class="flip-face flip-front"><div style="font-size:24px;">${icon}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12px;">${name}</div></div>
+    <div class="flip-face flip-back" style="font-size:11px;">${fact}</div>
+  </div>`;
+  c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s24'); };
+  adaptGrid.appendChild(c);
+});
+
+/* stoma toggle */
+function showStoma(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s25');
+}
+
+/* accordion / reveal / reflect */
+function toggleAcc(head){ head.parentElement.classList.toggle('open'); visit('s23'); }
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+</script>
+</body>
+</html>

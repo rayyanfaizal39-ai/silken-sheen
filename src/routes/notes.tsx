@@ -87,6 +87,7 @@ import { ScienceF2Chapter10NotesBlock } from "@/components/notes/ScienceF2Chapte
 import { ScienceF2Chapter11NotesBlock } from "@/components/notes/ScienceF2Chapter11NotesBlock";
 import { ScienceF2Chapter12NotesBlock } from "@/components/notes/ScienceF2Chapter12NotesBlock";
 import { ScienceF2Chapter13NotesBlock } from "@/components/notes/ScienceF2Chapter13NotesBlock";
+import { ScienceF3InteractiveNotesBlock } from "@/components/notes/ScienceF3InteractiveNotesBlock";
 import { Geo2Chapter1NotesBlock } from "@/components/notes/Geo2Chapter1NotesBlock";
 import { Geo2Chapter2NotesBlock } from "@/components/notes/Geo2Chapter2NotesBlock";
 import { Geo2Chapter3NotesBlock } from "@/components/notes/Geo2Chapter3NotesBlock";
@@ -197,6 +198,15 @@ function getSubjectArtwork(subjectId: string) {
   return SUBJECT_ARTWORK[subjectId] ?? null;
 }
 
+// Form 3 Science Chapters 1-3 reuse the Lab Telemetry hero's Form-1-indexed
+// SCIENCE_LAB_META lookup, which would otherwise collide with Form 1's own
+// chapters 1-3 stats — same reasoning as ScienceF2 Chapter 1's metaOverride.
+const F3_SCIENCE_LAB_META: Record<number, { modules: number; minutes: number; experiments: number; difficulty: string }> = {
+  1: { modules: 13, minutes: 26, experiments: 3, difficulty: "Core" },
+  2: { modules: 14, minutes: 28, experiments: 3, difficulty: "Core" },
+  3: { modules: 16, minutes: 30, experiments: 4, difficulty: "Core" },
+};
+
 function SubjectFeatureArtwork({ subjectId, src }: { subjectId: string; src: string | null }) {
   if (!src) return null;
 
@@ -299,8 +309,10 @@ function NotesPage() {
       : false;
   const isScienceF2C1 =
     subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 1" && !!activeChapter?.sciF2C1Data;
+  const isScienceF3Interactive =
+    subject === "science" && form === "Form 3" && !!activeChapter?.sciF3InteractiveData;
   const isScienceDiscovery =
-    (subject === "science" && form === "Form 1" && !!activeChapterKey) || isScienceF2C1;
+    (subject === "science" && form === "Form 1" && !!activeChapterKey) || isScienceF2C1 || isScienceF3Interactive;
   const isSejarahChapter = subject === "sejarah" && !!activeChapterKey;
   const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
@@ -766,7 +778,9 @@ function NotesPage() {
                   metaOverride={
                     isScienceF2C1
                       ? { modules: 12, minutes: 22, experiments: 2, difficulty: "Core" }
-                      : undefined
+                      : isScienceF3Interactive
+                        ? F3_SCIENCE_LAB_META[Number(activeChapterKey?.match(/\d+/)?.[0] ?? 1)]
+                        : undefined
                   }
                 />
               ) : undefined
@@ -1344,6 +1358,17 @@ function NotesPage() {
                 id="science-notes-content"
                 content={activeChapter.chapter9Data}
                 lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.sciF3InteractiveData ? (
+              <ScienceF3InteractiveNotesBlock
+                id="science-notes-content"
+                content={activeChapter.sciF3InteractiveData}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
                 storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                 isRead={isRead}
                 onMarkRead={() =>

@@ -1,6 +1,14 @@
 import type { ChapterContent } from "@/content/types";
 import { scienceF3Chapters } from "./chapter-data";
 import { buildScienceF3MindMap } from "./mindmap-builder";
+import type { ScienceF3InteractiveContent } from "./interactive-types";
+
+import { scienceF3C1InteractiveBM } from "./chapter-1/interactive-bm";
+import { scienceF3C1InteractiveDLP } from "./chapter-1/interactive-dlp";
+import { scienceF3C2InteractiveBM } from "./chapter-2/interactive-bm";
+import { scienceF3C2InteractiveDLP } from "./chapter-2/interactive-dlp";
+import { scienceF3C3InteractiveBM } from "./chapter-3/interactive-bm";
+import { scienceF3C3InteractiveDLP } from "./chapter-3/interactive-dlp";
 
 import { scienceF3C1NotesBM } from "./chapter-1/notes-bm";
 import { scienceF3C1NotesDLP } from "./chapter-1/notes-dlp";
@@ -102,6 +110,12 @@ const flashcards = [
   [scienceF3C10FlashcardsBM, scienceF3C10FlashcardsDLP],
 ] as const;
 
+const interactive: Partial<Record<number, readonly [ScienceF3InteractiveContent, ScienceF3InteractiveContent]>> = {
+  1: [scienceF3C1InteractiveBM, scienceF3C1InteractiveDLP],
+  2: [scienceF3C2InteractiveBM, scienceF3C2InteractiveDLP],
+  3: [scienceF3C3InteractiveBM, scienceF3C3InteractiveDLP],
+};
+
 export const scienceF3ChapterContent: ChapterContent[] = scienceF3Chapters.flatMap(
   (chapter, index) =>
     (["bm", "dlp"] as const).map((lang, langIndex) => ({
@@ -118,5 +132,8 @@ export const scienceF3ChapterContent: ChapterContent[] = scienceF3Chapters.flatM
       notes: notes[index][langIndex],
       quiz: quizzes[index][langIndex],
       flashcards: flashcards[index][langIndex],
+      ...(interactive[chapter.chapter]
+        ? { sciF3InteractiveData: interactive[chapter.chapter]![langIndex] }
+        : {}),
     })),
 );

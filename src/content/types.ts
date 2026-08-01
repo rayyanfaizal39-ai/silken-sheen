@@ -52,6 +52,7 @@ import type { Sej3Ch7Content } from "@/content/form3/sejarah/chapter-7/sej3ch7-c
 import type { Sej3Ch8Content } from "@/content/form3/sejarah/chapter-8/sej3ch8-content";
 import type { SciF2C1Content } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
+import type { ScienceF3InteractiveContent } from "@/content/form3/science/interactive-types";
 import type { GeoF2InteractiveContent } from "@/content/form2/geography/interactive-types";
 
 /**
@@ -193,6 +194,8 @@ export type ChapterContent = {
   sciF2C1Data?: SciF2C1Content;
   /** Science Form 2 Chapters 2–4 interactive learning experience. */
   sciF2InteractiveData?: ScienceF2InteractiveContent;
+  /** Science Form 3 Chapters 1–3 (Stimuli & Responses, Respiration, Transportation) interactive learning experience. */
+  sciF3InteractiveData?: ScienceF3InteractiveContent;
   /** Geografi Form 2 interactive learning experience — layered on top of `notes`. BM-only. */
   geoF2InteractiveData?: GeoF2InteractiveContent;
   flashcards?: Flashcard[];
