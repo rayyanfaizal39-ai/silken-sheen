@@ -12,6 +12,10 @@ import { Journey } from "@/components/notes/blocks/Journey";
 import { TransformerCalculator } from "@/components/notes/blocks/TransformerCalculator";
 import { EnergyEfficiencyCalculator } from "@/components/notes/blocks/EnergyEfficiencyCalculator";
 import { ElectricityCostCalculator } from "@/components/notes/blocks/ElectricityCostCalculator";
+import { WorkPowerCalculator } from "@/components/notes/blocks/WorkPowerCalculator";
+import { EnergyTypeCalculator } from "@/components/notes/blocks/EnergyTypeCalculator";
+import { HalfLifeCalculator } from "@/components/notes/blocks/HalfLifeCalculator";
+import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF3InteractiveContent } from "@/content/form3/science/interactive-types";
 import { useProgress } from "@/hooks/use-progress";
@@ -123,6 +127,13 @@ export function ScienceF3InteractiveNotesBlock({
             </div>
           )}
           {section.flipCards && <FlipCardGrid items={section.flipCards} />}
+          {section.flipCardGroups?.map((group, i) => (
+            <div key={`${section.number}-flipgroup-${i}`}>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{group.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{group.instruction}</p>
+              <FlipCardGrid items={group.items} />
+            </div>
+          ))}
           {section.accordions && (
             <Accordion type="single" collapsible>
               {section.accordions.map((item, i) => (
@@ -174,11 +185,32 @@ export function ScienceF3InteractiveNotesBlock({
                 <TransformerCalculator lang={lang} defaultVp={calc.defaultVp} defaultNp={calc.defaultNp} defaultNs={calc.defaultNs} />
               ) : calc.type === "energy-efficiency" ? (
                 <EnergyEfficiencyCalculator lang={lang} defaultUsefulOutput={calc.defaultUsefulOutput} defaultInputSupplied={calc.defaultInputSupplied} />
-              ) : (
+              ) : calc.type === "electricity-cost" ? (
                 <ElectricityCostCalculator lang={lang} defaultPowerKw={calc.defaultPowerKw} defaultTimeH={calc.defaultTimeH} defaultRateSen={calc.defaultRateSen} />
+              ) : calc.type === "work-power" ? (
+                <WorkPowerCalculator lang={lang} defaultForce={calc.defaultForce} defaultDisplacement={calc.defaultDisplacement} defaultTime={calc.defaultTime} />
+              ) : calc.type === "energy-type" ? (
+                <EnergyTypeCalculator
+                  lang={lang}
+                  defaultGpeMass={calc.defaultGpeMass}
+                  defaultGpeHeight={calc.defaultGpeHeight}
+                  defaultEpeForce={calc.defaultEpeForce}
+                  defaultEpeExtension={calc.defaultEpeExtension}
+                  defaultKeMass={calc.defaultKeMass}
+                  defaultKeVelocity={calc.defaultKeVelocity}
+                />
+              ) : (
+                <HalfLifeCalculator lang={lang} defaultOriginalMass={calc.defaultOriginalMass} defaultHalfLife={calc.defaultHalfLife} defaultElapsedTime={calc.defaultElapsedTime} />
               )}
             </div>
           ))}
+          {section.zoneExplorer && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.zoneExplorer.title}</h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.zoneExplorer.instruction}</p>
+              <ZoneExplorer block={section.zoneExplorer.block} />
+            </div>
+          )}
           {section.comparison && (
             <div>
               <h3 className="font-display mb-3 text-base font-bold text-foreground">{section.comparison.title}</h3>

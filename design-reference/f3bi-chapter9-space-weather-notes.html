@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 9: Space Weather / Cuaca Angkasa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Theme 4 · Earth and Space Exploration &nbsp;/&nbsp; <b>Form 3 Science</b></span>
+    <span class="bm">Tema 4 · Penerokaan Bumi dan Angkasa Lepas &nbsp;/&nbsp; <b>Sains Tingkatan 3</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 9</span><span class="bm">Bab 9</span></div>
+    <h1><span class="en">Space Weather</span><span class="bm">Cuaca Angkasa</span></h1>
+    <p class="sub">
+      <span class="en">On 6 September 2017, a solar storm knocked out telecommunication, navigation and power lines on Earth for an hour — the Sun's mood swings reach much further than sunlight.</span>
+      <span class="bm">Pada 6 September 2017, ribut suria melumpuhkan telekomunikasi, sistem navigasi dan talian kuasa di Bumi selama sejam — perubahan Matahari menjangkau lebih jauh daripada cahaya sahaja.</span>
+    </p>
+
+    <div class="questions">
+      <div class="q-card"><b><span class="en">Structure</span><span class="bm">Struktur</span></b><span class="en">What is the structure of the Sun?</span><span class="bm">Apakah struktur Matahari?</span></div>
+      <div class="q-card"><b><span class="en">Phenomena</span><span class="bm">Fenomena</span></b><span class="en">What phenomena occur on the surface of the Sun?</span><span class="bm">Apakah fenomena yang berlaku di permukaan Matahari?</span></div>
+      <div class="q-card"><b><span class="en">Effects</span><span class="bm">Kesan</span></b><span class="en">What are the effects of space weather on Earth?</span><span class="bm">Apakah kesan cuaca angkasa terhadap Bumi?</span></div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">9.1 The Sun</span><span class="bm">9.1 Matahari</span><span id="progressPct">15%</span><span class="en">9.2 Space Weather</span><span class="bm">9.2 Cuaca Angkasa</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🌌 <span class="en">Science Gallery — X9.3 Class Solar Flare</span><span class="bm">Galeri Sains — Nyalaan Suria Kelas X9.3</span></h3>
+    <p>
+      <span class="en">At 8:02 am on 6 September 2017, the Sun released an X9.3 class solar flare — one of the strongest ever recorded — followed by coronal mass ejections that disrupted telecommunication, navigation systems and power lines on Earth for about an hour.</span>
+      <span class="bm">Pada jam 8.02 pagi, 6 September 2017, Matahari melepaskan nyalaan suria kelas X9.3 — antara yang terkuat pernah direkodkan — diikuti semburan jisim korona yang mengganggu telekomunikasi, sistem navigasi dan talian kuasa di Bumi selama lebih kurang sejam.</span>
+    </p>
+  </div>
+
+  <!-- ================= 9.1 ================= -->
+  <div class="section" id="sec-9-1" onmouseenter="visit('s91')">
+    <div class="section-head"><span class="num">9.1</span><h2><span class="en">Activities of the Sun that Affect Earth</span><span class="bm">Aktiviti Matahari yang Memberi Kesan kepada Bumi</span></h2></div>
+
+    <div class="card">
+      <h3>☀️ <span class="en">Six layers, one star</span><span class="bm">Enam lapisan, satu bintang</span></h3>
+      <p><span class="en">The Sun is almost entirely hydrogen and helium gas. Tap each layer, from the core outward.</span><span class="bm">Matahari terdiri hampir sepenuhnya daripada gas hidrogen dan helium. Ketik setiap lapisan, dari teras ke luar.</span></p>
+      <div class="flip-grid" id="sunLayerGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>🔥 <span class="en">Phenomena on the Sun's surface</span><span class="bm">Fenomena di permukaan Matahari</span></h3>
+      <p><span class="en">Tap each phenomenon to see what it is and how it behaves.</span><span class="bm">Ketik setiap fenomena untuk melihat apa itu dan bagaimana ia bertindak.</span></p>
+      <div class="flip-grid" id="sunPhenomenaGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3>🛡️ <span class="en">Earth's magnetosphere — our invisible shield</span><span class="bm">Magnetosfera Bumi — perisai tidak kelihatan kita</span></h3>
+      <p><span class="en">Earth's magnetosphere is a region in space surrounding Earth, formed by the interaction between the magnetic field carried by solar wind and Earth's own magnetic field. It functions as a biological shield, protecting life on Earth by blocking charged particles (electrons, protons, alpha particles) in the solar wind from reaching us — and reducing the pressure solar wind exerts on our atmosphere.</span><span class="bm">Magnetosfera Bumi ialah kawasan di angkasa lepas yang mengelilingi Bumi, terbentuk melalui interaksi antara medan magnet yang dibawa oleh angin suria dengan medan magnet Bumi sendiri. Ia berfungsi sebagai perisai biologi, melindungi kehidupan di Bumi dengan menghalang zarah bercas (elektron, proton, zarah alfa) dalam angin suria daripada sampai kepada kita — dan mengurangkan tekanan yang dikenakan angin suria terhadap atmosfera kita.</span></p>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 9.1</span><span class="bm">Uji Diri — 9.1</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">Why are sunspots dark compared to the rest of the photosphere?</span><span class="bm">Mengapakah tompok Matahari kelihatan gelap berbanding fotosfera yang lain?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">Sunspots have lower temperatures than the surrounding granules, so they appear darker in contrast even though they're still extremely hot.</span><span class="bm">Tompok Matahari mempunyai suhu lebih rendah berbanding granul di sekelilingnya, jadi ia kelihatan lebih gelap walaupun masih sangat panas.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= 9.2 ================= -->
+  <div class="section" id="sec-9-2" onmouseenter="visit('s92')">
+    <div class="section-head"><span class="num">9.2</span><h2><span class="en">Space Weather</span><span class="bm">Cuaca Angkasa</span></h2></div>
+
+    <div class="card">
+      <h3><span class="en">When the Sun's mood reaches Earth</span><span class="bm">Apabila perubahan Matahari sampai ke Bumi</span></h3>
+      <p><span class="en">Space weather is defined as phenomena on the Sun's surface (solar flares, prominences, sunspots, coronal mass ejections) and phenomena in space (solar wind, solar radiation storms, geomagnetic storms).</span><span class="bm">Cuaca angkasa ditakrifkan sebagai fenomena di permukaan Matahari (nyalaan suria, semarak suria, tompok Matahari, semburan jisim korona) dan fenomena di angkasa (angin suria, ribut radiasi suria, ribut geomagnet).</span></p>
+    </div>
+
+    <div class="card">
+      <h3>🌈 <span class="en">Real effects on Earth</span><span class="bm">Kesan sebenar terhadap Bumi</span></h3>
+      <div class="example-chips">
+        <span><span class="en">🌌 Formation of aurora at the poles</span><span class="bm">🌌 Pembentukan aurora di kutub</span></span>
+        <span><span class="en">📡 Disruption to telecommunication</span><span class="bm">📡 Gangguan telekomunikasi</span></span>
+        <span><span class="en">🧭 Disruption to navigation systems</span><span class="bm">🧭 Gangguan sistem navigasi</span></span>
+        <span><span class="en">⚡ Disruption to electric power lines</span><span class="bm">⚡ Gangguan talian kuasa elektrik</span></span>
+      </div>
+      <div class="aside"><b><span class="en">Data interpretation</span><span class="bm">Interpretasi data</span></b><span class="en">Scientists relate the number of sunspots (and where we are in the 11-year solar cycle) to forecast increases in coronal mass ejections and solar wind activity.</span><span class="bm">Saintis mengaitkan bilangan tompok Matahari (dan kedudukan kita dalam kitaran suria 11 tahun) untuk meramalkan peningkatan aktiviti semburan jisim korona dan angin suria.</span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 9.2</span><span class="bm">Uji Diri — 9.2</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">Why does the aurora only occur near Earth's poles?</span><span class="bm">Mengapakah aurora hanya berlaku berhampiran kutub Bumi?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">Earth's magnetic field lines converge at the poles, funnelling charged particles from solar flares and coronal mass ejections down into the atmosphere there, where they collide with atoms and molecules to produce the light display.</span><span class="bm">Garis medan magnet Bumi bertumpu di kutub, menyalurkan zarah bercas daripada nyalaan suria dan semburan jisim korona turun ke atmosfera di situ, di mana ia berlanggar dengan atom dan molekul menghasilkan pameran cahaya.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2><span class="en">Chapter Map</span><span class="bm">Peta Minda Bab</span></h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center"><span class="en">Space Weather</span><span class="bm">Cuaca Angkasa</span></div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5><span class="en">Sun Structure</span><span class="bm">Struktur Matahari</span></h5><ul><li><span class="en">Core, radiation/convection zones</span><span class="bm">Teras, zon radiasi/perolakan</span></li><li><span class="en">Photosphere, chromosphere, corona</span><span class="bm">Fotosfera, kromosfera, korona</span></li></ul></div>
+          <div class="mm-branch"><h5><span class="en">Surface Phenomena</span><span class="bm">Fenomena Permukaan</span></h5><ul><li><span class="en">Sunspots, solar cycle</span><span class="bm">Tompok Matahari, kitaran suria</span></li><li><span class="en">Flares, CMEs, solar wind</span><span class="bm">Nyalaan, semburan jisim korona, angin suria</span></li></ul></div>
+          <div class="mm-branch"><h5><span class="en">Effects on Earth</span><span class="bm">Kesan terhadap Bumi</span></h5><ul><li><span class="en">Magnetosphere protection</span><span class="bm">Perlindungan magnetosfera</span></li><li><span class="en">Aurora, tech disruptions</span><span class="bm">Aurora, gangguan teknologi</span></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2><span class="en">Self-Reflection</span><span class="bm">Refleksi Kendiri</span></h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can explain the structure of the Sun and phenomena on its surface by drawing.</span><span class="bm">Saya dapat menerangkan struktur Matahari dan fenomena di permukaannya melalui lukisan.</span></p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can justify the importance of Earth's magnetosphere.</span><span class="bm">Saya dapat mewajarkan kepentingan magnetosfera Bumi.</span></p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can communicate space weather and its effects on Earth.</span><span class="bm">Saya dapat menyatakan cuaca angkasa dan kesannya terhadap Bumi.</span></p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2><span class="en">Quick Quiz</span><span class="bm">Kuiz Ringkas</span></h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q"><span class="en">True or false: The solar cycle lasts 11 years.</span><span class="bm">Betul atau salah: Kitaran suria berlangsung selama 11 tahun.</span></div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,true)"><span class="en">True</span><span class="bm">Betul</span></div>
+        <div class="tf-btn" onclick="answerTF(this,false)"><span class="en">False</span><span class="bm">Salah</span></div>
+      </div>
+      <div class="quiz-feedback" id="fb1"><span class="en">Correct — sunspot activity follows an 11-year cycle of appearing and disappearing.</span><span class="bm">Betul — aktiviti tompok Matahari mengikut kitaran 11 tahun untuk muncul dan hilang.</span></div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q"><span class="en">What is the main function of Earth's magnetosphere?</span><span class="bm">Apakah fungsi utama magnetosfera Bumi?</span></div>
+      <div class="mc-opt" onclick="answerMC(this,true)"><span class="en">Blocking charged particles from solar wind</span><span class="bm">Menghalang zarah bercas daripada angin suria</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Producing sunlight</span><span class="bm">Menghasilkan cahaya matahari</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Creating sunspots</span><span class="bm">Mencipta tompok Matahari</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Increasing solar flares</span><span class="bm">Meningkatkan nyalaan suria</span></div>
+      <div class="quiz-feedback" id="fb2"><span class="en">The magnetosphere acts as a biological shield, blocking dangerous charged particles from the Sun and reducing solar wind pressure on Earth's atmosphere.</span><span class="bm">Magnetosfera bertindak sebagai perisai biologi, menghalang zarah bercas berbahaya daripada Matahari dan mengurangkan tekanan angin suria terhadap atmosfera Bumi.</span></div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for Summative Practice 9?</span><span class="bm">Bersedia untuk Praktis Sumatif 9?</span></h3>
+    <p><span class="en">Sun structure labelling and a HOTS magnetosphere-model challenge await.</span><span class="bm">Pelabelan struktur Matahari dan cabaran HOTS membina model magnetosfera menanti anda.</span></p>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {}, LANG = 'en';
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(15 + Object.keys(visited).length*40, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+function t(en,bm){ return LANG==='bm' ? bm : en; }
+
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+  renderKeywords();
+  renderSunLayers();
+  renderSunPhenomena();
+}
+
+const kwData = [
+  [["Corona","Korona"],["The outermost layer of the Sun's atmosphere.","Lapisan terluar atmosfera Matahari."]],
+  [["Sunspot","Tompok Matahari"],["A dark region on the Sun's surface, cooler than surrounding areas.","Kawasan gelap di permukaan Matahari, lebih sejuk berbanding kawasan sekelilingnya."]],
+  [["Solar flare","Nyalaan suria"],["A sudden eruption of charged gases near sunspots.","Letusan mengejut gas bercas berhampiran tompok Matahari."]],
+  [["Solar wind","Angin suria"],["A stream of charged particles erupting from the Sun into space.","Aliran zarah bercas yang meletus daripada Matahari ke angkasa."]],
+  [["Magnetosphere","Magnetosfera"],["A region in space around Earth, shaped by Earth's magnetic field and solar wind.","Kawasan di angkasa sekeliling Bumi, dibentuk oleh medan magnet Bumi dan angin suria."]],
+  [["Prominence","Semarak suria"],["A huge arched column of glowing gases over a sunspot.","Turus gerbang besar gas berkilauan di atas tompok Matahari."]]
+];
+function renderKeywords(){
+  const kwWrap = document.getElementById('keywords');
+  kwWrap.innerHTML = '';
+  kwData.forEach(([term,def])=>{
+    const d = document.createElement('div');
+    d.className='kw';
+    d.innerHTML = t(term[0],term[1]) + '<div class="tip">'+t(def[0],def[1])+'</div>';
+    d.onclick = ()=>{ d.classList.toggle('open'); };
+    kwWrap.appendChild(d);
+  });
+}
+
+/* sun layers flip cards */
+const sunLayers = [
+  [["🔥","🔥"],["Core","Teras"],["The innermost layer where nuclear fusion produces the Sun's energy.","Lapisan paling dalam tempat pelakuran nuklear menghasilkan tenaga Matahari."]],
+  [["📡","📡"],["Radiation Zone","Zon Radiasi"],["Energy from the core moves outward as radiation.","Tenaga daripada teras bergerak ke luar sebagai radiasi."]],
+  [["🌀","🌀"],["Convection Zone","Zon Perolakan"],["Hot plasma rises and cooler plasma sinks, carrying energy outward.","Plasma panas naik dan plasma sejuk turun, membawa tenaga ke luar."]],
+  [["🟡","🟡"],["Photosphere","Fotosfera"],["The visible 'surface' of the Sun, made of granules ~1,000 km wide.","'Permukaan' Matahari yang boleh dilihat, terdiri daripada granul lebar ~1,000 km."]],
+  [["🌅","🌅"],["Chromosphere","Kromosfera"],["A thin layer above the photosphere, visible during a solar eclipse.","Lapisan nipis di atas fotosfera, boleh dilihat semasa gerhana matahari."]],
+  [["✨","✨"],["Corona","Korona"],["The outermost, extremely hot atmosphere layer, visible as a glow during eclipses.","Lapisan atmosfera terluar yang sangat panas, kelihatan sebagai cahaya semasa gerhana."]]
+];
+function renderSunLayers(){
+  const grid = document.getElementById('sunLayerGrid');
+  grid.innerHTML = '';
+  sunLayers.forEach(([icon,name,fact])=>{
+    const c = document.createElement('div');
+    c.className='flip-card';
+    c.innerHTML = `<div class="flip-inner">
+      <div class="flip-face flip-front"><div style="font-size:22px;">${icon[0]}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:11.5px;">${t(name[0],name[1])}</div></div>
+      <div class="flip-face flip-back" style="font-size:10.5px;">${t(fact[0],fact[1])}</div>
+    </div>`;
+    c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s91'); };
+    grid.appendChild(c);
+  });
+}
+
+/* sun phenomena flip cards */
+const sunPhenomena = [
+  [["⚫","⚫"],["Sunspots","Tompok Matahari"],["Dark, cooler regions on the photosphere, appearing in pairs/groups, following an 11-year solar cycle.","Kawasan gelap dan sejuk pada fotosfera, muncul berpasangan/berkumpulan, mengikut kitaran suria 11 tahun."]],
+  [["🌉","🌉"],["Prominence","Semarak Suria"],["A huge arched loop of glowing gas over a sunspot, lasting days to months.","Gelung gerbang besar gas berkilauan di atas tompok Matahari, bertahan berhari hingga berbulan."]],
+  [["💥","💥"],["Solar Flare","Nyalaan Suria"],["A sudden bright explosion of charged gas near sunspots — light reaches Earth in 8 minutes.","Letusan cahaya mengejut gas bercas berhampiran tompok Matahari — cahaya sampai ke Bumi dalam 8 minit."]],
+  [["☁️","☁️"],["Coronal Mass Ejection","Semburan Jisim Korona"],["A huge cloud of magnetic plasma ejected from the Sun, reaching Earth in about 3 days.","Awan besar plasma bermagnet yang disembur daripada Matahari, sampai ke Bumi dalam kira-kira 3 hari."]],
+  [["💨","💨"],["Solar Wind","Angin Suria"],["A supersonic stream of electrons, protons and alpha particles erupting into space.","Aliran supersonik elektron, proton dan zarah alfa yang meletus ke angkasa."]],
+  [["🔄","🔄"],["Solar Cycle","Kitaran Suria"],["The roughly 11-year cycle in which sunspot activity rises and falls.","Kitaran lebih kurang 11 tahun di mana aktiviti tompok Matahari meningkat dan menurun."]]
+];
+function renderSunPhenomena(){
+  const grid = document.getElementById('sunPhenomenaGrid');
+  grid.innerHTML = '';
+  sunPhenomena.forEach(([icon,name,fact])=>{
+    const c = document.createElement('div');
+    c.className='flip-card';
+    c.innerHTML = `<div class="flip-inner">
+      <div class="flip-face flip-front"><div style="font-size:22px;">${icon[0]}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:11.5px;">${t(name[0],name[1])}</div></div>
+      <div class="flip-face flip-back" style="font-size:10.5px;">${t(fact[0],fact[1])}</div>
+    </div>`;
+    c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s91'); };
+    grid.appendChild(c);
+  });
+}
+
+/* reveal / reflect */
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+
+renderKeywords();
+renderSunLayers();
+renderSunPhenomena();
+</script>
+</body>
+</html>

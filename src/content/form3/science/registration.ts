@@ -15,6 +15,11 @@ import { scienceF3C5InteractiveBM } from "./chapter-5/interactive-bm";
 import { scienceF3C5InteractiveDLP } from "./chapter-5/interactive-dlp";
 import { scienceF3C6InteractiveBM } from "./chapter-6/interactive-bm";
 import { scienceF3C6InteractiveDLP } from "./chapter-6/interactive-dlp";
+import { projectF3Interactive } from "./project-bilingual";
+import { scienceF3C7Interactive } from "./chapter-7/interactive";
+import { scienceF3C8Interactive } from "./chapter-8/interactive";
+import { scienceF3C9Interactive } from "./chapter-9/interactive";
+import { scienceF3C10Interactive } from "./chapter-10/interactive";
 
 import { scienceF3C1NotesBM } from "./chapter-1/notes-bm";
 import { scienceF3C1NotesDLP } from "./chapter-1/notes-dlp";
@@ -123,6 +128,10 @@ const interactive: Partial<Record<number, readonly [ScienceF3InteractiveContent,
   4: [scienceF3C4InteractiveBM, scienceF3C4InteractiveDLP],
   5: [scienceF3C5InteractiveBM, scienceF3C5InteractiveDLP],
   6: [scienceF3C6InteractiveBM, scienceF3C6InteractiveDLP],
+  7: [projectF3Interactive(scienceF3C7Interactive, "bm"), projectF3Interactive(scienceF3C7Interactive, "dlp")],
+  8: [projectF3Interactive(scienceF3C8Interactive, "bm"), projectF3Interactive(scienceF3C8Interactive, "dlp")],
+  9: [projectF3Interactive(scienceF3C9Interactive, "bm"), projectF3Interactive(scienceF3C9Interactive, "dlp")],
+  10: [projectF3Interactive(scienceF3C10Interactive, "bm"), projectF3Interactive(scienceF3C10Interactive, "dlp")],
 };
 
 export const scienceF3ChapterContent: ChapterContent[] = scienceF3Chapters.flatMap(

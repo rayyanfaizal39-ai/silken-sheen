@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 8: Radioactivity / Keradioaktifan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Theme 3 · Energy and Sustainability of Life &nbsp;/&nbsp; <b>Form 3 Science</b></span>
+    <span class="bm">Tema 3 · Tenaga dan Kemampanan Hidup &nbsp;/&nbsp; <b>Sains Tingkatan 3</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 8</span><span class="bm">Bab 8</span></div>
+    <h1><span class="en">Radioactivity</span><span class="bm">Keradioaktifan</span></h1>
+    <p class="sub">
+      <span class="en">An unstable nucleus decaying inside a rock can date a dinosaur bone, treat cancer, or preserve your fruit — the same invisible process, put to wildly different uses.</span>
+      <span class="bm">Nukleus tidak stabil yang mereput di dalam batu boleh menentukan usia tulang dinosaur, merawat kanser, atau mengawet buah anda — proses tidak kelihatan yang sama, digunakan untuk tujuan yang jauh berbeza.</span>
+    </p>
+
+    <div class="questions">
+      <div class="q-card"><b><span class="en">Discovery</span><span class="bm">Penemuan</span></b><span class="en">When was radioactivity first discovered?</span><span class="bm">Bilakah keradioaktifan mula ditemui?</span></div>
+      <div class="q-card"><b><span class="en">Structure</span><span class="bm">Struktur</span></b><span class="en">What are atom and nucleus?</span><span class="bm">Apakah atom dan nukleus?</span></div>
+      <div class="q-card"><b><span class="en">Uses</span><span class="bm">Kegunaan</span></b><span class="en">What are the uses of radioactive radiation in daily life?</span><span class="bm">Apakah kegunaan sinaran radioaktif dalam kehidupan harian?</span></div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">8.1 Discovery</span><span class="bm">8.1 Penemuan</span><span id="progressPct">8%</span><span class="en">8.4 Uses</span><span class="bm">8.4 Kegunaan</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">☀️ <span class="en">Science Gallery — Is the Sun Really Safe?</span><span class="bm">Galeri Sains — Adakah Matahari Benar-benar Selamat?</span></h3>
+    <p>
+      <span class="en">The Sun is the largest radioactive source near Earth. Most scientific investigations show its rays don't contain radioactive radiation — but data from a 2017 coronal mass ejection, gathered by the Fermi telescope, showed the Sun's rays do contain gamma rays after all.</span>
+      <span class="bm">Matahari ialah sumber radioaktif terbesar berhampiran Bumi. Kebanyakan kajian saintifik menunjukkan sinarannya tidak mengandungi sinaran radioaktif — tetapi data daripada semburan jisim korona 2017, yang dikumpul oleh teleskop Fermi, menunjukkan sinaran Matahari sebenarnya mengandungi sinar gamma.</span>
+    </p>
+  </div>
+
+  <!-- ================= 8.1 ================= -->
+  <div class="section" id="sec-8-1" onmouseenter="visit('s81')">
+    <div class="section-head"><span class="num">8.1</span><h2><span class="en">Discovery of Radioactivity</span><span class="bm">Sejarah Penemuan Keradioaktifan</span></h2></div>
+
+    <div class="card">
+      <h3>🔬 <span class="en">Three discoveries, three Nobel Prizes</span><span class="bm">Tiga penemuan, tiga Hadiah Nobel</span></h3>
+      <p><span class="en">Step through how radioactivity was uncovered, almost entirely by accident.</span><span class="bm">Langkah demi langkah, lihat bagaimana keradioaktifan ditemui, hampir sepenuhnya secara tidak sengaja.</span></p>
+      <div class="journey-track">
+        <div class="journey-line"></div>
+        <div class="journey-fill" id="journeyFill1"></div>
+        <div class="journey-stops" id="journeyStops1"></div>
+      </div>
+      <div class="journey-detail" id="journeyDetail1"></div>
+      <div class="journey-nav">
+        <div class="journey-nav-btn" id="journeyPrev1" onclick="journeyStep1(-1)"><span class="en">← Back</span><span class="bm">← Kembali</span></div>
+        <div class="journey-nav-btn" id="journeyNext1" onclick="journeyStep1(1)"><span class="en">Next →</span><span class="bm">Seterusnya →</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Radioactivity, in one sentence</span><span class="bm">Keradioaktifan, dalam satu ayat</span></h3>
+      <p><span class="en">Radioactivity is a random and spontaneous decay process of an unstable nucleus, emitting alpha particles (α), beta particles (β) or gamma rays (γ) until the nucleus becomes more stable.</span><span class="bm">Keradioaktifan ialah proses pereputan rawak dan spontan bagi nukleus tidak stabil, memancarkan zarah alfa (α), zarah beta (β) atau sinar gamma (γ) sehingga nukleus menjadi lebih stabil.</span></p>
+    </div>
+
+    <div class="card">
+      <h3>🧮 <span class="en">Half-life calculator</span><span class="bm">Kalkulator separuh hayat</span></h3>
+      <p><span class="en">Half-life is the time taken for the number of undecayed nuclei to reduce to half. Enter the original mass, half-life, and elapsed time to see how much remains.</span><span class="bm">Separuh hayat ialah masa yang diambil untuk bilangan nukleus yang belum reput berkurang kepada separuh. Masukkan jisim asal, separuh hayat, dan masa berlalu untuk melihat baki yang tinggal.</span></p>
+      <div class="calc-wrap">
+        <div class="calc-field"><label><span class="en">Original mass (g)</span><span class="bm">Jisim asal (g)</span></label><input type="number" id="origMass" value="80"></div>
+        <div class="calc-field"><label><span class="en">Half-life (hours)</span><span class="bm">Separuh hayat (jam)</span></label><input type="number" id="halfLife" value="5.2"></div>
+        <div class="calc-field"><label><span class="en">Elapsed time (hours)</span><span class="bm">Masa berlalu (jam)</span></label><input type="number" id="elapsedTime" value="20.8"></div>
+        <div class="calc-result" id="halfLifeResult">—</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 8.1</span><span class="bm">Uji Diri — 8.1</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">Why did Becquerel's rays go unnoticed for a year and a half after his discovery?</span><span class="bm">Mengapakah sinar Becquerel tidak disedari selama satu setengah tahun selepas penemuannya?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">His rays couldn't produce X-rays of bones like Roentgen's discovery, so nobody was interested in pursuing his study — until Marie and Pierre Curie took notice.</span><span class="bm">Sinarannya tidak dapat menghasilkan sinar-X tulang seperti penemuan Roentgen, jadi tiada sesiapa berminat meneruskan kajiannya — sehingga Marie dan Pierre Curie mengambil perhatian.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= 8.2 ================= -->
+  <div class="section" id="sec-8-2" onmouseenter="visit('s82')">
+    <div class="section-head"><span class="num">8.2</span><h2><span class="en">Atom and Nucleus</span><span class="bm">Atom dan Nukleus</span></h2></div>
+
+    <div class="card">
+      <h3><span class="en">When atoms gain or lose electrons</span><span class="bm">Apabila atom kehilangan atau memperoleh elektron</span></h3>
+      <p><span class="en">When the number of protons equals the number of electrons, an atom is neutral. But when an atom loses or gains electrons, it becomes a charged particle called an ion.</span><span class="bm">Apabila bilangan proton sama dengan bilangan elektron, atom itu neutral. Tetapi apabila atom kehilangan atau memperoleh elektron, ia menjadi zarah bercas dipanggil ion.</span></p>
+      <div class="toggle-row">
+        <div class="toggle-opt active" onclick="showIon(this,'cation')"><span class="en">Positive Ion (Cation)</span><span class="bm">Ion Positif (Kation)</span></div>
+        <div class="toggle-opt" onclick="showIon(this,'anion')"><span class="en">Negative Ion (Anion)</span><span class="bm">Ion Negatif (Anion)</span></div>
+      </div>
+      <div class="toggle-panel show" id="cation"><span class="en">Formed when an atom LOSES electrons — protons now outnumber electrons. Example: sodium atom (Na, neutral) loses 1 electron to become Na⁺.</span><span class="bm">Terbentuk apabila atom KEHILANGAN elektron — proton kini melebihi elektron. Contoh: atom natrium (Na, neutral) kehilangan 1 elektron menjadi Na⁺.</span></div>
+      <div class="toggle-panel" id="anion"><span class="en">Formed when an atom GAINS electrons — electrons now outnumber protons. Example: chlorine atom (Cl, neutral) gains 1 electron to become Cl⁻.</span><span class="bm">Terbentuk apabila atom MEMPEROLEH elektron — elektron kini melebihi proton. Contoh: atom klorin (Cl, neutral) memperoleh 1 elektron menjadi Cl⁻.</span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 8.2</span><span class="bm">Uji Diri — 8.2</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">According to Dalton's Atomic Theory, can an atom be divided further?</span><span class="bm">Menurut Teori Atom Dalton, bolehkah atom dibahagikan lagi?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">No — Dalton's theory (1808) held that an atom is the smallest particle and cannot be divided further. Science later discovered even smaller particles: protons, neutrons and electrons.</span><span class="bm">Tidak — teori Dalton (1808) menyatakan atom ialah zarah terkecil dan tidak boleh dibahagikan lagi. Sains kemudiannya menemui zarah yang lebih kecil: proton, neutron dan elektron.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= 8.3 ================= -->
+  <div class="section" id="sec-8-3" onmouseenter="visit('s83')">
+    <div class="section-head"><span class="num">8.3</span><h2><span class="en">Ionising Radiation and Non-ionising Radiation</span><span class="bm">Sinaran Mengion dan Sinaran Tak Mengion</span></h2></div>
+
+    <div class="card">
+      <h3><span class="en">Radiation that creates ions — or doesn't</span><span class="bm">Sinaran yang mencipta ion — atau tidak</span></h3>
+      <p><span class="en">When radiation passes through air and produces positive and negative ions, it's called ionising radiation. Radio waves, microwaves and visible light are non-ionising; X-rays, gamma rays and radioactive radiation are ionising.</span><span class="bm">Apabila sinaran melalui udara dan menghasilkan ion positif dan negatif, ia dipanggil sinaran mengion. Gelombang radio, gelombang mikro dan cahaya nampak adalah tak mengion; sinar-X, sinar gamma dan sinaran radioaktif adalah mengion.</span></p>
+    </div>
+
+    <div class="card">
+      <h3>☢️ <span class="en">Three types of ionising radioactive radiation</span><span class="bm">Tiga jenis sinaran radioaktif mengion</span></h3>
+      <p><span class="en">Tap each type to compare its ionising power and penetration power.</span><span class="bm">Ketik setiap jenis untuk membandingkan kuasa pengionan dan kuasa penembusannya.</span></p>
+      <div class="flip-grid" id="radiationGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Sources of ionising radiation</span><span class="bm">Sumber sinaran mengion</span></h3>
+      <div class="compare-wrap">
+        <div class="compare-row">
+          <div class="compare-col left"><h4><span class="en">🌌 Natural</span><span class="bm">🌌 Semula Jadi</span></h4><dl><dd><span class="en">Cosmic rays, background radiation</span><span class="bm">Sinar kosmik, radiasi latar</span></dd></dl></div>
+          <div class="compare-col right"><h4><span class="en">🏭 Man-made</span><span class="bm">🏭 Buatan Manusia</span></h4><dl><dd><span class="en">Nuclear accidents, nuclear tests, medical radioisotopes</span><span class="bm">Kemalangan nuklear, ujian nuklear, radioisotop perubatan</span></dd></dl></div>
+        </div>
+      </div>
+      <div class="aside"><b><span class="en">Safe level</span><span class="bm">Tahap selamat</span></b><span class="en">Background radiation below 0.2 μSv/h is considered a normal, safe level.</span><span class="bm">Radiasi latar bawah 0.2 μSv/j dianggap tahap normal dan selamat.</span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 8.3</span><span class="bm">Uji Diri — 8.3</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">Why are pilots' working hours in the sky limited to a certain period?</span><span class="bm">Mengapakah jam bekerja juruterbang di udara dihadkan kepada tempoh tertentu?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">At high altitude, the atmosphere absorbs less cosmic radiation, so pilots receive stronger cosmic rays — their flying hours are limited to keep their dose within a safe level.</span><span class="bm">Pada ketinggian tinggi, atmosfera menyerap kurang radiasi kosmik, jadi juruterbang menerima sinar kosmik yang lebih kuat — jam penerbangan mereka dihadkan untuk mengekalkan dos mereka dalam tahap selamat.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= 8.4 ================= -->
+  <div class="section" id="sec-8-4" onmouseenter="visit('s84')">
+    <div class="section-head"><span class="num">8.4</span><h2><span class="en">Uses of Radioactive Radiation</span><span class="bm">Kegunaan Sinaran Radioaktif</span></h2></div>
+
+    <div class="card">
+      <h3><span class="en">One phenomenon, six industries</span><span class="bm">Satu fenomena, enam industri</span></h3>
+      <p><span class="en">Tap each field to see how radioactive radiation is put to work.</span><span class="bm">Ketik setiap bidang untuk melihat bagaimana sinaran radioaktif digunakan.</span></p>
+      <div class="flip-grid" id="usesGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Handling it safely</span><span class="bm">Mengendalikannya dengan selamat</span></h3>
+      <div class="example-chips">
+        <span><span class="en">🔒 Thick lead-walled containers</span><span class="bm">🔒 Bekas berdinding plumbum tebal</span></span>
+        <span><span class="en">🦺 Protective clothing</span><span class="bm">🦺 Pakaian pelindung</span></span>
+        <span><span class="en">🤖 Robotic hands for handling</span><span class="bm">🤖 Tangan robot untuk pengendalian</span></span>
+        <span><span class="en">📛 Radiation badges to detect dose</span><span class="bm">📛 Lencana radiasi untuk mengesan dos</span></span>
+        <span><span class="en">🗑️ Safe, proper waste disposal</span><span class="bm">🗑️ Pelupusan sisa yang selamat dan betul</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 8.4</span><span class="bm">Uji Diri — 8.4</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">How does carbon-14 dating determine the age of a dinosaur fossil?</span><span class="bm">Bagaimanakah penentuan usia karbon-14 menentukan usia fosil dinosaur?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">Once an organism dies, its C-14 begins decaying (half-life 5,700 years) by emitting beta radiation. Measuring the remaining C-14 activity reveals how long ago the organism died.</span><span class="bm">Sebaik sahaja organisma mati, C-14nya mula reput (separuh hayat 5,700 tahun) dengan memancarkan sinaran beta. Mengukur aktiviti C-14 yang tinggal mendedahkan berapa lama organisma itu telah mati.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2><span class="en">Chapter Map</span><span class="bm">Peta Minda Bab</span></h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center"><span class="en">Radioactivity</span><span class="bm">Keradioaktifan</span></div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5><span class="en">Discovery</span><span class="bm">Penemuan</span></h5><ul><li><span class="en">Roentgen, Becquerel, Curies</span><span class="bm">Roentgen, Becquerel, Curie</span></li><li><span class="en">Half-life</span><span class="bm">Separuh hayat</span></li></ul></div>
+          <div class="mm-branch"><h5><span class="en">Atom &amp; Radiation Types</span><span class="bm">Atom &amp; Jenis Sinaran</span></h5><ul><li><span class="en">Cation/anion formation</span><span class="bm">Pembentukan kation/anion</span></li><li>α, β, γ</li></ul></div>
+          <div class="mm-branch"><h5><span class="en">Uses &amp; Safety</span><span class="bm">Kegunaan &amp; Keselamatan</span></h5><ul><li><span class="en">Medicine, agriculture, industry</span><span class="bm">Perubatan, pertanian, industri</span></li><li><span class="en">Proper handling</span><span class="bm">Pengendalian yang betul</span></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2><span class="en">Self-Reflection</span><span class="bm">Refleksi Kendiri</span></h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can describe the history of the discovery of radioactivity.</span><span class="bm">Saya dapat menerangkan sejarah penemuan keradioaktifan.</span></p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can explain the formation of positive ions and negative ions.</span><span class="bm">Saya dapat menerangkan pembentukan ion positif dan ion negatif.</span></p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can differentiate ionising and non-ionising radiation, and their sources.</span><span class="bm">Saya dapat membezakan sinaran mengion dan tak mengion, serta sumbernya.</span></p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can communicate the uses of radioactive radiation and its safe handling.</span><span class="bm">Saya dapat menyatakan kegunaan sinaran radioaktif dan pengendaliannya yang selamat.</span></p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2><span class="en">Quick Quiz</span><span class="bm">Kuiz Ringkas</span></h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q"><span class="en">True or false: Marie Curie died from a disease caused by prolonged exposure to gamma rays.</span><span class="bm">Betul atau salah: Marie Curie meninggal dunia akibat penyakit disebabkan pendedahan berpanjangan kepada sinar gamma.</span></div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,true)"><span class="en">True</span><span class="bm">Betul</span></div>
+        <div class="tf-btn" onclick="answerTF(this,false)"><span class="en">False</span><span class="bm">Salah</span></div>
+      </div>
+      <div class="quiz-feedback" id="fb1"><span class="en">Correct — Marie Curie died at age 67 from prolonged exposure to gamma rays during her research.</span><span class="bm">Betul — Marie Curie meninggal dunia pada usia 67 tahun akibat pendedahan berpanjangan kepada sinar gamma semasa kajiannya.</span></div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q"><span class="en">Which type of radioactive radiation has the highest ionising power?</span><span class="bm">Jenis sinaran radioaktif manakah yang mempunyai kuasa pengionan tertinggi?</span></div>
+      <div class="mc-opt" onclick="answerMC(this,true)"><span class="en">Alpha radiation</span><span class="bm">Sinaran alfa</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Beta radiation</span><span class="bm">Sinaran beta</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Gamma ray</span><span class="bm">Sinar gamma</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">X-ray</span><span class="bm">Sinar-X</span></div>
+      <div class="quiz-feedback" id="fb2"><span class="en">Alpha radiation has the highest ionising power but the lowest penetration power — it's blocked by just a sheet of paper.</span><span class="bm">Sinaran alfa mempunyai kuasa pengionan tertinggi tetapi kuasa penembusan terendah — ia dihalang oleh sehelai kertas sahaja.</span></div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for Summative Practice 8?</span><span class="bm">Bersedia untuk Praktis Sumatif 8?</span></h3>
+    <p><span class="en">Ion formation tables, radiation safety scenarios, and a HOTS food-preservation case study await.</span><span class="bm">Jadual pembentukan ion, senario keselamatan radiasi, dan kajian kes HOTS pengawetan makanan menanti anda.</span></p>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {}, LANG = 'en';
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(8 + Object.keys(visited).length*22, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+function t(en,bm){ return LANG==='bm' ? bm : en; }
+
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+  renderKeywords();
+  renderRadiationGrid();
+  renderUsesGrid();
+  renderJourney1();
+}
+
+const kwData = [
+  [["Radioactivity","Keradioaktifan"],["A random, spontaneous decay process of an unstable nucleus.","Proses pereputan rawak dan spontan bagi nukleus tidak stabil."]],
+  [["Half-life","Separuh hayat"],["The time taken for undecayed nuclei to reduce to half their original number.","Masa yang diambil untuk nukleus yang belum reput berkurang kepada separuh bilangan asal."]],
+  [["Ionising radiation","Sinaran mengion"],["Radiation that produces positive and negative ions when passing through air.","Sinaran yang menghasilkan ion positif dan negatif apabila melalui udara."]],
+  [["Cation","Kation"],["A positive ion formed when an atom loses electrons.","Ion positif yang terbentuk apabila atom kehilangan elektron."]],
+  [["Anion","Anion"],["A negative ion formed when an atom gains electrons.","Ion negatif yang terbentuk apabila atom memperoleh elektron."]],
+  [["Becquerel (Bq)","Becquerel (Bq)"],["The S.I. unit of radioactivity — 1 decay per second.","Unit S.I. bagi keradioaktifan — 1 reputan sesaat."]],
+  [["Cosmic ray","Sinar kosmik"],["High-energy radiation from outside the Solar System or another galaxy.","Sinaran bertenaga tinggi daripada luar Sistem Suria atau galaksi lain."]]
+];
+function renderKeywords(){
+  const kwWrap = document.getElementById('keywords');
+  kwWrap.innerHTML = '';
+  kwData.forEach(([term,def])=>{
+    const d = document.createElement('div');
+    d.className='kw';
+    d.innerHTML = t(term[0],term[1]) + '<div class="tip">'+t(def[0],def[1])+'</div>';
+    d.onclick = ()=>{ d.classList.toggle('open'); };
+    kwWrap.appendChild(d);
+  });
+}
+
+/* discovery journey */
+const journeyStops1 = [
+  [["Roentgen — X-ray (1895)","Roentgen — Sinar-X (1895)"],"🩻",[
+    "German physicist Wilhelm Roentgen unintentionally X-rayed his wife's hand, discovering X-rays. He received the first Nobel Prize in Physics in 1901.",
+    "Ahli fizik Jerman, Wilhelm Roentgen, secara tidak sengaja mengambil gambar sinar-X tangan isterinya, menemui sinar-X. Beliau menerima Hadiah Nobel Fizik pertama pada 1901."]],
+  [["Becquerel — Radioactivity (1896)","Becquerel — Keradioaktifan (1896)"],"⚡",[
+    "French physicist Antoine Henri Becquerel found that a uranium compound could blacken a photographic plate even in the dark, detected via its ionising property. He received the Nobel Prize in Physics in 1903.",
+    "Ahli fizik Perancis, Antoine Henri Becquerel, mendapati sebatian uranium boleh menghitamkan plat fotografi walaupun dalam gelap, dikesan melalui sifat pengionannya. Beliau menerima Hadiah Nobel Fizik pada 1903."]],
+  [["Marie & Pierre Curie — Polonium & Radium (1897)","Marie & Pierre Curie — Polonium & Radium (1897)"],"☢️",[
+    "This Polish-French couple detected radioactive radiation through its ionising power, and successfully extracted two new radioactive elements — polonium and radium — from uranium ore (pitchblende).",
+    "Pasangan Poland-Perancis ini mengesan sinaran radioaktif melalui kuasa pengionannya, dan berjaya mengekstrak dua unsur radioaktif baharu — polonium dan radium — daripada bijih uranium (pitchblende)."]]
+];
+let journeyIdx1 = 0;
+function renderJourney1(){
+  const stopsEl = document.getElementById('journeyStops1');
+  stopsEl.innerHTML = '';
+  journeyStops1.forEach(([name,icon],i)=>{
+    const s = document.createElement('div');
+    s.className = 'journey-stop' + (i===journeyIdx1?' active':(i<journeyIdx1?' past':''));
+    s.innerHTML = `<div class="journey-dot">${icon}</div><div class="journey-label">${t(name[0],name[1])}</div>`;
+    s.onclick = ()=>{ journeyIdx1 = i; renderJourney1(); };
+    stopsEl.appendChild(s);
+  });
+  document.getElementById('journeyFill1').style.width = (journeyIdx1/(journeyStops1.length-1))*90 + '%';
+  document.getElementById('journeyDetail1').innerHTML = `<b>${t(journeyStops1[journeyIdx1][0][0],journeyStops1[journeyIdx1][0][1])}</b>${t(journeyStops1[journeyIdx1][2][0],journeyStops1[journeyIdx1][2][1])}`;
+  document.getElementById('journeyPrev1').toggleAttribute('disabled', journeyIdx1===0);
+  document.getElementById('journeyNext1').toggleAttribute('disabled', journeyIdx1===journeyStops1.length-1);
+  visit('s81');
+}
+function journeyStep1(dir){
+  journeyIdx1 = Math.max(0, Math.min(journeyStops1.length-1, journeyIdx1+dir));
+  renderJourney1();
+}
+
+/* half-life calculator */
+const origMass = document.getElementById('origMass'), halfLife = document.getElementById('halfLife'), elapsedTime = document.getElementById('elapsedTime');
+function calcHalfLife(){
+  const m0 = parseFloat(origMass.value), hl = parseFloat(halfLife.value), et = parseFloat(elapsedTime.value);
+  const resultEl = document.getElementById('halfLifeResult');
+  if(isNaN(m0) || isNaN(hl) || isNaN(et) || hl===0){ resultEl.textContent = '—'; return; }
+  const numHalfLives = et / hl;
+  const remaining = m0 * Math.pow(0.5, numHalfLives);
+  resultEl.textContent = `${remaining.toFixed(3)} g ${t('remaining','baki')} (${numHalfLives.toFixed(1)} ${t('half-lives','separuh hayat')})`;
+  visit('s81');
+}
+[origMass, halfLife, elapsedTime].forEach(el=>el.addEventListener('input', calcHalfLife));
+calcHalfLife();
+
+/* ion toggle */
+function showIon(el,type){
+  const wrap = el.closest('.card');
+  wrap.querySelectorAll('.toggle-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  wrap.querySelectorAll('.toggle-panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(type).classList.add('show');
+  visit('s82');
+}
+
+/* radiation type flip cards */
+const radiationTypes = [
+  [["α","α"],["Alpha Radiation","Sinaran Alfa"],[
+    "Helium nucleus, positive charge. Ionising power: HIGH. Penetration power: LOW (stopped by paper).",
+    "Nukleus helium, cas positif. Kuasa pengionan: TINGGI. Kuasa penembusan: RENDAH (dihalang oleh kertas)."]],
+  [["β","β"],["Beta Radiation","Sinaran Beta"],[
+    "High-speed electron, negative charge. Ionising power: MODERATE. Penetration power: MODERATE (stopped by 3mm aluminium).",
+    "Elektron berkelajuan tinggi, cas negatif. Kuasa pengionan: SEDERHANA. Kuasa penembusan: SEDERHANA (dihalang oleh 3mm aluminium)."]],
+  [["γ","γ"],["Gamma Ray","Sinar Gamma"],[
+    "Electromagnetic wave, no charge. Ionising power: LOW. Penetration power: HIGH (needs 10cm lead to stop).",
+    "Gelombang elektromagnet, tiada cas. Kuasa pengionan: RENDAH. Kuasa penembusan: TINGGI (perlu plumbum 10cm untuk menghalang)."]]
+];
+function renderRadiationGrid(){
+  const grid = document.getElementById('radiationGrid');
+  grid.innerHTML = '';
+  radiationTypes.forEach(([icon,name,fact])=>{
+    const c = document.createElement('div');
+    c.className='flip-card';
+    c.innerHTML = `<div class="flip-inner">
+      <div class="flip-face flip-front"><div style="font-size:28px;">${icon[0]}</div><div class="label" style="position:static; background:none; padding-top:8px; font-size:12.5px;">${t(name[0],name[1])}</div></div>
+      <div class="flip-face flip-back" style="font-size:11px;">${t(fact[0],fact[1])}</div>
+    </div>`;
+    c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s83'); };
+    grid.appendChild(c);
+  });
+}
+
+/* uses of radioactive radiation flip cards */
+const uses = [
+  [["🦴","🦴"],["Archaeology","Arkeologi"],["Carbon-14 dating determines the age of fossils and artifacts.","Penentuan usia karbon-14 menentukan usia fosil dan artifak."]],
+  [["🏭","🏭"],["Industry","Industri"],["Beta radiation monitors metal sheet thickness in factories.","Sinaran beta memantau ketebalan kepingan logam di kilang."]],
+  [["🌾","🌾"],["Agriculture","Pertanian"],["P-32 tracks fertiliser absorption; radiation sterilises pests.","P-32 menjejak penyerapan baja; sinaran mensteril perosak."]],
+  [["🛡️","🛡️"],["Defence","Pertahanan"],["Used in nuclear weapons — devastating and long-lasting effects.","Digunakan dalam senjata nuklear — kesan yang dahsyat dan berpanjangan."]],
+  [["🍓","🍓"],["Food Preservation","Pengawetan Makanan"],["Gamma rays kill bacteria in food, labelled with the Radura logo.","Sinar gamma membunuh bakteria dalam makanan, dilabel dengan logo Radura."]],
+  [["🏥","🏥"],["Medical","Perubatan"],["Gamma rays from Co-60/Cs-137 kill cancer cells; Na-24 locates blood clots.","Sinar gamma daripada Co-60/Cs-137 membunuh sel kanser; Na-24 mengesan lokasi gumpalan darah."]]
+];
+function renderUsesGrid(){
+  const grid = document.getElementById('usesGrid');
+  grid.innerHTML = '';
+  uses.forEach(([icon,name,fact])=>{
+    const c = document.createElement('div');
+    c.className='flip-card';
+    c.innerHTML = `<div class="flip-inner">
+      <div class="flip-face flip-front"><div style="font-size:22px;">${icon[0]}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:11.5px;">${t(name[0],name[1])}</div></div>
+      <div class="flip-face flip-back" style="font-size:10.5px;">${t(fact[0],fact[1])}</div>
+    </div>`;
+    c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s84'); };
+    grid.appendChild(c);
+  });
+}
+
+/* reveal / reflect */
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+
+renderKeywords();
+renderRadiationGrid();
+renderUsesGrid();
+renderJourney1();
+</script>
+</body>
+</html>

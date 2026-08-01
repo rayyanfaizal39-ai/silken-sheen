@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 10: Space Exploration / Penerokaan Angkasa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Theme 4 · Earth and Space Exploration &nbsp;/&nbsp; <b>Form 3 Science</b></span>
+    <span class="bm">Tema 4 · Penerokaan Bumi dan Angkasa Lepas &nbsp;/&nbsp; <b>Sains Tingkatan 3</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 10</span><span class="bm">Bab 10</span></div>
+    <h1><span class="en">Space Exploration</span><span class="bm">Penerokaan Angkasa</span></h1>
+    <p class="sub">
+      <span class="en">From Ptolemy putting Earth at the centre of everything to Malaysia launching its own satellite — our model of the universe, and our reach into it, keeps expanding.</span>
+      <span class="bm">Daripada Ptolemy meletakkan Bumi di pusat segala-galanya sehingga Malaysia melancarkan satelitnya sendiri — model kita tentang alam semesta, dan capaian kita ke dalamnya, terus berkembang.</span>
+    </p>
+
+    <div class="questions">
+      <div class="q-card"><b><span class="en">Models</span><span class="bm">Model</span></b><span class="en">How has the Solar System model improved over time?</span><span class="bm">Bagaimana model Sistem Suria bertambah baik dari semasa ke semasa?</span></div>
+      <div class="q-card"><b><span class="en">Technology</span><span class="bm">Teknologi</span></b><span class="en">What technological devices are used in space exploration?</span><span class="bm">Apakah peranti teknologi yang digunakan dalam penerokaan angkasa?</span></div>
+      <div class="q-card"><b><span class="en">Application</span><span class="bm">Aplikasi</span></b><span class="en">How is remote sensing used in geology?</span><span class="bm">Bagaimana penderiaan jauh digunakan dalam geologi?</span></div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">10.1 Astronomy</span><span class="bm">10.1 Astronomi</span><span id="progressPct">15%</span><span class="en">10.2 Technology</span><span class="bm">10.2 Teknologi</span></div>
+  </div>
+
+  <div class="keywords" id="keywords"></div>
+
+  <div class="card" style="margin-top:24px;" onclick="visit('blog')">
+    <h3 style="color:var(--violet);">🚀 <span class="en">Science Gallery — Malaysia's First Astronaut</span><span class="bm">Galeri Sains — Angkasawan Pertama Malaysia</span></h3>
+    <p>
+      <span class="en">Dato' Dr Sheikh Muszaphar Shukor Al Masrie became the first astronaut from Malaysia to carry out experiments in space, aboard the International Space Station from 10 to 21 October 2007.</span>
+      <span class="bm">Dato' Dr Sheikh Muszaphar Shukor Al Masrie menjadi angkasawan pertama dari Malaysia yang menjalankan eksperimen di angkasa, di Stesen Angkasa Antarabangsa dari 10 hingga 21 Oktober 2007.</span>
+    </p>
+  </div>
+
+  <!-- ================= 10.1 ================= -->
+  <div class="section" id="sec-10-1" onmouseenter="visit('s101')">
+    <div class="section-head"><span class="num">10.1</span><h2><span class="en">Development in Astronomy</span><span class="bm">Perkembangan dalam Astronomi</span></h2></div>
+
+    <div class="card">
+      <h3>🌍☀️ <span class="en">Three astronomers, three models of the universe</span><span class="bm">Tiga ahli astronomi, tiga model alam semesta</span></h3>
+      <p><span class="en">Tap each astronomer's tab to see their Solar System model.</span><span class="bm">Ketik tab setiap ahli astronomi untuk melihat model Sistem Suria mereka.</span></p>
+      <div class="tabs" id="astronomerTabs"></div>
+      <div id="astronomerPanels"></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 10.1</span><span class="bm">Uji Diri — 10.1</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">What is the key similarity between the Copernicus and Kepler models?</span><span class="bm">Apakah persamaan utama antara model Copernicus dan Kepler?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">Both place the Sun at the centre of the Solar System (heliocentric) — Kepler's contribution was correcting the orbits from circular to elliptical, based on his own law.</span><span class="bm">Kedua-duanya meletakkan Matahari di pusat Sistem Suria (heliosentrik) — sumbangan Kepler ialah membetulkan orbit daripada bulat kepada elips, berdasarkan hukumnya sendiri.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= 10.2 ================= -->
+  <div class="section" id="sec-10-2" onmouseenter="visit('s102')">
+    <div class="section-head"><span class="num">10.2</span><h2><span class="en">Development of Technology and its Application in Space Exploration</span><span class="bm">Perkembangan Teknologi dan Aplikasinya dalam Penerokaan Angkasa</span></h2></div>
+
+    <div class="card">
+      <h3>🛰️ <span class="en">From gunpowder rockets to the ISS</span><span class="bm">Daripada roket mesiu kepada ISS</span></h3>
+      <p><span class="en">Step through key milestones in space exploration technology.</span><span class="bm">Langkah demi langkah, lihat detik penting dalam teknologi penerokaan angkasa.</span></p>
+      <div class="journey-track">
+        <div class="journey-line"></div>
+        <div class="journey-fill" id="journeyFill"></div>
+        <div class="journey-stops" id="journeyStops"></div>
+      </div>
+      <div class="journey-detail" id="journeyDetail"></div>
+      <div class="journey-nav">
+        <div class="journey-nav-btn" id="journeyPrev" onclick="journeyStep(-1)"><span class="en">← Back</span><span class="bm">← Kembali</span></div>
+        <div class="journey-nav-btn" id="journeyNext" onclick="journeyStep(1)"><span class="en">Next →</span><span class="bm">Seterusnya →</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Four space exploration tools</span><span class="bm">Empat alat penerokaan angkasa</span></h3>
+      <div class="compare-wrap">
+        <div class="compare-row" style="grid-template-columns:1fr 1fr;">
+          <div class="compare-col left"><h4><span class="en">🔭 Space Telescope</span><span class="bm">🔭 Teleskop Angkasa</span></h4><dl><dd><span class="en">Detects distant objects; Hubble orbits 500 km above Earth</span><span class="bm">Mengesan objek jauh; Hubble mengorbit 500 km dari Bumi</span></dd></dl></div>
+          <div class="compare-col right"><h4><span class="en">🚀 Rocket</span><span class="bm">🚀 Roket</span></h4><dl><dd><span class="en">Burning fuel releases hot gas at high speed, pushing the rocket upward</span><span class="bm">Pembakaran bahan api melepaskan gas panas berkelajuan tinggi, menolak roket ke atas</span></dd></dl></div>
+          <div class="compare-col left"><h4><span class="en">🛰️ Satellite</span><span class="bm">🛰️ Satelit</span></h4><dl><dd><span class="en">Orbits Earth; first was Sputnik 1 (1957)</span><span class="bm">Mengorbit Bumi; pertama ialah Sputnik 1 (1957)</span></dd></dl></div>
+          <div class="compare-col right"><h4><span class="en">📡 Space Probe</span><span class="bm">📡 Kuar Angkasa</span></h4><dl><dd><span class="en">Travels beyond Earth orbit, sending data back — e.g. Cassini at Saturn</span><span class="bm">Bergerak melangkaui orbit Bumi, menghantar data kembali — cth. Cassini di Zuhal</span></dd></dl></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🛰️ <span class="en">Remote sensing at work</span><span class="bm">Penderiaan jauh dalam tindakan</span></h3>
+      <p><span class="en">Remote sensing gathers and records information from a distance. Malaysia's TiungSAT-1 uses it to detect visible, ultraviolet and infrared light from Earth's surface. Tap each field to see its use.</span><span class="bm">Penderiaan jauh mengumpul dan merekod maklumat dari jauh. TiungSAT-1 Malaysia menggunakannya untuk mengesan cahaya nampak, ultraungu dan inframerah daripada permukaan Bumi. Ketik setiap bidang untuk melihat kegunaannya.</span></p>
+      <div class="flip-grid" id="remoteSensingGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="en">Check yourself — 10.2</span><span class="bm">Uji Diri — 10.2</span></h3>
+      <div class="reveal-card"><div class="reveal-q" onclick="toggleReveal(this)">
+        <span><span class="en">Why are space probes not used to send astronauts into space?</span><span class="bm">Mengapakah kuar angkasa tidak digunakan untuk menghantar angkasawan ke angkasa?</span></span>
+        <span class="reveal-tag"><span class="en">Reveal hint</span><span class="bm">Lihat petunjuk</span></span></div>
+        <div class="reveal-a"><span class="en">Space probes are unmanned spacecraft designed to travel deep into and beyond the Solar System for long durations — they lack the life-support systems needed to keep astronauts alive.</span><span class="bm">Kuar angkasa ialah kapal angkasa tanpa pemandu yang direka untuk bergerak jauh ke dalam dan melangkaui Sistem Suria untuk tempoh lama — ia tiada sistem sokongan hidup yang diperlukan untuk mengekalkan angkasawan hidup.</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✦</span><h2><span class="en">Chapter Map</span><span class="bm">Peta Minda Bab</span></h2></div>
+    <div class="card">
+      <div class="mindmap">
+        <div class="mm-center"><span class="en">Space Exploration</span><span class="bm">Penerokaan Angkasa</span></div>
+        <div class="mm-branches">
+          <div class="mm-branch"><h5><span class="en">Astronomy Models</span><span class="bm">Model Astronomi</span></h5><ul><li><span class="en">Ptolemy: geocentric</span><span class="bm">Ptolemy: geosentrik</span></li><li><span class="en">Copernicus &amp; Kepler: heliocentric</span><span class="bm">Copernicus &amp; Kepler: heliosentrik</span></li></ul></div>
+          <div class="mm-branch"><h5><span class="en">Technology</span><span class="bm">Teknologi</span></h5><ul><li><span class="en">Telescope, rocket</span><span class="bm">Teleskop, roket</span></li><li><span class="en">Satellite, space probe</span><span class="bm">Satelit, kuar angkasa</span></li></ul></div>
+          <div class="mm-branch"><h5><span class="en">Remote Sensing</span><span class="bm">Penderiaan Jauh</span></h5><ul><li><span class="en">Agriculture, geology</span><span class="bm">Pertanian, geologi</span></li><li><span class="en">Disaster management, defence</span><span class="bm">Pengurusan bencana, pertahanan</span></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SELF REFLECTION ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">✓</span><h2><span class="en">Self-Reflection</span><span class="bm">Refleksi Kendiri</span></h2></div>
+    <div class="card">
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can explain the historical development of the Solar System model by drawing.</span><span class="bm">Saya dapat menerangkan perkembangan sejarah model Sistem Suria melalui lukisan.</span></p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can communicate the importance of technology development in space exploration.</span><span class="bm">Saya dapat menyatakan kepentingan perkembangan teknologi dalam penerokaan angkasa.</span></p></div>
+      <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can justify the need to continue space exploration.</span><span class="bm">Saya dapat mewajarkan keperluan untuk meneruskan penerokaan angkasa.</span></p></div>
+    </div>
+  </div>
+
+  <!-- ================= QUIZ ================= -->
+  <div class="section">
+    <div class="section-head"><span class="num">?</span><h2><span class="en">Quick Quiz</span><span class="bm">Kuiz Ringkas</span></h2></div>
+    <div class="quiz-card">
+      <div class="quiz-q"><span class="en">True or false: Ptolemy's model placed the Sun at the centre of the Solar System.</span><span class="bm">Betul atau salah: Model Ptolemy meletakkan Matahari di pusat Sistem Suria.</span></div>
+      <div class="tf-row">
+        <div class="tf-btn" onclick="answerTF(this,false)"><span class="en">True</span><span class="bm">Betul</span></div>
+        <div class="tf-btn" onclick="answerTF(this,true)"><span class="en">False</span><span class="bm">Salah</span></div>
+      </div>
+      <div class="quiz-feedback" id="fb1"><span class="en">Ptolemy's model was geocentric — Earth at the centre. It was Copernicus who later placed the Sun at the centre.</span><span class="bm">Model Ptolemy adalah geosentrik — Bumi di pusat. Copernicuslah yang kemudiannya meletakkan Matahari di pusat.</span></div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-q"><span class="en">Which technology is used to detect suitable regions for agricultural development?</span><span class="bm">Teknologi manakah yang digunakan untuk mengesan kawasan sesuai untuk pembangunan pertanian?</span></div>
+      <div class="mc-opt" onclick="answerMC(this,true)"><span class="en">Remote sensing</span><span class="bm">Penderiaan jauh</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Space probe</span><span class="bm">Kuar angkasa</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Rocket</span><span class="bm">Roket</span></div>
+      <div class="mc-opt" onclick="answerMC(this,false)"><span class="en">Space telescope</span><span class="bm">Teleskop angkasa</span></div>
+      <div class="quiz-feedback" id="fb2"><span class="en">Remote sensing detects visible, ultraviolet and infrared light from Earth's surface — used in agriculture, geology, disaster management and defence.</span><span class="bm">Penderiaan jauh mengesan cahaya nampak, ultraungu dan inframerah daripada permukaan Bumi — digunakan dalam pertanian, geologi, pengurusan bencana dan pertahanan.</span></div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for Summative Practice 10?</span><span class="bm">Bersedia untuk Praktis Sumatif 10?</span></h3>
+    <p><span class="en">Model matching and a HOTS spacecraft-design challenge await.</span><span class="bm">Padanan model dan cabaran HOTS mereka bentuk kapal angkasa menanti anda.</span></p>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let xp = 0, visited = {}, LANG = 'en';
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 10;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(15 + Object.keys(visited).length*40, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+function t(en,bm){ return LANG==='bm' ? bm : en; }
+
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+  renderKeywords();
+  buildAstronomerTabs();
+  renderJourney();
+  renderRemoteSensing();
+}
+
+const kwData = [
+  [["Geocentric","Geosentrik"],["A model with Earth at the centre of the Solar System.","Model dengan Bumi di pusat Sistem Suria."]],
+  [["Heliocentric","Heliosentrik"],["A model with the Sun at the centre of the Solar System.","Model dengan Matahari di pusat Sistem Suria."]],
+  [["Kepler's Law","Hukum Kepler"],["A law describing planetary orbits as elliptical with the Sun at one focal point.","Hukum yang menerangkan orbit planet berbentuk elips dengan Matahari pada satu titik fokus."]],
+  [["Space probe","Kuar angkasa"],["An unmanned spacecraft that gathers information and sends it back to Earth.","Kapal angkasa tanpa pemandu yang mengumpul maklumat dan menghantarnya kembali ke Bumi."]],
+  [["Remote sensing","Penderiaan jauh"],["A method of gathering and recording information from a distance.","Kaedah mengumpul dan merekod maklumat dari jauh."]]
+];
+function renderKeywords(){
+  const kwWrap = document.getElementById('keywords');
+  kwWrap.innerHTML = '';
+  kwData.forEach(([term,def])=>{
+    const d = document.createElement('div');
+    d.className='kw';
+    d.innerHTML = t(term[0],term[1]) + '<div class="tip">'+t(def[0],def[1])+'</div>';
+    d.onclick = ()=>{ d.classList.toggle('open'); };
+    kwWrap.appendChild(d);
+  });
+}
+
+/* astronomer tabs */
+const astronomers = [
+  [["Ptolemy (90–168 A.D.)","Ptolemy (90–168 M)"], [
+    "Greek astronomer, astrologer and geographer. Built the geocentric model — Earth at the centre, Sun and planets revolving around it in circular orbits.",
+    "Ahli astronomi, ahli nujum dan ahli geografi Greek. Membina model geosentrik — Bumi di pusat, Matahari dan planet mengorbit sekelilingnya dalam orbit bulat."]],
+  [["Copernicus (1451–1543)","Copernicus (1451–1543)"], [
+    "Polish astronomer, mathematician, economist and doctor. Built the heliocentric model — the Sun at the centre, with Earth rotating on its axis and revolving around the Sun in a circular orbit.",
+    "Ahli astronomi, ahli matematik, ahli ekonomi dan doktor Poland. Membina model heliosentrik — Matahari di pusat, dengan Bumi berputar pada paksinya dan mengorbit Matahari dalam orbit bulat."]],
+  [["Kepler (1571–1630)","Kepler (1571–1630)"], [
+    "German astronomer, mathematician and astrologer. Modified the heliocentric model with the Sun at one common focal point on the elliptical orbits of the planets, according to Kepler's Law.",
+    "Ahli astronomi, ahli matematik dan ahli nujum Jerman. Mengubah suai model heliosentrik dengan Matahari pada satu titik fokus sepunya pada orbit elips planet, menurut Hukum Kepler."]]
+];
+function buildAstronomerTabs(){
+  const tabsEl = document.getElementById('astronomerTabs');
+  const panelsEl = document.getElementById('astronomerPanels');
+  tabsEl.innerHTML = ''; panelsEl.innerHTML = '';
+  astronomers.forEach(([name,desc],i)=>{
+    const tb = document.createElement('div');
+    tb.className = 'tab'+(i===0?' active':'');
+    tb.textContent = t(name[0],name[1]);
+    tb.onclick = ()=>{
+      tabsEl.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      tb.classList.add('active');
+      panelsEl.querySelectorAll('.tab-panel').forEach(x=>x.classList.remove('active'));
+      document.getElementById('apanel-'+i).classList.add('active');
+      visit('s101');
+    };
+    tabsEl.appendChild(tb);
+    const p = document.createElement('div');
+    p.className = 'tab-panel'+(i===0?' active':'');
+    p.id = 'apanel-'+i;
+    p.innerHTML = `<p>${t(desc[0],desc[1])}</p>`;
+    panelsEl.appendChild(p);
+  });
+}
+
+/* technology timeline journey */
+const journeyStops = [
+  [["Primitive Rockets (11th century)","Roket Primitif (abad ke-11)"],"🎆",[
+    "Chinese invented gunpowder and used primitive rockets in battles.",
+    "Orang Cina mencipta mesiu dan menggunakan roket primitif dalam peperangan."]],
+  [["First Telescope (1609)","Teleskop Pertama (1609)"],"🔭",[
+    "Galileo Galilei used the first telescope in the field of astronomy.",
+    "Galileo Galilei menggunakan teleskop pertama dalam bidang astronomi."]],
+  [["First Satellite (1957)","Satelit Pertama (1957)"],"🛰️",[
+    "USSR launched Sputnik 1, the first artificial satellite.",
+    "USSR melancarkan Sputnik 1, satelit buatan pertama."]],
+  [["First Human in Orbit (1961)","Manusia Pertama Mengorbit (1961)"],"👨‍🚀",[
+    "Yuri Gagarin became the first human to orbit Earth, aboard USSR Vostok 1.",
+    "Yuri Gagarin menjadi manusia pertama mengorbit Bumi, menaiki Vostok 1 USSR."]],
+  [["Moon Landing (1969)","Pendaratan di Bulan (1969)"],"🌕",[
+    "Neil Armstrong became the first human to set foot on the Moon, aboard US Apollo 11.",
+    "Neil Armstrong menjadi manusia pertama memijak Bulan, menaiki Apollo 11 AS."]],
+  [["Malaysian Satellites (1996–2000)","Satelit Malaysia (1996–2000)"],"🇲🇾",[
+    "MEASAT 1 and 2 launched (1996); Malaysia's first microsatellite TiungSAT-1 launched (2000).",
+    "MEASAT 1 dan 2 dilancarkan (1996); mikrosatelit pertama Malaysia TiungSAT-1 dilancarkan (2000)."]],
+  [["ISS Completed (2011)","ISS Disiapkan (2011)"],"🏗️",[
+    "Construction of the International Space Station (ISS) was completed.",
+    "Pembinaan Stesen Angkasa Antarabangsa (ISS) disiapkan."]]
+];
+let journeyIdx = 0;
+function renderJourney(){
+  const stopsEl = document.getElementById('journeyStops');
+  stopsEl.innerHTML = '';
+  journeyStops.forEach(([name,icon],i)=>{
+    const s = document.createElement('div');
+    s.className = 'journey-stop' + (i===journeyIdx?' active':(i<journeyIdx?' past':''));
+    s.innerHTML = `<div class="journey-dot">${icon}</div><div class="journey-label">${t(name[0],name[1])}</div>`;
+    s.onclick = ()=>{ journeyIdx = i; renderJourney(); };
+    stopsEl.appendChild(s);
+  });
+  document.getElementById('journeyFill').style.width = (journeyIdx/(journeyStops.length-1))*90 + '%';
+  document.getElementById('journeyDetail').innerHTML = `<b>${t(journeyStops[journeyIdx][0][0],journeyStops[journeyIdx][0][1])}</b>${t(journeyStops[journeyIdx][2][0],journeyStops[journeyIdx][2][1])}`;
+  document.getElementById('journeyPrev').toggleAttribute('disabled', journeyIdx===0);
+  document.getElementById('journeyNext').toggleAttribute('disabled', journeyIdx===journeyStops.length-1);
+  visit('s102');
+}
+function journeyStep(dir){
+  journeyIdx = Math.max(0, Math.min(journeyStops.length-1, journeyIdx+dir));
+  renderJourney();
+}
+
+/* remote sensing flip cards */
+const remoteSensingUses = [
+  [["🌾","🌾"],["Agriculture","Pertanian"],["Detects suitable regions for agricultural development.","Mengesan kawasan sesuai untuk pembangunan pertanian."]],
+  [["⛏️","⛏️"],["Geology","Geologi"],["Detects mineral sources, mass depletion and land depletion.","Mengesan sumber mineral, kesusutan jisim dan kesusutan tanah."]],
+  [["🚨","🚨"],["Disaster Management","Pengurusan Bencana"],["Identifies pollution and forest fires.","Mengenal pasti pencemaran dan kebakaran hutan."]],
+  [["🛡️","🛡️"],["Defence","Pertahanan"],["Detects intrusions of enemy ships, aircraft and vehicles.","Mengesan pencerobohan kapal, pesawat dan kenderaan musuh."]]
+];
+function renderRemoteSensing(){
+  const grid = document.getElementById('remoteSensingGrid');
+  grid.innerHTML = '';
+  remoteSensingUses.forEach(([icon,name,fact])=>{
+    const c = document.createElement('div');
+    c.className='flip-card';
+    c.innerHTML = `<div class="flip-inner">
+      <div class="flip-face flip-front"><div style="font-size:24px;">${icon[0]}</div><div class="label" style="position:static; background:none; padding-top:6px; font-size:12px;">${t(name[0],name[1])}</div></div>
+      <div class="flip-face flip-back" style="font-size:11px;">${t(fact[0],fact[1])}</div>
+    </div>`;
+    c.onclick = ()=>{ c.classList.toggle('flipped'); visit('s102'); };
+    grid.appendChild(c);
+  });
+}
+
+/* reveal / reflect */
+function toggleReveal(q){ q.parentElement.classList.toggle('open'); }
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+
+/* quiz */
+function answerTF(el,correct){
+  const row = el.parentElement;
+  row.querySelectorAll('.tf-btn').forEach(b=>b.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  row.parentElement.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+function answerMC(el,correct){
+  const wrap = el.parentElement;
+  wrap.querySelectorAll('.mc-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  wrap.querySelector('.quiz-feedback').classList.add('show');
+  if(correct) xp += 15, document.getElementById('xpCount').textContent = xp;
+}
+
+renderKeywords();
+buildAstronomerTabs();
+renderJourney();
+renderRemoteSensing();
+</script>
+</body>
+</html>

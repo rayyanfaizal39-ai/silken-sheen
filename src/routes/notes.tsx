@@ -208,6 +208,10 @@ const F3_SCIENCE_LAB_META: Record<number, { modules: number; minutes: number; ex
   4: { modules: 11, minutes: 22, experiments: 3, difficulty: "Core" },
   5: { modules: 6, minutes: 14, experiments: 1, difficulty: "Core" },
   6: { modules: 15, minutes: 30, experiments: 4, difficulty: "Core" },
+  7: { modules: 9, minutes: 20, experiments: 2, difficulty: "Core" },
+  8: { modules: 12, minutes: 24, experiments: 2, difficulty: "Core" },
+  9: { modules: 8, minutes: 18, experiments: 2, difficulty: "Core" },
+  10: { modules: 8, minutes: 18, experiments: 2, difficulty: "Core" },
 };
 
 function SubjectFeatureArtwork({ subjectId, src }: { subjectId: string; src: string | null }) {

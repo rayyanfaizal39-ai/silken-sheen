@@ -2,9 +2,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export type ZoneExplorerZone = {
   name: string;
-  facts: { label: string; value: string }[];
-  examples: string[];
-  activities: string[];
+  description?: string;
+  facts?: { label: string; value: string }[];
+  examples?: string[];
+  activities?: string[];
 };
 
 export type ZoneExplorerBlock = {
@@ -33,38 +34,47 @@ export function ZoneExplorer({ block }: { block: ZoneExplorerBlock }) {
       </TabsList>
       {block.zones.map((zone, i) => (
         <TabsContent key={zone.name} value={`zone-${i}`} className="space-y-3.5">
-          <div className="grid gap-2 sm:grid-cols-3">
-            {zone.facts.map((f) => (
-              <div key={f.label} className="rounded-xl border border-border bg-secondary/40 p-3">
-                <div className="text-[11px] uppercase tracking-wide text-muted-foreground">{f.label}</div>
-                <div className="mt-0.5 text-[13px] font-semibold text-foreground">{f.value}</div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <p className="mb-1.5 text-[11px] uppercase tracking-wide text-muted-foreground">
-              {block.examplesLabel ?? "Negara contoh"}
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {zone.examples.map((c) => (
-                <span key={c} className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs text-foreground">
-                  {c}
-                </span>
+          {zone.description && (
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{zone.description}</p>
+          )}
+          {zone.facts && zone.facts.length > 0 && (
+            <div className="grid gap-2 sm:grid-cols-3">
+              {zone.facts.map((f) => (
+                <div key={f.label} className="rounded-xl border border-border bg-secondary/40 p-3">
+                  <div className="text-[11px] uppercase tracking-wide text-muted-foreground">{f.label}</div>
+                  <div className="mt-0.5 text-[13px] font-semibold text-foreground">{f.value}</div>
+                </div>
               ))}
             </div>
-          </div>
-          <div>
-            <p className="mb-1.5 text-[11px] uppercase tracking-wide text-muted-foreground">
-              {block.activitiesLabel ?? "Kegiatan ekonomi"}
-            </p>
-            <ul className="space-y-1">
-              {zone.activities.map((a) => (
-                <li key={a} className="text-[13px] leading-relaxed text-muted-foreground">
-                  {a}
-                </li>
-              ))}
-            </ul>
-          </div>
+          )}
+          {zone.examples && zone.examples.length > 0 && (
+            <div>
+              <p className="mb-1.5 text-[11px] uppercase tracking-wide text-muted-foreground">
+                {block.examplesLabel ?? "Negara contoh"}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {zone.examples.map((c) => (
+                  <span key={c} className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs text-foreground">
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          {zone.activities && zone.activities.length > 0 && (
+            <div>
+              <p className="mb-1.5 text-[11px] uppercase tracking-wide text-muted-foreground">
+                {block.activitiesLabel ?? "Kegiatan ekonomi"}
+              </p>
+              <ul className="space-y-1">
+                {zone.activities.map((a) => (
+                  <li key={a} className="text-[13px] leading-relaxed text-muted-foreground">
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </TabsContent>
       ))}
     </Tabs>
