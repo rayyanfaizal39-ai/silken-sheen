@@ -130,7 +130,14 @@ export function CinematicMotionProvider({
       };
     }
 
-    void initialize();
+    // A failed GSAP/Lenis chunk (flaky mobile network, stale SW entry) used to
+    // leave every animated-in element stuck at its opacity:0 start state, which
+    // read to users as "the images are missing". Flag the root so CSS can
+    // reveal the static composition instead.
+    void initialize().catch((error) => {
+      if (import.meta.env.DEV) console.error("Cinematic motion failed to initialise:", error);
+      rootRef.current?.setAttribute("data-motion-failed", "true");
+    });
 
     return () => {
       cancelled = true;
