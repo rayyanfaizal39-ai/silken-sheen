@@ -62,6 +62,16 @@ export type GeoF3InteractiveSection = GeoInteractiveSection & {
     instruction: string;
     options: { id: string; label: string; body: string }[];
   }[];
+  /** Switches between related accordion groups while showing only one group. */
+  accordionToggle?: {
+    title: string;
+    instruction: string;
+    groups: {
+      id: string;
+      label: string;
+      items: GeoAccordionItem[];
+    }[];
+  };
 };
 
 export type GeoF3InteractiveContent = {

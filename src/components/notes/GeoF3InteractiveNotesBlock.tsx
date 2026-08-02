@@ -16,6 +16,7 @@ import { Journey } from "@/components/notes/blocks/Journey";
 import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
 import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { TogglePanels } from "@/components/notes/blocks/TogglePanels";
+import { GroupedAccordionToggle } from "@/components/notes/blocks/GroupedAccordionToggle";
 import type {
   GeoF3InteractiveContent,
   GeoMiniQuizItem,
@@ -172,6 +173,17 @@ export function GeoF3InteractiveNotesBlock({
                 </AccordionItem>
               ))}
             </Accordion>
+          )}
+          {section.accordionToggle && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {section.accordionToggle.title}
+              </h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">
+                {section.accordionToggle.instruction}
+              </p>
+              <GroupedAccordionToggle groups={section.accordionToggle.groups} />
+            </div>
           )}
           {section.tabGroups?.map((group, gi) => (
             <div key={`${section.number}-tabgroup-${gi}`}>

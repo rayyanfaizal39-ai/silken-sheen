@@ -201,8 +201,11 @@ import { geographyF3C5Interactive } from "@/content/form3/geography/chapter-5/in
 import { geographyF3C6Notes } from "@/content/form3/geography/chapter-6/notes";
 import { geographyF3C6Interactive } from "@/content/form3/geography/chapter-6/interactive";
 import { geographyF3C7Notes } from "@/content/form3/geography/chapter-7/notes";
+import { geographyF3C7Interactive } from "@/content/form3/geography/chapter-7/interactive";
 import { geographyF3C8Notes } from "@/content/form3/geography/chapter-8/notes";
+import { geographyF3C8Interactive } from "@/content/form3/geography/chapter-8/interactive";
 import { geographyF3C9Notes } from "@/content/form3/geography/chapter-9/notes";
+import { geographyF3C9Interactive } from "@/content/form3/geography/chapter-9/interactive";
 import { geographyF3C10Notes } from "@/content/form3/geography/chapter-10/notes";
 import { geographyF3C11Notes } from "@/content/form3/geography/chapter-11/notes";
 import { geographyF3C12Notes } from "@/content/form3/geography/chapter-12/notes";
@@ -1318,6 +1321,7 @@ export const chapters: ChapterContent[] = [
     title: "Kegiatan Ekonomi di Malaysia",
     video: getEducationalVideo("geography-f3-c7"),
     notes: geographyF3C7Notes,
+    geoF3InteractiveData: geographyF3C7Interactive,
     mindMap: { data: geoF3C7MindMap, title: "Kegiatan Ekonomi di Malaysia" },
     flashcards: geographyF3FlashcardsFor(7),
     quiz: geographyF3QuizzesFor(7),
@@ -1330,6 +1334,7 @@ export const chapters: ChapterContent[] = [
     title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
     video: getEducationalVideo("geography-f3-c8"),
     notes: geographyF3C8Notes,
+    geoF3InteractiveData: geographyF3C8Interactive,
     mindMap: {
       data: geoF3C8MindMap,
       title: "Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar di Dunia",
@@ -1345,6 +1350,7 @@ export const chapters: ChapterContent[] = [
     title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
     video: getEducationalVideo("geography-f3-c9"),
     notes: geographyF3C9Notes,
+    geoF3InteractiveData: geographyF3C9Interactive,
     mindMap: {
       data: geoF3C9MindMap,
       title: "Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
