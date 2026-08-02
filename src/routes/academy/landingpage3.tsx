@@ -1,7 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef } from 'react';
-import heroBackground from '@/assets/landing/hero/hero-background.png.asset.json';
-import heroPlanet from '@/assets/landing/hero/hero-planet.png.asset.json';
 
 export const Route = createFileRoute('/academy/landingpage3')({
   component: LandingPage3,
@@ -172,7 +170,7 @@ function LandingPage3() {
         }}
       >
         <img
-          src={heroBackground.url}
+          src={'/images/landing3-hero-background.png'}
           alt=""
           aria-hidden="true"
           draggable={false}
@@ -197,14 +195,14 @@ function LandingPage3() {
             <div className="academy-planet-rotate">
               <div className="academy-planet-halo" />
               <img
-                src={heroPlanet.url}
+                src={'/images/landing3-hero-planet.png'}
                 alt=""
                 aria-hidden="true"
                 draggable={false}
                 className="academy-planet-img academy-planet-underglow"
               />
               <img
-                src={heroPlanet.url}
+                src={'/images/landing3-hero-planet.png'}
                 alt=""
                 aria-hidden="true"
                 draggable={false}
