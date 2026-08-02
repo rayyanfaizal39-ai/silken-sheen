@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Flame, Sparkles, Star, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
-import { HomeImagePlaceholder } from "@/components/home/HomeImagePlaceholder";
 import { HomeMissionControl } from "@/components/home/HomeMissionControl";
 import { HomePapercraftBackground } from "@/components/home/HomePapercraftBackground";
 import { HomeContinueLearning } from "@/components/home/HomeContinueLearning";
+import { HomeProgressSummaries } from "@/components/home/HomeProgressSummaries";
 import { HomeQuickAccess } from "@/components/home/HomeQuickAccess";
 import { TodaysMission } from "@/components/home/TodaysMission";
 import { useAuth } from "@/context/auth-context";
@@ -90,56 +90,7 @@ export function CommandCenterHome() {
           <HomeQuickAccess onOpenAce={() => openCikgu({ mode: "general" })} />
         </div>
 
-        <div className="home-skeleton__split">
-          <section
-            className="home-skeleton__card home-skeleton__journey"
-            aria-labelledby="journey-title"
-          >
-            <HomeImagePlaceholder
-              className="home-skeleton__round-placeholder"
-              label="CURRENT RANK ARTWORK"
-              aspectRatio="1 / 1"
-            />
-            <div>
-              <p className="home-skeleton__section-label">Your Journey</p>
-              <h2 id="journey-title">Rank name</h2>
-              <p className="home-skeleton__muted">Level placeholder</p>
-              <div className="home-skeleton__progress" aria-label="XP progress placeholder">
-                <span />
-              </div>
-              <Link className="home-skeleton__secondary-button" to="/dashboard">
-                View Journey
-              </Link>
-            </div>
-          </section>
-
-          <section className="home-skeleton__card home-skeleton__nova" aria-labelledby="nova-title">
-            <HomeImagePlaceholder label="NOVA ARTWORK" aspectRatio="1 / 1" />
-            <div>
-              <p className="home-skeleton__section-label">Cosmic companion</p>
-              <h2 id="nova-title">Nova is ready to help.</h2>
-              <p className="home-skeleton__muted">Your companion message will appear here.</p>
-              <Link className="home-skeleton__secondary-button" to="/companion">
-                Talk to Nova
-              </Link>
-            </div>
-          </section>
-        </div>
-
-        <section
-          className="home-skeleton__card home-skeleton__mission"
-          aria-labelledby="mission-title"
-        >
-          <HomeImagePlaceholder label="MISSION ARTWORK" aspectRatio="1 / 1" />
-          <div>
-            <p className="home-skeleton__section-label">Recommended Mission</p>
-            <h2 id="mission-title">Mission title</h2>
-            <p className="home-skeleton__muted">Mission description placeholder.</p>
-          </div>
-          <button className="home-skeleton__primary-button" type="button">
-            Let&apos;s Go
-          </button>
-        </section>
+        <HomeProgressSummaries />
       </main>
     </HomePapercraftBackground>
   );
