@@ -17,6 +17,8 @@ Deno.serve(async (request) => {
   const resendApiKey = Deno.env.get("RESEND_API_KEY") ?? "";
   const rawHookSecret = Deno.env.get("SEND_EMAIL_HOOK_SECRET") ?? "";
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+  const appUrl =
+    Deno.env.get("PUBLIC_APP_URL") ?? Deno.env.get("SITE_URL") ?? "https://myacademy.my";
   if (!resendApiKey || !rawHookSecret || !supabaseUrl) {
     console.error("[send-auth-email] required secret is missing");
     return errorResponse("Email delivery is not configured");
@@ -34,7 +36,11 @@ Deno.serve(async (request) => {
   }
 
   try {
-    const messages = buildAuthEmails(payload, supabaseUrl);
+    const messages = buildAuthEmails(payload, {
+      appUrl,
+      supabaseUrl,
+      production: true,
+    });
     const deliveries = await Promise.all(
       messages.map((message) =>
         sendWithResend(resendApiKey, {

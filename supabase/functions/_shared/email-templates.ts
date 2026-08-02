@@ -319,12 +319,32 @@ function verificationUrl(
   return url.toString();
 }
 
-function recoveryUrl(siteUrl: string, tokenHash: string) {
-  const url = new URL("/auth/confirm", siteUrl);
-  url.searchParams.set("token_hash", tokenHash);
-  url.searchParams.set("type", "recovery");
-  url.searchParams.set("next", "/auth/reset-password");
-  return url.toString();
+export function normalizePublicAppUrl(value: string) {
+  const normalized = value.trim().replace(/\/+$/, "");
+  const parsed = new URL(normalized);
+  const hostname = parsed.hostname.toLowerCase();
+
+  if (hostname === "supabase.co" || hostname.endsWith(".supabase.co")) {
+    throw new Error("Recovery email application URL cannot use a Supabase hostname");
+  }
+  if (!normalized || (parsed.protocol !== "https:" && parsed.protocol !== "http:")) {
+    throw new Error("Recovery email application URL is invalid");
+  }
+  if (parsed.pathname !== "/" || parsed.search || parsed.hash) {
+    throw new Error("Recovery email application URL must be an origin without a path");
+  }
+
+  return normalized;
+}
+
+function recoveryUrl(appUrl: string, tokenHash: string, production: boolean) {
+  const normalizedAppUrl = normalizePublicAppUrl(appUrl);
+  const parsed = new URL(normalizedAppUrl);
+  if (production && parsed.origin !== "https://myacademy.my") {
+    throw new Error("Production recovery email URL must use https://myacademy.my");
+  }
+
+  return `${normalizedAppUrl}/auth/confirm?token_hash=${encodeURIComponent(tokenHash)}&type=recovery&next=${encodeURIComponent("/auth/reset-password")}`;
 }
 
 function actionableAuthEmail(input: {
@@ -333,15 +353,16 @@ function actionableAuthEmail(input: {
   token?: string;
   tokenHash: string;
   redirectTo: string;
-  siteUrl: string;
+  appUrl: string;
   supabaseUrl: string;
+  production: boolean;
   idempotencySuffix?: string;
 }): AuthEmail {
   const copy = AUTH_COPY[input.actionType];
   if (!copy) throw new Error(`Unsupported auth email action: ${input.actionType}`);
   const isRecovery = input.actionType === "recovery";
   const url = isRecovery
-    ? recoveryUrl(input.siteUrl, input.tokenHash)
+    ? recoveryUrl(input.appUrl, input.tokenHash, input.production)
     : verificationUrl(input.supabaseUrl, input.actionType, input.tokenHash, input.redirectTo);
   return {
     to: input.to,
@@ -393,12 +414,17 @@ function securityEmail(to: string, actionType: string, tokenSeed: string): AuthE
   };
 }
 
-export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): AuthEmail[] {
+export function buildAuthEmails(
+  payload: AuthHookPayload,
+  urls: { appUrl: string; supabaseUrl: string; production?: boolean },
+): AuthEmail[] {
   const { user, email_data: data } = payload;
   const actionType = data.email_action_type;
   const redirectTo = data.redirect_to || data.site_url;
-  if (!redirectTo) throw new Error("Auth email redirect URL is missing");
-  const siteUrl = data.site_url || redirectTo;
+  if (!redirectTo && actionType !== "recovery") {
+    throw new Error("Auth email redirect URL is missing");
+  }
+  const production = urls.production ?? false;
 
   if (SECURITY_COPY[actionType]) {
     if (!user.email) throw new Error("Auth email recipient is missing");
@@ -416,9 +442,10 @@ export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): 
           actionType,
           token: data.token,
           tokenHash: data.token_hash_new,
-          redirectTo,
-          siteUrl,
-          supabaseUrl,
+          redirectTo: redirectTo!,
+          appUrl: urls.appUrl,
+          supabaseUrl: urls.supabaseUrl,
+          production,
           idempotencySuffix: "current",
         }),
       );
@@ -430,9 +457,10 @@ export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): 
           actionType,
           token: data.token_new || data.token,
           tokenHash: data.token_hash,
-          redirectTo,
-          siteUrl,
-          supabaseUrl,
+          redirectTo: redirectTo!,
+          appUrl: urls.appUrl,
+          supabaseUrl: urls.supabaseUrl,
+          production,
           idempotencySuffix: "new",
         }),
       );
@@ -450,9 +478,10 @@ export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): 
       actionType,
       token: data.token,
       tokenHash: data.token_hash,
-      redirectTo,
-      siteUrl,
-      supabaseUrl,
+      redirectTo: redirectTo ?? urls.appUrl,
+      appUrl: urls.appUrl,
+      supabaseUrl: urls.supabaseUrl,
+      production,
     }),
   ];
 }

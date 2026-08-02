@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildAuthEmails,
   buildInvoiceEmail,
+  normalizePublicAppUrl,
   type AuthHookPayload,
 } from "../../supabase/functions/_shared/email-templates";
 import { EMAIL_FROM, EMAIL_REPLY_TO } from "../../supabase/functions/_shared/email-brand";
@@ -20,6 +21,12 @@ const authPayload = (overrides: Partial<AuthHookPayload["email_data"]> = {}): Au
 });
 
 describe("AcadeMY email templates", () => {
+  const authUrls = {
+    appUrl: "https://myacademy.my/",
+    supabaseUrl: "https://project-ref.supabase.co",
+    production: true,
+  };
+
   it("uses the canonical sender identity", () => {
     expect(EMAIL_FROM).toBe("AcadeMY <noreply@myacademy.my>");
     expect(EMAIL_REPLY_TO).toBe("support@myacademy.my");
@@ -64,14 +71,14 @@ describe("AcadeMY email templates", () => {
   });
 
   it("builds verification links and token-hash recovery links without showing an OTP", () => {
-    const signup = buildAuthEmails(authPayload(), "https://project-ref.supabase.co")[0];
+    const signup = buildAuthEmails(authPayload(), authUrls)[0];
     const recovery = buildAuthEmails(
       authPayload({
         email_action_type: "recovery",
         token_hash: "recovery-token-hash",
         redirect_to: "https://myacademy.my/auth/callback?next=%2Fauth%2Freset-password",
       }),
-      "https://project-ref.supabase.co",
+      authUrls,
     )[0];
 
     expect(signup.subject).toBe("Confirm your AcadeMY email");
@@ -89,6 +96,32 @@ describe("AcadeMY email templates", () => {
     expect(recovery.html).not.toContain("/auth/v1/verify");
   });
 
+  it("ignores a Supabase payload site_url for recovery and uses the public application URL", () => {
+    const payload = authPayload({
+      email_action_type: "recovery",
+      site_url: "https://aojrbxoqbgyxmfljqpqj.supabase.co",
+      token_hash: "hash with reserved/? characters",
+    });
+    const recovery = buildAuthEmails(payload, authUrls)[0];
+
+    expect(recovery.text).toContain(
+      "https://myacademy.my/auth/confirm?token_hash=hash%20with%20reserved%2F%3F%20characters&type=recovery&next=%2Fauth%2Freset-password",
+    );
+    expect(recovery.text).not.toContain("aojrbxoqbgyxmfljqpqj.supabase.co");
+  });
+
+  it("fails safely for Supabase and non-AcadeMY production application hosts", () => {
+    expect(() => normalizePublicAppUrl("https://project-ref.supabase.co/")).toThrowError(
+      "cannot use a Supabase hostname",
+    );
+    expect(() =>
+      buildAuthEmails(authPayload({ email_action_type: "recovery" }), {
+        ...authUrls,
+        appUrl: "https://example.com",
+      }),
+    ).toThrowError("must use https://myacademy.my");
+  });
+
   it("sends secure email-change confirmations to both addresses with the correct hashes", () => {
     const payload = authPayload({
       email_action_type: "email_change",
@@ -99,7 +132,7 @@ describe("AcadeMY email templates", () => {
     });
     payload.user.new_email = "new@example.com";
 
-    const emails = buildAuthEmails(payload, "https://project-ref.supabase.co");
+    const emails = buildAuthEmails(payload, authUrls);
     expect(emails).toHaveLength(2);
     expect(emails[0].to).toBe("student@example.com");
     expect(emails[0].html).toContain("token=current-address-hash");
