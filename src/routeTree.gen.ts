@@ -25,6 +25,7 @@ import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as LandingPreviewRouteImport } from './routes/landing-preview'
 import { Route as LandingRouteImport } from './routes/landing'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as ExploreAcademyRouteImport } from './routes/explore-academy'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -35,6 +36,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
+import { Route as AuthConfirmRouteImport } from './routes/auth.confirm'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
@@ -125,6 +127,11 @@ const HomeRoute = HomeRouteImport.update({
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FlashcardsRoute = FlashcardsRouteImport.update({
   id: '/flashcards',
   path: '/flashcards',
@@ -173,6 +180,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
   id: '/auth/reset-password',
   path: '/auth/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthConfirmRoute = AuthConfirmRouteImport.update({
+  id: '/auth/confirm',
+  path: '/auth/confirm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
@@ -231,6 +243,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
   '/flashcards': typeof FlashcardsRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/home': typeof HomeRoute
   '/landing': typeof LandingRoute
   '/landing-preview': typeof LandingPreviewRoute
@@ -255,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AdminUsersRoute
   '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
@@ -267,6 +281,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
   '/flashcards': typeof FlashcardsRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/home': typeof HomeRoute
   '/landing': typeof LandingRoute
   '/landing-preview': typeof LandingPreviewRoute
@@ -291,6 +306,7 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AdminUsersRoute
   '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
@@ -305,6 +321,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
   '/flashcards': typeof FlashcardsRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/home': typeof HomeRoute
   '/landing': typeof LandingRoute
   '/landing-preview': typeof LandingPreviewRoute
@@ -329,6 +346,7 @@ export interface FileRoutesById {
   '/admin/users': typeof AdminUsersRoute
   '/admin_/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
@@ -344,6 +362,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/explore-academy'
     | '/flashcards'
+    | '/forgot-password'
     | '/home'
     | '/landing'
     | '/landing-preview'
@@ -368,6 +387,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/admin/login'
     | '/auth/callback'
+    | '/auth/confirm'
     | '/auth/reset-password'
     | '/admin/'
     | '/admin/content/quiz-importer'
@@ -380,6 +400,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/explore-academy'
     | '/flashcards'
+    | '/forgot-password'
     | '/home'
     | '/landing'
     | '/landing-preview'
@@ -404,6 +425,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/admin/login'
     | '/auth/callback'
+    | '/auth/confirm'
     | '/auth/reset-password'
     | '/admin'
     | '/admin/content/quiz-importer'
@@ -417,6 +439,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/explore-academy'
     | '/flashcards'
+    | '/forgot-password'
     | '/home'
     | '/landing'
     | '/landing-preview'
@@ -441,6 +464,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/admin_/login'
     | '/auth/callback'
+    | '/auth/confirm'
     | '/auth/reset-password'
     | '/admin/'
     | '/admin/content/quiz-importer'
@@ -455,6 +479,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   ExploreAcademyRoute: typeof ExploreAcademyRoute
   FlashcardsRoute: typeof FlashcardsRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   HomeRoute: typeof HomeRoute
   LandingRoute: typeof LandingRoute
   LandingPreviewRoute: typeof LandingPreviewRoute
@@ -475,6 +500,7 @@ export interface RootRouteChildren {
   AccountBillingRoute: typeof AccountBillingRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
+  AuthConfirmRoute: typeof AuthConfirmRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
 }
 
@@ -592,6 +618,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/flashcards': {
       id: '/flashcards'
       path: '/flashcards'
@@ -660,6 +693,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/reset-password'
       fullPath: '/auth/reset-password'
       preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/confirm': {
+      id: '/auth/confirm'
+      path: '/auth/confirm'
+      fullPath: '/auth/confirm'
+      preLoaderRoute: typeof AuthConfirmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/callback': {
@@ -757,6 +797,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   ExploreAcademyRoute: ExploreAcademyRoute,
   FlashcardsRoute: FlashcardsRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   HomeRoute: HomeRoute,
   LandingRoute: LandingRoute,
   LandingPreviewRoute: LandingPreviewRoute,
@@ -777,6 +818,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountBillingRoute: AccountBillingRoute,
   AdminLoginRoute: AdminLoginRoute,
   AuthCallbackRoute: AuthCallbackRoute,
+  AuthConfirmRoute: AuthConfirmRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
 }
 export const routeTree = rootRouteImport

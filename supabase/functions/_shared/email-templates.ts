@@ -5,10 +5,7 @@ import {
   renderEmailLayout,
   type EmailContent,
 } from "./email-brand.ts";
-import {
-  resolveInvoiceLegalDetails,
-  type InvoiceLegalDetails,
-} from "./invoice-brand.ts";
+import { resolveInvoiceLegalDetails, type InvoiceLegalDetails } from "./invoice-brand.ts";
 
 export type InvoiceEmailData = {
   invoice_number: string;
@@ -322,23 +319,30 @@ function verificationUrl(
   return url.toString();
 }
 
+function recoveryUrl(siteUrl: string, tokenHash: string) {
+  const url = new URL("/auth/confirm", siteUrl);
+  url.searchParams.set("token_hash", tokenHash);
+  url.searchParams.set("type", "recovery");
+  url.searchParams.set("next", "/auth/reset-password");
+  return url.toString();
+}
+
 function actionableAuthEmail(input: {
   to: string;
   actionType: string;
   token?: string;
   tokenHash: string;
   redirectTo: string;
+  siteUrl: string;
   supabaseUrl: string;
   idempotencySuffix?: string;
 }): AuthEmail {
   const copy = AUTH_COPY[input.actionType];
   if (!copy) throw new Error(`Unsupported auth email action: ${input.actionType}`);
-  const url = verificationUrl(
-    input.supabaseUrl,
-    input.actionType,
-    input.tokenHash,
-    input.redirectTo,
-  );
+  const isRecovery = input.actionType === "recovery";
+  const url = isRecovery
+    ? recoveryUrl(input.siteUrl, input.tokenHash)
+    : verificationUrl(input.supabaseUrl, input.actionType, input.tokenHash, input.redirectTo);
   return {
     to: input.to,
     subject: copy.subject,
@@ -347,7 +351,7 @@ function actionableAuthEmail(input: {
       eyebrow: copy.eyebrow,
       title: copy.title,
       intro: copy.intro,
-      code: input.token,
+      code: isRecovery ? undefined : input.token,
       cta: { label: copy.cta, url },
       outro: copy.outro,
     }),
@@ -355,7 +359,7 @@ function actionableAuthEmail(input: {
       copy.title,
       "",
       copy.intro,
-      input.token ? `Verification code: ${input.token}` : "",
+      !isRecovery && input.token ? `Verification code: ${input.token}` : "",
       `Continue: ${url}`,
       "",
       copy.outro,
@@ -394,6 +398,7 @@ export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): 
   const actionType = data.email_action_type;
   const redirectTo = data.redirect_to || data.site_url;
   if (!redirectTo) throw new Error("Auth email redirect URL is missing");
+  const siteUrl = data.site_url || redirectTo;
 
   if (SECURITY_COPY[actionType]) {
     if (!user.email) throw new Error("Auth email recipient is missing");
@@ -412,6 +417,7 @@ export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): 
           token: data.token,
           tokenHash: data.token_hash_new,
           redirectTo,
+          siteUrl,
           supabaseUrl,
           idempotencySuffix: "current",
         }),
@@ -425,6 +431,7 @@ export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): 
           token: data.token_new || data.token,
           tokenHash: data.token_hash,
           redirectTo,
+          siteUrl,
           supabaseUrl,
           idempotencySuffix: "new",
         }),
@@ -444,6 +451,7 @@ export function buildAuthEmails(payload: AuthHookPayload, supabaseUrl: string): 
       token: data.token,
       tokenHash: data.token_hash,
       redirectTo,
+      siteUrl,
       supabaseUrl,
     }),
   ];

@@ -63,7 +63,7 @@ describe("AcadeMY email templates", () => {
     expect(legal.address).toBeNull();
   });
 
-  it("builds working Supabase verification and recovery links", () => {
+  it("builds verification links and token-hash recovery links without showing an OTP", () => {
     const signup = buildAuthEmails(authPayload(), "https://project-ref.supabase.co")[0];
     const recovery = buildAuthEmails(
       authPayload({
@@ -78,9 +78,15 @@ describe("AcadeMY email templates", () => {
     expect(signup.html).toContain("type=signup");
     expect(signup.html).toContain("token=signup-token-hash");
     expect(recovery.subject).toBe("Reset your AcadeMY password");
-    expect(recovery.html).toContain("type=recovery");
-    expect(recovery.html).toContain("token=recovery-token-hash");
-    expect(recovery.text).toContain("123456");
+    expect(recovery.html).toContain(
+      "https://myacademy.my/auth/confirm?token_hash=recovery-token-hash&amp;type=recovery&amp;next=%2Fauth%2Freset-password",
+    );
+    expect(recovery.text).toContain(
+      "https://myacademy.my/auth/confirm?token_hash=recovery-token-hash&type=recovery&next=%2Fauth%2Freset-password",
+    );
+    expect(recovery.html).not.toContain("Verification code");
+    expect(recovery.text).not.toContain("123456");
+    expect(recovery.html).not.toContain("/auth/v1/verify");
   });
 
   it("sends secure email-change confirmations to both addresses with the correct hashes", () => {

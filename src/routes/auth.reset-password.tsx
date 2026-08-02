@@ -1,10 +1,12 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { AlertCircle, CheckCircle2, Loader2, Lock } from "lucide-react";
 import { AcademyLogo } from "@/components/AcademyLogo";
 import { useAuth } from "@/context/auth-context";
 import { supabase } from "@/lib/supabase";
+import { passwordStrengthError } from "@/lib/auth-recovery";
 import { seoMeta } from "@/lib/seo";
+import { clearRecoverySession, hasValidRecoverySession } from "./-recovery.server";
 
 export const Route = createFileRoute("/auth/reset-password")({
   head: () =>
@@ -14,44 +16,54 @@ export const Route = createFileRoute("/auth/reset-password")({
       path: "/auth/reset-password",
       noindex: true,
     }),
+  loader: () => hasValidRecoverySession(),
   component: ResetPasswordPage,
 });
 
 function ResetPasswordPage() {
+  const recoveryAllowed = Route.useLoaderData();
   const { user, loading } = useAuth();
-  const navigate = useNavigate();
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [complete, setComplete] = useState(false);
 
-  useEffect(() => {
-    if (!loading && !user)
-      setError("This reset link is invalid or has expired. Request a new one.");
-  }, [loading, user]);
-
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setError(null);
-    if (password.length < 8) {
-      setError("Use at least 8 characters for your new password.");
+    if (!recoveryAllowed || !user) {
+      setError("This reset link is invalid or has expired. Request a new one.");
       return;
     }
-    if (password !== confirmation) {
+    const strengthError = passwordStrengthError(newPassword);
+    if (strengthError) {
+      setError(strengthError);
+      return;
+    }
+    if (newPassword !== confirmation) {
       setError("The passwords do not match.");
       return;
     }
 
     setBusy(true);
-    const { error: updateError } = await supabase.auth.updateUser({ password });
-    setBusy(false);
-    if (updateError) {
-      setError(updateError.message);
-      return;
+    try {
+      const { error: updateError } = await supabase.auth.updateUser({
+        password: newPassword,
+      });
+      if (updateError) throw updateError;
+      await clearRecoverySession();
+      setComplete(true);
+      window.setTimeout(() => {
+        void supabase.auth.signOut({ scope: "local" }).finally(() => {
+          window.location.assign("/login");
+        });
+      }, 1400);
+    } catch {
+      setError("We couldn't update your password. Request a new recovery link and try again.");
+    } finally {
+      setBusy(false);
     }
-    setComplete(true);
-    window.setTimeout(() => void navigate({ to: "/home", replace: true }), 1400);
   }
 
   return (
@@ -65,21 +77,38 @@ function ResetPasswordPage() {
             Choose a strong password you do not use for another account.
           </p>
 
-          {complete ? (
+          {!recoveryAllowed || (!loading && !user) ? (
+            <div
+              className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200"
+              role="alert"
+            >
+              <div className="flex items-start gap-3">
+                <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
+                <span>This reset link is invalid or has expired. Request a new one.</span>
+              </div>
+              <Link
+                to="/forgot-password"
+                search={{ error: undefined }}
+                className="mt-4 inline-flex font-semibold text-violet-300 hover:text-violet-200"
+              >
+                Request a new reset link
+              </Link>
+            </div>
+          ) : complete ? (
             <div
               className="mt-6 flex items-start gap-3 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm text-emerald-200"
               role="status"
             >
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
-              <span>Password updated. Taking you back to AcadeMY…</span>
+              <span>Password updated. Taking you to sign in…</span>
             </div>
           ) : (
             <form className="mt-6 space-y-4" onSubmit={submit}>
               {[
                 {
                   label: "New password",
-                  value: password,
-                  setter: setPassword,
+                  value: newPassword,
+                  setter: setNewPassword,
                   autoComplete: "new-password",
                 },
                 {
@@ -98,7 +127,7 @@ function ResetPasswordPage() {
                     <input
                       type="password"
                       required
-                      minLength={8}
+                      minLength={10}
                       autoComplete={field.autoComplete}
                       value={field.value}
                       onChange={(event) => field.setter(event.target.value)}
@@ -120,7 +149,7 @@ function ResetPasswordPage() {
 
               <button
                 type="submit"
-                disabled={busy || loading || !user}
+                disabled={busy || loading || !user || !recoveryAllowed}
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_40px_-8px_rgba(99,102,241,0.6)] transition hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {busy && <Loader2 className="h-4 w-4 animate-spin" />}
@@ -131,8 +160,12 @@ function ResetPasswordPage() {
 
           <p className="mt-5 text-center text-xs text-white/40">
             Need a new link?{" "}
-            <Link to="/" className="font-semibold text-violet-300 hover:text-violet-200">
-              Return to sign in
+            <Link
+              to="/forgot-password"
+              search={{ error: undefined }}
+              className="font-semibold text-violet-300 hover:text-violet-200"
+            >
+              Request another
             </Link>
           </p>
         </div>

@@ -11,7 +11,7 @@
 // `nitro`/`vinxi` cloudflare preset and wrangler vars) this works as-is.
 // Otherwise swap the two `process.env.*` reads for your binding accessor.
 
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, parseCookieHeader, serializeCookieHeader } from "@supabase/ssr";
 import {
   getCookies,
   getRequestProtocol,
@@ -50,4 +50,58 @@ export function getSupabaseServerClient() {
       },
     },
   });
+}
+
+/**
+ * Raw-request variant for server routes that return their own Response.
+ * Every cookie emitted by Supabase is appended independently to the returned
+ * Headers object so split auth cookies are never collapsed or dropped.
+ */
+export function getSupabaseServerClientForRequest(request: Request) {
+  const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
+  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? "";
+  if (!url || !key) return null;
+
+  const responseHeaders = new Headers({
+    "Cache-Control": "private, no-cache, no-store, must-revalidate, max-age=0",
+    Expires: "0",
+    Pragma: "no-cache",
+  });
+  const forwardedProtocol = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
+  const secure = forwardedProtocol
+    ? forwardedProtocol === "https"
+    : new URL(request.url).protocol === "https:";
+
+  const supabase = createServerClient(url, key, {
+    cookieOptions: {
+      name: SUPABASE_AUTH_COOKIE_NAME,
+      ...SUPABASE_AUTH_COOKIE_OPTIONS,
+      secure,
+    },
+    auth: {
+      flowType: "pkce",
+      persistSession: true,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+    },
+    cookies: {
+      getAll() {
+        return parseCookieHeader(request.headers.get("cookie") ?? "").map(({ name, value }) => ({
+          name,
+          value: value ?? "",
+        }));
+      },
+      setAll(cookiesToSet, headers) {
+        for (const { name, value, options } of cookiesToSet) {
+          responseHeaders.append(
+            "Set-Cookie",
+            serializeCookieHeader(name, value, { ...options, secure }),
+          );
+        }
+        for (const [name, value] of Object.entries(headers)) responseHeaders.set(name, value);
+      },
+    },
+  });
+
+  return { supabase, responseHeaders, secure };
 }
