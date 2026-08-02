@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
+import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
+import { getLocalDateKey } from "@/lib/local-date";
 import {
   removePendingGeographyF3Progress,
   sanitizeRemovedGeographyF3Progress,
@@ -227,6 +229,8 @@ export interface MissionProgress {
   readChapters: number;
   quizzesDone: number;
   flashcardsDone: number;
+  /** Individual cards rated today. Added separately so legacy deck-completion missions keep their meaning. */
+  flashcardReviews?: number;
 }
 
 /** Convert XP to chess.com-style Elo rating (1000 starting, 3000 max). */
@@ -452,7 +456,7 @@ const initial: Progress = {
 };
 
 function today() {
-  return new Date().toISOString().slice(0, 10);
+  return getLocalDateKey();
 }
 
 function progressStorageKey(userId?: string | null): string {
@@ -600,6 +604,7 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
     ...base,
     badges: mergedBadges,
     chapterActivity: mergedActivity,
+    missions: mergeMissionProgress(local.missions, remote.missions),
     favorites: Array.from(new Set([...local.favorites, ...remote.favorites])),
     cardMastery: useRemote
       ? { ...local.cardMastery, ...remote.cardMastery }
@@ -620,6 +625,24 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
     ),
     displayName: local.displayName ?? remote.displayName,
     school: local.school ?? remote.school,
+  };
+}
+
+function mergeMissionProgress(
+  local: MissionProgress | undefined,
+  remote: MissionProgress | undefined,
+): MissionProgress | undefined {
+  if (!local) return remote;
+  if (!remote) return local;
+  if (local.dailyDate !== remote.dailyDate) {
+    return local.dailyDate > remote.dailyDate ? local : remote;
+  }
+  return {
+    dailyDate: local.dailyDate,
+    readChapters: Math.max(local.readChapters, remote.readChapters),
+    quizzesDone: Math.max(local.quizzesDone, remote.quizzesDone),
+    flashcardsDone: Math.max(local.flashcardsDone, remote.flashcardsDone),
+    flashcardReviews: Math.max(local.flashcardReviews ?? 0, remote.flashcardReviews ?? 0),
   };
 }
 
@@ -1074,7 +1097,12 @@ export function useProgress() {
         if (!newBadges.includes("mastery50") && masteredNow >= 50) newBadges.push("mastery50");
         if (!newBadges.includes("mastery100") && masteredNow >= 100) newBadges.push("mastery100");
 
-        const next: Progress = { ...prev, cardMastery: mastery, badges: newBadges };
+        const next: Progress = {
+          ...prev,
+          cardMastery: mastery,
+          badges: newBadges,
+          missions: recordDailyFlashcardReview(prev.missions, today()),
+        };
         try {
           localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
@@ -1294,7 +1322,13 @@ export function useProgress() {
 
 function resetMissionsIfNewDay(missions: MissionProgress | undefined, t: string): MissionProgress {
   if (!missions || missions.dailyDate !== t) {
-    return { dailyDate: t, readChapters: 0, quizzesDone: 0, flashcardsDone: 0 };
+    return {
+      dailyDate: t,
+      readChapters: 0,
+      quizzesDone: 0,
+      flashcardsDone: 0,
+      flashcardReviews: 0,
+    };
   }
   return missions;
 }

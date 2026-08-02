@@ -1,34 +1,16 @@
 import { Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  BookOpen,
-  Brain,
-  Flame,
-  Layers3,
-  MessageCircle,
-  Play,
-  Sparkles,
-  Star,
-  Trophy,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, Flame, Sparkles, Star, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { HomeImagePlaceholder } from "@/components/home/HomeImagePlaceholder";
 import { HomeMissionControl } from "@/components/home/HomeMissionControl";
 import { HomePapercraftBackground } from "@/components/home/HomePapercraftBackground";
 import { HomeContinueLearning } from "@/components/home/HomeContinueLearning";
+import { HomeQuickAccess } from "@/components/home/HomeQuickAccess";
+import { TodaysMission } from "@/components/home/TodaysMission";
 import { useAuth } from "@/context/auth-context";
 import { useCikgu } from "@/context/cikgu-context";
 import { getCompanionLevelProgress, getRank, useProgress } from "@/hooks/use-progress";
 import "./home/homeSkeleton.css";
-
-const QUICK_ACCESS = [
-  { label: "Notes", to: "/notes" as const, icon: BookOpen },
-  { label: "Quizzes", to: "/quizzes" as const, icon: Brain },
-  { label: "Mind Maps", to: "/mindmaps" as const, icon: Layers3 },
-  { label: "Videos", to: "/subjects" as const, icon: Play },
-  { label: "Flashcards", to: "/flashcards" as const, icon: Zap },
-];
 
 export function CommandCenterHome() {
   const { openCikgu } = useCikgu();
@@ -96,42 +78,17 @@ export function CommandCenterHome() {
           </div>
         </section>
 
-        <div className="home-skeleton__split home-skeleton__split--learning">
-          <HomeContinueLearning />
-          <HomeMissionControl />
-        </div>
+        <div className="home-skeleton__learning-hub">
+          <div className="home-skeleton__split home-skeleton__split--learning">
+            <div className="home-skeleton__learning-column">
+              <HomeContinueLearning />
+              <TodaysMission />
+            </div>
+            <HomeMissionControl />
+          </div>
 
-        <section aria-labelledby="quick-access-title">
-          <div className="home-skeleton__section-heading">
-            <p className="home-skeleton__section-label">Learning tools</p>
-            <h2 id="quick-access-title">Quick Access</h2>
-          </div>
-          <div className="home-skeleton__quick-grid">
-            {QUICK_ACCESS.map(({ label, to, icon: Icon }) => (
-              <Link className="home-skeleton__quick-card" to={to} key={label}>
-                <HomeImagePlaceholder
-                  label={`${label.toUpperCase()} ARTWORK`}
-                  aspectRatio="1 / 1"
-                />
-                <span>
-                  <Icon aria-hidden="true" />
-                  {label}
-                </span>
-              </Link>
-            ))}
-            <button
-              className="home-skeleton__quick-card"
-              type="button"
-              onClick={() => openCikgu({ mode: "general" })}
-            >
-              <HomeImagePlaceholder label="CIKGU AI ARTWORK" aspectRatio="1 / 1" />
-              <span>
-                <MessageCircle aria-hidden="true" />
-                Ace
-              </span>
-            </button>
-          </div>
-        </section>
+          <HomeQuickAccess onOpenAce={() => openCikgu({ mode: "general" })} />
+        </div>
 
         <div className="home-skeleton__split">
           <section

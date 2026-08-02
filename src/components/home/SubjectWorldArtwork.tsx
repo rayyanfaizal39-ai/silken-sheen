@@ -11,6 +11,11 @@ export function SubjectWorldArtwork({ subject, className = "" }: SubjectWorldArt
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const showFallback = !artwork || failedSrc === artwork.src;
   const accent = artwork?.accent ?? SUBJECT_WORLD_FALLBACK_ACCENT;
+  const artworkStyle = {
+    "--home-world-accent": accent,
+    "--home-world-position": artwork?.objectPosition ?? "30% 50%",
+    "--home-world-position-mobile": artwork?.mobileObjectPosition ?? "30% 50%",
+  } as CSSProperties;
 
   const handleError = (event: SyntheticEvent<HTMLImageElement>) => {
     event.currentTarget.hidden = true;
@@ -26,7 +31,7 @@ export function SubjectWorldArtwork({ subject, className = "" }: SubjectWorldArt
     <div
       className={`home-subject-world-artwork ${className}`.trim()}
       data-fallback={showFallback ? "true" : undefined}
-      style={{ "--home-world-accent": accent } as CSSProperties}
+      style={artworkStyle}
       aria-hidden={showFallback ? "true" : undefined}
     >
       {!showFallback && artwork && (

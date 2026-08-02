@@ -9,6 +9,8 @@ describe("SubjectWorldArtwork", () => {
     expect(markup).toContain('src="/world/geography-world.webp"');
     expect(markup).toContain('alt="Geography learning world"');
     expect(markup).toContain('loading="eager"');
+    expect(markup).toContain("--home-world-position:6% 48%");
+    expect(markup).toContain("--home-world-position-mobile:10% 51%");
     expect(markup.match(/<img/g)).toHaveLength(1);
     expect(markup).not.toContain("science-world.webp");
     expect(markup).not.toContain("mathematics-world.webp");

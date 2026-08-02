@@ -30,6 +30,8 @@ const subjectAccentCases = [
   ["bm", "#f472b6"],
 ] as const;
 
+const subjectCropCases = ["science", "math", "geography", "sejarah", "english", "bm"] as const;
+
 describe("subject world artwork", () => {
   it.each(aliasCases)("maps %s to its subject artwork", (subject, expectedSrc) => {
     expect(getSubjectWorldArtwork(subject)?.src).toBe(expectedSrc);
@@ -49,6 +51,13 @@ describe("subject world artwork", () => {
 
   it.each(subjectAccentCases)("maps %s to its subject accent", (subject, expectedAccent) => {
     expect(getSubjectWorldArtwork(subject)?.accent).toBe(expectedAccent);
+  });
+
+  it.each(subjectCropCases)("provides responsive crop positions for %s", (subject) => {
+    const artwork = getSubjectWorldArtwork(subject);
+
+    expect(artwork?.objectPosition).toMatch(/^\d+% \d+%$/);
+    expect(artwork?.mobileObjectPosition).toMatch(/^\d+% \d+%$/);
   });
 
   it.each([undefined, null, "", "unknown-subject"])(
