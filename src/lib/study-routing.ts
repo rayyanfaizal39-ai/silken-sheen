@@ -1,14 +1,19 @@
 export const subjectSlugToId: Record<string, string> = {
   mathematics: "math",
+  matematik: "math",
   math: "math",
+  maths: "math",
   science: "science",
   sains: "science",
+  history: "sejarah",
   sejarah: "sejarah",
   geografi: "geography",
   geography: "geography",
   "bahasa-melayu": "bm",
+  bahasa_melayu: "bm",
   bm: "bm",
   english: "english",
+  bahasa_inggeris: "english",
 };
 
 export const subjectIdToSlug: Record<string, string> = {
@@ -22,7 +27,7 @@ export const subjectIdToSlug: Record<string, string> = {
 
 export function normalizeSubjectParam(value: unknown) {
   if (!value) return null;
-  const subject = String(value).toLowerCase();
+  const subject = String(value).trim().toLowerCase();
   return subjectSlugToId[subject] ?? null;
 }
 
@@ -39,10 +44,7 @@ export function normalizeFormParam(value: unknown) {
 export function normalizeChapterParam(value: unknown) {
   if (!value) return null;
 
-  const cleaned = String(value)
-    .trim()
-    .replaceAll('"', "")
-    .replace(/\s+/g, " ");
+  const cleaned = String(value).trim().replaceAll('"', "").replace(/\s+/g, " ");
 
   const explicitMatch = cleaned.match(/^(?:bab|chapter)\s*(\d+)(?::.*)?$/i);
   if (explicitMatch) return `Chapter ${explicitMatch[1]}`;
@@ -75,10 +77,7 @@ export type StudyRouteMode = "notes" | "mindmaps" | "quizzes" | "flashcards";
 
 export function getStudyRouteMode(pathname: string): StudyRouteMode | null {
   const mode = pathname.split("/").filter(Boolean)[0];
-  return mode === "notes" ||
-    mode === "mindmaps" ||
-    mode === "quizzes" ||
-    mode === "flashcards"
+  return mode === "notes" || mode === "mindmaps" || mode === "quizzes" || mode === "flashcards"
     ? mode
     : null;
 }

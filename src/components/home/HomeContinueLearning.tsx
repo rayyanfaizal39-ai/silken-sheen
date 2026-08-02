@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Brain, Layers3 } from "lucide-react";
 import { useEffect, useState, type CSSProperties } from "react";
-import { HomeImagePlaceholder } from "@/components/home/HomeImagePlaceholder";
 import { HomeSectionSkeleton } from "@/components/home/HomeSectionSkeleton";
+import { SubjectWorldArtwork } from "@/components/home/SubjectWorldArtwork";
 import {
   chapterActivityKey,
   chapterProgressPct,
@@ -11,6 +11,7 @@ import {
   useProgress,
 } from "@/hooks/use-progress";
 import { subjects } from "@/data/subjects-meta";
+import { getSubjectWorldArtwork, SUBJECT_WORLD_FALLBACK_ACCENT } from "@/lib/subject-world-artwork";
 
 const ACTIVITY_ROUTES = {
   notes: "/notes",
@@ -29,24 +30,6 @@ const RESUME_LABELS = {
   flashcards: "Review Flashcards",
   quiz: "Continue Quiz",
 } as const;
-
-const SUBJECT_ACCENTS: Record<string, string> = {
-  science: "#34d399",
-  math: "#a78bfa",
-  english: "#60a5fa",
-  geography: "#22d3ee",
-  sejarah: "#fbbf24",
-  bm: "#fb7185",
-};
-
-const SUBJECT_ASSET_NAMES: Record<string, string> = {
-  science: "science",
-  math: "mathematics",
-  english: "english",
-  geography: "geography",
-  sejarah: "sejarah",
-  bm: "bahasa-melayu",
-};
 
 function getCanonicalLabel(activity: LastVisited, allActivity: RecentActivity[]) {
   if (activity.label && activity.label !== activity.chapterKey) return activity.label;
@@ -124,7 +107,7 @@ export function HomeContinueLearning() {
         className="home-skeleton__card home-continue-learning home-continue-learning--empty"
         aria-labelledby="continue-learning-title"
       >
-        <HomeImagePlaceholder label="CONTINUE LEARNING ARTWORK" aspectRatio="4 / 3" />
+        <SubjectWorldArtwork className="home-continue-learning__artwork" />
         <div className="home-continue-learning__details">
           <p className="home-skeleton__section-label">Continue Learning</p>
           <h2 id="continue-learning-title">Start your first learning mission</h2>
@@ -140,7 +123,10 @@ export function HomeContinueLearning() {
     );
   }
 
-  const subject = subjects.find((item) => item.id === latest.subjectId);
+  const worldArtwork = getSubjectWorldArtwork(latest.subjectId);
+  const subject = subjects.find(
+    (item) => item.id === (worldArtwork?.canonicalId ?? latest.subjectId),
+  );
   const subjectName = subject?.name ?? latest.subjectId;
   const form = latest.form ?? "Form 1";
   const canonicalLabel = registryLabel ?? getCanonicalLabel(latest, recentActivity ?? []);
@@ -157,8 +143,7 @@ export function HomeContinueLearning() {
   };
   const nextActivity = getNextActivity(latest.type);
   const nextRoute = ACTIVITY_ROUTES[nextActivity.type];
-  const assetName = SUBJECT_ASSET_NAMES[latest.subjectId] ?? latest.subjectId;
-  const accent = SUBJECT_ACCENTS[latest.subjectId] ?? "#a78bfa";
+  const accent = worldArtwork?.accent ?? SUBJECT_WORLD_FALLBACK_ACCENT;
   const ActivityIcon =
     latest.type === "notes" ? BookOpen : latest.type === "quiz" ? Brain : Layers3;
 
@@ -168,10 +153,10 @@ export function HomeContinueLearning() {
       aria-labelledby="continue-learning-title"
       style={{ "--home-continue-accent": accent } as CSSProperties}
     >
-      <HomeImagePlaceholder
+      <SubjectWorldArtwork
+        key={worldArtwork?.src ?? String(latest.subjectId)}
         className="home-continue-learning__artwork"
-        label={`${subjectName.toUpperCase()} ARTWORK · /assets/home/continue-learning/${assetName}.png`}
-        aspectRatio="4 / 3"
+        subject={latest.subjectId}
       />
 
       <div className="home-continue-learning__details">

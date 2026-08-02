@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  Bell,
   BookOpen,
   Brain,
   Flame,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { HomeImagePlaceholder } from "@/components/home/HomeImagePlaceholder";
+import { HomeMissionControl } from "@/components/home/HomeMissionControl";
 import { HomePapercraftBackground } from "@/components/home/HomePapercraftBackground";
 import { HomeContinueLearning } from "@/components/home/HomeContinueLearning";
 import { useAuth } from "@/context/auth-context";
@@ -29,8 +29,6 @@ const QUICK_ACCESS = [
   { label: "Videos", to: "/subjects" as const, icon: Play },
   { label: "Flashcards", to: "/flashcards" as const, icon: Zap },
 ];
-
-const ANNOUNCEMENTS = ["Announcement 1", "Announcement 2", "Announcement 3"];
 
 export function CommandCenterHome() {
   const { openCikgu } = useCikgu();
@@ -100,30 +98,7 @@ export function CommandCenterHome() {
 
         <div className="home-skeleton__split home-skeleton__split--learning">
           <HomeContinueLearning />
-
-          <section
-            className="home-skeleton__card home-skeleton__bulletin"
-            aria-labelledby="bulletin-title"
-          >
-            <div className="home-skeleton__section-heading">
-              <p className="home-skeleton__section-label">Latest updates</p>
-              <h2 id="bulletin-title">Academy Bulletin</h2>
-            </div>
-            <div className="home-skeleton__announcement-list">
-              {ANNOUNCEMENTS.map((announcement, index) => (
-                <article className="home-skeleton__announcement" key={announcement}>
-                  <span className="home-skeleton__icon-placeholder" aria-hidden="true">
-                    <Bell />
-                  </span>
-                  <div>
-                    <h3>{announcement}</h3>
-                    <p>Description placeholder</p>
-                  </div>
-                  <span className="home-skeleton__status">Status {index + 1}</span>
-                </article>
-              ))}
-            </div>
-          </section>
+          <HomeMissionControl />
         </div>
 
         <section aria-labelledby="quick-access-title">
