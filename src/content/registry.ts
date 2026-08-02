@@ -188,8 +188,11 @@ import { geoF2C10MindMap } from "@/content/form2/geography/chapter-10/mindmap";
 import { geographyF2C10Notes } from "@/content/form2/geography/chapter-10/notes";
 import { geographyF2C10Interactive } from "@/content/form2/geography/chapter-10/interactive";
 import { geographyF3C1Notes } from "@/content/form3/geography/chapter-1/notes";
+import { geographyF3C1Interactive } from "@/content/form3/geography/chapter-1/interactive";
 import { geographyF3C2Notes } from "@/content/form3/geography/chapter-2/notes";
+import { geographyF3C2Interactive } from "@/content/form3/geography/chapter-2/interactive";
 import { geographyF3C3Notes } from "@/content/form3/geography/chapter-3/notes";
+import { geographyF3C3Interactive } from "@/content/form3/geography/chapter-3/interactive";
 import { geographyF3C3Flashcards } from "@/content/form3/geography/chapter-3/flashcards";
 import { geographyF3C4Notes } from "@/content/form3/geography/chapter-4/notes";
 import { geographyF3C5Notes } from "@/content/form3/geography/chapter-5/notes";
@@ -1229,6 +1232,7 @@ export const chapters: ChapterContent[] = [
     title: "Jadual dan Graf",
     video: getEducationalVideo("geography-f3-c1"),
     notes: geographyF3C1Notes,
+    geoF3InteractiveData: geographyF3C1Interactive,
     mindMap: { data: geoF3C1MindMap, title: "Jadual dan Graf" },
     flashcards: geographyF3FlashcardsFor(1),
     quiz: geographyF3QuizzesFor(1),
@@ -1241,6 +1245,7 @@ export const chapters: ChapterContent[] = [
     title: "Carta Pai",
     video: getEducationalVideo("geography-f3-c2"),
     notes: geographyF3C2Notes,
+    geoF3InteractiveData: geographyF3C2Interactive,
     mindMap: { data: geoF3C2MindMap, title: "Carta Pai" },
     flashcards: geographyF3FlashcardsFor(2),
     quiz: geographyF3QuizzesFor(2),
@@ -1254,6 +1259,7 @@ export const chapters: ChapterContent[] = [
       "Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
     video: getEducationalVideo("geography-f3-c3"),
     notes: geographyF3C3Notes,
+    geoF3InteractiveData: geographyF3C3Interactive,
     mindMap: {
       data: geoF3C3MindMap,
       title:

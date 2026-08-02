@@ -54,6 +54,7 @@ import type { SciF2C1Content } from "@/content/form2/science/chapter-1/interacti
 import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
 import type { ScienceF3InteractiveContent } from "@/content/form3/science/interactive-types";
 import type { GeoF2InteractiveContent } from "@/content/form2/geography/interactive-types";
+import type { GeoF3InteractiveContent } from "@/content/form3/geography/interactive-types";
 
 /**
  * Generic structured notes shape. Reuses ScienceChapter2Notes
@@ -198,6 +199,8 @@ export type ChapterContent = {
   sciF3InteractiveData?: ScienceF3InteractiveContent;
   /** Geografi Form 2 interactive learning experience — layered on top of `notes`. BM-only. */
   geoF2InteractiveData?: GeoF2InteractiveContent;
+  /** Geografi Form 3 interactive learning experience — layered on top of `notes`. BM-only. */
+  geoF3InteractiveData?: GeoF3InteractiveContent;
   flashcards?: Flashcard[];
   quiz?: QuizQuestion[];
   subtopics?: Subtopic[];

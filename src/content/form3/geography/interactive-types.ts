@@ -1,0 +1,55 @@
+import type {
+  GeoInteractiveCard,
+  GeoFlipCardItem,
+  GeoAccordionItem,
+  GeoTabItem,
+  GeoTabGroup,
+  GeoCheckItem,
+  GeoMiniQuizItem,
+  GeoCalculatorBlock,
+  GeoInteractiveSection,
+} from "@/content/form2/geography/interactive-types";
+import type { ZoneExplorerBlock } from "@/components/notes/blocks/ZoneExplorer";
+
+export type {
+  GeoInteractiveCard,
+  GeoFlipCardItem,
+  GeoAccordionItem,
+  GeoTabItem,
+  GeoTabGroup,
+  GeoCheckItem,
+  GeoMiniQuizItem,
+  GeoCalculatorBlock,
+  GeoInteractiveSection,
+};
+
+/** Two-input calculator that live-computes BOTH percentage and angle from a
+ * sector value and a total, using % = value/total × 100 and angle = %/100 × 360.
+ * Kept separate from `GeoCalculatorBlock` (single-output two-field calculator)
+ * since this one always produces a pair of results. */
+export type GeoPieCalculatorBlock = {
+  title: string;
+  instruction: string;
+  valueField: { label: string; default?: number };
+  totalField: { label: string; default?: number };
+};
+
+export type GeoF3InteractiveSection = GeoInteractiveSection & {
+  pieCalculator?: GeoPieCalculatorBlock;
+  /** Extra explorers beyond the single `zoneExplorer` inherited above — a
+   * subtopic like 3.2 (bentuk muka bumi + saliran + tanih + iklim) needs more
+   * than one tab-based comparison in the same section. */
+  zoneExplorers?: { heading: string; block: ZoneExplorerBlock }[];
+};
+
+export type GeoF3InteractiveContent = {
+  chapter: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  blogHighlight: {
+    title: string;
+    body: string;
+  };
+  keywords: string[];
+  sections: GeoF3InteractiveSection[];
+  reflectionItems: string[];
+  miniQuiz: GeoMiniQuizItem[];
+};
