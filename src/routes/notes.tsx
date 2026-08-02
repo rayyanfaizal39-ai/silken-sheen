@@ -101,6 +101,9 @@ import { Geo2Chapter10NotesBlock } from "@/components/notes/Geo2Chapter10NotesBl
 import { Geo3Chapter1NotesBlock } from "@/components/notes/Geo3Chapter1NotesBlock";
 import { Geo3Chapter2NotesBlock } from "@/components/notes/Geo3Chapter2NotesBlock";
 import { Geo3Chapter3NotesBlock } from "@/components/notes/Geo3Chapter3NotesBlock";
+import { Geo3Chapter4NotesBlock } from "@/components/notes/Geo3Chapter4NotesBlock";
+import { Geo3Chapter5NotesBlock } from "@/components/notes/Geo3Chapter5NotesBlock";
+import { Geo3Chapter6NotesBlock } from "@/components/notes/Geo3Chapter6NotesBlock";
 import {
   MiniInvestigation,
   ScienceDiscoveryChapterHeader,
@@ -204,7 +207,10 @@ function getSubjectArtwork(subjectId: string) {
 // Form 3 Science Chapters 1-3 reuse the Lab Telemetry hero's Form-1-indexed
 // SCIENCE_LAB_META lookup, which would otherwise collide with Form 1's own
 // chapters 1-3 stats — same reasoning as ScienceF2 Chapter 1's metaOverride.
-const F3_SCIENCE_LAB_META: Record<number, { modules: number; minutes: number; experiments: number; difficulty: string }> = {
+const F3_SCIENCE_LAB_META: Record<
+  number,
+  { modules: number; minutes: number; experiments: number; difficulty: string }
+> = {
   1: { modules: 13, minutes: 26, experiments: 3, difficulty: "Core" },
   2: { modules: 14, minutes: 28, experiments: 3, difficulty: "Core" },
   3: { modules: 16, minutes: 30, experiments: 4, difficulty: "Core" },
@@ -318,11 +324,16 @@ function NotesPage() {
       ? !!progress.chapterActivity[chapterActivityKey(subject, activeChapterKey)]?.read
       : false;
   const isScienceF2C1 =
-    subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 1" && !!activeChapter?.sciF2C1Data;
+    subject === "science" &&
+    form === "Form 2" &&
+    activeChapterKey === "Chapter 1" &&
+    !!activeChapter?.sciF2C1Data;
   const isScienceF3Interactive =
     subject === "science" && form === "Form 3" && !!activeChapter?.sciF3InteractiveData;
   const isScienceDiscovery =
-    (subject === "science" && form === "Form 1" && !!activeChapterKey) || isScienceF2C1 || isScienceF3Interactive;
+    (subject === "science" && form === "Form 1" && !!activeChapterKey) ||
+    isScienceF2C1 ||
+    isScienceF3Interactive;
   const isSejarahChapter = subject === "sejarah" && !!activeChapterKey;
   const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
@@ -1200,7 +1211,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 2 ? (
                 <Geo2Chapter2NotesBlock
@@ -1208,7 +1221,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 3 ? (
                 <Geo2Chapter3NotesBlock
@@ -1216,7 +1231,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 4 ? (
                 <Geo2Chapter4NotesBlock
@@ -1224,7 +1241,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 5 ? (
                 <Geo2Chapter5NotesBlock
@@ -1232,7 +1251,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 6 ? (
                 <Geo2Chapter6NotesBlock
@@ -1240,7 +1261,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 7 ? (
                 <Geo2Chapter7NotesBlock
@@ -1248,7 +1271,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 8 ? (
                 <Geo2Chapter8NotesBlock
@@ -1256,7 +1281,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF2InteractiveData.chapter === 9 ? (
                 <Geo2Chapter9NotesBlock
@@ -1264,7 +1291,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : (
                 <Geo2Chapter10NotesBlock
@@ -1272,7 +1301,9 @@ function NotesPage() {
                   content={activeChapter.geoF2InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               )
             ) : activeChapter?.geoF3InteractiveData ? (
@@ -1282,7 +1313,9 @@ function NotesPage() {
                   content={activeChapter.geoF3InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.geoF3InteractiveData.chapter === 2 ? (
                 <Geo3Chapter2NotesBlock
@@ -1290,15 +1323,49 @@ function NotesPage() {
                   content={activeChapter.geoF3InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
-              ) : (
+              ) : activeChapter.geoF3InteractiveData.chapter === 3 ? (
                 <Geo3Chapter3NotesBlock
                   id="notes"
                   content={activeChapter.geoF3InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
+                />
+              ) : activeChapter.geoF3InteractiveData.chapter === 4 ? (
+                <Geo3Chapter4NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF3InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
+                />
+              ) : activeChapter.geoF3InteractiveData.chapter === 5 ? (
+                <Geo3Chapter5NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF3InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
+                />
+              ) : (
+                <Geo3Chapter6NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF3InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               )
             ) : activeChapter?.bab7Data ? (
@@ -1430,7 +1497,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 3 ? (
                 <ScienceF2Chapter3NotesBlock
@@ -1439,7 +1508,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 4 ? (
                 <ScienceF2Chapter4NotesBlock
@@ -1448,7 +1519,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 5 ? (
                 <ScienceF2Chapter5NotesBlock
@@ -1457,7 +1530,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 6 ? (
                 <ScienceF2Chapter6NotesBlock
@@ -1466,7 +1541,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 7 ? (
                 <ScienceF2Chapter7NotesBlock
@@ -1475,7 +1552,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 8 ? (
                 <ScienceF2Chapter8NotesBlock
@@ -1484,7 +1563,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 9 ? (
                 <ScienceF2Chapter9NotesBlock
@@ -1493,7 +1574,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 10 ? (
                 <ScienceF2Chapter10NotesBlock
@@ -1502,7 +1585,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 11 ? (
                 <ScienceF2Chapter11NotesBlock
@@ -1511,7 +1596,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : activeChapter.sciF2InteractiveData.chapter === 12 ? (
                 <ScienceF2Chapter12NotesBlock
@@ -1520,7 +1607,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               ) : (
                 <ScienceF2Chapter13NotesBlock
@@ -1529,7 +1618,9 @@ function NotesPage() {
                   lang={scienceLang === "dlp" ? "en" : "bm"}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                   isRead={isRead}
-                  onMarkRead={() => subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
                 />
               )
             ) : subject === "english" && activeChapter?.englishData ? (

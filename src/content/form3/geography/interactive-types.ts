@@ -34,12 +34,34 @@ export type GeoPieCalculatorBlock = {
   totalField: { label: string; default?: number };
 };
 
+/** Same {id,label,match} shape as ScienceInteractiveMatcherPair — kept as a
+ * structurally-equivalent local type so geography content doesn't import
+ * from the science content domain. */
+export type GeoMatcherPair = {
+  id: string;
+  label: string;
+  match: string;
+};
+
 export type GeoF3InteractiveSection = GeoInteractiveSection & {
   pieCalculator?: GeoPieCalculatorBlock;
   /** Extra explorers beyond the single `zoneExplorer` inherited above — a
    * subtopic like 3.2 (bentuk muka bumi + saliran + tanih + iklim) needs more
    * than one tab-based comparison in the same section. */
   zoneExplorers?: { heading: string; block: ZoneExplorerBlock }[];
+  /** Drag-free click-to-match pairing (e.g. mineral → Logam/Bukan Logam). */
+  matcher?: {
+    title: string;
+    instruction: string;
+    pairs: GeoMatcherPair[];
+  };
+  /** Pill-switch panels for binary comparisons (e.g. boleh baharu vs tidak
+   * boleh baharu). Array so a section can host more than one toggle group. */
+  toggles?: {
+    title: string;
+    instruction: string;
+    options: { id: string; label: string; body: string }[];
+  }[];
 };
 
 export type GeoF3InteractiveContent = {

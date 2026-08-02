@@ -195,8 +195,11 @@ import { geographyF3C3Notes } from "@/content/form3/geography/chapter-3/notes";
 import { geographyF3C3Interactive } from "@/content/form3/geography/chapter-3/interactive";
 import { geographyF3C3Flashcards } from "@/content/form3/geography/chapter-3/flashcards";
 import { geographyF3C4Notes } from "@/content/form3/geography/chapter-4/notes";
+import { geographyF3C4Interactive } from "@/content/form3/geography/chapter-4/interactive";
 import { geographyF3C5Notes } from "@/content/form3/geography/chapter-5/notes";
+import { geographyF3C5Interactive } from "@/content/form3/geography/chapter-5/interactive";
 import { geographyF3C6Notes } from "@/content/form3/geography/chapter-6/notes";
+import { geographyF3C6Interactive } from "@/content/form3/geography/chapter-6/interactive";
 import { geographyF3C7Notes } from "@/content/form3/geography/chapter-7/notes";
 import { geographyF3C8Notes } from "@/content/form3/geography/chapter-8/notes";
 import { geographyF3C9Notes } from "@/content/form3/geography/chapter-9/notes";
@@ -1276,6 +1279,7 @@ export const chapters: ChapterContent[] = [
     title: "Tumbuh-tumbuhan Semula Jadi di Malaysia",
     video: getEducationalVideo("geography-f3-c4"),
     notes: geographyF3C4Notes,
+    geoF3InteractiveData: geographyF3C4Interactive,
     mindMap: { data: geoF3C4MindMap, title: "Tumbuh-tumbuhan Semula Jadi di Malaysia" },
     flashcards: geographyF3FlashcardsFor(4),
     quiz: geographyF3QuizzesFor(4),
@@ -1288,6 +1292,7 @@ export const chapters: ChapterContent[] = [
     title: "Hidupan Liar di Malaysia",
     video: getEducationalVideo("geography-f3-c5"),
     notes: geographyF3C5Notes,
+    geoF3InteractiveData: geographyF3C5Interactive,
     mindMap: { data: geoF3C5MindMap, title: "Hidupan Liar di Malaysia" },
     flashcards: geographyF3FlashcardsFor(5),
     quiz: geographyF3QuizzesFor(5),
@@ -1300,6 +1305,7 @@ export const chapters: ChapterContent[] = [
     title: "Sumber Semula Jadi di Malaysia",
     video: getEducationalVideo("geography-f3-c6"),
     notes: geographyF3C6Notes,
+    geoF3InteractiveData: geographyF3C6Interactive,
     mindMap: { data: geoF3C6MindMap, title: "Sumber Semula Jadi di Malaysia" },
     flashcards: geographyF3FlashcardsFor(6),
     quiz: geographyF3QuizzesFor(6),
