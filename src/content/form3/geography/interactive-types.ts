@@ -72,6 +72,16 @@ export type GeoF3InteractiveSection = GeoInteractiveSection & {
       items: GeoAccordionItem[];
     }[];
   };
+  /** Switches between related flip-card sets while keeping only one visible. */
+  flipCardToggle?: {
+    title: string;
+    instruction: string;
+    groups: {
+      id: string;
+      label: string;
+      items: GeoFlipCardItem[];
+    }[];
+  };
 };
 
 export type GeoF3InteractiveContent = {

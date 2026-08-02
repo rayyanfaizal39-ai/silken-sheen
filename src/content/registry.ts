@@ -207,7 +207,9 @@ import { geographyF3C8Interactive } from "@/content/form3/geography/chapter-8/in
 import { geographyF3C9Notes } from "@/content/form3/geography/chapter-9/notes";
 import { geographyF3C9Interactive } from "@/content/form3/geography/chapter-9/interactive";
 import { geographyF3C10Notes } from "@/content/form3/geography/chapter-10/notes";
+import { geographyF3C10Interactive } from "@/content/form3/geography/chapter-10/interactive";
 import { geographyF3C11Notes } from "@/content/form3/geography/chapter-11/notes";
+import { geographyF3C11Interactive } from "@/content/form3/geography/chapter-11/interactive";
 import { geoF3C1MindMap } from "@/content/form3/geography/chapter-1/mindmap";
 import { geoF3C2MindMap } from "@/content/form3/geography/chapter-2/mindmap";
 import { geoF3C3MindMap } from "@/content/form3/geography/chapter-3/mindmap";
@@ -1364,6 +1366,7 @@ export const chapters: ChapterContent[] = [
     title: "Sumber Hutan",
     video: getEducationalVideo("geography-f3-c10"),
     notes: geographyF3C10Notes,
+    geoF3InteractiveData: geographyF3C10Interactive,
     mindMap: { data: geoF3C10MindMap, title: "Sumber Hutan" },
     flashcards: geographyF3FlashcardsFor(10),
     quiz: geographyF3QuizzesFor(10),
@@ -1376,6 +1379,7 @@ export const chapters: ChapterContent[] = [
     title: "Kitar Semula",
     video: getEducationalVideo("geography-f3-c11"),
     notes: geographyF3C11Notes,
+    geoF3InteractiveData: geographyF3C11Interactive,
     mindMap: { data: geoF3C11MindMap, title: "Kitar Semula" },
     flashcards: geographyF3FlashcardsFor(11),
     quiz: geographyF3QuizzesFor(11),

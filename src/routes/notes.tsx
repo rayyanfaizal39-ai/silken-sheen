@@ -107,6 +107,8 @@ import { Geo3Chapter6NotesBlock } from "@/components/notes/Geo3Chapter6NotesBloc
 import { Geo3Chapter7NotesBlock } from "@/components/notes/Geo3Chapter7NotesBlock";
 import { Geo3Chapter8NotesBlock } from "@/components/notes/Geo3Chapter8NotesBlock";
 import { Geo3Chapter9NotesBlock } from "@/components/notes/Geo3Chapter9NotesBlock";
+import { Geo3Chapter10NotesBlock } from "@/components/notes/Geo3Chapter10NotesBlock";
+import { Geo3Chapter11NotesBlock } from "@/components/notes/Geo3Chapter11NotesBlock";
 import {
   MiniInvestigation,
   ScienceDiscoveryChapterHeader,
@@ -1392,6 +1394,26 @@ function NotesPage() {
                 />
               ) : activeChapter.geoF3InteractiveData.chapter === 9 ? (
                 <Geo3Chapter9NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF3InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
+                />
+              ) : activeChapter.geoF3InteractiveData.chapter === 10 ? (
+                <Geo3Chapter10NotesBlock
+                  id="notes"
+                  content={activeChapter.geoF3InteractiveData}
+                  storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                  isRead={isRead}
+                  onMarkRead={() =>
+                    subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                  }
+                />
+              ) : activeChapter.geoF3InteractiveData.chapter === 11 ? (
+                <Geo3Chapter11NotesBlock
                   id="notes"
                   content={activeChapter.geoF3InteractiveData}
                   storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
