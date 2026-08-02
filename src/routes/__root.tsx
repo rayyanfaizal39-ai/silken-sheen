@@ -13,6 +13,10 @@ import {
 import appCss from "../styles.css?url";
 import { AppShell } from "@/components/AppShell";
 import { AppBootGate } from "@/components/AppBootGate";
+import {
+  ACADEMY_LOADING_CRITICAL_CSS,
+  AcadeMYStaticLoadingShell,
+} from "@/components/AcadeMYLoadingScreen";
 
 import { PwaUpdatePrompt } from "@/components/PwaUpdatePrompt";
 import { ParticleBg } from "@/components/ParticleBg";
@@ -132,11 +136,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap",
-      },
-      { rel: "stylesheet", href: appCss },
+      // Download the application CSS without blocking the dependency-free
+      // loader's first paint. AppBootGate promotes it to the active stylesheet
+      // and keeps the loader up until it is ready.
+      { rel: "stylesheet", href: appCss, media: "print", "data-app-stylesheet": "true" },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "icon", type: "image/svg+xml", href: "/branding/academy-icon.svg" },
       { rel: "icon", type: "image/png", sizes: "16x16", href: "/branding/academy-icon-16.png" },
@@ -156,10 +159,13 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <style dangerouslySetInnerHTML={{ __html: ACADEMY_LOADING_CRITICAL_CSS }} />
         <HeadContent />
+        <noscript><link rel="stylesheet" href={appCss} /></noscript>
       </head>
-      <body>
-        {children}
+      <body data-academy-loading="true">
+        <AcadeMYStaticLoadingShell />
+        <div id="academy-app">{children}</div>
         <Scripts />
       </body>
     </html>
@@ -172,6 +178,16 @@ function RootComponent() {
   const pathname = router.state.location.pathname;
   const isMarketingPage =
     pathname === "/" || pathname === "/explore-academy" || pathname.startsWith("/academy/");
+
+  useEffect(() => {
+    if (document.getElementById("academy-web-fonts")) return;
+    const link = document.createElement("link");
+    link.id = "academy-web-fonts";
+    link.rel = "stylesheet";
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap";
+    document.head.appendChild(link);
+  }, []);
   // Marketing pages provide their own atmosphere and sound behavior.
   return (
     <QueryClientProvider client={queryClient}>

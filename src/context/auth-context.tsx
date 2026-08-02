@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { User, Session } from "@supabase/supabase-js";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { beginLoadingTask } from "@/lib/loading-store";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -176,19 +177,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithEmail = useCallback(async (email: string, password: string) => {
     if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
+    const task = beginLoadingTask({ message: "Signing you in…", timeoutMs: 15_000 });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      task.finish();
+    } catch (error) {
+      task.fail(error);
+      throw error;
+    }
   }, []);
 
   const signUpWithEmail = useCallback(async (email: string, password: string) => {
     if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
-    });
-    if (error) throw error;
-    return { needsConfirmation: !data.session };
+    const task = beginLoadingTask({ message: "Creating your AcadeMY account…", timeoutMs: 15_000 });
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      });
+      if (error) throw error;
+      task.finish();
+      return { needsConfirmation: !data.session };
+    } catch (error) {
+      task.fail(error);
+      throw error;
+    }
   }, []);
 
   const requestPasswordReset = useCallback(async (email: string) => {
@@ -200,7 +215,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = useCallback(async () => {
     if (!isSupabaseConfigured) return;
-    await supabase.auth.signOut();
+    const task = beginLoadingTask({ message: "Securing your session…", timeoutMs: 15_000 });
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      task.finish();
+    } catch (error) {
+      task.fail(error);
+      throw error;
+    }
   }, []);
 
   const value = useMemo(

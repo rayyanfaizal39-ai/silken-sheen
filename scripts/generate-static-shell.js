@@ -27,6 +27,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const clientDir = join(root, "dist/client");
 const manifestPath = join(clientDir, ".vite/manifest.json");
+const loadingScreenSource = readFileSync(
+  join(root, "src/components/AcadeMYLoadingScreen.tsx"),
+  "utf8",
+);
+const criticalCssMatch = loadingScreenSource.match(
+  /export const ACADEMY_LOADING_CRITICAL_CSS = `([\s\S]*?)`;/,
+);
+if (!criticalCssMatch) {
+  throw new Error("[generate-static-shell] Could not extract loading critical CSS.");
+}
+const loadingCriticalCss = criticalCssMatch[1];
 
 if (!existsSync(manifestPath)) {
   const indexPath = join(clientDir, "index.html");
@@ -57,7 +68,11 @@ const cssFiles = new Set([
 ]);
 
 const cssLinks = [...cssFiles]
-  .map((href) => `    <link rel="stylesheet" href="/${href}" />`)
+  .map(
+    (href) =>
+      `    <link rel="stylesheet" href="/${href}" media="print" data-app-stylesheet="true" />\n` +
+      `    <noscript><link rel="stylesheet" href="/${href}" /></noscript>`,
+  )
   .join("\n");
 
 const html = `<!DOCTYPE html>
@@ -65,10 +80,33 @@ const html = `<!DOCTYPE html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050816" />
     <title>AcadeMY</title>
+    <style>${loadingCriticalCss}</style>
 ${cssLinks}
   </head>
-  <body>
+  <body data-academy-loading="true">
+    <div id="academy-static-loader" role="status" aria-live="polite" aria-label="Preparing your learning mission">
+      <div class="academy-static-stars" aria-hidden="true"></div>
+      <div class="academy-static-loading">
+        <div class="academy-static-stage">
+          <div class="academy-static-glow" aria-hidden="true"></div>
+          <div class="academy-static-orbit" aria-hidden="true"><span class="academy-static-satellite"></span></div>
+          <div class="academy-static-orbit inner" aria-hidden="true"><span class="academy-static-satellite"></span></div>
+          <svg class="academy-static-logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#6D28FF"/><path d="M13.042 17.158H18.172V20.164H13.042V17.158ZM10.072 22L14.41 9.742H17.668L21.61 22H18.334L15.4 11.956H16.696L13.33 22H10.072Z" fill="#F4B400"/></svg>
+        </div>
+        <p class="academy-static-message" data-loading-message>Preparing your learning mission…</p>
+        <div class="academy-static-bar" aria-hidden="true"><span></span></div>
+      </div>
+      <div class="academy-static-error" role="alert">
+        <h1>Mission control needs a moment</h1>
+        <p data-loading-error>AcadeMY could not finish loading this screen.</p>
+        <div class="academy-static-actions">
+          <button type="button" data-loading-retry>Retry</button>
+          <button type="button" data-loading-reload>Reload</button>
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/${entry.file}"></script>
   </body>

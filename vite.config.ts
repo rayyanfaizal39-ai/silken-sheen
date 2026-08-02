@@ -197,7 +197,10 @@ export default defineConfig({
               },
               handler: "NetworkFirst",
               options: {
-                cacheName: "html-pages",
+                // Version the runtime document cache whenever the HTML boot
+                // contract changes. This prevents a newly activated worker
+                // from falling back to a pre-loader shell on a slow network.
+                cacheName: "html-pages-v2",
                 networkTimeoutSeconds: 4,
                 expiration: { maxEntries: 40, maxAgeSeconds: 60 * 60 * 24 * 7 },
                 cacheableResponse: { statuses: [200] },
