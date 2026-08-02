@@ -51,7 +51,7 @@ const TERRA: CompanionSpeciesDef = {
   images: {
     egg: "/companions/nova/terra/terra-egg.png",
     blobling: "/companions/nova/terra/terra-blobling.png",
-    sprout: "/companions/nova/terra/terra sprout.png",
+    sprout: "/companions/nova/terra/terra-sprout.png",
     cadet: "/companions/nova/terra/terra-cadet.png",
     guardian: "/companions/nova/terra/terra-guardian.png",
   },

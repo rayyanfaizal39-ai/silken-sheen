@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Flame, Sparkles, Star, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ReliableImage } from "@/components/ReliableImage";
 import { HomeMissionControl } from "@/components/home/HomeMissionControl";
 import { HomePapercraftBackground } from "@/components/home/HomePapercraftBackground";
 import { HomeContinueLearning } from "@/components/home/HomeContinueLearning";
@@ -11,6 +12,9 @@ import { useAuth } from "@/context/auth-context";
 import { useCikgu } from "@/context/cikgu-context";
 import { getCompanionLevelProgress, getRank, useProgress } from "@/hooks/use-progress";
 import "./home/homeSkeleton.css";
+
+/** Shared with AppBootGate so the boot preload and the hero request the exact same URL. */
+export const HOME_HERO_IMAGE = "/assets/ranks/home/academy-station-hero.png";
 
 export function CommandCenterHome() {
   const { openCikgu } = useCikgu();
@@ -31,7 +35,17 @@ export function CommandCenterHome() {
     <HomePapercraftBackground>
       <main className="home-skeleton">
         <section className="home-hero" aria-labelledby="home-hero-title">
-          <div className="home-hero-background" aria-hidden="true" />
+          <div className="home-hero-background" aria-hidden="true">
+            <ReliableImage
+              src={HOME_HERO_IMAGE}
+              alt=""
+              priority
+              width={1536}
+              height={1024}
+              wrapperClassName="home-hero-background__frame"
+              className="home-hero-background__img"
+            />
+          </div>
           <div className="home-hero-overlay" aria-hidden="true" />
           <div className="home-hero-content">
             <p className="home-hero__eyebrow">

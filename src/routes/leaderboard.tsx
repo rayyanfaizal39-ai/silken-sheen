@@ -457,7 +457,7 @@ function PodiumAvatar({
         style={{ borderColor: medal, boxShadow: `0 0 22px ${medal}66`, background: `${medal}1a` }}
       >
         <img
-          src="/companions/Astrounaut/cadet.png"
+          src="/companions/astronaut/cadet.png"
           alt="Astronaut avatar"
           className="h-full w-full object-cover"
         />

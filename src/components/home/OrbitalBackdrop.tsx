@@ -1,4 +1,3 @@
-import earthBg from "@/assets/orbital-earth-bg.png.asset.json";
 
 /**
  * Full-viewport cinematic backdrop for the home / command deck.
@@ -17,7 +16,7 @@ export function OrbitalBackdrop() {
 
       {/* Earth horizon vista */}
       <img
-        src={earthBg.url}
+        src="/images/orbital-earth-bg.png"
         alt=""
         loading="eager"
         decoding="async"

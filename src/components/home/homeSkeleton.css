@@ -44,14 +44,27 @@
   pointer-events: none;
 }
 
+/* The hero artwork is a real <img> (see ReliableImage) rather than a CSS
+   background: a background-image failure is silent and unrecoverable, while an
+   <img> exposes load/error events, honours fetchpriority, and can retry. */
 .home-hero-background {
   z-index: 0;
-  background-image: url("/assets/ranks/home/academy-station-hero.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
   filter: brightness(1.08) saturate(1.06);
 }
+
+.home-hero-background__frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.home-hero-background__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
 
 .home-hero-overlay {
   z-index: 1;
@@ -2614,20 +2627,20 @@
 }
 
 @media (max-width: 1440px) {
-  .home-hero-background {
-    background-position: 65% center;
+  .home-hero-background__img {
+    object-position: 65% center;
   }
 }
 
 @media (min-width: 1920px) {
-  .home-hero-background {
-    background-position: center 58%;
+  .home-hero-background__img {
+    object-position: center 58%;
   }
 }
 
 @media (min-width: 2560px) {
-  .home-hero-background {
-    background-position: center 60%;
+  .home-hero-background__img {
+    object-position: center 60%;
   }
 }
 
@@ -2650,8 +2663,8 @@
     min-height: clamp(500px, 65vw, 580px);
   }
 
-  .home-hero-background {
-    background-position: 68% center;
+  .home-hero-background__img {
+    object-position: 68% center;
   }
 
   .home-hero-content {
@@ -2699,8 +2712,8 @@
     align-items: flex-start;
   }
 
-  .home-hero-background {
-    background-position: 72% center;
+  .home-hero-background__img {
+    object-position: 72% center;
   }
 
   .home-hero-overlay {

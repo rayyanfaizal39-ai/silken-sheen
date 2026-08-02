@@ -92,7 +92,17 @@ export default defineConfig({
           // deliberately excluded: document navigations must reach the
           // NetworkFirst routes below so a deploy can never strand clients on
           // an index.html that references deleted hashed assets.
-          globPatterns: ["**/*.{js,css,ico,png,svg,webp,woff,woff2}"],
+          // NOTE: no brace patterns here. The installed brace-expansion/
+          // balanced-match pair fails to interop under this bundler
+          // ("balanced is not a function"), which made globbing throw and
+          // silently produced a ZERO-entry precache on every build.
+          globPatterns: [
+            "**/*.js",
+            "**/*.css",
+            "**/*.svg",
+            "**/*.ico",
+            "**/*.woff2",
+          ],
           // Nitro's build root is dist/, while the PWA is served from
           // dist/client/. Strip that build-only directory prefix so Workbox
           // requests /assets/* rather than the nonexistent /client/assets/*.
@@ -114,6 +124,7 @@ export default defineConfig({
             "index.html",
             "sw.js",
             "workbox-*.js",
+            "client/assets/ranks/**/*.png",
           ],
           maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
           cleanupOutdatedCaches: true,
@@ -161,9 +172,11 @@ export default defineConfig({
               urlPattern: ({ url }) => url.pathname.startsWith("/__l5e/"),
               handler: "StaleWhileRevalidate",
               options: {
-                cacheName: "l5e-assets",
+                cacheName: "l5e-assets-v2",
                 expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 },
-                cacheableResponse: { statuses: [0, 200] },
+                // 200-with-text/html is what the SPA fallback returns for a
+                // missing CDN asset; only real assets may be cached.
+                cacheableResponse: { statuses: [200] },
               },
             },
             {
@@ -171,8 +184,12 @@ export default defineConfig({
               urlPattern: ({ request, sameOrigin }) => sameOrigin && request.destination === "image",
               handler: "StaleWhileRevalidate",
               options: {
-                cacheName: "images",
-                expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 },
+                cacheName: "academy-images-v2",
+                expiration: { maxEntries: 250, maxAgeSeconds: 60 * 60 * 24 * 30 },
+                // Never persist a 404/500/opaque response: a single failed
+                // image request used to stick in the cache and keep the
+                // artwork blank until the user cleared browser data.
+                cacheableResponse: { statuses: [200] },
               },
             },
             {

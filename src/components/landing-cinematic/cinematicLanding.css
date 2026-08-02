@@ -3591,3 +3591,20 @@
     flex: none;
   }
 }
+
+/* Safety net: if the motion runtime never loads, nothing may stay at its
+   animated-in start state (opacity:0 / offset transform). Static artwork and
+   copy are always preferable to a blank scene. */
+.cinematic-landing-root[data-motion-failed="true"] img,
+.cinematic-landing-root[data-motion-failed="true"] [data-animate],
+.cinematic-landing-root[data-motion-failed="true"] figure,
+.cinematic-landing-root[data-motion-failed="true"] h1,
+.cinematic-landing-root[data-motion-failed="true"] h2,
+.cinematic-landing-root[data-motion-failed="true"] h3,
+.cinematic-landing-root[data-motion-failed="true"] p,
+.cinematic-landing-root[data-motion-failed="true"] a,
+.cinematic-landing-root[data-motion-failed="true"] button {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
