@@ -4,6 +4,11 @@ import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
 import { getLocalDateKey } from "@/lib/local-date";
 import {
+  recordMissionActivity as recordMissionActivityRemote,
+  type MissionActivityType,
+  type MissionSystemState,
+} from "@/lib/mission-system";
+import {
   removePendingGeographyF3Progress,
   sanitizeRemovedGeographyF3Progress,
 } from "@/lib/removed-content-progress";
@@ -406,7 +411,6 @@ export interface DailyMission {
   id: string;
   label: string;
   target: number;
-  xpReward: number;
   current: (m: MissionProgress) => number;
 }
 
@@ -415,21 +419,18 @@ export const DAILY_MISSIONS: DailyMission[] = [
     id: "read2",
     label: "Read 2 chapters",
     target: 2,
-    xpReward: 20,
     current: (m) => m.readChapters,
   },
   {
     id: "quiz2",
     label: "Complete 2 quizzes",
     target: 2,
-    xpReward: 30,
     current: (m) => m.quizzesDone,
   },
   {
     id: "cards1",
     label: "Study flashcards",
     target: 1,
-    xpReward: 15,
     current: (m) => m.flashcardsDone,
   },
 ];
@@ -923,6 +924,40 @@ export function useProgress() {
     [scheduleSync],
   );
 
+  const acceptMissionState = useCallback(
+    (state: MissionSystemState) => {
+      if (state.totalXp == null) return;
+      setProgress((prev) => {
+        const nextXp = Math.max(prev.xp, state.totalXp ?? prev.xp);
+        if (nextXp === prev.xp) return prev;
+        const next: Progress = {
+          ...prev,
+          xp: nextXp,
+          badges: applyXpMilestoneBadges(prev.badges, nextXp),
+        };
+        try {
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
+        } catch {}
+        scheduleSync(next);
+        detectProgressionEvents(prev, next);
+        return next;
+      });
+    },
+    [scheduleSync, detectProgressionEvents],
+  );
+
+  const trackMissionActivity = useCallback(
+    (activity: MissionActivityType, eventKey: string, dateKey = today()) => {
+      void recordMissionActivityRemote({ activity, eventKey, dateKey })
+        .then(acceptMissionState)
+        .catch(() => {
+          // Local progress remains available; the originating learning action
+          // can be retried without duplicating the immutable mission event.
+        });
+    },
+    [acceptMissionState],
+  );
+
   const addXp = useCallback(
     (amount: number, subjectId?: string) => {
       setProgress((prev) => {
@@ -976,14 +1011,13 @@ export function useProgress() {
         if (!newBadges.includes("quiz50") && newCount >= 50) newBadges.push("quiz50");
         if (perfect && !newBadges.includes("perfect_quiz")) newBadges.push("perfect_quiz");
 
-        // Daily mission update + award XP when quiz2 mission just completes
+        // Keep the legacy local counter for instant/offline UI feedback. The
+        // complete-set reward is claimed atomically by the mission RPC.
         const missions = resetMissionsIfNewDay(prev.missions, t);
         const newQuizzesDone = missions.quizzesDone + 1;
-        const missionXp = missions.quizzesDone < 2 && newQuizzesDone >= 2 ? 30 : 0;
 
         const next: Progress = {
           ...prev,
-          xp: prev.xp + missionXp,
           quizzesTaken: newCount,
           badges: newBadges,
           missions: { ...missions, quizzesDone: newQuizzesDone },
@@ -1032,6 +1066,10 @@ export function useProgress() {
 
   const markChapter = useCallback(
     (subjectId: string, chapterKey: string, kind: keyof ChapterActivity) => {
+      if (kind === "read") {
+        const dateKey = today();
+        trackMissionActivity("lesson", `lesson:${dateKey}:${subjectId}:${chapterKey}`, dateKey);
+      }
       setProgress((prev) => {
         const k = chapterActivityKey(subjectId, chapterKey);
         const prior = prev.chapterActivity[k] ?? {};
@@ -1042,14 +1080,6 @@ export function useProgress() {
         const updatedMissions = { ...missions };
         if (kind === "read") updatedMissions.readChapters += 1;
         if (kind === "cards") updatedMissions.flashcardsDone += 1;
-
-        // Award XP when read2 or cards1 mission just completes
-        const missionXp =
-          kind === "read" && missions.readChapters < 2 && updatedMissions.readChapters >= 2
-            ? 20
-            : kind === "cards" && missions.flashcardsDone < 1 && updatedMissions.flashcardsDone >= 1
-              ? 15
-              : 0;
 
         const newActivity = { ...prev.chapterActivity, [k]: { ...prior, [kind]: true } };
         const completedCount = totalChaptersCompleted(newActivity);
@@ -1067,7 +1097,6 @@ export function useProgress() {
 
         const next: Progress = {
           ...prev,
-          xp: prev.xp + missionXp,
           badges: newBadges,
           chapterActivity: newActivity,
           missions: updatedMissions,
@@ -1080,11 +1109,13 @@ export function useProgress() {
         return next;
       });
     },
-    [scheduleSync, detectProgressionEvents],
+    [scheduleSync, detectProgressionEvents, trackMissionActivity],
   );
 
   const rateCard = useCallback(
     (cardId: string, rating: 0 | 1 | 2 | 3) => {
+      const dateKey = today();
+      trackMissionActivity("flashcard", `flashcard:${dateKey}:${cardId}`, dateKey);
       setProgress((prev) => {
         const existing = prev.cardMastery?.[cardId];
         const newRecord = sm2(existing, rating);
@@ -1110,7 +1141,7 @@ export function useProgress() {
         return next;
       });
     },
-    [scheduleSync],
+    [scheduleSync, trackMissionActivity],
   );
 
   const setLastVisited = useCallback(
@@ -1211,30 +1242,42 @@ export function useProgress() {
    * Returns 0 for backwards compatibility with older callers.
    */
   const recordQuizResult = useCallback(
-    (input: { subjectId: string; chapterKey: string; correct: number; total: number; xpEarned?: number }): number => {
+    (input: {
+      subjectId: string;
+      chapterKey: string;
+      correct: number;
+      total: number;
+      xpEarned?: number;
+    }): number => {
       const total = Math.max(1, input.total);
       const correct = Math.max(0, Math.min(input.correct, total));
       const scorePct = Math.round((correct / total) * 100);
       const passed = scorePct >= QUIZ_PASS_PCT;
+      const result: QuizResult = {
+        id: `q_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+        subjectId: input.subjectId,
+        chapterKey: input.chapterKey,
+        scorePct,
+        correct,
+        total,
+        date: new Date().toISOString(),
+      };
 
-      setProgress((prev) => {
-        const result: QuizResult = {
-          id: `q_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+      trackMissionActivity("quiz", `quiz:${result.id}`, getLocalDateKey(new Date(result.date)));
+      if (sharedUserId) {
+        void insertQuizHistoryRow({
           subjectId: input.subjectId,
           chapterKey: input.chapterKey,
           scorePct,
           correct,
           total,
-          date: new Date().toISOString(),
-        };
+          xpEarned: input.xpEarned,
+        });
+      }
+
+      setProgress((prev) => {
         const quizHistory = [...(prev.quizHistory ?? []), result].slice(-QUIZ_HISTORY_CAP);
         const timestamp = Date.now();
-
-        // Learning-history log for getStudentAnalytics() — additive only,
-        // does not replace or alter the local quizHistory/XP handling below.
-        if (sharedUserId) {
-          void insertQuizHistoryRow({ subjectId: input.subjectId, chapterKey: input.chapterKey, scorePct, correct, total, xpEarned: input.xpEarned });
-        }
 
         const next: Progress = {
           ...prev,
@@ -1264,7 +1307,7 @@ export function useProgress() {
       });
       return 0;
     },
-    [scheduleSync, detectProgressionEvents],
+    [scheduleSync, detectProgressionEvents, trackMissionActivity],
   );
 
   const setParentReport = useCallback(
@@ -1317,6 +1360,7 @@ export function useProgress() {
     lastCompanionEvolution,
     clearRankUpEvent,
     clearCompanionEvolutionEvent,
+    acceptMissionState,
   };
 }
 

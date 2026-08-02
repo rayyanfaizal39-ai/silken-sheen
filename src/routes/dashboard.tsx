@@ -666,7 +666,6 @@ function DailyMissionsSection({ missions }: { missions?: MissionProgress }) {
   const missionRows = DAILY_MISSIONS.map((m) => ({
     id: m.id,
     label: m.label,
-    xpReward: m.xpReward,
     current: missions ? Math.min(m.current(missions), m.target) : 0,
     target: m.target,
     ...(MISSION_ICONS[m.id] ?? { Icon: Star, color: "#94A3B8" }),
@@ -708,7 +707,7 @@ function DailyMissionsSection({ missions }: { missions?: MissionProgress }) {
               <div className="mt-2 flex items-center justify-between text-xs font-bold text-white/50">
                 <span>{mission.current}/{mission.target}</span>
                 <span className={done ? "text-emerald-300" : "text-[#FBBF24]/80"}>
-                  {done ? `✓ +${mission.xpReward} XP` : `+${mission.xpReward} XP`}
+                  {done ? "✓ Objective done" : "Full-set reward"}
                 </span>
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/[0.08]">

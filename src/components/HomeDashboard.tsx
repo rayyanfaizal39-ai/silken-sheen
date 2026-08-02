@@ -822,7 +822,7 @@ export function HomeDashboard() {
                     </div>
                   </div>
                   <span className="flex shrink-0 items-center gap-1 text-[11px] font-black text-[#FBBF24]">
-                    <Zap className="h-3.5 w-3.5" /> {m.xpReward}
+                    <Zap className="h-3.5 w-3.5" /> {complete ? "Done" : "Set reward"}
                   </span>
                 </div>
               );
