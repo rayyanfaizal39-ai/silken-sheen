@@ -6,6 +6,7 @@ import {
   BookOpen,
   MessageCircle,
   ChevronLeft,
+  ChevronDown,
   Sparkles,
   CheckCircle2,
   Circle,
@@ -148,7 +149,15 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
         }}
       >
         <div className="flex h-full flex-col overflow-y-auto px-5 pb-8 pt-6 sm:px-6">
-          <Header rank={rank} voiceOn={voiceOn} voiceSupported={readAloud.supported} onToggleVoice={toggleVoice} />
+          <Header
+            rank={rank}
+            voiceOn={voiceOn}
+            voiceSupported={readAloud.supported}
+            voices={readAloud.voices}
+            selectedVoiceURI={readAloud.selectedVoiceURI}
+            onToggleVoice={toggleVoice}
+            onVoiceChange={readAloud.selectVoice}
+          />
 
           {view === "home" && (
             <HomeView
@@ -175,20 +184,14 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
           )}
 
           {view === "challenge" && (
-            <ChallengeView
-              selected={selectedChoice}
-              onSelect={setSelectedChoice}
-              onBack={goHome}
-            />
+            <ChallengeView selected={selectedChoice} onSelect={setSelectedChoice} onBack={goHome} />
           )}
 
           {view === "mission" && <MissionView onBack={goHome} />}
 
           {view === "chat" && <ChatView onBack={goHome} />}
 
-          {view === "discovery" && (
-            <DiscoveryView topicId={discoveryTopic} onBack={goHome} />
-          )}
+          {view === "discovery" && <DiscoveryView topicId={discoveryTopic} onBack={goHome} />}
 
           {view === "knowledge" && <KnowledgeView onBack={goHome} speak={speak} />}
         </div>
@@ -201,52 +204,88 @@ function Header({
   rank,
   voiceOn,
   voiceSupported,
+  voices,
+  selectedVoiceURI,
   onToggleVoice,
+  onVoiceChange,
 }: {
   rank: SpaceRank;
   voiceOn: boolean;
   voiceSupported: boolean;
+  voices: SpeechSynthesisVoice[];
+  selectedVoiceURI: string;
   onToggleVoice: () => void;
+  onVoiceChange: (voiceURI: string) => void;
 }) {
   return (
-    <div className="mb-4 flex items-center justify-between gap-2">
-      <div className="min-w-0">
-        <div className="flex items-center gap-2">
-          <Rocket className="h-4 w-4 text-[#A78BFA]" aria-hidden />
-          <span className="text-base font-bold text-white">Ace</span>
-          <span className="relative flex h-2 w-2" aria-label="Online">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+    <div className="mb-4 space-y-3">
+      <div className="flex items-center justify-between gap-2">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <Rocket className="h-4 w-4 text-[#A78BFA]" aria-hidden />
+            <span className="text-base font-bold text-white">Ace</span>
+            <span className="relative flex h-2 w-2" aria-label="Online">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+          </div>
+          <p className="mt-0.5 text-xs text-white/55">Personal Learning Companion</p>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          {voiceSupported && (
+            <button
+              type="button"
+              onClick={onToggleVoice}
+              aria-label={voiceOn ? "Mute Ace's voice" : "Unmute Ace's voice"}
+              aria-pressed={voiceOn}
+              title={voiceOn ? "Voice on" : "Voice off"}
+              className={cn(
+                "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors",
+                voiceOn
+                  ? "border-[#8B5CF6]/40 bg-[#8B5CF6]/15 text-[#C4B5FD]"
+                  : "border-white/10 bg-white/[0.04] text-white/40",
+              )}
+            >
+              {voiceOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+            </button>
+          )}
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full py-1 pl-1 pr-2.5 text-[10px] font-semibold uppercase tracking-wide text-white/80"
+            style={{ background: `${rank.color}26`, border: `1px solid ${rank.color}55` }}
+          >
+            <RankBadge rank={rank} size={40} />
+            {rank.name}
           </span>
         </div>
-        <p className="mt-0.5 text-xs text-white/55">Personal Learning Companion</p>
       </div>
-      <div className="flex shrink-0 items-center gap-2">
-        {voiceSupported && (
-          <button
-            type="button"
-            onClick={onToggleVoice}
-            aria-label={voiceOn ? "Mute Ace's voice" : "Unmute Ace's voice"}
-            aria-pressed={voiceOn}
-            title={voiceOn ? "Voice on" : "Voice off"}
-            className={cn(
-              "flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border transition-colors",
-              voiceOn
-                ? "border-[#8B5CF6]/40 bg-[#8B5CF6]/15 text-[#C4B5FD]"
-                : "border-white/10 bg-white/[0.04] text-white/40",
-            )}
-          >
-            {voiceOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-          </button>
-        )}
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full py-1 pl-1 pr-2.5 text-[10px] font-semibold uppercase tracking-wide text-white/80"
-          style={{ background: `${rank.color}26`, border: `1px solid ${rank.color}55` }}
-        >
-          <RankBadge rank={rank} size={40} />
-          {rank.name}
-        </span>
-      </div>
+
+      {voiceSupported && voices.length > 0 && (
+        <label className="block">
+          <span className="mb-1.5 block text-xs font-medium text-white/65">Ace voice</span>
+          <span className="relative block">
+            <select
+              value={selectedVoiceURI}
+              onChange={(event) => onVoiceChange(event.target.value)}
+              aria-label="Choose Ace's voice"
+              className="h-11 w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-white/[0.06] px-3 pr-10 text-sm text-white outline-none transition-colors hover:bg-white/[0.09] focus:border-[#8B5CF6]/70 focus:ring-2 focus:ring-[#8B5CF6]/30"
+            >
+              {voices.map((voice) => (
+                <option
+                  key={voice.voiceURI}
+                  value={voice.voiceURI}
+                  className="bg-[#17122E] text-white"
+                >
+                  {voice.name} ({voice.lang})
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/55"
+              aria-hidden
+            />
+          </span>
+        </label>
+      )}
     </div>
   );
 }
@@ -282,8 +321,7 @@ function HomeView({
       <div className="glass-strong mb-5 rounded-2xl border border-white/10 p-4 text-center">
         <p className="text-sm font-bold text-white">Welcome back, Commander!</p>
         <p className="mt-1.5 text-xs leading-relaxed text-white/65">
-          I'm Ace. I'm here to make learning more exciting. What would you like to explore
-          today?
+          I'm Ace. I'm here to make learning more exciting. What would you like to explore today?
         </p>
       </div>
 
@@ -497,7 +535,11 @@ function MissionRow({ label, done }: { label: string; done: boolean }) {
           done ? "text-emerald-400" : "text-amber-300",
         )}
       >
-        {done ? <CheckCircle2 className="h-3.5 w-3.5" aria-hidden /> : <Circle className="h-3.5 w-3.5" aria-hidden />}
+        {done ? (
+          <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
+        ) : (
+          <Circle className="h-3.5 w-3.5" aria-hidden />
+        )}
         {done ? "Done" : "Pending"}
       </span>
     </div>
@@ -540,10 +582,7 @@ function ChatView({ onBack }: { onBack: () => void }) {
 }
 
 function DiscoveryView({ topicId, onBack }: { topicId: string; onBack: () => void }) {
-  const content = useMemo(
-    () => DISCOVERY_CONTENT[topicId] ?? DISCOVERY_CONTENT.space,
-    [topicId],
-  );
+  const content = useMemo(() => DISCOVERY_CONTENT[topicId] ?? DISCOVERY_CONTENT.space, [topicId]);
   return (
     <div className="flex flex-1 flex-col">
       <BackButton onBack={onBack} />
@@ -645,14 +684,14 @@ function KnowledgeView({
                 </span>
               )}
               {card.reading_time && (
-                <span className="ml-auto text-[10px] text-white/40">{card.reading_time} min read</span>
+                <span className="ml-auto text-[10px] text-white/40">
+                  {card.reading_time} min read
+                </span>
               )}
             </div>
 
             <p className="text-sm font-bold text-white">{card.title}</p>
-            {card.chapter && (
-              <p className="mt-0.5 text-xs text-white/45">{card.chapter}</p>
-            )}
+            {card.chapter && <p className="mt-0.5 text-xs text-white/45">{card.chapter}</p>}
             <p className="mt-3 text-xs leading-relaxed text-white/70">{card.content}</p>
 
             {card.reflection && (
