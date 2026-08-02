@@ -260,7 +260,10 @@ export default function HeroScene() {
           companion that grows with every achievement.
         </p>
         <div className="hero__ctas">
-          <CinematicAuthCta className="cine-button cine-button--primary cine-button--lg">
+          <CinematicAuthCta
+            className="cine-button cine-button--primary cine-button--lg"
+            authenticatedLabel="Continue Learning"
+          >
             Start Your Journey
           </CinematicAuthCta>
           <a

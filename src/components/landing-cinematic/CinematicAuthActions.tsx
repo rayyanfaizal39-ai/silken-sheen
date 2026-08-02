@@ -8,7 +8,7 @@ type AppRoute = "/dashboard" | "/login" | "/notes" | "/parent-dashboard" | "/upg
 export function CinematicAuthCta({
   children,
   className,
-  authenticatedLabel = "Dashboard",
+  authenticatedLabel = "Student Dashboard",
   authenticatedTo = "/dashboard",
 }: {
   children: ReactNode;
@@ -37,9 +37,14 @@ export function CinematicAuthCta({
 export function CinematicLoginAction({ className }: { className: string }) {
   const { user } = useAuth();
 
+  // Signed-in visitors already get the primary Student Dashboard action next
+  // to this slot. Rendering a second dashboard link here creates two
+  // indistinguishable choices in the navigation.
+  if (user) return null;
+
   return (
-    <Link className={className} to={user ? "/dashboard" : "/login"}>
-      {user ? "Dashboard" : "Log In"}
+    <Link className={className} to="/login">
+      Log In
     </Link>
   );
 }
