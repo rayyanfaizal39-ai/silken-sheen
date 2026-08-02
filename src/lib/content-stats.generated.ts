@@ -4,10 +4,10 @@
 // registry's SSR bundle weight).
 export const CONTENT_STATS = {
   totalSubjects: 6,
-  totalChapters: 260,
-  publishedNotes: 201,
-  publishedQuizzes: 153,
-  publishedFlashcards: 167,
-  publishedMindmaps: 241,
+  totalChapters: 259,
+  publishedNotes: 200,
+  publishedQuizzes: 152,
+  publishedFlashcards: 166,
+  publishedMindmaps: 240,
   missingContent: 111,
 } as const;

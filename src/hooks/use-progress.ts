@@ -2,6 +2,10 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import {
+  removePendingGeographyF3Progress,
+  sanitizeRemovedGeographyF3Progress,
+} from "@/lib/removed-content-progress";
+import {
   RANKS,
   getRank,
   getNextRank,
@@ -458,9 +462,14 @@ function progressStorageKey(userId?: string | null): string {
 function load(userId?: string | null): Progress {
   if (typeof window === "undefined") return initial;
   try {
+    removePendingGeographyF3Progress(localStorage, userId);
     const raw = localStorage.getItem(progressStorageKey(userId));
     if (!raw) return stampCompanionSelectedAt(initial, userId);
-    const merged: Progress = { ...initial, ...JSON.parse(raw) };
+    const merged = sanitizeRemovedGeographyF3Progress<Progress>({
+      ...initial,
+      ...JSON.parse(raw),
+    });
+    localStorage.setItem(progressStorageKey(userId), JSON.stringify(merged));
     return stampCompanionSelectedAt(merged, userId);
   } catch {
     return initial;
@@ -536,7 +545,7 @@ function progressToRow(p: Progress) {
 }
 
 function rowToProgress(row: Record<string, unknown>): Progress {
-  return {
+  return sanitizeRemovedGeographyF3Progress<Progress>({
     ...initial,
     xp: typeof row.xp === "number" ? row.xp : 0,
     streak: typeof row.streak === "number" ? row.streak : 0,
@@ -549,7 +558,7 @@ function rowToProgress(row: Record<string, unknown>): Progress {
     missions: (row.missions as MissionProgress | undefined) ?? undefined,
     cardMastery: (row.card_mastery as Record<string, CardMasteryRecord>) ?? {},
     lastVisited: (row.last_visited as LastVisited | undefined) ?? undefined,
-  };
+  });
 }
 
 // Merge: take the union of badges, the higher XP, etc.

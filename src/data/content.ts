@@ -114,8 +114,6 @@ import { geographyF3C10Quizzes } from "@/content/form3/geography/chapter-10/quiz
 import { geographyF3C10Flashcards } from "@/content/form3/geography/chapter-10/flashcards";
 import { geographyF3C11Quizzes } from "@/content/form3/geography/chapter-11/quizzes";
 import { geographyF3C11Flashcards } from "@/content/form3/geography/chapter-11/flashcards";
-import { geographyF3C12Quizzes } from "@/content/form3/geography/chapter-12/quizzes";
-import { geographyF3C12Flashcards } from "@/content/form3/geography/chapter-12/flashcards";
 import { scienceF2C2QuizzesBM } from "@/content/form2/science/chapter-2/quizzes-bm";
 import { scienceF2C2QuizzesDLP } from "@/content/form2/science/chapter-2/quizzes-dlp";
 import { scienceF2C2FlashcardsBM } from "@/content/form2/science/chapter-2/flashcards-bm";
@@ -3221,7 +3219,6 @@ export const quizzes: QuizQuestion[] = [
   ...geographyF3C9Quizzes,
   ...geographyF3C10Quizzes,
   ...geographyF3C11Quizzes,
-  ...geographyF3C12Quizzes,
   {
     id: "q3",
     subjectId: "science",
@@ -20024,7 +20021,6 @@ export const flashcards: Flashcard[] = [
   ...geographyF3C9Flashcards,
   ...geographyF3C10Flashcards,
   ...geographyF3C11Flashcards,
-  ...geographyF3C12Flashcards,
   {
     id: "f3",
     subjectId: "science",

@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import { VideoBlock } from "@/components/notes/VideoBlock";
-import { getChapter } from "@/content/registry";
+import { getChapter, getRegisteredSubjectChapters } from "@/content/registry";
 import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
 import { educationalVideos, getEducationalVideo } from "./educationalVideos";
 
@@ -50,6 +50,13 @@ const geographyForm2 = [
 ] as const;
 
 describe("Geografi Tingkatan 3 educational videos", () => {
+  it("exposes exactly the eleven student learning chapters", () => {
+    const chapters = getRegisteredSubjectChapters("geography", undefined, "Form 3");
+
+    expect(chapters).toHaveLength(11);
+    expect(chapters.at(-1)?.key).toBe("Chapter 11");
+  });
+
   it("registers the exact YouTube ID for all eleven supplied chapters", () => {
     geographyForm3.forEach(([chapterId, youtubeId], index) => {
       const chapterNumber = index + 1;
@@ -67,7 +74,6 @@ describe("Geografi Tingkatan 3 educational videos", () => {
     expect(
       Object.keys(educationalVideos).filter((chapterId) => chapterId.startsWith("geography-f3-")),
     ).toEqual(geographyForm3.map(([chapterId]) => chapterId));
-    expect(getEducationalVideo("geography-f3-c12")).toBeUndefined();
   });
 
   it("attaches each video to the existing Form 3 chapter route", () => {
@@ -79,8 +85,6 @@ describe("Geografi Tingkatan 3 educational videos", () => {
       expect(chapter?.video).toBe(getEducationalVideo(chapterId));
       expect(chapter?.video?.youtubeId).toBe(youtubeId);
     });
-
-    expect(getChapter("geography", "Chapter 12", undefined, "Form 3")?.video).toBeUndefined();
   });
 
   it("renders every mapping through the existing responsive youtube-nocookie player", () => {

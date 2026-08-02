@@ -208,7 +208,6 @@ import { geographyF3C9Notes } from "@/content/form3/geography/chapter-9/notes";
 import { geographyF3C9Interactive } from "@/content/form3/geography/chapter-9/interactive";
 import { geographyF3C10Notes } from "@/content/form3/geography/chapter-10/notes";
 import { geographyF3C11Notes } from "@/content/form3/geography/chapter-11/notes";
-import { geographyF3C12Notes } from "@/content/form3/geography/chapter-12/notes";
 import { geoF3C1MindMap } from "@/content/form3/geography/chapter-1/mindmap";
 import { geoF3C2MindMap } from "@/content/form3/geography/chapter-2/mindmap";
 import { geoF3C3MindMap } from "@/content/form3/geography/chapter-3/mindmap";
@@ -220,7 +219,6 @@ import { geoF3C8MindMap } from "@/content/form3/geography/chapter-8/mindmap";
 import { geoF3C9MindMap } from "@/content/form3/geography/chapter-9/mindmap";
 import { geoF3C10MindMap } from "@/content/form3/geography/chapter-10/mindmap";
 import { geoF3C11MindMap } from "@/content/form3/geography/chapter-11/mindmap";
-import { geoF3C12MindMap } from "@/content/form3/geography/chapter-12/mindmap";
 
 // Mind maps
 import { mengenaliSejarahMindMap } from "@/data/mengenaliSejarahMindMap";
@@ -1382,18 +1380,6 @@ export const chapters: ChapterContent[] = [
     flashcards: geographyF3FlashcardsFor(11),
     quiz: geographyF3QuizzesFor(11),
   },
-  {
-    id: "geography-f3-c12",
-    subjectId: "geography",
-    form: "Form 3",
-    chapterKey: "Chapter 12",
-    title: "Panduan Kerja Lapangan",
-    notes: geographyF3C12Notes,
-    mindMap: { data: geoF3C12MindMap, title: "Panduan Kerja Lapangan" },
-    flashcards: geographyF3FlashcardsFor(12),
-    quiz: geographyF3QuizzesFor(12),
-  },
-
   // Mathematics Form 1
   {
     id: "math-f1-c1-bm",

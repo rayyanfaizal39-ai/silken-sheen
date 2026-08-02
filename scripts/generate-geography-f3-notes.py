@@ -133,18 +133,6 @@ CHAPTERS = [
             "Amalan Kitar Semula di Negara-negara Lain",
         ],
     },
-    {
-        "num": 12,
-        "title": "Panduan Kerja Lapangan",
-        "pages": (190, 199),
-        "subtopics": [
-            "Memilih Isu atau Tajuk Kerja Lapangan",
-            "Menentukan Objektif Kerja Lapangan",
-            "Menentukan Kaedah Kerja Lapangan",
-            "Merekod, Mengumpul dan Menganalisis Data atau Maklumat",
-            "Merumus dan Membuat Pelaporan Tentang Kerja Lapangan",
-        ],
-    },
 ]
 
 
