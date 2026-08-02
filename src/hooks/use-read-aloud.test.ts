@@ -10,14 +10,11 @@ describe("Ace browser voice selection", () => {
     voice("Google US English", "en-US", "google-male"),
     voice("Google UK English Female", "en-GB", "google-female"),
     voice("Microsoft Aria Online (Natural)", "en-US", "aria"),
+    voice("Microsoft Ana Online (Natural)", "en-US", "ana"),
   ];
 
-  it("uses the student's saved voice when it is available", () => {
-    expect(pickVoice(voices, "en-US", "google-female")?.voiceURI).toBe("google-female");
-  });
-
-  it("prefers Aria when there is no saved choice", () => {
-    expect(pickVoice(voices, "en-US")?.voiceURI).toBe("aria");
+  it("prefers Ana when it is available", () => {
+    expect(pickVoice(voices, "en-US")?.voiceURI).toBe("ana");
   });
 
   it("prefers an explicitly labelled female voice before a generic voice", () => {

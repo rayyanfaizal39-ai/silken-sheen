@@ -6,7 +6,6 @@ import {
   BookOpen,
   MessageCircle,
   ChevronLeft,
-  ChevronDown,
   Sparkles,
   CheckCircle2,
   Circle,
@@ -153,10 +152,7 @@ export function CikguAIPanel({ open, onOpenChange, rankImage, rank }: CikguAIPan
             rank={rank}
             voiceOn={voiceOn}
             voiceSupported={readAloud.supported}
-            voices={readAloud.voices}
-            selectedVoiceURI={readAloud.selectedVoiceURI}
             onToggleVoice={toggleVoice}
-            onVoiceChange={readAloud.selectVoice}
           />
 
           {view === "home" && (
@@ -204,18 +200,12 @@ function Header({
   rank,
   voiceOn,
   voiceSupported,
-  voices,
-  selectedVoiceURI,
   onToggleVoice,
-  onVoiceChange,
 }: {
   rank: SpaceRank;
   voiceOn: boolean;
   voiceSupported: boolean;
-  voices: SpeechSynthesisVoice[];
-  selectedVoiceURI: string;
   onToggleVoice: () => void;
-  onVoiceChange: (voiceURI: string) => void;
 }) {
   return (
     <div className="mb-4 space-y-3">
@@ -258,34 +248,6 @@ function Header({
           </span>
         </div>
       </div>
-
-      {voiceSupported && voices.length > 0 && (
-        <label className="block">
-          <span className="mb-1.5 block text-xs font-medium text-white/65">Ace voice</span>
-          <span className="relative block">
-            <select
-              value={selectedVoiceURI}
-              onChange={(event) => onVoiceChange(event.target.value)}
-              aria-label="Choose Ace's voice"
-              className="h-11 w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-white/[0.06] px-3 pr-10 text-sm text-white outline-none transition-colors hover:bg-white/[0.09] focus:border-[#8B5CF6]/70 focus:ring-2 focus:ring-[#8B5CF6]/30"
-            >
-              {voices.map((voice) => (
-                <option
-                  key={voice.voiceURI}
-                  value={voice.voiceURI}
-                  className="bg-[#17122E] text-white"
-                >
-                  {voice.name} ({voice.lang})
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/55"
-              aria-hidden
-            />
-          </span>
-        </label>
-      )}
     </div>
   );
 }
