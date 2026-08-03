@@ -283,6 +283,7 @@ import { bahasaMelayuForm3CakapAjukCakapPindahMindMap } from "@/content/bm/cakap
 import { bahasaMelayuForm3StrategiMenjawabUasaMindMap } from "@/content/bm/strategi-menjawab-uasa-form3-mindmap";
 import { bahasaMelayuForm3AnalisisKehendakSoalanMindMap } from "@/content/bm/analisis-kehendak-soalan-form3-mindmap";
 import { bahasaMelayuForm3TeknikMenjanaIdeaKbatMindMap } from "@/content/bm/teknik-menjana-idea-kbat-form3-mindmap";
+import { bahasaMelayuForm3KesalahanLazimDalamPenulisanMindMap } from "@/content/bm/kesalahan-lazim-dalam-penulisan-form3-mindmap";
 import { bahasaMelayuForm3PepatahMindMap } from "@/content/bm/pepatah-form3-mindmap";
 import { bahasaMelayuForm3BidalanMindMap } from "@/content/bm/bidalan-form3-mindmap";
 import { bahasaMelayuForm3KataHikmatMindMap } from "@/content/bm/kata-hikmat-form3-mindmap";
@@ -2565,6 +2566,20 @@ export const chapters: ChapterContent[] = [
     mindMap: {
       data: bahasaMelayuForm3TeknikMenjanaIdeaKbatMindMap,
       title: "Teknik Menjana Idea KBAT",
+    },
+  },
+  {
+    id: "bm-f3-kesalahan-lazim-dalam-penulisan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kesalahan Lazim dalam Penulisan",
+    title: "Kesalahan Lazim dalam Penulisan",
+    description:
+      "Kenal pasti kesalahan yang sering dilakukan dalam penulisan dan pelajari cara membetulkannya untuk menghasilkan karangan yang lebih berkualiti.",
+    categoryLabel: "Penulisan",
+    mindMap: {
+      data: bahasaMelayuForm3KesalahanLazimDalamPenulisanMindMap,
+      title: "Kesalahan Lazim dalam Penulisan",
     },
   },
   {
