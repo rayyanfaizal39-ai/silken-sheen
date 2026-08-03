@@ -1,4 +1,5 @@
 import type { VideoBlock } from "@/content/types";
+import { mathForm1DlpEducationalVideos } from "@/data/mathForm1Dlp";
 
 export type EducationalVideo = VideoBlock;
 
@@ -7,6 +8,7 @@ export type EducationalVideo = VideoBlock;
  * Chapters without a confirmed video are intentionally omitted.
  */
 export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
+  ...mathForm1DlpEducationalVideos,
   "sejarah-f1-c1": {
     title: "Sejarah Tingkatan 1 — Bab 1",
     youtubeId: "dZuhYNHdQ7U",

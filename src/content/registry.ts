@@ -1,4 +1,4 @@
-import type { ChapterContent } from "./types";
+import type { ChapterContent, VideoBlock } from "./types";
 import { getChapterFeatures } from "./types";
 import { cleanLearningTitle } from "@/lib/clean-learning-title";
 import { scienceF3ChapterContent } from "@/content/form3/science/registration";
@@ -295,6 +295,7 @@ import { bahasaMelayuForm1PenutupMindMap } from "@/content/bm/penutup-form1-mind
 import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/karangan-berpandukan-gambar-form1-mindmap";
 import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form1-mindmap";
 import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/mengedit-menyemak-karangan-form1-mindmap";
+import { bahasaMelayuTingkatan1PemahamanRegistry } from "@/content/bm/tingkatan1-pemahaman-registry";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -824,6 +825,15 @@ function geography(
     subtopics: getGeographyF1Subtopics(chapterKey),
   };
 }
+
+function mathForm1DlpVideo(chapterNumber: number): VideoBlock {
+  const video = getEducationalVideo(`math-f1-c${chapterNumber}`, "dlp");
+  if (!video) {
+    throw new Error(`Missing Mathematics Form 1 DLP video for Chapter ${chapterNumber}`);
+  }
+  return video;
+}
+
 export const chapters: ChapterContent[] = [
   ...scienceF3ChapterContent,
   // Sejarah Form 1
@@ -1405,6 +1415,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Rational Numbers",
     lang: "dlp",
+    video: mathForm1DlpVideo(1),
     mindMap: { data: mathF1C1MindMapDLP, title: "Rational Numbers" },
     notes: mathF1C1NotesDLP,
     mathChapter1Data: mathF1C1InteractiveContent,
@@ -1426,6 +1437,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Factors and Multiples",
     lang: "dlp",
+    video: mathForm1DlpVideo(2),
     mindMap: { data: mathF1C2MindMapDLP, title: "Factors and Multiples" },
     notes: mathF1C2NotesDLP,
   },
@@ -1449,6 +1461,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Squares, Square Roots, Cubes and Cube Roots",
     lang: "dlp",
+    video: mathForm1DlpVideo(3),
     mindMap: { data: mathF1C3MindMapDLP, title: "Squares, Square Roots, Cubes and Cube Roots" },
     notes: mathF1C3NotesDLP,
   },
@@ -1469,6 +1482,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Ratio, Rate and Proportion",
     lang: "dlp",
+    video: mathForm1DlpVideo(4),
     mindMap: { data: mathF1C4MindMapDLP, title: "Ratio, Rate and Proportion" },
     notes: mathF1C4NotesDLP,
   },
@@ -1489,6 +1503,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Algebraic Expressions",
     lang: "dlp",
+    video: mathForm1DlpVideo(5),
     mindMap: { data: mathF1C5MindMapDLP, title: "Algebraic Expressions" },
     notes: mathF1C5NotesDLP,
   },
@@ -1509,6 +1524,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Linear Equations",
     lang: "dlp",
+    video: mathForm1DlpVideo(6),
     mindMap: { data: mathF1C6MindMapDLP, title: "Linear Equations" },
     notes: mathF1C6NotesDLP,
   },
@@ -1529,6 +1545,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Linear Inequalities",
     lang: "dlp",
+    video: mathForm1DlpVideo(7),
     mindMap: { data: mathF1C7MindMapDLP, title: "Linear Inequalities" },
     notes: mathF1C7NotesDLP,
   },
@@ -1549,6 +1566,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Lines and Angles",
     lang: "dlp",
+    video: mathForm1DlpVideo(8),
     mindMap: { data: mathF1C8MindMapDLP, title: "Lines and Angles" },
     notes: mathF1C8NotesDLP,
   },
@@ -1569,6 +1587,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Basic Polygons",
     lang: "dlp",
+    video: mathForm1DlpVideo(9),
     mindMap: { data: mathF1C9MindMapDLP, title: "Basic Polygons" },
     notes: mathF1C9NotesDLP,
   },
@@ -1589,6 +1608,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Perimeter and Area",
     lang: "dlp",
+    video: mathForm1DlpVideo(10),
     mindMap: { data: mathF1C10MindMapDLP, title: "Perimeter and Area" },
     notes: mathF1C10NotesDLP,
   },
@@ -1609,6 +1629,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Introduction to Sets",
     lang: "dlp",
+    video: mathForm1DlpVideo(11),
     mindMap: { data: mathF1C11MindMapDLP, title: "Introduction to Sets" },
     notes: mathF1C11NotesDLP,
   },
@@ -1629,6 +1650,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Data Handling",
     lang: "dlp",
+    video: mathForm1DlpVideo(12),
     mindMap: { data: mathF1C12MindMapDLP, title: "Data Handling" },
     notes: mathF1C12NotesDLP,
   },
@@ -1649,6 +1671,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 13",
     title: "Pythagoras' Theorem",
     lang: "dlp",
+    video: mathForm1DlpVideo(13),
     mindMap: { data: mathF1C13MindMapDLP, title: "Pythagoras' Theorem" },
     notes: mathF1C13NotesDLP,
   },
@@ -2723,6 +2746,7 @@ export const chapters: ChapterContent[] = [
     categoryLabel: "Peribahasa",
     mindMap: { data: bahasaMelayuSimpulanBahasaMindMap, title: "Simpulan Bahasa" },
   },
+  ...bahasaMelayuTingkatan1PemahamanRegistry,
   {
     id: "bm-f1-asas-penulisan-mindmap",
     subjectId: "bm",

@@ -17,6 +17,7 @@ import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
+  BAHASA_MELAYU_CATEGORY_DETAILS,
   getBahasaMelayuMindMapCategories,
   type BahasaMelayuMindMapCategory,
 } from "@/lib/bm-mindmap-categories";
@@ -350,6 +351,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Strategi Menjawab Soalan Pemahaman": {
+        description:
+          "Peta minda strategi pemahaman Tingkatan 1: membaca petikan, mengenal pasti kehendak soalan, mencari bukti dan membina jawapan gramatis.",
+        keywords: [
+          "Strategi Menjawab Soalan Pemahaman",
+          "Pemahaman Bahasa Melayu Tingkatan 1",
+          "cara menjawab soalan pemahaman",
+          "bukti petikan",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -385,25 +396,28 @@ export const Route = createFileRoute("/mindmaps")({
         | "Analisis Kehendak Soalan"
         | "Teknik Menjana Idea KBAT"
         | "Kesalahan Lazim dalam Penulisan"
+        | "Strategi Menjawab Soalan Pemahaman"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
-      const bmCategory =
-        match.search.chapter === "Pendahuluan" ||
-        match.search.chapter === "Penutup" ||
-        match.search.chapter === "Penanda Wacana" ||
-        match.search.chapter === "Karangan Berpandukan Gambar" ||
-        match.search.chapter === "Karangan Respons Terbuka" ||
-        match.search.chapter === "Mengedit dan Menyemak Karangan" ||
-        match.search.chapter === "Mengembangkan Isi Karangan" ||
-        match.search.chapter === "Perbendaharaan Kata" ||
-        match.search.chapter === "Ayat Gramatis" ||
-        match.search.chapter === "Teknik Mengolah Idea" ||
-        match.search.chapter === "Karangan Berpandukan Bahan" ||
-        match.search.chapter === "Strategi Menjawab UASA" ||
-        match.search.chapter === "Analisis Kehendak Soalan" ||
-        match.search.chapter === "Teknik Menjana Idea KBAT" ||
-        match.search.chapter === "Kesalahan Lazim dalam Penulisan"
+      const isPemahaman = match.search.chapter === "Strategi Menjawab Soalan Pemahaman";
+      const bmCategory = isPemahaman
+        ? "Pemahaman"
+        : match.search.chapter === "Pendahuluan" ||
+            match.search.chapter === "Penutup" ||
+            match.search.chapter === "Penanda Wacana" ||
+            match.search.chapter === "Karangan Berpandukan Gambar" ||
+            match.search.chapter === "Karangan Respons Terbuka" ||
+            match.search.chapter === "Mengedit dan Menyemak Karangan" ||
+            match.search.chapter === "Mengembangkan Isi Karangan" ||
+            match.search.chapter === "Perbendaharaan Kata" ||
+            match.search.chapter === "Ayat Gramatis" ||
+            match.search.chapter === "Teknik Mengolah Idea" ||
+            match.search.chapter === "Karangan Berpandukan Bahan" ||
+            match.search.chapter === "Strategi Menjawab UASA" ||
+            match.search.chapter === "Analisis Kehendak Soalan" ||
+            match.search.chapter === "Teknik Menjana Idea KBAT" ||
+            match.search.chapter === "Kesalahan Lazim dalam Penulisan"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
@@ -454,6 +468,8 @@ function MindMapsPage() {
   const form = normalizeFormParam(search.form) as Form;
   const hasSelectedForm = search.form != null;
   const [chapter, setChapter] = useState<string | null>(search.chapter ?? null);
+  const [selectedBmCategory, setSelectedBmCategory] =
+    useState<BahasaMelayuMindMapCategory>("Tatabahasa");
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
   const needsScienceLang = isBilingualSubject && !scienceLang;
@@ -475,20 +491,34 @@ function MindMapsPage() {
   const activeChapterIndex = activeChapterKey
     ? subjectChapters.findIndex((candidate) => candidate.key === activeChapterKey)
     : -1;
-  const previousTopic =
+  const previousCandidate =
     activeChapterIndex > 0 ? subjectChapters[activeChapterIndex - 1] : undefined;
-  const nextTopic = activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
+  const nextCandidate =
+    activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
+  const isForm1Pemahaman =
+    subject === "bm" && form === "Form 1" && chapterMeta?.categoryLabel === "Pemahaman";
+  const previousTopic = isForm1Pemahaman
+    ? previousCandidate?.categoryLabel === "Pemahaman"
+      ? previousCandidate
+      : undefined
+    : previousCandidate;
+  const nextTopic = isForm1Pemahaman
+    ? nextCandidate?.categoryLabel === "Pemahaman"
+      ? nextCandidate
+      : undefined
+    : nextCandidate;
   const showBmTopicNavigation =
     subject === "bm" &&
-    ((form === "Form 2" &&
-      (activeChapterKey === "Frasa Adjektif" ||
-        activeChapterKey === "Ayat Aktif" ||
-        activeChapterKey === "Ayat Pasif" ||
-        activeChapterKey === "Ayat Tunggal" ||
-        activeChapterKey === "Ayat Majmuk" ||
-        activeChapterKey === "Imbuhan Lanjutan" ||
-        activeChapterKey === "Kata Pemeri" ||
-        activeChapterKey === "Kesalahan Tatabahasa Lazim")) ||
+    (isForm1Pemahaman ||
+      (form === "Form 2" &&
+        (activeChapterKey === "Frasa Adjektif" ||
+          activeChapterKey === "Ayat Aktif" ||
+          activeChapterKey === "Ayat Pasif" ||
+          activeChapterKey === "Ayat Tunggal" ||
+          activeChapterKey === "Ayat Majmuk" ||
+          activeChapterKey === "Imbuhan Lanjutan" ||
+          activeChapterKey === "Kata Pemeri" ||
+          activeChapterKey === "Kesalahan Tatabahasa Lazim")) ||
       (form === "Form 3" &&
         (activeChapterKey === "Jenis Ayat" ||
           activeChapterKey === "Ragam Ayat" ||
@@ -508,8 +538,15 @@ function MindMapsPage() {
     setChapter(search.chapter ?? null);
   }, [subject, form, search.chapter]);
 
+  useEffect(() => {
+    if (isForm1Pemahaman) {
+      setSelectedBmCategory("Pemahaman");
+    }
+  }, [isForm1Pemahaman]);
+
   function chooseSubject(subjectId: string) {
     setChapter(null);
+    setSelectedBmCategory("Tatabahasa");
     void navigate({
       search: () => ({
         subject: subjectId,
@@ -521,6 +558,7 @@ function MindMapsPage() {
 
   function chooseForm(selectedForm: Form) {
     setChapter(null);
+    setSelectedBmCategory("Tatabahasa");
     void navigate({
       search: (previous: Record<string, unknown>) => ({
         ...previous,
@@ -635,6 +673,7 @@ function MindMapsPage() {
             subjectId={subject}
             form={form}
             scienceLang={activeScienceLang}
+            initialBahasaMelayuCategory={selectedBmCategory}
             onSelect={chooseChapter}
             onBack={backToForms}
           />
@@ -685,7 +724,7 @@ function MindMapsPage() {
               />
               {showBmTopicNavigation && (
                 <nav
-                  aria-label="Navigasi topik Tatabahasa"
+                  aria-label={`Navigasi topik ${chapterMeta?.categoryLabel ?? "Bahasa Melayu"}`}
                   className="mb-8 grid gap-3 sm:grid-cols-2"
                 >
                   <button
@@ -761,12 +800,14 @@ function MindMapChapterGrid({
   subjectId,
   form,
   scienceLang,
+  initialBahasaMelayuCategory,
   onSelect,
   onBack,
 }: {
   subjectId: string;
   form: Form;
   scienceLang?: "bm" | "dlp";
+  initialBahasaMelayuCategory?: BahasaMelayuMindMapCategory;
   onSelect: (key: string) => void;
   onBack: () => void;
 }) {
@@ -776,11 +817,11 @@ function MindMapChapterGrid({
   const isBahasaMelayu = subjectId === "bm";
   const bahasaMelayuCategories = getBahasaMelayuMindMapCategories(form);
   const [activeBahasaMelayuCategory, setActiveBahasaMelayuCategory] =
-    useState<BahasaMelayuMindMapCategory>("Tatabahasa");
+    useState<BahasaMelayuMindMapCategory>(initialBahasaMelayuCategory ?? "Tatabahasa");
 
   useEffect(() => {
-    setActiveBahasaMelayuCategory("Tatabahasa");
-  }, [form, subjectId]);
+    setActiveBahasaMelayuCategory(initialBahasaMelayuCategory ?? "Tatabahasa");
+  }, [form, initialBahasaMelayuCategory, subjectId]);
 
   const activeCategoryChapters = chapters.filter(
     (chapter) =>
@@ -789,7 +830,8 @@ function MindMapChapterGrid({
 
   const renderChapterCard = (chapter: (typeof chapters)[number], index: number) => {
     const hasMindMap =
-      !!registry && registry.hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang);
+      !!registry &&
+      registry.hasResourceContent(subjectId, form, chapter.key, "mindMap", scienceLang);
     return (
       <button
         key={chapter.key}
@@ -878,13 +920,16 @@ function MindMapChapterGrid({
           role="tablist"
           aria-label="Kategori peta minda Bahasa Melayu"
           className={`mb-8 grid gap-2 rounded-2xl border border-white/[0.08] bg-[#08101D]/70 p-2 sm:inline-grid ${
-            bahasaMelayuCategories.length === 3
-              ? "grid-cols-3 sm:min-w-[540px]"
-              : "grid-cols-2 sm:min-w-[360px]"
+            bahasaMelayuCategories.length === 4
+              ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-4"
+              : bahasaMelayuCategories.length === 3
+                ? "grid-cols-3 sm:min-w-[540px]"
+                : "grid-cols-2 sm:min-w-[360px]"
           }`}
         >
           {bahasaMelayuCategories.map((category) => {
             const isActive = activeBahasaMelayuCategory === category;
+            const categoryDetails = BAHASA_MELAYU_CATEGORY_DETAILS[category];
             return (
               <button
                 key={category}
@@ -900,11 +945,24 @@ function MindMapChapterGrid({
                     : "text-white/60 hover:bg-white/[0.06] hover:text-white"
                 }`}
               >
-                {category}
+                <span className="inline-flex flex-wrap items-center justify-center gap-1.5">
+                  <span>{category}</span>
+                  {categoryDetails?.badge && (
+                    <span className="rounded-full border border-current/20 px-1.5 py-0.5 text-[8px] font-black tracking-wider">
+                      {categoryDetails.badge}
+                    </span>
+                  )}
+                </span>
               </button>
             );
           })}
         </div>
+      )}
+
+      {isBahasaMelayu && BAHASA_MELAYU_CATEGORY_DETAILS[activeBahasaMelayuCategory] && (
+        <p className="-mt-4 mb-8 max-w-2xl text-sm leading-6 text-white/60">
+          {BAHASA_MELAYU_CATEGORY_DETAILS[activeBahasaMelayuCategory]?.description}
+        </p>
       )}
 
       {chapters.length === 0 ? (
@@ -981,9 +1039,9 @@ function getMindMapChapters(
     rows.set(chapter.key, chapter);
   }
 
-  for (const chapter of registry.getChaptersForSubject(subjectId, scienceLang).filter(
-    (candidate) => candidate.form === form && !!candidate.mindMap,
-  )) {
+  for (const chapter of registry
+    .getChaptersForSubject(subjectId, scienceLang)
+    .filter((candidate) => candidate.form === form && !!candidate.mindMap)) {
     if (!rows.has(chapter.chapterKey)) {
       rows.set(chapter.chapterKey, {
         key: chapter.chapterKey,
