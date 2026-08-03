@@ -63,6 +63,9 @@ import { chapter9Content } from "@/content/form1/science/chapter-9/chapter9-cont
 import { mathF1C1NotesBM } from "@/content/form1/math/chapter-1/notes-bm";
 import { mathF1C1NotesDLP } from "@/content/form1/math/chapter-1/notes-dlp";
 import { mathF1C1InteractiveContent } from "@/content/form1/math/chapter-1/interactive-content";
+import { mathF1C4InteractiveContent } from "@/content/form1/math/chapter-4/interactive-content";
+import { mathF1C5InteractiveContent } from "@/content/form1/math/chapter-5/interactive-content";
+import { mathF1C6InteractiveContent } from "@/content/form1/math/chapter-6/interactive-content";
 import { mathF1C2NotesBM } from "@/content/form1/math/chapter-2/notes-bm";
 import { mathF1C2NotesDLP } from "@/content/form1/math/chapter-2/notes-dlp";
 import { mathF1C3NotesBM } from "@/content/form1/math/chapter-3/notes-bm";
@@ -1474,6 +1477,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C4MindMapBM, title: "Nisbah, Kadar dan Kadaran" },
     notes: mathF1C4NotesBM,
+    mathChapter4Data: mathF1C4InteractiveContent,
   },
   {
     id: "math-f1-c4-dlp",
@@ -1485,6 +1489,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(4),
     mindMap: { data: mathF1C4MindMapDLP, title: "Ratio, Rate and Proportion" },
     notes: mathF1C4NotesDLP,
+    mathChapter4Data: mathF1C4InteractiveContent,
   },
   {
     id: "math-f1-c5-bm",
@@ -1495,6 +1500,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C5MindMapBM, title: "Ungkapan Algebra" },
     notes: mathF1C5NotesBM,
+    mathChapter5Data: mathF1C5InteractiveContent,
   },
   {
     id: "math-f1-c5-dlp",
@@ -1506,6 +1512,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(5),
     mindMap: { data: mathF1C5MindMapDLP, title: "Algebraic Expressions" },
     notes: mathF1C5NotesDLP,
+    mathChapter5Data: mathF1C5InteractiveContent,
   },
   {
     id: "math-f1-c6-bm",
@@ -1516,6 +1523,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C6MindMapBM, title: "Persamaan Linear" },
     notes: mathF1C6NotesBM,
+    mathChapter6Data: mathF1C6InteractiveContent,
   },
   {
     id: "math-f1-c6-dlp",
@@ -1527,6 +1535,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(6),
     mindMap: { data: mathF1C6MindMapDLP, title: "Linear Equations" },
     notes: mathF1C6NotesDLP,
+    mathChapter6Data: mathF1C6InteractiveContent,
   },
   {
     id: "math-f1-c7-bm",

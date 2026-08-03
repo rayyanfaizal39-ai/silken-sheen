@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 4: Ratios, Rates and Proportions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+
+  /* ===== MATH DESIGN SYSTEM v2 — calmer, cleaner ===== */
+  :root{
+    --orange:#ff9f43;
+    --purple:#b57bff;
+  }
+
+  .wrap{max-width:760px;}
+  .card p{line-height:1.75;}
+
+  /* section intro — ONE clean lesson block, no heavy colour, just accent bar + icon label */
+  .lesson-intro{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-left:3px solid var(--blue);
+    border-radius:14px; padding:20px 22px; margin-top:18px;}
+  .lesson-intro .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:10px;}
+  .lesson-intro p{font-size:14.5px; color:var(--muted); line-height:1.75;}
+  .lesson-intro p + p{margin-top:12px;}
+  .lesson-intro b{color:#fff; font-weight:600;}
+
+  /* formula card — the single visual highlight of each subtopic */
+  .formula-card{background:rgba(139,107,255,0.1); border:1px solid rgba(139,107,255,0.3);
+    border-radius:16px; padding:26px 24px; margin-top:18px; text-align:center;}
+  .formula-eyebrow{font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--violet); margin-bottom:12px; font-weight:700;}
+  .formula-main{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#fff; letter-spacing:.01em; line-height:1.4;}
+  .formula-legend{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);}
+  .formula-legend .item{font-size:12.5px; color:var(--muted); text-align:left;}
+  .formula-legend .item b{color:#fff; font-family:'Space Grotesk',sans-serif; margin-right:5px; font-weight:600;}
+
+  /* worked example — clean numbered steps, generous spacing, one accent colour only */
+  .steps-card{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-radius:16px; padding:22px 24px; margin-top:18px;}
+  .steps-card .ex-label{font-family:'Space Grotesk',sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--purple); font-weight:700; margin-bottom:6px;}
+  .steps-card .ex-q{font-size:14.5px; color:#fff; margin-bottom:18px; line-height:1.6;}
+  .step-item{display:flex; gap:14px; padding:12px 0; cursor:pointer;}
+  .step-item + .step-item{border-top:1px solid rgba(255,255,255,0.06);}
+  .step-num{width:28px; height:28px; border-radius:50%; background:rgba(181,123,255,0.15); border:1.5px solid rgba(181,123,255,0.4); display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12.5px; color:var(--purple); flex-shrink:0; margin-top:2px;}
+  .step-item.revealed .step-num{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .step-body{flex:1;}
+  .step-calc{font-family:'Space Grotesk',sans-serif; font-size:15.5px; color:#fff; line-height:1.5;}
+  .step-why{display:none; margin-top:8px; font-size:13px; color:var(--muted); line-height:1.6;}
+  .step-item.revealed .step-why{display:block;}
+  .step-hint-label{font-size:11px; color:var(--faint); margin-top:4px;}
+  .step-item.revealed .step-hint-label{display:none;}
+
+  /* try together — light, single accent, no heavy background */
+  .guided-card{border:1px dashed rgba(77,124,254,0.35); border-radius:14px; padding:18px 20px; margin-top:16px;}
+  .guided-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:8px;}
+  .guided-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+  .guided-hint{margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:#ffd4a8; display:none; line-height:1.6;}
+  .guided-hint.show{display:block;}
+  .hint-btn{display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:7px 14px; border-radius:100px; background:none; border:1px solid rgba(255,159,67,0.4);
+    font-size:12px; font-weight:600; color:var(--orange); cursor:pointer;}
+
+  /* common mistake — single compact note, not a heavy two-tone grid */
+  .mistake-note{margin-top:16px; padding:16px 18px; border-radius:12px; background:rgba(255,111,142,0.06); border:1px solid rgba(255,111,142,0.25);}
+  .mistake-note .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--bad); margin-bottom:10px;}
+  .mistake-line{font-size:13.5px; line-height:1.7; margin-top:6px;}
+  .mistake-line .lbl{font-weight:700; margin-right:6px;}
+  .mistake-line.wrong .lbl{color:var(--bad);}
+  .mistake-line.right .lbl{color:var(--good);}
+  .mistake-line span.txt{color:var(--muted);}
+
+  /* practice zone — difficulty tabs, calm styling */
+  .practice-zone{margin-top:20px;}
+  .practice-zone > .zone-label{font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .diff-tabs{display:flex; gap:6px; margin-bottom:14px;}
+  .diff-tab{flex:1; text-align:center; padding:8px; border-radius:10px; font-size:12px; font-weight:700; cursor:pointer; border:1px solid var(--glass-brd); color:var(--faint); background:rgba(255,255,255,0.02);}
+  .diff-tab[data-diff="easy"].active{background:rgba(91,227,176,0.12); border-color:var(--good); color:var(--good);}
+  .diff-tab[data-diff="medium"].active{background:rgba(255,159,67,0.12); border-color:var(--orange); color:var(--orange);}
+  .diff-tab[data-diff="hard"].active{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .diff-panel{display:none;}
+  .diff-panel.active{display:block;}
+
+  .practice-q-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px;}
+  .practice-q-text{font-size:14px; color:#fff; margin-bottom:12px; line-height:1.6;}
+  .practice-btn-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .pbtn{padding:7px 14px; border-radius:100px; font-size:11.5px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); background:none; color:var(--muted);}
+  .pbtn.hint-pbtn{color:var(--orange); border-color:rgba(255,159,67,0.3);}
+  .pbtn.sol-pbtn{color:var(--violet); border-color:rgba(139,107,255,0.3);}
+  .practice-reveal{display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:var(--muted); line-height:1.65;}
+  .practice-reveal.show{display:block;}
+  .practice-reveal.hint-reveal{color:#ffd4a8;}
+
+  /* real-life application — plain inline tags, no card */
+  .reallife-row{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.07);}
+  .reallife-row .lbl{font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); font-weight:700; margin-bottom:10px; display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .example-chips span{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); padding:6px 12px; border-radius:100px; font-size:12px; color:var(--muted);}
+
+  /* number line */
+  .numline-wrap{margin-top:16px; text-align:center;}
+  .numline-svg{max-width:100%; height:auto;}
+
+  /* generic diagram containers (array grids, venn, timelines, cube stacks) */
+  .visual-wrap{margin-top:18px; padding:18px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; text-align:center;}
+  .visual-svg{max-width:100%; height:auto;}
+  .visual-caption{font-size:11.5px; color:var(--faint); margin-top:10px;}
+
+  /* division ladder — the standard repeated-division method for prime factorisation, HCF, LCM */
+  .ladder-wrap{margin-top:14px; display:flex; justify-content:center;}
+  .ladder-table{border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .ladder-table td{padding:7px 14px; font-size:15px; color:#fff; text-align:center;}
+  .ladder-table .divisor-cell{color:var(--violet); font-weight:700; border-right:2px solid rgba(139,107,255,0.4); position:relative;}
+  .ladder-table tr:first-child td{border-top:2px solid rgba(139,107,255,0.4);}
+  .ladder-table .result-row td{border-top:1.5px solid rgba(255,255,255,0.15); padding-top:10px; font-weight:700;}
+  .ladder-table .result-row .divisor-cell{border-right:none; color:var(--good);}
+  .ladder-reveal{display:none; margin-top:16px;}
+  .ladder-reveal.show{display:block;}
+  .ladder-question{font-size:14px; color:#fff; margin-bottom:4px;}
+  .show-method-btn{display:inline-flex; align-items:center; gap:6px; margin-top:14px; padding:8px 16px; border-radius:100px; background:rgba(139,107,255,0.12);
+    border:1px solid rgba(139,107,255,0.4); font-size:12.5px; font-weight:600; color:var(--violet); cursor:pointer;}
+  .ladder-result-tag{display:inline-block; margin-top:14px; padding:8px 18px; border-radius:10px; background:rgba(91,227,176,0.1); border:1px solid rgba(91,227,176,0.35);
+    font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--good);}
+
+  /* factor grouping chips — visualises pairing (squares) or tripling (cubes) of prime factors */
+  .factor-chip{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; margin:3px; border-radius:8px;
+    background:rgba(139,107,255,0.15); border:1.5px solid var(--violet); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13.5px; color:#fff;}
+  .factor-chip.leftover{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .factor-group{display:inline-flex; padding:3px; margin:3px; border-radius:10px; background:rgba(91,227,176,0.08); border:1.5px dashed rgba(91,227,176,0.45);}
+
+  /* cross-multiplication visual for proportions */
+  .cross-mult-wrap{margin-top:16px; text-align:center;}
+  .cross-mult-svg{max-width:100%; height:auto;}
+
+  /* subtopic divider — clear visual separation between subtopics */
+  .subtopic{margin-top:56px; padding-top:8px;}
+  .subtopic:first-of-type{margin-top:36px;}
+  .subtopic-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .subtopic-head .num{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); font-weight:700; background:rgba(139,107,255,0.12); padding:3px 10px; border-radius:100px;}
+  .subtopic-head h2{font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:600;}
+
+  /* formula sheet (chapter end) */
+  .formula-sheet{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px;}
+  .formula-sheet-item{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; text-align:center;}
+  .formula-sheet-item .f{font-family:'Space Grotesk',sans-serif; font-size:15px; color:#fff; margin-bottom:4px;}
+  .formula-sheet-item .l{font-size:11px; color:var(--faint);}
+
+  /* exam tips / mistakes recap */
+  .tip-list{list-style:none; margin-top:8px;}
+  .tip-list li{position:relative; padding-left:22px; font-size:13px; color:var(--muted); margin-bottom:10px; line-height:1.6;}
+  .tip-list li::before{content:"→"; position:absolute; left:0; top:0; color:var(--violet); font-weight:700;}
+
+  .challenge-card{background:rgba(255,185,55,0.06); border:1px solid rgba(255,185,55,0.3); border-radius:16px; padding:20px 22px; margin-top:16px;}
+  .challenge-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--amber); margin-bottom:10px;}
+  .challenge-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+
+  @media (max-width:720px){
+    .formula-sheet{grid-template-columns:1fr;}
+    .formula-main{font-size:21px;}
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Form 1 Mathematics &nbsp;/&nbsp; <b>Chapter 4</b></span>
+    <span class="bm">Matematik Tingkatan 1 &nbsp;/&nbsp; <b>Bab 4</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 4</span><span class="bm">Bab 4</span></div>
+    <h1><span class="en">Ratios, Rates and Proportions</span><span class="bm">Nisbah, Kadar dan Kadaran</span></h1>
+    <p class="sub">
+      <span class="en">A nurse counting a pulse. An astronomer comparing distances in the solar system. Every field that compares quantities relies on the same three ideas: ratios, rates, and proportions.</span>
+      <span class="bm">Jururawat mengira nadi. Ahli astronomi membanding jarak dalam sistem suria. Setiap bidang yang membanding kuantiti bergantung pada tiga idea yang sama: nisbah, kadar, dan kadaran.</span>
+    </p>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">4.1 Ratios</span><span class="bm">4.1 Nisbah</span><span id="progressPct">4%</span><span class="en">4.5 Relationships</span><span class="bm">4.5 Perhubungan</span></div>
+  </div>
+
+  <!-- ================= 4.1 RATIOS ================= -->
+  <div class="subtopic" id="sec-4-1" onmouseenter="visit('s41')">
+    <div class="subtopic-head"><span class="num">4.1</span><h2><span class="en">Ratios</span><span class="bm">Nisbah</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A ratio compares two or more quantities of the SAME kind, measured in the SAME unit. A ratio has no units — it only compares. For example, 5000 g to 9 kg: convert to the same unit first (5 kg : 9 kg), then drop the units → 5 : 9.</span>
+      <span class="bm">Nisbah membanding dua atau lebih kuantiti JENIS SAMA, diukur dalam UNIT SAMA. Nisbah tiada unit — ia hanya membanding. Contohnya, 5000 g kepada 9 kg: tukar kepada unit sama dahulu (5 kg : 9 kg), kemudian gugurkan unit → 5 : 9.</span></p>
+      <p><span class="en">Ratios like 1:2, 2:4, and 6:12 are <b>equivalent ratios</b> — multiplying or dividing every part by the same number never changes what the ratio represents.</span>
+      <span class="bm">Nisbah seperti 1:2, 2:4, dan 6:12 ialah <b>nisbah setara</b> — mendarab atau membahagi setiap bahagian dengan nombor sama tidak mengubah apa yang diwakili nisbah itu.</span></p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Simplifying a Ratio — Divide by the HCF</span><span class="bm">Memudahkan Nisbah — Bahagi dengan FSTB</span></div>
+      <div class="ladder-question"><span class="en">Just like Chapter 2, find the HCF of all parts using a division ladder, then divide every part by it.</span><span class="bm">Seperti Bab 2, cari FSTB semua bahagian menggunakan tangga pembahagian, kemudian bahagi setiap bahagian dengannya.</span></div>
+      <div class="show-method-btn" onclick="toggleLadder('ladderRatio1')">👁️ <span class="en">Show Method</span><span class="bm">Tunjuk Kaedah</span></div>
+      <div class="ladder-reveal" id="ladderRatio1"></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Express 32 : 24 : 20 in its simplest form.</span><span class="bm">Ungkapkan 32 : 24 : 20 dalam bentuk termudah.</span></div>
+      <div class="show-method-btn" onclick="toggleLadder('ladderRatio2')">👁️ <span class="en">Show Answer &amp; Method</span><span class="bm">Tunjuk Jawapan &amp; Kaedah</span></div>
+      <div class="ladder-reveal" id="ladderRatio2"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">Express 800 g : 1.8 kg in its simplest form. Think: what must happen before you can even compare these two numbers?</span><span class="bm">Ungkapkan 800 g : 1.8 kg dalam bentuk termudah. Fikir: apa perlu berlaku sebelum anda boleh banding kedua-dua nombor ini?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">Convert to the same unit first: 1.8 kg = 1800 g. So 800 : 1800. HCF of 800 and 1800 is 200. Divide: 4 : 9.</span>
+        <span class="bm">Tukar kepada unit sama dahulu: 1.8 kg = 1800 g. Jadi 800 : 1800. FSTB bagi 800 dan 1800 ialah 200. Bahagi: 4 : 9.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Simplifying 800 g : 1.8 kg directly as if both numbers were already in the same unit.</span><span class="bm">Memudahkan 800 g : 1.8 kg terus seolah-olah kedua-dua nombor sudah dalam unit sama.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">ALWAYS convert to the same unit BEFORE finding the HCF or simplifying.</span><span class="bm">SENTIASA tukar kepada unit sama SEBELUM mencari FSTB atau memudahkan.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('41','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('41','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('41','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel41easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Represent the relationship of 2 weeks to 16 days to 1 week in the form a : b : c.</span><span class="bm">Wakilkan hubungan 2 minggu kepada 16 hari kepada 1 minggu dalam bentuk a : b : c.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Convert to days: 14 days : 16 days : 7 days = 14 : 16 : 7.</span><span class="bm">Tukar kepada hari: 14 hari : 16 hari : 7 hari = 14 : 16 : 7.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel41medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Express 0.04 : 0.12 : 0.56 in its simplest form.</span><span class="bm">Ungkapkan 0.04 : 0.12 : 0.56 dalam bentuk termudah.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Multiply all by 100: 4 : 12 : 56. HCF of 4,12,56 is 4. Divide: 1 : 3 : 14.</span><span class="bm">Darab semua dengan 100: 4 : 12 : 56. FSTB bagi 4,12,56 ialah 4. Bahagi: 1 : 3 : 14.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel41hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A mechanic uses a jack (force 120 pounds, 1 pound = 0.45 kg) to lift a car (mass 1350 kg). State the ratio of the car's mass to the force required, in simplest form.</span><span class="bm">Mekanik guna jek (daya 120 paun, 1 paun = 0.45 kg) mengangkat kereta (jisim 1350 kg). Nyatakan nisbah jisim kereta kepada daya diperlukan, dalam bentuk termudah.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Force = 120 × 0.45 = 54 kg. Ratio = 1350 : 54 = 25 : 1 (HCF = 54).</span><span class="bm">Daya = 120 × 0.45 = 54 kg. Nisbah = 1350 : 54 = 25 : 1 (FSTB = 54).</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🍳 <span class="en">Recipe scaling</span><span class="bm">Penskalaan resipi</span></span>
+        <span>🏗️ <span class="en">Concrete mixture ratios</span><span class="bm">Nisbah campuran konkrit</span></span>
+        <span>🐎 <span class="en">Population estimation (mark-recapture)</span><span class="bm">Anggaran populasi (tanda-tangkap semula)</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 4.2 RATES ================= -->
+  <div class="subtopic" id="sec-4-2" onmouseenter="visit('s42')">
+    <div class="subtopic-head"><span class="num">4.2</span><h2><span class="en">Rates</span><span class="bm">Kadar</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A rate is a special ratio that compares two quantities with DIFFERENT units — like 285 km in 3 hours, or RM10 for 2 kg. Ordinary ratios need matching units; rates are built on the fact that the units are different.</span>
+      <span class="bm">Kadar ialah nisbah khas yang membanding dua kuantiti dengan unit BERBEZA — seperti 285 km dalam 3 jam, atau RM10 untuk 2 kg. Nisbah biasa perlukan unit sepadan; kadar dibina atas hakikat unit adalah berbeza.</span></p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Rate Notation</span><span class="bm">Tatatanda Kadar</span></div>
+      <div class="formula-main">285 km / 3 hours</div>
+      <div class="formula-legend">
+        <div class="item"><span class="en">Two DIFFERENT units, always written with a slash or "per"</span><span class="bm">Dua unit BERBEZA, sentiasa ditulis dengan garis miring atau "setiap"</span></div>
+      </div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Rajan is riding his bicycle at a speed of 5 m/s. Convert 5 m/s to km/h.</span><span class="bm">Rajan menunggang basikal pada kelajuan 5 m/s. Tukar 5 m/s kepada km/j.</span></div>
+      <div id="steps42"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">Two stalls sell tomatoes: Stall A at RM8/500 g, Stall B at RM15/kg. Which is cheaper per kg?</span><span class="bm">Dua gerai jual tomato: Gerai A RM8/500 g, Gerai B RM15/kg. Mana lebih murah per kg?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">Convert Stall A to per kg: RM8/500g × 2 = RM16/kg. RM16 > RM15, so Stall B is cheaper.</span>
+        <span class="bm">Tukar Gerai A kepada per kg: RM8/500g × 2 = RM16/kg. RM16 > RM15, jadi Gerai B lebih murah.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Comparing RM8/500g directly against RM15/kg without converting to the same unit first.</span><span class="bm">Membanding RM8/500g terus dengan RM15/kg tanpa menukar kepada unit sama dahulu.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Always convert BOTH rates to the SAME unit before comparing which is cheaper/faster.</span><span class="bm">Sentiasa tukar KEDUA-DUA kadar kepada unit SAMA sebelum banding mana lebih murah/laju.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('42','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('42','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('42','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel42easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">State the rate and the two quantities involved: "A car consumes 1 litre of petrol for a distance of 12 km."</span><span class="bm">Nyatakan kadar dan dua kuantiti terlibat: "Kereta guna 1 liter petrol untuk jarak 12 km."</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Rate = 12 km/litre. Quantities: distance (km) and volume (litre).</span><span class="bm">Kadar = 12 km/liter. Kuantiti: jarak (km) dan isi padu (liter).</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel42medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">The density of a metal is 2700 kg per m³. State the density in g per cm³.</span><span class="bm">Ketumpatan logam ialah 2700 kg per m³. Nyatakan ketumpatan dalam g per cm³.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">2700 kg = 2 700 000 g. 1 m³ = 100×100×100 = 1 000 000 cm³. So 2 700 000 ÷ 1 000 000 = 2.7 g/cm³.</span><span class="bm">2700 kg = 2 700 000 g. 1 m³ = 100×100×100 = 1 000 000 cm³. Jadi 2 700 000 ÷ 1 000 000 = 2.7 g/cm³.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel42hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">An oil palm plantation uses fertiliser at 350 kg per hectare. State this rate in g per m². (1 hectare = 10,000 m²)</span><span class="bm">Ladang sawit guna baja 350 kg per hektar. Nyatakan kadar ini dalam g per m². (1 hektar = 10,000 m²)</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">350 kg = 350 000 g. 350 000 ÷ 10 000 = 35 g/m².</span><span class="bm">350 kg = 350 000 g. 350 000 ÷ 10 000 = 35 g/m².</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>💊 <span class="en">Heart rate (beats per minute)</span><span class="bm">Kadar denyutan jantung (setiap minit)</span></span>
+        <span>🚗 <span class="en">Speed and fuel consumption</span><span class="bm">Kelajuan dan penggunaan bahan api</span></span>
+        <span>🛒 <span class="en">Comparing prices per unit</span><span class="bm">Membanding harga setiap unit</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 4.3 PROPORTIONS ================= -->
+  <div class="subtopic" id="sec-4-3" onmouseenter="visit('s43')">
+    <div class="subtopic-head"><span class="num">4.3</span><h2><span class="en">Proportions</span><span class="bm">Kadaran</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A proportion states that two ratios or two rates are EQUAL. For example, if 45 words take 5 minutes, then 540 words take 60 minutes — both sides describe the same rate, just scaled up.</span>
+      <span class="bm">Kadaran menyatakan bahawa dua nisbah atau dua kadar adalah SAMA. Contohnya, jika 45 patah perkataan mengambil 5 minit, maka 540 patah perkataan mengambil 60 minit — kedua-dua belah menggambarkan kadar sama, hanya diskalakan.</span></p>
+      <div class="visual-wrap" id="crossMultVisual"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Cross Multiplication</span><span class="bm">Pendaraban Silang</span></div>
+      <div class="formula-main">a/b = c/d &nbsp;&nbsp;⟹&nbsp;&nbsp; a × d = b × c</div>
+      <div class="formula-legend">
+        <div class="item"><span class="en">Multiply diagonally across the equals sign to solve for an unknown</span><span class="bm">Darab secara pepenjuru merentasi tanda sama untuk selesaikan yang tidak diketahui</span></div>
+      </div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Electricity costs 43.6 sen for 2 kWh. How much does 30 kWh cost?</span><span class="bm">Elektrik berharga 43.6 sen bagi 2 kWj. Berapakah kos 30 kWj?</span></div>
+      <div id="steps43"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">A gear rotates: when a large gear turns 4 times, a small gear turns 18 times. If the small gear turns 54 times, how many times does the large gear turn?</span><span class="bm">Gear berputar: apabila gear besar berputar 4 kali, gear kecil berputar 18 kali. Jika gear kecil berputar 54 kali, berapa kali gear besar berputar?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">4/18 = x/54. Cross multiply: 18x = 4×54 = 216. x = 12.</span>
+        <span class="bm">4/18 = x/54. Darab silang: 18x = 4×54 = 216. x = 12.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Setting up the proportion with mismatched quantities on top and bottom (e.g. time over cost on one side, cost over time on the other).</span><span class="bm">Menyediakan kadaran dengan kuantiti tidak sepadan di atas dan bawah.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Keep the SAME quantity type in the SAME position (top/bottom) on both sides of the proportion.</span><span class="bm">Kekalkan JENIS kuantiti SAMA pada kedudukan SAMA (atas/bawah) pada kedua-dua belah kadaran.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('43','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('43','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('43','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel43easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">In a sports carnival, 200 players form 8 rugby teams. How many players are in 2 teams?</span><span class="bm">Dalam karnival sukan, 200 pemain membentuk 8 pasukan ragbi. Berapa pemain dalam 2 pasukan?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Players per team = 200÷8 = 25. For 2 teams: 25×2 = 50.</span><span class="bm">Pemain setiap pasukan = 200÷8 = 25. Untuk 2 pasukan: 25×2 = 50.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel43medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Amir does 60 push-ups in 3 minutes. How many can he do in 5 minutes at the same rate?</span><span class="bm">Amir buat 60 tekan tubi dalam 3 minit. Berapa dia boleh buat dalam 5 minit pada kadar sama?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">60/3 = x/5. Cross multiply: 3x = 300. x = 100.</span><span class="bm">60/3 = x/5. Darab silang: 3x = 300. x = 100.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel43hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A farmer captures 24 snails, marks and releases them. Later he captures 30 snails, 5 marked. Estimate the total snail population.</span><span class="bm">Petani tangkap 24 siput, tanda dan lepaskan. Kemudian tangkap 30 siput, 5 bertanda. Anggarkan jumlah populasi siput.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">5/30 = 24/x. Cross multiply: 5x = 720. x = 144 snails.</span><span class="bm">5/30 = 24/x. Darab silang: 5x = 720. x = 144 siput.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>⚡ <span class="en">Utility bills (electricity, water)</span><span class="bm">Bil utiliti (elektrik, air)</span></span>
+        <span>🐌 <span class="en">Wildlife population estimation</span><span class="bm">Anggaran populasi hidupan liar</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 4.4 RATIOS, RATES AND PROPORTIONS ================= -->
+  <div class="subtopic" id="sec-4-4" onmouseenter="visit('s44')">
+    <div class="subtopic-head"><span class="num">4.4</span><h2><span class="en">Ratios, Rates and Proportions</span><span class="bm">Nisbah, Kadar dan Kadaran</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">When you know p:q and q:r separately, you can chain them into one ratio p:q:r — but only if the shared term (q) is matched to the SAME value first. That's the LCM trick from Chapter 2, reused here.</span>
+      <span class="bm">Apabila anda tahu p:q dan q:r berasingan, anda boleh gabungkannya kepada satu nisbah p:q:r — tetapi hanya jika sebutan dikongsi (q) disamakan kepada nilai SAMA dahulu. Itulah helah GSTK daripada Bab 2, digunakan semula di sini.</span></p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Chaining Ratios via the Shared Term</span><span class="bm">Menggabungkan Nisbah melalui Sebutan Dikongsi</span></div>
+      <div class="formula-main">p : q = 7 : 3 &nbsp;&amp;&nbsp; q : r = 3 : 5 &nbsp;⟹&nbsp; p : q : r = 7 : 3 : 5</div>
+      <div class="formula-legend">
+        <div class="item"><span class="en">Here q is already 3 in both — no scaling needed. When it's NOT already equal, find the LCM of the two q-values first.</span><span class="bm">Di sini q sudah 3 dalam kedua-dua — tiada penskalaan diperlukan. Apabila ia TIDAK sama, cari GSTK bagi kedua-dua nilai q dahulu.</span></div>
+      </div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">The ratio of storybooks to reference books is 2:5. The ratio of reference books to magazines is 3:2. Find storybooks : reference books : magazines.</span><span class="bm">Nisbah buku cerita kepada buku rujukan ialah 2:5. Nisbah buku rujukan kepada majalah ialah 3:2. Cari buku cerita : buku rujukan : majalah.</span></div>
+      <div id="steps44"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">The ratio of flour to water is 5:3. If there are 480 g of flour, how much water is needed?</span><span class="bm">Nisbah tepung kepada air ialah 5:3. Jika ada 480 g tepung, berapa air diperlukan?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">5 parts = 480 g, so 1 part = 96 g. Water = 3 parts = 3 × 96 = 288 g.</span>
+        <span class="bm">5 bahagian = 480 g, jadi 1 bahagian = 96 g. Air = 3 bahagian = 3 × 96 = 288 g.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Combining p:q=2:5 and q:r=3:2 directly as p:q:r = 2:5:2 without matching q first.</span><span class="bm">Menggabungkan p:q=2:5 dan q:r=3:2 terus sebagai p:q:r = 2:5:2 tanpa menyamakan q dahulu.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Scale BOTH ratios so the shared term (q) becomes the LCM of 5 and 3 (which is 15), then combine.</span><span class="bm">Skalakan KEDUA-DUA nisbah supaya sebutan dikongsi (q) menjadi GSTK bagi 5 dan 3 (iaitu 15), kemudian gabungkan.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('44','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('44','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('44','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel44easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">If p:q = 2:9 and q:r = 9:7, find p:q:r.</span><span class="bm">Jika p:q = 2:9 dan q:r = 9:7, cari p:q:r.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">q is already 9 in both — p:q:r = 2:9:7.</span><span class="bm">q sudah 9 dalam kedua-dua — p:q:r = 2:9:7.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel44medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">The ratio of donations P:Q is 2:3, and Q:R is 4:1. Find P:Q:R.</span><span class="bm">Nisbah derma P:Q ialah 2:3, dan Q:R ialah 4:1. Cari P:Q:R.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">LCM(3,4)=12. P:Q=2:3=8:12. Q:R=4:1=12:3. So P:Q:R = 8:12:3.</span><span class="bm">GSTK(3,4)=12. P:Q=2:3=8:12. Q:R=4:1=12:3. Jadi P:Q:R = 8:12:3.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel44hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A wire of length 12 cm is cut into PQ, QR, RS where PQ:QR=3:2 and RS=2 cm. Find PQ:QR:RS.</span><span class="bm">Dawai panjang 12 cm dipotong PQ, QR, RS dengan PQ:QR=3:2 dan RS=2 cm. Cari PQ:QR:RS.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">PR = 12−2 = 10 cm split 3:2 (5 parts): 1 part=2cm. PQ=6cm, QR=4cm. So PQ:QR:RS = 6:4:2 = 3:2:1.</span><span class="bm">PR = 12−2 = 10 cm dibahagi 3:2 (5 bahagian): 1 bahagian=2cm. PQ=6cm, QR=4cm. Jadi PQ:QR:RS = 6:4:2 = 3:2:1.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>💰 <span class="en">Splitting shared costs three ways</span><span class="bm">Berkongsi kos tiga cara</span></span>
+        <span>🧪 <span class="en">Multi-ingredient mixtures</span><span class="bm">Campuran pelbagai bahan</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 4.5 RELATIONSHIP WITH PERCENTAGES, FRACTIONS, DECIMALS ================= -->
+  <div class="subtopic" id="sec-4-5" onmouseenter="visit('s45')">
+    <div class="subtopic-head"><span class="num">4.5</span><h2><span class="en">Relationship between Ratios, Rates, Proportions, Percentages, Fractions and Decimals</span><span class="bm">Perhubungan antara Nisbah, Kadar, Kadaran, Peratusan, Pecahan dan Perpuluhan</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A percentage is just a ratio out of 100 — "percentage" literally means "per 100". So 20% = 20:100 = 20/100 = 0.2. Every percentage can be rewritten as a ratio, a fraction, or a decimal — they're four ways of saying the same thing.</span>
+      <span class="bm">Peratusan hanyalah nisbah daripada 100 — "peratusan" bermaksud "per 100". Jadi 20% = 20:100 = 20/100 = 0.2. Setiap peratusan boleh ditulis semula sebagai nisbah, pecahan, atau perpuluhan — empat cara menyatakan perkara sama.</span></p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Percentage = Ratio out of 100</span><span class="bm">Peratusan = Nisbah daripada 100</span></div>
+      <div class="formula-main">20% = 20 : 100 = 20/100 = 0.2</div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">In a class, the ratio of girls to boys is 3:2. Find the percentage of girls in the class.</span><span class="bm">Dalam kelas, nisbah pelajar perempuan kepada lelaki ialah 3:2. Cari peratusan pelajar perempuan.</span></div>
+      <div id="steps45"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">Zakaria saves 30% of his daily pocket money. Find the ratio of his savings to his total pocket money.</span><span class="bm">Zakaria simpan 30% wang saku hariannya. Cari nisbah simpanannya kepada jumlah wang saku.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">30% = 30/100 = 30:100. Simplify (HCF=10): 3:10.</span>
+        <span class="bm">30% = 30/100 = 30:100. Permudahkan (FSTB=10): 3:10.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Writing a ratio 3:2 (girls:boys) as "3% girls" without first finding girls-to-TOTAL.</span><span class="bm">Menulis nisbah 3:2 (perempuan:lelaki) sebagai "3% perempuan" tanpa cari perempuan-kepada-JUMLAH dahulu.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">A percentage of the WHOLE needs girls : TOTAL (3:5), not girls : boys (3:2).</span><span class="bm">Peratusan daripada KESELURUHAN perlukan perempuan : JUMLAH (3:5), bukan perempuan : lelaki (3:2).</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('45','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('45','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('45','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel45easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">35% of a hard disk is filled with data. Find the ratio of filled to unfilled capacity.</span><span class="bm">35% cakera keras diisi data. Cari nisbah kapasiti diisi kepada tidak diisi.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Filled = 35%, unfilled = 65%. Ratio = 35:65 = 7:13.</span><span class="bm">Diisi = 35%, tidak diisi = 65%. Nisbah = 35:65 = 7:13.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel45medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A box has 8 ribbons, 2 are blue. What percentage of ribbons are blue?</span><span class="bm">Kotak ada 8 reben, 2 biru. Berapa peratus reben biru?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">2/8 = x/100. Cross multiply: 8x=200, x=25%.</span><span class="bm">2/8 = x/100. Darab silang: 8x=200, x=25%.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel45hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A shirt originally RM85 shows "45% price reduction". The scanned price is RM57.80. Does this match? Explain.</span><span class="bm">Kemeja asal RM85 menunjukkan "potongan harga 45%". Harga imbasan ialah RM57.80. Adakah ia sepadan? Jelaskan.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">45% off RM85 → price = 55% × 85 = RM46.75. But scanner shows RM57.80 — these don't match, so the discount displayed is incorrect.</span><span class="bm">45% potongan RM85 → harga = 55% × 85 = RM46.75. Tetapi imbasan tunjuk RM57.80 — tidak sepadan, jadi potongan dipaparkan adalah salah.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🏷️ <span class="en">Sale discounts</span><span class="bm">Diskaun jualan</span></span>
+        <span>🧪 <span class="en">Fertiliser composition labels</span><span class="bm">Label komposisi baja</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPTER END ================= -->
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✦</span><h2><span class="en">Chapter Summary</span><span class="bm">Ringkasan Bab</span></h2></div>
+    <div class="mindmap">
+      <div class="mm-center"><span class="en">Ratios, Rates, Proportions</span><span class="bm">Nisbah, Kadar, Kadaran</span></div>
+      <div class="mm-branches">
+        <div class="mm-branch"><h5><span class="en">Ratios</span><span class="bm">Nisbah</span></h5><ul><li><span class="en">Same units, simplify via HCF</span><span class="bm">Unit sama, permudah melalui FSTB</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Rates &amp; Proportions</span><span class="bm">Kadar &amp; Kadaran</span></h5><ul><li><span class="en">Different units; solve via cross multiplication</span><span class="bm">Unit berbeza; selesai melalui darab silang</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Percentages</span><span class="bm">Peratusan</span></h5><ul><li><span class="en">A ratio out of 100</span><span class="bm">Nisbah daripada 100</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">📐</span><h2><span class="en">Formula Sheet</span><span class="bm">Helaian Rumus</span></h2></div>
+    <div class="formula-sheet">
+      <div class="formula-sheet-item"><div class="f"><span class="en">Simplify ratio: ÷ HCF</span><span class="bm">Permudah nisbah: ÷ FSTB</span></div><div class="l"><span class="en">Same method as Ch 2</span><span class="bm">Kaedah sama Bab 2</span></div></div>
+      <div class="formula-sheet-item"><div class="f">a/b = c/d ⟹ ad = bc</div><div class="l"><span class="en">Cross multiplication</span><span class="bm">Pendaraban silang</span></div></div>
+      <div class="formula-sheet-item"><div class="f">x% = x/100</div><div class="l"><span class="en">Percentage as ratio</span><span class="bm">Peratusan sebagai nisbah</span></div></div>
+      <div class="formula-sheet-item"><div class="f"><span class="en">Chain ratios: match via LCM</span><span class="bm">Gandingkan nisbah: sepadan melalui GSTK</span></div><div class="l">p:q:r</div></div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✓</span><h2><span class="en">Quick Revision</span><span class="bm">Ulang Kaji Pantas</span></h2></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can represent and simplify ratios of two or three quantities.</span><span class="bm">Saya boleh mewakilkan dan memudahkan nisbah dua atau tiga kuantiti.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can determine and convert rates.</span><span class="bm">Saya boleh menentukan dan menukar kadar.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can solve proportions using cross multiplication.</span><span class="bm">Saya boleh menyelesaikan kadaran menggunakan pendaraban silang.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can chain two ratios into a three-quantity ratio.</span><span class="bm">Saya boleh menggabungkan dua nisbah kepada nisbah tiga kuantiti.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can relate ratios/rates/proportions to percentages, fractions and decimals.</span><span class="bm">Saya boleh mengaitkan nisbah/kadar/kadaran dengan peratusan, pecahan dan perpuluhan.</span></p></div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">💡</span><h2><span class="en">Exam Tips</span><span class="bm">Tip Peperiksaan</span></h2></div>
+    <ul class="tip-list">
+      <li><span class="en">Always match units BEFORE simplifying a ratio.</span><span class="bm">Sentiasa samakan unit SEBELUM memudahkan nisbah.</span></li>
+      <li><span class="en">Set up proportions with matching quantity types on top and bottom on both sides.</span><span class="bm">Sediakan kadaran dengan jenis kuantiti sepadan di atas dan bawah pada kedua-dua belah.</span></li>
+      <li><span class="en">Percentage of the WHOLE always uses part:TOTAL, not part:the-other-part.</span><span class="bm">Peratusan daripada KESELURUHAN sentiasa guna bahagian:JUMLAH, bukan bahagian:bahagian-lain.</span></li>
+    </ul>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">🏆</span><h2><span class="en">Challenge Mission</span><span class="bm">Misi Cabaran</span></h2></div>
+    <div class="challenge-card">
+      <div class="tag">🏆 KBAT</div>
+      <p><span class="en">A 30 kg bag of fertiliser is labelled 15-20-10, meaning 15% nitrogen, 20% phosphorus, 10% potassium by mass. (a) Find the ratio N:P:K. (b) Calculate the mass of each in kg.</span>
+      <span class="bm">Beg baja 30 kg berlabel 15-20-10, bermaksud 15% nitrogen, 20% fosforus, 10% kalium mengikut jisim. (a) Cari nisbah N:P:K. (b) Kira jisim setiap satu dalam kg.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">(a) 15:20:10 = 3:4:2. (b) N=15%×30=4.5kg, P=20%×30=6kg, K=10%×30=3kg.</span>
+        <span class="bm">(a) 15:20:10 = 3:4:2. (b) N=15%×30=4.5kg, P=20%×30=6kg, K=10%×30=3kg.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for the Chapter 4 Quiz?</span><span class="bm">Bersedia untuk Kuiz Bab 4?</span></h3>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let LANG = 'en';
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+}
+
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 15;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(4 + Object.keys(visited).length*19, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+/* ===== division ladder (reused from Chapter 2) ===== */
+function isPrime(n){
+  if(n<2) return false;
+  for(let i=2;i*i<=n;i++) if(n%i===0) return false;
+  return true;
+}
+function renderLadderTable(rows, remainder){
+  let html = '<table class="ladder-table"><tbody>';
+  rows.forEach(r=>{
+    html += '<tr><td class="divisor-cell">'+r.divisor+'</td>' + r.values.map(v=>'<td>'+v+'</td>').join('') + '</tr>';
+  });
+  html += '<tr class="result-row"><td class="divisor-cell"></td>' + remainder.map(v=>'<td>'+v+'</td>').join('') + '</tr>';
+  html += '</tbody></table>';
+  return html;
+}
+function hcfLadderRows(numbers){
+  let current = numbers.slice();
+  let rows = [];
+  while(true){
+    let divisor = null;
+    for(let d=2; d<=Math.min(...current); d++){
+      if(current.every(v=>v%d===0) && isPrime(d)){ divisor=d; break; }
+    }
+    if(divisor===null) break;
+    rows.push({divisor, values: current.slice()});
+    current = current.map(v=>v/divisor);
+  }
+  const hcf = rows.reduce((a,r)=>a*r.divisor,1);
+  return {rows, remainder: current, hcf};
+}
+function buildRatioSimplifyHTML(numbers){
+  const {rows, remainder, hcf} = hcfLadderRows(numbers);
+  if(rows.length===0){
+    return `<div class="ladder-result-tag"><span class="en">Already in simplest form — no common factor greater than 1</span><span class="bm">Sudah dalam bentuk termudah — tiada faktor sepunya lebih daripada 1</span></div>`;
+  }
+  const table = renderLadderTable(rows, remainder);
+  return `<div class="ladder-wrap">${table}</div><div class="ladder-result-tag">${numbers.join(' : ')} = ${remainder.join(' : ')} &nbsp;(÷ ${hcf})</div>`;
+}
+
+/* ===== cross-multiplication visual ===== */
+function buildCrossMultVisual(){
+  const svg = `<svg class="cross-mult-svg" viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+    <text x="80" y="40" font-size="20" fill="#fff" text-anchor="middle" font-family="Space Grotesk" font-weight="700">45</text>
+    <line x1="55" y1="50" x2="105" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <text x="80" y="72" font-size="20" fill="#fff" text-anchor="middle" font-family="Space Grotesk" font-weight="700">5</text>
+    <text x="160" y="56" font-size="22" fill="var(--faint)" text-anchor="middle" font-family="Space Grotesk">=</text>
+    <text x="240" y="40" font-size="20" fill="var(--good)" text-anchor="middle" font-family="Space Grotesk" font-weight="700">540</text>
+    <line x1="205" y1="50" x2="275" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <text x="240" y="72" font-size="20" fill="var(--good)" text-anchor="middle" font-family="Space Grotesk" font-weight="700">60</text>
+    <line x1="105" y1="35" x2="205" y2="65" stroke="var(--violet)" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrowV)"/>
+    <line x1="105" y1="65" x2="205" y2="35" stroke="var(--orange)" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrowO)"/>
+    <text x="160" y="110" font-size="12" fill="var(--faint)" text-anchor="middle" font-family="Space Grotesk">45 × 60 = 5 × 540 = 2700</text>
+    <defs>
+      <marker id="arrowV" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker>
+      <marker id="arrowO" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--orange)"/></marker>
+    </defs>
+  </svg>`;
+  document.getElementById('crossMultVisual').innerHTML = svg + `<div class="visual-caption"><span class="en">Diagonal products are always equal in a true proportion</span><span class="bm">Hasil darab pepenjuru sentiasa sama dalam kadaran benar</span></div>`;
+}
+buildCrossMultVisual();
+
+const ladderBuilders = {
+  ladderRatio1: ()=>buildRatioSimplifyHTML([18,24,45]),
+  ladderRatio2: ()=>buildRatioSimplifyHTML([32,24,20])
+};
+function toggleLadder(id){
+  const el = document.getElementById(id);
+  if(!el.dataset.built){
+    el.innerHTML = ladderBuilders[id]();
+    el.dataset.built = '1';
+  }
+  el.classList.toggle('show');
+  const btn = el.previousElementSibling;
+  if(btn && btn.classList.contains('show-method-btn')){
+    const isShowing = el.classList.contains('show');
+    const isAnswer = id==='ladderRatio2';
+    btn.querySelectorAll('.en').forEach(s=> s.textContent = isShowing ? 'Hide Method' : (isAnswer ? 'Show Answer & Method' : 'Show Method'));
+    btn.querySelectorAll('.bm').forEach(s=> s.textContent = isShowing ? 'Sembunyi Kaedah' : (isAnswer ? 'Tunjuk Jawapan & Kaedah' : 'Tunjuk Kaedah'));
+  }
+  visit('s41');
+}
+
+/* ===== step builder ===== */
+function buildSteps(containerId, steps){
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  steps.forEach((s,i)=>{
+    const item = document.createElement('div');
+    item.className = 'step-item';
+    item.innerHTML = `
+      <div class="step-num">${i+1}</div>
+      <div class="step-body">
+        <div class="step-calc">${s.calc}</div>
+        <div class="step-hint-label"><span class="en">Tap to see why →</span><span class="bm">Ketik untuk lihat sebab →</span></div>
+        <div class="step-why"><span class="en">${s.whyEn}</span><span class="bm">${s.whyBm}</span></div>
+      </div>`;
+    item.onclick = ()=> item.classList.toggle('revealed');
+    el.appendChild(item);
+  });
+}
+buildSteps('steps42', [
+  {calc:'5 m/s = 5 m ÷ 1 s', whyEn:'Rewrite the rate as a division to convert both units.', whyBm:'Tulis semula kadar sebagai pembahagian untuk tukar kedua-dua unit.'},
+  {calc:'= (5 ÷ 1000) km ÷ (1 ÷ 3600) h', whyEn:'Convert metres to km (÷1000) and seconds to hours (÷3600).', whyBm:'Tukar meter kepada km (÷1000) dan saat kepada jam (÷3600).'},
+  {calc:'= (5/1000) × (3600/1) km/h = 18 km/h', whyEn:'Dividing by a fraction means multiplying by its reciprocal.', whyBm:'Membahagi dengan pecahan bermaksud mendarab dengan salingannya.'}
+]);
+buildSteps('steps43', [
+  {calc:'43.6 sen / 2 kWh = x sen / 30 kWh', whyEn:'Set up the proportion — both sides compare cost to kWh.', whyBm:'Sediakan kadaran — kedua-dua belah banding kos kepada kWj.'},
+  {calc:'2 × x = 43.6 × 30', whyEn:'Cross multiply.', whyBm:'Darab silang.'},
+  {calc:'x = 1308 ÷ 2 = 654 sen = RM6.54', whyEn:'Divide to isolate x.', whyBm:'Bahagi untuk asingkan x.'}
+]);
+buildSteps('steps44', [
+  {calc:'storybooks:reference = 2:5, &nbsp; reference:magazines = 3:2', whyEn:'Write both given ratios, noting the shared term (reference books).', whyBm:'Tulis kedua-dua nisbah diberi, catat sebutan dikongsi (buku rujukan).'},
+  {calc:'LCM(5,3) = 15 → scale both to match', whyEn:'Find the LCM of the shared term\'s two values so they become equal.', whyBm:'Cari GSTK bagi dua nilai sebutan dikongsi supaya menjadi sama.'},
+  {calc:'2:5 → ×3 → 6:15 &nbsp;&nbsp; 3:2 → ×5 → 15:10', whyEn:'Scale each ratio so the reference-books term becomes 15 in both.', whyBm:'Skalakan setiap nisbah supaya sebutan buku rujukan menjadi 15 dalam kedua-dua.'},
+  {calc:'storybooks : reference : magazines = 6 : 15 : 10', whyEn:'Now that the shared term matches, combine into one three-part ratio.', whyBm:'Oleh kerana sebutan dikongsi sepadan, gabungkan kepada satu nisbah tiga bahagian.'}
+]);
+buildSteps('steps45', [
+  {calc:'girls : boys = 3 : 2 &nbsp;&nbsp;→&nbsp;&nbsp; girls : total = 3 : 5', whyEn:'Total parts = 3+2 = 5, so girls compare to the WHOLE class, not just boys.', whyBm:'Jumlah bahagian = 3+2 = 5, jadi perempuan dibanding dengan KESELURUHAN kelas, bukan lelaki sahaja.'},
+  {calc:'3/5 = 3×20 / 5×20 = 60/100', whyEn:'Scale the fraction so the denominator becomes 100.', whyBm:'Skalakan pecahan supaya penyebut menjadi 100.'},
+  {calc:'Percentage of girls = 60%', whyEn:'A fraction over 100 IS the percentage.', whyBm:'Pecahan per 100 IALAH peratusan.'}
+]);
+
+function toggleGuidedHint(btn){ btn.nextElementSibling.classList.toggle('show'); }
+function togglePractice(btn){
+  const card = btn.closest('.practice-q-card');
+  card.querySelector('.practice-reveal').classList.toggle('show');
+}
+function showDiff(subtopic, diff){
+  const targetPanel = document.getElementById(`panel${subtopic}${diff}`);
+  const zone = targetPanel.closest('.practice-zone');
+  zone.querySelectorAll('.diff-panel').forEach(p=>p.classList.remove('active'));
+  targetPanel.classList.add('active');
+  zone.querySelectorAll('.diff-tab').forEach(t=>t.classList.toggle('active', t.dataset.diff===diff));
+}
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+</script>
+</body>
+</html>

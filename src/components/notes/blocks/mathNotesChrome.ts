@@ -12,7 +12,7 @@ export const MATH_CHROME = {
   showMethod: { en: "Show Method", bm: "Tunjuk Kaedah" },
   hideMethod: { en: "Hide Method", bm: "Sembunyi Kaedah" },
   showAnswerAndMethod: { en: "Show Answer & Method", bm: "Tunjuk Jawapan & Kaedah" },
-  practice: { en: "Uji Diri", bm: "Uji Diri" },
+  practice: { en: "Practice Zone", bm: "Uji Diri" },
   easy: { en: "Easy", bm: "Mudah" },
   medium: { en: "Medium", bm: "Sederhana" },
   hard: { en: "Hard", bm: "Sukar" },
@@ -24,6 +24,10 @@ export const MATH_CHROME = {
   challengeMission: { en: "Challenge Mission", bm: "Misi Cabaran" },
   notPerfectSquare: { en: "is not a perfect square", bm: "bukan kuasa dua sempurna" },
   notPerfectCube: { en: "is not a perfect cube", bm: "bukan kuasa tiga sempurna" },
+  crossMultCaption: {
+    en: "Diagonal products are always equal in a true proportion",
+    bm: "Hasil darab pepenjuru sentiasa sama dalam kadaran benar",
+  },
 } as const satisfies Record<string, Record<MathLang, string>>;
 
 export function chrome(key: keyof typeof MATH_CHROME, lang: MathLang): string {
