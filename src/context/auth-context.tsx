@@ -202,23 +202,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [],
   );
 
-  const signUpWithEmail = useCallback(async (email: string, password: string) => {
-    if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
-    const task = beginLoadingTask({ message: "Creating your AcadeMY account…", timeoutMs: 15_000 });
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+  const signUpWithEmail = useCallback(
+    async (email: string, password: string) => {
+      if (!isSupabaseConfigured) {
+        throw new Error("Supabase is not configured");
+      }
+
+      const task = beginLoadingTask({
+        message: "Creating your AcadeMY account…",
+        timeoutMs: 15_000,
       });
-      if (error) throw error;
-      task.finish();
-      return { needsConfirmation: !data.session };
-    } catch (error) {
-      task.fail(error);
-      throw error;
-    }
-  }, []);
+
+      try {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/auth/callback`,
+          },
+        });
+
+        if (error) {
+          throw error;
+        }
+
+        return {
+          needsConfirmation: !data.session,
+        };
+      } finally {
+        task.finish();
+      }
+    },
+    [],
+  );
 
   const requestPasswordReset = useCallback(async (email: string) => {
     if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
