@@ -44,3 +44,5 @@ docs/*.pdf
 # the future Command Center. Never meant to reach production — gitignored so
 # it can't get swept into a commit/push by accident.
 src/routes/command-center-preview.tsx
+
+silken-sheen/

@@ -340,6 +340,16 @@ export const Route = createFileRoute("/mindmaps")({
           "penulisan Bahasa Melayu KSSM",
         ],
       },
+      "Kesalahan Lazim dalam Penulisan": {
+        description:
+          "Peta minda Kesalahan Lazim dalam Penulisan Tingkatan 3: kehendak soalan, isi, huraian, organisasi, tatabahasa, kosa kata, ejaan dan semakan.",
+        keywords: [
+          "Kesalahan Lazim dalam Penulisan",
+          "kesalahan karangan Tingkatan 3",
+          "semakan penulisan UASA",
+          "penulisan Bahasa Melayu KSSM",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -374,6 +384,7 @@ export const Route = createFileRoute("/mindmaps")({
         | "Strategi Menjawab UASA"
         | "Analisis Kehendak Soalan"
         | "Teknik Menjana Idea KBAT"
+        | "Kesalahan Lazim dalam Penulisan"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
@@ -391,7 +402,8 @@ export const Route = createFileRoute("/mindmaps")({
         match.search.chapter === "Karangan Berpandukan Bahan" ||
         match.search.chapter === "Strategi Menjawab UASA" ||
         match.search.chapter === "Analisis Kehendak Soalan" ||
-        match.search.chapter === "Teknik Menjana Idea KBAT"
+        match.search.chapter === "Teknik Menjana Idea KBAT" ||
+        match.search.chapter === "Kesalahan Lazim dalam Penulisan"
           ? "Penulisan"
           : isPeribahasa
             ? "Peribahasa"
