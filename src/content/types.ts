@@ -11,6 +11,7 @@ import type { Chapter5Content } from "@/content/form1/science/chapter-5/chapter5
 import type { Chapter6Content } from "@/content/form1/science/chapter-6/chapter6-content";
 import type { Chapter8Content } from "@/content/form1/science/chapter-8/chapter8-content";
 import type { Chapter9Content } from "@/content/form1/science/chapter-9/chapter9-content";
+import type { MathF1C1Content } from "@/content/form1/math/chapter-1/interactive-content";
 import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
@@ -113,6 +114,8 @@ export type ChapterContent = {
   chapter8Data?: { en: Chapter8Content; bm: Chapter8Content };
   /** Bab 9 (Bumi/Earth) chunked, bilingual learning experience. */
   chapter9Data?: { en: Chapter9Content; bm: Chapter9Content };
+  /** Math Form 1 Chapter 1 (Rational Numbers/Nombor Nisbah) interactive, bilingual learning experience. */
+  mathChapter1Data?: { en: MathF1C1Content; bm: MathF1C1Content };
   /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
   geoChapter1Data?: Geo1Content;
   /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
@@ -224,6 +227,7 @@ export function getChapterFeatures(
       !!c?.chapter6Data ||
       !!c?.chapter8Data ||
       !!c?.chapter9Data ||
+      !!c?.mathChapter1Data ||
       !!c?.geoChapter1Data ||
       !!c?.geoChapter2Data ||
       !!c?.geoChapter3Data ||

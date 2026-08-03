@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Chapter 2: Factors and Multiples / Faktor dan Gandaan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+
+  /* ===== MATH DESIGN SYSTEM v2 — calmer, cleaner ===== */
+  :root{
+    --orange:#ff9f43;
+    --purple:#b57bff;
+  }
+
+  .wrap{max-width:760px;}
+  .card p{line-height:1.75;}
+
+  /* section intro — ONE clean lesson block, no heavy colour, just accent bar + icon label */
+  .lesson-intro{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-left:3px solid var(--blue);
+    border-radius:14px; padding:20px 22px; margin-top:18px;}
+  .lesson-intro .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:10px;}
+  .lesson-intro p{font-size:14.5px; color:var(--muted); line-height:1.75;}
+  .lesson-intro p + p{margin-top:12px;}
+  .lesson-intro b{color:#fff; font-weight:600;}
+
+  /* formula card — the single visual highlight of each subtopic */
+  .formula-card{background:rgba(139,107,255,0.1); border:1px solid rgba(139,107,255,0.3);
+    border-radius:16px; padding:26px 24px; margin-top:18px; text-align:center;}
+  .formula-eyebrow{font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--violet); margin-bottom:12px; font-weight:700;}
+  .formula-main{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#fff; letter-spacing:.01em; line-height:1.4;}
+  .formula-legend{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);}
+  .formula-legend .item{font-size:12.5px; color:var(--muted); text-align:left;}
+  .formula-legend .item b{color:#fff; font-family:'Space Grotesk',sans-serif; margin-right:5px; font-weight:600;}
+
+  /* worked example — clean numbered steps, generous spacing, one accent colour only */
+  .steps-card{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-radius:16px; padding:22px 24px; margin-top:18px;}
+  .steps-card .ex-label{font-family:'Space Grotesk',sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--purple); font-weight:700; margin-bottom:6px;}
+  .steps-card .ex-q{font-size:14.5px; color:#fff; margin-bottom:18px; line-height:1.6;}
+  .step-item{display:flex; gap:14px; padding:12px 0; cursor:pointer;}
+  .step-item + .step-item{border-top:1px solid rgba(255,255,255,0.06);}
+  .step-num{width:28px; height:28px; border-radius:50%; background:rgba(181,123,255,0.15); border:1.5px solid rgba(181,123,255,0.4); display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12.5px; color:var(--purple); flex-shrink:0; margin-top:2px;}
+  .step-item.revealed .step-num{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .step-body{flex:1;}
+  .step-calc{font-family:'Space Grotesk',sans-serif; font-size:15.5px; color:#fff; line-height:1.5;}
+  .step-why{display:none; margin-top:8px; font-size:13px; color:var(--muted); line-height:1.6;}
+  .step-item.revealed .step-why{display:block;}
+  .step-hint-label{font-size:11px; color:var(--faint); margin-top:4px;}
+  .step-item.revealed .step-hint-label{display:none;}
+
+  /* try together — light, single accent, no heavy background */
+  .guided-card{border:1px dashed rgba(77,124,254,0.35); border-radius:14px; padding:18px 20px; margin-top:16px;}
+  .guided-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:8px;}
+  .guided-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+  .guided-hint{margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:#ffd4a8; display:none; line-height:1.6;}
+  .guided-hint.show{display:block;}
+  .hint-btn{display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:7px 14px; border-radius:100px; background:none; border:1px solid rgba(255,159,67,0.4);
+    font-size:12px; font-weight:600; color:var(--orange); cursor:pointer;}
+
+  /* common mistake — single compact note, not a heavy two-tone grid */
+  .mistake-note{margin-top:16px; padding:16px 18px; border-radius:12px; background:rgba(255,111,142,0.06); border:1px solid rgba(255,111,142,0.25);}
+  .mistake-note .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--bad); margin-bottom:10px;}
+  .mistake-line{font-size:13.5px; line-height:1.7; margin-top:6px;}
+  .mistake-line .lbl{font-weight:700; margin-right:6px;}
+  .mistake-line.wrong .lbl{color:var(--bad);}
+  .mistake-line.right .lbl{color:var(--good);}
+  .mistake-line span.txt{color:var(--muted);}
+
+  /* practice zone — difficulty tabs, calm styling */
+  .practice-zone{margin-top:20px;}
+  .practice-zone > .zone-label{font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .diff-tabs{display:flex; gap:6px; margin-bottom:14px;}
+  .diff-tab{flex:1; text-align:center; padding:8px; border-radius:10px; font-size:12px; font-weight:700; cursor:pointer; border:1px solid var(--glass-brd); color:var(--faint); background:rgba(255,255,255,0.02);}
+  .diff-tab[data-diff="easy"].active{background:rgba(91,227,176,0.12); border-color:var(--good); color:var(--good);}
+  .diff-tab[data-diff="medium"].active{background:rgba(255,159,67,0.12); border-color:var(--orange); color:var(--orange);}
+  .diff-tab[data-diff="hard"].active{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .diff-panel{display:none;}
+  .diff-panel.active{display:block;}
+
+  .practice-q-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px;}
+  .practice-q-text{font-size:14px; color:#fff; margin-bottom:12px; line-height:1.6;}
+  .practice-btn-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .pbtn{padding:7px 14px; border-radius:100px; font-size:11.5px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); background:none; color:var(--muted);}
+  .pbtn.hint-pbtn{color:var(--orange); border-color:rgba(255,159,67,0.3);}
+  .pbtn.sol-pbtn{color:var(--violet); border-color:rgba(139,107,255,0.3);}
+  .practice-reveal{display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:var(--muted); line-height:1.65;}
+  .practice-reveal.show{display:block;}
+  .practice-reveal.hint-reveal{color:#ffd4a8;}
+
+  /* real-life application — plain inline tags, no card */
+  .reallife-row{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.07);}
+  .reallife-row .lbl{font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); font-weight:700; margin-bottom:10px; display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .example-chips span{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); padding:6px 12px; border-radius:100px; font-size:12px; color:var(--muted);}
+
+  /* number line */
+  .numline-wrap{margin-top:16px; text-align:center;}
+  .numline-svg{max-width:100%; height:auto;}
+
+  /* generic diagram containers (array grids, venn, timelines, cube stacks) */
+  .visual-wrap{margin-top:18px; padding:18px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; text-align:center;}
+  .visual-svg{max-width:100%; height:auto;}
+  .visual-caption{font-size:11.5px; color:var(--faint); margin-top:10px;}
+
+  /* division ladder — the standard repeated-division method for prime factorisation, HCF, LCM */
+  .ladder-wrap{margin-top:14px; display:flex; justify-content:center;}
+  .ladder-table{border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .ladder-table td{padding:7px 14px; font-size:15px; color:#fff; text-align:center;}
+  .ladder-table .divisor-cell{color:var(--violet); font-weight:700; border-right:2px solid rgba(139,107,255,0.4); position:relative;}
+  .ladder-table tr:first-child td{border-top:2px solid rgba(139,107,255,0.4);}
+  .ladder-table .result-row td{border-top:1.5px solid rgba(255,255,255,0.15); padding-top:10px; font-weight:700;}
+  .ladder-table .result-row .divisor-cell{border-right:none; color:var(--good);}
+  .ladder-reveal{display:none; margin-top:16px;}
+  .ladder-reveal.show{display:block;}
+  .ladder-question{font-size:14px; color:#fff; margin-bottom:4px;}
+  .show-method-btn{display:inline-flex; align-items:center; gap:6px; margin-top:14px; padding:8px 16px; border-radius:100px; background:rgba(139,107,255,0.12);
+    border:1px solid rgba(139,107,255,0.4); font-size:12.5px; font-weight:600; color:var(--violet); cursor:pointer;}
+  .ladder-result-tag{display:inline-block; margin-top:14px; padding:8px 18px; border-radius:10px; background:rgba(91,227,176,0.1); border:1px solid rgba(91,227,176,0.35);
+    font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--good);}
+
+  /* subtopic divider — clear visual separation between subtopics */
+  .subtopic{margin-top:56px; padding-top:8px;}
+  .subtopic:first-of-type{margin-top:36px;}
+  .subtopic-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .subtopic-head .num{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); font-weight:700; background:rgba(139,107,255,0.12); padding:3px 10px; border-radius:100px;}
+  .subtopic-head h2{font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:600;}
+
+  /* formula sheet (chapter end) */
+  .formula-sheet{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px;}
+  .formula-sheet-item{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; text-align:center;}
+  .formula-sheet-item .f{font-family:'Space Grotesk',sans-serif; font-size:15px; color:#fff; margin-bottom:4px;}
+  .formula-sheet-item .l{font-size:11px; color:var(--faint);}
+
+  /* exam tips / mistakes recap */
+  .tip-list{list-style:none; margin-top:8px;}
+  .tip-list li{position:relative; padding-left:22px; font-size:13px; color:var(--muted); margin-bottom:10px; line-height:1.6;}
+  .tip-list li::before{content:"→"; position:absolute; left:0; top:0; color:var(--violet); font-weight:700;}
+
+  .challenge-card{background:rgba(255,185,55,0.06); border:1px solid rgba(255,185,55,0.3); border-radius:16px; padding:20px 22px; margin-top:16px;}
+  .challenge-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--amber); margin-bottom:10px;}
+  .challenge-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+
+  @media (max-width:720px){
+    .formula-sheet{grid-template-columns:1fr;}
+    .formula-main{font-size:21px;}
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Form 1 Mathematics &nbsp;/&nbsp; <b>Chapter 2</b></span>
+    <span class="bm">Matematik Tingkatan 1 &nbsp;/&nbsp; <b>Bab 2</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 2</span><span class="bm">Bab 2</span></div>
+    <h1><span class="en">Factors and Multiples</span><span class="bm">Faktor dan Gandaan</span></h1>
+    <p class="sub">
+      <span class="en">Tiling a floor with no leftover gaps. Two neon lights blinking in sync. Both are solved the same way — finding the biggest shared factor, or the smallest shared multiple.</span>
+      <span class="bm">Memasang jubin lantai tanpa ruang berbaki. Dua lampu neon berkelip serentak. Kedua-duanya diselesaikan cara sama — mencari faktor sepunya terbesar, atau gandaan sepunya terkecil.</span>
+    </p>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">2.1 Factors &amp; HCF</span><span class="bm">2.1 Faktor &amp; FSTB</span><span id="progressPct">10%</span><span class="en">2.2 Multiples &amp; LCM</span><span class="bm">2.2 Gandaan &amp; GSTK</span></div>
+  </div>
+
+  <!-- ================= 2.1 FACTORS, PRIME FACTORS AND HCF ================= -->
+  <div class="subtopic" id="sec-2-1" onmouseenter="visit('s21')">
+    <div class="subtopic-head"><span class="num">2.1</span><h2><span class="en">Factors, Prime Factors and HCF</span><span class="bm">Faktor, Faktor Perdana dan FSTB</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A <b>factor</b> is a whole number that divides another number completely, with no remainder — 12 ÷ 3 = 4 exactly, so 3 and 4 are both factors of 12. Some factors are prime numbers too — these are <b>prime factors</b>.</span>
+      <span class="bm"><b>Faktor</b> ialah nombor bulat yang membahagi nombor lain secara lengkap, tanpa baki — 12 ÷ 3 = 4 tepat, jadi 3 dan 4 kedua-duanya faktor bagi 12. Sesetengah faktor juga nombor perdana — ini <b>faktor perdana</b>.</span></p>
+      <p><span class="en">When two numbers share some factors, those shared ones are <b>common factors</b>. The largest shared factor is the <b>Highest Common Factor (HCF)</b>.</span>
+      <span class="bm">Apabila dua nombor berkongsi sesetengah faktor, yang dikongsi itu ialah <b>faktor sepunya</b>. Faktor sepunya terbesar ialah <b>Faktor Sepunya Terbesar (FSTB)</b>.</span></p>
+      <div class="visual-wrap" id="arrayGrid12"></div>
+      <div class="visual-wrap" id="vennHCF"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Prime Factorisation — the Division Ladder</span><span class="bm">Pemfaktoran Perdana — Tangga Pembahagian</span></div>
+      <div class="ladder-question"><span class="en">Divide 60 repeatedly by the smallest prime that fits, until you reach 1.</span><span class="bm">Bahagi 60 berulang dengan perdana terkecil yang sesuai, sehingga sampai 1.</span></div>
+      <div class="show-method-btn" onclick="toggleLadder('ladder60')">👁️ <span class="en">Show Method</span><span class="bm">Tunjuk Kaedah</span></div>
+      <div class="ladder-reveal" id="ladder60"></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Find the HCF of 48, 64 and 80.</span><span class="bm">Cari FSTB bagi 48, 64 dan 80.</span></div>
+      <div class="show-method-btn" onclick="toggleLadder('ladderHCF')">👁️ <span class="en">Show Answer &amp; Method</span><span class="bm">Tunjuk Jawapan &amp; Kaedah</span></div>
+      <div class="ladder-reveal" id="ladderHCF"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">Find the HCF of 18 and 24 by listing factors.</span><span class="bm">Cari FSTB bagi 18 dan 24 dengan menyenaraikan faktor.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">Factors of 18: 1,2,3,6,9,18. Factors of 24: 1,2,3,4,6,8,12,24. Common: 1,2,3,6. HCF = 6.</span>
+        <span class="bm">Faktor 18: 1,2,3,6,9,18. Faktor 24: 1,2,3,4,6,8,12,24. Sepunya: 1,2,3,6. FSTB = 6.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Confusing HCF with LCM — picking the largest common MULTIPLE instead.</span><span class="bm">Mengelirukan FSTB dengan GSTK — memilih gandaan sepunya terbesar.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">HCF divides INTO the numbers (smaller); LCM is divided BY them (larger).</span><span class="bm">FSTB membahagi MASUK nombor (lebih kecil); GSTK dibahagi OLEH nombor (lebih besar).</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('21','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('21','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('21','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel21easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">List all the factors of 40.</span><span class="bm">Senaraikan semua faktor bagi 40.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">1, 2, 4, 5, 8, 10, 20, 40</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel21medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Find the HCF of 36, 90 and 108.</span><span class="bm">Cari FSTB bagi 36, 90 dan 108.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">HCF = 2 × 9 = 18</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel21hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Three strings (192, 242, 328 cm) are cut into equal segments, no leftover. Segments per string?</span><span class="bm">Tiga tali (192, 242, 328 cm) dipotong kepada segmen sama, tiada baki. Segmen setiap tali?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">HCF = 2 cm. Segments: 96, 121, 164 respectively.</span><span class="bm">FSTB = 2 cm. Segmen: 96, 121, 164 masing-masing.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🧱 <span class="en">Tiling floors</span><span class="bm">Memasang jubin</span></span>
+        <span>📦 <span class="en">Packing equally into boxes</span><span class="bm">Mengemas sama rata ke kotak</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2.2 MULTIPLES, COMMON MULTIPLES AND LCM ================= -->
+  <div class="subtopic" id="sec-2-2" onmouseenter="visit('s22')">
+    <div class="subtopic-head"><span class="num">2.2</span><h2><span class="en">Multiples, Common Multiples and LCM</span><span class="bm">Gandaan, Gandaan Sepunya dan GSTK</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A <b>multiple</b> is what you get multiplying a number by 1, 2, 3… forever: 9, 18, 27… are all multiples of 9. When two numbers share a multiple, it's a <b>common multiple</b>. The smallest one is the <b>Lowest Common Multiple (LCM)</b>.</span>
+      <span class="bm"><b>Gandaan</b> ialah hasil mendarab sesuatu nombor dengan 1, 2, 3… tanpa had: 9, 18, 27… semuanya gandaan bagi 9. Apabila dua nombor berkongsi gandaan, ia <b>gandaan sepunya</b>. Yang terkecil ialah <b>Gandaan Sepunya Terkecil (GSTK)</b>.</span></p>
+      <div class="visual-wrap" id="multiplesTimeline"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">LCM — the Common Division Ladder</span><span class="bm">GSTK — Tangga Pembahagian Sepunya</span></div>
+      <div class="ladder-question"><span class="en">Divide all numbers together by any prime that fits at least one, until every number reaches 1.</span><span class="bm">Bahagi semua nombor bersama dengan sebarang perdana yang sesuai sekurang-kurangnya satu, sehingga setiap nombor sampai 1.</span></div>
+      <div class="show-method-btn" onclick="toggleLadder('ladder68')">👁️ <span class="en">Show Method</span><span class="bm">Tunjuk Kaedah</span></div>
+      <div class="ladder-reveal" id="ladder68"></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Find the LCM of 3, 8 and 12.</span><span class="bm">Cari GSTK bagi 3, 8 dan 12.</span></div>
+      <div class="show-method-btn" onclick="toggleLadder('ladderLCM')">👁️ <span class="en">Show Answer &amp; Method</span><span class="bm">Tunjuk Jawapan &amp; Kaedah</span></div>
+      <div class="ladder-reveal" id="ladderLCM"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">A light blinks every 9 s, another every 12 s. Both blink together now — when again?</span><span class="bm">Lampu berkelip setiap 9 saat, satu lagi setiap 12 saat. Serentak sekarang — bila lagi?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">Find LCM(9,12). Multiples of 9: 9,18,27,36… of 12: 12,24,36… First shared: 36 seconds.</span>
+        <span class="bm">Cari GSTK(9,12). Gandaan 9: 9,18,27,36… 12: 12,24,36… Sepunya pertama: 36 saat.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">For LCM, using only SHARED prime factors (like HCF does).</span><span class="bm">Bagi GSTK, guna hanya faktor perdana DIKONGSI (seperti FSTB).</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">LCM uses EVERY prime factor present, at its HIGHEST power.</span><span class="bm">GSTK guna SETIAP faktor perdana hadir, pada kuasa TERTINGGI.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('22','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('22','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('22','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel22easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">List the first five multiples of 6 and 8.</span><span class="bm">Senaraikan lima gandaan pertama bagi 6 dan 8.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">6: 6,12,18,24,30. 8: 8,16,24,32,40.</span><span class="bm">6: 6,12,18,24,30. 8: 8,16,24,32,40.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel22medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Find the LCM of 8, 14 and 32.</span><span class="bm">Cari GSTK bagi 8, 14 dan 32.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">LCM = 2⁵ × 7 = 224</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel22hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Three friends cut equal-length ribbons into 15, 25, 30 cm pieces, no leftover. Shortest possible ribbon length?</span><span class="bm">Tiga rakan potong reben sama panjang kepada kepingan 15, 25, 30 cm, tiada baki. Panjang reben terpendek?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">LCM(15,25,30) = 150 cm</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🎵 <span class="en">Syncing rhythms</span><span class="bm">Menyelaraskan rentak</span></span>
+        <span>⏰ <span class="en">Repeating events</span><span class="bm">Peristiwa berulang</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPTER END ================= -->
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✦</span><h2><span class="en">Chapter Summary</span><span class="bm">Ringkasan Bab</span></h2></div>
+    <div class="mindmap">
+      <div class="mm-center"><span class="en">Factors and Multiples</span><span class="bm">Faktor dan Gandaan</span></div>
+      <div class="mm-branches">
+        <div class="mm-branch"><h5><span class="en">Factors</span><span class="bm">Faktor</span></h5><ul><li><span class="en">HCF: largest shared factor</span><span class="bm">FSTB: faktor sepunya terbesar</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Multiples</span><span class="bm">Gandaan</span></h5><ul><li><span class="en">LCM: smallest shared multiple</span><span class="bm">GSTK: gandaan sepunya terkecil</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Method</span><span class="bm">Kaedah</span></h5><ul><li><span class="en">Prime factorisation is most reliable</span><span class="bm">Pemfaktoran perdana paling dipercayai</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">📐</span><h2><span class="en">Formula Sheet</span><span class="bm">Helaian Rumus</span></h2></div>
+    <div class="formula-sheet">
+      <div class="formula-sheet-item"><div class="f"><span class="en">HCF = lowest shared power</span><span class="bm">FSTB = kuasa sepunya terendah</span></div><div class="l"><span class="en">of common primes only</span><span class="bm">bagi perdana sepunya sahaja</span></div></div>
+      <div class="formula-sheet-item"><div class="f"><span class="en">LCM = highest power</span><span class="bm">GSTK = kuasa tertinggi</span></div><div class="l"><span class="en">of every prime present</span><span class="bm">bagi setiap perdana hadir</span></div></div>
+      <div class="formula-sheet-item"><div class="f">HCF ≤ n ≤ LCM</div><div class="l"><span class="en">quick sanity check</span><span class="bm">semakan pantas</span></div></div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✓</span><h2><span class="en">Quick Revision</span><span class="bm">Ulang Kaji Pantas</span></h2></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can list factors, prime factors, and find HCF.</span><span class="bm">Saya boleh menyenaraikan faktor, faktor perdana, dan mencari FSTB.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can list multiples, common multiples, and find LCM.</span><span class="bm">Saya boleh menyenaraikan gandaan, gandaan sepunya, dan mencari GSTK.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can solve real-life problems using HCF and LCM.</span><span class="bm">Saya boleh menyelesaikan masalah kehidupan sebenar menggunakan FSTB dan GSTK.</span></p></div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">💡</span><h2><span class="en">Exam Tips</span><span class="bm">Tip Peperiksaan</span></h2></div>
+    <ul class="tip-list">
+      <li><span class="en">"Max groups/packs, no leftover, equal shares" → almost always HCF.</span><span class="bm">"Kumpulan/pek maksimum, tiada baki, kongsi sama" → hampir selalu FSTB.</span></li>
+      <li><span class="en">"When will they coincide again", "smallest number divisible by" → almost always LCM.</span><span class="bm">"Bila akan bertepatan lagi", "nombor terkecil dibahagi oleh" → hampir selalu GSTK.</span></li>
+    </ul>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">🏆</span><h2><span class="en">Challenge Mission</span><span class="bm">Misi Cabaran</span></h2></div>
+    <div class="challenge-card">
+      <div class="tag">🏆 KBAT</div>
+      <p><span class="en">Ai Lin makes a scrapbook with 24 photos and 42 cuttings, each page having equal numbers, using ALL of them. (a) Max pages? (b) Photos and cuttings per page?</span>
+      <span class="bm">Ai Lin buat skrapbook dengan 24 foto dan 42 keratan, setiap halaman jumlah sama, guna SEMUA. (a) Halaman maksimum? (b) Foto dan keratan setiap halaman?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">HCF(24,42)=6 pages. 24÷6=4 photos, 42÷6=7 cuttings per page.</span>
+        <span class="bm">FSTB(24,42)=6 halaman. 24÷6=4 foto, 42÷6=7 keratan setiap halaman.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for the Chapter 2 Quiz?</span><span class="bm">Bersedia untuk Kuiz Bab 2?</span></h3>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let LANG = 'en';
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+}
+
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 20;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(10 + Object.keys(visited).length*45, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+/* array-grid visual: shows 12 as a 3x4 dot array (factor pairs) */
+function buildArrayGrid(containerId, n, rows, cols){
+  const cell = 34, pad = 20;
+  const w = cols*cell + pad*2, h = rows*cell + pad*2 + 30;
+  let dots = '';
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const cx = pad + c*cell + cell/2, cy = pad + r*cell + cell/2;
+      dots += `<circle cx="${cx}" cy="${cy}" r="10" fill="rgba(139,107,255,0.25)" stroke="var(--violet)" stroke-width="1.5"/>`;
+    }
+  }
+  const svg = `<svg class="visual-svg" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
+    ${dots}
+    <text x="${w/2}" y="${h-8}" font-size="13" fill="#fff" text-anchor="middle" font-family="Space Grotesk" font-weight="700">${rows} × ${cols} = ${n}</text>
+  </svg>`;
+  document.getElementById(containerId).innerHTML = svg + `<div class="visual-caption"><span class="en">${rows} rows of ${cols} — one way to arrange ${n} objects with no leftover</span><span class="bm">${rows} baris ${cols} — satu cara menyusun ${n} objek tanpa baki</span></div>`;
+}
+buildArrayGrid('arrayGrid12', 12, 3, 4);
+
+/* venn diagram: factors of 18 and 24, HCF = 6 */
+function buildVennHCF(){
+  const svg = `<svg class="visual-svg" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="150" cy="110" r="90" fill="rgba(77,124,254,0.12)" stroke="var(--blue)" stroke-width="1.5"/>
+    <circle cx="250" cy="110" r="90" fill="rgba(181,123,255,0.12)" stroke="var(--purple)" stroke-width="1.5"/>
+    <text x="95" y="60" font-size="12" fill="var(--blue)" font-family="Space Grotesk" font-weight="700">18</text>
+    <text x="90" y="120" font-size="11" fill="#fff" font-family="Space Grotesk">1, 2,</text>
+    <text x="90" y="138" font-size="11" fill="#fff" font-family="Space Grotesk">9, 18</text>
+    <text x="290" y="60" font-size="12" fill="var(--purple)" font-family="Space Grotesk" font-weight="700">24</text>
+    <text x="270" y="120" font-size="11" fill="#fff" font-family="Space Grotesk">4, 8,</text>
+    <text x="270" y="138" font-size="11" fill="#fff" font-family="Space Grotesk">12, 24</text>
+    <text x="178" y="105" font-size="11.5" fill="#fff" font-family="Space Grotesk" font-weight="700" text-anchor="middle">1, 2, 3,</text>
+    <text x="178" y="123" font-size="11.5" fill="var(--amber)" font-family="Space Grotesk" font-weight="700" text-anchor="middle">6 = HCF</text>
+    <text x="200" y="20" font-size="12.5" fill="var(--faint)" font-family="Space Grotesk" text-anchor="middle">Factors of 18 and 24</text>
+  </svg>`;
+  document.getElementById('vennHCF').innerHTML = svg + `<div class="visual-caption"><span class="en">Where the circles overlap: shared factors — the largest is the HCF</span><span class="bm">Di mana bulatan bertindih: faktor sepunya — yang terbesar ialah FSTB</span></div>`;
+}
+buildVennHCF();
+
+function buildSteps(containerId, steps){
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  steps.forEach((s,i)=>{
+    const item = document.createElement('div');
+    item.className = 'step-item';
+    item.innerHTML = `
+      <div class="step-num">${i+1}</div>
+      <div class="step-body">
+        <div class="step-calc">${s.calc}</div>
+        <div class="step-hint-label"><span class="en">Tap to see why →</span><span class="bm">Ketik untuk lihat sebab →</span></div>
+        <div class="step-why"><span class="en">${s.whyEn}</span><span class="bm">${s.whyBm}</span></div>
+      </div>`;
+    item.onclick = ()=> item.classList.toggle('revealed');
+    el.appendChild(item);
+  });
+}
+/* multiples timeline: two rows of multiples, LCM highlighted where they align */
+function buildMultiplesTimeline(){
+  const w = 620, h = 130, pad = 30, stepW = (w-2*pad)/6;
+  const multsA = [6,12,18,24,30,36], multsB = [8,16,24,32,40,48];
+  let rowsSvg = '';
+  const yA = 45, yB = 95;
+  rowsSvg += `<line x1="${pad}" y1="${yA}" x2="${w-pad}" y2="${yA}" stroke="rgba(77,124,254,0.3)" stroke-width="2"/>`;
+  rowsSvg += `<line x1="${pad}" y1="${yB}" x2="${w-pad}" y2="${yB}" stroke="rgba(181,123,255,0.3)" stroke-width="2"/>`;
+  multsA.forEach((v,i)=>{
+    const x = pad + i*stepW + stepW/2;
+    const isLCM = v===24;
+    rowsSvg += `<circle cx="${x}" cy="${yA}" r="15" fill="${isLCM?'rgba(255,185,55,0.25)':'rgba(77,124,254,0.2)'}" stroke="${isLCM?'var(--amber)':'var(--blue)'}" stroke-width="1.5"/>`;
+    rowsSvg += `<text x="${x}" y="${yA+4}" font-size="11.5" fill="#fff" text-anchor="middle" font-family="Space Grotesk" font-weight="700">${v}</text>`;
+  });
+  multsB.forEach((v,i)=>{
+    const x = pad + i*stepW + stepW/2;
+    const isLCM = v===24;
+    rowsSvg += `<circle cx="${x}" cy="${yB}" r="15" fill="${isLCM?'rgba(255,185,55,0.25)':'rgba(181,123,255,0.2)'}" stroke="${isLCM?'var(--amber)':'var(--purple)'}" stroke-width="1.5"/>`;
+    rowsSvg += `<text x="${x}" y="${yB+4}" font-size="11.5" fill="#fff" text-anchor="middle" font-family="Space Grotesk" font-weight="700">${v}</text>`;
+  });
+  rowsSvg += `<line x1="${pad+3*stepW+stepW/2}" y1="${yA+18}" x2="${pad+3*stepW+stepW/2}" y2="${yB-18}" stroke="var(--amber)" stroke-width="1.5" stroke-dasharray="3,3"/>`;
+  rowsSvg += `<text x="${pad-10}" y="${yA+4}" font-size="11" fill="var(--blue)" text-anchor="end" font-family="Space Grotesk">×6</text>`;
+  rowsSvg += `<text x="${pad-10}" y="${yB+4}" font-size="11" fill="var(--purple)" text-anchor="end" font-family="Space Grotesk">×8</text>`;
+  const svg = `<svg class="visual-svg" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">${rowsSvg}</svg>`;
+  document.getElementById('multiplesTimeline').innerHTML = svg + `<div class="visual-caption"><span class="en">First number that lines up on both rows = LCM(6, 8) = 24</span><span class="bm">Nombor pertama yang sepadan pada kedua-dua baris = GSTK(6, 8) = 24</span></div>`;
+}
+buildMultiplesTimeline();
+
+function isPrime(n){
+  if(n<2) return false;
+  for(let i=2;i*i<=n;i++) if(n%i===0) return false;
+  return true;
+}
+function renderLadderTable(rows, remainder){
+  let html = '<table class="ladder-table"><tbody>';
+  rows.forEach(r=>{
+    html += '<tr><td class="divisor-cell">'+r.divisor+'</td>' + r.values.map(v=>'<td>'+v+'</td>').join('') + '</tr>';
+  });
+  html += '<tr class="result-row"><td class="divisor-cell"></td>' + remainder.map(v=>'<td>'+v+'</td>').join('') + '</tr>';
+  html += '</tbody></table>';
+  return html;
+}
+/* single-number prime factorisation ladder (e.g. 60 -> 2,2,3,5) */
+function buildSingleLadderHTML(n){
+  const rows = [];
+  let cur = n, p = 2;
+  while(cur>1){
+    if(cur%p===0){ rows.push({divisor:p, values:[cur]}); cur = cur/p; }
+    else p++;
+  }
+  const table = renderLadderTable(rows, [cur]);
+  const factors = rows.map(r=>r.divisor);
+  return `<div class="ladder-wrap">${table}</div><div class="ladder-result-tag">${n} = ${factors.join(' × ')}</div>`;
+}
+/* common-division ladder for HCF: only divide by a prime that divides ALL numbers */
+function hcfLadderRows(numbers){
+  let current = numbers.slice();
+  let rows = [];
+  while(true){
+    let divisor = null;
+    for(let d=2; d<=Math.min(...current); d++){
+      if(current.every(v=>v%d===0) && isPrime(d)){ divisor=d; break; }
+    }
+    if(divisor===null) break;
+    rows.push({divisor, values: current.slice()});
+    current = current.map(v=>v/divisor);
+  }
+  const hcf = rows.reduce((a,r)=>a*r.divisor,1);
+  return {rows, remainder: current, hcf};
+}
+function buildHCFLadderHTML(numbers){
+  const {rows, remainder, hcf} = hcfLadderRows(numbers);
+  const table = renderLadderTable(rows, remainder);
+  return `<div class="ladder-wrap">${table}</div><div class="ladder-result-tag">HCF = ${rows.map(r=>r.divisor).join(' × ')} = ${hcf}</div>`;
+}
+/* common-division ladder for LCM: divide by a prime that divides AT LEAST ONE number, others carry down unchanged */
+function lcmLadderRows(numbers){
+  let current = numbers.slice();
+  let rows = [];
+  let p = 2;
+  while(!current.every(v=>v===1)){
+    while(!current.some(v=>v>1 && v%p===0)) p++;
+    rows.push({divisor:p, values: current.slice()});
+    current = current.map(v => (v>1 && v%p===0) ? v/p : v);
+  }
+  const lcm = rows.reduce((a,r)=>a*r.divisor,1);
+  return {rows, remainder: current, lcm};
+}
+function buildLCMLadderHTML(numbers){
+  const {rows, remainder, lcm} = lcmLadderRows(numbers);
+  const table = renderLadderTable(rows, remainder);
+  return `<div class="ladder-wrap">${table}</div><div class="ladder-result-tag">LCM = ${rows.map(r=>r.divisor).join(' × ')} = ${lcm}</div>`;
+}
+
+const ladderBuilders = {
+  ladder60: ()=>buildSingleLadderHTML(60),
+  ladderHCF: ()=>buildHCFLadderHTML([48,64,80]),
+  ladder68: ()=>buildLCMLadderHTML([6,8]),
+  ladderLCM: ()=>buildLCMLadderHTML([3,8,12])
+};
+function toggleLadder(id){
+  const el = document.getElementById(id);
+  if(!el.dataset.built){
+    el.innerHTML = ladderBuilders[id]();
+    el.dataset.built = '1';
+  }
+  el.classList.toggle('show');
+  const btn = el.previousElementSibling;
+  if(btn && btn.classList.contains('show-method-btn')){
+    const isShowing = el.classList.contains('show');
+    btn.querySelectorAll('.en').forEach(s=> s.textContent = isShowing ? 'Hide Method' : (id.includes('HCF')||id.includes('LCM') ? 'Show Answer & Method' : 'Show Method'));
+    btn.querySelectorAll('.bm').forEach(s=> s.textContent = isShowing ? 'Sembunyi Kaedah' : (id.includes('HCF')||id.includes('LCM') ? 'Tunjuk Jawapan & Kaedah' : 'Tunjuk Kaedah'));
+  }
+  visit(id.includes('HCF') ? 's21' : (id.includes('LCM') ? 's22' : (id==='ladder60' ? 's21' : 's22')));
+}
+
+function toggleGuidedHint(btn){ btn.nextElementSibling.classList.toggle('show'); }
+function togglePractice(btn){
+  const card = btn.closest('.practice-q-card');
+  card.querySelector('.practice-reveal').classList.toggle('show');
+}
+function showDiff(subtopic, diff){
+  const targetPanel = document.getElementById(`panel${subtopic}${diff}`);
+  const zone = targetPanel.closest('.practice-zone');
+  zone.querySelectorAll('.diff-panel').forEach(p=>p.classList.remove('active'));
+  targetPanel.classList.add('active');
+  zone.querySelectorAll('.diff-tab').forEach(t=>t.classList.toggle('active', t.dataset.diff===diff));
+}
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+</script>
+</body>
+</html>

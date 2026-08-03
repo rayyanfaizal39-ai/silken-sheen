@@ -62,6 +62,7 @@ import { chapter8Content } from "@/content/form1/science/chapter-8/chapter8-cont
 import { chapter9Content } from "@/content/form1/science/chapter-9/chapter9-content";
 import { mathF1C1NotesBM } from "@/content/form1/math/chapter-1/notes-bm";
 import { mathF1C1NotesDLP } from "@/content/form1/math/chapter-1/notes-dlp";
+import { mathF1C1InteractiveContent } from "@/content/form1/math/chapter-1/interactive-content";
 import { mathF1C2NotesBM } from "@/content/form1/math/chapter-2/notes-bm";
 import { mathF1C2NotesDLP } from "@/content/form1/math/chapter-2/notes-dlp";
 import { mathF1C3NotesBM } from "@/content/form1/math/chapter-3/notes-bm";
@@ -1395,6 +1396,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C1MindMapBM, title: "Nombor Nisbah" },
     notes: mathF1C1NotesBM,
+    mathChapter1Data: mathF1C1InteractiveContent,
   },
   {
     id: "math-f1-c1-dlp",
@@ -1405,6 +1407,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF1C1MindMapDLP, title: "Rational Numbers" },
     notes: mathF1C1NotesDLP,
+    mathChapter1Data: mathF1C1InteractiveContent,
   },
   {
     id: "math-f1-c2-bm",

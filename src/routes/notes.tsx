@@ -74,6 +74,7 @@ import { Chapter5NotesBlock } from "@/components/notes/Chapter5NotesBlock";
 import { Chapter6NotesBlock } from "@/components/notes/Chapter6NotesBlock";
 import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
 import { Chapter9NotesBlock } from "@/components/notes/Chapter9NotesBlock";
+import { MathF1Chapter1NotesBlock } from "@/components/notes/MathF1Chapter1NotesBlock";
 import { ScienceF2Chapter1NotesBlock } from "@/components/notes/ScienceF2Chapter1NotesBlock";
 import { ScienceF2Chapter2NotesBlock } from "@/components/notes/ScienceF2Chapter2NotesBlock";
 import { ScienceF2Chapter3NotesBlock } from "@/components/notes/ScienceF2Chapter3NotesBlock";
@@ -1516,6 +1517,17 @@ function NotesPage() {
                 id="science-notes-content"
                 content={activeChapter.chapter9Data}
                 lang={isBilingualSubject ? (scienceLang === "dlp" ? "en" : "bm") : "en"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathChapter1Data ? (
+              <MathF1Chapter1NotesBlock
+                id="notes"
+                content={activeChapter.mathChapter1Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
                 storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                 isRead={isRead}
                 onMarkRead={() =>
