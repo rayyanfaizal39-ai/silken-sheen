@@ -15,6 +15,9 @@ import type { MathF1C1Content } from "@/content/form1/math/chapter-1/interactive
 import type { MathF1C4Content } from "@/content/form1/math/chapter-4/interactive-content";
 import type { MathF1C5Content } from "@/content/form1/math/chapter-5/interactive-content";
 import type { MathF1C6Content } from "@/content/form1/math/chapter-6/interactive-content";
+import type { MathF1C7Content } from "@/content/form1/math/chapter-7/interactive-content";
+import type { MathF1C8Content } from "@/content/form1/math/chapter-8/interactive-content";
+import type { MathF1C9Content } from "@/content/form1/math/chapter-9/interactive-content";
 import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
@@ -125,6 +128,12 @@ export type ChapterContent = {
   mathChapter5Data?: { en: MathF1C5Content; bm: MathF1C5Content };
   /** Math Form 1 Chapter 6 (Linear Equations/Persamaan Linear) interactive, bilingual learning experience. */
   mathChapter6Data?: { en: MathF1C6Content; bm: MathF1C6Content };
+  /** Math Form 1 Chapter 7 (Linear Inequalities/Ketaksamaan Linear) interactive, bilingual learning experience. */
+  mathChapter7Data?: { en: MathF1C7Content; bm: MathF1C7Content };
+  /** Math Form 1 Chapter 8 (Lines and Angles/Garis dan Sudut) interactive, bilingual learning experience. */
+  mathChapter8Data?: { en: MathF1C8Content; bm: MathF1C8Content };
+  /** Math Form 1 Chapter 9 (Basic Polygons/Poligon Asas) interactive, bilingual learning experience. */
+  mathChapter9Data?: { en: MathF1C9Content; bm: MathF1C9Content };
   /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
   geoChapter1Data?: Geo1Content;
   /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
@@ -240,6 +249,9 @@ export function getChapterFeatures(
       !!c?.mathChapter4Data ||
       !!c?.mathChapter5Data ||
       !!c?.mathChapter6Data ||
+      !!c?.mathChapter7Data ||
+      !!c?.mathChapter8Data ||
+      !!c?.mathChapter9Data ||
       !!c?.geoChapter1Data ||
       !!c?.geoChapter2Data ||
       !!c?.geoChapter3Data ||

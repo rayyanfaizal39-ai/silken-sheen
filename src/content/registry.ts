@@ -66,6 +66,9 @@ import { mathF1C1InteractiveContent } from "@/content/form1/math/chapter-1/inter
 import { mathF1C4InteractiveContent } from "@/content/form1/math/chapter-4/interactive-content";
 import { mathF1C5InteractiveContent } from "@/content/form1/math/chapter-5/interactive-content";
 import { mathF1C6InteractiveContent } from "@/content/form1/math/chapter-6/interactive-content";
+import { mathF1C7InteractiveContent } from "@/content/form1/math/chapter-7/interactive-content";
+import { mathF1C8InteractiveContent } from "@/content/form1/math/chapter-8/interactive-content";
+import { mathF1C9InteractiveContent } from "@/content/form1/math/chapter-9/interactive-content";
 import { mathF1C2NotesBM } from "@/content/form1/math/chapter-2/notes-bm";
 import { mathF1C2NotesDLP } from "@/content/form1/math/chapter-2/notes-dlp";
 import { mathF1C3NotesBM } from "@/content/form1/math/chapter-3/notes-bm";
@@ -1546,6 +1549,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C7MindMapBM, title: "Ketaksamaan Linear" },
     notes: mathF1C7NotesBM,
+    mathChapter7Data: mathF1C7InteractiveContent,
   },
   {
     id: "math-f1-c7-dlp",
@@ -1557,6 +1561,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(7),
     mindMap: { data: mathF1C7MindMapDLP, title: "Linear Inequalities" },
     notes: mathF1C7NotesDLP,
+    mathChapter7Data: mathF1C7InteractiveContent,
   },
   {
     id: "math-f1-c8-bm",
@@ -1567,6 +1572,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C8MindMapBM, title: "Garis dan Sudut" },
     notes: mathF1C8NotesBM,
+    mathChapter8Data: mathF1C8InteractiveContent,
   },
   {
     id: "math-f1-c8-dlp",
@@ -1578,6 +1584,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(8),
     mindMap: { data: mathF1C8MindMapDLP, title: "Lines and Angles" },
     notes: mathF1C8NotesDLP,
+    mathChapter8Data: mathF1C8InteractiveContent,
   },
   {
     id: "math-f1-c9-bm",
@@ -1588,6 +1595,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C9MindMapBM, title: "Poligon Asas" },
     notes: mathF1C9NotesBM,
+    mathChapter9Data: mathF1C9InteractiveContent,
   },
   {
     id: "math-f1-c9-dlp",
@@ -1599,6 +1607,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(9),
     mindMap: { data: mathF1C9MindMapDLP, title: "Basic Polygons" },
     notes: mathF1C9NotesDLP,
+    mathChapter9Data: mathF1C9InteractiveContent,
   },
   {
     id: "math-f1-c10-bm",
