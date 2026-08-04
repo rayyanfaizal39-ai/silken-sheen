@@ -26,7 +26,7 @@ export function getSupabaseAdminClient(): SupabaseClient {
 
 export async function createPendingPayment(input: {
   userId: string;
-  checkoutPlan: PurchasableCheckoutPlan;
+  checkoutPlan: CheckoutPlan;
   provider: "mock" | "toyyibpay";
   idempotencyKey: string;
 }) {
