@@ -81,7 +81,7 @@ export const CONTENT_STATS = {
   missingContent: ${missingContent},
 } as const;
 
-export type SubjectFormSummary = { form: ${JSON.stringify(["Form 1", "Form 2", "Form 3"]).replace(/"/g, "").split(",").map((f) => `"${f}"`).join(" | ")}; chapterCount: number };
+export type SubjectFormSummary = { form: "Form 1" | "Form 2" | "Form 3"; chapterCount: number };
 
 // Per-subject Form 1/2/3 chapter counts, safe to import synchronously during
 // SSR/initial render (unlike @/content/registry's getSubjectFormStats, which
