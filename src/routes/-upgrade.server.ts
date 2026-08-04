@@ -17,7 +17,7 @@ import { getSupabaseServerClient } from "../lib/supabase.server";
 export type UpgradePlan = CheckoutPlan;
 
 const checkoutSchema = z.object({
-  plan: z.enum(["pro_monthly", "premium_monthly", "pro_annual", "premium_annual"]),
+  plan: z.enum(["pro_monthly", "premium_monthly"]),
   idempotencyKey: z.string().uuid(),
 });
 
