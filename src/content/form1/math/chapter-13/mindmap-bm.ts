@@ -10,7 +10,10 @@ export const mathF1C13MindMapBM: MindNode = {
       children: [
         { id: "math-c13-bm-1-1", label: "Berlaku pada segitiga bersudut tepat sahaja" },
         { id: "math-c13-bm-1-2", label: "Formula: c² = a² + b²" },
-        { id: "math-c13-bm-1-3", label: "c = hipotenusa (sisi terpanjang, bertentangan sudut tepat)" },
+        {
+          id: "math-c13-bm-1-3",
+          label: "c = hipotenusa (sisi terpanjang, bertentangan sudut tepat)",
+        },
         { id: "math-c13-bm-1-4", label: "a, b = dua sisi yang lain (kaki)" },
       ],
     },

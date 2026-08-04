@@ -79,8 +79,7 @@ export const mathF1C12NotesDLP: StructuredNotes = {
         },
         {
           title: "The Four Stages of Data Handling",
-          content:
-            "The data handling process occurs in 4 sequential stages:",
+          content: "The data handling process occurs in 4 sequential stages:",
           bulletPoints: [
             "① Collecting Data — Gathering information through interviews, observation, experiments or surveys.",
             "② Organising Data — Arranging data in tables, lists or groups to make it easier to analyse.",

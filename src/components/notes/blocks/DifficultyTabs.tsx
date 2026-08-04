@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type { MathLang } from "./mathNotesChrome";
 import { chrome } from "./mathNotesChrome";
 import { MATH_GREEN, MATH_ORANGE, MATH_RED, MATH_VIOLET } from "./mathTheme";
@@ -7,6 +7,8 @@ export type Difficulty = "easy" | "medium" | "hard";
 
 export interface PracticeQuestion {
   question: string;
+  /** Renders between the question and the reveal button, e.g. a labeled diagram for the question. */
+  diagram?: ReactNode;
   answer: string;
 }
 
@@ -76,6 +78,7 @@ export function DifficultyTabs({
       </div>
       <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
         <p className="mb-3 text-[14px] leading-relaxed text-[#eef1fb]">{q.question}</p>
+        {q.diagram}
         <button
           type="button"
           onClick={() => setRevealed((r) => ({ ...r, [active]: !r[active] }))}

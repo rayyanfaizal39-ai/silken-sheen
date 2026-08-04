@@ -18,6 +18,10 @@ import type { MathF1C6Content } from "@/content/form1/math/chapter-6/interactive
 import type { MathF1C7Content } from "@/content/form1/math/chapter-7/interactive-content";
 import type { MathF1C8Content } from "@/content/form1/math/chapter-8/interactive-content";
 import type { MathF1C9Content } from "@/content/form1/math/chapter-9/interactive-content";
+import type { MathF1C10Content } from "@/content/form1/math/chapter-10/interactive-content";
+import type { MathF1C11Content } from "@/content/form1/math/chapter-11/interactive-content";
+import type { MathF1C12Content } from "@/content/form1/math/chapter-12/interactive-content";
+import type { MathF1C13Content } from "@/content/form1/math/chapter-13/interactive-content";
 import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
@@ -134,6 +138,14 @@ export type ChapterContent = {
   mathChapter8Data?: { en: MathF1C8Content; bm: MathF1C8Content };
   /** Math Form 1 Chapter 9 (Basic Polygons/Poligon Asas) interactive, bilingual learning experience. */
   mathChapter9Data?: { en: MathF1C9Content; bm: MathF1C9Content };
+  /** Math Form 1 Chapter 10 (Perimeter and Area/Perimeter dan Luas) interactive, bilingual learning experience. */
+  mathChapter10Data?: { en: MathF1C10Content; bm: MathF1C10Content };
+  /** Math Form 1 Chapter 11 (Introduction to Sets/Pengenalan Set) interactive, bilingual learning experience. */
+  mathChapter11Data?: { en: MathF1C11Content; bm: MathF1C11Content };
+  /** Math Form 1 Chapter 12 (Data Handling/Pengendalian Data) interactive, bilingual learning experience. */
+  mathChapter12Data?: { en: MathF1C12Content; bm: MathF1C12Content };
+  /** Math Form 1 Chapter 13 (Pythagoras' Theorem/Teorem Pythagoras) interactive, bilingual learning experience. */
+  mathChapter13Data?: { en: MathF1C13Content; bm: MathF1C13Content };
   /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
   geoChapter1Data?: Geo1Content;
   /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
@@ -252,6 +264,10 @@ export function getChapterFeatures(
       !!c?.mathChapter7Data ||
       !!c?.mathChapter8Data ||
       !!c?.mathChapter9Data ||
+      !!c?.mathChapter10Data ||
+      !!c?.mathChapter11Data ||
+      !!c?.mathChapter12Data ||
+      !!c?.mathChapter13Data ||
       !!c?.geoChapter1Data ||
       !!c?.geoChapter2Data ||
       !!c?.geoChapter3Data ||

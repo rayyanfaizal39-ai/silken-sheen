@@ -28,6 +28,12 @@ export const MATH_CHROME = {
     en: "Diagonal products are always equal in a true proportion",
     bm: "Hasil darab pepenjuru sentiasa sama dalam kadaran benar",
   },
+  rightAngleConfirmed: { en: "Right-angled triangle ✓", bm: "Segi tiga bersudut tegak ✓" },
+  rightAngleNotConfirmed: {
+    en: "NOT a right-angled triangle ✗",
+    bm: "BUKAN segi tiga bersudut tegak ✗",
+  },
+  noElementsSatisfy: { en: "no elements satisfy", bm: "tiada unsur memenuhi" },
 } as const satisfies Record<string, Record<MathLang, string>>;
 
 export function chrome(key: keyof typeof MATH_CHROME, lang: MathLang): string {

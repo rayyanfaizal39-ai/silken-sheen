@@ -43,7 +43,10 @@ export const mathF1C11MindMapDLP: MindNode = {
           label: "Union (∪)",
           children: [
             { id: "math-c11-dlp-4-1-1", label: "All elements in A or B" },
-            { id: "math-c11-dlp-4-1-2", label: "A ∪ B = {all elements in A and B without duplicates}" },
+            {
+              id: "math-c11-dlp-4-1-2",
+              label: "A ∪ B = {all elements in A and B without duplicates}",
+            },
           ],
         },
         {
@@ -57,9 +60,7 @@ export const mathF1C11MindMapDLP: MindNode = {
         {
           id: "math-c11-dlp-4-3",
           label: "Complement (A')",
-          children: [
-            { id: "math-c11-dlp-4-3-1", label: "Elements in ξ but NOT in A" },
-          ],
+          children: [{ id: "math-c11-dlp-4-3-1", label: "Elements in ξ but NOT in A" }],
         },
       ],
     },

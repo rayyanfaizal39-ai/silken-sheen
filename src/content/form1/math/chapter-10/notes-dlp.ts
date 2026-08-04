@@ -72,26 +72,22 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "How to Calculate Perimeter",
-          content:
-            "To calculate perimeter, ADD the lengths of all outer sides of the shape.",
+          content: "To calculate perimeter, ADD the lengths of all outer sides of the shape.",
           formula: "Perimeter = Sum of all outer sides",
         },
         {
           title: "Perimeter of a Rectangle",
-          content:
-            "A rectangle has 2 pairs of equal sides. Length = l, Width = w.",
+          content: "A rectangle has 2 pairs of equal sides. Length = l, Width = w.",
           formula: "Perimeter = 2(l + w) = 2l + 2w",
         },
         {
           title: "Perimeter of a Square",
-          content:
-            "A square has 4 equal sides. Side length = s.",
+          content: "A square has 4 equal sides. Side length = s.",
           formula: "Perimeter = 4s",
         },
         {
           title: "Perimeter of a Triangle",
-          content:
-            "A triangle has three sides. Add all three sides to get the perimeter.",
+          content: "A triangle has three sides. Add all three sides to get the perimeter.",
           formula: "Perimeter = a + b + c",
         },
         {
@@ -106,21 +102,17 @@ export const mathF1C10NotesDLP: StructuredNotes = {
       subsections: [
         {
           title: "Example 1: Rectangle",
-          content:
-            "A rectangle has a length of 8 cm and a width of 5 cm. Calculate the perimeter.",
-          formula:
-            "Perimeter = 2(l + w) = 2(8 + 5) = 2(13) = 26 cm",
+          content: "A rectangle has a length of 8 cm and a width of 5 cm. Calculate the perimeter.",
+          formula: "Perimeter = 2(l + w) = 2(8 + 5) = 2(13) = 26 cm",
         },
         {
           title: "Example 2: Triangle",
-          content:
-            "A triangle has sides 6 cm, 8 cm and 10 cm. Calculate the perimeter.",
+          content: "A triangle has sides 6 cm, 8 cm and 10 cm. Calculate the perimeter.",
           formula: "Perimeter = 6 + 8 + 10 = 24 cm",
         },
         {
           title: "Example 3: Regular Hexagon",
-          content:
-            "A regular hexagon (6 sides) has each side of 4 cm. Calculate the perimeter.",
+          content: "A regular hexagon (6 sides) has each side of 4 cm. Calculate the perimeter.",
           formula: "Perimeter = 6 × 4 = 24 cm",
         },
         {
@@ -259,22 +251,18 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Example 1: Right-Angled Triangle",
-          content:
-            "Triangle with base 10 cm and height 6 cm.",
+          content: "Triangle with base 10 cm and height 6 cm.",
           formula: "Area = ½ × 10 × 6 = ½ × 60 = 30 cm²",
         },
         {
           title: "Example 2: Obtuse Triangle",
-          content:
-            "Triangle with base 8 cm and perpendicular height 5 cm.",
+          content: "Triangle with base 8 cm and perpendicular height 5 cm.",
           formula: "Area = ½ × 8 × 5 = ½ × 40 = 20 cm²",
         },
         {
           title: "Example 3: Finding the Base",
-          content:
-            "Area of triangle = 24 cm² and height = 6 cm. Find the base.",
-          formula:
-            "24 = ½ × base × 6\n24 = 3 × base\nBase = 24 ÷ 3 = 8 cm",
+          content: "Area of triangle = 24 cm² and height = 6 cm. Find the base.",
+          formula: "24 = ½ × base × 6\n24 = 3 × base\nBase = 24 ÷ 3 = 8 cm",
         },
       ],
     },
@@ -299,20 +287,17 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Example 1: Parallelogram",
-          content:
-            "Parallelogram with base 12 cm and height 7 cm (not the slant side 9 cm).",
+          content: "Parallelogram with base 12 cm and height 7 cm (not the slant side 9 cm).",
           formula: "Area = 12 × 7 = 84 cm²",
         },
         {
           title: "Example 2: Rectangle",
-          content:
-            "Rectangle 15 cm × 9 cm. Height = width = 9 cm.",
+          content: "Rectangle 15 cm × 9 cm. Height = width = 9 cm.",
           formula: "Area = 15 × 9 = 135 cm²",
         },
         {
           title: "Example 3: Finding the Height",
-          content:
-            "Area of parallelogram = 60 cm² and base = 10 cm. Find the height.",
+          content: "Area of parallelogram = 60 cm² and base = 10 cm. Find the height.",
           formula: "60 = 10 × height\nHeight = 60 ÷ 10 = 6 cm",
         },
         {
@@ -343,22 +328,17 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Example 1",
-          content:
-            "Trapezium with parallel sides 8 cm and 12 cm, height 5 cm.",
-          formula:
-            "Area = ½ × (8 + 12) × 5 = ½ × 20 × 5 = ½ × 100 = 50 cm²",
+          content: "Trapezium with parallel sides 8 cm and 12 cm, height 5 cm.",
+          formula: "Area = ½ × (8 + 12) × 5 = ½ × 20 × 5 = ½ × 100 = 50 cm²",
         },
         {
           title: "Example 2",
-          content:
-            "Trapezium with parallel sides 6 cm and 10 cm, height 4 cm.",
-          formula:
-            "Area = ½ × (6 + 10) × 4 = ½ × 16 × 4 = ½ × 64 = 32 cm²",
+          content: "Trapezium with parallel sides 6 cm and 10 cm, height 4 cm.",
+          formula: "Area = ½ × (6 + 10) × 4 = ½ × 16 × 4 = ½ × 64 = 32 cm²",
         },
         {
           title: "Example 3: Finding the Height",
-          content:
-            "Area of trapezium = 45 cm². Parallel sides = 7 cm and 11 cm. Find the height.",
+          content: "Area of trapezium = 45 cm². Parallel sides = 7 cm and 11 cm. Find the height.",
           formula:
             "45 = ½ × (7 + 11) × height\n45 = ½ × 18 × height\n45 = 9 × height\nHeight = 45 ÷ 9 = 5 cm",
         },
@@ -374,8 +354,7 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Formula for Area of a Kite",
-          content:
-            "Area of a kite = half the product of its two diagonals.",
+          content: "Area of a kite = half the product of its two diagonals.",
           formula: "Area = ½ × d₁ × d₂",
         },
         {
@@ -385,22 +364,18 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Example 1",
-          content:
-            "Kite with diagonals 10 cm and 6 cm.",
+          content: "Kite with diagonals 10 cm and 6 cm.",
           formula: "Area = ½ × 10 × 6 = ½ × 60 = 30 cm²",
         },
         {
           title: "Example 2",
-          content:
-            "Kite with diagonals 14 cm and 8 cm.",
+          content: "Kite with diagonals 14 cm and 8 cm.",
           formula: "Area = ½ × 14 × 8 = ½ × 112 = 56 cm²",
         },
         {
           title: "Example 3: Finding a Diagonal",
-          content:
-            "Area of kite = 40 cm² and one diagonal = 10 cm. Find the other diagonal.",
-          formula:
-            "40 = ½ × 10 × d₂\n40 = 5 × d₂\nd₂ = 40 ÷ 5 = 8 cm",
+          content: "Area of kite = 40 cm² and one diagonal = 10 cm. Find the other diagonal.",
+          formula: "40 = ½ × 10 × d₂\n40 = 5 × d₂\nd₂ = 40 ÷ 5 = 8 cm",
         },
         {
           title: "Note: Rhombus Formula",
@@ -467,14 +442,12 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Conversion Example 1",
-          content:
-            "Convert 3.5 m² to cm².",
+          content: "Convert 3.5 m² to cm².",
           formula: "3.5 m² = 3.5 × 10 000 = 35 000 cm²",
         },
         {
           title: "Conversion Example 2",
-          content:
-            "Convert 45 000 cm² to m².",
+          content: "Convert 45 000 cm² to m².",
           formula: "45 000 cm² ÷ 10 000 = 4.5 m²",
         },
         {
@@ -517,8 +490,7 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Example: Fixed Area = 36 cm²",
-          content:
-            "List all rectangles with area 36 cm² and calculate each perimeter:",
+          content: "List all rectangles with area 36 cm² and calculate each perimeter:",
           table: {
             headers: ["Length (cm)", "Width (cm)", "Area (cm²)", "Perimeter (cm)"],
             rows: [
@@ -547,8 +519,7 @@ export const mathF1C10NotesDLP: StructuredNotes = {
         },
         {
           title: "Example: Fixed Perimeter = 24 cm",
-          content:
-            "List all rectangles with perimeter 24 cm and calculate each area:",
+          content: "List all rectangles with perimeter 24 cm and calculate each area:",
           table: {
             headers: ["Length (cm)", "Width (cm)", "Perimeter (cm)", "Area (cm²)"],
             rows: [
@@ -615,8 +586,7 @@ export const mathF1C10NotesDLP: StructuredNotes = {
       subsections: [
         {
           title: "Steps for Problem Solving",
-          content:
-            "Follow these steps to systematically solve perimeter and area problems:",
+          content: "Follow these steps to systematically solve perimeter and area problems:",
           bulletPoints: [
             "Step 1: Read the question carefully. Identify what is asked (perimeter or area?).",
             "Step 2: Draw a diagram and label all known dimensions.",
@@ -630,8 +600,7 @@ export const mathF1C10NotesDLP: StructuredNotes = {
           title: "Example: Flooring Problem",
           content:
             "An L-shaped room has dimensions: large section 8 m × 6 m, small section 3 m × 4 m. Tiles cost RM 15 per m². What is the tiling cost?",
-          formula:
-            "Area = (8 × 6) + (3 × 4) = 48 + 12 = 60 m²\nCost = 60 × RM 15 = RM 900",
+          formula: "Area = (8 × 6) + (3 × 4) = 48 + 12 = 60 m²\nCost = 60 × RM 15 = RM 900",
         },
         {
           title: "Example: Fertiliser Problem",
@@ -644,8 +613,7 @@ export const mathF1C10NotesDLP: StructuredNotes = {
           title: "Example: Paint Problem",
           content:
             "A triangular wall section with base 6 m and height 4 m. Paint is needed at 0.5 L per m². One tin contains 3 L. How many tins?",
-          formula:
-            "Area = ½ × 6 × 4 = 12 m²\nPaint = 12 × 0.5 = 6 L\nTins = 6 ÷ 3 = 2 tins",
+          formula: "Area = ½ × 6 × 4 = 12 m²\nPaint = 12 × 0.5 = 6 L\nTins = 6 ÷ 3 = 2 tins",
         },
       ],
     },

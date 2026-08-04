@@ -8,7 +8,10 @@ export const mathF1C11MindMapBM: MindNode = {
       id: "math-c11-bm-1",
       label: "Asas Set",
       children: [
-        { id: "math-c11-bm-1-1", label: "Set: koleksi objek yang taktif / terdefinisi dengan jelas" },
+        {
+          id: "math-c11-bm-1-1",
+          label: "Set: koleksi objek yang taktif / terdefinisi dengan jelas",
+        },
         { id: "math-c11-bm-1-2", label: "Ahli/Elemen: objek dalam set (∈)" },
         { id: "math-c11-bm-1-3", label: "Bukan ahli: tidak berada dalam set (∉)" },
         { id: "math-c11-bm-1-4", label: "Set semesta: semua ahli yang berkaitan (ξ)" },
@@ -43,7 +46,10 @@ export const mathF1C11MindMapBM: MindNode = {
           label: "Kesatuan (∪)",
           children: [
             { id: "math-c11-bm-4-1-1", label: "Semua elemen dalam A atau B" },
-            { id: "math-c11-bm-4-1-2", label: "A ∪ B = {semua elemen dalam A dan B tanpa ulangan}" },
+            {
+              id: "math-c11-bm-4-1-2",
+              label: "A ∪ B = {semua elemen dalam A dan B tanpa ulangan}",
+            },
           ],
         },
         {
@@ -57,9 +63,7 @@ export const mathF1C11MindMapBM: MindNode = {
         {
           id: "math-c11-bm-4-3",
           label: "Pelengkap (A')",
-          children: [
-            { id: "math-c11-bm-4-3-1", label: "Elemen dalam ξ tetapi BUKAN dalam A" },
-          ],
+          children: [{ id: "math-c11-bm-4-3-1", label: "Elemen dalam ξ tetapi BUKAN dalam A" }],
         },
       ],
     },

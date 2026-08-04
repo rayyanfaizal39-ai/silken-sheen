@@ -11,11 +11,13 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
       "Bash(npx tsc *)",
       "Bash(git status *)",
-      "mcp__claude_ai_Figma__get_design_context"
+      "mcp__claude_ai_Figma__get_design_context",
+      "Bash(cp \"C:\\\\Users\\\\rayya\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-rayya-OneDrive-Faizal-OneDrive-Desktop-silken-sheen-main\\\\92f5e04d-6457-4693-8149-d8fd686fc36f\\\\scratchpad\\\\verify-chapters.mjs\" \"c:\\\\Users\\\\rayya\\\\OneDrive\\\\Faizal\\\\OneDrive\\\\Desktop\\\\silken-sheen-main\\\\verify-chapters.mjs\")",
+      "Bash(node verify-chapters.mjs)"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "supabase"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

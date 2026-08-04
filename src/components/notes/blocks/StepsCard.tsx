@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type { MathLang } from "./mathNotesChrome";
 import { chrome } from "./mathNotesChrome";
 import { MATH_VIOLET } from "./mathTheme";
@@ -11,14 +11,19 @@ export interface WorkedStep {
 /**
  * Step-by-step worked example. A single "Show Answer" button reveals every
  * step at once — no per-step tapping, no separate hint/solution buttons.
+ * Optional `diagram` renders between the question and the reveal button, for
+ * chapters whose worked examples reference a labeled figure (e.g. Chapter 13
+ * triangle diagrams).
  */
 export function StepsCard({
   lang,
   question,
+  diagram,
   steps,
 }: {
   lang: MathLang;
   question: string;
+  diagram?: ReactNode;
   steps: WorkedStep[];
 }) {
   const [revealed, setRevealed] = useState(false);
@@ -31,6 +36,7 @@ export function StepsCard({
         {chrome("workedExample", lang)}
       </div>
       <div className="mb-4 text-[14.5px] leading-relaxed text-[#eef1fb]">{question}</div>
+      {diagram}
       <button
         type="button"
         onClick={() => setRevealed((r) => !r)}

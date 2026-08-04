@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type { MathLang } from "./mathNotesChrome";
 import { chrome } from "./mathNotesChrome";
 import { MATH_AMBER } from "./mathTheme";
 
-/** Chapter-end KBAT-style challenge question, single "Show Answer" reveal. */
+/**
+ * Chapter-end KBAT-style challenge question, single "Show Answer" reveal.
+ * Optional `diagram` renders between the question and the reveal button
+ * (see StepsCard for the same pattern).
+ */
 export function ChallengeMission({
   lang,
   question,
+  diagram,
   answer,
 }: {
   lang: MathLang;
   question: string;
+  diagram?: ReactNode;
   answer: string;
 }) {
   const [revealed, setRevealed] = useState(false);
@@ -26,6 +32,7 @@ export function ChallengeMission({
         🏆 KBAT
       </div>
       <p className="text-[14px] leading-relaxed text-slate-400">{question}</p>
+      {diagram}
       <button
         type="button"
         onClick={() => setRevealed((r) => !r)}

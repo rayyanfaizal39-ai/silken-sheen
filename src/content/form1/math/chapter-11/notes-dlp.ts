@@ -125,8 +125,7 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Format of the Description Method",
-          content:
-            "Format: '[Set letter] is the set of [description of characteristics]'.",
+          content: "Format: '[Set letter] is the set of [description of characteristics]'.",
           bulletPoints: [
             "A is the set of vowels in the word MALAYSIA.",
             "B is the set of prime numbers between 1 and 20.",
@@ -202,8 +201,7 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Example 3: Prime Numbers",
-          content:
-            "C = {x : x is a prime number, x < 15}. Result: C = {2, 3, 5, 7, 11, 13}.",
+          content: "C = {x : x is a prime number, x < 15}. Result: C = {2, 3, 5, 7, 11, 13}.",
         },
         {
           title: "Comparison of Three Methods",
@@ -276,8 +274,7 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Examples Using ∈ and ∉",
-          content:
-            "Given A = {2, 4, 6, 8, 10}. Check each statement:",
+          content: "Given A = {2, 4, 6, 8, 10}. Check each statement:",
           bulletPoints: [
             "2 ∈ A → TRUE (2 is in A)",
             "5 ∉ A → TRUE (5 is not in A)",
@@ -287,8 +284,7 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Example: Vowels",
-          content:
-            "Given V = {a, e, i, o, u}. Then: a ∈ V, b ∉ V, i ∈ V, z ∉ V, u ∈ V.",
+          content: "Given V = {a, e, i, o, u}. Then: a ∈ V, b ∉ V, i ∈ V, z ∉ V, u ∈ V.",
         },
         {
           title: "Common Mistake",
@@ -445,8 +441,7 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Example 2: Letters",
-          content:
-            "ξ = {a, b, c, d, e, f, g} and B = {a, e}. B' = {b, c, d, f, g}.",
+          content: "ξ = {a, b, c, d, e, f, g} and B = {a, e}. B' = {b, c, d, f, g}.",
         },
         {
           title: "Properties of Complement",
@@ -520,13 +515,11 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Example: n = 1",
-          content:
-            "A = {x}. Subsets of A: ∅ and {x}. Number of subsets = 2¹ = 2.",
+          content: "A = {x}. Subsets of A: ∅ and {x}. Number of subsets = 2¹ = 2.",
         },
         {
           title: "Example: n = 2",
-          content:
-            "A = {a, b}. List all subsets: ∅, {a}, {b}, {a, b}. Number of subsets = 2² = 4.",
+          content: "A = {a, b}. List all subsets: ∅, {a}, {b}, {a, b}. Number of subsets = 2² = 4.",
         },
         {
           title: "Example: n = 3",
@@ -535,8 +528,7 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Example: n = 4",
-          content:
-            "A = {a, b, c, d}. Number of subsets = 2⁴ = 16. (Too many to list all!)",
+          content: "A = {a, b, c, d}. Number of subsets = 2⁴ = 16. (Too many to list all!)",
         },
         {
           title: "Summary Table of Number of Subsets",
@@ -564,8 +556,7 @@ export const mathF1C11NotesDLP: StructuredNotes = {
       subsections: [
         {
           title: "Three Types of Relationships Between Sets",
-          content:
-            "In a Venn diagram, two sets can have three main types of relationship:",
+          content: "In a Venn diagram, two sets can have three main types of relationship:",
           bulletPoints: [
             "Set B is a subset of A (B ⊂ A): circle B is completely inside circle A.",
             "Sets A and B overlap (have common elements): the two circles partially intersect.",
@@ -669,17 +660,14 @@ export const mathF1C11NotesDLP: StructuredNotes = {
         },
         {
           title: "Example 3: Number of Subsets",
-          content:
-            "Set M = {p, q, r, s}. Find the number of subsets of M.",
-          formula:
-            "n(M) = 4\nNumber of subsets = 2⁴ = 16",
+          content: "Set M = {p, q, r, s}. Find the number of subsets of M.",
+          formula: "n(M) = 4\nNumber of subsets = 2⁴ = 16",
         },
         {
           title: "Example 4: Reading a Venn Diagram",
           content:
             "From a Venn diagram: ξ = {1,2,3,4,5,6,7,8,9,10}. Inside A: {2,4,6,8,10}. Inside B: {1,2,3,4,5}. Find: (a) n(A), (b) elements in A but not B.",
-          formula:
-            "n(A) = 5\nElements in A but not B = {6, 8, 10}",
+          formula: "n(A) = 5\nElements in A but not B = {6, 8, 10}",
         },
         {
           title: "Example 5: Equal Sets",

@@ -79,8 +79,7 @@ export const mathF1C12NotesBM: StructuredNotes = {
         },
         {
           title: "Empat Peringkat Pengendalian Data",
-          content:
-            "Proses pengendalian data berlaku dalam 4 peringkat yang berurutan:",
+          content: "Proses pengendalian data berlaku dalam 4 peringkat yang berurutan:",
           bulletPoints: [
             "① Mengumpul Data — Mendapatkan maklumat melalui temu bual, pemerhatian, eksperimen atau tinjauan.",
             "② Mengorganisasikan Data — Menyusun data dalam jadual, senarai atau kumpulan supaya lebih mudah dianalisis.",

@@ -69,6 +69,10 @@ import { mathF1C6InteractiveContent } from "@/content/form1/math/chapter-6/inter
 import { mathF1C7InteractiveContent } from "@/content/form1/math/chapter-7/interactive-content";
 import { mathF1C8InteractiveContent } from "@/content/form1/math/chapter-8/interactive-content";
 import { mathF1C9InteractiveContent } from "@/content/form1/math/chapter-9/interactive-content";
+import { mathF1C10InteractiveContent } from "@/content/form1/math/chapter-10/interactive-content";
+import { mathF1C11InteractiveContent } from "@/content/form1/math/chapter-11/interactive-content";
+import { mathF1C12InteractiveContent } from "@/content/form1/math/chapter-12/interactive-content";
+import { mathF1C13InteractiveContent } from "@/content/form1/math/chapter-13/interactive-content";
 import { mathF1C2NotesBM } from "@/content/form1/math/chapter-2/notes-bm";
 import { mathF1C2NotesDLP } from "@/content/form1/math/chapter-2/notes-dlp";
 import { mathF1C3NotesBM } from "@/content/form1/math/chapter-3/notes-bm";
@@ -1618,6 +1622,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C10MindMapBM, title: "Perimeter dan Luas" },
     notes: mathF1C10NotesBM,
+    mathChapter10Data: mathF1C10InteractiveContent,
   },
   {
     id: "math-f1-c10-dlp",
@@ -1629,6 +1634,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(10),
     mindMap: { data: mathF1C10MindMapDLP, title: "Perimeter and Area" },
     notes: mathF1C10NotesDLP,
+    mathChapter10Data: mathF1C10InteractiveContent,
   },
   {
     id: "math-f1-c11-bm",
@@ -1639,6 +1645,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C11MindMapBM, title: "Pengenalan Set" },
     notes: mathF1C11NotesBM,
+    mathChapter11Data: mathF1C11InteractiveContent,
   },
   {
     id: "math-f1-c11-dlp",
@@ -1650,6 +1657,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(11),
     mindMap: { data: mathF1C11MindMapDLP, title: "Introduction to Sets" },
     notes: mathF1C11NotesDLP,
+    mathChapter11Data: mathF1C11InteractiveContent,
   },
   {
     id: "math-f1-c12-bm",
@@ -1660,6 +1668,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C12MindMapBM, title: "Pengendalian Data" },
     notes: mathF1C12NotesBM,
+    mathChapter12Data: mathF1C12InteractiveContent,
   },
   {
     id: "math-f1-c12-dlp",
@@ -1671,6 +1680,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(12),
     mindMap: { data: mathF1C12MindMapDLP, title: "Data Handling" },
     notes: mathF1C12NotesDLP,
+    mathChapter12Data: mathF1C12InteractiveContent,
   },
   {
     id: "math-f1-c13-bm",
@@ -1681,6 +1691,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C13MindMapBM, title: "Teorem Pythagoras" },
     notes: mathF1C13NotesBM,
+    mathChapter13Data: mathF1C13InteractiveContent,
   },
   {
     id: "math-f1-c13-dlp",
@@ -1692,6 +1703,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(13),
     mindMap: { data: mathF1C13MindMapDLP, title: "Pythagoras' Theorem" },
     notes: mathF1C13NotesDLP,
+    mathChapter13Data: mathF1C13InteractiveContent,
   },
 
   // Mathematics Form 2

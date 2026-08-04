@@ -125,8 +125,7 @@ export const mathF1C11NotesBM: StructuredNotes = {
         },
         {
           title: "Format Kaedah Perihalan",
-          content:
-            "Format: '[Huruf set] ialah set [penerangan ciri-ciri]'.",
+          content: "Format: '[Huruf set] ialah set [penerangan ciri-ciri]'.",
           bulletPoints: [
             "A ialah set huruf vokal dalam perkataan MALAYSIA.",
             "B ialah set nombor perdana antara 1 dan 20.",
@@ -202,8 +201,7 @@ export const mathF1C11NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 3: Nombor Perdana",
-          content:
-            "C = {x : x ialah nombor perdana, x < 15}. Hasilnya: C = {2, 3, 5, 7, 11, 13}.",
+          content: "C = {x : x ialah nombor perdana, x < 15}. Hasilnya: C = {2, 3, 5, 7, 11, 13}.",
         },
         {
           title: "Perbandingan Tiga Kaedah",
@@ -276,8 +274,7 @@ export const mathF1C11NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh Penggunaan ∈ dan ∉",
-          content:
-            "Diberi A = {2, 4, 6, 8, 10}. Semak setiap pernyataan:",
+          content: "Diberi A = {2, 4, 6, 8, 10}. Semak setiap pernyataan:",
           bulletPoints: [
             "2 ∈ A → BENAR (2 ada dalam A)",
             "5 ∉ A → BENAR (5 tidak ada dalam A)",
@@ -287,8 +284,7 @@ export const mathF1C11NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh: Huruf Vokal",
-          content:
-            "Diberi V = {a, e, i, o, u}. Maka: a ∈ V, b ∉ V, i ∈ V, z ∉ V, u ∈ V.",
+          content: "Diberi V = {a, e, i, o, u}. Maka: a ∈ V, b ∉ V, i ∈ V, z ∉ V, u ∈ V.",
         },
         {
           title: "Kesilapan Lazim",
@@ -445,8 +441,7 @@ export const mathF1C11NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 2: Huruf",
-          content:
-            "ξ = {a, b, c, d, e, f, g} dan B = {a, e}. B' = {b, c, d, f, g}.",
+          content: "ξ = {a, b, c, d, e, f, g} dan B = {a, e}. B' = {b, c, d, f, g}.",
         },
         {
           title: "Sifat Pelengkap",
@@ -520,8 +515,7 @@ export const mathF1C11NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh: n = 1",
-          content:
-            "A = {x}. Subset A: ∅ dan {x}. Bilangan subset = 2¹ = 2.",
+          content: "A = {x}. Subset A: ∅ dan {x}. Bilangan subset = 2¹ = 2.",
         },
         {
           title: "Contoh: n = 2",
@@ -564,8 +558,7 @@ export const mathF1C11NotesBM: StructuredNotes = {
       subsections: [
         {
           title: "Tiga Jenis Hubungan Antara Set",
-          content:
-            "Dalam gambar rajah Venn, dua set boleh mempunyai tiga jenis hubungan utama:",
+          content: "Dalam gambar rajah Venn, dua set boleh mempunyai tiga jenis hubungan utama:",
           bulletPoints: [
             "Set B adalah subset A (B ⊂ A): bulatan B berada sepenuhnya di dalam bulatan A.",
             "Set A dan B bertindih (ada unsur sepunya): kedua-dua bulatan bersilang.",
@@ -669,17 +662,14 @@ export const mathF1C11NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 3: Bilangan Subset",
-          content:
-            "Set M = {p, q, r, s}. Cari bilangan subset M.",
-          formula:
-            "n(M) = 4\nBilangan subset = 2⁴ = 16",
+          content: "Set M = {p, q, r, s}. Cari bilangan subset M.",
+          formula: "n(M) = 4\nBilangan subset = 2⁴ = 16",
         },
         {
           title: "Contoh 4: Membaca Gambar Rajah Venn",
           content:
             "Dari gambar rajah Venn: ξ = {1,2,3,4,5,6,7,8,9,10}. Dalam A: {2,4,6,8,10}. Dalam B: {1,2,3,4,5}. Cari: (a) n(A), (b) unsur dalam A tetapi bukan B.",
-          formula:
-            "n(A) = 5\nUnsur dalam A tetapi bukan B = {6, 8, 10}",
+          formula: "n(A) = 5\nUnsur dalam A tetapi bukan B = {6, 8, 10}",
         },
         {
           title: "Contoh 5: Kesamaan Set",

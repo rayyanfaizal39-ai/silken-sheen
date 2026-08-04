@@ -72,8 +72,7 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Cara Mengira Perimeter",
-          content:
-            "Untuk mengira perimeter, TAMBAHKAN panjang semua sisi luar bentuk tersebut.",
+          content: "Untuk mengira perimeter, TAMBAHKAN panjang semua sisi luar bentuk tersebut.",
           formula: "Perimeter = Jumlah semua sisi luar",
         },
         {
@@ -84,8 +83,7 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Perimeter Segi Empat Sama",
-          content:
-            "Segi empat sama mempunyai 4 sisi yang sama panjang. Panjang sisi = s.",
+          content: "Segi empat sama mempunyai 4 sisi yang sama panjang. Panjang sisi = s.",
           formula: "Perimeter = 4s",
         },
         {
@@ -106,21 +104,17 @@ export const mathF1C10NotesBM: StructuredNotes = {
       subsections: [
         {
           title: "Contoh 1: Segi Empat Tepat",
-          content:
-            "Sebuah segi empat tepat mempunyai panjang 8 cm dan lebar 5 cm. Kira perimeter.",
-          formula:
-            "Perimeter = 2(p + l) = 2(8 + 5) = 2(13) = 26 cm",
+          content: "Sebuah segi empat tepat mempunyai panjang 8 cm dan lebar 5 cm. Kira perimeter.",
+          formula: "Perimeter = 2(p + l) = 2(8 + 5) = 2(13) = 26 cm",
         },
         {
           title: "Contoh 2: Segi Tiga",
-          content:
-            "Sebuah segi tiga mempunyai sisi 6 cm, 8 cm dan 10 cm. Kira perimeter.",
+          content: "Sebuah segi tiga mempunyai sisi 6 cm, 8 cm dan 10 cm. Kira perimeter.",
           formula: "Perimeter = 6 + 8 + 10 = 24 cm",
         },
         {
           title: "Contoh 3: Bentuk Sekata Enam Sisi",
-          content:
-            "Sebuah heksagon sekata (6 sisi) mempunyai setiap sisi 4 cm. Kira perimeter.",
+          content: "Sebuah heksagon sekata (6 sisi) mempunyai setiap sisi 4 cm. Kira perimeter.",
           formula: "Perimeter = 6 × 4 = 24 cm",
         },
         {
@@ -259,8 +253,7 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 1: Segi Tiga Bersudut Tegak",
-          content:
-            "Segi tiga dengan tapak 10 cm dan tinggi 6 cm.",
+          content: "Segi tiga dengan tapak 10 cm dan tinggi 6 cm.",
           formula: "Luas = ½ × 10 × 6 = ½ × 60 = 30 cm²",
         },
         {
@@ -271,10 +264,8 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 3: Mencari Tapak apabila Luas Diketahui",
-          content:
-            "Luas segi tiga = 24 cm² dan tinggi = 6 cm. Cari tapak.",
-          formula:
-            "24 = ½ × tapak × 6\n24 = 3 × tapak\nTapak = 24 ÷ 3 = 8 cm",
+          content: "Luas segi tiga = 24 cm² dan tinggi = 6 cm. Cari tapak.",
+          formula: "24 = ½ × tapak × 6\n24 = 3 × tapak\nTapak = 24 ÷ 3 = 8 cm",
         },
       ],
     },
@@ -299,20 +290,17 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 1: Jajaran Genjang",
-          content:
-            "Jajaran genjang dengan tapak 12 cm dan tinggi 7 cm (bukan sisi condong 9 cm).",
+          content: "Jajaran genjang dengan tapak 12 cm dan tinggi 7 cm (bukan sisi condong 9 cm).",
           formula: "Luas = 12 × 7 = 84 cm²",
         },
         {
           title: "Contoh 2: Segi Empat Tepat",
-          content:
-            "Segi empat tepat 15 cm × 9 cm. Tinggi = lebar = 9 cm.",
+          content: "Segi empat tepat 15 cm × 9 cm. Tinggi = lebar = 9 cm.",
           formula: "Luas = 15 × 9 = 135 cm²",
         },
         {
           title: "Contoh 3: Mencari Tinggi",
-          content:
-            "Luas jajaran genjang = 60 cm² dan tapak = 10 cm. Cari tinggi.",
+          content: "Luas jajaran genjang = 60 cm² dan tapak = 10 cm. Cari tinggi.",
           formula: "60 = 10 × tinggi\nTinggi = 60 ÷ 10 = 6 cm",
         },
         {
@@ -343,22 +331,17 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 1",
-          content:
-            "Trapezium dengan sisi selari 8 cm dan 12 cm, tinggi 5 cm.",
-          formula:
-            "Luas = ½ × (8 + 12) × 5 = ½ × 20 × 5 = ½ × 100 = 50 cm²",
+          content: "Trapezium dengan sisi selari 8 cm dan 12 cm, tinggi 5 cm.",
+          formula: "Luas = ½ × (8 + 12) × 5 = ½ × 20 × 5 = ½ × 100 = 50 cm²",
         },
         {
           title: "Contoh 2",
-          content:
-            "Trapezium dengan sisi selari 6 cm dan 10 cm, tinggi 4 cm.",
-          formula:
-            "Luas = ½ × (6 + 10) × 4 = ½ × 16 × 4 = ½ × 64 = 32 cm²",
+          content: "Trapezium dengan sisi selari 6 cm dan 10 cm, tinggi 4 cm.",
+          formula: "Luas = ½ × (6 + 10) × 4 = ½ × 16 × 4 = ½ × 64 = 32 cm²",
         },
         {
           title: "Contoh 3: Mencari Tinggi",
-          content:
-            "Luas trapezium = 45 cm². Sisi selari = 7 cm dan 11 cm. Cari tinggi.",
+          content: "Luas trapezium = 45 cm². Sisi selari = 7 cm dan 11 cm. Cari tinggi.",
           formula:
             "45 = ½ × (7 + 11) × tinggi\n45 = ½ × 18 × tinggi\n45 = 9 × tinggi\nTinggi = 45 ÷ 9 = 5 cm",
         },
@@ -374,8 +357,7 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Formula Luas Lelayang",
-          content:
-            "Luas lelayang = separuh daripada hasil darab dua pepenjuru.",
+          content: "Luas lelayang = separuh daripada hasil darab dua pepenjuru.",
           formula: "Luas = ½ × d₁ × d₂",
         },
         {
@@ -385,22 +367,18 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh 1",
-          content:
-            "Lelayang dengan pepenjuru 10 cm dan 6 cm.",
+          content: "Lelayang dengan pepenjuru 10 cm dan 6 cm.",
           formula: "Luas = ½ × 10 × 6 = ½ × 60 = 30 cm²",
         },
         {
           title: "Contoh 2",
-          content:
-            "Lelayang dengan pepenjuru 14 cm dan 8 cm.",
+          content: "Lelayang dengan pepenjuru 14 cm dan 8 cm.",
           formula: "Luas = ½ × 14 × 8 = ½ × 112 = 56 cm²",
         },
         {
           title: "Contoh 3: Mencari Pepenjuru",
-          content:
-            "Luas lelayang = 40 cm² dan satu pepenjuru = 10 cm. Cari pepenjuru yang lain.",
-          formula:
-            "40 = ½ × 10 × d₂\n40 = 5 × d₂\nd₂ = 40 ÷ 5 = 8 cm",
+          content: "Luas lelayang = 40 cm² dan satu pepenjuru = 10 cm. Cari pepenjuru yang lain.",
+          formula: "40 = ½ × 10 × d₂\n40 = 5 × d₂\nd₂ = 40 ÷ 5 = 8 cm",
         },
         {
           title: "Nota: Formula Belah Ketupat",
@@ -467,14 +445,12 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh Penukaran",
-          content:
-            "Tukarkan 3.5 m² kepada cm².",
+          content: "Tukarkan 3.5 m² kepada cm².",
           formula: "3.5 m² = 3.5 × 10 000 = 35 000 cm²",
         },
         {
           title: "Contoh Penukaran 2",
-          content:
-            "Tukarkan 45 000 cm² kepada m².",
+          content: "Tukarkan 45 000 cm² kepada m².",
           formula: "45 000 cm² ÷ 10 000 = 4.5 m²",
         },
         {
@@ -517,8 +493,7 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh: Luas Tetap = 36 cm²",
-          content:
-            "Senarai semua segi empat tepat dengan luas 36 cm² dan kira perimeternya:",
+          content: "Senarai semua segi empat tepat dengan luas 36 cm² dan kira perimeternya:",
           table: {
             headers: ["Panjang (cm)", "Lebar (cm)", "Luas (cm²)", "Perimeter (cm)"],
             rows: [
@@ -547,8 +522,7 @@ export const mathF1C10NotesBM: StructuredNotes = {
         },
         {
           title: "Contoh: Perimeter Tetap = 24 cm",
-          content:
-            "Senarai semua segi empat tepat dengan perimeter 24 cm dan kira luasnya:",
+          content: "Senarai semua segi empat tepat dengan perimeter 24 cm dan kira luasnya:",
           table: {
             headers: ["Panjang (cm)", "Lebar (cm)", "Perimeter (cm)", "Luas (cm²)"],
             rows: [
@@ -630,22 +604,19 @@ export const mathF1C10NotesBM: StructuredNotes = {
           title: "Contoh: Masalah Lantai",
           content:
             "Sebuah bilik berbentuk L mempunyai dimensi: bahagian besar 8 m × 6 m, bahagian kecil 3 m × 4 m. Jubin berharga RM 15 per m². Berapakah kos jubin?",
-          formula:
-            "Luas = (8 × 6) + (3 × 4) = 48 + 12 = 60 m²\nKos = 60 × RM 15 = RM 900",
+          formula: "Luas = (8 × 6) + (3 × 4) = 48 + 12 = 60 m²\nKos = 60 × RM 15 = RM 900",
         },
         {
           title: "Contoh: Masalah Tanaman",
           content:
             "Sebidang tanah berbentuk trapezium dengan sisi selari 30 m dan 20 m, tinggi 15 m. Baja diperlukan 2 kg per m². Berapakah jumlah baja?",
-          formula:
-            "Luas = ½ × (30 + 20) × 15 = ½ × 50 × 15 = 375 m²\nBaja = 375 × 2 = 750 kg",
+          formula: "Luas = ½ × (30 + 20) × 15 = ½ × 50 × 15 = 375 m²\nBaja = 375 × 2 = 750 kg",
         },
         {
           title: "Contoh: Masalah Cat",
           content:
             "Dinding berbentuk segi tiga dengan tapak 6 m dan tinggi 4 m. Cat diperlukan 0.5 L per m². Satu tin mengandungi 3 L. Berapa tin?",
-          formula:
-            "Luas = ½ × 6 × 4 = 12 m²\nCat = 12 × 0.5 = 6 L\nTin = 6 ÷ 3 = 2 tin",
+          formula: "Luas = ½ × 6 × 4 = 12 m²\nCat = 12 × 0.5 = 6 L\nTin = 6 ÷ 3 = 2 tin",
         },
       ],
     },
