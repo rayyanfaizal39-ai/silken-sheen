@@ -21,6 +21,11 @@ body[data-academy-loading="true"] #academy-app,body[data-academy-loading="true"]
 
 /** HTML-document loader. Its logo is inline so first paint needs no asset request. */
 export function AcadeMYStaticLoadingShell() {
+  // NOTE: only the branded loading presentation lives in markup (server/static
+  // HTML and crawlers must never see error copy). The error heading/message
+  // and Retry/Reload controls are created on demand at runtime by
+  // AppBootGate's `renderLoaderError()` after a genuine boot failure/timeout,
+  // and removed again once the error clears.
   return (
     <div id="academy-static-loader" role="status" aria-live="polite" aria-label="Preparing your learning mission">
       <div className="academy-static-stars" aria-hidden="true" />
@@ -33,14 +38,6 @@ export function AcadeMYStaticLoadingShell() {
         </div>
         <p className="academy-static-message" data-loading-message>Preparing your learning mission…</p>
         <div className="academy-static-bar" aria-hidden="true"><span /></div>
-      </div>
-      <div className="academy-static-error" role="alert">
-        <h1>Mission control needs a moment</h1>
-        <p data-loading-error>AcadeMY could not finish loading this screen.</p>
-        <div className="academy-static-actions">
-          <button type="button" data-loading-retry>Retry</button>
-          <button type="button" data-loading-reload>Reload</button>
-        </div>
       </div>
     </div>
   );
@@ -55,9 +52,13 @@ type AcadeMYLoadingScreenProps = {
 };
 
 /**
- * Full-screen branded boot screen. Purely presentational — readiness is
- * decided by <AppBootGate />. Motion is CSS-only and disabled entirely under
- * `prefers-reduced-motion`.
+ * Legacy/alternate full-screen branded boot screen, kept exported so existing
+ * imports don't break. It is NOT rendered by the app today — the source of
+ * truth for the boot loader is the static shell markup
+ * (`AcadeMYStaticLoadingShell` / scripts/generate-static-shell.js) driven by
+ * `AppBootGate`, plus the exported `ACADEMY_LOADING_CRITICAL_CSS`. Do not
+ * render this alongside the static loader — that would produce duplicate
+ * loaders on screen.
  */
 export function AcadeMYLoadingScreen({
   visible,
