@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
+import { useSignInModal } from "@/context/sign-in-modal";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
 import {
@@ -19008,6 +19009,7 @@ function QuizzesPage() {
   const { progress, addXp, recordQuiz, awardBadge, markChapter, recordQuizResult } = useProgress();
   const { user: authUser } = useAuth();
   const { openCikgu } = useCikgu();
+  const { open: openSignIn } = useSignInModal();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
@@ -19986,7 +19988,7 @@ function QuizzesPage() {
                     </p>
                     <button
                       type="button"
-                      onClick={openCikgu}
+                      onClick={() => openSignIn("signin")}
                       className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                     >
                       Sign In
