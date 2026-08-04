@@ -17,6 +17,7 @@ import { useAuth } from "@/context/auth-context";
 import { analyzeProgress, withinDays } from "@/lib/tracker";
 import { seoMeta } from "@/lib/seo";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/parent")({
   head: () => seoMeta({
@@ -30,7 +31,7 @@ export const Route = createFileRoute("/parent")({
 
 function ParentPage() {
   const { progress, setParentReport } = useProgress();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [cadence, setCadence] = useState<ReportCadence>(progress.reportCadence ?? "weekly");
   const [email, setEmail] = useState(progress.parentEmail ?? "");
   const [saved, setSaved] = useState(false);
@@ -49,6 +50,35 @@ function ParentPage() {
   const rank = getRank(progress.xp);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if (authLoading) {
+    return (
+      <section className="mx-auto max-w-3xl px-4 py-10" aria-label="Loading Parent Mission Report">
+        <div className="h-56 animate-pulse rounded-[2rem] border border-white/[0.08] bg-white/[0.04]" />
+        <div className="mt-6 h-32 animate-pulse rounded-[2rem] border border-white/[0.08] bg-white/[0.04]" />
+      </section>
+    );
+  }
+
+  if (!user) {
+    return (
+      <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 px-6 py-12 text-center backdrop-blur-2xl">
+          <ShieldCheck className="mx-auto h-9 w-9 text-[#34D399]" />
+          <h1 className="mt-4 font-display text-2xl font-bold text-white">Parent Mission Report</h1>
+          <p className="mt-2 text-sm text-white/55">
+            Sign in to view your child's private learning summary.
+          </p>
+          <Link
+            to="/login"
+            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-[#34D399]/50 bg-[#34D399]/15 px-5 text-sm font-black text-[#6EE7B7]"
+          >
+            Sign in
+          </Link>
+        </div>
+      </section>
+    );
+  }
 
   function save() {
     setParentReport(emailValid ? email : undefined, cadence);
