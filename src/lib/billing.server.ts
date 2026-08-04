@@ -1,8 +1,8 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { CHECKOUT_PLANS, BILLING_CURRENCY } from "./billing-config";
+import { CHECKOUT_PLANS, BILLING_CURRENCY, type PurchasableCheckoutPlan } from "./billing-config";
 import { assertVerifiedAmount } from "./billing-core";
 import { generateInvoicePdf } from "./invoice-pdf.server";
-import type { CheckoutPlan, InvoiceData, PaymentStatus } from "./billing.types";
+import type { InvoiceData, PaymentStatus } from "./billing.types";
 
 type PaymentRow = {
   id: string;
@@ -26,7 +26,7 @@ export function getSupabaseAdminClient(): SupabaseClient {
 
 export async function createPendingPayment(input: {
   userId: string;
-  checkoutPlan: CheckoutPlan;
+  checkoutPlan: PurchasableCheckoutPlan;
   provider: "mock" | "toyyibpay";
   idempotencyKey: string;
 }) {

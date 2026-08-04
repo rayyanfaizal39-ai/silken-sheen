@@ -95,7 +95,6 @@ export const Route = createFileRoute("/flashcards")({
         "KSSM flashcards",
         "Form 1 flashcards",
         "spaced repetition",
-        "SPM preparation",
         ...subjectSeoKeywords(subjectId),
       ],
     });

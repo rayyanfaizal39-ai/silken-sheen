@@ -21,7 +21,10 @@ import {
 
 const HERO_IMAGE = "/assets/ranks/home/academy-station-hero.png";
 const BOOT_TIMEOUT_MS = 12_000;
-const TRANSITION_DELAY_MS = 200;
+// Kept high enough that ordinary same-app navigations (route already
+// prefetched/cached) never flash the loader — only genuinely slow
+// transitions show it, after which minVisibleMs prevents a jarring flicker.
+const TRANSITION_DELAY_MS = 400;
 const TRANSITION_MIN_MS = 350;
 let initialBootTasks: LoadingTaskHandle[] | null = null;
 
@@ -58,6 +61,53 @@ function getLoaderElements() {
   const loader = document.getElementById("academy-static-loader");
   const app = document.getElementById("academy-app") ?? document.getElementById("root");
   return { loader, app };
+}
+
+/**
+ * Builds the error heading/message/Retry/Reload controls on demand and
+ * appends them to the static loader. These nodes intentionally do NOT exist
+ * in the server/static HTML (see scripts/generate-static-shell.js) — a
+ * crawler or "view source" must never see error copy on a successful load.
+ * They're created here only once a genuine boot failure/timeout has
+ * occurred, and removed again via `removeLoaderError` once it clears.
+ */
+function renderLoaderError(loader: HTMLElement, onRetry: () => void) {
+  if (loader.querySelector("[data-loading-error-block]")) return;
+
+  const block = document.createElement("div");
+  block.className = "academy-static-error";
+  block.setAttribute("role", "alert");
+  block.setAttribute("data-loading-error-block", "true");
+
+  const heading = document.createElement("h1");
+  heading.textContent = "Mission control needs a moment";
+
+  const message = document.createElement("p");
+  message.setAttribute("data-loading-error", "true");
+  message.textContent = "AcadeMY could not finish loading this screen.";
+
+  const actions = document.createElement("div");
+  actions.className = "academy-static-actions";
+
+  const retryButton = document.createElement("button");
+  retryButton.type = "button";
+  retryButton.setAttribute("data-loading-retry", "true");
+  retryButton.textContent = "Retry";
+  retryButton.addEventListener("click", onRetry);
+
+  const reloadButton = document.createElement("button");
+  reloadButton.type = "button";
+  reloadButton.setAttribute("data-loading-reload", "true");
+  reloadButton.textContent = "Reload";
+  reloadButton.addEventListener("click", () => window.location.reload());
+
+  actions.append(retryButton, reloadButton);
+  block.append(heading, message, actions);
+  loader.appendChild(block);
+}
+
+function removeLoaderError(loader: HTMLElement) {
+  loader.querySelector("[data-loading-error-block]")?.remove();
 }
 
 function getInitialBootTasks() {
@@ -176,24 +226,17 @@ export function AppBootGate({ children }: { children: ReactNode }) {
   useEffect(() => {
     const { loader, app } = getLoaderElements();
     if (!loader) return;
-    const retryButton = loader.querySelector<HTMLElement>("[data-loading-retry]");
-    const reloadButton = loader.querySelector<HTMLElement>("[data-loading-reload]");
-    retryButton?.addEventListener("click", retry);
-    const reload = () => window.location.reload();
-    reloadButton?.addEventListener("click", reload);
-    return () => {
-      retryButton?.removeEventListener("click", retry);
-      reloadButton?.removeEventListener("click", reload);
-    };
-  }, [retry]);
 
-  useEffect(() => {
-    const { loader, app } = getLoaderElements();
-    if (!loader) return;
+    if (state.error) {
+      renderLoaderError(loader, retry);
+      const errorMessage = loader.querySelector<HTMLElement>("[data-loading-error]");
+      if (errorMessage) errorMessage.textContent = state.error.message;
+    } else {
+      removeLoaderError(loader);
+    }
+
     const message = loader.querySelector<HTMLElement>("[data-loading-message]");
-    const errorMessage = loader.querySelector<HTMLElement>("[data-loading-error]");
     if (message) message.textContent = state.message;
-    if (errorMessage && state.error) errorMessage.textContent = state.error.message;
     loader.dataset.error = state.error ? "true" : "false";
 
     if (state.visible) {

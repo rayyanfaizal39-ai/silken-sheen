@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState, type ComponentType, type ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 import {
   BookOpen,
   Brain,
@@ -18,15 +18,19 @@ import {
 } from "@/components/AcademyHeroIllustrations";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { PlanetEnvironment, type PlanetSubjectId } from "@/components/PlanetEnvironment";
-import type { FormStat } from "@/content/registry";
+import { SUBJECT_FORM_SUMMARY, type SubjectFormSummary } from "@/lib/content-stats.generated";
 
-// getSubjectFormStats pulls in the full curriculum content registry (several
-// MB) at module top level. AcademyPage.tsx is imported by most subject-facing
-// routes (dashboard, subjects, notes, mindmaps, ...), so a static import here
-// put that weight in the eagerly-loaded path for all of them, including "/"
-// itself. Loaded lazily, client-side only — FormChapterPills renders nothing
-// until it resolves, then fills in (see component below).
-type RegistryModule = typeof import("@/content/registry");
+// Subject cards need Form 1/2/3 chapter counts on the very first render (SSR
+// included). @/content/registry's getSubjectFormStats is accurate but pulls
+// in the full curriculum content registry (several MB) — fine for a
+// client-only lazy import, but AcademyPage.tsx is imported by most
+// subject-facing routes (dashboard, subjects, notes, mindmaps, ...), so a
+// static import of the registry here would put that weight in the
+// eagerly-loaded path for all of them, including "/" itself. And a lazy
+// client-only import means every card starts at "0 Forms" until it resolves.
+// SUBJECT_FORM_SUMMARY is a tiny build-time-generated module (see
+// scripts/generate-content-stats.ts) with just the chapter counts each card
+// actually needs, safe to import synchronously anywhere.
 
 // ─── Subject identity system ─────────────────────────────────────────────────
 // Each subject has a fully unique visual identity: palette, art, atmosphere,
@@ -199,6 +203,17 @@ export function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetI
 // the subject is just "Form 1 + N chapters". Chapter counts come straight
 // from the content registry (real per-form data, never a hardcoded number);
 // a form with zero registered chapters reads "Soon" rather than "0".
+const ALL_FORMS: SubjectFormSummary["form"][] = ["Form 1", "Form 2", "Form 3"];
+
+function getSubjectFormSummary(subjectId: string): SubjectFormSummary[] {
+  const stats = SUBJECT_FORM_SUMMARY[subjectId];
+  if (stats && stats.length > 0) return stats;
+  // Subject not present in the generated summary (shouldn't happen for a
+  // real subject id) — still show Form 1/2/3 consistently rather than
+  // rendering nothing.
+  return ALL_FORMS.map((form) => ({ form, chapterCount: 0 }));
+}
+
 function FormChapterPills({
   subjectId,
   planet,
@@ -206,17 +221,7 @@ function FormChapterPills({
   subjectId: string;
   planet: (typeof subjectPlanetStyles)[SubjectPlanetId];
 }) {
-  const [registryModule, setRegistryModule] = useState<RegistryModule | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    import("@/content/registry").then((mod) => {
-      if (!cancelled) setRegistryModule(mod);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-  const formStats: FormStat[] = registryModule ? registryModule.getSubjectFormStats(subjectId) : [];
+  const formStats = getSubjectFormSummary(subjectId);
   return (
     <div className="mt-3">
       <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">
@@ -412,7 +417,7 @@ export function NotesSubjectCard({
 
         <div className="mt-3">
           <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">
-            Learning Journey · 3 Forms
+            Learning Journey · {formNumbers.length} Forms
           </p>
           <div className="grid grid-cols-3 gap-1.5">
             {formNumbers.map((form) => (

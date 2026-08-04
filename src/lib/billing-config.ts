@@ -6,10 +6,18 @@ import {
 
 export { BILLING_CURRENCY };
 
+// Only monthly plans are purchasable. `CheckoutPlan` still includes the
+// legacy annual keys so historical DB rows keep type-checking.
+export type PurchasableCheckoutPlan = keyof typeof SERVER_CHECKOUT_PLANS;
+
 export const CHECKOUT_PLANS: Record<
-  CheckoutPlan,
+  PurchasableCheckoutPlan,
   { plan: PaidBillingPlan; interval: BillingInterval; amount: number; label: string }
 > = SERVER_CHECKOUT_PLANS;
+
+export function isPurchasableCheckoutPlan(value: CheckoutPlan): value is PurchasableCheckoutPlan {
+  return Object.hasOwn(CHECKOUT_PLANS, value);
+}
 
 export function isProductionEnvironment(env: NodeJS.ProcessEnv = process.env) {
   return env.NODE_ENV === "production" || env.CF_PAGES_BRANCH === "main";
@@ -26,6 +34,6 @@ export function isToyyibPayConfigured(env: NodeJS.ProcessEnv = process.env) {
   );
 }
 
-export function toCheckoutPlan(plan: PaidBillingPlan, interval: BillingInterval): CheckoutPlan {
-  return `${plan}_${interval}`;
+export function toCheckoutPlan(plan: PaidBillingPlan): CheckoutPlan {
+  return `${plan}_monthly`;
 }
