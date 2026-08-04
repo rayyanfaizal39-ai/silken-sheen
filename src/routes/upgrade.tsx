@@ -453,7 +453,7 @@ function PricingCard({
   const featurePlan = FEATURE_PLAN[plan.key];
   const isPremium = plan.key === "premium";
   const displayPrice = plan.monthlyPrice;
-  const selectedCheckoutPlan = toCheckoutPlan(plan.key, "monthly");
+  const selectedCheckoutPlan = toCheckoutPlan(plan.key);
   const featureLabels = PLAN_FEATURES[featurePlan]
     .filter((feature): feature is UpgradeFeature => feature in FEATURE_LABELS)
     .filter((feature) => !isPremium || feature.startsWith("parent_"))

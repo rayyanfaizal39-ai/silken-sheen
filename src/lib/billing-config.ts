@@ -34,6 +34,6 @@ export function isToyyibPayConfigured(env: NodeJS.ProcessEnv = process.env) {
   );
 }
 
-export function toCheckoutPlan(plan: PaidBillingPlan, interval: BillingInterval): CheckoutPlan {
-  return `${plan}_${interval}`;
+export function toCheckoutPlan(plan: PaidBillingPlan): CheckoutPlan {
+  return `${plan}_monthly`;
 }
