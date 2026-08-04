@@ -768,6 +768,9 @@ function ensureAuthSync() {
     try {
       localStorage.setItem(progressStorageKey(user.id), JSON.stringify(merged));
     } catch {}
+    if (merged.companion?.selectedAt !== remote.companion?.selectedAt) {
+      await saveToSupabase(user.id, merged);
+    }
   });
 
   supabase.auth.onAuthStateChange(async (event, session) => {
