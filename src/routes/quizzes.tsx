@@ -4,6 +4,7 @@ import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
 import { useCikgu } from "@/context/cikgu-context";
+import { useAuth } from "@/context/auth-context";
 import {
   CheckCircle2,
   XCircle,
@@ -119,8 +120,6 @@ export const Route = createFileRoute("/quizzes")({
       path: "/quizzes",
       keywords: [
         "KSSM quiz",
-        "PT3 preparation",
-        "SPM preparation",
         "Form 1 quiz",
         ...subjectSeoKeywords(subjectId),
       ],
@@ -19007,6 +19006,7 @@ function QuizzesPage() {
     chapter?: string;
   };
   const { progress, addXp, recordQuiz, awardBadge, markChapter, recordQuizResult } = useProgress();
+  const { user: authUser } = useAuth();
   const { openCikgu } = useCikgu();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
@@ -19969,28 +19969,71 @@ function QuizzesPage() {
       {!subject ? (
         <div className="space-y-6">
           <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                Continue Quiz
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
-              <p className="mt-1 text-sm text-[#94A3B8]">Bab 7: Udara • Best score 86%</p>
-              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[54%] rounded-full bg-gradient-to-r from-[#F59E0B] to-[#8B5CF6]" />
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setSubject("science");
-                  setScienceLang("bm");
-                  setChapter("Chapter 7");
-                  reset();
-                }}
-                className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
-              >
-                Resume Quiz
-              </button>
-            </div>
+            {(() => {
+              const lastQuiz = progress.lastVisited?.type === "quiz" ? progress.lastVisited : undefined;
+              const lastResult = [...(progress.quizHistory ?? [])]
+                .filter((r) => !lastQuiz || (r.subjectId === lastQuiz.subjectId && r.chapterKey === lastQuiz.chapterKey))
+                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+              if (!authUser) {
+                return (
+                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                      Sign in to track progress
+                    </p>
+                    <h2 className="mt-3 font-display text-2xl font-bold">Save your quiz results</h2>
+                    <p className="mt-1 text-sm text-[#94A3B8]">
+                      Sign in to resume quizzes and see your real scores here.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={openCikgu}
+                      className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                );
+              }
+              if (!lastQuiz) {
+                return (
+                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                      Get Started
+                    </p>
+                    <h2 className="mt-3 font-display text-2xl font-bold">No quizzes yet</h2>
+                    <p className="mt-1 text-sm text-[#94A3B8]">
+                      Complete your first lesson to continue here.
+                    </p>
+                  </div>
+                );
+              }
+              return (
+                <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                  <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                    Continue Quiz
+                  </p>
+                  <h2 className="mt-3 font-display text-2xl font-bold">
+                    {subjects.find((s) => s.id === lastQuiz.subjectId)?.name ?? lastQuiz.subjectId}
+                  </h2>
+                  <p className="mt-1 text-sm text-[#94A3B8]">
+                    {cleanLearningLabel(lastQuiz.label)}
+                    {lastResult ? ` • Best score ${Math.round(lastResult.scorePct)}%` : ""}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubject(lastQuiz.subjectId);
+                      setForm(lastQuiz.form ?? "Form 1");
+                      setChapter(lastQuiz.chapterKey);
+                      reset();
+                    }}
+                    className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+                  >
+                    Resume Quiz
+                  </button>
+                </div>
+              );
+            })()}
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
               {[
                 ["Daily Challenge", "Mixed question challenge", "Start"],

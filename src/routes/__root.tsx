@@ -115,7 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "keywords",
         content:
-          "KSSM notes, KSSM quiz, KSSM flashcards, SPM preparation, PT3 preparation, Form 1 notes, Form 2 notes, Form 3 notes, Ace, AI tutor Malaysia, student learning platform Malaysia, Malaysia learning platform",
+          "KSSM notes, KSSM quiz, KSSM flashcards, Form 1 notes, Form 2 notes, Form 3 notes, Ace, AI tutor Malaysia, student learning platform Malaysia, Malaysia learning platform",
       },
       { name: "robots", content: "index, follow" },
       { name: "theme-color", content: "#050816" },
