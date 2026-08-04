@@ -70,10 +70,27 @@ const cssFiles = new Set([
 const cssLinks = [...cssFiles]
   .map(
     (href) =>
-      `    <link rel="stylesheet" href="/${href}" media="print" data-app-stylesheet="true" />\n` +
+      `    <link rel="stylesheet" href="/${href}" media="print" data-app-stylesheet="true" onload="this.media='all'" />\n` +
       `    <noscript><link rel="stylesheet" href="/${href}" /></noscript>`,
   )
   .join("\n");
+
+// No-React fallback: AppBootGate normally promotes these stylesheets from
+// media="print" to media="all" once mounted. If React never hydrates (script
+// blocked, boot failure before mount, etc.) the page would otherwise stay
+// unstyled forever. This inline script is a redundant, idempotent safety net:
+// the per-link onload above (and any React-driven activation) may already
+// have flipped `media`, so this only needs to catch the stragglers after a
+// short delay.
+const noReactStyleFallback = `    <script>
+      (function () {
+        function activateAppStylesheets() {
+          var links = document.querySelectorAll('link[data-app-stylesheet]');
+          for (var i = 0; i < links.length; i++) links[i].media = "all";
+        }
+        setTimeout(activateAppStylesheets, 3000);
+      })();
+    </script>`;
 
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -84,8 +101,17 @@ const html = `<!DOCTYPE html>
     <title>AcadeMY</title>
     <style>${loadingCriticalCss}</style>
 ${cssLinks}
+${noReactStyleFallback}
   </head>
   <body data-academy-loading="true">
+    <!--
+      Only the branded loading presentation (stars, logo, orbit, progress bar)
+      ships in this static markup so crawlers/page-source readers never see
+      error copy. The error heading/message and Retry/Reload controls are
+      created at runtime (in JS, by AppBootGate's renderLoaderError()) only
+      after a genuine boot failure or timeout, and are removed again once
+      the error clears.
+    -->
     <div id="academy-static-loader" role="status" aria-live="polite" aria-label="Preparing your learning mission">
       <div class="academy-static-stars" aria-hidden="true"></div>
       <div class="academy-static-loading">
@@ -97,14 +123,6 @@ ${cssLinks}
         </div>
         <p class="academy-static-message" data-loading-message>Preparing your learning mission…</p>
         <div class="academy-static-bar" aria-hidden="true"><span></span></div>
-      </div>
-      <div class="academy-static-error" role="alert">
-        <h1>Mission control needs a moment</h1>
-        <p data-loading-error>AcadeMY could not finish loading this screen.</p>
-        <div class="academy-static-actions">
-          <button type="button" data-loading-retry>Retry</button>
-          <button type="button" data-loading-reload>Reload</button>
-        </div>
       </div>
     </div>
     <div id="root"></div>
