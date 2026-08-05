@@ -161,7 +161,7 @@ function HomeJourneySummary({ xp }: { xp: number }) {
       style={{ "--summary-accent": journey.rank.color } as CSSProperties}
     >
       <div className="home-progress-summary__art home-progress-summary__rank-art">
-        <RankBadge rank={journey.rank} size={112} />
+        <RankBadge rank={journey.rank} size="var(--summary-art-size, 160px)" />
       </div>
       <div className="home-progress-summary__body">
         <p className="home-skeleton__section-label">Your Journey</p>
