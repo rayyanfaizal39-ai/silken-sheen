@@ -161,7 +161,7 @@ function HomeJourneySummary({ xp }: { xp: number }) {
       style={{ "--summary-accent": journey.rank.color } as CSSProperties}
     >
       <div className="home-progress-summary__art home-progress-summary__rank-art">
-        <RankBadge rank={journey.rank} size={112} />
+        <RankBadge rank={journey.rank} size="var(--summary-rank-size, 174px)" />
       </div>
       <div className="home-progress-summary__body">
         <p className="home-skeleton__section-label">Your Journey</p>
@@ -220,7 +220,7 @@ function HomeCompanionSummary({
       aria-labelledby="companion-summary-title"
     >
       <div className="home-progress-summary__art home-progress-summary__companion-art">
-        <CompanionImage speciesId={companion.id} stage={stage.id} size={132} />
+        <CompanionImage speciesId={companion.id} stage={stage.id} size={168} />
       </div>
       <div className="home-progress-summary__body">
         <p className="home-skeleton__section-label">Cosmic Companion</p>
