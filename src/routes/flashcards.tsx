@@ -5292,6 +5292,8 @@ function FlashcardsPage() {
     set?: string | number;
   };
   const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
+  const { user: authUser } = useAuth();
+  const { open: openSignIn } = useSignInModal();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
