@@ -1737,7 +1737,7 @@
 
 .home-progress-summary--loading {
   min-height: 248px;
-  grid-template-columns: 112px minmax(0, 1fr);
+  grid-template-columns: var(--summary-art-frame) minmax(0, 1fr);
 }
 
 .home-progress-summary--loading.home-progress-summary--recommendation {
@@ -1745,8 +1745,8 @@
 }
 
 .home-progress-summary__skeleton-art {
-  width: 104px;
-  height: 104px;
+  width: var(--summary-art-size);
+  height: var(--summary-art-size);
   border-radius: 50%;
 }
 
@@ -1766,7 +1766,8 @@
   }
 
   .home-progress-summary {
-    grid-template-columns: 130px minmax(0, 1fr);
+    --summary-art-size: 138px;
+    --summary-art-frame: 174px;
   }
 
   .home-progress-summary--recommendation {
@@ -1781,26 +1782,30 @@
 
 @media (max-width: 560px) {
   .home-progress-summary {
+    --summary-art-size: 116px;
+    --summary-art-frame: 146px;
     min-height: 0;
-    grid-template-columns: 84px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
     align-items: start;
     gap: 0.85rem;
     padding: 1rem;
   }
 
   .home-progress-summary__art {
-    min-height: 84px;
+    width: var(--summary-art-frame);
   }
 
-  .home-progress-summary__rank-art > span {
-    width: 76px !important;
-    height: 76px !important;
+  .home-progress-summary__body {
+    width: 100%;
+    text-align: left;
   }
 
-  .home-progress-summary__companion-art img {
-    width: 82px !important;
-    height: 82px !important;
+  .home-progress-summary--recommendation {
+    grid-template-columns: 52px minmax(0, 1fr);
+    justify-items: stretch;
   }
+
 
   .home-progress-summary__title-row {
     align-items: flex-start;
