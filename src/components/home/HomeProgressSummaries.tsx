@@ -220,7 +220,7 @@ function HomeCompanionSummary({
       aria-labelledby="companion-summary-title"
     >
       <div className="home-progress-summary__art home-progress-summary__companion-art">
-        <CompanionImage speciesId={companion.id} stage={stage.id} size={132} />
+        <CompanionImage speciesId={companion.id} stage={stage.id} size={168} />
       </div>
       <div className="home-progress-summary__body">
         <p className="home-skeleton__section-label">Cosmic Companion</p>
