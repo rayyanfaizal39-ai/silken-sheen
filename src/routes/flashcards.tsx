@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import { useProgress } from "@/hooks/use-progress";
+import { useAuth } from "@/context/auth-context";
+import { useSignInModal } from "@/context/sign-in-modal";
 import {
   Heart,
   ChevronLeft,
