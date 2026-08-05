@@ -1497,6 +1497,7 @@
 .home-progress-summary {
   --summary-accent: #a78bfa;
   --summary-art-size: 160px;
+  --summary-rank-size: 174px;
   --summary-art-frame: 200px;
   position: relative;
   min-width: 0;
@@ -1767,6 +1768,7 @@
 
   .home-progress-summary {
     --summary-art-size: 138px;
+    --summary-rank-size: 150px;
     --summary-art-frame: 174px;
   }
 
@@ -1783,6 +1785,7 @@
 @media (max-width: 560px) {
   .home-progress-summary {
     --summary-art-size: 116px;
+    --summary-rank-size: 126px;
     --summary-art-frame: 146px;
     min-height: 0;
     grid-template-columns: minmax(0, 1fr);
