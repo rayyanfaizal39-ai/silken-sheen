@@ -101,7 +101,7 @@ const kataNama: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy ada cara mudah nak kenal Kata Nama. Kita guna kaedah SOAL 'APA' atau 'SIAPA'.",
+      "Cikgu AcadeMY ada cara mudah nak kenal Kata Nama. Kita guna kaedah SOAL 'APA' atau 'SIAPA'.",
     langkah: [
       {
         tajuk: "Langkah 1 — Tanya 'Apa?' atau 'Siapa?'",
@@ -431,7 +431,7 @@ const kataAdjektif: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy ajar cara cepat kenal Kata Adjektif: guna ujian 'SANGAT'. Tapi ada banyak lagi cara. Jom belajar langkah demi langkah!",
+      "Cikgu AcadeMY ajar cara cepat kenal Kata Adjektif: guna ujian 'SANGAT'. Tapi ada banyak lagi cara. Jom belajar langkah demi langkah!",
     langkah: [
       {
         tajuk: "Langkah 1 — Ujian 'SANGAT'",
@@ -767,7 +767,7 @@ const kataTugas: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy guna analogi 'kereta api' untuk Kata Tugas. Gerbong (kata nama/kerja) tak boleh bergerak tanpa rel (kata tugas). Rel tak kelihatan tapi SANGAT penting!",
+      "Cikgu AcadeMY guna analogi 'kereta api' untuk Kata Tugas. Gerbong (kata nama/kerja) tak boleh bergerak tanpa rel (kata tugas). Rel tak kelihatan tapi SANGAT penting!",
     langkah: [
       {
         tajuk: "Langkah 1 — Kenal Kata Sendi Nama",
@@ -1090,7 +1090,7 @@ const kataKerjaTakTransitif: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy guna cara 'soal objek' untuk bezakan KK Transitif dan Tak Transitif. Cuba tanya 'buat apa?' atau 'kepada siapa?' selepas kata kerja. Kalau soalan tu tak masuk akal → KK TAK TRANSITIF.",
+      "Cikgu AcadeMY guna cara 'soal objek' untuk bezakan KK Transitif dan Tak Transitif. Cuba tanya 'buat apa?' atau 'kepada siapa?' selepas kata kerja. Kalau soalan tu tak masuk akal → KK TAK TRANSITIF.",
     langkah: [
       {
         tajuk: "Langkah 1 — Baca ayat dan kesan kata kerja",
@@ -1395,7 +1395,7 @@ const kataGanda: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy ajar tiga jenis Kata Ganda dengan cara yang mudah diingat. Kita guna kaedah 'PENUH-SEPARA-BUNYI'.",
+      "Cikgu AcadeMY ajar tiga jenis Kata Ganda dengan cara yang mudah diingat. Kita guna kaedah 'PENUH-SEPARA-BUNYI'.",
     langkah: [
       {
         tajuk: "Langkah 1 — Kata Ganda Penuh",
@@ -1689,7 +1689,7 @@ const polaAyatInti: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy guna kaedah 'SOAL PREDIKAT' untuk kenal pola ayat. Tengok apa yang ada dalam predikat — kata nama? kata kerja? kata adjektif? kata sendi? → Itulah polanya!",
+      "Cikgu AcadeMY guna kaedah 'SOAL PREDIKAT' untuk kenal pola ayat. Tengok apa yang ada dalam predikat — kata nama? kata kerja? kata adjektif? kata sendi? → Itulah polanya!",
     langkah: [
       {
         tajuk: "Langkah 1 — Kenal Subjek",
@@ -1990,7 +1990,7 @@ const kesalahanAyat: SistemBahasaTopic = {
   warna: "#EF4444",
 
   pengenalan:
-    "Ini topik PALING penting dalam UASA! Soalan 'betulkan ayat' selalu keluar. Bukan sahaja kamu perlu tahu apa yang salah, tapi KENAPA salah dan BAGAIMANA nak betulkan. Cikgu AcadeMy akan tunjukkan semua jenis kesalahan paling kerap supaya kamu tak buat kesilapan yang sama!",
+    "Ini topik PALING penting dalam UASA! Soalan 'betulkan ayat' selalu keluar. Bukan sahaja kamu perlu tahu apa yang salah, tapi KENAPA salah dan BAGAIMANA nak betulkan. Cikgu AcadeMY akan tunjukkan semua jenis kesalahan paling kerap supaya kamu tak buat kesilapan yang sama!",
 
   definisi: {
     teks: "Kesalahan Ayat merujuk kepada kesilapan tatabahasa, ejaan, penggunaan kata, atau struktur ayat yang menyalahi hukum-hukum Bahasa Melayu baku.",
@@ -2006,7 +2006,7 @@ const kesalahanAyat: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy kategorikan kesalahan kepada 5 jenis. Hafal 5 jenis ini dan kamu dah boleh kenal pasti hampir semua kesalahan dalam UASA.",
+      "Cikgu AcadeMY kategorikan kesalahan kepada 5 jenis. Hafal 5 jenis ini dan kamu dah boleh kenal pasti hampir semua kesalahan dalam UASA.",
     langkah: [
       {
         tajuk: "Jenis 1 — Kesalahan Ejaan",
@@ -2361,7 +2361,7 @@ const peribahasaAsas: SistemBahasaTopic = {
 
   cikguTerang: {
     intro:
-      "Cikgu AcadeMy ajar cara mudah guna peribahasa: SITUASI → PERIBAHASA → MAKNA. Jangan hafal peribahasa sahaja — kena tahu bila nak guna!",
+      "Cikgu AcadeMY ajar cara mudah guna peribahasa: SITUASI → PERIBAHASA → MAKNA. Jangan hafal peribahasa sahaja — kena tahu bila nak guna!",
     langkah: [
       {
         tajuk: "Langkah 1 — Bezakan 3 jenis utama",

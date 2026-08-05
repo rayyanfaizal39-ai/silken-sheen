@@ -1864,7 +1864,7 @@ function PantunDuaKeratExperience({ work, color }: { work: KomsasWork; color: st
           <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
             <div className="mb-3 flex items-center gap-2 text-cyan-300">
               <MessageCircle className="h-5 w-5" />
-              <h3 className="font-display text-lg font-bold">Cikgu AcadeMy Terangkan</h3>
+              <h3 className="font-display text-lg font-bold">Cikgu AcadeMY Terangkan</h3>
             </div>
             <div className="space-y-3">
               {(Array.isArray(work.teacherExplains) ? work.teacherExplains : []).map((explain) => (
@@ -4415,7 +4415,7 @@ function LatihanKadRingkasan({
         </div>
       </div>
 
-      {/* 8. Tip Cikgu AcadeMy */}
+      {/* 8. Tip Cikgu AcadeMY */}
       <div className="rounded-2xl border border-[#FBBF24]/30 bg-gradient-to-br from-[#FBBF24]/10 to-[#F59E0B]/8 p-5">
         <div className="flex items-start gap-3">
           <div
@@ -4426,7 +4426,7 @@ function LatihanKadRingkasan({
           </div>
           <div>
             <p className="text-[10px] font-black tracking-wide text-[#FBBF24] mb-2">
-              Tip Cikgu AcadeMy
+              Tip Cikgu AcadeMY
             </p>
             <p className="text-sm leading-relaxed text-white/80 italic">"{latihan.tipCikgu}"</p>
           </div>
