@@ -208,7 +208,7 @@ export const FRASA_MENARIK_KATEGORI: FrasaMenarikKategori[] = [
 ];
 
 // ─── 4. Penanda Wacana Pilihan Pelajar Cemerlang ───────────────────────────────
-// Disusun berdasarkan nota Penanda Wacana Lengkap yang sedia ada dalam AcadeMy
+// Disusun berdasarkan nota Penanda Wacana Lengkap yang sedia ada dalam AcadeMY
 // (lihat src/data/bm-penanda-wacana-lengkap.ts), dipilih khusus untuk pelajar cemerlang.
 
 export interface PenandaWacanaCemerlangItem {
