@@ -1496,14 +1496,16 @@
 
 .home-progress-summary {
   --summary-accent: #a78bfa;
+  --summary-art-size: 160px;
+  --summary-art-frame: 200px;
   position: relative;
   min-width: 0;
   min-height: 248px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 142px minmax(0, 1fr);
+  grid-template-columns: var(--summary-art-frame) minmax(0, 1fr);
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.1rem;
   border-color: color-mix(in srgb, var(--summary-accent) 24%, transparent);
   background:
     radial-gradient(
