@@ -1806,7 +1806,6 @@
     justify-items: stretch;
   }
 
-
   .home-progress-summary__title-row {
     align-items: flex-start;
   }
@@ -1815,9 +1814,6 @@
     margin-top: 0.22rem;
   }
 
-  .home-progress-summary--recommendation {
-    grid-template-columns: 52px minmax(0, 1fr);
-  }
 
   .home-progress-summary__mission-icon {
     width: 50px;
