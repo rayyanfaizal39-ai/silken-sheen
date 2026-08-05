@@ -1539,7 +1539,7 @@
 }
 
 .home-progress-summary__art {
-  min-height: 150px;
+  min-height: var(--summary-art-frame);
   display: grid;
   place-items: center;
   border: 1px solid color-mix(in srgb, var(--summary-accent) 22%, transparent);
@@ -1557,12 +1557,29 @@
 
 .home-progress-summary__companion-art {
   --summary-accent: #f0abfc;
-  overflow: hidden;
+  position: relative;
   aspect-ratio: 1;
   border-radius: 32% 68% 58% 42% / 44% 38% 62% 56%;
 }
 
+.home-progress-summary__companion-art::after {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--summary-accent) 34%, transparent),
+    transparent 70%
+  );
+  filter: blur(10px);
+}
+
 .home-progress-summary__companion-art img {
+  width: var(--summary-art-size) !important;
+  height: var(--summary-art-size) !important;
   max-width: 100%;
   object-fit: contain;
 }
