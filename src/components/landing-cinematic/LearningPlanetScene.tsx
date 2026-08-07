@@ -17,6 +17,9 @@ type Feature = {
   src: string;
   alt: string;
   tab: string;
+  /** intrinsic artwork size — reserves layout box, avoids CLS on slow devices */
+  w: number;
+  h: number;
   /** landmark position as a % of the planet artwork */
   node: { x: number; y: number };
 };
@@ -25,6 +28,8 @@ const FEATURES: Feature[] = [
   // Academy building
   {
     key: "notes",
+    w: 894,
+    h: 542,
     src: learningKssmNotes,
     alt: "Complete KSSM Notes feature",
     tab: "KSSM Notes",
@@ -33,6 +38,8 @@ const FEATURES: Feature[] = [
   // Observatory / broadcast dome
   {
     key: "videos",
+    w: 900,
+    h: 548,
     src: learningAiVideos,
     alt: "AI Learning Videos feature",
     tab: "AI Videos",
@@ -41,6 +48,8 @@ const FEATURES: Feature[] = [
   // "Learn Practice Grow" practice area
   {
     key: "quizzes",
+    w: 900,
+    h: 569,
     src: learningSmartQuizzes,
     alt: "Smart Quizzes feature",
     tab: "Smart Quizzes",
@@ -49,6 +58,8 @@ const FEATURES: Feature[] = [
   // central lake / companion gathering area
   {
     key: "companion",
+    w: 900,
+    h: 612,
     src: learningCompanion,
     alt: "Gamified Companion feature",
     tab: "Companion",
@@ -57,6 +68,8 @@ const FEATURES: Feature[] = [
   // family home + comms tower
   {
     key: "parents",
+    w: 900,
+    h: 598,
     src: learningParentDashboard,
     alt: "Parent Dashboard feature",
     tab: "Parents",
@@ -420,7 +433,15 @@ export default function LearningPlanetScene() {
     <section id="learning-world" className="lworld">
       <div ref={rootRef} className="lworld__cinematic">
         <div className="lworld__bg" aria-hidden="true">
-          <img className="lworld__bg-img" src={bgCosmic} alt="" draggable={false} />
+          <img
+            className="lworld__bg-img"
+            src={bgCosmic}
+            alt=""
+            width={1536}
+            height={1024}
+            decoding="async"
+            draggable={false}
+          />
           <div className="lworld__bg-overlay" />
         </div>
 
@@ -458,7 +479,15 @@ export default function LearningPlanetScene() {
 
         {/* the hero's own planet, continued at its exact final framing */}
         <div className="lworld__hero-planet" aria-hidden="true">
-          <img className="lworld__hero-planet-img" src={planet} alt="" draggable={false} />
+          <img
+            className="lworld__hero-planet-img"
+            src={planet}
+            alt=""
+            width={1098}
+            height={1098}
+            decoding="async"
+            draggable={false}
+          />
         </div>
 
         {/* paper-strip orbit connecting the active card to the planet */}
@@ -481,7 +510,15 @@ export default function LearningPlanetScene() {
           <div className="lworld__planet-scroll">
             <div className="lworld__planet-idle">
               <div className="lworld__planet-holder">
-                <img className="lworld__planet" src={learningPlanet} alt="" draggable={false} />
+                <img
+                  className="lworld__planet"
+                  src={learningPlanet}
+                  alt=""
+                  width={1254}
+                  height={1254}
+                  decoding="async"
+                  draggable={false}
+                />
                 <div className="lworld__nodes">
                   {FEATURES.map((f) => (
                     <span
@@ -536,6 +573,8 @@ export default function LearningPlanetScene() {
                   className={`lworld__feature${active === i ? " is-active" : ""}`}
                   src={f.src}
                   alt={f.alt}
+                  width={f.w}
+                  height={f.h}
                   role="tabpanel"
                   aria-labelledby={`lworld-tab-${f.key}`}
                   aria-hidden={active !== i}
