@@ -75,6 +75,8 @@ import { Chapter6NotesBlock } from "@/components/notes/Chapter6NotesBlock";
 import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
 import { Chapter9NotesBlock } from "@/components/notes/Chapter9NotesBlock";
 import { MathF1Chapter1NotesBlock } from "@/components/notes/MathF1Chapter1NotesBlock";
+import { MathF1Chapter2NotesBlock } from "@/components/notes/MathF1Chapter2NotesBlock";
+import { MathF1Chapter3NotesBlock } from "@/components/notes/MathF1Chapter3NotesBlock";
 import { MathF1Chapter4NotesBlock } from "@/components/notes/MathF1Chapter4NotesBlock";
 import { MathF1Chapter5NotesBlock } from "@/components/notes/MathF1Chapter5NotesBlock";
 import { MathF1Chapter6NotesBlock } from "@/components/notes/MathF1Chapter6NotesBlock";
@@ -1537,6 +1539,28 @@ function NotesPage() {
               <MathF1Chapter1NotesBlock
                 id="notes"
                 content={activeChapter.mathChapter1Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathChapter2Data ? (
+              <MathF1Chapter2NotesBlock
+                id="notes"
+                content={activeChapter.mathChapter2Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathChapter3Data ? (
+              <MathF1Chapter3NotesBlock
+                id="notes"
+                content={activeChapter.mathChapter3Data}
                 lang={scienceLang === "dlp" ? "en" : "bm"}
                 storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                 isRead={isRead}

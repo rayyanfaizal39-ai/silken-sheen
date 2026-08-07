@@ -39,6 +39,7 @@ const en: MathF1C8Content = {
       num: "8.1",
       title: "Lines and Angles",
       ideaParagraphs: [
+        "At 3 o'clock, the hands of a clock form a perfect right angle. At 6 o'clock, they're a straight line. Every angle you'll learn about in this chapter, your own wristwatch is quietly demonstrating.",
         "Line segments with the SAME length are congruent; angles with the SAME size are congruent. An angle on a straight line is always 180°; a full turn around a point is always 360°; a reflex angle is between 180° and 360°.",
         "Two angles that add up to 90° are complementary. Two that add up to 180° are supplementary. Two that add up to 360° are conjugate.",
       ],
@@ -245,6 +246,7 @@ const bm: MathF1C8Content = {
       num: "8.1",
       title: "Garis dan Sudut",
       ideaParagraphs: [
+        "Pada pukul 3, jarum jam membentuk sudut tepat yang sempurna. Pada pukul 6, ia membentuk garis lurus. Setiap sudut yang dipelajari dalam bab ini sebenarnya ditunjukkan secara senyap oleh jam tangan setiap hari.",
         "Tembereng garis dengan panjang SAMA ialah kongruen; sudut dengan saiz SAMA ialah kongruen. Sudut pada garis lurus sentiasa 180°; pusingan penuh sekeliling satu titik sentiasa 360°; sudut refleks antara 180° dan 360°.",
         "Dua sudut yang berjumlah 90° ialah pelengkap. Dua yang berjumlah 180° ialah penggenap. Dua yang berjumlah 360° ialah konjugat.",
       ],

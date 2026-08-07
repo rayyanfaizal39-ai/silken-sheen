@@ -45,8 +45,8 @@ const en: MathF1C4Content = {
       num: "4.1",
       title: "Ratios",
       ideaParagraphs: [
-        "A ratio compares two or more quantities of the SAME kind, measured in the SAME unit. A ratio has no units — it only compares. For example, 5000 g to 9 kg: convert to the same unit first (5 kg : 9 kg), then drop the units → 5 : 9.",
-        "Ratios like 1:2, 2:4, and 6:12 are equivalent ratios — multiplying or dividing every part by the same number never changes what the ratio represents.",
+        "Mix 2 parts blue paint to 1 part white and you get a specific shade. Use 4 parts blue to 2 parts white instead, and you get the exact same shade — just more of it. A ratio compares two or more quantities of the SAME kind, measured in the SAME unit. A ratio has no units — it only compares. For example, 5000 g to 9 kg: convert to the same unit first (5 kg : 9 kg), then drop the units → 5 : 9.",
+        "Ratios like 1:2, 2:4, and 6:12 are equivalent ratios — like the 2:1 and 4:2 paint mixes above, multiplying or dividing every part by the same number never changes what the ratio represents.",
       ],
       formula: {
         eyebrow: "Simplifying a Ratio — Divide by the HCF",
@@ -98,7 +98,7 @@ const en: MathF1C4Content = {
       num: "4.2",
       title: "Rates",
       ideaParagraphs: [
-        "A rate is a special ratio that compares two quantities with DIFFERENT units — like 285 km in 3 hours, or RM10 for 2 kg. Ordinary ratios need matching units; rates are built on the fact that the units are different.",
+        "Your car's fuel gauge isn't just telling you how much petrol is left — it's quietly doing a rate calculation: how far you can go per litre. A rate is a special ratio that compares two quantities with DIFFERENT units — like 285 km in 3 hours, or RM10 for 2 kg. Ordinary ratios need matching units; rates are built on the fact that the units are different.",
       ],
       formula: {
         eyebrow: "Rate Notation",
@@ -166,7 +166,7 @@ const en: MathF1C4Content = {
       num: "4.3",
       title: "Proportions",
       ideaParagraphs: [
-        "A proportion states that two ratios or two rates are EQUAL. For example, if 45 words take 5 minutes, then 540 words take 60 minutes — both sides describe the same rate, just scaled up.",
+        "3 friends split 2 pizzas evenly. If 9 friends show up instead, how many pizzas do you need to keep everyone equally fed? A proportion states that two ratios or two rates are EQUAL. For example, if 45 words take 5 minutes, then 540 words take 60 minutes — both sides describe the same rate, just scaled up. Cross multiplication is the shortcut for finding that same-relationship-scaled-up answer directly — like scaling the pizza ratio up to 9 friends.",
       ],
       crossMultiply: { numerator1: 45, denominator1: 5, numerator2: 540, denominator2: 60 },
       formula: {
@@ -230,7 +230,7 @@ const en: MathF1C4Content = {
       num: "4.4",
       title: "Ratios, Rates and Proportions",
       ideaParagraphs: [
-        "When you know p:q and q:r separately, you can chain them into one ratio p:q:r — but only if the shared term (q) is matched to the SAME value first. That's the LCM trick from Chapter 2, reused here.",
+        "Your school has 2 canteens for every 300 students. Your class has 30 students for every 1 teacher. If you wanted to know teachers-per-canteen, you'd need to find the shared link between these two ratios first — that's what this section teaches. When you know p:q and q:r separately, you can chain them into one ratio p:q:r — but only if the shared term (q) is matched to the SAME value first. That's the LCM trick from Chapter 2, reused here.",
       ],
       formula: {
         eyebrow: "Chaining Ratios via the Shared Term",
@@ -386,8 +386,8 @@ const bm: MathF1C4Content = {
       num: "4.1",
       title: "Nisbah",
       ideaParagraphs: [
-        "Nisbah membanding dua atau lebih kuantiti JENIS SAMA, diukur dalam UNIT SAMA. Nisbah tiada unit — ia hanya membanding. Contohnya, 5000 g kepada 9 kg: tukar kepada unit sama dahulu (5 kg : 9 kg), kemudian gugurkan unit → 5 : 9.",
-        "Nisbah seperti 1:2, 2:4, dan 6:12 ialah nisbah setara — mendarab atau membahagi setiap bahagian dengan nombor sama tidak mengubah apa yang diwakili nisbah itu.",
+        "Campurkan 2 bahagian cat biru dengan 1 bahagian cat putih dan anda akan dapat warna tertentu. Guna 4 bahagian biru dengan 2 bahagian putih pula, anda dapat warna yang SAMA TEPAT — cuma lebih banyak. Nisbah membanding dua atau lebih kuantiti JENIS SAMA, diukur dalam UNIT SAMA. Nisbah tiada unit — ia hanya membanding. Contohnya, 5000 g kepada 9 kg: tukar kepada unit sama dahulu (5 kg : 9 kg), kemudian gugurkan unit → 5 : 9.",
+        "Nisbah seperti 1:2, 2:4, dan 6:12 ialah nisbah setara — seperti campuran cat 2:1 dan 4:2 di atas, mendarab atau membahagi setiap bahagian dengan nombor sama tidak mengubah apa yang diwakili nisbah itu.",
       ],
       formula: {
         eyebrow: "Memudahkan Nisbah — Bahagi dengan FSTB",
@@ -440,7 +440,7 @@ const bm: MathF1C4Content = {
       num: "4.2",
       title: "Kadar",
       ideaParagraphs: [
-        "Kadar ialah nisbah khas yang membanding dua kuantiti dengan unit BERBEZA — seperti 285 km dalam 3 jam, atau RM10 untuk 2 kg. Nisbah biasa perlukan unit sepadan; kadar dibina atas hakikat unit adalah berbeza.",
+        "Tolok minyak kereta anda bukan sekadar menunjukkan baki petrol — ia sebenarnya sedang mengira kadar secara senyap: berapa jauh anda boleh pergi bagi setiap liter. Kadar ialah nisbah khas yang membanding dua kuantiti dengan unit BERBEZA — seperti 285 km dalam 3 jam, atau RM10 untuk 2 kg. Nisbah biasa perlukan unit sepadan; kadar dibina atas hakikat unit adalah berbeza.",
       ],
       formula: {
         eyebrow: "Tatatanda Kadar",
@@ -507,7 +507,7 @@ const bm: MathF1C4Content = {
       num: "4.3",
       title: "Kadaran",
       ideaParagraphs: [
-        "Kadaran menyatakan bahawa dua nisbah atau dua kadar adalah SAMA. Contohnya, jika 45 patah perkataan mengambil 5 minit, maka 540 patah perkataan mengambil 60 minit — kedua-dua belah menggambarkan kadar sama, hanya diskalakan.",
+        "3 orang rakan berkongsi 2 keping pizza sama rata. Jika 9 orang rakan muncul pula, berapa keping pizza yang anda perlukan untuk semua orang kenyang sama rata? Kadaran menyatakan bahawa dua nisbah atau dua kadar adalah SAMA. Contohnya, jika 45 patah perkataan mengambil 5 minit, maka 540 patah perkataan mengambil 60 minit — kedua-dua belah menggambarkan kadar sama, hanya diskalakan. Pendaraban silang ialah jalan pintas untuk mencari jawapan hubungan-sama-diskalakan itu secara terus — seperti menskalakan nisbah pizza kepada 9 rakan.",
       ],
       crossMultiply: { numerator1: 45, denominator1: 5, numerator2: 540, denominator2: 60 },
       formula: {
@@ -570,7 +570,7 @@ const bm: MathF1C4Content = {
       num: "4.4",
       title: "Nisbah, Kadar dan Kadaran",
       ideaParagraphs: [
-        "Apabila anda tahu p:q dan q:r berasingan, anda boleh gabungkannya kepada satu nisbah p:q:r — tetapi hanya jika sebutan dikongsi (q) disamakan kepada nilai SAMA dahulu. Itulah helah GSTK daripada Bab 2, digunakan semula di sini.",
+        "Sekolah anda ada 2 kantin bagi setiap 300 pelajar. Kelas anda ada 30 pelajar bagi setiap 1 guru. Jika anda ingin tahu bilangan guru bagi setiap kantin, anda perlu cari pautan dikongsi antara kedua-dua nisbah ini dahulu — itulah yang diajar dalam bahagian ini. Apabila anda tahu p:q dan q:r berasingan, anda boleh gabungkannya kepada satu nisbah p:q:r — tetapi hanya jika sebutan dikongsi (q) disamakan kepada nilai SAMA dahulu. Itulah helah GSTK daripada Bab 2, digunakan semula di sini.",
       ],
       formula: {
         eyebrow: "Menggabungkan Nisbah melalui Sebutan Dikongsi",

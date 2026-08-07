@@ -12,6 +12,8 @@ import type { Chapter6Content } from "@/content/form1/science/chapter-6/chapter6
 import type { Chapter8Content } from "@/content/form1/science/chapter-8/chapter8-content";
 import type { Chapter9Content } from "@/content/form1/science/chapter-9/chapter9-content";
 import type { MathF1C1Content } from "@/content/form1/math/chapter-1/interactive-content";
+import type { MathF1C2Content } from "@/content/form1/math/chapter-2/interactive-content";
+import type { MathF1C3Content } from "@/content/form1/math/chapter-3/interactive-content";
 import type { MathF1C4Content } from "@/content/form1/math/chapter-4/interactive-content";
 import type { MathF1C5Content } from "@/content/form1/math/chapter-5/interactive-content";
 import type { MathF1C6Content } from "@/content/form1/math/chapter-6/interactive-content";
@@ -126,6 +128,10 @@ export type ChapterContent = {
   chapter9Data?: { en: Chapter9Content; bm: Chapter9Content };
   /** Math Form 1 Chapter 1 (Rational Numbers/Nombor Nisbah) interactive, bilingual learning experience. */
   mathChapter1Data?: { en: MathF1C1Content; bm: MathF1C1Content };
+  /** Math Form 1 Chapter 2 (Factors and Multiples/Faktor dan Gandaan) interactive, bilingual learning experience. */
+  mathChapter2Data?: { en: MathF1C2Content; bm: MathF1C2Content };
+  /** Math Form 1 Chapter 3 (Squares, Square Roots, Cubes and Cube Roots/Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga) interactive, bilingual learning experience. */
+  mathChapter3Data?: { en: MathF1C3Content; bm: MathF1C3Content };
   /** Math Form 1 Chapter 4 (Ratios, Rates and Proportions/Nisbah, Kadar dan Kadaran) interactive, bilingual learning experience. */
   mathChapter4Data?: { en: MathF1C4Content; bm: MathF1C4Content };
   /** Math Form 1 Chapter 5 (Algebraic Expressions/Ungkapan Algebra) interactive, bilingual learning experience. */
@@ -258,6 +264,8 @@ export function getChapterFeatures(
       !!c?.chapter8Data ||
       !!c?.chapter9Data ||
       !!c?.mathChapter1Data ||
+      !!c?.mathChapter2Data ||
+      !!c?.mathChapter3Data ||
       !!c?.mathChapter4Data ||
       !!c?.mathChapter5Data ||
       !!c?.mathChapter6Data ||

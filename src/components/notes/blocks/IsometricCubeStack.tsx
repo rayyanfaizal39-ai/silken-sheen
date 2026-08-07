@@ -33,9 +33,20 @@ export function IsometricCubeStack({ size = 2, caption }: { size?: number; capti
   const maxX = Math.max(...rawCenters.map((p) => p[0])) + L * 0.866;
   const minY = Math.min(...rawCenters.map((p) => p[1])) - L;
   const maxY = Math.max(...rawCenters.map((p) => p[1])) + L;
-  const ox = -minX + pad;
+
+  // The bottom label's width can exceed a tightly-fit geometric bounding box
+  // for small `size` values (e.g. "2 × 2 × 2 = 8 (2³ = 8)" is wider than the
+  // 2×2×2 cube stack itself) — widen the canvas symmetrically to guarantee
+  // it never clips the left/right edges, whatever `size` is passed.
+  const cubed = size ** 3;
+  const labelText = `${size} × ${size} × ${size} = ${cubed} (${size}³ = ${cubed})`;
+  const estLabelWidth = labelText.length * 7.6 + 30;
+  const geomWidth = maxX - minX + pad * 2;
+  const extraForLabel = Math.max(0, estLabelWidth - geomWidth);
+
+  const ox = -minX + pad + extraForLabel / 2;
   const oy = -minY + pad;
-  const width = maxX - minX + pad * 2;
+  const width = geomWidth + extraForLabel;
   const height = maxY - minY + pad * 2 + 32;
 
   function project(x: number, y: number, z: number): Point {
@@ -84,8 +95,6 @@ export function IsometricCubeStack({ size = 2, caption }: { size?: number; capti
       </g>
     );
   }
-
-  const cubed = size ** 3;
 
   return (
     <div className="mt-4 flex flex-col items-center rounded-2xl border border-white/[0.08] bg-[#0c1128] p-4">

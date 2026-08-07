@@ -33,6 +33,7 @@ export function FactorGroupChecker({
   symbol,
   reveal,
   introText,
+  alwaysOpen = false,
 }: {
   lang: MathLang;
   n: number;
@@ -40,8 +41,11 @@ export function FactorGroupChecker({
   symbol: string;
   reveal: "method" | "answer";
   introText?: string;
+  /** Skips the reveal button entirely — used where the grouping visual illustrates a point made in the surrounding text directly, not a question to solve. */
+  alwaysOpen?: boolean;
 }) {
-  const [revealed, setRevealed] = useState(false);
+  const [revealedState, setRevealed] = useState(false);
+  const revealed = alwaysOpen || revealedState;
 
   const factors = factorize(n);
   let cur = n;
@@ -84,14 +88,16 @@ export function FactorGroupChecker({
   return (
     <div className="mt-4">
       {introText && <p className="mb-3 text-[13px] leading-relaxed text-slate-400">{introText}</p>}
-      <button
-        type="button"
-        onClick={() => setRevealed((r) => !r)}
-        className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold"
-        style={{ background: "rgba(139,107,255,0.12)", color: MATH_VIOLET }}
-      >
-        👁️ {btnLabel}
-      </button>
+      {!alwaysOpen && (
+        <button
+          type="button"
+          onClick={() => setRevealed((r) => !r)}
+          className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold"
+          style={{ background: "rgba(139,107,255,0.12)", color: MATH_VIOLET }}
+        >
+          👁️ {btnLabel}
+        </button>
+      )}
       {revealed && (
         <div className="mt-3.5 rounded-2xl border border-white/[0.08] bg-[#0c1128] p-4 sm:p-5">
           <table className="w-full border-collapse font-mono text-sm">

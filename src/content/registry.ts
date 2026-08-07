@@ -63,6 +63,8 @@ import { chapter9Content } from "@/content/form1/science/chapter-9/chapter9-cont
 import { mathF1C1NotesBM } from "@/content/form1/math/chapter-1/notes-bm";
 import { mathF1C1NotesDLP } from "@/content/form1/math/chapter-1/notes-dlp";
 import { mathF1C1InteractiveContent } from "@/content/form1/math/chapter-1/interactive-content";
+import { mathF1C2InteractiveContent } from "@/content/form1/math/chapter-2/interactive-content";
+import { mathF1C3InteractiveContent } from "@/content/form1/math/chapter-3/interactive-content";
 import { mathF1C4InteractiveContent } from "@/content/form1/math/chapter-4/interactive-content";
 import { mathF1C5InteractiveContent } from "@/content/form1/math/chapter-5/interactive-content";
 import { mathF1C6InteractiveContent } from "@/content/form1/math/chapter-6/interactive-content";
@@ -1439,6 +1441,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF1C2MindMapBM, title: "Faktor dan Gandaan" },
     notes: mathF1C2NotesBM,
+    mathChapter2Data: mathF1C2InteractiveContent,
   },
   {
     id: "math-f1-c2-dlp",
@@ -1450,6 +1453,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(2),
     mindMap: { data: mathF1C2MindMapDLP, title: "Factors and Multiples" },
     notes: mathF1C2NotesDLP,
+    mathChapter2Data: mathF1C2InteractiveContent,
   },
   {
     id: "math-f1-c3-bm",
@@ -1463,6 +1467,7 @@ export const chapters: ChapterContent[] = [
       title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga & Punca Kuasa Tiga",
     },
     notes: mathF1C3NotesBM,
+    mathChapter3Data: mathF1C3InteractiveContent,
   },
   {
     id: "math-f1-c3-dlp",
@@ -1474,6 +1479,7 @@ export const chapters: ChapterContent[] = [
     video: mathForm1DlpVideo(3),
     mindMap: { data: mathF1C3MindMapDLP, title: "Squares, Square Roots, Cubes and Cube Roots" },
     notes: mathF1C3NotesDLP,
+    mathChapter3Data: mathF1C3InteractiveContent,
   },
   {
     id: "math-f1-c4-bm",
