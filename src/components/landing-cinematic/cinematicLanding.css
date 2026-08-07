@@ -3618,3 +3618,25 @@
   visibility: visible !important;
   transform: none !important;
 }
+
+/* ============================================================
+   MOBILE SCROLL SAFEGUARD
+   Touch devices run this page on native scroll (Lenis is disabled for coarse
+   pointers). The desktop composition permanently promotes ~25 layers with
+   will-change and stacks several backdrop-filter surfaces; on phones that GPU
+   pressure is what makes the page feel heavy and "sticky" while flicking.
+   Drop both there — the scenes still animate, they just stop reserving layers
+   the whole time.
+   ============================================================ */
+@media (pointer: coarse) {
+  .cinematic-landing-root *,
+  .cinematic-landing-root *::before,
+  .cinematic-landing-root *::after {
+    will-change: auto;
+  }
+  .cinematic-landing-root .cine-nav,
+  .cinematic-landing-root .cine-nav__bar {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
