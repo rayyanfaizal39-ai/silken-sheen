@@ -757,15 +757,20 @@
   margin-top: -100vh;
   margin-top: -100svh;
   overflow: clip;
-  background: #08031c;
+  /* Transparent on purpose: during the overlap above, this section slides over
+     the still-pinned hero while its own cinematic layer is faded out. An opaque
+     fill here painted a black band over the hero — the visible gap. The page
+     shell (.cinematic-landing-root) supplies the base colour instead. */
+  background: transparent;
 }
 .cinematic-landing-root .lworld__cinematic {
   position: relative;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  background: #08031c;
+  background: transparent;
 }
+
 .cinematic-landing-root .lworld__bg {
   position: absolute;
   inset: 0;
