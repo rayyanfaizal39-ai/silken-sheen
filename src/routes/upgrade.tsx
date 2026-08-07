@@ -28,7 +28,7 @@ import {
 } from "@/hooks/use-subscription-overview";
 import { toCheckoutPlan } from "@/lib/billing-config";
 import { hasFeature } from "@/lib/feature-access";
-import type { BillingInterval, BillingPlan } from "@/lib/billing.types";
+import type { BillingPlan } from "@/lib/billing.types";
 import { seoMeta } from "@/lib/seo";
 import { createCheckout, simulateMockPayment, type UpgradePlan } from "./-upgrade.server";
 import "@/styles/upgrade.css";
@@ -74,7 +74,6 @@ const PRICING_PLANS: Array<{
   key: PaidPlanKey;
   name: string;
   monthlyPrice: number;
-  annualMonthlyPrice: number;
   eyebrow: string;
   description: string;
   icon: typeof Rocket;
@@ -83,7 +82,6 @@ const PRICING_PLANS: Array<{
     key: "pro",
     name: "Pro",
     monthlyPrice: 29,
-    annualMonthlyPrice: 25,
     eyebrow: "Focused learning",
     description:
       "For independent students ready to explore every chapter and keep a lasting quiz record.",
@@ -93,7 +91,6 @@ const PRICING_PLANS: Array<{
     key: "premium",
     name: "Premium",
     monthlyPrice: 59,
-    annualMonthlyPrice: 55,
     eyebrow: "Complete experience",
     description:
       "The complete AcadeMY system for students who want full access and parents who want meaningful visibility.",
@@ -170,7 +167,6 @@ function UpgradePage() {
   const { user, loading: authLoading } = useAuth();
   const subscriptionState = useSubscriptionOverview();
   const activePlan = user ? getActivePlan(subscriptionState) : null;
-  const [billingInterval, setBillingInterval] = useState<BillingInterval>("monthly");
   const [checkoutPlan, setCheckoutPlan] = useState<UpgradePlan | null>(null);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const checkoutLock = useRef(false);
@@ -231,18 +227,11 @@ function UpgradePage() {
           </div>
         )}
 
-        <BillingIntervalToggle
-          value={billingInterval}
-          onChange={setBillingInterval}
-          disabled={checkoutPlan !== null}
-        />
-
         <div className="upgrade-plans-grid">
           {PRICING_PLANS.map((plan) => (
             <PricingCard
               key={plan.key}
               plan={plan}
-              billingInterval={billingInterval}
               activePlan={activePlan}
               authLoading={authLoading}
               user={user}
@@ -260,8 +249,8 @@ function UpgradePage() {
           />
           <TrustItem
             icon={<CalendarDays />}
-            title="Monthly or annual · No refunds"
-            text="Annual plans are billed once yearly"
+            title="Monthly billing · No refunds"
+            text="Billed every month, cancel anytime"
           />
           <TrustItem
             icon={<CircleUserRound />}
@@ -346,7 +335,7 @@ function UpgradeHero() {
       </div>
 
       <div className="upgrade-billing-summary" aria-label="Billing summary">
-        <span className="upgrade-billing-pill">Monthly or annual billing</span>
+        <span className="upgrade-billing-pill">Simple monthly billing</span>
         <p>
           Prices in Malaysian Ringgit
           <br />
@@ -357,46 +346,6 @@ function UpgradeHero() {
   );
 }
 
-function BillingIntervalToggle({
-  value,
-  onChange,
-  disabled,
-}: {
-  value: BillingInterval;
-  onChange: (value: BillingInterval) => void;
-  disabled: boolean;
-}) {
-  return (
-    <div className="upgrade-billing-selector">
-      <div className="upgrade-billing-toggle" role="group" aria-label="Choose billing frequency">
-        <button
-          type="button"
-          className={value === "monthly" ? "is-selected" : ""}
-          aria-pressed={value === "monthly"}
-          disabled={disabled}
-          onClick={() => onChange("monthly")}
-        >
-          Monthly
-        </button>
-        <button
-          type="button"
-          className={value === "annual" ? "is-selected" : ""}
-          aria-pressed={value === "annual"}
-          disabled={disabled}
-          onClick={() => onChange("annual")}
-        >
-          Annual
-          <span>Save up to 14%</span>
-        </button>
-      </div>
-      <p>
-        {value === "annual"
-          ? "One payment for 12 months of access"
-          : "Flexible month-to-month access"}
-      </p>
-    </div>
-  );
-}
 
 function CurrentPlanCard({
   user,
@@ -488,7 +437,6 @@ function CurrentPlanCard({
 
 function PricingCard({
   plan,
-  billingInterval,
   activePlan,
   authLoading,
   user,
@@ -496,7 +444,6 @@ function PricingCard({
   onCheckout,
 }: {
   plan: (typeof PRICING_PLANS)[number];
-  billingInterval: BillingInterval;
   activePlan: BillingPlan | null;
   authLoading: boolean;
   user: AuthUser | null;
@@ -505,9 +452,8 @@ function PricingCard({
 }) {
   const featurePlan = FEATURE_PLAN[plan.key];
   const isPremium = plan.key === "premium";
-  const displayPrice = billingInterval === "annual" ? plan.annualMonthlyPrice : plan.monthlyPrice;
-  const annualTotal = plan.annualMonthlyPrice * 12;
-  const selectedCheckoutPlan = toCheckoutPlan(plan.key, billingInterval);
+  const displayPrice = plan.monthlyPrice;
+  const selectedCheckoutPlan = toCheckoutPlan(plan.key);
   const featureLabels = PLAN_FEATURES[featurePlan]
     .filter((feature): feature is UpgradeFeature => feature in FEATURE_LABELS)
     .filter((feature) => !isPremium || feature.startsWith("parent_"))
@@ -547,11 +493,7 @@ function PricingCard({
         <span className="upgrade-amount">{displayPrice}</span>
         <span className="upgrade-period">/ month</span>
       </div>
-      <p className="upgrade-price-detail">
-        {billingInterval === "annual"
-          ? `RM${annualTotal} billed once yearly`
-          : "Billed monthly · Cancel anytime"}
-      </p>
+      <p className="upgrade-price-detail">Billed monthly · Cancel anytime</p>
 
       <p className="upgrade-benefit-title">
         {isPremium ? "Everything in Pro, plus" : "Everything you need to learn"}
@@ -822,7 +764,7 @@ function ReassuranceSection() {
     {
       question: "How is checkout handled?",
       answer:
-        "AcadeMY opens ToyyibPay checkout for the selected monthly or annual plan. Annual plans are charged once for 12 months. Your subscription is activated only after the server verifies a successful payment.",
+        "AcadeMY opens ToyyibPay checkout for the selected monthly plan. Your subscription is activated only after the server verifies a successful payment.",
     },
     {
       question: "Can I cancel or request a refund?",

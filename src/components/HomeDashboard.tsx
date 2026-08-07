@@ -363,7 +363,7 @@ function UniverseHeader() {
           <p className="text-[9px] font-black uppercase tracking-[0.28em] text-[#6366F1]">
             ✦ Explore
           </p>
-          <h2 className="font-display text-2xl font-bold text-white">Academy Universe</h2>
+          <h2 className="font-display text-2xl font-bold text-white">AcadeMY Universe</h2>
           <p className="mt-1 text-sm text-white/40">
             Six worlds. Choose your destination and begin.
           </p>

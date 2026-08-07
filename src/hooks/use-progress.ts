@@ -3,6 +3,7 @@ import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
 import { getLocalDateKey } from "@/lib/local-date";
+import { normalizeSelectedAt, daysTogether as daysTogetherPure } from "@/companion/selectedAt";
 import {
   recordMissionActivity as recordMissionActivityRemote,
   type MissionActivityType,
@@ -89,10 +90,7 @@ export interface CompanionConfig {
 
 /** Whole days since the companion was selected — used for the "Days Together" stat. */
 export function getCompanionDaysTogether(companion: CompanionConfig): number {
-  const selected = new Date(companion.selectedAt).getTime();
-  if (Number.isNaN(selected)) return 1;
-  const days = Math.floor((Date.now() - selected) / (1000 * 60 * 60 * 24));
-  return Math.max(1, days + 1);
+  return daysTogetherPure(normalizeSelectedAt(companion.selectedAt));
 }
 
 export const COMPANION_STAGES: Array<{
@@ -481,14 +479,20 @@ function load(userId?: string | null): Progress {
   }
 }
 
-/** Replaces the epoch sentinel with "now" the first time a companion is actually loaded. */
+/**
+ * Normalizes the companion's "selectedAt" the first time a companion is loaded:
+ * replaces the epoch sentinel, missing/invalid values, implausibly old values
+ * (e.g. stray Unix-epoch dates from older bugs) and future values with "now",
+ * and persists the fix so the "Days Together" stat never regresses to an
+ * absurd number. Legitimate existing dates are left untouched.
+ */
 function stampCompanionSelectedAt(progress: Progress, userId?: string | null): Progress {
-  if (!progress.companion || progress.companion.selectedAt !== COMPANION_SENTINEL_DATE) {
-    return progress;
-  }
+  if (!progress.companion) return progress;
+  const normalized = normalizeSelectedAt(progress.companion.selectedAt);
+  if (normalized === progress.companion.selectedAt) return progress;
   const next: Progress = {
     ...progress,
-    companion: { ...progress.companion, selectedAt: new Date().toISOString() },
+    companion: { ...progress.companion, selectedAt: normalized },
   };
   try {
     localStorage.setItem(progressStorageKey(userId), JSON.stringify(next));
@@ -611,7 +615,11 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
       ? { ...local.cardMastery, ...remote.cardMastery }
       : { ...remote.cardMastery, ...local.cardMastery },
     tokens: Math.max(local.tokens ?? 0, remote.tokens ?? 0),
-    companion: local.companion ?? remote.companion,
+    companion: (() => {
+      const chosen = local.companion ?? remote.companion;
+      if (!chosen) return chosen;
+      return { ...chosen, selectedAt: normalizeSelectedAt(chosen.selectedAt) };
+    })(),
     avatar:
       (local.avatar?.owned?.length ?? 0) >= (remote.avatar?.owned?.length ?? 0)
         ? (local.avatar ?? DEFAULT_AVATAR)
@@ -760,6 +768,9 @@ function ensureAuthSync() {
     try {
       localStorage.setItem(progressStorageKey(user.id), JSON.stringify(merged));
     } catch {}
+    if (merged.companion?.selectedAt !== remote.companion?.selectedAt) {
+      await saveToSupabase(user.id, merged);
+    }
   });
 
   supabase.auth.onAuthStateChange(async (event, session) => {

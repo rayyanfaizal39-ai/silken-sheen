@@ -3,10 +3,13 @@ import { useEffect, useRef } from 'react';
 
 export const Route = createFileRoute('/academy/landingpage3')({
   component: LandingPage3,
+  // Internal design sandbox — never index it, so it cannot compete with the
+  // canonical public homepage at "/".
   head: () => ({
     meta: [
       { title: 'AcadeMY — Landing Page 3' },
       { name: 'description', content: 'AcadeMY cinematic hero.' },
+      { name: 'robots', content: 'noindex, nofollow' },
     ],
   }),
 });

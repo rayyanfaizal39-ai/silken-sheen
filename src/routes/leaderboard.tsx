@@ -64,25 +64,50 @@ function top3Label(rank: number): string | null {
   return null;
 }
 
-async function getBrowserLeaderboardData(): Promise<LeaderboardResponse> {
+const LEADERBOARD_TIMEOUT_MS = 10_000;
+
+class LeaderboardTimeoutError extends Error {}
+
+async function getBrowserLeaderboardData(signal?: AbortSignal): Promise<LeaderboardResponse> {
   if (!isSupabaseConfigured) {
     return { status: "error", message: "The leaderboard is temporarily unavailable." };
   }
 
-  const { data, error } = await supabase.rpc("get_leaderboard", {
-    page_size: 10,
-    page_offset: 0,
-  });
+  try {
+    const { data, error } = await Promise.race([
+      supabase.rpc("get_leaderboard", { page_size: 10, page_offset: 0 }),
+      new Promise<never>((_, reject) => {
+        const timer = window.setTimeout(
+          () => reject(new LeaderboardTimeoutError("Leaderboard request timed out")),
+          LEADERBOARD_TIMEOUT_MS,
+        );
+        signal?.addEventListener("abort", () => {
+          window.clearTimeout(timer);
+          reject(new DOMException("Aborted", "AbortError"));
+        });
+      }),
+    ]);
 
-  if (error || !data) {
-    if (import.meta.env.DEV) console.error("[leaderboard] get_leaderboard RPC failed:", error);
+    if (error || !data) {
+      if (import.meta.env.DEV) console.error("[leaderboard] get_leaderboard RPC failed:", error);
+      return {
+        status: "error",
+        message: "The monthly leaderboard could not be loaded. Please try again.",
+      };
+    }
+
+    return { status: "ok", data: data as LeaderboardData };
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") throw err;
+    if (import.meta.env.DEV) console.error("[leaderboard] get_leaderboard RPC failed:", err);
     return {
       status: "error",
-      message: "The monthly leaderboard could not be loaded. Please try again.",
+      message:
+        err instanceof LeaderboardTimeoutError
+          ? "The leaderboard is taking too long to respond. Please try again."
+          : "The monthly leaderboard could not be loaded. Please try again.",
     };
   }
-
-  return { status: "ok", data: data as LeaderboardData };
 }
 
 function LeaderboardPage() {
@@ -95,19 +120,22 @@ function LeaderboardPage() {
   const [refreshing, setRefreshing] = useState(false);
 
   const refresh = useCallback(
-    async (showSpinner = true) => {
+    async (showSpinner = true, signal?: AbortSignal) => {
       if (!user) return;
       if (showSpinner) setRefreshing(true);
       try {
-        setResponse(await getBrowserLeaderboardData());
+        const next = await getBrowserLeaderboardData(signal);
+        if (signal?.aborted) return;
+        setResponse(next);
       } catch (error) {
+        if (signal?.aborted || (error instanceof DOMException && error.name === "AbortError")) return;
         if (import.meta.env.DEV) console.error("[leaderboard] refresh failed:", error);
         setResponse({
           status: "error",
           message: "The monthly leaderboard could not be loaded. Please try again.",
         });
       } finally {
-        if (showSpinner) setRefreshing(false);
+        if (!signal?.aborted && showSpinner) setRefreshing(false);
       }
     },
     [user],
@@ -115,8 +143,15 @@ function LeaderboardPage() {
 
   useEffect(() => {
     if (!user) return;
-    const timer = window.setTimeout(() => void refresh(response.status !== "ok"), 350);
-    return () => window.clearTimeout(timer);
+    const controller = new AbortController();
+    const timer = window.setTimeout(
+      () => void refresh(response.status !== "ok", controller.signal),
+      350,
+    );
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
   }, [user, progress.xp, refresh, response.status]);
 
   const realRanked = useMemo(

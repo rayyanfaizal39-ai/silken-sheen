@@ -211,7 +211,7 @@ function DefinisiSection({ topic }: { topic: SistemBahasaTopic }) {
 
 function CikguTerangSection({ topic }: { topic: SistemBahasaTopic }) {
   return (
-    <Accordion title="🧑‍🏫 Cikgu AcadeMy Terangkan" accent={topic.warna}>
+    <Accordion title="🧑‍🏫 Cikgu AcadeMY Terangkan" accent={topic.warna}>
       <p className="text-white/70 text-sm mb-4 italic">{topic.cikguTerang.intro}</p>
       <div className="space-y-3 mb-4">
         {topic.cikguTerang.langkah.map((l, i) => (

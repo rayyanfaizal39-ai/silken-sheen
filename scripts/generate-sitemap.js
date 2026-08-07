@@ -29,12 +29,9 @@ const PUBLIC_ROUTES = [
   { path: "/terms", priority: "0.3", changefreq: "yearly" },
 ];
 
-const today = new Date().toISOString().slice(0, 10);
-
 const urlEntries = PUBLIC_ROUTES.map(
   ({ path, priority, changefreq }) => `  <url>
     <loc>${SITE_URL}${path}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`,

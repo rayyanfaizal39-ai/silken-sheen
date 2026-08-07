@@ -17,8 +17,6 @@ export const Route = createFileRoute("/")({
         "KSSM notes",
         "KSSM quiz",
         "KSSM flashcards",
-        "SPM preparation",
-        "PT3 preparation",
         "Ace",
         "AI tutor Malaysia",
         "student learning platform Malaysia",

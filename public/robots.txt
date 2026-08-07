@@ -1,11 +1,11 @@
 User-agent: *
 Allow: /
+
+# Only genuinely private surfaces are blocked here. Account pages such as
+# /dashboard, /home, /companion, /tracker and /parent-dashboard are NOT
+# disallowed on purpose — they ship <meta name="robots" content="noindex">
+# and a crawler must be able to fetch them to see that directive.
 Disallow: /admin
-Disallow: /auth/callback
-Disallow: /dashboard
-Disallow: /parent-dashboard
-Disallow: /tracker
-Disallow: /companion
-Disallow: /login
+Disallow: /auth/
 
 Sitemap: https://www.myacademy.my/sitemap.xml

@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import { useProgress } from "@/hooks/use-progress";
+import { useAuth } from "@/context/auth-context";
+import { useSignInModal } from "@/context/sign-in-modal";
 import {
   Heart,
   ChevronLeft,
@@ -95,7 +97,6 @@ export const Route = createFileRoute("/flashcards")({
         "KSSM flashcards",
         "Form 1 flashcards",
         "spaced repetition",
-        "SPM preparation",
         ...subjectSeoKeywords(subjectId),
       ],
     });
@@ -5293,6 +5294,8 @@ function FlashcardsPage() {
     set?: string | number;
   };
   const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
+  const { user: authUser } = useAuth();
+  const { open: openSignIn } = useSignInModal();
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
@@ -5828,41 +5831,80 @@ function FlashcardsPage() {
       {!subject ? (
         <div className="space-y-6">
           <div className="grid gap-4 xl:grid-cols-[1.1fr_1fr]">
-            <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                Continue Studying
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-bold">Science</h2>
-              <p className="mt-1 text-sm text-[#94A3B8]">{cleanLearningLabel("Bab 7: Udara")}</p>
-              <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6]" />
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setSubject("science");
-                  setScienceLang("bm");
-                  setChapter("Chapter 7");
-                  resetSession();
-                }}
-                className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
-              >
-                Continue Studying
-              </button>
-            </div>
+            {(() => {
+              const lastDeck =
+                progress.lastVisited?.type === "flashcards" ? progress.lastVisited : undefined;
+              if (!authUser) {
+                return (
+                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                      Sign in to track progress
+                    </p>
+                    <h2 className="mt-3 font-display text-2xl font-bold">Save your study decks</h2>
+                    <p className="mt-1 text-sm text-[#94A3B8]">
+                      Sign in to resume decks and see your real progress here.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => openSignIn("signin")}
+                      className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                );
+              }
+              if (!lastDeck) {
+                return (
+                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                      Get Started
+                    </p>
+                    <h2 className="mt-3 font-display text-2xl font-bold">No decks yet</h2>
+                    <p className="mt-1 text-sm text-[#94A3B8]">
+                      Pick a subject below to start your first flashcard session.
+                    </p>
+                  </div>
+                );
+              }
+              return (
+                <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                  <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                    Continue Studying
+                  </p>
+                  <h2 className="mt-3 font-display text-2xl font-bold">
+                    {subjects.find((s) => s.id === lastDeck.subjectId)?.name ?? lastDeck.subjectId}
+                  </h2>
+                  <p className="mt-1 text-sm text-[#94A3B8]">
+                    {cleanLearningLabel(lastDeck.label)}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubject(lastDeck.subjectId);
+                      setForm((lastDeck.form ?? "Form 1") as FormFilter);
+                      setChapter(lastDeck.chapterKey);
+                      resetSession();
+                    }}
+                    className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+                  >
+                    Resume Deck
+                  </button>
+                </div>
+              );
+            })()}
             <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
               {[
-                ["Recommended", "Science", "Udara"],
-                ["Recently Studied", "Mathematics", "Algebra Essentials"],
-                ["Popular Deck", "Sejarah", "Warisan Sejarah"],
-              ].map(([badge, deckSubject, deckChapter]) => (
+                ["Active recall", "Flip cards and rate how well you knew each answer."],
+                ["Spaced practice", "Short daily sessions beat one long cram."],
+                ["Track mastery", "Rated cards feed your AcadeMY progress."],
+              ].map(([title, description]) => (
                 <div
-                  key={badge}
+                  key={title}
                   className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.05] p-4"
                 >
-                  <p className="text-xs font-bold uppercase tracking-wide text-accent">{badge}</p>
-                  <h3 className="mt-2 font-display text-xl font-bold">{deckSubject}</h3>
-                  <p className="text-sm text-[#94A3B8]">{cleanLearningLabel(deckChapter)}</p>
+                  <h3 className="font-display text-xl font-bold">{title}</h3>
+                  <p className="mt-1 text-sm text-[#94A3B8]">{description}</p>
                 </div>
               ))}
             </div>
