@@ -135,7 +135,9 @@
 /* native anchor jumps + keyboard focus clear the fixed nav */
 .cinematic-landing-root {
   scroll-padding-top: 88px;
+  background: var(--bg-deep);
 }
+
 .cinematic-landing-root h1,
 .cinematic-landing-root h2,
 .cinematic-landing-root h3 {
@@ -757,15 +759,20 @@
   margin-top: -100vh;
   margin-top: -100svh;
   overflow: clip;
-  background: #08031c;
+  /* Transparent on purpose: during the overlap above, this section slides over
+     the still-pinned hero while its own cinematic layer is faded out. An opaque
+     fill here painted a black band over the hero — the visible gap. The page
+     shell (.cinematic-landing-root) supplies the base colour instead. */
+  background: transparent;
 }
 .cinematic-landing-root .lworld__cinematic {
   position: relative;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  background: #08031c;
+  background: transparent;
 }
+
 .cinematic-landing-root .lworld__bg {
   position: absolute;
   inset: 0;
@@ -1227,11 +1234,12 @@
 }
 .cinematic-landing-root .lworld__ecosystem-frame {
   position: relative;
-  width: 82%;
-  max-width: 1100px;
+  width: 90%;
+  max-width: 1460px;
   margin-inline: auto;
   pointer-events: none;
 }
+
 .cinematic-landing-root .lworld__ecosystem-img {
   display: block;
   width: 100%;
@@ -1281,8 +1289,10 @@
     padding-bottom: 6px;
   }
   .cinematic-landing-root .lworld__ecosystem-frame {
-    width: 88%;
+    width: 94%;
+    max-width: none;
   }
+
 }
 @media (max-width: 767px) {
   .cinematic-landing-root .lworld__ecosystem {
@@ -3607,4 +3617,21 @@
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
+}
+
+/* ============================================================
+   MOBILE SCROLL SAFEGUARD
+   Touch devices run this page on native scroll (Lenis is disabled for coarse
+   pointers). The desktop composition permanently promotes ~25 layers with
+   will-change; on phones that GPU pressure is what makes the page feel heavy
+   and "sticky" while flicking. Release the hints there — the scenes still
+   animate, they just stop reserving compositor layers the whole time. The nav
+   keeps its blur, which readability depends on.
+   ============================================================ */
+@media (pointer: coarse) {
+  .cinematic-landing-root *,
+  .cinematic-landing-root *::before,
+  .cinematic-landing-root *::after {
+    will-change: auto;
+  }
 }
