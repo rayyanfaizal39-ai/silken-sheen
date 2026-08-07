@@ -3623,20 +3623,15 @@
    MOBILE SCROLL SAFEGUARD
    Touch devices run this page on native scroll (Lenis is disabled for coarse
    pointers). The desktop composition permanently promotes ~25 layers with
-   will-change and stacks several backdrop-filter surfaces; on phones that GPU
-   pressure is what makes the page feel heavy and "sticky" while flicking.
-   Drop both there — the scenes still animate, they just stop reserving layers
-   the whole time.
+   will-change; on phones that GPU pressure is what makes the page feel heavy
+   and "sticky" while flicking. Release the hints there — the scenes still
+   animate, they just stop reserving compositor layers the whole time. The nav
+   keeps its blur, which readability depends on.
    ============================================================ */
 @media (pointer: coarse) {
   .cinematic-landing-root *,
   .cinematic-landing-root *::before,
   .cinematic-landing-root *::after {
     will-change: auto;
-  }
-  .cinematic-landing-root .cine-nav,
-  .cinematic-landing-root .cine-nav__bar {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
   }
 }
