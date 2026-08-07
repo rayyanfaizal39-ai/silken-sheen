@@ -79,7 +79,10 @@ const en: MathF1C13Content = {
             why: "The ladder, wall, and ground form a right-angled triangle — the ladder is the hypotenuse.",
           },
           { calc: "= 4.5² + 6²", why: "Substitute the given distances." },
-          { calc: "= 20.25 + 36 = 56.25", why: "Square and add." },
+          {
+            calc: "= 20.25 + 36 = 56.25",
+            why: "The theorem says the two shorter sides' squares add up to the hypotenuse's square — this is that sum.",
+          },
           { calc: "PR = √56.25 = 7.5 m", why: "Take the square root to find the ladder length." },
         ],
       },
@@ -141,7 +144,10 @@ const en: MathF1C13Content = {
             calc: "Longest side = 25 cm",
             why: "Identify the longest of the three straws — only this could be the hypotenuse.",
           },
-          { calc: "25² = 625", why: "Square the longest side." },
+          {
+            calc: "25² = 625",
+            why: "This gives the value we'll compare against the sum of the other two sides' squares.",
+          },
           { calc: "15² + 20² = 225 + 400 = 625", why: "Square and add the other two sides." },
           {
             calc: "625 = 625 → right-angled!",
@@ -247,7 +253,10 @@ const bm: MathF1C13Content = {
             why: "Tangga, dinding, dan tanah membentuk segi tiga bersudut tegak — tangga ialah hipotenus.",
           },
           { calc: "= 4.5² + 6²", why: "Gantikan jarak diberi." },
-          { calc: "= 20.25 + 36 = 56.25", why: "Kuasaduakan dan tambah." },
+          {
+            calc: "= 20.25 + 36 = 56.25",
+            why: "Teorem menyatakan jumlah kuasa dua dua sisi lebih pendek sama dengan kuasa dua hipotenus — inilah jumlah itu.",
+          },
           { calc: "PR = √56.25 = 7.5 m", why: "Ambil punca kuasa dua untuk cari panjang tangga." },
         ],
       },
@@ -308,7 +317,10 @@ const bm: MathF1C13Content = {
             calc: "Sisi terpanjang = 25 cm",
             why: "Kenal pasti terpanjang tiga penyedut — hanya ini boleh jadi hipotenus.",
           },
-          { calc: "25² = 625", why: "Kuasaduakan sisi terpanjang." },
+          {
+            calc: "25² = 625",
+            why: "Ini memberi nilai yang akan kita banding dengan jumlah kuasa dua dua sisi lain.",
+          },
           { calc: "15² + 20² = 225 + 400 = 625", why: "Kuasaduakan dan tambah dua sisi lain." },
           {
             calc: "625 = 625 → bersudut tegak!",

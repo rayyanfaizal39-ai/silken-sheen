@@ -77,7 +77,10 @@ const en: MathF1C9Content = {
             calc: "10 − 3 = 7",
             why: "Subtract 3 from the number of sides (a vertex has no diagonal to itself or its 2 neighbours).",
           },
-          { calc: "Diagonals = 10×7/2 = 35", why: "Apply the formula n(n−3)/2." },
+          {
+            calc: "Diagonals = 10×7/2 = 35",
+            why: "Each of the 10 vertices draws 7 diagonals, but that counts every diagonal from both its ends — dividing by 2 removes the double-count.",
+          },
         ],
       },
       guided: {
@@ -127,7 +130,10 @@ const en: MathF1C9Content = {
           "PQRS is a straight line. Given ∠RST=46°, ∠STQ... find x and y (using the isosceles triangle QST where ∠TQS=∠TSQ=50°).",
         steps: [
           { calc: "∠RST + 84° + 46° = 180°", why: "Sum of interior angles of triangle RST." },
-          { calc: "∠RST = 180 − 84 − 46 = 50°", why: "Solve for ∠RST." },
+          {
+            calc: "∠RST = 180 − 84 − 46 = 50°",
+            why: "Since all three angles of triangle RST must add to 180°, subtracting the two known angles from 180° isolates the missing one.",
+          },
           {
             calc: "∠TQS = 50° (isosceles base angles)",
             why: "Triangle QST is isosceles, so its two base angles are equal.",
@@ -201,7 +207,10 @@ const en: MathF1C9Content = {
             calc: "y + 80° + 52° + 145° = 360°",
             why: "Sum of all interior angles of the quadrilateral is 360°.",
           },
-          { calc: "y = 360 − 277 = 83°", why: "Solve for y." },
+          {
+            calc: "y = 360 − 277 = 83°",
+            why: "The other three angles (80+52+145=277°) are now known, so subtracting from the 360° total leaves y.",
+          },
         ],
       },
       guided: {
@@ -305,7 +314,10 @@ const bm: MathF1C9Content = {
             calc: "10 − 3 = 7",
             why: "Tolak 3 daripada bilangan sisi (satu bucu tiada pepenjuru ke dirinya atau 2 jirannya).",
           },
-          { calc: "Pepenjuru = 10×7/2 = 35", why: "Guna formula n(n−3)/2." },
+          {
+            calc: "Pepenjuru = 10×7/2 = 35",
+            why: "Setiap 10 bucu melukis 7 pepenjuru, tetapi ini mengira setiap pepenjuru dari kedua-dua hujungnya — bahagi dengan 2 untuk buang kiraan berganda.",
+          },
         ],
       },
       guided: {
@@ -356,7 +368,10 @@ const bm: MathF1C9Content = {
           "PQRS ialah garis lurus. Diberi ∠RST=46°, cari x dan y (guna segi tiga sama kaki QST dengan ∠TQS=∠TSQ=50°).",
         steps: [
           { calc: "∠RST + 84° + 46° = 180°", why: "Jumlah sudut pedalaman segi tiga RST." },
-          { calc: "∠RST = 180 − 84 − 46 = 50°", why: "Selesaikan ∠RST." },
+          {
+            calc: "∠RST = 180 − 84 − 46 = 50°",
+            why: "Oleh kerana ketiga-tiga sudut segi tiga RST mesti berjumlah 180°, menolak dua sudut yang diketahui daripada 180° mengasingkan sudut yang hilang.",
+          },
           {
             calc: "∠TQS = 50° (sudut tapak sama kaki)",
             why: "Segi tiga QST sama kaki, jadi dua sudut tapaknya sama.",
@@ -431,7 +446,10 @@ const bm: MathF1C9Content = {
             calc: "y + 80° + 52° + 145° = 360°",
             why: "Jumlah semua sudut pedalaman sisi empat ialah 360°.",
           },
-          { calc: "y = 360 − 277 = 83°", why: "Selesaikan y." },
+          {
+            calc: "y = 360 − 277 = 83°",
+            why: "Tiga sudut lain (80+52+145=277°) kini diketahui, jadi menolak daripada jumlah 360° meninggalkan y.",
+          },
         ],
       },
       guided: {

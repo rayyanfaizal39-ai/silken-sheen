@@ -93,7 +93,10 @@ const en: MathF1C10Content = {
             calc: "Perimeter = 4+3+4+3+4+9+12+9",
             why: "Add every side of the shape, including the one just found.",
           },
-          { calc: "= 48 cm", why: "Sum them all up." },
+          {
+            calc: "= 48 cm",
+            why: "That total is the full distance travelled walking once around the shape's outline.",
+          },
         ],
       },
       guided: {
@@ -164,11 +167,17 @@ const en: MathF1C10Content = {
           "A rectangular plot PRTV contains a triangular banana patch PQW (base 4m, height 5m) and a trapezium-shaped rambutan patch UTSX (parallel sides 3m and 4m, height 5m). The plot is 16m by 10m. Find the area used for papaya (the remaining region).",
         diagram: { kind: "triangleArea", baseLabel: "4 m", heightLabel: "5 m" },
         steps: [
-          { calc: "Area of PRTV = 16 × 10 = 160 m²", why: "The whole rectangular plot's area." },
-          { calc: "Area of PQW = ½ × 4 × 5 = 10 m²", why: "The triangular banana patch's area." },
+          {
+            calc: "Area of PRTV = 16 × 10 = 160 m²",
+            why: "Multiplying length by width gives the whole plot's area — the starting total before subtracting anything.",
+          },
+          {
+            calc: "Area of PQW = ½ × 4 × 5 = 10 m²",
+            why: "A triangle is exactly half of the rectangle sharing its base and height, so halving base×height gives its area.",
+          },
           {
             calc: "Area of UTSX = ½ × (3+4) × 5 = 17.5 m²",
-            why: "The trapezium rambutan patch's area.",
+            why: "Averaging the two parallel sides before multiplying by height accounts for the trapezium's slanted shape.",
           },
           {
             calc: "Papaya area = 160 − 10 − 17.5 = 132.5 m²",
@@ -229,7 +238,10 @@ const en: MathF1C10Content = {
             why: "Set width=x, length=y=2x (length is twice width), and use the perimeter formula.",
           },
           { calc: "2x + 2(2x) = 42 → 6x = 42 → x = 7", why: "Substitute y=2x and solve for x." },
-          { calc: "y = 2(7) = 14", why: "Find the length." },
+          {
+            calc: "y = 2(7) = 14",
+            why: "With x=7 now known, doubling it applies the length-is-twice-width relationship set up in the first step.",
+          },
           {
             calc: "Area of △PQS = ½ × 14 × 7 = 49 cm²",
             why: "The triangle's base and height match the rectangle's length and width.",
@@ -323,7 +335,10 @@ const bm: MathF1C10Content = {
             calc: "Perimeter = 4+3+4+3+4+9+12+9",
             why: "Tambah setiap sisi bentuk, termasuk yang baru dijumpai.",
           },
-          { calc: "= 48 cm", why: "Jumlahkan semuanya." },
+          {
+            calc: "= 48 cm",
+            why: "Jumlah itu ialah jarak penuh berjalan sekali mengelilingi garis luar bentuk itu.",
+          },
         ],
       },
       guided: {
@@ -394,9 +409,18 @@ const bm: MathF1C10Content = {
           "Plot segi empat tepat PRTV mengandungi kebun pisang segi tiga PQW (tapak 4m, tinggi 5m) dan kebun rambutan trapezium UTSX (sisi selari 3m dan 4m, tinggi 5m). Plot 16m × 10m. Cari luas untuk betik (kawasan berbaki).",
         diagram: { kind: "triangleArea", baseLabel: "4 m", heightLabel: "5 m" },
         steps: [
-          { calc: "Luas PRTV = 16 × 10 = 160 m²", why: "Luas keseluruhan plot segi empat tepat." },
-          { calc: "Luas PQW = ½ × 4 × 5 = 10 m²", why: "Luas kebun pisang segi tiga." },
-          { calc: "Luas UTSX = ½ × (3+4) × 5 = 17.5 m²", why: "Luas kebun rambutan trapezium." },
+          {
+            calc: "Luas PRTV = 16 × 10 = 160 m²",
+            why: "Mendarab panjang dengan lebar memberi luas keseluruhan plot — jumlah permulaan sebelum menolak apa-apa.",
+          },
+          {
+            calc: "Luas PQW = ½ × 4 × 5 = 10 m²",
+            why: "Segi tiga adalah tepat separuh segi empat tepat yang berkongsi tapak dan tingginya, jadi separuhkan tapak×tinggi memberi luasnya.",
+          },
+          {
+            calc: "Luas UTSX = ½ × (3+4) × 5 = 17.5 m²",
+            why: "Purata dua sisi selari sebelum mendarab dengan tinggi mengambil kira bentuk condong trapezium.",
+          },
           {
             calc: "Luas betik = 160 − 10 − 17.5 = 132.5 m²",
             why: "Tolak kedua-dua kebun daripada keseluruhan plot untuk cari luas berbaki.",
@@ -456,7 +480,10 @@ const bm: MathF1C10Content = {
             why: "Tetapkan lebar=x, panjang=y=2x (panjang dua kali lebar), guna formula perimeter.",
           },
           { calc: "2x + 2(2x) = 42 → 6x = 42 → x = 7", why: "Gantikan y=2x dan selesaikan x." },
-          { calc: "y = 2(7) = 14", why: "Cari panjang." },
+          {
+            calc: "y = 2(7) = 14",
+            why: "Oleh kerana x=7 kini diketahui, menggandakannya menggunakan perhubungan panjang-dua-kali-lebar yang ditetapkan pada langkah pertama.",
+          },
           {
             calc: "Luas △PQS = ½ × 14 × 7 = 49 cm²",
             why: "Tapak dan tinggi segi tiga sepadan dengan panjang dan lebar segi empat tepat.",

@@ -149,7 +149,7 @@ const en: MathF1C7Content = {
             calc: "7 − 4x − 7 > 15 − 7",
             why: "Subtract 7 from both sides — symbol unchanged (subtraction never flips it).",
           },
-          { calc: "−4x > 8", why: "Simplify." },
+          { calc: "−4x > 8", why: "7 − 7 cancels to 0 on the left; 15 − 7 = 8 on the right." },
           {
             calc: "x < −2",
             why: "Divide both sides by −4 — a NEGATIVE number, so the symbol FLIPS from > to <.",
@@ -316,7 +316,10 @@ const bm: MathF1C7Content = {
             calc: "7 − 4x − 7 > 15 − 7",
             why: "Tolak 7 daripada kedua-dua belah — simbol tidak berubah (penolakan tidak pernah menukarnya).",
           },
-          { calc: "−4x > 8", why: "Permudahkan." },
+          {
+            calc: "−4x > 8",
+            why: "7 − 7 bergugur menjadi 0 di sebelah kiri; 15 − 7 = 8 di sebelah kanan.",
+          },
           {
             calc: "x < −2",
             why: "Bahagi kedua-dua belah dengan −4 — nombor NEGATIF, jadi simbol BERTUKAR daripada > kepada <.",

@@ -186,8 +186,14 @@ const en: MathF1C4Content = {
             calc: "43.6 sen / 2 kWh = x sen / 30 kWh",
             why: "Set up the proportion — both sides compare cost to kWh.",
           },
-          { calc: "2 × x = 43.6 × 30", why: "Cross multiply." },
-          { calc: "x = 1308 ÷ 2 = 654 sen = RM6.54", why: "Divide to isolate x." },
+          {
+            calc: "2 × x = 43.6 × 30",
+            why: "In a true proportion the diagonal products are always equal, so multiplying diagonally turns the fractions into a simple equation.",
+          },
+          {
+            calc: "x = 1308 ÷ 2 = 654 sen = RM6.54",
+            why: "Dividing both sides by 2 undoes the multiplication, leaving x by itself.",
+          },
         ],
       },
       guided: {
@@ -521,8 +527,14 @@ const bm: MathF1C4Content = {
             calc: "43.6 sen / 2 kWj = x sen / 30 kWj",
             why: "Sediakan kadaran — kedua-dua belah banding kos kepada kWj.",
           },
-          { calc: "2 × x = 43.6 × 30", why: "Darab silang." },
-          { calc: "x = 1308 ÷ 2 = 654 sen = RM6.54", why: "Bahagi untuk asingkan x." },
+          {
+            calc: "2 × x = 43.6 × 30",
+            why: "Dalam kadaran benar, hasil darab pepenjuru sentiasa sama, jadi mendarab secara pepenjuru menukarkan pecahan kepada persamaan mudah.",
+          },
+          {
+            calc: "x = 1308 ÷ 2 = 654 sen = RM6.54",
+            why: "Membahagikan kedua-dua belah dengan 2 membatalkan pendaraban, meninggalkan x bersendirian.",
+          },
         ],
       },
       guided: {

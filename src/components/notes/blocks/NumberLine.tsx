@@ -20,12 +20,14 @@ export function NumberLine({
   min,
   max,
   answer,
+  caption,
 }: {
   lang: MathLang;
   marks: NumberLineMark[];
   min: number;
   max: number;
   answer?: string;
+  caption?: string;
 }) {
   const [revealed, setRevealed] = useState(false);
   const width = 640;
@@ -95,6 +97,7 @@ export function NumberLine({
           ))}
         </svg>
       </div>
+      {caption && <p className="mt-2.5 text-center text-[11.5px] text-slate-500">{caption}</p>}
       {answer && (
         <>
           <button

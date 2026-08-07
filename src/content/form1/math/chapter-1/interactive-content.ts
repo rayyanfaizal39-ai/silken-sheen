@@ -13,7 +13,13 @@ export interface MathSubtopicContent {
   num: string;
   title: string;
   ideaParagraphs: string[];
-  numberLine?: { marks: NumberLineMark[]; min: number; max: number; answer?: string };
+  numberLine?: {
+    marks: NumberLineMark[];
+    min: number;
+    max: number;
+    answer?: string;
+    caption?: string;
+  };
   formula?: { eyebrow: string; formula: string; legend?: { label: string; text: string }[] };
   worked: { question: string; steps: WorkedStep[] };
   guided: { question: string; answer: string };
@@ -53,6 +59,8 @@ const en: MathF1C1Content = {
         min: -6,
         max: 6,
         answer: "Ascending: −5, −3, −1, 0, 2, 4, 6",
+        caption:
+          "Each dot marks one of the numbers to sort — the further right a dot sits, the greater its value.",
       },
       formula: {
         eyebrow: "Number Line",
@@ -73,7 +81,10 @@ const en: MathF1C1Content = {
             calc: "Read left to right",
             why: "Ascending order always reads smallest (left) to largest (right).",
           },
-          { calc: "−5, −3, −1, 0, 2, 4, 6", why: "This is the final answer." },
+          {
+            calc: "−5, −3, −1, 0, 2, 4, 6",
+            why: "Each number keeps the same left-to-right order it had on the line, so nothing needs re-checking — the plot already did the sorting.",
+          },
         ],
       },
       guided: {
@@ -167,6 +178,8 @@ const en: MathF1C1Content = {
         ],
         min: -2,
         max: 2,
+        caption:
+          "Positive and negative fractions sit on either side of zero, just like whole numbers do.",
       },
       worked: {
         question: "Solve: 1⅓ × (1⅖ − ⅚)",
@@ -215,12 +228,17 @@ const en: MathF1C1Content = {
         ],
         min: -1,
         max: 1,
+        caption:
+          "Positive and negative decimals sit on either side of zero the same way integers and fractions do.",
       },
       worked: {
         question: "Evaluate: (7.23 + 2.77) ÷ (−0.8)",
         steps: [
           { calc: "(7.23 + 2.77) ÷ (−0.8)", why: "Brackets first." },
-          { calc: "= 10.0 ÷ (−0.8)", why: "7.23 + 2.77 = 10.0" },
+          {
+            calc: "= 10.0 ÷ (−0.8)",
+            why: "Adding the two numbers inside the bracket collapses it to a single value before the division happens.",
+          },
           { calc: "= −12.5", why: "Different signs → negative." },
         ],
       },
@@ -261,7 +279,10 @@ const en: MathF1C1Content = {
         steps: [
           { calc: "1⅘=9/5, ¾=¾, −9=−9/1, 3.5=7/2", why: "Rewrite every number in p/q form." },
           { calc: "All fit p/q with integers, q≠0", why: "Check the condition for each." },
-          { calc: "All FOUR are rational numbers", why: "Final conclusion." },
+          {
+            calc: "All FOUR are rational numbers",
+            why: "Every value fits the p/q pattern with p and q as integers and q not zero — that's the whole definition of rational, so all four qualify.",
+          },
         ],
       },
       guided: {
@@ -340,6 +361,8 @@ const bm: MathF1C1Content = {
         min: -6,
         max: 6,
         answer: "Tertib menaik: −5, −3, −1, 0, 2, 4, 6",
+        caption:
+          "Setiap titik menandakan satu nombor untuk disusun — semakin ke kanan titik itu, semakin besar nilainya.",
       },
       formula: {
         eyebrow: "Garis Nombor",
@@ -360,7 +383,10 @@ const bm: MathF1C1Content = {
             calc: "Baca dari kiri ke kanan",
             why: "Tertib menaik sentiasa dibaca terkecil (kiri) kepada terbesar (kanan).",
           },
-          { calc: "−5, −3, −1, 0, 2, 4, 6", why: "Ini jawapan akhir." },
+          {
+            calc: "−5, −3, −1, 0, 2, 4, 6",
+            why: "Setiap nombor mengekalkan susunan kiri-ke-kanan yang sama seperti pada garis nombor, jadi tiada perlu disemak semula — plot itu sudah menyusunnya.",
+          },
         ],
       },
       guided: {
@@ -449,6 +475,8 @@ const bm: MathF1C1Content = {
         ],
         min: -2,
         max: 2,
+        caption:
+          "Pecahan positif dan negatif terletak di kedua-dua belah sifar, sama seperti nombor bulat.",
       },
       worked: {
         question: "Selesaikan: 1⅓ × (1⅖ − ⅚)",
@@ -494,12 +522,17 @@ const bm: MathF1C1Content = {
         ],
         min: -1,
         max: 1,
+        caption:
+          "Perpuluhan positif dan negatif terletak di kedua-dua belah sifar sama seperti integer dan pecahan.",
       },
       worked: {
         question: "Nilaikan: (7.23 + 2.77) ÷ (−0.8)",
         steps: [
           { calc: "(7.23 + 2.77) ÷ (−0.8)", why: "Kurungan dahulu." },
-          { calc: "= 10.0 ÷ (−0.8)", why: "7.23 + 2.77 = 10.0" },
+          {
+            calc: "= 10.0 ÷ (−0.8)",
+            why: "Menambah dua nombor dalam kurungan mengurangkannya kepada satu nilai sebelum pembahagian berlaku.",
+          },
           { calc: "= −12.5", why: "Tanda berbeza → negatif." },
         ],
       },
@@ -544,7 +577,10 @@ const bm: MathF1C1Content = {
             why: "Tulis semula setiap nombor dalam bentuk p/q.",
           },
           { calc: "Semua memenuhi p/q dengan integer, q≠0", why: "Semak syarat bagi setiap satu." },
-          { calc: "Kesemua EMPAT ialah nombor nisbah", why: "Kesimpulan akhir." },
+          {
+            calc: "Kesemua EMPAT ialah nombor nisbah",
+            why: "Setiap nilai memenuhi corak p/q dengan p dan q integer dan q bukan sifar — itulah keseluruhan definisi nisbah, jadi kesemua empat layak.",
+          },
         ],
       },
       guided: {

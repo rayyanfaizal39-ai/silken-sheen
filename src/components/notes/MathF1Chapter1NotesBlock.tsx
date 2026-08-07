@@ -76,6 +76,7 @@ export function MathF1Chapter1NotesBlock({
                 min={sub.numberLine.min}
                 max={sub.numberLine.max}
                 answer={sub.numberLine.answer}
+                caption={sub.numberLine.caption}
               />
             )}
           </LessonIntro>

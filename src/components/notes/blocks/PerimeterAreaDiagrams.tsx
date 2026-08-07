@@ -143,7 +143,7 @@ export function LShapePerimeterDiagram() {
 export function OverlappingSquaresDiagram({ l1, l2 }: { l1: string; l2: string }) {
   return (
     <div className="mt-3 flex justify-center">
-      <svg viewBox="0 0 190 120" className="w-full max-w-[210px]">
+      <svg viewBox="0 0 190 140" className="w-full max-w-[210px]">
         <rect
           x={20}
           y={20}
@@ -164,7 +164,7 @@ export function OverlappingSquaresDiagram({ l1, l2 }: { l1: string; l2: string }
         />
         <text
           x={65}
-          y={128}
+          y={126}
           fontSize={11}
           fill="#fff"
           textAnchor="middle"
@@ -316,7 +316,7 @@ export function ParallelogramAreaDiagram({
   const ph = 55;
   return (
     <div className="mt-3 flex justify-center">
-      <svg viewBox="0 0 200 110" className="w-full max-w-[220px]">
+      <svg viewBox="0 0 200 116" className="w-full max-w-[220px]">
         <polygon
           points={`${ox},${oy} ${ox + bw},${oy} ${ox + bw + slant},${oy - ph} ${ox + slant},${oy - ph}`}
           fill="rgba(139,107,255,0.08)"
@@ -377,7 +377,7 @@ export function KiteAreaDiagram({ d1Label, d2Label }: { d1Label: string; d2Label
   const botH = 45;
   return (
     <div className="mt-3 flex justify-center">
-      <svg viewBox="0 0 170 120" className="w-full max-w-[190px]">
+      <svg viewBox="0 -8 190 128" className="w-full max-w-[210px]">
         <polygon
           points={`${cx},${cy - topH - 20} ${cx + halfW},${cy} ${cx},${cy + botH} ${cx - halfW},${cy}`}
           fill="rgba(139,107,255,0.08)"
@@ -456,7 +456,7 @@ export function TrapeziumAreaDiagram({
   const ph = 55;
   return (
     <div className="mt-3 flex justify-center">
-      <svg viewBox="0 0 200 110" className="w-full max-w-[220px]">
+      <svg viewBox="0 0 200 116" className="w-full max-w-[220px]">
         <polygon
           points={`${topX},${oy - ph} ${topX + topW},${oy - ph} ${ox + botW},${oy} ${ox},${oy}`}
           fill="rgba(139,107,255,0.08)"
@@ -641,7 +641,7 @@ export function SquareAreaDiagram({
   const s = 70;
   return (
     <div className="mt-3 flex justify-center">
-      <svg viewBox="0 0 170 110" className="w-full max-w-[190px]">
+      <svg viewBox="0 0 170 116" className="w-full max-w-[190px]">
         <rect
           x={ox}
           y={oy - s}

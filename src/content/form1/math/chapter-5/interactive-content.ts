@@ -114,7 +114,10 @@ const en: MathF1C5Content = {
             calc: "= (12mn−10mn) + (−4p+7p−p) + (6+2)",
             why: "Gather like terms together.",
           },
-          { calc: "= 2mn + 2p + 8", why: "Simplify each group." },
+          {
+            calc: "= 2mn + 2p + 8",
+            why: "Adding within each bracket combines the mn terms, the p terms, and the plain numbers separately.",
+          },
         ],
       },
       guided: {
@@ -254,7 +257,10 @@ const bm: MathF1C5Content = {
             why: 'Buang kurungan: "+" kekalkan tanda, "−" tukar setiap tanda dalam kurungan terakhir.',
           },
           { calc: "= (12mn−10mn) + (−4p+7p−p) + (6+2)", why: "Kumpulkan sebutan serupa bersama." },
-          { calc: "= 2mn + 2p + 8", why: "Permudahkan setiap kumpulan." },
+          {
+            calc: "= 2mn + 2p + 8",
+            why: "Menambah dalam setiap kurungan menggabungkan sebutan mn, sebutan p, dan nombor biasa secara berasingan.",
+          },
         ],
       },
       guided: {

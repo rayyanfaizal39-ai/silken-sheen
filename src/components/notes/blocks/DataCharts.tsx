@@ -18,7 +18,11 @@ export function BarChart({ data, caption }: { data: ChartDatum[]; caption?: stri
   const h = 220;
   const padL = 40;
   const padB = 45;
-  const padT = 15;
+  // Extra headroom above the plot area: the tallest bar's value label sits
+  // just above the bar, i.e. right at padT — too little margin there clips
+  // the label whenever a category happens to be the max value (routine,
+  // not an edge case, since one bar is always the max).
+  const padT = 22;
   const padR = 15;
   const plotW = w - padL - padR;
   const plotH = h - padT - padB;

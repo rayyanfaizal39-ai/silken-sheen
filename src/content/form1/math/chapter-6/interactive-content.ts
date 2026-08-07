@@ -65,12 +65,18 @@ const en: MathF1C6Content = {
             calc: "5x − 20 + 20 = x + 16 + 20",
             why: "Add 20 to BOTH sides to remove −20 from the left.",
           },
-          { calc: "5x = x + 36", why: "Simplify." },
+          {
+            calc: "5x = x + 36",
+            why: "−20 and +20 cancel on the left; 16+20 combines into 36 on the right.",
+          },
           {
             calc: "5x − x = x + 36 − x",
             why: "Subtract x from BOTH sides to gather x terms on one side.",
           },
-          { calc: "4x = 36   →   x = 9", why: "Divide both sides by 4." },
+          {
+            calc: "4x = 36   →   x = 9",
+            why: "Dividing both sides by 4 undoes the multiplication, leaving x alone.",
+          },
         ],
       },
       guided: {
@@ -179,7 +185,7 @@ const en: MathF1C6Content = {
         steps: [
           {
             calc: "2x + 5y = 14 ……(1)   3x + 4y = 7 ……(2)",
-            why: "Start with both equations.",
+            why: "Labeling both equations lets us multiply and combine them without losing track of which is which.",
           },
           {
             calc: "(1)×3: 6x+15y=42 ……(3)   (2)×2: 6x+8y=14 ……(4)",
@@ -200,7 +206,7 @@ const en: MathF1C6Content = {
         steps: [
           {
             calc: "x − 3y = 7 ……(1)   5x + 2y = 1 ……(2)",
-            why: "Start with both equations.",
+            why: "Labeling both equations lets us solve one for a variable, then substitute it into the other.",
           },
           { calc: "From (1): x = 7 + 3y", why: "Make x the subject in equation (1)." },
           {
@@ -303,12 +309,18 @@ const bm: MathF1C6Content = {
             calc: "5x − 20 + 20 = x + 16 + 20",
             why: "Tambah 20 pada KEDUA-DUA belah untuk buang −20 daripada kiri.",
           },
-          { calc: "5x = x + 36", why: "Permudahkan." },
+          {
+            calc: "5x = x + 36",
+            why: "−20 dan +20 bergugur di sebelah kiri; 16+20 bergabung menjadi 36 di sebelah kanan.",
+          },
           {
             calc: "5x − x = x + 36 − x",
             why: "Tolak x daripada KEDUA-DUA belah untuk kumpulkan sebutan x pada satu belah.",
           },
-          { calc: "4x = 36   →   x = 9", why: "Bahagi kedua-dua belah dengan 4." },
+          {
+            calc: "4x = 36   →   x = 9",
+            why: "Membahagikan kedua-dua belah dengan 4 membatalkan pendaraban, meninggalkan x bersendirian.",
+          },
         ],
       },
       guided: {
@@ -417,7 +429,7 @@ const bm: MathF1C6Content = {
         steps: [
           {
             calc: "2x + 5y = 14 ……(1)   3x + 4y = 7 ……(2)",
-            why: "Mula dengan kedua-dua persamaan.",
+            why: "Melabelkan kedua-dua persamaan membolehkan kita darab dan gabungkannya tanpa keliru mana satu.",
           },
           {
             calc: "(1)×3: 6x+15y=42 ……(3)   (2)×2: 6x+8y=14 ……(4)",
@@ -438,7 +450,7 @@ const bm: MathF1C6Content = {
         steps: [
           {
             calc: "x − 3y = 7 ……(1)   5x + 2y = 1 ……(2)",
-            why: "Mula dengan kedua-dua persamaan.",
+            why: "Melabelkan kedua-dua persamaan membolehkan kita selesaikan satu bagi pemboleh ubah, kemudian gantikannya ke persamaan lain.",
           },
           { calc: "Daripada (1): x = 7 + 3y", why: "Jadikan x sebagai objek dalam persamaan (1)." },
           {

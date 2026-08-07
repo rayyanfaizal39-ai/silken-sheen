@@ -110,7 +110,10 @@ const en: MathF1C8Content = {
             calc: "x + 135° = 180°",
             why: "x and 135° are adjacent angles at the intersecting lines (sum to 180°).",
           },
-          { calc: "x = 180° − 135° = 45°", why: "Solve for x." },
+          {
+            calc: "x = 180° − 135° = 45°",
+            why: "Subtracting 135° from both sides of the equation leaves x by itself.",
+          },
           { calc: "y = 62°", why: "y is vertically opposite to the 62° angle, so it's equal." },
         ],
       },
@@ -312,7 +315,10 @@ const bm: MathF1C8Content = {
             calc: "x + 135° = 180°",
             why: "x dan 135° sudut bersebelahan pada garis bersilang (jumlah 180°).",
           },
-          { calc: "x = 180° − 135° = 45°", why: "Selesaikan x." },
+          {
+            calc: "x = 180° − 135° = 45°",
+            why: "Menolak 135° daripada kedua-dua belah persamaan meninggalkan x bersendirian.",
+          },
           { calc: "y = 62°", why: "y bertentang bucu dengan sudut 62°, jadi ia sama." },
         ],
       },
