@@ -135,7 +135,9 @@
 /* native anchor jumps + keyboard focus clear the fixed nav */
 .cinematic-landing-root {
   scroll-padding-top: 88px;
+  background: var(--bg-deep);
 }
+
 .cinematic-landing-root h1,
 .cinematic-landing-root h2,
 .cinematic-landing-root h3 {
