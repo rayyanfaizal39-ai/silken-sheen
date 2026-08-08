@@ -4,6 +4,12 @@ import { useAuth } from "@/context/auth-context";
 import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/auth/callback")({
+  head: () => ({
+    meta: [
+      { title: "Signing you in — AcadeMY" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: AuthCallbackPage,
 });
 

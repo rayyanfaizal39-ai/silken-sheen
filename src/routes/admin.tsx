@@ -12,6 +12,14 @@ type AdminGuardState =
   | { status: "ready"; profile: AdminProfile; queryError: null; redirectReason: null };
 
 export const Route = createFileRoute("/admin")({
+  // Staff-only console. Crawlable (so Google can read this directive) but
+  // never indexable, and every child route inherits it.
+  head: () => ({
+    meta: [
+      { title: "Admin — AcadeMY" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: AdminLayout,
 });
 

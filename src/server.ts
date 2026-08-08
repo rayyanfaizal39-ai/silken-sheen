@@ -71,10 +71,34 @@ async function normalizeCatastrophicSsrResponse(response: Response, request: Req
   return brandedErrorResponse();
 }
 
+// The apex domain and the www domain both resolve to this worker, so every
+// public URL existed twice for Google ("Alternate page with proper canonical
+// tag"). www.myacademy.my is the canonical host — permanently redirect the
+// apex to it. Preview hosts (*.pages.dev, *.lovable.app, localhost) are
+// untouched so deploy previews and local dev keep working.
+const CANONICAL_HOST = "www.myacademy.my";
+const APEX_HOST = "myacademy.my";
+
+function canonicalHostRedirect(request: Request): Response | undefined {
+  let url: URL;
+  try {
+    url = new URL(request.url);
+  } catch {
+    return undefined;
+  }
+  if (url.hostname !== APEX_HOST) return undefined;
+  url.hostname = CANONICAL_HOST;
+  url.protocol = "https:";
+  return Response.redirect(url.toString(), 301);
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const redirectResponse = canonicalHostRedirect(request);
+      if (redirectResponse) return redirectResponse;
       const handler = await getServerEntry();
+
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response, request);
     } catch (error) {
