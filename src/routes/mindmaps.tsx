@@ -444,7 +444,7 @@ export const Route = createFileRoute("/mindmaps")({
     return seoMeta({
       title,
       description,
-      path: "/mindmaps",
+      path: subjectName ? `/mindmaps?subject=${match.search.subject}` : "/mindmaps",
       keywords: [
         "KSSM mind maps",
         "visual notes Form 1",

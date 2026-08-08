@@ -118,7 +118,7 @@ export const Route = createFileRoute("/quizzes")({
     return seoMeta({
       title,
       description,
-      path: "/quizzes",
+      path: subjectName ? `/quizzes?subject=${subjectId}` : "/quizzes",
       keywords: [
         "KSSM quiz",
         "Form 1 quiz",

@@ -192,7 +192,7 @@ export const Route = createFileRoute("/notes")({
     return seoMeta({
       title,
       description,
-      path: "/notes",
+      path: subjectName ? `/notes?subject=${match.search.subject}` : "/notes",
       keywords: [
         "KSSM notes",
         "Form 1 notes",
