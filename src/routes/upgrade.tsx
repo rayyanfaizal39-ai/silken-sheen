@@ -541,10 +541,10 @@ function PricingCard({
   const isPremium = plan.key === "premium";
   const displayPrice = plan.monthlyPrice;
   const selectedCheckoutPlan = toCheckoutPlan(plan.key);
-  const featureLabels = PLAN_FEATURES[featurePlan]
-    .filter((feature): feature is UpgradeFeature => feature in FEATURE_LABELS)
-    .filter((feature) => !isPremium || feature.startsWith("parent_"))
-    .map((feature) => FEATURE_LABELS[feature]);
+  const featureLabels = ENTITLEMENTS.filter((entry) => hasFeature(featurePlan, entry.feature))
+    .filter((entry) => !isPremium || !hasFeature("explorer", entry.feature))
+    .map((entry) => entry.cardLabel);
+
   const isActive = activePlan === plan.key;
   const isThisLoading = busyPlan === selectedCheckoutPlan;
   const isAnyCheckoutLoading = busyPlan !== null;
