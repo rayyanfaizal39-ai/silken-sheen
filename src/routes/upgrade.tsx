@@ -52,18 +52,158 @@ export const Route = createFileRoute("/upgrade")({
 
 type PaidPlanKey = "pro" | "premium";
 
+/**
+ * Single entitlement source for this page. Both the pricing cards and the
+ * comparison table are derived from this list via hasFeature(), so they can
+ * never contradict each other. Plan → feature membership itself lives in
+ * src/config/features.ts.
+ */
 type UpgradeFeature = Extract<
   Feature,
-  "student_learning" | "quiz_history" | "parent_dashboard" | "parent_reports" | "parent_analytics"
+  | "student_learning"
+  | "quiz_history"
+  | "progress_sync"
+  | "xp_companion_progress"
+  | "ace_ai_support"
+  | "ai_tracker"
+  | "personalized_recommendations"
+  | "weak_topic_detection"
+  | "learning_analytics"
+  | "parent_dashboard"
+  | "parent_reports"
+  | "parent_progress_monitoring"
+  | "parent_subject_performance"
+  | "parent_weak_topic_alerts"
+  | "parent_recommendations"
+  | "parent_analytics"
 >;
 
-const FEATURE_LABELS: Record<UpgradeFeature, string> = {
-  student_learning: "Complete learning access across every chapter",
-  quiz_history: "Saved quiz attempts and learning history",
-  parent_dashboard: "Parent dashboard with progress visibility",
-  parent_reports: "Clear parent progress reports",
-  parent_analytics: "Detailed subject and learning analytics",
-};
+type EntitlementGroup = "Learning access" | "Progress & insight" | "Parent visibility";
+
+const ENTITLEMENTS: Array<{
+  feature: UpgradeFeature;
+  group: EntitlementGroup;
+  label: string;
+  description: string;
+  cardLabel: string;
+  basicPreview?: string;
+  includedLabel?: string;
+}> = [
+  {
+    feature: "student_learning",
+    group: "Learning access",
+    label: "Notes, mind maps, flashcards & quizzes",
+    description: "Complete chapter-based learning tools",
+    cardLabel: "Complete learning access across every chapter",
+    basicPreview: "Chapter 1",
+    includedLabel: "All chapters",
+  },
+  {
+    feature: "progress_sync",
+    group: "Progress & insight",
+    label: "Saved & synced progress",
+    description: "Your progress follows you on every device",
+    cardLabel: "Saved and synced progress across devices",
+  },
+  {
+    feature: "quiz_history",
+    group: "Progress & insight",
+    label: "Quiz history",
+    description: "Review past attempts and performance",
+    cardLabel: "Saved quiz attempts and learning history",
+  },
+  {
+    feature: "xp_companion_progress",
+    group: "Progress & insight",
+    label: "XP & companion progress",
+    description: "Ranks, streaks and companion growth are kept",
+    cardLabel: "XP, ranks and companion progress kept forever",
+  },
+  {
+    feature: "ace_ai_support",
+    group: "Progress & insight",
+    label: "Ace AI study support",
+    description: "On-topic explanations while you study",
+    cardLabel: "Ace AI study support",
+  },
+  {
+    feature: "ai_tracker",
+    group: "Progress & insight",
+    label: "AI Tracker",
+    description: "Automatic study tracking and revision planning",
+    cardLabel: "AI Tracker with revision planning",
+  },
+  {
+    feature: "personalized_recommendations",
+    group: "Progress & insight",
+    label: "Personalised recommendations",
+    description: "What to study next, based on your results",
+    cardLabel: "Personalised study recommendations",
+  },
+  {
+    feature: "weak_topic_detection",
+    group: "Progress & insight",
+    label: "Weak-topic detection",
+    description: "Spot the chapters that need more practice",
+    cardLabel: "Weak-topic detection",
+  },
+  {
+    feature: "learning_analytics",
+    group: "Progress & insight",
+    label: "Learning analytics",
+    description: "Subject and topic performance over time",
+    cardLabel: "Learning analytics across subjects",
+  },
+  {
+    feature: "parent_dashboard",
+    group: "Parent visibility",
+    label: "Parent Dashboard",
+    description: "A clear view of learning progress",
+    cardLabel: "Parent Dashboard with full progress visibility",
+  },
+  {
+    feature: "parent_reports",
+    group: "Parent visibility",
+    label: "Weekly parent progress email",
+    description: "A simple weekly summary sent to parents",
+    cardLabel: "Weekly parent progress email",
+  },
+  {
+    feature: "parent_progress_monitoring",
+    group: "Parent visibility",
+    label: "Progress monitoring",
+    description: "Study activity, streaks and time on task",
+    cardLabel: "Progress monitoring for parents",
+  },
+  {
+    feature: "parent_subject_performance",
+    group: "Parent visibility",
+    label: "Subject performance",
+    description: "Results broken down by subject",
+    cardLabel: "Subject-by-subject performance view",
+  },
+  {
+    feature: "parent_weak_topic_alerts",
+    group: "Parent visibility",
+    label: "Weak-topic alerts",
+    description: "Know which topics need attention early",
+    cardLabel: "Weak-topic alerts for parents",
+  },
+  {
+    feature: "parent_recommendations",
+    group: "Parent visibility",
+    label: "Parent recommendations",
+    description: "Practical suggestions to support at home",
+    cardLabel: "Parent recommendations to support at home",
+  },
+  {
+    feature: "parent_analytics",
+    group: "Parent visibility",
+    label: "Parent insights & analytics",
+    description: "Detailed subject and learning insight",
+    cardLabel: "Parent insights and detailed analytics",
+  },
+];
 
 const FEATURE_PLAN: Record<PaidPlanKey, Plan> = {
   pro: "explorer",
@@ -82,75 +222,22 @@ const PRICING_PLANS: Array<{
     key: "pro",
     name: "Pro",
     monthlyPrice: 29,
-    eyebrow: "Focused learning",
+    eyebrow: "Student premium",
     description:
-      "For independent students ready to explore every chapter and keep a lasting quiz record.",
+      "For independent students: every chapter, saved progress, Ace AI support, AI Tracker and personal learning analytics.",
     icon: Rocket,
   },
   {
     key: "premium",
     name: "Premium",
     monthlyPrice: 59,
-    eyebrow: "Complete experience",
+    eyebrow: "Student + parent",
     description:
-      "The complete AcadeMY system for students who want full access and parents who want meaningful visibility.",
+      "Everything in Pro, plus the Parent Dashboard, weekly parent email and full parent insight into progress.",
     icon: Crown,
   },
 ];
 
-const COMPARISON_ROWS: Array<{
-  group: "Learning access" | "Progress & insight" | "Parent visibility";
-  label: string;
-  description: string;
-  feature: UpgradeFeature;
-  basicPreview?: string;
-  includedLabel: string;
-}> = [
-  {
-    group: "Learning access",
-    label: "Notes, mind maps & flashcards",
-    description: "Complete chapter-based learning tools",
-    feature: "student_learning",
-    basicPreview: "Chapter 1",
-    includedLabel: "All chapters",
-  },
-  {
-    group: "Learning access",
-    label: "Video lessons & quizzes",
-    description: "Learn, practise, and check understanding",
-    feature: "student_learning",
-    basicPreview: "Chapter 1",
-    includedLabel: "All chapters",
-  },
-  {
-    group: "Progress & insight",
-    label: "Saved quiz history",
-    description: "Review attempts and performance",
-    feature: "quiz_history",
-    includedLabel: "Included",
-  },
-  {
-    group: "Parent visibility",
-    label: "Parent dashboard",
-    description: "A clear view of learning progress",
-    feature: "parent_dashboard",
-    includedLabel: "Included",
-  },
-  {
-    group: "Parent visibility",
-    label: "Parent reports",
-    description: "Progress updates in one place",
-    feature: "parent_reports",
-    includedLabel: "Included",
-  },
-  {
-    group: "Parent visibility",
-    label: "Parent learning analytics",
-    description: "Detailed subject and learning insight",
-    feature: "parent_analytics",
-    includedLabel: "Included",
-  },
-];
 
 function getActivePlan(state: SubscriptionOverviewState): BillingPlan | null {
   if (!state.resolved) return null;
