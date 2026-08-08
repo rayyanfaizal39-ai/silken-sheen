@@ -13,6 +13,12 @@ import { existsSync } from "node:fs";
 
 const SITE_URL = "https://www.myacademy.my";
 
+// Subject-scoped variants of the four content hubs. Each one renders unique
+// SSR content, a unique <title>/description and a self-referencing canonical,
+// so they are real indexable URLs — not duplicates of the bare hub.
+const SUBJECTS = ["science", "math", "english", "bm", "sejarah", "geography"];
+const SUBJECT_HUBS = ["/notes", "/quizzes", "/flashcards", "/mindmaps"];
+
 const PUBLIC_ROUTES = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/explore-academy", priority: "0.8", changefreq: "monthly" },
@@ -21,6 +27,13 @@ const PUBLIC_ROUTES = [
   { path: "/quizzes", priority: "0.8", changefreq: "weekly" },
   { path: "/flashcards", priority: "0.8", changefreq: "weekly" },
   { path: "/mindmaps", priority: "0.8", changefreq: "weekly" },
+  ...SUBJECT_HUBS.flatMap((hub) =>
+    SUBJECTS.map((subject) => ({
+      path: `${hub}?subject=${subject}`,
+      priority: "0.7",
+      changefreq: "weekly",
+    })),
+  ),
   { path: "/leaderboard", priority: "0.6", changefreq: "daily" },
   { path: "/upgrade", priority: "0.7", changefreq: "monthly" },
   { path: "/parent", priority: "0.6", changefreq: "monthly" },
@@ -28,6 +41,7 @@ const PUBLIC_ROUTES = [
   { path: "/privacy", priority: "0.3", changefreq: "yearly" },
   { path: "/terms", priority: "0.3", changefreq: "yearly" },
 ];
+
 
 const urlEntries = PUBLIC_ROUTES.map(
   ({ path, priority, changefreq }) => `  <url>
