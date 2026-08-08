@@ -23,10 +23,21 @@ export type Plan = (typeof PLANS)[number];
 
 export const FEATURES = [
   "student_learning",
+  "quiz_history",
+  "progress_sync",
+  "xp_companion_progress",
+  "ace_ai_support",
+  "ai_tracker",
+  "personalized_recommendations",
+  "weak_topic_detection",
+  "learning_analytics",
   "parent_dashboard",
   "parent_reports",
+  "parent_progress_monitoring",
+  "parent_subject_performance",
+  "parent_weak_topic_alerts",
+  "parent_recommendations",
   "parent_analytics",
-  "quiz_history",
   "admin_upload_center",
   "ai_quiz_generation",
   "teacher_dashboard",
@@ -42,10 +53,29 @@ export type Feature = (typeof FEATURES)[number];
  * this — Captain adds parent-facing features on top, it does NOT get a
  * "better" version of student learning. See module header business rule.
  */
-const STUDENT_LEARNING_CORE: readonly Feature[] = ["student_learning", "quiz_history"];
+const STUDENT_LEARNING_CORE: readonly Feature[] = [
+  "student_learning",
+  "quiz_history",
+  "progress_sync",
+  "xp_companion_progress",
+  "ace_ai_support",
+  "ai_tracker",
+  "personalized_recommendations",
+  "weak_topic_detection",
+  "learning_analytics",
+];
 
 /** What Captain adds on top of the student-learning core: parent visibility only. */
-const PARENT_VISIBILITY: readonly Feature[] = ["parent_dashboard", "parent_reports", "parent_analytics"];
+const PARENT_VISIBILITY: readonly Feature[] = [
+  "parent_dashboard",
+  "parent_reports",
+  "parent_progress_monitoring",
+  "parent_subject_performance",
+  "parent_weak_topic_alerts",
+  "parent_recommendations",
+  "parent_analytics",
+];
+
 
 /**
  * What Teacher adds on top of the student-learning core.
