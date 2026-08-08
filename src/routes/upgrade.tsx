@@ -711,7 +711,7 @@ function FeatureComparison() {
         </div>
 
         <div>
-          {COMPARISON_ROWS.map((row) => (
+          {ENTITLEMENTS.map((row) => (
             <div key={row.label} role="row" className="upgrade-comparison-row">
               <div role="rowheader" className="upgrade-feature-name">
                 <strong>{row.label}</strong>
@@ -724,8 +724,9 @@ function FeatureComparison() {
                     plan.key === "basic" && row.basicPreview
                       ? row.basicPreview
                       : included
-                        ? row.includedLabel
+                        ? (row.includedLabel ?? "Included")
                         : "Not included";
+
                   return (
                     <div key={plan.key} role="cell" className="upgrade-comparison-cell">
                       <span className="upgrade-mobile-plan-label">{plan.label}</span>
