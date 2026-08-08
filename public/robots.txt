@@ -1,11 +1,22 @@
 User-agent: *
 Allow: /
 
-# Only genuinely private surfaces are blocked here. Account pages such as
-# /dashboard, /home, /companion, /tracker and /parent-dashboard are NOT
-# disallowed on purpose — they ship <meta name="robots" content="noindex">
-# and a crawler must be able to fetch them to see that directive.
+# Private / application-only surfaces. These pages also ship
+# <meta name="robots" content="noindex, nofollow">, and a crawler must be able
+# to FETCH a page to see that directive — so account pages such as /dashboard,
+# /home, /companion, /tracker, /parent-dashboard, /login, /account/billing and
+# /payment-return are deliberately NOT disallowed here.
+#
+# Only the staff console and the one-time auth token endpoint are blocked:
+# /admin is behind an auth guard and renders no crawlable content, and
+# /auth/confirm consumes a single-use recovery token on GET.
 Disallow: /admin
-Disallow: /auth/
+Disallow: /auth/confirm
+
+# Never block render-critical assets — Google needs CSS/JS/images/fonts to
+# render the public pages.
+Allow: /assets/
+Allow: /images/
+Allow: /branding/
 
 Sitemap: https://www.myacademy.my/sitemap.xml
