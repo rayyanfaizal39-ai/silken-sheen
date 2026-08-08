@@ -24,6 +24,12 @@ import type { MathF1C10Content } from "@/content/form1/math/chapter-10/interacti
 import type { MathF1C11Content } from "@/content/form1/math/chapter-11/interactive-content";
 import type { MathF1C12Content } from "@/content/form1/math/chapter-12/interactive-content";
 import type { MathF1C13Content } from "@/content/form1/math/chapter-13/interactive-content";
+import type { MathF2C1Content } from "@/content/form2/math/chapter-1/interactive-content";
+import type { MathF2C2Content } from "@/content/form2/math/chapter-2/interactive-content";
+import type { MathF2C3Content } from "@/content/form2/math/chapter-3/interactive-content";
+import type { MathF2C4Content } from "@/content/form2/math/chapter-4/interactive-content";
+import type { MathF2C5Content } from "@/content/form2/math/chapter-5/interactive-content";
+import type { MathF2C6Content } from "@/content/form2/math/chapter-6/interactive-content";
 import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
@@ -152,6 +158,18 @@ export type ChapterContent = {
   mathChapter12Data?: { en: MathF1C12Content; bm: MathF1C12Content };
   /** Math Form 1 Chapter 13 (Pythagoras' Theorem/Teorem Pythagoras) interactive, bilingual learning experience. */
   mathChapter13Data?: { en: MathF1C13Content; bm: MathF1C13Content };
+  /** Math Form 2 Chapter 1 (Patterns and Sequences/Pola dan Jujukan) interactive, bilingual learning experience. */
+  mathF2Chapter1Data?: { en: MathF2C1Content; bm: MathF2C1Content };
+  /** Math Form 2 Chapter 2 (Factorisation and Algebraic Fractions/Pemfaktoran dan Pecahan Algebra) interactive, bilingual learning experience. */
+  mathF2Chapter2Data?: { en: MathF2C2Content; bm: MathF2C2Content };
+  /** Math Form 2 Chapter 3 (Algebraic Formulae/Rumus Algebra) interactive, bilingual learning experience. */
+  mathF2Chapter3Data?: { en: MathF2C3Content; bm: MathF2C3Content };
+  /** Math Form 2 Chapter 4 (Polygon/Poligon) interactive, bilingual learning experience. */
+  mathF2Chapter4Data?: { en: MathF2C4Content; bm: MathF2C4Content };
+  /** Math Form 2 Chapter 5 (Circles/Bulatan) interactive, bilingual learning experience. */
+  mathF2Chapter5Data?: { en: MathF2C5Content; bm: MathF2C5Content };
+  /** Math Form 2 Chapter 6 (Three-Dimensional Geometrical Shapes/Bentuk Geometri Tiga Matra) interactive, bilingual learning experience. */
+  mathF2Chapter6Data?: { en: MathF2C6Content; bm: MathF2C6Content };
   /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
   geoChapter1Data?: Geo1Content;
   /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
@@ -276,6 +294,12 @@ export function getChapterFeatures(
       !!c?.mathChapter11Data ||
       !!c?.mathChapter12Data ||
       !!c?.mathChapter13Data ||
+      !!c?.mathF2Chapter1Data ||
+      !!c?.mathF2Chapter2Data ||
+      !!c?.mathF2Chapter3Data ||
+      !!c?.mathF2Chapter4Data ||
+      !!c?.mathF2Chapter5Data ||
+      !!c?.mathF2Chapter6Data ||
       !!c?.geoChapter1Data ||
       !!c?.geoChapter2Data ||
       !!c?.geoChapter3Data ||

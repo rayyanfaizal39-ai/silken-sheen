@@ -476,6 +476,12 @@ import { mathF1C12MindMapDLP } from "@/content/form1/math/chapter-12/mindmap-dlp
 import { mathF1C13MindMapDLP } from "@/content/form1/math/chapter-13/mindmap-dlp";
 
 // Mathematics Form 2 notes and mind maps
+import { mathF2C1InteractiveContent } from "@/content/form2/math/chapter-1/interactive-content";
+import { mathF2C2InteractiveContent } from "@/content/form2/math/chapter-2/interactive-content";
+import { mathF2C3InteractiveContent } from "@/content/form2/math/chapter-3/interactive-content";
+import { mathF2C4InteractiveContent } from "@/content/form2/math/chapter-4/interactive-content";
+import { mathF2C5InteractiveContent } from "@/content/form2/math/chapter-5/interactive-content";
+import { mathF2C6InteractiveContent } from "@/content/form2/math/chapter-6/interactive-content";
 import { mathF2C1NotesBM } from "@/content/form2/math/chapter-1/notes-bm";
 import { mathF2C1NotesDLP } from "@/content/form2/math/chapter-1/notes-dlp";
 import { mathF2C1MindMapBM } from "@/content/form2/math/chapter-1/mindmap-bm";
@@ -1722,6 +1728,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C1MindMapBM, title: "Corak dan Jujukan" },
     notes: mathF2C1NotesBM,
+    mathF2Chapter1Data: mathF2C1InteractiveContent,
     flashcards: mathF2C1FlashcardsBM,
     quiz: mathF2C1QuizzesBM,
   },
@@ -1734,6 +1741,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C1MindMapDLP, title: "Patterns and Sequences" },
     notes: mathF2C1NotesDLP,
+    mathF2Chapter1Data: mathF2C1InteractiveContent,
     flashcards: mathF2C1FlashcardsDLP,
     quiz: mathF2C1QuizzesDLP,
   },
@@ -1746,6 +1754,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C2MindMapBM, title: "Pemfaktoran dan Pecahan Algebra" },
     notes: mathF2C2NotesBM,
+    mathF2Chapter2Data: mathF2C2InteractiveContent,
     flashcards: mathF2C2FlashcardsBM,
     quiz: mathF2C2QuizzesBM,
   },
@@ -1758,6 +1767,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C2MindMapDLP, title: "Factorisation and Algebraic Fractions" },
     notes: mathF2C2NotesDLP,
+    mathF2Chapter2Data: mathF2C2InteractiveContent,
     flashcards: mathF2C2FlashcardsDLP,
     quiz: mathF2C2QuizzesDLP,
   },
@@ -1770,6 +1780,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C3MindMapBM, title: "Rumus Algebra" },
     notes: mathF2C3NotesBM,
+    mathF2Chapter3Data: mathF2C3InteractiveContent,
     flashcards: mathF2C3FlashcardsBM,
     quiz: mathF2C3QuizzesBM,
   },
@@ -1782,6 +1793,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C3MindMapDLP, title: "Algebraic Formulae" },
     notes: mathF2C3NotesDLP,
+    mathF2Chapter3Data: mathF2C3InteractiveContent,
     flashcards: mathF2C3FlashcardsDLP,
     quiz: mathF2C3QuizzesDLP,
   },
@@ -1794,6 +1806,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C4MindMapBM, title: "Poligon" },
     notes: mathF2C4NotesBM,
+    mathF2Chapter4Data: mathF2C4InteractiveContent,
     flashcards: mathF2C4FlashcardsBM,
     quiz: mathF2C4QuizzesBM,
   },
@@ -1806,6 +1819,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C4MindMapDLP, title: "Polygons" },
     notes: mathF2C4NotesDLP,
+    mathF2Chapter4Data: mathF2C4InteractiveContent,
     flashcards: mathF2C4FlashcardsDLP,
     quiz: mathF2C4QuizzesDLP,
   },
@@ -1818,6 +1832,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C5MindMapBM, title: "Bulatan" },
     notes: mathF2C5NotesBM,
+    mathF2Chapter5Data: mathF2C5InteractiveContent,
     flashcards: mathF2C5FlashcardsBM,
     quiz: mathF2C5QuizzesBM,
   },
@@ -1830,6 +1845,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C5MindMapDLP, title: "Circles" },
     notes: mathF2C5NotesDLP,
+    mathF2Chapter5Data: mathF2C5InteractiveContent,
     flashcards: mathF2C5FlashcardsDLP,
     quiz: mathF2C5QuizzesDLP,
   },
@@ -1842,6 +1858,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C6MindMapBM, title: "Bentuk Geometri Tiga Dimensi" },
     notes: mathF2C6NotesBM,
+    mathF2Chapter6Data: mathF2C6InteractiveContent,
     flashcards: mathF2C6FlashcardsBM,
     quiz: mathF2C6QuizzesBM,
   },
@@ -1854,6 +1871,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C6MindMapDLP, title: "Three-Dimensional Geometrical Shapes" },
     notes: mathF2C6NotesDLP,
+    mathF2Chapter6Data: mathF2C6InteractiveContent,
     flashcards: mathF2C6FlashcardsDLP,
     quiz: mathF2C6QuizzesDLP,
   },

@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Form 2 Chapter 6: Three-Dimensional Geometrical Shapes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+
+  /* ===== MATH DESIGN SYSTEM v2 — calmer, cleaner ===== */
+  :root{
+    --orange:#ff9f43;
+    --purple:#b57bff;
+  }
+
+  .wrap{max-width:760px;}
+  .card p{line-height:1.75;}
+
+  /* section intro — ONE clean lesson block, no heavy colour, just accent bar + icon label */
+  .lesson-intro{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-left:3px solid var(--blue);
+    border-radius:14px; padding:20px 22px; margin-top:18px;}
+  .lesson-intro .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:10px;}
+  .lesson-intro p{font-size:14.5px; color:var(--muted); line-height:1.75;}
+  .lesson-intro p + p{margin-top:12px;}
+  .lesson-intro b{color:#fff; font-weight:600;}
+
+  /* formula card — the single visual highlight of each subtopic */
+  .formula-card{background:rgba(139,107,255,0.1); border:1px solid rgba(139,107,255,0.3);
+    border-radius:16px; padding:26px 24px; margin-top:18px; text-align:center;}
+  .formula-eyebrow{font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--violet); margin-bottom:12px; font-weight:700;}
+  .formula-main{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#fff; letter-spacing:.01em; line-height:1.4;}
+  .formula-legend{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);}
+  .formula-legend .item{font-size:12.5px; color:var(--muted); text-align:left;}
+  .formula-legend .item b{color:#fff; font-family:'Space Grotesk',sans-serif; margin-right:5px; font-weight:600;}
+
+  /* worked example — clean numbered steps, generous spacing, one accent colour only */
+  .steps-card{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-radius:16px; padding:22px 24px; margin-top:18px;}
+  .steps-card .ex-label{font-family:'Space Grotesk',sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--purple); font-weight:700; margin-bottom:6px;}
+  .steps-card .ex-q{font-size:14.5px; color:#fff; margin-bottom:18px; line-height:1.6;}
+  .step-item{display:flex; gap:14px; padding:12px 0; cursor:pointer;}
+  .step-item + .step-item{border-top:1px solid rgba(255,255,255,0.06);}
+  .step-num{width:28px; height:28px; border-radius:50%; background:rgba(181,123,255,0.15); border:1.5px solid rgba(181,123,255,0.4); display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12.5px; color:var(--purple); flex-shrink:0; margin-top:2px;}
+  .step-item.revealed .step-num{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .step-body{flex:1;}
+  .step-calc{font-family:'Space Grotesk',sans-serif; font-size:15.5px; color:#fff; line-height:1.5;}
+  .step-why{display:none; margin-top:8px; font-size:13px; color:var(--muted); line-height:1.6;}
+  .step-item.revealed .step-why{display:block;}
+  .step-hint-label{font-size:11px; color:var(--faint); margin-top:4px;}
+  .step-item.revealed .step-hint-label{display:none;}
+
+  /* try together — light, single accent, no heavy background */
+  .guided-card{border:1px dashed rgba(77,124,254,0.35); border-radius:14px; padding:18px 20px; margin-top:16px;}
+  .guided-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:8px;}
+  .guided-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+  .guided-hint{margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:#ffd4a8; display:none; line-height:1.6;}
+  .guided-hint.show{display:block;}
+  .hint-btn{display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:7px 14px; border-radius:100px; background:none; border:1px solid rgba(255,159,67,0.4);
+    font-size:12px; font-weight:600; color:var(--orange); cursor:pointer;}
+
+  /* common mistake — single compact note, not a heavy two-tone grid */
+  .mistake-note{margin-top:16px; padding:16px 18px; border-radius:12px; background:rgba(255,111,142,0.06); border:1px solid rgba(255,111,142,0.25);}
+  .mistake-note .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--bad); margin-bottom:10px;}
+  .mistake-line{font-size:13.5px; line-height:1.7; margin-top:6px;}
+  .mistake-line .lbl{font-weight:700; margin-right:6px;}
+  .mistake-line.wrong .lbl{color:var(--bad);}
+  .mistake-line.right .lbl{color:var(--good);}
+  .mistake-line span.txt{color:var(--muted);}
+
+  /* practice zone — difficulty tabs, calm styling */
+  .practice-zone{margin-top:20px;}
+  .practice-zone > .zone-label{font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .diff-tabs{display:flex; gap:6px; margin-bottom:14px;}
+  .diff-tab{flex:1; text-align:center; padding:8px; border-radius:10px; font-size:12px; font-weight:700; cursor:pointer; border:1px solid var(--glass-brd); color:var(--faint); background:rgba(255,255,255,0.02);}
+  .diff-tab[data-diff="easy"].active{background:rgba(91,227,176,0.12); border-color:var(--good); color:var(--good);}
+  .diff-tab[data-diff="medium"].active{background:rgba(255,159,67,0.12); border-color:var(--orange); color:var(--orange);}
+  .diff-tab[data-diff="hard"].active{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .diff-panel{display:none;}
+  .diff-panel.active{display:block;}
+
+  .practice-q-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px;}
+  .practice-q-text{font-size:14px; color:#fff; margin-bottom:12px; line-height:1.6;}
+  .practice-btn-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .pbtn{padding:7px 14px; border-radius:100px; font-size:11.5px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); background:none; color:var(--muted);}
+  .pbtn.hint-pbtn{color:var(--orange); border-color:rgba(255,159,67,0.3);}
+  .pbtn.sol-pbtn{color:var(--violet); border-color:rgba(139,107,255,0.3);}
+  .practice-reveal{display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:var(--muted); line-height:1.65;}
+  .practice-reveal.show{display:block;}
+  .practice-reveal.hint-reveal{color:#ffd4a8;}
+
+  /* real-life application — plain inline tags, no card */
+  .reallife-row{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.07);}
+  .reallife-row .lbl{font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); font-weight:700; margin-bottom:10px; display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .example-chips span{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); padding:6px 12px; border-radius:100px; font-size:12px; color:var(--muted);}
+
+  /* number line */
+  .numline-wrap{margin-top:16px; text-align:center;}
+  .numline-svg{max-width:100%; height:auto;}
+
+  /* generic diagram containers (array grids, venn, timelines, cube stacks) */
+  .visual-wrap{margin-top:18px; padding:18px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; text-align:center;}
+  .visual-svg{max-width:100%; height:auto;}
+  .visual-caption{font-size:11.5px; color:var(--faint); margin-top:10px;}
+
+  /* division ladder — the standard repeated-division method for prime factorisation, HCF, LCM */
+  .ladder-wrap{margin-top:14px; display:flex; justify-content:center;}
+  .ladder-table{border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .ladder-table td{padding:7px 14px; font-size:15px; color:#fff; text-align:center;}
+  .ladder-table .divisor-cell{color:var(--violet); font-weight:700; border-right:2px solid rgba(139,107,255,0.4); position:relative;}
+  .ladder-table tr:first-child td{border-top:2px solid rgba(139,107,255,0.4);}
+  .ladder-table .result-row td{border-top:1.5px solid rgba(255,255,255,0.15); padding-top:10px; font-weight:700;}
+  .ladder-table .result-row .divisor-cell{border-right:none; color:var(--good);}
+  .ladder-reveal{display:none; margin-top:16px;}
+  .ladder-reveal.show{display:block;}
+  .ladder-question{font-size:14px; color:#fff; margin-bottom:4px;}
+  .show-method-btn{display:inline-flex; align-items:center; gap:6px; margin-top:14px; padding:8px 16px; border-radius:100px; background:rgba(139,107,255,0.12);
+    border:1px solid rgba(139,107,255,0.4); font-size:12.5px; font-weight:600; color:var(--violet); cursor:pointer;}
+  .ladder-result-tag{display:inline-block; margin-top:14px; padding:8px 18px; border-radius:10px; background:rgba(91,227,176,0.1); border:1px solid rgba(91,227,176,0.35);
+    font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--good);}
+
+  /* factor grouping chips — visualises pairing (squares) or tripling (cubes) of prime factors */
+  .factor-chip{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; margin:3px; border-radius:8px;
+    background:rgba(139,107,255,0.15); border:1.5px solid var(--violet); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13.5px; color:#fff;}
+  .factor-chip.leftover{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .factor-group{display:inline-flex; padding:3px; margin:3px; border-radius:10px; background:rgba(91,227,176,0.08); border:1.5px dashed rgba(91,227,176,0.45);}
+
+  /* cross-multiplication visual for proportions */
+  .cross-mult-wrap{margin-top:16px; text-align:center;}
+  .cross-mult-svg{max-width:100%; height:auto;}
+
+  /* angle diagrams (intersecting lines, parallel lines + transversal) */
+  .angle-diagram-svg{max-width:100%; height:auto;}
+
+  /* small labeled right-triangle diagram accompanying a Pythagoras question */
+  .tri-q-wrap{margin:10px 0 14px; display:flex; justify-content:center;}
+  .tri-q-svg{max-width:170px; height:auto;}
+
+  /* reference table (e.g. polygon name / vertices / sides / interior angles) */
+  .props-table-wrap{margin-top:16px; overflow-x:auto;}
+  .props-table{width:100%; border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .props-table th{text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:700; padding:10px 14px; border-bottom:1.5px solid rgba(255,255,255,0.12);}
+  .props-table td{padding:11px 14px; font-size:13.5px; color:#fff; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .props-table tr:last-child td{border-bottom:none;}
+  .props-table tr:hover td{background:rgba(139,107,255,0.06);}
+
+  /* subtopic divider — clear visual separation between subtopics */
+  .subtopic{margin-top:56px; padding-top:8px;}
+  .subtopic:first-of-type{margin-top:36px;}
+  .subtopic-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .subtopic-head .num{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); font-weight:700; background:rgba(139,107,255,0.12); padding:3px 10px; border-radius:100px;}
+  .subtopic-head h2{font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:600;}
+
+  /* formula sheet (chapter end) */
+  .formula-sheet{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px;}
+  .formula-sheet-item{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; text-align:center;}
+  .formula-sheet-item .f{font-family:'Space Grotesk',sans-serif; font-size:15px; color:#fff; margin-bottom:4px;}
+  .formula-sheet-item .l{font-size:11px; color:var(--faint);}
+
+  /* exam tips / mistakes recap */
+  .tip-list{list-style:none; margin-top:8px;}
+  .tip-list li{position:relative; padding-left:22px; font-size:13px; color:var(--muted); margin-bottom:10px; line-height:1.6;}
+  .tip-list li::before{content:"→"; position:absolute; left:0; top:0; color:var(--violet); font-weight:700;}
+
+  .challenge-card{background:rgba(255,185,55,0.06); border:1px solid rgba(255,185,55,0.3); border-radius:16px; padding:20px 22px; margin-top:16px;}
+  .challenge-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--amber); margin-bottom:10px;}
+  .challenge-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+
+  @media (max-width:720px){
+    .formula-sheet{grid-template-columns:1fr;}
+    .formula-main{font-size:21px;}
+  }
+</style>
+<style>
+  .shape-q-wrap{margin:10px 0 14px; display:flex; justify-content:center;}
+  .shape-q-svg{max-width:280px; height:auto;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Form 2 Mathematics &nbsp;/&nbsp; <b>Chapter 6</b></span>
+    <span class="bm">Matematik Tingkatan 2 &nbsp;/&nbsp; <b>Bab 6</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 6</span><span class="bm">Bab 6</span></div>
+    <h1><span class="en">Three-Dimensional Geometrical Shapes</span><span class="bm">Bentuk Geometri Tiga Matra</span></h1>
+    <p class="sub">
+      <span class="en">Unfold a box flat and you get a 2D pattern called a net. Fold it back up, and it's 3D again. Once you can see shapes both ways — flat and folded — surface area and volume both become much easier.</span>
+      <span class="bm">Buka kotak rata dan anda dapat corak 2D dipanggil bentangan. Lipat semula, dan ia 3D semula. Sebaik anda boleh lihat bentuk kedua-dua cara — rata dan dilipat — luas permukaan dan isipadu kedua-duanya menjadi lebih mudah.</span>
+    </p>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">Properties</span><span class="bm">Sifat</span><span id="progressPct">5%</span><span class="en">Volume</span><span class="bm">Isipadu</span></div>
+  </div>
+
+  <!-- ================= 6.1 GEOMETRIC PROPERTIES ================= -->
+  <div class="subtopic" id="sec-6-1" onmouseenter="visit('s61')">
+    <div class="subtopic-head"><span class="num">6.1</span><h2><span class="en">Geometric Properties of Three-Dimensional Shapes</span><span class="bm">Sifat Geometri Bentuk Tiga Matra</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">Every 3D shape here is built from flat 2D shapes. What tells them apart is their BASE shape and whether their sides are flat or curved.</span>
+      <span class="bm">Setiap bentuk 3D di sini dibina daripada bentuk 2D rata. Apa yang bezakannya ialah bentuk TAPAK dan sama ada sisinya rata atau melengkung.</span></p>
+      <div class="shape-q-wrap" id="shapeCompareDemo"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Prism vs Pyramid</span><span class="bm">Prisma lwn Piramid</span></div>
+      <div class="formula-main"><span class="en">Prism: 2 identical bases. Pyramid: 1 base + a point (apex).</span><span class="bm">Prisma: 2 tapak serupa. Piramid: 1 tapak + hujung (apeks).</span></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Name the shape: 2 circular bases, 1 curved surface, no apex.</span><span class="bm">Namakan bentuk: 2 tapak bulat, 1 permukaan melengkung, tiada apeks.</span></div>
+      <div id="steps61"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">Is a cube a prism? Explain.</span><span class="bm">Adakah kubus prisma? Jelaskan.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">Yes — a cube has 2 identical square bases (top and bottom) with a uniform cross-section — that fits the prism definition.</span>
+        <span class="bm">Ya — kubus ada 2 tapak segi empat sama serupa (atas dan bawah) dengan keratan rentas seragam — itu memenuhi definisi prisma.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Confusing a cone (1 apex, curved surface) with a pyramid (apex, but FLAT triangular sides).</span><span class="bm">Mengelirukan kon (1 apeks, permukaan melengkung) dengan piramid (apeks, tetapi sisi segi tiga RATA).</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Curved surface = cone or cylinder or sphere. Flat triangular sides meeting at a point = pyramid.</span><span class="bm">Permukaan melengkung = kon atau silinder atau sfera. Sisi segi tiga rata bertemu di satu titik = piramid.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('61','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('61','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('61','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel61easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Name the shape: every point on its surface is equidistant from the centre.</span><span class="bm">Namakan bentuk: setiap titik permukaannya sama jarak dari pusat.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">A sphere.</span><span class="bm">Sfera.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel61medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Name the shape: one triangular base, other sides are rectangles.</span><span class="bm">Namakan bentuk: satu tapak segi tiga, sisi lain segi empat tepat.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">A triangular prism.</span><span class="bm">Prisma segi tiga.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel61hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A shape has 1 vertex and 1 curved surface with a polygonal base. What is it, and how is it different from a shape with 1 vertex and a fully curved surface?</span><span class="bm">Bentuk ada 1 bucu dan 1 permukaan melengkung dengan tapak poligon. Apakah ia, dan bagaimana ia berbeza daripada bentuk 1 bucu dan permukaan melengkung sepenuhnya?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">A cone has a circular (polygonal-like curved) base and one apex. A sphere has no vertex at all — every point curves equally, with no flat base or point.</span><span class="bm">Kon ada tapak bulat dan satu apeks. Sfera tiada bucu langsung — setiap titik melengkung sama rata, tiada tapak rata atau titik.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>📦 <span class="en">Packaging design</span><span class="bm">Reka bentuk pembungkusan</span></span>
+        <span>🏛️ <span class="en">Architecture</span><span class="bm">Senibina</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 6.2 NETS ================= -->
+  <div class="subtopic" id="sec-6-2" onmouseenter="visit('s62')">
+    <div class="subtopic-head"><span class="num">6.2</span><h2><span class="en">Nets of Three-Dimensional Shapes</span><span class="bm">Bentangan Bentuk Tiga Matra</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A <b>net</b> is what you get when you unfold a 3D shape flat, so every face lies open. Fold it back along the lines, and it becomes 3D again.</span>
+      <span class="bm"><b>Bentangan</b> ialah apa yang anda dapat bila membuka bentuk 3D rata, supaya setiap muka terbuka. Lipat semula sepanjang garis, dan ia menjadi 3D semula.</span></p>
+      <div class="shape-q-wrap" id="cubeNetDemo"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-main"><span class="en">The same shape can have MORE than one valid net</span><span class="bm">Bentuk sama boleh ada LEBIH daripada satu bentangan sah</span></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">A cylinder's net is made of which shapes?</span><span class="bm">Bentangan silinder dibina daripada bentuk apa?</span></div>
+      <div id="steps62"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">What shapes make up the net of a cone?</span><span class="bm">Bentuk apa membina bentangan kon?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">One circle (the base) plus one curved sector (the side that wraps around to a point).</span>
+        <span class="bm">Satu bulatan (tapak) tambah satu sektor melengkung (sisi yang membalut ke satu titik).</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Assuming a cube has only ONE possible net.</span><span class="bm">Menganggap kubus hanya ada SATU bentangan mungkin.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">A cube has 11 different valid nets — as long as all 6 squares connect and fold up correctly, it works.</span><span class="bm">Kubus ada 11 bentangan sah berbeza — asalkan kesemua 6 segi empat sama bersambung dan lipat dengan betul, ia berfungsi.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('62','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('62','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('62','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel62easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">How many square faces does a cube's net have?</span><span class="bm">Berapa muka segi empat sama ada bentangan kubus?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">6</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel62medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">What shapes make up the net of a square-based pyramid?</span><span class="bm">Bentuk apa membina bentangan piramid tapak segi empat sama?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">1 square base + 4 triangles.</span><span class="bm">1 tapak segi empat sama + 4 segi tiga.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel62hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A triangular prism's net is made of which shapes, and how many of each?</span><span class="bm">Bentangan prisma segi tiga dibina daripada bentuk apa, dan berapa setiap satu?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">2 triangles (the two identical bases) + 3 rectangles (the sides).</span><span class="bm">2 segi tiga (dua tapak serupa) + 3 segi empat tepat (sisi).</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>📦 <span class="en">Cardboard box design</span><span class="bm">Reka bentuk kotak kadbod</span></span>
+        <span>🎁 <span class="en">Gift box templates</span><span class="bm">Templat kotak hadiah</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 6.3 SURFACE AREA ================= -->
+  <div class="subtopic" id="sec-6-3" onmouseenter="visit('s63')">
+    <div class="subtopic-head"><span class="num">6.3</span><h2><span class="en">Surface Area of Three-Dimensional Shapes</span><span class="bm">Luas Permukaan Bentuk Tiga Matra</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">Since the net IS the shape laid flat, its <b>surface area</b> is just the total area of every flat face in that net, added together.</span>
+      <span class="bm">Oleh kerana bentangan IALAH bentuk dibaringkan rata, <b>luas permukaannya</b> hanyalah jumlah luas setiap muka rata dalam bentangan itu, ditambah bersama.</span></p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Cuboid</span><span class="bm">Kuboid</span></div>
+      <div class="formula-main"><span class="en">Surface area = sum of all 6 rectangle faces</span><span class="bm">Luas permukaan = jumlah semua 6 muka segi empat tepat</span></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Find the surface area of a cuboid 5 cm × 4 cm × 3 cm.</span><span class="bm">Cari luas permukaan kuboid 5 cm × 4 cm × 3 cm.</span></div>
+      <div id="steps63"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">A closed cylinder has radius 7 cm and height 10 cm. Its net is 2 circles + 1 rectangle (width = circumference). Find its surface area (π=22/7).</span><span class="bm">Silinder tertutup ada jejari 7 cm dan tinggi 10 cm. Bentangannya 2 bulatan + 1 segi empat tepat (lebar = lilitan). Cari luas permukaan (π=22/7).</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">2 circles = 2×22/7×49=308. Rectangle = circumference×height = (2×22/7×7)×10=440. Total = 748 cm².</span>
+        <span class="bm">2 bulatan = 2×22/7×49=308. Segi empat tepat = lilitan×tinggi = (2×22/7×7)×10=440. Jumlah = 748 cm².</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Forgetting to double the base area for prisms and cylinders (there are TWO identical bases).</span><span class="bm">Terlupa gandakan luas tapak untuk prisma dan silinder (ada DUA tapak serupa).</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Picture the net — if it has 2 base faces, count both. If it has 1 (like a pyramid or cone), count only 1.</span><span class="bm">Bayangkan bentangan — jika ada 2 muka tapak, kira kedua-dua. Jika ada 1 (seperti piramid atau kon), kira 1 sahaja.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('63','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('63','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('63','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel63easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Find the surface area of a cube with side 4 cm.</span><span class="bm">Cari luas permukaan kubus bersisi 4 cm.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">6 × 4² = 96 cm²</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel63medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A square pyramid has base 6cm×6cm and each triangular face has area 15cm². Find total surface area.</span><span class="bm">Piramid segi empat sama tapak 6cm×6cm dan setiap muka segi tiga luas 15cm². Cari jumlah luas permukaan.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">36 + 4×15 = 96 cm²</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel63hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A closed cone has radius 3 cm and slant height 5 cm. Surface area = πr² + πrs. Find it (π=3.142).</span><span class="bm">Kon tertutup jejari 3 cm dan tinggi condong 5 cm. Luas permukaan = πr² + πrs. Cari (π=3.142).</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">3.142×9 + 3.142×3×5 = 28.28+47.13 = 75.41 cm²</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🎁 <span class="en">Gift wrapping</span><span class="bm">Membalut hadiah</span></span>
+        <span>🎨 <span class="en">Paint needed for a surface</span><span class="bm">Cat diperlukan untuk permukaan</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 6.4 VOLUME ================= -->
+  <div class="subtopic" id="sec-6-4" onmouseenter="visit('s64')">
+    <div class="subtopic-head"><span class="num">6.4</span><h2><span class="en">Volume of Three-Dimensional Shapes</span><span class="bm">Isipadu Bentuk Tiga Matra</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">Stack identical coin-shaped discs on top of each other and you build a cylinder. For ANY prism or cylinder, <b>volume</b> is just the base area, stacked up to the full height.</span>
+      <span class="bm">Susun cakera berbentuk syiling serupa di atas satu sama lain dan anda bina silinder. Untuk SEBARANG prisma atau silinder, <b>isipadu</b> hanyalah luas tapak, disusun sehingga ketinggian penuh.</span></p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Prisms and Cylinders</span><span class="bm">Prisma dan Silinder</span></div>
+      <div class="formula-main"><span class="en">Volume = Base Area × Height</span><span class="bm">Isipadu = Luas Tapak × Tinggi</span></div>
+    </div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">Pyramids and Cones — Exactly ⅓</span><span class="bm">Piramid dan Kon — Tepat ⅓</span></div>
+      <p><span class="en">Fill a cone with sand, then pour it into a same-size cylinder. It takes exactly THREE cones to fill that cylinder — so a cone always holds exactly ⅓ of the matching cylinder's volume. The same ⅓ relationship holds between a pyramid and a prism sharing the same base and height.</span>
+      <span class="bm">Isi kon dengan pasir, kemudian tuang ke silinder saiz sama. Ia mengambil tepat TIGA kon untuk isi silinder itu — jadi kon sentiasa mengandungi tepat ⅓ isipadu silinder sepadan. Perhubungan ⅓ sama berlaku antara piramid dan prisma berkongsi tapak dan tinggi sama.</span></p>
+      <div class="shape-q-wrap" id="coneCylinderDemo"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Pyramids and Cones</span><span class="bm">Piramid dan Kon</span></div>
+      <div class="formula-main"><span class="en">Volume = ⅓ × Base Area × Height</span><span class="bm">Isipadu = ⅓ × Luas Tapak × Tinggi</span></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Find the volume of a cylinder with radius 7 cm and height 20 cm (π=22/7).</span><span class="bm">Cari isipadu silinder berjejari 7 cm dan tinggi 20 cm (π=22/7).</span></div>
+      <div id="steps64"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">A square-based pyramid has base 6cm×6cm and height 10cm. Find its volume.</span><span class="bm">Piramid tapak segi empat sama 6cm×6cm dan tinggi 10cm. Cari isipadunya.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">⅓ × 36 × 10 = 120 cm³.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Forgetting the ⅓ for pyramids and cones — treating them like prisms.</span><span class="bm">Terlupa ⅓ untuk piramid dan kon — melayan seperti prisma.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">A shape coming to a POINT (apex) always needs the ⅓. A shape with two identical flat ends does not.</span><span class="bm">Bentuk yang meruncing ke SATU TITIK (apeks) sentiasa perlukan ⅓. Bentuk dengan dua hujung rata serupa tidak.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('64','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('64','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('64','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel64easy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Find the volume of a cuboid 5cm×4cm×3cm.</span><span class="bm">Cari isipadu kuboid 5cm×4cm×3cm.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">60 cm³</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel64medium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Find the volume of a cone with radius 6cm and height 14cm (π=22/7).</span><span class="bm">Cari isipadu kon berjejari 6cm dan tinggi 14cm (π=22/7).</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">⅓×22/7×36×14 = 528 cm³</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel64hard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A triangular prism has cross-section area 24cm² and length 15cm. A cone of the same volume has base radius 6cm. Find the cone's height (π=3.142).</span><span class="bm">Prisma segi tiga keratan rentas 24cm² dan panjang 15cm. Kon isipadu sama jejari tapak 6cm. Cari tinggi kon (π=3.142).</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Prism volume=24×15=360. ⅓×3.142×36×h=360. h≈9.55 cm.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🥤 <span class="en">Drink can capacity</span><span class="bm">Muatan tin minuman</span></span>
+        <span>🍦 <span class="en">Ice cream cone volume</span><span class="bm">Isipadu kon aiskrim</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPTER END ================= -->
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✦</span><h2><span class="en">Chapter Summary</span><span class="bm">Ringkasan Bab</span></h2></div>
+    <div class="mindmap">
+      <div class="mm-center"><span class="en">3D Shapes</span><span class="bm">Bentuk 3D</span></div>
+      <div class="mm-branches">
+        <div class="mm-branch"><h5><span class="en">Properties &amp; Nets</span><span class="bm">Sifat &amp; Bentangan</span></h5><ul><li><span class="en">Flat pattern unfolds into the 3D shape</span><span class="bm">Corak rata terbuka menjadi bentuk 3D</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Surface Area</span><span class="bm">Luas Permukaan</span></h5><ul><li><span class="en">Sum of all net faces</span><span class="bm">Jumlah semua muka bentangan</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Volume</span><span class="bm">Isipadu</span></h5><ul><li><span class="en">Base×height; ⅓ for pointed shapes</span><span class="bm">Tapak×tinggi; ⅓ untuk bentuk runcing</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">📐</span><h2><span class="en">Formula Sheet</span><span class="bm">Helaian Rumus</span></h2></div>
+    <div class="formula-sheet">
+      <div class="formula-sheet-item"><div class="f"><span class="en">Prism/Cylinder Volume</span></div><div class="l">base area × height</div></div>
+      <div class="formula-sheet-item"><div class="f"><span class="en">Pyramid/Cone Volume</span></div><div class="l">⅓ × base area × height</div></div>
+      <div class="formula-sheet-item"><div class="f"><span class="en">Surface Area</span></div><div class="l"><span class="en">sum of net's face areas</span><span class="bm">jumlah luas muka bentangan</span></div></div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✓</span><h2><span class="en">Quick Revision</span><span class="bm">Ulang Kaji Pantas</span></h2></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can classify 3D shapes by their geometric properties.</span><span class="bm">Saya boleh mengelaskan bentuk 3D mengikut sifat geometri.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can draw and analyse nets of 3D shapes.</span><span class="bm">Saya boleh melukis dan menganalisis bentangan bentuk 3D.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can find surface area and volume of 3D shapes.</span><span class="bm">Saya boleh cari luas permukaan dan isipadu bentuk 3D.</span></p></div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">💡</span><h2><span class="en">Exam Tips</span><span class="bm">Tip Peperiksaan</span></h2></div>
+    <ul class="tip-list">
+      <li><span class="en">Sketch the net before calculating surface area — it stops you missing or doubling a face.</span><span class="bm">Lakar bentangan sebelum mengira luas permukaan — ia elak anda terlepas atau gandakan muka.</span></li>
+      <li><span class="en">Pointed shape (apex)? Multiply by ⅓. Two identical ends? Don't.</span><span class="bm">Bentuk runcing (apeks)? Darab dengan ⅓. Dua hujung serupa? Jangan.</span></li>
+    </ul>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">🏆</span><h2><span class="en">Challenge Mission</span><span class="bm">Misi Cabaran</span></h2></div>
+    <div class="challenge-card">
+      <div class="tag">🏆 KBAT</div>
+      <p><span class="en">A cylindrical can (radius 5cm, height 12cm) is melted down and recast into cones of radius 3cm and height 4cm. How many cones can be made?</span>
+      <span class="bm">Tin silinder (jejari 5cm, tinggi 12cm) dileburkan dan dibentuk semula menjadi kon jejari 3cm dan tinggi 4cm. Berapa kon boleh dibuat?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">Cylinder volume = π×25×12=300π. Cone volume = ⅓×π×9×4=12π. Number of cones = 300π÷12π = 25.</span>
+        <span class="bm">Isipadu silinder = π×25×12=300π. Isipadu kon = ⅓×π×9×4=12π. Bilangan kon = 300π÷12π = 25.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for the Chapter 6 Quiz?</span><span class="bm">Bersedia untuk Kuiz Bab 6?</span></h3>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let LANG = 'en';
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+}
+
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 18;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(5 + Object.keys(visited).length*24, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+/* ===== 5 shape-type icons: prism, pyramid, cylinder, cone, sphere ===== */
+function buildShapeCompare(containerId){
+  const items = [
+    {label:'Prism', svg:`<polygon points="10,45 30,45 40,30 20,30" fill="rgba(139,107,255,0.2)" stroke="var(--violet)" stroke-width="1.3"/><polygon points="10,45 20,30 20,15 10,30" fill="rgba(139,107,255,0.35)" stroke="var(--violet)" stroke-width="1.3"/><polygon points="20,30 20,15 40,15 40,30" fill="rgba(139,107,255,0.1)" stroke="var(--violet)" stroke-width="1.3"/>`},
+    {label:'Pyramid', svg:`<polygon points="25,10 45,42 5,42" fill="rgba(91,227,176,0.2)" stroke="var(--good)" stroke-width="1.3"/><line x1="25" y1="10" x2="25" y2="42" stroke="var(--good)" stroke-width="1"/>`},
+    {label:'Cylinder', svg:`<ellipse cx="25" cy="12" rx="15" ry="6" fill="rgba(255,185,55,0.2)" stroke="var(--amber)" stroke-width="1.3"/><line x1="10" y1="12" x2="10" y2="38" stroke="var(--amber)" stroke-width="1.3"/><line x1="40" y1="12" x2="40" y2="38" stroke="var(--amber)" stroke-width="1.3"/><ellipse cx="25" cy="38" rx="15" ry="6" fill="rgba(255,185,55,0.1)" stroke="var(--amber)" stroke-width="1.3"/>`},
+    {label:'Cone', svg:`<ellipse cx="25" cy="38" rx="15" ry="6" fill="rgba(255,111,142,0.15)" stroke="var(--bad)" stroke-width="1.3"/><line x1="10" y1="38" x2="25" y2="8" stroke="var(--bad)" stroke-width="1.3"/><line x1="40" y1="38" x2="25" y2="8" stroke="var(--bad)" stroke-width="1.3"/>`},
+    {label:'Sphere', svg:`<circle cx="25" cy="25" r="17" fill="rgba(139,107,255,0.15)" stroke="#fff" stroke-width="1.3"/><ellipse cx="25" cy="25" rx="17" ry="6" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.5"/>`}
+  ];
+  let html = '<div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">';
+  items.forEach(it=>{
+    html += `<div style="text-align:center;"><svg width="50" height="50" viewBox="0 0 50 50">${it.svg}</svg><div style="font-size:10px; color:var(--faint); margin-top:2px;">${it.label}</div></div>`;
+  });
+  html += '</div>';
+  document.getElementById(containerId).innerHTML = html + `<div class="visual-caption" style="margin-top:8px;"><span class="en">Flat sides vs curved surfaces, one base vs two — that's what separates each shape</span><span class="bm">Sisi rata lwn permukaan melengkung, satu tapak lwn dua — itu yang bezakan setiap bentuk</span></div>`;
+}
+buildShapeCompare('shapeCompareDemo');
+
+/* ===== cube net: cross-shaped unfolding (classic 6-square net) ===== */
+function buildCubeNet(containerId){
+  const s=32;
+  const squares = [
+    [1,0],[0,1],[1,1],[2,1],[3,1],[1,2]
+  ];
+  let rects = '';
+  squares.forEach(([col,row])=>{
+    rects += `<rect x="${col*s+10}" y="${row*s+5}" width="${s}" height="${s}" fill="rgba(139,107,255,0.15)" stroke="var(--violet)" stroke-width="1.3"/>`;
+  });
+  const svg = `<svg class="shape-q-svg" viewBox="0 0 160 115" xmlns="http://www.w3.org/2000/svg">${rects}</svg>`;
+  document.getElementById(containerId).innerHTML = svg + `<div class="visual-caption"><span class="en">6 squares in a cross — fold along every edge and the cube closes up perfectly</span><span class="bm">6 segi empat sama bentuk salib — lipat sepanjang setiap tepi dan kubus tertutup sempurna</span></div>`;
+}
+buildCubeNet('cubeNetDemo');
+
+/* ===== cone fills cylinder: 3 small cones next to 1 cylinder ===== */
+function buildConeCylinder(containerId){
+  function coneIcon(x){
+    return `<ellipse cx="${x}" cy="72" rx="14" ry="5" fill="rgba(255,111,142,0.15)" stroke="var(--bad)" stroke-width="1.2"/><line x1="${x-14}" y1="72" x2="${x}" y2="35" stroke="var(--bad)" stroke-width="1.2"/><line x1="${x+14}" y1="72" x2="${x}" y2="35" stroke="var(--bad)" stroke-width="1.2"/>`;
+  }
+  const svg = `<svg class="shape-q-svg" viewBox="0 0 260 90" xmlns="http://www.w3.org/2000/svg">
+    ${coneIcon(35)}${coneIcon(75)}${coneIcon(115)}
+    <text x="150" y="55" font-size="18" fill="var(--faint)" text-anchor="middle" font-family="Space Grotesk">=</text>
+    <ellipse cx="200" cy="30" rx="24" ry="7" fill="rgba(91,227,176,0.2)" stroke="var(--good)" stroke-width="1.3"/>
+    <line x1="176" y1="30" x2="176" y2="72" stroke="var(--good)" stroke-width="1.3"/>
+    <line x1="224" y1="30" x2="224" y2="72" stroke="var(--good)" stroke-width="1.3"/>
+    <ellipse cx="200" cy="72" rx="24" ry="7" fill="rgba(91,227,176,0.1)" stroke="var(--good)" stroke-width="1.3"/>
+  </svg>`;
+  document.getElementById(containerId).innerHTML = svg + `<div class="visual-caption"><span class="en">3 cones of sand exactly fill 1 same-size-base, same-height cylinder — so cone volume = ⅓ cylinder volume</span><span class="bm">3 kon pasir tepat mengisi 1 silinder tapak sama, tinggi sama — jadi isipadu kon = ⅓ isipadu silinder</span></div>`;
+}
+buildConeCylinder('coneCylinderDemo');
+
+function buildSteps(containerId, steps){
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  steps.forEach((s,i)=>{
+    const item = document.createElement('div');
+    item.className = 'step-item';
+    item.innerHTML = `
+      <div class="step-num">${i+1}</div>
+      <div class="step-body">
+        <div class="step-calc">${s.calc}</div>
+        <div class="step-hint-label"><span class="en">Tap to see why →</span><span class="bm">Ketik untuk lihat sebab →</span></div>
+        <div class="step-why"><span class="en">${s.whyEn}</span><span class="bm">${s.whyBm}</span></div>
+      </div>`;
+    item.onclick = ()=> item.classList.toggle('revealed');
+    el.appendChild(item);
+  });
+}
+buildSteps('steps61', [
+  {calc:'2 circular bases + curved surface + no apex = cylinder', whyEn:'Two circles (not one) rules out a cone, and no point/apex rules out a pyramid.', whyBm:'Dua bulatan (bukan satu) menyingkirkan kon, dan tiada titik/apeks menyingkirkan piramid.'}
+]);
+buildSteps('steps62', [
+  {calc:'2 circles (the bases) + 1 curved rectangle (the side)', whyEn:'Unroll a cylinder\'s curved side and it flattens into a rectangle, with width equal to the circumference.', whyBm:'Buka sisi melengkung silinder dan ia rata menjadi segi empat tepat, dengan lebar bersamaan lilitan.'}
+]);
+buildSteps('steps63', [
+  {calc:'Top+bottom: 2×(5×4)=40', whyEn:'The two 5cm×4cm faces.', whyBm:'Dua muka 5cm×4cm.'},
+  {calc:'Front+back: 2×(5×3)=30', whyEn:'The two 5cm×3cm faces.', whyBm:'Dua muka 5cm×3cm.'},
+  {calc:'Left+right: 2×(4×3)=24', whyEn:'The two 4cm×3cm faces.', whyBm:'Dua muka 4cm×3cm.'},
+  {calc:'Total = 40+30+24 = 94 cm²', whyEn:'Add up all 6 faces from the net.', whyBm:'Tambah kesemua 6 muka daripada bentangan.'}
+]);
+buildSteps('steps64', [
+  {calc:'Base area = πr² = 22/7 × 49 = 154', whyEn:'Find the circular base area first.', whyBm:'Cari luas tapak bulat dahulu.'},
+  {calc:'Volume = 154 × 20 = 3080 cm³', whyEn:'Multiply base area by height — stacking that circle up to the full height.', whyBm:'Darab luas tapak dengan tinggi — menyusun bulatan itu sehingga tinggi penuh.'}
+]);
+
+function toggleGuidedHint(btn){ btn.nextElementSibling.classList.toggle('show'); }
+function togglePractice(btn){
+  const card = btn.closest('.practice-q-card');
+  card.querySelector('.practice-reveal').classList.toggle('show');
+}
+function showDiff(subtopic, diff){
+  const targetPanel = document.getElementById(`panel${subtopic}${diff}`);
+  const zone = targetPanel.closest('.practice-zone');
+  zone.querySelectorAll('.diff-panel').forEach(p=>p.classList.remove('active'));
+  targetPanel.classList.add('active');
+  zone.querySelectorAll('.diff-tab').forEach(t=>t.classList.toggle('active', t.dataset.diff===diff));
+}
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+</script>
+</body>
+</html>

@@ -9,10 +9,13 @@ import { MATH_BLUE } from "./mathTheme";
  */
 export function LessonIntro({
   lang,
+  tag,
   paragraphs,
   children,
 }: {
   lang: MathLang;
+  /** Overrides the default "The Idea" label, e.g. for a named method sub-block. */
+  tag?: string;
   paragraphs: string[];
   children?: ReactNode;
 }) {
@@ -25,7 +28,7 @@ export function LessonIntro({
         className="font-display mb-2.5 inline-flex items-center gap-1.5 text-[11.5px] font-bold uppercase tracking-wider"
         style={{ color: MATH_BLUE }}
       >
-        📖 {chrome("theIdea", lang)}
+        📖 {tag ?? chrome("theIdea", lang)}
       </div>
       <div className="space-y-3">
         {paragraphs.map((p, i) => (

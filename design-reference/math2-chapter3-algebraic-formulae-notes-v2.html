@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Form 2 Chapter 3: Algebraic Formulae</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+
+  /* ===== MATH DESIGN SYSTEM v2 — calmer, cleaner ===== */
+  :root{
+    --orange:#ff9f43;
+    --purple:#b57bff;
+  }
+
+  .wrap{max-width:760px;}
+  .card p{line-height:1.75;}
+
+  /* section intro — ONE clean lesson block, no heavy colour, just accent bar + icon label */
+  .lesson-intro{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-left:3px solid var(--blue);
+    border-radius:14px; padding:20px 22px; margin-top:18px;}
+  .lesson-intro .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:10px;}
+  .lesson-intro p{font-size:14.5px; color:var(--muted); line-height:1.75;}
+  .lesson-intro p + p{margin-top:12px;}
+  .lesson-intro b{color:#fff; font-weight:600;}
+
+  /* formula card — the single visual highlight of each subtopic */
+  .formula-card{background:rgba(139,107,255,0.1); border:1px solid rgba(139,107,255,0.3);
+    border-radius:16px; padding:26px 24px; margin-top:18px; text-align:center;}
+  .formula-eyebrow{font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--violet); margin-bottom:12px; font-weight:700;}
+  .formula-main{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#fff; letter-spacing:.01em; line-height:1.4;}
+  .formula-legend{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);}
+  .formula-legend .item{font-size:12.5px; color:var(--muted); text-align:left;}
+  .formula-legend .item b{color:#fff; font-family:'Space Grotesk',sans-serif; margin-right:5px; font-weight:600;}
+
+  /* worked example — clean numbered steps, generous spacing, one accent colour only */
+  .steps-card{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-radius:16px; padding:22px 24px; margin-top:18px;}
+  .steps-card .ex-label{font-family:'Space Grotesk',sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--purple); font-weight:700; margin-bottom:6px;}
+  .steps-card .ex-q{font-size:14.5px; color:#fff; margin-bottom:18px; line-height:1.6;}
+  .step-item{display:flex; gap:14px; padding:12px 0; cursor:pointer;}
+  .step-item + .step-item{border-top:1px solid rgba(255,255,255,0.06);}
+  .step-num{width:28px; height:28px; border-radius:50%; background:rgba(181,123,255,0.15); border:1.5px solid rgba(181,123,255,0.4); display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12.5px; color:var(--purple); flex-shrink:0; margin-top:2px;}
+  .step-item.revealed .step-num{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .step-body{flex:1;}
+  .step-calc{font-family:'Space Grotesk',sans-serif; font-size:15.5px; color:#fff; line-height:1.5;}
+  .step-why{display:none; margin-top:8px; font-size:13px; color:var(--muted); line-height:1.6;}
+  .step-item.revealed .step-why{display:block;}
+  .step-hint-label{font-size:11px; color:var(--faint); margin-top:4px;}
+  .step-item.revealed .step-hint-label{display:none;}
+
+  /* try together — light, single accent, no heavy background */
+  .guided-card{border:1px dashed rgba(77,124,254,0.35); border-radius:14px; padding:18px 20px; margin-top:16px;}
+  .guided-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:8px;}
+  .guided-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+  .guided-hint{margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:#ffd4a8; display:none; line-height:1.6;}
+  .guided-hint.show{display:block;}
+  .hint-btn{display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:7px 14px; border-radius:100px; background:none; border:1px solid rgba(255,159,67,0.4);
+    font-size:12px; font-weight:600; color:var(--orange); cursor:pointer;}
+
+  /* common mistake — single compact note, not a heavy two-tone grid */
+  .mistake-note{margin-top:16px; padding:16px 18px; border-radius:12px; background:rgba(255,111,142,0.06); border:1px solid rgba(255,111,142,0.25);}
+  .mistake-note .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--bad); margin-bottom:10px;}
+  .mistake-line{font-size:13.5px; line-height:1.7; margin-top:6px;}
+  .mistake-line .lbl{font-weight:700; margin-right:6px;}
+  .mistake-line.wrong .lbl{color:var(--bad);}
+  .mistake-line.right .lbl{color:var(--good);}
+  .mistake-line span.txt{color:var(--muted);}
+
+  /* practice zone — difficulty tabs, calm styling */
+  .practice-zone{margin-top:20px;}
+  .practice-zone > .zone-label{font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .diff-tabs{display:flex; gap:6px; margin-bottom:14px;}
+  .diff-tab{flex:1; text-align:center; padding:8px; border-radius:10px; font-size:12px; font-weight:700; cursor:pointer; border:1px solid var(--glass-brd); color:var(--faint); background:rgba(255,255,255,0.02);}
+  .diff-tab[data-diff="easy"].active{background:rgba(91,227,176,0.12); border-color:var(--good); color:var(--good);}
+  .diff-tab[data-diff="medium"].active{background:rgba(255,159,67,0.12); border-color:var(--orange); color:var(--orange);}
+  .diff-tab[data-diff="hard"].active{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .diff-panel{display:none;}
+  .diff-panel.active{display:block;}
+
+  .practice-q-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px;}
+  .practice-q-text{font-size:14px; color:#fff; margin-bottom:12px; line-height:1.6;}
+  .practice-btn-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .pbtn{padding:7px 14px; border-radius:100px; font-size:11.5px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); background:none; color:var(--muted);}
+  .pbtn.hint-pbtn{color:var(--orange); border-color:rgba(255,159,67,0.3);}
+  .pbtn.sol-pbtn{color:var(--violet); border-color:rgba(139,107,255,0.3);}
+  .practice-reveal{display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:var(--muted); line-height:1.65;}
+  .practice-reveal.show{display:block;}
+  .practice-reveal.hint-reveal{color:#ffd4a8;}
+
+  /* real-life application — plain inline tags, no card */
+  .reallife-row{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.07);}
+  .reallife-row .lbl{font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); font-weight:700; margin-bottom:10px; display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .example-chips span{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); padding:6px 12px; border-radius:100px; font-size:12px; color:var(--muted);}
+
+  /* number line */
+  .numline-wrap{margin-top:16px; text-align:center;}
+  .numline-svg{max-width:100%; height:auto;}
+
+  /* generic diagram containers (array grids, venn, timelines, cube stacks) */
+  .visual-wrap{margin-top:18px; padding:18px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; text-align:center;}
+  .visual-svg{max-width:100%; height:auto;}
+  .visual-caption{font-size:11.5px; color:var(--faint); margin-top:10px;}
+
+  /* division ladder — the standard repeated-division method for prime factorisation, HCF, LCM */
+  .ladder-wrap{margin-top:14px; display:flex; justify-content:center;}
+  .ladder-table{border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .ladder-table td{padding:7px 14px; font-size:15px; color:#fff; text-align:center;}
+  .ladder-table .divisor-cell{color:var(--violet); font-weight:700; border-right:2px solid rgba(139,107,255,0.4); position:relative;}
+  .ladder-table tr:first-child td{border-top:2px solid rgba(139,107,255,0.4);}
+  .ladder-table .result-row td{border-top:1.5px solid rgba(255,255,255,0.15); padding-top:10px; font-weight:700;}
+  .ladder-table .result-row .divisor-cell{border-right:none; color:var(--good);}
+  .ladder-reveal{display:none; margin-top:16px;}
+  .ladder-reveal.show{display:block;}
+  .ladder-question{font-size:14px; color:#fff; margin-bottom:4px;}
+  .show-method-btn{display:inline-flex; align-items:center; gap:6px; margin-top:14px; padding:8px 16px; border-radius:100px; background:rgba(139,107,255,0.12);
+    border:1px solid rgba(139,107,255,0.4); font-size:12.5px; font-weight:600; color:var(--violet); cursor:pointer;}
+  .ladder-result-tag{display:inline-block; margin-top:14px; padding:8px 18px; border-radius:10px; background:rgba(91,227,176,0.1); border:1px solid rgba(91,227,176,0.35);
+    font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--good);}
+
+  /* factor grouping chips — visualises pairing (squares) or tripling (cubes) of prime factors */
+  .factor-chip{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; margin:3px; border-radius:8px;
+    background:rgba(139,107,255,0.15); border:1.5px solid var(--violet); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13.5px; color:#fff;}
+  .factor-chip.leftover{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .factor-group{display:inline-flex; padding:3px; margin:3px; border-radius:10px; background:rgba(91,227,176,0.08); border:1.5px dashed rgba(91,227,176,0.45);}
+
+  /* cross-multiplication visual for proportions */
+  .cross-mult-wrap{margin-top:16px; text-align:center;}
+  .cross-mult-svg{max-width:100%; height:auto;}
+
+  /* angle diagrams (intersecting lines, parallel lines + transversal) */
+  .angle-diagram-svg{max-width:100%; height:auto;}
+
+  /* small labeled right-triangle diagram accompanying a Pythagoras question */
+  .tri-q-wrap{margin:10px 0 14px; display:flex; justify-content:center;}
+  .tri-q-svg{max-width:170px; height:auto;}
+
+  /* reference table (e.g. polygon name / vertices / sides / interior angles) */
+  .props-table-wrap{margin-top:16px; overflow-x:auto;}
+  .props-table{width:100%; border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .props-table th{text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:700; padding:10px 14px; border-bottom:1.5px solid rgba(255,255,255,0.12);}
+  .props-table td{padding:11px 14px; font-size:13.5px; color:#fff; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .props-table tr:last-child td{border-bottom:none;}
+  .props-table tr:hover td{background:rgba(139,107,255,0.06);}
+
+  /* subtopic divider — clear visual separation between subtopics */
+  .subtopic{margin-top:56px; padding-top:8px;}
+  .subtopic:first-of-type{margin-top:36px;}
+  .subtopic-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .subtopic-head .num{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); font-weight:700; background:rgba(139,107,255,0.12); padding:3px 10px; border-radius:100px;}
+  .subtopic-head h2{font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:600;}
+
+  /* formula sheet (chapter end) */
+  .formula-sheet{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px;}
+  .formula-sheet-item{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; text-align:center;}
+  .formula-sheet-item .f{font-family:'Space Grotesk',sans-serif; font-size:15px; color:#fff; margin-bottom:4px;}
+  .formula-sheet-item .l{font-size:11px; color:var(--faint);}
+
+  /* exam tips / mistakes recap */
+  .tip-list{list-style:none; margin-top:8px;}
+  .tip-list li{position:relative; padding-left:22px; font-size:13px; color:var(--muted); margin-bottom:10px; line-height:1.6;}
+  .tip-list li::before{content:"→"; position:absolute; left:0; top:0; color:var(--violet); font-weight:700;}
+
+  .challenge-card{background:rgba(255,185,55,0.06); border:1px solid rgba(255,185,55,0.3); border-radius:16px; padding:20px 22px; margin-top:16px;}
+  .challenge-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--amber); margin-bottom:10px;}
+  .challenge-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+
+  @media (max-width:720px){
+    .formula-sheet{grid-template-columns:1fr;}
+    .formula-main{font-size:21px;}
+  }
+</style>
+<style>
+  .shape-q-wrap{margin:10px 0 14px; display:flex; justify-content:center;}
+  .shape-q-svg{max-width:280px; height:auto;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Form 2 Mathematics &nbsp;/&nbsp; <b>Chapter 3</b></span>
+    <span class="bm">Matematik Tingkatan 2 &nbsp;/&nbsp; <b>Bab 3</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 3</span><span class="bm">Bab 3</span></div>
+    <h1><span class="en">Algebraic Formulae</span><span class="bm">Rumus Algebra</span></h1>
+    <p class="sub">
+      <span class="en">One formula, endless situations. Instead of recalculating a shop's discounted price by hand every time, write ONE rule that does it for any price.</span>
+      <span class="bm">Satu rumus, situasi tanpa had. Daripada mengira semula harga diskaun kedai secara manual setiap kali, tulis SATU peraturan yang buat untuk sebarang harga.</span>
+    </p>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">Forming Formulae</span><span class="bm">Membentuk Rumus</span><span id="progressPct">6%</span><span class="en">Solving Problems</span><span class="bm">Selesai Masalah</span></div>
+  </div>
+
+  <!-- ================= FORMING FORMULAE ================= -->
+  <div class="subtopic" id="sec-3-1a" onmouseenter="visit('s31a')">
+    <div class="subtopic-head"><span class="num">3.1</span><h2><span class="en">Forming Formulae</span><span class="bm">Membentuk Rumus</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">An <b>algebraic formula</b> is a rule connecting variables. The letter standing ALONE on one side is the <b>subject</b>.</span>
+      <span class="bm"><b>Rumus algebra</b> ialah peraturan menghubungkan pemboleh ubah. Huruf berdiri SENDIRIAN pada satu belah ialah <b>perkara</b>.</span></p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Subject of the Formula</span><span class="bm">Perkara Rumus</span></div>
+      <div class="formula-main">P = a + 2b</div>
+      <div class="formula-legend">
+        <div class="item"><b>P</b><span class="en">is the subject — alone on the left</span><span class="bm">ialah perkara — sendirian di kiri</span></div>
+      </div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Suzi sells cake at RM3/slice, cheese cake at double that. A 10% discount applies to everything. Form a formula for the selling price z, for m chocolate slices and n cheese slices.</span><span class="bm">Suzi jual kek RM3/hiris, kek keju dua kali harga itu. Diskaun 10% dikenakan pada semuanya. Bentuk rumus harga jualan z, bagi m hiris kek coklat dan n hiris kek keju.</span></div>
+      <div id="steps31a"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">A taxi charges RM3 flag-down plus RM2 per km. Write a formula for the fare F for k km.</span><span class="bm">Teksi caj RM3 tambang minimum tambah RM2 setiap km. Tulis rumus tambang F bagi k km.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">F = 3 + 2k</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Applying a discount to only PART of the total.</span><span class="bm">Mengenakan diskaun hanya pada SEBAHAGIAN jumlah.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Add up the FULL price first, THEN discount the combined total once.</span><span class="bm">Jumlahkan harga PENUH dahulu, KEMUDIAN diskaun jumlah gabungan sekali.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('31a','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('31a','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('31a','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel31aeasy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Write a formula for perimeter P of a rectangle, length l, width w.</span><span class="bm">Tulis rumus perimeter P segi empat tepat, panjang l, lebar w.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">P = 2l + 2w</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31amedium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A phone plan: RM30 base, 5GB free, RM4/extra GB. Formula for bill B with g extra GB?</span><span class="bm">Pelan telefon: RM30 asas, 5GB percuma, RM4/GB tambahan. Rumus bil B dengan g GB tambahan?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">B = 30 + 4g</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31ahard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A store sells shirts at RMx, discounted RM(x−5) during sale. Write a formula for total T when 3 shirts are bought on sale.</span><span class="bm">Kedai jual baju RMx, diskaun RM(x−5) semasa jualan. Tulis rumus jumlah T bila 3 baju dibeli semasa jualan.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">T = 3(x−5)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>💻 <span class="en">Spreadsheets</span><span class="bm">Hamparan</span></span>
+        <span>📱 <span class="en">Phone billing</span><span class="bm">Pengebilan telefon</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHANGING THE SUBJECT OF FORMULA ================= -->
+  <div class="subtopic" id="sec-3-1b" onmouseenter="visit('s31b')">
+    <div class="subtopic-head"><span class="num">3.1</span><h2><span class="en">Changing the Subject of Formula</span><span class="bm">Menukar Perkara Rumus</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">Think of a formula as a balanced scale. Whatever you do to ONE side, you must do to the OTHER — that keeps it balanced while you move things around to isolate a different letter.</span>
+      <span class="bm">Fikirkan rumus sebagai neraca seimbang. Apa sahaja anda buat pada SATU belah, anda mesti buat pada belah SATU LAGI — itu kekalkan imbangan semasa anda alih benda untuk asingkan huruf berbeza.</span></p>
+      <div class="shape-q-wrap" id="balanceScaleDemo"></div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example — Linear</span><span class="bm">Contoh Berpandu — Linear</span></div>
+      <div class="ex-q"><span class="en">State m as the subject: b = 2s − m</span><span class="bm">Nyatakan m sebagai perkara: b = 2s − m</span></div>
+      <div id="steps31b1"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Squares and Square Roots Undo Each Other</span><span class="bm">Kuasa Dua dan Punca Saling Batal</span></div>
+      <div class="formula-main">s = p² &nbsp;⟹&nbsp; p = √s</div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example — Squares/Roots</span><span class="bm">Contoh Berpandu — Kuasa Dua/Punca</span></div>
+      <div class="ex-q"><span class="en">State p as the subject: t = 1/p²</span><span class="bm">Nyatakan p sebagai perkara: t = 1/p²</span></div>
+      <div id="steps31b2"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">State p as the subject: w = p/3</span><span class="bm">Nyatakan p sebagai perkara: w = p/3</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">Multiply both sides by 3: p = 3w.</span>
+        <span class="bm">Darab kedua-dua belah dengan 3: p = 3w.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Leaving the answer as −m instead of finishing to a POSITIVE m.</span><span class="bm">Membiarkan jawapan −m tanpa selesaikan kepada m POSITIF.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Ended with −m? Multiply BOTH sides by −1 to flip every sign.</span><span class="bm">Berakhir dengan −m? Darab KEDUA-DUA belah dengan −1 untuk tukar setiap tanda.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('31b','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('31b','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('31b','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel31beasy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">State m as the subject: q = m + p</span><span class="bm">Nyatakan m sebagai perkara: q = m + p</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">m = q − p</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31bmedium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">State p as the subject: s = p²</span><span class="bm">Nyatakan p sebagai perkara: s = p²</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">p = √s</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31bhard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">State m as the subject: a = 5/(2m)</span><span class="bm">Nyatakan m sebagai perkara: a = 5/(2m)</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">m = 5/(2a)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🌡️ <span class="en">Temperature conversion</span><span class="bm">Penukaran suhu</span></span>
+        <span>📊 <span class="en">Science formulas</span><span class="bm">Formula sains</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DETERMINING THE VALUE OF A VARIABLE ================= -->
+  <div class="subtopic" id="sec-3-1c" onmouseenter="visit('s31c')">
+    <div class="subtopic-head"><span class="num">3.1</span><h2><span class="en">Determining the Value of a Variable</span><span class="bm">Menentukan Nilai Pemboleh Ubah</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">Once you have known values, plug them into the formula, then solve for whatever's left.</span>
+      <span class="bm">Sebaik anda ada nilai diketahui, masukkan ke dalam rumus, kemudian selesaikan yang tinggal.</span></p>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Given m = ¼(p − q)², find q when m = 16 and p = 3.</span><span class="bm">Diberi m = ¼(p − q)², cari q apabila m = 16 dan p = 3.</span></div>
+      <div id="steps31c"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">Given w = 7t − 5u, find t when w = 15 and u = 4.</span><span class="bm">Diberi w = 7t − 5u, cari t apabila w = 15 dan u = 4.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">7t − 20 = 15. 7t = 35. t = 5.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Square-rooting only part of a bracket instead of the whole thing.</span><span class="bm">Cari punca kuasa dua sebahagian kurungan sahaja, bukan keseluruhan.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Square-rooting means the ENTIRE bracket gets rooted together.</span><span class="bm">Mencari punca kuasa dua bermaksud KESELURUHAN kurungan dicari bersama.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('31c','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('31c','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('31c','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel31ceasy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Given A = πr², find A when r = 7 (π≈22/7).</span><span class="bm">Diberi A = πr², cari A apabila r = 7 (π≈22/7).</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">A = 154</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31cmedium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Given v = u + at, find a when v=20, u=5, t=3.</span><span class="bm">Diberi v = u + at, cari a apabila v=20, u=5, t=3.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">a = 5</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31chard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Given m = ¼(p − q)², find p if m = 9, q = −1.</span><span class="bm">Diberi m = ¼(p − q)², cari p jika m = 9, q = −1.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">p = 5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🚀 <span class="en">Physics formulas</span><span class="bm">Formula fizik</span></span>
+        <span>🏦 <span class="en">Interest calculations</span><span class="bm">Pengiraan faedah</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SOLVING PROBLEMS ================= -->
+  <div class="subtopic" id="sec-3-1d" onmouseenter="visit('s31d')">
+    <div class="subtopic-head"><span class="num">3.1</span><h2><span class="en">Solving Problems</span><span class="bm">Menyelesaikan Masalah</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">Real problems don't hand you a formula — you build one. Name the unknown with a letter, turn the story into an equation, then solve.</span>
+      <span class="bm">Masalah sebenar tidak beri rumus — anda bina satu. Namakan yang tidak diketahui dengan huruf, tukar cerita kepada persamaan, kemudian selesaikan.</span></p>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Chicken costs twice a bun. With RM5, Azman buys 2 buns and 1 chicken, RM1 left over. With RM12 buying the same buns, how many chickens can he afford?</span><span class="bm">Ayam harga dua kali bun. Dengan RM5, Azman beli 2 bun dan 1 ayam, baki RM1. Dengan RM12 beli bun sama, berapa ayam mampu dibeli?</span></div>
+      <div id="steps31d"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">Clothes sell at RMy, discounted to RM(y−8). 5 items cost RM60 total. Find y.</span><span class="bm">Pakaian jual RMy, diskaun RM(y−8). 5 item kos RM60. Cari y.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">5(y−8) = 60. y−8 = 12. y = 20.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Jumping to arithmetic without defining what your letter means.</span><span class="bm">Terus ke pengiraan tanpa tentukan maksud huruf anda.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Always write "Let x = ..." first.</span><span class="bm">Sentiasa tulis "Biar x = ..." dahulu.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('31d','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('31d','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('31d','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel31deasy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A pen costs RM2 more than a pencil. 3 pencils and 2 pens cost RM19. Find the pencil's price.</span><span class="bm">Pen RM2 lebih daripada pensel. 3 pensel dan 2 pen kos RM19. Cari harga pensel.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">RM3</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31dmedium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A rectangle's length is 3 cm more than its width. Perimeter 26 cm. Find the width.</span><span class="bm">Panjang segi empat tepat 3 cm lebih daripada lebar. Perimeter 26 cm. Cari lebar.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">5 cm</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel31dhard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">B = 30 + 4g. Bill was RM58. How many extra GB?</span><span class="bm">B = 30 + 4g. Bil RM58. Berapa GB tambahan?</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">7 GB</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🛍️ <span class="en">Shopping and budgeting</span><span class="bm">Beli-belah dan bajet</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPTER END ================= -->
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✦</span><h2><span class="en">Chapter Summary</span><span class="bm">Ringkasan Bab</span></h2></div>
+    <div class="mindmap">
+      <div class="mm-center"><span class="en">Algebraic Formulae</span><span class="bm">Rumus Algebra</span></div>
+      <div class="mm-branches">
+        <div class="mm-branch"><h5><span class="en">Forming</span><span class="bm">Membentuk</span></h5><ul><li><span class="en">Translate a story into an equation</span><span class="bm">Terjemah cerita kepada persamaan</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Changing Subject</span><span class="bm">Menukar Perkara</span></h5><ul><li><span class="en">Same balance-scale method</span><span class="bm">Kaedah neraca sama</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">Solving</span><span class="bm">Menyelesaikan</span></h5><ul><li><span class="en">Substitute known values</span><span class="bm">Gantikan nilai diketahui</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">📐</span><h2><span class="en">Formula Sheet</span><span class="bm">Helaian Rumus</span></h2></div>
+    <div class="formula-sheet">
+      <div class="formula-sheet-item"><div class="f"><span class="en">Subject: alone, coefficient 1</span><span class="bm">Perkara: sendirian, pekali 1</span></div><div class="l"></div></div>
+      <div class="formula-sheet-item"><div class="f">s = p² ⟹ p = √s</div><div class="l"></div></div>
+      <div class="formula-sheet-item"><div class="f"><span class="en">−m? Multiply both sides by −1</span><span class="bm">−m? Darab kedua-dua belah −1</span></div><div class="l"></div></div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✓</span><h2><span class="en">Quick Revision</span><span class="bm">Ulang Kaji Pantas</span></h2></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can write a formula from a real situation.</span><span class="bm">Saya boleh tulis rumus daripada situasi sebenar.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can change the subject, including squares and roots.</span><span class="bm">Saya boleh tukar perkara, termasuk kuasa dua dan punca.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can substitute and solve real-world formula problems.</span><span class="bm">Saya boleh gantikan dan selesaikan masalah rumus dunia sebenar.</span></p></div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">💡</span><h2><span class="en">Exam Tips</span><span class="bm">Tip Peperiksaan</span></h2></div>
+    <ul class="tip-list">
+      <li><span class="en">Underline every number and relationship BEFORE writing algebra.</span><span class="bm">Garis bawah setiap nombor dan perhubungan SEBELUM menulis algebra.</span></li>
+      <li><span class="en">Check your rearranged formula by plugging the original numbers back in.</span><span class="bm">Semak rumus disusun semula dengan masukkan semula nombor asal.</span></li>
+    </ul>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">🏆</span><h2><span class="en">Challenge Mission</span><span class="bm">Misi Cabaran</span></h2></div>
+    <div class="challenge-card">
+      <div class="tag">🏆 KBAT</div>
+      <p><span class="en">A ball's height: h = 20t − 5t². Find h when t=2.</span>
+      <span class="bm">Ketinggian bola: h = 20t − 5t². Cari h apabila t=2.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">h=20(2)−5(4)=40−20=20 m.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for the Chapter 3 Quiz?</span><span class="bm">Bersedia untuk Kuiz Bab 3?</span></h3>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let LANG = 'en';
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+}
+
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 18;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(6 + Object.keys(visited).length*24, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+/* ===== balance scale: same action on both sides keeps it level ===== */
+function buildBalanceScale(containerId){
+  const svg = `<svg class="shape-q-svg" viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg">
+    <line x1="130" y1="20" x2="130" y2="55" stroke="#fff" stroke-width="3"/>
+    <line x1="40" y1="55" x2="220" y2="55" stroke="#fff" stroke-width="3"/>
+    <line x1="40" y1="55" x2="40" y2="80" stroke="#fff" stroke-width="1.5"/>
+    <line x1="220" y1="55" x2="220" y2="80" stroke="#fff" stroke-width="1.5"/>
+    <rect x="10" y="80" width="60" height="30" rx="6" fill="rgba(139,107,255,0.18)" stroke="var(--violet)" stroke-width="1.5"/>
+    <text x="40" y="100" font-size="13" fill="#fff" text-anchor="middle" font-family="Space Grotesk" font-weight="700">b = 2s</text>
+    <rect x="190" y="80" width="60" height="30" rx="6" fill="rgba(91,227,176,0.18)" stroke="var(--good)" stroke-width="1.5"/>
+    <text x="220" y="100" font-size="13" fill="#fff" text-anchor="middle" font-family="Space Grotesk" font-weight="700">− m</text>
+    <polygon points="120,10 140,10 130,22" fill="#fff"/>
+  </svg>`;
+  document.getElementById(containerId).innerHTML = svg + `<div class="visual-caption"><span class="en">Add m to BOTH sides, subtract a number from BOTH sides — the scale stays level the whole time</span><span class="bm">Tambah m pada KEDUA-DUA belah, tolak nombor daripada KEDUA-DUA belah — neraca kekal rata sepanjang masa</span></div>`;
+}
+buildBalanceScale('balanceScaleDemo');
+
+function buildSteps(containerId, steps){
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  steps.forEach((s,i)=>{
+    const item = document.createElement('div');
+    item.className = 'step-item';
+    item.innerHTML = `
+      <div class="step-num">${i+1}</div>
+      <div class="step-body">
+        <div class="step-calc">${s.calc}</div>
+        <div class="step-hint-label"><span class="en">Tap to see why →</span><span class="bm">Ketik untuk lihat sebab →</span></div>
+        <div class="step-why"><span class="en">${s.whyEn}</span><span class="bm">${s.whyBm}</span></div>
+      </div>`;
+    item.onclick = ()=> item.classList.toggle('revealed');
+    el.appendChild(item);
+  });
+}
+
+buildSteps('steps31a', [
+  {calc:'Cheese cake price = 2 × RM3 = RM6', whyEn:'"Twice the price" means multiply by 2.', whyBm:'"Dua kali harga" bermaksud darab dengan 2.'},
+  {calc:'Full price = 3m + 6n', whyEn:'m slices at RM3 plus n slices at RM6, before any discount.', whyBm:'m hiris pada RM3 tambah n hiris pada RM6, sebelum diskaun.'},
+  {calc:'z = 0.9(3m + 6n) = 2.7m + 5.4n', whyEn:'A 10% discount means paying 90% of the total — multiply everything by 0.9, then expand.', whyBm:'Diskaun 10% bermaksud bayar 90% jumlah — darab semua dengan 0.9, kemudian kembangkan.'}
+]);
+buildSteps('steps31b1', [
+  {calc:'b = 2s − m &nbsp;→&nbsp; b + m = 2s', whyEn:'Add m to both sides — like adding weight to both sides of the scale.', whyBm:'Tambah m pada kedua-dua belah — seperti tambah berat pada kedua-dua belah neraca.'},
+  {calc:'m = 2s − b', whyEn:'Subtract b from both sides to leave m alone.', whyBm:'Tolak b daripada kedua-dua belah untuk tinggalkan m sendirian.'}
+]);
+buildSteps('steps31b2', [
+  {calc:'t = 1/p² &nbsp;→&nbsp; tp² = 1', whyEn:'Multiply both sides by p² to clear the fraction.', whyBm:'Darab kedua-dua belah dengan p² untuk kosongkan pecahan.'},
+  {calc:'p² = 1/t', whyEn:'Divide both sides by t.', whyBm:'Bahagi kedua-dua belah dengan t.'},
+  {calc:'p = √(1/t)', whyEn:'Square-root both sides to finally isolate p.', whyBm:'Cari punca kuasa dua kedua-dua belah untuk asingkan p.'}
+]);
+buildSteps('steps31c', [
+  {calc:'16×4 = (3−q)²', whyEn:'Multiply both sides by 4 to clear the ¼, then substitute m=16.', whyBm:'Darab kedua-dua belah dengan 4, kemudian gantikan m=16.'},
+  {calc:'64 = (3−q)²', whyEn:'Simplify.', whyBm:'Permudahkan.'},
+  {calc:'8 = 3 − q', whyEn:'Square-root both sides.', whyBm:'Cari punca kuasa dua kedua-dua belah.'},
+  {calc:'q = 3 − 8 = −5', whyEn:'Rearrange to solve for q.', whyBm:'Susun semula untuk selesaikan q.'}
+]);
+buildSteps('steps31d', [
+  {calc:'Let bun = RMx, chicken = RM2x', whyEn:'Name the unknown — chicken costs twice a bun.', whyBm:'Namakan yang tidak diketahui — ayam dua kali bun.'},
+  {calc:'2x + 2x + 1 = 5 &nbsp;→&nbsp; x = 1', whyEn:'2 buns + 1 chicken + RM1 leftover = RM5.', whyBm:'2 bun + 1 ayam + baki RM1 = RM5.'},
+  {calc:'With RM12: 2 buns = RM2, leaving RM10 → 5 chickens', whyEn:'Buy the same 2 buns first, spend the rest on chicken at RM2 each.', whyBm:'Beli 2 bun sama dahulu, belanja baki pada ayam RM2 setiap satu.'}
+]);
+
+function toggleGuidedHint(btn){ btn.nextElementSibling.classList.toggle('show'); }
+function togglePractice(btn){
+  const card = btn.closest('.practice-q-card');
+  card.querySelector('.practice-reveal').classList.toggle('show');
+}
+function showDiff(subtopic, diff){
+  const targetPanel = document.getElementById(`panel${subtopic}${diff}`);
+  const zone = targetPanel.closest('.practice-zone');
+  zone.querySelectorAll('.diff-panel').forEach(p=>p.classList.remove('active'));
+  targetPanel.classList.add('active');
+  zone.querySelectorAll('.diff-tab').forEach(t=>t.classList.toggle('active', t.dataset.diff===diff));
+}
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+</script>
+</body>
+</html>

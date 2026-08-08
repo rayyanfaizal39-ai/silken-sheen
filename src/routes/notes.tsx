@@ -87,6 +87,12 @@ import { MathF1Chapter10NotesBlock } from "@/components/notes/MathF1Chapter10Not
 import { MathF1Chapter11NotesBlock } from "@/components/notes/MathF1Chapter11NotesBlock";
 import { MathF1Chapter12NotesBlock } from "@/components/notes/MathF1Chapter12NotesBlock";
 import { MathF1Chapter13NotesBlock } from "@/components/notes/MathF1Chapter13NotesBlock";
+import { MathF2Chapter1NotesBlock } from "@/components/notes/MathF2Chapter1NotesBlock";
+import { MathF2Chapter2NotesBlock } from "@/components/notes/MathF2Chapter2NotesBlock";
+import { MathF2Chapter3NotesBlock } from "@/components/notes/MathF2Chapter3NotesBlock";
+import { MathF2Chapter4NotesBlock } from "@/components/notes/MathF2Chapter4NotesBlock";
+import { MathF2Chapter5NotesBlock } from "@/components/notes/MathF2Chapter5NotesBlock";
+import { MathF2Chapter6NotesBlock } from "@/components/notes/MathF2Chapter6NotesBlock";
 import { ScienceF2Chapter1NotesBlock } from "@/components/notes/ScienceF2Chapter1NotesBlock";
 import { ScienceF2Chapter2NotesBlock } from "@/components/notes/ScienceF2Chapter2NotesBlock";
 import { ScienceF2Chapter3NotesBlock } from "@/components/notes/ScienceF2Chapter3NotesBlock";
@@ -1671,6 +1677,72 @@ function NotesPage() {
               <MathF1Chapter13NotesBlock
                 id="notes"
                 content={activeChapter.mathChapter13Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF2Chapter1Data ? (
+              <MathF2Chapter1NotesBlock
+                id="notes"
+                content={activeChapter.mathF2Chapter1Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF2Chapter2Data ? (
+              <MathF2Chapter2NotesBlock
+                id="notes"
+                content={activeChapter.mathF2Chapter2Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF2Chapter3Data ? (
+              <MathF2Chapter3NotesBlock
+                id="notes"
+                content={activeChapter.mathF2Chapter3Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF2Chapter4Data ? (
+              <MathF2Chapter4NotesBlock
+                id="notes"
+                content={activeChapter.mathF2Chapter4Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF2Chapter5Data ? (
+              <MathF2Chapter5NotesBlock
+                id="notes"
+                content={activeChapter.mathF2Chapter5Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF2Chapter6Data ? (
+              <MathF2Chapter6NotesBlock
+                id="notes"
+                content={activeChapter.mathF2Chapter6Data}
                 lang={scienceLang === "dlp" ? "en" : "bm"}
                 storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                 isRead={isRead}
