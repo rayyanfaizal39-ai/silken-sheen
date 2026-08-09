@@ -5,7 +5,7 @@ import { VideoBlock } from "@/components/notes/VideoBlock";
 import { getChapter, getRegisteredSubjectChapters } from "@/content/registry";
 import { getChapterFeatures } from "@/content/types";
 import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
-import { educationalVideos, getEducationalVideo } from "./educationalVideos";
+import { educationalVideos, getEducationalVideo, scienceForm3Dlp } from "./educationalVideos";
 
 const scienceForm3Bm = [
   ["science-f3-c1-bm", "huOA8Rh3Kic"],
@@ -32,7 +32,9 @@ describe("Sains Tingkatan 3 Bahasa Melayu educational videos", () => {
     });
 
     expect(
-      Object.keys(educationalVideos).filter((chapterId) => chapterId.startsWith("science-f3-")),
+      Object.keys(educationalVideos).filter(
+        (chapterId) => chapterId.startsWith("science-f3-") && chapterId.endsWith("-bm"),
+      ),
     ).toEqual(scienceForm3Bm.map(([chapterId]) => chapterId));
     expect(new Set(scienceForm3Bm.map(([, youtubeId]) => youtubeId)).size).toBe(10);
   });
@@ -52,21 +54,28 @@ describe("Sains Tingkatan 3 Bahasa Melayu educational videos", () => {
     });
   });
 
-  it("leaves all Form 3 DLP chapters and lookups unchanged", () => {
+  it("attaches only the English DLP registry to every Form 3 DLP chapter", () => {
     expect(
       Object.keys(educationalVideos).filter(
         (chapterId) => chapterId.startsWith("science-f3-") && chapterId.endsWith("-dlp"),
       ),
-    ).toEqual([]);
+    ).toEqual(Object.keys(scienceForm3Dlp).map((chapterNumber) => `science-f3-c${chapterNumber}-dlp`));
 
-    scienceForm3Bm.forEach((_, index) => {
-      const chapterNumber = index + 1;
+    Object.entries(scienceForm3Dlp).forEach(([chapterNumberKey, youtubeId]) => {
+      const chapterNumber = Number(chapterNumberKey);
+      const dlpVideo = getEducationalVideo(`science-f3-c${chapterNumber}`, "dlp");
       const chapter = getChapter("science", `Chapter ${chapterNumber}`, "dlp", "Form 3");
 
       expect(chapter?.id).toBe(`science-f3-c${chapterNumber}-dlp`);
-      expect(chapter?.video).toBeUndefined();
-      expect(getChapterFeatures(chapter).video).toBe(false);
-      expect(getEducationalVideo(`science-f3-c${chapterNumber}-dlp`, "dlp")).toBeUndefined();
+      expect(chapter?.video).toBe(dlpVideo);
+      expect(chapter?.video).toEqual({
+        title: `Science Form 3 — Chapter ${chapterNumber}`,
+        youtubeId,
+        captionLang: "en",
+        hint: "Turn on captions for better understanding! 💡",
+      });
+      expect(getChapterFeatures(chapter).video).toBe(true);
+      expect(scienceForm3Bm[chapterNumber - 1][1]).not.toBe(youtubeId);
     });
   });
 
@@ -87,6 +96,29 @@ describe("Sains Tingkatan 3 Bahasa Melayu educational videos", () => {
       expect(markup).toContain("absolute inset-0 w-full h-full");
       expect(markup).toContain('loading="lazy"');
       expect(markup).toContain("enablejsapi=1");
+      expect(markup).not.toContain("autoplay=1");
+      expect(markup).toContain('allowFullScreen=""');
+    });
+  });
+
+  it("renders every DLP mapping without BM fallback or autoplay", () => {
+    Object.entries(scienceForm3Dlp).forEach(([chapterNumber, youtubeId]) => {
+      const video = getEducationalVideo(`science-f3-c${chapterNumber}`, "dlp");
+      expect(video).toBeDefined();
+      expect(video?.captionLang).toBe("en");
+      expect(video?.youtubeId).not.toBe(scienceForm3Bm[Number(chapterNumber) - 1][1]);
+
+      const markup = renderToStaticMarkup(
+        <BackgroundMusicProvider>
+          <VideoBlock id="video" video={video!} />
+        </BackgroundMusicProvider>,
+      );
+
+      expect(markup.match(/<iframe/g)).toHaveLength(1);
+      expect(markup).toContain(`youtube-nocookie.com/embed/${youtubeId}?`);
+      expect(markup).toContain("relative aspect-video");
+      expect(markup).toContain("absolute inset-0 w-full h-full");
+      expect(markup).toContain('loading="lazy"');
       expect(markup).not.toContain("autoplay=1");
       expect(markup).toContain('allowFullScreen=""');
     });
