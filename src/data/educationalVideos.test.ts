@@ -1,9 +1,16 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { chapters, getChapter } from "@/content/registry";
 import { educationalVideos, getEducationalVideo } from "./educationalVideos";
+
+vi.mock("@/hooks/use-background-music", () => ({
+  useBackgroundMusic: () => ({
+    pauseForMedia: vi.fn(),
+    resumeAfterMedia: vi.fn(),
+  }),
+}));
 
 const sejarahForm1 = [
   ["sejarah-f1-c1", "dZuhYNHdQ7U", 10],
@@ -55,6 +62,22 @@ const scienceForm2 = [
   ["science-f2-c11", "a2QRfTVmkV0"],
   ["science-f2-c12", "pcq0Id4K-KI"],
   ["science-f2-c13", "F5yEfVJvGCo"],
+] as const;
+
+const scienceForm2Dlp = [
+  "UOh_eWjTU9k",
+  "Wqs-aexxWhU",
+  "0cXzxviA2Q0",
+  "AsuGTwauuYY",
+  "kPp_SKNrZF0",
+  "VUi1PGamgs8",
+  "QpWwOeMOSao",
+  "ifC7yGoLw-k",
+  "Ea_1J2I97vY",
+  "Z-bEUMWb2RM",
+  "dcQSfCMAQqI",
+  "zkbi-rOzwQk",
+  "Ht_O3z-Kg_s",
 ] as const;
 
 describe("educational video registry", () => {
@@ -161,10 +184,11 @@ describe("educational video registry", () => {
     });
   });
 
-  it("maps and renders one AI video for every Sains Tingkatan 2 chapter", () => {
+  it("keeps Sains Form 2 BM videos unchanged and maps separate Science Form 2 DLP videos", () => {
     scienceForm2.forEach(([chapterId, youtubeId], index) => {
       const chapterNumber = index + 1;
-      const video = getEducationalVideo(chapterId);
+      const bmVideo = getEducationalVideo(chapterId, "bm");
+      const dlpVideo = getEducationalVideo(chapterId, "dlp");
       const variants = chapters.filter(
         (chapter) =>
           chapter.subjectId === "science" &&
@@ -172,15 +196,22 @@ describe("educational video registry", () => {
           chapter.chapterKey === `Chapter ${chapterNumber}`,
       );
 
-      expect(video?.title).toBe(`Sains Tingkatan 2 — Bab ${chapterNumber}`);
-      expect(video?.youtubeId).toBe(youtubeId);
-      expect(video?.startSeconds).toBeUndefined();
+      expect(bmVideo?.title).toBe(`Sains Tingkatan 2 — Bab ${chapterNumber}`);
+      expect(bmVideo?.youtubeId).toBe(youtubeId);
+      expect(bmVideo?.captionLang).toBe("ms");
+      expect(dlpVideo?.title).toBe(`Science Form 2 — Chapter ${chapterNumber}`);
+      expect(dlpVideo?.youtubeId).toBe(scienceForm2Dlp[index]);
+      expect(dlpVideo?.captionLang).toBe("en");
+      expect(dlpVideo).not.toBe(bmVideo);
       expect(variants).toHaveLength(2);
-      expect(variants.every((chapter) => chapter.video?.youtubeId === youtubeId)).toBe(true);
+      expect(variants.find((chapter) => chapter.lang === "bm")?.video?.youtubeId).toBe(youtubeId);
+      expect(variants.find((chapter) => chapter.lang === "dlp")?.video?.youtubeId).toBe(
+        scienceForm2Dlp[index],
+      );
 
-      const markup = renderToStaticMarkup(createElement(VideoBlock, { video: video! }));
+      const markup = renderToStaticMarkup(createElement(VideoBlock, { video: dlpVideo! }));
       expect(markup.match(/<iframe/g)).toHaveLength(1);
-      expect(markup).toContain(`youtube-nocookie.com/embed/${youtubeId}?`);
+      expect(markup).toContain(`youtube-nocookie.com/embed/${scienceForm2Dlp[index]}?`);
       expect(markup).toContain('loading="lazy"');
       expect(markup).toContain("autoplay");
     });
