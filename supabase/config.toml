@@ -26,7 +26,7 @@ otp_length = 8
 
 [auth.email.template.recovery]
 subject = "Reset your AcadeMY password"
-content_path = "./templates/recovery.html"
+content_path = "./supabase/templates/recovery.html"
 
 [auth.mfa.totp]
 enroll_enabled = true
