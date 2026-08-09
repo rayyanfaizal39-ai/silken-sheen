@@ -23,7 +23,7 @@ export function BackgroundMusicControl() {
   };
 
   return (
-    <div className="mobile-music-control fixed bottom-[calc(var(--mobile-fab-bottom)+60px)] right-[18px] z-[75] md:bottom-24 md:right-7">
+    <div className="mobile-music-control fixed bottom-[calc(var(--mobile-fab-bottom)+60px)] right-[18px] z-[75] lg:bottom-24 lg:right-7">
       <Popover>
         <TooltipProvider delayDuration={500}>
           <Tooltip>

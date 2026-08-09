@@ -44,8 +44,10 @@
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
   --mobile-nav-height: 72px;
-  --mobile-content-bottom: calc(90px + var(--safe-area-bottom));
-  --mobile-fab-bottom: calc(95px + var(--safe-area-bottom));
+  --mobile-nav-bottom: max(8px, var(--safe-area-bottom));
+  --mobile-content-bottom: calc(var(--mobile-nav-height) + var(--mobile-nav-bottom) + 16px);
+  --mobile-fab-bottom: calc(var(--mobile-nav-height) + var(--mobile-nav-bottom) + 12px);
+  --mobile-floating-clearance: calc(var(--mobile-fab-bottom) + 120px);
   /* AcadeMY dark theme — Deep Navy base */
   --background: #0d1117;
   --background: oklch(0.18 0.04 265);
@@ -2275,7 +2277,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .app-main {
     padding-bottom: 0;
   }
@@ -4918,7 +4920,7 @@
 
 /* ── Space nav (mobile) ──────────────────────────────────────────────── */
 .space-nav-shell {
-  bottom: max(8px, var(--safe-area-bottom));
+  bottom: var(--mobile-nav-bottom);
   height: var(--mobile-nav-height);
   background: linear-gradient(180deg, rgba(8, 14, 28, 0.94), rgba(5, 8, 22, 0.88));
   border: 1px solid rgba(129, 140, 248, 0.18);
@@ -4930,6 +4932,14 @@
     0 16px 48px -12px rgba(99, 102, 241, 0.45),
     0 4px 12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+}
+
+.mobile-more-sheet {
+  bottom: calc(var(--mobile-nav-height) + var(--mobile-nav-bottom) + 8px);
+  max-height: calc(
+    100dvh - var(--mobile-nav-height) - var(--mobile-nav-bottom) - var(--safe-area-top) - 1rem
+  );
+  overscroll-behavior: contain;
 }
 .space-nav-item {
   flex: 1 1 0;
@@ -4989,8 +4999,7 @@
   text-overflow: ellipsis;
 }
 
-/* Phone-only density refinement. Keep the existing tablet/desktop nav
-   untouched while distributing all six mobile destinations evenly. */
+/* Phone-only density refinement for the five primary destinations. */
 @media (max-width: 767px) {
   .space-nav-shell.mobile-nav-shell {
     left: 0;

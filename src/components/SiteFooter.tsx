@@ -11,7 +11,7 @@ export function SiteFooter() {
   return (
     <footer
       role="contentinfo"
-      className="relative z-10 border-t border-white/[0.07] bg-[#050816]/80 px-4 py-8 pb-[calc(var(--mobile-content-bottom,90px)+1.5rem)] backdrop-blur-xl sm:px-6 lg:ml-[236px] lg:px-8 lg:pb-8"
+      className="relative z-10 border-t border-white/[0.07] bg-[#050816]/80 px-4 py-8 pb-[var(--mobile-floating-clearance)] backdrop-blur-xl sm:px-6 lg:ml-[236px] lg:px-8 lg:pb-8"
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex flex-col gap-4">

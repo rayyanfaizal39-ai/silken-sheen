@@ -10,11 +10,13 @@ import {
   Library,
   LogIn,
   LogOut,
+  MoreHorizontal,
   Network,
   Radar,
   ShieldCheck,
   Sparkles,
   Trophy,
+  X,
   Zap,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
@@ -144,6 +146,17 @@ const navItems = [
     line: "linear-gradient(90deg,#C4B5FD,#8B5CF6)",
   },
 ] as const;
+
+const primaryMobileNavItems = navItems.filter(({ label }) =>
+  ["Home", "Dashboard", "Notes", "Quizzes"].includes(label),
+);
+const secondaryMobileNavItems = navItems.filter((item) => !primaryMobileNavItems.includes(item));
+const moreNavAppearance = {
+  accent: "#C084FC",
+  accentGlow: "rgba(192,132,252,0.55)",
+  accentBg: "rgba(192,132,252,0.22)",
+  line: "linear-gradient(90deg,#C084FC,#818CF8)",
+} as const;
 
 function SidebarBottom() {
   const { progress } = useProgress();
@@ -299,6 +312,28 @@ export function AppShell({ children }: { children: ReactNode }) {
 
 function AppShellLayout({ children, pathname }: { children: ReactNode; pathname: string }) {
   const { lastRankUp } = useProgress();
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreActive = secondaryMobileNavItems.some((item) => isRouteActive(pathname, item.to));
+
+  useEffect(() => {
+    setMoreOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMoreOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [moreOpen]);
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#050816] text-white">
@@ -430,10 +465,81 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
       <CompanionTip />
       {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
 
+      {moreOpen && (
+        <div
+          className="fixed inset-0 z-[85] bg-[#02040D]/70 backdrop-blur-sm lg:hidden"
+          onClick={() => setMoreOpen(false)}
+        >
+          <section
+            id="mobile-more-sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mobile-more-title"
+            className="mobile-more-sheet absolute inset-x-0 mx-auto max-w-xl overflow-y-auto rounded-t-[2rem] border border-b-0 border-[#8B5CF6]/30 bg-[#080E1C]/98 px-4 pb-5 pt-3 shadow-[0_-20px_70px_rgba(76,29,149,0.45)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mx-auto h-1 w-10 rounded-full bg-white/20" aria-hidden="true" />
+            <div className="mt-3 flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C4B5FD]/70">
+                  Explore AcadeMY
+                </p>
+                <h2
+                  id="mobile-more-title"
+                  className="mt-0.5 font-display text-xl font-bold text-white"
+                >
+                  More
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMoreOpen(false)}
+                aria-label="Close More menu"
+                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-white/60 transition-colors hover:bg-white/[0.09] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA]"
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </div>
+
+            <nav aria-label="More destinations" className="mt-4 grid grid-cols-2 gap-3">
+              {secondaryMobileNavItems.map((item) => {
+                const Icon = item.icon;
+                const active = isRouteActive(pathname, item.to);
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    onClick={() => setMoreOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`group flex min-h-16 min-w-0 items-center gap-3 rounded-2xl border px-3 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] ${
+                      active
+                        ? "border-[#A78BFA]/55 bg-[#7C3AED]/20 text-white"
+                        : "border-white/[0.08] bg-white/[0.04] text-white/65 hover:border-white/15 hover:bg-white/[0.07] hover:text-white"
+                    }`}
+                  >
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                      style={{ background: item.accentBg, color: item.accent }}
+                      aria-hidden="true"
+                    >
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0 text-sm font-bold leading-tight">{item.label}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+          </section>
+        </div>
+      )}
+
       {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      <nav className="space-nav-shell mobile-nav-shell fixed left-3 right-3 z-[80] rounded-[1.25rem] px-1.5 lg:hidden">
-        <div className="mx-auto flex h-full max-w-md items-center justify-between gap-0.5">
-          {navItems.slice(0, 6).map((item) => {
+      <nav
+        className="space-nav-shell mobile-nav-shell fixed inset-x-0 z-[80] px-1.5 lg:hidden"
+        aria-label="Primary navigation"
+      >
+        <div className="mx-auto flex h-full w-full items-center justify-between gap-0.5">
+          {primaryMobileNavItems.map((item) => {
             const Icon = item.icon;
             const active = isRouteActive(pathname, item.to);
             return (
@@ -464,11 +570,46 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
                   className="space-nav-label"
                   style={active ? { color: item.accent } : undefined}
                 >
-                  {item.short}
+                  {item.label}
                 </span>
               </Link>
             );
           })}
+          <button
+            type="button"
+            onClick={() => setMoreOpen(true)}
+            aria-expanded={moreOpen}
+            aria-controls="mobile-more-sheet"
+            className={`space-nav-item focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] ${moreActive ? "space-nav-item-active" : ""}`}
+            style={
+              moreActive
+                ? ({
+                    "--nav-accent-bg": `linear-gradient(135deg, ${moreNavAppearance.accentBg}, rgba(129,140,248,0.16))`,
+                    "--nav-accent-glow": moreNavAppearance.accentGlow,
+                    "--nav-accent-line": moreNavAppearance.line,
+                  } as React.CSSProperties)
+                : undefined
+            }
+          >
+            <MoreHorizontal
+              className="relative h-5 w-5 transition-transform"
+              style={
+                moreActive
+                  ? {
+                      color: moreNavAppearance.accent,
+                      filter: `drop-shadow(0 0 6px ${moreNavAppearance.accentGlow})`,
+                    }
+                  : undefined
+              }
+              aria-hidden="true"
+            />
+            <span
+              className="space-nav-label"
+              style={moreActive ? { color: moreNavAppearance.accent } : undefined}
+            >
+              More
+            </span>
+          </button>
         </div>
       </nav>
     </div>
