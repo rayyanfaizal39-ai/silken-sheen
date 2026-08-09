@@ -11,7 +11,7 @@ export function CompanionImage({
 }: {
   speciesId: CompanionId;
   stage: CompanionStageId;
-  size?: number;
+  size?: number | string;
   className?: string;
 }) {
   const species = getCompanionSpecies(speciesId);
@@ -24,7 +24,12 @@ export function CompanionImage({
         role="img"
         aria-label={`${species.name} (${stage})`}
         className={className}
-        style={{ fontSize: size * 0.6, lineHeight: 1, position: "relative", zIndex: 10 }}
+        style={{
+          fontSize: typeof size === "number" ? size * 0.6 : "3.5rem",
+          lineHeight: 1,
+          position: "relative",
+          zIndex: 10,
+        }}
       >
         {species.fallbackEmoji[stage]}
       </span>
@@ -35,10 +40,18 @@ export function CompanionImage({
     <img
       src={src}
       alt={`${species.name} — ${stage} stage`}
-      width={size}
-      height={size}
+      width={typeof size === "number" ? size : undefined}
+      height={typeof size === "number" ? size : undefined}
       className={className}
-      style={{ width: size, height: size, objectFit: "contain", position: "relative", zIndex: 10 }}
+      style={{
+        width: size,
+        height: size,
+        maxWidth: "100%",
+        maxHeight: "100%",
+        objectFit: "contain",
+        position: "relative",
+        zIndex: 10,
+      }}
       onError={() => setFailed(true)}
     />
   );
