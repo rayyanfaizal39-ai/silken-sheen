@@ -23,12 +23,14 @@ import { seoMeta } from "@/lib/seo";
 export const Route = createFileRoute("/companion")({
   component: CosmicCompanionPage,
   // Per-user gamification state — noindex, same as /dashboard.
-  head: () => seoMeta({
-    title: "Cosmic Companion",
-    description: "Evolve your Cosmic Companion by earning XP on AcadeMY — a gamified KSSM study companion for Form 1-3 students.",
-    path: "/companion",
-    noindex: true,
-  }),
+  head: () =>
+    seoMeta({
+      title: "Cosmic Companion",
+      description:
+        "Evolve your Cosmic Companion by earning XP on AcadeMY — a gamified KSSM study companion for Form 1-3 students.",
+      path: "/companion",
+      noindex: true,
+    }),
 });
 
 // V1 ships Nova only. Future species (Luna, Terra, Comet, Nebula) get added
@@ -153,7 +155,9 @@ function CosmicCompanionPage() {
                 <div className="mt-6">
                   <div className="mb-2 flex items-center justify-between gap-3 text-xs font-bold text-white/55">
                     <span>{progress.xp.toLocaleString()} XP</span>
-                    <span>{nextStage ? `${nextStage.xpRequired.toLocaleString()} XP` : "Max stage"}</span>
+                    <span>
+                      {nextStage ? `${nextStage.xpRequired.toLocaleString()} XP` : "Max stage"}
+                    </span>
                   </div>
                   <div className="relative h-4 overflow-hidden rounded-full border border-white/[0.08] bg-white/[0.07]">
                     <div
@@ -194,7 +198,11 @@ function CosmicCompanionPage() {
           </div>
         </section>
 
-        <EvolutionPath activeStage={currentStage.id} xp={progress.xp} speciesId={activeStarter.id} />
+        <EvolutionPath
+          activeStage={currentStage.id}
+          xp={progress.xp}
+          speciesId={activeStarter.id}
+        />
       </section>
     </main>
   );
@@ -286,9 +294,7 @@ function NextEvolutionPreview({
           Next Evolution
         </p>
         <p className="mt-0.5 font-display text-lg font-black text-white">{nextStage.name}</p>
-        <p className="text-xs font-bold text-white/50">
-          {xpNeeded.toLocaleString()} XP remaining
-        </p>
+        <p className="text-xs font-bold text-white/50">{xpNeeded.toLocaleString()} XP remaining</p>
       </div>
     </div>
   );
@@ -371,7 +377,9 @@ function StarterSelection({
           >
             <CompanionMini starter={starter} />
             <div className="min-w-0 flex-1">
-              <p className="font-black text-white">{starter.id === activeId ? displayName : starter.name}</p>
+              <p className="font-black text-white">
+                {starter.id === activeId ? displayName : starter.name}
+              </p>
               <p className="text-xs text-white/45">
                 {starter.role} · {starter.focus}
               </p>
@@ -381,7 +389,8 @@ function StarterSelection({
         ))}
       </div>
       <p className="mt-4 text-[11px] leading-5 text-white/35">
-        More starter companions are on the way — for now, {displayName} is your guide through AcadeMY.
+        More starter companions are on the way — for now, {displayName} is your guide through
+        AcadeMY.
       </p>
     </section>
   );
@@ -396,7 +405,10 @@ function EvolutionPath({
   xp: number;
   speciesId: CompanionId;
 }) {
-  const activeIndex = Math.max(0, COMPANION_STAGES.findIndex((s) => s.id === activeStage));
+  const activeIndex = Math.max(
+    0,
+    COMPANION_STAGES.findIndex((s) => s.id === activeStage),
+  );
 
   return (
     <section className="rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/68 p-5 backdrop-blur-2xl sm:p-6">
@@ -443,7 +455,9 @@ function EvolutionPath({
                 )}
               </div>
               <p className="font-black text-white">{stage.name}</p>
-              <p className="mt-1 text-xs text-white/45">{stage.xpRequired.toLocaleString()} XP required</p>
+              <p className="mt-1 text-xs text-white/45">
+                {stage.xpRequired.toLocaleString()} XP required
+              </p>
               <div className="mt-4 flex items-center gap-1.5 text-xs font-bold">
                 {active ? (
                   <span className="text-[#C4B5FD]">Current stage</span>
@@ -474,7 +488,7 @@ function CompanionArtwork({
   stage: CompanionStageId;
   size: "large" | "hero";
 }) {
-  const dimension = size === "hero" ? 380 : 190;
+  const dimension = size === "hero" ? "clamp(220px, 28vw, 320px)" : "clamp(150px, 18vw, 190px)";
   return (
     <div
       className="relative flex items-center justify-center animate-[companionFloat_4.6s_ease-in-out_infinite]"
@@ -493,7 +507,7 @@ function CompanionArtwork({
       <CompanionImage
         speciesId={starter.id}
         stage={stage}
-        size={dimension * 0.95}
+        size="92%"
         className="relative z-10 drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)]"
       />
       <span className="absolute left-[18%] top-[12%] h-2 w-2 rounded-full bg-white/80 shadow-[0_0_12px_rgba(255,255,255,0.8)]" />

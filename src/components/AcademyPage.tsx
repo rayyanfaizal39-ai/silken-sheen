@@ -152,10 +152,18 @@ export type SubjectPlanetId = keyof typeof subjectPlanetStyles;
 // The subject's real shape (its world illustration) is the primary identity here —
 // not an emoji, not floating text. The lucide icon is kept only as a small corner
 // accent so the category still reads at a glance.
-export function PlanetCardArt({ subjectId, planet }: { subjectId: SubjectPlanetId; planet: typeof subjectPlanetStyles[SubjectPlanetId] }) {
+export function PlanetCardArt({
+  subjectId,
+  planet,
+}: {
+  subjectId: SubjectPlanetId;
+  planet: (typeof subjectPlanetStyles)[SubjectPlanetId];
+}) {
   const Icon = planet.icon;
   return (
-    <div className={`relative h-[130px] w-full overflow-hidden rounded-2xl bg-gradient-to-br ${planet.gradient}`}>
+    <div
+      className={`relative h-[130px] w-full overflow-hidden rounded-2xl bg-gradient-to-br ${planet.gradient}`}
+    >
       {/* Ambient orb glow */}
       <div
         className="absolute inset-0 opacity-40"
@@ -596,8 +604,12 @@ export function AcademyHero({
               key={stat.label}
               className="rounded-3xl border border-white/[0.08] bg-[#101827]/78 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.24)]"
             >
-              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">{stat.label}</p>
-              <p className={`mt-1 font-display text-3xl font-bold ${stat.tone ?? "text-white"}`}>{stat.value}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                {stat.label}
+              </p>
+              <p className={`mt-1 font-display text-3xl font-bold ${stat.tone ?? "text-white"}`}>
+                {stat.value}
+              </p>
             </div>
           ))}
         </div>
@@ -617,6 +629,12 @@ function LearningHeroIllustration({ variant }: { variant: AcademyHeroIllustratio
           alt="Premium 3D astronaut riding a rocket through a purple blue nebula"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
+      ) : variant === "notes" ? (
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="relative h-[100px] w-[150px] overflow-visible">
+            <AcademyHeroVectorIllustration variant={variant} />
+          </div>
+        </div>
       ) : (
         <AcademyHeroVectorIllustration variant={variant} />
       )}
@@ -634,7 +652,9 @@ export function AcademyPanel({
   className?: string;
 }) {
   return (
-    <div className={`academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-6 ${className}`}>
+    <div
+      className={`academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-6 ${className}`}
+    >
       {children}
     </div>
   );

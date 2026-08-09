@@ -262,8 +262,8 @@ function GalaxyHallOfFame({
         <div className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.2),transparent_60%)] blur-2xl" />
         <div className="relative flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] shadow-[0_0_28px_rgba(124,58,237,0.55)]">
-              <Rocket className="h-7 w-7 text-white" />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] shadow-[0_0_28px_rgba(124,58,237,0.55)]">
+              <Rocket className="h-6 w-6 text-white" />
             </div>
             <div className="min-w-0">
               <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#C4B5FD]">
@@ -326,7 +326,11 @@ function GalaxyHallOfFame({
               const label = top3Label(s.rank);
               return (
                 <div key={s.rank} className="flex flex-col items-center">
-                  <PodiumRankEmblem student={s} medal={MEDALS[slot]} />
+                  <LeaderboardRankArtwork
+                    rank={cosmicRank}
+                    variant={s.rank === 1 ? "champion" : "finalist"}
+                    medal={MEDALS[slot]}
+                  />
                   {label && (
                     <span
                       className="mt-2 rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide"
@@ -413,7 +417,7 @@ function StudentRankCard({
       className="flex flex-wrap items-center gap-4 rounded-2xl border px-4 py-4 backdrop-blur-xl"
       style={{ borderColor: `${cosmicRank.color}44`, background: cosmicRank.glowColor }}
     >
-      <RankBadge rank={cosmicRank} size={48} />
+      <LeaderboardRankArtwork rank={cosmicRank} variant="student" />
       <div className="min-w-0 flex-1">
         <p className="text-xs font-bold text-white/60">Your position</p>
         <p className="mt-0.5 text-xs font-bold text-white/75">{student.name} · You</p>
@@ -477,33 +481,44 @@ function CosmicRankLabel({ rank }: { rank: ReturnType<typeof getRank> }) {
   );
 }
 
-function PodiumRankEmblem({ student, medal }: { student: RealRankedStudent; medal: string }) {
-  const cosmicRank = getRank(student.lifetimeXp);
-  const isChampion = student.rank === 1;
+function LeaderboardRankArtwork({
+  rank,
+  variant,
+  medal,
+}: {
+  rank: ReturnType<typeof getRank>;
+  variant: "student" | "champion" | "finalist";
+  medal?: string;
+}) {
+  const isChampion = variant === "champion";
+  const containerClass =
+    variant === "student"
+      ? "h-16 w-16"
+      : isChampion
+        ? "h-[4.75rem] w-[4.75rem]"
+        : "h-[4.25rem] w-[4.25rem]";
+  const badgeSize = variant === "student" ? 48 : isChampion ? 56 : 52;
+  const treatmentColor = medal ?? rank.color;
 
   return (
     <div className="relative">
       <div
-        className={`flex items-center justify-center rounded-2xl border-2 ${isChampion ? "h-20 w-20 sm:h-24 sm:w-24" : "h-[4.25rem] w-[4.25rem] sm:h-20 sm:w-20"}`}
+        className={`flex shrink-0 items-center justify-center rounded-2xl border-2 ${containerClass}`}
         style={{
-          borderColor: medal,
-          boxShadow: `0 0 22px ${medal}66, 0 0 32px ${cosmicRank.glowColor}`,
-          background: `radial-gradient(circle, ${cosmicRank.color}22, ${medal}0d 68%, transparent)`,
+          borderColor: treatmentColor,
+          boxShadow: `0 0 ${isChampion ? 24 : 18}px ${treatmentColor}66, 0 0 28px ${rank.glowColor}`,
+          background: `radial-gradient(circle, ${rank.color}22, ${treatmentColor}0d 68%, transparent)`,
         }}
       >
-        <RankBadge
-          rank={cosmicRank}
-          size={isChampion ? "92%" : "90%"}
-          imageClassName="h-full w-full"
-        />
+        <RankBadge rank={rank} size={badgeSize} imageClassName="h-full w-full object-contain" />
       </div>
       {isChampion && (
         <span
-          className="absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full text-[#050816]"
-          style={{ background: medal }}
+          className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full text-[#050816]"
+          style={{ background: treatmentColor }}
           aria-hidden="true"
         >
-          <Crown className="h-4 w-4" />
+          <Crown className="h-3.5 w-3.5" />
         </span>
       )}
     </div>

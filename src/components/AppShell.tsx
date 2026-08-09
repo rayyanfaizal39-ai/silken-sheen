@@ -341,10 +341,15 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
                     style={{ background: item.accent, boxShadow: `0 0 12px ${item.accent}` }}
                   />
                 )}
-                <Icon
-                  className={`h-4 w-4 shrink-0 transition-colors ${active ? "text-white" : "text-white/40 group-hover:text-white/70"}`}
-                  style={active ? { color: item.accent } : undefined}
-                />
+                <span
+                  className="flex h-5 w-5 shrink-0 items-center justify-center"
+                  aria-hidden="true"
+                >
+                  <Icon
+                    className={`h-[17px] w-[17px] transition-colors ${active ? "text-white" : "text-white/40 group-hover:text-white/70"}`}
+                    style={active ? { color: item.accent } : undefined}
+                  />
+                </span>
                 <span className="truncate">{item.label}</span>
                 {active && (
                   <span
