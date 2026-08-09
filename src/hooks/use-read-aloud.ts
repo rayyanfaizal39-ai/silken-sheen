@@ -98,8 +98,23 @@ export function useReadAloud() {
     setActiveChunkId(chunk.id);
     const utter = new SpeechSynthesisUtterance(chunk.text);
     utter.lang = langRef.current;
-    const voice = pickVoice(window.speechSynthesis.getVoices(), langRef.current);
-    if (voice) utter.voice = voice;
+   const voices = window.speechSynthesis.getVoices();
+
+const anaVoice = voices.find((voice) =>
+  voice.name.toLowerCase().includes("microsoft ana online")
+);
+
+const fallbackVoice = pickVoice(voices, langRef.current);
+
+if (langRef.current.startsWith("en") && anaVoice) {
+  utter.voice = anaVoice;
+} else if (fallbackVoice) {
+  utter.voice = fallbackVoice;
+}
+
+console.log("Selected voice:", utter.voice?.name);
+
+
     utter.rate = isMobile() ? 1.0 : 1.2;
     utter.onend = () => {
       if (generation !== generationRef.current) return;
