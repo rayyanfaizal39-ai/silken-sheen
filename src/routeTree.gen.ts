@@ -18,6 +18,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PaymentReturnRouteImport } from './routes/payment-return'
 import { Route as ParentDashboardRouteImport } from './routes/parent-dashboard'
 import { Route as ParentRouteImport } from './routes/parent'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as MindmapsRouteImport } from './routes/mindmaps'
 import { Route as LoginRouteImport } from './routes/login'
@@ -31,6 +32,7 @@ import { Route as ExploreAcademyRouteImport } from './routes/explore-academy'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
+import { Route as CommandCenterPreviewRouteImport } from './routes/command-center-preview'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
@@ -89,6 +91,11 @@ const ParentDashboardRoute = ParentDashboardRouteImport.update({
 const ParentRoute = ParentRouteImport.update({
   id: '/parent',
   path: '/parent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotesRoute = NotesRouteImport.update({
@@ -154,6 +161,11 @@ const ContactRoute = ContactRouteImport.update({
 const CompanionRoute = CompanionRouteImport.update({
   id: '/companion',
   path: '/companion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandCenterPreviewRoute = CommandCenterPreviewRouteImport.update({
+  id: '/command-center-preview',
+  path: '/command-center-preview',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -231,6 +243,7 @@ const AdminContentQuizImporterRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -244,6 +257,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
+  '/onboarding': typeof OnboardingRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
   '/payment-return': typeof PaymentReturnRoute
@@ -268,6 +282,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -281,6 +296,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
+  '/onboarding': typeof OnboardingRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
   '/payment-return': typeof PaymentReturnRoute
@@ -307,6 +323,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/command-center-preview': typeof CommandCenterPreviewRoute
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -320,6 +337,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
+  '/onboarding': typeof OnboardingRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
   '/payment-return': typeof PaymentReturnRoute
@@ -347,6 +365,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -360,6 +379,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mindmaps'
     | '/notes'
+    | '/onboarding'
     | '/parent'
     | '/parent-dashboard'
     | '/payment-return'
@@ -384,6 +404,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -397,6 +418,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mindmaps'
     | '/notes'
+    | '/onboarding'
     | '/parent'
     | '/parent-dashboard'
     | '/payment-return'
@@ -422,6 +444,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/command-center-preview'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -435,6 +458,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mindmaps'
     | '/notes'
+    | '/onboarding'
     | '/parent'
     | '/parent-dashboard'
     | '/payment-return'
@@ -461,6 +485,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  CommandCenterPreviewRoute: typeof CommandCenterPreviewRoute
   CompanionRoute: typeof CompanionRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
@@ -474,6 +499,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MindmapsRoute: typeof MindmapsRoute
   NotesRoute: typeof NotesRoute
+  OnboardingRoute: typeof OnboardingRoute
   ParentRoute: typeof ParentRoute
   ParentDashboardRoute: typeof ParentDashboardRoute
   PaymentReturnRoute: typeof PaymentReturnRoute
@@ -554,6 +580,13 @@ declare module '@tanstack/react-router' {
       path: '/parent'
       fullPath: '/parent'
       preLoaderRoute: typeof ParentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notes': {
@@ -645,6 +678,13 @@ declare module '@tanstack/react-router' {
       path: '/companion'
       fullPath: '/companion'
       preLoaderRoute: typeof CompanionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command-center-preview': {
+      id: '/command-center-preview'
+      path: '/command-center-preview'
+      fullPath: '/command-center-preview'
+      preLoaderRoute: typeof CommandCenterPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -771,6 +811,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  CommandCenterPreviewRoute: CommandCenterPreviewRoute,
   CompanionRoute: CompanionRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
@@ -784,6 +825,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MindmapsRoute: MindmapsRoute,
   NotesRoute: NotesRoute,
+  OnboardingRoute: OnboardingRoute,
   ParentRoute: ParentRoute,
   ParentDashboardRoute: ParentDashboardRoute,
   PaymentReturnRoute: PaymentReturnRoute,

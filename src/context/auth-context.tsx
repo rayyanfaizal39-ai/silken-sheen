@@ -10,6 +10,13 @@ import {
 import type { User, Session } from "@supabase/supabase-js";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { beginLoadingTask } from "@/lib/loading-store";
+import {
+  getExplorerProfile,
+  needsExplorerOnboarding,
+  saveCompletedExplorerProfile,
+  type ExplorerProfile,
+  type ExplorerProfileInput,
+} from "@/lib/explorer-profile";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -25,11 +32,17 @@ interface AuthContextValue {
   user: AuthUser | null;
   session: Session | null;
   loading: boolean;
+  explorerProfile: ExplorerProfile | null;
+  explorerProfileLoading: boolean;
+  explorerProfileError: string | null;
+  onboardingRequired: boolean;
   isConfigured: boolean;
   signInWithGoogle: (returnTo?: "/admin/login" | "/upgrade") => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
   requestPasswordReset: (email: string) => Promise<void>;
+  refreshExplorerProfile: () => Promise<void>;
+  completeExplorerProfile: (input: ExplorerProfileInput) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -39,11 +52,17 @@ const AuthContext = createContext<AuthContextValue>({
   user: null,
   session: null,
   loading: true,
+  explorerProfile: null,
+  explorerProfileLoading: false,
+  explorerProfileError: null,
+  onboardingRequired: false,
   isConfigured: false,
   signInWithGoogle: async () => {},
   signInWithEmail: async () => {},
   signUpWithEmail: async () => ({ needsConfirmation: false }),
   requestPasswordReset: async () => {},
+  refreshExplorerProfile: async () => {},
+  completeExplorerProfile: async () => {},
   signOut: async () => {},
 });
 
@@ -65,6 +84,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [explorerProfile, setExplorerProfile] = useState<ExplorerProfile | null>(null);
+  const [explorerProfileLoading, setExplorerProfileLoading] = useState(false);
+  const [explorerProfileUserId, setExplorerProfileUserId] = useState<string | null>(null);
+  const [explorerProfileError, setExplorerProfileError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -106,6 +129,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    if (!isSupabaseConfigured || !user) {
+      setExplorerProfile(null);
+      setExplorerProfileUserId(null);
+      setExplorerProfileError(null);
+      setExplorerProfileLoading(false);
+      return;
+    }
+
+    setExplorerProfileLoading(true);
+    setExplorerProfileError(null);
+    void getExplorerProfile(user.id)
+      .then((profile) => {
+        if (!active) return;
+        setExplorerProfile(profile);
+        setExplorerProfileUserId(user.id);
+      })
+      .catch((error: unknown) => {
+        if (!active) return;
+        console.error("[Auth] Explorer Profile load failed", error);
+        setExplorerProfile(null);
+        setExplorerProfileUserId(user.id);
+        setExplorerProfileError("We couldn't load your Explorer Profile.");
+      })
+      .finally(() => {
+        if (active) setExplorerProfileLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [user]);
 
   const signInWithGoogle = useCallback(async (returnTo?: "/admin/login" | "/upgrade") => {
     if (!isSupabaseConfigured) {
@@ -175,66 +233,60 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (error) throw error;
   }, []);
 
-  const signInWithEmail = useCallback(
-    async (email: string, password: string) => {
-      if (!isSupabaseConfigured) {
-        throw new Error("Supabase is not configured");
-      }
+  const signInWithEmail = useCallback(async (email: string, password: string) => {
+    if (!isSupabaseConfigured) {
+      throw new Error("Supabase is not configured");
+    }
 
-      const task = beginLoadingTask({
-        message: "Signing you in…",
-        timeoutMs: 15_000,
+    const task = beginLoadingTask({
+      message: "Signing you in…",
+      timeoutMs: 15_000,
+    });
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
 
-      try {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (error) {
-          throw error;
-        }
-      } finally {
-        task.finish();
+      if (error) {
+        throw error;
       }
-    },
-    [],
-  );
+    } finally {
+      task.finish();
+    }
+  }, []);
 
-  const signUpWithEmail = useCallback(
-    async (email: string, password: string) => {
-      if (!isSupabaseConfigured) {
-        throw new Error("Supabase is not configured");
-      }
+  const signUpWithEmail = useCallback(async (email: string, password: string) => {
+    if (!isSupabaseConfigured) {
+      throw new Error("Supabase is not configured");
+    }
 
-      const task = beginLoadingTask({
-        message: "Creating your AcadeMY account…",
-        timeoutMs: 15_000,
+    const task = beginLoadingTask({
+      message: "Creating your AcadeMY account…",
+      timeoutMs: 15_000,
+    });
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
       });
 
-      try {
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/auth/callback`,
-          },
-        });
-
-        if (error) {
-          throw error;
-        }
-
-        return {
-          needsConfirmation: !data.session,
-        };
-      } finally {
-        task.finish();
+      if (error) {
+        throw error;
       }
-    },
-    [],
-  );
+
+      return {
+        needsConfirmation: !data.session,
+      };
+    } finally {
+      task.finish();
+    }
+  }, []);
 
   const requestPasswordReset = useCallback(async (email: string) => {
     if (!isSupabaseConfigured) throw new Error("Supabase is not configured");
@@ -242,6 +294,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
     if (error) throw error;
   }, []);
+
+  const refreshExplorerProfile = useCallback(async () => {
+    if (!user) return;
+    setExplorerProfileLoading(true);
+    setExplorerProfileError(null);
+    try {
+      const profile = await getExplorerProfile(user.id);
+      setExplorerProfile(profile);
+      setExplorerProfileUserId(user.id);
+    } catch (error) {
+      console.error("[Auth] Explorer Profile refresh failed", error);
+      setExplorerProfileError("We couldn't load your Explorer Profile.");
+      throw error;
+    } finally {
+      setExplorerProfileLoading(false);
+    }
+  }, [user]);
+
+  const completeExplorerProfile = useCallback(
+    async (input: ExplorerProfileInput) => {
+      if (!user) throw new Error("Sign in before completing your Explorer Profile.");
+      const profile = await saveCompletedExplorerProfile(user.id, input);
+      setExplorerProfile(profile);
+      setExplorerProfileUserId(user.id);
+      setExplorerProfileError(null);
+      setUser((current) =>
+        current && profile.displayName ? { ...current, name: profile.displayName } : current,
+      );
+    },
+    [user],
+  );
 
   const signOut = useCallback(async () => {
     if (!isSupabaseConfigured) return;
@@ -256,29 +339,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const value = useMemo(
-    () => ({
+  const value = useMemo(() => {
+    const profileLoading = Boolean(
+      user && (explorerProfileLoading || explorerProfileUserId !== user.id),
+    );
+    return {
       user,
       session,
       loading,
+      explorerProfile,
+      explorerProfileLoading: profileLoading,
+      explorerProfileError,
+      onboardingRequired: !profileLoading && needsExplorerOnboarding(explorerProfile),
       isConfigured: isSupabaseConfigured,
       signInWithGoogle,
       signInWithEmail,
       signUpWithEmail,
       requestPasswordReset,
+      refreshExplorerProfile,
+      completeExplorerProfile,
       signOut,
-    }),
-    [
-      user,
-      session,
-      loading,
-      signInWithGoogle,
-      signInWithEmail,
-      signUpWithEmail,
-      requestPasswordReset,
-      signOut,
-    ],
-  );
+    };
+  }, [
+    user,
+    session,
+    loading,
+    explorerProfile,
+    explorerProfileLoading,
+    explorerProfileUserId,
+    explorerProfileError,
+    signInWithGoogle,
+    signInWithEmail,
+    signUpWithEmail,
+    requestPasswordReset,
+    refreshExplorerProfile,
+    completeExplorerProfile,
+    signOut,
+  ]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

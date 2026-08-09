@@ -19,6 +19,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import {
   useProgress,
@@ -43,6 +44,11 @@ import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-acces
 import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicControl";
 import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
 import { isStudentMusicRoute } from "@/lib/audio/studentMusicRoutes";
+import {
+  isOnboardingExemptRoute,
+  shouldRedirectToLogin,
+  shouldRedirectToOnboarding,
+} from "@/lib/onboarding-routing";
 
 const navItems = [
   {
@@ -289,10 +295,54 @@ function SidebarBottom() {
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const navigate = useNavigate();
+  const { user, loading, explorerProfileLoading, onboardingRequired } = useAuth();
+  const onboardingExempt = isOnboardingExemptRoute(pathname);
+  const redirectToOnboarding =
+    !loading &&
+    !explorerProfileLoading &&
+    Boolean(user) &&
+    shouldRedirectToOnboarding(pathname, onboardingRequired);
+  const redirectToLogin = shouldRedirectToLogin(pathname, loading, Boolean(user));
+
+  useEffect(() => {
+    if (redirectToOnboarding) {
+      void navigate({ to: "/onboarding", replace: true });
+    }
+  }, [navigate, redirectToOnboarding]);
+
+  useEffect(() => {
+    if (redirectToLogin) {
+      void navigate({ to: "/login", replace: true });
+    }
+  }, [navigate, redirectToLogin]);
+
+  if (redirectToLogin) {
+    return (
+      <div className="flex min-h-svh items-center justify-center bg-[#050816] text-white">
+        <div className="text-center" role="status">
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+          <p className="mt-4 text-sm text-white/55">Taking you to sign in…</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (user && !onboardingExempt && (explorerProfileLoading || redirectToOnboarding)) {
+    return (
+      <div className="flex min-h-svh items-center justify-center bg-[#050816] text-white">
+        <div className="text-center" role="status">
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+          <p className="mt-4 text-sm text-white/55">Loading your Explorer Profile…</p>
+        </div>
+      </div>
+    );
+  }
 
   if (
     pathname.startsWith("/academy/") ||
     pathname.startsWith("/admin") ||
+    pathname === "/onboarding" ||
     pathname === "/explore-academy" ||
     pathname === "/"
   ) {
