@@ -482,6 +482,9 @@ import { mathF2C3InteractiveContent } from "@/content/form2/math/chapter-3/inter
 import { mathF2C4InteractiveContent } from "@/content/form2/math/chapter-4/interactive-content";
 import { mathF2C5InteractiveContent } from "@/content/form2/math/chapter-5/interactive-content";
 import { mathF2C6InteractiveContent } from "@/content/form2/math/chapter-6/interactive-content";
+import { mathF2C7InteractiveContent } from "@/content/form2/math/chapter-7/interactive-content";
+import { mathF2C8InteractiveContent } from "@/content/form2/math/chapter-8/interactive-content";
+import { mathF2C9InteractiveContent } from "@/content/form2/math/chapter-9/interactive-content";
 import { mathF2C1NotesBM } from "@/content/form2/math/chapter-1/notes-bm";
 import { mathF2C1NotesDLP } from "@/content/form2/math/chapter-1/notes-dlp";
 import { mathF2C1MindMapBM } from "@/content/form2/math/chapter-1/mindmap-bm";
@@ -1884,6 +1887,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C7MindMapBM, title: "Koordinat" },
     notes: mathF2C7NotesBM,
+    mathF2Chapter7Data: mathF2C7InteractiveContent,
     flashcards: mathF2C7FlashcardsBM,
     quiz: mathF2C7QuizzesBM,
   },
@@ -1896,6 +1900,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C7MindMapDLP, title: "Coordinates" },
     notes: mathF2C7NotesDLP,
+    mathF2Chapter7Data: mathF2C7InteractiveContent,
     flashcards: mathF2C7FlashcardsDLP,
     quiz: mathF2C7QuizzesDLP,
   },
@@ -1908,6 +1913,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C8MindMapBM, title: "Graf Fungsi" },
     notes: mathF2C8NotesBM,
+    mathF2Chapter8Data: mathF2C8InteractiveContent,
     flashcards: mathF2C8FlashcardsBM,
     quiz: mathF2C8QuizzesBM,
   },
@@ -1920,6 +1926,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C8MindMapDLP, title: "Graphs of Functions" },
     notes: mathF2C8NotesDLP,
+    mathF2Chapter8Data: mathF2C8InteractiveContent,
     flashcards: mathF2C8FlashcardsDLP,
     quiz: mathF2C8QuizzesDLP,
   },
@@ -1932,6 +1939,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C9MindMapBM, title: "Laju dan Pecutan" },
     notes: mathF2C9NotesBM,
+    mathF2Chapter9Data: mathF2C9InteractiveContent,
     flashcards: mathF2C9FlashcardsBM,
     quiz: mathF2C9QuizzesBM,
   },
@@ -1944,6 +1952,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C9MindMapDLP, title: "Speed and Acceleration" },
     notes: mathF2C9NotesDLP,
+    mathF2Chapter9Data: mathF2C9InteractiveContent,
     flashcards: mathF2C9FlashcardsDLP,
     quiz: mathF2C9QuizzesDLP,
   },

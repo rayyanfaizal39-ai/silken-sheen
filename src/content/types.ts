@@ -30,6 +30,9 @@ import type { MathF2C3Content } from "@/content/form2/math/chapter-3/interactive
 import type { MathF2C4Content } from "@/content/form2/math/chapter-4/interactive-content";
 import type { MathF2C5Content } from "@/content/form2/math/chapter-5/interactive-content";
 import type { MathF2C6Content } from "@/content/form2/math/chapter-6/interactive-content";
+import type { MathF2C7Content } from "@/content/form2/math/chapter-7/interactive-content";
+import type { MathF2C8Content } from "@/content/form2/math/chapter-8/interactive-content";
+import type { MathF2C9Content } from "@/content/form2/math/chapter-9/interactive-content";
 import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
@@ -170,6 +173,12 @@ export type ChapterContent = {
   mathF2Chapter5Data?: { en: MathF2C5Content; bm: MathF2C5Content };
   /** Math Form 2 Chapter 6 (Three-Dimensional Geometrical Shapes/Bentuk Geometri Tiga Matra) interactive, bilingual learning experience. */
   mathF2Chapter6Data?: { en: MathF2C6Content; bm: MathF2C6Content };
+  /** Math Form 2 Chapter 7 (Coordinates/Koordinat) interactive, bilingual learning experience. */
+  mathF2Chapter7Data?: { en: MathF2C7Content; bm: MathF2C7Content };
+  /** Math Form 2 Chapter 8 (Graphs of Functions/Graf Fungsi) interactive, bilingual learning experience. */
+  mathF2Chapter8Data?: { en: MathF2C8Content; bm: MathF2C8Content };
+  /** Math Form 2 Chapter 9 (Speed and Acceleration/Laju dan Pecutan) interactive, bilingual learning experience. */
+  mathF2Chapter9Data?: { en: MathF2C9Content; bm: MathF2C9Content };
   /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
   geoChapter1Data?: Geo1Content;
   /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
@@ -300,6 +309,9 @@ export function getChapterFeatures(
       !!c?.mathF2Chapter4Data ||
       !!c?.mathF2Chapter5Data ||
       !!c?.mathF2Chapter6Data ||
+      !!c?.mathF2Chapter7Data ||
+      !!c?.mathF2Chapter8Data ||
+      !!c?.mathF2Chapter9Data ||
       !!c?.geoChapter1Data ||
       !!c?.geoChapter2Data ||
       !!c?.geoChapter3Data ||
