@@ -3,6 +3,35 @@ import { mathForm1DlpEducationalVideos } from "@/data/mathForm1Dlp";
 
 export type EducationalVideo = VideoBlock;
 
+export const mathForm2Dlp = {
+  1: "lQ_3lQGuePQ",
+  2: "kGmznSeQ3qA",
+  3: "E18l6XEeVmE",
+  4: "U7iiLTHhYDk",
+  5: "BJ62VJM8KYA",
+  6: "t69joIfDF1U",
+  7: "yZbCYccJyBo",
+  8: "fCM-RvRyBrI",
+  9: "kdM-7VeRYBM",
+  10: "jvxnKH3dfpc",
+  11: "JbxLV1DK_nY",
+  12: "Ri5wlPTGZtc",
+  13: "Ah26yRo-OBc",
+} as const satisfies Readonly<Record<number, string>>;
+
+const mathForm2DlpEducationalVideos: Readonly<Record<string, EducationalVideo>> =
+  Object.fromEntries(
+    Object.entries(mathForm2Dlp).map(([chapterNumber, youtubeId]) => [
+      `math-f2-c${chapterNumber}-dlp`,
+      {
+        title: `Mathematics Form 2 — Chapter ${chapterNumber}`,
+        youtubeId,
+        captionLang: "en",
+        hint: "Turn on captions for better understanding! 💡",
+      },
+    ]),
+  );
+
 export const scienceForm3Dlp = {
   1: "KPBSBiOYsUQ",
   2: "h9pYwYPRVm0",
@@ -35,6 +64,7 @@ const scienceForm3DlpEducationalVideos: Readonly<Record<string, EducationalVideo
  */
 export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
   ...mathForm1DlpEducationalVideos,
+  ...mathForm2DlpEducationalVideos,
   ...scienceForm3DlpEducationalVideos,
   "sejarah-f1-c1": {
     title: "Sejarah Tingkatan 1 — Bab 1",
