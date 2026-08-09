@@ -38,5 +38,9 @@ describe("Explorer onboarding UI contract", () => {
     expect(appShellSource).toContain('id="mobile-more-sheet"');
     expect(appShellSource).toContain(">Profile</strong>");
     expect(appShellSource).toContain("<ProfileSummaryDialog");
+    expect(appShellSource).toContain(
+      'lazy(() =>\n  import("@/components/profile/ProfileSummaryDialog")',
+    );
+    expect(appShellSource).toContain("user && profileOpen");
   });
 });

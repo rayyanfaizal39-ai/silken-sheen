@@ -21,7 +21,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import {
   useProgress,
   getRank,
@@ -45,12 +45,18 @@ import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-acces
 import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicControl";
 import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
 import { isStudentMusicRoute } from "@/lib/audio/studentMusicRoutes";
-import { ProfileSummaryDialog } from "@/components/profile/ProfileSummaryDialog";
 import {
+  isPublicAuthRoute,
   isOnboardingExemptRoute,
   shouldRedirectToLogin,
   shouldRedirectToOnboarding,
 } from "@/lib/onboarding-routing";
+
+const ProfileSummaryDialog = lazy(() =>
+  import("@/components/profile/ProfileSummaryDialog").then((module) => ({
+    default: module.ProfileSummaryDialog,
+  })),
+);
 
 const navItems = [
   {
@@ -318,6 +324,10 @@ export function AppShell({ children }: { children: ReactNode }) {
       void navigate({ to: "/login", replace: true });
     }
   }, [navigate, redirectToLogin]);
+
+  // Login, password recovery, and OAuth callback pages deliberately bypass
+  // the authenticated shell and all of its progress/profile consumers.
+  if (isPublicAuthRoute(pathname)) return <>{children}</>;
 
   if (redirectToLogin) {
     return (
@@ -634,13 +644,15 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
         </div>
       )}
 
-      {user && (
-        <ProfileSummaryDialog
-          open={profileOpen}
-          user={user}
-          profile={explorerProfile}
-          onClose={() => setProfileOpen(false)}
-        />
+      {user && profileOpen && (
+        <Suspense fallback={null}>
+          <ProfileSummaryDialog
+            open
+            user={user}
+            profile={explorerProfile}
+            onClose={() => setProfileOpen(false)}
+          />
+        </Suspense>
       )}
 
       {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}

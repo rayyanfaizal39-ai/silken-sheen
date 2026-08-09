@@ -96,13 +96,11 @@ export default defineConfig({
           // balanced-match pair fails to interop under this bundler
           // ("balanced is not a function"), which made globbing throw and
           // silently produced a ZERO-entry precache on every build.
-          globPatterns: [
-            "**/*.js",
-            "**/*.css",
-            "**/*.svg",
-            "**/*.ico",
-            "**/*.woff2",
-          ],
+          // Do not install every lazy route in the background. That previously
+          // downloaded the full app (including onboarding/school code) during
+          // a first /login visit and competed with the login chunk on mobile.
+          // Hashed JS/CSS remain cacheable by the browser when actually used.
+          globPatterns: ["client/branding/*.svg", "client/favicon.ico"],
           // Nitro's build root is dist/, while the PWA is served from
           // dist/client/. Strip that build-only directory prefix so Workbox
           // requests /assets/* rather than the nonexistent /client/assets/*.
@@ -181,7 +179,8 @@ export default defineConfig({
             },
             {
               // Same-origin images
-              urlPattern: ({ request, sameOrigin }) => sameOrigin && request.destination === "image",
+              urlPattern: ({ request, sameOrigin }) =>
+                sameOrigin && request.destination === "image",
               handler: "StaleWhileRevalidate",
               options: {
                 cacheName: "academy-images-v2",

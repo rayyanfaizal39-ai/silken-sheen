@@ -27,6 +27,7 @@ import { CikguProvider } from "@/context/cikgu-context";
 import { SITE_URL } from "@/lib/seo";
 import { organizationSchema, educationalOrganizationSchema, websiteSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { isPublicAuthRoute } from "@/lib/onboarding-routing";
 
 function NotFoundComponent() {
   // The 404 view has no file-based route of its own, so it can't set its
@@ -79,20 +80,66 @@ function ErrorComponent({ error, info, reset }: ErrorComponentProps) {
       componentName,
       componentStack,
       pathname: router.state.location.pathname,
+      chunkLoadFailure: /dynamically imported module|loading (?:css )?chunk|chunkloaderror/i.test(
+        error.message,
+      ),
+      online: typeof navigator === "undefined" ? undefined : navigator.onLine,
     });
   }, [error, info, router.state.location.pathname]);
 
   return (
-    <div className="flex min-h-svh items-center justify-center px-4">
-      <div className="max-w-md text-center glass-strong rounded-3xl p-10">
-        <h1 className="font-display text-xl font-semibold">Something glitched</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Try again — we'll get this fixed.</p>
+    <div
+      className="flex min-h-svh items-center justify-center px-4"
+      style={{
+        minHeight: "100svh",
+        display: "grid",
+        placeItems: "center",
+        padding: "1rem",
+        background: "#050816",
+        color: "#fff",
+      }}
+    >
+      <div
+        className="max-w-md text-center glass-strong rounded-3xl p-10"
+        style={{
+          width: "min(100%, 28rem)",
+          padding: "2.5rem",
+          textAlign: "center",
+          border: "1px solid rgba(167,139,250,.22)",
+          borderRadius: "1.5rem",
+          background: "rgba(15,23,42,.94)",
+          boxShadow: "0 24px 80px rgba(0,0,0,.5)",
+        }}
+      >
+        <h1
+          className="font-display text-xl font-semibold"
+          style={{ margin: 0, fontSize: "1.25rem" }}
+        >
+          Something glitched
+        </h1>
+        <p
+          className="mt-2 text-sm text-muted-foreground"
+          style={{ margin: ".6rem 0 0", color: "rgba(255,255,255,.68)", fontSize: ".875rem" }}
+        >
+          Try again — we'll get this fixed.
+        </p>
         <button
           onClick={() => {
-            router.invalidate();
             reset();
+            window.location.reload();
           }}
           className="mt-6 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold"
+          style={{
+            marginTop: "1.5rem",
+            minHeight: "2.75rem",
+            padding: ".65rem 1.25rem",
+            border: 0,
+            borderRadius: "999px",
+            background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
+            color: "#fff",
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
         >
           Retry
         </button>
@@ -161,7 +208,9 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <style dangerouslySetInnerHTML={{ __html: ACADEMY_LOADING_CRITICAL_CSS }} />
         <HeadContent />
-        <noscript><link rel="stylesheet" href={appCss} /></noscript>
+        <noscript>
+          <link rel="stylesheet" href={appCss} />
+        </noscript>
       </head>
       <body data-academy-loading="true">
         <AcadeMYStaticLoadingShell />
@@ -178,6 +227,7 @@ function RootComponent() {
   const pathname = router.state.location.pathname;
   const isMarketingPage =
     pathname === "/" || pathname === "/explore-academy" || pathname.startsWith("/academy/");
+  const isMinimalPublicPage = isMarketingPage || isPublicAuthRoute(pathname);
 
   useEffect(() => {
     if (document.getElementById("academy-web-fonts")) return;
@@ -200,7 +250,7 @@ function RootComponent() {
         <SignInModalProvider>
           <CikguProvider>
             <AppBootGate>
-              {!isMarketingPage && (
+              {!isMinimalPublicPage && (
                 <>
                   <ParticleBg />
                   <SoundFx />
@@ -214,7 +264,6 @@ function RootComponent() {
           </CikguProvider>
         </SignInModalProvider>
       </AuthProvider>
-
     </QueryClientProvider>
   );
 }
