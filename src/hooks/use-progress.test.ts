@@ -11,9 +11,7 @@ import {
 
 describe("companion level progression", () => {
   it("uses a non-linear curve with increasingly larger level gaps", () => {
-    expect(COMPANION_STAGES.map((stage) => stage.xpRequired)).toEqual([
-      0, 400, 1600, 4200, 9000,
-    ]);
+    expect(COMPANION_STAGES.map((stage) => stage.xpRequired)).toEqual([0, 400, 1600, 4200, 9000]);
 
     const gaps = COMPANION_STAGES.slice(1).map(
       (stage, index) => stage.xpRequired - COMPANION_STAGES[index].xpRequired,
@@ -77,12 +75,12 @@ describe("progression celebrations and rewards", () => {
     expect(getCompanionEvolutionTransition(400, 399)).toBeNull();
   });
 
-  it("preserves the existing rank-up animation trigger", () => {
-    expect(getRankUpTransition(449, 450)).toMatchObject({
-      fromRank: { id: "cadet" },
-      toRank: { id: "planet-voyager" },
+  it("uses the canonical Cosmic Rank thresholds for rank-up animations", () => {
+    expect(getRankUpTransition(1499, 1500)).toMatchObject({
+      fromRank: { id: "space-cadet" },
+      toRank: { id: "moon-explorer" },
     });
-    expect(getRankUpTransition(450, 449)).toBeNull();
+    expect(getRankUpTransition(1500, 1499)).toBeNull();
   });
 
   it("preserves every existing XP milestone reward threshold", () => {

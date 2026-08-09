@@ -128,7 +128,8 @@ function LeaderboardPage() {
         if (signal?.aborted) return;
         setResponse(next);
       } catch (error) {
-        if (signal?.aborted || (error instanceof DOMException && error.name === "AbortError")) return;
+        if (signal?.aborted || (error instanceof DOMException && error.name === "AbortError"))
+          return;
         if (import.meta.env.DEV) console.error("[leaderboard] refresh failed:", error);
         setResponse({
           status: "error",
@@ -311,11 +312,11 @@ function GalaxyHallOfFame({
 
       {/* ── Cosmic Champion + floating top 3 ── */}
       {podium.length > 0 && (
-        <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">
+        <section className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-4 backdrop-blur-2xl sm:p-6">
           <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-white">
             <Crown className="h-5 w-5 text-[#FBBF24]" /> Cosmic Champion
           </h2>
-          <div className="grid grid-cols-3 items-end gap-3">
+          <div className="grid grid-cols-3 items-end gap-1.5 sm:gap-3">
             {[1, 0, 2].map((slot) => {
               const s = podium[slot];
               if (!s) return <div key={slot} />;
@@ -325,7 +326,7 @@ function GalaxyHallOfFame({
               const label = top3Label(s.rank);
               return (
                 <div key={s.rank} className="flex flex-col items-center">
-                  <PodiumAvatar student={s} medal={MEDALS[slot]} rankGlow={cosmicRank.glowColor} />
+                  <PodiumRankEmblem student={s} medal={MEDALS[slot]} />
                   {label && (
                     <span
                       className="mt-2 rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide"
@@ -338,7 +339,7 @@ function GalaxyHallOfFame({
                     {s.name}
                     {s.isCurrentUser ? " · You" : ""}
                   </p>
-                  <CosmicRankBadge xp={s.lifetimeXp} small />
+                  <CosmicRankLabel rank={cosmicRank} />
                   <div
                     className={`mt-2 flex ${heights[hi]} w-full flex-col items-center justify-start rounded-t-xl border-t-2 pt-2`}
                     style={{
@@ -372,16 +373,15 @@ function GalaxyHallOfFame({
             Monthly ranking · Top 10
           </h2>
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[620px] text-left text-sm">
+            <table className="w-full min-w-[560px] text-left text-sm">
               <thead>
                 <tr className="text-[10px] uppercase tracking-wide text-white/35">
                   <th className="px-2 py-2">Rank</th>
-                  <th className="px-2 py-2">Student</th>
+                  <th className="px-2 py-2">Student &amp; Cosmic Rank</th>
                   <th className="px-2 py-2 text-right">Monthly XP</th>
                   <th className="px-2 py-2 text-right">Quizzes</th>
                   <th className="px-2 py-2 text-right">Accuracy</th>
                   <th className="px-2 py-2 text-right">Streak</th>
-                  <th className="px-2 py-2">Cosmic Rank</th>
                 </tr>
               </thead>
               <tbody>
@@ -417,6 +417,9 @@ function StudentRankCard({
       <div className="min-w-0 flex-1">
         <p className="text-xs font-bold text-white/60">Your position</p>
         <p className="mt-0.5 text-xs font-bold text-white/75">{student.name} · You</p>
+        <p className="mt-1 text-xs font-black" style={{ color: cosmicRank.color }}>
+          {cosmicRank.name}
+        </p>
         <p className="font-display text-xl font-black" style={{ color: cosmicRank.color }}>
           #{student.rank}{" "}
           <span className="text-sm font-bold opacity-70">
@@ -458,51 +461,51 @@ function StudentRankCard({
   );
 }
 
-function CosmicRankBadge({ xp, small = false }: { xp: number; small?: boolean }) {
-  const r = getRank(xp);
+function CosmicRankLabel({ rank }: { rank: ReturnType<typeof getRank> }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full font-black ${small ? "px-2 py-0.5 text-[9px]" : "px-2.5 py-1 text-[10px]"}`}
+      className="mt-1 inline-flex max-w-full items-center rounded-full px-2 py-0.5 text-[9px] font-black"
       style={{
-        background: `${r.color}18`,
-        border: `1px solid ${r.color}44`,
-        color: r.color,
-        boxShadow: `0 0 6px ${r.glowColor}`,
+        background: `${rank.color}18`,
+        border: `1px solid ${rank.color}44`,
+        color: rank.color,
+        boxShadow: `0 0 6px ${rank.glowColor}`,
       }}
     >
-      <RankBadge rank={r} size={small ? 40 : 48} />
-      {r.name}
+      <span className="truncate">{rank.name}</span>
     </span>
   );
 }
 
-function PodiumAvatar({
-  student,
-  medal,
-  rankGlow,
-}: {
-  student: RealRankedStudent;
-  medal: string;
-  rankGlow: string;
-}) {
+function PodiumRankEmblem({ student, medal }: { student: RealRankedStudent; medal: string }) {
+  const cosmicRank = getRank(student.lifetimeXp);
+  const isChampion = student.rank === 1;
+
   return (
     <div className="relative">
       <div
-        className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border-2"
-        style={{ borderColor: medal, boxShadow: `0 0 22px ${medal}66`, background: `${medal}1a` }}
+        className={`flex items-center justify-center rounded-2xl border-2 ${isChampion ? "h-20 w-20 sm:h-24 sm:w-24" : "h-[4.25rem] w-[4.25rem] sm:h-20 sm:w-20"}`}
+        style={{
+          borderColor: medal,
+          boxShadow: `0 0 22px ${medal}66, 0 0 32px ${cosmicRank.glowColor}`,
+          background: `radial-gradient(circle, ${cosmicRank.color}22, ${medal}0d 68%, transparent)`,
+        }}
       >
-        <img
-          src="/companions/astronaut/cadet.png"
-          alt="Astronaut avatar"
-          className="h-full w-full object-cover"
+        <RankBadge
+          rank={cosmicRank}
+          size={isChampion ? "92%" : "90%"}
+          imageClassName="h-full w-full"
         />
       </div>
-      <span
-        className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full text-[#050816]"
-        style={{ background: medal }}
-      >
-        <Crown className="h-3.5 w-3.5" />
-      </span>
+      {isChampion && (
+        <span
+          className="absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full text-[#050816]"
+          style={{ background: medal }}
+          aria-hidden="true"
+        >
+          <Crown className="h-4 w-4" />
+        </span>
+      )}
     </div>
   );
 }
@@ -516,16 +519,26 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
         #{student.rank}
       </td>
       <td className="px-2 py-2.5">
-        <div className="flex items-center gap-2">
-          <span className="truncate font-bold text-white">{student.name}</span>
-          {student.isCurrentUser && (
-            <span className="shrink-0 text-[10px] font-black uppercase text-[#C4B5FD]">You</span>
-          )}
-          {label && (
-            <span className="hidden shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-white/60 sm:inline-block">
-              {label}
-            </span>
-          )}
+        <div className="flex min-w-[190px] items-center gap-2.5">
+          <RankBadge rank={r} size={44} />
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="truncate font-bold text-white">{student.name}</span>
+              {student.isCurrentUser && (
+                <span className="shrink-0 text-[10px] font-black uppercase text-[#C4B5FD]">
+                  You
+                </span>
+              )}
+              {label && (
+                <span className="hidden shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-white/60 sm:inline-block">
+                  {label}
+                </span>
+              )}
+            </div>
+            <p className="mt-0.5 truncate text-[11px] font-black" style={{ color: r.color }}>
+              {r.name}
+            </p>
+          </div>
         </div>
       </td>
       <td className="px-2 py-2.5 text-right font-bold tabular-nums text-white">
@@ -539,15 +552,6 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
       </td>
       <td className="px-2 py-2.5 text-right tabular-nums text-white/50">
         {student.streak == null ? "—" : `${student.streak}d`}
-      </td>
-      <td className="px-2 py-2.5">
-        <span
-          className="flex items-center gap-1 text-xs font-black tabular-nums"
-          style={{ color: r.color }}
-        >
-          <RankBadge rank={r} size={40} />
-          {r.name}
-        </span>
       </td>
     </tr>
   );
