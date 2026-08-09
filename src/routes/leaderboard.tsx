@@ -325,7 +325,7 @@ function GalaxyHallOfFame({
               const cosmicRank = getRank(s.lifetimeXp);
               const label = top3Label(s.rank);
               return (
-                <div key={s.rank} className="flex flex-col items-center">
+                <div key={s.rank} className="flex min-w-0 flex-col items-center">
                   <LeaderboardRankArtwork
                     rank={cosmicRank}
                     variant={s.rank === 1 ? "champion" : "finalist"}
@@ -376,7 +376,12 @@ function GalaxyHallOfFame({
           <h2 className="px-2 py-2 font-display text-lg font-bold text-white">
             Monthly ranking · Top 10
           </h2>
-          <div className="overflow-x-auto">
+          <div className="space-y-2 md:hidden">
+            {rest.map((student) => (
+              <RankMobileCard key={student.rank} student={student} />
+            ))}
+          </div>
+          <div className="hidden overflow-x-auto md:block">
             <table className="w-full min-w-[560px] text-left text-sm">
               <thead>
                 <tr className="text-[10px] uppercase tracking-wide text-white/35">
@@ -414,7 +419,7 @@ function StudentRankCard({
   const label = top3Label(student.rank);
   return (
     <div
-      className="flex flex-wrap items-center gap-4 rounded-2xl border px-4 py-4 backdrop-blur-xl"
+      className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-2xl border px-4 py-4 backdrop-blur-xl sm:flex sm:flex-wrap sm:gap-4"
       style={{ borderColor: `${cosmicRank.color}44`, background: cosmicRank.glowColor }}
     >
       <LeaderboardRankArtwork rank={cosmicRank} variant="student" />
@@ -436,8 +441,8 @@ function StudentRankCard({
           </span>
         )}
       </div>
-      <div className="text-right">
-        <p className="flex items-center justify-end gap-1 text-[10px] text-white/40">
+      <div className="col-span-2 flex w-full items-end justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2 text-left sm:col-auto sm:block sm:w-auto sm:border-0 sm:bg-transparent sm:p-0 sm:text-right">
+        <p className="flex items-center gap-1 text-[10px] text-white/40 sm:justify-end">
           <TrendingUp className="h-3 w-3" /> XP to next position
         </p>
         <p className="font-display text-lg font-black text-white">
@@ -447,7 +452,7 @@ function StudentRankCard({
           <p className="text-[10px] text-white/35">to pass {nextAboveName}</p>
         )}
       </div>
-      <div className="flex gap-4 border-l border-white/10 pl-4 text-right text-[11px] text-white/50">
+      <div className="col-span-2 grid w-full grid-cols-2 gap-4 border-t border-white/10 pt-3 text-left text-[11px] text-white/50 sm:col-auto sm:flex sm:w-auto sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0 sm:text-right">
         <div>
           <p className="uppercase tracking-wide text-white/35">Accuracy</p>
           <p className="font-bold text-white">
@@ -569,5 +574,62 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
         {student.streak == null ? "—" : `${student.streak}d`}
       </td>
     </tr>
+  );
+}
+
+function RankMobileCard({ student }: { student: RealRankedStudent }) {
+  const rank = getRank(student.lifetimeXp);
+  return (
+    <article
+      className={`rounded-2xl border p-3 ${
+        student.isCurrentUser
+          ? "border-[#8B5CF6]/35 bg-[#7C3AED]/10"
+          : "border-white/[0.07] bg-white/[0.025]"
+      }`}
+    >
+      <div className="flex min-w-0 items-center gap-2.5">
+        <span className="w-8 shrink-0 font-display text-sm font-black tabular-nums text-white/70">
+          #{student.rank}
+        </span>
+        <RankBadge rank={rank} size={40} />
+        <div className="min-w-0 flex-1">
+          <div className="flex min-w-0 items-center gap-1.5">
+            <p className="truncate text-sm font-bold text-white">{student.name}</p>
+            {student.isCurrentUser && (
+              <span className="shrink-0 text-[9px] font-black uppercase text-[#C4B5FD]">You</span>
+            )}
+          </div>
+          <p className="truncate text-[10px] font-black" style={{ color: rank.color }}>
+            {rank.name}
+          </p>
+        </div>
+        <div className="shrink-0 text-right">
+          <p className="font-display text-sm font-black tabular-nums text-white">
+            {student.monthlyXp.toLocaleString()}
+          </p>
+          <p className="text-[9px] font-bold uppercase tracking-wide text-white/35">Monthly XP</p>
+        </div>
+      </div>
+      <dl className="mt-3 grid grid-cols-3 divide-x divide-white/[0.07] border-t border-white/[0.07] pt-3 text-center">
+        <div>
+          <dt className="text-[9px] font-bold uppercase tracking-wide text-white/35">Quizzes</dt>
+          <dd className="mt-0.5 text-xs font-bold tabular-nums text-white/70">
+            {student.monthlyQuizCount}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-[9px] font-bold uppercase tracking-wide text-white/35">Accuracy</dt>
+          <dd className="mt-0.5 text-xs font-bold tabular-nums text-white/70">
+            {student.monthlyAccuracy == null ? "—" : `${student.monthlyAccuracy}%`}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-[9px] font-bold uppercase tracking-wide text-white/35">Streak</dt>
+          <dd className="mt-0.5 text-xs font-bold tabular-nums text-white/70">
+            {student.streak == null ? "—" : `${student.streak}d`}
+          </dd>
+        </div>
+      </dl>
+    </article>
   );
 }
