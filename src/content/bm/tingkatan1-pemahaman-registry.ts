@@ -1,5 +1,6 @@
 import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan1MaksudFrasaUngkapanMindMap } from "@/content/bm/maksud-frasa-ungkapan-form1-mindmap";
+import { bahasaMelayuTingkatan1MenjawabSoalanKbatMindMap } from "@/content/bm/menjawab-soalan-kbat-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form1-mindmap";
@@ -59,6 +60,20 @@ export const bahasaMelayuTingkatan1PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1MaksudFrasaUngkapanMindMap,
       title: "Maksud Frasa dan Ungkapan",
+    },
+  },
+  {
+    id: "bm-f1-menjawab-soalan-kbat-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Menjawab Soalan KBAT",
+    title: "Menjawab Soalan KBAT",
+    description:
+      "Belajar memberikan pendapat, alasan dan cadangan yang logik berdasarkan situasi dalam petikan.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan1MenjawabSoalanKbatMindMap,
+      title: "Menjawab Soalan KBAT",
     },
   },
 ] as const satisfies readonly ChapterContent[];
