@@ -1,4 +1,5 @@
 import type { ChapterContent } from "@/content/types";
+import { bahasaMelayuTingkatan1IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form1-mindmap";
 
@@ -29,6 +30,20 @@ export const bahasaMelayuTingkatan1PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1IsiTersuratMindMap,
       title: "Mengenal Pasti Isi Tersurat",
+    },
+  },
+  {
+    id: "bm-f1-mengenal-pasti-isi-tersirat-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Mengenal Pasti Isi Tersirat",
+    title: "Mengenal Pasti Isi Tersirat",
+    description:
+      "Membuat kesimpulan berdasarkan petunjuk dalam petikan walaupun jawapan tidak dinyatakan secara langsung.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan1IsiTersiratMindMap,
+      title: "Mengenal Pasti Isi Tersirat",
     },
   },
 ] as const satisfies readonly ChapterContent[];
