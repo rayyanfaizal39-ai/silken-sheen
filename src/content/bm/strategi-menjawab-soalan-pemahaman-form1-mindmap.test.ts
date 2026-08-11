@@ -48,8 +48,8 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 1 Strategi Menjawab Soalan Pemahaman mind map", () => {
-  it("remains the first of exactly five registered Form 1 Pemahaman topics", () => {
-    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(5);
+  it("remains the first of exactly six registered Form 1 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(6);
     expect(bahasaMelayuTingkatan1PemahamanRegistry[0]?.chapterKey).toBe(
       "Strategi Menjawab Soalan Pemahaman",
     );
@@ -83,8 +83,9 @@ describe("Bahasa Melayu Form 1 Strategi Menjawab Soalan Pemahaman mind map", () 
       "Mengenal Pasti Isi Tersirat",
       "Maksud Frasa dan Ungkapan",
       "Menjawab Soalan KBAT",
+      "Membuat Rumusan Ringkas",
     ]);
-    expect(pemahamanTopics).toHaveLength(5);
+    expect(pemahamanTopics).toHaveLength(6);
 
     const pemahamanIndex = pemahamanTopics.findIndex(
       (topic) => topic.key === "Strategi Menjawab Soalan Pemahaman",

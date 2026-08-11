@@ -48,14 +48,15 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 1 Maksud Frasa dan Ungkapan mind map", () => {
-  it("remains the fourth of exactly five registered Form 1 Pemahaman topics", () => {
-    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(5);
+  it("remains the fourth of exactly six registered Form 1 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(6);
     expect(bahasaMelayuTingkatan1PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman",
       "Mengenal Pasti Isi Tersurat",
       "Mengenal Pasti Isi Tersirat",
       "Maksud Frasa dan Ungkapan",
       "Menjawab Soalan KBAT",
+      "Membuat Rumusan Ringkas",
     ]);
 
     const chapter = getChapter("bm", "Maksud Frasa dan Ungkapan", undefined, "Form 1");

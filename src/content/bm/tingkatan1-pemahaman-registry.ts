@@ -1,6 +1,7 @@
 import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan1MaksudFrasaUngkapanMindMap } from "@/content/bm/maksud-frasa-ungkapan-form1-mindmap";
 import { bahasaMelayuTingkatan1MenjawabSoalanKbatMindMap } from "@/content/bm/menjawab-soalan-kbat-form1-mindmap";
+import { bahasaMelayuTingkatan1MembuatRumusanRingkasMindMap } from "@/content/bm/membuat-rumusan-ringkas-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form1-mindmap";
@@ -74,6 +75,20 @@ export const bahasaMelayuTingkatan1PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1MenjawabSoalanKbatMindMap,
       title: "Menjawab Soalan KBAT",
+    },
+  },
+  {
+    id: "bm-f1-membuat-rumusan-ringkas-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Membuat Rumusan Ringkas",
+    title: "Membuat Rumusan Ringkas",
+    description:
+      "Belajar mengenal pasti isi utama dan menghasilkan rumusan yang jelas, padat dan menggunakan bahasa sendiri.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan1MembuatRumusanRingkasMindMap,
+      title: "Membuat Rumusan Ringkas",
     },
   },
 ] as const satisfies readonly ChapterContent[];
