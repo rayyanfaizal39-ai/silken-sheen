@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Check, Loader2, X } from "lucide-react";
+import { Check, Loader2, Search, X } from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -75,10 +75,11 @@ export function SchoolCombobox({ value, onChange, invalid = false }: SchoolCombo
               onChange(null);
               setQuery("");
             }}
-            className="flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg text-white/65 outline-none hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-violet-400"
+            className="flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-lg px-2.5 text-xs font-bold text-emerald-100/75 outline-none transition-colors hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-violet-400"
             aria-label={`Change school from ${value.schoolName}`}
           >
-            <X className="h-5 w-5" aria-hidden="true" />
+            <span className="hidden sm:inline">Change school</span>
+            <X className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -96,19 +97,23 @@ export function SchoolCombobox({ value, onChange, invalid = false }: SchoolCombo
         invalid ? "border-red-400/60" : "border-white/10"
       }`}
     >
-      <div>
+      <div className="relative">
+        <Search
+          className="pointer-events-none absolute left-3 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-violet-300/70"
+          aria-hidden="true"
+        />
         <CommandInput
           value={query}
           onValueChange={setQuery}
           placeholder="Search your school..."
           aria-label="Search verified Malaysian schools"
           aria-invalid={invalid}
-          className="h-12 border-0 text-base text-white placeholder:text-white/40 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-400"
+          className="h-12 border-0 pl-10 text-base text-white placeholder:text-white/40 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-400"
         />
       </div>
 
       <CommandList
-        className="max-h-72 border-t border-white/10 bg-[#111827]"
+        className="max-h-[min(18rem,38dvh)] overscroll-contain border-t border-white/10 bg-[#111827]"
         aria-label="School search results"
       >
         {!normalizedQuery && (

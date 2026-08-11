@@ -32,6 +32,14 @@ const STUDENT_PROTECTED_ROUTES = new Set([
   "/tracker",
 ]);
 
+export function isPublicAuthRoute(pathname: string): boolean {
+  return pathname === "/login" || pathname === "/forgot-password" || pathname.startsWith("/auth/");
+}
+
+export function shouldLoadExplorerProfile(pathname: string): boolean {
+  return !isPublicAuthRoute(pathname);
+}
+
 export function isOnboardingExemptRoute(pathname: string): boolean {
   return (
     ONBOARDING_EXEMPT_ROUTES.has(pathname) ||

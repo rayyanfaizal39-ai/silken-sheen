@@ -46,3 +46,5 @@ docs/*.pdf
 src/routes/command-center-preview.tsx
 
 silken-sheen/
+
+.env

@@ -11,6 +11,7 @@ import {
 import { useRouter } from "@tanstack/react-router";
 import { ACADEMY_LOADER_FADE_MS } from "@/components/AcadeMYLoadingScreen";
 import { useAuth } from "@/context/auth-context";
+import { isPublicAuthRoute } from "@/lib/onboarding-routing";
 import {
   beginLoadingTask,
   clearLoadingError,
@@ -115,8 +116,16 @@ function getInitialBootTasks() {
     initialBootTasks = [
       beginLoadingTask({ id: "boot:route", timeoutMs: BOOT_TIMEOUT_MS }),
       beginLoadingTask({ id: "boot:layout", timeoutMs: BOOT_TIMEOUT_MS }),
-      beginLoadingTask({ id: "boot:auth", message: "Restoring your AcadeMY session…", timeoutMs: BOOT_TIMEOUT_MS }),
-      beginLoadingTask({ id: "boot:assets", message: "Preparing your learning mission…", timeoutMs: BOOT_TIMEOUT_MS }),
+      beginLoadingTask({
+        id: "boot:auth",
+        message: "Restoring your AcadeMY session…",
+        timeoutMs: BOOT_TIMEOUT_MS,
+      }),
+      beginLoadingTask({
+        id: "boot:assets",
+        message: "Preparing your learning mission…",
+        timeoutMs: BOOT_TIMEOUT_MS,
+      }),
     ];
   }
   return initialBootTasks;
@@ -125,6 +134,7 @@ function getInitialBootTasks() {
 export function AppBootGate({ children }: { children: ReactNode }) {
   const { loading: authLoading } = useAuth();
   const router = useRouter();
+  const pathname = router.state.location.pathname;
   const bootTasks = useRef<LoadingTaskHandle[] | null>(
     typeof window === "undefined" ? null : getInitialBootTasks(),
   );
@@ -151,7 +161,9 @@ export function AppBootGate({ children }: { children: ReactNode }) {
     const tasks = bootTasks.current;
     if (!tasks) return;
     tasks[0]?.finish();
-    const stylesheets = [...document.querySelectorAll<HTMLLinkElement>("link[data-app-stylesheet]")];
+    const stylesheets = [
+      ...document.querySelectorAll<HTMLLinkElement>("link[data-app-stylesheet]"),
+    ];
     let cancelled = false;
     let frame = 0;
     const activate = (link: HTMLLinkElement) => {
@@ -185,8 +197,8 @@ export function AppBootGate({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!authLoading) bootTasks.current?.[2]?.finish();
-  }, [authLoading]);
+    if (!authLoading || isPublicAuthRoute(pathname)) bootTasks.current?.[2]?.finish();
+  }, [authLoading, pathname]);
 
   useEffect(() => {
     let cancelled = false;
@@ -197,7 +209,9 @@ export function AppBootGate({ children }: { children: ReactNode }) {
     void asset.finally(() => {
       if (!cancelled) bootTasks.current?.[3]?.finish();
     });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {

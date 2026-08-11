@@ -16,11 +16,12 @@ import {
   ShieldCheck,
   Sparkles,
   Trophy,
+  UserRound,
   X,
   Zap,
 } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import {
   useProgress,
   getRank,
@@ -45,10 +46,17 @@ import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicContro
 import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
 import { isStudentMusicRoute } from "@/lib/audio/studentMusicRoutes";
 import {
+  isPublicAuthRoute,
   isOnboardingExemptRoute,
   shouldRedirectToLogin,
   shouldRedirectToOnboarding,
 } from "@/lib/onboarding-routing";
+
+const ProfileSummaryDialog = lazy(() =>
+  import("@/components/profile/ProfileSummaryDialog").then((module) => ({
+    default: module.ProfileSummaryDialog,
+  })),
+);
 
 const navItems = [
   {
@@ -317,6 +325,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     }
   }, [navigate, redirectToLogin]);
 
+  // Login, password recovery, and OAuth callback pages deliberately bypass
+  // the authenticated shell and all of its progress/profile consumers.
+  if (isPublicAuthRoute(pathname)) return <>{children}</>;
+
   if (redirectToLogin) {
     return (
       <div className="flex min-h-svh items-center justify-center bg-[#050816] text-white">
@@ -362,7 +374,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
 function AppShellLayout({ children, pathname }: { children: ReactNode; pathname: string }) {
   const { lastRankUp } = useProgress();
+  const { user, explorerProfile } = useAuth();
   const [moreOpen, setMoreOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const moreActive = secondaryMobileNavItems.some((item) => isRouteActive(pathname, item.to));
 
   useEffect(() => {
@@ -484,13 +498,36 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
               Upgrade
             </Link>
             <HeaderAuthAction />
-            {/* Profile / avatar link */}
-            <Link
-              to="/dashboard"
-              className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2 py-1.5 text-sm transition-colors hover:bg-white/[0.10]"
-            >
-              <HeaderRankBadge />
-            </Link>
+            {/* Desktop Explorer Profile entry point */}
+            {user ? (
+              <button
+                type="button"
+                onClick={() => setProfileOpen(true)}
+                aria-label="Open Explorer Profile"
+                className="hidden min-h-11 items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2.5 text-left transition-colors hover:bg-white/[0.10] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 lg:flex"
+              >
+                {user.avatarUrl ? (
+                  <img
+                    src={user.avatarUrl}
+                    alt=""
+                    className="h-7 w-7 rounded-lg object-cover ring-1 ring-white/10"
+                  />
+                ) : (
+                  <HeaderRankBadge />
+                )}
+                <span className="max-w-24 truncate text-xs font-bold text-white/80">
+                  {explorerProfile?.displayName ?? user.name ?? "Profile"}
+                </span>
+              </button>
+            ) : (
+              <Link
+                to="/dashboard"
+                aria-label="Open dashboard"
+                className="hidden min-h-11 items-center rounded-xl border border-white/[0.08] bg-white/[0.06] px-2 transition-colors hover:bg-white/[0.10] lg:flex"
+              >
+                <HeaderRankBadge />
+              </Link>
+            )}
           </div>
         </header>
 
@@ -551,6 +588,30 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
               </button>
             </div>
 
+            {user && (
+              <button
+                type="button"
+                onClick={() => {
+                  setMoreOpen(false);
+                  setProfileOpen(true);
+                }}
+                className="mt-4 flex min-h-16 w-full items-center gap-3 rounded-2xl border border-violet-300/20 bg-violet-500/10 px-3 py-3 text-left text-white transition-colors hover:bg-violet-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
+              >
+                <span
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-violet-400/15 text-violet-200"
+                  aria-hidden="true"
+                >
+                  <UserRound className="h-5 w-5" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <strong className="block text-sm">Profile</strong>
+                  <span className="mt-0.5 block truncate text-xs text-white/45">
+                    {explorerProfile?.displayName ?? user.name ?? user.email}
+                  </span>
+                </span>
+              </button>
+            )}
+
             <nav aria-label="More destinations" className="mt-4 grid grid-cols-2 gap-3">
               {secondaryMobileNavItems.map((item) => {
                 const Icon = item.icon;
@@ -581,6 +642,17 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
             </nav>
           </section>
         </div>
+      )}
+
+      {user && profileOpen && (
+        <Suspense fallback={null}>
+          <ProfileSummaryDialog
+            open
+            user={user}
+            profile={explorerProfile}
+            onClose={() => setProfileOpen(false)}
+          />
+        </Suspense>
       )}
 
       {/* â”€â”€ Mobile Bottom Nav â€” Space Theme â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}

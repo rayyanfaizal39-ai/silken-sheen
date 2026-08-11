@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import type { User, Session } from "@supabase/supabase-js";
+import { useRouterState } from "@tanstack/react-router";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { beginLoadingTask } from "@/lib/loading-store";
 import {
@@ -17,6 +18,7 @@ import {
   type ExplorerProfile,
   type ExplorerProfileInput,
 } from "@/lib/explorer-profile";
+import { shouldLoadExplorerProfile } from "@/lib/onboarding-routing";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -66,6 +68,8 @@ const AuthContext = createContext<AuthContextValue>({
   signOut: async () => {},
 });
 
+const AUTH_BOOT_TIMEOUT_MS = 8_000;
+
 // ─── Helper ───────────────────────────────────────────────────────────────────
 
 function supabaseUserToAuthUser(u: User): AuthUser {
@@ -81,6 +85,8 @@ function supabaseUserToAuthUser(u: User): AuthUser {
 // ─── Provider ─────────────────────────────────────────────────────────────────
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const explorerProfileRequired = shouldLoadExplorerProfile(pathname);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
@@ -95,25 +101,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    let active = true;
+    const bootTimeout = window.setTimeout(() => {
+      if (!active) return;
+      console.error("[Auth] Initial session check timed out", {
+        path: window.location.pathname,
+        timeoutMs: AUTH_BOOT_TIMEOUT_MS,
+      });
+      setLoading(false);
+    }, AUTH_BOOT_TIMEOUT_MS);
+
+    const finishBoot = () => {
+      window.clearTimeout(bootTimeout);
+      if (active) setLoading(false);
+    };
+
     // Retrieve the initial session (handles post-OAuth redirects too)
     console.info("[Auth] Initial session check started", { path: window.location.pathname });
     void supabase.auth
       .getSession()
       .then(({ data: { session: s }, error }) => {
+        if (!active) return;
         if (error) console.error("[Auth] Initial session check failed", error);
         else console.info("[Auth] Initial session check completed", { hasSession: !!s });
         setSession(s);
         setUser(s?.user ? supabaseUserToAuthUser(s.user) : null);
       })
       .catch((error: unknown) => {
+        if (!active) return;
         console.error("[Auth] Initial session check threw", error);
       })
-      .finally(() => setLoading(false));
+      .finally(finishBoot);
 
     // Subscribe to auth state changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, s) => {
+      if (!active) return;
       console.info("[Auth] State changed", { event, hasSession: !!s });
       // Supabase re-fires SIGNED_IN/INITIAL_SESSION on tab focus even when
       // the session hasn't actually changed — skip the state update (and the
@@ -124,10 +148,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (prev?.id === nextId) return prev;
         return s?.user ? supabaseUserToAuthUser(s.user) : null;
       });
-      setLoading(false);
+      finishBoot();
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      active = false;
+      window.clearTimeout(bootTimeout);
+      subscription.unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -138,6 +166,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setExplorerProfileUserId(null);
       setExplorerProfileError(null);
       setExplorerProfileLoading(false);
+      return;
+    }
+
+    // Public auth routes only need the Supabase session. Deferring the
+    // Explorer Profile request until the student reaches an authenticated
+    // route keeps /login independent from profile/onboarding availability.
+    if (!explorerProfileRequired) {
+      setExplorerProfileLoading(false);
+      setExplorerProfileError(null);
       return;
     }
 
@@ -163,7 +200,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       active = false;
     };
-  }, [user]);
+  }, [explorerProfileRequired, user]);
 
   const signInWithGoogle = useCallback(async (returnTo?: "/admin/login" | "/upgrade") => {
     if (!isSupabaseConfigured) {
@@ -341,7 +378,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo(() => {
     const profileLoading = Boolean(
-      user && (explorerProfileLoading || explorerProfileUserId !== user.id),
+      explorerProfileRequired &&
+      user &&
+      (explorerProfileLoading || explorerProfileUserId !== user.id),
     );
     return {
       user,
@@ -350,7 +389,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       explorerProfile,
       explorerProfileLoading: profileLoading,
       explorerProfileError,
-      onboardingRequired: !profileLoading && needsExplorerOnboarding(explorerProfile),
+      onboardingRequired:
+        explorerProfileRequired && !profileLoading && needsExplorerOnboarding(explorerProfile),
       isConfigured: isSupabaseConfigured,
       signInWithGoogle,
       signInWithEmail,
@@ -368,6 +408,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     explorerProfileLoading,
     explorerProfileUserId,
     explorerProfileError,
+    explorerProfileRequired,
     signInWithGoogle,
     signInWithEmail,
     signUpWithEmail,

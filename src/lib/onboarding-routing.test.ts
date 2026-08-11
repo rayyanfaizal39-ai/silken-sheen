@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   isOnboardingExemptRoute,
+  isPublicAuthRoute,
+  shouldLoadExplorerProfile,
   shouldRedirectToLogin,
   shouldRedirectToOnboarding,
 } from "./onboarding-routing";
@@ -36,5 +38,17 @@ describe("onboarding routing", () => {
     expect(shouldRedirectToLogin("/home", true, false)).toBe(false);
     expect(shouldRedirectToLogin("/home", false, true)).toBe(false);
     expect(shouldRedirectToLogin("/payment-return", false, false)).toBe(false);
+  });
+
+  it.each(["/login", "/forgot-password", "/auth/callback", "/auth/reset-password"])(
+    "keeps Explorer Profile data out of public auth route %s",
+    (pathname) => {
+      expect(isPublicAuthRoute(pathname)).toBe(true);
+      expect(shouldLoadExplorerProfile(pathname)).toBe(false);
+    },
+  );
+
+  it.each(["/home", "/onboarding"])("loads Explorer Profile data on %s", (pathname) => {
+    expect(shouldLoadExplorerProfile(pathname)).toBe(true);
   });
 });
