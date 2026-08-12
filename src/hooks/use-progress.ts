@@ -1385,19 +1385,18 @@ export function useProgress() {
 
   const setProfileAvatar = useCallback(
     (source: ProfileAvatarSource, profileAvatarId?: ProfileAvatarId) => {
-      setProgress((prev) => {
-        const next: Progress = {
-          ...prev,
-          profileAvatarSource: source,
-          profileAvatarId: profileAvatarId ?? prev.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID,
-          profileAvatarUpdatedAt: new Date().toISOString(),
-        };
-        try {
-          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
-        } catch {}
-        scheduleSync(next);
-        return next;
-      });
+      const current = sharedProgress ?? load(sharedUserId);
+      const next: Progress = {
+        ...current,
+        profileAvatarSource: source,
+        profileAvatarId: profileAvatarId ?? current.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID,
+        profileAvatarUpdatedAt: new Date().toISOString(),
+      };
+      try {
+        localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
+      } catch {}
+      broadcastProgress(next);
+      scheduleSync(next);
     },
     [scheduleSync],
   );

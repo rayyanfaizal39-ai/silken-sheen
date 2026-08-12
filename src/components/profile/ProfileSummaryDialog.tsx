@@ -3,15 +3,27 @@ import { useEffect, useRef } from "react";
 import { CreditCard, ShieldCheck, UserRound, X } from "lucide-react";
 import type { AuthUser } from "@/context/auth-context";
 import type { ExplorerProfile } from "@/lib/explorer-profile";
+import { ProfileAvatar } from "@/components/ProfileAvatar";
+import type { ProfileAvatarId } from "@/data/profile-avatars";
+import type { ProfileAvatarSource } from "@/hooks/use-progress";
 
 interface ProfileSummaryDialogProps {
   open: boolean;
   user: AuthUser;
   profile: ExplorerProfile | null;
+  avatarSource?: ProfileAvatarSource;
+  avatarId?: ProfileAvatarId;
   onClose: () => void;
 }
 
-export function ProfileSummaryDialog({ open, user, profile, onClose }: ProfileSummaryDialogProps) {
+export function ProfileSummaryDialog({
+  open,
+  user,
+  profile,
+  avatarSource,
+  avatarId,
+  onClose,
+}: ProfileSummaryDialogProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLElement>(null);
 
@@ -63,17 +75,14 @@ export function ProfileSummaryDialog({ open, user, profile, onClose }: ProfileSu
       >
         <div className="flex items-start justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
-            {user.avatarUrl ? (
-              <img
-                src={user.avatarUrl}
-                alt=""
-                className="h-12 w-12 shrink-0 rounded-2xl object-cover ring-1 ring-violet-300/25"
-              />
-            ) : (
-              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 text-base font-black">
-                {displayName[0]?.toUpperCase() ?? "E"}
-              </div>
-            )}
+            <ProfileAvatar
+              source={avatarSource}
+              googleUrl={user.avatarUrl}
+              avatarId={avatarId}
+              name={displayName}
+              size={48}
+              className="rounded-2xl ring-violet-300/25"
+            />
             <div className="min-w-0">
               <p className="text-[10px] font-black uppercase tracking-[0.18em] text-violet-300/70">
                 Explorer Profile

@@ -29,6 +29,7 @@ import {
   getCompanionLevelProgress,
 } from "@/hooks/use-progress";
 import { RankBadge } from "@/components/RankBadge";
+import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { GalaxySearch } from "@/components/GalaxySearch";
@@ -204,17 +205,14 @@ function SidebarBottom() {
       {user ? (
         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-3 space-y-2.5">
           <div className="flex items-center gap-2.5">
-            {user.avatarUrl ? (
-              <img
-                src={user.avatarUrl}
-                alt={user.name ?? "Profile picture"}
-                className="h-8 w-8 shrink-0 rounded-xl object-cover ring-1 ring-white/10"
-              />
-            ) : (
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] text-xs font-bold text-white">
-                {(user.name ?? user.email ?? "?")[0].toUpperCase()}
-              </div>
-            )}
+            <ProfileAvatar
+              source={progress.profileAvatarSource}
+              googleUrl={user.avatarUrl}
+              avatarId={progress.profileAvatarId}
+              name={progress.displayName ?? user.name ?? "Student"}
+              size={32}
+              className="rounded-xl"
+            />
             <div className="min-w-0 flex-1">
               <p className="truncate text-xs font-bold text-white">{user.name ?? "Student"}</p>
               <p className="truncate text-[10px] text-white/40">{user.email}</p>
@@ -372,7 +370,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 }
 
 function AppShellLayout({ children, pathname }: { children: ReactNode; pathname: string }) {
-  const { lastRankUp } = useProgress();
+  const { progress, lastRankUp } = useProgress();
   const { user, explorerProfile } = useAuth();
   const [moreOpen, setMoreOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -505,15 +503,14 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
                 aria-label="Open Explorer Profile"
                 className="hidden min-h-11 items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.06] px-2.5 text-left transition-colors hover:bg-white/[0.10] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 lg:flex"
               >
-                {user.avatarUrl ? (
-                  <img
-                    src={user.avatarUrl}
-                    alt=""
-                    className="h-7 w-7 rounded-lg object-cover ring-1 ring-white/10"
-                  />
-                ) : (
-                  <HeaderRankBadge />
-                )}
+                <ProfileAvatar
+                  source={progress.profileAvatarSource}
+                  googleUrl={user.avatarUrl}
+                  avatarId={progress.profileAvatarId}
+                  name={explorerProfile?.displayName ?? user.name ?? "Student"}
+                  size={28}
+                  className="rounded-lg"
+                />
                 <span className="max-w-24 truncate text-xs font-bold text-white/80">
                   {explorerProfile?.displayName ?? user.name ?? "Profile"}
                 </span>
@@ -648,6 +645,8 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
             open
             user={user}
             profile={explorerProfile}
+            avatarSource={progress.profileAvatarSource}
+            avatarId={progress.profileAvatarId}
             onClose={() => setProfileOpen(false)}
           />
         </Suspense>
