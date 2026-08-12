@@ -48,8 +48,8 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 1 Mengenal Pasti Isi Tersirat mind map", () => {
-  it("remains the third of exactly six registered Form 1 Pemahaman topics", () => {
-    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(6);
+  it("remains the third of exactly seven registered Form 1 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(7);
     expect(bahasaMelayuTingkatan1PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman",
       "Mengenal Pasti Isi Tersurat",
@@ -57,6 +57,7 @@ describe("Bahasa Melayu Form 1 Mengenal Pasti Isi Tersirat mind map", () => {
       "Maksud Frasa dan Ungkapan",
       "Menjawab Soalan KBAT",
       "Membuat Rumusan Ringkas",
+      "Teknik Menggunakan Bukti daripada Petikan",
     ]);
 
     const chapter = getChapter("bm", "Mengenal Pasti Isi Tersirat", undefined, "Form 1");
