@@ -485,6 +485,10 @@ import { mathF2C6InteractiveContent } from "@/content/form2/math/chapter-6/inter
 import { mathF2C7InteractiveContent } from "@/content/form2/math/chapter-7/interactive-content";
 import { mathF2C8InteractiveContent } from "@/content/form2/math/chapter-8/interactive-content";
 import { mathF2C9InteractiveContent } from "@/content/form2/math/chapter-9/interactive-content";
+import { mathF2C10InteractiveContent } from "@/content/form2/math/chapter-10/interactive-content";
+import { mathF2C11InteractiveContent } from "@/content/form2/math/chapter-11/interactive-content";
+import { mathF2C12InteractiveContent } from "@/content/form2/math/chapter-12/interactive-content";
+import { mathF2C13InteractiveContent } from "@/content/form2/math/chapter-13/interactive-content";
 import { mathF2C1NotesBM } from "@/content/form2/math/chapter-1/notes-bm";
 import { mathF2C1NotesDLP } from "@/content/form2/math/chapter-1/notes-dlp";
 import { mathF2C1MindMapBM } from "@/content/form2/math/chapter-1/mindmap-bm";
@@ -1965,6 +1969,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C10MindMapBM, title: "Kecerunan Garis Lurus" },
     notes: mathF2C10NotesBM,
+    mathF2Chapter10Data: mathF2C10InteractiveContent,
     flashcards: mathF2C10FlashcardsBM,
     quiz: mathF2C10QuizzesBM,
   },
@@ -1977,6 +1982,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C10MindMapDLP, title: "Gradient of a Straight Line" },
     notes: mathF2C10NotesDLP,
+    mathF2Chapter10Data: mathF2C10InteractiveContent,
     flashcards: mathF2C10FlashcardsDLP,
     quiz: mathF2C10QuizzesDLP,
   },
@@ -1989,6 +1995,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C11MindMapBM, title: "Transformasi Isometri" },
     notes: mathF2C11NotesBM,
+    mathF2Chapter11Data: mathF2C11InteractiveContent,
     flashcards: mathF2C11FlashcardsBM,
     quiz: mathF2C11QuizzesBM,
   },
@@ -2001,6 +2008,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C11MindMapDLP, title: "Isometric Transformations" },
     notes: mathF2C11NotesDLP,
+    mathF2Chapter11Data: mathF2C11InteractiveContent,
     flashcards: mathF2C11FlashcardsDLP,
     quiz: mathF2C11QuizzesDLP,
   },
@@ -2013,6 +2021,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C12MindMapBM, title: "Sukatan Kecenderungan Memusat" },
     notes: mathF2C12NotesBM,
+    mathF2Chapter12Data: mathF2C12InteractiveContent,
     flashcards: mathF2C12FlashcardsBM,
     quiz: mathF2C12QuizzesBM,
   },
@@ -2025,6 +2034,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C12MindMapDLP, title: "Measures of Central Tendencies" },
     notes: mathF2C12NotesDLP,
+    mathF2Chapter12Data: mathF2C12InteractiveContent,
     flashcards: mathF2C12FlashcardsDLP,
     quiz: mathF2C12QuizzesDLP,
   },
@@ -2037,6 +2047,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF2C13MindMapBM, title: "Kebarangkalian Mudah" },
     notes: mathF2C13NotesBM,
+    mathF2Chapter13Data: mathF2C13InteractiveContent,
     flashcards: mathF2C13FlashcardsBM,
     quiz: mathF2C13QuizzesBM,
   },
@@ -2049,6 +2060,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF2C13MindMapDLP, title: "Simple Probability" },
     notes: mathF2C13NotesDLP,
+    mathF2Chapter13Data: mathF2C13InteractiveContent,
     flashcards: mathF2C13FlashcardsDLP,
     quiz: mathF2C13QuizzesDLP,
   },
