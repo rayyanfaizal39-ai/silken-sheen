@@ -596,6 +596,9 @@ import { mathF2C13MindMapBM } from "@/content/form2/math/chapter-13/mindmap-bm";
 import { mathF2C13MindMapDLP } from "@/content/form2/math/chapter-13/mindmap-dlp";
 
 // Mathematics Form 3
+import { mathF3C1InteractiveContent } from "@/content/form3/math/chapter-1/interactive-content";
+import { mathF3C2InteractiveContent } from "@/content/form3/math/chapter-2/interactive-content";
+import { mathF3C3InteractiveContent } from "@/content/form3/math/chapter-3/interactive-content";
 import { mathF3C1NotesBM } from "@/content/form3/math/chapter-1/notes-bm";
 import { mathF3C1NotesDLP } from "@/content/form3/math/chapter-1/notes-dlp";
 import { mathF3C1MindMapBM } from "@/content/form3/math/chapter-1/mindmap-bm";
@@ -2075,6 +2078,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C1MindMapBM, title: "Indeks" },
     notes: mathF3C1NotesBM,
+    mathF3Chapter1Data: mathF3C1InteractiveContent,
     flashcards: mathF3C1FlashcardsBM,
     quiz: mathF3C1QuizzesBM,
   },
@@ -2087,6 +2091,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C1MindMapDLP, title: "Index" },
     notes: mathF3C1NotesDLP,
+    mathF3Chapter1Data: mathF3C1InteractiveContent,
     flashcards: mathF3C1FlashcardsDLP,
     quiz: mathF3C1QuizzesDLP,
   },
@@ -2099,6 +2104,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C2MindMapBM, title: "Bentuk Piawai" },
     notes: mathF3C2NotesBM,
+    mathF3Chapter2Data: mathF3C2InteractiveContent,
     flashcards: mathF3C2FlashcardsBM,
     quiz: mathF3C2QuizzesBM,
   },
@@ -2111,6 +2117,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C2MindMapDLP, title: "Standard Form" },
     notes: mathF3C2NotesDLP,
+    mathF3Chapter2Data: mathF3C2InteractiveContent,
     flashcards: mathF3C2FlashcardsDLP,
     quiz: mathF3C2QuizzesDLP,
   },
@@ -2123,6 +2130,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C3MindMapBM, title: "Simpanan, Pelaburan, Kredit dan Hutang" },
     notes: mathF3C3NotesBM,
+    mathF3Chapter3Data: mathF3C3InteractiveContent,
     flashcards: mathF3C3FlashcardsBM,
     quiz: mathF3C3QuizzesBM,
   },
@@ -2135,6 +2143,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C3MindMapDLP, title: "Savings, Investment, Credit and Debt" },
     notes: mathF3C3NotesDLP,
+    mathF3Chapter3Data: mathF3C3InteractiveContent,
     flashcards: mathF3C3FlashcardsDLP,
     quiz: mathF3C3QuizzesDLP,
   },
