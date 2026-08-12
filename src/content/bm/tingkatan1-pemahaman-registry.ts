@@ -2,6 +2,7 @@ import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan1MaksudFrasaUngkapanMindMap } from "@/content/bm/maksud-frasa-ungkapan-form1-mindmap";
 import { bahasaMelayuTingkatan1MenjawabSoalanKbatMindMap } from "@/content/bm/menjawab-soalan-kbat-form1-mindmap";
 import { bahasaMelayuTingkatan1MembuatRumusanRingkasMindMap } from "@/content/bm/membuat-rumusan-ringkas-form1-mindmap";
+import { bahasaMelayuTingkatan1TeknikMenggunakanBuktiPetikanMindMap } from "@/content/bm/teknik-menggunakan-bukti-petikan-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form1-mindmap";
@@ -89,6 +90,20 @@ export const bahasaMelayuTingkatan1PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1MembuatRumusanRingkasMindMap,
       title: "Membuat Rumusan Ringkas",
+    },
+  },
+  {
+    id: "bm-f1-teknik-menggunakan-bukti-petikan-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Teknik Menggunakan Bukti daripada Petikan",
+    title: "Teknik Menggunakan Bukti daripada Petikan",
+    description:
+      "Belajar memilih bukti yang tepat daripada petikan untuk menyokong jawapan secara logik.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan1TeknikMenggunakanBuktiPetikanMindMap,
+      title: "Teknik Menggunakan Bukti daripada Petikan",
     },
   },
 ] as const satisfies readonly ChapterContent[];
