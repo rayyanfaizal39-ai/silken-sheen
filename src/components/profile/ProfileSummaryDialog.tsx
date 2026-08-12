@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { CreditCard, ShieldCheck, X } from "lucide-react";
+import { CreditCard, ShieldCheck, UserRound, X } from "lucide-react";
 import type { AuthUser } from "@/context/auth-context";
 import type { ExplorerProfile } from "@/lib/explorer-profile";
 
@@ -103,13 +103,15 @@ export function ProfileSummaryDialog({ open, user, profile, onClose }: ProfileSu
             <span className="text-[10px] font-bold uppercase tracking-wider text-white/40">
               Level
             </span>
-            <strong className="mt-1 block text-sm">{profile?.formLevel ?? "Not set"}</strong>
+            <strong className="mt-1 block text-sm">
+              {profile?.formLevel ?? "Complete profile"}
+            </strong>
           </div>
           <div className="rounded-2xl border border-white/[0.07] bg-white/[0.035] p-3">
             <span className="text-[10px] font-bold uppercase tracking-wider text-white/40">
               Age
             </span>
-            <strong className="mt-1 block text-sm">{profile?.age ?? "Not set"}</strong>
+            <strong className="mt-1 block text-sm">{profile?.age ?? "Add age"}</strong>
           </div>
         </div>
 
@@ -119,9 +121,18 @@ export function ProfileSummaryDialog({ open, user, profile, onClose }: ProfileSu
         </div>
 
         <Link
+          to="/profile"
+          onClick={onClose}
+          className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-4 text-sm font-bold text-white shadow-[0_12px_30px_rgba(79,70,229,0.28)] transition-colors hover:from-violet-500 hover:to-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
+        >
+          <UserRound className="h-4 w-4" aria-hidden="true" />
+          View Explorer Profile
+        </Link>
+
+        <Link
           to="/account/billing"
           onClick={onClose}
-          className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-violet-300/15 bg-violet-500/10 px-4 text-sm font-bold text-violet-100 transition-colors hover:bg-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
+          className="mt-2.5 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-violet-300/15 bg-violet-500/10 px-4 text-sm font-bold text-violet-100 transition-colors hover:bg-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
         >
           <CreditCard className="h-4 w-4" aria-hidden="true" />
           Account &amp; Billing

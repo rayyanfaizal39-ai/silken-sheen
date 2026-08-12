@@ -14,6 +14,7 @@ import { Route as TrackerRouteImport } from './routes/tracker'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SubjectsRouteImport } from './routes/subjects'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PaymentReturnRouteImport } from './routes/payment-return'
 import { Route as ParentDashboardRouteImport } from './routes/parent-dashboard'
@@ -71,6 +72,11 @@ const SubjectsRoute = SubjectsRouteImport.update({
 const QuizzesRoute = QuizzesRouteImport.update({
   id: '/quizzes',
   path: '/quizzes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -262,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/parent-dashboard': typeof ParentDashboardRoute
   '/payment-return': typeof PaymentReturnRoute
   '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
   '/terms': typeof TermsRoute
@@ -301,6 +308,7 @@ export interface FileRoutesByTo {
   '/parent-dashboard': typeof ParentDashboardRoute
   '/payment-return': typeof PaymentReturnRoute
   '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
   '/terms': typeof TermsRoute
@@ -342,6 +350,7 @@ export interface FileRoutesById {
   '/parent-dashboard': typeof ParentDashboardRoute
   '/payment-return': typeof PaymentReturnRoute
   '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
   '/quizzes': typeof QuizzesRoute
   '/subjects': typeof SubjectsRoute
   '/terms': typeof TermsRoute
@@ -384,6 +393,7 @@ export interface FileRouteTypes {
     | '/parent-dashboard'
     | '/payment-return'
     | '/privacy'
+    | '/profile'
     | '/quizzes'
     | '/subjects'
     | '/terms'
@@ -423,6 +433,7 @@ export interface FileRouteTypes {
     | '/parent-dashboard'
     | '/payment-return'
     | '/privacy'
+    | '/profile'
     | '/quizzes'
     | '/subjects'
     | '/terms'
@@ -463,6 +474,7 @@ export interface FileRouteTypes {
     | '/parent-dashboard'
     | '/payment-return'
     | '/privacy'
+    | '/profile'
     | '/quizzes'
     | '/subjects'
     | '/terms'
@@ -504,6 +516,7 @@ export interface RootRouteChildren {
   ParentDashboardRoute: typeof ParentDashboardRoute
   PaymentReturnRoute: typeof PaymentReturnRoute
   PrivacyRoute: typeof PrivacyRoute
+  ProfileRoute: typeof ProfileRoute
   QuizzesRoute: typeof QuizzesRoute
   SubjectsRoute: typeof SubjectsRoute
   TermsRoute: typeof TermsRoute
@@ -552,6 +565,13 @@ declare module '@tanstack/react-router' {
       path: '/quizzes'
       fullPath: '/quizzes'
       preLoaderRoute: typeof QuizzesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -830,6 +850,7 @@ const rootRouteChildren: RootRouteChildren = {
   ParentDashboardRoute: ParentDashboardRoute,
   PaymentReturnRoute: PaymentReturnRoute,
   PrivacyRoute: PrivacyRoute,
+  ProfileRoute: ProfileRoute,
   QuizzesRoute: QuizzesRoute,
   SubjectsRoute: SubjectsRoute,
   TermsRoute: TermsRoute,

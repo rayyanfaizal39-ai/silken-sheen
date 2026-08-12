@@ -1,0 +1,733 @@
+.explorer-profile-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100%;
+  overflow: hidden;
+  color: #fff;
+  padding: 1rem 1rem calc(var(--mobile-content-bottom) + 1.25rem);
+}
+
+.explorer-profile-wrap {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+.explorer-profile-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(124, 58, 237, 0.2), transparent 32%),
+    radial-gradient(circle at 93% 23%, rgba(34, 211, 238, 0.12), transparent 30%);
+}
+.explorer-profile-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.72) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, #000, transparent 78%);
+}
+.explorer-profile-backdrop span {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(60px);
+  opacity: 0.16;
+}
+.explorer-profile-backdrop span:nth-child(1) {
+  width: 18rem;
+  height: 18rem;
+  background: #7c3aed;
+  right: -8rem;
+  top: 15rem;
+}
+.explorer-profile-backdrop span:nth-child(2) {
+  width: 14rem;
+  height: 14rem;
+  background: #0891b2;
+  left: -7rem;
+  top: 52rem;
+}
+
+.explorer-profile-hero,
+.explorer-profile-panel,
+.explorer-profile-progress {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(9, 13, 32, 0.76);
+  box-shadow: 0 24px 70px rgba(2, 4, 16, 0.34);
+  backdrop-filter: blur(20px);
+}
+.explorer-profile-hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border-radius: 1.75rem;
+}
+.explorer-profile-hero::after {
+  content: "";
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  right: -8rem;
+  top: -10rem;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.36), transparent 68%);
+  pointer-events: none;
+}
+.explorer-profile-hero-copy,
+.explorer-profile-hero-art,
+.explorer-profile-edit-button {
+  position: relative;
+  z-index: 1;
+}
+.explorer-profile-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #c4b5fd;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+.explorer-profile-kicker svg {
+  width: 1rem;
+  height: 1rem;
+}
+.explorer-profile-person {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.1rem;
+  min-width: 0;
+}
+.explorer-profile-avatar {
+  width: 4.25rem;
+  height: 4.25rem;
+  flex: none;
+  border-radius: 1.35rem;
+  object-fit: cover;
+  border: 1px solid rgba(196, 181, 253, 0.28);
+  box-shadow: 0 10px 34px rgba(76, 29, 149, 0.32);
+}
+.explorer-profile-initial {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #7c3aed, #4338ca);
+  font-size: 1.45rem;
+  font-weight: 950;
+}
+.explorer-profile-person h1 {
+  overflow-wrap: anywhere;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.7rem, 7vw, 3.25rem);
+  line-height: 0.98;
+  font-weight: 950;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+.explorer-profile-rank-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+.explorer-profile-identity-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+}
+.explorer-profile-identity-chips span,
+.explorer-profile-identity-chips button {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+.explorer-profile-identity-chips button {
+  cursor: pointer;
+  color: #ddd6fe;
+  border-color: rgba(167, 139, 250, 0.25);
+}
+.explorer-profile-identity-chips svg {
+  width: 1rem;
+  height: 1rem;
+}
+.explorer-profile-hero-art {
+  display: none;
+  place-items: center;
+  min-height: 11rem;
+}
+.explorer-profile-rank-orbit {
+  position: absolute;
+  width: 13rem;
+  height: 6rem;
+  border: 1px solid rgba(196, 181, 253, 0.22);
+  border-radius: 50%;
+  transform: rotate(-15deg);
+  box-shadow: 0 0 50px rgba(124, 58, 237, 0.16);
+}
+.explorer-profile-edit-button {
+  min-height: 3rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(196, 181, 253, 0.24);
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(79, 70, 229, 0.9));
+  color: #fff;
+  font-size: 0.83rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.24);
+}
+.explorer-profile-edit-button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.explorer-profile-alert,
+.explorer-profile-notice {
+  padding: 0.8rem 1rem;
+  border-radius: 0.9rem;
+  font-size: 0.82rem;
+}
+.explorer-profile-alert {
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  background: rgba(248, 113, 113, 0.1);
+  color: #fecaca;
+}
+.explorer-profile-notice {
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  background: rgba(52, 211, 153, 0.1);
+  color: #d1fae5;
+}
+.explorer-profile-panel,
+.explorer-profile-progress {
+  border-radius: 1.5rem;
+  padding: 1rem;
+}
+.explorer-profile-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+.explorer-profile-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  grid-column: 1 / -1;
+}
+.explorer-profile-section-heading > div > p,
+.explorer-profile-dialog-heading p {
+  color: #a78bfa;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.explorer-profile-section-heading h2,
+.explorer-profile-dialog-heading h2 {
+  margin-top: 0.2rem;
+  font-family: var(--font-display, inherit);
+  font-size: 1.3rem;
+  font-weight: 950;
+}
+.explorer-profile-section-heading > svg {
+  width: 1.3rem;
+  color: #a78bfa;
+}
+.explorer-profile-metric {
+  min-width: 0;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 0.8rem;
+}
+.explorer-profile-metric > span {
+  width: 2.65rem;
+  height: 2.65rem;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 0.85rem;
+  color: #c4b5fd;
+  background: rgba(124, 58, 237, 0.13);
+}
+.explorer-profile-metric > span > svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.explorer-profile-metric p {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.62rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.explorer-profile-metric strong {
+  display: block;
+  margin-top: 0.2rem;
+  overflow-wrap: anywhere;
+  font-size: 0.88rem;
+}
+
+.explorer-profile-school-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  border-radius: 1rem;
+  background: rgba(52, 211, 153, 0.055);
+}
+.explorer-profile-school-card > svg {
+  width: 1.35rem;
+  flex: none;
+  color: #6ee7b7;
+}
+.explorer-profile-school-card strong {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.explorer-profile-school-card span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+}
+.explorer-profile-school-card span svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+.explorer-profile-inline-loading {
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+}
+.explorer-profile-inline-loading svg {
+  width: 1rem;
+  height: 1rem;
+}
+.explorer-profile-empty-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px dashed rgba(196, 181, 253, 0.22);
+  border-radius: 1rem;
+  background: rgba(124, 58, 237, 0.055);
+}
+.explorer-profile-empty-row strong {
+  font-size: 0.88rem;
+}
+.explorer-profile-empty-row p {
+  margin-top: 0.3rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+.explorer-profile-empty-row button,
+.explorer-profile-text-link {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: #ddd6fe;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+.explorer-profile-empty-row button {
+  padding: 0 0.85rem;
+  cursor: pointer;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 0.8rem;
+  background: rgba(124, 58, 237, 0.13);
+}
+
+.explorer-profile-columns {
+  display: grid;
+  gap: 1rem;
+}
+.explorer-profile-subjects,
+.explorer-profile-badges {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+.explorer-profile-subject {
+  min-height: 4.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.065);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.028);
+}
+.explorer-profile-subject-icon {
+  width: 2.45rem;
+  height: 2.45rem;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.055);
+  font-size: 1.2rem;
+}
+.explorer-profile-subject strong {
+  display: block;
+  font-size: 0.8rem;
+}
+.explorer-profile-subject div span {
+  display: block;
+  margin-top: 0.2rem;
+  color: rgba(255, 255, 255, 0.43);
+  font-size: 0.7rem;
+}
+.explorer-profile-text-link {
+  width: fit-content;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  text-decoration: none;
+}
+.explorer-profile-badges article {
+  min-height: 4.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--badge-color) 28%, transparent);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--badge-color) 7%, transparent);
+}
+.explorer-profile-badges article > span {
+  font-size: 1.45rem;
+}
+.explorer-profile-badges strong {
+  font-size: 0.8rem;
+}
+.explorer-profile-badges p {
+  margin-top: 0.15rem;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.7rem;
+}
+.explorer-profile-empty-achievements {
+  min-height: 12rem;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.8rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.48);
+}
+.explorer-profile-empty-achievements svg {
+  width: 2rem;
+  height: 2rem;
+  color: #8b5cf6;
+}
+.explorer-profile-empty-achievements p {
+  max-width: 18rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.explorer-profile-account-actions {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.explorer-profile-account-actions a,
+.explorer-profile-account-actions button {
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-radius: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+}
+.explorer-profile-account-actions a {
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  background: rgba(124, 58, 237, 0.1);
+  color: #ddd6fe;
+}
+.explorer-profile-account-actions button {
+  border: 1px solid rgba(248, 113, 113, 0.17);
+  background: rgba(248, 113, 113, 0.065);
+  color: #fecaca;
+}
+.explorer-profile-account-actions svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.explorer-profile-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: grid;
+  align-items: end;
+  padding: 0;
+  background: rgba(2, 4, 13, 0.8);
+  backdrop-filter: blur(8px);
+}
+.explorer-profile-dialog {
+  width: 100%;
+  max-height: 92dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid rgba(196, 181, 253, 0.18);
+  border-radius: 1.5rem 1.5rem 0 0;
+  background: #0b1025;
+  padding: 1rem;
+  box-shadow: 0 -24px 80px rgba(0, 0, 0, 0.55);
+}
+.explorer-profile-dialog-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.explorer-profile-dialog-heading button {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+.explorer-profile-dialog-heading button svg {
+  width: 1rem;
+  height: 1rem;
+}
+.explorer-profile-dialog form {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+.explorer-profile-dialog label {
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  font-weight: 850;
+}
+.explorer-profile-dialog input,
+.explorer-profile-dialog select {
+  width: 100%;
+  min-height: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 0 0.8rem;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+.explorer-profile-dialog select option {
+  color: #111827;
+}
+.explorer-profile-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.explorer-profile-form-row > div {
+  display: grid;
+  gap: 0.5rem;
+}
+.explorer-profile-field-help {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+.explorer-profile-form-error {
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(248, 113, 113, 0.24);
+  border-radius: 0.75rem;
+  background: rgba(248, 113, 113, 0.08);
+  color: #fecaca;
+  font-size: 0.75rem;
+}
+.explorer-profile-dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+}
+.explorer-profile-dialog-actions button {
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 0.85rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+.explorer-profile-dialog-actions button:first-child {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+}
+.explorer-profile-dialog-actions button:last-child {
+  border: 1px solid rgba(196, 181, 253, 0.25);
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: #fff;
+}
+.explorer-profile-dialog-actions svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.explorer-profile-page button:focus-visible,
+.explorer-profile-page a:focus-visible,
+.explorer-profile-page input:focus-visible,
+.explorer-profile-page select:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 3px;
+}
+.explorer-profile-page button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+.explorer-profile-loading {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .explorer-profile-page {
+    padding: 1.5rem 1.5rem 2.5rem;
+  }
+  .explorer-profile-wrap {
+    gap: 1.25rem;
+  }
+  .explorer-profile-hero,
+  .explorer-profile-panel,
+  .explorer-profile-progress {
+    padding: 1.35rem;
+  }
+  .explorer-profile-hero {
+    grid-template-columns: minmax(0, 1fr) 12rem;
+    align-items: center;
+  }
+  .explorer-profile-hero-art {
+    display: grid;
+  }
+  .explorer-profile-edit-button {
+    position: absolute;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0 1rem;
+  }
+  .explorer-profile-progress {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .explorer-profile-empty-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .explorer-profile-subjects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .explorer-profile-account-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .explorer-profile-dialog-backdrop {
+    place-items: center;
+    padding: 1rem;
+  }
+  .explorer-profile-dialog {
+    max-width: 38rem;
+    border-radius: 1.5rem;
+    padding: 1.35rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .explorer-profile-page {
+    padding: 2rem 2rem 3rem;
+  }
+  .explorer-profile-hero {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    padding: 2rem;
+  }
+  .explorer-profile-hero-art {
+    min-height: 15rem;
+  }
+  .explorer-profile-edit-button {
+    right: 2rem;
+    bottom: 2rem;
+  }
+  .explorer-profile-progress {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .explorer-profile-columns {
+    grid-template-columns: minmax(0, 1.18fr) minmax(20rem, 0.82fr);
+    align-items: stretch;
+  }
+  .explorer-profile-panel,
+  .explorer-profile-progress {
+    padding: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explorer-profile-page *,
+  .explorer-profile-page *::before,
+  .explorer-profile-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
