@@ -20,6 +20,10 @@ import {
   getRankProgress,
   type SpaceRank,
 } from "@/data/rankAssets";
+import {
+  DEFAULT_PROFILE_AVATAR_ID,
+  type ProfileAvatarId,
+} from "@/data/profile-avatars";
 
 export {
   RANKS,
@@ -64,6 +68,8 @@ export interface AvatarConfig {
   pet: string;
   owned: string[]; // item ids the student has unlocked
 }
+
+export type ProfileAvatarSource = "google" | "academy";
 
 export const DEFAULT_AVATAR: AvatarConfig = {
   helmet: "helmet-classic",
@@ -203,6 +209,9 @@ export interface Progress {
   // Local-first profile and analytics data.
   tokens: number;
   avatar: AvatarConfig; // equipped + owned cosmetics
+  profileAvatarSource?: ProfileAvatarSource;
+  profileAvatarId?: ProfileAvatarId;
+  profileAvatarUpdatedAt?: string;
   quizHistory: QuizResult[]; // recent completed quizzes
   parentEmail?: string; // where Mission Reports are sent
   reportCadence?: ReportCadence;
@@ -447,6 +456,8 @@ const initial: Progress = {
   chapterActivity: {},
   tokens: 0,
   avatar: DEFAULT_AVATAR,
+  profileAvatarSource: "google",
+  profileAvatarId: DEFAULT_PROFILE_AVATAR_ID,
   quizHistory: [],
   // Nova is the only companion in V1 — active by default, no selection step.
   // selectedAt is a sentinel here; load() stamps the real "today" on first read
@@ -549,11 +560,20 @@ function progressToRow(p: Progress) {
     missions: p.missions ?? null,
     card_mastery: p.cardMastery ?? {},
     last_visited: p.lastVisited ?? null,
+    avatar_preferences: {
+      source: p.profileAvatarSource ?? "google",
+      presetId: p.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID,
+      updatedAt: p.profileAvatarUpdatedAt ?? null,
+    },
     updated_at: new Date().toISOString(),
   };
 }
 
 function rowToProgress(row: Record<string, unknown>): Progress {
+  const avatarPreferences =
+    row.avatar_preferences && typeof row.avatar_preferences === "object"
+      ? (row.avatar_preferences as Record<string, unknown>)
+      : null;
   return sanitizeRemovedGeographyF3Progress<Progress>({
     ...initial,
     xp: typeof row.xp === "number" ? row.xp : 0,
@@ -567,6 +587,13 @@ function rowToProgress(row: Record<string, unknown>): Progress {
     missions: (row.missions as MissionProgress | undefined) ?? undefined,
     cardMastery: (row.card_mastery as Record<string, CardMasteryRecord>) ?? {},
     lastVisited: (row.last_visited as LastVisited | undefined) ?? undefined,
+    profileAvatarSource: avatarPreferences?.source === "academy" ? "academy" : "google",
+    profileAvatarId:
+      typeof avatarPreferences?.presetId === "string"
+        ? (avatarPreferences.presetId as ProfileAvatarId)
+        : DEFAULT_PROFILE_AVATAR_ID,
+    profileAvatarUpdatedAt:
+      typeof avatarPreferences?.updatedAt === "string" ? avatarPreferences.updatedAt : undefined,
   });
 }
 
@@ -604,6 +631,9 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
   const mergedRecentActivity = Array.from(recentByKey.values())
     .sort((a, b) => b.timestamp - a.timestamp)
     .slice(0, RECENT_ACTIVITY_CAP);
+  const localAvatarTime = Date.parse(local.profileAvatarUpdatedAt ?? "") || 0;
+  const remoteAvatarTime = Date.parse(remote.profileAvatarUpdatedAt ?? "") || 0;
+  const preferredProfileAvatar = remoteAvatarTime > localAvatarTime ? remote : local;
 
   return {
     ...base,
@@ -624,6 +654,9 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
       (local.avatar?.owned?.length ?? 0) >= (remote.avatar?.owned?.length ?? 0)
         ? (local.avatar ?? DEFAULT_AVATAR)
         : remote.avatar,
+    profileAvatarSource: preferredProfileAvatar.profileAvatarSource ?? "google",
+    profileAvatarId: preferredProfileAvatar.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID,
+    profileAvatarUpdatedAt: preferredProfileAvatar.profileAvatarUpdatedAt,
     quizHistory: mergedHistory,
     recentActivity: mergedRecentActivity,
     parentEmail: local.parentEmail ?? remote.parentEmail,
@@ -1350,6 +1383,25 @@ export function useProgress() {
     [scheduleSync],
   );
 
+  const setProfileAvatar = useCallback(
+    (source: ProfileAvatarSource, profileAvatarId?: ProfileAvatarId) => {
+      setProgress((prev) => {
+        const next: Progress = {
+          ...prev,
+          profileAvatarSource: source,
+          profileAvatarId: profileAvatarId ?? prev.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID,
+          profileAvatarUpdatedAt: new Date().toISOString(),
+        };
+        try {
+          localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
+        } catch {}
+        scheduleSync(next);
+        return next;
+      });
+    },
+    [scheduleSync],
+  );
+
   return {
     progress,
     cloudSynced,
@@ -1367,6 +1419,7 @@ export function useProgress() {
     recordQuizResult,
     setParentReport,
     setStudentProfile,
+    setProfileAvatar,
     lastRankUp,
     lastCompanionEvolution,
     clearRankUpEvent,

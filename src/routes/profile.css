@@ -546,6 +546,72 @@
   gap: 0.5rem;
   margin-top: 1.2rem;
 }
+.explorer-profile-avatar-fieldset {
+  min-width: 0;
+  margin: 0 0 0.55rem;
+  padding: 0;
+  border: 0;
+}
+.explorer-profile-avatar-fieldset legend {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+.explorer-profile-avatar-fieldset legend svg {
+  width: 1rem;
+  height: 1rem;
+  color: #c4b5fd;
+}
+.explorer-profile-avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5.25rem, 1fr));
+  gap: 0.65rem;
+}
+.explorer-profile-avatar-grid button {
+  min-width: 0;
+  min-height: 6.8rem;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.68);
+  cursor: pointer;
+  font-size: 0.68rem;
+  font-weight: 850;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+.explorer-profile-avatar-grid button:hover {
+  border-color: rgba(196, 181, 253, 0.32);
+  background: rgba(139, 92, 246, 0.1);
+  color: #fff;
+}
+.explorer-profile-avatar-grid button.is-selected {
+  border-color: #a78bfa;
+  background: rgba(139, 92, 246, 0.2);
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.18);
+}
+.explorer-profile-avatar-grid img {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #090d1c;
+}
+.explorer-profile-avatar-grid span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .explorer-profile-dialog label {
   margin-top: 0.45rem;
   color: rgba(255, 255, 255, 0.7);

@@ -10,6 +10,7 @@ import {
   LogOut,
   MapPin,
   Orbit,
+  Palette,
   School,
   ShieldCheck,
   Sparkles,
@@ -22,13 +23,24 @@ import { CompanionImage, getCompanionDisplayName } from "@/companion";
 import { RankBadge } from "@/components/RankBadge";
 import { useAuth } from "@/context/auth-context";
 import { subjects } from "@/data/subjects-meta";
+import {
+  DEFAULT_PROFILE_AVATAR_ID,
+  PROFILE_AVATARS,
+  getProfileAvatar,
+  type ProfileAvatarId,
+} from "@/data/profile-avatars";
 import { getRank } from "@/data/rankAssets";
 import {
   EXPLORER_FORM_LEVELS,
   saveExplorerProfileEdits,
   type ExplorerFormLevel,
 } from "@/lib/explorer-profile";
-import { getCompanionLevelProgress, ALL_BADGES, useProgress } from "@/hooks/use-progress";
+import {
+  getCompanionLevelProgress,
+  ALL_BADGES,
+  useProgress,
+  type ProfileAvatarSource,
+} from "@/hooks/use-progress";
 import { seoMeta } from "@/lib/seo";
 import { formatSchoolLocation, getSchoolById, type SchoolSearchResult } from "@/lib/schools";
 import "./profile.css";
@@ -59,7 +71,7 @@ function ExplorerProfilePage() {
     refreshExplorerProfile,
     signOut,
   } = useAuth();
-  const { progress } = useProgress();
+  const { progress, setProfileAvatar } = useProgress();
   const [school, setSchool] = useState<SchoolSearchResult | null>(null);
   const [schoolLoading, setSchoolLoading] = useState(false);
   const [schoolError, setSchoolError] = useState(false);
@@ -108,6 +120,11 @@ function ExplorerProfilePage() {
     [progress.badges],
   );
   const displayName = explorerProfile?.displayName || user?.name || "Student Explorer";
+  const selectedAvatarSource =
+    progress.profileAvatarSource === "academy" || user?.avatarUrl
+      ? (progress.profileAvatarSource ?? "google")
+      : "academy";
+  const selectedAvatar = getProfileAvatar(progress.profileAvatarId);
   const companion = progress.companion;
 
   if (explorerProfileLoading) {
@@ -129,8 +146,19 @@ function ExplorerProfilePage() {
               <Orbit aria-hidden="true" /> Explorer identity
             </span>
             <div className="explorer-profile-person">
-              {user?.avatarUrl ? (
-                <img className="explorer-profile-avatar" src={user.avatarUrl} alt="" />
+              {selectedAvatarSource === "google" && user?.avatarUrl ? (
+                <img
+                  className="explorer-profile-avatar"
+                  src={user.avatarUrl}
+                  alt={`${displayName}'s Google profile photo`}
+                  referrerPolicy="no-referrer"
+                />
+              ) : selectedAvatar ? (
+                <img
+                  className="explorer-profile-avatar"
+                  src={selectedAvatar.src}
+                  alt={`${selectedAvatar.name} avatar selected by ${displayName}`}
+                />
               ) : (
                 <span
                   className="explorer-profile-avatar explorer-profile-initial"
@@ -396,8 +424,12 @@ function ExplorerProfilePage() {
           schoolId={explorerProfile.schoolId}
           school={school}
           schoolLoading={schoolLoading}
+          googleAvatarUrl={user.avatarUrl}
+          avatarSource={selectedAvatarSource}
+          avatarId={progress.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID}
           onClose={() => setEditing(false)}
-          onSaved={async (savedSchool) => {
+          onSaved={async (savedSchool, avatarSource, avatarId) => {
+            setProfileAvatar(avatarSource, avatarId);
             setSchool(savedSchool);
             await refreshExplorerProfile();
             setNotice("Explorer Profile updated.");
@@ -429,6 +461,9 @@ function EditProfileDialog({
   schoolId,
   school,
   schoolLoading,
+  googleAvatarUrl,
+  avatarSource,
+  avatarId,
   onClose,
   onSaved,
 }: {
@@ -439,8 +474,15 @@ function EditProfileDialog({
   schoolId: string | null;
   school: SchoolSearchResult | null;
   schoolLoading: boolean;
+  googleAvatarUrl?: string;
+  avatarSource: ProfileAvatarSource;
+  avatarId: ProfileAvatarId;
   onClose: () => void;
-  onSaved: (school: SchoolSearchResult | null) => Promise<void>;
+  onSaved: (
+    school: SchoolSearchResult | null,
+    avatarSource: ProfileAvatarSource,
+    avatarId: ProfileAvatarId,
+  ) => Promise<void>;
 }) {
   const dialogRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -451,6 +493,8 @@ function EditProfileDialog({
   const [schoolChanged, setSchoolChanged] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [avatarSourceDraft, setAvatarSourceDraft] = useState(avatarSource);
+  const [avatarIdDraft, setAvatarIdDraft] = useState(avatarId);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -496,7 +540,11 @@ function EditProfileDialog({
         formLevel: formDraft || null,
         schoolId: schoolDraft?.id ?? (schoolChanged ? null : schoolId),
       });
-      await onSaved(schoolDraft ?? (schoolChanged ? null : school));
+      await onSaved(
+        schoolDraft ?? (schoolChanged ? null : school),
+        avatarSourceDraft,
+        avatarIdDraft,
+      );
     } catch (cause: unknown) {
       setError(cause instanceof Error ? cause.message : "Profile update failed. Please try again.");
       setSaving(false);
@@ -533,6 +581,43 @@ function EditProfileDialog({
           </button>
         </div>
         <form onSubmit={handleSubmit} noValidate>
+          <fieldset className="explorer-profile-avatar-fieldset">
+            <legend>
+              <Palette aria-hidden="true" /> Choose Avatar
+            </legend>
+            <div className="explorer-profile-avatar-grid">
+              {googleAvatarUrl && (
+                <button
+                  type="button"
+                  className={avatarSourceDraft === "google" ? "is-selected" : ""}
+                  aria-pressed={avatarSourceDraft === "google"}
+                  onClick={() => setAvatarSourceDraft("google")}
+                >
+                  <img src={googleAvatarUrl} alt="" referrerPolicy="no-referrer" />
+                  <span>Google photo</span>
+                </button>
+              )}
+              {PROFILE_AVATARS.map((avatar) => {
+                const selected = avatarSourceDraft === "academy" && avatarIdDraft === avatar.id;
+                return (
+                  <button
+                    type="button"
+                    key={avatar.id}
+                    className={selected ? "is-selected" : ""}
+                    aria-pressed={selected}
+                    onClick={() => {
+                      setAvatarSourceDraft("academy");
+                      setAvatarIdDraft(avatar.id);
+                    }}
+                  >
+                    <img src={avatar.src} alt="" />
+                    <span>{avatar.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
+
           <label htmlFor="profile-display-name">Display Name</label>
           <input
             id="profile-display-name"

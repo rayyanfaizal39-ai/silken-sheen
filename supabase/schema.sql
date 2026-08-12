@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS public.user_progress (
   missions      JSONB,
   card_mastery  JSONB        NOT NULL DEFAULT '{}',
   last_visited  JSONB,
+  avatar_preferences JSONB,
   language_preference TEXT   DEFAULT 'bm',
   created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW()
