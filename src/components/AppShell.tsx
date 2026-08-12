@@ -33,7 +33,6 @@ import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
-import { OnboardingWizard } from "@/components/onboarding/OnboardingWizard";
 import { CompanionTip } from "@/components/CompanionTip";
 import { NextMissionCard } from "@/components/NextMissionCard";
 import { RankUpModal } from "@/components/progression/RankUpModal";
@@ -548,7 +547,6 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
       <SiteFooter />
 
       <AICompanionButton />
-      <OnboardingWizard />
       <CompanionTip />
       {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
 
