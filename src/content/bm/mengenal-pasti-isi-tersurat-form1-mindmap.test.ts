@@ -49,11 +49,15 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 1 Mengenal Pasti Isi Tersurat mind map", () => {
-  it("is the second and final registered Form 1 Pemahaman topic", () => {
-    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(2);
+  it("remains the second of exactly six registered Form 1 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(6);
     expect(bahasaMelayuTingkatan1PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman",
       "Mengenal Pasti Isi Tersurat",
+      "Mengenal Pasti Isi Tersirat",
+      "Maksud Frasa dan Ungkapan",
+      "Menjawab Soalan KBAT",
+      "Membuat Rumusan Ringkas",
     ]);
 
     const chapter = getChapter("bm", "Mengenal Pasti Isi Tersurat", undefined, "Form 1");
@@ -82,13 +86,13 @@ describe("Bahasa Melayu Form 1 Mengenal Pasti Isi Tersurat mind map", () => {
       (topic) => topic.key === "Mengenal Pasti Isi Tersurat",
     );
     expect(pemahamanTopics[activeIndex - 1]?.key).toBe("Strategi Menjawab Soalan Pemahaman");
-    expect(pemahamanTopics[activeIndex + 1]).toBeUndefined();
+    expect(pemahamanTopics[activeIndex + 1]?.key).toBe("Mengenal Pasti Isi Tersirat");
 
     const formActiveIndex = formTopics.findIndex(
       (topic) => topic.key === "Mengenal Pasti Isi Tersurat",
     );
     expect(formTopics[formActiveIndex - 1]?.key).toBe("Strategi Menjawab Soalan Pemahaman");
-    expect(formTopics[formActiveIndex + 1]?.categoryLabel).not.toBe("Pemahaman");
+    expect(formTopics[formActiveIndex + 1]?.key).toBe("Mengenal Pasti Isi Tersirat");
   });
 
   it("uses the exact identity and title-only first-level hierarchy", () => {
