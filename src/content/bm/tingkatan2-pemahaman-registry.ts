@@ -1,4 +1,5 @@
 import type { ChapterContent } from "@/content/types";
+import { bahasaMelayuTingkatan2RumusanMindMap } from "@/content/bm/membuat-rumusan-ringkas-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2MaksudFrasaUngkapanMindMap } from "@/content/bm/maksud-frasa-ungkapan-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-lanjutan-form2-mindmap";
@@ -74,6 +75,20 @@ export const bahasaMelayuTingkatan2PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2KbatMindMap,
       title: "Menjawab Soalan KBAT (Lanjutan)",
+    },
+  },
+  {
+    id: "bm-f2-membuat-rumusan-ringkas-lanjutan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Membuat Rumusan Ringkas (Lanjutan)",
+    title: "Membuat Rumusan Ringkas (Lanjutan)",
+    description:
+      "Mengenal pasti isi utama daripada petikan yang lebih panjang, menggabungkan maklumat berkaitan dan menghasilkan rumusan yang padat, tepat serta koheren.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan2RumusanMindMap,
+      title: "Membuat Rumusan Ringkas (Lanjutan)",
     },
   },
 ] as const satisfies readonly ChapterContent[];
