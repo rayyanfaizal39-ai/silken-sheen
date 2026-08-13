@@ -27,6 +27,7 @@ const STUDENT_PROTECTED_ROUTES = new Set([
   "/leaderboard",
   "/mindmaps",
   "/notes",
+  "/profile",
   "/quizzes",
   "/subjects",
   "/tracker",

@@ -39,6 +39,36 @@ describe("ProfileSummaryDialog", () => {
     expect(markup).toContain("Form 2");
     expect(markup).toContain("Verified school connected");
     expect(markup).toContain("Close profile summary");
+    expect(markup).toContain("View Explorer Profile");
+    expect(markup).toContain('href="/profile"');
     expect(markup).toContain("Account &amp; Billing");
+  });
+
+  it("uses friendly completion actions for a legacy profile", () => {
+    const markup = renderToStaticMarkup(
+      <ProfileSummaryDialog
+        open
+        user={{
+          id: "student-2",
+          email: "legacy@example.com",
+          name: "Legacy Explorer",
+          avatarUrl: undefined,
+          createdAt: undefined,
+        }}
+        profile={{
+          displayName: "Legacy Explorer",
+          age: null,
+          formLevel: null,
+          schoolId: null,
+          onboardingCompleted: true,
+          role: "student",
+        }}
+        onClose={vi.fn()}
+      />,
+    );
+
+    expect(markup).toContain("Complete profile");
+    expect(markup).toContain("Add age");
+    expect(markup).not.toContain("Not set");
   });
 });

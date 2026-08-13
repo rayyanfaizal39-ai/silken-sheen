@@ -24,6 +24,18 @@ interface SchoolSearchRow {
   postcode: string | null;
 }
 
+function mapSchool(row: SchoolSearchRow): SchoolSearchResult {
+  return {
+    id: row.id,
+    schoolCode: row.school_code,
+    schoolName: row.school_name,
+    schoolType: row.school_type,
+    state: row.state,
+    district: row.district,
+    postcode: row.postcode,
+  };
+}
+
 export function normalizeSchoolSearchQuery(query: string): string | null {
   const normalized = query.trim().replace(/\s+/g, " ");
   return normalized.length >= SCHOOL_SEARCH_MIN_CHARACTERS ? normalized : null;
@@ -49,13 +61,17 @@ export async function searchSchools(
   const { data, error } = await request;
   if (error) throw error;
 
-  return ((data ?? []) as SchoolSearchRow[]).map((row) => ({
-    id: row.id,
-    schoolCode: row.school_code,
-    schoolName: row.school_name,
-    schoolType: row.school_type,
-    state: row.state,
-    district: row.district,
-    postcode: row.postcode,
-  }));
+  return ((data ?? []) as SchoolSearchRow[]).map(mapSchool);
+}
+
+export async function getSchoolById(schoolId: string): Promise<SchoolSearchResult | null> {
+  const { data, error } = await supabase
+    .from("schools")
+    .select("id, school_code, school_name, school_type, state, district, postcode")
+    .eq("id", schoolId)
+    .eq("active", true)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data ? mapSchool(data as SchoolSearchRow) : null;
 }

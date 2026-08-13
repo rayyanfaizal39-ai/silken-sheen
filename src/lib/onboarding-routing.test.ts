@@ -8,7 +8,7 @@ import {
 } from "./onboarding-routing";
 
 describe("onboarding routing", () => {
-  it.each(["/home", "/dashboard", "/notes", "/quizzes", "/companion", "/leaderboard"])(
+  it.each(["/home", "/profile", "/dashboard", "/notes", "/quizzes", "/companion", "/leaderboard"])(
     "requires incomplete students to onboard before %s",
     (pathname) => expect(shouldRedirectToOnboarding(pathname, true)).toBe(true),
   );
@@ -31,10 +31,13 @@ describe("onboarding routing", () => {
 
   it("never redirects a completed student", () => {
     expect(shouldRedirectToOnboarding("/home", false)).toBe(false);
+    expect(shouldRedirectToOnboarding("/profile", false)).toBe(false);
+    expect(shouldRedirectToLogin("/profile", false, true)).toBe(false);
   });
 
   it("protects the student experience from signed-out visitors", () => {
     expect(shouldRedirectToLogin("/home", false, false)).toBe(true);
+    expect(shouldRedirectToLogin("/profile", false, false)).toBe(true);
     expect(shouldRedirectToLogin("/home", true, false)).toBe(false);
     expect(shouldRedirectToLogin("/home", false, true)).toBe(false);
     expect(shouldRedirectToLogin("/payment-return", false, false)).toBe(false);
@@ -48,7 +51,7 @@ describe("onboarding routing", () => {
     },
   );
 
-  it.each(["/home", "/onboarding"])("loads Explorer Profile data on %s", (pathname) => {
+  it.each(["/home", "/profile", "/onboarding"])("loads Explorer Profile data on %s", (pathname) => {
     expect(shouldLoadExplorerProfile(pathname)).toBe(true);
   });
 });

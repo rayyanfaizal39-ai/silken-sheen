@@ -33,6 +33,13 @@ import type { MathF2C6Content } from "@/content/form2/math/chapter-6/interactive
 import type { MathF2C7Content } from "@/content/form2/math/chapter-7/interactive-content";
 import type { MathF2C8Content } from "@/content/form2/math/chapter-8/interactive-content";
 import type { MathF2C9Content } from "@/content/form2/math/chapter-9/interactive-content";
+import type { MathF2C10Content } from "@/content/form2/math/chapter-10/interactive-content";
+import type { MathF2C11Content } from "@/content/form2/math/chapter-11/interactive-content";
+import type { MathF2C12Content } from "@/content/form2/math/chapter-12/interactive-content";
+import type { MathF2C13Content } from "@/content/form2/math/chapter-13/interactive-content";
+import type { MathF3C1Content } from "@/content/form3/math/chapter-1/interactive-content";
+import type { MathF3C2Content } from "@/content/form3/math/chapter-2/interactive-content";
+import type { MathF3C3Content } from "@/content/form3/math/chapter-3/interactive-content";
 import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
@@ -179,6 +186,20 @@ export type ChapterContent = {
   mathF2Chapter8Data?: { en: MathF2C8Content; bm: MathF2C8Content };
   /** Math Form 2 Chapter 9 (Speed and Acceleration/Laju dan Pecutan) interactive, bilingual learning experience. */
   mathF2Chapter9Data?: { en: MathF2C9Content; bm: MathF2C9Content };
+  /** Math Form 2 Chapter 10 (Gradient of a Straight Line/Kecerunan Garis Lurus) interactive, bilingual learning experience. */
+  mathF2Chapter10Data?: { en: MathF2C10Content; bm: MathF2C10Content };
+  /** Math Form 2 Chapter 11 (Isometric Transformations/Transformasi Isometri) interactive, bilingual learning experience. */
+  mathF2Chapter11Data?: { en: MathF2C11Content; bm: MathF2C11Content };
+  /** Math Form 2 Chapter 12 (Measures of Central Tendencies/Sukatan Kecenderungan Memusat) interactive, bilingual learning experience. */
+  mathF2Chapter12Data?: { en: MathF2C12Content; bm: MathF2C12Content };
+  /** Math Form 2 Chapter 13 (Simple Probability/Kebarangkalian Mudah) interactive, bilingual learning experience. */
+  mathF2Chapter13Data?: { en: MathF2C13Content; bm: MathF2C13Content };
+  /** Math Form 3 Chapter 1 (Indices/Indeks) interactive, bilingual learning experience. */
+  mathF3Chapter1Data?: { en: MathF3C1Content; bm: MathF3C1Content };
+  /** Math Form 3 Chapter 2 (Standard Form/Bentuk Piawai) interactive, bilingual learning experience. */
+  mathF3Chapter2Data?: { en: MathF3C2Content; bm: MathF3C2Content };
+  /** Math Form 3 Chapter 3 (Consumer Mathematics/Matematik Pengguna) interactive, bilingual learning experience. */
+  mathF3Chapter3Data?: { en: MathF3C3Content; bm: MathF3C3Content };
   /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
   geoChapter1Data?: Geo1Content;
   /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
@@ -312,6 +333,13 @@ export function getChapterFeatures(
       !!c?.mathF2Chapter7Data ||
       !!c?.mathF2Chapter8Data ||
       !!c?.mathF2Chapter9Data ||
+      !!c?.mathF2Chapter10Data ||
+      !!c?.mathF2Chapter11Data ||
+      !!c?.mathF2Chapter12Data ||
+      !!c?.mathF2Chapter13Data ||
+      !!c?.mathF3Chapter1Data ||
+      !!c?.mathF3Chapter2Data ||
+      !!c?.mathF3Chapter3Data ||
       !!c?.geoChapter1Data ||
       !!c?.geoChapter2Data ||
       !!c?.geoChapter3Data ||
