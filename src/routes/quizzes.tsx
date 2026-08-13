@@ -17431,7 +17431,7 @@ function QuizzesPage() {
                 <Shuffle className="w-3.5 h-3.5" /> Shuffle
               </button>
               {/* Music toggle removed — background music is adaptive and global. */}
-              <span className="text-muted-foreground">XP</span>
+              <span className="text-muted-foreground">Lifetime XP</span>
               <span data-quiz-xp-target className="font-bold text-nova-yellow">
                 {progress.xp}
               </span>
@@ -17516,8 +17516,8 @@ function QuizzesPage() {
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
                       <Zap className="h-4 w-4 text-[#FBBF24]" />
-                      <span className="text-sm font-bold text-[#FBBF24]">+{score * 10}</span>
-                      <span className="text-xs text-white/40">XP Earned</span>
+                      <span className="text-sm font-bold text-[#FBBF24]">+{xpEarned}</span>
+                      <span className="text-xs text-white/40">Activity XP earned</span>
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-2">
                       <Flame className="h-4 w-4 text-orange-400" />

@@ -11,21 +11,27 @@ import {
   Sparkles,
   Star,
   Trophy,
+  Zap,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import { useProgress } from "@/hooks/use-progress";
 import { getLocalDateKey } from "@/lib/local-date";
 import {
+  DAILY_COMPLETION_REWARD_XP,
   DAILY_MISSION_POOL,
-  DAILY_MISSION_REWARD_XP,
+  DAILY_OBJECTIVE_REWARD_XP,
+  WEEKLY_COMPLETION_REWARD_XP,
   WEEKLY_MISSION_POOL,
-  WEEKLY_MISSION_REWARD_XP,
+  WEEKLY_OBJECTIVE_REWARD_XP,
   createLocalMissionState,
   fetchMissionState,
   flushPendingMissionActivities,
-  type DailyMissionDefinition,
+  getMissionProgress,
+  isMissionComplete,
   type MissionActivityType,
+  type MissionDefinition,
+  type MissionReadyEvent,
   type MissionSystemState,
 } from "@/lib/mission-system";
 
@@ -42,6 +48,12 @@ const ACTIVITY_META: Record<
 
 function clampProgress(current: number, target: number) {
   return Math.min(100, Math.round((Math.min(current, target) / target) * 100));
+}
+
+function requestClaim(event: MissionReadyEvent) {
+  window.dispatchEvent(
+    new CustomEvent<MissionReadyEvent>("academy:mission-ready", { detail: event }),
+  );
 }
 
 export function TodaysMission() {
@@ -84,11 +96,8 @@ export function TodaysMission() {
   useEffect(() => {
     if (!hydrated || authLoading || !user?.id) return;
     void refreshMissionState();
-
     const onFocus = () => void refreshMissionState();
-    const onVisibility = () => {
-      if (document.visibilityState === "visible") void refreshMissionState();
-    };
+    const onVisibility = () => document.visibilityState === "visible" && void refreshMissionState();
     const onMissionUpdate = (event: Event) => {
       const next = (event as CustomEvent<MissionSystemState>).detail;
       if (!next) return;
@@ -122,33 +131,43 @@ export function TodaysMission() {
   }
 
   const state = remoteState?.dateKey === localState.dateKey ? remoteState : localState;
-  const dailyMissions = state.dailyMissionIds
-    .map((id) => DAILY_MISSION_POOL[id])
-    .filter((mission): mission is DailyMissionDefinition => Boolean(mission));
-  const completedDaily = dailyMissions.filter(
-    (mission) => state.counters.daily[mission.activity] >= mission.target,
+  const dailyMissions = state.dailyMissionIds.map((id) => DAILY_MISSION_POOL[id]).filter(Boolean);
+  const weeklyMissions = state.weeklyMissionIds
+    .map((id) => WEEKLY_MISSION_POOL[id])
+    .filter(Boolean);
+  const completedDaily = dailyMissions.filter((mission) =>
+    isMissionComplete(mission, state.counters.daily),
+  ).length;
+  const claimedDaily = dailyMissions.filter((mission) =>
+    state.claimedDailyMissionIds.includes(mission.id),
+  ).length;
+  const completedWeekly = weeklyMissions.filter((mission) =>
+    isMissionComplete(mission, state.counters.weekly),
+  ).length;
+  const claimedWeekly = weeklyMissions.filter((mission) =>
+    state.claimedWeeklyMissionIds.includes(mission.id),
   ).length;
   const dailyPercent = Math.round((completedDaily / Math.max(1, dailyMissions.length)) * 100);
-  const firstDailyIncomplete = dailyMissions.find(
-    (mission) => state.counters.daily[mission.activity] < mission.target,
-  );
-
-  const weekly = WEEKLY_MISSION_POOL[state.weeklyMissionId] ?? WEEKLY_MISSION_POOL.weekly_balanced;
-  const weeklyActivities = (Object.keys(ACTIVITY_META) as MissionActivityType[]).map(
-    (activity) => ({
-      activity,
-      current: state.counters.weekly[activity],
-      target: weekly.targets[activity],
-    }),
-  );
-  const weeklyComplete = weeklyActivities.every(({ current, target }) => current >= target);
   const weeklyPercent = Math.round(
-    weeklyActivities.reduce((sum, item) => sum + clampProgress(item.current, item.target), 0) /
-      weeklyActivities.length,
+    weeklyMissions.reduce(
+      (sum, mission) =>
+        sum + clampProgress(getMissionProgress(mission, state.counters.weekly), mission.target),
+      0,
+    ) / Math.max(1, weeklyMissions.length),
   );
-  const nextWeeklyActivity = [...weeklyActivities]
-    .filter(({ current, target }) => current < target)
-    .sort((a, b) => a.current / a.target - b.current / b.target)[0];
+  const pendingRewards =
+    dailyMissions.filter(
+      (mission) =>
+        isMissionComplete(mission, state.counters.daily) &&
+        !state.claimedDailyMissionIds.includes(mission.id),
+    ).length +
+    weeklyMissions.filter(
+      (mission) =>
+        isMissionComplete(mission, state.counters.weekly) &&
+        !state.claimedWeeklyMissionIds.includes(mission.id),
+    ).length +
+    (claimedDaily === 3 && !state.dailyBonusClaimed ? 1 : 0) +
+    (claimedWeekly === 3 && !state.weeklyBonusClaimed ? 1 : 0);
 
   return (
     <section className="home-skeleton__card todays-mission" aria-labelledby="todays-mission-title">
@@ -162,7 +181,13 @@ export function TodaysMission() {
               </span>
               <div>
                 <p className="home-skeleton__section-label">Today&apos;s Mission</p>
-                <h2 id="todays-mission-title">Complete today&apos;s objectives</h2>
+                <h2 id="todays-mission-title">Complete, claim, level up</h2>
+                {pendingRewards > 0 ? (
+                  <span className="todays-mission__pending">
+                    <Zap aria-hidden="true" /> {pendingRewards} Reward
+                    {pendingRewards === 1 ? "" : "s"} Ready
+                  </span>
+                ) : null}
               </div>
             </div>
             <button
@@ -186,10 +211,7 @@ export function TodaysMission() {
               className={activeTab === "daily" ? "is-active" : undefined}
               onClick={() => setActiveTab("daily")}
             >
-              Daily
-              <span>
-                {completedDaily}/{dailyMissions.length}
-              </span>
+              Daily <span>{claimedDaily}/3 claimed</span>
             </button>
             <button
               type="button"
@@ -198,102 +220,42 @@ export function TodaysMission() {
               className={activeTab === "weekly" ? "is-active" : undefined}
               onClick={() => setActiveTab("weekly")}
             >
-              Weekly
-              {state.weeklyRewardClaimed ? (
-                <Check aria-hidden="true" />
-              ) : (
-                <span>{weeklyPercent}%</span>
-              )}
+              Weekly <span>{claimedWeekly}/3 claimed</span>
             </button>
           </div>
 
           {activeTab === "daily" ? (
-            <div className="todays-mission__panel" role="tabpanel">
-              <div className="todays-mission__panel-heading">
-                <p>Fresh objectives, shuffled for {state.dateKey}.</p>
-                <span>
-                  <Sparkles aria-hidden="true" /> New set tomorrow
-                </span>
-              </div>
-              <ul className="todays-mission__tasks" aria-label="Today's objectives">
-                {dailyMissions.map((mission, index) => {
-                  const current = Math.min(state.counters.daily[mission.activity], mission.target);
-                  const complete = current >= mission.target;
-                  const inProgress = current > 0 && !complete;
-                  const StatusIcon = complete ? Check : inProgress ? CircleDashed : Circle;
-                  return (
-                    <li
-                      className={
-                        complete ? "todays-mission__task is-complete" : "todays-mission__task"
-                      }
-                      key={mission.id}
-                    >
-                      <span className="todays-mission__task-number" aria-hidden="true">
-                        {index + 1}
-                      </span>
-                      <StatusIcon className="todays-mission__task-status" aria-hidden="true" />
-                      <span className="todays-mission__task-copy">
-                        <strong>{mission.label}</strong>
-                        <small>{mission.detail}</small>
-                      </span>
-                      <span className="todays-mission__task-count">
-                        {current}/{mission.target}
-                      </span>
-                      <span className="sr-only">
-                        {complete ? "Complete" : inProgress ? "In progress" : "Not started"}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-              <MissionProgressBar label="Daily mission progress" value={dailyPercent} />
-              <MissionFooter
-                reward={DAILY_MISSION_REWARD_XP}
-                complete={completedDaily === dailyMissions.length}
-                claimed={state.dailyRewardClaimed}
-                destination={firstDailyIncomplete?.destination}
-              />
-            </div>
+            <MissionPanel
+              missions={dailyMissions}
+              counters={state.counters.daily}
+              claimedIds={state.claimedDailyMissionIds}
+              objectiveReward={DAILY_OBJECTIVE_REWARD_XP}
+              claimKind="daily_objective"
+              dateKey={state.dateKey}
+              progress={dailyPercent}
+              progressLabel="Daily mission progress"
+              bonusTitle="Daily Completion Bonus"
+              bonusReward={DAILY_COMPLETION_REWARD_XP}
+              bonusClaimKind="daily_bonus"
+              bonusClaimed={state.dailyBonusClaimed}
+              periodLabel={`Fresh objectives for ${state.dateKey}`}
+            />
           ) : (
-            <div className="todays-mission__panel" role="tabpanel">
-              <div className="todays-mission__weekly-heading">
-                <div>
-                  <p className="home-skeleton__section-label">Week of {state.weekKey}</p>
-                  <h3>{weekly.title}</h3>
-                  <span>{weekly.detail}</span>
-                </div>
-                <strong>{weeklyPercent}%</strong>
-              </div>
-              <ul className="todays-mission__weekly-grid" aria-label="Weekly mission objectives">
-                {weeklyActivities.map(({ activity, current, target }) => {
-                  const meta = ACTIVITY_META[activity];
-                  const complete = current >= target;
-                  return (
-                    <li className={complete ? "is-complete" : undefined} key={activity}>
-                      <meta.Icon aria-hidden="true" />
-                      <span>
-                        <strong>{meta.label}</strong>
-                        <small>
-                          {Math.min(current, target)} / {target}
-                        </small>
-                      </span>
-                      {complete ? <Check aria-hidden="true" /> : null}
-                    </li>
-                  );
-                })}
-              </ul>
-              <MissionProgressBar label="Weekly mission progress" value={weeklyPercent} />
-              <MissionFooter
-                reward={WEEKLY_MISSION_REWARD_XP}
-                complete={weeklyComplete}
-                claimed={state.weeklyRewardClaimed}
-                destination={
-                  nextWeeklyActivity
-                    ? ACTIVITY_META[nextWeeklyActivity.activity].destination
-                    : undefined
-                }
-              />
-            </div>
+            <MissionPanel
+              missions={weeklyMissions}
+              counters={state.counters.weekly}
+              claimedIds={state.claimedWeeklyMissionIds}
+              objectiveReward={WEEKLY_OBJECTIVE_REWARD_XP}
+              claimKind="weekly_objective"
+              dateKey={state.dateKey}
+              progress={weeklyPercent}
+              progressLabel="Weekly mission progress"
+              bonusTitle="Weekly Completion Bonus"
+              bonusReward={WEEKLY_COMPLETION_REWARD_XP}
+              bonusClaimKind="weekly_bonus"
+              bonusClaimed={state.weeklyBonusClaimed}
+              periodLabel={`Week of ${state.weekKey}`}
+            />
           )}
         </div>
       </div>
@@ -306,25 +268,172 @@ export function TodaysMission() {
             : "todays-mission__weekly-strip"
         }
         onClick={() => setActiveTab("weekly")}
-        aria-label={`Open weekly mission, ${weeklyPercent}% complete`}
+        aria-label={`Open weekly missions, ${claimedWeekly} of 3 rewards claimed`}
       >
         <span className="todays-mission__weekly-strip-icon" aria-hidden="true">
           <Trophy />
         </span>
         <span className="todays-mission__weekly-strip-copy">
-          <small>Weekly Mission</small>
-          <strong>{weekly.title}</strong>
+          <small>Weekly Missions</small>
+          <strong>
+            {pendingRewards > 0
+              ? "Rewards may be ready"
+              : `${completedWeekly}/3 objectives complete`}
+          </strong>
         </span>
         <span className="todays-mission__weekly-strip-progress" aria-hidden="true">
           <span style={{ width: `${weeklyPercent}%` }} />
         </span>
         <span className="todays-mission__weekly-strip-percent">{weeklyPercent}%</span>
         <span className="todays-mission__weekly-strip-reward">
-          <Star aria-hidden="true" /> +{WEEKLY_MISSION_REWARD_XP.toLocaleString()} XP
+          <Star aria-hidden="true" /> Bonus +{WEEKLY_COMPLETION_REWARD_XP.toLocaleString()} XP
         </span>
         <ArrowRight aria-hidden="true" />
       </button>
     </section>
+  );
+}
+
+function MissionPanel({
+  missions,
+  counters,
+  claimedIds,
+  objectiveReward,
+  claimKind,
+  dateKey,
+  progress,
+  progressLabel,
+  bonusTitle,
+  bonusReward,
+  bonusClaimKind,
+  bonusClaimed,
+  periodLabel,
+}: {
+  missions: MissionDefinition[];
+  counters: MissionSystemState["counters"]["daily"];
+  claimedIds: string[];
+  objectiveReward: number;
+  claimKind: "daily_objective" | "weekly_objective";
+  dateKey: string;
+  progress: number;
+  progressLabel: string;
+  bonusTitle: string;
+  bonusReward: number;
+  bonusClaimKind: "daily_bonus" | "weekly_bonus";
+  bonusClaimed: boolean;
+  periodLabel: string;
+}) {
+  const claimedCount = missions.filter((mission) => claimedIds.includes(mission.id)).length;
+  const bonusReady = claimedCount === missions.length && missions.length === 3;
+  const firstIncomplete = missions.find((mission) => !isMissionComplete(mission, counters));
+
+  return (
+    <div className="todays-mission__panel" role="tabpanel">
+      <div className="todays-mission__panel-heading">
+        <p>{periodLabel}</p>
+        <span>
+          <Sparkles aria-hidden="true" /> Stable until reset
+        </span>
+      </div>
+      <ul className="todays-mission__tasks" aria-label="Mission objectives">
+        {missions.map((mission, index) => {
+          const current = getMissionProgress(mission, counters);
+          const complete = isMissionComplete(mission, counters);
+          const claimed = claimedIds.includes(mission.id);
+          const inProgress = current > 0 && !complete;
+          const StatusIcon = claimed || complete ? Check : inProgress ? CircleDashed : Circle;
+          return (
+            <li
+              className={`todays-mission__task${complete ? " is-complete" : ""}${claimed ? " is-claimed" : ""}`}
+              key={mission.id}
+            >
+              <span className="todays-mission__task-number" aria-hidden="true">
+                {index + 1}
+              </span>
+              <StatusIcon className="todays-mission__task-status" aria-hidden="true" />
+              <span className="todays-mission__task-copy">
+                <strong>{mission.label}</strong>
+                <small>
+                  {claimed
+                    ? `Claimed · +${objectiveReward} XP earned`
+                    : complete
+                      ? "Mission complete · Reward ready"
+                      : mission.detail}
+                </small>
+              </span>
+              <span className="todays-mission__task-count">
+                {current}/{mission.target}
+              </span>
+              <span className="todays-mission__objective-reward">+{objectiveReward} XP</span>
+              {complete && !claimed ? (
+                <button
+                  type="button"
+                  className="todays-mission__claim"
+                  aria-label={`Claim ${objectiveReward} XP for ${mission.label}`}
+                  onClick={() =>
+                    requestClaim({
+                      kind: claimKind,
+                      missionId: mission.id,
+                      title: mission.label,
+                      rewardXp: objectiveReward,
+                      dateKey,
+                    })
+                  }
+                >
+                  Claim <Zap aria-hidden="true" />
+                </button>
+              ) : null}
+              <span className="sr-only">
+                {claimed
+                  ? "Claimed"
+                  : complete
+                    ? "Reward ready"
+                    : inProgress
+                      ? "In progress"
+                      : "Not started"}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+      <MissionProgressBar label={progressLabel} value={progress} />
+      <footer className="todays-mission__footer">
+        <span className={`todays-mission__reward${bonusClaimed ? " is-claimed" : ""}`}>
+          <Star aria-hidden="true" />
+          {bonusClaimed ? "Bonus claimed" : bonusReady ? "Bonus reward ready" : bonusTitle}
+          <strong>+{bonusReward.toLocaleString()} XP</strong>
+          {!bonusReady && !bonusClaimed ? (
+            <small>{claimedCount} / 3 missions claimed · Locked</small>
+          ) : null}
+        </span>
+        {bonusReady && !bonusClaimed ? (
+          <button
+            type="button"
+            className="todays-mission__cta todays-mission__cta--claim"
+            aria-label={`Claim ${bonusReward} XP ${bonusTitle}`}
+            onClick={() =>
+              requestClaim({
+                kind: bonusClaimKind,
+                missionId: null,
+                title: bonusTitle,
+                rewardXp: bonusReward,
+                dateKey,
+              })
+            }
+          >
+            Claim +{bonusReward.toLocaleString()} XP <Zap aria-hidden="true" />
+          </button>
+        ) : firstIncomplete ? (
+          <Link className="todays-mission__cta" to={firstIncomplete.destination}>
+            Continue Mission <ArrowRight aria-hidden="true" />
+          </Link>
+        ) : (
+          <span className="todays-mission__cta todays-mission__cta--complete">
+            {bonusClaimed ? "All Claimed" : "Rewards Claimed"} <Check aria-hidden="true" />
+          </span>
+        )}
+      </footer>
+    </div>
   );
 }
 
@@ -340,36 +449,5 @@ function MissionProgressBar({ label, value }: { label: string; value: number }) 
     >
       <span style={{ width: `${value}%` }} />
     </div>
-  );
-}
-
-function MissionFooter({
-  reward,
-  complete,
-  claimed,
-  destination,
-}: {
-  reward: number;
-  complete: boolean;
-  claimed: boolean;
-  destination?: "/notes" | "/quizzes" | "/flashcards";
-}) {
-  return (
-    <footer className="todays-mission__footer">
-      <span className={claimed ? "todays-mission__reward is-claimed" : "todays-mission__reward"}>
-        <Star aria-hidden="true" />
-        {claimed ? "Reward claimed" : complete ? "Claiming reward" : "Full-set reward"}
-        <strong>+{reward.toLocaleString()} XP</strong>
-      </span>
-      {destination ? (
-        <Link className="todays-mission__cta" to={destination}>
-          Continue Mission <ArrowRight aria-hidden="true" />
-        </Link>
-      ) : (
-        <span className="todays-mission__cta todays-mission__cta--complete">
-          {claimed ? "Mission Complete" : "Finalising"} <Check aria-hidden="true" />
-        </span>
-      )}
-    </footer>
   );
 }

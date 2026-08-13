@@ -127,7 +127,7 @@ function CosmicCompanionPage() {
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-white/[0.1] bg-white/[0.06] px-3 py-1 text-xs font-black uppercase tracking-widest text-white/55">
-                    Level {stageIndex + 1}
+                    Companion Level {stageIndex + 1}
                   </span>
                   <span
                     className="rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest text-[#050816]"
@@ -148,18 +148,28 @@ function CosmicCompanionPage() {
                 <p className="mt-1 text-xs italic text-white/40">{moodMessage}</p>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <MetricCard label="Current XP" value={progress.xp.toLocaleString()} />
-                  <MetricCard label="XP Needed" value={xpNeeded.toLocaleString()} />
+                  <MetricCard label="Lifetime XP" value={progress.xp.toLocaleString()} />
+                  <MetricCard
+                    label="XP until next stage"
+                    value={nextStage ? xpNeeded.toLocaleString() : "Final stage"}
+                  />
                 </div>
 
                 <div className="mt-6">
                   <div className="mb-2 flex items-center justify-between gap-3 text-xs font-bold text-white/55">
-                    <span>{progress.xp.toLocaleString()} XP</span>
+                    <span>{progress.xp.toLocaleString()} Lifetime XP</span>
                     <span>
                       {nextStage ? `${nextStage.xpRequired.toLocaleString()} XP` : "Max stage"}
                     </span>
                   </div>
-                  <div className="relative h-4 overflow-hidden rounded-full border border-white/[0.08] bg-white/[0.07]">
+                  <div
+                    className="relative h-4 overflow-hidden rounded-full border border-white/[0.08] bg-white/[0.07]"
+                    role="progressbar"
+                    aria-label={`${displayName} progress to ${nextStage?.name ?? "final stage"}`}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={progressPct}
+                  >
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-[#22D3EE] via-[#A78BFA] to-[#F0ABFC] shadow-[0_0_24px_rgba(167,139,250,0.7)] transition-all duration-700"
                       style={{ width: `${progressPct}%` }}
@@ -324,8 +334,8 @@ function CompanionStatsCard({
 
       <dl className="mt-4 grid grid-cols-2 gap-2">
         <StatField label="Stage" value={stageName} />
-        <StatField label="Level" value={`Level ${level}`} />
-        <StatField label="XP" value={`${xp.toLocaleString()} XP`} />
+        <StatField label="Companion Level" value={`Level ${level}`} />
+        <StatField label="Lifetime XP" value={`${xp.toLocaleString()} XP`} />
         <StatField label="Mood" value={`${MOOD_EMOJI[mood]} ${MOOD_LABEL[mood]}`} />
       </dl>
       <div className="mt-3 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2">
@@ -419,7 +429,7 @@ function EvolutionPath({
           </p>
           <h2 className="mt-1 font-display text-2xl font-black text-white">Growth Path</h2>
         </div>
-        <p className="text-xs font-bold text-white/45">Powered by your existing XP</p>
+        <p className="text-xs font-bold text-white/45">Powered by Lifetime XP</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">

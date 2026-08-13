@@ -6,6 +6,7 @@ import {
   getCompanionEvolutionTransition,
   getCompanionLevelProgress,
   getCompanionStageForXp,
+  getLearningActivityStreak,
   getRankUpTransition,
 } from "./use-progress";
 
@@ -92,5 +93,12 @@ describe("progression celebrations and rewards", () => {
       "xp1000",
       "xp5000",
     ]);
+  });
+
+  it("keeps normal learning activity on the existing consecutive-day streak rule", () => {
+    const now = Date.parse("2026-08-13T12:00:00.000Z");
+    expect(getLearningActivityStreak(4, "2026-08-12", "2026-08-13", now)).toBe(5);
+    expect(getLearningActivityStreak(4, "2026-08-13", "2026-08-13", now)).toBe(4);
+    expect(getLearningActivityStreak(4, "2026-08-10", "2026-08-13", now)).toBe(1);
   });
 });
