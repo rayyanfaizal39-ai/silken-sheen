@@ -149,6 +149,86 @@ import {
   mathF2C5FoundationQuizzesBM,
   mathF2C5PracticeQuizzesBM,
 } from "@/content/form2/math/chapter-5/quizzes-bm";
+import {
+  mathF2C6ChallengeQuizzesDLP,
+  mathF2C6FoundationQuizzesDLP,
+  mathF2C6PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-6/quizzes-dlp";
+import {
+  mathF2C6ChallengeQuizzesBM,
+  mathF2C6FoundationQuizzesBM,
+  mathF2C6PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-6/quizzes-bm";
+import {
+  mathF2C7ChallengeQuizzesDLP,
+  mathF2C7FoundationQuizzesDLP,
+  mathF2C7PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-7/quizzes-dlp";
+import {
+  mathF2C7ChallengeQuizzesBM,
+  mathF2C7FoundationQuizzesBM,
+  mathF2C7PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-7/quizzes-bm";
+import {
+  mathF2C8ChallengeQuizzesDLP,
+  mathF2C8FoundationQuizzesDLP,
+  mathF2C8PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-8/quizzes-dlp";
+import {
+  mathF2C8ChallengeQuizzesBM,
+  mathF2C8FoundationQuizzesBM,
+  mathF2C8PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-8/quizzes-bm";
+import {
+  mathF2C9ChallengeQuizzesDLP,
+  mathF2C9FoundationQuizzesDLP,
+  mathF2C9PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-9/quizzes-dlp";
+import {
+  mathF2C9ChallengeQuizzesBM,
+  mathF2C9FoundationQuizzesBM,
+  mathF2C9PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-9/quizzes-bm";
+import {
+  mathF2C10ChallengeQuizzesDLP,
+  mathF2C10FoundationQuizzesDLP,
+  mathF2C10PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-10/quizzes-dlp";
+import {
+  mathF2C10ChallengeQuizzesBM,
+  mathF2C10FoundationQuizzesBM,
+  mathF2C10PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-10/quizzes-bm";
+import {
+  mathF2C11ChallengeQuizzesDLP,
+  mathF2C11FoundationQuizzesDLP,
+  mathF2C11PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-11/quizzes-dlp";
+import {
+  mathF2C11ChallengeQuizzesBM,
+  mathF2C11FoundationQuizzesBM,
+  mathF2C11PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-11/quizzes-bm";
+import {
+  mathF2C12ChallengeQuizzesDLP,
+  mathF2C12FoundationQuizzesDLP,
+  mathF2C12PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-12/quizzes-dlp";
+import {
+  mathF2C12ChallengeQuizzesBM,
+  mathF2C12FoundationQuizzesBM,
+  mathF2C12PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-12/quizzes-bm";
+import {
+  mathF2C13ChallengeQuizzesDLP,
+  mathF2C13FoundationQuizzesDLP,
+  mathF2C13PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-13/quizzes-dlp";
+import {
+  mathF2C13ChallengeQuizzesBM,
+  mathF2C13FoundationQuizzesBM,
+  mathF2C13PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-13/quizzes-bm";
 
 export const Route = createFileRoute("/quizzes")({
   head: ({ match }) => {
@@ -169,11 +249,7 @@ export const Route = createFileRoute("/quizzes")({
       title,
       description,
       path: subjectName ? `/quizzes?subject=${subjectId}` : "/quizzes",
-      keywords: [
-        "KSSM quiz",
-        "Form 1 quiz",
-        ...subjectSeoKeywords(subjectId),
-      ],
+      keywords: ["KSSM quiz", "Form 1 quiz", ...subjectSeoKeywords(subjectId)],
       jsonLd: [
         courseJsonLd({
           name: subjectName
@@ -15710,6 +15786,114 @@ const MATH_F2_C2_BM_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> 
   "objective-3": mathF2C2ChallengeQuizzesBM,
 };
 
+const MATH_F2_BATCH_B_OBJECTIVE_BANKS: Record<
+  "Chapter 6" | "Chapter 7" | "Chapter 8",
+  Record<"bm" | "dlp", Record<MathObjectiveId, ShuffledQuestion[]>>
+> = {
+  "Chapter 6": {
+    bm: {
+      "objective-1": mathF2C6FoundationQuizzesBM,
+      "objective-2": mathF2C6PracticeQuizzesBM,
+      "objective-3": mathF2C6ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C6FoundationQuizzesDLP,
+      "objective-2": mathF2C6PracticeQuizzesDLP,
+      "objective-3": mathF2C6ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 7": {
+    bm: {
+      "objective-1": mathF2C7FoundationQuizzesBM,
+      "objective-2": mathF2C7PracticeQuizzesBM,
+      "objective-3": mathF2C7ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C7FoundationQuizzesDLP,
+      "objective-2": mathF2C7PracticeQuizzesDLP,
+      "objective-3": mathF2C7ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 8": {
+    bm: {
+      "objective-1": mathF2C8FoundationQuizzesBM,
+      "objective-2": mathF2C8PracticeQuizzesBM,
+      "objective-3": mathF2C8ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C8FoundationQuizzesDLP,
+      "objective-2": mathF2C8PracticeQuizzesDLP,
+      "objective-3": mathF2C8ChallengeQuizzesDLP,
+    },
+  },
+};
+
+const MATH_F2_BATCH_C_OBJECTIVE_BANKS: Record<
+  "Chapter 9" | "Chapter 10" | "Chapter 11" | "Chapter 12" | "Chapter 13",
+  Record<"bm" | "dlp", Record<MathObjectiveId, ShuffledQuestion[]>>
+> = {
+  "Chapter 9": {
+    bm: {
+      "objective-1": mathF2C9FoundationQuizzesBM,
+      "objective-2": mathF2C9PracticeQuizzesBM,
+      "objective-3": mathF2C9ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C9FoundationQuizzesDLP,
+      "objective-2": mathF2C9PracticeQuizzesDLP,
+      "objective-3": mathF2C9ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 10": {
+    bm: {
+      "objective-1": mathF2C10FoundationQuizzesBM,
+      "objective-2": mathF2C10PracticeQuizzesBM,
+      "objective-3": mathF2C10ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C10FoundationQuizzesDLP,
+      "objective-2": mathF2C10PracticeQuizzesDLP,
+      "objective-3": mathF2C10ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 11": {
+    bm: {
+      "objective-1": mathF2C11FoundationQuizzesBM,
+      "objective-2": mathF2C11PracticeQuizzesBM,
+      "objective-3": mathF2C11ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C11FoundationQuizzesDLP,
+      "objective-2": mathF2C11PracticeQuizzesDLP,
+      "objective-3": mathF2C11ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 12": {
+    bm: {
+      "objective-1": mathF2C12FoundationQuizzesBM,
+      "objective-2": mathF2C12PracticeQuizzesBM,
+      "objective-3": mathF2C12ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C12FoundationQuizzesDLP,
+      "objective-2": mathF2C12PracticeQuizzesDLP,
+      "objective-3": mathF2C12ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 13": {
+    bm: {
+      "objective-1": mathF2C13FoundationQuizzesBM,
+      "objective-2": mathF2C13PracticeQuizzesBM,
+      "objective-3": mathF2C13ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C13FoundationQuizzesDLP,
+      "objective-2": mathF2C13PracticeQuizzesDLP,
+      "objective-3": mathF2C13ChallengeQuizzesDLP,
+    },
+  },
+};
+
 interface ShuffledQuestion {
   id?: string;
   question: string;
@@ -15900,19 +16084,51 @@ function QuizzesPage() {
     subject === "math" && form === "Form 2" && chapter === "Chapter 5" && scienceLang === "dlp";
   const isForm2Chapter5BmObjective =
     subject === "math" && form === "Form 2" && chapter === "Chapter 5" && scienceLang === "bm";
+  const isForm2BatchBDlpObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8") &&
+    scienceLang === "dlp";
+  const isForm2BatchBBmObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8") &&
+    scienceLang === "bm";
+  const isForm2BatchCDlpObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 9" ||
+      chapter === "Chapter 10" ||
+      chapter === "Chapter 11" ||
+      chapter === "Chapter 12" ||
+      chapter === "Chapter 13") &&
+    scienceLang === "dlp";
+  const isForm2BatchCBmObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 9" ||
+      chapter === "Chapter 10" ||
+      chapter === "Chapter 11" ||
+      chapter === "Chapter 12" ||
+      chapter === "Chapter 13") &&
+    scienceLang === "bm";
   const activeMathQuizLang =
     mathQuizLang ??
     (isForm2Chapter1DlpObjective ||
     isForm2Chapter2DlpObjective ||
     isForm2Chapter3DlpObjective ||
     isForm2Chapter4DlpObjective ||
-    isForm2Chapter5DlpObjective
+    isForm2Chapter5DlpObjective ||
+    isForm2BatchBDlpObjective ||
+    isForm2BatchCDlpObjective
       ? "dlp"
       : isForm2Chapter1BmObjective ||
           isForm2Chapter2BmObjective ||
           isForm2Chapter3BmObjective ||
           isForm2Chapter4BmObjective ||
-          isForm2Chapter5BmObjective
+          isForm2Chapter5BmObjective ||
+          isForm2BatchBBmObjective ||
+          isForm2BatchCBmObjective
         ? "bm"
         : null);
   const mathObjectiveQuestions = useMemo(() => {
@@ -15920,19 +16136,39 @@ function QuizzesPage() {
     if (!chapter || !mathObjectiveId) return [];
     const isForm2Chapter1Dlp =
       form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
-    const isForm2Chapter1Bm =
-      form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+    const isForm2Chapter1Bm = form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
     const isForm2Chapter2Dlp =
       form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
-    const isForm2Chapter2Bm =
-      form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
+    const isForm2Chapter2Bm = form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
+    const batchBChapter =
+      form === "Form 2" &&
+      (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8")
+        ? chapter
+        : null;
+    const batchCChapter =
+      form === "Form 2" &&
+      (chapter === "Chapter 9" ||
+        chapter === "Chapter 10" ||
+        chapter === "Chapter 11" ||
+        chapter === "Chapter 12" ||
+        chapter === "Chapter 13")
+        ? chapter
+        : null;
     const isForm2ObjectiveChapter =
       form === "Form 2" &&
       (chapter === "Chapter 1" ||
         chapter === "Chapter 2" ||
         chapter === "Chapter 3" ||
         chapter === "Chapter 4" ||
-        chapter === "Chapter 5");
+        chapter === "Chapter 5" ||
+        chapter === "Chapter 6" ||
+        chapter === "Chapter 7" ||
+        chapter === "Chapter 8" ||
+        chapter === "Chapter 9" ||
+        chapter === "Chapter 10" ||
+        chapter === "Chapter 11" ||
+        chapter === "Chapter 12" ||
+        chapter === "Chapter 13");
     const questions = isForm2Chapter1Dlp
       ? MATH_F2_C1_DLP_OBJECTIVE_BANK[mathObjectiveId]
       : isForm2Chapter1Bm
@@ -15941,12 +16177,17 @@ function QuizzesPage() {
           ? MATH_F2_C2_DLP_OBJECTIVE_BANK[mathObjectiveId]
           : isForm2Chapter2Bm
             ? MATH_F2_C2_BM_OBJECTIVE_BANK[mathObjectiveId]
-            : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
+            : batchBChapter
+              ? MATH_F2_BATCH_B_OBJECTIVE_BANKS[batchBChapter][lang][mathObjectiveId]
+              : batchCChapter
+                ? MATH_F2_BATCH_C_OBJECTIVE_BANKS[batchCChapter][lang][mathObjectiveId]
+                : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
     const chapterNumber = Number(chapter.replace("Chapter ", ""));
     return questions.map((question, questionIndex) => ({
       ...question,
       id:
-        question.id ?? `math-f1-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
+        question.id ??
+        `math-${isForm2ObjectiveChapter ? "f2" : "f1"}-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
       form: isForm2ObjectiveChapter ? ("Form 2" as const) : ("Form 1" as const),
       chapter,
       lang,
@@ -16773,9 +17014,14 @@ function QuizzesPage() {
         <div className="space-y-6">
           <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
             {(() => {
-              const lastQuiz = progress.lastVisited?.type === "quiz" ? progress.lastVisited : undefined;
+              const lastQuiz =
+                progress.lastVisited?.type === "quiz" ? progress.lastVisited : undefined;
               const lastResult = [...(progress.quizHistory ?? [])]
-                .filter((r) => !lastQuiz || (r.subjectId === lastQuiz.subjectId && r.chapterKey === lastQuiz.chapterKey))
+                .filter(
+                  (r) =>
+                    !lastQuiz ||
+                    (r.subjectId === lastQuiz.subjectId && r.chapterKey === lastQuiz.chapterKey),
+                )
                 .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
               if (!authUser) {
                 return (
@@ -16957,7 +17203,9 @@ function QuizzesPage() {
           }}
         />
       ) : subject === "math" &&
-        (form === "Form 1" || isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective ||
+        (form === "Form 1" ||
+          isForm2Chapter1DlpObjective ||
+          isForm2Chapter1BmObjective ||
           isForm2Chapter2DlpObjective ||
           isForm2Chapter2BmObjective ||
           isForm2Chapter3DlpObjective ||
@@ -16965,7 +17213,11 @@ function QuizzesPage() {
           isForm2Chapter4DlpObjective ||
           isForm2Chapter4BmObjective ||
           isForm2Chapter5DlpObjective ||
-          isForm2Chapter5BmObjective) ? (
+          isForm2Chapter5BmObjective ||
+          isForm2BatchBDlpObjective ||
+          isForm2BatchBBmObjective ||
+          isForm2BatchCDlpObjective ||
+          isForm2BatchCBmObjective) ? (
         !activeMathQuizLang ? (
           <MathQuizLanguagePicker
             subjectId={subject}
@@ -17063,7 +17315,11 @@ function QuizzesPage() {
                 isForm2Chapter4DlpObjective ||
                 isForm2Chapter4BmObjective ||
                 isForm2Chapter5DlpObjective ||
-                isForm2Chapter5BmObjective
+                isForm2Chapter5BmObjective ||
+                isForm2BatchBDlpObjective ||
+                isForm2BatchBBmObjective ||
+                isForm2BatchCDlpObjective ||
+                isForm2BatchCBmObjective
               ) {
                 setChapter(null);
                 updateQuizSearch({ chapter: null });
