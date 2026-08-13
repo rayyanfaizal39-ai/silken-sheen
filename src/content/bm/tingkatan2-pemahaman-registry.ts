@@ -1,4 +1,5 @@
 import type { ChapterContent } from "@/content/types";
+import { bahasaMelayuTingkatan2IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2StrategiPemahamanLanjutanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-lanjutan-form2-mindmap";
 
@@ -29,6 +30,20 @@ export const bahasaMelayuTingkatan2PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2IsiTersuratMindMap,
       title: "Mengenal Pasti Isi Tersurat (Lanjutan)",
+    },
+  },
+  {
+    id: "bm-f2-mengenal-pasti-isi-tersirat-lanjutan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Mengenal Pasti Isi Tersirat (Lanjutan)",
+    title: "Mengenal Pasti Isi Tersirat (Lanjutan)",
+    description:
+      "Membuat inferens yang lebih matang dengan menghubungkan petunjuk, tindakan, sebab, kesan dan maklumat daripada beberapa bahagian petikan.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan2IsiTersiratMindMap,
+      title: "Mengenal Pasti Isi Tersirat (Lanjutan)",
     },
   },
 ] as const satisfies readonly ChapterContent[];
