@@ -73,7 +73,17 @@ describe("Mathematics Form 1 DLP educational videos", () => {
       expect(chapter?.video?.captionLang).toBe("en");
     });
 
-    expect(bmRows.every((chapter) => chapter.video === undefined)).toBe(true);
+    expect(bmRows.every((chapter) => chapter.video?.captionLang === "ms")).toBe(true);
+    expect(
+      bmRows.every(
+        (chapter) =>
+          chapter.video !== undefined &&
+          !Object.values(expectedMathForm1Dlp).includes(
+            chapter.video
+              .youtubeId as (typeof expectedMathForm1Dlp)[keyof typeof expectedMathForm1Dlp],
+          ),
+      ),
+    ).toBe(true);
   });
 
   it("renders all 13 videos through the existing responsive youtube-nocookie player", () => {
