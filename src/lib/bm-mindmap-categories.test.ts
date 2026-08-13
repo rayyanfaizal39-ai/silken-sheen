@@ -5,27 +5,17 @@ import {
 } from "./bm-mindmap-categories";
 
 describe("Bahasa Melayu mind-map categories", () => {
-  it("adds Pemahaman only to Form 1 after the existing categories", () => {
-    expect(getBahasaMelayuMindMapCategories("Form 1")).toEqual([
-      "Tatabahasa",
-      "Peribahasa",
-      "Penulisan",
-      "Pemahaman",
-    ]);
-  });
-
-  it("shows Penulisan for Forms 2 and 3", () => {
-    expect(getBahasaMelayuMindMapCategories("Form 2")).toEqual([
-      "Tatabahasa",
-      "Peribahasa",
-      "Penulisan",
-    ]);
-    expect(getBahasaMelayuMindMapCategories("Form 3")).toEqual([
-      "Tatabahasa",
-      "Peribahasa",
-      "Penulisan",
-    ]);
-  });
+  it.each(["Form 1", "Form 2", "Form 3"] as const)(
+    "shows Pemahaman after the existing categories for %s",
+    (form) => {
+      expect(getBahasaMelayuMindMapCategories(form)).toEqual([
+        "Tatabahasa",
+        "Peribahasa",
+        "Penulisan",
+        "Pemahaman",
+      ]);
+    },
+  );
 
   it("provides the requested count-free READY identity for Pemahaman", () => {
     expect(BAHASA_MELAYU_CATEGORY_DETAILS.Pemahaman).toEqual({

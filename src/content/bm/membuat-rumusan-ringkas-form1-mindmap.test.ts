@@ -24,6 +24,7 @@ const expectedTopics = [
   "Menjawab Soalan KBAT",
   "Membuat Rumusan Ringkas",
   "Teknik Menggunakan Bukti daripada Petikan",
+  "Kesalahan Lazim dalam Pemahaman",
 ];
 
 const expectedBranches = [
@@ -56,8 +57,8 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 1 Membuat Rumusan Ringkas mind map", () => {
-  it("remains the sixth of exactly seven registered Form 1 Pemahaman topics", () => {
-    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(7);
+  it("remains the sixth of exactly eight registered Form 1 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(8);
     expect(bahasaMelayuTingkatan1PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual(
       expectedTopics,
     );

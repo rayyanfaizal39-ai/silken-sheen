@@ -308,6 +308,7 @@ import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/
 import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form1-mindmap";
 import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/mengedit-menyemak-karangan-form1-mindmap";
 import { bahasaMelayuTingkatan1PemahamanRegistry } from "@/content/bm/tingkatan1-pemahaman-registry";
+import { bahasaMelayuTingkatan2PemahamanRegistry } from "@/content/bm/tingkatan2-pemahaman-registry";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2950,6 +2951,7 @@ export const chapters: ChapterContent[] = [
       title: "Mengedit dan Menyemak Karangan",
     },
   },
+  ...bahasaMelayuTingkatan2PemahamanRegistry,
   {
     id: "bm-f2-mengembangkan-isi-karangan-mindmap",
     subjectId: "bm",
