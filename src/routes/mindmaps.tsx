@@ -361,6 +361,16 @@ export const Route = createFileRoute("/mindmaps")({
           "bukti petikan",
         ],
       },
+      "Strategi Menjawab Soalan Pemahaman (Lanjutan)": {
+        description:
+          "Peta minda strategi pemahaman Tingkatan 2: analisis petikan, inferens, hubungan idea, bukti dan jawapan KBAT.",
+        keywords: [
+          "Strategi Menjawab Soalan Pemahaman Lanjutan",
+          "Pemahaman Bahasa Melayu Tingkatan 2",
+          "inferens dan bukti petikan",
+          "jawapan KBAT Tingkatan 2",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -397,10 +407,13 @@ export const Route = createFileRoute("/mindmaps")({
         | "Teknik Menjana Idea KBAT"
         | "Kesalahan Lazim dalam Penulisan"
         | "Strategi Menjawab Soalan Pemahaman"
+        | "Strategi Menjawab Soalan Pemahaman (Lanjutan)"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
-      const isPemahaman = match.search.chapter === "Strategi Menjawab Soalan Pemahaman";
+      const isPemahaman =
+        match.search.chapter === "Strategi Menjawab Soalan Pemahaman" ||
+        match.search.chapter === "Strategi Menjawab Soalan Pemahaman (Lanjutan)";
       const bmCategory = isPemahaman
         ? "Pemahaman"
         : match.search.chapter === "Pendahuluan" ||
@@ -495,21 +508,20 @@ function MindMapsPage() {
     activeChapterIndex > 0 ? subjectChapters[activeChapterIndex - 1] : undefined;
   const nextCandidate =
     activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
-  const isForm1Pemahaman =
-    subject === "bm" && form === "Form 1" && chapterMeta?.categoryLabel === "Pemahaman";
-  const previousTopic = isForm1Pemahaman
+  const isBahasaMelayuPemahaman = subject === "bm" && chapterMeta?.categoryLabel === "Pemahaman";
+  const previousTopic = isBahasaMelayuPemahaman
     ? previousCandidate?.categoryLabel === "Pemahaman"
       ? previousCandidate
       : undefined
     : previousCandidate;
-  const nextTopic = isForm1Pemahaman
+  const nextTopic = isBahasaMelayuPemahaman
     ? nextCandidate?.categoryLabel === "Pemahaman"
       ? nextCandidate
       : undefined
     : nextCandidate;
   const showBmTopicNavigation =
     subject === "bm" &&
-    (isForm1Pemahaman ||
+    (isBahasaMelayuPemahaman ||
       (form === "Form 2" &&
         (activeChapterKey === "Frasa Adjektif" ||
           activeChapterKey === "Ayat Aktif" ||
@@ -539,10 +551,10 @@ function MindMapsPage() {
   }, [subject, form, search.chapter]);
 
   useEffect(() => {
-    if (isForm1Pemahaman) {
+    if (isBahasaMelayuPemahaman) {
       setSelectedBmCategory("Pemahaman");
     }
-  }, [isForm1Pemahaman]);
+  }, [isBahasaMelayuPemahaman]);
 
   function chooseSubject(subjectId: string) {
     setChapter(null);
