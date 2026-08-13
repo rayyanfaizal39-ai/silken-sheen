@@ -866,6 +866,14 @@ function mathForm1DlpVideo(chapterNumber: number): VideoBlock {
   return video;
 }
 
+function mathForm1BmVideo(chapterNumber: number): VideoBlock {
+  const video = getEducationalVideo(`math-f1-c${chapterNumber}`, "bm");
+  if (!video) {
+    throw new Error(`Missing Matematik Tingkatan 1 BM video for Chapter ${chapterNumber}`);
+  }
+  return video;
+}
+
 export const chapters: ChapterContent[] = [
   ...scienceF3ChapterContent,
   // Sejarah Form 1
@@ -1436,6 +1444,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Nombor Nisbah",
     lang: "bm",
+    video: mathForm1BmVideo(1),
     mindMap: { data: mathF1C1MindMapBM, title: "Nombor Nisbah" },
     notes: mathF1C1NotesBM,
     mathChapter1Data: mathF1C1InteractiveContent,
@@ -1459,6 +1468,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Faktor dan Gandaan",
     lang: "bm",
+    video: mathForm1BmVideo(2),
     mindMap: { data: mathF1C2MindMapBM, title: "Faktor dan Gandaan" },
     notes: mathF1C2NotesBM,
     mathChapter2Data: mathF1C2InteractiveContent,
@@ -1482,6 +1492,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
     lang: "bm",
+    video: mathForm1BmVideo(3),
     mindMap: {
       data: mathF1C3MindMapBM,
       title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga & Punca Kuasa Tiga",
@@ -1508,6 +1519,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Nisbah, Kadar dan Kadaran",
     lang: "bm",
+    video: mathForm1BmVideo(4),
     mindMap: { data: mathF1C4MindMapBM, title: "Nisbah, Kadar dan Kadaran" },
     notes: mathF1C4NotesBM,
     mathChapter4Data: mathF1C4InteractiveContent,
@@ -1531,6 +1543,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Ungkapan Algebra",
     lang: "bm",
+    video: mathForm1BmVideo(5),
     mindMap: { data: mathF1C5MindMapBM, title: "Ungkapan Algebra" },
     notes: mathF1C5NotesBM,
     mathChapter5Data: mathF1C5InteractiveContent,
@@ -1554,6 +1567,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Persamaan Linear",
     lang: "bm",
+    video: mathForm1BmVideo(6),
     mindMap: { data: mathF1C6MindMapBM, title: "Persamaan Linear" },
     notes: mathF1C6NotesBM,
     mathChapter6Data: mathF1C6InteractiveContent,
@@ -1577,6 +1591,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Ketaksamaan Linear",
     lang: "bm",
+    video: mathForm1BmVideo(7),
     mindMap: { data: mathF1C7MindMapBM, title: "Ketaksamaan Linear" },
     notes: mathF1C7NotesBM,
     mathChapter7Data: mathF1C7InteractiveContent,
@@ -1600,6 +1615,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Garis dan Sudut",
     lang: "bm",
+    video: mathForm1BmVideo(8),
     mindMap: { data: mathF1C8MindMapBM, title: "Garis dan Sudut" },
     notes: mathF1C8NotesBM,
     mathChapter8Data: mathF1C8InteractiveContent,
@@ -1623,6 +1639,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Poligon Asas",
     lang: "bm",
+    video: mathForm1BmVideo(9),
     mindMap: { data: mathF1C9MindMapBM, title: "Poligon Asas" },
     notes: mathF1C9NotesBM,
     mathChapter9Data: mathF1C9InteractiveContent,
@@ -1646,6 +1663,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Perimeter dan Luas",
     lang: "bm",
+    video: mathForm1BmVideo(10),
     mindMap: { data: mathF1C10MindMapBM, title: "Perimeter dan Luas" },
     notes: mathF1C10NotesBM,
     mathChapter10Data: mathF1C10InteractiveContent,
@@ -1669,6 +1687,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Pengenalan Set",
     lang: "bm",
+    video: mathForm1BmVideo(11),
     mindMap: { data: mathF1C11MindMapBM, title: "Pengenalan Set" },
     notes: mathF1C11NotesBM,
     mathChapter11Data: mathF1C11InteractiveContent,
@@ -1692,6 +1711,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Pengendalian Data",
     lang: "bm",
+    video: mathForm1BmVideo(12),
     mindMap: { data: mathF1C12MindMapBM, title: "Pengendalian Data" },
     notes: mathF1C12NotesBM,
     mathChapter12Data: mathF1C12InteractiveContent,
@@ -1715,6 +1735,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 13",
     title: "Teorem Pythagoras",
     lang: "bm",
+    video: mathForm1BmVideo(13),
     mindMap: { data: mathF1C13MindMapBM, title: "Teorem Pythagoras" },
     notes: mathF1C13NotesBM,
     mathChapter13Data: mathF1C13InteractiveContent,
