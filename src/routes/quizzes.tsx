@@ -109,6 +109,16 @@ import {
   mathF2C1FoundationQuizzesBM,
   mathF2C1PracticeQuizzesBM,
 } from "@/content/form2/math/chapter-1/quizzes-bm";
+import {
+  mathF2C2ChallengeQuizzesDLP,
+  mathF2C2FoundationQuizzesDLP,
+  mathF2C2PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-2/quizzes-dlp";
+import {
+  mathF2C2ChallengeQuizzesBM,
+  mathF2C2FoundationQuizzesBM,
+  mathF2C2PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-2/quizzes-bm";
 
 export const Route = createFileRoute("/quizzes")({
   head: ({ match }) => {
@@ -18990,6 +19000,18 @@ const MATH_F2_C1_BM_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> 
   "objective-3": mathF2C1ChallengeQuizzesBM,
 };
 
+const MATH_F2_C2_DLP_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C2FoundationQuizzesDLP,
+  "objective-2": mathF2C2PracticeQuizzesDLP,
+  "objective-3": mathF2C2ChallengeQuizzesDLP,
+};
+
+const MATH_F2_C2_BM_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C2FoundationQuizzesBM,
+  "objective-2": mathF2C2PracticeQuizzesBM,
+  "objective-3": mathF2C2ChallengeQuizzesBM,
+};
+
 interface ShuffledQuestion {
   id?: string;
   question: string;
@@ -19164,9 +19186,17 @@ function QuizzesPage() {
     subject === "math" && form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
   const isForm2Chapter1BmObjective =
     subject === "math" && form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+  const isForm2Chapter2DlpObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
+  const isForm2Chapter2BmObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
   const activeMathQuizLang =
     mathQuizLang ??
-    (isForm2Chapter1DlpObjective ? "dlp" : isForm2Chapter1BmObjective ? "bm" : null);
+    (isForm2Chapter1DlpObjective || isForm2Chapter2DlpObjective
+      ? "dlp"
+      : isForm2Chapter1BmObjective || isForm2Chapter2BmObjective
+        ? "bm"
+        : null);
   const mathObjectiveQuestions = useMemo(() => {
     const lang = activeMathQuizLang ?? "bm";
     if (!chapter || !mathObjectiveId) return [];
@@ -19174,18 +19204,29 @@ function QuizzesPage() {
       form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
     const isForm2Chapter1Bm =
       form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+    const isForm2Chapter2Dlp =
+      form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
+    const isForm2Chapter2Bm =
+      form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
     const questions = isForm2Chapter1Dlp
       ? MATH_F2_C1_DLP_OBJECTIVE_BANK[mathObjectiveId]
       : isForm2Chapter1Bm
         ? MATH_F2_C1_BM_OBJECTIVE_BANK[mathObjectiveId]
-        : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
+        : isForm2Chapter2Dlp
+          ? MATH_F2_C2_DLP_OBJECTIVE_BANK[mathObjectiveId]
+          : isForm2Chapter2Bm
+            ? MATH_F2_C2_BM_OBJECTIVE_BANK[mathObjectiveId]
+            : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
     const chapterNumber = Number(chapter.replace("Chapter ", ""));
     return questions.map((question, questionIndex) => ({
       ...question,
       id:
         question.id ?? `math-f1-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
       form:
-        isForm2Chapter1Dlp || isForm2Chapter1Bm
+        isForm2Chapter1Dlp ||
+        isForm2Chapter1Bm ||
+        isForm2Chapter2Dlp ||
+        isForm2Chapter2Bm
           ? ("Form 2" as const)
           : ("Form 1" as const),
       chapter,
@@ -20197,7 +20238,9 @@ function QuizzesPage() {
           }}
         />
       ) : subject === "math" &&
-        (form === "Form 1" || isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective) ? (
+        (form === "Form 1" || isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective ||
+          isForm2Chapter2DlpObjective ||
+          isForm2Chapter2BmObjective) ? (
         !activeMathQuizLang ? (
           <MathQuizLanguagePicker
             subjectId={subject}
@@ -20285,7 +20328,12 @@ function QuizzesPage() {
             scienceLang={scienceLang ?? undefined}
             quizLang={activeMathQuizLang}
             onBack={() => {
-              if (isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective) {
+              if (
+                isForm2Chapter1DlpObjective ||
+                isForm2Chapter1BmObjective ||
+                isForm2Chapter2DlpObjective ||
+                isForm2Chapter2BmObjective
+              ) {
                 setChapter(null);
                 updateQuizSearch({ chapter: null });
                 reset();
