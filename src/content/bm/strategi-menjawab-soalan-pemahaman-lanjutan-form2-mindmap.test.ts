@@ -43,13 +43,17 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 2 Strategi Pemahaman Lanjutan mind map", () => {
-  it("remains the first of exactly four registered Form 2 Pemahaman topics", () => {
-    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(4);
+  it("remains the first of exactly eight registered Form 2 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(8);
     expect(bahasaMelayuTingkatan2PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman (Lanjutan)",
       "Mengenal Pasti Isi Tersurat (Lanjutan)",
       "Mengenal Pasti Isi Tersirat (Lanjutan)",
       "Maksud Frasa dan Ungkapan (Lanjutan)",
+      "Menjawab Soalan KBAT (Lanjutan)",
+      "Membuat Rumusan Ringkas (Lanjutan)",
+      "Teknik Menggunakan Bukti daripada Petikan (Lanjutan)",
+      "Kesalahan Lazim dalam Pemahaman (Lanjutan)",
     ]);
 
     const chapter = getChapter(
