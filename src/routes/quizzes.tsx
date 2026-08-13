@@ -99,6 +99,16 @@ import {
   orderQuestionsByDifficulty,
   shuffleQuestionOptions,
 } from "@/features/quiz/difficulty/quizDifficulty";
+import {
+  mathF2C1ChallengeQuizzesDLP,
+  mathF2C1FoundationQuizzesDLP,
+  mathF2C1PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-1/quizzes-dlp";
+import {
+  mathF2C1ChallengeQuizzesBM,
+  mathF2C1FoundationQuizzesBM,
+  mathF2C1PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-1/quizzes-bm";
 
 export const Route = createFileRoute("/quizzes")({
   head: ({ match }) => {
@@ -18968,6 +18978,18 @@ const MATH_QUIZ_BANKS: Partial<
   },
 };
 
+const MATH_F2_C1_DLP_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C1FoundationQuizzesDLP,
+  "objective-2": mathF2C1PracticeQuizzesDLP,
+  "objective-3": mathF2C1ChallengeQuizzesDLP,
+};
+
+const MATH_F2_C1_BM_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C1FoundationQuizzesBM,
+  "objective-2": mathF2C1PracticeQuizzesBM,
+  "objective-3": mathF2C1ChallengeQuizzesBM,
+};
+
 interface ShuffledQuestion {
   id?: string;
   question: string;
@@ -19138,20 +19160,39 @@ function QuizzesPage() {
     () => MATH_OBJECTIVES.find((objective) => objective.id === mathObjectiveId) ?? null,
     [mathObjectiveId],
   );
+  const isForm2Chapter1DlpObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
+  const isForm2Chapter1BmObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+  const activeMathQuizLang =
+    mathQuizLang ??
+    (isForm2Chapter1DlpObjective ? "dlp" : isForm2Chapter1BmObjective ? "bm" : null);
   const mathObjectiveQuestions = useMemo(() => {
-    const lang = mathQuizLang ?? "bm";
+    const lang = activeMathQuizLang ?? "bm";
     if (!chapter || !mathObjectiveId) return [];
-    const questions = MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? [];
+    const isForm2Chapter1Dlp =
+      form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
+    const isForm2Chapter1Bm =
+      form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+    const questions = isForm2Chapter1Dlp
+      ? MATH_F2_C1_DLP_OBJECTIVE_BANK[mathObjectiveId]
+      : isForm2Chapter1Bm
+        ? MATH_F2_C1_BM_OBJECTIVE_BANK[mathObjectiveId]
+        : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
     const chapterNumber = Number(chapter.replace("Chapter ", ""));
     return questions.map((question, questionIndex) => ({
       ...question,
-      id: `math-f1-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
-      form: "Form 1" as const,
+      id:
+        question.id ?? `math-f1-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
+      form:
+        isForm2Chapter1Dlp || isForm2Chapter1Bm
+          ? ("Form 2" as const)
+          : ("Form 1" as const),
       chapter,
       lang,
       set: mathObjectiveId,
     }));
-  }, [chapter, mathObjectiveId, mathQuizLang]);
+  }, [activeMathQuizLang, chapter, form, mathObjectiveId, scienceLang]);
   const currentMathQuestion = mathShuffledQuestions?.[idx] ?? null;
   const selectedEnglishSet = useMemo(
     () => ENGLISH_QUIZ_SETS.find((set) => set.id === englishSetId) ?? null,
@@ -20155,8 +20196,9 @@ function QuizzesPage() {
             reset();
           }}
         />
-      ) : subject === "math" && form === "Form 1" ? (
-        !mathQuizLang ? (
+      ) : subject === "math" &&
+        (form === "Form 1" || isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective) ? (
+        !activeMathQuizLang ? (
           <MathQuizLanguagePicker
             subjectId={subject}
             chapterKey={chapter}
@@ -20180,7 +20222,7 @@ function QuizzesPage() {
               subjectId={subject}
               chapterKey={chapter}
               scienceLang={scienceLang ?? undefined}
-              quizLang={mathQuizLang}
+              quizLang={activeMathQuizLang}
               onBack={() => {
                 setMathObjectiveId(null);
                 setMathObjectivePhase("select");
@@ -20192,7 +20234,7 @@ function QuizzesPage() {
               objective={selectedMathObjective}
               score={score}
               total={mathShuffledQuestions?.length ?? mathObjectiveQuestions.length}
-              quizLang={mathQuizLang}
+              quizLang={activeMathQuizLang}
               chapterKey={chapter}
               onBack={() => {
                 setMathObjectiveId(null);
@@ -20209,7 +20251,7 @@ function QuizzesPage() {
               subjectId={subject}
               chapterKey={chapter}
               scienceLang={scienceLang ?? undefined}
-              quizLang={mathQuizLang}
+              quizLang={activeMathQuizLang}
               questions={mathShuffledQuestions ?? mathObjectiveQuestions}
               current={currentMathQuestion}
               idx={idx}
@@ -20241,12 +20283,18 @@ function QuizzesPage() {
             subjectId={subject}
             chapterKey={chapter}
             scienceLang={scienceLang ?? undefined}
-            quizLang={mathQuizLang}
+            quizLang={activeMathQuizLang}
             onBack={() => {
-              setMathQuizLang(null);
-              setMathObjectiveId(null);
-              setMathObjectivePhase("select");
-              resetRegularQuiz();
+              if (isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective) {
+                setChapter(null);
+                updateQuizSearch({ chapter: null });
+                reset();
+              } else {
+                setMathQuizLang(null);
+                setMathObjectiveId(null);
+                setMathObjectivePhase("select");
+                resetRegularQuiz();
+              }
             }}
             onSelect={(objectiveId) => {
               setMathObjectiveId(objectiveId);
