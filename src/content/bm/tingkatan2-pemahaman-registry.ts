@@ -1,4 +1,5 @@
 import type { ChapterContent } from "@/content/types";
+import { bahasaMelayuTingkatan2KesalahanPemahamanMindMap } from "@/content/bm/kesalahan-lazim-pemahaman-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2RumusanMindMap } from "@/content/bm/membuat-rumusan-ringkas-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2MaksudFrasaUngkapanMindMap } from "@/content/bm/maksud-frasa-ungkapan-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-lanjutan-form2-mindmap";
@@ -104,6 +105,20 @@ export const bahasaMelayuTingkatan2PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2BuktiPetikanMindMap,
       title: "Teknik Menggunakan Bukti daripada Petikan (Lanjutan)",
+    },
+  },
+  {
+    id: "bm-f2-kesalahan-lazim-pemahaman-lanjutan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kesalahan Lazim dalam Pemahaman (Lanjutan)",
+    title: "Kesalahan Lazim dalam Pemahaman (Lanjutan)",
+    description:
+      "Mengenal pasti kesalahan teknik menjawab, penggunaan bukti, inferens dan bahasa yang sering menyebabkan jawapan pemahaman menjadi tidak tepat.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan2KesalahanPemahamanMindMap,
+      title: "Kesalahan Lazim dalam Pemahaman (Lanjutan)",
     },
   },
 ] as const satisfies readonly ChapterContent[];
