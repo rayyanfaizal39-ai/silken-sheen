@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AcadeMY · Form 3 Chapter 4: Scale Drawings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05061a;
+    --bg-mid:#0b0f2e;
+    --violet:#8b6bff;
+    --blue:#4d7cfe;
+    --amber:#ffb937;
+    --ink:#f1f3ff;
+    --muted:#9aa3c7;
+    --faint:#6a7299;
+    --glass:rgba(255,255,255,0.045);
+    --glass-brd:rgba(255,255,255,0.09);
+    --good:#5be3b0;
+    --bad:#ff6f8e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(139,107,255,0.25), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(77,124,254,0.18), transparent 55%),
+      radial-gradient(ellipse 900px 700px at 50% 120%, rgba(139,107,255,0.15), transparent 60%),
+      var(--bg-deep);
+    color:var(--ink);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  /* starfield */
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+      radial-gradient(1px 1px at 140px 90px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 300px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 500px 120px, #fff, transparent),
+      radial-gradient(1px 1px at 620px 60px, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 720px 220px, #fff, transparent),
+      radial-gradient(1px 1px at 80px 180px, #fff, transparent);
+    background-repeat:repeat; background-size:760px 260px;
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:28px 20px 120px;}
+
+  /* ===== Header ===== */
+  .crumb{display:flex; align-items:center; gap:8px; color:var(--faint); font-size:13px; margin-bottom:18px;}
+  .crumb b{color:var(--muted); font-weight:600;}
+  .hero{
+    position:relative; overflow:hidden; border-radius:24px; padding:36px 32px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.25), rgba(77,124,254,0.15));
+    border:1px solid var(--glass-brd);
+  }
+  .hero::after{content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,107,255,0.5), transparent 70%); filter:blur(10px);}
+  .theme-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--violet); background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:5px 12px; border-radius:100px; font-weight:600;}
+  .hero h1{font-family:'Space Grotesk',sans-serif; font-size:42px; margin:14px 0 6px; font-weight:700; letter-spacing:-0.01em;}
+  .hero .ch-num{font-size:15px; color:var(--muted); font-weight:500; margin-bottom:2px;}
+  .hero p.sub{color:var(--muted); max-width:520px; font-size:15px;}
+  .xp-chip{position:absolute; top:28px; right:32px; display:flex; align-items:center; gap:8px; background:rgba(255,185,55,0.12);
+    border:1px solid rgba(255,185,55,0.35); padding:8px 14px; border-radius:100px; font-size:13px; font-weight:600; color:var(--amber);}
+  .xp-chip svg{width:16px; height:16px;}
+
+  .questions{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px;}
+  .q-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:14px 16px; font-size:13.5px; color:var(--muted);}
+  .q-card b{display:block; color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--blue); margin-bottom:6px;}
+
+  /* progress bar */
+  .progress-track{margin-top:24px; height:8px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+  .progress-fill{height:100%; width:8%; border-radius:100px; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .6s ease;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--faint); margin-top:8px;}
+
+  /* keywords */
+  .keywords{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0;}
+  .kw{position:relative; background:var(--glass); border:1px solid var(--glass-brd); padding:7px 13px; border-radius:100px; font-size:12.5px; cursor:pointer; transition:.2s;}
+  .kw:hover{border-color:var(--violet); background:rgba(139,107,255,0.12); color:#fff;}
+  .kw .tip{display:none; position:absolute; bottom:130%; left:50%; transform:translateX(-50%); width:190px; background:#12153a; border:1px solid var(--glass-brd);
+    padding:10px 12px; border-radius:10px; font-size:12px; color:var(--muted); z-index:5; line-height:1.5; box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+  .kw.open .tip{display:block;}
+
+  /* section */
+  .section{margin-top:44px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .section-head .num{font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--violet); font-weight:700;}
+  .section-head h2{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600;}
+
+  .card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-bottom:16px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px;}
+  .card p{color:var(--muted); font-size:14.5px;}
+  .aside{border-left:3px solid var(--blue); background:rgba(77,124,254,0.08); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; color:var(--muted); margin-top:14px;}
+  .aside b{color:var(--blue); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  /* image placeholder */
+  .img-ph{border-radius:14px; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11.5px; text-align:center; padding:10px;}
+  .img-ph svg{width:26px; height:26px; opacity:.6;}
+  .img-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .img-grid .img-ph{aspect-ratio:1/1;}
+  .img-cap{font-size:11px; color:var(--faint); text-align:center; margin-top:5px;}
+
+  /* flip cards */
+  .flip-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:14px;}
+  .flip-card{perspective:1000px; height:150px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
+  .flip-front{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); overflow:hidden; padding:0;}
+  .flip-front img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .flip-front .label{position:absolute; bottom:0; left:0; right:0; padding:20px 10px 10px; background:linear-gradient(0deg, rgba(5,6,26,0.9), transparent); font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; text-align:center;}
+  .flip-back{background:linear-gradient(135deg, rgba(139,107,255,0.35), rgba(77,124,254,0.25)); transform:rotateY(180deg); font-size:12px; color:#fff;}
+
+  /* importance grid */
+  .imp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px;}
+  .imp-item{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px; font-size:13px;}
+  .imp-item .ic{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--violet),var(--blue)); display:flex; align-items:center; justify-content:center; margin-bottom:10px;}
+  .imp-item .ic svg{width:18px; height:18px; color:#fff;}
+  .imp-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:13.5px; margin-bottom:4px;}
+  .imp-item p{color:var(--muted); font-size:12.5px;}
+
+  .history-chip{display:inline-flex; gap:8px; align-items:center; background:rgba(255,185,55,0.1); border:1px solid rgba(255,185,55,0.3); padding:9px 14px; border-radius:12px; font-size:12.5px; color:#ffd38a; margin-top:14px;}
+
+  /* accordion */
+  .acc-item{border:1px solid var(--glass-brd); border-radius:14px; margin-top:10px; overflow:hidden; background:rgba(255,255,255,0.03);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:14px 18px; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;}
+  .acc-head .chev{transition:transform .3s; color:var(--faint);}
+  .acc-item.open .chev{transform:rotate(180deg); color:var(--violet);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+  .acc-item.open .acc-body{max-height:400px; padding:0 18px 16px;}
+  .acc-body p{color:var(--muted); font-size:13.5px;}
+
+  /* toggle switch (in-situ / ex-situ) */
+  .toggle-row{display:flex; gap:0; margin-top:14px; border:1px solid var(--glass-brd); border-radius:100px; padding:4px; width:fit-content;}
+  .toggle-opt{padding:8px 18px; font-size:13px; border-radius:100px; cursor:pointer; color:var(--muted); font-weight:600;}
+  .toggle-opt.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff;}
+  .toggle-panel{display:none; margin-top:12px; font-size:13.5px; color:var(--muted); background:rgba(255,255,255,0.03); border-radius:12px; padding:14px 16px;}
+  .toggle-panel.show{display:block;}
+
+  /* endemic species strip */
+  .endemic-strip{display:flex; gap:12px; overflow-x:auto; margin-top:14px; padding-bottom:6px;}
+  .endemic-strip .img-ph{min-width:120px; width:120px;}
+
+  /* self-check reveal cards */
+  .reveal-card{border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; margin-top:10px; background:rgba(255,255,255,0.03);}
+  .reveal-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14px; font-weight:500;}
+  .reveal-tag{font-size:11px; color:var(--violet); border:1px solid rgba(139,107,255,0.4); padding:3px 10px; border-radius:100px;}
+  .reveal-a{display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-brd); font-size:13.5px; color:var(--muted);}
+  .reveal-card.open .reveal-a{display:block;}
+
+  /* tabs */
+  .tabs{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tab{padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); color:var(--muted);}
+  .tab.active{background:linear-gradient(90deg,var(--violet),var(--blue)); color:#fff; border-color:transparent;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .trait-list{list-style:none; margin-top:10px;}
+  .trait-list li{position:relative; padding-left:18px; font-size:13.5px; color:var(--muted); margin-bottom:6px;}
+  .trait-list li::before{content:"◆"; position:absolute; left:0; color:var(--violet); font-size:9px; top:5px;}
+
+  /* classification tree */
+  .tree-node{display:flex; justify-content:center; margin-top:6px;}
+  .tree-btn{background:linear-gradient(135deg, rgba(139,107,255,0.3), rgba(77,124,254,0.2)); border:1px solid rgba(139,107,255,0.4);
+    padding:12px 22px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; cursor:pointer; text-align:center;}
+  .branch-row{display:flex; justify-content:center; gap:24px; margin-top:18px; position:relative;}
+  .branch-row::before{content:""; position:absolute; top:-18px; left:50%; width:1px; height:18px; background:rgba(255,255,255,0.15);}
+  .branch{flex:1; max-width:260px; text-align:center;}
+  .branch .opt{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:10px 14px; font-size:13px; cursor:pointer; font-weight:600;}
+  .branch .opt.active{border-color:var(--violet); background:rgba(139,107,255,0.18); color:#fff;}
+  .branch-detail{display:none; margin-top:12px; font-size:12.5px; color:var(--muted); text-align:left; background:rgba(255,255,255,0.03); border-radius:10px; padding:12px;}
+  .branch-detail.show{display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+  .example-chips span{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.3); padding:4px 10px; border-radius:100px; font-size:11.5px;}
+
+  /* monocot/dicot slider */
+  .compare-wrap{position:relative; margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid var(--glass-brd);}
+  .compare-row{display:grid; grid-template-columns:1fr 1fr;}
+  .compare-col{padding:16px 18px;}
+  .compare-col.left{background:rgba(139,107,255,0.1);}
+  .compare-col.right{background:rgba(77,124,254,0.1);}
+  .compare-col h4{font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:10px;}
+  .compare-col dl{font-size:12.5px; color:var(--muted);}
+  .compare-col dt{color:var(--faint); font-size:11px; text-transform:uppercase; letter-spacing:.04em; margin-top:8px;}
+  .compare-col dd{color:var(--ink); margin-top:2px;}
+
+  /* dichotomous star-map (signature element) */
+  .starmap{background:radial-gradient(ellipse at center, rgba(139,107,255,0.12), transparent 70%); border:1px solid var(--glass-brd); border-radius:20px; padding:26px; margin-top:16px; text-align:center;}
+  .starmap-organisms{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .starmap-organisms .node{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd);
+    display:flex; align-items:center; justify-content:center; font-size:10px; text-align:center; color:var(--faint); transition:.4s; position:relative;}
+  .starmap-organisms .node.eliminated{opacity:0.15; filter:grayscale(1);}
+  .starmap-organisms .node.answer{border-color:var(--amber); box-shadow:0 0 22px rgba(255,185,55,0.5); color:#fff; background:rgba(255,185,55,0.15);}
+  .starmap-step{font-size:13px; color:var(--muted); margin-bottom:14px; min-height:20px;}
+  .starmap-choices{display:flex; justify-content:center; gap:12px;}
+  .star-choice{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .star-choice:hover{border-color:var(--violet);}
+  .starmap-reset{margin-top:16px; font-size:12px; color:var(--faint); cursor:pointer; text-decoration:underline;}
+  .starmap-trail{display:flex; justify-content:center; gap:6px; margin-bottom:16px;}
+  .starmap-trail .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.15);}
+  .starmap-trail .dot.done{background:var(--amber);}
+
+  /* summary mindmap */
+  .mindmap{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:16px;}
+  .mm-center{background:linear-gradient(135deg,var(--violet),var(--blue)); padding:14px 26px; border-radius:16px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;}
+  .mm-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px; width:100%;}
+  .mm-branch{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:14px;}
+  .mm-branch h5{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); margin-bottom:8px;}
+  .mm-branch ul{list-style:none; font-size:12px; color:var(--muted);}
+  .mm-branch li{padding:3px 0; border-top:1px dashed rgba(255,255,255,0.08);}
+  .mm-branch li:first-child{border-top:none;}
+
+  /* self reflection */
+  .reflect-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--glass-brd);}
+  .reflect-item:last-child{border-bottom:none;}
+  .check{width:22px; height:22px; border-radius:6px; border:1.5px solid var(--faint); flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:2px;}
+  .check.done{background:var(--good); border-color:var(--good);}
+  .check svg{width:13px; height:13px; color:var(--bg-deep); display:none;}
+  .check.done svg{display:block;}
+  .reflect-item.done p{color:var(--muted); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.2);}
+
+  /* quiz */
+  .quiz-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:18px; padding:22px 24px; margin-top:14px;}
+  .quiz-q{font-size:14.5px; font-weight:600; margin-bottom:14px;}
+  .tf-row{display:flex; gap:10px;}
+  .tf-btn{flex:1; padding:12px; border-radius:12px; border:1px solid var(--glass-brd); background:rgba(255,255,255,0.03); font-weight:600; font-size:13px; cursor:pointer; text-align:center;}
+  .tf-btn.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .tf-btn.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .mc-opt{border:1px solid var(--glass-brd); border-radius:12px; padding:11px 16px; font-size:13.5px; margin-top:8px; cursor:pointer;}
+  .mc-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good);}
+  .mc-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad);}
+  .quiz-feedback{margin-top:10px; font-size:12.5px; color:var(--muted); display:none;}
+  .quiz-feedback.show{display:block;}
+
+  .cta-final{text-align:center; margin-top:40px; padding:30px; border-radius:20px; background:linear-gradient(135deg, rgba(139,107,255,0.2), rgba(77,124,254,0.15)); border:1px solid var(--glass-brd);}
+  .cta-final h3{font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px;}
+  .cta-final p{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+  .cta-btn{display:inline-block; background:linear-gradient(90deg,var(--violet),var(--blue)); padding:12px 28px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .questions{grid-template-columns:1fr;}
+    .flip-grid{grid-template-columns:repeat(2,1fr);}
+    .img-grid{grid-template-columns:repeat(2,1fr);}
+    .imp-grid{grid-template-columns:1fr 1fr;}
+    .branch-row{flex-direction:column; align-items:center;}
+    .compare-row{grid-template-columns:1fr;}
+    .mm-branches{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    .xp-chip{position:static; margin-top:14px; width:fit-content;}
+  }
+
+  /* matcher (reused) */
+  .matcher-wrap{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:16px;}
+  .matcher-col h5{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); margin-bottom:10px;}
+  .matcher-item{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:12px; padding:11px 14px; font-size:13px; margin-bottom:8px; cursor:pointer; transition:.2s;}
+  .matcher-item.selected{border-color:var(--violet); background:rgba(139,107,255,0.18);}
+  .matcher-item.matched{border-color:var(--good); background:rgba(91,227,176,0.14); color:var(--good); cursor:default;}
+  .matcher-item.wrong-flash{border-color:var(--bad); background:rgba(255,111,142,0.14);}
+  .matcher-progress{font-size:12px; color:var(--faint); margin-top:12px; text-align:center;}
+
+  /* journey (reused) */
+  .journey-track{position:relative; margin-top:24px; padding:10px 0;}
+  .journey-line{position:absolute; top:38px; left:5%; right:5%; height:3px; background:rgba(255,255,255,0.1); border-radius:3px;}
+  .journey-fill{position:absolute; top:38px; left:5%; height:3px; background:linear-gradient(90deg,var(--violet),var(--blue)); border-radius:3px; transition:width .4s;}
+  .journey-stops{display:flex; justify-content:space-between; position:relative;}
+  .journey-stop{display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; width:90px;}
+  .journey-dot{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:2px solid var(--glass-brd); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; transition:.3s;}
+  .journey-stop.active .journey-dot{border-color:var(--amber); background:rgba(255,185,55,0.2); box-shadow:0 0 14px rgba(255,185,55,0.4);}
+  .journey-stop.past .journey-dot{border-color:var(--violet); background:rgba(139,107,255,0.25);}
+  .journey-label{font-size:10.5px; color:var(--faint); text-align:center;}
+  .journey-stop.active .journey-label{color:#fff; font-weight:600;}
+  .journey-detail{margin-top:20px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px; font-size:13.5px; color:var(--muted); min-height:70px;}
+  .journey-detail b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; margin-bottom:6px; font-size:14px;}
+  .journey-nav{display:flex; justify-content:space-between; margin-top:14px;}
+  .journey-nav-btn{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:8px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .journey-nav-btn:disabled{opacity:0.3; pointer-events:none;}
+
+  /* pH / number-line slider */
+  .ph-slider-wrap{margin-top:20px;}
+  .ph-bar{height:22px; border-radius:100px; background:linear-gradient(90deg,#ff4d4d,#ffb937,#5be3b0,#4d7cfe,#8b6bff); position:relative;}
+  .ph-handle{position:absolute; top:-8px; width:4px; height:38px; background:#fff; border-radius:4px; box-shadow:0 0 8px rgba(255,255,255,0.6); cursor:pointer; transform:translateX(-50%);}
+  .ph-track{position:relative; padding:10px 0 0;}
+  .ph-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--faint); margin-top:6px;}
+  .ph-readout{margin-top:16px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; font-size:13.5px; color:var(--muted); text-align:center;}
+  .ph-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; font-size:16px; display:block; margin-bottom:4px;}
+
+  /* mini calculator */
+  .calc-wrap{display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-top:16px;}
+  .calc-field{display:flex; flex-direction:column; gap:4px;}
+  .calc-field label{font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:.04em;}
+  .calc-field input{width:90px; background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); border-radius:10px; padding:9px 12px; color:#fff; font-size:14px; font-family:'Space Grotesk',sans-serif;}
+  .calc-result{background:rgba(139,107,255,0.15); border:1px solid rgba(139,107,255,0.35); border-radius:12px; padding:10px 18px; font-size:14px; font-weight:700; color:#fff; font-family:'Space Grotesk',sans-serif;}
+  .calc-mode-row{display:flex; gap:8px; margin-bottom:12px;}
+
+  /* wave visualizer (ch10) */
+  .wave-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:16px; padding:18px; margin-top:16px;}
+  .wave-svg-wrap{width:100%; overflow:hidden; border-radius:12px; background:rgba(0,0,0,0.15);}
+  .wave-controls{display:flex; flex-direction:column; gap:14px; margin-top:16px;}
+  .wave-slider-row{display:flex; align-items:center; gap:12px;}
+  .wave-slider-row label{font-size:12px; color:var(--faint); width:110px; flex-shrink:0;}
+  .wave-slider-row input[type=range]{flex:1; accent-color:var(--violet);}
+  .wave-slider-row .val{font-size:12.5px; color:#fff; font-family:'Space Grotesk',sans-serif; width:70px; text-align:right;}
+  .wave-readout{margin-top:12px; font-size:13px; color:var(--muted); text-align:center;}
+
+  /* buoyancy simulator */
+  .buoy-wrap{display:flex; gap:20px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .buoy-tank{width:140px; height:140px; border-radius:0 0 14px 14px; border:2px solid rgba(77,124,254,0.4); background:linear-gradient(180deg, transparent 0%, transparent 30%, rgba(77,124,254,0.25) 30%, rgba(77,124,254,0.35) 100%); position:relative; overflow:hidden;}
+  .buoy-object{position:absolute; left:50%; width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg,var(--violet),var(--blue)); transform:translateX(-50%); transition:top 1s ease;}
+  .buoy-readout{flex:1; min-width:180px; font-size:13px; color:var(--muted);}
+  .buoy-readout b{color:#fff; font-family:'Space Grotesk',sans-serif; display:block; font-size:15px; margin-bottom:6px;}
+
+  /* planet spheres (pure CSS, no images needed) */
+  .planet-sphere{border-radius:50%; position:relative; flex-shrink:0;}
+  .planet-sphere.rings::after{content:""; position:absolute; top:50%; left:50%; width:180%; height:34%; border:2px solid rgba(255,255,255,0.35); border-radius:50%; transform:translate(-50%,-50%) rotate(-15deg); pointer-events:none;}
+  .planet-card{display:flex; gap:16px; align-items:center; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:16px; padding:16px; margin-top:12px; cursor:pointer;}
+  .planet-card .info{flex:1;}
+  .planet-card h4{font-family:'Space Grotesk',sans-serif; font-size:15px; margin-bottom:4px;}
+  .planet-card p{font-size:12.5px; color:var(--muted); margin:0;}
+  .planet-detail{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-brd); font-size:12.5px; color:var(--muted);}
+  .planet-card.open .planet-detail{display:block;}
+  .planet-facts{display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px;}
+  .planet-facts div{font-size:11.5px;}
+  .planet-facts b{color:#fff;}
+
+  /* image placeholder (for chapter 11 real images) */
+  .img-ph2{border-radius:14px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(139,107,255,0.18), rgba(77,124,254,0.1)); border:1px dashed rgba(255,255,255,0.18); color:var(--faint); font-size:11px; text-align:center;}
+  .img-ph2 img{width:100%; height:100%; object-fit:cover;}
+
+  /* grid reference reader (geografi) */
+  .grid-wrap{display:flex; justify-content:center; margin-top:16px;}
+  .grid-svg{max-width:340px; width:100%;}
+  .grid-answer-row{display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .grid-opt{background:rgba(255,255,255,0.05); border:1px solid var(--glass-brd); padding:9px 16px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;}
+  .grid-opt.correct{background:rgba(91,227,176,0.18); border-color:var(--good); color:var(--good);}
+  .grid-opt.wrong{background:rgba(255,111,142,0.18); border-color:var(--bad); color:var(--bad);}
+  .grid-feedback{text-align:center; margin-top:10px; font-size:13px; color:var(--muted); min-height:18px;}
+
+  /* body diagram journey-like clickable hotspot (reuse existing components mostly) */
+  .senses-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:14px;}
+  @media (max-width:720px){.senses-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* reactivity ladder */
+  .ladder-wrap{display:flex; flex-direction:column; gap:4px; margin-top:16px;}
+  .ladder-item{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); border-radius:10px; padding:8px 14px; cursor:pointer; transition:.2s;}
+  .ladder-item:hover{border-color:var(--violet); background:rgba(139,107,255,0.1);}
+  .ladder-item .sym{font-family:'Space Grotesk',sans-serif; font-weight:700; width:32px; text-align:center; color:var(--amber);}
+  .ladder-item .name{flex:1; font-size:13px;}
+  .ladder-detail{display:none; font-size:11.5px; color:var(--muted); padding:0 14px 10px 58px;}
+  .ladder-item.open .ladder-detail{display:block;}
+  .ladder-item.nonmetal{border-color:rgba(255,185,55,0.3); background:rgba(255,185,55,0.05);}
+
+  /* language toggle */
+  .lang-toggle{position:absolute; top:20px; right:20px; display:flex; background:rgba(255,255,255,0.06); border:1px solid var(--glass-brd); border-radius:100px; padding:3px; gap:2px; z-index:5;}
+  .lang-btn{padding:6px 16px; border-radius:100px; font-size:12px; font-weight:600; cursor:pointer; color:var(--faint); transition:.2s;}
+  .lang-btn.active{background:var(--violet); color:#fff;}
+  body:not(.bm) .bm{display:none;}
+  body.bm .en{display:none;}
+  .hero{position:relative;}
+
+  .calc-panel{display:none;}
+  .calc-panel.show{display:block;}
+
+  /* ===== MATH DESIGN SYSTEM v2 — calmer, cleaner ===== */
+  :root{
+    --orange:#ff9f43;
+    --purple:#b57bff;
+  }
+
+  .wrap{max-width:760px;}
+  .card p{line-height:1.75;}
+
+  /* section intro — ONE clean lesson block, no heavy colour, just accent bar + icon label */
+  .lesson-intro{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-left:3px solid var(--blue);
+    border-radius:14px; padding:20px 22px; margin-top:18px;}
+  .lesson-intro .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:10px;}
+  .lesson-intro p{font-size:14.5px; color:var(--muted); line-height:1.75;}
+  .lesson-intro p + p{margin-top:12px;}
+  .lesson-intro b{color:#fff; font-weight:600;}
+
+  /* formula card — the single visual highlight of each subtopic */
+  .formula-card{background:rgba(139,107,255,0.1); border:1px solid rgba(139,107,255,0.3);
+    border-radius:16px; padding:26px 24px; margin-top:18px; text-align:center;}
+  .formula-eyebrow{font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--violet); margin-bottom:12px; font-weight:700;}
+  .formula-main{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:#fff; letter-spacing:.01em; line-height:1.4;}
+  .formula-legend{display:flex; flex-wrap:wrap; justify-content:center; gap:8px 24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);}
+  .formula-legend .item{font-size:12.5px; color:var(--muted); text-align:left;}
+  .formula-legend .item b{color:#fff; font-family:'Space Grotesk',sans-serif; margin-right:5px; font-weight:600;}
+
+  /* worked example — clean numbered steps, generous spacing, one accent colour only */
+  .steps-card{background:rgba(255,255,255,0.035); border:1px solid var(--glass-brd); border-radius:16px; padding:22px 24px; margin-top:18px;}
+  .steps-card .ex-label{font-family:'Space Grotesk',sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--purple); font-weight:700; margin-bottom:6px;}
+  .steps-card .ex-q{font-size:14.5px; color:#fff; margin-bottom:18px; line-height:1.6;}
+  .step-item{display:flex; gap:14px; padding:12px 0; cursor:pointer;}
+  .step-item + .step-item{border-top:1px solid rgba(255,255,255,0.06);}
+  .step-num{width:28px; height:28px; border-radius:50%; background:rgba(181,123,255,0.15); border:1.5px solid rgba(181,123,255,0.4); display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12.5px; color:var(--purple); flex-shrink:0; margin-top:2px;}
+  .step-item.revealed .step-num{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .step-body{flex:1;}
+  .step-calc{font-family:'Space Grotesk',sans-serif; font-size:15.5px; color:#fff; line-height:1.5;}
+  .step-why{display:none; margin-top:8px; font-size:13px; color:var(--muted); line-height:1.6;}
+  .step-item.revealed .step-why{display:block;}
+  .step-hint-label{font-size:11px; color:var(--faint); margin-top:4px;}
+  .step-item.revealed .step-hint-label{display:none;}
+
+  /* try together — light, single accent, no heavy background */
+  .guided-card{border:1px dashed rgba(77,124,254,0.35); border-radius:14px; padding:18px 20px; margin-top:16px;}
+  .guided-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--blue); margin-bottom:8px;}
+  .guided-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+  .guided-hint{margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:#ffd4a8; display:none; line-height:1.6;}
+  .guided-hint.show{display:block;}
+  .hint-btn{display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:7px 14px; border-radius:100px; background:none; border:1px solid rgba(255,159,67,0.4);
+    font-size:12px; font-weight:600; color:var(--orange); cursor:pointer;}
+
+  /* common mistake — single compact note, not a heavy two-tone grid */
+  .mistake-note{margin-top:16px; padding:16px 18px; border-radius:12px; background:rgba(255,111,142,0.06); border:1px solid rgba(255,111,142,0.25);}
+  .mistake-note .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--bad); margin-bottom:10px;}
+  .mistake-line{font-size:13.5px; line-height:1.7; margin-top:6px;}
+  .mistake-line .lbl{font-weight:700; margin-right:6px;}
+  .mistake-line.wrong .lbl{color:var(--bad);}
+  .mistake-line.right .lbl{color:var(--good);}
+  .mistake-line span.txt{color:var(--muted);}
+
+  /* practice zone — difficulty tabs, calm styling */
+  .practice-zone{margin-top:20px;}
+  .practice-zone > .zone-label{font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .diff-tabs{display:flex; gap:6px; margin-bottom:14px;}
+  .diff-tab{flex:1; text-align:center; padding:8px; border-radius:10px; font-size:12px; font-weight:700; cursor:pointer; border:1px solid var(--glass-brd); color:var(--faint); background:rgba(255,255,255,0.02);}
+  .diff-tab[data-diff="easy"].active{background:rgba(91,227,176,0.12); border-color:var(--good); color:var(--good);}
+  .diff-tab[data-diff="medium"].active{background:rgba(255,159,67,0.12); border-color:var(--orange); color:var(--orange);}
+  .diff-tab[data-diff="hard"].active{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .diff-panel{display:none;}
+  .diff-panel.active{display:block;}
+
+  .practice-q-card{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; padding:16px 18px;}
+  .practice-q-text{font-size:14px; color:#fff; margin-bottom:12px; line-height:1.6;}
+  .practice-btn-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .pbtn{padding:7px 14px; border-radius:100px; font-size:11.5px; font-weight:600; cursor:pointer; border:1px solid var(--glass-brd); background:none; color:var(--muted);}
+  .pbtn.hint-pbtn{color:var(--orange); border-color:rgba(255,159,67,0.3);}
+  .pbtn.sol-pbtn{color:var(--violet); border-color:rgba(139,107,255,0.3);}
+  .practice-reveal{display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:13px; color:var(--muted); line-height:1.65;}
+  .practice-reveal.show{display:block;}
+  .practice-reveal.hint-reveal{color:#ffd4a8;}
+
+  /* real-life application — plain inline tags, no card */
+  .reallife-row{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.07);}
+  .reallife-row .lbl{font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); font-weight:700; margin-bottom:10px; display:block;}
+  .example-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .example-chips span{background:rgba(255,255,255,0.04); border:1px solid var(--glass-brd); padding:6px 12px; border-radius:100px; font-size:12px; color:var(--muted);}
+
+  /* number line */
+  .numline-wrap{margin-top:16px; text-align:center;}
+  .numline-svg{max-width:100%; height:auto;}
+
+  /* generic diagram containers (array grids, venn, timelines, cube stacks) */
+  .visual-wrap{margin-top:18px; padding:18px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:14px; text-align:center;}
+  .visual-svg{max-width:100%; height:auto;}
+  .visual-caption{font-size:11.5px; color:var(--faint); margin-top:10px;}
+
+  /* division ladder — the standard repeated-division method for prime factorisation, HCF, LCM */
+  .ladder-wrap{margin-top:14px; display:flex; justify-content:center;}
+  .ladder-table{border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .ladder-table td{padding:7px 14px; font-size:15px; color:#fff; text-align:center;}
+  .ladder-table .divisor-cell{color:var(--violet); font-weight:700; border-right:2px solid rgba(139,107,255,0.4); position:relative;}
+  .ladder-table tr:first-child td{border-top:2px solid rgba(139,107,255,0.4);}
+  .ladder-table .result-row td{border-top:1.5px solid rgba(255,255,255,0.15); padding-top:10px; font-weight:700;}
+  .ladder-table .result-row .divisor-cell{border-right:none; color:var(--good);}
+  .ladder-reveal{display:none; margin-top:16px;}
+  .ladder-reveal.show{display:block;}
+  .ladder-question{font-size:14px; color:#fff; margin-bottom:4px;}
+  .show-method-btn{display:inline-flex; align-items:center; gap:6px; margin-top:14px; padding:8px 16px; border-radius:100px; background:rgba(139,107,255,0.12);
+    border:1px solid rgba(139,107,255,0.4); font-size:12.5px; font-weight:600; color:var(--violet); cursor:pointer;}
+  .ladder-result-tag{display:inline-block; margin-top:14px; padding:8px 18px; border-radius:10px; background:rgba(91,227,176,0.1); border:1px solid rgba(91,227,176,0.35);
+    font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--good);}
+
+  /* factor grouping chips — visualises pairing (squares) or tripling (cubes) of prime factors */
+  .factor-chip{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; margin:3px; border-radius:8px;
+    background:rgba(139,107,255,0.15); border:1.5px solid var(--violet); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13.5px; color:#fff;}
+  .factor-chip.leftover{background:rgba(255,111,142,0.12); border-color:var(--bad); color:var(--bad);}
+  .factor-group{display:inline-flex; padding:3px; margin:3px; border-radius:10px; background:rgba(91,227,176,0.08); border:1.5px dashed rgba(91,227,176,0.45);}
+
+  /* cross-multiplication visual for proportions */
+  .cross-mult-wrap{margin-top:16px; text-align:center;}
+  .cross-mult-svg{max-width:100%; height:auto;}
+
+  /* angle diagrams (intersecting lines, parallel lines + transversal) */
+  .angle-diagram-svg{max-width:100%; height:auto;}
+
+  /* small labeled right-triangle diagram accompanying a Pythagoras question */
+  .tri-q-wrap{margin:10px 0 14px; display:flex; justify-content:center;}
+  .tri-q-svg{max-width:170px; height:auto;}
+
+  /* reference table (e.g. polygon name / vertices / sides / interior angles) */
+  .props-table-wrap{margin-top:16px; overflow-x:auto;}
+  .props-table{width:100%; border-collapse:collapse; font-family:'Space Grotesk',sans-serif;}
+  .props-table th{text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); font-weight:700; padding:10px 14px; border-bottom:1.5px solid rgba(255,255,255,0.12);}
+  .props-table td{padding:11px 14px; font-size:13.5px; color:#fff; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .props-table tr:last-child td{border-bottom:none;}
+  .props-table tr:hover td{background:rgba(139,107,255,0.06);}
+
+  /* subtopic divider — clear visual separation between subtopics */
+  .subtopic{margin-top:56px; padding-top:8px;}
+  .subtopic:first-of-type{margin-top:36px;}
+  .subtopic-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px;}
+  .subtopic-head .num{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--violet); font-weight:700; background:rgba(139,107,255,0.12); padding:3px 10px; border-radius:100px;}
+  .subtopic-head h2{font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:600;}
+
+  /* formula sheet (chapter end) */
+  .formula-sheet{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px;}
+  .formula-sheet-item{background:rgba(255,255,255,0.03); border:1px solid var(--glass-brd); border-radius:12px; padding:14px 16px; text-align:center;}
+  .formula-sheet-item .f{font-family:'Space Grotesk',sans-serif; font-size:15px; color:#fff; margin-bottom:4px;}
+  .formula-sheet-item .l{font-size:11px; color:var(--faint);}
+
+  /* exam tips / mistakes recap */
+  .tip-list{list-style:none; margin-top:8px;}
+  .tip-list li{position:relative; padding-left:22px; font-size:13px; color:var(--muted); margin-bottom:10px; line-height:1.6;}
+  .tip-list li::before{content:"→"; position:absolute; left:0; top:0; color:var(--violet); font-weight:700;}
+
+  .challenge-card{background:rgba(255,185,55,0.06); border:1px solid rgba(255,185,55,0.3); border-radius:16px; padding:20px 22px; margin-top:16px;}
+  .challenge-card .tag{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.05em; color:var(--amber); margin-bottom:10px;}
+  .challenge-card p{font-size:14px; color:var(--muted); line-height:1.7;}
+
+  @media (max-width:720px){
+    .formula-sheet{grid-template-columns:1fr;}
+    .formula-main{font-size:21px;}
+  }
+</style>
+<style>
+  .shape-q-wrap{margin:10px 0 14px; display:flex; justify-content:center;}
+  .shape-q-svg{max-width:280px; height:auto;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <div class="crumb">
+    <span class="en">Form 3 Mathematics &nbsp;/&nbsp; <b>Chapter 4</b></span>
+    <span class="bm">Matematik Tingkatan 3 &nbsp;/&nbsp; <b>Bab 4</b></span>
+  </div>
+
+  <div class="hero">
+    <div class="lang-toggle">
+      <div class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</div>
+      <div class="lang-btn" id="btnBm" onclick="setLang('bm')">BM</div>
+    </div>
+    <span class="theme-tag">● <span class="en">Chapter Mission</span><span class="bm">Misi Bab</span></span>
+    <div class="xp-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l7.1-1.01z"/></svg> <span id="xpCount">0</span> <span class="en">XP earned</span><span class="bm">XP diperoleh</span></div>
+    <div class="ch-num"><span class="en">Chapter 4</span><span class="bm">Bab 4</span></div>
+    <h1><span class="en">Scale Drawings</span><span class="bm">Lukisan Berskala</span></h1>
+    <p class="sub">
+      <span class="en">A map shrinks a whole city onto one page — but every distance shrinks by the SAME amount, so the shapes stay true. That one rule is a scale, and it's all this chapter is about.</span>
+      <span class="bm">Peta mengecilkan seluruh bandar ke satu halaman — tetapi setiap jarak mengecil dengan jumlah SAMA, jadi bentuk kekal benar. Satu peraturan itu ialah skala, dan itulah keseluruhan bab ini.</span>
+    </p>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label"><span class="en">What Is a Scale</span><span class="bm">Apa itu Skala</span><span id="progressPct">15%</span><span class="en">Solving Problems</span><span class="bm">Selesai Masalah</span></div>
+  </div>
+
+  <!-- ================= WHAT IS A SCALE ================= -->
+  <div class="subtopic" id="sec-4-1a" onmouseenter="visit('s41a')">
+    <div class="subtopic-head"><span class="num">4.1</span><h2><span class="en">Scale Drawings</span><span class="bm">Lukisan Berskala</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">A <b>scale drawing</b> keeps every length proportional to the real object — angles stay exactly the same, only the SIZE changes. The <b>scale</b> is the ratio comparing the drawing's measurement to the actual measurement.</span>
+      <span class="bm"><b>Lukisan berskala</b> mengekalkan setiap panjang berkadar dengan objek sebenar — sudut kekal tepat sama, hanya SAIZ berubah. <b>Skala</b> ialah nisbah membanding ukuran lukisan dengan ukuran sebenar.</span></p>
+      <div class="shape-q-wrap" id="scaleCompareDemo"></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-eyebrow"><span class="en">Scale</span><span class="bm">Skala</span></div>
+      <div class="formula-main">Scale = Drawing measurement ÷ Actual measurement</div>
+      <div class="formula-legend">
+        <div class="item"><span class="en">Written as 1:n — one unit on the drawing represents n units in real life</span><span class="bm">Ditulis 1:n — satu unit pada lukisan mewakili n unit dalam kehidupan sebenar</span></div>
+      </div>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">Khairul draws a square to a scale of 1:⅓. If the actual side length is 6 cm, find the side length of the scale drawing.</span><span class="bm">Khairul lukis segi empat sama pada skala 1:⅓. Jika panjang sisi sebenar 6 cm, cari panjang sisi lukisan berskala.</span></div>
+      <div id="steps41a"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">A poster is drawn 24 cm long at a scale of 1:3. What is the actual length?</span><span class="bm">Poster dilukis panjang 24 cm pada skala 1:3. Apakah panjang sebenar?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">1:3 means the actual is 3 times bigger: 24×3 = 72 cm.</span>
+        <span class="bm">1:3 bermaksud sebenar 3 kali lebih besar: 24×3 = 72 cm.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Assuming n&gt;1 always means the drawing is bigger.</span><span class="bm">Menganggap n&gt;1 sentiasa bermaksud lukisan lebih besar.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">In 1:n, a bigger n means the drawing is SMALLER than the object (it's shrunk by more). n&lt;1 means the drawing is bigger.</span><span class="bm">Dalam 1:n, n lebih besar bermaksud lukisan LEBIH KECIL daripada objek (dikecilkan lebih). n&lt;1 bermaksud lukisan lebih besar.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('41a','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('41a','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('41a','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel41aeasy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A drawing side is 12 cm, the actual side is 4 cm. State the scale as 1:n.</span><span class="bm">Sisi lukisan 12 cm, sisi sebenar 4 cm. Nyatakan skala sebagai 1:n.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">1:⅓ (drawing is 3× bigger than actual)</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel41amedium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">Siew Lin draws a right triangle at scale 1:⅓. If the drawing's hypotenuse is 18 cm, find the actual hypotenuse.</span><span class="bm">Siew Lin lukis segi tiga tegak pada skala 1:⅓. Jika hipotenus lukisan 18 cm, cari hipotenus sebenar.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">1:⅓ means the drawing is 3× the actual, so actual = 18÷3 = 6 cm.</span><span class="bm">1:⅓ bermaksud lukisan 3× sebenar, jadi sebenar = 18÷3 = 6 cm.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel41ahard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A triangle drawn on a 1cm×1cm grid is redrawn on a 1.5cm×1.5cm grid. State the scale used, in the form 1:n.</span><span class="bm">Segi tiga dilukis pada grid 1cm×1cm dilukis semula pada grid 1.5cm×1.5cm. Nyatakan skala digunakan, dalam bentuk 1:n.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Scale = 1.5:1 = 1:(1÷1.5) = 1:⅔.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🗺️ <span class="en">Maps and navigation apps</span><span class="bm">Peta dan aplikasi navigasi</span></span>
+        <span>🏗️ <span class="en">Architectural floor plans</span><span class="bm">Pelan lantai senibina</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SOLVING PROBLEMS ================= -->
+  <div class="subtopic" id="sec-4-1b" onmouseenter="visit('s41b')">
+    <div class="subtopic-head"><span class="num">4.1</span><h2><span class="en">Solving Problems with Scale Drawings</span><span class="bm">Menyelesaikan Masalah Lukisan Berskala</span></h2></div>
+
+    <div class="lesson-intro">
+      <div class="tag">📖 <span class="en">The Idea</span><span class="bm">Idea Utama</span></div>
+      <p><span class="en">Real map and drawing problems usually chain TWO steps together: first convert drawing-to-actual (or actual-to-drawing) using the scale, then use that real-world distance for something else — like calculating travel time.</span>
+      <span class="bm">Masalah peta dan lukisan sebenar biasanya rangkaikan DUA langkah bersama: pertama tukar lukisan-ke-sebenar (atau sebenar-ke-lukisan) guna skala, kemudian guna jarak dunia sebenar itu untuk sesuatu lain — seperti mengira masa perjalanan.</span></p>
+    </div>
+
+    <div class="steps-card">
+      <div class="ex-label"><span class="en">Worked Example</span><span class="bm">Contoh Berpandu</span></div>
+      <div class="ex-q"><span class="en">The distance on a map between two towns is 4 cm, at a scale of 1 cm : 50 km. (a) Find the actual distance. (b) If travelling at 80 km/h, find the time taken.</span><span class="bm">Jarak pada peta antara dua bandar 4 cm, pada skala 1 cm : 50 km. (a) Cari jarak sebenar. (b) Jika memandu 80 km/j, cari masa diambil.</span></div>
+      <div id="steps41b"></div>
+    </div>
+
+    <div class="guided-card">
+      <div class="tag">🤝 <span class="en">Try It Yourself</span><span class="bm">Cuba Sendiri</span></div>
+      <p><span class="en">A map has scale 1 cm : 150 km. What length on the map represents an actual distance of 5.4 cm × 150 = 810 km? (State the drawing length.)</span><span class="bm">Peta ada skala 1 cm : 150 km. Panjang apa pada peta mewakili jarak sebenar 810 km?</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">810 ÷ 150 = 5.4 cm.</span>
+      </div>
+    </div>
+
+    <div class="mistake-note">
+      <div class="tag">⚠️ <span class="en">Watch Out</span><span class="bm">Berhati-hati</span></div>
+      <div class="mistake-line wrong"><span class="lbl">❌</span><span class="txt"><span class="en">Using the drawing distance directly in a speed/time calculation.</span><span class="bm">Guna jarak lukisan terus dalam pengiraan laju/masa.</span></span></div>
+      <div class="mistake-line right"><span class="lbl">✅</span><span class="txt"><span class="en">Always convert to the ACTUAL distance FIRST using the scale — speed and time only make sense with real-world distances.</span><span class="bm">Sentiasa tukar kepada jarak SEBENAR DAHULU guna skala — laju dan masa hanya bermakna dengan jarak dunia sebenar.</span></span></div>
+    </div>
+
+    <div class="practice-zone">
+      <div class="zone-label">✏️ <span class="en">Uji Diri</span><span class="bm">Uji Diri</span></div>
+      <div class="diff-tabs">
+        <div class="diff-tab active" data-diff="easy" onclick="showDiff('41b','easy')"><span class="en">Easy</span><span class="bm">Mudah</span></div>
+        <div class="diff-tab" data-diff="medium" onclick="showDiff('41b','medium')"><span class="en">Medium</span><span class="bm">Sederhana</span></div>
+        <div class="diff-tab" data-diff="hard" onclick="showDiff('41b','hard')"><span class="en">Hard</span><span class="bm">Sukar</span></div>
+      </div>
+      <div class="diff-panel active" id="panel41beasy">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A map scale is 1 cm : 20 km. A road measures 3 cm on the map. Find the actual length.</span><span class="bm">Skala peta 1 cm : 20 km. Jalan berukuran 3 cm pada peta. Cari panjang sebenar.</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal">60 km</div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel41bmedium">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">The map distance between Bintulu and Miri is 4 cm, at scale 1 cm : 50 km. Find the distance on a redrawn map at scale 1 : 2 000 000 (in cm; note 50 km = 5,000,000 cm).</span><span class="bm">Jarak peta Bintulu-Miri 4 cm, skala 1 cm : 50 km. Cari jarak pada peta dilukis semula pada skala 1 : 2 000 000 (dalam cm).</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Actual = 4×50 = 200 km = 20,000,000 cm. New drawing distance = 20,000,000÷2,000,000 = 10 cm.</span><span class="bm">Sebenar = 4×50 = 200 km = 20,000,000 cm. Jarak lukisan baharu = 20,000,000÷2,000,000 = 10 cm.</span></div>
+        </div>
+      </div>
+      <div class="diff-panel" id="panel41bhard">
+        <div class="practice-q-card">
+          <div class="practice-q-text"><span class="en">A floor plan is drawn at scale 1:50. If a room measures 6 cm × 4 cm on the plan, find the ACTUAL floor area of the room in m².</span><span class="bm">Pelan lantai dilukis pada skala 1:50. Jika bilik berukuran 6 cm × 4 cm pada pelan, cari LUAS lantai sebenar bilik dalam m².</span></div>
+          <div class="practice-btn-row"><div class="pbtn sol-pbtn" onclick="togglePractice(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div></div>
+          <div class="practice-reveal"><span class="en">Actual: 6×50=300cm=3m, 4×50=200cm=2m. Area=3×2=6 m².</span><span class="bm">Sebenar: 6×50=300cm=3m, 4×50=200cm=2m. Luas=3×2=6 m².</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reallife-row">
+      <span class="lbl"><span class="en">Where You'll See This</span><span class="bm">Di Mana Anda Akan Lihat Ini</span></span>
+      <div class="example-chips">
+        <span>🚗 <span class="en">Trip planning</span><span class="bm">Perancangan perjalanan</span></span>
+        <span>🏠 <span class="en">Interior design layouts</span><span class="bm">Susun atur reka bentuk dalaman</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPTER END ================= -->
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✦</span><h2><span class="en">Chapter Summary</span><span class="bm">Ringkasan Bab</span></h2></div>
+    <div class="mindmap">
+      <div class="mm-center"><span class="en">Scale Drawings</span><span class="bm">Lukisan Berskala</span></div>
+      <div class="mm-branches">
+        <div class="mm-branch"><h5><span class="en">Scale</span><span class="bm">Skala</span></h5><ul><li><span class="en">Drawing ÷ Actual, written 1:n</span><span class="bm">Lukisan ÷ Sebenar, ditulis 1:n</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">n&gt;1</span></h5><ul><li><span class="en">Drawing smaller than actual</span><span class="bm">Lukisan lebih kecil daripada sebenar</span></li></ul></div>
+        <div class="mm-branch"><h5><span class="en">n&lt;1</span></h5><ul><li><span class="en">Drawing bigger than actual</span><span class="bm">Lukisan lebih besar daripada sebenar</span></li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">📐</span><h2><span class="en">Formula Sheet</span><span class="bm">Helaian Rumus</span></h2></div>
+    <div class="formula-sheet">
+      <div class="formula-sheet-item"><div class="f"><span class="en">Scale = Drawing ÷ Actual</span></div><div class="l"></div></div>
+      <div class="formula-sheet-item"><div class="f">1:n</div><div class="l"><span class="en">1 unit drawn = n units actual</span><span class="bm">1 unit lukisan = n unit sebenar</span></div></div>
+    </div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">✓</span><h2><span class="en">Quick Revision</span><span class="bm">Ulang Kaji Pantas</span></h2></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can interpret and calculate scales in the form 1:n.</span><span class="bm">Saya boleh mentafsir dan mengira skala dalam bentuk 1:n.</span></p></div>
+    <div class="reflect-item" onclick="toggleReflect(this)"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p><span class="en">I can solve real-world problems involving scale drawings.</span><span class="bm">Saya boleh selesaikan masalah dunia sebenar melibatkan lukisan berskala.</span></p></div>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">💡</span><h2><span class="en">Exam Tips</span><span class="bm">Tip Peperiksaan</span></h2></div>
+    <ul class="tip-list">
+      <li><span class="en">Convert to actual distance FIRST before using it in any other formula (speed, area, time).</span><span class="bm">Tukar kepada jarak sebenar DAHULU sebelum guna dalam sebarang formula lain (laju, luas, masa).</span></li>
+    </ul>
+  </div>
+
+  <div class="subtopic">
+    <div class="subtopic-head"><span class="num">🏆</span><h2><span class="en">Challenge Mission</span><span class="bm">Misi Cabaran</span></h2></div>
+    <div class="challenge-card">
+      <div class="tag">🏆 KBAT</div>
+      <p><span class="en">A rectangular garden is drawn on a plan at scale 1:200. The drawing measures 8 cm by 5 cm. Find (a) the actual dimensions in metres, (b) the actual area, (c) how many 1m×1m paving tiles are needed to cover it.</span>
+      <span class="bm">Taman segi empat tepat dilukis pada pelan skala 1:200. Lukisan berukuran 8 cm dengan 5 cm. Cari (a) dimensi sebenar dalam meter, (b) luas sebenar, (c) berapa jubin turapan 1m×1m diperlukan untuk melitupinya.</span></p>
+      <div class="hint-btn" onclick="toggleGuidedHint(this)">👁️ <span class="en">Show Answer</span><span class="bm">Tunjuk Jawapan</span></div>
+      <div class="guided-hint">
+        <span class="en">(a) 8×200=1600cm=16m, 5×200=1000cm=10m. (b) 16×10=160 m². (c) 160 tiles.</span>
+        <span class="bm">(a) 8×200=1600cm=16m, 5×200=1000cm=10m. (b) 16×10=160 m². (c) 160 jubin.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <h3><span class="en">Ready for the Chapter 4 Quiz?</span><span class="bm">Bersedia untuk Kuiz Bab 4?</span></h3>
+    <div class="cta-btn"><span class="en">Continue Mission →</span><span class="bm">Teruskan Misi →</span></div>
+  </div>
+
+</div>
+
+<script>
+let LANG = 'en';
+function setLang(l){
+  LANG = l;
+  document.body.classList.toggle('bm', l==='bm');
+  document.getElementById('btnEn').classList.toggle('active', l==='en');
+  document.getElementById('btnBm').classList.toggle('active', l==='bm');
+}
+
+let xp = 0, visited = {};
+function visit(id){
+  if(visited[id]) return;
+  visited[id] = true;
+  xp += 25;
+  document.getElementById('xpCount').textContent = xp;
+  let pct = Math.min(15 + Object.keys(visited).length*35, 100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
+}
+
+/* ===== three squares at different scales, same angles ===== */
+function buildScaleCompare(containerId){
+  const svg = `<svg class="shape-q-svg" viewBox="0 0 260 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="15" y="30" width="30" height="30" fill="rgba(255,185,55,0.2)" stroke="var(--amber)" stroke-width="1.5"/>
+    <text x="30" y="75" font-size="9" fill="var(--amber)" text-anchor="middle" font-family="Space Grotesk" font-weight="700">1:2 (smaller)</text>
+    <rect x="90" y="15" width="60" height="60" fill="rgba(91,227,176,0.15)" stroke="var(--good)" stroke-width="1.5"/>
+    <text x="120" y="83" font-size="9" fill="var(--good)" text-anchor="middle" font-family="Space Grotesk" font-weight="700">1:1 (actual)</text>
+    <rect x="185" y="5" width="70" height="70" fill="rgba(139,107,255,0.12)" stroke="var(--violet)" stroke-width="1.5"/>
+    <text x="220" y="83" font-size="9" fill="var(--violet)" text-anchor="middle" font-family="Space Grotesk" font-weight="700">1:½ (bigger)</text>
+  </svg>`;
+  document.getElementById(containerId).innerHTML = svg + `<div class="visual-caption"><span class="en">Same square shape, three different sizes — every side scaled by the same factor, angles unchanged</span><span class="bm">Bentuk segi empat sama sama, tiga saiz berbeza — setiap sisi diskalakan faktor sama, sudut tidak berubah</span></div>`;
+}
+buildScaleCompare('scaleCompareDemo');
+
+function buildSteps(containerId, steps){
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  steps.forEach((s,i)=>{
+    const item = document.createElement('div');
+    item.className = 'step-item';
+    item.innerHTML = `
+      <div class="step-num">${i+1}</div>
+      <div class="step-body">
+        <div class="step-calc">${s.calc}</div>
+        <div class="step-hint-label"><span class="en">Tap to see why →</span><span class="bm">Ketik untuk lihat sebab →</span></div>
+        <div class="step-why"><span class="en">${s.whyEn}</span><span class="bm">${s.whyBm}</span></div>
+      </div>`;
+    item.onclick = ()=> item.classList.toggle('revealed');
+    el.appendChild(item);
+  });
+}
+buildSteps('steps41a', [
+  {calc:'Scale 1:⅓ means the drawing is 3× the actual size', whyEn:'A scale of 1:n where n<1 means one drawing unit represents LESS than one actual unit — so the drawing is bigger.', whyBm:'Skala 1:n dengan n<1 bermaksud satu unit lukisan mewakili KURANG daripada satu unit sebenar — jadi lukisan lebih besar.'},
+  {calc:'Drawing side = 6 × 3 = 18 cm', whyEn:'Multiply the actual length by 3 to get the drawing length.', whyBm:'Darab panjang sebenar dengan 3 untuk dapat panjang lukisan.'}
+]);
+buildSteps('steps41b', [
+  {calc:'(a) Actual = 4 × 50 = 200 km', whyEn:'Each cm on the map represents 50 km — multiply the map distance by that scale factor.', whyBm:'Setiap cm pada peta mewakili 50 km — darab jarak peta dengan faktor skala itu.'},
+  {calc:'(b) Time = 200 ÷ 80 = 2.5 hours', whyEn:'Time = distance ÷ speed, using the ACTUAL distance just calculated.', whyBm:'Masa = jarak ÷ laju, guna jarak SEBENAR baru dikira.'},
+  {calc:'= 2 hours 30 minutes', whyEn:'0.5 hours = 30 minutes.', whyBm:'0.5 jam = 30 minit.'}
+]);
+
+function toggleGuidedHint(btn){ btn.nextElementSibling.classList.toggle('show'); }
+function togglePractice(btn){
+  const card = btn.closest('.practice-q-card');
+  card.querySelector('.practice-reveal').classList.toggle('show');
+}
+function showDiff(subtopic, diff){
+  const targetPanel = document.getElementById(`panel${subtopic}${diff}`);
+  const zone = targetPanel.closest('.practice-zone');
+  zone.querySelectorAll('.diff-panel').forEach(p=>p.classList.remove('active'));
+  targetPanel.classList.add('active');
+  zone.querySelectorAll('.diff-tab').forEach(t=>t.classList.toggle('active', t.dataset.diff===diff));
+}
+function toggleReflect(el){ el.classList.toggle('done'); el.querySelector('.check').classList.toggle('done'); }
+</script>
+</body>
+</html>

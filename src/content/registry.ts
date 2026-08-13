@@ -600,6 +600,9 @@ import { mathF2C13MindMapDLP } from "@/content/form2/math/chapter-13/mindmap-dlp
 import { mathF3C1InteractiveContent } from "@/content/form3/math/chapter-1/interactive-content";
 import { mathF3C2InteractiveContent } from "@/content/form3/math/chapter-2/interactive-content";
 import { mathF3C3InteractiveContent } from "@/content/form3/math/chapter-3/interactive-content";
+import { mathF3C4InteractiveContent } from "@/content/form3/math/chapter-4/interactive-content";
+import { mathF3C5InteractiveContent } from "@/content/form3/math/chapter-5/interactive-content";
+import { mathF3C6InteractiveContent } from "@/content/form3/math/chapter-6/interactive-content";
 import { mathF3C1NotesBM } from "@/content/form3/math/chapter-1/notes-bm";
 import { mathF3C1NotesDLP } from "@/content/form3/math/chapter-1/notes-dlp";
 import { mathF3C1MindMapBM } from "@/content/form3/math/chapter-1/mindmap-bm";
@@ -2157,6 +2160,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C4MindMapBM, title: "Lukisan Berskala" },
     notes: mathF3C4NotesBM,
+    mathF3Chapter4Data: mathF3C4InteractiveContent,
     flashcards: mathF3C4FlashcardsBM,
     quiz: mathF3C4QuizzesBM,
   },
@@ -2169,6 +2173,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C4MindMapDLP, title: "Scale Drawings" },
     notes: mathF3C4NotesDLP,
+    mathF3Chapter4Data: mathF3C4InteractiveContent,
     flashcards: mathF3C4FlashcardsDLP,
     quiz: mathF3C4QuizzesDLP,
   },
@@ -2181,6 +2186,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C5MindMapBM, title: "Nisbah Trigonometri" },
     notes: mathF3C5NotesBM,
+    mathF3Chapter5Data: mathF3C5InteractiveContent,
     flashcards: mathF3C5FlashcardsBM,
     quiz: mathF3C5QuizzesBM,
   },
@@ -2193,6 +2199,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C5MindMapDLP, title: "Trigonometric Ratios" },
     notes: mathF3C5NotesDLP,
+    mathF3Chapter5Data: mathF3C5InteractiveContent,
     flashcards: mathF3C5FlashcardsDLP,
     quiz: mathF3C5QuizzesDLP,
   },
@@ -2205,6 +2212,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C6MindMapBM, title: "Sudut dan Tangen bagi Bulatan" },
     notes: mathF3C6NotesBM,
+    mathF3Chapter6Data: mathF3C6InteractiveContent,
     flashcards: mathF3C6FlashcardsBM,
     quiz: mathF3C6QuizzesBM,
   },
@@ -2217,6 +2225,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C6MindMapDLP, title: "Angles and Tangents of Circles" },
     notes: mathF3C6NotesDLP,
+    mathF3Chapter6Data: mathF3C6InteractiveContent,
     flashcards: mathF3C6FlashcardsDLP,
     quiz: mathF3C6QuizzesDLP,
   },
