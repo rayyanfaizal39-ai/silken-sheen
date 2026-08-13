@@ -2,6 +2,7 @@ import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan2MaksudFrasaUngkapanMindMap } from "@/content/bm/maksud-frasa-ungkapan-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-lanjutan-form2-mindmap";
+import { bahasaMelayuTingkatan2KbatMindMap } from "@/content/bm/menjawab-soalan-kbat-lanjutan-form2-mindmap";
 import { bahasaMelayuTingkatan2StrategiPemahamanLanjutanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-lanjutan-form2-mindmap";
 
 export const bahasaMelayuTingkatan2PemahamanRegistry = [
@@ -59,6 +60,20 @@ export const bahasaMelayuTingkatan2PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2MaksudFrasaUngkapanMindMap,
       title: "Maksud Frasa dan Ungkapan (Lanjutan)",
+    },
+  },
+  {
+    id: "bm-f2-menjawab-soalan-kbat-lanjutan-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Menjawab Soalan KBAT (Lanjutan)",
+    title: "Menjawab Soalan KBAT (Lanjutan)",
+    description:
+      "Mengembangkan jawapan KBAT secara logik dengan menghubungkan petikan, pengetahuan, alasan, kesan dan cadangan yang relevan.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan2KbatMindMap,
+      title: "Menjawab Soalan KBAT (Lanjutan)",
     },
   },
 ] as const satisfies readonly ChapterContent[];
