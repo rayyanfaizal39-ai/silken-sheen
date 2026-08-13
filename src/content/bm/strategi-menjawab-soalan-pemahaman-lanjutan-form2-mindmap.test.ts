@@ -43,10 +43,11 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 2 Strategi Pemahaman Lanjutan mind map", () => {
-  it("is the only registered Form 2 Pemahaman topic", () => {
-    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(1);
+  it("remains the first of exactly two registered Form 2 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(2);
     expect(bahasaMelayuTingkatan2PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman (Lanjutan)",
+      "Mengenal Pasti Isi Tersurat (Lanjutan)",
     ]);
 
     const chapter = getChapter(
@@ -82,7 +83,7 @@ describe("Bahasa Melayu Form 2 Strategi Pemahaman Lanjutan mind map", () => {
     expect(chapter).not.toHaveProperty("quiz");
   });
 
-  it("has disabled previous and next category navigation", () => {
+  it("has no previous topic and links next to Isi Tersurat Lanjutan", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (topic) => topic.categoryLabel === "Pemahaman",
     );
@@ -91,7 +92,7 @@ describe("Bahasa Melayu Form 2 Strategi Pemahaman Lanjutan mind map", () => {
     );
     expect(activeIndex).toBe(0);
     expect(topics[activeIndex - 1]).toBeUndefined();
-    expect(topics[activeIndex + 1]).toBeUndefined();
+    expect(topics[activeIndex + 1]?.key).toBe("Mengenal Pasti Isi Tersurat (Lanjutan)");
   });
 
   it("uses the exact root and title-only first-level branches", () => {
