@@ -2,7 +2,7 @@ import type { MindNode } from "@/components/MindMap";
 
 export const mathF2C4MindMapDLP: MindNode = {
   id: "math-c4-dlp-root",
-  label: "Polygons",
+  label: "Polygon",
   children: [
     {
       id: "math-c4-dlp-1",

@@ -11,6 +11,7 @@
     "preview": "wrangler pages dev dist/client --ip 127.0.0.1 --port 4173",
     "test": "vitest run",
     "audit:quizzes": "vite-node scripts/audit-quizzes.ts",
+    "validate:math-f2-batch-a": "vite-node scripts/validate-math-f2-batch-a.ts",
     "schools:import": "node scripts/import-schools.mjs",
     "lint": "eslint .",
     "format": "prettier --write .",
