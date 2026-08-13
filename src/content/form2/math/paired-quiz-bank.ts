@@ -9,6 +9,73 @@ export interface PairedQuizSeed {
   readonly explanation: readonly [bm: string, dlp: string];
 }
 
+export function pairedSeed(
+  bmQuestion: string,
+  dlpQuestion: string,
+  correct: LocalisedText,
+  distractors: readonly [LocalisedText, LocalisedText, LocalisedText],
+  bmExplanation: string,
+  dlpExplanation: string,
+): PairedQuizSeed {
+  const valueFor = (value: LocalisedText, language: "bm" | "dlp") =>
+    typeof value === "string" ? value : value[language === "bm" ? 0 : 1];
+  const fallbackOptions: readonly (readonly [string, string])[] = [
+    ["Tidak dapat ditentukan", "Cannot be determined"],
+    ["Tiada antara pilihan", "None of the options"],
+    ["Semua pilihan di atas", "All of the above"],
+    ["Maklumat tidak mencukupi", "Insufficient information"],
+  ];
+  const usedBm = new Set([valueFor(correct, "bm")]);
+  const usedDlp = new Set([valueFor(correct, "dlp")]);
+  const cleanDistractors = Array.from({ length: 3 }, (_, index) => {
+    let candidate = distractors[index];
+    if (
+      !candidate ||
+      usedBm.has(valueFor(candidate, "bm")) ||
+      usedDlp.has(valueFor(candidate, "dlp"))
+    ) {
+      candidate = fallbackOptions.find(
+        (fallback) => !usedBm.has(fallback[0]) && !usedDlp.has(fallback[1]),
+      )!;
+    }
+    usedBm.add(valueFor(candidate, "bm"));
+    usedDlp.add(valueFor(candidate, "dlp"));
+    return candidate;
+  }) as [LocalisedText, LocalisedText, LocalisedText];
+  return {
+    question: [bmQuestion, dlpQuestion],
+    correct,
+    distractors: cleanDistractors,
+    explanation: [bmExplanation, dlpExplanation],
+  };
+}
+
+const formatNumber = (value: number): string => `${Number(value.toFixed(2))}`;
+
+export function numericPairedSeed(
+  bmQuestion: string,
+  dlpQuestion: string,
+  answer: number,
+  unit: string,
+  bmExplanation: string,
+  dlpExplanation: string,
+): PairedQuizSeed {
+  const correct = formatNumber(answer);
+  const wrong = [answer + 2, answer - 2, answer * 2, answer / 2, answer + 5, Math.abs(answer) + 3]
+    .map(formatNumber)
+    .filter((value, index, values) => value !== correct && values.indexOf(value) === index)
+    .slice(0, 3)
+    .map((value) => `${value}${unit}`) as [string, string, string];
+  return pairedSeed(
+    bmQuestion,
+    dlpQuestion,
+    `${correct}${unit}`,
+    wrong,
+    bmExplanation,
+    dlpExplanation,
+  );
+}
+
 const answerPositions = [
   0, 1, 2, 3, 1, 2, 3, 0, 2, 3, 0, 1, 3, 0, 1, 2, 0, 2, 1, 3, 2, 1, 3, 0, 1, 3, 0, 2, 3, 1,
 ] as const;
@@ -24,7 +91,7 @@ function difficultyFor(index: number): Difficulty {
 }
 
 export function buildPairedQuizBank(
-  chapter: 3 | 4 | 5,
+  chapter: 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13,
   language: "bm" | "dlp",
   seeds: readonly PairedQuizSeed[],
 ): QuizQuestion[] {
