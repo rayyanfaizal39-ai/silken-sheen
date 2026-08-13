@@ -21,6 +21,7 @@ const expectedTopics = [
   "Maksud Frasa dan Ungkapan (Lanjutan)",
   "Menjawab Soalan KBAT (Lanjutan)",
   "Membuat Rumusan Ringkas (Lanjutan)",
+  "Teknik Menggunakan Bukti daripada Petikan (Lanjutan)",
 ];
 
 const expectedBranches = [
@@ -56,8 +57,8 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 2 Membuat Rumusan Ringkas Lanjutan mind map", () => {
-  it("is the sixth and final topic in the exact Form 2 Pemahaman registry", () => {
-    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(6);
+  it("remains the sixth topic in the exact Form 2 Pemahaman registry", () => {
+    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(7);
     expect(bahasaMelayuTingkatan2PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual(
       expectedTopics,
     );
@@ -85,7 +86,7 @@ describe("Bahasa Melayu Form 2 Membuat Rumusan Ringkas Lanjutan mind map", () =>
     expect(chapter).not.toHaveProperty("quiz");
   });
 
-  it("links back to KBAT Lanjutan and has no future topic", () => {
+  it("links back to KBAT Lanjutan and forward to Bukti Petikan Lanjutan", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (topic) => topic.categoryLabel === "Pemahaman",
     );
@@ -93,7 +94,9 @@ describe("Bahasa Melayu Form 2 Membuat Rumusan Ringkas Lanjutan mind map", () =>
       (topic) => topic.key === "Membuat Rumusan Ringkas (Lanjutan)",
     );
     expect(topics[activeIndex - 1]?.key).toBe("Menjawab Soalan KBAT (Lanjutan)");
-    expect(topics[activeIndex + 1]).toBeUndefined();
+    expect(topics[activeIndex + 1]?.key).toBe(
+      "Teknik Menggunakan Bukti daripada Petikan (Lanjutan)",
+    );
   });
 
   it("uses the exact identity and title-only first-level hierarchy", () => {

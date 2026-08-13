@@ -21,6 +21,7 @@ const expectedTopics = [
   "Maksud Frasa dan Ungkapan (Lanjutan)",
   "Menjawab Soalan KBAT (Lanjutan)",
   "Membuat Rumusan Ringkas (Lanjutan)",
+  "Teknik Menggunakan Bukti daripada Petikan (Lanjutan)",
 ];
 
 const expectedBranches = [
@@ -56,7 +57,7 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 2 Maksud Frasa dan Ungkapan Lanjutan mind map", () => {
   it("remains the fourth topic in the exact Form 2 Pemahaman registry", () => {
-    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(6);
+    expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(7);
     expect(bahasaMelayuTingkatan2PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual(
       expectedTopics,
     );
