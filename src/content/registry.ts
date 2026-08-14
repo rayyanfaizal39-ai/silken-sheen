@@ -309,6 +309,7 @@ import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/kar
 import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/mengedit-menyemak-karangan-form1-mindmap";
 import { bahasaMelayuTingkatan1PemahamanRegistry } from "@/content/bm/tingkatan1-pemahaman-registry";
 import { bahasaMelayuTingkatan2PemahamanRegistry } from "@/content/bm/tingkatan2-pemahaman-registry";
+import { bahasaMelayuTingkatan3PemahamanRegistry } from "@/content/bm/tingkatan3-pemahaman-registry";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -2676,6 +2677,7 @@ export const chapters: ChapterContent[] = [
       title: "Cakap Ajuk dan Cakap Pindah",
     },
   },
+  ...bahasaMelayuTingkatan3PemahamanRegistry,
   {
     id: "bm-f3-strategi-menjawab-uasa-mindmap",
     subjectId: "bm",
