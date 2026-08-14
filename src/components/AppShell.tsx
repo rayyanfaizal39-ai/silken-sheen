@@ -36,7 +36,7 @@ import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
 import { CompanionTip } from "@/components/CompanionTip";
 import { NextMissionCard } from "@/components/NextMissionCard";
-import { RankUpModal } from "@/components/progression/RankUpModal";
+import { ProgressionCelebrationHost } from "@/components/progression/RankUpCelebration";
 import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
 import { SiteFooter } from "@/components/SiteFooter";
 import { AcademyLogo } from "@/components/AcademyLogo";
@@ -303,12 +303,17 @@ export function AppShell({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const { user, loading, explorerProfileLoading, onboardingRequired } = useAuth();
   const onboardingExempt = isOnboardingExemptRoute(pathname);
+  const isRankUpDevelopmentPreview =
+    import.meta.env.DEV &&
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).has("testRankUp");
   const redirectToOnboarding =
     !loading &&
     !explorerProfileLoading &&
     Boolean(user) &&
     shouldRedirectToOnboarding(pathname, onboardingRequired);
-  const redirectToLogin = shouldRedirectToLogin(pathname, loading, Boolean(user));
+  const redirectToLogin =
+    !isRankUpDevelopmentPreview && shouldRedirectToLogin(pathname, loading, Boolean(user));
 
   useEffect(() => {
     if (redirectToOnboarding) {
@@ -370,7 +375,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 }
 
 function AppShellLayout({ children, pathname }: { children: ReactNode; pathname: string }) {
-  const { progress, lastRankUp } = useProgress();
+  const { progress } = useProgress();
   const { user, explorerProfile } = useAuth();
   const [moreOpen, setMoreOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -545,7 +550,8 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
 
       <AICompanionButton />
       <CompanionTip />
-      {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
+      <ProgressionCelebrationHost />
+      <CompanionEvolutionModal />
 
       {moreOpen && (
         <div

@@ -1,10 +1,12 @@
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
 import { buildInvoiceEmail, type InvoiceEmailData } from "../_shared/email-templates.ts";
 import { resolveInvoiceLegalDetails } from "../_shared/invoice-brand.ts";
+import { generateInvoicePdf, type InvoicePdfData } from "../_shared/invoice-pdf.ts";
 import { sendWithResend } from "../_shared/resend.ts";
 
-type InvoiceRow = InvoiceEmailData & {
+type InvoiceRow = InvoiceEmailData & InvoicePdfData & {
   id: string;
+  user_id: string;
   pdf_storage_path: string | null;
   customer_email: string;
   emailed_at: string | null;
@@ -111,10 +113,32 @@ Deno.serve(async (request) => {
   }
   const invoice = result.data as InvoiceRow;
   if (invoice.emailed_at && !resend) return response({ sent: false, reason: "already_sent" });
-  if (!invoice.pdf_storage_path) return response({ error: "Invoice PDF is not ready" }, 409);
 
   try {
-    const download = await admin.storage.from("invoices").download(invoice.pdf_storage_path);
+    let storagePath = invoice.pdf_storage_path;
+    if (!storagePath) {
+      const pdf = await generateInvoicePdf(
+        {
+          ...invoice,
+          subtotal: Number(invoice.subtotal),
+          tax: Number(invoice.tax),
+          total: Number(invoice.total),
+        },
+        resolveInvoiceLegalDetails((name) => Deno.env.get(name)),
+      );
+      storagePath = `${invoice.user_id}/${invoice.invoice_number}.pdf`;
+      const upload = await admin.storage.from("invoices").upload(storagePath, pdf, {
+        contentType: "application/pdf",
+        upsert: true,
+      });
+      if (upload.error) throw upload.error;
+      const pdfUpdate = await admin
+        .from("invoices")
+        .update({ pdf_storage_path: storagePath })
+        .eq("id", invoice.id);
+      if (pdfUpdate.error) throw pdfUpdate.error;
+    }
+    const download = await admin.storage.from("invoices").download(storagePath);
     if (download.error) throw download.error;
     const attachment = new Uint8Array(await download.data.arrayBuffer());
     let binary = "";

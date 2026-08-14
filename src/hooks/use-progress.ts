@@ -24,6 +24,10 @@ import {
   DEFAULT_PROFILE_AVATAR_ID,
   type ProfileAvatarId,
 } from "@/data/profile-avatars";
+import {
+  createXpProgressionEvent,
+  publishProgressionEvent,
+} from "@/lib/progression-events";
 
 export {
   RANKS,
@@ -897,6 +901,8 @@ export function useProgress() {
   const detectProgressionEvents = useCallback(
     (prev: Progress, next: Progress) => {
       if (next.xp === prev.xp) return;
+
+      publishProgressionEvent(createXpProgressionEvent(prev.xp, next.xp));
 
       const rankUp = getRankUpTransition(prev.xp, next.xp);
       if (rankUp) {

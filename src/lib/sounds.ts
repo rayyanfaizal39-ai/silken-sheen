@@ -1,10 +1,60 @@
-// Lightweight Web Audio sound effects — no assets needed.
+// Lightweight Web Audio tones plus authored clips for key celebrations.
 // Subtle UI feedback: hover, click, and level-up.
+
+const RANK_UP_SWOOSH_SRC = "/sounds/rank-up-digital-swoosh.wav";
 
 let ctx: AudioContext | null = null;
 let muted = false;
 let lastHover = 0;
 let lastClick = 0;
+let rankUpSwooshTemplate: HTMLAudioElement | null = null;
+const activeAudio = new Set<HTMLAudioElement>();
+
+function getRankUpSwooshTemplate() {
+  if (typeof Audio === "undefined") return null;
+  if (!rankUpSwooshTemplate) {
+    rankUpSwooshTemplate = new Audio(RANK_UP_SWOOSH_SRC);
+    rankUpSwooshTemplate.preload = "auto";
+  }
+  return rankUpSwooshTemplate;
+}
+
+function stopAllAuthoredAudio() {
+  activeAudio.forEach((audio) => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+  activeAudio.clear();
+}
+
+function playAuthoredAudio(
+  template: HTMLAudioElement | null,
+  { volume, durationMs }: { volume: number; durationMs: number },
+) {
+  if (!template || muted) return () => {};
+
+  const audio = template.cloneNode(true) as HTMLAudioElement;
+  audio.volume = volume;
+  audio.hidden = true;
+  audio.dataset.sfx = "rank-up-swoosh";
+  document.body.append(audio);
+  activeAudio.add(audio);
+  notifyImportantSoundEffect(durationMs);
+
+  const release = () => {
+    activeAudio.delete(audio);
+    audio.remove();
+  };
+  audio.addEventListener("ended", release, { once: true });
+  void audio.play().catch(release);
+
+  return () => {
+    audio.removeEventListener("ended", release);
+    audio.pause();
+    audio.currentTime = 0;
+    release();
+  };
+}
 
 function notifyImportantSoundEffect(durationMs = 500) {
   if (typeof window === "undefined" || muted) return;
@@ -79,7 +129,14 @@ export const sfx = {
   levelUp() {
     notifyImportantSoundEffect(650);
     const notes = [523.25, 659.25, 783.99, 1046.5]; // C E G C
-    notes.forEach((f, i) => setTimeout(() => tone(f, 0.18, "triangle", 0.06), i * 90));
+    const timers = notes.map((f, i) => setTimeout(() => tone(f, 0.18, "triangle", 0.06), i * 90));
+    return () => timers.forEach((timer) => clearTimeout(timer));
+  },
+  rankUpSwoosh() {
+    return playAuthoredAudio(getRankUpSwooshTemplate(), {
+      volume: 0.42,
+      durationMs: 3000,
+    });
   },
   combo(n: number) {
     notifyImportantSoundEffect(450);
@@ -119,6 +176,7 @@ export const sfx = {
   },
   setMuted(v: boolean) {
     muted = v;
+    if (muted) stopAllAuthoredAudio();
   },
   isMuted() {
     return muted;
@@ -132,10 +190,13 @@ export function initSfxPreference() {
   } catch {
     // Preference storage is optional.
   }
+  if (!muted) getRankUpSwooshTemplate();
 }
 
 export function toggleSfxMuted() {
   muted = !muted;
+  if (muted) stopAllAuthoredAudio();
+  else getRankUpSwooshTemplate();
   try {
     localStorage.setItem("learnnova-sfx-muted", muted ? "1" : "0");
   } catch {

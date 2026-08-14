@@ -57,6 +57,10 @@ import {
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
+import {
+  completeJourneyUnlock,
+  subscribeToJourneyUnlocks,
+} from "@/lib/progression-events";
 
 export const Route = createFileRoute("/dashboard")({
   // Personal, per-user stats page — not useful search-result content, and
@@ -208,6 +212,19 @@ function DashboardPage() {
   const greeting = useLocalGreeting(firstName);
   const companionId = progress.companion?.id ?? "nova";
   const nextGoalLabel = getNextGoalLabel(todaysMissions);
+  const [celebratingRankId, setCelebratingRankId] = useState<string | null>(null);
+  const [journeyDisplayXp, setJourneyDisplayXp] = useState<number | null>(null);
+
+  useEffect(() => {
+    let clearTimer: ReturnType<typeof setTimeout> | null = null;
+    return subscribeToJourneyUnlocks((event) => {
+      if (clearTimer) clearTimeout(clearTimer);
+      setCelebratingRankId(event.rankId);
+      setJourneyDisplayXp(event.currentXp);
+      completeJourneyUnlock(event.eventId);
+      clearTimer = setTimeout(() => setCelebratingRankId(null), 1000);
+    });
+  }, []);
 
   return (
     <AcademyPageShell className="max-w-none">
@@ -263,7 +280,12 @@ function DashboardPage() {
 
       {/* ── ROW 2 — Cosmic Journey (65%) / Today's Progress (35%) — equal heights ── */}
       <div className="mb-6 grid gap-6 lg:grid-cols-[65%_1fr] lg:items-stretch">
-        <CosmicJourneyPath ranks={SPACE_RANKS} currentId={rank.id} xp={progress.xp} />
+        <CosmicJourneyPath
+          ranks={SPACE_RANKS}
+          currentId={getRank(Math.max(progress.xp, journeyDisplayXp ?? 0)).id}
+          xp={Math.max(progress.xp, journeyDisplayXp ?? 0)}
+          celebratingRankId={celebratingRankId}
+        />
         <TodayProgressGrid
           compact
           notesStudied={missionsActive && progress.missions ? progress.missions.readChapters : 0}
@@ -1274,7 +1296,17 @@ function CosmicPlanet({
  *  (Cadet → Voyager → Captain / Guardian → Master → Legend). Current rank renders 25%
  *  larger than the shared base size, with a glow; completed ranks stay full color,
  *  locked ranks render as solid mystery silhouettes. */
-function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; currentId: string; xp: number }) {
+function CosmicJourneyPath({
+  ranks,
+  currentId,
+  xp,
+  celebratingRankId,
+}: {
+  ranks: SpaceRank[];
+  currentId: string;
+  xp: number;
+  celebratingRankId?: string | null;
+}) {
   const BASE_SIZE = 64;
   const CURRENT_SIZE = 72;
   const rows = [ranks.slice(0, 3), ranks.slice(3, 6)];
@@ -1316,6 +1348,20 @@ function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; curre
       </div>
 
       <div className="relative z-10 mt-1 flex flex-1 flex-col items-center justify-center gap-2">
+        <svg
+          className="cosmic-journey-row-connector"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M 82 32 C 98 38, 98 58, 17 67" />
+          {xp >= (ranks[3]?.minXp ?? Infinity) && (
+            <path
+              d="M 82 32 C 98 38, 98 58, 17 67"
+              className={celebratingRankId === ranks[3]?.id ? "is-celebrating" : "is-unlocked"}
+            />
+          )}
+        </svg>
         {rows.map((row, rowIndex) => (
           <div key={rowIndex} className="flex items-center justify-center gap-1">
             {row.map((rank, index) => {
@@ -1328,7 +1374,11 @@ function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; curre
               const lineUnlocked = Boolean(nextUnlocked && nextTheme);
               return (
                 <div key={rank.id} className="flex shrink-0 items-center">
-                  <div className="flex w-[72px] shrink-0 flex-col items-center gap-1 sm:w-[96px]">
+                  <div
+                    className={`flex w-[72px] shrink-0 flex-col items-center gap-1 sm:w-[96px] ${
+                      celebratingRankId === rank.id ? "cosmic-rank-newly-unlocked" : ""
+                    }`}
+                  >
                     <div className="flex h-[70px] w-[70px] shrink-0 items-center justify-center sm:h-[82px] sm:w-[82px]">
                       <CosmicPlanet
                         rank={rank}
@@ -1351,7 +1401,9 @@ function CosmicJourneyPath({ ranks, currentId, xp }: { ranks: SpaceRank[]; curre
                   </div>
                   {next && (
                     <span
-                      className="cosmic-journey-line mx-1 w-4 shrink-0 sm:w-10"
+                      className={`cosmic-journey-line mx-1 w-4 shrink-0 sm:w-10 ${
+                        celebratingRankId === next.id ? "is-celebrating" : ""
+                      }`}
                       style={{
                         ["--from-color" as string]: lineUnlocked ? theme.glow : "rgba(139,92,246,0.14)",
                         ["--to-color" as string]: lineUnlocked && nextTheme ? nextTheme.glow : "rgba(139,92,246,0.08)",
