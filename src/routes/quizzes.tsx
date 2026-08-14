@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
-import { useProgress } from "@/hooks/use-progress";
+import { QUIZ_PASS_BONUS_XP, QUIZ_PASS_PCT, useProgress } from "@/hooks/use-progress";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
@@ -99,6 +99,12 @@ import {
   orderQuestionsByDifficulty,
   shuffleQuestionOptions,
 } from "@/features/quiz/difficulty/quizDifficulty";
+import {
+  calculateQuizQuestionXp,
+  QUIZ_TIMER_BONUS_XP,
+  timerPrefToMode,
+  type QuizXpBreakdown,
+} from "@/features/quiz/bonus/quizBonusXp";
 import {
   mathF2C1ChallengeQuizzesDLP,
   mathF2C1FoundationQuizzesDLP,
@@ -271,6 +277,12 @@ const CORRECT_MSGS = ["Hebat! 🔥", "Betul! ⚡", "Awesome! 🌟", "Bagus! 💫
 const WRONG_MSGS = ["Cuba lagi! 💪", "Jangan give up! 🎯", "Hampir! 🤔", "Keep going! 🌱"];
 type TimerMode = "timer" | "none";
 type TimerPref = { mode: TimerMode; seconds: number } | null;
+type QuizFeedback = {
+  kind: "correct" | "wrong";
+  msg: string;
+  xp?: QuizXpBreakdown;
+  streakReset?: boolean;
+};
 type MathObjectiveId = "objective-1" | "objective-2" | "objective-3";
 type MathObjectivePhase = "select" | "intro" | "quiz" | "results";
 type MathQuizLang = "bm" | "dlp";
@@ -15953,7 +15965,7 @@ function QuizzesPage() {
   const [done, setDone] = useState(false);
   // Background music is now handled globally by BgMusicController.
   const [animatedScore, setAnimatedScore] = useState(0);
-  const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
+  const [feedback, setFeedback] = useState<QuizFeedback | null>(null);
   const [timerPref, setTimerPref] = useState<TimerPref>(null);
   const [shuffledPool, setShuffledPool] = useState<ShuffledQuestion[] | null>(null);
   const [mathObjectiveId, setMathObjectiveId] = useState<MathObjectiveId | null>(null);
@@ -15972,6 +15984,10 @@ function QuizzesPage() {
   >(null);
   const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
   const [timeLeft, setTimeLeft] = useState(0);
+  const [baseXpEarned, setBaseXpEarned] = useState(0);
+  const [speedBonusXpEarned, setSpeedBonusXpEarned] = useState(0);
+  const [streakBonusXpEarned, setStreakBonusXpEarned] = useState(0);
+  const [attemptStartXp, setAttemptStartXp] = useState(progress.xp);
   const quizStreak = useQuizStreak(
     `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none"}`,
   );
@@ -16113,6 +16129,8 @@ function QuizzesPage() {
       chapter === "Chapter 13") &&
     scienceLang === "bm";
   const activeMathQuizLang =
+    // Route contract: isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective
+    // must continue selecting separate language-specific question banks.
     mathQuizLang ??
     (isForm2Chapter1DlpObjective ||
     isForm2Chapter2DlpObjective ||
@@ -16235,7 +16253,11 @@ function QuizzesPage() {
             questionId: `regular:${subject}:${chapter}:${idx}`,
             correct: false,
           });
-          setFeedback({ kind: "wrong", msg: "Masa tamat! ⏰" });
+          setFeedback({
+            kind: "wrong",
+            msg: "Masa tamat! ⏰",
+            streakReset: quizStreak.streak > 0,
+          });
           return 0;
         }
         return t - 1;
@@ -16252,6 +16274,7 @@ function QuizzesPage() {
     subject,
     chapter,
     confirmStreakAnswer,
+    quizStreak.streak,
   ]);
 
   // Build shuffled questions when quiz starts
@@ -16312,6 +16335,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(questionSeconds);
@@ -16323,19 +16349,28 @@ function QuizzesPage() {
     setSelected(i);
     const correct = i === current.answerIndex;
     if (correct) {
-      const gain = current.difficulty === "Hard" ? 30 : current.difficulty === "Medium" ? 20 : 10;
+      const reward = calculateQuizQuestionXp({
+        correct: true,
+        timerMode: timerPrefToMode(timerPref),
+        difficulty: current.difficulty,
+      });
+      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
       addXp(gain, current.subjectId);
       setXpEarned((x) => x + gain);
+      setBaseXpEarned((x) => x + reward.baseXp);
+      setSpeedBonusXpEarned((x) => x + reward.timerBonusXp);
+      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `regular:${subject}:${chapter}:${idx}`,
         correct: true,
-        xpAwarded: gain,
+        xpAwarded: reward.streakBonusXp,
       });
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -16345,6 +16380,7 @@ function QuizzesPage() {
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+        streakReset: quizStreak.streak > 0,
       });
     }
   }
@@ -16354,17 +16390,20 @@ function QuizzesPage() {
     if (idx + 1 >= total) {
       setDone(true);
       recordQuiz();
-      const lastWasCorrect = selected === current?.answerIndex;
-      const finalCorrect = score + (lastWasCorrect ? 1 : 0);
-      const lastGain =
-        current?.difficulty === "Hard" ? 30 : current?.difficulty === "Medium" ? 20 : 10;
-      const finalXp = xpEarned + (lastWasCorrect ? lastGain : 0);
+      const finalCorrect = score;
+      const passed = total > 0 && Math.round((finalCorrect / total) * 100) >= QUIZ_PASS_PCT;
       recordQuizResult({
         subjectId: subject ?? current?.subjectId ?? "unknown",
         chapterKey: chapter ?? "all",
         correct: finalCorrect,
         total,
-        xpEarned: finalXp,
+        xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
+        timerMode: timerPrefToMode(timerPref),
+        baseXp: baseXpEarned,
+        speedBonusXp: speedBonusXpEarned,
+        streakBonusXp: streakBonusXpEarned,
+        passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
+        bestCorrectStreak: quizStreak.bestStreak,
       });
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       if (
@@ -16386,6 +16425,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16410,6 +16452,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16427,6 +16472,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16443,25 +16491,28 @@ function QuizzesPage() {
     const correct = i === currentMathQuestion.answerIndex;
 
     if (correct) {
-      const gain =
-        currentMathQuestion.difficulty === "Hard"
-          ? 30
-          : currentMathQuestion.difficulty === "Medium"
-            ? 20
-            : 10;
+      const reward = calculateQuizQuestionXp({
+        correct: true,
+        timerMode: "none",
+        difficulty: currentMathQuestion.difficulty,
+      });
+      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
       addXp(gain, currentMathQuestion.subjectId);
       setXpEarned((x) => x + gain);
+      setBaseXpEarned((x) => x + reward.baseXp);
+      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `math:${chapter}:${mathObjectiveId}:${idx}`,
         correct: true,
-        xpAwarded: gain,
+        xpAwarded: reward.streakBonusXp,
       });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -16471,6 +16522,7 @@ function QuizzesPage() {
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+        streakReset: quizStreak.streak > 0,
       });
     }
   }
@@ -16483,19 +16535,19 @@ function QuizzesPage() {
       setMathObjectivePhase("results");
       recordQuiz();
       {
-        const lastWasCorrect = selected === currentMathQuestion?.answerIndex;
-        const lastGain =
-          currentMathQuestion?.difficulty === "Hard"
-            ? 30
-            : currentMathQuestion?.difficulty === "Medium"
-              ? 20
-              : 10;
+        const passed = total > 0 && Math.round((score / total) * 100) >= QUIZ_PASS_PCT;
         recordQuizResult({
           subjectId: subject ?? "math",
           chapterKey: chapter ?? "all",
-          correct: score + (lastWasCorrect ? 1 : 0),
+          correct: score,
           total,
-          xpEarned: xpEarned + (lastWasCorrect ? lastGain : 0),
+          xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
+          timerMode: "none",
+          baseXp: baseXpEarned,
+          speedBonusXp: 0,
+          streakBonusXp: streakBonusXpEarned,
+          passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
+          bestCorrectStreak: quizStreak.bestStreak,
         });
       }
       if (subject && chapter) markChapter(subject, chapter, "quiz");
@@ -16513,6 +16565,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16528,6 +16583,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16543,6 +16601,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16559,25 +16620,28 @@ function QuizzesPage() {
     const correct = i === currentEnglishQuestion.answerIndex;
 
     if (correct) {
-      const gain =
-        currentEnglishQuestion.difficulty === "Hard"
-          ? 30
-          : currentEnglishQuestion.difficulty === "Medium"
-            ? 20
-            : 10;
+      const reward = calculateQuizQuestionXp({
+        correct: true,
+        timerMode: "none",
+        difficulty: currentEnglishQuestion.difficulty,
+      });
+      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
       addXp(gain, currentEnglishQuestion.subjectId);
       setXpEarned((x) => x + gain);
+      setBaseXpEarned((x) => x + reward.baseXp);
+      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `english:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3}:${idx}`,
         correct: true,
-        xpAwarded: gain,
+        xpAwarded: reward.streakBonusXp,
       });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -16587,6 +16651,7 @@ function QuizzesPage() {
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+        streakReset: quizStreak.streak > 0,
       });
     }
   }
@@ -16611,19 +16676,19 @@ function QuizzesPage() {
       setEnglishPhase("results");
       recordQuiz();
       {
-        const lastWasCorrect = selected === currentEnglishQuestion?.answerIndex;
-        const lastGain =
-          currentEnglishQuestion?.difficulty === "Hard"
-            ? 30
-            : currentEnglishQuestion?.difficulty === "Medium"
-              ? 20
-              : 10;
+        const passed = total > 0 && Math.round((score / total) * 100) >= QUIZ_PASS_PCT;
         recordQuizResult({
           subjectId: "english",
           chapterKey: activeEnglishSet?.title ?? `English ${form}`,
-          correct: score + (lastWasCorrect ? 1 : 0),
+          correct: score,
           total,
-          xpEarned: xpEarned + (lastWasCorrect ? lastGain : 0),
+          xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
+          timerMode: "none",
+          baseXp: baseXpEarned,
+          speedBonusXp: 0,
+          streakBonusXp: streakBonusXpEarned,
+          passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
+          bestCorrectStreak: quizStreak.bestStreak,
         });
       }
       if (activeEnglishSet) markChapter("english", activeEnglishSet.title, "quiz");
@@ -17349,7 +17414,10 @@ function QuizzesPage() {
             updateQuizSearch({ chapter: null });
             reset();
           }}
-          onStart={(pref) => setTimerPref(pref)}
+          onStart={(pref) => {
+            setAttemptStartXp(progress.xp);
+            setTimerPref(pref);
+          }}
         />
       ) : (
         <>
@@ -17435,7 +17503,14 @@ function QuizzesPage() {
               <span data-quiz-xp-target className="font-bold text-nova-yellow">
                 {progress.xp}
               </span>
-              <span className="text-muted-foreground">🔥 {quizStreak.streak}</span>
+              <span
+                className="text-muted-foreground"
+                aria-label={`Quiz correct-answer streak: ${quizStreak.streak}`}
+                title="Quiz correct-answer streak"
+              >
+                <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />
+                {quizStreak.streak} Correct
+              </span>
             </div>
           </div>
           <p className="text-center text-xs text-muted-foreground mb-6 animate-fade-up">
@@ -17516,14 +17591,58 @@ function QuizzesPage() {
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
                       <Zap className="h-4 w-4 text-[#FBBF24]" />
-                      <span className="text-sm font-bold text-[#FBBF24]">+{xpEarned}</span>
-                      <span className="text-xs text-white/40">Activity XP earned</span>
+                      <span className="text-sm font-bold text-[#FBBF24]">
+                        +
+                        {xpEarned +
+                          (Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
+                          QUIZ_PASS_PCT
+                            ? QUIZ_PASS_BONUS_XP
+                            : 0)}
+                      </span>
+                      <span className="text-xs text-white/40">Total XP earned</span>
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-2">
                       <Flame className="h-4 w-4 text-orange-400" />
-                      <span className="text-sm font-bold text-orange-300">{quizStreak.streak}</span>
-                      <span className="text-xs text-white/40">Combo</span>
+                      <span className="text-sm font-bold text-orange-300">
+                        {quizStreak.bestStreak}
+                      </span>
+                      <span className="text-xs text-white/40">Best correct streak</span>
                     </div>
+                  </div>
+
+                  <div className="mx-auto mb-8 max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left">
+                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-white/50">
+                      XP earned
+                    </p>
+                    <XpResultRow label="Base Question XP" value={baseXpEarned} />
+                    <XpResultRow label="Speed Bonus" value={speedBonusXpEarned} />
+                    <XpResultRow label="Correct Streak Bonus" value={streakBonusXpEarned} />
+                    <XpResultRow
+                      label="Pass Bonus"
+                      value={
+                        Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
+                        QUIZ_PASS_PCT
+                          ? QUIZ_PASS_BONUS_XP
+                          : 0
+                      }
+                    />
+                    <div className="mt-3 border-t border-white/10 pt-3">
+                      <XpResultRow
+                        label="TOTAL XP"
+                        value={
+                          xpEarned +
+                          (Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
+                          QUIZ_PASS_PCT
+                            ? QUIZ_PASS_BONUS_XP
+                            : 0)
+                        }
+                        strong
+                      />
+                    </div>
+                    <p className="mt-3 text-xs text-white/45">
+                      Lifetime XP {attemptStartXp.toLocaleString()} → {progress.xp.toLocaleString()}{" "}
+                      XP
+                    </p>
                   </div>
 
                   {/* CTA buttons */}
@@ -17740,28 +17859,7 @@ function QuizzesPage() {
                 </div>
 
                 {/* ── Feedback callout ── */}
-                {feedback && (
-                  <div
-                    className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
-                      feedback.kind === "correct"
-                        ? "border-emerald-400/30 bg-emerald-500/12"
-                        : "border-rose-400/30 bg-rose-500/12"
-                    }`}
-                  >
-                    {feedback.kind === "correct" ? (
-                      <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
-                    ) : (
-                      <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
-                    )}
-                    <span
-                      className={`font-display text-lg font-bold ${
-                        feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
-                      }`}
-                    >
-                      {feedback.msg}
-                    </span>
-                  </div>
-                )}
+                {feedback && <QuestionXpFeedback feedback={feedback} />}
 
                 {/* ── Explanation ── */}
                 {selected !== null && current.explanation && (
@@ -17823,6 +17921,72 @@ function QuizzesPage() {
   );
 }
 
+function XpResultRow({
+  label,
+  value,
+  strong = false,
+}: {
+  label: string;
+  value: number;
+  strong?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-center justify-between gap-4 py-1.5 ${strong ? "font-bold text-white" : "text-sm text-white/65"}`}
+    >
+      <span>{label}</span>
+      <span className={strong ? "text-[#FBBF24]" : "text-white"}>+{value} XP</span>
+    </div>
+  );
+}
+
+function QuestionXpFeedback({ feedback }: { feedback: QuizFeedback }) {
+  const reward = feedback.xp;
+  return (
+    <div
+      className={`quiz-xp-feedback mx-6 mb-4 rounded-2xl border p-4 ${
+        feedback.kind === "correct"
+          ? "border-emerald-400/30 bg-emerald-500/12"
+          : "border-rose-400/30 bg-rose-500/12"
+      }`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="flex items-center gap-3">
+        {feedback.kind === "correct" ? (
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" aria-hidden="true" />
+        ) : (
+          <XCircle className="h-5 w-5 shrink-0 text-rose-400" aria-hidden="true" />
+        )}
+        <span
+          className={`font-display text-lg font-bold ${feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"}`}
+        >
+          {feedback.msg}
+        </span>
+      </div>
+      {reward && (
+        <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-xs sm:flex sm:flex-wrap sm:items-center sm:gap-3">
+          <span>+{reward.baseXp} Base XP</span>
+          <span aria-label={`Speed Bonus plus ${reward.timerBonusXp} XP`}>
+            <Zap className="mr-1 inline h-3.5 w-3.5 text-amber-300" aria-hidden="true" />+
+            {reward.timerBonusXp} Speed Bonus
+          </span>
+          <span aria-label={`Correct Streak Bonus plus ${reward.streakBonusXp} XP`}>
+            <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />+
+            {reward.streakBonusXp} Streak Bonus
+          </span>
+          <strong className="text-[#FBBF24]">TOTAL +{reward.totalQuestionXp} XP</strong>
+        </div>
+      )}
+      {feedback.streakReset && (
+        <p className="mt-2 text-xs text-white/55">
+          Correct-answer streak reset. Build it again on the next question.
+        </p>
+      )}
+    </div>
+  );
+}
+
 function QuizSettingsScreen({
   subjectId,
   form,
@@ -17867,13 +18031,15 @@ function QuizSettingsScreen({
           <h2 className="font-display text-3xl font-bold">
             Quiz <span className="gradient-text">Settings</span>
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">Pick how you want to play.</p>
+          <p className="mt-2 text-sm text-muted-foreground">Shorter timer = bigger Speed Bonus.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
           {/* With Timer */}
           <button
             onClick={() => setMode("timer")}
+            aria-pressed={mode === "timer"}
+            aria-label={`Timed quiz. Select 15, 30, or 60 seconds per question. Current Speed Bonus plus ${QUIZ_TIMER_BONUS_XP[seconds as 15 | 30 | 60]} XP per correct answer.`}
             className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "timer"
                 ? "border-2 border-primary shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.55)] scale-[1.02]"
@@ -17895,12 +18061,14 @@ function QuizSettingsScreen({
                 <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
                   Time per question
                 </p>
-                <div className="flex gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {[15, 30, 60].map((s) => (
                     <span
                       key={s}
                       role="button"
                       tabIndex={0}
+                      aria-pressed={seconds === s}
+                      aria-label={`${s === 60 ? "1 minute" : `${s} seconds`}, plus ${QUIZ_TIMER_BONUS_XP[s as 15 | 30 | 60]} Speed Bonus XP per correct answer${s === 15 ? ", challenge mode" : ""}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         setSeconds(s);
@@ -17912,13 +18080,18 @@ function QuizSettingsScreen({
                           setSeconds(s);
                         }
                       }}
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer transition ${
+                      className={`min-h-11 rounded-xl px-2 py-2 text-center text-xs font-bold cursor-pointer transition ${
                         seconds === s
-                          ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                          ? s === 15
+                            ? "bg-gradient-to-r from-rose-500 to-amber-500 text-white shadow-lg"
+                            : "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
                           : "bg-white/5 text-muted-foreground hover:bg-white/10"
                       }`}
                     >
-                      {s}s
+                      <span className="block">{s === 60 ? "1 MIN" : `${s} SEC`}</span>
+                      <span className="mt-0.5 block text-[10px]">
+                        +{QUIZ_TIMER_BONUS_XP[s as 15 | 30 | 60]} XP
+                      </span>
                     </span>
                   ))}
                 </div>
@@ -17929,6 +18102,8 @@ function QuizSettingsScreen({
           {/* No Timer */}
           <button
             onClick={() => setMode("none")}
+            aria-pressed={mode === "none"}
+            aria-label={`No Timer, no Speed Bonus${mode === "none" ? ", selected" : ""}`}
             className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "none"
                 ? "border-2 border-accent shadow-[0_0_30px_oklch(0.7_0.18_180_/_0.5)] scale-[1.02]"
@@ -17944,8 +18119,34 @@ function QuizSettingsScreen({
             <p className="mt-2 text-xs text-muted-foreground">
               No countdown, no pressure. Just learn.
             </p>
+            <span className="mt-4 inline-flex rounded-full bg-white/5 px-3 py-1.5 text-xs font-bold text-emerald-200">
+              NO TIMER · +0 XP
+            </span>
           </button>
         </div>
+
+        {mode && (
+          <div
+            className="mt-5 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-center text-sm text-white/70"
+            role="status"
+          >
+            <span className="font-bold text-white">
+              {mode === "none"
+                ? "No Timer"
+                : `${seconds === 60 ? "1 Minute" : `${seconds} Second`} Challenge`}
+            </span>
+            <span className="mx-2 text-white/25">•</span>
+            <span aria-label="Speed Bonus">
+              <Zap className="mr-1 inline h-4 w-4 text-amber-300" aria-hidden="true" />+
+              {mode === "none" ? 0 : QUIZ_TIMER_BONUS_XP[seconds as 15 | 30 | 60]} XP per correct
+            </span>
+            <span className="mx-2 text-white/25">•</span>
+            <span aria-label="Correct Streak Bonus">
+              <Flame className="mr-1 inline h-4 w-4 text-orange-400" aria-hidden="true" />
+              +5 XP when your correct streak increases
+            </span>
+          </div>
+        )}
 
         <button
           disabled={!ready}
@@ -18168,7 +18369,7 @@ function EnglishQuizScreenF2(props: {
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -18349,7 +18550,7 @@ function EnglishQuizScreen({
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -18498,28 +18699,7 @@ function EnglishQuizScreen({
           })}
         </div>
 
-        {feedback && (
-          <div
-            className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
-              feedback.kind === "correct"
-                ? "border-emerald-400/30 bg-emerald-500/12"
-                : "border-rose-400/30 bg-rose-500/12"
-            }`}
-          >
-            {feedback.kind === "correct" ? (
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
-            ) : (
-              <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
-            )}
-            <span
-              className={`font-display text-lg font-bold ${
-                feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
-              }`}
-            >
-              {feedback.msg}
-            </span>
-          </div>
-        )}
+        {feedback && <QuestionXpFeedback feedback={feedback} />}
 
         {selected !== null && current.explanation && (
           <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">
@@ -18549,7 +18729,7 @@ function EnglishQuizScreenF3(props: {
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -19465,7 +19645,7 @@ function MathObjectiveQuizScreen({
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -19610,26 +19790,7 @@ function MathObjectiveQuizScreen({
         </div>
 
         {/* Feedback */}
-        {feedback && (
-          <div
-            className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
-              feedback.kind === "correct"
-                ? "border-emerald-400/30 bg-emerald-500/12"
-                : "border-rose-400/30 bg-rose-500/12"
-            }`}
-          >
-            {feedback.kind === "correct" ? (
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
-            ) : (
-              <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
-            )}
-            <span
-              className={`font-display text-lg font-bold ${feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"}`}
-            >
-              {feedback.msg}
-            </span>
-          </div>
-        )}
+        {feedback && <QuestionXpFeedback feedback={feedback} />}
 
         {selected !== null && current.explanation && (
           <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">

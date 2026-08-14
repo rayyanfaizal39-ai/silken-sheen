@@ -732,6 +732,12 @@ async function insertQuizHistoryRow(result: {
   correct: number;
   total: number;
   xpEarned?: number;
+  timerMode?: "none" | 60 | 30 | 15;
+  baseXp?: number;
+  speedBonusXp?: number;
+  streakBonusXp?: number;
+  passBonusXp?: number;
+  bestCorrectStreak?: number;
 }): Promise<void> {
   if (!isSupabaseConfigured) return;
   try {
@@ -761,6 +767,14 @@ async function insertQuizHistoryRow(result: {
       // that don't pass it, which the Galaxy Hall of Fame's Monthly XP
       // ranking treats as "no data" rather than 0.
       ...(result.xpEarned != null ? { xp_earned: result.xpEarned } : {}),
+      ...(result.timerMode != null ? { timer_mode: String(result.timerMode) } : {}),
+      ...(result.baseXp != null ? { base_xp: result.baseXp } : {}),
+      ...(result.speedBonusXp != null ? { speed_bonus_xp: result.speedBonusXp } : {}),
+      ...(result.streakBonusXp != null ? { streak_bonus_xp: result.streakBonusXp } : {}),
+      ...(result.passBonusXp != null ? { pass_bonus_xp: result.passBonusXp } : {}),
+      ...(result.bestCorrectStreak != null
+        ? { best_correct_streak: result.bestCorrectStreak }
+        : {}),
     });
     if (!error) window.dispatchEvent(new Event("academy:quiz-history-updated"));
   } catch {
@@ -1302,6 +1316,12 @@ export function useProgress() {
       correct: number;
       total: number;
       xpEarned?: number;
+      timerMode?: "none" | 60 | 30 | 15;
+      baseXp?: number;
+      speedBonusXp?: number;
+      streakBonusXp?: number;
+      passBonusXp?: number;
+      bestCorrectStreak?: number;
     }): number => {
       const total = Math.max(1, input.total);
       const correct = Math.max(0, Math.min(input.correct, total));
@@ -1330,6 +1350,12 @@ export function useProgress() {
           correct,
           total,
           xpEarned: input.xpEarned,
+          timerMode: input.timerMode,
+          baseXp: input.baseXp,
+          speedBonusXp: input.speedBonusXp,
+          streakBonusXp: input.streakBonusXp,
+          passBonusXp: input.passBonusXp,
+          bestCorrectStreak: input.bestCorrectStreak,
         });
       }
 
