@@ -49,8 +49,8 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 3 Strategi Menjawab Soalan Pemahaman mind map", () => {
-  it("is the only registered Form 3 Pemahaman topic", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(1);
+  it("remains the first of exactly three registered Form 3 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(3);
     expect(bahasaMelayuTingkatan3PemahamanRegistry[0]).toMatchObject({
       id: "bm-f3-strategi-menjawab-soalan-pemahaman-mindmap",
       subjectId: "bm",
@@ -70,13 +70,17 @@ describe("Bahasa Melayu Form 3 Strategi Menjawab Soalan Pemahaman mind map", () 
     expect(chapter).not.toHaveProperty("quiz");
   });
 
-  it("has disabled previous and next navigation", () => {
+  it("has disabled previous navigation and links to the analysis topic next", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 3").filter(
       (topic) => topic.categoryLabel === "Pemahaman",
     );
-    expect(topics.map((topic) => topic.key)).toEqual(["Strategi Menjawab Soalan Pemahaman"]);
+    expect(topics.map((topic) => topic.key)).toEqual([
+      "Strategi Menjawab Soalan Pemahaman",
+      "Analisis Isi Tersurat dan Tersirat",
+      "Analisis Petikan Pelbagai Bahan",
+    ]);
     expect(topics[0 - 1]).toBeUndefined();
-    expect(topics[0 + 1]).toBeUndefined();
+    expect(topics[0 + 1]?.key).toBe("Analisis Isi Tersurat dan Tersirat");
   });
 
   it("keeps the Form 1 and Form 2 registries isolated", () => {
