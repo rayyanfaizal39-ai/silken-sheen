@@ -61,7 +61,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Describe finished actions that happened before now.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-04.webp",
     accent: "pink",
-    implemented: false,
+    implemented: true,
   },
   {
     id: "05",
@@ -237,6 +237,40 @@ export const presentContinuousQuickCheck: QuickCheckQuestion[] = [
     options: ["You are studying?", "Do you studying?", "Are you studying?", "Is you studying?"],
     correctIndex: 2,
     explanation: "Move the be-verb before the subject: Are you studying?",
+  },
+];
+
+export const simplePastQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "Yesterday, I ___ football.",
+    options: ["play", "plays", "played", "playing"],
+    correctIndex: 2,
+    explanation: "Yesterday is a past-time clue, so play becomes the past verb played.",
+  },
+  {
+    question: "She ___ to school early this morning.",
+    options: ["go", "went", "goes", "going"],
+    correctIndex: 1,
+    explanation: "Go is irregular, so its past form is went — never goed.",
+  },
+  {
+    question: "Choose the correct negative.",
+    options: ["He didn't played.", "He didn't play.", "He not played.", "He doesn't played."],
+    correctIndex: 1,
+    explanation:
+      "Didn't already carries the past meaning, so the main verb stays as the base verb.",
+  },
+  {
+    question: "Choose the correct question.",
+    options: ["Did you went home?", "Do you went home?", "Did you go home?", "Were you go home?"],
+    correctIndex: 2,
+    explanation: "Past questions use Did + subject + base verb, so it is Did you go home?",
+  },
+  {
+    question: "They ___ very tired after the match.",
+    options: ["was", "were", "is", "are"],
+    correctIndex: 1,
+    explanation: "They is plural, so the past be-verb is were.",
   },
 ];
 
