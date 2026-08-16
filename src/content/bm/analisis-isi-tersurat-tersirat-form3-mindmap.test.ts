@@ -50,10 +50,11 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 3 Analisis Isi Tersurat dan Tersirat mind map", () => {
   it("registers second with the exact card and page identity", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(2);
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(3);
     expect(bahasaMelayuTingkatan3PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman",
       "Analisis Isi Tersurat dan Tersirat",
+      "Analisis Petikan Pelbagai Bahan",
     ]);
     const chapter = getChapter("bm", "Analisis Isi Tersurat dan Tersirat", undefined, "Form 3");
     expect(chapter).toMatchObject({
@@ -111,7 +112,7 @@ describe("Bahasa Melayu Form 3 Analisis Isi Tersurat dan Tersirat mind map", () 
     );
     const index = topics.findIndex((topic) => topic.key === "Analisis Isi Tersurat dan Tersirat");
     expect(topics[index - 1]?.key).toBe("Strategi Menjawab Soalan Pemahaman");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Analisis Petikan Pelbagai Bahan");
     expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(8);
     expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(8);
   });

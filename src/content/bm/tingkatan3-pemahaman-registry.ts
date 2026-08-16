@@ -1,5 +1,6 @@
 import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan3TersuratTersiratMindMap } from "@/content/bm/analisis-isi-tersurat-tersirat-form3-mindmap";
+import { bahasaMelayuTingkatan3PelbagaiBahanMindMap } from "@/content/bm/analisis-petikan-pelbagai-bahan-form3-mindmap";
 import { bahasaMelayuTingkatan3StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form3-mindmap";
 
 export const bahasaMelayuTingkatan3PemahamanRegistry = [
@@ -29,6 +30,20 @@ export const bahasaMelayuTingkatan3PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan3TersuratTersiratMindMap,
       title: "Analisis Isi Tersurat dan Tersirat",
+    },
+  },
+  {
+    id: "bm-f3-analisis-petikan-pelbagai-bahan-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Analisis Petikan Pelbagai Bahan",
+    title: "Analisis Petikan Pelbagai Bahan",
+    description:
+      "Menganalisis dan menghubungkan maklumat daripada beberapa bahan seperti petikan, poster, infografik, dialog dan bahan visual untuk membina jawapan yang tepat.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan3PelbagaiBahanMindMap,
+      title: "Analisis Petikan Pelbagai Bahan",
     },
   },
 ] as const satisfies readonly ChapterContent[];
