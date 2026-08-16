@@ -125,7 +125,7 @@ export function GrammarMissionHub() {
               <span>In progress</span>
             </div>
             <div>
-              <strong>2</strong>
+              <strong>{grammarTopics.filter((topic) => topic.implemented).length}</strong>
               <span>Lessons ready</span>
             </div>
           </div>

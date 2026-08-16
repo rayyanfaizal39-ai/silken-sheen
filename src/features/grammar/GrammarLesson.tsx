@@ -9,7 +9,6 @@ import {
   Check,
   CheckCircle2,
   CircleHelp,
-  Image as ImageIcon,
   Lightbulb,
   MessageCircle,
   Search,
@@ -22,6 +21,7 @@ import {
   GRAMMAR_PROGRESS_SCOPE,
   getGrammarTopic,
   nounsQuickCheck,
+  presentContinuousQuickCheck,
   presentQuickCheck,
   type QuickCheckQuestion,
 } from "./grammar-content";
@@ -80,17 +80,27 @@ function Formula({ children }: { children: ReactNode }) {
   return <div className="grammar-formula">{children}</div>;
 }
 
-function IllustrationSlot({ label, wide = false }: { label: string; wide?: boolean }) {
+function LessonArtwork({
+  src,
+  alt,
+  width,
+  height,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}) {
   return (
-    <div
-      className={`grammar-illustration-slot${wide ? " is-wide" : ""}`}
-      role="img"
-      aria-label={`${label} illustration placeholder`}
-    >
-      <ImageIcon aria-hidden="true" />
-      <span>AcadeMY illustration</span>
-      <small>{label}</small>
-    </div>
+    <img
+      className="grammar-lesson-artwork"
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+    />
   );
 }
 
@@ -152,7 +162,9 @@ function QuickCheck({ questions }: { questions: QuickCheckQuestion[] }) {
               <span>{questionIndex + 1}</span>
               {question.question}
             </legend>
-            <div className="grammar-question-options">
+            <div
+              className={`grammar-question-options${question.options.length === 4 ? " has-four-options" : ""}`}
+            >
               {question.options.map((option, optionIndex) => {
                 const isSelected = selected === optionIndex;
                 const isCorrectOption = answered && optionIndex === question.correctIndex;
@@ -365,7 +377,12 @@ function NounsLesson() {
         eyebrow="See it in action"
         title="The dog story"
       >
-        <IllustrationSlot wide label="A / The dog comparison — production artwork coming later" />
+        <LessonArtwork
+          src="/assets/english/form-1/grammar/nouns-articles/noun-the-dog-story.webp"
+          alt="Same dog shown first generally and then identified by its red collar."
+          width={1100}
+          height={619}
+        />
         <div className="grammar-story-steps">
           <div>
             <span>A → Introduce</span>
@@ -485,10 +502,38 @@ function NounsLesson() {
 
 function SimplePresentLesson() {
   const uses = [
-    ["Routine", "I wake up at 6:30 every day."],
-    ["Habit", "She usually reads before bed."],
-    ["Repeated action", "They play football on Saturdays."],
-    ["Fact / general truth", "Water boils at 100°C."],
+    {
+      title: "Routine",
+      example: "I wake up at 6:30 every day.",
+      artwork: "/assets/english/form-1/grammar/simple-present/routine.webp",
+      alt: "Morning school routine with alarm clock and backpack.",
+      width: 800,
+      height: 533,
+    },
+    {
+      title: "Habit",
+      example: "He usually reads before bed.",
+      artwork: "/assets/english/form-1/grammar/simple-present/habit.webp",
+      alt: "Student reading a book before bed.",
+      width: 800,
+      height: 533,
+    },
+    {
+      title: "Repeated action",
+      example: "They play football on Saturdays.",
+      artwork: "/assets/english/form-1/grammar/simple-present/repeated-action.webp",
+      alt: "Badminton activity shown as a repeating routine.",
+      width: 800,
+      height: 533,
+    },
+    {
+      title: "Fact / general truth",
+      example: "Water boils at 100°C.",
+      artwork: "/assets/english/form-1/grammar/simple-present/fact.webp",
+      alt: "Earth orbiting the Sun and water boiling.",
+      width: 1000,
+      height: 563,
+    },
   ];
   return (
     <>
@@ -518,8 +563,9 @@ function SimplePresentLesson() {
         title="When do we use the simple present?"
       >
         <ConceptGrid>
-          {uses.map(([title, example]) => (
+          {uses.map(({ title, example, artwork, alt, width, height }) => (
             <ConceptCard key={title} label={title} title={example}>
+              <LessonArtwork src={artwork} alt={alt} width={width} height={height} />
               <p>Look for time clues that show a usual or repeated pattern.</p>
             </ConceptCard>
           ))}
@@ -685,11 +731,21 @@ function SimplePresentLesson() {
       >
         <div className="grammar-compare-grid">
           <ConceptCard label="Simple present" title="I play football every Saturday.">
-            <IllustrationSlot label="Repeated weekly football routine" />
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/simple-present/compare-routine.webp"
+              alt="Student playing football as a regular routine."
+              width={700}
+              height={467}
+            />
             <p className="grammar-note">routine / repeated action</p>
           </ConceptCard>
           <ConceptCard label="Present continuous" title="I am playing football right now.">
-            <IllustrationSlot label="Playing football at this moment" />
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/simple-present/compare-now.webp"
+              alt="Student actively kicking a football now."
+              width={700}
+              height={467}
+            />
             <p className="grammar-note">happening now</p>
           </ConceptCard>
         </div>
@@ -812,7 +868,445 @@ function SimplePresentLesson() {
   );
 }
 
-export function GrammarLesson({ topicId }: { topicId: "01" | "02" }) {
+function PresentContinuousLesson() {
+  return (
+    <>
+      <MissionSection
+        id="continuous-brief"
+        icon={<Target />}
+        eyebrow="Mission brief"
+        title="Talk about actions in progress"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            We use the present continuous for actions happening <strong>right now</strong>, or
+            around this moment.
+          </p>
+          <p>
+            By the end of this mission, you will know how to build it, question it, negate it, and
+            tell it apart from the simple present.
+          </p>
+          <div className="grammar-pill-row">
+            <span>Match am / is / are</span>
+            <span>Form verb-ing</span>
+            <span>Spot time clues</span>
+          </div>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-big-idea"
+        icon={<Lightbulb />}
+        eyebrow="Big idea"
+        title="The action is happening now"
+      >
+        <div className="grammar-live-now">
+          <span aria-hidden="true" />
+          <div>
+            <strong>Happening now</strong>
+            <p>The action is in progress—it started, and it is not finished yet.</p>
+          </div>
+        </div>
+        <ConceptGrid>
+          <ConceptCard label="Right now" title="I am studying now.">
+            <p>The action is happening as I speak.</p>
+          </ConceptCard>
+          <ConceptCard label="Right now" title="She is reading.">
+            <p>Her reading is currently in progress.</p>
+          </ConceptCard>
+          <ConceptCard label="Right now" title="They are playing football.">
+            <p>The game has started and is still happening.</p>
+          </ConceptCard>
+          <ConceptCard label="Right now" title="He is doing his homework.">
+            <p>His homework activity is not finished yet.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-formula"
+        icon={<BadgeCheck />}
+        eyebrow="How it works"
+        title="Basic formula"
+      >
+        <Formula>
+          <strong>Subject</strong>
+          <span>+</span>
+          <strong>am / is / are</strong>
+          <span>+</span>
+          <strong>verb-ing</strong>
+        </Formula>
+        <p className="grammar-centred-example">
+          They <strong>are playing</strong> football. · She <strong>is reading</strong> a book.
+        </p>
+        <div className="grammar-watchout">
+          <AlertTriangle aria-hidden="true" />
+          <p>
+            <strong>Watch out:</strong> the present continuous needs both parts: a be-verb and a
+            main verb ending in -ing.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-be-verbs"
+        icon={<CircleHelp />}
+        eyebrow="Control panel"
+        title="Choose am, is, or are"
+      >
+        <div className="grammar-three-grid">
+          <ConceptCard label="I" title="am">
+            <p>I am learning English.</p>
+          </ConceptCard>
+          <ConceptCard label="He / She / It" title="is">
+            <p>She is learning English.</p>
+          </ConceptCard>
+          <ConceptCard label="You / We / They" title="are">
+            <p>We are learning English.</p>
+          </ConceptCard>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-ing"
+        icon={<Sparkles />}
+        eyebrow="Verb transformation"
+        title="Adding -ing"
+      >
+        <div className="grammar-ing-transform" aria-label="Examples of adding ing to verbs">
+          <span>
+            play <strong>→ playing</strong>
+          </span>
+          <span>
+            make <strong>→ making</strong>
+          </span>
+          <span>
+            run <strong>→ running</strong>
+          </span>
+        </div>
+        <div className="grammar-rule-table" role="table" aria-label="Rules for adding ing">
+          <div role="row">
+            <strong role="cell">Most verbs</strong>
+            <span role="cell">+ ing</span>
+            <span role="cell">play → playing · read → reading · study → studying</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Final silent e</strong>
+            <span role="cell">drop e + ing</span>
+            <span role="cell">make → making · write → writing</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Short CVC verbs</strong>
+            <span role="cell">double + ing</span>
+            <span role="cell">run → running · swim → swimming</span>
+          </div>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-now"
+        icon={<BookOpen />}
+        eyebrow="See it in action"
+        title="Action happening now"
+      >
+        <LessonArtwork
+          src="/assets/english/form-1/grammar/present-continuous/now-action.webp"
+          alt="People running, drinking, studying and cooking at the present moment."
+          width={1100}
+          height={619}
+        />
+        <ConceptGrid>
+          <ConceptCard label="Running" title="Aiman is running.">
+            <p>The action is happening now.</p>
+          </ConceptCard>
+          <ConceptCard label="Drinking" title="Sara is drinking water.">
+            <p>The action is in progress.</p>
+          </ConceptCard>
+          <ConceptCard label="Studying" title="The students are studying.">
+            <p>The plural subject takes are.</p>
+          </ConceptCard>
+          <ConceptCard label="Cooking" title="My mother is cooking.">
+            <p>The singular subject takes is.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-around"
+        icon={<CircleHelp />}
+        eyebrow="Around now"
+        title="Around this moment"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            Present continuous does not only mean this exact second. It can also describe something
+            happening around now, over a longer stretch of time.
+          </p>
+          <div className="grammar-now-window" aria-label="Time window around the current moment">
+            <span>last month</span>
+            <strong>this week</strong>
+            <span>next month</span>
+          </div>
+        </div>
+        <ConceptGrid>
+          <ConceptCard label="This week" title="I am reading a new novel this week.">
+            <p>The activity continues across several days.</p>
+          </ConceptCard>
+          <ConceptCard label="This month" title="She is learning Japanese this month.">
+            <p>The action is temporary and happening around now.</p>
+          </ConceptCard>
+          <ConceptCard label="Current project" title="We are working on a school project.">
+            <p>The work is in progress during the present period.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-time"
+        icon={<Sparkles />}
+        eyebrow="Time clues"
+        title="Time expressions"
+      >
+        <div className="grammar-time-chips" aria-label="Present continuous time expressions">
+          {["now", "right now", "at the moment", "currently", "today", "this week"].map(
+            (expression) => (
+              <span key={expression}>{expression}</span>
+            ),
+          )}
+        </div>
+        <p className="grammar-centred-example">
+          Look for these clues, then check whether the action is still in progress.
+        </p>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-negative"
+        icon={<X />}
+        eyebrow="Negative structures"
+        title="Add not after am, is, or are"
+      >
+        <Formula>
+          <strong>Subject</strong>
+          <span>+</span>
+          <strong>am / is / are</strong>
+          <span>+</span>
+          <strong>not</strong>
+          <span>+</span>
+          <strong>verb-ing</strong>
+        </Formula>
+        <ConceptGrid>
+          <ConceptCard label="I" title="I am not sleeping.">
+            <p>Am not comes before the -ing verb.</p>
+          </ConceptCard>
+          <ConceptCard label="He / She / It" title="He is not playing.">
+            <p>You can also say: He isn't playing.</p>
+          </ConceptCard>
+          <ConceptCard label="You / We / They" title="They are not studying.">
+            <p>You can also say: They aren't studying.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-questions"
+        icon={<CircleHelp />}
+        eyebrow="Question structures"
+        title="Move am, is, or are before the subject"
+      >
+        <Formula>
+          <strong>Am / Is / Are</strong>
+          <span>+</span>
+          <strong>subject</strong>
+          <span>+</span>
+          <strong>verb-ing?</strong>
+        </Formula>
+        <ConceptGrid>
+          <ConceptCard label="Are" title="Are you studying?">
+            <p>Yes, I am. · No, I'm not.</p>
+          </ConceptCard>
+          <ConceptCard label="Is" title="Is she sleeping?">
+            <p>Yes, she is. · No, she isn't.</p>
+          </ConceptCard>
+          <ConceptCard label="Are" title="Are they playing?">
+            <p>Yes, they are. · No, they aren't.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-compare"
+        icon={<BookOpen />}
+        eyebrow="Compare it"
+        title="Simple Present vs Present Continuous"
+      >
+        <div className="grammar-compare-grid">
+          <ConceptCard label="Simple present" title="I play football every Saturday.">
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/simple-present/compare-routine.webp"
+              alt="Student with a football as a regular activity."
+              width={700}
+              height={467}
+            />
+            <p className="grammar-note">every Saturday · routine / repeated action</p>
+          </ConceptCard>
+          <ConceptCard label="Present continuous" title="I am playing football now.">
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/simple-present/compare-now.webp"
+              alt="Same student actively kicking a football now."
+              width={700}
+              height={467}
+            />
+            <p className="grammar-note">right now · happening at this moment</p>
+          </ConceptCard>
+        </div>
+        <Formula>
+          <span>every Saturday</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>simple present</strong>
+          <span>right now</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>present continuous</strong>
+        </Formula>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-errors"
+        icon={<Search />}
+        eyebrow="Common mistakes"
+        title="Error detector"
+      >
+        <div className="grammar-error-grid">
+          <ErrorDetector
+            sentence={
+              <>
+                He <u>playing</u> football.
+              </>
+            }
+            wrong="playing"
+            correction="He is playing football."
+            reason="Every -ing verb needs am, is, or are in front of it."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                They <u>is</u> studying.
+              </>
+            }
+            wrong="is"
+            correction="They are studying."
+            reason="You, we, and they take are, not is."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                She is <u>read</u> a book.
+              </>
+            }
+            wrong="read"
+            correction="She is reading a book."
+            reason="The main verb must end in -ing."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                I am <u>play</u> football.
+              </>
+            }
+            wrong="play"
+            correction="I am playing football."
+            reason="After am, is, or are, the verb needs -ing."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                He is <u>runing</u>.
+              </>
+            }
+            wrong="runing"
+            correction="He is running."
+            reason="Short CVC verbs double the final consonant before -ing."
+          />
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-real-life"
+        icon={<MessageCircle />}
+        eyebrow="Real-life English"
+        title="After-school chat"
+      >
+        <div className="grammar-chat">
+          <p>
+            <span>Aiman</span> What <strong>are you doing</strong>?
+          </p>
+          <p>
+            <span>Sara</span> <strong>I'm doing</strong> my homework.
+          </p>
+          <p>
+            <span>Aiman</span> <strong>Is your brother studying</strong> too?
+          </p>
+          <p>
+            <span>Sara</span> No, <strong>he's playing</strong> a game.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-check"
+        icon={<CheckCircle2 />}
+        eyebrow="Test yourself"
+        title="Quick check"
+      >
+        <QuickCheck questions={presentContinuousQuickCheck} />
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-summary"
+        icon={<Sparkles />}
+        eyebrow="Revision map"
+        title="Mission summary"
+      >
+        <div className="grammar-summary-grid">
+          <ConceptCard title="Formula">
+            <p>am / is / are + verb-ing</p>
+          </ConceptCard>
+          <ConceptCard title="Use it for">
+            <p>actions happening now or around this moment</p>
+          </ConceptCard>
+          <ConceptCard title="Be-verb match">
+            <p>I → am · he/she/it → is · you/we/they → are</p>
+          </ConceptCard>
+          <ConceptCard title="Time clues">
+            <p>now · right now · at the moment · currently</p>
+          </ConceptCard>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="continuous-exam"
+        icon={<Target />}
+        eyebrow="Exam strategy"
+        title="Exam booster"
+      >
+        <div className="grammar-exam-list">
+          <p>Look for time clues such as now and at the moment.</p>
+          <p>Do not forget am, is, or are—a lone -ing verb is not a full sentence.</p>
+          <p>Match the subject correctly with its be-verb.</p>
+          <p>Check spelling when adding -ing, especially silent e and doubled consonants.</p>
+        </div>
+        <div className="grammar-exam-booster">
+          <Target aria-hidden="true" />
+          <p>
+            <strong>Worked example:</strong> “The boys ___ football now.” Boys means they, and now
+            signals present continuous: <strong>The boys are playing football.</strong>
+          </p>
+        </div>
+      </MissionSection>
+    </>
+  );
+}
+
+export function GrammarLesson({ topicId }: { topicId: "01" | "02" | "03" }) {
   const topic = getGrammarTopic(topicId)!;
   const contentRef = useRef<HTMLDivElement>(null);
   const scope = useMemo(() => GRAMMAR_PROGRESS_SCOPE, []);
@@ -825,7 +1319,12 @@ export function GrammarLesson({ topicId }: { topicId: "01" | "02" }) {
     initialProgress: progress[topic.progressKey] ?? 0,
     onProgress: recordProgress,
   });
-  const nextTopic = topicId === "01" ? getGrammarTopic("02") : getGrammarTopic("03");
+  const nextTopic =
+    topicId === "01"
+      ? getGrammarTopic("02")
+      : topicId === "02"
+        ? getGrammarTopic("03")
+        : getGrammarTopic("04");
 
   return (
     <main className="grammar-shell grammar-lesson-shell">
@@ -847,11 +1346,13 @@ export function GrammarLesson({ topicId }: { topicId: "01" | "02" }) {
             <span className="grammar-kicker">
               <Sparkles aria-hidden="true" /> Grammar mission {topic.id}
             </span>
-            <h1>{topic.title}</h1>
+            <h1>{topicId === "03" ? "Present Continuous Tense" : topic.title}</h1>
             <p>
               {topicId === "01"
                 ? "Name it. Count it. Choose the right article."
-                : "Build confident sentences about routines, habits, and facts."}
+                : topicId === "02"
+                  ? "Build confident sentences about routines, habits, and facts."
+                  : "Talk about actions happening now, or around this moment."}
             </p>
             <div className="grammar-pill-row">
               <span>Form 1</span>
@@ -859,7 +1360,36 @@ export function GrammarLesson({ topicId }: { topicId: "01" | "02" }) {
               <span>{readingProgress}% read</span>
             </div>
           </div>
-          <img src={topic.artwork} alt="" width="720" height="480" decoding="async" />
+          {topicId === "03" ? (
+            <div className="grammar-lesson-hero__art">
+              <img
+                src="/assets/english/form-1/grammar/present-continuous/hero.webp"
+                alt="Student running with a backpack, showing an action happening right now."
+                width={720}
+                height={480}
+                decoding="async"
+                fetchPriority="high"
+              />
+              <p>Something is happening—right now.</p>
+            </div>
+          ) : (
+            <img
+              src={
+                topicId === "02"
+                  ? "/assets/english/form-1/grammar/simple-present/hero.webp"
+                  : topic.artwork
+              }
+              alt={
+                topicId === "02"
+                  ? "Daily routine sequence with school, study, football, and bedtime activities."
+                  : ""
+              }
+              width={topicId === "02" ? 900 : 720}
+              height={topicId === "02" ? 600 : 480}
+              decoding="async"
+              fetchPriority={topicId === "02" ? "high" : undefined}
+            />
+          )}
         </header>
 
         <div ref={contentRef} className="grammar-lesson-content">
@@ -880,25 +1410,51 @@ export function GrammarLesson({ topicId }: { topicId: "01" | "02" }) {
                     "nouns-summary",
                     "01-complete",
                   ]
-                : [
-                    "present-brief",
-                    "present-uses",
-                    "present-formula",
-                    "present-spelling",
-                    "present-frequency",
-                    "present-negative",
-                    "present-questions",
-                    "present-compare",
-                    "present-errors",
-                    "present-real-life",
-                    "present-check",
-                    "present-summary",
-                    "02-complete",
-                  ]
+                : topicId === "02"
+                  ? [
+                      "present-brief",
+                      "present-uses",
+                      "present-formula",
+                      "present-spelling",
+                      "present-frequency",
+                      "present-negative",
+                      "present-questions",
+                      "present-compare",
+                      "present-errors",
+                      "present-real-life",
+                      "present-check",
+                      "present-summary",
+                      "02-complete",
+                    ]
+                  : [
+                      "continuous-brief",
+                      "continuous-big-idea",
+                      "continuous-formula",
+                      "continuous-be-verbs",
+                      "continuous-ing",
+                      "continuous-now",
+                      "continuous-around",
+                      "continuous-time",
+                      "continuous-negative",
+                      "continuous-questions",
+                      "continuous-compare",
+                      "continuous-errors",
+                      "continuous-real-life",
+                      "continuous-check",
+                      "continuous-summary",
+                      "continuous-exam",
+                      "03-complete",
+                    ]
               ).map((id) => ({ id, weight: 1 })),
             )}
           >
-            {topicId === "01" ? <NounsLesson /> : <SimplePresentLesson />}
+            {topicId === "01" ? (
+              <NounsLesson />
+            ) : topicId === "02" ? (
+              <SimplePresentLesson />
+            ) : (
+              <PresentContinuousLesson />
+            )}
 
             <section
               className="grammar-mission-complete"

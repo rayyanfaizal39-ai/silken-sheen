@@ -51,7 +51,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Talk about actions happening right now or around this moment.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-03.webp",
     accent: "mint",
-    implemented: false,
+    implemented: true,
   },
   {
     id: "04",
@@ -189,6 +189,54 @@ export const presentQuickCheck: QuickCheckQuestion[] = [
     options: ["I am studying now.", "I studied yesterday.", "I study every night."],
     correctIndex: 2,
     explanation: "Every night signals a repeated routine, so use the simple present.",
+  },
+];
+
+export const presentContinuousQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "Choose the correct sentence.",
+    options: [
+      "She is read a book.",
+      "She reading a book.",
+      "She is reading a book.",
+      "She are reading a book.",
+    ],
+    correctIndex: 2,
+    explanation: "Present continuous needs is before the verb ending in -ing: is reading.",
+  },
+  {
+    question: "They ___ football now.",
+    options: ["play", "plays", "are playing", "is playing"],
+    correctIndex: 2,
+    explanation: "They takes are, and the main verb becomes playing.",
+  },
+  {
+    question: "Which sentence describes something happening now?",
+    options: [
+      "I walk to school every day.",
+      "I am walking to school now.",
+      "I walked to school yesterday.",
+      "I will walk to school tomorrow.",
+    ],
+    correctIndex: 1,
+    explanation: "Now is a time clue for an action in progress, so use am walking.",
+  },
+  {
+    question: "Choose the correct negative.",
+    options: [
+      "He not sleeping.",
+      "He is not sleeping.",
+      "He does not sleeping.",
+      "He are not sleeping.",
+    ],
+    correctIndex: 1,
+    explanation: "Put not after the correct be-verb: he is not sleeping.",
+  },
+  {
+    question: "Choose the correct question.",
+    options: ["You are studying?", "Do you studying?", "Are you studying?", "Is you studying?"],
+    correctIndex: 2,
+    explanation: "Move the be-verb before the subject: Are you studying?",
   },
 ];
 

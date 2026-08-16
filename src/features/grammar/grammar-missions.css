@@ -495,6 +495,27 @@
   object-fit: contain;
   filter: drop-shadow(0 22px 30px rgba(8, 5, 34, 0.42));
 }
+.grammar-lesson-hero__art {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  text-align: center;
+}
+.grammar-lesson-hero__art img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 22px 30px rgba(8, 5, 34, 0.42));
+}
+.grammar-lesson-hero__art > p {
+  margin-top: 5px;
+  color: #dcd6fa;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+}
 .grammar-pill-row {
   display: flex;
   flex-wrap: wrap;
@@ -565,11 +586,19 @@
   font-size: 15px;
   line-height: 1.75;
 }
+.grammar-brief-card > p + p {
+  margin-top: 10px;
+}
 .grammar-concept-grid,
 .grammar-compare-grid,
 .grammar-summary-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.grammar-three-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 .grammar-concept-card {
@@ -679,38 +708,118 @@
   color: #c5b9ff;
   font-weight: 800;
 }
-.grammar-illustration-slot {
-  display: grid;
-  place-items: center;
-  min-height: 116px;
+.grammar-lesson-artwork {
+  display: block;
+  width: 100%;
+  height: auto;
   margin: 8px 0 12px;
-  border: 1.5px dashed rgba(146, 118, 255, 0.3);
   border-radius: 15px;
-  background: linear-gradient(145deg, rgba(146, 118, 255, 0.06), rgba(10, 8, 32, 0.28));
-  color: var(--grammar-faint);
-  text-align: center;
+  object-fit: contain;
 }
-.grammar-illustration-slot.is-wide {
-  min-height: 190px;
+.grammar-live-now {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(101, 230, 183, 0.24);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(101, 230, 183, 0.07);
 }
-.grammar-illustration-slot svg {
-  width: 25px;
-  height: 25px;
-  margin-bottom: 5px;
-  color: #a18cff;
-  opacity: 0.75;
+.grammar-live-now > span {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  border: 3px solid rgba(101, 230, 183, 0.28);
+  border-radius: 50%;
+  background: var(--grammar-mint);
+  box-shadow:
+    0 0 0 7px rgba(101, 230, 183, 0.08),
+    0 0 18px rgba(101, 230, 183, 0.72);
 }
-.grammar-illustration-slot span {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.09em;
+.grammar-live-now strong {
+  color: #9df4d3;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.grammar-illustration-slot small {
-  max-width: 360px;
-  padding: 0 12px;
-  color: #6f76a0;
-  font-size: 10px;
+.grammar-live-now p {
+  margin-top: 2px;
+  color: var(--grammar-muted);
+  font-size: 13px;
+}
+.grammar-ing-transform {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.grammar-ing-transform span {
+  border: 1px solid rgba(146, 118, 255, 0.2);
+  border-radius: 12px;
+  padding: 10px 13px;
+  background: rgba(146, 118, 255, 0.08);
+  color: var(--grammar-muted);
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+.grammar-ing-transform strong {
+  color: #9df4d3;
+}
+.grammar-now-window {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--grammar-faint);
+  font-size: 11px;
+  text-align: center;
+}
+.grammar-now-window::before {
+  content: "";
+  grid-column: 1 / -1;
+  grid-row: 1;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--grammar-violet),
+    var(--grammar-mint),
+    transparent
+  );
+}
+.grammar-now-window span,
+.grammar-now-window strong {
+  grid-row: 2;
+}
+.grammar-now-window strong {
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: rgba(101, 230, 183, 0.1);
+  color: #9df4d3;
+}
+.grammar-time-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(146, 118, 255, 0.2);
+  border-radius: 18px;
+  padding: 22px;
+  background: radial-gradient(circle, rgba(146, 118, 255, 0.12), transparent 68%);
+}
+.grammar-time-chips span {
+  border: 1px solid rgba(146, 118, 255, 0.28);
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: rgba(146, 118, 255, 0.11);
+  color: #d5ccff;
+  font-size: 12px;
+  font-weight: 750;
 }
 .grammar-story-steps {
   display: grid;
@@ -897,6 +1006,9 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
+.grammar-question-options.has-four-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 .grammar-question-options button {
   position: relative;
   display: flex;
@@ -1076,6 +1188,37 @@
 .grammar-exam-booster svg {
   color: #c6b9ff;
 }
+.grammar-exam-list {
+  display: grid;
+  gap: 9px;
+  counter-reset: exam-step;
+}
+.grammar-exam-list p {
+  position: relative;
+  min-height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 13px;
+  padding: 11px 13px 11px 48px;
+  background: rgba(8, 8, 32, 0.34);
+  color: var(--grammar-muted);
+  font-size: 13px;
+}
+.grammar-exam-list p::before {
+  counter-increment: exam-step;
+  content: counter(exam-step);
+  position: absolute;
+  top: 9px;
+  left: 11px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: rgba(146, 118, 255, 0.15);
+  color: #c9bdff;
+  font-size: 11px;
+  font-weight: 800;
+}
 .grammar-mission-complete {
   display: grid;
   place-items: center;
@@ -1187,6 +1330,9 @@
   .grammar-lesson-hero > img {
     height: 150px;
   }
+  .grammar-lesson-hero__art img {
+    height: 170px;
+  }
   .grammar-lesson-section {
     border-radius: 20px;
   }
@@ -1201,7 +1347,8 @@
   }
   .grammar-concept-grid,
   .grammar-compare-grid,
-  .grammar-summary-grid {
+  .grammar-summary-grid,
+  .grammar-three-grid {
     grid-template-columns: 1fr;
   }
   .grammar-rule-table > div {
@@ -1216,6 +1363,9 @@
     transform: rotate(90deg);
   }
   .grammar-wrong-right {
+    grid-template-columns: 1fr;
+  }
+  .grammar-question-options.has-four-options {
     grid-template-columns: 1fr;
   }
   .grammar-chat p {
