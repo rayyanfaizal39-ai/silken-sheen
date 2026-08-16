@@ -71,7 +71,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Describe an action in progress at a moment in the past.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-05.webp",
     accent: "violet",
-    implemented: false,
+    implemented: true,
   },
   {
     id: "06",
@@ -271,6 +271,42 @@ export const simplePastQuickCheck: QuickCheckQuestion[] = [
     options: ["was", "were", "is", "are"],
     correctIndex: 1,
     explanation: "They is plural, so the past be-verb is were.",
+  },
+];
+
+export const pastContinuousQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "At 9 p.m., I ___ my homework.",
+    options: ["did", "was doing", "am doing", "do"],
+    correctIndex: 1,
+    explanation:
+      "At 9 p.m. names a moment in the past, and the homework was already in progress then, so use was doing.",
+  },
+  {
+    question: "They ___ football when it started to rain.",
+    options: ["were playing", "played", "was playing", "are playing"],
+    correctIndex: 0,
+    explanation:
+      "The game was the long action already in progress, and they is plural, so use were playing.",
+  },
+  {
+    question: "Choose the correct sentence.",
+    options: ["She were sleeping.", "She was sleep.", "She was sleeping.", "She sleeping."],
+    correctIndex: 2,
+    explanation: "She takes was, and the main verb must end in -ing: she was sleeping.",
+  },
+  {
+    question: "I was studying ___ the phone rang.",
+    options: ["while", "when", "now", "yesterday"],
+    correctIndex: 1,
+    explanation: "The phone ringing is a short action that interrupts, so use when.",
+  },
+  {
+    question: "While I was reading, my brother ___ TV.",
+    options: ["watched", "was watching", "watches", "is watching"],
+    correctIndex: 1,
+    explanation:
+      "While joins two actions happening at the same time, so both verbs use the past continuous.",
   },
 ];
 

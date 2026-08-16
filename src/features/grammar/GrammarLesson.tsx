@@ -22,6 +22,7 @@ import {
   getGrammarTopic,
   nounsQuickCheck,
   presentContinuousQuickCheck,
+  pastContinuousQuickCheck,
   presentQuickCheck,
   simplePastQuickCheck,
   type QuickCheckQuestion,
@@ -1819,7 +1820,541 @@ function SimplePastLesson() {
   );
 }
 
-type GrammarTopicId = "01" | "02" | "03" | "04";
+function PastContinuousLesson() {
+  return (
+    <>
+      <MissionSection
+        id="past-cont-brief"
+        icon={<Target />}
+        eyebrow="Mission brief"
+        title="Talk about what was already happening"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            Past continuous describes an action that <strong>was already in progress</strong> at a
+            particular time in the past.
+          </p>
+          <p>
+            By the end of this mission, you will know how to form it, use it with when and while,
+            and tell it apart from the simple past.
+          </p>
+          <div className="grammar-pill-row">
+            <span>Match was / were</span>
+            <span>Form verb-ing</span>
+            <span>Use when and while</span>
+          </div>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-big-idea"
+        icon={<Lightbulb />}
+        eyebrow="Big idea"
+        title="The action was in progress at that moment"
+      >
+        <div
+          className="grammar-progress-band"
+          aria-label="Timeline showing an action in progress at a moment in the past"
+        >
+          <span>past</span>
+          <div className="grammar-progress-band__band">action in progress</div>
+          <span>now</span>
+          <em className="grammar-progress-band__caption">Was happening · at that moment</em>
+        </div>
+        <ConceptGrid>
+          <ConceptCard label="At 8 p.m." title="I was studying at 8 p.m.">
+            <p>The studying had already started at that time.</p>
+          </ConceptCard>
+          <ConceptCard label="Interrupted" title="She was sleeping when I called.">
+            <p>The sleeping was already in progress when the call came.</p>
+          </ConceptCard>
+          <ConceptCard label="In the evening" title="They were playing football in the evening.">
+            <p>The game was underway during that part of the day.</p>
+          </ConceptCard>
+          <ConceptCard label="On the way" title="We were walking home.">
+            <p>The walk was in progress, not finished.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-formula"
+        icon={<BadgeCheck />}
+        eyebrow="How it works"
+        title="Basic formula"
+      >
+        <Formula>
+          <strong>Subject</strong>
+          <span>+</span>
+          <strong>was / were</strong>
+          <span>+</span>
+          <strong>verb-ing</strong>
+        </Formula>
+        <p className="grammar-centred-example">
+          I <strong>was reading</strong>. · She <strong>was sleeping</strong>. · They{" "}
+          <strong>were playing</strong>.
+        </p>
+        <div className="grammar-watchout">
+          <AlertTriangle aria-hidden="true" />
+          <p>
+            <strong>Watch out:</strong> you need both parts — a past be-verb and a main verb ending
+            in -ing.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-was-were"
+        icon={<CircleHelp />}
+        eyebrow="Control panel"
+        title="Choose was or were"
+      >
+        <div className="grammar-compare-grid">
+          <ConceptCard label="I / He / She / It" title="was">
+            <p>I was studying.</p>
+            <p>He was running.</p>
+          </ConceptCard>
+          <ConceptCard label="You / We / They" title="were">
+            <p>We were waiting.</p>
+            <p>They were talking.</p>
+          </ConceptCard>
+        </div>
+        <div className="grammar-wrong-right">
+          <span>
+            <X aria-hidden="true" /> They was playing.
+          </span>
+          <span>
+            <Check aria-hidden="true" /> They were playing.
+          </span>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-ing"
+        icon={<Sparkles />}
+        eyebrow="Verb transformation"
+        title="Adding -ing"
+      >
+        <div className="grammar-ing-transform" aria-label="Examples of adding ing to verbs">
+          <span>
+            play <strong>→ playing</strong>
+          </span>
+          <span>
+            make <strong>→ making</strong>
+          </span>
+          <span>
+            run <strong>→ running</strong>
+          </span>
+        </div>
+        <div className="grammar-rule-table" role="table" aria-label="Rules for adding ing">
+          <div role="row">
+            <strong role="cell">Most verbs</strong>
+            <span role="cell">+ ing</span>
+            <span role="cell">play → playing · read → reading · study → studying</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Final silent e</strong>
+            <span role="cell">drop e + ing</span>
+            <span role="cell">make → making · write → writing</span>
+          </div>
+          <div role="row">
+            <strong role="cell">Short CVC verbs</strong>
+            <span role="cell">double + ing</span>
+            <span role="cell">run → running · swim → swimming</span>
+          </div>
+        </div>
+        <div className="grammar-bridge-note">
+          <strong>Already know this?</strong>
+          <p>
+            These are exactly the same -ing rules you used in the present continuous. Only the
+            be-verb changes: am/is/are becomes was/were.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-progress"
+        icon={<BookOpen />}
+        eyebrow="See it in action"
+        title="Action in progress at a past time"
+      >
+        <LessonArtwork
+          src="/assets/english/form-1/grammar/past-continuous/progress-action.webp"
+          alt="Several everyday activities shown while they were still happening at a past moment."
+          width={1100}
+          height={619}
+        />
+        <ConceptGrid>
+          <ConceptCard label="At 8 p.m." title="At 8 p.m., I was doing my homework.">
+            <p>The homework was underway at that exact time.</p>
+          </ConceptCard>
+          <ConceptCard label="At noon" title="At noon, she was having lunch.">
+            <p>Lunch had started and was not finished.</p>
+          </ConceptCard>
+          <ConceptCard label="At that time" title="At that time, they were watching TV.">
+            <p>They takes were, and the verb becomes watching.</p>
+          </ConceptCard>
+          <ConceptCard label="At 7 a.m." title="At 7 a.m., we were waiting for the bus.">
+            <p>The waiting was in progress at that moment.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-interrupted"
+        icon={<AlertTriangle />}
+        eyebrow="The key pattern"
+        title="Interrupted action"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            A long action was already in progress when a shorter action <strong>interrupted</strong>{" "}
+            it.
+          </p>
+        </div>
+        <div
+          className="grammar-interrupt"
+          aria-label="A long action in progress interrupted by a short event"
+        >
+          <div className="grammar-interrupt__lane">
+            <b>Long action</b>
+            <div className="grammar-interrupt__long">I was cooking dinner</div>
+          </div>
+          <div className="grammar-interrupt__lane">
+            <b>Short event</b>
+            <div className="grammar-interrupt__short">
+              <i aria-hidden="true" />
+              <span>the phone rang</span>
+            </div>
+          </div>
+        </div>
+        <p className="grammar-centred-example">
+          I <strong>was cooking</strong> dinner <strong>when</strong> the phone{" "}
+          <strong>rang</strong>.
+        </p>
+        <div className="grammar-compare-grid">
+          <ConceptCard label="Past continuous" title="The long, ongoing action">
+            <p>was cooking</p>
+          </ConceptCard>
+          <ConceptCard label="Simple past" title="The short action that interrupts">
+            <p>rang</p>
+          </ConceptCard>
+        </div>
+        <div className="grammar-watchout">
+          <AlertTriangle aria-hidden="true" />
+          <p>
+            <strong>Watch out:</strong> this kind of sentence uses two different tenses on purpose —
+            one for the background action, one for the interruption.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection id="past-cont-when" icon={<CircleHelp />} eyebrow="Linking word" title="When">
+        <div className="grammar-brief-card">
+          <p>
+            <strong>When</strong> usually introduces the shorter action — the one that interrupts.
+          </p>
+        </div>
+        <ConceptGrid>
+          <ConceptCard label="When" title="I was sleeping when the alarm rang.">
+            <p>The alarm is the short interrupting event.</p>
+          </ConceptCard>
+          <ConceptCard label="When" title="She was cooking when I arrived.">
+            <p>Arriving happened during the cooking.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection id="past-cont-while" icon={<Sparkles />} eyebrow="Linking word" title="While">
+        <div className="grammar-brief-card">
+          <p>
+            <strong>While</strong> connects two actions happening <strong>at the same time</strong>.
+          </p>
+        </div>
+        <div className="grammar-parallel" aria-label="Two actions happening at the same time">
+          <div>I was reading</div>
+          <div>she was cooking</div>
+        </div>
+        <p className="grammar-centred-example">
+          I <strong>was reading</strong> while she <strong>was cooking</strong>.
+        </p>
+        <ConceptGrid>
+          <ConceptCard label="While" title="While I was studying, my brother was watching TV.">
+            <p>Both actions were in progress together.</p>
+          </ConceptCard>
+          <ConceptCard label="While" title="They were talking while they were walking home.">
+            <p>Two ongoing actions share the same stretch of time.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-when-while"
+        icon={<BookOpen />}
+        eyebrow="Compare it"
+        title="When vs while"
+      >
+        <div className="grammar-compare-grid">
+          <ConceptCard label="When" title="Introduces the interrupting action">
+            <p>I was sleeping when the phone rang.</p>
+            <p className="grammar-note">long action + short event</p>
+          </ConceptCard>
+          <ConceptCard label="While" title="Connects two ongoing actions">
+            <p>I was cooking while she was studying.</p>
+            <p className="grammar-note">two actions at the same time</p>
+          </ConceptCard>
+        </div>
+        <Formula>
+          <span>when</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>interrupts</strong>
+          <span>while</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>same time</strong>
+        </Formula>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-negative"
+        icon={<X />}
+        eyebrow="Negative structures"
+        title="Add not after was or were"
+      >
+        <Formula>
+          <strong>Subject</strong>
+          <span>+</span>
+          <strong>was / were</strong>
+          <span>+</span>
+          <strong>not</strong>
+          <span>+</span>
+          <strong>verb-ing</strong>
+        </Formula>
+        <ConceptGrid>
+          <ConceptCard label="I" title="I was not sleeping.">
+            <p>You can also say: I wasn't sleeping.</p>
+          </ConceptCard>
+          <ConceptCard label="She" title="She was not studying.">
+            <p>You can also say: She wasn't studying.</p>
+          </ConceptCard>
+          <ConceptCard label="They" title="They were not playing.">
+            <p>You can also say: They weren't playing.</p>
+          </ConceptCard>
+        </ConceptGrid>
+        <div className="grammar-time-chips" aria-label="Past continuous contractions">
+          <span>was not → wasn't</span>
+          <span>were not → weren't</span>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-questions"
+        icon={<CircleHelp />}
+        eyebrow="Question structures"
+        title="Move was or were before the subject"
+      >
+        <Formula>
+          <strong>Was / Were</strong>
+          <span>+</span>
+          <strong>subject</strong>
+          <span>+</span>
+          <strong>verb-ing?</strong>
+        </Formula>
+        <ConceptGrid>
+          <ConceptCard label="Were" title="Were you studying?">
+            <p>Yes, I was. · No, I wasn't.</p>
+          </ConceptCard>
+          <ConceptCard label="Was" title="Was she sleeping?">
+            <p>Yes, she was. · No, she wasn't.</p>
+          </ConceptCard>
+          <ConceptCard label="Were" title="Were they playing?">
+            <p>Yes, they were. · No, they weren't.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-compare"
+        icon={<BookOpen />}
+        eyebrow="Compare it"
+        title="Simple Past vs Past Continuous"
+      >
+        <div className="grammar-compare-grid">
+          <ConceptCard label="Simple past" title="I played football yesterday.">
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/simple-past/compare-past.webp"
+              alt="Student after a finished football game."
+              width={700}
+              height={467}
+            />
+            <p className="grammar-note">yesterday · finished action</p>
+          </ConceptCard>
+          <ConceptCard label="Past continuous" title="I was playing football at 5 p.m.">
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/past-continuous/compare-progress.webp"
+              alt="Same student mid-game, with the football action still in progress."
+              width={700}
+              height={467}
+            />
+            <p className="grammar-note">at 5 p.m. · in progress at that moment</p>
+          </ConceptCard>
+        </div>
+        <Formula>
+          <span>yesterday</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>simple past</strong>
+          <span>at 5 p.m.</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>past continuous</strong>
+        </Formula>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-errors"
+        icon={<Search />}
+        eyebrow="Common mistakes"
+        title="Error detector"
+      >
+        <div className="grammar-error-grid">
+          <ErrorDetector
+            sentence={
+              <>
+                I was <u>study</u> at 8 p.m.
+              </>
+            }
+            wrong="study"
+            correction="I was studying at 8 p.m."
+            reason="After was or were, the main verb needs -ing."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                They <u>was</u> playing football.
+              </>
+            }
+            wrong="was"
+            correction="They were playing football."
+            reason="You, we, and they take were, not was."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                She <u>were</u> sleeping.
+              </>
+            }
+            wrong="were"
+            correction="She was sleeping."
+            reason="He, she, and it take was, not were."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                I <u>studying</u> when you called.
+              </>
+            }
+            wrong="studying"
+            correction="I was studying when you called."
+            reason="An -ing verb alone is not a full sentence — it needs was or were."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                We were <u>play</u> football.
+              </>
+            }
+            wrong="play"
+            correction="We were playing football."
+            reason="The main verb must end in -ing after were."
+          />
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-real-life"
+        icon={<MessageCircle />}
+        eyebrow="Real-life English"
+        title="Talking about last night"
+      >
+        <div className="grammar-chat">
+          <p>
+            <span>Aiman</span> What <strong>were you doing</strong> last night?
+          </p>
+          <p>
+            <span>Sara</span> <strong>I was studying</strong>.
+          </p>
+          <p>
+            <span>Aiman</span> <strong>Were you studying</strong> when I messaged you?
+          </p>
+          <p>
+            <span>Sara</span> Yes. <strong>I was finishing</strong> my homework.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-check"
+        icon={<CheckCircle2 />}
+        eyebrow="Test yourself"
+        title="Quick check"
+      >
+        <QuickCheck questions={pastContinuousQuickCheck} />
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-summary"
+        icon={<Sparkles />}
+        eyebrow="Revision map"
+        title="Mission summary"
+      >
+        <div className="grammar-summary-grid">
+          <ConceptCard title="Past continuous">
+            <p>action in progress at a past moment</p>
+          </ConceptCard>
+          <ConceptCard title="Formula">
+            <p>subject + was / were + verb-ing</p>
+          </ConceptCard>
+          <ConceptCard title="Was / were match">
+            <p>I/he/she/it → was · you/we/they → were</p>
+          </ConceptCard>
+          <ConceptCard title="Negative">
+            <p>subject + wasn't / weren't + verb-ing</p>
+          </ConceptCard>
+          <ConceptCard title="Question">
+            <p>Was / Were + subject + verb-ing?</p>
+          </ConceptCard>
+          <ConceptCard title="Common clues">
+            <p>at 8 p.m. · at that moment · while · when</p>
+          </ConceptCard>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="past-cont-exam"
+        icon={<Target />}
+        eyebrow="Exam strategy"
+        title="Exam booster"
+      >
+        <div className="grammar-exam-list">
+          <p>Look for a specific past moment such as at 8 p.m., or an interrupting event.</p>
+          <p>Choose was or were correctly for the subject.</p>
+          <p>The main verb must end in -ing — a lone -ing verb is not a full sentence.</p>
+          <p>When usually introduces the shorter, interrupting action.</p>
+          <p>While usually connects two actions happening together.</p>
+          <p>Decide whether the action is finished (simple past) or ongoing (past continuous).</p>
+        </div>
+        <div className="grammar-exam-booster">
+          <Target aria-hidden="true" />
+          <p>
+            <strong>Worked example:</strong> “At 8 p.m., Amir ___ his homework.” At 8 p.m. names a
+            past moment and the homework was already underway, so:{" "}
+            <strong>Amir was doing his homework.</strong>
+          </p>
+        </div>
+      </MissionSection>
+    </>
+  );
+}
+
+type GrammarTopicId = "01" | "02" | "03" | "04" | "05";
 
 type LessonConfig = {
   heading: string;
@@ -1944,6 +2479,38 @@ const LESSON_CONFIG: Record<GrammarTopicId, LessonConfig> = {
       caption: "It happened. It's finished.",
     },
     render: () => <SimplePastLesson />,
+  },
+  "05": {
+    heading: "Past Continuous Tense",
+    lead: "Talk about actions that were happening at a particular moment in the past.",
+    sections: [
+      "past-cont-brief",
+      "past-cont-big-idea",
+      "past-cont-formula",
+      "past-cont-was-were",
+      "past-cont-ing",
+      "past-cont-progress",
+      "past-cont-interrupted",
+      "past-cont-when",
+      "past-cont-while",
+      "past-cont-when-while",
+      "past-cont-negative",
+      "past-cont-questions",
+      "past-cont-compare",
+      "past-cont-errors",
+      "past-cont-real-life",
+      "past-cont-check",
+      "past-cont-summary",
+      "past-cont-exam",
+    ],
+    hero: {
+      src: "/assets/english/form-1/grammar/past-continuous/hero.webp",
+      alt: "Student walking under an umbrella in the rain, showing an action already in progress in the past.",
+      width: 1100,
+      height: 733,
+      caption: "It was already happening.",
+    },
+    render: () => <PastContinuousLesson />,
   },
 };
 

@@ -5,7 +5,7 @@ import { GrammarMissionHub } from "@/features/grammar/GrammarMissionHub";
 import { seoMeta } from "@/lib/seo";
 
 const grammarSearchSchema = z.object({
-  topic: z.enum(["01", "02", "03", "04"]).optional().catch(undefined),
+  topic: z.enum(["01", "02", "03", "04", "05"]).optional().catch(undefined),
 });
 
 const TOPIC_SEO = {
@@ -28,6 +28,11 @@ const TOPIC_SEO = {
     title: "Simple Past",
     description:
       "Learn the Form 1 simple past tense for finished actions, including regular and irregular verbs, negatives, questions and was/were.",
+  },
+  "05": {
+    title: "Past Continuous",
+    description:
+      "Learn the Form 1 past continuous tense for actions in progress at a past moment, including was/were, verb-ing, when, while, negatives and questions.",
   },
 } as const;
 
