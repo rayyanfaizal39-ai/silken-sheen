@@ -43,6 +43,9 @@ import type { MathF3C3Content } from "@/content/form3/math/chapter-3/interactive
 import type { MathF3C4Content } from "@/content/form3/math/chapter-4/interactive-content";
 import type { MathF3C5Content } from "@/content/form3/math/chapter-5/interactive-content";
 import type { MathF3C6Content } from "@/content/form3/math/chapter-6/interactive-content";
+import type { MathF3C7Content } from "@/content/form3/math/chapter-7/interactive-content";
+import type { MathF3C8Content } from "@/content/form3/math/chapter-8/interactive-content";
+import type { MathF3C9Content } from "@/content/form3/math/chapter-9/interactive-content";
 import type { Geo1Content } from "@/content/form1/geography/chapter-1/geo1-content";
 import type { Geo2Content } from "@/content/form1/geography/chapter-2/geo2-content";
 import type { Geo3Content } from "@/content/form1/geography/chapter-3/geo3-content";
@@ -209,6 +212,12 @@ export type ChapterContent = {
   mathF3Chapter5Data?: { en: MathF3C5Content; bm: MathF3C5Content };
   /** Math Form 3 Chapter 6 (Angles and Tangents of Circles/Sudut dan Tangen bagi Bulatan) interactive, bilingual learning experience. */
   mathF3Chapter6Data?: { en: MathF3C6Content; bm: MathF3C6Content };
+  /** Math Form 3 Chapter 7 (Plans and Elevations/Pelan dan Dongakan) interactive, bilingual learning experience. */
+  mathF3Chapter7Data?: { en: MathF3C7Content; bm: MathF3C7Content };
+  /** Math Form 3 Chapter 8 (Loci in Two Dimensions/Lokus dalam Dua Matra) interactive, bilingual learning experience. */
+  mathF3Chapter8Data?: { en: MathF3C8Content; bm: MathF3C8Content };
+  /** Math Form 3 Chapter 9 (Straight Lines/Garis Lurus) interactive, bilingual learning experience. */
+  mathF3Chapter9Data?: { en: MathF3C9Content; bm: MathF3C9Content };
   /** Geography Bab 1 (Arah/Direction) chunked learning experience. BM-only — Geography has no DLP/English textbook. */
   geoChapter1Data?: Geo1Content;
   /** Geography Bab 2 (Kedudukan/Position) chunked learning experience. BM-only. */
@@ -352,6 +361,9 @@ export function getChapterFeatures(
       !!c?.mathF3Chapter4Data ||
       !!c?.mathF3Chapter5Data ||
       !!c?.mathF3Chapter6Data ||
+      !!c?.mathF3Chapter7Data ||
+      !!c?.mathF3Chapter8Data ||
+      !!c?.mathF3Chapter9Data ||
       !!c?.geoChapter1Data ||
       !!c?.geoChapter2Data ||
       !!c?.geoChapter3Data ||

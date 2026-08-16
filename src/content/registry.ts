@@ -604,6 +604,9 @@ import { mathF3C3InteractiveContent } from "@/content/form3/math/chapter-3/inter
 import { mathF3C4InteractiveContent } from "@/content/form3/math/chapter-4/interactive-content";
 import { mathF3C5InteractiveContent } from "@/content/form3/math/chapter-5/interactive-content";
 import { mathF3C6InteractiveContent } from "@/content/form3/math/chapter-6/interactive-content";
+import { mathF3C7InteractiveContent } from "@/content/form3/math/chapter-7/interactive-content";
+import { mathF3C8InteractiveContent } from "@/content/form3/math/chapter-8/interactive-content";
+import { mathF3C9InteractiveContent } from "@/content/form3/math/chapter-9/interactive-content";
 import { mathF3C1NotesBM } from "@/content/form3/math/chapter-1/notes-bm";
 import { mathF3C1NotesDLP } from "@/content/form3/math/chapter-1/notes-dlp";
 import { mathF3C1MindMapBM } from "@/content/form3/math/chapter-1/mindmap-bm";
@@ -2260,6 +2263,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C7MindMapBM, title: "Pelan dan Dongakan" },
     notes: mathF3C7NotesBM,
+    mathF3Chapter7Data: mathF3C7InteractiveContent,
     flashcards: mathF3C7FlashcardsBM,
     quiz: mathF3C7QuizzesBM,
   },
@@ -2272,6 +2276,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C7MindMapDLP, title: "Plan and Elevation" },
     notes: mathF3C7NotesDLP,
+    mathF3Chapter7Data: mathF3C7InteractiveContent,
     flashcards: mathF3C7FlashcardsDLP,
     quiz: mathF3C7QuizzesDLP,
   },
@@ -2284,6 +2289,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C8MindMapBM, title: "Lokus dalam Dua Dimensi" },
     notes: mathF3C8NotesBM,
+    mathF3Chapter8Data: mathF3C8InteractiveContent,
     flashcards: mathF3C8FlashcardsBM,
     quiz: mathF3C8QuizzesBM,
   },
@@ -2296,6 +2302,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C8MindMapDLP, title: "Locus in Two Dimensions" },
     notes: mathF3C8NotesDLP,
+    mathF3Chapter8Data: mathF3C8InteractiveContent,
     flashcards: mathF3C8FlashcardsDLP,
     quiz: mathF3C8QuizzesDLP,
   },
@@ -2308,6 +2315,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C9MindMapBM, title: "Garis Lurus" },
     notes: mathF3C9NotesBM,
+    mathF3Chapter9Data: mathF3C9InteractiveContent,
     flashcards: mathF3C9FlashcardsBM,
     quiz: mathF3C9QuizzesBM,
   },
@@ -2320,6 +2328,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C9MindMapDLP, title: "Straight Lines" },
     notes: mathF3C9NotesDLP,
+    mathF3Chapter9Data: mathF3C9InteractiveContent,
     flashcards: mathF3C9FlashcardsDLP,
     quiz: mathF3C9QuizzesDLP,
   },

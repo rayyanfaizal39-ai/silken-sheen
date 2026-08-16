@@ -57,7 +57,11 @@ import {
   bmF3ObjektifKuiz3,
 } from "@/data/bm-f3-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
-import { useProgress } from "@/hooks/use-progress";
+import { QUIZ_PASS_BONUS_XP, QUIZ_PASS_PCT, useProgress } from "@/hooks/use-progress";
+import {
+  QUIZ_CORRECT_STREAK_BONUS_XP,
+  QUIZ_TIMER_BONUS_XP,
+} from "@/features/quiz/bonus/quizBonusXp";
 import { sfx } from "@/lib/sounds";
 import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import {
@@ -556,6 +560,9 @@ function ObjektifKuizView({
   const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
   const [timeLeft, setTimeLeft] = useState(totalSeconds);
   const [earnedXp, setEarnedXp] = useState(0);
+  const [speedBonusXp, setSpeedBonusXp] = useState(0);
+  const [streakBonusXp, setStreakBonusXp] = useState(0);
+  const [streakWasReset, setStreakWasReset] = useState(false);
   const quizStreak = useQuizStreak(`bm:${formLabel}:${set.id}`);
 
   const q = quizQuestions[current];
@@ -576,17 +583,25 @@ function ObjektifKuizView({
 
   function handleSelect(idx: number | null) {
     if (revealed) return;
-    if (idx === q.answerIndex) sfx.success();
+    const answerIsCorrect = idx === q.answerIndex;
+    if (answerIsCorrect) sfx.success();
     if (idx !== null && idx !== q.answerIndex) sfx.whomp();
     setSelected(idx);
     setRevealed(true);
     const next = [...answers];
     next[current] = idx;
     setAnswers(next);
+    const previousStreak = quizStreak.streak;
     quizStreak.confirmAnswer({
       questionId: `bm:${set.id}:${current}`,
-      correct: idx === q.answerIndex,
+      correct: answerIsCorrect,
+      xpAwarded: answerIsCorrect ? QUIZ_CORRECT_STREAK_BONUS_XP : 0,
     });
+    setStreakWasReset(!answerIsCorrect && previousStreak > 0);
+    if (answerIsCorrect) {
+      setSpeedBonusXp((value) => value + QUIZ_TIMER_BONUS_XP[60]);
+      setStreakBonusXp((value) => value + QUIZ_CORRECT_STREAK_BONUS_XP);
+    }
   }
 
   function handleNext() {
@@ -603,10 +618,23 @@ function ObjektifKuizView({
         chapterKey: set.id,
         correct,
         total: quizQuestions.length,
+        xpEarned:
+          (pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10) +
+          speedBonusXp +
+          streakBonusXp +
+          (pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0),
+        timerMode: 60,
+        baseXp: pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10,
+        speedBonusXp,
+        streakBonusXp,
+        passBonusXp: pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0,
+        bestCorrectStreak: quizStreak.bestStreak,
       });
       const xpReward = pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10;
-      addXp(xpReward, "bm");
-      setEarnedXp(xpReward);
+      addXp(xpReward + speedBonusXp + streakBonusXp, "bm");
+      setEarnedXp(
+        xpReward + speedBonusXp + streakBonusXp + (pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0),
+      );
       if (pct >= 60) sfx.fanfare();
       setPhase("results");
     }
@@ -621,6 +649,9 @@ function ObjektifKuizView({
     setAnswers(Array(questions.length).fill(null));
     setTimeLeft(totalSeconds);
     setEarnedXp(0);
+    setSpeedBonusXp(0);
+    setStreakBonusXp(0);
+    setStreakWasReset(false);
     setPhase("quiz");
   }
 
@@ -677,6 +708,15 @@ function ObjektifKuizView({
             <p className="text-xs text-white/40 leading-relaxed">
               Struktur: S1–5 Sistem Bahasa · S6–10 KOMSAS · S11–15 Novel {formLabel}
             </p>
+          </div>
+          <div className="mx-auto mt-4 max-w-md rounded-2xl border border-amber-300/15 bg-amber-300/[0.05] px-4 py-3 text-xs text-white/65">
+            <span className="font-bold text-white">1 Minute Challenge</span>
+            <span className="mx-2 text-white/25">•</span>
+            <span aria-label="Speed Bonus plus 5 XP per correct answer">
+              ⚡ +5 Speed XP / correct
+            </span>
+            <span className="mx-2 text-white/25">•</span>
+            <span aria-label="Correct Streak Bonus plus 5 XP">🔥 +5 Correct Streak XP</span>
           </div>
           <button
             onClick={handleStart}
@@ -763,6 +803,39 @@ function ObjektifKuizView({
                 Ganjaran
               </p>
               <p className="mt-1 text-lg font-black text-sky-200">+{earnedXp} XP</p>
+            </div>
+          </div>
+          <div className="mx-auto mt-4 max-w-sm rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 text-left text-xs text-white/60">
+            <div className="flex justify-between py-1">
+              <span>Legacy BM quiz reward</span>
+              <span>
+                +
+                {earnedXp -
+                  speedBonusXp -
+                  streakBonusXp -
+                  (pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0)}{" "}
+                XP
+              </span>
+            </div>
+            <div className="flex justify-between py-1">
+              <span>Speed Bonus</span>
+              <span>+{speedBonusXp} XP</span>
+            </div>
+            <div className="flex justify-between py-1">
+              <span>Correct Streak Bonus</span>
+              <span>+{streakBonusXp} XP</span>
+            </div>
+            <div className="flex justify-between py-1">
+              <span>Pass Bonus</span>
+              <span>+{pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0} XP</span>
+            </div>
+            <div className="mt-2 flex justify-between border-t border-white/10 pt-2 font-bold text-white">
+              <span>TOTAL XP</span>
+              <span className="text-sky-200">+{earnedXp} XP</span>
+            </div>
+            <div className="mt-2 flex justify-between text-orange-200">
+              <span>Best Correct Streak</span>
+              <span>🔥 {quizStreak.bestStreak}</span>
             </div>
           </div>
 
@@ -950,13 +1023,19 @@ function ObjektifKuizView({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             {isCorrect ? (
-              <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-400">
-                Betul! ✓
+              <span
+                className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-400"
+                role="status"
+              >
+                Betul! ✓ · +5 ⚡ · +5 🔥
               </span>
             ) : (
               <span className="rounded-full bg-rose-500/12 px-3 py-1 text-xs font-bold text-rose-400">
                 {selected === null ? "Masa Tamat" : "Salah ✗"}
               </span>
+            )}
+            {streakWasReset && (
+              <span className="text-[10px] text-white/45">Correct-answer streak reset</span>
             )}
           </div>
           <button
