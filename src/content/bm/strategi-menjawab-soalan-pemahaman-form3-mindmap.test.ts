@@ -49,8 +49,8 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 3 Strategi Menjawab Soalan Pemahaman mind map", () => {
-  it("remains the first of exactly four registered Form 3 Pemahaman topics", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(4);
+  it("remains the first of exactly seven registered Form 3 Pemahaman topics", () => {
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(7);
     expect(bahasaMelayuTingkatan3PemahamanRegistry[0]).toMatchObject({
       id: "bm-f3-strategi-menjawab-soalan-pemahaman-mindmap",
       subjectId: "bm",
@@ -79,6 +79,9 @@ describe("Bahasa Melayu Form 3 Strategi Menjawab Soalan Pemahaman mind map", () 
       "Analisis Isi Tersurat dan Tersirat",
       "Analisis Petikan Pelbagai Bahan",
       "Menilai Hujah dan Pendapat",
+      "Maksud Frasa, Ungkapan dan Bahasa Kiasan",
+      "Menjawab Soalan KBAT dan Penyelesaian Masalah",
+      "Teknik Membuat Rumusan dan Sintesis Maklumat",
     ]);
     expect(topics[0 - 1]).toBeUndefined();
     expect(topics[0 + 1]?.key).toBe("Analisis Isi Tersurat dan Tersirat");
