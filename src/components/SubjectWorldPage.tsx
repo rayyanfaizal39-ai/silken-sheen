@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { Link } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Lock, Sparkles } from "lucide-react";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { selectNotesAwareProgress, type NotesProgressMap } from "@/lib/notes-reading-progress";
@@ -1631,7 +1632,9 @@ export function SubjectWorldPage({
 }) {
   const config = WORLDS[subjectId] ?? WORLDS.math;
   const registry = useRegistry();
-  const chapters = registry ? registry.getRegisteredSubjectChapters(subjectId, scienceLang, form) : [];
+  const chapters = registry
+    ? registry.getRegisteredSubjectChapters(subjectId, scienceLang, form)
+    : [];
   const { progress } = useProgress();
 
   const completedCount = chapters.filter(
@@ -1789,6 +1792,38 @@ export function SubjectWorldPage({
         {/* ══════════════════════════════════════════════════════
             WORLD STATS + ACHIEVEMENTS (side by side on desktop)
         ══════════════════════════════════════════════════════ */}
+        {subjectId === "english" && form === "Form 1" && resourceType === "notes" && (
+          <Link
+            to="/english/form-1/grammar"
+            search={{}}
+            className="group mb-6 grid min-h-36 overflow-hidden rounded-[1.5rem] border border-violet-300/15 bg-[linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.08))] text-left text-white no-underline shadow-[0_22px_70px_rgba(76,29,149,0.16)] transition-[transform,border-color,background-color] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none sm:grid-cols-[1fr_230px]"
+          >
+            <div className="flex flex-col justify-center p-5 sm:p-6">
+              <span className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">
+                Form 1 · Interactive notes
+              </span>
+              <h2 className="font-display text-2xl font-black">Grammar Missions</h2>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/55">
+                Master ten grammar skills through visual explanations, error detectors, and quick
+                checks.
+              </p>
+              <span className="mt-4 inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-violet-400 px-4 py-2 text-xs font-black text-[#09051f]">
+                Explore grammar <span aria-hidden="true">→</span>
+              </span>
+            </div>
+            <div className="hidden items-center justify-center p-3 sm:flex">
+              <img
+                src="/assets/english/form-1/grammar/landing/grammar-topic-01.webp"
+                alt=""
+                width="720"
+                height="480"
+                loading="lazy"
+                className="h-32 w-full object-contain drop-shadow-[0_16px_22px_rgba(25,10,70,0.45)]"
+              />
+            </div>
+          </Link>
+        )}
+
         <div className="mb-6 grid gap-4 lg:grid-cols-2">
           <div
             className="rounded-[1.5rem] border border-white/[0.06] p-4"

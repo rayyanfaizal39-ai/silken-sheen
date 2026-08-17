@@ -46,6 +46,7 @@ import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AccountBillingRouteImport } from './routes/account.billing'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
+import { Route as EnglishForm1GrammarRouteImport } from './routes/english.form-1.grammar'
 import { Route as AdminContentQuizImporterRouteImport } from './routes/admin.content.quiz-importer'
 
 const UpgradeRoute = UpgradeRouteImport.update({
@@ -233,6 +234,11 @@ const AcademyLandingpage3Route = AcademyLandingpage3RouteImport.update({
   path: '/academy/landingpage3',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnglishForm1GrammarRoute = EnglishForm1GrammarRouteImport.update({
+  id: '/english/form-1/grammar',
+  path: '/english/form-1/grammar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminContentQuizImporterRoute =
   AdminContentQuizImporterRouteImport.update({
     id: '/content/quiz-importer',
@@ -279,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
+  '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -318,6 +325,7 @@ export interface FileRoutesByTo {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
+  '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -359,6 +367,7 @@ export interface FileRoutesById {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
+  '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -401,6 +410,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/admin/'
     | '/admin/content/quiz-importer'
+    | '/english/form-1/grammar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -440,6 +450,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/admin'
     | '/admin/content/quiz-importer'
+    | '/english/form-1/grammar'
   id:
     | '__root__'
     | '/'
@@ -480,6 +491,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/admin/'
     | '/admin/content/quiz-importer'
+    | '/english/form-1/grammar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -515,6 +527,7 @@ export interface RootRouteChildren {
   AuthCallbackRoute: typeof AuthCallbackRoute
   AuthConfirmRoute: typeof AuthConfirmRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  EnglishForm1GrammarRoute: typeof EnglishForm1GrammarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -778,6 +791,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AcademyLandingpage3RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/english/form-1/grammar': {
+      id: '/english/form-1/grammar'
+      path: '/english/form-1/grammar'
+      fullPath: '/english/form-1/grammar'
+      preLoaderRoute: typeof EnglishForm1GrammarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/content/quiz-importer': {
       id: '/admin/content/quiz-importer'
       path: '/content/quiz-importer'
@@ -841,6 +861,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthCallbackRoute: AuthCallbackRoute,
   AuthConfirmRoute: AuthConfirmRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
+  EnglishForm1GrammarRoute: EnglishForm1GrammarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
