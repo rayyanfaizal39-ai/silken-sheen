@@ -1,6 +1,7 @@
 import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan3TersuratTersiratMindMap } from "@/content/bm/analisis-isi-tersurat-tersirat-form3-mindmap";
 import { bahasaMelayuTingkatan3PelbagaiBahanMindMap } from "@/content/bm/analisis-petikan-pelbagai-bahan-form3-mindmap";
+import { bahasaMelayuTingkatan3MenilaiHujahMindMap } from "@/content/bm/menilai-hujah-pendapat-form3-mindmap";
 import { bahasaMelayuTingkatan3StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form3-mindmap";
 
 export const bahasaMelayuTingkatan3PemahamanRegistry = [
@@ -44,6 +45,20 @@ export const bahasaMelayuTingkatan3PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan3PelbagaiBahanMindMap,
       title: "Analisis Petikan Pelbagai Bahan",
+    },
+  },
+  {
+    id: "bm-f3-menilai-hujah-pendapat-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Menilai Hujah dan Pendapat",
+    title: "Menilai Hujah dan Pendapat",
+    description:
+      "Menilai kekuatan sesuatu pendapat dengan mengenal pasti dakwaan, alasan, bukti dan hubungan logik sebelum membuat pertimbangan yang munasabah.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan3MenilaiHujahMindMap,
+      title: "Menilai Hujah dan Pendapat",
     },
   },
 ] as const satisfies readonly ChapterContent[];
