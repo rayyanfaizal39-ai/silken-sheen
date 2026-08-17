@@ -81,7 +81,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Connect past experiences and actions to the present.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-06.webp",
     accent: "blue",
-    implemented: false,
+    implemented: true,
   },
   {
     id: "07",
@@ -307,6 +307,45 @@ export const pastContinuousQuickCheck: QuickCheckQuestion[] = [
     correctIndex: 1,
     explanation:
       "While joins two actions happening at the same time, so both verbs use the past continuous.",
+  },
+];
+
+export const presentPerfectQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "She ___ finished her homework.",
+    options: ["have", "has", "had", "having"],
+    correctIndex: 1,
+    explanation: "She is he/she/it, so the helping verb is has: she has finished.",
+  },
+  {
+    question: "I have ___ that movie before.",
+    options: ["saw", "see", "seen", "seeing"],
+    correctIndex: 2,
+    explanation: "After have, use the past participle. The participle of see is seen, not saw.",
+  },
+  {
+    question: "Choose the correct sentence.",
+    options: ["He has went home.", "He has gone home.", "He have gone home.", "He gone home."],
+    correctIndex: 1,
+    explanation: "He takes has, and the past participle of go is gone — went is the simple past.",
+  },
+  {
+    question: "I have lived here ___ three years.",
+    options: ["since", "for", "yet", "ever"],
+    correctIndex: 1,
+    explanation: "Three years is a length of time, so use for. Since needs a starting point.",
+  },
+  {
+    question: "Which sentence is correct?",
+    options: [
+      "I have visited Johor last year.",
+      "I visited Johor last year.",
+      "I have visit Johor last year.",
+      "I has visited Johor last year.",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Last year is a finished past time, so the sentence needs the simple past: I visited Johor last year.",
   },
 ];
 
