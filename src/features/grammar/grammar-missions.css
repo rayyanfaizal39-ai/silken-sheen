@@ -891,6 +891,135 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.grammar-bridge {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.grammar-bridge svg {
+  width: min(100%, 420px);
+  height: auto;
+}
+.grammar-bridge .grammar-bridge__block {
+  stroke-width: 1.3;
+}
+.grammar-bridge .is-past {
+  fill: rgba(255, 143, 199, 0.16);
+  stroke: var(--grammar-pink);
+}
+.grammar-bridge .is-now {
+  fill: rgba(101, 230, 183, 0.18);
+  stroke: var(--grammar-mint);
+}
+.grammar-bridge .grammar-bridge__text {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+}
+.grammar-bridge .grammar-bridge__text.is-past {
+  fill: var(--grammar-pink);
+  stroke: none;
+}
+.grammar-bridge .grammar-bridge__text.is-now {
+  fill: var(--grammar-mint);
+  stroke: none;
+}
+.grammar-bridge .grammar-bridge__link {
+  fill: none;
+  stroke: var(--grammar-violet);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.grammar-bridge .grammar-bridge__hub {
+  fill: rgba(146, 118, 255, 0.25);
+  stroke: var(--grammar-violet);
+  stroke-width: 1.4;
+}
+.grammar-bridge .grammar-bridge__tick {
+  fill: none;
+  stroke: #cabcff;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.grammar-bridge__caption {
+  color: #d5ccff;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.grammar-duration {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.grammar-duration__row {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+.grammar-duration__label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+.grammar-duration__row.is-since .grammar-duration__label {
+  color: #9df4d3;
+}
+.grammar-duration__row.is-for .grammar-duration__label {
+  color: #a8c1ff;
+}
+.grammar-duration__track {
+  position: relative;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: rgba(8, 8, 32, 0.36);
+}
+.grammar-duration__fill {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 32%;
+  border-radius: 8px;
+}
+.grammar-duration__row.is-since .grammar-duration__fill {
+  border-left: 3px solid var(--grammar-mint);
+  background: linear-gradient(90deg, rgba(101, 230, 183, 0.4), rgba(101, 230, 183, 0.1));
+}
+.grammar-duration__row.is-for .grammar-duration__fill {
+  background: linear-gradient(
+    90deg,
+    rgba(95, 143, 255, 0.14),
+    rgba(95, 143, 255, 0.38),
+    rgba(95, 143, 255, 0.14)
+  );
+}
+.grammar-duration__mark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--grammar-muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+.grammar-duration__mark.is-start {
+  left: calc(32% + 10px);
+}
+.grammar-duration__mark.is-end {
+  right: 11px;
+}
+.grammar-compare-grid.is-media .grammar-lesson-artwork {
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: contain;
+}
 .grammar-interrupt {
   display: grid;
   gap: 10px;
@@ -1575,6 +1704,10 @@
   }
   .grammar-progress-band {
     grid-template-columns: 1fr;
+  }
+  .grammar-duration__row {
+    grid-template-columns: 1fr;
+    gap: 5px;
   }
   .grammar-question-options.has-four-options {
     grid-template-columns: 1fr;

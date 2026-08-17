@@ -5,7 +5,7 @@ import { GrammarMissionHub } from "@/features/grammar/GrammarMissionHub";
 import { seoMeta } from "@/lib/seo";
 
 const grammarSearchSchema = z.object({
-  topic: z.enum(["01", "02", "03", "04", "05"]).optional().catch(undefined),
+  topic: z.enum(["01", "02", "03", "04", "05", "06"]).optional().catch(undefined),
 });
 
 const TOPIC_SEO = {
@@ -33,6 +33,11 @@ const TOPIC_SEO = {
     title: "Past Continuous",
     description:
       "Learn the Form 1 past continuous tense for actions in progress at a past moment, including was/were, verb-ing, when, while, negatives and questions.",
+  },
+  "06": {
+    title: "Present Perfect",
+    description:
+      "Learn the Form 1 present perfect tense for past actions connected to now, including have/has, past participles, since/for, already/yet/just and ever/never.",
   },
 } as const;
 

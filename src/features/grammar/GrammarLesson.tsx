@@ -9,6 +9,7 @@ import {
   Check,
   CheckCircle2,
   CircleHelp,
+  Clock,
   Lightbulb,
   MessageCircle,
   Search,
@@ -23,6 +24,7 @@ import {
   nounsQuickCheck,
   presentContinuousQuickCheck,
   pastContinuousQuickCheck,
+  presentPerfectQuickCheck,
   presentQuickCheck,
   simplePastQuickCheck,
   type QuickCheckQuestion,
@@ -2354,7 +2356,693 @@ function PastContinuousLesson() {
   );
 }
 
-type GrammarTopicId = "01" | "02" | "03" | "04" | "05";
+function PresentPerfectLesson() {
+  const participles = [
+    ["go", "gone"],
+    ["be", "been"],
+    ["eat", "eaten"],
+    ["see", "seen"],
+    ["do", "done"],
+    ["make", "made"],
+    ["write", "written"],
+    ["take", "taken"],
+    ["buy", "bought"],
+    ["have", "had"],
+  ];
+
+  return (
+    <>
+      <MissionSection
+        id="perfect-brief"
+        icon={<Target />}
+        eyebrow="Mission brief"
+        title="Connect the past to right now"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            Present perfect links a past action to <strong>this moment</strong>. The exact past time
+            is usually not the point — the connection to now is.
+          </p>
+          <p>
+            By the end of this mission, you will be able to form it, choose have or has, use past
+            participles, and tell it apart from the simple past.
+          </p>
+          <div className="grammar-pill-row">
+            <span>Choose have / has</span>
+            <span>Use past participles</span>
+            <span>Spot the time clues</span>
+          </div>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-big-idea"
+        icon={<Lightbulb />}
+        eyebrow="Big idea"
+        title="Past connected to now"
+      >
+        <div className="grammar-bridge">
+          <svg
+            viewBox="0 0 320 110"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="A past moment on the left joined by a glowing bridge to now on the right."
+          >
+            <rect
+              className="grammar-bridge__block is-past"
+              x="18"
+              y="66"
+              width="78"
+              height="32"
+              rx="10"
+            />
+            <text className="grammar-bridge__text is-past" x="57" y="87" textAnchor="middle">
+              PAST
+            </text>
+            <rect
+              className="grammar-bridge__block is-now"
+              x="224"
+              y="66"
+              width="78"
+              height="32"
+              rx="10"
+            />
+            <text className="grammar-bridge__text is-now" x="263" y="87" textAnchor="middle">
+              NOW
+            </text>
+            <path className="grammar-bridge__link" d="M96,74 Q160,16 224,74" />
+            <circle className="grammar-bridge__hub" cx="160" cy="40" r="17" />
+            <path className="grammar-bridge__tick" d="M152,40 L158,46 L169,32" />
+          </svg>
+          <p className="grammar-bridge__caption">Still connected to now</p>
+        </div>
+        <ConceptGrid>
+          <ConceptCard label="Result now" title="I have finished my homework.">
+            <p>The work is done, so I am free right now.</p>
+          </ConceptCard>
+          <ConceptCard label="Experience" title="She has visited Japan.">
+            <p>It is part of her life experience — we are not saying when.</p>
+          </ConceptCard>
+          <ConceptCard label="Recent" title="They have arrived.">
+            <p>They are here now, and it happened only a moment ago.</p>
+          </ConceptCard>
+          <ConceptCard label="Result now" title="He has lost his phone.">
+            <p>He still does not have it — that is why it matters.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-formula"
+        icon={<BadgeCheck />}
+        eyebrow="How it works"
+        title="Basic formula"
+      >
+        <Formula>
+          <strong>Subject</strong>
+          <span>+</span>
+          <strong>have / has</strong>
+          <span>+</span>
+          <strong>past participle</strong>
+        </Formula>
+        <p className="grammar-centred-example">
+          I <strong>have eaten</strong>. · She <strong>has gone</strong> home. · They{" "}
+          <strong>have finished</strong>.
+        </p>
+        <div className="grammar-watchout">
+          <AlertTriangle aria-hidden="true" />
+          <p>
+            <strong>Watch out:</strong> you need both parts — the helping verb have or has, and the
+            past participle of the main verb.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-have-has"
+        icon={<CircleHelp />}
+        eyebrow="Control panel"
+        title="Choose have or has"
+      >
+        <div className="grammar-compare-grid">
+          <ConceptCard label="I / You / We / They" title="have">
+            <p>I have finished.</p>
+            <p>We have finished.</p>
+          </ConceptCard>
+          <ConceptCard label="He / She / It" title="has">
+            <p>She has finished.</p>
+            <p>It has stopped.</p>
+          </ConceptCard>
+        </div>
+        <div className="grammar-wrong-right">
+          <span>
+            <X aria-hidden="true" /> She have finished.
+          </span>
+          <span>
+            <Check aria-hidden="true" /> She has finished.
+          </span>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-participles"
+        icon={<Sparkles />}
+        eyebrow="Verb transformation"
+        title="Past participle forms"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            For <strong>regular</strong> verbs, the past participle looks exactly like the simple
+            past form: just add -ed.
+          </p>
+        </div>
+        <div className="grammar-ing-transform" aria-label="Regular past participles">
+          <span>
+            finish <strong>→ finished</strong>
+          </span>
+          <span>
+            play <strong>→ played</strong>
+          </span>
+          <span>
+            watch <strong>→ watched</strong>
+          </span>
+          <span>
+            study <strong>→ studied</strong>
+          </span>
+        </div>
+        <div className="grammar-brief-card">
+          <p>
+            <strong>Irregular</strong> participles change form and simply need to be learned. Many
+            of them are different from the simple past — go became went, but the participle is gone.
+          </p>
+        </div>
+        <ul className="grammar-verb-grid" aria-label="Common irregular past participles">
+          {participles.map(([base, participle]) => (
+            <li key={base}>
+              <span>{base}</span>
+              <ArrowRight aria-hidden="true" />
+              <strong>{participle}</strong>
+            </li>
+          ))}
+        </ul>
+        <div className="grammar-compare-grid">
+          <ConceptCard label="has gone" title="He has gone to Japan.">
+            <p>He went and he is still there, or still on the way.</p>
+          </ConceptCard>
+          <ConceptCard label="has been" title="He has been to Japan.">
+            <p>He went there at some point and has already come back.</p>
+          </ConceptCard>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-result"
+        icon={<BookOpen />}
+        eyebrow="See it in action"
+        title="Finished action with a result now"
+      >
+        <LessonArtwork
+          src="/assets/english/form-1/grammar/present-perfect/result-now.webp"
+          alt="Three scenes: a student locked out after losing a key, a student holding broken glasses, and a relaxed student with finished homework."
+          width={1200}
+          height={675}
+        />
+        <ConceptGrid>
+          <ConceptCard label="Lost key" title="I have lost my key.">
+            <p>I cannot open the door now.</p>
+          </ConceptCard>
+          <ConceptCard label="Broken glasses" title="She has broken her glasses.">
+            <p>She cannot use them properly now.</p>
+          </ConceptCard>
+          <ConceptCard label="Homework done" title="They have finished their homework.">
+            <p>They are free now.</p>
+          </ConceptCard>
+          <ConceptCard label="The pattern" title="Past action → result now">
+            <p>The action is finished, but its effect is still here.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-since-for"
+        icon={<Clock />}
+        eyebrow="Time words"
+        title="Since and for"
+      >
+        <div className="grammar-duration">
+          <div className="grammar-duration__row is-since">
+            <span className="grammar-duration__label">SINCE</span>
+            <div
+              className="grammar-duration__track"
+              role="img"
+              aria-label="A line starting at a fixed point, 2020, and running all the way to now."
+            >
+              <span className="grammar-duration__fill" />
+              <span className="grammar-duration__mark is-start">2020</span>
+              <span className="grammar-duration__mark is-end">now</span>
+            </div>
+          </div>
+          <div className="grammar-duration__row is-for">
+            <span className="grammar-duration__label">FOR</span>
+            <div
+              className="grammar-duration__track"
+              role="img"
+              aria-label="A shaded stretch of time measuring three years in length."
+            >
+              <span className="grammar-duration__fill" />
+              <span className="grammar-duration__mark is-start">three years</span>
+            </div>
+          </div>
+        </div>
+        <div className="grammar-compare-grid">
+          <ConceptCard label="Since" title="A starting point">
+            <p>since Monday · since 2020 · since morning</p>
+            <p className="grammar-note">Answers: when did it start?</p>
+          </ConceptCard>
+          <ConceptCard label="For" title="A length of time">
+            <p>for two hours · for three years · for a long time</p>
+            <p className="grammar-note">Answers: how long has it lasted?</p>
+          </ConceptCard>
+        </div>
+        <p className="grammar-centred-example">
+          I have lived here <strong>since 2020</strong>. · I have lived here{" "}
+          <strong>for three years</strong>.
+        </p>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-already"
+        icon={<Sparkles />}
+        eyebrow="Signal words"
+        title="Already, yet, and just"
+      >
+        <div className="grammar-three-grid">
+          <ConceptCard label="Positive sentences" title="already">
+            <p>Something happened before now, or sooner than expected.</p>
+            <p>I have already eaten.</p>
+          </ConceptCard>
+          <ConceptCard label="Questions & negatives" title="yet">
+            <p>Used when something is still expected to happen.</p>
+            <p>Have you finished yet? · I haven't finished yet.</p>
+          </ConceptCard>
+          <ConceptCard label="Very recently" title="just">
+            <p>It happened only a moment ago.</p>
+            <p>I have just finished my homework.</p>
+          </ConceptCard>
+        </div>
+        <div className="grammar-watchout">
+          <AlertTriangle aria-hidden="true" />
+          <p>
+            <strong>Word order:</strong> already and just go between have/has and the participle.
+            Yet goes at the end of the sentence.
+          </p>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-experiences"
+        icon={<BookOpen />}
+        eyebrow="See it in action"
+        title="Life experiences"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            Use the present perfect for things someone has experienced at some point in their life,
+            when the <strong>exact time is not important</strong>.
+          </p>
+        </div>
+        <LessonArtwork
+          src="/assets/english/form-1/grammar/present-perfect/experiences.webp"
+          alt="One student surrounded by memories: travelling to a landmark, riding a horse, trying local food, and watching a movie."
+          width={1200}
+          height={675}
+        />
+        <ConceptGrid>
+          <ConceptCard label="Travel" title="I have visited Penang.">
+            <p>The trip is part of my experience — we do not say when.</p>
+          </ConceptCard>
+          <ConceptCard label="Activity" title="She has ridden a horse.">
+            <p>It happened at some point in her life.</p>
+          </ConceptCard>
+          <ConceptCard label="Food" title="They have tried sushi.">
+            <p>They know what it tastes like now.</p>
+          </ConceptCard>
+          <ConceptCard label="Entertainment" title="We have seen that movie.">
+            <p>We already know the story.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-ever-never"
+        icon={<CircleHelp />}
+        eyebrow="Signal words"
+        title="Ever and never"
+      >
+        <div className="grammar-compare-grid">
+          <ConceptCard label="Ever" title="Asking about a whole life">
+            <p>Have you ever visited Sabah?</p>
+            <p>Have you ever ridden a horse?</p>
+          </ConceptCard>
+          <ConceptCard label="Never" title="Not once, at any time">
+            <p>I have never ridden a horse.</p>
+            <p className="grammar-note">Never is already negative — do not add not.</p>
+          </ConceptCard>
+        </div>
+        <div className="grammar-time-chips" aria-label="Short answers with ever questions">
+          <span>Yes, I have.</span>
+          <span>No, I haven't.</span>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-continuing"
+        icon={<Clock />}
+        eyebrow="The other main use"
+        title="A situation that continues until now"
+      >
+        <div className="grammar-brief-card">
+          <p>
+            Some states and situations <strong>began in the past and are still true now</strong>.
+            The present perfect shows that stretch of time.
+          </p>
+        </div>
+        <div
+          className="grammar-progress-band"
+          aria-label="Timeline: a situation starting in the past and continuing all the way to now."
+        >
+          <span>start in past</span>
+          <div className="grammar-progress-band__band">still true</div>
+          <span>now</span>
+          <em className="grammar-progress-band__caption">Began before · continues now</em>
+        </div>
+        <ConceptGrid>
+          <ConceptCard label="For" title="I have known Amir for five years.">
+            <p>We met five years ago and we are still friends.</p>
+          </ConceptCard>
+          <ConceptCard label="Since" title="She has lived here since 2022.">
+            <p>She moved in 2022 and she still lives here.</p>
+          </ConceptCard>
+          <ConceptCard label="For" title="We have studied English for many years.">
+            <p>The studying started long ago and has not stopped.</p>
+          </ConceptCard>
+          <ConceptCard label="Careful" title="Not every sentence continues">
+            <p>
+              This use is for states and situations that carry on. I have lost my key is finished —
+              only its result continues.
+            </p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-negative"
+        icon={<X />}
+        eyebrow="Negative structures"
+        title="Add not after have or has"
+      >
+        <Formula>
+          <strong>Subject</strong>
+          <span>+</span>
+          <strong>have / has</strong>
+          <span>+</span>
+          <strong>not</strong>
+          <span>+</span>
+          <strong>past participle</strong>
+        </Formula>
+        <ConceptGrid>
+          <ConceptCard label="I" title="I have not finished.">
+            <p>You can also say: I haven't finished.</p>
+          </ConceptCard>
+          <ConceptCard label="She" title="She has not arrived.">
+            <p>You can also say: She hasn't arrived.</p>
+          </ConceptCard>
+          <ConceptCard label="They" title="They have not eaten.">
+            <p>You can also say: They haven't eaten.</p>
+          </ConceptCard>
+        </ConceptGrid>
+        <div className="grammar-time-chips" aria-label="Present perfect contractions">
+          <span>have not → haven't</span>
+          <span>has not → hasn't</span>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-questions"
+        icon={<CircleHelp />}
+        eyebrow="Question structures"
+        title="Move have or has before the subject"
+      >
+        <Formula>
+          <strong>Have / Has</strong>
+          <span>+</span>
+          <strong>subject</strong>
+          <span>+</span>
+          <strong>past participle?</strong>
+        </Formula>
+        <ConceptGrid>
+          <ConceptCard label="Have" title="Have you finished?">
+            <p>Yes, I have. · No, I haven't.</p>
+          </ConceptCard>
+          <ConceptCard label="Has" title="Has she arrived?">
+            <p>Yes, she has. · No, she hasn't.</p>
+          </ConceptCard>
+          <ConceptCard label="Have" title="Have they eaten?">
+            <p>Yes, they have. · No, they haven't.</p>
+          </ConceptCard>
+        </ConceptGrid>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-compare"
+        icon={<BookOpen />}
+        eyebrow="Compare it"
+        title="Simple Past vs Present Perfect"
+      >
+        <div className="grammar-compare-grid is-media">
+          <ConceptCard label="Simple past" title="I visited Penang last year.">
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/present-perfect/compare-simple-past.webp"
+              alt="A student photographing a Penang street on one specific trip."
+              width={900}
+              height={600}
+            />
+            <p className="grammar-note">last year · specific finished time</p>
+          </ConceptCard>
+          <ConceptCard label="Present perfect" title="I have visited Penang.">
+            <LessonArtwork
+              src="/assets/english/form-1/grammar/present-perfect/compare-present-perfect.webp"
+              alt="The same student now, with the Penang trip glowing behind them as a memory."
+              width={900}
+              height={600}
+            />
+            <p className="grammar-note">no time stated · a life experience</p>
+          </ConceptCard>
+        </div>
+        <Formula>
+          <span>last year</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>simple past</strong>
+          <span>no time stated</span>
+          <ArrowRight aria-hidden="true" />
+          <strong>present perfect</strong>
+        </Formula>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-time-warning"
+        icon={<AlertTriangle />}
+        eyebrow="Important warning"
+        title="Finished past times do not fit"
+      >
+        <div className="grammar-watchout">
+          <AlertTriangle aria-hidden="true" />
+          <p>
+            <strong>Remember:</strong> the present perfect normally does not go with a finished
+            past-time expression such as yesterday, last week, last year, or in 2023.
+          </p>
+        </div>
+        <div className="grammar-time-chips" aria-label="Finished past-time expressions">
+          <span>yesterday</span>
+          <span>last week</span>
+          <span>last year</span>
+          <span>in 2023</span>
+        </div>
+        <div className="grammar-wrong-right">
+          <span>
+            <X aria-hidden="true" /> I have visited Penang last year.
+          </span>
+          <span>
+            <Check aria-hidden="true" /> I visited Penang last year.
+          </span>
+        </div>
+        <p className="grammar-centred-example">
+          Keeping the present perfect? Drop the finished time:{" "}
+          <strong>I have visited Penang before.</strong>
+        </p>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-errors"
+        icon={<Search />}
+        eyebrow="Common mistakes"
+        title="Error detector"
+      >
+        <div className="grammar-error-grid">
+          <ErrorDetector
+            sentence={
+              <>
+                She <u>have</u> finished.
+              </>
+            }
+            wrong="have"
+            correction="She has finished."
+            reason="He, she, and it take has, not have."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                I <u>has</u> eaten.
+              </>
+            }
+            wrong="has"
+            correction="I have eaten."
+            reason="I, you, we, and they take have, not has."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                He has <u>went</u> home.
+              </>
+            }
+            wrong="went"
+            correction="He has gone home."
+            reason="After have or has, use the past participle. Went is the simple past; gone is the participle."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                I have seen him <u>yesterday</u>.
+              </>
+            }
+            wrong="yesterday"
+            correction="I saw him yesterday."
+            reason="Yesterday is a finished past time, so the sentence needs the simple past."
+          />
+          <ErrorDetector
+            sentence={
+              <>
+                She has lived here <u>since three years</u>.
+              </>
+            }
+            wrong="since three years"
+            correction="She has lived here for three years."
+            reason="For measures a length of time; since needs a starting point such as 2022."
+          />
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-real-life"
+        icon={<MessageCircle />}
+        eyebrow="Real-life English"
+        title="Asking about an experience"
+      >
+        <div className="grammar-chat">
+          <p>
+            <span>Aiman</span> <strong>Have you ever been</strong> to Penang?
+          </p>
+          <p>
+            <span>Sara</span> Yes, <strong>I have</strong>.
+          </p>
+          <p>
+            <span>Aiman</span> When <strong>did you go</strong>?
+          </p>
+          <p>
+            <span>Sara</span> <strong>I went</strong> there last year.
+          </p>
+        </div>
+        <div className="grammar-compare-grid">
+          <ConceptCard label="Present perfect" title="Asks about the experience">
+            <p>Have you ever been to Penang?</p>
+            <p className="grammar-note">no time — just: has it ever happened?</p>
+          </ConceptCard>
+          <ConceptCard label="Simple past" title="Asks for the specific detail">
+            <p>When did you go? I went there last year.</p>
+            <p className="grammar-note">once the time is named, switch to the simple past</p>
+          </ConceptCard>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-check"
+        icon={<CheckCircle2 />}
+        eyebrow="Test yourself"
+        title="Quick check"
+      >
+        <QuickCheck questions={presentPerfectQuickCheck} />
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-summary"
+        icon={<Sparkles />}
+        eyebrow="Revision map"
+        title="Mission summary"
+      >
+        <div className="grammar-summary-grid">
+          <ConceptCard title="Present perfect">
+            <p>past connected to now</p>
+          </ConceptCard>
+          <ConceptCard title="Formula">
+            <p>subject + have / has + past participle</p>
+          </ConceptCard>
+          <ConceptCard title="Have">
+            <p>I / you / we / they</p>
+          </ConceptCard>
+          <ConceptCard title="Has">
+            <p>he / she / it</p>
+          </ConceptCard>
+          <ConceptCard title="Common uses">
+            <p>result now · life experience · recent action · continuing situation</p>
+          </ConceptCard>
+          <ConceptCard title="Common words">
+            <p>ever · never · just · already · yet · for · since</p>
+          </ConceptCard>
+        </div>
+      </MissionSection>
+
+      <MissionSection
+        id="perfect-exam"
+        icon={<Target />}
+        eyebrow="Exam strategy"
+        title="Exam booster"
+      >
+        <div className="grammar-exam-list">
+          <p>Check whether an exact finished past time is stated.</p>
+          <p>
+            If last year, yesterday, or a similar clue appears, the simple past is usually needed.
+          </p>
+          <p>Choose have or has correctly for the subject.</p>
+          <p>Use the past participle, not the simple past form.</p>
+          <p>Learn the common irregular participles by heart.</p>
+          <p>For = duration, such as for three years.</p>
+          <p>Since = starting point, such as since 2022.</p>
+        </div>
+        <div className="grammar-exam-booster">
+          <Target aria-hidden="true" />
+          <p>
+            <strong>Worked example:</strong> “She ___ already ___ her homework.” The subject is she,
+            so the helping verb is <strong>has</strong>; the past participle of finish is{" "}
+            <strong>finished</strong>. Answer:{" "}
+            <strong>She has already finished her homework.</strong>
+          </p>
+        </div>
+      </MissionSection>
+    </>
+  );
+}
+
+type GrammarTopicId = "01" | "02" | "03" | "04" | "05" | "06";
 
 type LessonConfig = {
   heading: string;
@@ -2511,6 +3199,40 @@ const LESSON_CONFIG: Record<GrammarTopicId, LessonConfig> = {
       caption: "It was already happening.",
     },
     render: () => <PastContinuousLesson />,
+  },
+  "06": {
+    heading: "Present Perfect Tense",
+    lead: "Connect the past to now — something that has already happened.",
+    sections: [
+      "perfect-brief",
+      "perfect-big-idea",
+      "perfect-formula",
+      "perfect-have-has",
+      "perfect-participles",
+      "perfect-result",
+      "perfect-since-for",
+      "perfect-already",
+      "perfect-experiences",
+      "perfect-ever-never",
+      "perfect-continuing",
+      "perfect-negative",
+      "perfect-questions",
+      "perfect-compare",
+      "perfect-time-warning",
+      "perfect-errors",
+      "perfect-real-life",
+      "perfect-check",
+      "perfect-summary",
+      "perfect-exam",
+    ],
+    hero: {
+      src: "/assets/english/form-1/grammar/landing/grammar-topic-06.webp",
+      alt: "A past moment linked by a glowing path to the present.",
+      width: 720,
+      height: 405,
+      caption: "It happened before — and it still matters now.",
+    },
+    render: () => <PresentPerfectLesson />,
   },
 };
 
