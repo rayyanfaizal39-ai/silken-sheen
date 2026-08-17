@@ -23,6 +23,7 @@ const expectedTopics = [
   "Menilai Hujah dan Pendapat",
   "Maksud Frasa, Ungkapan dan Bahasa Kiasan",
   "Menjawab Soalan KBAT dan Penyelesaian Masalah",
+  "Teknik Membuat Rumusan dan Sintesis Maklumat",
 ];
 
 const expectedBranches = [
@@ -59,7 +60,7 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 3 Menjawab Soalan KBAT dan Penyelesaian Masalah mind map", () => {
   it("registers sixth with the exact card and page identity", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(6);
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(7);
     expect(bahasaMelayuTingkatan3PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual(
       expectedTopics,
     );
@@ -148,7 +149,7 @@ describe("Bahasa Melayu Form 3 Menjawab Soalan KBAT dan Penyelesaian Masalah min
     expect(branchText("Tip UASA")).toContain("Jangan menetapkan markah, panjang, bilangan ayat");
   });
 
-  it("derives previous and disabled next navigation while keeping Form 1 and Form 2 isolated", () => {
+  it("derives previous and seventh-topic next navigation while keeping Form 1 and Form 2 isolated", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 3").filter(
       (topic) => topic.categoryLabel === "Pemahaman",
     );
@@ -156,7 +157,7 @@ describe("Bahasa Melayu Form 3 Menjawab Soalan KBAT dan Penyelesaian Masalah min
       (topic) => topic.key === "Menjawab Soalan KBAT dan Penyelesaian Masalah",
     );
     expect(topics[index - 1]?.key).toBe("Maksud Frasa, Ungkapan dan Bahasa Kiasan");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Teknik Membuat Rumusan dan Sintesis Maklumat");
     expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(8);
     expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(8);
     expect(getChapter("bm", expectedTopics[5], undefined, "Form 1")).toBeUndefined();

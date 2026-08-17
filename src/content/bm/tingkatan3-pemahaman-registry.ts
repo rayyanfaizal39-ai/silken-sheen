@@ -5,6 +5,7 @@ import { bahasaMelayuTingkatan3MenilaiHujahMindMap } from "@/content/bm/menilai-
 import { bahasaMelayuTingkatan3MaksudFrasaBahasaKiasanMindMap } from "@/content/bm/maksud-frasa-ungkapan-bahasa-kiasan-form3-mindmap";
 import { bahasaMelayuTingkatan3KbatPenyelesaianMindMap } from "@/content/bm/menjawab-soalan-kbat-penyelesaian-masalah-form3-mindmap";
 import { bahasaMelayuTingkatan3StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form3-mindmap";
+import { bahasaMelayuTingkatan3RumusanSintesisMindMap } from "@/content/bm/teknik-membuat-rumusan-sintesis-maklumat-form3-mindmap";
 
 export const bahasaMelayuTingkatan3PemahamanRegistry = [
   {
@@ -89,6 +90,20 @@ export const bahasaMelayuTingkatan3PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan3KbatPenyelesaianMindMap,
       title: "Menjawab Soalan KBAT dan Penyelesaian Masalah",
+    },
+  },
+  {
+    id: "bm-f3-teknik-membuat-rumusan-sintesis-maklumat-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Teknik Membuat Rumusan dan Sintesis Maklumat",
+    title: "Teknik Membuat Rumusan dan Sintesis Maklumat",
+    description:
+      "Mengenal pasti isi penting, menggabungkan maklumat daripada beberapa bahagian atau bahan dan menghasilkan rumusan yang padat, tepat serta koheren.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan3RumusanSintesisMindMap,
+      title: "Teknik Membuat Rumusan dan Sintesis Maklumat",
     },
   },
 ] as const satisfies readonly ChapterContent[];

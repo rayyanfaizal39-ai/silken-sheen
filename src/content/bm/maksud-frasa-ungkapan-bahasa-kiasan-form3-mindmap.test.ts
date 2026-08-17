@@ -23,6 +23,7 @@ const expectedTopics = [
   "Menilai Hujah dan Pendapat",
   "Maksud Frasa, Ungkapan dan Bahasa Kiasan",
   "Menjawab Soalan KBAT dan Penyelesaian Masalah",
+  "Teknik Membuat Rumusan dan Sintesis Maklumat",
 ];
 
 const expectedBranches = [
@@ -59,7 +60,7 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 3 Maksud Frasa, Ungkapan dan Bahasa Kiasan mind map", () => {
   it("registers fifth with the exact card and page identity", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(6);
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(7);
     expect(bahasaMelayuTingkatan3PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual(
       expectedTopics,
     );
