@@ -2584,14 +2584,14 @@ function PresentPerfectLesson() {
           <ConceptCard label="Lost key" title="I have lost my key.">
             <p>I cannot open the door now.</p>
           </ConceptCard>
-          <ConceptCard label="Broken glasses" title="She has broken her glasses.">
-            <p>She cannot use them properly now.</p>
+          <ConceptCard label="Broken glasses" title="I have broken my glasses.">
+            <p>I cannot see clearly with them now.</p>
           </ConceptCard>
-          <ConceptCard label="Homework done" title="They have finished their homework.">
-            <p>They are free now.</p>
+          <ConceptCard label="Homework done" title="I have finished my homework.">
+            <p>I am free now.</p>
           </ConceptCard>
           <ConceptCard label="The pattern" title="Past action → result now">
-            <p>The action is finished, but its effect is still here.</p>
+            <p>The action is finished, but its result still matters now.</p>
           </ConceptCard>
         </ConceptGrid>
       </MissionSection>
@@ -2692,16 +2692,16 @@ function PresentPerfectLesson() {
         />
         <ConceptGrid>
           <ConceptCard label="Travel" title="I have visited Penang.">
-            <p>The trip is part of my experience — we do not say when.</p>
+            <p>Visiting Penang is part of my life experience.</p>
           </ConceptCard>
-          <ConceptCard label="Activity" title="She has ridden a horse.">
-            <p>It happened at some point in her life.</p>
+          <ConceptCard label="Activity" title="I have ridden a horse.">
+            <p>It is something I have experienced before.</p>
           </ConceptCard>
-          <ConceptCard label="Food" title="They have tried sushi.">
-            <p>They know what it tastes like now.</p>
+          <ConceptCard label="Food" title="I have tried a new local dish.">
+            <p>I know what this kind of food tastes like now.</p>
           </ConceptCard>
-          <ConceptCard label="Entertainment" title="We have seen that movie.">
-            <p>We already know the story.</p>
+          <ConceptCard label="Entertainment" title="I have watched a movie at the cinema.">
+            <p>It is one of the experiences I have had.</p>
           </ConceptCard>
         </ConceptGrid>
       </MissionSection>
