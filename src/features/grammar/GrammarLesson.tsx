@@ -29,6 +29,19 @@ import {
   simplePastQuickCheck,
   type QuickCheckQuestion,
 } from "./grammar-content";
+import type {
+  CardSpec,
+  LessonBlock as LessonBlockSpec,
+  LessonIconName,
+  LessonSectionSpec,
+  RichText,
+} from "./grammar-lesson-blocks";
+import {
+  adjectivesAdverbsSections,
+  futureFormsSections,
+  modalsSections,
+  subjectVerbSections,
+} from "./grammar-topics-advanced";
 import "./grammar-missions.css";
 
 function MissionSection({
@@ -3042,7 +3055,244 @@ function PresentPerfectLesson() {
   );
 }
 
-type GrammarTopicId = "01" | "02" | "03" | "04" | "05" | "06";
+const LESSON_ICONS: Record<LessonIconName, ReactNode> = {
+  target: <Target />,
+  lightbulb: <Lightbulb />,
+  badge: <BadgeCheck />,
+  help: <CircleHelp />,
+  sparkles: <Sparkles />,
+  book: <BookOpen />,
+  search: <Search />,
+  message: <MessageCircle />,
+  check: <CheckCircle2 />,
+  clock: <Clock />,
+};
+
+function RichTextView({ value }: { value: RichText }) {
+  if (typeof value === "string") return <>{value}</>;
+  return (
+    <>
+      {value.map((part, index) => {
+        if (typeof part === "string") return <span key={index}>{part}</span>;
+        if ("b" in part) return <strong key={index}>{part.b}</strong>;
+        return <u key={index}>{part.u}</u>;
+      })}
+    </>
+  );
+}
+
+function LessonCards({ cards, className }: { cards: CardSpec[]; className: string }) {
+  return (
+    <div className={className}>
+      {cards.map((card) => (
+        <ConceptCard key={card.title} label={card.label} title={card.title}>
+          {card.body?.map((line, index) => (
+            <p key={index}>
+              <RichTextView value={line} />
+            </p>
+          ))}
+          {card.note && <p className="grammar-note">{card.note}</p>}
+        </ConceptCard>
+      ))}
+    </div>
+  );
+}
+
+function LessonBlock({ block }: { block: LessonBlockSpec }) {
+  switch (block.kind) {
+    case "brief":
+      return (
+        <div className="grammar-brief-card">
+          {block.paragraphs.map((paragraph, index) => (
+            <p key={index}>
+              <RichTextView value={paragraph} />
+            </p>
+          ))}
+          {block.pills && (
+            <div className="grammar-pill-row">
+              {block.pills.map((pill) => (
+                <span key={pill}>{pill}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    case "concepts":
+      return <LessonCards cards={block.cards} className="grammar-concept-grid" />;
+    case "compare":
+      return <LessonCards cards={block.cards} className="grammar-compare-grid" />;
+    case "three":
+      return <LessonCards cards={block.cards} className="grammar-three-grid" />;
+    case "formula":
+      return (
+        <Formula>
+          {block.parts.map((part, index) =>
+            part === "+" ? <span key={index}>{part}</span> : <strong key={index}>{part}</strong>,
+          )}
+        </Formula>
+      );
+    case "example":
+      return (
+        <p className="grammar-centred-example">
+          <RichTextView value={block.text} />
+        </p>
+      );
+    case "watchout":
+      return (
+        <div className="grammar-watchout">
+          <AlertTriangle aria-hidden="true" />
+          <p>
+            <RichTextView value={block.text} />
+          </p>
+        </div>
+      );
+    case "wrongRight":
+      return (
+        <div className="grammar-wrong-right">
+          <span>
+            <X aria-hidden="true" /> {block.wrong}
+          </span>
+          <span>
+            <Check aria-hidden="true" /> {block.right}
+          </span>
+        </div>
+      );
+    case "ruleTable":
+      return (
+        <div className="grammar-rule-table" role="table" aria-label={block.label}>
+          {block.rows.map(([name, rule, example]) => (
+            <div key={name} role="row">
+              <strong role="cell">{name}</strong>
+              <span role="cell">{rule}</span>
+              <span role="cell">{example}</span>
+            </div>
+          ))}
+        </div>
+      );
+    case "transform":
+      return (
+        <div className="grammar-ing-transform" aria-label={block.label}>
+          {block.items.map(([from, to]) => (
+            <span key={from}>
+              {from} <strong>→ {to}</strong>
+            </span>
+          ))}
+        </div>
+      );
+    case "chips":
+      return (
+        <div className="grammar-time-chips" aria-label={block.label}>
+          {block.items.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+      );
+    case "verbGrid":
+      return (
+        <ul className="grammar-verb-grid" aria-label={block.label}>
+          {block.pairs.map(([from, to]) => (
+            <li key={from}>
+              <span>{from}</span>
+              <ArrowRight aria-hidden="true" />
+              <strong>{to}</strong>
+            </li>
+          ))}
+        </ul>
+      );
+    case "errors":
+      return (
+        <div className="grammar-error-grid">
+          {block.items.map((item) => (
+            <ErrorDetector
+              key={item.correction}
+              sentence={
+                <>
+                  {item.before}
+                  <u>{item.wrong}</u>
+                  {item.after}
+                </>
+              }
+              wrong={item.wrong}
+              correction={item.correction}
+              reason={item.reason}
+            />
+          ))}
+        </div>
+      );
+    case "chat":
+      return (
+        <div className="grammar-chat">
+          {block.lines.map((line, index) => (
+            <p key={index}>
+              <span>{line.who}</span> <RichTextView value={line.text} />
+            </p>
+          ))}
+        </div>
+      );
+    case "quickCheck":
+      return <QuickCheck questions={block.questions} />;
+    case "summary":
+      return (
+        <div className="grammar-summary-grid">
+          {block.cards.map((card) => (
+            <ConceptCard key={card.title} title={card.title}>
+              <p>{card.body}</p>
+            </ConceptCard>
+          ))}
+        </div>
+      );
+    case "exam":
+      return (
+        <>
+          <div className="grammar-exam-list">
+            {block.tips.map((tip) => (
+              <p key={tip}>{tip}</p>
+            ))}
+          </div>
+          <div className="grammar-exam-booster">
+            <Target aria-hidden="true" />
+            <p>
+              <RichTextView value={block.worked} />
+            </p>
+          </div>
+        </>
+      );
+    case "bridge":
+      return (
+        <div className="grammar-bridge-note">
+          <strong>{block.title}</strong>
+          <p>
+            <RichTextView value={block.text} />
+          </p>
+        </div>
+      );
+  }
+}
+
+/** Renders a whole lesson from its section data — used by Topics 07–10. */
+function LessonBlocks({ sections }: { sections: LessonSectionSpec[] }) {
+  return (
+    <>
+      {sections.map((section) => (
+        <MissionSection
+          key={section.id}
+          id={section.id}
+          icon={LESSON_ICONS[section.icon]}
+          eyebrow={section.eyebrow}
+          title={section.title}
+        >
+          {section.blocks.map((block, index) => (
+            <LessonBlock key={index} block={block} />
+          ))}
+        </MissionSection>
+      ))}
+    </>
+  );
+}
+
+const sectionIds = (sections: LessonSectionSpec[]) => sections.map((section) => section.id);
+
+type GrammarTopicId = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10";
 
 type LessonConfig = {
   heading: string;
@@ -3233,6 +3483,58 @@ const LESSON_CONFIG: Record<GrammarTopicId, LessonConfig> = {
       caption: "It happened before — and it still matters now.",
     },
     render: () => <PresentPerfectLesson />,
+  },
+  "07": {
+    heading: "Future Forms",
+    lead: "Talk about things that will happen, plans, intentions, and predictions.",
+    sections: sectionIds(futureFormsSections),
+    hero: {
+      src: "/assets/english/form-1/grammar/landing/grammar-topic-07.webp",
+      alt: "A rocket heading towards a future destination.",
+      width: 720,
+      height: 480,
+      caption: "Three ways to talk about what's next.",
+    },
+    render: () => <LessonBlocks sections={futureFormsSections} />,
+  },
+  "08": {
+    heading: "Subject–Verb Agreement",
+    lead: "Make sure every subject and its verb match in number.",
+    sections: sectionIds(subjectVerbSections),
+    hero: {
+      src: "/assets/english/form-1/grammar/landing/grammar-topic-08.webp",
+      alt: "Two matching pieces docking together, representing a subject and verb that agree.",
+      width: 720,
+      height: 480,
+      caption: "Subject and verb must match.",
+    },
+    render: () => <LessonBlocks sections={subjectVerbSections} />,
+  },
+  "09": {
+    heading: "Modals",
+    lead: "Use can, could, may, might, should, and must with confidence.",
+    sections: sectionIds(modalsSections),
+    hero: {
+      src: "/assets/english/form-1/grammar/landing/grammar-topic-09.webp",
+      alt: "A glowing lightbulb and shield, representing ability, possibility, and obligation.",
+      width: 720,
+      height: 480,
+      caption: "One small word changes the meaning.",
+    },
+    render: () => <LessonBlocks sections={modalsSections} />,
+  },
+  "10": {
+    heading: "Adjectives & Adverbs",
+    lead: "Describe nouns, and explain how actions happen.",
+    sections: sectionIds(adjectivesAdverbsSections),
+    hero: {
+      src: "/assets/english/form-1/grammar/landing/grammar-topic-10.webp",
+      alt: "A fast red car and a moving shoe, representing describing things and describing actions.",
+      width: 720,
+      height: 480,
+      caption: "Describe the thing, or describe the action.",
+    },
+    render: () => <LessonBlocks sections={adjectivesAdverbsSections} />,
   },
 };
 

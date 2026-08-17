@@ -5,7 +5,16 @@ import { GrammarMissionHub } from "@/features/grammar/GrammarMissionHub";
 import { seoMeta } from "@/lib/seo";
 
 const grammarSearchSchema = z.object({
-  topic: z.enum(["01", "02", "03", "04", "05", "06"]).optional().catch(undefined),
+  // `?topic=10` arrives as the number 10 (the search parser JSON-parses values),
+  // while `?topic=01`..`09` stay strings. Normalise before matching the enum so
+  // every topic resolves consistently.
+  topic: z
+    .preprocess(
+      (value) => (typeof value === "number" ? String(value).padStart(2, "0") : value),
+      z.enum(["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]),
+    )
+    .optional()
+    .catch(undefined),
 });
 
 const TOPIC_SEO = {
@@ -38,6 +47,26 @@ const TOPIC_SEO = {
     title: "Present Perfect",
     description:
       "Learn the Form 1 present perfect tense for past actions connected to now, including have/has, past participles, since/for, already/yet/just and ever/never.",
+  },
+  "07": {
+    title: "Future Forms",
+    description:
+      "Learn the Form 1 future forms will, be going to and the present continuous for arrangements, including negatives, questions and time expressions.",
+  },
+  "08": {
+    title: "Subject–Verb Agreement",
+    description:
+      "Learn Form 1 subject–verb agreement, including verb endings, am/is/are, have/has, don't/doesn't and singular words such as everyone.",
+  },
+  "09": {
+    title: "Modals",
+    description:
+      "Learn the Form 1 modal verbs can, could, may, might, should, must and have to for ability, possibility, advice and obligation.",
+  },
+  "10": {
+    title: "Adjectives & Adverbs",
+    description:
+      "Learn Form 1 adjectives and adverbs, including -ly spelling rules, adjective versus adverb, and the special forms good, well, fast and hard.",
   },
 } as const;
 

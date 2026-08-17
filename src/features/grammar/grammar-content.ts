@@ -91,7 +91,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Talk about predictions, decisions, and plans for the future.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-07.webp",
     accent: "mint",
-    implemented: false,
+    implemented: true,
   },
   {
     id: "08",
@@ -101,7 +101,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Make sure every subject and verb match in number.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-08.webp",
     accent: "pink",
-    implemented: false,
+    implemented: true,
   },
   {
     id: "09",
@@ -111,7 +111,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Use can, should, must, may, and might with confidence.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-09.webp",
     accent: "violet",
-    implemented: false,
+    implemented: true,
   },
   {
     id: "10",
@@ -121,7 +121,7 @@ export const grammarTopics: GrammarTopic[] = [
     description: "Describe nouns and explain how actions happen.",
     artwork: "/assets/english/form-1/grammar/landing/grammar-topic-10.webp",
     accent: "blue",
-    implemented: false,
+    implemented: true,
   },
 ];
 
@@ -346,6 +346,140 @@ export const presentPerfectQuickCheck: QuickCheckQuestion[] = [
     correctIndex: 1,
     explanation:
       "Last year is a finished past time, so the sentence needs the simple past: I visited Johor last year.",
+  },
+];
+
+export const futureFormsQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "I think Malaysia ___ win.",
+    options: ["will", "is", "going", "does"],
+    correctIndex: 0,
+    explanation: "I think signals a prediction or opinion, so use will + base verb.",
+  },
+  {
+    question: "Look at those dark clouds. It ___ rain.",
+    options: ["will to", "is going to", "going", "is"],
+    correctIndex: 1,
+    explanation:
+      "The clouds are present evidence, so use be going to for an evidence-based prediction.",
+  },
+  {
+    question: "She ___ her dentist tomorrow at 3 p.m.",
+    options: ["meets always", "is meeting", "will meeting", "going meet"],
+    correctIndex: 1,
+    explanation:
+      "A fixed time and date means this is an arrangement, so use the present continuous.",
+  },
+  {
+    question: "Choose the correct sentence.",
+    options: ["I will to help you.", "I will helping you.", "I will help you.", "I helping you."],
+    correctIndex: 2,
+    explanation: "After will, use the base verb — no to and no -ing.",
+  },
+  {
+    question: "We are going ___ football tonight.",
+    options: ["play", "playing", "to play", "played"],
+    correctIndex: 2,
+    explanation: "The pattern is be going to + base verb, so it is going to play.",
+  },
+];
+
+export const subjectVerbQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "She ___ to school every day.",
+    options: ["walk", "walks", "walking", "walked"],
+    correctIndex: 1,
+    explanation: "She is third-person singular, so the verb takes -s: walks.",
+  },
+  {
+    question: "They ___ football after school.",
+    options: ["plays", "play", "playing", "played"],
+    correctIndex: 1,
+    explanation: "They is plural, so use the base verb: play.",
+  },
+  {
+    question: "He doesn't ___ coffee.",
+    options: ["likes", "liked", "like", "liking"],
+    correctIndex: 2,
+    explanation: "Doesn't already carries the -s, so the main verb stays as the base verb.",
+  },
+  {
+    question: "Everyone ___ ready.",
+    options: ["are", "were", "is", "be"],
+    correctIndex: 2,
+    explanation: "Everyone looks plural but is grammatically singular, so it takes is.",
+  },
+  {
+    question: "Aiman and Sara ___ classmates.",
+    options: ["is", "are", "am", "has"],
+    correctIndex: 1,
+    explanation: "Two subjects joined by and are plural, so use are.",
+  },
+];
+
+export const modalsQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "She can ___ very fast.",
+    options: ["runs", "run", "running", "ran"],
+    correctIndex: 1,
+    explanation: "After a modal such as can, always use the base verb: run.",
+  },
+  {
+    question: "You ___ drink more water.",
+    options: ["should", "should to", "should drinking", "shoulds"],
+    correctIndex: 0,
+    explanation: "Should gives advice and is followed directly by the base verb — no to.",
+  },
+  {
+    question: "It ___ rain later.",
+    options: ["might", "mights", "might to", "might raining"],
+    correctIndex: 0,
+    explanation: "Might shows possibility. Modals never take -s, to, or -ing.",
+  },
+  {
+    question: "Students ___ run in the science lab.",
+    options: ["must", "can", "mustn't", "should"],
+    correctIndex: 2,
+    explanation: "Running in a lab is forbidden, and mustn't expresses prohibition.",
+  },
+  {
+    question: "She has to ___ a uniform.",
+    options: ["wears", "wearing", "wear", "wore"],
+    correctIndex: 2,
+    explanation: "Has to is followed by the base verb: has to wear.",
+  },
+];
+
+export const adjectivesAdverbsQuickCheck: QuickCheckQuestion[] = [
+  {
+    question: "She is a ___ student.",
+    options: ["carefully", "careful", "care", "carefulness"],
+    correctIndex: 1,
+    explanation: "Student is a noun, so it needs the adjective careful.",
+  },
+  {
+    question: "She speaks English ___.",
+    options: ["fluent", "fluently", "fluency", "fluenting"],
+    correctIndex: 1,
+    explanation: "This describes how she speaks, so use the adverb fluently.",
+  },
+  {
+    question: "Choose the correct sentence.",
+    options: ["He runs fastly.", "He runs fast.", "He runs fastestly.", "He fast runs."],
+    correctIndex: 1,
+    explanation: "Fast is both the adjective and the adverb — fastly is not a word.",
+  },
+  {
+    question: "She is a good singer. She sings ___.",
+    options: ["good", "well", "goodly", "betterly"],
+    correctIndex: 1,
+    explanation: "Good describes a noun; well describes how she sings.",
+  },
+  {
+    question: "The teacher spoke ___.",
+    options: ["quiet", "quietly", "quietness", "quieter"],
+    correctIndex: 1,
+    explanation: "This describes how the teacher spoke, so use the adverb quietly.",
   },
 ];
 
