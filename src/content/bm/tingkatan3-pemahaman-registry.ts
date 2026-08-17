@@ -3,6 +3,7 @@ import { bahasaMelayuTingkatan3TersuratTersiratMindMap } from "@/content/bm/anal
 import { bahasaMelayuTingkatan3PelbagaiBahanMindMap } from "@/content/bm/analisis-petikan-pelbagai-bahan-form3-mindmap";
 import { bahasaMelayuTingkatan3MenilaiHujahMindMap } from "@/content/bm/menilai-hujah-pendapat-form3-mindmap";
 import { bahasaMelayuTingkatan3MaksudFrasaBahasaKiasanMindMap } from "@/content/bm/maksud-frasa-ungkapan-bahasa-kiasan-form3-mindmap";
+import { bahasaMelayuTingkatan3KbatPenyelesaianMindMap } from "@/content/bm/menjawab-soalan-kbat-penyelesaian-masalah-form3-mindmap";
 import { bahasaMelayuTingkatan3StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form3-mindmap";
 
 export const bahasaMelayuTingkatan3PemahamanRegistry = [
@@ -74,6 +75,20 @@ export const bahasaMelayuTingkatan3PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan3MaksudFrasaBahasaKiasanMindMap,
       title: "Maksud Frasa, Ungkapan dan Bahasa Kiasan",
+    },
+  },
+  {
+    id: "bm-f3-menjawab-soalan-kbat-penyelesaian-masalah-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Menjawab Soalan KBAT dan Penyelesaian Masalah",
+    title: "Menjawab Soalan KBAT dan Penyelesaian Masalah",
+    description:
+      "Membina jawapan KBAT yang matang melalui pendirian, alasan, bukti, cadangan, ramalan dan penyelesaian yang logik serta relevan.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan3KbatPenyelesaianMindMap,
+      title: "Menjawab Soalan KBAT dan Penyelesaian Masalah",
     },
   },
 ] as const satisfies readonly ChapterContent[];

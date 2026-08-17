@@ -50,13 +50,14 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 3 Menilai Hujah dan Pendapat mind map", () => {
   it("registers fourth with the exact card and page identity", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(5);
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(6);
     expect(bahasaMelayuTingkatan3PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman",
       "Analisis Isi Tersurat dan Tersirat",
       "Analisis Petikan Pelbagai Bahan",
       "Menilai Hujah dan Pendapat",
       "Maksud Frasa, Ungkapan dan Bahasa Kiasan",
+      "Menjawab Soalan KBAT dan Penyelesaian Masalah",
     ]);
     const chapter = getChapter("bm", "Menilai Hujah dan Pendapat", undefined, "Form 3");
     expect(chapter).toMatchObject({

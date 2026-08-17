@@ -50,13 +50,14 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 3 Analisis Isi Tersurat dan Tersirat mind map", () => {
   it("registers second with the exact card and page identity", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(5);
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(6);
     expect(bahasaMelayuTingkatan3PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman",
       "Analisis Isi Tersurat dan Tersirat",
       "Analisis Petikan Pelbagai Bahan",
       "Menilai Hujah dan Pendapat",
       "Maksud Frasa, Ungkapan dan Bahasa Kiasan",
+      "Menjawab Soalan KBAT dan Penyelesaian Masalah",
     ]);
     const chapter = getChapter("bm", "Analisis Isi Tersurat dan Tersirat", undefined, "Form 3");
     expect(chapter).toMatchObject({
