@@ -50,12 +50,13 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 3 Menilai Hujah dan Pendapat mind map", () => {
   it("registers fourth with the exact card and page identity", () => {
-    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(4);
+    expect(bahasaMelayuTingkatan3PemahamanRegistry).toHaveLength(5);
     expect(bahasaMelayuTingkatan3PemahamanRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Menjawab Soalan Pemahaman",
       "Analisis Isi Tersurat dan Tersirat",
       "Analisis Petikan Pelbagai Bahan",
       "Menilai Hujah dan Pendapat",
+      "Maksud Frasa, Ungkapan dan Bahasa Kiasan",
     ]);
     const chapter = getChapter("bm", "Menilai Hujah dan Pendapat", undefined, "Form 3");
     expect(chapter).toMatchObject({
@@ -119,13 +120,13 @@ describe("Bahasa Melayu Form 3 Menilai Hujah dan Pendapat mind map", () => {
     expect(example).toContain("mempertimbangkan manfaat dan batasan");
   });
 
-  it("derives previous and disabled next navigation without touching T1 or T2", () => {
+  it("derives previous and fifth-topic next navigation without touching T1 or T2", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 3").filter(
       (topic) => topic.categoryLabel === "Pemahaman",
     );
     const index = topics.findIndex((topic) => topic.key === "Menilai Hujah dan Pendapat");
     expect(topics[index - 1]?.key).toBe("Analisis Petikan Pelbagai Bahan");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Maksud Frasa, Ungkapan dan Bahasa Kiasan");
     expect(bahasaMelayuTingkatan1PemahamanRegistry).toHaveLength(8);
     expect(bahasaMelayuTingkatan2PemahamanRegistry).toHaveLength(8);
   });
