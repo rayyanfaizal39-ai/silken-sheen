@@ -1,4 +1,5 @@
 import type { Form } from "@/data/subjects-meta";
+import { scientificInvestigationSteps } from "@/content/form1/science/chapter-1/chapter1-canonical";
 import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-bm";
 import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
 import { mathF2C1QuizzesBM } from "@/content/form2/math/chapter-1/quizzes-bm";
@@ -3267,11 +3268,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Which branch of Science studies energy, force, and its influence on matter?",
+    question: "Which branch of Science studies energy and its effects on matter?",
     options: ["Chemistry", "Biology", "Astronomy", "Physics"],
     answerIndex: 3,
     explanation:
-      "Physics studies energy, force, and matter. Applications include Engineering and Astronomy.",
+      "The textbook defines Physics as the study of energy and its effects on matter, with Engineering and electrical energy as examples.",
   },
   {
     id: "sci-f1-c1-dlp-q4",
@@ -3324,11 +3325,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Ethanol and Acetone are examples of which type of hazardous chemical?",
-    options: ["Toxic", "Corrosive", "Oxidising", "Flammable"],
+    question: "Alcohol and petrol are examples of which hazardous-material category?",
+    options: ["Toxic", "Corrosive", "Radioactive", "Flammable"],
     answerIndex: 3,
     explanation:
-      "Ethanol and Acetone are Flammable chemicals that catch fire easily and must be kept away from heat and fire sources.",
+      "The textbook lists alcohol and petrol as flammable materials that must be kept away from fire or heat.",
   },
   {
     id: "sci-f1-c1-dlp-q8",
@@ -3337,12 +3338,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Which hazard symbol indicates a chemical that releases oxygen to help other materials burn?",
-    options: ["Explosive", "Oxidising", "Flammable", "Irritant"],
+    question: "Which warning symbol identifies a radioactive material?",
+    options: ["Irritant", "Radioactive", "Flammable", "Corrosive"],
     answerIndex: 1,
-    explanation:
-      "Oxidising chemicals like Potassium manganate(VII) release oxygen which helps other materials burn more intensely.",
+    explanation: "The radioactive warning symbol is used for materials such as uranium and plutonium.",
   },
   {
     id: "sci-f1-c1-dlp-q9",
@@ -3364,11 +3363,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Mercury and Cyanide are examples of which type of hazardous chemical?",
-    options: ["Irritant", "Toxic", "Oxidising", "Explosive"],
+    question: "Mercury and chlorine are examples of which hazardous-material category?",
+    options: ["Irritant", "Toxic", "Radioactive", "Explosive"],
     answerIndex: 1,
     explanation:
-      "Toxic chemicals like Mercury and Cyanide are lethal if swallowed or inhaled and must be handled with extreme care.",
+      "The textbook lists mercury and chlorine as poisonous or toxic materials that must not be consumed, inhaled or tasted.",
   },
   {
     id: "sci-f1-c1-dlp-q11",
@@ -3377,12 +3376,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Which laboratory apparatus is used to measure liquid volume with accuracy of 0.1 cm3?",
-    options: ["Beaker", "Bell Jar", "Gas Jar", "Burette and Pipette"],
-    answerIndex: 3,
-    explanation:
-      "Burette and Pipette are designed for extremely accurate liquid measurement with precision up to 0.1 cm3.",
+    question: "Which pairing of apparatus and function is correct?",
+    options: ["Beaker — collects gas", "Gas jar — measures a fixed liquid volume", "Burette — measures liquid volume accurately", "Pipette — heats chemicals"],
+    answerIndex: 2,
+    explanation: "The textbook states that a burette measures liquid volume accurately, while a pipette measures a fixed liquid volume.",
   },
   {
     id: "sci-f1-c1-dlp-q12",
@@ -3390,17 +3387,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What is the purpose of a Bell Jar in a laboratory?",
+    difficulty: "Medium",
+    question: "What is an evaporating dish used for?",
     options: [
-      "To measure liquid volume",
-      "To collect gases",
-      "To create a vacuum or isolate an experiment",
-      "To heat chemicals",
+      "Evaporation",
+      "Collecting gas",
+      "Measuring a fixed liquid volume",
+      "Supporting apparatus during heating",
     ],
-    answerIndex: 2,
-    explanation:
-      "A Bell Jar is used to create a vacuum or isolate an experiment from outside air conditions.",
+    answerIndex: 0,
+    explanation: "The textbook identifies the evaporating dish as apparatus used for evaporation.",
   },
   {
     id: "sci-f1-c1-dlp-q13",
@@ -3469,7 +3465,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
+    difficulty: "Medium",
     question: "What does the prefix Mega (M) represent?",
     options: ["1,000", "0.001", "1,000,000", "0.000001"],
     answerIndex: 2,
@@ -3494,10 +3490,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "What does the prefix Micro (u) represent?",
+    question: "What does the prefix Micro (µ) represent?",
     options: ["0.01", "0.001", "1,000,000", "0.000001"],
     answerIndex: 3,
-    explanation: "The prefix Micro (u) represents 0.000001 or 10 to the power of -6.",
+    explanation: "The prefix Micro (µ) represents 0.000001 or 10 to the power of -6.",
   },
   {
     id: "sci-f1-c1-dlp-q21",
@@ -3505,17 +3501,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
+    difficulty: "Medium",
     question: "What is the difference between Accuracy and Precision?",
     options: [
       "They mean exactly the same thing",
-      "Accuracy is closeness to true value, Precision is consistency of measurements",
-      "Accuracy is consistency, Precision is closeness to true value",
+      "Accuracy is closeness to the actual value; Precision is closeness among repeated readings",
+      "Accuracy is closeness among repeated readings; Precision is closeness to the actual value",
       "Accuracy only applies to temperature",
     ],
     answerIndex: 1,
     explanation:
-      "Accuracy refers to how close a measurement is to the true value, while Precision refers to how consistent repeated measurements are with each other.",
+      "Accuracy concerns closeness to the actual value, while Precision concerns how close repeated readings are to one another.",
   },
   {
     id: "sci-f1-c1-dlp-q22",
@@ -3541,7 +3537,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
+    difficulty: "Medium",
     question: "How do you calculate the Actual Reading when there is a Zero Error?",
     options: [
       "Actual Reading = Scale Reading + Zero Error",
@@ -3578,16 +3574,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "How do you avoid Parallax Error when reading a liquid in a measuring cylinder?",
+    question: "How do you reduce Parallax Error when reading a measuring cylinder?",
     options: [
-      "Read the top of the liquid curve",
-      "Read from any angle",
-      "Align eye level directly with the bottom of the meniscus",
-      "Tilt the measuring cylinder",
+      "View the scale from above",
+      "View the scale from any angle",
+      "Keep the eye perpendicular to the scale",
+      "Tilt the measuring cylinder while reading",
     ],
     answerIndex: 2,
     explanation:
-      "To avoid Parallax Error, align your eye level directly with the bottom of the meniscus.",
+      "The textbook reduces Parallax Error by keeping the observer's eye perpendicular to the measuring scale.",
   },
   {
     id: "sci-f1-c1-dlp-q26",
@@ -3605,7 +3601,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Density is defined as Mass per unit Volume. Formula: Density = Mass divided by Volume. Unit: g/cm3 or kg/m3.",
+      "Density is mass per unit volume. In this chapter, density is calculated in g cm-3 from mass in g and volume in cm3.",
   },
   {
     id: "sci-f1-c1-dlp-q27",
@@ -3613,17 +3609,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What is the Water Displacement Method used for?",
+    difficulty: "Medium",
+    question: "Which sequence correctly follows the start of a scientific investigation?",
     options: [
-      "To measure the mass of an object",
-      "To find the volume of an irregular solid",
-      "To measure the density of water",
-      "To find the weight of a liquid",
+      "Identify problem → construct hypothesis → control variables → plan experiment",
+      "Construct hypothesis → write report → identify problem → collect data",
+      "Plan experiment → identify problem → make conclusion → control variables",
+      "Collect data → construct hypothesis → identify problem → write report",
     ],
-    answerIndex: 1,
-    explanation:
-      "The Water Displacement Method is used to find the volume of an irregular solid by measuring how much water it displaces in a measuring cylinder.",
+    answerIndex: 0,
+    explanation: "The textbook sequence begins by identifying the problem, constructing a hypothesis, controlling variables and planning the experiment.",
   },
   {
     id: "sci-f1-c1-dlp-q28",
@@ -3631,17 +3626,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "According to the Law of Flotation, an object will float if its density is:",
+    difficulty: "Medium",
+    question: "Which science process skill gives a rational explanation of a pattern in collected data?",
     options: [
-      "Equal to 1.0 g/cm3",
-      "Greater than 1.0 g/cm3",
-      "Less than 1.0 g/cm3",
-      "Greater than 2.0 g/cm3",
+      "Classifying",
+      "Interpreting data",
+      "Measuring and using numbers",
+      "Using space-time relationships",
     ],
-    answerIndex: 2,
-    explanation:
-      "Objects with density LESS than 1.0 g/cm3 will float. Objects with higher density will sink.",
+    answerIndex: 1,
+    explanation: "The DSKP defines interpreting data as giving a rational explanation of objects, events or patterns from collected data.",
   },
   {
     id: "sci-f1-c1-dlp-q29",
@@ -3649,17 +3643,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "Which of the following is a correct application of Science in daily life?",
+    difficulty: "Medium",
+    question: "Which action best demonstrates scientific attitudes and noble values during an investigation?",
     options: [
-      "Writing stories and poems",
-      "Solving crimes through forensic DNA",
-      "Painting and drawing",
-      "Playing musical instruments",
+      "Changing an inconvenient reading",
+      "Recording every reading honestly and protecting the group and environment",
+      "Ignoring a spill so the experiment can continue",
+      "Copying another group's conclusion without checking the data",
     ],
     answerIndex: 1,
-    explanation:
-      "Science helps solve crimes through forensic DNA, increase crop yields through hydroponics, and advance medicine through robotic surgery.",
+    explanation: "The chapter emphasises honesty and accuracy in recording data and responsibility for personal safety, friends and the environment.",
   },
   {
     id: "sci-f1-c1-dlp-q30",
@@ -3667,13 +3660,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
+    difficulty: "Hard",
     question:
-      "A stone is placed in a measuring cylinder containing 50 cm3 of water. The water level rises to 65 cm3. What is the volume of the stone?",
-    options: ["115 cm3", "50 cm3", "65 cm3", "15 cm3"],
-    answerIndex: 3,
-    explanation:
-      "Volume of stone = Final water level - Initial water level = 65 - 50 = 15 cm3. This is the Water Displacement Method.",
+      "A measuring cylinder has a mass of 230 g. After 50 cm3 of liquid X is added, the total mass is 320 g. What is the density of liquid X?",
+    options: ["1.8 g cm-3", "4.6 g cm-3", "6.4 g cm-3", "11.0 g cm-3"],
+    answerIndex: 0,
+    explanation: "Mass of liquid X = 320 - 230 = 90 g. Density = 90 ÷ 50 = 1.8 g cm-3.",
   },
   {
     id: "sci-f1-c1-bm-q1",
@@ -3713,11 +3705,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Bidang Sains manakah yang mengkaji tenaga, daya, dan kesannya terhadap jirim?",
+    question: "Bidang sains manakah yang mengkaji tenaga dan kesannya terhadap jirim?",
     options: ["Kimia", "Biologi", "Astronomi", "Fizik"],
     answerIndex: 3,
     explanation:
-      "Fizik mengkaji tenaga, daya, dan jirim. Aplikasinya termasuk Kejuruteraan dan Astronomi.",
+      "Buku teks mentakrifkan Fizik sebagai kajian tentang tenaga dan kesannya terhadap jirim, dengan kejuruteraan dan tenaga elektrik sebagai contoh.",
   },
   {
     id: "sci-f1-c1-bm-q4",
@@ -3771,11 +3763,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Etanol dan Aseton adalah contoh bahan kimia jenis apakah?",
-    options: ["Toksik", "Mengakis", "Pengoksidaan", "Mudah Terbakar"],
+    question: "Alkohol dan petrol ialah contoh kategori bahan berbahaya yang mana?",
+    options: ["Beracun / toksik", "Mengakis", "Radioaktif", "Mudah terbakar"],
     answerIndex: 3,
     explanation:
-      "Etanol dan Aseton adalah bahan kimia Mudah Terbakar yang mudah menyala dan mesti dijauhkan daripada haba dan api.",
+      "Buku teks menyenaraikan alkohol dan petrol sebagai bahan mudah terbakar yang perlu dijauhkan daripada api atau haba.",
   },
   {
     id: "sci-f1-c1-bm-q8",
@@ -3784,12 +3776,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Simbol amaran manakah menunjukkan bahan kimia yang membebaskan oksigen untuk membantu bahan lain terbakar?",
-    options: ["Mudah Meletup", "Pengoksidaan", "Mudah Terbakar", "Merengsa"],
+    question: "Simbol amaran manakah mengenal pasti bahan radioaktif?",
+    options: ["Bahan merengsa", "Bahan radioaktif", "Bahan mudah terbakar", "Bahan mengakis"],
     answerIndex: 1,
-    explanation:
-      "Bahan kimia Pengoksidaan seperti Kalium manganat(VII) membebaskan oksigen yang membantu bahan lain terbakar dengan lebih kuat.",
+    explanation: "Simbol amaran radioaktif digunakan bagi bahan seperti uranium dan plutonium.",
   },
   {
     id: "sci-f1-c1-bm-q9",
@@ -3811,11 +3801,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Merkuri dan Sianida adalah contoh bahan kimia jenis apakah?",
-    options: ["Merengsa", "Toksik", "Pengoksidaan", "Mudah Meletup"],
+    question: "Merkuri dan klorin ialah contoh kategori bahan berbahaya yang mana?",
+    options: ["Merengsa", "Beracun / toksik", "Radioaktif", "Mudah meletup"],
     answerIndex: 1,
     explanation:
-      "Bahan kimia Toksik seperti Merkuri dan Sianida boleh membawa maut jika ditelan atau dihidu.",
+      "Buku teks menyenaraikan merkuri dan klorin sebagai bahan beracun atau toksik yang tidak boleh diminum, dimakan, dihidu atau dirasa.",
   },
   {
     id: "sci-f1-c1-bm-q11",
@@ -3824,12 +3814,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Alat radas makmal manakah digunakan untuk mengukur isipadu cecair dengan kejituan 0.1 cm3?",
-    options: ["Bikar", "Balang Loceng", "Balang Gas", "Buret dan Pipet"],
-    answerIndex: 3,
-    explanation:
-      "Buret dan Pipet direka untuk pengukuran cecair yang sangat tepat dengan kejituan sehingga 0.1 cm3.",
+    question: "Padanan radas dengan fungsi yang manakah betul?",
+    options: ["Bikar — mengumpul gas", "Balang gas — menyukat isi padu cecair yang tetap", "Buret — menyukat isi padu cecair dengan tepat", "Pipet — memanaskan bahan kimia"],
+    answerIndex: 2,
+    explanation: "Buku teks menyatakan bahawa buret menyukat isi padu cecair dengan tepat, manakala pipet menyukat isi padu cecair yang tetap.",
   },
   {
     id: "sci-f1-c1-bm-q12",
@@ -3837,17 +3825,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah kegunaan Balang Loceng dalam makmal?",
+    difficulty: "Medium",
+    question: "Apakah kegunaan piring sejat?",
     options: [
-      "Mengukur isipadu cecair",
-      "Mengumpul gas",
-      "Mewujudkan vakum atau mengasingkan eksperimen daripada udara luar",
-      "Memanaskan bahan kimia",
+      "Untuk tujuan penyejatan",
+      "Untuk mengumpul gas",
+      "Untuk menyukat isi padu cecair yang tetap",
+      "Untuk menyokong radas semasa pemanasan",
     ],
-    answerIndex: 2,
-    explanation:
-      "Balang Loceng digunakan untuk mewujudkan vakum atau mengasingkan eksperimen daripada keadaan udara luar.",
+    answerIndex: 0,
+    explanation: "Buku teks mengenal pasti piring sejat sebagai radas untuk tujuan penyejatan.",
   },
   {
     id: "sci-f1-c1-bm-q13",
@@ -3916,7 +3903,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
+    difficulty: "Medium",
     question: "Apakah yang diwakili oleh imbuhan Mega (M)?",
     options: ["1,000", "0.001", "1,000,000", "0.000001"],
     answerIndex: 2,
@@ -3941,10 +3928,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah yang diwakili oleh imbuhan Mikro (u)?",
+    question: "Apakah yang diwakili oleh imbuhan Mikro (µ)?",
     options: ["0.01", "0.001", "1,000,000", "0.000001"],
     answerIndex: 3,
-    explanation: "Imbuhan Mikro (u) mewakili 0.000001 atau 10 kuasa -6.",
+    explanation: "Imbuhan Mikro (µ) mewakili 0.000001 atau 10 kuasa -6.",
   },
   {
     id: "sci-f1-c1-bm-q21",
@@ -3952,17 +3939,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah perbezaan antara Ketepatan dan Kepersisan?",
+    difficulty: "Medium",
+    question: "Apakah perbezaan antara Kejituan dan Kepersisan?",
     options: [
       "Kedua-duanya bermaksud sama",
-      "Ketepatan ialah kedekatan dengan nilai sebenar, Kepersisan ialah konsistensi bacaan",
-      "Ketepatan ialah konsistensi, Kepersisan ialah kedekatan dengan nilai sebenar",
-      "Ketepatan hanya digunakan untuk suhu",
+      "Kejituan ialah bacaan hampir kepada nilai sebenar; Kepersisan ialah bacaan ulangan yang hampir antara satu sama lain",
+      "Kejituan ialah bacaan ulangan yang hampir; Kepersisan ialah bacaan hampir kepada nilai sebenar",
+      "Kejituan hanya digunakan untuk suhu",
     ],
     answerIndex: 1,
     explanation:
-      "Ketepatan merujuk kepada sejauh mana bacaan menghampiri nilai sebenar, manakala Kepersisan merujuk kepada konsistensi bacaan yang diulang.",
+      "Kejituan merujuk kepada bacaan yang menghampiri nilai sebenar, manakala kepersisan merujuk kepada bacaan ulangan yang hampir antara satu sama lain.",
   },
   {
     id: "sci-f1-c1-bm-q22",
@@ -3988,7 +3975,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
+    difficulty: "Medium",
     question: "Bagaimana cara mengira Bacaan Sebenar apabila terdapat Ralat Sifar?",
     options: [
       "Bacaan Sebenar = Bacaan Skala + Ralat Sifar",
@@ -4010,13 +3997,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah yang menyebabkan Ralat Paralaks?",
     options: [
       "Menggunakan alat yang salah",
-      "Mata tidak tegak lurus dengan skala",
+      "Mata tidak berserenjang dengan skala",
       "Alat terlalu lama digunakan",
       "Mengukur pada suhu yang salah",
     ],
     answerIndex: 1,
     explanation:
-      "Ralat Paralaks ialah ralat rawak yang disebabkan oleh mata yang tidak tegak lurus dengan skala yang dibaca.",
+      "Ralat paralaks ialah ralat rawak yang berlaku apabila mata tidak berserenjang dengan skala yang dibaca.",
   },
   {
     id: "sci-f1-c1-bm-q25",
@@ -4026,16 +4013,16 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question:
-      "Bagaimana cara mengelakkan Ralat Paralaks semasa membaca cecair dalam silinder penyukat?",
+      "Bagaimanakah cara mengurangkan ralat paralaks semasa membaca silinder penyukat?",
     options: [
-      "Baca bahagian atas lengkungan cecair",
-      "Baca dari mana-mana sudut",
-      "Selaraskan paras mata terus dengan bahagian bawah meniskus",
-      "Condongkan silinder penyukat",
+      "Lihat skala dari atas",
+      "Lihat skala dari sebarang sudut",
+      "Pastikan mata berserenjang dengan skala",
+      "Condongkan silinder penyukat semasa membaca",
     ],
     answerIndex: 2,
     explanation:
-      "Untuk mengelakkan Ralat Paralaks, selaraskan paras mata terus dengan bahagian bawah meniskus.",
+      "Buku teks mengurangkan ralat paralaks dengan memastikan mata pemerhati berserenjang dengan skala pengukuran.",
   },
   {
     id: "sci-f1-c1-bm-q26",
@@ -4046,14 +4033,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah definisi Ketumpatan?",
     options: [
-      "Isipadu per unit jisim",
+      "Isi padu per unit jisim",
       "Jisim per unit luas",
-      "Berat per unit isipadu",
-      "Jisim per unit isipadu",
+      "Berat per unit isi padu",
+      "Jisim per unit isi padu",
     ],
     answerIndex: 3,
     explanation:
-      "Ketumpatan didefinisikan sebagai Jisim per unit Isipadu. Formula: Ketumpatan = Jisim dibahagi Isipadu. Unit: g/cm3 atau kg/m3.",
+      "Ketumpatan ialah jisim per unit isi padu. Dalam bab ini, ketumpatan dihitung dalam g cm-3 daripada jisim dalam g dan isi padu dalam cm3.",
   },
   {
     id: "sci-f1-c1-bm-q27",
@@ -4061,17 +4048,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah kegunaan Kaedah Sesaran Air?",
+    difficulty: "Medium",
+    question: "Urutan manakah betul pada permulaan penyiasatan saintifik?",
     options: [
-      "Mengukur jisim objek",
-      "Mencari isipadu pepejal tidak sekata",
-      "Mengukur ketumpatan air",
-      "Mencari berat cecair",
+      "Mengenal pasti masalah → membina hipotesis → mengawal pemboleh ubah → merancang eksperimen",
+      "Membina hipotesis → menulis laporan → mengenal pasti masalah → mengumpul data",
+      "Merancang eksperimen → mengenal pasti masalah → membuat kesimpulan → mengawal pemboleh ubah",
+      "Mengumpul data → membina hipotesis → mengenal pasti masalah → menulis laporan",
     ],
-    answerIndex: 1,
-    explanation:
-      "Kaedah Sesaran Air digunakan untuk mencari isipadu pepejal tidak sekata dengan mengukur jumlah air yang teranjak dalam silinder penyukat.",
+    answerIndex: 0,
+    explanation: "Urutan buku teks bermula dengan mengenal pasti masalah, membina hipotesis, mengawal pemboleh ubah dan merancang eksperimen.",
   },
   {
     id: "sci-f1-c1-bm-q28",
@@ -4079,17 +4065,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Menurut Hukum Apungan, objek akan terapung jika ketumpatannya:",
+    difficulty: "Medium",
+    question: "Kemahiran proses sains manakah memberikan penerangan rasional tentang pola daripada data yang dikumpulkan?",
     options: [
-      "Sama dengan 1.0 g/cm3",
-      "Lebih besar daripada 1.0 g/cm3",
-      "Kurang daripada 1.0 g/cm3",
-      "Lebih besar daripada 2.0 g/cm3",
+      "Mengelaskan",
+      "Mentafsir data",
+      "Mengukur dan menggunakan nombor",
+      "Menggunakan perhubungan ruang dan masa",
     ],
-    answerIndex: 2,
-    explanation:
-      "Objek dengan ketumpatan KURANG daripada 1.0 g/cm3 akan terapung. Objek dengan ketumpatan lebih tinggi akan tenggelam.",
+    answerIndex: 1,
+    explanation: "DSKP mentakrifkan mentafsir data sebagai memberi penerangan rasional tentang objek, peristiwa atau pola daripada data yang dikumpulkan.",
   },
   {
     id: "sci-f1-c1-bm-q29",
@@ -4097,17 +4082,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Manakah antara berikut merupakan aplikasi Sains yang betul dalam kehidupan harian?",
+    difficulty: "Medium",
+    question: "Tindakan manakah paling jelas menunjukkan sikap saintifik dan nilai murni semasa penyiasatan?",
     options: [
-      "Menulis cerita dan puisi",
-      "Menyelesaikan jenayah melalui DNA forensik",
-      "Melukis dan menggambar",
-      "Bermain alat muzik",
+      "Mengubah bacaan yang menyukarkan kesimpulan",
+      "Merekod setiap bacaan dengan jujur serta menjaga keselamatan kumpulan dan alam sekitar",
+      "Mengabaikan tumpahan supaya eksperimen boleh diteruskan",
+      "Menyalin kesimpulan kumpulan lain tanpa menyemak data",
     ],
     answerIndex: 1,
-    explanation:
-      "Sains membantu menyelesaikan jenayah melalui DNA forensik, meningkatkan hasil tanaman melalui hidroponik, dan memajukan perubatan melalui pembedahan robotik.",
+    explanation: "Bab ini menekankan kejujuran dan ketepatan merekod data serta tanggungjawab terhadap keselamatan diri, rakan dan alam sekitar.",
   },
   {
     id: "sci-f1-c1-bm-q30",
@@ -4115,13 +4099,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
+    difficulty: "Hard",
     question:
-      "Sebiji batu dimasukkan ke dalam silinder penyukat yang mengandungi 50 cm3 air. Paras air naik kepada 65 cm3. Berapakah isipadu batu?",
-    options: ["115 cm3", "50 cm3", "65 cm3", "15 cm3"],
-    answerIndex: 3,
-    explanation:
-      "Isipadu batu = Paras air akhir - Paras air awal = 65 - 50 = 15 cm3. Ini adalah Kaedah Sesaran Air.",
+      "Sebuah silinder penyukat berjisim 230 g. Selepas 50 cm3 cecair X ditambah, jumlah jisim menjadi 320 g. Berapakah ketumpatan cecair X?",
+    options: ["1.8 g cm-3", "4.6 g cm-3", "6.4 g cm-3", "11.0 g cm-3"],
+    answerIndex: 0,
+    explanation: "Jisim cecair X = 320 - 230 = 90 g. Ketumpatan = 90 ÷ 50 = 1.8 g cm-3.",
   },
   {
     id: "q6",
@@ -20054,7 +20037,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What does Physics study?",
-    back: "The study of energy, force, and its influence on matter. Examples: Engineering, Astronomy.",
+    back: "The study of energy and its effects on matter. Textbook examples: Engineering and electrical energy.",
   },
   {
     id: "sci-f1-c1-dlp-f4",
@@ -20135,7 +20118,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What does the FLAMMABLE hazard symbol mean?",
-    back: "Chemicals that catch fire easily. Must be kept away from heat and fire. Examples: Ethanol, Acetone.",
+    back: "Materials that vaporise and burn easily. Keep them away from fire or heat. Textbook examples: Alcohol and petrol.",
   },
   {
     id: "sci-f1-c1-dlp-f13",
@@ -20143,8 +20126,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What does the OXIDISING hazard symbol mean?",
-    back: "Chemicals that release oxygen to help other materials burn. Examples: Potassium manganate(VII).",
+    front: "What does the RADIOACTIVE warning symbol mean?",
+    back: "The material emits radioactive radiation that can cause cancer. Textbook examples: Uranium and plutonium.",
   },
   {
     id: "sci-f1-c1-dlp-f14",
@@ -20162,7 +20145,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What does the TOXIC hazard symbol mean?",
-    back: "Chemicals that are lethal if swallowed or inhaled. Examples: Mercury, Cyanide.",
+    back: "Do not drink, eat, inhale or taste the material. Textbook examples: Mercury and chlorine.",
   },
   {
     id: "sci-f1-c1-dlp-f16",
@@ -20171,7 +20154,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What does the IRRITANT hazard symbol mean?",
-    back: "Chemicals that cause itching or redness on skin. Examples: Ammonia, Chloroform.",
+    back: "Its vapour or fumes can hurt the eyes, nose and throat. Avoid inhaling them and use the chemical in a fume chamber. Examples: Chloroform and ammonia.",
   },
   {
     id: "sci-f1-c1-dlp-f17",
@@ -20180,7 +20163,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What is a Burette used for?",
-    back: "To measure and dispense liquid volume with high accuracy (0.1 cm3).",
+    back: "To measure liquid volume accurately.",
   },
   {
     id: "sci-f1-c1-dlp-f18",
@@ -20189,7 +20172,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What is a Pipette used for?",
-    back: "To transfer a precise volume of liquid from one container to another.",
+    back: "To measure a fixed volume of liquid.",
   },
   {
     id: "sci-f1-c1-dlp-f19",
@@ -20197,8 +20180,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What is a Bell Jar used for?",
-    back: "To create a vacuum or isolate an experiment from outside air.",
+    front: "What is an evaporating dish used for?",
+    back: "It is used for evaporation.",
   },
   {
     id: "sci-f1-c1-dlp-f20",
@@ -20215,8 +20198,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What is a Flat-bottomed Flask used for?",
-    back: "To store or heat liquids evenly in the laboratory.",
+    front: "What is a flat-bottom flask used for?",
+    back: "It holds a large quantity of chemicals.",
   },
   {
     id: "sci-f1-c1-dlp-f22",
@@ -20323,7 +20306,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What does the prefix Micro (u) mean?",
+    front: "What does the prefix Micro (µ) mean?",
     back: "0.000001 (10 to the power of -6). Example: 1 micrometer = 0.000001 meters.",
   },
   {
@@ -20359,8 +20342,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What is Precision?",
-    back: "Consistency and closeness between multiple measurements of the same quantity.",
+    front: "What is Precision in measurement?",
+    back: "The closeness among repeated readings of the same quantity.",
   },
   {
     id: "sci-f1-c1-dlp-f38",
@@ -20368,8 +20351,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "Give an example of high accuracy but low precision.",
-    back: "Measurements of 9.8, 10.2, 9.5 cm when true value is 10 cm. Close to true value but not consistent.",
+    front: "How do repeated readings support a more accurate result?",
+    back: "Take the reading several times and calculate the average, as directed in the textbook measurement activity.",
   },
   {
     id: "sci-f1-c1-dlp-f39",
@@ -20377,8 +20360,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "Give an example of high precision but low accuracy.",
-    back: "Measurements of 8.1, 8.1, 8.1 cm when true value is 10 cm. Very consistent but far from true value.",
+    front: "How is instrument sensitivity related to the scale?",
+    back: "Compare the instrument's smallest scale division; the textbook activity asks pupils to relate that value to sensitivity.",
   },
   {
     id: "sci-f1-c1-dlp-f40",
@@ -20415,7 +20398,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "How do you avoid Parallax Error?",
-    back: "Align eye level directly with the bottom of the meniscus when reading a liquid in a measuring cylinder.",
+    back: "Keep the observer's eye perpendicular to the measuring scale.",
   },
   {
     id: "sci-f1-c1-dlp-f44",
@@ -20423,8 +20406,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What is a meniscus?",
-    back: "The curved surface formed by a liquid in a measuring cylinder. Always read the BOTTOM of the curve.",
+    front: "How does density predict whether a material floats or sinks in water?",
+    back: "A material less dense than water floats, while a material more dense than water sinks.",
   },
   {
     id: "sci-f1-c1-dlp-f45",
@@ -20442,7 +20425,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What is Density?",
-    back: "Mass per unit volume. Formula: Density = Mass divided by Volume. Unit: g/cm3 or kg/m3.",
+    back: "Mass per unit volume. In this chapter: Density (g cm-3) = Mass (g) divided by Volume (cm3).",
   },
   {
     id: "sci-f1-c1-dlp-f47",
@@ -20451,7 +20434,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What is the formula for Density?",
-    back: "Density = Mass divided by Volume. D = M divided by V.",
+    back: "Density = Mass divided by Volume (ρ = m/V).",
   },
   {
     id: "sci-f1-c1-dlp-f48",
@@ -20460,7 +20443,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What is the unit for Density?",
-    back: "g/cm3 or kg/m3.",
+    back: "g cm-3 when mass is measured in g and volume in cm3.",
   },
   {
     id: "sci-f1-c1-dlp-f49",
@@ -20469,7 +20452,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What is the density of water?",
-    back: "1.0 g/cm3 or 1,000 kg/m3.",
+    back: "The chapter table gives pure water at 40°C a density of 1.00 g cm-3.",
   },
   {
     id: "sci-f1-c1-dlp-f50",
@@ -20487,7 +20470,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "How do you use the Water Displacement Method?",
-    back: "1. Fill measuring cylinder with water and record initial volume. 2. Place object in water. 3. Record final volume. 4. Volume of object = Final - Initial volume.",
+    back: "Record initial water volume, fully submerge the object, record final volume, then calculate object volume = final - initial. Use its mass and volume to calculate density.",
   },
   {
     id: "sci-f1-c1-dlp-f52",
@@ -20495,8 +20478,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "According to the Law of Flotation, when does an object float?",
-    back: "When its density is LESS than 1.0 g/cm3 (density of water).",
+    front: "What are the twelve science process skills?",
+    back: "Observing; classifying; measuring and using numbers; inferring; predicting; communicating; using space-time relationships; interpreting data; defining operationally; controlling variables; making a hypothesis; experimenting.",
   },
   {
     id: "sci-f1-c1-dlp-f53",
@@ -20504,8 +20487,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "According to the Law of Flotation, when does an object sink?",
-    back: "When its density is MORE than 1.0 g/cm3 (density of water).",
+    front: "What does defining operationally mean?",
+    back: "Interpreting a concept by stating what is done and what is observed.",
   },
   {
     id: "sci-f1-c1-dlp-f54",
@@ -20513,8 +20496,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "Why can a hot air balloon fly?",
-    back: "Because hot air is LESS dense than cool air, so it floats upward.",
+    front: "Which three core scientific attitudes are highlighted in this chapter?",
+    back: "Curiosity about the surroundings; honesty and accuracy in recording data; responsibility for personal safety, friends and the environment.",
   },
   {
     id: "sci-f1-c1-dlp-f55",
@@ -20522,8 +20505,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "Why does a ship float even though it is made of metal?",
-    back: "Because the ship has air spaces inside that make its overall density LESS than the density of water.",
+    front: "Why are scientific attitudes and noble values needed during an investigation?",
+    back: "They support more accurate results, effective decisions, willingness to adapt to new ideas and responsible, creative problem solving.",
   },
   {
     id: "sci-f1-c1-dlp-f56",
@@ -20532,7 +20515,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What are the steps of a Scientific Investigation?",
-    back: "1. Identify the problem 2. Form a hypothesis 3. Control variables 4. Collect and analyse data 5. Make conclusion.",
+    back: scientificInvestigationSteps.map((step) => `${step.step}. ${step.heading.en}`).join(" "),
   },
   {
     id: "sci-f1-c1-dlp-f57",
@@ -20541,7 +20524,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     front: "What is a Hypothesis?",
-    back: "A prediction or statement that can be tested through an experiment.",
+    back: "A testable statement about the relationship between the manipulated and responding variables.",
   },
   {
     id: "sci-f1-c1-dlp-f58",
@@ -20595,7 +20578,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah yang dikaji dalam Fizik?",
-    back: "Kajian tentang tenaga, daya, dan kesannya terhadap jirim. Contoh: Kejuruteraan, Astronomi.",
+    back: "Kajian tentang tenaga dan kesannya terhadap jirim. Contoh buku teks: Kejuruteraan dan tenaga elektrik.",
   },
   {
     id: "sci-f1-c1-bm-f4",
@@ -20676,7 +20659,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah maksud simbol amaran MUDAH TERBAKAR?",
-    back: "Bahan kimia yang mudah terbakar. Mesti dijauhkan daripada haba dan api. Contoh: Etanol, Aseton.",
+    back: "Bahan yang mudah mengewap dan terbakar. Jauhkan daripada api atau haba. Contoh buku teks: Alkohol dan petrol.",
   },
   {
     id: "sci-f1-c1-bm-f13",
@@ -20684,8 +20667,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah maksud simbol amaran PENGOKSIDAAN?",
-    back: "Bahan kimia yang membebaskan oksigen untuk membantu bahan lain terbakar. Contoh: Kalium manganat(VII).",
+    front: "Apakah maksud simbol amaran RADIOAKTIF?",
+    back: "Bahan itu mengeluarkan sinaran radioaktif yang dapat menyebabkan kanser. Contoh buku teks: Uranium dan plutonium.",
   },
   {
     id: "sci-f1-c1-bm-f14",
@@ -20703,7 +20686,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah maksud simbol amaran TOKSIK?",
-    back: "Bahan kimia yang boleh membawa maut jika ditelan atau dihidu. Contoh: Merkuri, Sianida.",
+    back: "Jangan minum, makan, menghidu atau merasa bahan itu. Contoh buku teks: Merkuri dan klorin.",
   },
   {
     id: "sci-f1-c1-bm-f16",
@@ -20712,7 +20695,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah maksud simbol amaran MERENGSA?",
-    back: "Bahan kimia yang menyebabkan kegatalan atau kemerahan pada kulit. Contoh: Ammonia, Kloroform.",
+    back: "Wap atau wasapnya boleh memedihkan mata, hidung dan tekak. Elakkan menghidu dan gunakan bahan kimia di dalam kebuk wasap. Contoh: Kloroform dan ammonia.",
   },
   {
     id: "sci-f1-c1-bm-f17",
@@ -20721,7 +20704,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah kegunaan Buret?",
-    back: "Untuk mengukur dan mengeluarkan isipadu cecair dengan kejituan tinggi (0.1 cm3).",
+    back: "Untuk menyukat isi padu cecair dengan tepat.",
   },
   {
     id: "sci-f1-c1-bm-f18",
@@ -20730,7 +20713,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah kegunaan Pipet?",
-    back: "Untuk memindahkan isipadu cecair yang tepat dari satu bekas ke bekas lain.",
+    back: "Untuk menyukat isi padu cecair yang tetap.",
   },
   {
     id: "sci-f1-c1-bm-f19",
@@ -20738,8 +20721,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah kegunaan Balang Loceng?",
-    back: "Untuk mewujudkan vakum atau mengasingkan eksperimen daripada udara luar.",
+    front: "Apakah kegunaan piring sejat?",
+    back: "Piring sejat digunakan untuk tujuan penyejatan.",
   },
   {
     id: "sci-f1-c1-bm-f20",
@@ -20756,8 +20739,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah kegunaan Kelalang Dasar Rata?",
-    back: "Untuk menyimpan atau memanaskan cecair secara sekata dalam makmal.",
+    front: "Apakah kegunaan kelalang dasar leper?",
+    back: "Kelalang dasar leper mengisi bahan kimia dalam kuantiti yang besar.",
   },
   {
     id: "sci-f1-c1-bm-f22",
@@ -20765,7 +20748,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah kegunaan Mangkuk Penyejat?",
+    front: "Apakah kegunaan piring sejat?",
     back: "Untuk menguapkan pelarut daripada larutan bagi mendapatkan bahan terlarut.",
   },
   {
@@ -20864,7 +20847,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah maksud imbuhan Mikro (u)?",
+    front: "Apakah maksud imbuhan Mikro (µ)?",
     back: "0.000001 (10 kuasa -6). Contoh: 1 mikrometer = 0.000001 meter.",
   },
   {
@@ -20891,7 +20874,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah itu Ketepatan?",
+    front: "Apakah itu Kejituan?",
     back: "Kedekatan sesuatu ukuran dengan nilai sebenar.",
   },
   {
@@ -20909,8 +20892,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Berikan contoh ketepatan tinggi tetapi kepersisan rendah.",
-    back: "Bacaan 9.8, 10.2, 9.5 cm apabila nilai sebenar ialah 10 cm. Hampir dengan nilai sebenar tetapi tidak konsisten.",
+    front: "Bagaimanakah bacaan berulang menyokong keputusan yang lebih jitu?",
+    back: "Ambil bacaan beberapa kali dan hitung purata seperti diarahkan dalam aktiviti pengukuran buku teks.",
   },
   {
     id: "sci-f1-c1-bm-f39",
@@ -20918,8 +20901,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Berikan contoh kepersisan tinggi tetapi ketepatan rendah.",
-    back: "Bacaan 8.1, 8.1, 8.1 cm apabila nilai sebenar ialah 10 cm. Sangat konsisten tetapi jauh dari nilai sebenar.",
+    front: "Bagaimanakah kepekaan alat dikaitkan dengan skala?",
+    back: "Bandingkan nilai senggatan terkecil alat; aktiviti buku teks meminta murid mengaitkan nilai itu dengan kepekaan.",
   },
   {
     id: "sci-f1-c1-bm-f40",
@@ -20956,7 +20939,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Bagaimana cara mengelakkan Ralat Paralaks?",
-    back: "Selaraskan paras mata terus dengan bahagian bawah meniskus semasa membaca cecair dalam silinder penyukat.",
+    back: "Pastikan mata pemerhati berserenjang dengan skala alat pengukur.",
   },
   {
     id: "sci-f1-c1-bm-f44",
@@ -20964,8 +20947,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah itu meniskus?",
-    back: "Permukaan melengkung yang dibentuk oleh cecair dalam silinder penyukat. Sentiasa baca bahagian BAWAH lengkungan.",
+    front: "Bagaimanakah ketumpatan meramalkan bahan terapung atau tenggelam di dalam air?",
+    back: "Bahan yang kurang tumpat daripada air terapung, manakala bahan yang lebih tumpat daripada air tenggelam.",
   },
   {
     id: "sci-f1-c1-bm-f45",
@@ -20983,7 +20966,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah itu Ketumpatan?",
-    back: "Jisim per unit isipadu. Formula: Ketumpatan = Jisim dibahagi Isipadu. Unit: g/cm3 atau kg/m3.",
+    back: "Jisim per unit isi padu. Dalam bab ini: Ketumpatan (g cm-3) = Jisim (g) dibahagi Isi padu (cm3).",
   },
   {
     id: "sci-f1-c1-bm-f47",
@@ -20992,7 +20975,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah formula Ketumpatan?",
-    back: "Ketumpatan = Jisim dibahagi Isipadu. K = J dibahagi I.",
+    back: "Ketumpatan = Jisim dibahagi Isi padu (ρ = m/V).",
   },
   {
     id: "sci-f1-c1-bm-f48",
@@ -21001,7 +20984,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah unit bagi Ketumpatan?",
-    back: "g/cm3 atau kg/m3.",
+    back: "g cm-3 apabila jisim diukur dalam g dan isi padu dalam cm3.",
   },
   {
     id: "sci-f1-c1-bm-f49",
@@ -21010,7 +20993,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah ketumpatan air?",
-    back: "1.0 g/cm3 atau 1,000 kg/m3.",
+    back: "Jadual bab memberikan ketumpatan air tulen pada 40°C sebagai 1.00 g cm-3.",
   },
   {
     id: "sci-f1-c1-bm-f50",
@@ -21019,7 +21002,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah itu Kaedah Sesaran Air?",
-    back: "Kaedah untuk mencari isipadu pepejal tidak sekata dengan mengukur jumlah air yang teranjak dalam silinder penyukat.",
+    back: "Kaedah untuk menentukan isi padu objek tidak sekata daripada perbezaan isi padu akhir dengan isi padu awal air dalam silinder penyukat.",
   },
   {
     id: "sci-f1-c1-bm-f51",
@@ -21028,7 +21011,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Bagaimana cara menggunakan Kaedah Sesaran Air?",
-    back: "1. Isi silinder penyukat dengan air dan catat isipadu awal. 2. Masukkan objek ke dalam air. 3. Catat isipadu akhir. 4. Isipadu objek = Isipadu akhir - Isipadu awal.",
+    back: "Rekod isi padu awal air, tenggelamkan objek sepenuhnya, rekod isi padu akhir, kemudian hitung isi padu objek = akhir - awal. Gunakan jisim dan isi padu untuk menghitung ketumpatan.",
   },
   {
     id: "sci-f1-c1-bm-f52",
@@ -21036,8 +21019,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Menurut Hukum Apungan, bilakah objek terapung?",
-    back: "Apabila ketumpatannya KURANG daripada 1.0 g/cm3 (ketumpatan air).",
+    front: "Apakah dua belas kemahiran proses sains?",
+    back: "Memerhatikan; mengelaskan; mengukur dan menggunakan nombor; membuat inferens; meramalkan; berkomunikasi; menggunakan perhubungan ruang dan masa; mentafsir data; mendefinisi secara operasi; mengawal pemboleh ubah; membuat hipotesis; mengeksperimen.",
   },
   {
     id: "sci-f1-c1-bm-f53",
@@ -21045,8 +21028,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Menurut Hukum Apungan, bilakah objek tenggelam?",
-    back: "Apabila ketumpatannya LEBIH daripada 1.0 g/cm3 (ketumpatan air).",
+    front: "Apakah maksud mendefinisi secara operasi?",
+    back: "Memberi tafsiran tentang konsep dengan menyatakan perkara yang dilakukan dan diperhatikan.",
   },
   {
     id: "sci-f1-c1-bm-f54",
@@ -21054,8 +21037,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Mengapakah belon udara panas boleh terbang?",
-    back: "Kerana udara panas KURANG tumpat daripada udara sejuk, maka ia terapung naik.",
+    front: "Apakah tiga sikap saintifik teras yang ditekankan dalam bab ini?",
+    back: "Sifat ingin tahu tentang alam sekeliling; jujur dan tepat merekod data; bertanggungjawab terhadap keselamatan diri, rakan dan alam sekitar.",
   },
   {
     id: "sci-f1-c1-bm-f55",
@@ -21063,8 +21046,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Mengapakah kapal laut boleh terapung walaupun diperbuat daripada logam?",
-    back: "Kerana kapal mempunyai ruang udara di dalamnya yang menjadikan ketumpatan keseluruhan kapal KURANG daripada ketumpatan air.",
+    front: "Mengapakah sikap saintifik dan nilai murni diperlukan semasa penyiasatan?",
+    back: "Sikap itu menyokong keputusan yang lebih tepat, keputusan berkesan, kesediaan menerima idea baharu dan penyelesaian masalah yang bertanggungjawab serta kreatif.",
   },
   {
     id: "sci-f1-c1-bm-f56",
@@ -21073,7 +21056,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah langkah-langkah Penyiasatan Saintifik?",
-    back: "1. Mengenal pasti masalah 2. Membina hipotesis 3. Mengawal pemboleh ubah 4. Mengumpul dan menganalisis data 5. Membuat kesimpulan.",
+    back: scientificInvestigationSteps.map((step) => `${step.step}. ${step.heading.bm}`).join(" "),
   },
   {
     id: "sci-f1-c1-bm-f57",
@@ -21082,7 +21065,7 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah itu Hipotesis?",
-    back: "Ramalan atau pernyataan yang boleh diuji melalui eksperimen.",
+    back: "Pernyataan yang boleh diuji tentang hubungan antara pemboleh ubah dimanipulasikan dengan pemboleh ubah bergerak balas.",
   },
   {
     id: "sci-f1-c1-bm-f58",

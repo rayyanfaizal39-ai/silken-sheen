@@ -148,11 +148,6 @@ export function ScienceDiscoveryChapterHeader({
   const bm = lang === "bm";
   const effectiveProgress = isRead ? 100 : Math.max(chapterProgress, readingProgress);
   const mastered = Math.min(meta.modules, Math.floor((meta.modules * effectiveProgress) / 100));
-  const experiments = Math.min(
-    meta.experiments,
-    Math.floor((meta.experiments * effectiveProgress) / 100),
-  );
-
   return (
     <section
       id={embedded ? "notes" : "chapter-overview"}
@@ -236,10 +231,8 @@ export function ScienceDiscoveryChapterHeader({
           </div>
           <div className="science-progress-datum">
             <FlaskConical />
-            <strong>
-              {experiments}/{meta.experiments}
-            </strong>
-            <span>{bm ? "Eksperimen Selesai" : "Experiments Completed"}</span>
+            <strong>{meta.experiments}</strong>
+            <span>{bm ? "Arahan Amali Tersedia" : "Practical Prompts Available"}</span>
           </div>
           <ProgressRing value={readingProgress} label={bm ? "Bacaan" : "Reading"} />
         </div>
