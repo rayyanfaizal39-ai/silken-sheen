@@ -88,6 +88,30 @@ const mathForm2DlpEducationalVideos: Readonly<Record<string, EducationalVideo>> 
     ]),
   );
 
+export const mathForm3 = {
+  1: "WivwthMHnF0",
+  2: "BrWyLqvLfpo",
+  3: "rlFCM2dOiHc",
+  4: "oDOURRus7_A",
+  5: "9XgC54YGeMU",
+  6: "gEdnzJckU2w",
+  7: "ODZHCAVaXEo",
+  8: "1tXX6iKBCSU",
+  9: "CkCCrCUOJjE",
+} as const satisfies Readonly<Record<number, string>>;
+
+const mathForm3EducationalVideos: Readonly<Record<string, EducationalVideo>> = Object.fromEntries(
+  Object.entries(mathForm3).map(([chapterNumber, youtubeId]) => [
+    `math-f3-c${chapterNumber}-bm`,
+    {
+      title: `Matematik Tingkatan 3 — Bab ${chapterNumber}`,
+      youtubeId,
+      captionLang: "ms",
+      hint: "Hidupkan sari kata untuk pemahaman lebih baik! 💡",
+    },
+  ]),
+);
+
 export const mathForm3Dlp = {
   1: "lKe6WUBHSHg",
   2: "JLL8qeumN28",
@@ -148,6 +172,7 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
   ...mathForm1DlpEducationalVideos,
   ...mathForm2EducationalVideos,
   ...mathForm2DlpEducationalVideos,
+  ...mathForm3EducationalVideos,
   ...mathForm3DlpEducationalVideos,
   ...scienceForm3DlpEducationalVideos,
   "sejarah-f1-c1": {
