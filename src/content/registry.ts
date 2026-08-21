@@ -54,6 +54,10 @@ import {
   scienceF1C2FlashcardsBM,
   scienceF1C2FlashcardsDLP,
 } from "@/content/form1/science/chapter-2/flashcards";
+import {
+  scienceF1C2QuizzesBM,
+  scienceF1C2QuizzesDLP,
+} from "@/content/form1/science/chapter-2/quizzes";
 import { chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
 import { chapter4Content } from "@/content/form1/science/chapter-4/chapter4-content";
 import { chapter5Content } from "@/content/form1/science/chapter-5/chapter5-content";
@@ -2361,12 +2365,13 @@ export const chapters: ChapterContent[] = [
     subjectId: "science",
     form: "Form 1",
     chapterKey: "Chapter 2",
-    title: "Sel sebagai Unit Asas Kehidupan",
+    title: "Sel sebagai Unit Asas Hidupan",
     lang: "bm",
     video: getEducationalVideo("science-f1-c2"),
     mindMap: { data: scienceF1C2MindMapBM, title: "Sel sebagai Unit Asas Hidupan" },
     notes: scienceF1C2NotesBM,
     flashcards: scienceF1C2FlashcardsBM,
+    quiz: scienceF1C2QuizzesBM,
     chapter2Data: chapter2Content,
   },
   {
@@ -2377,9 +2382,10 @@ export const chapters: ChapterContent[] = [
     title: "Cell as the Basic Unit of Life",
     lang: "dlp",
     video: getEducationalVideo("science-f1-c2", "dlp"),
-    mindMap: { data: scienceF1C2MindMapDLP, title: "Cells as the Basic Unit of Life" },
+    mindMap: { data: scienceF1C2MindMapDLP, title: "Cell as the Basic Unit of Life" },
     notes: scienceF1C2NotesDLP,
     flashcards: scienceF1C2FlashcardsDLP,
+    quiz: scienceF1C2QuizzesDLP,
     chapter2Data: chapter2Content,
   },
   {

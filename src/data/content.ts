@@ -36624,7 +36624,7 @@ export const scienceForm1ChaptersBilingual: Array<{ num: number; bm: string; dlp
     bm: "Pengenalan kepada Penyiasatan Saintifik",
     dlp: "Introduction to Scientific Investigation",
   },
-  { num: 2, bm: "Sel sebagai Unit Asas Kehidupan", dlp: "Cell as the Basic Unit of Life" },
+  { num: 2, bm: "Sel sebagai Unit Asas Hidupan", dlp: "Cell as the Basic Unit of Life" },
   { num: 3, bm: "Koordinasi dan Tindak Balas", dlp: "Coordination and Response" },
   { num: 4, bm: "Pembiakan", dlp: "Reproduction" },
   { num: 5, bm: "Jirim", dlp: "Matter" },

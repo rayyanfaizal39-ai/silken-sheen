@@ -12,6 +12,10 @@ import { EquationFlow, parseWordEquation } from "./blocks/EquationFlow";
 import { ReciprocalProcess } from "./blocks/ReciprocalProcess";
 import { CellDiagram } from "./blocks/CellDiagram";
 import { HierarchyFlow } from "./blocks/HierarchyFlow";
+import { Chapter2InteractiveCheck } from "./blocks/Chapter2InteractiveChecks";
+import { Chapter2PracticalPrompt } from "./blocks/Chapter2PracticalPrompt";
+import { SelfReflectionChecklist } from "./blocks/SelfReflectionChecklist";
+import { localizeChapter2PracticalAreas } from "@/content/form1/science/chapter-2/chapter2-activities";
 
 type Lang = "en" | "bm";
 
@@ -44,27 +48,27 @@ const ORBIT_LABELS: Record<Lang, string[]> = {
 
 const SECTION_CHROME: Record<Lang, Array<{ eyebrow: string; title: string; sub?: string }>> = {
   en: [
-    { eyebrow: "◆ 2.1", title: "The Cell: Basic Unit of Life", sub: "Every living thing, from a single bacterium to you, is built from cells." },
-    { eyebrow: "◆ 2.1 continued", title: "Structures Inside a Cell" },
-    { eyebrow: "◆ 2.1 continued", title: "Animal Cells vs Plant Cells" },
-    { eyebrow: "◆ 2.2", title: "Unicellular & Multicellular Organisms" },
-    { eyebrow: "◆ 2.2 continued", title: "Specialised Cell Types", sub: "Different jobs need different cell shapes." },
-    { eyebrow: "◆ 2.3", title: "Levels of Organisation", sub: "Cell → Tissue → Organ → System → Organism." },
-    { eyebrow: "◆ 2.3 continued", title: "Human Body Systems" },
-    { eyebrow: "◆ 2.4", title: "Cell Respiration & Photosynthesis" },
-    { eyebrow: "◆ 2.4 continued", title: "How They Work Together", sub: "Two processes, running in opposite directions, keeping each other going." },
+    { eyebrow: "◆ SK 2.1", title: "The Cell: Basic Unit of Life", sub: "Every living thing is built from cells." },
+    { eyebrow: "◆ SK 2.1", title: "Structures Inside a Cell" },
+    { eyebrow: "◆ SK 2.1", title: "Animal Cells vs Plant Cells" },
+    { eyebrow: "◆ SK 2.1", title: "Unicellular & Multicellular Organisms" },
+    { eyebrow: "◆ SK 2.1", title: "Specialised Cell Types", sub: "Different jobs need different cell structures." },
+    { eyebrow: "◆ SK 2.1", title: "Levels of Organisation", sub: "Cell → Tissue → Organ → System → Organism." },
+    { eyebrow: "◆ SK 2.1", title: "Human Body Systems & Appreciation" },
+    { eyebrow: "◆ SK 2.2", title: "Cell Respiration & Photosynthesis" },
+    { eyebrow: "◆ SK 2.2", title: "How They Work Together", sub: "Two complementary processes that supply materials for each other." },
     { eyebrow: "◆ Wrap-up", title: "Key Facts & Terms" },
   ],
   bm: [
-    { eyebrow: "◆ 2.1", title: "Sel: Unit Asas Hidupan", sub: "Setiap benda hidup, daripada sebiji bakteria hingga anda, dibina daripada sel." },
-    { eyebrow: "◆ Sambungan 2.1", title: "Struktur di dalam Sel" },
-    { eyebrow: "◆ Sambungan 2.1", title: "Sel Haiwan lwn. Sel Tumbuhan" },
-    { eyebrow: "◆ 2.2", title: "Organisma Unisel & Multisel" },
-    { eyebrow: "◆ Sambungan 2.2", title: "Jenis Sel Khusus", sub: "Fungsi berbeza memerlukan bentuk sel yang berbeza." },
-    { eyebrow: "◆ 2.3", title: "Tahap Organisasi", sub: "Sel → Tisu → Organ → Sistem → Organisma." },
-    { eyebrow: "◆ Sambungan 2.3", title: "Sistem dalam Badan Manusia" },
-    { eyebrow: "◆ 2.4", title: "Respirasi Sel & Fotosintesis" },
-    { eyebrow: "◆ Sambungan 2.4", title: "Bagaimana Ia Saling Melengkapi", sub: "Dua proses, bergerak dalam arah bertentangan, saling menyokong antara satu sama lain." },
+    { eyebrow: "◆ SK 2.1", title: "Sel: Unit Asas Hidupan", sub: "Setiap benda hidup dibina daripada sel." },
+    { eyebrow: "◆ SK 2.1", title: "Struktur di dalam Sel" },
+    { eyebrow: "◆ SK 2.1", title: "Sel Haiwan lwn. Sel Tumbuhan" },
+    { eyebrow: "◆ SK 2.1", title: "Organisma Unisel & Multisel" },
+    { eyebrow: "◆ SK 2.1", title: "Jenis Sel Khusus", sub: "Fungsi berbeza memerlukan struktur sel yang berbeza." },
+    { eyebrow: "◆ SK 2.1", title: "Tahap Organisasi", sub: "Sel → Tisu → Organ → Sistem → Organisma." },
+    { eyebrow: "◆ SK 2.1", title: "Sistem Badan Manusia & Penghargaan" },
+    { eyebrow: "◆ SK 2.2", title: "Respirasi Sel & Fotosintesis" },
+    { eyebrow: "◆ SK 2.2", title: "Bagaimana Ia Saling Melengkapi", sub: "Dua proses saling melengkapi yang membekalkan bahan antara satu sama lain." },
     { eyebrow: "◆ Rumusan", title: "Fakta & Istilah Penting" },
   ],
 };
@@ -105,6 +109,9 @@ export function Chapter2NotesBlock({
   onMarkRead?: () => void;
 }) {
   const t = content[lang];
+  const practicalAreas = localizeChapter2PracticalAreas(lang);
+  const slidePractical = practicalAreas.find((area) => area.id === "cell-slide-preparation");
+  const photosynthesisHub = practicalAreas.find((area) => area.id === "photosynthesis-investigation-hub");
   const total = ORBIT_LABELS[lang].length;
   const stateKey = storageKey ? `${storageKey}:c2-section` : undefined;
   const [current, setCurrent] = useState(0);
@@ -147,7 +154,8 @@ export function Chapter2NotesBlock({
             key={label}
             type="button"
             onClick={() => setCurrent(i)}
-            className="flex shrink-0 flex-col items-center gap-1.5 px-1"
+            aria-current={i === current ? "step" : undefined}
+            className="flex min-h-11 shrink-0 flex-col items-center gap-1.5 rounded-lg px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <span
               className={`flex h-8 w-8 items-center justify-center rounded-full border-2 text-xs font-semibold transition-all ${
@@ -186,6 +194,16 @@ export function Chapter2NotesBlock({
               <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.cellBasics.discoveryHistory}</p>
             </div>
             <ChipRow heading={LIFE_FUNCTIONS_HEAD[lang]} items={t.cellBasics.lifeFunctions} />
+            <div className="grid gap-3 sm:grid-cols-2">
+              <article className="rounded-2xl border border-primary/25 bg-primary/5 p-4">
+                <h4 className="font-display text-sm font-bold text-foreground">{t.cellBasics.divisionTitle}</h4>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{t.cellBasics.divisionBody}</p>
+              </article>
+              <article className="rounded-2xl border border-amber-400/30 bg-amber-400/5 p-4">
+                <h4 className="font-display text-sm font-bold text-foreground">{lang === "bm" ? "Apabila kawalan hilang" : "When control is lost"}</h4>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{t.cellBasics.cancerBody}</p>
+              </article>
+            </div>
           </div>
         )}
 
@@ -196,48 +214,55 @@ export function Chapter2NotesBlock({
               headers={lang === "en" ? ["Structure", "Function", "Animal cell", "Plant cell"] : ["Struktur", "Fungsi", "Sel haiwan", "Sel tumbuhan"]}
               rows={t.cellStructures.map((s) => [s.name, s.function, s.inAnimal ? "✓" : "—", s.inPlant ? "✓" : "—"])}
             />
+            <Chapter2InteractiveCheck kind="cell-organelle" lang={lang} />
+            {slidePractical && <Chapter2PracticalPrompt area={slidePractical} lang={lang} />}
           </div>
         )}
 
         {current === 2 && (
-          <EffectsGrid
-            cards={[
-              {
-                icon: "🐾",
-                tint: "blue" as EffectsGridTint,
-                heading: lang === "en" ? "Animal cell only" : "Khusus sel haiwan",
-                items: t.animalVsPlant.animalOnly,
-              },
-              {
-                icon: "🌱",
-                tint: "green" as EffectsGridTint,
-                heading: lang === "en" ? "Plant cell only" : "Khusus sel tumbuhan",
-                items: t.animalVsPlant.plantOnly,
-              },
-              {
-                icon: "🔗",
-                tint: "amber" as EffectsGridTint,
-                heading: lang === "en" ? "Found in both" : "Terdapat pada kedua-dua",
-                items: t.animalVsPlant.shared,
-              },
-            ]}
-          />
+          <div className="space-y-5">
+            <EffectsGrid
+              cards={[
+                {
+                  icon: "🐾",
+                  tint: "blue" as EffectsGridTint,
+                  heading: lang === "en" ? "Animal cell only" : "Khusus sel haiwan",
+                  items: t.animalVsPlant.animalOnly,
+                },
+                {
+                  icon: "🌱",
+                  tint: "green" as EffectsGridTint,
+                  heading: lang === "en" ? "Plant cell only" : "Khusus sel tumbuhan",
+                  items: t.animalVsPlant.plantOnly,
+                },
+                {
+                  icon: "🔗",
+                  tint: "amber" as EffectsGridTint,
+                  heading: lang === "en" ? "Found in both" : "Terdapat pada kedua-dua",
+                  items: t.animalVsPlant.shared,
+                },
+              ]}
+            />
+            <Chapter2InteractiveCheck kind="cell-sort" lang={lang} />
+          </div>
         )}
 
         {current === 3 && (
           <div className="space-y-6">
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.unicellularMulticellular.definition}</p>
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">{UNICELLULAR_HEAD[lang]}</h4>
               <IconCardGrid
-                items={t.unicellularMulticellular.unicellular.map((o) => ({ icon: o.icon, label: o.name, detail: o.note }))}
+                items={t.unicellularMulticellular.unicellular.map((o) => ({ label: o.name, detail: o.note }))}
               />
             </div>
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">{MULTICELLULAR_HEAD[lang]}</h4>
               <IconCardGrid
-                items={t.unicellularMulticellular.multicellular.map((o) => ({ icon: o.icon, label: o.name, detail: o.note }))}
+                items={t.unicellularMulticellular.multicellular.map((o) => ({ label: o.name, detail: o.note }))}
               />
             </div>
+            <Chapter2InteractiveCheck kind="organism-sort" lang={lang} />
           </div>
         )}
 
@@ -251,16 +276,40 @@ export function Chapter2NotesBlock({
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">{PLANT_CELLS_HEAD[lang]}</h4>
               <DefinitionCard items={t.plantCellTypes.map((c) => ({ name: c.name, body: c.description }))} />
             </div>
+            <Chapter2InteractiveCheck kind="specialised-cell" lang={lang} />
           </div>
         )}
 
-        {current === 5 && <HierarchyFlow levels={t.organisationHierarchy} />}
+        {current === 5 && (
+          <div className="space-y-6">
+            <HierarchyFlow levels={t.organisationHierarchy} />
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { title: t.organisationExamples.animalTitle, items: t.organisationExamples.animal },
+                { title: t.organisationExamples.plantTitle, items: t.organisationExamples.plant },
+              ].map((path) => (
+                <article key={path.title} className="rounded-2xl border border-border bg-secondary/30 p-4">
+                  <h4 className="font-display text-sm font-bold text-foreground">{path.title}</h4>
+                  <p className="mt-2 text-[13px] font-semibold leading-relaxed text-primary">{path.items.join(" → ")}</p>
+                </article>
+              ))}
+            </div>
+            <Chapter2InteractiveCheck kind="organisation-order" lang={lang} />
+          </div>
+        )}
 
         {current === 6 && (
-          <DataTable
-            headers={lang === "en" ? ["System", "Organs", "Function"] : ["Sistem", "Organ", "Fungsi"]}
-            rows={t.bodySystems.map((b) => [b.name, b.organs, b.function])}
-          />
+          <div className="space-y-6">
+            <DataTable
+              headers={lang === "en" ? ["System", "Organs", "Function"] : ["Sistem", "Organ", "Fungsi"]}
+              rows={t.bodySystems.map((b) => [b.name, b.organs, b.function])}
+            />
+            <div>
+              <h4 className="font-display mb-2 text-sm font-bold text-foreground">{t.appreciation.title}</h4>
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">{t.appreciation.body}</p>
+              <SelfReflectionChecklist items={t.appreciation.reflectionItems} storageKey={storageKey ? `${storageKey}:c2-appreciation` : undefined} />
+            </div>
+          </div>
         )}
 
         {current === 7 && (
@@ -269,9 +318,11 @@ export function Chapter2NotesBlock({
               <h4 className="font-display mb-2 text-sm font-bold text-foreground">{RESPIRATION_HEAD[lang]}</h4>
               <p className="mb-3 text-[13.5px] leading-relaxed text-muted-foreground">{t.respiration.definition}</p>
               <EquationFlow reactants={respirationEq.reactants} products={respirationEq.products} />
+              <div className="mt-4"><Chapter2InteractiveCheck kind="respiration-equation" lang={lang} /></div>
             </div>
             <div>
               <h4 className="font-display mb-2 text-sm font-bold text-foreground">{PHOTOSYNTHESIS_HEAD[lang]}</h4>
+              <p className="mb-3 text-[13.5px] leading-relaxed text-muted-foreground">{t.photosynthesis.definition}</p>
               <ChipRow heading={REQUIREMENTS_HEAD[lang]} items={t.photosynthesis.requirements} tone="green" />
               <div className="mt-3">
                 <EquationFlow
@@ -281,7 +332,12 @@ export function Chapter2NotesBlock({
                   note={t.photosynthesis.starchTestNote}
                 />
               </div>
+              <div className="mt-4 space-y-4">
+                <Chapter2InteractiveCheck kind="photosynthesis-requirements" lang={lang} />
+                <Chapter2InteractiveCheck kind="starch-test" lang={lang} />
+              </div>
             </div>
+            {photosynthesisHub && <Chapter2PracticalPrompt area={photosynthesisHub} lang={lang} />}
           </div>
         )}
 
@@ -294,6 +350,7 @@ export function Chapter2NotesBlock({
                 rows={t.comparisonTable.map((c) => [c.characteristic, c.respiration, c.photosynthesis])}
               />
             </div>
+            <Chapter2InteractiveCheck kind="process-sort" lang={lang} />
             <ReciprocalProcess
               left={{ title: RESPIRATION_TITLE[lang], equation: t.respiration.wordEquation, tone: "blue" }}
               right={{ title: PHOTOSYNTHESIS_TITLE[lang], equation: t.photosynthesis.wordEquation, tone: "green" }}
@@ -301,6 +358,7 @@ export function Chapter2NotesBlock({
               rightToLeftLabel={lang === "en" ? "← releases O₂ for" : "← membebaskan O₂ untuk"}
               relationship={t.complementaryRelationship}
             />
+            <Chapter2InteractiveCheck kind="complementary-process" lang={lang} />
           </div>
         )}
 
@@ -320,7 +378,7 @@ export function Chapter2NotesBlock({
                   type="button"
                   onClick={onMarkRead}
                   disabled={isRead}
-                  className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all ${
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     isRead
                       ? "cursor-default bg-emerald-500/20 text-emerald-200"
                       : "bg-gradient-to-r from-primary to-accent text-white hover:scale-105"
@@ -338,7 +396,7 @@ export function Chapter2NotesBlock({
             type="button"
             onClick={() => go(-1)}
             disabled={current === 0}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/40 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border bg-secondary/40 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <ChevronLeft className="h-4 w-4" /> {BACK_BTN[lang]}
           </button>
@@ -346,7 +404,7 @@ export function Chapter2NotesBlock({
             <button
               type="button"
               onClick={() => go(1)}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               {NEXT_BTN[lang]} <ChevronRight className="h-4 w-4" />
             </button>
