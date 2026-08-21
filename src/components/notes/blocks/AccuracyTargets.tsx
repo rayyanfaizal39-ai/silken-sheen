@@ -22,10 +22,14 @@ export function AccuracyTargets({
   lang,
   accuracyTerm,
   consistencyTerm,
+  accuracyDefinition,
+  consistencyDefinition,
 }: {
   lang: Lang;
   accuracyTerm: string;
   consistencyTerm: string;
+  accuracyDefinition: string;
+  consistencyDefinition: string;
 }) {
   const titles: [string, string, string] = [
     `${accuracyTerm} + ${consistencyTerm}`,
@@ -65,14 +69,26 @@ export function AccuracyTargets({
   ];
 
   return (
-    <div className="grid gap-4 sm:grid-cols-3">
-      {boards.map((board, i) => (
-        <div key={i} className="rounded-2xl border border-border bg-secondary/40 p-4 text-center">
-          <Dartboard dots={board.dots} dotClassName={board.dotClassName} />
-          <p className="font-display mt-2 text-[13px] font-bold text-foreground">{titles[i]}</p>
-          <p className="mt-0.5 text-[11px] text-muted-foreground">{subs[i]}</p>
+    <div className="space-y-4">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="rounded-xl border border-border bg-secondary/40 p-4">
+          <p className="font-display text-[13px] font-bold text-foreground">{accuracyTerm}</p>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{accuracyDefinition}</p>
         </div>
-      ))}
+        <div className="rounded-xl border border-border bg-secondary/40 p-4">
+          <p className="font-display text-[13px] font-bold text-foreground">{consistencyTerm}</p>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{consistencyDefinition}</p>
+        </div>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {boards.map((board, i) => (
+          <div key={i} className="rounded-2xl border border-border bg-secondary/40 p-4 text-center">
+            <Dartboard dots={board.dots} dotClassName={board.dotClassName} />
+            <p className="font-display mt-2 text-[13px] font-bold text-foreground">{titles[i]}</p>
+            <p className="mt-0.5 text-[11px] text-muted-foreground">{subs[i]}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -23,13 +23,14 @@ describe("ScienceDiscoveryChapterHeader compact hero", () => {
     expect(markup).toContain("Research Progress");
     expect(markup).toContain("Concepts Mastered");
     expect(markup).toContain("Discoveries Unlocked");
-    expect(markup).toContain("Experiments Completed");
+    expect(markup).toContain("<strong>3</strong><span>Practical Prompts Available</span>");
+    expect(markup).not.toContain("Experiments Completed");
     expect(markup).toContain("48%");
     expect(markup).toContain("32%");
     expect(markup.match(/science-progress-(?:stat|datum)/g)).toHaveLength(5);
   });
 
-  it("preserves BM labels, long titles, and completed progress", () => {
+  it("preserves BM labels, long titles, and completed reading progress", () => {
     const title = "Pengenalan kepada Penyiasatan Saintifik dan Kaedah Pengukuran yang Tepat";
     const markup = renderToStaticMarkup(
       <ScienceDiscoveryChapterHeader
@@ -47,7 +48,8 @@ describe("ScienceDiscoveryChapterHeader compact hero", () => {
     expect(markup).toContain("Kemajuan Penyelidikan");
     expect(markup).toContain("Konsep Dikuasai");
     expect(markup).toContain("Penemuan Dibuka");
-    expect(markup).toContain("Eksperimen Selesai");
+    expect(markup).toContain("<strong>2</strong><span>Arahan Amali Tersedia</span>");
+    expect(markup).not.toContain("Eksperimen Selesai");
     expect(markup).toContain("100%");
     expect(markup).toContain("67%");
   });

@@ -275,6 +275,16 @@ export const Route = createFileRoute("/quizzes")({
 const diffs: ("All" | Difficulty)[] = ["All", "Easy", "Medium", "Hard"];
 const CORRECT_MSGS = ["Hebat! 🔥", "Betul! ⚡", "Awesome! 🌟", "Bagus! 💫", "Power! 🚀"];
 const WRONG_MSGS = ["Cuba lagi! 💪", "Jangan give up! 🎯", "Hampir! 🤔", "Keep going! 🌱"];
+const SCIENCE_QUIZ_FEEDBACK = {
+  bm: {
+    correct: ["Hebat! 🔥", "Betul! ⚡", "Bagus! 🌟"],
+    wrong: ["Belum tepat. 💪", "Cuba lagi! 🎯", "Hampir! 🤔"],
+  },
+  dlp: {
+    correct: ["Excellent! 🔥", "Correct! ⚡", "Well done! 🌟"],
+    wrong: ["Not quite. 💪", "Try again! 🎯", "Almost! 🤔"],
+  },
+} as const;
 type TimerMode = "timer" | "none";
 type TimerPref = { mode: TimerMode; seconds: number } | null;
 type QuizFeedback = {
@@ -16367,9 +16377,12 @@ function QuizzesPage() {
         correct: true,
         xpAwarded: reward.streakBonusXp,
       });
+      const messages = subject === "science" && scienceLang
+        ? SCIENCE_QUIZ_FEEDBACK[scienceLang].correct
+        : CORRECT_MSGS;
       setFeedback({
         kind: "correct",
-        msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+        msg: messages[Math.floor(Math.random() * messages.length)],
         xp: reward,
       });
     } else {
@@ -16377,9 +16390,12 @@ function QuizzesPage() {
         questionId: `regular:${subject}:${chapter}:${idx}`,
         correct: false,
       });
+      const messages = subject === "science" && scienceLang
+        ? SCIENCE_QUIZ_FEEDBACK[scienceLang].wrong
+        : WRONG_MSGS;
       setFeedback({
         kind: "wrong",
-        msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+        msg: messages[Math.floor(Math.random() * messages.length)],
         streakReset: quizStreak.streak > 0,
       });
     }
@@ -16726,6 +16742,65 @@ function QuizzesPage() {
 
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
+  const regularQuizBm = subject === "science" && scienceLang === "bm";
+  const regularQuizCopy = regularQuizBm
+    ? {
+        shuffleTitle: "Rawak semula soalan",
+        shuffle: "Rawak semula",
+        lifetimeXp: "XP sepanjang masa",
+        correct: "Betul",
+        streakLabel: "Turutan jawapan betul kuiz",
+        shuffled: "Soalan dirawakkan pada setiap sesi",
+        noQuestions: "Tiada soalan yang sepadan — cuba penapis lain.",
+        perfectScore: "Skor Sempurna!",
+        greatJob: "Syabas!",
+        quizComplete: "Kuiz Selesai!",
+        resultIntro: "Inilah pencapaian anda",
+        accuracy: "Ketepatan",
+        totalXpEarned: "Jumlah XP diperoleh",
+        bestStreak: "Turutan betul terbaik",
+        xpEarned: "XP diperoleh",
+        baseQuestionXp: "XP Asas Soalan",
+        speedBonus: "Bonus Kepantasan",
+        streakBonus: "Bonus Turutan Betul",
+        passBonus: "Bonus Lulus",
+        totalXp: "JUMLAH XP",
+        tryAgain: "Cuba Lagi",
+        chooseChapter: "Pilih Bab",
+        nextQuestion: "Soalan Seterusnya →",
+        seeResults: "Lihat Keputusan ✨",
+        askWhy: "Ace — Mengapakah jawapan saya salah?",
+      }
+    : {
+        shuffleTitle: "Shuffle questions",
+        shuffle: "Shuffle",
+        lifetimeXp: "Lifetime XP",
+        correct: "Correct",
+        streakLabel: "Quiz correct-answer streak",
+        shuffled: "Questions are shuffled every session",
+        noQuestions: "No questions match — try different filters.",
+        perfectScore: "Perfect Score!",
+        greatJob: "Great Job!",
+        quizComplete: "Quiz Complete!",
+        resultIntro: "Here's how you did",
+        accuracy: "Accuracy",
+        totalXpEarned: "Total XP earned",
+        bestStreak: "Best correct streak",
+        xpEarned: "XP earned",
+        baseQuestionXp: "Base Question XP",
+        speedBonus: "Speed Bonus",
+        streakBonus: "Correct Streak Bonus",
+        passBonus: "Pass Bonus",
+        totalXp: "TOTAL XP",
+        tryAgain: "Try Again",
+        chooseChapter: "Choose Chapter",
+        nextQuestion: "Next Question →",
+        seeResults: "See Results ✨",
+        askWhy: "Ace — Why was my answer wrong?",
+      };
+  const regularDifficultyLabels: Record<"All" | Difficulty, string> = regularQuizBm
+    ? { All: "Semua", Easy: "Mudah", Medium: "Sederhana", Hard: "Sukar" }
+    : { All: "All", Easy: "Easy", Medium: "Medium", Hard: "Hard" };
 
   // ── BM has its own hub page ───────────────────────────────────────────────
   if (subject && !formWasChosen && !chapter) {
@@ -17483,7 +17558,7 @@ function QuizzesPage() {
                             : "bg-white/5 text-muted-foreground"
                         }`}
                       >
-                        {d}
+                        {regularDifficultyLabels[d]}
                       </button>
                     ))}
                   </div>
@@ -17493,28 +17568,28 @@ function QuizzesPage() {
             <div className="flex items-center gap-3 text-sm">
               <button
                 onClick={reshuffle}
-                title="Shuffle questions"
+                title={regularQuizCopy.shuffleTitle}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition bg-white/5 text-muted-foreground hover:bg-white/10"
               >
-                <Shuffle className="w-3.5 h-3.5" /> Shuffle
+                <Shuffle className="w-3.5 h-3.5" /> {regularQuizCopy.shuffle}
               </button>
               {/* Music toggle removed — background music is adaptive and global. */}
-              <span className="text-muted-foreground">Lifetime XP</span>
+              <span className="text-muted-foreground">{regularQuizCopy.lifetimeXp}</span>
               <span data-quiz-xp-target className="font-bold text-nova-yellow">
                 {progress.xp}
               </span>
               <span
                 className="text-muted-foreground"
-                aria-label={`Quiz correct-answer streak: ${quizStreak.streak}`}
-                title="Quiz correct-answer streak"
+                aria-label={`${regularQuizCopy.streakLabel}: ${quizStreak.streak}`}
+                title={regularQuizCopy.streakLabel}
               >
                 <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />
-                {quizStreak.streak} Correct
+                {quizStreak.streak} {regularQuizCopy.correct}
               </span>
             </div>
           </div>
           <p className="text-center text-xs text-muted-foreground mb-6 animate-fade-up">
-            🔀 Questions are shuffled every session
+            🔀 {regularQuizCopy.shuffled}
           </p>
 
           {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
@@ -17522,7 +17597,7 @@ function QuizzesPage() {
               <p className="text-muted-foreground">
                 {subject === "math"
                   ? "Quizzes Coming Soon"
-                  : "No questions match — try different filters."}
+                  : regularQuizCopy.noQuestions}
               </p>
             </div>
           ) : done ? (
@@ -17561,13 +17636,13 @@ function QuizzesPage() {
 
                   <h2 className="font-display text-3xl font-extrabold">
                     {shuffledPool && score === shuffledPool.length
-                      ? "Perfect Score!"
+                      ? regularQuizCopy.perfectScore
                       : score >= Math.ceil((shuffledPool?.length ?? pool.length) * 0.7)
-                        ? "Great Job!"
-                        : "Quiz Complete!"}
+                        ? regularQuizCopy.greatJob
+                        : regularQuizCopy.quizComplete}
                   </h2>
 
-                  <p className="mt-1.5 text-sm text-white/50">Here's how you did</p>
+                  <p className="mt-1.5 text-sm text-white/50">{regularQuizCopy.resultIntro}</p>
 
                   {/* Big score number */}
                   <p
@@ -17587,7 +17662,7 @@ function QuizzesPage() {
                       <span className="text-sm font-bold">
                         {Math.round((score / (shuffledPool?.length ?? pool.length)) * 100)}%
                       </span>
-                      <span className="text-xs text-white/40">Accuracy</span>
+                      <span className="text-xs text-white/40">{regularQuizCopy.accuracy}</span>
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
                       <Zap className="h-4 w-4 text-[#FBBF24]" />
@@ -17599,26 +17674,26 @@ function QuizzesPage() {
                             ? QUIZ_PASS_BONUS_XP
                             : 0)}
                       </span>
-                      <span className="text-xs text-white/40">Total XP earned</span>
+                      <span className="text-xs text-white/40">{regularQuizCopy.totalXpEarned}</span>
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-2">
                       <Flame className="h-4 w-4 text-orange-400" />
                       <span className="text-sm font-bold text-orange-300">
                         {quizStreak.bestStreak}
                       </span>
-                      <span className="text-xs text-white/40">Best correct streak</span>
+                      <span className="text-xs text-white/40">{regularQuizCopy.bestStreak}</span>
                     </div>
                   </div>
 
                   <div className="mx-auto mb-8 max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left">
                     <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-white/50">
-                      XP earned
+                      {regularQuizCopy.xpEarned}
                     </p>
-                    <XpResultRow label="Base Question XP" value={baseXpEarned} />
-                    <XpResultRow label="Speed Bonus" value={speedBonusXpEarned} />
-                    <XpResultRow label="Correct Streak Bonus" value={streakBonusXpEarned} />
+                    <XpResultRow label={regularQuizCopy.baseQuestionXp} value={baseXpEarned} />
+                    <XpResultRow label={regularQuizCopy.speedBonus} value={speedBonusXpEarned} />
+                    <XpResultRow label={regularQuizCopy.streakBonus} value={streakBonusXpEarned} />
                     <XpResultRow
-                      label="Pass Bonus"
+                      label={regularQuizCopy.passBonus}
                       value={
                         Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
                         QUIZ_PASS_PCT
@@ -17628,7 +17703,7 @@ function QuizzesPage() {
                     />
                     <div className="mt-3 border-t border-white/10 pt-3">
                       <XpResultRow
-                        label="TOTAL XP"
+                        label={regularQuizCopy.totalXp}
                         value={
                           xpEarned +
                           (Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
@@ -17640,7 +17715,7 @@ function QuizzesPage() {
                       />
                     </div>
                     <p className="mt-3 text-xs text-white/45">
-                      Lifetime XP {attemptStartXp.toLocaleString()} → {progress.xp.toLocaleString()}{" "}
+                      {regularQuizCopy.lifetimeXp} {attemptStartXp.toLocaleString()} → {progress.xp.toLocaleString()}{" "}
                       XP
                     </p>
                   </div>
@@ -17651,7 +17726,7 @@ function QuizzesPage() {
                       onClick={reset}
                       className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-8 py-3.5 font-bold text-white shadow-[0_0_32px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] hover:shadow-[0_0_48px_rgba(139,92,246,0.5)]"
                     >
-                      <RotateCcw className="h-4 w-4" /> Try Again
+                      <RotateCcw className="h-4 w-4" /> {regularQuizCopy.tryAgain}
                     </button>
                     <button
                       onClick={() => {
@@ -17661,7 +17736,7 @@ function QuizzesPage() {
                       }}
                       className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.06] px-8 py-3.5 font-bold text-white transition-all hover:bg-white/[0.10]"
                     >
-                      <ArrowLeft className="h-4 w-4" /> Choose Chapter
+                      <ArrowLeft className="h-4 w-4" /> {regularQuizCopy.chooseChapter}
                     </button>
                   </div>
                 </div>
@@ -17710,7 +17785,7 @@ function QuizzesPage() {
                             : "bg-emerald-500/20 text-emerald-300"
                       }`}
                     >
-                      {current.difficulty}
+                      {regularDifficultyLabels[current.difficulty]}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
@@ -17718,7 +17793,7 @@ function QuizzesPage() {
                     <div className="flex items-center gap-1.5 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-3 py-1.5">
                       <Zap className="h-3 w-3 text-[#FBBF24]" />
                       <span className="text-xs font-bold text-[#FBBF24]">{score}</span>
-                      <span className="text-[10px] text-white/30">correct</span>
+                      <span className="text-[10px] text-white/30">{regularQuizCopy.correct}</span>
                     </div>
                     {timerPref?.mode === "timer" && (
                       <div
@@ -17859,7 +17934,7 @@ function QuizzesPage() {
                 </div>
 
                 {/* ── Feedback callout ── */}
-                {feedback && <QuestionXpFeedback feedback={feedback} />}
+                {feedback && <QuestionXpFeedback feedback={feedback} bm={regularQuizBm} />}
 
                 {/* ── Explanation ── */}
                 {selected !== null && current.explanation && (
@@ -17888,13 +17963,15 @@ function QuizzesPage() {
                             explanation: current.explanation,
                             subjectId: subject ?? undefined,
                           },
-                          initialMessage: `Saya salah pilih "${current.options[selected]}" untuk soalan ini. Boleh Cikgu terangkan kenapa jawapan saya salah dan kenapa "${current.options[current.answerIndex]}" adalah betul?`,
+                          initialMessage: regularQuizBm
+                            ? `Saya salah pilih "${current.options[selected]}" untuk soalan ini. Boleh Cikgu terangkan mengapa jawapan saya salah dan mengapa "${current.options[current.answerIndex]}" ialah jawapan yang betul?`
+                            : `I chose "${current.options[selected]}" for this question. Can you explain why it is wrong and why "${current.options[current.answerIndex]}" is correct?`,
                         })
                       }
                       className="w-full flex items-center justify-center gap-2.5 rounded-2xl border border-[#6366F1]/30 bg-[#6366F1]/10 py-3 text-sm font-semibold text-[#A5B4FC] transition-all hover:bg-[#6366F1]/20 hover:border-[#6366F1]/50 active:scale-[0.99]"
                     >
                       <span className="text-base">👨‍🚀</span>
-                      Ace — Kenapa jawapan saya salah?
+                      {regularQuizCopy.askWhy}
                     </button>
                   </div>
                 )}
@@ -17907,8 +17984,8 @@ function QuizzesPage() {
                       className="w-full rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3.5 font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] active:scale-[0.99]"
                     >
                       {idx + 1 >= (shuffledPool?.length ?? pool.length)
-                        ? "See Results ✨"
-                        : "Next Question →"}
+                        ? regularQuizCopy.seeResults
+                        : regularQuizCopy.nextQuestion}
                     </button>
                   </div>
                 )}
@@ -17940,7 +18017,7 @@ function XpResultRow({
   );
 }
 
-function QuestionXpFeedback({ feedback }: { feedback: QuizFeedback }) {
+function QuestionXpFeedback({ feedback, bm = false }: { feedback: QuizFeedback; bm?: boolean }) {
   const reward = feedback.xp;
   return (
     <div
@@ -17966,21 +18043,23 @@ function QuestionXpFeedback({ feedback }: { feedback: QuizFeedback }) {
       </div>
       {reward && (
         <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-xs sm:flex sm:flex-wrap sm:items-center sm:gap-3">
-          <span>+{reward.baseXp} Base XP</span>
-          <span aria-label={`Speed Bonus plus ${reward.timerBonusXp} XP`}>
+          <span>+{reward.baseXp} {bm ? "XP Asas" : "Base XP"}</span>
+          <span aria-label={`${bm ? "Bonus Kepantasan tambah" : "Speed Bonus plus"} ${reward.timerBonusXp} XP`}>
             <Zap className="mr-1 inline h-3.5 w-3.5 text-amber-300" aria-hidden="true" />+
-            {reward.timerBonusXp} Speed Bonus
+            {reward.timerBonusXp} {bm ? "Bonus Kepantasan" : "Speed Bonus"}
           </span>
-          <span aria-label={`Correct Streak Bonus plus ${reward.streakBonusXp} XP`}>
+          <span aria-label={`${bm ? "Bonus Turutan Betul tambah" : "Correct Streak Bonus plus"} ${reward.streakBonusXp} XP`}>
             <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />+
-            {reward.streakBonusXp} Streak Bonus
+            {reward.streakBonusXp} {bm ? "Bonus Turutan" : "Streak Bonus"}
           </span>
-          <strong className="text-[#FBBF24]">TOTAL +{reward.totalQuestionXp} XP</strong>
+          <strong className="text-[#FBBF24]">{bm ? "JUMLAH" : "TOTAL"} +{reward.totalQuestionXp} XP</strong>
         </div>
       )}
       {feedback.streakReset && (
         <p className="mt-2 text-xs text-white/55">
-          Correct-answer streak reset. Build it again on the next question.
+          {bm
+            ? "Turutan jawapan betul ditetapkan semula. Bina semula pada soalan seterusnya."
+            : "Correct-answer streak reset. Build it again on the next question."}
         </p>
       )}
     </div>
