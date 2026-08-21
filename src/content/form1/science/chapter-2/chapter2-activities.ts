@@ -17,6 +17,7 @@ export interface Chapter2PracticalArea {
     variables: BilingualText;
     observeInfer: BilingualText;
     safety?: BilingualText;
+    visualSteps?: BilingualText[];
   }>;
 }
 
@@ -36,6 +37,7 @@ export interface LocalizedChapter2PracticalArea {
     variables: string;
     observeInfer: string;
     safety?: string;
+    visualSteps?: string[];
   }>;
 }
 
@@ -110,6 +112,19 @@ export const chapter2PracticalAreas: Chapter2PracticalArea[] = [
           en: "Ethanol is highly flammable: never heat it directly. Handle iodine solution and hot water carefully under teacher supervision.",
           bm: "Etanol sangat mudah terbakar: jangan panaskan secara terus. Kendalikan larutan iodin dan air panas dengan berhati-hati di bawah pengawasan guru.",
         },
+        visualSteps: [
+          { en: "Boil the leaf in water", bm: "Didihkan daun di dalam air" },
+          {
+            en: "Heat it in ethanol using a hot-water bath",
+            bm: "Panaskan dalam etanol menggunakan rendaman air panas",
+          },
+          { en: "Soften it again in hot water", bm: "Lembutkan semula dalam air panas" },
+          { en: "Place it on a white tile", bm: "Letakkan di atas jubin putih" },
+          {
+            en: "Add iodine solution and observe the colour",
+            bm: "Titiskan larutan iodin dan perhatikan warna",
+          },
+        ],
       },
       {
         id: "light",
@@ -218,6 +233,7 @@ export function localizeChapter2PracticalAreas(
       variables: localize(investigation.variables, lang),
       observeInfer: localize(investigation.observeInfer, lang),
       safety: investigation.safety ? localize(investigation.safety, lang) : undefined,
+      visualSteps: investigation.visualSteps?.map((step) => localize(step, lang)),
     })),
   }));
 }
