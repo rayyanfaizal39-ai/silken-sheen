@@ -312,6 +312,7 @@ import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/
 import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form1-mindmap";
 import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/mengedit-menyemak-karangan-form1-mindmap";
 import { bahasaMelayuTingkatan1PemahamanRegistry } from "@/content/bm/tingkatan1-pemahaman-registry";
+import { bahasaMelayuTingkatan1KomsasRegistry } from "@/content/bm/tingkatan1-komsas-registry";
 import { bahasaMelayuTingkatan2PemahamanRegistry } from "@/content/bm/tingkatan2-pemahaman-registry";
 import { bahasaMelayuTingkatan3PemahamanRegistry } from "@/content/bm/tingkatan3-pemahaman-registry";
 
@@ -2879,6 +2880,7 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuSimpulanBahasaMindMap, title: "Simpulan Bahasa" },
   },
   ...bahasaMelayuTingkatan1PemahamanRegistry,
+  ...bahasaMelayuTingkatan1KomsasRegistry,
   {
     id: "bm-f1-asas-penulisan-mindmap",
     subjectId: "bm",

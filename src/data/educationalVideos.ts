@@ -603,7 +603,7 @@ export const educationalVideos: Readonly<Record<string, EducationalVideo>> = {
   },
   "science-f1-c2-dlp": {
     title: "Science Form 1 — Chapter 2",
-    youtubeId: "U1ncevXORm0",
+    youtubeId: "2OmTAjr6Uxs",
     captionLang: "en",
     hint: "Turn on captions for better understanding! 💡",
   },

@@ -508,20 +508,30 @@ function MindMapsPage() {
     activeChapterIndex > 0 ? subjectChapters[activeChapterIndex - 1] : undefined;
   const nextCandidate =
     activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
-  const isBahasaMelayuPemahaman = subject === "bm" && chapterMeta?.categoryLabel === "Pemahaman";
-  const previousTopic = isBahasaMelayuPemahaman
-    ? previousCandidate?.categoryLabel === "Pemahaman"
+  const activeBahasaMelayuCategory =
+    subject === "bm" &&
+    chapterMeta?.categoryLabel &&
+    getBahasaMelayuMindMapCategories(form).includes(
+      chapterMeta.categoryLabel as BahasaMelayuMindMapCategory,
+    )
+      ? (chapterMeta.categoryLabel as BahasaMelayuMindMapCategory)
+      : undefined;
+  const isBahasaMelayuPemahaman = activeBahasaMelayuCategory === "Pemahaman";
+  const usesBahasaMelayuCategoryNavigation =
+    isBahasaMelayuPemahaman || activeBahasaMelayuCategory === "KOMSAS";
+  const previousTopic = usesBahasaMelayuCategoryNavigation
+    ? previousCandidate?.categoryLabel === activeBahasaMelayuCategory
       ? previousCandidate
       : undefined
     : previousCandidate;
-  const nextTopic = isBahasaMelayuPemahaman
-    ? nextCandidate?.categoryLabel === "Pemahaman"
+  const nextTopic = usesBahasaMelayuCategoryNavigation
+    ? nextCandidate?.categoryLabel === activeBahasaMelayuCategory
       ? nextCandidate
       : undefined
     : nextCandidate;
   const showBmTopicNavigation =
     subject === "bm" &&
-    (isBahasaMelayuPemahaman ||
+    (usesBahasaMelayuCategoryNavigation ||
       (form === "Form 2" &&
         (activeChapterKey === "Frasa Adjektif" ||
           activeChapterKey === "Ayat Aktif" ||
@@ -551,10 +561,10 @@ function MindMapsPage() {
   }, [subject, form, search.chapter]);
 
   useEffect(() => {
-    if (isBahasaMelayuPemahaman) {
-      setSelectedBmCategory("Pemahaman");
+    if (activeBahasaMelayuCategory) {
+      setSelectedBmCategory(activeBahasaMelayuCategory);
     }
-  }, [isBahasaMelayuPemahaman]);
+  }, [activeBahasaMelayuCategory]);
 
   function chooseSubject(subjectId: string) {
     setChapter(null);
@@ -932,7 +942,9 @@ function MindMapChapterGrid({
           role="tablist"
           aria-label="Kategori peta minda Bahasa Melayu"
           className={`mb-8 grid gap-2 rounded-2xl border border-white/[0.08] bg-[#08101D]/70 p-2 sm:inline-grid ${
-            bahasaMelayuCategories.length === 4
+            bahasaMelayuCategories.length === 5
+              ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-5"
+              : bahasaMelayuCategories.length === 4
               ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-4"
               : bahasaMelayuCategories.length === 3
                 ? "grid-cols-3 sm:min-w-[540px]"

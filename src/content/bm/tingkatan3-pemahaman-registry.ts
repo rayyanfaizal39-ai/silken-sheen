@@ -6,6 +6,7 @@ import { bahasaMelayuTingkatan3MaksudFrasaBahasaKiasanMindMap } from "@/content/
 import { bahasaMelayuTingkatan3KbatPenyelesaianMindMap } from "@/content/bm/menjawab-soalan-kbat-penyelesaian-masalah-form3-mindmap";
 import { bahasaMelayuTingkatan3StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form3-mindmap";
 import { bahasaMelayuTingkatan3RumusanSintesisMindMap } from "@/content/bm/teknik-membuat-rumusan-sintesis-maklumat-form3-mindmap";
+import { bahasaMelayuTingkatan3KesalahanSemakanPemahamanMindMap } from "@/content/bm/kesalahan-lazim-strategi-semakan-pemahaman-form3-mindmap";
 
 export const bahasaMelayuTingkatan3PemahamanRegistry = [
   {
@@ -104,6 +105,20 @@ export const bahasaMelayuTingkatan3PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan3RumusanSintesisMindMap,
       title: "Teknik Membuat Rumusan dan Sintesis Maklumat",
+    },
+  },
+  {
+    id: "bm-f3-kesalahan-lazim-strategi-semakan-pemahaman-mindmap",
+    subjectId: "bm",
+    form: "Form 3",
+    chapterKey: "Kesalahan Lazim dan Strategi Semakan Pemahaman",
+    title: "Kesalahan Lazim dan Strategi Semakan Pemahaman",
+    description:
+      "Mengenal pasti kesalahan yang sering berlaku semasa menjawab soalan pemahaman serta menggunakan strategi semakan untuk meningkatkan ketepatan, logik dan kualiti jawapan.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan3KesalahanSemakanPemahamanMindMap,
+      title: "Kesalahan Lazim dan Strategi Semakan Pemahaman",
     },
   },
 ] as const satisfies readonly ChapterContent[];

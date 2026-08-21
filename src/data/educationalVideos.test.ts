@@ -222,7 +222,7 @@ describe("educational video registry", () => {
   it("selects DLP Science videos by language while preserving the BM defaults", () => {
     const dlpIds = [
       "TY49EVN-mJI",
-      "U1ncevXORm0",
+      "2OmTAjr6Uxs",
       "nROw9wVMw2Y",
       "JrUIDZWCORU",
       "yZpe3OYE1wk",
