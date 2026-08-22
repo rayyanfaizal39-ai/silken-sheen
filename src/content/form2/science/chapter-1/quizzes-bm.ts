@@ -295,10 +295,11 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     question:
-      "Satu kekunci dikotomi memberikan kuplet: 1(a) Poikiloterma → ke 2, 1(b) Homeoterma → ke 3; 3(a) Tidak berbulu → Singa, 3(b) Berbulu → Ayam. Seekor haiwan X ialah homeoterma dan berbulu. Apakah haiwan X?",
+      "Satu kekunci dikotomi memberikan kuplet: 1(a) Poikiloterma → ke 2, 1(b) Homeoterma → ke 3; 3(a) Tidak berbulu pelepah → Singa, 3(b) Berbulu pelepah → Ayam. Seekor haiwan X ialah homeoterma dan mempunyai bulu pelepah. Apakah haiwan X?",
     options: ["Singa", "Ayam", "Ular", "Katak"],
     answerIndex: 1,
-    explanation: "Mengikut laluan kuplet: homeoterma → ke 3 → berbulu → Ayam.",
+    explanation:
+      "Mengikut laluan kuplet: homeoterma → ke 3 → berbulu pelepah → Ayam. Perhatikan istilah 'bulu pelepah': mamalia seperti singa juga dilitupi bulu dan rambut, tetapi hanya burung yang mempunyai bulu pelepah.",
   },
   {
     id: "sci-f2-c1-bm-q22",
@@ -328,7 +329,8 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
       "Kerana serangga mengalami persenyawaan dalaman seperti mamalia",
     ],
     answerIndex: 1,
-    explanation: "Kejayaan serangga walaupun poikiloterma disebabkan oleh eksoskeleton keras untuk perlindungan, saiz kecil yang membolehkan mereka menghuni banyak ceruk habitat, dan kadar pembiakan yang tinggi.",
+    explanation:
+      "Kejayaan serangga walaupun poikiloterma disebabkan oleh eksoskeleton keras untuk perlindungan, saiz kecil yang membolehkan mereka menghuni banyak ceruk habitat, dan kadar pembiakan yang tinggi. [Nota KBAT — penaakulan lanjutan: buku teks hanya menyatakan bahawa serangga ialah kumpulan haiwan terbesar dengan 950,000 spesies; sebab-sebab di atas ialah huraian tambahan, bukan petikan buku teks.]",
   },
   {
     id: "sci-f2-c1-bm-q24",

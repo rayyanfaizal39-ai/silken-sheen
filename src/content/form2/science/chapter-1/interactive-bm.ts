@@ -34,10 +34,10 @@ const dichotomousKeyBM: DichotomousQuestion = {
       label: "Homeoterma",
       next: {
         type: "question",
-        question: "Adakah ia berbulu (bulu ayam) atau tidak berbulu?",
+        question: "Adakah badannya dilitupi bulu pelepah, atau tidak berbulu pelepah?",
         choices: [
-          { label: "Berbulu", next: { type: "leaf", organism: "Ayam" } },
-          { label: "Tidak berbulu", next: { type: "leaf", organism: "Singa" } },
+          { label: "Berbulu pelepah", next: { type: "leaf", organism: "Ayam" } },
+          { label: "Tidak berbulu pelepah", next: { type: "leaf", organism: "Singa" } },
         ],
       },
     },
@@ -167,13 +167,61 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
       description: "Memelihara sesuatu spesies di luar habitat semula jadinya — contohnya zoo dan taman botani.",
     },
   ],
-  endemicSpecies: [
-    "🌸 Rafflesia",
-    "🪤 Periuk kera",
-    "🐢 Penyu belimbing",
-    "🐅 Harimau Malaya",
-    "🐘 Gajah pygmy Borneo",
+  humanImpact: [
+    {
+      icon: "🪓",
+      activity: "Penyahhutanan untuk balak dan pembangunan",
+      chain: [
+        "Hutan ditebang",
+        "Haiwan kehilangan habitat",
+        "Haiwan kehilangan sumber makanan",
+        "Spesies terancam kepupusan",
+      ],
+    },
+    {
+      icon: "🎯",
+      activity: "Pemburuan dan pemerdagangan hidupan liar",
+      chain: [
+        "Haiwan diburu atau didagangkan",
+        "Bilangan individu menurun dengan cepat",
+        "Spesies endemik dan terancam paling terjejas",
+        "Akta Perlindungan Hidupan Liar 1972 mengharamkannya",
+      ],
+    },
+    {
+      icon: "⚖️",
+      activity: "Keperluan pembangunan lwn. pemeliharaan",
+      chain: [
+        "Manusia memerlukan bahan mentah seperti kayu balak",
+        "Aktiviti penyahhutanan perlu DIKAWAL",
+        "Biodiversiti terpelihara daripada kepupusan",
+      ],
+    },
   ],
+  speciesConcepts: [
+    {
+      id: "endemic",
+      label: "Spesies endemik",
+      definition:
+        "Spesies yang hidup berkelompok di habitat yang terhad di sesebuah lokasi tertentu sahaja — tidak ditemui secara semula jadi di tempat lain. Endemik memberitahu kita tentang LOKASI.",
+      examples: [
+        "🌸 Bunga rafflesia",
+        "🪤 Periuk kera (Nepenthes rajah)",
+        "🐢 Penyu belimbing",
+        "🐅 Harimau Malaya",
+        "🐘 Gajah pygmy Borneo",
+      ],
+    },
+    {
+      id: "threatened",
+      label: "Spesies terancam",
+      definition:
+        "Spesies yang bilangannya semakin berkurang sehingga berisiko pupus. Terancam memberitahu kita tentang RISIKO KEPUPUSAN, bukan lokasi. Akta Perlindungan Hidupan Liar 1972 mengharamkan pembunuhan dan pemerdagangannya.",
+      examples: ["🐅 Harimau Malaya", "🐢 Penyu belimbing", "🐘 Gajah pygmy Borneo", "🦜 Burung enggang"],
+    },
+  ],
+  speciesCaution:
+    "Endemik dan terancam BUKAN perkara yang sama. Sesuatu spesies boleh endemik sahaja, terancam sahaja, atau kedua-duanya sekali — contohnya harimau Malaya yang endemik dan juga terancam.",
   checkYourself11: [
     {
       question: "Apakah maksud biodiversiti, mengikut kata-kata anda sendiri?",
@@ -188,24 +236,31 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
       hint: "Ia hidup hanya dalam habitat terhad di satu lokasi tertentu — tiada di tempat lain secara semula jadi.",
     },
     {
-      question: "Namakan satu spesies terancam yang terdapat di Malaysia.",
-      hint: "Harimau Malaya dan gajah pygmy Borneo kedua-duanya menghadapi ancaman serius.",
+      question: "Apakah bezanya spesies endemik dengan spesies terancam? Beri satu contoh bagi setiap satu.",
+      hint: "Endemik = lokasi terhad (contoh: periuk kera, Nepenthes rajah). Terancam = berisiko pupus (contoh: burung enggang yang dilindungi). Harimau Malaya ialah kedua-duanya sekali.",
     },
   ],
   animalBranches: [
     {
       id: "invert",
       label: "Invertebrata — tiada tulang belakang",
-      chipGroups: [
-        { label: "Tiada kaki", chips: ["Span", "Anemon laut", "Siput", "Cacing tanah", "Lintah"] },
+      subGroups: [
         {
-          label: "Ada kaki",
-          chips: [
-            "Semut (3 pasang)",
-            "Rama-rama (3 pasang)",
-            "Labah-labah (4+ pasang)",
-            "Udang (4+ pasang)",
-            "Lipan (4+ pasang)",
+          label: "Tanpa kaki",
+          groups: [
+            { label: "Badan tanpa segmen", chips: ["Span", "Karang laut", "Planaria", "Siput"] },
+            { label: "Badan bersegmen", chips: ["Cacing tanah", "Lintah", "Cacing pita"] },
+          ],
+        },
+        {
+          label: "Berkaki",
+          detail: "Ciri sepunya invertebrata berkaki: badan bersegmen, dan kulit keras (rangka luar).",
+          groups: [
+            { label: "Tiga pasang kaki", chips: ["Semut", "Rama-rama", "Lipas"] },
+            {
+              label: "Lebih daripada tiga pasang kaki",
+              chips: ["Labah-labah", "Kala jengking", "Lipan", "Udang", "Belangkas"],
+            },
           ],
         },
       ],
@@ -262,7 +317,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
           name: "Mamalia",
           traits: [
             "Homeoterma",
-            "Berbulu",
+            "Badan dilitupi bulu dan rambut (bukan bulu pelepah)",
             "Bernafas melalui peparu",
             "Persenyawaan dalaman",
             "Melahirkan dan menyusukan anak",
@@ -334,19 +389,20 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
   miniQuiz: [
     {
       type: "true-false",
-      question: "Betul atau salah: Kekunci dikotomi boleh digunakan untuk mengelaskan bahan bukan hidup juga.",
-      answer: false,
+      question:
+        "Betul atau salah: Selain benda hidup, kekunci dikotomi juga boleh digunakan untuk mengelaskan benda bukan hidup.",
+      answer: true,
       explanation:
-        "Kekunci dikotomi mengelaskan organisma hidup berdasarkan ciri-ciri yang dikongsi — bukan objek bukan hidup.",
+        "Betul. Kekunci dikotomi ialah kaedah mengenal pasti dua pilihan berpasangan, jadi ia boleh digunakan untuk apa-apa sahaja yang boleh dibezakan melalui ciri — termasuk benda bukan hidup seperti batuan atau objek buatan. Dalam bab ini kita menggunakannya untuk mengelaskan organisma.",
     },
     {
       type: "multiple-choice",
       question:
-        "Haiwan manakah bernafas melalui insang semasa dewasa dan bertelur seperti jeli tanpa cengkerang?",
+        "Haiwan manakah yang ANAKNYA bernafas melalui insang, tetapi apabila DEWASA bernafas menggunakan peparu dan kulit yang lembap?",
       options: ["Buaya", "Katak", "Helang", "Kerapu"],
       answerIndex: 1,
       explanation:
-        "Katak ialah amfibia — anak bernafas melalui insang, dewasa bernafas melalui peparu dan kulit lembap, dan telurnya (telur katak) tiada cengkerang.",
+        "Katak ialah amfibia. Berudu (anak katak) bernafas melalui insang, manakala katak dewasa bernafas menggunakan peparu dan kulit yang lembap. Telur amfibia pula berlendir dan tidak bercangkerang.",
     },
   ],
 };

@@ -167,13 +167,61 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       description: "Conserves a species outside its natural habitat — think zoos and botanical gardens.",
     },
   ],
-  endemicSpecies: [
-    "🌸 Rafflesia",
-    "🪤 Pitcher plant",
-    "🐢 Leatherback turtle",
-    "🐅 Malayan tiger",
-    "🐘 Borneo pygmy elephant",
+  humanImpact: [
+    {
+      icon: "🪓",
+      activity: "Deforestation for timber and development",
+      chain: [
+        "Forest is cleared",
+        "Animals lose their habitat",
+        "Animals lose their food source",
+        "Species are pushed toward extinction",
+      ],
+    },
+    {
+      icon: "🎯",
+      activity: "Hunting and wildlife trade",
+      chain: [
+        "Animals are hunted or traded",
+        "Population numbers fall quickly",
+        "Endemic and threatened species are hit hardest",
+        "The Wildlife Protection Act 1972 bans it",
+      ],
+    },
+    {
+      icon: "⚖️",
+      activity: "Development needs vs. preservation",
+      chain: [
+        "People need raw materials such as timber",
+        "So deforestation must be CONTROLLED",
+        "Biodiversity is protected from extinction",
+      ],
+    },
   ],
+  speciesConcepts: [
+    {
+      id: "endemic",
+      label: "Endemic species",
+      definition:
+        "A species that lives only within a restricted habitat in one specific location — found nowhere else naturally. Endemic tells you about LOCATION.",
+      examples: [
+        "🌸 Rafflesia",
+        "🪤 Pitcher plant (Nepenthes rajah)",
+        "🐢 Leatherback turtle",
+        "🐅 Malayan tiger",
+        "🐘 Borneo pygmy elephant",
+      ],
+    },
+    {
+      id: "threatened",
+      label: "Threatened species",
+      definition:
+        "A species whose numbers are falling so far that it risks extinction. Threatened tells you about RISK OF EXTINCTION, not location. The Wildlife Protection Act 1972 bans killing or trading them.",
+      examples: ["🐅 Malayan tiger", "🐢 Leatherback turtle", "🐘 Borneo pygmy elephant", "🦜 Hornbill"],
+    },
+  ],
+  speciesCaution:
+    "Endemic and threatened are NOT the same thing. A species can be endemic only, threatened only, or both at once — the Malayan tiger, for example, is endemic and also threatened.",
   checkYourself11: [
     {
       question: "What is biodiversity, in your own words?",
@@ -188,24 +236,31 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       hint: "It lives only within a restricted habitat in one specific location — nowhere else naturally.",
     },
     {
-      question: "Name an endangered species found in Malaysia.",
-      hint: "The Malayan tiger and the Borneo pygmy elephant are both under serious threat.",
+      question: "What is the difference between an endemic species and a threatened species? Give one example of each.",
+      hint: "Endemic = restricted location (e.g. the pitcher plant, Nepenthes rajah). Threatened = at risk of extinction (e.g. the protected hornbill). The Malayan tiger is both at once.",
     },
   ],
   animalBranches: [
     {
       id: "invert",
       label: "Invertebrates — no backbone",
-      chipGroups: [
-        { label: "Without legs", chips: ["Sponge", "Sea anemone", "Snail", "Earthworm", "Leech"] },
+      subGroups: [
+        {
+          label: "Without legs",
+          groups: [
+            { label: "Body without segments", chips: ["Sponge", "Coral", "Planaria", "Snail"] },
+            { label: "Segmented body", chips: ["Earthworm", "Leech", "Tapeworm"] },
+          ],
+        },
         {
           label: "With legs",
-          chips: [
-            "Ant (3 pairs)",
-            "Butterfly (3 pairs)",
-            "Spider (4+ pairs)",
-            "Prawn (4+ pairs)",
-            "Centipede (4+ pairs)",
+          detail: "Shared characteristics of legged invertebrates: a segmented body, and a hard outer skin (exoskeleton).",
+          groups: [
+            { label: "Three pairs of legs", chips: ["Ant", "Butterfly", "Cockroach"] },
+            {
+              label: "More than three pairs of legs",
+              chips: ["Spider", "Scorpion", "Centipede", "Prawn", "Horseshoe crab"],
+            },
           ],
         },
       ],
@@ -262,7 +317,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
           name: "Mammals",
           traits: [
             "Homeothermic",
-            "Fur or hair",
+            "Body covered with fur and hair (not feathers)",
             "Breathes through lungs",
             "Internal fertilisation",
             "Gives birth, nurses young",
@@ -334,19 +389,20 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
   miniQuiz: [
     {
       type: "true-false",
-      question: "True or false: A dichotomous key can be used to classify non-living things too.",
-      answer: false,
+      question:
+        "True or false: Besides living things, a dichotomous key can also be used to classify non-living things.",
+      answer: true,
       explanation:
-        "A dichotomous key sorts living organisms by shared characteristics — not non-living objects.",
+        "True. A dichotomous key is an either/or identification method, so it works for anything that can be separated by paired characteristics — including non-living things such as rocks or manufactured objects. In this chapter we use it to classify organisms.",
     },
     {
       type: "multiple-choice",
       question:
-        "Which animal breathes through gills as an adult and lays jelly-like eggs with no shell?",
+        "Which animal's YOUNG breathe through gills, while the ADULT breathes through lungs and moist skin?",
       options: ["Crocodile", "Frog", "Eagle", "Grouper"],
       answerIndex: 1,
       explanation:
-        "Frogs are amphibians — young breathe through gills, adults breathe through lungs and moist skin, and eggs (spawn) have no shell.",
+        "The frog is an amphibian. Tadpoles (young frogs) breathe through gills, while adult frogs breathe through lungs and moist skin. Amphibian eggs are jelly-like and have no shell.",
     },
   ],
 };

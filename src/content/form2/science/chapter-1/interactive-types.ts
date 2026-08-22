@@ -38,12 +38,27 @@ export interface VertebrateGroup {
   examples: string[];
 }
 
+/**
+ * A two-level split inside one classification branch, e.g. the textbook's
+ * invertebrate hierarchy: "Tanpa kaki" -> { "Badan tanpa segmen", "Badan bersegmen" }.
+ * Use this when the taxonomy genuinely nests; use `chipGroups` for a flat split.
+ */
+export interface ClassificationSubGroup {
+  /** First level, e.g. "Tanpa kaki" / "Without legs". */
+  label: string;
+  /** Defining characteristics shared by everything under this sub-group. */
+  detail?: string;
+  /** Second level, e.g. "Badan tanpa segmen" / "Badan bersegmen". */
+  groups: { label: string; chips: string[] }[];
+}
+
 export interface ClassificationBranch {
   id: string;
   label: string;
   detail?: string;
   chips?: string[];
   chipGroups?: { label: string; chips: string[] }[];
+  subGroups?: ClassificationSubGroup[];
   vertebrateGroups?: VertebrateGroup[];
 }
 
@@ -86,6 +101,22 @@ export interface MiniQuizMultipleChoice {
 
 export type MiniQuizItem = MiniQuizTrueFalse | MiniQuizMultipleChoice;
 
+/** One human activity and the chain of consequences it sets off (DSKP SP 1.1.2 scope). */
+export interface HumanImpactItem {
+  icon: string;
+  activity: string;
+  /** Cause -> effect sequence, rendered as an arrow chain. */
+  chain: string[];
+}
+
+/** Endemic and threatened are different ideas; each is taught on its own terms. */
+export interface SpeciesConcept {
+  id: "endemic" | "threatened";
+  label: string;
+  definition: string;
+  examples: string[];
+}
+
 export interface SciF2C1Content {
   blogHighlight: { title: string; body: string; imagePath: string };
   keywords: { term: string; definition: string }[];
@@ -93,7 +124,10 @@ export interface SciF2C1Content {
   importance: ImportanceItem[];
   historyFact: string;
   conservationMethods: ConservationMethod[];
-  endemicSpecies: string[];
+  humanImpact: HumanImpactItem[];
+  speciesConcepts: SpeciesConcept[];
+  /** Explicit warning that endemic does not automatically mean threatened. */
+  speciesCaution: string;
   checkYourself11: CheckYourselfItem[];
   animalBranches: ClassificationBranch[];
   plantBranches: ClassificationBranch[];
