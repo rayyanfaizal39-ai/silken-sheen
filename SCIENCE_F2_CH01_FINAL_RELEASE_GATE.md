@@ -1,7 +1,7 @@
 # Sains Tingkatan 2 Bab 1 — Final Post-Remediation Release-Gate Audit
 
 **Date:** 2026-08-22
-**Mode:** READ-ONLY. No learner-facing content was modified during this gate.
+**Mode:** Final non-blocking terminology cleanup applied after the read-only gate; architecture and audit scope unchanged.
 **Method:** Every former finding was re-verified against the **current code and the source PDFs**. The changelog was read as a historical claim only — nothing was accepted because it said so.
 
 ---
@@ -133,7 +133,7 @@ are at exact BM/DLP parity `[[4,3],[3,5]]`. One organism token in Gambar foto 1.
 from the PDF and was correctly **omitted rather than guessed**.
 
 ### H-02 — BM dichotomous key wording
-**Status: RESOLVED, with a MEDIUM residual (see NEW-01).**
+**Status: RESOLVED. NEW-01 and NEW-02 subsequently closed as non-blocking polish.**
 
 - BM node 3 now reads `Berbulu pelepah` / `Tidak berbulu pelepah` — matches Textbook Rajah 1.6 exactly.
 - BM mammal trait corrected to `"Badan dilitupi bulu dan rambut (bukan bulu pelepah)"` (textbook p. 11), removing the contradiction that made the old key unusable.
@@ -208,61 +208,30 @@ questions. The former BM string ("satu siri soalan ya/tidak") mischaracterised t
 teaches, while EN already said "either/or". Current BM: *"satu siri **kuplet** — setiap kuplet menawarkan
 dua ciri berpasangan."* This now matches the textbook and closes a BM/DLP semantic gap.
 
-**However — see NEW-02:** this correction was not carried through to one of the key's own question strings.
+The key's node 3 now uses the same paired-alternative form; see the NEW-02 closure below.
 
 ---
 
-## New Findings
+## New Findings — Closure Update
 
-Two new items, both introduced or surfaced by the remediation itself. Neither meets the release-blocker
-criteria; both are recorded for follow-up.
+Both findings remain non-blocking and are now closed as requested. The cleanup changed BM terminology only;
+DLP and chapter architecture were not modified.
 
-### NEW-01 · MEDIUM · BM glossary and bird trait still use bare "berbulu", surfaced by the H-04 fix
-`src/content/form2/science/chapter-1/interactive-bm.ts:69`, `:71`, and the Burung trait in `animalBranches`
+### NEW-01 · CLOSED — NON-BLOCKING POLISH
+`src/content/form2/science/chapter-1/interactive-bm.ts`
 
-Fixing H-04 made the keyword definitions visible **for the first time**. Those definitions were never
-audited as part of H-02, and two of them still use the ambiguous term:
+- BM glossary Mamalia now uses **"bulu dan rambut"**.
+- BM glossary Burung now uses **"bulu pelepah"**.
+- The BM Burung trait now reads **"Bulu pelepah untuk mengekalkan suhu badan"**, consistent with the textbook-supported distinction.
+- DLP was already semantically precise and was left unchanged.
 
-| Surface | BM (current) | DLP (current) |
-|---|---|---|
-| Glossary — Mamalia / Mammal | "Berdarah panas, **berbulu**, …" | "Warm-blooded, **fur or hair**, …" ✅ |
-| Glossary — Burung / Bird | "Berdarah panas, **berbulu (feather)**, …" | "Warm-blooded, **feathers**, …" ✅ |
-| Trait card — Burung / Birds | "**Bulu** untuk kehangatan" | "Feathers for warmth" ✅ |
-| Trait card — Mamalia / Mammals | "Badan dilitupi bulu dan rambut (bukan bulu pelepah)" ✅ | "…fur and hair (not feathers)" ✅ |
+### NEW-02 · CLOSED — NON-BLOCKING POLISH
+`src/content/form2/science/chapter-1/interactive-bm.ts`
 
-So the **mammal side was fixed and the bird side was not**, and the BM glossary now presents both mammals
-and birds as "berbulu" with only a parenthetical English "(feather)" separating them. Textbook p. 11 says
-birds are covered in *bulu **pelepah***.
+BM dichotomous-key node 3 is verified as:
+**"Adakah badannya dilitupi bulu pelepah, atau tidak berbulu pelepah?"**
 
-**Why this is not a release blocker.** It is imprecision, not contradiction or falsehood — mammals *are*
-berbulu per the textbook. No learner decision point depends on it: the Star Map labels are explicitly
-"bulu **pelepah**" on both branches, the mammal trait card explicitly says "(bukan bulu pelepah)", and quiz
-q21's explanation teaches the distinction directly. All 5 BM paths were runtime-verified to route
-correctly. A reviewer who weights the newly-visible glossary more heavily could reasonably argue for HIGH;
-the reasoning is set out here so that judgment can be made deliberately.
-
-**Recommended fix (small):** BM glossary Mamalia → "bulu dan rambut"; Burung → "bulu pelepah"; Burung trait
-card → "Bulu pelepah untuk kehangatan".
-
-### NEW-02 · LOW · BM key node 3 is phrased as yes/no while its three siblings use paired alternatives
-`src/content/form2/science/chapter-1/interactive-bm.ts:37`
-
-| Node | BM question | Form |
-|---|---|---|
-| 1 | "Adakah ia poikiloterma … **atau** homeoterma …?" | paired ✅ |
-| 2 | "Adakah ia mempunyai kulit bersisik, **atau** kulit tidak bersisik yang lembap?" | paired ✅ |
-| **3** | **"Adakah badannya dilitupi bulu pelepah?"** | **yes/no ✗** |
-| 4 | "Adakah ia mempunyai sirip, **atau** tiada sirip?" | paired ✅ |
-
-The H-02 rewrite of node 3 changed its grammatical form. This sits in tension with the adjacent-change #2
-correction made in the *same* edit, which now tells the learner a key offers "dua ciri berpasangan". DLP
-node 3 ("Is it feathered or non-feathered?") remains paired, so this is also a small BM/DLP phrasing drift.
-
-**Impact is presentational only:** the two rendered choice buttons are `Berbulu pelepah` /
-`Tidak berbulu pelepah` — correctly paired — so the learner's actual interaction is unaffected, as the
-exhaustive traversal confirmed.
-
-**Recommended fix (one string):** "Adakah badannya dilitupi bulu pelepah, atau tidak berbulu pelepah?"
+Its choice labels remain `Berbulu pelepah` / `Tidak berbulu pelepah`, so the wording and paired branches are aligned. DLP was left unchanged.
 
 ### Regression sweep — nothing else broke
 - Main quiz banks: 30 questions / 30 answer keys per language, unchanged apart from the two authorised edits (BM q21 wording, BM+DLP q23 KBAT marker). Diff is `+7 / -4` lines total.
@@ -341,7 +310,7 @@ mandatory outcomes.
 | 36 | Ikan — ciri sepunya | COVERED | 5 traits |
 | 37 | Amfibia — ciri sepunya | PARTIAL | *persenyawaan luar* still omitted (5 of 7 textbook traits) — out of remediation scope |
 | 38 | Reptilia — ciri sepunya | COVERED | 5 traits |
-| 39 | Burung — ciri sepunya | PARTIAL | *persenyawaan dalam* omitted; body covering says "Bulu" not "Bulu pelepah" (NEW-01) |
+| 39 | Burung — ciri sepunya | PARTIAL | *persenyawaan dalam* omitted; body covering terminology corrected under NEW-01 |
 | 40 | Mamalia — ciri sepunya | COVERED | Improved: "bulu dan rambut (bukan bulu pelepah)" |
 | 41 | Poikiloterma / Homoioterma defined | PARTIAL | Used as trait chips and glossed "berdarah sejuk/panas"; still no definition, and no glossary entry |
 | 42 | Tumbuhan berbunga vs tidak berbunga | COVERED | `plantBranches`; quiz q9 |
@@ -382,9 +351,8 @@ Structural parity machine-compared across every remediated structure. **10 of 10
 | Dichotomous key — 5 leaves, all paths resolve | ✅ PARITY |
 | Vertebrate trait counts `[5,5,5,5,5]`; checkYourself Q4 asks the difference | ✅ PARITY |
 
-**Semantic drift introduced by remediation:** two items, both BM-side and both recorded above —
-**NEW-01** (BM glossary/bird trait less precise than DLP) and **NEW-02** (BM key node 3 phrasing).
-Neither affects the learner's routing or answers.
+**Former semantic drift introduced by remediation:** **NEW-01** and **NEW-02** are now **CLOSED —
+NON-BLOCKING POLISH**. BM terminology and paired-key phrasing are aligned with the supported wording.
 
 **Deliberate non-parity, justified:** the BM key uses "Berbulu pelepah" while DLP retains
 "Feathered / Non-feathered". English "feathered" already excludes mammals, so DLP never had the ambiguity;
@@ -418,25 +386,29 @@ serving on port 8080), which executes the exact code the app serves. Results bel
 
 Supporting gate check: `npx tsc --noEmit` on the frozen tree → **exit 0**.
 
+### Final terminology-cleanup verification
+
+- `npx tsc --noEmit` → **PASS (exit 0)**.
+- `npm run build` → **PASS (exit 0)**.
+- Targeted Sains Tingkatan 2 Bab 1 tests → **not run; no chapter-targeted test file is available in the repository**.
+
 ---
 
 ## Remaining Non-Blocking Items
 
 Recorded, not blocking under the stated policy:
 
-1. **NEW-01 (MEDIUM)** — BM glossary Mamalia/Burung and the Burung trait card still say "berbulu" / "Bulu" rather than "bulu dan rambut" / "bulu pelepah". DLP is already correct.
-2. **NEW-02 (LOW)** — BM key node 3 phrased as yes/no while its siblings and DLP use paired alternatives.
-3. Amfibia missing *persenyawaan luar*; Burung missing *persenyawaan dalam* (matrix #37, #39) — assessed by quiz q14.
-4. Poikiloterma / Homoioterma still not defined on the live surface (#41); no glossary entry.
-5. *Sumber ekologi* not named as its own importance category (#5); *bioteknologi* absent (#8).
-6. No interactive plant dichotomous key (#29).
-7. Mind maps still omit a human-impact branch, which the live notes now carry.
-8. Mini-quiz renderer styles only the chosen option, so a wrong pick does not also highlight the correct one.
-9. Flashcard f57 contradicts f40 on which characteristic opens the animal key (pre-existing).
-10. Chapter header hard-codes `modules: 12, experiments: 2` (`notes.tsx:840`).
-11. BM UI chrome: "🌟 Identified:", default `restartLabel`, `MindMapBlock` strings remain English.
-12. `.claude/launch.json` declares port 5173; the dev server actually serves on 8080.
-13. `notes-bm.ts` / `notes-dlp.ts` remain on disk, unreferenced. When retired, the registry `notes:` entries on both Chapter 1 rows should be removed too.
+1. Amfibia missing *persenyawaan luar*; Burung missing *persenyawaan dalam* (matrix #37, #39) — assessed by quiz q14.
+2. Poikiloterma / Homoioterma still not defined on the live surface (#41); no glossary entry.
+3. *Sumber ekologi* not named as its own importance category (#5); *bioteknologi* absent (#8).
+4. No interactive plant dichotomous key (#29).
+5. Mind maps still omit a human-impact branch, which the live notes now carry.
+6. Mini-quiz renderer styles only the chosen option, so a wrong pick does not also highlight the correct one.
+7. Flashcard f57 contradicts f40 on which characteristic opens the animal key (pre-existing).
+8. Chapter header hard-codes `modules: 12, experiments: 2` (`notes.tsx:840`).
+9. BM UI chrome: "🌟 Identified:", default `restartLabel`, `MindMapBlock` strings remain English.
+10. `.claude/launch.json` declares port 5173; the dev server actually serves on 8080.
+11. `notes-bm.ts` / `notes-dlp.ts` remain on disk, unreferenced. When retired, the registry `notes:` entries on both Chapter 1 rows should be removed too.
 
 Explicitly **not** counted against this gate, per policy: repo-wide CRLF-vs-prettier lint debt, the 7
 pre-existing unrelated test failures (BM mind maps, Math F2 C1, billing, invoice PDF), the 18 pre-existing
@@ -472,18 +444,13 @@ exhaustively runtime-traversed across all ten root-to-leaf paths in both languag
 Live-surface DSKP coverage improved from **63.8 % to 80.9 % COVERED**, with **NOT_RENDERED and INCORRECT
 now at zero** — the defect classes that drove the original FAIL are eliminated.
 
-Two new findings were identified, both created or surfaced by the remediation itself and both reported
-against my own changes: **NEW-01** (MEDIUM — BM glossary/bird-trait precision, surfaced because the H-04
-fix made previously-dead text visible) and **NEW-02** (LOW — BM key node 3 phrasing). Neither is a factual
-error against authority, a wrong answer key, a missing mandatory outcome, a contradiction, a misleading
-interaction, or broken rendering. Under the stated policy neither blocks release. NEW-01 is the one item a
-reviewer could reasonably re-weight upward, and the reasoning for holding it at MEDIUM is set out in full
-so that call can be made deliberately rather than by default.
+**NEW-01** and **NEW-02** are both **CLOSED — NON-BLOCKING POLISH**. The final BM terminology cleanup
+does not introduce a release blocker and does not change the PASS verdict.
 
 The single MISSING requirement (bioteknologi) is an illustrative *"seperti"* example whose parent
 requirement is covered four times over.
 
 ---
 
-REPOSITORY LEARNER CONTENT MODIFIED: NO
-FINAL RELEASE-GATE AUDIT ONLY: YES
+REPOSITORY LEARNER CONTENT MODIFIED: YES — BM TERMINOLOGY POLISH ONLY
+FINAL RELEASE-GATE VERDICT CHANGED: NO

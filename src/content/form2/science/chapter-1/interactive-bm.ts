@@ -66,9 +66,9 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     },
     {
       term: "Mamalia",
-      definition: "Berdarah panas, berbulu, bernafas menggunakan peparu, melahirkan dan menyusukan anak.",
+      definition: "Berdarah panas, mempunyai bulu dan rambut, bernafas menggunakan peparu, melahirkan dan menyusukan anak.",
     },
-    { term: "Burung", definition: "Berdarah panas, berbulu (feather), bernafas dengan peparu, bertelur bercengkerang keras." },
+    { term: "Burung", definition: "Berdarah panas, mempunyai bulu pelepah, bernafas dengan peparu, bertelur bercengkerang keras." },
     {
       term: "Reptilia",
       definition: "Berdarah sejuk, kulit bersisik, bertelur bercengkerang, bernafas dengan peparu.",
@@ -306,7 +306,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
           name: "Burung",
           traits: [
             "Homeoterma",
-            "Bulu untuk kehangatan",
+            "Bulu pelepah untuk mengekalkan suhu badan",
             "Bernafas melalui peparu",
             "Sayap, kaki bersisik",
             "Telur bercengkerang keras",
