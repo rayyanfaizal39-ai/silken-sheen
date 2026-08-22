@@ -106,6 +106,78 @@ export type PlanetSpheresBlock = {
   planets: PlanetSphere[];
 };
 
+/** One organism in a food web. `tier` 0 = producer, 1 = primary consumer, 2 = secondary, 3 = tertiary. */
+export type FoodWebNode = {
+  id: string;
+  label: string;
+  tier: number;
+  icon?: string;
+};
+
+/**
+ * A worked food web: several interconnected food chains. Edges are directed and
+ * point from the organism that is eaten to the organism that eats it, i.e. in the
+ * direction energy actually flows.
+ */
+export type FoodWebBlock = {
+  title: string;
+  instruction: string;
+  nodes: FoodWebNode[];
+  edges: { from: string; to: string }[];
+  /** Row captions, lowest tier first. */
+  tierLabels: string[];
+  chainsLabel: string;
+  arrowNote: string;
+  tapHint: string;
+};
+
+/** A cause -> effect teaching chain, rendered as an arrow sequence. */
+export type CauseEffectItem = {
+  icon?: string;
+  title: string;
+  chain: string[];
+  /** Optional closing line, e.g. the matching solution or a caution. */
+  note?: string;
+};
+
+export type CauseEffectBlock = {
+  title: string;
+  instruction?: string;
+  items: CauseEffectItem[];
+};
+
+/** One organism's adaptation, taught as adaptation -> function -> survival benefit. */
+export type AdaptationOrganism = {
+  kind: "animal" | "plant";
+  name: string;
+  adaptation: string;
+  role: string;
+  benefit: string;
+};
+
+export type AdaptationCase = {
+  id: string;
+  habitat: string;
+  challenge: string;
+  organisms: AdaptationOrganism[];
+  imagePath?: string;
+};
+
+/** Satisfies SP 2.3.2's verb: justify WHY an adaptation matters, not just name the climate. */
+export type AdaptationBlock = {
+  title: string;
+  instruction: string;
+  labels: {
+    challenge: string;
+    adaptation: string;
+    role: string;
+    benefit: string;
+    animal: string;
+    plant: string;
+  };
+  cases: AdaptationCase[];
+};
+
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
@@ -120,6 +192,9 @@ export type ScienceInteractiveSection = {
   waveVisualizer?: WaveVisualizerBlock;
   galaxyCards?: GalaxyCardsBlock;
   planets?: PlanetSpheresBlock;
+  foodWeb?: FoodWebBlock;
+  causeEffect?: CauseEffectBlock;
+  adaptations?: AdaptationBlock;
   matcher?: {
     title: string;
     instruction: string;

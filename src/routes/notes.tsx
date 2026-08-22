@@ -368,11 +368,17 @@ function NotesPage() {
     form === "Form 2" &&
     activeChapterKey === "Chapter 1" &&
     !!activeChapter?.sciF2C1Data;
+  const isScienceF2C2 =
+    subject === "science" &&
+    form === "Form 2" &&
+    activeChapterKey === "Chapter 2" &&
+    activeChapter?.sciF2InteractiveData?.chapter === 2;
   const isScienceF3Interactive =
     subject === "science" && form === "Form 3" && !!activeChapter?.sciF3InteractiveData;
   const isScienceDiscovery =
     (subject === "science" && form === "Form 1" && !!activeChapterKey) ||
     isScienceF2C1 ||
+    isScienceF2C2 ||
     isScienceF3Interactive;
   const isSejarahChapter = subject === "sejarah" && !!activeChapterKey;
   const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
@@ -826,6 +832,7 @@ function NotesPage() {
           <NotesContentWithVideo
             notesContentRef={notesContentRef}
             video={activeChapter?.video}
+            videoLang={subject === "science" && scienceLang === "bm" ? "bm" : "en"}
             header={
               isScienceDiscovery ? (
                 <ScienceDiscoveryChapterHeader
@@ -839,6 +846,8 @@ function NotesPage() {
                   metaOverride={
                     isScienceF2C1
                       ? { modules: 12, minutes: 22, experiments: 2, difficulty: "Core" }
+                      : isScienceF2C2
+                        ? { modules: 11, minutes: 26, experiments: 1, difficulty: "Core" }
                       : isScienceF3Interactive
                         ? F3_SCIENCE_LAB_META[Number(activeChapterKey?.match(/\d+/)?.[0] ?? 1)]
                         : undefined

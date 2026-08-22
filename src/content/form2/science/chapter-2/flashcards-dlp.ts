@@ -361,8 +361,8 @@ export const scienceF2C2FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     lang: "dlp",
-    front: "Compare the energy pyramid concept with linear energy flow in a food chain.",
-    back: "Linear energy flow: energy moves from producer to consumers sequentially. Energy pyramid: visual representation that usable energy decreases at each higher trophic level.",
+    front: "[Enrichment — beyond Chapter 2 scope] Compare the energy pyramid concept with linear energy flow in a food chain.",
+    back: "Linear energy flow: energy moves from producer to consumers sequentially. Energy pyramid: visual representation that usable energy decreases at each higher trophic level. Note: the term energy pyramid appears in neither the DSKP nor the Chapter 2 textbook — treat it as additional information.",
   },
 
   // Deck 3: Exam (Cards 41-60)
@@ -427,7 +427,7 @@ export const scienceF2C2FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 2",
     lang: "dlp",
     front: "[Common Mistake] Is energy recycled like nutrients?",
-    back: "No. Energy flows in one direction and is lost as heat/faeces at every trophic level; only nutrients are recycled.",
+    back: "No. Energy flows one way: at every level it is lost as heat through respiration and movement, and in consumers also through faeces (undigested food). Producers have no faecal loss. Only nutrients are recycled.",
   },
   {
     id: "sci-f2-c2-dlp-f48",

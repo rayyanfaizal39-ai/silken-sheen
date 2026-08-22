@@ -125,15 +125,16 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "bm",
-    question: "Apakah maksud kawalan biologi?",
+    question: "Mengapakah daun kaktus berubah menjadi duri di habitat gurun?",
     options: [
-      "Penggunaan racun perosak kimia untuk membunuh perosak",
-      "Kaedah menggunakan pemangsa, parasit atau patogen semula jadi untuk mengurangkan bilangan perosak",
-      "Penggunaan baja kimia untuk meningkatkan hasil tanaman",
-      "Penanaman semula pokok di kawasan hutan",
+      "Supaya kaktus dapat menyerap lebih banyak cahaya matahari",
+      "Untuk mengurangkan luas permukaan supaya kadar transpirasi menjadi sangat rendah",
+      "Untuk membantu kaktus menjalankan respirasi pada waktu malam",
+      "Supaya kaktus dapat bergerak mengikut arah angin",
     ],
     answerIndex: 1,
-    explanation: "Kawalan biologi menggunakan organisma yang merupakan pemangsa, parasit atau patogen semula jadi untuk mengurangkan bilangan perosak di sesuatu kawasan.",
+    explanation:
+      "Cabaran utama di gurun ialah kehilangan air. Duri mempunyai luas permukaan yang jauh lebih kecil daripada daun biasa, jadi transpirasi berkurang dan air yang disimpan dalam batang tebal dapat bertahan sepanjang musim kering.",
   },
   {
     id: "sci-f2-c2-bm-q10",
@@ -169,13 +170,14 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Mengapakah tenaga TIDAK dikitar semula dalam sesuatu ekosistem, berbeza dengan nutrien?",
     options: [
-      "Kerana tenaga hilang sebagai haba dan melalui najis pada setiap peringkat trofik",
+      "Kerana tenaga hilang sebagai haba melalui respirasi dan pergerakan pada setiap aras, dan melalui najis pada pengguna",
       "Kerana tenaga disimpan kekal dalam tubuh pengeluar",
       "Kerana hanya pengurai memerlukan tenaga",
       "Kerana tenaga hanya wujud pada peringkat pengguna tertier",
     ],
     answerIndex: 0,
-    explanation: "Tenaga hilang sebagai haba dan melalui makanan tidak dihadam (najis) pada setiap peringkat trofik, sebab itu ia mengalir satu hala dan tidak dikitar semula seperti nutrien.",
+    explanation:
+      "Pada setiap aras trofik, tenaga hilang sebagai haba melalui respirasi dan pergerakan. Pengguna kehilangan tenaga tambahan melalui makanan yang tidak tercerna (najis); pengeluar tidak, kerana ia membuat makanannya sendiri. Sebab itu tenaga mengalir satu hala dan tidak dikitar semula seperti nutrien.",
   },
   {
     id: "sci-f2-c2-bm-q13",
@@ -230,15 +232,17 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "bm",
-    question: "Apakah perbezaan utama antara mangsa-pemangsa dan persaingan?",
+    question:
+      "Rubah Artik mempunyai telinga yang kecil berbanding rubah di kawasan panas. Wajarkan mengapa ciri ini penting untuk kemandiriannya.",
     options: [
-      "Mangsa-pemangsa melibatkan pemakanan antara organisma; persaingan melibatkan perjuangan untuk keperluan asas yang terhad",
-      "Mangsa-pemangsa hanya berlaku antara tumbuhan; persaingan hanya berlaku antara haiwan",
-      "Kedua-duanya adalah perkara yang sama",
-      "Persaingan hanya berlaku untuk mendapatkan pasangan, tidak melibatkan makanan",
+      "Telinga kecil membolehkannya mendengar mangsa di bawah salji dengan lebih jelas",
+      "Telinga kecil mengurangkan luas permukaan yang terdedah, jadi kurang haba badan hilang ke persekitaran yang sangat sejuk",
+      "Telinga kecil membolehkannya berenang dengan lebih laju di dalam air sejuk",
+      "Telinga kecil tidak mempunyai sebarang kaitan dengan kemandirian",
     ],
-    answerIndex: 0,
-    explanation: "Mangsa-pemangsa melibatkan satu organisma memakan organisma lain, manakala persaingan berlaku apabila organisma bersaing untuk keperluan asas terhad seperti cahaya, air, makanan dan pasangan.",
+    answerIndex: 1,
+    explanation:
+      "Cabaran utama di tundra ialah kesejukan melampau. Telinga yang kecil mengurangkan luas permukaan tempat haba boleh hilang, jadi suhu badan rubah Artik kekal walaupun persekitarannya sangat sejuk. Itulah sebabnya penyesuaian ini penting, bukan sekadar satu ciri fizikal.",
   },
   {
     id: "sci-f2-c2-bm-q17",
@@ -365,15 +369,16 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "bm",
     question:
-      "Bandingkan komensalisme dengan mutualisme. Apakah pembeza utama antara kedua-dua jenis interaksi ini?",
+      "Sebuah kawasan pertanian mengambil air sungai secara berlebihan untuk pengairan sepanjang tahun. Bagaimanakah ini mengganggu kitar air dan ekosistem di kawasan itu?",
     options: [
-      "Dalam mutualisme kedua-dua organisma untung; dalam komensalisme hanya satu organisma untung dan organisma lain tidak terjejas (bukan rugi)",
-      "Dalam komensalisme kedua-dua organisma rugi",
-      "Mutualisme hanya berlaku antara tumbuhan, komensalisme hanya antara haiwan",
-      "Tidak ada pembeza yang jelas antara kedua-duanya",
+      "Tiada kesan kerana air akan sentiasa kembali melalui hujan pada kadar yang sama",
+      "Simpanan air sungai dan air bawah tanah berkurang, jadi kurang air tersedia untuk tumbuhan dan haiwan, dan kitar air terganggu",
+      "Kandungan oksigen di atmosfera akan meningkat secara mendadak",
+      "Kadar fotosintesis tumbuhan akan meningkat kerana tanah menjadi lebih kering",
     ],
-    answerIndex: 0,
-    explanation: "Mutualisme memberi manfaat kepada KEDUA-DUA organisma, manakala komensalisme hanya memberi manfaat kepada SATU organisma (komensal) tanpa menjejaskan organisma yang lain.",
+    answerIndex: 1,
+    explanation:
+      "Penggunaan sumber air yang berlebihan untuk pertanian dan kegunaan domestik ialah salah satu daripada tiga gangguan kitar nutrien yang disenaraikan dalam DSKP. Pengambilan berlebihan mengurangkan simpanan air sungai dan air bawah tanah, sekali gus mengurangkan sumber untuk hidupan dan mengganggu kitar air. Langkah penyelesaian termasuk menjimatkan air dan menyimpan air hujan.",
   },
   {
     id: "sci-f2-c2-bm-q25",
@@ -450,15 +455,11 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "bm",
     question:
-      "Mengapakah konsep piramid tenaga sesuai digunakan untuk menggambarkan struktur peringkat trofik dalam sesuatu ekosistem?",
-    options: [
-      "Kerana bilangan organisma sentiasa sama pada setiap peringkat trofik",
-      "Kerana jumlah tenaga yang boleh digunakan semakin berkurang daripada peringkat pengeluar ke peringkat yang lebih atas akibat kehilangan tenaga pada setiap peringkat",
-      "Kerana piramid hanya menggambarkan kitar air, bukan aliran tenaga",
-      "Kerana pengguna tertier sentiasa mempunyai lebih banyak tenaga daripada pengeluar",
-    ],
-    answerIndex: 1,
-    explanation: "Struktur trofik digambarkan sebagai piramid kerana jumlah tenaga yang boleh digunakan semakin berkurang daripada peringkat pengeluar ke peringkat yang lebih atas, disebabkan kehilangan tenaga melalui respirasi, haba dan najis pada setiap peringkat.",
+      "Dalam satu siratan makanan kebun sayur: kubis dimakan oleh beluncas, siput dan belalang; beluncas, siput dan belalang dimakan oleh burung; belalang juga dimakan oleh katak; burung dan katak pula dimakan oleh ular. Berapakah rantai makanan lengkap yang boleh dibina daripada siratan ini?",
+    options: ["Dua", "Tiga", "Empat", "Enam"],
+    answerIndex: 2,
+    explanation:
+      "Empat rantai: kubis → beluncas → burung → ular; kubis → siput → burung → ular; kubis → belalang → burung → ular; kubis → belalang → katak → ular. Setiap rantai bermula dengan pengeluar dan berakhir dengan pengguna tertier — inilah cara mentafsir siratan makanan.",
   },
   {
     id: "sci-f2-c2-bm-q30",

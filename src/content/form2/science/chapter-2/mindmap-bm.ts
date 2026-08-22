@@ -25,7 +25,8 @@ export const scienceF2C2MindMapBM: MindNode = {
           children: [
             { id: "c1-2-1", label: "Rantai makanan: laluan linear" },
             { id: "c1-2-2", label: "Siratan makanan: gabungan rantai makanan" },
-            { id: "c1-2-3", label: "Tenaga hilang setiap peringkat trofik (respirasi, najis)" },
+            { id: "c1-2-3", label: "Tenaga hilang setiap aras (respirasi, haba; najis pada pengguna)" },
+            { id: "c1-2-4", label: "[Pengayaan] Piramid tenaga: tenaga berkurang ke aras lebih tinggi" },
           ],
         },
       ],
@@ -36,7 +37,6 @@ export const scienceF2C2MindMapBM: MindNode = {
       children: [
         { id: "c2-1", label: "Kitar air: transpirasi, penyejatan, kondensasi, hujan" },
         { id: "c2-2", label: "Kitar karbon & oksigen: fotosintesis, respirasi, penguraian" },
-        { id: "c2-3", label: "Konsep piramid tenaga: tenaga berkurang ke atas" },
         { id: "c2-4", label: "Gangguan kitar nutrien: pembalakan, bahan api fosil, air berlebihan" },
       ],
     },

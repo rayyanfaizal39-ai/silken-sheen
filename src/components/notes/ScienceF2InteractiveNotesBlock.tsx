@@ -12,6 +12,7 @@ import { FlipCardGrid } from "@/components/notes/blocks/FlipCard";
 import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectionChecklist";
 import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { Journey } from "@/components/notes/blocks/Journey";
+import { FoodWebDiagram } from "@/components/notes/blocks/FoodWebDiagram";
 import { PhScaleSlider } from "@/components/notes/blocks/PhScaleSlider";
 import { OhmsLawCalculator } from "@/components/notes/blocks/OhmsLawCalculator";
 import { ResistanceComparator } from "@/components/notes/blocks/ResistanceComparator";
@@ -257,6 +258,128 @@ export function ScienceF2InteractiveNotesBlock({
             <WaveVisualizer lang={lang} />
           </div>
         )}
+        {section.foodWeb && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.foodWeb.title}
+            </h3>
+            <FoodWebDiagram block={section.foodWeb} />
+          </div>
+        )}
+        {section.adaptations && (
+          <div>
+            <h3 className="font-display mb-1 text-base font-bold text-foreground">
+              {section.adaptations.title}
+            </h3>
+            <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+              {section.adaptations.instruction}
+            </p>
+            <Tabs defaultValue={section.adaptations.cases[0]?.id}>
+              <TabsList className="h-auto max-w-full flex-wrap justify-start">
+                {section.adaptations.cases.map((item) => (
+                  <TabsTrigger key={item.id} value={item.id}>
+                    {item.habitat}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {section.adaptations.cases.map((item) => (
+                <TabsContent key={item.id} value={item.id} className="flex flex-col gap-3">
+                  {item.imagePath && (
+                    <img
+                      src={getNotesImageUrl(item.imagePath)}
+                      alt={item.habitat}
+                      className="aspect-video w-full rounded-2xl object-cover"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 p-3">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-amber-300">
+                      {section.adaptations!.labels.challenge}
+                    </p>
+                    <p className="mt-0.5 text-[13px] leading-relaxed text-foreground">
+                      {item.challenge}
+                    </p>
+                  </div>
+                  {item.organisms.map((organism) => (
+                    <div
+                      key={organism.name}
+                      className="rounded-xl border border-border bg-card/55 p-3"
+                    >
+                      <p className="font-display text-[13px] font-bold text-foreground">
+                        {organism.kind === "plant"
+                          ? section.adaptations!.labels.plant
+                          : section.adaptations!.labels.animal}{" "}
+                        · {organism.name}
+                      </p>
+                      <dl className="mt-2 flex flex-col gap-1.5">
+                        {(
+                          [
+                            [section.adaptations!.labels.adaptation, organism.adaptation],
+                            [section.adaptations!.labels.role, organism.role],
+                            [section.adaptations!.labels.benefit, organism.benefit],
+                          ] as const
+                        ).map(([label, value], i) => (
+                          <div key={label} className="flex items-start gap-2">
+                            <span className="mt-1 text-primary" aria-hidden="true">
+                              {i === 0 ? "•" : "→"}
+                            </span>
+                            <div className="min-w-0">
+                              <dt className="text-[10.5px] font-semibold uppercase tracking-wide text-muted-foreground/80">
+                                {label}
+                              </dt>
+                              <dd className="text-[12.5px] leading-relaxed text-foreground">
+                                {value}
+                              </dd>
+                            </div>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  ))}
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
+        )}
+        {section.causeEffect && (
+          <div>
+            <h3 className="font-display mb-1 text-base font-bold text-foreground">
+              {section.causeEffect.title}
+            </h3>
+            {section.causeEffect.instruction && (
+              <p className="mb-2.5 text-[12.5px] text-muted-foreground">
+                {section.causeEffect.instruction}
+              </p>
+            )}
+            <div className="flex flex-col gap-2.5">
+              {section.causeEffect.items.map((item) => (
+                <div key={item.title} className="rounded-xl border border-border bg-secondary/30 p-3">
+                  <p className="font-display text-[12.5px] font-bold text-foreground">
+                    {item.icon ? `${item.icon} ` : ""}
+                    {item.title}
+                  </p>
+                  <div className="mt-1.5 flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                    {item.chain.map((step, i) => (
+                      <span key={step} className="flex items-center gap-1.5">
+                        {i > 0 && (
+                          <span className="text-primary" aria-hidden="true">
+                            →
+                          </span>
+                        )}
+                        <span className="text-[11.5px] leading-snug text-muted-foreground">
+                          {step}
+                        </span>
+                      </span>
+                    ))}
+                  </div>
+                  {item.note && (
+                    <p className="mt-2 text-[11.5px] font-semibold text-emerald-300">{item.note}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         {section.matcher && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -265,6 +388,7 @@ export function ScienceF2InteractiveNotesBlock({
             <MatchingPairs
               pairs={section.matcher.pairs}
               instruction={section.matcher.instruction}
+              resetLabel={lang === "bm" ? "Set semula" : "Reset"}
               onComplete={() => awardOnce(`match-${section.number}`, 10)}
             />
           </div>
@@ -282,7 +406,11 @@ export function ScienceF2InteractiveNotesBlock({
                 loading="lazy"
               />
             )}
-            <Journey steps={section.sequence.steps} instruction={section.sequence.instruction} />
+            <Journey
+              steps={section.sequence.steps}
+              instruction={section.sequence.instruction}
+              lang={lang}
+            />
           </div>
         )}
         {section.comparison && (

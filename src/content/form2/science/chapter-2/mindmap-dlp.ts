@@ -25,7 +25,8 @@ export const scienceF2C2MindMapDLP: MindNode = {
           children: [
             { id: "c1-2-1", label: "Food chain: linear path" },
             { id: "c1-2-2", label: "Food web: interconnection of food chains" },
-            { id: "c1-2-3", label: "Energy lost at each trophic level (respiration, faeces)" },
+            { id: "c1-2-3", label: "Energy lost at each level (respiration, heat; faeces in consumers)" },
+            { id: "c1-2-4", label: "[Enrichment] Energy pyramid: energy decreases at higher levels" },
           ],
         },
       ],
@@ -36,7 +37,6 @@ export const scienceF2C2MindMapDLP: MindNode = {
       children: [
         { id: "c2-1", label: "Water cycle: transpiration, evaporation, condensation, rain" },
         { id: "c2-2", label: "Carbon & oxygen cycle: photosynthesis, respiration, decomposition" },
-        { id: "c2-3", label: "Energy pyramid concept: energy decreases upward" },
         { id: "c2-4", label: "Interference: logging, fossil fuels, overconsumption of water" },
       ],
     },

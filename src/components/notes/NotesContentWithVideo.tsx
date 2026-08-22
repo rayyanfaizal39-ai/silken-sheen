@@ -11,6 +11,8 @@ interface NotesContentWithVideoProps {
   video?: VideoBlockData;
   className?: string;
   header?: ReactNode;
+  /** Language for the video block chrome. Defaults to English. */
+  videoLang?: "en" | "bm";
 }
 
 export function NotesContentWithVideo({
@@ -19,6 +21,7 @@ export function NotesContentWithVideo({
   video,
   className,
   header,
+  videoLang = "en",
 }: NotesContentWithVideoProps) {
   const { notePageTopRef, onPaginationClickCapture } = useNotesPaginationScroll();
 
@@ -39,7 +42,7 @@ export function NotesContentWithVideo({
         />
         {children}
       </div>
-      {video && <VideoBlock id="video" video={video} />}
+      {video && <VideoBlock id="video" video={video} lang={videoLang} />}
     </>
   );
 }
