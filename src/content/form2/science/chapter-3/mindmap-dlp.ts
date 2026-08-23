@@ -22,7 +22,7 @@ export const scienceF2C3MindMapDLP: MindNode = {
           children: [
             { id: "c1-2-1", label: "Function: growth, repair tissue, synthesise enzymes/hormones" },
             { id: "c1-2-2", label: "Source: chicken, seafood, egg, nuts" },
-            { id: "c1-2-3", label: "Deficiency: Kwashiorkor (children aged 1-3)" },
+            { id: "c1-2-3", label: "Severe deficiency: stunted growth (Additional Knowledge: Kwashiorkor)" },
           ],
         },
         {
@@ -67,7 +67,7 @@ export const scienceF2C3MindMapDLP: MindNode = {
       id: "c2",
       label: "3.2 Balanced Diet",
       children: [
-        { id: "c2-1", label: "Food Pyramid: base (rice/grains) to tip (fat/sugar)" },
+        { id: "c2-1", label: "Food Pyramid 2020: base (vegetables/fruit) to tip (fat/sugar)" },
         {
           id: "c2-2",
           label: "Factors Affecting Calorific Requirement",
@@ -114,15 +114,24 @@ export const scienceF2C3MindMapDLP: MindNode = {
           id: "c3-3",
           label: "Digestive Enzymes",
           children: [
-            { id: "c3-3-1", label: "Amylase: starch → maltose" },
+            { id: "c3-3-1", label: "Amylase: starch → maltose (salivary glands & pancreas)" },
             { id: "c3-3-2", label: "Stomach protease: protein → polypeptide" },
             { id: "c3-3-3", label: "Pancreatic protease: polypeptide → dipeptide" },
-            { id: "c3-3-4", label: "Maltase: maltose → glucose" },
+            { id: "c3-3-4", label: "Maltase (textbook detail): maltose → glucose" },
             { id: "c3-3-5", label: "Small intestine protease: dipeptide → amino acid" },
-            { id: "c3-3-6", label: "Lipase: fat → fatty acid + glycerol" },
+            { id: "c3-3-6", label: "Lipase: fat → fatty acid + glycerol (pancreas & small intestine)" },
           ],
         },
         { id: "c3-4", label: "Bile: emulsifies fat, neutralises acid (not an enzyme)" },
+        {
+          id: "c3-5",
+          label: "Accessory Organs (connect to duodenum)",
+          children: [
+            { id: "c3-5-1", label: "Liver: produces bile" },
+            { id: "c3-5-2", label: "Gall bladder: stores bile" },
+            { id: "c3-5-3", label: "Pancreas: produces pancreatic juice (amylase, protease, lipase)" },
+          ],
+        },
       ],
     },
     {
@@ -131,13 +140,15 @@ export const scienceF2C3MindMapDLP: MindNode = {
       children: [
         { id: "c4-1", label: "Villi: increase surface area, one-cell thick wall" },
         { id: "c4-2", label: "Lacteal: absorbs fat into lymphatic system" },
+        { id: "c4-5", label: "Visking tubing experiment: glucose diffuses out, starch does not" },
         {
           id: "c4-3",
-          label: "Assimilation",
+          label: "Assimilation & System Cooperation",
           children: [
-            { id: "c4-3-1", label: "Glucose → energy" },
+            { id: "c4-3-1", label: "Glucose → energy (respiration)" },
             { id: "c4-3-2", label: "Amino acid → cell components" },
             { id: "c4-3-3", label: "Fatty acid + glycerol → fat" },
+            { id: "c4-3-4", label: "Digestive, circulatory & respiratory systems cooperate" },
           ],
         },
         { id: "c4-4", label: "Defecation: water & minerals reabsorbed in large intestine, faeces eliminated via anus" },

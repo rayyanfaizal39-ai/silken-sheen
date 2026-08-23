@@ -13,6 +13,10 @@ import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectio
 import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { Journey } from "@/components/notes/blocks/Journey";
 import { FoodWebDiagram } from "@/components/notes/blocks/FoodWebDiagram";
+import { PyramidDiagram } from "@/components/notes/blocks/PyramidDiagram";
+import { DigestiveSystemDiagram } from "@/components/notes/blocks/DigestiveSystemDiagram";
+import { ViskingExperimentDiagram } from "@/components/notes/blocks/ViskingExperimentDiagram";
+import { VillusDiagram } from "@/components/notes/blocks/VillusDiagram";
 import { PhScaleSlider } from "@/components/notes/blocks/PhScaleSlider";
 import { OhmsLawCalculator } from "@/components/notes/blocks/OhmsLawCalculator";
 import { ResistanceComparator } from "@/components/notes/blocks/ResistanceComparator";
@@ -266,6 +270,38 @@ export function ScienceF2InteractiveNotesBlock({
             <FoodWebDiagram block={section.foodWeb} />
           </div>
         )}
+        {section.pyramid && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.pyramid.title}
+            </h3>
+            <PyramidDiagram block={section.pyramid} />
+          </div>
+        )}
+        {section.digestiveSystem && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.digestiveSystem.title}
+            </h3>
+            <DigestiveSystemDiagram block={section.digestiveSystem} />
+          </div>
+        )}
+        {section.viskingExperiment && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.viskingExperiment.title}
+            </h3>
+            <ViskingExperimentDiagram block={section.viskingExperiment} />
+          </div>
+        )}
+        {section.villusDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.villusDiagram.title}
+            </h3>
+            <VillusDiagram block={section.villusDiagram} />
+          </div>
+        )}
         {section.adaptations && (
           <div>
             <h3 className="font-display mb-1 text-base font-bold text-foreground">
@@ -353,7 +389,10 @@ export function ScienceF2InteractiveNotesBlock({
             )}
             <div className="flex flex-col gap-2.5">
               {section.causeEffect.items.map((item) => (
-                <div key={item.title} className="rounded-xl border border-border bg-secondary/30 p-3">
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-border bg-secondary/30 p-3"
+                >
                   <p className="font-display text-[12.5px] font-bold text-foreground">
                     {item.icon ? `${item.icon} ` : ""}
                     {item.title}
@@ -508,7 +547,9 @@ export function ScienceF2InteractiveNotesBlock({
   }
 
   const sections: ScienceNotesSection[] = content.sections.map((section, index) => ({
-    key: section.number,
+    // `number` is a Standard Pembelajaran reference, not a unique UX-section id — several
+    // sections can legitimately share one SP number, so the React/nav key is index-based.
+    key: `sec-${index}`,
     eyebrow: section.number,
     label: section.title,
     title: section.title,

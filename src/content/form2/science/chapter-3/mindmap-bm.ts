@@ -22,7 +22,7 @@ export const scienceF2C3MindMapBM: MindNode = {
           children: [
             { id: "c1-2-1", label: "Fungsi: pertumbuhan, baiki tisu, sintesis enzim/hormon" },
             { id: "c1-2-2", label: "Sumber: ayam, makanan laut, telur, kekacang" },
-            { id: "c1-2-3", label: "Kekurangan: Kwashiorkor (kanak-kanak 1-3 tahun)" },
+            { id: "c1-2-3", label: "Kekurangan teruk: pertumbuhan terbantut (Pengetahuan Tambahan: Kwasyiorkor)" },
           ],
         },
         {
@@ -46,7 +46,7 @@ export const scienceF2C3MindMapBM: MindNode = {
           label: "Mineral",
           children: [
             { id: "c1-5-1", label: "Kalsium (Riket), Ferum (Anemia), Iodin (Goiter)" },
-            { id: "c1-5-2", label: "Fosforus (DNA/RNA), Natrium & Potasium (saraf/otot)" },
+            { id: "c1-5-2", label: "Fosforus (DNA/RNA), Natrium & Kalium (saraf/otot)" },
           ],
         },
         { id: "c1-6", label: "Pelawas: selulosa, rangsang peristalsis, cegah sembelit" },
@@ -67,7 +67,7 @@ export const scienceF2C3MindMapBM: MindNode = {
       id: "c2",
       label: "3.2 Gizi Seimbang",
       children: [
-        { id: "c2-1", label: "Piramid Makanan: tapak (nasi/bijirin) ke puncak (lemak/gula)" },
+        { id: "c2-1", label: "Piramid Makanan 2020: tapak (sayur/buah) ke puncak (lemak/gula)" },
         {
           id: "c2-2",
           label: "Faktor Keperluan Kalori",
@@ -107,22 +107,31 @@ export const scienceF2C3MindMapBM: MindNode = {
           label: "Urutan Organ",
           children: [
             { id: "c3-2-1", label: "Mulut → Esofagus → Perut → Duodenum" },
-            { id: "c3-2-2", label: "Usus kecil → Usus besar → Rektum → Anus" },
+            { id: "c3-2-2", label: "Usus kecil → Usus besar → Rektum → Dubur" },
           ],
         },
         {
           id: "c3-3",
           label: "Enzim Pencernaan",
           children: [
-            { id: "c3-3-1", label: "Amilase: kanji → maltosa" },
+            { id: "c3-3-1", label: "Amilase: kanji → maltosa (kelenjar air liur & pankreas)" },
             { id: "c3-3-2", label: "Protease perut: protein → polipeptida" },
             { id: "c3-3-3", label: "Protease pankreas: polipeptida → dipeptida" },
-            { id: "c3-3-4", label: "Maltase: maltosa → glukosa" },
+            { id: "c3-3-4", label: "Maltase (butiran buku teks): maltosa → glukosa" },
             { id: "c3-3-5", label: "Protease usus: dipeptida → asid amino" },
-            { id: "c3-3-6", label: "Lipase: lemak → asid lemak + gliserol" },
+            { id: "c3-3-6", label: "Lipase: lemak → asid lemak + gliserol (pankreas & usus kecil)" },
           ],
         },
         { id: "c3-4", label: "Hempedu: emulsi lemak, neutral asid (bukan enzim)" },
+        {
+          id: "c3-5",
+          label: "Organ Bantuan (bersambung ke duodenum)",
+          children: [
+            { id: "c3-5-1", label: "Hati: hasilkan hempedu" },
+            { id: "c3-5-2", label: "Pundi hempedu: simpan hempedu" },
+            { id: "c3-5-3", label: "Pankreas: hasilkan jus pankreas (amilase, protease, lipase)" },
+          ],
+        },
       ],
     },
     {
@@ -131,16 +140,18 @@ export const scienceF2C3MindMapBM: MindNode = {
       children: [
         { id: "c4-1", label: "Vilus: tambah luas permukaan, dinding 1 sel tebal" },
         { id: "c4-2", label: "Lakteal: serap lemak ke sistem limfa" },
+        { id: "c4-5", label: "Eksperimen tiub Visking: glukosa meresap keluar, kanji tidak" },
         {
           id: "c4-3",
-          label: "Asimilasi",
+          label: "Asimilasi & Kerjasama Sistem",
           children: [
-            { id: "c4-3-1", label: "Glukosa → tenaga" },
+            { id: "c4-3-1", label: "Glukosa → tenaga (respirasi)" },
             { id: "c4-3-2", label: "Asid amino → komponen sel" },
             { id: "c4-3-3", label: "Asid lemak + gliserol → lemak" },
+            { id: "c4-3-4", label: "Sistem pencernaan, peredaran darah & respirasi bekerjasama" },
           ],
         },
-        { id: "c4-4", label: "Penyahtinjaan: penyerapan semula air & mineral di usus besar, najis disingkir melalui anus" },
+        { id: "c4-4", label: "Penyahtinjaan: penyerapan semula air & mineral di usus besar, najis disingkir melalui dubur" },
       ],
     },
   ],

@@ -178,6 +178,85 @@ export type AdaptationBlock = {
   cases: AdaptationCase[];
 };
 
+/** One tier of a food/nutrition pyramid, base first. A tier can hold more than one food group
+ * (e.g. vegetables + fruit sharing the base) so the diagram can separate groups without adding
+ * a visual level. */
+export type PyramidGroup = {
+  label: string;
+  servings?: string;
+};
+
+export type PyramidTier = {
+  id: string;
+  groups: PyramidGroup[];
+  note: string;
+  icon?: string;
+};
+
+export type PyramidBlock = {
+  title: string;
+  instruction: string;
+  /** Base tier first, apex last. */
+  tiers: PyramidTier[];
+  /** Footnote shown below the pyramid, e.g. daily water guidance. */
+  baseNote?: string;
+  /** Footnote for the apex — e.g. guidance to limit ultra-processed foods. */
+  limitNote?: string;
+  sourceLabel: string;
+};
+
+/** One organ/gland in the digestive tract diagram. Accessory organs (liver, gall bladder,
+ * pancreas) are not part of the alimentary canal, so they are drawn branching off the tract
+ * rather than in-line with it. */
+export type DigestiveOrgan = {
+  id: string;
+  label: string;
+  note?: string;
+  kind: "tract" | "accessory";
+  /** For accessory organs: the tract organ id it connects to. */
+  connectsTo?: string;
+};
+
+export type DigestiveSystemBlock = {
+  title: string;
+  instruction: string;
+  organs: DigestiveOrgan[];
+  tractLabel: string;
+  accessoryLabel: string;
+};
+
+export type ViskingTube = {
+  id: string;
+  label: string;
+  contents: string;
+};
+
+export type ViskingExperimentBlock = {
+  title: string;
+  instruction: string;
+  tubes: ViskingTube[];
+  surroundLabel: string;
+  testLabel: string;
+  resultCorrect: string;
+  resultIncorrect: string;
+  note: string;
+};
+
+export type VillusPathway = {
+  id: string;
+  label: string;
+  destination: string;
+  cargo: string;
+};
+
+export type VillusDiagramBlock = {
+  title: string;
+  instruction: string;
+  pathways: VillusPathway[];
+  wallLabel: string;
+  lumenLabel: string;
+};
+
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
@@ -195,6 +274,10 @@ export type ScienceInteractiveSection = {
   foodWeb?: FoodWebBlock;
   causeEffect?: CauseEffectBlock;
   adaptations?: AdaptationBlock;
+  pyramid?: PyramidBlock;
+  digestiveSystem?: DigestiveSystemBlock;
+  viskingExperiment?: ViskingExperimentBlock;
+  villusDiagram?: VillusDiagramBlock;
   matcher?: {
     title: string;
     instruction: string;
