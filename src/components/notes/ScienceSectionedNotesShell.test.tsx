@@ -33,6 +33,10 @@ describe("ScienceSectionedNotesShell", () => {
     expect(markup).toMatch(/<button[^>]*disabled=""[^>]*>.*Back/s);
     expect(markup).toContain("Next section");
     expect(markup).toContain("overflow-x-auto");
+    // `eyebrow` carries an internal curriculum-mapping code and must never reach students —
+    // see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md.
+    expect(markup).not.toContain("2.1");
+    expect(markup).not.toContain("2.2");
   });
 
   it("uses Form 1 BM controls and hides Next on the final section", () => {

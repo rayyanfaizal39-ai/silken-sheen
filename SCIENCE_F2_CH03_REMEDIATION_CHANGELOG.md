@@ -505,3 +505,70 @@ contexts — see the report line below.
 Chapter 3 is **not** declared frozen. This remains a content-correction pass on top of an
 architecture that has not yet had its dedicated visual-implementation or full-browser QA pass
 (see §12/§14 above, both still open).
+
+---
+
+## Learner-Facing Cleanup Pass (2026-08-24)
+
+Follow-up to `SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md`. **This chapter carried the
+largest concentration of leakage of the three** — almost entirely introduced by the two
+remediation passes immediately above this section, where labelling BMI/maltase/Kwashiorkor as
+"not core DSKP scope" was written directly into the student-facing card instead of staying an
+internal authoring decision. No academic content changed in this pass — only wording.
+
+**Fixed (BM + DLP):**
+- Protein card `detail` (Kwashiorkor): dropped "— bukan skop teras DSKP Bab 3" /
+  "— not core DSKP Chapter 3 scope"; kept "Pengetahuan Tambahan"/"Additional Knowledge" and the
+  Kwasyiorkor fact itself.
+- §3.1.1 Vitamin dan Mineral section `intro`: "DSKP mengehendaki enam vitamin..." / "The DSKP
+  requires six main vitamins..." → "Terdapat enam vitamin utama..." / "There are six main
+  vitamins you need to know...".
+- BMI card: title "— Pengayaan Buku Teks"/"— Textbook Enrichment" → "— Pengetahuan
+  Tambahan"/"— Additional Knowledge"; body dropped "BMI BUKAN keperluan teras DSKP Bab 3" /
+  "BMI is NOT a core DSKP requirement", replaced with plain "bukan sesuatu yang wajib anda
+  hafal" / "isn't something you need to memorise". Formula unchanged.
+- §3.2.3 "check yourself" question: **this was a verbatim match to the audit brief's own
+  worked "BAD" example.** "Namakan tiga penyakit... yang dinyatakan DSKP" / "Name three
+  diet-related diseases named in the DSKP" → "Namakan tiga penyakit yang boleh dikaitkan dengan
+  pemakanan dan gaya hidup yang tidak sihat" / "Name three diseases that may be associated with
+  unhealthy diet and lifestyle choices". Hint (five named diseases) and difficulty unchanged.
+- §3.3.1 Enzim section `intro`: "DSKP memperkenalkan tiga enzim..." / "The DSKP introduces
+  three digestive enzymes..." → "Terdapat tiga enzim pencernaan utama yang perlu anda
+  kenali..." / "There are three main digestive enzymes you need to know...".
+- Maltase accordion: title "➕ Butiran Buku Teks"/"➕ Textbook Detail" → "➕ Tahukah Anda"/"➕ Did
+  You Know"; body dropped "DSKP hanya mewajibkan tiga enzim..." / "The DSKP requires only three
+  enzymes...", replaced with "anda tidak perlu menghafalnya seperti tiga enzim utama di atas" /
+  "you don't need to memorise it like the three main enzymes above". The kanji→maltosa→glukosa
+  pathway science is unchanged.
+- Mind map node `c3-3-4`: "Maltase (butiran buku teks)"/"Maltase (textbook detail)" → "Maltase
+  (tambahan)"/"Maltase (extra)".
+- §3.4.1 Visking section `intro` and diagram `title`: "Eksperimen 3.1"/"Experiment 3.1"
+  numbered-exercise references (appearing twice each — the section's opening sentence and the
+  diagram caption) replaced with plain "eksperimen tiub Visking"/"Visking-tubing experiment"
+  phrasing. Procedure, variables and results are unchanged.
+- Section `eyebrow` (curriculum-code labels "3.1.1"–"3.4.3", the densest instance of this
+  pattern in any of the three chapters — 13 render sites) no longer rendered. Fixed once at the
+  shared `ScienceSectionedNotesShell.tsx` layer: the `<p>{active.eyebrow}</p>` line was
+  deleted, and the React list key (already `sec-${index}` from the SP-numbering pass above) was
+  never dependent on it. `number:` remains in every section's data for internal
+  traceability/QA — nothing was removed from the data files themselves, only from what
+  renders.
+
+**Not changed** (reviewed, judged acceptable): the NHMS-statistics accordion's closing line —
+"statistik ini adalah konteks sokongan, bukan fakta wajib hafal" / "these statistics are
+supporting context, not core facts to memorise" — is plain study guidance with no DSKP/
+textbook/document-authority framing (a teacher plausibly says this out loud), so it was left as
+is rather than mechanically flagged by the word "core".
+
+**New regression coverage:** `src/content/form2/science/learner-facing-leakage.test.ts` (24
+assertions across all three chapters' live BM+DLP surfaces) plus 6 new/updated assertions in
+`chapter-3-remediation.test.tsx` are unaffected — every existing science-content assertion
+(protein chain, enzyme sources, pyramid values, gall-bladder-not-a-gland, Visking outside-tube
+fix) still passes unmodified, which is itself evidence this pass changed wording only.
+
+**Verified:** typecheck PASS, build PASS, quiz integrity unchanged (30/30 both languages), lint
+clean on every touched file. Full findings, exact counts and the shared-shell mechanism
+writeup: `SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md` §"Post-Cleanup Verification".
+
+Chapter 3 is **still not** declared frozen — a final learner-facing visual QA pass (an actual
+browser click-through) remains outstanding, per the standing note in §12/§14 above.

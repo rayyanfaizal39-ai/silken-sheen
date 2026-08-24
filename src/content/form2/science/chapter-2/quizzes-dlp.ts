@@ -378,7 +378,7 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Excessive use of water for agricultural and domestic purposes is one of the three nutrient-cycle disruptions listed in the DSKP. Over-extraction lowers river and groundwater stores, reducing the resources available to living things and disrupting the water cycle. Solutions include conserving water and harvesting rainwater.",
+      "Excessive use of water for agricultural and domestic purposes is one of the three main disruptions to the nutrient cycle. Over-extraction lowers river and groundwater stores, reducing the resources available to living things and disrupting the water cycle. Solutions include conserving water and harvesting rainwater.",
   },
   {
     id: "sci-f2-c2-dlp-q25",

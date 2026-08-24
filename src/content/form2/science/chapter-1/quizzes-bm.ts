@@ -330,7 +330,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Kejayaan serangga walaupun poikiloterma disebabkan oleh eksoskeleton keras untuk perlindungan, saiz kecil yang membolehkan mereka menghuni banyak ceruk habitat, dan kadar pembiakan yang tinggi. [Nota KBAT — penaakulan lanjutan: buku teks hanya menyatakan bahawa serangga ialah kumpulan haiwan terbesar dengan 950,000 spesies; sebab-sebab di atas ialah huraian tambahan, bukan petikan buku teks.]",
+      "Kejayaan serangga walaupun poikiloterma disebabkan oleh eksoskeleton keras untuk perlindungan, saiz kecil yang membolehkan mereka menghuni banyak ceruk habitat, dan kadar pembiakan yang tinggi.",
   },
   {
     id: "sci-f2-c1-bm-q24",

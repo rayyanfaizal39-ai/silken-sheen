@@ -26,7 +26,7 @@ export const scienceF2C2MindMapDLP: MindNode = {
             { id: "c1-2-1", label: "Food chain: linear path" },
             { id: "c1-2-2", label: "Food web: interconnection of food chains" },
             { id: "c1-2-3", label: "Energy lost at each level (respiration, heat; faeces in consumers)" },
-            { id: "c1-2-4", label: "[Enrichment] Energy pyramid: energy decreases at higher levels" },
+            { id: "c1-2-4", label: "Energy pyramid (Additional Knowledge): energy decreases at higher levels" },
           ],
         },
       ],

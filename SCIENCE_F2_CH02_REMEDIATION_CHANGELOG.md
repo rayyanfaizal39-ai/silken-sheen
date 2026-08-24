@@ -307,3 +307,44 @@ CONFIRMED HIGH REMAINING: **0**
 UNRELATED CHAPTERS MODIFIED: NO
 LEGACY NOTES FILES DELETED: NO
 GLOBAL REWRITE PERFORMED: NO
+
+---
+
+## Learner-Facing Cleanup Pass (2026-08-24)
+
+Follow-up to `SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md`. No academic content changed — this
+pass only removed internal curriculum/audit language that had leaked into what students see.
+
+**Fixed (BM + DLP):**
+- `interactive-{bm,dlp}.ts` §2.2.3 "Gangguan Kitar Nutrien" accordion: title
+  "⭐ Pengayaan (di luar skop DSKP Bab 2)" → "⭐ Pengetahuan Tambahan"; body dropped the
+  "bukan salah satu daripada tiga gangguan yang disenaraikan dalam DSKP Bab 2" clause. The
+  fertiliser/eutrophication science itself is unchanged.
+- `interactive-{bm,dlp}.ts` §2.3.2 card `detail`: "Aktiviti cadangan dalam buku teks" →
+  "Contoh penyiasatan makmal" ("Suggested activity in the textbook" → "Example lab
+  investigation").
+- `quizzes-{bm,dlp}.ts` `q24` explanation: dropped "...yang disenaraikan dalam DSKP" /
+  "...listed in the DSKP"; kept "...salah satu daripada tiga gangguan utama kepada kitar
+  nutrien" / "...one of the three main disruptions to the nutrient cycle". `answerIndex`
+  unchanged.
+- `flashcards-{bm,dlp}.ts` `f40`: front tag "[Pengayaan — di luar skop Bab 2]" →
+  "[Tambahan]"/"[Extra]"; back note reworded off DSKP/textbook citation to plain study
+  guidance ("piramid tenaga bukan istilah wajib bagi bab ini").
+- `flashcards-{bm,dlp}.ts` `f59`: "Eksperimen 2.1" / "Experiment 2.1" numbered-exercise
+  reference replaced with "penyiasatan makmal" / "lab investigation" — same woodlice-hypothesis
+  question, no numbering.
+- `mindmap-{bm,dlp}.ts` node `c1-2-4`: "[Pengayaan]"/"[Enrichment]" tag standardised to the
+  canonical "(Pengetahuan Tambahan)"/"(Additional Knowledge)" label.
+- Section `eyebrow` (curriculum-code labels "2.1.1"–"2.4.1") no longer rendered — fixed once at
+  the shared `ScienceSectionedNotesShell.tsx` layer, not per chapter file. `number:` remains in
+  the data for internal traceability; section navigation is index-driven and unaffected.
+
+**New regression coverage:** `src/content/form2/science/learner-facing-leakage.test.ts` asserts
+no DSKP/textbook/audit-language patterns across this chapter's live BM+DLP content, alongside
+Chapters 1 and 3.
+
+**Verified:** typecheck PASS, build PASS, quiz integrity unchanged (30/30 both languages), all
+previously-frozen Chapter 2 corrections (food web, primary/secondary carnivore terminology,
+excessive water use, migration/water-supply/population-change teaching, adaptation examples,
+population factors) re-checked and untouched by this pass. Full findings and counts:
+`SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md` §"Post-Cleanup Verification".

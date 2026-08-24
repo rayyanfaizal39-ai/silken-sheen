@@ -378,7 +378,7 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Penggunaan sumber air yang berlebihan untuk pertanian dan kegunaan domestik ialah salah satu daripada tiga gangguan kitar nutrien yang disenaraikan dalam DSKP. Pengambilan berlebihan mengurangkan simpanan air sungai dan air bawah tanah, sekali gus mengurangkan sumber untuk hidupan dan mengganggu kitar air. Langkah penyelesaian termasuk menjimatkan air dan menyimpan air hujan.",
+      "Penggunaan sumber air yang berlebihan untuk pertanian dan kegunaan domestik ialah salah satu daripada tiga gangguan utama kepada kitar nutrien. Pengambilan berlebihan mengurangkan simpanan air sungai dan air bawah tanah, sekali gus mengurangkan sumber untuk hidupan dan mengganggu kitar air. Langkah penyelesaian termasuk menjimatkan air dan menyimpan air hujan.",
   },
   {
     id: "sci-f2-c2-bm-q25",

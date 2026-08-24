@@ -361,8 +361,8 @@ export const scienceF2C2FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     lang: "dlp",
-    front: "[Enrichment — beyond Chapter 2 scope] Compare the energy pyramid concept with linear energy flow in a food chain.",
-    back: "Linear energy flow: energy moves from producer to consumers sequentially. Energy pyramid: visual representation that usable energy decreases at each higher trophic level. Note: the term energy pyramid appears in neither the DSKP nor the Chapter 2 textbook — treat it as additional information.",
+    front: "[Extra] Compare the energy pyramid concept with linear energy flow in a food chain.",
+    back: "Linear energy flow: energy moves from producer to consumers sequentially. Energy pyramid: visual representation that usable energy decreases at each higher trophic level. Note: 'energy pyramid' isn't a required term for this chapter — it just helps visualise the same idea.",
   },
 
   // Deck 3: Exam (Cards 41-60)
@@ -534,7 +534,7 @@ export const scienceF2C2FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     lang: "dlp",
-    front: "What hypothesis was tested in Experiment 2.1 about woodlice?",
+    front: "In the woodlice lab investigation, what hypothesis was tested?",
     back: "Woodlice gather in medium temperature, dark and damp/humid places — showing temperature, light and humidity influence organism distribution.",
   },
   {

@@ -117,7 +117,7 @@ export const scienceF2C3MindMapBM: MindNode = {
             { id: "c3-3-1", label: "Amilase: kanji → maltosa (kelenjar air liur & pankreas)" },
             { id: "c3-3-2", label: "Protease perut: protein → polipeptida" },
             { id: "c3-3-3", label: "Protease pankreas: polipeptida → dipeptida" },
-            { id: "c3-3-4", label: "Maltase (butiran buku teks): maltosa → glukosa" },
+            { id: "c3-3-4", label: "Maltase (tambahan): maltosa → glukosa" },
             { id: "c3-3-5", label: "Protease usus: dipeptida → asid amino" },
             { id: "c3-3-6", label: "Lipase: lemak → asid lemak + gliserol (pankreas & usus kecil)" },
           ],

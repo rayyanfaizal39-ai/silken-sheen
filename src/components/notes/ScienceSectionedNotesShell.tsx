@@ -6,6 +6,9 @@ type Lang = "en" | "bm";
 
 export type ScienceNotesSection = {
   key: string;
+  /** Internal curriculum-mapping reference (e.g. a Standard Pembelajaran code). Kept on the
+   * type for content-ops/QA traceability, but intentionally never rendered to students — see
+   * SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. */
   eyebrow: string;
   label: string;
   title: string;
@@ -91,9 +94,6 @@ export function ScienceSectionedNotesShell({
       </div>
 
       <div className="science-research-module-shell relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">
-          {active.eyebrow}
-        </p>
         <h2 className="science-research-title font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">
           {active.title}
         </h2>

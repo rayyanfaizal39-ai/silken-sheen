@@ -243,3 +243,31 @@ CONFIRMED HIGH ISSUES REMAINING: **0** *(all HIGH items either remediated or for
 UNRELATED CHAPTERS MODIFIED: NO
 LEGACY NOTES FILES DELETED: NO
 GLOBAL REWRITE PERFORMED: NO
+
+---
+
+## Learner-Facing Cleanup Pass (2026-08-24)
+
+Follow-up to `SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md`. No academic content changed — this
+pass only removed internal curriculum/audit language that had leaked into what students see.
+
+**Fixed:**
+- `quizzes-{bm,dlp}.ts` `q23` explanation: deleted a bracketed reviewer note
+  ("[Nota KBAT — ...buku teks hanya menyatakan..." / "[KBAT note — ...the textbook states
+  only...") that explained internal answer-sourcing to a content reviewer rather than teaching
+  the student. The scientific explanation sentence itself, the question, options and
+  `answerIndex` are all unchanged.
+- `ScienceF2Chapter1NotesBlock.tsx`'s hardcoded section `eyebrow` values (`"1.1"`, `"1.2"`) are
+  no longer rendered — fixed at the shared `ScienceSectionedNotesShell.tsx` rendering layer
+  (see the Chapter 3 changelog for the full mechanism writeup), not by deleting the values from
+  this component. Section navigation is index-driven and unaffected.
+
+**New regression coverage:** `ScienceF2Chapter1NotesBlock.test.tsx` (asserts "1.1"/"1.2" never
+render) and `src/content/form2/science/learner-facing-leakage.test.ts` (asserts no
+DSKP/textbook/audit-language patterns across all three chapters' live BM+DLP content).
+
+**Verified:** typecheck PASS, build PASS, quiz integrity unchanged (30/30 both languages), all
+previously-frozen Chapter 1 corrections (dichotomous key, amphibian breathing, invertebrate
+hierarchy, endemic vs threatened, human impact, "bulu pelepah") re-checked and untouched by this
+pass. Full findings and counts: `SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md` §"Post-Cleanup
+Verification".

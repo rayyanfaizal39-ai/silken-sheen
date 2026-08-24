@@ -300,8 +300,8 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       },
       accordions: [
         {
-          title: "⭐ Enrichment (beyond DSKP Chapter 2 scope) — Fertiliser overuse and eutrophication",
-          body: "Excess fertiliser is washed into rivers and lakes. The extra nutrients trigger algal blooms; when the algae die and decompose, dissolved oxygen in the water falls and aquatic life suffers. This is not one of the three disruptions listed in DSKP Chapter 2 — treat it as additional information.",
+          title: "⭐ Additional Knowledge — Fertiliser overuse and eutrophication",
+          body: "Excess fertiliser is washed into rivers and lakes. The extra nutrients trigger algal blooms; when the algae die and decompose, dissolved oxygen in the water falls and aquatic life suffers.",
         },
       ],
       checks: [
@@ -463,7 +463,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
         {
           title: "Environmental factors decide distribution",
           body: "Temperature, light and humidity decide where organisms gather. In the woodlice investigation, the woodlice gathered in the damp, dark area at a moderate temperature.",
-          detail: "Suggested activity in the textbook",
+          detail: "Example lab investigation",
         },
       ],
       checks: [

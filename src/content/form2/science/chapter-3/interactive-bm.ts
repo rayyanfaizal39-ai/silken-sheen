@@ -44,7 +44,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
           title: "Protein",
           body: "Untuk pertumbuhan dan pembaikan tisu badan, serta mensintesis enzim, hormon dan antibodi. Dicernakan kepada asid amino. Sumber: ikan, ayam, telur, kekacang, daging, susu.",
           detail:
-            "Pengetahuan Tambahan: kekurangan teruk protein dikaitkan dengan Kwasyiorkor (kanak-kanak 1–3 tahun) — bukan skop teras DSKP Bab 3.",
+            "Pengetahuan Tambahan: kekurangan teruk protein dikaitkan dengan Kwasyiorkor (kanak-kanak 1–3 tahun).",
         },
         {
           title: "Lemak",
@@ -82,7 +82,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       number: "3.1.1",
       title: "Vitamin dan Mineral",
       intro:
-        "DSKP mengehendaki enam vitamin utama dan enam mineral utama diperkenalkan bersama sumber, kepentingan dan kesan kekurangan masing-masing.",
+        "Terdapat enam vitamin utama dan enam mineral utama yang perlu anda kenali, bersama sumber, kepentingan dan kesan kekurangan masing-masing.",
       cards: [
         {
           title: "Vitamin A",
@@ -325,8 +325,8 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       ],
       cards: [
         {
-          title: "Indeks Jisim Badan (BMI) — Pengayaan Buku Teks",
-          body: "BMI = Jisim (kg) ÷ [Ketinggian (m) × Ketinggian (m)]. Formula ini digunakan untuk menilai status jisim badan, tetapi BMI BUKAN keperluan teras DSKP Bab 3 — ia adalah butiran tambahan daripada buku teks.",
+          title: "Indeks Jisim Badan (BMI) — Pengetahuan Tambahan",
+          body: "BMI = Jisim (kg) ÷ [Ketinggian (m) × Ketinggian (m)]. Formula ini digunakan untuk menilai status jisim badan, tetapi ia bukan sesuatu yang wajib anda hafal untuk bab ini.",
         },
       ],
       checks: [
@@ -389,7 +389,8 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       ],
       checks: [
         {
-          question: "Namakan tiga penyakit berkaitan pemakanan tidak sihat yang dinyatakan DSKP.",
+          question:
+            "Namakan tiga penyakit yang boleh dikaitkan dengan pemakanan dan gaya hidup yang tidak sihat.",
           hint: "Penyakit jantung, tekanan darah tinggi, kencing manis, kanser kulit atau kanser peparu.",
         },
         {
@@ -557,7 +558,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       number: "3.3.1",
       title: "Enzim dan Pencernaan Kimia",
       intro:
-        "DSKP memperkenalkan tiga enzim pencernaan: amilase, protease dan lipase. Setiap satu dirembeskan oleh lebih daripada satu organ dan bertindak pada substrat yang berbeza di setiap peringkat.",
+        "Terdapat tiga enzim pencernaan utama yang perlu anda kenali: amilase, protease dan lipase. Setiap satu dirembeskan oleh lebih daripada satu organ dan bertindak pada substrat yang berbeza di setiap peringkat.",
       tabs: [
         {
           title: "Amilase",
@@ -578,8 +579,8 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
           body: "Dirembeskan oleh dinding perut bersama protease. Dua fungsi utama: mengaktifkan protease dan membunuh bakteria dalam makanan yang masuk ke dalam perut.",
         },
         {
-          title: "➕ Butiran Buku Teks: Maltase",
-          body: "Usus kecil turut merembeskan maltase, yang mencerna maltosa → glukosa, melengkapkan laluan karbohidrat: kanji → maltosa → glukosa. DSKP hanya mewajibkan tiga enzim (amilase, protease, lipase), jadi maltase adalah butiran tambahan buku teks — bukan keperluan teras untuk dihafal.",
+          title: "➕ Tahukah Anda: Maltase",
+          body: "Usus kecil turut merembeskan maltase, yang mencerna maltosa → glukosa, melengkapkan laluan karbohidrat: kanji → maltosa → glukosa. Maltase adalah butiran tambahan — anda tidak perlu menghafalnya seperti tiga enzim utama di atas.",
         },
       ],
       checks: [
@@ -653,7 +654,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       number: "3.4.1",
       title: "Eksperimen Tiub Visking",
       intro:
-        "Eksperimen 3.1 menggunakan tiub Visking sebagai model dinding usus kecil untuk mengkaji penyerapan hasil pencernaan.",
+        "Dalam eksperimen tiub Visking ini, tiub Visking digunakan sebagai model dinding usus kecil untuk mengkaji penyerapan hasil pencernaan.",
       accordions: [
         {
           title: "🎯 Tujuan & Hipotesis",
@@ -677,7 +678,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
       ],
       viskingExperiment: {
-        title: "Susunan radas Eksperimen 3.1",
+        title: "Susunan radas eksperimen tiub Visking",
         instruction:
           "Kedua-dua tiub Visking direndam dalam air suling berasingan. Ujian makanan dijalankan pada air suling DI LUAR tiub, bukan pada kandungan di dalam tiub.",
         tubes: [

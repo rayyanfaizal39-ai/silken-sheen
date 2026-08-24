@@ -26,7 +26,7 @@ export const scienceF2C2MindMapBM: MindNode = {
             { id: "c1-2-1", label: "Rantai makanan: laluan linear" },
             { id: "c1-2-2", label: "Siratan makanan: gabungan rantai makanan" },
             { id: "c1-2-3", label: "Tenaga hilang setiap aras (respirasi, haba; najis pada pengguna)" },
-            { id: "c1-2-4", label: "[Pengayaan] Piramid tenaga: tenaga berkurang ke aras lebih tinggi" },
+            { id: "c1-2-4", label: "Piramid tenaga (Pengetahuan Tambahan): tenaga berkurang ke aras lebih tinggi" },
           ],
         },
       ],

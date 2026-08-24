@@ -117,7 +117,7 @@ export const scienceF2C3MindMapDLP: MindNode = {
             { id: "c3-3-1", label: "Amylase: starch → maltose (salivary glands & pancreas)" },
             { id: "c3-3-2", label: "Stomach protease: protein → polypeptide" },
             { id: "c3-3-3", label: "Pancreatic protease: polypeptide → dipeptide" },
-            { id: "c3-3-4", label: "Maltase (textbook detail): maltose → glucose" },
+            { id: "c3-3-4", label: "Maltase (extra): maltose → glucose" },
             { id: "c3-3-5", label: "Small intestine protease: dipeptide → amino acid" },
             { id: "c3-3-6", label: "Lipase: fat → fatty acid + glycerol (pancreas & small intestine)" },
           ],

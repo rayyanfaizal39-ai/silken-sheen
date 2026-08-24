@@ -300,8 +300,8 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       },
       accordions: [
         {
-          title: "⭐ Pengayaan (di luar skop DSKP Bab 2) — Baja berlebihan dan eutrofikasi",
-          body: "Baja yang berlebihan dihanyutkan ke sungai dan tasik. Nutrien tambahan ini mencetuskan ledakan alga; apabila alga mati dan diuraikan, oksigen terlarut dalam air berkurang lalu menjejaskan hidupan akuatik. Ini bukan salah satu daripada tiga gangguan yang disenaraikan dalam DSKP Bab 2 — anggap ia sebagai maklumat tambahan.",
+          title: "⭐ Pengetahuan Tambahan — Baja berlebihan dan eutrofikasi",
+          body: "Baja yang berlebihan dihanyutkan ke sungai dan tasik. Nutrien tambahan ini mencetuskan ledakan alga; apabila alga mati dan diuraikan, oksigen terlarut dalam air berkurang lalu menjejaskan hidupan akuatik.",
         },
       ],
       checks: [
@@ -463,7 +463,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         {
           title: "Faktor persekitaran menentukan taburan",
           body: "Suhu, cahaya dan kelembapan menentukan di mana sesuatu organisma berkumpul. Dalam penyiasatan kutu kayu, kutu kayu berkumpul di kawasan yang lembap, gelap dan bersuhu sederhana.",
-          detail: "Aktiviti cadangan dalam buku teks",
+          detail: "Contoh penyiasatan makmal",
         },
       ],
       checks: [

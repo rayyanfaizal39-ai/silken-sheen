@@ -44,7 +44,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
           title: "Protein",
           body: "For growth and repair of body tissues, and to synthesise enzymes, hormones and antibodies. Digested into amino acids. Sources: fish, chicken, eggs, legumes, meat, milk.",
           detail:
-            "Additional Knowledge: severe protein deficiency is linked to Kwashiorkor (children aged 1–3) — not core DSKP Chapter 3 scope.",
+            "Additional Knowledge: severe protein deficiency is linked to Kwashiorkor (children aged 1–3).",
         },
         {
           title: "Fat",
@@ -82,7 +82,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       number: "3.1.1",
       title: "Vitamins and Minerals",
       intro:
-        "The DSKP requires six main vitamins and six main minerals to be introduced, each with its source, importance and deficiency effect.",
+        "There are six main vitamins and six main minerals you need to know, each with its source, importance and deficiency effect.",
       cards: [
         {
           title: "Vitamin A",
@@ -322,8 +322,8 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       ],
       cards: [
         {
-          title: "Body Mass Index (BMI) — Textbook Enrichment",
-          body: "BMI = Mass (kg) ÷ [Height (m) × Height (m)]. This formula is used to assess body mass status, but BMI is NOT a core DSKP requirement in Chapter 3 — it is additional textbook detail.",
+          title: "Body Mass Index (BMI) — Additional Knowledge",
+          body: "BMI = Mass (kg) ÷ [Height (m) × Height (m)]. This formula is used to assess body mass status, but it isn't something you need to memorise for this chapter.",
         },
       ],
       checks: [
@@ -385,7 +385,8 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       ],
       checks: [
         {
-          question: "Name three diet-related diseases named in the DSKP.",
+          question:
+            "Name three diseases that may be associated with unhealthy diet and lifestyle choices.",
           hint: "Heart disease, high blood pressure, diabetes, skin cancer or lung cancer.",
         },
         {
@@ -553,7 +554,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       number: "3.3.1",
       title: "Enzymes and Chemical Digestion",
       intro:
-        "The DSKP introduces three digestive enzymes: amylase, protease and lipase. Each is secreted by more than one organ and acts on a different substrate at each stage.",
+        "There are three main digestive enzymes you need to know: amylase, protease and lipase. Each is secreted by more than one organ and acts on a different substrate at each stage.",
       tabs: [
         {
           title: "Amylase",
@@ -574,8 +575,8 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
           body: "Secreted by the stomach wall together with protease. Two main functions: activates protease and kills bacteria in food entering the stomach.",
         },
         {
-          title: "➕ Textbook Detail: Maltase",
-          body: "The small intestine also secretes maltase, which digests maltose → glucose, completing the carbohydrate pathway: starch → maltose → glucose. The DSKP requires only three enzymes (amylase, protease, lipase), so maltase is additional textbook detail — not a core requirement to memorise.",
+          title: "➕ Did You Know: Maltase",
+          body: "The small intestine also secretes maltase, which digests maltose → glucose, completing the carbohydrate pathway: starch → maltose → glucose. Maltase is additional detail — you don't need to memorise it like the three main enzymes above.",
         },
       ],
       checks: [
@@ -649,7 +650,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       number: "3.4.1",
       title: "The Visking Tubing Experiment",
       intro:
-        "Experiment 3.1 uses Visking tubing as a model of the small intestine wall to study the absorption of digested products.",
+        "In this Visking-tubing experiment, Visking tubing is used as a model of the small intestine wall to study the absorption of digested products.",
       accordions: [
         {
           title: "🎯 Aim & Hypothesis",
@@ -673,7 +674,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
       viskingExperiment: {
-        title: "Experiment 3.1 apparatus set-up",
+        title: "Visking-tubing experiment apparatus set-up",
         instruction:
           "Both Visking tubes are immersed in separate distilled water baths. Food tests are carried out on the water OUTSIDE the tubing, not on its contents.",
         tubes: [
