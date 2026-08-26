@@ -48,9 +48,12 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 1 Strategi Memahami dan Menjawab KOMSAS mind map", () => {
-  it("registers exactly one interactive Form 1 KOMSAS topic", () => {
-    expect(bahasaMelayuTingkatan1KomsasRegistry).toHaveLength(1);
-    expect(bahasaMelayuTingkatan1KomsasRegistry.map((topic) => topic.chapterKey)).toEqual([title]);
+  it("registers the strategy first in the two-topic interactive Form 1 KOMSAS registry", () => {
+    expect(bahasaMelayuTingkatan1KomsasRegistry).toHaveLength(2);
+    expect(bahasaMelayuTingkatan1KomsasRegistry.map((topic) => topic.chapterKey)).toEqual([
+      title,
+      "Asal Padi",
+    ]);
 
     const chapter = getChapter("bm", title, undefined, "Form 1");
     expect(chapter).toMatchObject({
@@ -74,14 +77,14 @@ describe("Bahasa Melayu Form 1 Strategi Memahami dan Menjawab KOMSAS mind map", 
     expect(chapter).not.toHaveProperty("video");
   });
 
-  it("keeps KOMSAS isolated to Form 1 with disabled previous and next navigation", () => {
+  it("keeps the strategy isolated to Form 1 with Asal Padi as its next KOMSAS topic", () => {
     const form1Topics = getRegisteredSubjectChapters("bm", undefined, "Form 1").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = form1Topics.findIndex((topic) => topic.key === title);
-    expect(form1Topics).toHaveLength(1);
+    expect(form1Topics).toHaveLength(2);
     expect(form1Topics[index - 1]).toBeUndefined();
-    expect(form1Topics[index + 1]).toBeUndefined();
+    expect(form1Topics[index + 1]?.key).toBe("Asal Padi");
     expect(getChapter("bm", title, undefined, "Form 2")).toBeUndefined();
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
