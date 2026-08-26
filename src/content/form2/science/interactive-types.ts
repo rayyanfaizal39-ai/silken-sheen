@@ -288,6 +288,63 @@ export type EnzymeExplorerBlock = {
   enzymes: EnzymeEntry[];
 };
 
+/** One curve or marker on the antibody-response graph. */
+export type ImmuneResponseItem = { id: string; label: string; note: string };
+
+export type ImmuneResponseGraphBlock = {
+  title: string;
+  instruction?: string;
+  xAxisLabel: string;
+  yAxisLabel: string;
+  immuneLevelLabel: string;
+  items: ImmuneResponseItem[];
+  hint: string;
+};
+
+/** One line of the body's defence. `group` drives the specific / non-specific split. */
+export type DefenceLine = {
+  id: string;
+  name: string;
+  /** The structures or cells involved, e.g. "Kulit, membran mukus". */
+  parts: string;
+  note: string;
+  group: "non-specific" | "specific";
+};
+
+export type DefenceLinesBlock = {
+  title: string;
+  instruction?: string;
+  pathogenLabel: string;
+  nonSpecificLabel: string;
+  specificLabel: string;
+  lines: DefenceLine[];
+  hint: string;
+};
+
+/** One cell of the active/passive x natural/artificial immunity grid. */
+export type ImmunityCell = {
+  id: string;
+  row: "active" | "passive";
+  column: "natural" | "artificial";
+  name: string;
+  /** How it is acquired, e.g. "Selepas sembuh daripada jangkitan". */
+  source: string;
+  /** How quickly it acts and how long it lasts. */
+  duration: string;
+  note: string;
+};
+
+export type ImmunityMatrixBlock = {
+  title: string;
+  instruction?: string;
+  activeLabel: string;
+  passiveLabel: string;
+  naturalLabel: string;
+  artificialLabel: string;
+  cells: ImmunityCell[];
+  hint: string;
+};
+
 /** One term shown in the ecological terms relationship diagram. */
 export type EcologicalTerm = {
   term: string;
@@ -407,6 +464,9 @@ export type ScienceInteractiveSection = {
   villusDiagram?: VillusDiagramBlock;
   ecologicalTerms?: EcologicalTermsBlock;
   enzymeExplorer?: EnzymeExplorerBlock;
+  immuneResponseGraph?: ImmuneResponseGraphBlock;
+  defenceLines?: DefenceLinesBlock;
+  immunityMatrix?: ImmunityMatrixBlock;
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {

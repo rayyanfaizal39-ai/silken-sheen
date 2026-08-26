@@ -23,10 +23,18 @@ import { scienceF2C3FlashcardsBM } from "./chapter-3/flashcards-bm";
 import { scienceF2C3FlashcardsDLP } from "./chapter-3/flashcards-dlp";
 import { scienceF2C3MindMapBM } from "./chapter-3/mindmap-bm";
 import { scienceF2C3MindMapDLP } from "./chapter-3/mindmap-dlp";
+import { scienceF2C4InteractiveBM } from "./chapter-4/interactive-bm";
+import { scienceF2C4InteractiveDLP } from "./chapter-4/interactive-dlp";
+import { scienceF2C4QuizzesBM } from "./chapter-4/quizzes-bm";
+import { scienceF2C4QuizzesDLP } from "./chapter-4/quizzes-dlp";
+import { scienceF2C4FlashcardsBM } from "./chapter-4/flashcards-bm";
+import { scienceF2C4FlashcardsDLP } from "./chapter-4/flashcards-dlp";
+import { scienceF2C4MindMapBM } from "./chapter-4/mindmap-bm";
+import { scienceF2C4MindMapDLP } from "./chapter-4/mindmap-dlp";
 
 /**
  * Guards against curriculum/audit/textbook metadata leaking into learner-facing Form 2
- * Science Chapter 1-3 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
+ * Science Chapter 1-4 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
  * live, student-facing data files (registered in src/content/registry.ts), not the dead
  * notes-{bm,dlp}.ts legacy files, which are intentionally excluded.
  */
@@ -56,6 +64,14 @@ const LIVE_SURFACES: Record<string, unknown> = {
   "ch3 flashcards dlp": scienceF2C3FlashcardsDLP,
   "ch3 mindmap bm": scienceF2C3MindMapBM,
   "ch3 mindmap dlp": scienceF2C3MindMapDLP,
+  "ch4 interactive bm": scienceF2C4InteractiveBM,
+  "ch4 interactive dlp": scienceF2C4InteractiveDLP,
+  "ch4 quizzes bm": scienceF2C4QuizzesBM,
+  "ch4 quizzes dlp": scienceF2C4QuizzesDLP,
+  "ch4 flashcards bm": scienceF2C4FlashcardsBM,
+  "ch4 flashcards dlp": scienceF2C4FlashcardsDLP,
+  "ch4 mindmap bm": scienceF2C4MindMapBM,
+  "ch4 mindmap dlp": scienceF2C4MindMapDLP,
 };
 
 const FORBIDDEN_PATTERNS: [string, RegExp][] = [
