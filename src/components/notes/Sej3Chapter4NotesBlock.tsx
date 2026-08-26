@@ -120,7 +120,7 @@ export function Sej3Chapter4NotesBlock({
             <img
               src={warisanSenibina}
               alt="Warisan Senibina Negeri-negeri Melayu Tidak Bersekutu"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {content.stateGovernance.map((s) => (

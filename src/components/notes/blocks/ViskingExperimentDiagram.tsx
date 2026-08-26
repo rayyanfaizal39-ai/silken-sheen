@@ -1,4 +1,5 @@
 import type { ViskingExperimentBlock } from "@/content/form2/science/interactive-types";
+import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
 
 /**
  * Diagram for Eksperimen 3.1 (Visking-tubing absorption model): two boiling
@@ -8,11 +9,49 @@ import type { ViskingExperimentBlock } from "@/content/form2/science/interactive
  * earlier NotebookLM-sourced summary got backwards, so the diagram marks the
  * test location explicitly rather than leaving it to be inferred.
  */
-export function ViskingExperimentDiagram({ block }: { block: ViskingExperimentBlock }) {
+export function ViskingExperimentDiagram({
+  block,
+  enlargeLabel,
+  closeLabel,
+  hintLabel,
+}: {
+  block: ViskingExperimentBlock;
+  enlargeLabel?: string;
+  closeLabel?: string;
+  hintLabel?: string;
+}) {
+  const image = block.image;
+  const imageAnnotations: ImageAnnotation[] = image
+    ? [
+        ...image.points.flatMap((point) => {
+          const tube = block.tubes.find((t) => t.id === point.id);
+          return tube
+            ? [{ id: tube.id, label: tube.contents, note: tube.label, x: point.x, y: point.y }]
+            : [];
+        }),
+        ...(image.extra ?? []),
+      ]
+    : [];
+
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
       <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">{block.instruction}</p>
 
+      {image ? (
+        <AnnotatedImage
+          src={image.src}
+          alt={image.alt}
+          size={image.size ?? "compact"}
+          aspect={image.aspect ?? "3 / 2"}
+          caption={image.caption}
+          legendLabel={image.legendLabel ?? block.title}
+          annotationMode={image.annotationMode ?? "labels"}
+          annotations={imageAnnotations}
+          enlargeLabel={enlargeLabel}
+          closeLabel={closeLabel}
+          hintLabel={hintLabel}
+        />
+      ) : (
       <div className="grid grid-cols-2 gap-4">
         {block.tubes.map((tube) => (
           <div key={tube.id} className="flex flex-col items-center">
@@ -65,6 +104,7 @@ export function ViskingExperimentDiagram({ block }: { block: ViskingExperimentBl
           </div>
         ))}
       </div>
+      )}
 
       <div className="mt-3 flex items-center justify-center gap-1.5 text-[10.5px] text-primary">
         <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />

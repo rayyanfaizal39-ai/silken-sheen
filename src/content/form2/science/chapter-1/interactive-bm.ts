@@ -4,6 +4,11 @@ import habitatSeaImg from "@/assets/notes/form2-science/chapter-1/sea.jpg";
 import habitatDesertImg from "@/assets/notes/form2-science/chapter-1/desert.jpg";
 import habitatPolarImg from "@/assets/notes/form2-science/chapter-1/polar.jpg";
 import habitatSoilImg from "@/assets/notes/form2-science/chapter-1/soil.jpg";
+import animalOverviewImg from "@/assets/notes/form2-science/chapter-1/chapter1_animal_classification_overview.webp";
+import vertebrateGroupsImg from "@/assets/notes/form2-science/chapter-1/chapter1_five_vertebrate_groups.webp";
+import invertebrateGroupsImg from "@/assets/notes/form2-science/chapter-1/chapter1_invertebrate_classification.webp";
+import plantGroupsImg from "@/assets/notes/form2-science/chapter-1/chapter1_plant_classification.webp";
+import keyOrganismSetImg from "@/assets/notes/form2-science/chapter-1/chapter1_dichotomous_key_organism_set.webp";
 
 const dichotomousKeyBM: DichotomousQuestion = {
   type: "question",
@@ -49,6 +54,82 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     title: "🌸 Blog Sains — Bunga Rafflesia",
     body: "Malaysia merupakan habitat bagi bunga terbesar di dunia, iaitu bunga rafflesia — tumbuhan parasit ini tidak mempunyai daun atau akar, dan mengeluarkan bau seperti bahan reput semasa berbunga sepenuhnya untuk menarik pendebunga.",
     imagePath: rafflesiaImg,
+  },
+  classificationImages: {
+    animalOverview: {
+      src: animalOverviewImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "Haiwan bertulang belakang seperti ikan, katak, cicak, burung dan kucing di sebelah kiri; haiwan tanpa tulang belakang seperti rama-rama, labah-labah, obor-obor, siput dan cacing di sebelah kanan.",
+      aspect: "3 / 2",
+      annotations: [
+        { id: "vert", label: "Vertebrata", x: 26, y: 8, note: "Haiwan yang mempunyai tulang belakang di dalam badannya." },
+        { id: "vert-trait", label: "Ada tulang belakang", x: 26, y: 95, note: "Tulang belakang menyokong badan dan melindungi saraf tunjang." },
+        { id: "invert", label: "Invertebrata", x: 74, y: 8, note: "Haiwan yang tidak mempunyai tulang belakang." },
+        { id: "invert-trait", label: "Tiada tulang belakang", x: 74, y: 95, note: "Badan disokong oleh rangka luar atau tekanan cecair, bukan tulang belakang." },
+      ],
+    },
+    vertebrateGroups: {
+      src: vertebrateGroupsImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "Lima kumpulan vertebrata: seekor ikan di dalam air, seekor katak di tepi kolam, seekor cicak di atas tanah, seekor burung di atas dahan dan seekor kucing di atas rumput.",
+      aspect: "4 / 3",
+      annotations: [
+        { id: "fish", label: "Ikan", x: 17, y: 48, note: "Berdarah sejuk, bernafas melalui insang, badan bersisik dan mempunyai sirip untuk berenang." },
+        { id: "amphibian", label: "Amfibia", x: 46, y: 49, note: "Berdarah sejuk. Berudu bernafas melalui insang; dewasa bernafas melalui peparu dan kulit lembap." },
+        { id: "reptile", label: "Reptilia", x: 79, y: 51, note: "Berdarah sejuk, bernafas melalui peparu, kulit bersisik kering dan bertelur bercengkerang." },
+        { id: "bird", label: "Burung", x: 29, y: 88, note: "Berdarah panas, badan dilitupi bulu pelepah, bernafas melalui peparu dan bertelur." },
+        { id: "mammal", label: "Mamalia", x: 68, y: 89, note: "Berdarah panas, badan berambut, bernafas melalui peparu dan menyusukan anak." },
+      ],
+    },
+    invertebrateGroups: {
+      src: invertebrateGroupsImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "Empat kumpulan invertebrata dalam empat panel: siput dan obor-obor; cacing tanah dan lintah; belalang; labah-labah, ketam dan lipan.",
+      aspect: "4 / 3",
+      legendLabel: "Empat kumpulan invertebrata",
+      caption: "Setiap panel mengumpulkan haiwan yang berkongsi ciri yang sama.",
+      annotations: [
+        { id: "unseg", label: "Tiada kaki + badan tidak bersegmen", x: 27, y: 10, note: "Contoh: siput dan obor-obor. Badan lembut tanpa segmen dan tanpa kaki." },
+        { id: "seg", label: "Tiada kaki + badan bersegmen", x: 73, y: 10, note: "Contoh: cacing tanah dan lintah. Badan bersegmen berbentuk gelang, tanpa kaki." },
+        { id: "three", label: "3 pasang kaki", x: 27, y: 56, note: "Contoh: belalang. Serangga mempunyai tiga pasang kaki dan badan terbahagi kepada tiga bahagian." },
+        { id: "more", label: "Lebih daripada 3 pasang kaki", x: 73, y: 56, note: "Contoh: labah-labah, ketam dan lipan. Mempunyai lebih daripada tiga pasang kaki." },
+      ],
+    },
+    plantGroups: {
+      src: plantGroupsImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "Empat kumpulan tumbuhan: lumut di atas batu, paku pakis dengan sorus di bawah daun, pokok konifer dengan kon, dan tumbuhan berbunga dengan bunga dan buah.",
+      aspect: "1 / 1",
+      annotations: [
+        { id: "moss", label: "Lumut", x: 26, y: 47, note: "Tumbuhan tidak bervaskular. Tiada tisu pengangkut, membiak dengan spora dan tumbuh rendah di tempat lembap." },
+        { id: "fern", label: "Paku pakis", x: 71, y: 47, note: "Tumbuhan bervaskular tanpa bunga atau biji. Membiak dengan spora yang terdapat di bawah daun." },
+        { id: "conifer", label: "Konifer", x: 26, y: 96, note: "Tumbuhan berbiji tanpa bunga. Bijinya terdedah di dalam kon." },
+        { id: "flowering", label: "Tumbuhan berbunga", x: 72, y: 96, note: "Tumbuhan berbunga. Biji terlindung di dalam buah yang terbentuk daripada bunga." },
+      ],
+    },
+    keyOrganismSet: {
+      src: keyOrganismSetImg,
+      annotationMode: "clean",
+      size: "compact",
+      alt: "Lapan organisma disusun untuk perbandingan ciri: ikan, katak, cicak, burung, kucing, rama-rama, labah-labah dan siput.",
+      aspect: "3 / 2",
+      caption:
+        "Rujukan ciri: bandingkan tulang belakang, litupan badan dan bilangan kaki sebelum menjawab setiap soalan kunci di bawah.",
+      annotations: [
+        { id: "fish", label: "Ikan", x: 14, y: 51, note: "Berdarah sejuk, bernafas melalui insang, badan bersisik dan mempunyai sirip untuk berenang." },
+        { id: "frog", label: "Katak", x: 37, y: 51 },
+        { id: "lizard", label: "Cicak", x: 61, y: 51 },
+        { id: "bird", label: "Burung", x: 85, y: 51, note: "Berdarah panas, badan dilitupi bulu pelepah, bernafas melalui peparu dan bertelur." },
+        { id: "cat", label: "Kucing", x: 14, y: 94 },
+        { id: "butterfly", label: "Rama-rama", x: 37, y: 94 },
+        { id: "spider", label: "Labah-labah", x: 61, y: 94 },
+        { id: "snail", label: "Siput", x: 85, y: 94 },
+      ],
+    },
   },
   keywords: [
     {

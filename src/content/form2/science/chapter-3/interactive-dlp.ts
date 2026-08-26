@@ -1,5 +1,10 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch3-nutrisi.png";
+import digestiveSystemImg from "@/assets/notes/form2-science/chapter-3/chapter3_digestive_system.webp";
+import foodTestsImg from "@/assets/notes/form2-science/chapter-3/chapter3_food_tests.webp";
+import villusImg from "@/assets/notes/form2-science/chapter-3/chapter3_villus_absorption.webp";
+import viskingImg from "@/assets/notes/form2-science/chapter-3/chapter3_visking_tubing.webp";
+import digestionPathwaysImg from "@/assets/notes/form2-science/chapter-3/chapter3_digestion_pathways.webp";
 
 export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 3,
@@ -159,6 +164,23 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.1.2",
       title: "Food Tests",
+      images: [
+        {
+          src: foodTestsImg,
+          annotationMode: "labels",
+          size: "standard",
+          alt: "Four food tests carried out in sequence: the iodine test, Benedict's test in a hot water bath, Millon's test in a hot water bath, and the ethanol emulsion test.",
+          aspect: "16 / 9",
+          legendLabel: "The four food tests",
+          caption: "Tap each number to see the reagent and its positive result.",
+          annotations: [
+            { id: "starch", label: "Starch", x: 10, y: 12, note: "Iodine → blue-black" },
+            { id: "glucose", label: "Glucose", x: 34, y: 12, note: "Benedict's + hot water bath → brick-red precipitate" },
+            { id: "protein", label: "Protein", x: 60, y: 12, note: "Millon's reagent + heating → brick-red" },
+            { id: "fat", label: "Fat", x: 86, y: 12, note: "Ethanol + water → milky-white emulsion" },
+          ],
+        },
+      ],
       intro:
         "Laboratory tests are used to detect the presence of starch, glucose, protein and fat in a food sample.",
       accordions: [
@@ -401,6 +423,27 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       intro:
         "Digestion is the breakdown of complex or large food into smaller, soluble molecules that are ready to be absorbed by the body.",
       digestiveSystem: {
+        image: {
+          src: digestiveSystemImg,
+          annotationMode: "callouts",
+          size: "portrait",
+          alt: "A diagram of the human digestive system inside the body: mouth, oesophagus, stomach, liver, gall bladder, pancreas, duodenum, small intestine, large intestine, rectum and anus.",
+          aspect: "3 / 4",
+          caption: "Tap any number to see what that organ does.",
+          points: [
+            { id: "mulut", x: 43, y: 19 },
+            { id: "esofagus", x: 49, y: 36 },
+            { id: "hati", x: 35, y: 47 },
+            { id: "perut", x: 59, y: 51 },
+            { id: "pundi-hempedu", x: 39, y: 55 },
+            { id: "pankreas", x: 60, y: 59 },
+            { id: "duodenum", x: 47, y: 61 },
+            { id: "usus-besar", x: 33, y: 71 },
+            { id: "usus-kecil", x: 53, y: 75 },
+            { id: "rektum", x: 51, y: 81 },
+            { id: "dubur", x: 49, y: 90 },
+          ],
+        },
         title: "Structure of the Human Digestive System",
         instruction:
           "Tap any organ to see its function. Round nodes form the alimentary canal; square nodes are the accessory digestive organs that connect to the duodenum.",
@@ -553,22 +596,119 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.3.1",
       title: "Enzymes and Chemical Digestion",
-      intro:
-        "There are three main digestive enzymes you need to know: amylase, protease and lipase. Each is secreted by more than one organ and acts on a different substrate at each stage.",
-      tabs: [
+      images: [
         {
-          title: "Amylase",
-          body: "Secreted by the salivary glands (acts in the mouth) and the pancreas (acts in the duodenum). Digests starch → maltose.",
-        },
-        {
-          title: "Protease",
-          body: "Three separate stages: STOMACH protease digests protein → polypeptide; PANCREATIC protease (acting in the duodenum) digests polypeptide → dipeptide; SMALL INTESTINE protease digests dipeptide → amino acid.",
-        },
-        {
-          title: "Lipase",
-          body: "Secreted by the pancreas and the small intestine, acting in the duodenum and small intestine. Digests fat → fatty acids and glycerol.",
+          src: digestionPathwaysImg,
+          annotationMode: "labels",
+          size: "standard",
+          alt: "Three rows of digestion pathways — carbohydrate, protein and fat — each running from the food to the final absorbed products.",
+          aspect: "3 / 2",
+          legendLabel: "The three digestion pathways",
+          caption:
+            "An overview of all three food classes. Tap a label for its full pathway, then choose an enzyme below for the detail of each reaction.",
+          annotations: [
+            { id: "carb", label: "Carbohydrate", x: 8, y: 8, note: "Starch → Maltose → Glucose. Digested by amylase, then maltase." },
+            { id: "protein", label: "Protein", x: 8, y: 37, note: "Protein → Polypeptide → Dipeptide → Amino acids. Digested by protease in three stages." },
+            { id: "fat", label: "Fat", x: 8, y: 63, note: "Fat → Fatty acids + Glycerol. Digested by lipase after bile emulsifies it." },
+          ],
         },
       ],
+      intro:
+        "There are three main digestive enzymes you need to know: amylase, protease and lipase. Each is secreted by more than one organ and acts on a different substrate at each stage.",
+      enzymeExplorer: {
+        title: "Explore each enzyme",
+        instruction:
+          "Choose an enzyme to see where it is secreted, where it acts, and what it digests.",
+        enzymes: [
+          {
+            id: "amilase",
+            name: "Amylase",
+            accent: "#f59e0b",
+            summary: "Amylase digests starch into maltose. It acts twice: in the mouth and in the duodenum.",
+            stages: [
+              {
+                stageLabel: "In the mouth",
+                enzymeLabel: "Salivary amylase",
+                substrate: "Starch",
+                product: "Maltose",
+                sourceLabel: "Secreted by",
+                source: "Salivary glands",
+                siteLabel: "Acts in",
+                site: "Mouth",
+              },
+              {
+                stageLabel: "In the duodenum",
+                enzymeLabel: "Pancreatic amylase",
+                substrate: "Remaining starch",
+                product: "Maltose",
+                sourceLabel: "Secreted by",
+                source: "Pancreas",
+                siteLabel: "Acts in",
+                site: "Duodenum",
+              },
+            ],
+            note: "Carbohydrate digestion begins in the mouth — the only enzyme that acts there.",
+          },
+          {
+            id: "protease",
+            name: "Protease",
+            accent: "#a78bfa",
+            summary: "Protease digests protein in three separate stages, each by a different organ.",
+            stages: [
+              {
+                stageLabel: "Stage 1 — in the stomach",
+                enzymeLabel: "Stomach protease",
+                substrate: "Protein",
+                product: "Polypeptides",
+                sourceLabel: "Secreted by",
+                source: "Stomach wall",
+                siteLabel: "Acts in",
+                site: "Stomach",
+              },
+              {
+                stageLabel: "Stage 2 — in the duodenum",
+                enzymeLabel: "Pancreatic protease",
+                substrate: "Polypeptides",
+                product: "Dipeptides",
+                sourceLabel: "Secreted by",
+                source: "Pancreas",
+                siteLabel: "Acts in",
+                site: "Duodenum",
+              },
+              {
+                stageLabel: "Stage 3 — in the small intestine",
+                enzymeLabel: "Intestinal protease",
+                substrate: "Dipeptides",
+                product: "Amino acids",
+                sourceLabel: "Secreted by",
+                source: "Small intestine",
+                siteLabel: "Acts in",
+                site: "Small intestine",
+              },
+            ],
+            note: "Protein digestion begins in the stomach, not the mouth. Amino acids are the final product that is absorbed.",
+          },
+          {
+            id: "lipase",
+            name: "Lipase",
+            accent: "#34d399",
+            summary: "Lipase digests fat into fatty acids and glycerol. Bile emulsifies the fat first so lipase can work faster.",
+            stages: [
+              {
+                stageLabel: "In the duodenum and small intestine",
+                enzymeLabel: "Lipase",
+                substrate: "Fat (small droplets)",
+                product: "Fatty acids + glycerol",
+                sourceLabel: "Secreted by",
+                source: "Pancreas and small intestine",
+                siteLabel: "Acts in",
+                site: "Duodenum and small intestine",
+              },
+            ],
+            note: "Bile is not an enzyme. It only breaks fat into small droplets so lipase has a larger surface area to work on.",
+          },
+        ],
+      },
       accordions: [
         {
           title: "🧂 Hydrochloric Acid (HCl)",
@@ -614,6 +754,23 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
       villusDiagram: {
+        image: {
+          src: villusImg,
+          annotationMode: "callouts",
+          size: "compact",
+          alt: "A cross-section of one villus on the wall of the small intestine, showing the blood capillaries and the lacteal inside it.",
+          aspect: "4 / 3",
+          caption: "Glucose and amino acids enter the blood capillaries; fatty acids and glycerol enter the lacteal.",
+          points: [
+            { id: "blood", x: 45, y: 62 },
+            { id: "lacteal", x: 50, y: 80 },
+          ],
+          extra: [
+            { id: "villus", label: "Villus", x: 50, y: 13, note: "A tiny finger-like projection on the small intestine wall. Millions of villi increase the surface area for absorption." },
+            { id: "wall", label: "Thin wall", x: 62, y: 22, note: "The villus wall is only one cell thick. This short diffusion distance speeds up nutrient absorption." },
+            { id: "lumen", label: "Intestinal lumen", x: 16, y: 25, note: "The space inside the small intestine where digested food sits before being absorbed through the villus wall." },
+          ],
+        },
         title: "Villus structure and absorption",
         instruction:
           "Small molecules produced by digestion cross the villus wall through two separate routes.",
@@ -674,6 +831,22 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
       viskingExperiment: {
+        image: {
+          src: viskingImg,
+          annotationMode: "labels",
+          size: "compact",
+          alt: "Two boiling tubes of distilled water. The Visking tubing in the left tube holds starch, which stays inside; the tubing in the right tube holds glucose, which diffuses out through the membrane.",
+          aspect: "3 / 2",
+          caption: "Starch remains inside the Visking tubing. Glucose diffuses through the membrane into the distilled water around it.",
+          points: [
+            { id: "P", x: 30, y: 55 },
+            { id: "Q", x: 68, y: 55 },
+          ],
+          extra: [
+            { id: "tubing", label: "Visking tubing", x: 30, y: 88, note: "A partially permeable membrane representing the small intestine wall: only small molecules can pass through it." },
+            { id: "water", label: "Distilled water", x: 15, y: 24, note: "The distilled water outside the tubing represents blood. Food tests are done on this water to detect what has diffused out." },
+          ],
+        },
         title: "Visking-tubing experiment apparatus set-up",
         instruction:
           "Both Visking tubes are immersed in separate distilled water baths. Food tests are carried out on the water OUTSIDE the tubing, not on its contents.",

@@ -4,6 +4,11 @@ import habitatSeaImg from "@/assets/notes/form2-science/chapter-1/sea.jpg";
 import habitatDesertImg from "@/assets/notes/form2-science/chapter-1/desert.jpg";
 import habitatPolarImg from "@/assets/notes/form2-science/chapter-1/polar.jpg";
 import habitatSoilImg from "@/assets/notes/form2-science/chapter-1/soil.jpg";
+import animalOverviewImg from "@/assets/notes/form2-science/chapter-1/chapter1_animal_classification_overview.webp";
+import vertebrateGroupsImg from "@/assets/notes/form2-science/chapter-1/chapter1_five_vertebrate_groups.webp";
+import invertebrateGroupsImg from "@/assets/notes/form2-science/chapter-1/chapter1_invertebrate_classification.webp";
+import plantGroupsImg from "@/assets/notes/form2-science/chapter-1/chapter1_plant_classification.webp";
+import keyOrganismSetImg from "@/assets/notes/form2-science/chapter-1/chapter1_dichotomous_key_organism_set.webp";
 
 const dichotomousKeyDLP: DichotomousQuestion = {
   type: "question",
@@ -49,6 +54,82 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
     title: "🌸 Science Blog — The Rafflesia",
     body: "Malaysia is home to the world's largest flower, the parasitic rafflesia — it has no leaves, no roots, and releases a rotting smell to attract pollinators when in full bloom.",
     imagePath: rafflesiaImg,
+  },
+  classificationImages: {
+    animalOverview: {
+      src: animalOverviewImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "Animals with a backbone such as a fish, frog, lizard, bird and cat on the left; animals without a backbone such as a butterfly, spider, jellyfish, snail and worm on the right.",
+      aspect: "3 / 2",
+      annotations: [
+        { id: "vert", label: "Vertebrates", x: 26, y: 8, note: "Animals that have a backbone inside the body." },
+        { id: "vert-trait", label: "Backbone present", x: 26, y: 95, note: "The backbone supports the body and protects the spinal cord." },
+        { id: "invert", label: "Invertebrates", x: 74, y: 8, note: "Animals that do not have a backbone." },
+        { id: "invert-trait", label: "No backbone", x: 74, y: 95, note: "The body is supported by an outer skeleton or fluid pressure instead of a backbone." },
+      ],
+    },
+    vertebrateGroups: {
+      src: vertebrateGroupsImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "The five vertebrate groups: a fish in water, a frog beside a pond, a lizard on the ground, a bird on a branch and a cat on grass.",
+      aspect: "4 / 3",
+      annotations: [
+        { id: "fish", label: "Fish", x: 17, y: 48, note: "Cold-blooded, breathes through gills, has a scaly body and fins for swimming." },
+        { id: "amphibian", label: "Amphibians", x: 46, y: 49, note: "Cold-blooded. Tadpoles breathe through gills; adults breathe through lungs and moist skin." },
+        { id: "reptile", label: "Reptiles", x: 79, y: 51, note: "Cold-blooded, breathes through lungs, has dry scaly skin and lays shelled eggs." },
+        { id: "bird", label: "Birds", x: 29, y: 88, note: "Warm-blooded, body covered with feathers, breathes through lungs and lays eggs." },
+        { id: "mammal", label: "Mammals", x: 68, y: 89, note: "Warm-blooded, body covered with hair, breathes through lungs and feeds young on milk." },
+      ],
+    },
+    invertebrateGroups: {
+      src: invertebrateGroupsImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "Four invertebrate groups in four panels: a snail and a jellyfish; an earthworm and a leech; a grasshopper; a spider, a crab and a centipede.",
+      aspect: "4 / 3",
+      legendLabel: "The four invertebrate groups",
+      caption: "Each panel groups animals that share the same feature.",
+      annotations: [
+        { id: "unseg", label: "No legs + unsegmented body", x: 27, y: 10, note: "Examples: snail and jellyfish. Soft body with no segments and no legs." },
+        { id: "seg", label: "No legs + segmented body", x: 73, y: 10, note: "Examples: earthworm and leech. Body divided into ring-like segments, with no legs." },
+        { id: "three", label: "3 pairs of legs", x: 27, y: 56, note: "Example: grasshopper. Insects have three pairs of legs and a body in three parts." },
+        { id: "more", label: "More than 3 pairs of legs", x: 73, y: 56, note: "Examples: spider, crab and centipede. They have more than three pairs of legs." },
+      ],
+    },
+    plantGroups: {
+      src: plantGroupsImg,
+      annotationMode: "labels",
+      size: "standard",
+      alt: "Four plant groups: moss on a rock, a fern with sori beneath its fronds, a conifer with a cone, and a flowering plant with a flower and a fruit.",
+      aspect: "1 / 1",
+      annotations: [
+        { id: "moss", label: "Moss", x: 26, y: 47, note: "A non-vascular plant. It has no transport tissue, reproduces by spores and grows low in damp places." },
+        { id: "fern", label: "Fern", x: 71, y: 47, note: "A vascular plant without flowers or seeds. It reproduces by spores found under its fronds." },
+        { id: "conifer", label: "Conifer", x: 26, y: 96, note: "A seed plant without flowers. Its seeds sit exposed inside a cone." },
+        { id: "flowering", label: "Flowering plant", x: 72, y: 96, note: "A flowering plant. Its seeds are enclosed in a fruit that develops from the flower." },
+      ],
+    },
+    keyOrganismSet: {
+      src: keyOrganismSetImg,
+      annotationMode: "clean",
+      size: "compact",
+      alt: "Eight organisms arranged for comparison: a fish, frog, lizard, bird, cat, butterfly, spider and snail.",
+      aspect: "3 / 2",
+      caption:
+        "Feature reference: compare backbone, body covering and number of legs before answering each question in the key below.",
+      annotations: [
+        { id: "fish", label: "Fish", x: 14, y: 51, note: "Cold-blooded, breathes through gills, has a scaly body and fins for swimming." },
+        { id: "frog", label: "Frog", x: 37, y: 51 },
+        { id: "lizard", label: "Lizard", x: 61, y: 51 },
+        { id: "bird", label: "Bird", x: 85, y: 51, note: "Warm-blooded, body covered with feathers, breathes through lungs and lays eggs." },
+        { id: "cat", label: "Cat", x: 14, y: 94 },
+        { id: "butterfly", label: "Butterfly", x: 37, y: 94 },
+        { id: "spider", label: "Spider", x: 61, y: 94 },
+        { id: "snail", label: "Snail", x: 85, y: 94 },
+      ],
+    },
   },
   keywords: [
     {

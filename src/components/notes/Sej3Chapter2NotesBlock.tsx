@@ -131,7 +131,7 @@ export function Sej3Chapter2NotesBlock({
             <img
               src={ketibaanFrancisLight}
               alt="Ketibaan Francis Light di Pulau Pinang"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="rounded-2xl p-4.5" style={{ background: bgPanel }}>
               <h4 className="font-display text-[15px] font-bold text-foreground">Pulau Pinang</h4>

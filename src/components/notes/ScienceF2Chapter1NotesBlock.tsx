@@ -11,6 +11,7 @@ import { IconCardGrid } from "@/components/notes/blocks/IconCardGrid";
 import { ChipRow } from "@/components/notes/blocks/ChipRow";
 import { FlipCardGrid } from "@/components/notes/blocks/FlipCard";
 import { ClassificationTree } from "@/components/notes/blocks/ClassificationTree";
+import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
 import { DichotomousStarMap } from "@/components/notes/blocks/DichotomousStarMap";
 import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectionChecklist";
 import type {
@@ -18,6 +19,7 @@ import type {
   MiniQuizItem,
 } from "@/content/form2/science/chapter-1/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
+import type { AnnotatedImageBlock } from "@/content/form2/science/interactive-types";
 import { useProgress } from "@/hooks/use-progress";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
 
@@ -284,6 +286,38 @@ function MiniQuizCard({
   );
 }
 
+function Figure({ block, lang }: { block?: AnnotatedImageBlock; lang: Lang }) {
+  if (!block) return null;
+  const copy =
+    lang === "bm"
+      ? {
+          enlarge: "Besarkan",
+          close: "Tutup",
+          hint: "Ketik mana-mana label pada rajah untuk melihat penerangannya.",
+        }
+      : {
+          enlarge: "Enlarge",
+          close: "Close",
+          hint: "Tap any label on the diagram to see what it does.",
+        };
+  return (
+    <AnnotatedImage
+      src={block.src}
+      alt={block.alt}
+      size={block.size}
+      aspect={block.aspect}
+      caption={block.caption}
+      legendLabel={block.legendLabel}
+      annotationMode={block.annotationMode ?? "labels"}
+      annotations={block.annotations}
+      imageKey={block.imageKey}
+      enlargeLabel={copy.enlarge}
+      closeLabel={copy.close}
+      hintLabel={copy.hint}
+    />
+  );
+}
+
 export function ScienceF2Chapter1NotesBlock({
   id,
   content,
@@ -477,6 +511,7 @@ export function ScienceF2Chapter1NotesBlock({
             </h3>
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.whySortBody}</p>
           </div>
+          <Figure block={content.classificationImages?.animalOverview} lang={lang} />
           <div>
             <h3 className="font-display mb-1 text-base font-bold text-foreground">
               {t.animalTreeHead}
@@ -484,6 +519,8 @@ export function ScienceF2Chapter1NotesBlock({
             <p className="mb-3 text-[13px] text-muted-foreground">{t.animalTreeIntro}</p>
             <ClassificationTree rootLabel="🐾" branches={content.animalBranches} />
           </div>
+          <Figure block={content.classificationImages?.vertebrateGroups} lang={lang} />
+          <Figure block={content.classificationImages?.invertebrateGroups} lang={lang} />
         </div>
       ),
     },
@@ -500,6 +537,9 @@ export function ScienceF2Chapter1NotesBlock({
           <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
             {t.plantTreeIntro}
           </p>
+          <div className="mb-4">
+            <Figure block={content.classificationImages?.plantGroups} lang={lang} />
+          </div>
           <ClassificationTree
             branches={content.plantBranches}
             compareColumns={content.cotyledonCompare}
@@ -515,6 +555,7 @@ export function ScienceF2Chapter1NotesBlock({
       description: t.starMapIntro,
       content: (
         <div className="flex flex-col gap-5">
+          <Figure block={content.classificationImages?.keyOrganismSet} lang={lang} />
           <DichotomousStarMap
             organisms={content.dichotomousOrganisms}
             root={content.dichotomousKey}

@@ -84,17 +84,79 @@ describe("Chapter 3 remediated interactive notes — runtime smoke test", () => 
     expect(ususKecilStep!.body).toContain("dipeptida→asid amino");
   });
 
-  it("BM enzyme tabs (data-level) give precise secretion sources for amilase/protease/lipase (M-02)", () => {
-    const tabs = scienceF2C3InteractiveBM.sections[8].tabs!; // index 8 = 3.3.1 Enzim
-    const amilase = tabs.find((t) => t.title === "Amilase")!;
-    expect(amilase.body).toContain("kelenjar air liur");
-    expect(amilase.body).toContain("pankreas");
-    const protease = tabs.find((t) => t.title === "Protease")!;
-    expect(protease.body).toContain("PERUT");
-    expect(protease.body).toContain("PANKREAS");
-    expect(protease.body).toContain("USUS KECIL");
-    const lipase = tabs.find((t) => t.title === "Lipase")!;
-    expect(lipase.body).toContain("pankreas");
+  it("BM enzyme explorer gives precise secretion sources for amilase/protease/lipase (M-02)", () => {
+    // The prose tabs were replaced by a structured explorer so each enzyme shows
+    // its own source, site, substrate and product. The curriculum facts asserted
+    // here are unchanged — only where they live.
+    const enzymes = scienceF2C3InteractiveBM.sections[8].enzymeExplorer!.enzymes;
+
+    const amilase = enzymes.find((e) => e.name === "Amilase")!;
+    const amilaseSources = amilase.stages.map((s) => s.source).join(" | ");
+    expect(amilaseSources).toContain("Kelenjar air liur");
+    expect(amilaseSources).toContain("Pankreas");
+    expect(amilase.stages.map((s) => s.site)).toEqual(["Mulut", "Duodenum"]);
+
+    const protease = enzymes.find((e) => e.name === "Protease")!;
+    expect(protease.stages).toHaveLength(3);
+    expect(protease.stages.map((s) => s.site)).toEqual([
+      "Perut",
+      "Duodenum",
+      "Usus kecil",
+    ]);
+    // the corrected three-stage chain, not protein -> amino acids in one step
+    expect(protease.stages.map((s) => `${s.substrate}>${s.product}`)).toEqual([
+      "Protein>Polipeptida",
+      "Polipeptida>Dipeptida",
+      "Dipeptida>Asid amino",
+    ]);
+
+    const lipase = enzymes.find((e) => e.name === "Lipase")!;
+    expect(lipase.stages[0].source).toContain("Pankreas");
+    expect(lipase.stages[0].product).toContain("Asid lemak");
+  });
+
+  it("every enzyme tab is visually distinct — no two share stages or accent (fixes the generic-diagram confusion)", () => {
+    for (const content of [scienceF2C3InteractiveBM, scienceF2C3InteractiveDLP]) {
+      const enzymes = content.sections[8].enzymeExplorer!.enzymes;
+      expect(enzymes).toHaveLength(3);
+      const accents = enzymes.map((e) => e.accent);
+      expect(new Set(accents).size).toBe(accents.length);
+      const shapes = enzymes.map((e) =>
+        e.stages.map((s) => `${s.substrate}>${s.product}`).join("|"),
+      );
+      expect(new Set(shapes).size).toBe(shapes.length);
+      for (const enzyme of enzymes) {
+        expect(enzyme.stages.length).toBeGreaterThan(0);
+        for (const stage of enzyme.stages) {
+          expect(stage.source.trim()).not.toBe("");
+          expect(stage.site.trim()).not.toBe("");
+        }
+      }
+    }
+  });
+
+  it("no interactive image label is dead — every annotation carries an explanation", () => {
+    for (const content of [scienceF2C3InteractiveBM, scienceF2C3InteractiveDLP]) {
+      for (const section of content.sections) {
+        for (const image of section.images ?? []) {
+          // `clean` mode draws nothing on the artwork, so its entries are a
+          // reference list rather than clickable labels.
+          if (image.annotationMode === "clean") continue;
+          for (const annotation of image.annotations) {
+            expect(
+              annotation.note?.trim(),
+              `${annotation.id} in ${section.title} has no explanation`,
+            ).toBeTruthy();
+          }
+        }
+        for (const extra of section.digestiveSystem?.image?.extra ?? []) {
+          expect(extra.note?.trim()).toBeTruthy();
+        }
+        for (const organ of section.digestiveSystem?.organs ?? []) {
+          expect(organ.note?.trim()).toBeTruthy();
+        }
+      }
+    }
   });
 
   it("BM Visking section teaches the corrected outside-tube test location (fixes the NotebookLM error)", () => {

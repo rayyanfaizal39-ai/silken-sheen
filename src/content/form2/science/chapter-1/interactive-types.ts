@@ -1,3 +1,5 @@
+import type { AnnotatedImageBlock } from "../interactive-types";
+
 /**
  * Shape for the interactive learning experience layered on top of
  * Science Form 2 Chapter 1 (Biodiversity)'s structured notes. Kept generic
@@ -119,6 +121,16 @@ export interface SpeciesConcept {
 
 export interface SciF2C1Content {
   blogHighlight: { title: string; body: string; imagePath: string };
+  /** Reference illustrations for the classification sections. Labels live here,
+   *  never inside the artwork, so BM and DLP share the same image files. */
+  classificationImages?: {
+    animalOverview?: AnnotatedImageBlock;
+    vertebrateGroups?: AnnotatedImageBlock;
+    invertebrateGroups?: AnnotatedImageBlock;
+    plantGroups?: AnnotatedImageBlock;
+    /** Visual reference shown alongside the interactive dichotomous key. */
+    keyOrganismSet?: AnnotatedImageBlock;
+  };
   keywords: { term: string; definition: string }[];
   habitats: FlipCardItem[];
   importance: ImportanceItem[];

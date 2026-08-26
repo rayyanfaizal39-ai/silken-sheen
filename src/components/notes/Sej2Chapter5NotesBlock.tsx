@@ -285,7 +285,7 @@ export function Sej2Chapter5NotesBlock({
             <img
               src={kejatuhanMelaka}
               alt="Kejatuhan Melaka 1511"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <EraDotTimeline items={fallTimelineItems} />
             <div className="grid gap-3.5 sm:grid-cols-2">

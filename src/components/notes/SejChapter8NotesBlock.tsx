@@ -179,7 +179,7 @@ export function SejChapter8NotesBlock({
             <img
               src={seniBinaTamadunIslam}
               alt="Seni Bina Tamadun Islam"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <IconCardGrid
               items={content.architecture.features.map((f) => ({

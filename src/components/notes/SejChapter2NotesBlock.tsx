@@ -159,7 +159,7 @@ export function SejChapter2NotesBlock({
             <img
               src={pembentukanFizikalBumi}
               alt="Pembentukan Fizikal Bumi"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
           </div>
         )}
@@ -179,7 +179,7 @@ export function SejChapter2NotesBlock({
             <img
               src={zamanAirBatuAkhir}
               alt="Zaman Air Batu Akhir"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <IconCardGrid
               items={content.lateIceAgeCharacteristics.map((c) => ({
@@ -207,7 +207,7 @@ export function SejChapter2NotesBlock({
             <img
               src={pentasSunda}
               alt="Pentas Sunda"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <p className="text-center text-[12px] text-muted-foreground">
               Pentas Sunda ({content.southeastAsiaEffects.sundaShelf.area}) menyatukan Malaysia, Indonesia, Thailand,

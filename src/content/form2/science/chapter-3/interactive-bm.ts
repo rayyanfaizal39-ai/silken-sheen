@@ -1,5 +1,10 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch3-nutrisi.png";
+import digestiveSystemImg from "@/assets/notes/form2-science/chapter-3/chapter3_digestive_system.webp";
+import foodTestsImg from "@/assets/notes/form2-science/chapter-3/chapter3_food_tests.webp";
+import villusImg from "@/assets/notes/form2-science/chapter-3/chapter3_villus_absorption.webp";
+import viskingImg from "@/assets/notes/form2-science/chapter-3/chapter3_visking_tubing.webp";
+import digestionPathwaysImg from "@/assets/notes/form2-science/chapter-3/chapter3_digestion_pathways.webp";
 
 export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 3,
@@ -159,6 +164,23 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.1.2",
       title: "Ujian Makanan",
+      images: [
+        {
+          src: foodTestsImg,
+          annotationMode: "labels",
+          size: "standard",
+          alt: "Empat ujian makanan yang dijalankan berturut-turut: ujian iodin, ujian Benedict dalam mandi air panas, ujian Millon dalam mandi air panas, dan ujian emulsi etanol.",
+          aspect: "16 / 9",
+          legendLabel: "Empat ujian makanan",
+          caption: "Ketik setiap nombor untuk melihat reagen dan keputusan positifnya.",
+          annotations: [
+            { id: "starch", label: "Kanji", x: 10, y: 12, note: "Iodin → biru kehitaman" },
+            { id: "glucose", label: "Glukosa", x: 34, y: 12, note: "Benedict + tab mandi air panas → mendakan merah bata" },
+            { id: "protein", label: "Protein", x: 60, y: 12, note: "Reagen Millon + pemanasan → merah bata" },
+            { id: "fat", label: "Lemak", x: 86, y: 12, note: "Etanol + air → emulsi putih susu" },
+          ],
+        },
+      ],
       intro:
         "Ujian makmal digunakan untuk mengesan kehadiran kanji, glukosa, protein dan lemak dalam sampel makanan.",
       accordions: [
@@ -405,6 +427,27 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       intro:
         "Pencernaan ialah penguraian makanan yang kompleks atau besar kepada molekul yang lebih kecil, larut dan sedia diserap oleh badan.",
       digestiveSystem: {
+        image: {
+          src: digestiveSystemImg,
+          annotationMode: "callouts",
+          size: "portrait",
+          alt: "Rajah sistem pencernaan manusia di dalam badan: mulut, esofagus, perut, hati, pundi hempedu, pankreas, duodenum, usus kecil, usus besar, rektum dan dubur.",
+          aspect: "3 / 4",
+          caption: "Ketik mana-mana nombor untuk melihat fungsi organ itu.",
+          points: [
+            { id: "mulut", x: 43, y: 19 },
+            { id: "esofagus", x: 49, y: 36 },
+            { id: "hati", x: 35, y: 47 },
+            { id: "perut", x: 59, y: 51 },
+            { id: "pundi-hempedu", x: 39, y: 55 },
+            { id: "pankreas", x: 60, y: 59 },
+            { id: "duodenum", x: 47, y: 61 },
+            { id: "usus-besar", x: 33, y: 71 },
+            { id: "usus-kecil", x: 53, y: 75 },
+            { id: "rektum", x: 51, y: 81 },
+            { id: "dubur", x: 49, y: 90 },
+          ],
+        },
         title: "Struktur Sistem Pencernaan Manusia",
         instruction:
           "Ketik mana-mana organ untuk melihat fungsinya. Organ bulat membentuk salur pencernaan; organ segi empat ialah organ aksesori pencernaan yang bersambung ke duodenum.",
@@ -557,22 +600,119 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.3.1",
       title: "Enzim dan Pencernaan Kimia",
-      intro:
-        "Terdapat tiga enzim pencernaan utama yang perlu anda kenali: amilase, protease dan lipase. Setiap satu dirembeskan oleh lebih daripada satu organ dan bertindak pada substrat yang berbeza di setiap peringkat.",
-      tabs: [
+      images: [
         {
-          title: "Amilase",
-          body: "Dirembeskan oleh kelenjar air liur (bertindak di mulut) dan pankreas (bertindak di duodenum). Mencerna kanji → maltosa.",
-        },
-        {
-          title: "Protease",
-          body: "Tiga peringkat berasingan: protease PERUT mencerna protein → polipeptida; protease PANKREAS (bertindak di duodenum) mencerna polipeptida → dipeptida; protease USUS KECIL mencerna dipeptida → asid amino.",
-        },
-        {
-          title: "Lipase",
-          body: "Dirembeskan oleh pankreas dan usus kecil, bertindak di duodenum dan usus kecil. Mencerna lemak → asid lemak dan gliserol.",
+          src: digestionPathwaysImg,
+          annotationMode: "labels",
+          size: "standard",
+          alt: "Tiga baris laluan pencernaan: karbohidrat, protein dan lemak, setiap satu bermula daripada makanan sehingga hasil akhir yang diserap.",
+          aspect: "3 / 2",
+          legendLabel: "Tiga laluan pencernaan",
+          caption:
+            "Gambaran keseluruhan ketiga-tiga kelas makanan. Ketik satu label untuk melihat laluan penuhnya, kemudian pilih enzim di bawah untuk butiran setiap tindak balas.",
+          annotations: [
+            { id: "carb", label: "Karbohidrat", x: 8, y: 8, note: "Kanji → Maltosa → Glukosa. Dicernakan oleh amilase, kemudian maltase." },
+            { id: "protein", label: "Protein", x: 8, y: 37, note: "Protein → Polipeptida → Dipeptida → Asid amino. Dicernakan oleh protease dalam tiga peringkat." },
+            { id: "fat", label: "Lemak", x: 8, y: 63, note: "Lemak → Asid lemak + Gliserol. Dicernakan oleh lipase selepas hempedu mengemulsikannya." },
+          ],
         },
       ],
+      intro:
+        "Terdapat tiga enzim pencernaan utama yang perlu anda kenali: amilase, protease dan lipase. Setiap satu dirembeskan oleh lebih daripada satu organ dan bertindak pada substrat yang berbeza di setiap peringkat.",
+      enzymeExplorer: {
+        title: "Terokai setiap enzim",
+        instruction:
+          "Pilih satu enzim untuk melihat di mana ia dirembeskan, di mana ia bertindak, dan apa yang dicernakannya.",
+        enzymes: [
+          {
+            id: "amilase",
+            name: "Amilase",
+            accent: "#f59e0b",
+            summary: "Amilase mencernakan kanji kepada maltosa. Ia bertindak dua kali: di mulut dan di duodenum.",
+            stages: [
+              {
+                stageLabel: "Di dalam mulut",
+                enzymeLabel: "Amilase liur",
+                substrate: "Kanji",
+                product: "Maltosa",
+                sourceLabel: "Dirembeskan oleh",
+                source: "Kelenjar air liur",
+                siteLabel: "Bertindak di",
+                site: "Mulut",
+              },
+              {
+                stageLabel: "Di dalam duodenum",
+                enzymeLabel: "Amilase pankreas",
+                substrate: "Kanji yang tinggal",
+                product: "Maltosa",
+                sourceLabel: "Dirembeskan oleh",
+                source: "Pankreas",
+                siteLabel: "Bertindak di",
+                site: "Duodenum",
+              },
+            ],
+            note: "Pencernaan karbohidrat bermula di mulut — satu-satunya enzim yang bertindak di sana.",
+          },
+          {
+            id: "protease",
+            name: "Protease",
+            accent: "#a78bfa",
+            summary: "Protease mencernakan protein dalam tiga peringkat berasingan, setiap satu oleh organ yang berbeza.",
+            stages: [
+              {
+                stageLabel: "Peringkat 1 — di dalam perut",
+                enzymeLabel: "Protease perut",
+                substrate: "Protein",
+                product: "Polipeptida",
+                sourceLabel: "Dirembeskan oleh",
+                source: "Dinding perut",
+                siteLabel: "Bertindak di",
+                site: "Perut",
+              },
+              {
+                stageLabel: "Peringkat 2 — di dalam duodenum",
+                enzymeLabel: "Protease pankreas",
+                substrate: "Polipeptida",
+                product: "Dipeptida",
+                sourceLabel: "Dirembeskan oleh",
+                source: "Pankreas",
+                siteLabel: "Bertindak di",
+                site: "Duodenum",
+              },
+              {
+                stageLabel: "Peringkat 3 — di dalam usus kecil",
+                enzymeLabel: "Protease usus",
+                substrate: "Dipeptida",
+                product: "Asid amino",
+                sourceLabel: "Dirembeskan oleh",
+                source: "Usus kecil",
+                siteLabel: "Bertindak di",
+                site: "Usus kecil",
+              },
+            ],
+            note: "Pencernaan protein bermula di perut, bukan di mulut. Asid amino ialah hasil akhir yang diserap.",
+          },
+          {
+            id: "lipase",
+            name: "Lipase",
+            accent: "#34d399",
+            summary: "Lipase mencernakan lemak kepada asid lemak dan gliserol. Hempedu mengemulsikan lemak dahulu supaya lipase dapat bertindak dengan lebih cepat.",
+            stages: [
+              {
+                stageLabel: "Di dalam duodenum dan usus kecil",
+                enzymeLabel: "Lipase",
+                substrate: "Lemak (titisan kecil)",
+                product: "Asid lemak + gliserol",
+                sourceLabel: "Dirembeskan oleh",
+                source: "Pankreas dan usus kecil",
+                siteLabel: "Bertindak di",
+                site: "Duodenum dan usus kecil",
+              },
+            ],
+            note: "Hempedu bukan enzim. Ia hanya memecahkan lemak kepada titisan kecil supaya lipase mempunyai luas permukaan yang lebih besar untuk bertindak.",
+          },
+        ],
+      },
       accordions: [
         {
           title: "🧂 Asid Hidroklorik (HCl)",
@@ -618,6 +758,23 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
       ],
       villusDiagram: {
+        image: {
+          src: villusImg,
+          annotationMode: "callouts",
+          size: "compact",
+          alt: "Keratan rentas satu vilus pada dinding usus kecil, menunjukkan kapilari darah dan lakteal di dalamnya.",
+          aspect: "4 / 3",
+          caption: "Glukosa dan asid amino masuk ke kapilari darah; asid lemak dan gliserol masuk ke lakteal.",
+          points: [
+            { id: "blood", x: 45, y: 62 },
+            { id: "lacteal", x: 50, y: 80 },
+          ],
+          extra: [
+            { id: "villus", label: "Vilus", x: 50, y: 13, note: "Unjuran halus seperti jari pada dinding usus kecil. Berjuta-juta vilus menambahkan luas permukaan untuk penyerapan." },
+            { id: "wall", label: "Dinding nipis", x: 62, y: 22, note: "Dinding vilus setebal satu sel sahaja. Jarak resapan yang pendek ini mempercepatkan penyerapan nutrien." },
+            { id: "lumen", label: "Lumen usus", x: 16, y: 25, note: "Ruang di dalam usus kecil tempat makanan tercerna berada sebelum diserap melalui dinding vilus." },
+          ],
+        },
         title: "Struktur vilus dan penyerapan",
         instruction:
           "Molekul kecil yang terhasil daripada pencernaan menembusi dinding vilus melalui dua laluan berasingan.",
@@ -678,6 +835,22 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
       ],
       viskingExperiment: {
+        image: {
+          src: viskingImg,
+          annotationMode: "labels",
+          size: "compact",
+          alt: "Dua tabung didih berisi air suling. Tiub Visking di dalam tabung kiri mengandungi kanji yang kekal di dalam; tiub di dalam tabung kanan mengandungi glukosa yang meresap keluar melalui membran.",
+          aspect: "3 / 2",
+          caption: "Kanji kekal di dalam tiub Visking. Glukosa meresap keluar melalui membran ke dalam air suling di sekelilingnya.",
+          points: [
+            { id: "P", x: 30, y: 55 },
+            { id: "Q", x: 68, y: 55 },
+          ],
+          extra: [
+            { id: "tubing", label: "Tiub Visking", x: 30, y: 88, note: "Membran separa telap yang mewakili dinding usus kecil: hanya molekul kecil boleh menembusinya." },
+            { id: "water", label: "Air suling", x: 15, y: 24, note: "Air suling di luar tiub mewakili darah. Ujian makanan dijalankan pada air ini untuk mengesan apa yang telah meresap keluar." },
+          ],
+        },
         title: "Susunan radas eksperimen tiub Visking",
         instruction:
           "Kedua-dua tiub Visking direndam dalam air suling berasingan. Ujian makanan dijalankan pada air suling DI LUAR tiub, bukan pada kandungan di dalam tiub.",

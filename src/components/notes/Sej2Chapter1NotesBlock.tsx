@@ -162,7 +162,7 @@ export function Sej2Chapter1NotesBlock({
             <img
               src={angkorThom}
               alt="Angkor Thom"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <KingdomStageCards kingdoms={content.famousKingdoms} />
           </div>
@@ -174,7 +174,7 @@ export function Sej2Chapter1NotesBlock({
             <img
               src={jalinanPerdaganganAlamMelayu}
               alt="Jalinan Perdagangan Alam Melayu"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <EraComparisonColumns eras={content.contemporaryKingdoms.eras} />
             <div className="grid gap-3 sm:grid-cols-3">

@@ -1,8 +1,10 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch2-ekosistem.png";
-import tropicalImage from "@/assets/notes/form2-science/chapter-2/tropical.png";
-import desertImage from "@/assets/notes/form2-science/chapter-2/desert.jpg";
-import tundraImage from "@/assets/notes/form2-science/chapter-2/tundra-land.svg";
+import tropicalImage from "@/assets/notes/form2-science/chapter-2/chapter2_tropical_adaptation.webp";
+import desertImage from "@/assets/notes/form2-science/chapter-2/chapter2_desert_adaptation.webp";
+import tundraImage from "@/assets/notes/form2-science/chapter-2/chapter2_tundra_adaptation.webp";
+import carbonOxygenCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_carbon_oxygen_cycle.webp";
+import waterCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_water_cycle.webp";
 
 export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 2,
@@ -154,6 +156,31 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.2.1",
       title: "The Carbon and Oxygen Cycles",
+      images: [
+        {
+          src: carbonOxygenCycleImage,
+          imageKey: [
+            { color: "#ef4444", label: "Red arrow = releasing carbon dioxide" },
+            { color: "#3b82f6", label: "Blue arrow = releasing oxygen" },
+          ],
+          annotationMode: "hybrid",
+          size: "wide",
+          alt: "A woodland scene showing carbon dioxide and oxygen moving between the sun, a tree, a grazing deer, decomposers in the soil and a fire.",
+          aspect: "3 / 2",
+          legendLabel: "Parts of the carbon and oxygen cycles",
+          caption: "Tap each number to see the process happening at that point.",
+          annotations: [
+            { id: "sunlight", label: "Sunlight", x: 10, y: 27, note: "The energy source that drives photosynthesis." },
+            { id: "photosynthesis", label: "Photosynthesis", x: 19, y: 47, note: "The tree takes in carbon dioxide and releases oxygen." },
+            { id: "carbon-dioxide", label: "Carbon dioxide", x: 50, y: 20, note: "Taken in by green plants and returned by respiration, decomposition and combustion." },
+            { id: "oxygen", label: "Oxygen", x: 63, y: 22, note: "Released by photosynthesis and used in respiration." },
+            { id: "feeding", label: "Feeding", x: 47, y: 63, note: "Carbon passes from plants to animals through food." },
+            { id: "respiration", label: "Respiration", x: 60, y: 52, note: "Animals and plants release carbon dioxide." },
+            { id: "decomposition", label: "Decomposition", x: 64, y: 82, note: "Decomposers break down dead remains and release carbon dioxide." },
+            { id: "combustion", label: "Combustion", x: 88, y: 66, note: "Burning fuel releases carbon dioxide into the air." },
+          ],
+        },
+      ],
       intro:
         "Unlike energy, carbon and oxygen are cycled continuously between organisms and the environment. The two cycles are linked through photosynthesis and respiration.",
       tabs: [
@@ -196,6 +223,27 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.2.2",
       title: "The Water Cycle",
+      images: [
+        {
+          src: waterCycleImage,
+          annotationMode: "hybrid",
+          size: "wide",
+          alt: "A coastal scene showing water moving from the sea into cloud, falling as rain, running over the land, soaking into the soil and being taken up by tree roots.",
+          aspect: "16 / 9",
+          legendLabel: "Processes in the water cycle",
+          caption: "Tap each number to see the process happening at that point.",
+          annotations: [
+            { id: "evaporation", label: "Evaporation", x: 15, y: 56, note: "The sun's heat turns sea water into water vapour." },
+            { id: "condensation", label: "Condensation", x: 29, y: 30, note: "Water vapour cools high in the air and forms cloud." },
+            { id: "precipitation", label: "Precipitation", x: 50, y: 38, note: "Droplets in the cloud grow heavy enough to fall as rain." },
+            { id: "runoff", label: "Surface runoff", x: 52, y: 71, note: "Rain flows across the land back into rivers and the sea." },
+            { id: "infiltration", label: "Infiltration", x: 91, y: 66, note: "Some rain soaks down into the soil." },
+            { id: "groundwater", label: "Groundwater", x: 44, y: 93, note: "Water held within layers of soil and rock." },
+            { id: "root-uptake", label: "Root uptake", x: 80, y: 52, note: "Roots absorb water from the soil." },
+            { id: "transpiration", label: "Transpiration", x: 80, y: 12, note: "Water leaves the plant as vapour through the leaves." },
+          ],
+        },
+      ],
       intro:
         "Water moves continuously between Earth and the atmosphere. Living things do not merely use water — they help drive and regulate the water cycle itself.",
       tabs: [
@@ -321,26 +369,60 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.3.1",
       title: "Interdependence and Ecological Terms",
       intro:
-        "Before studying interactions, learn the five basic ecological terms. Each one contains the one before it, from a single kind of organism up to an entire ecosystem.",
+        "Before studying interactions, learn the five basic ecological terms. Species, population and community are levels of living organisation; a habitat is a place, not a level.",
+      ecologicalTerms: {
+        title: "How these terms relate",
+        instruction:
+          "Notice that habitat is not the next level after community. A habitat is a place, while an ecosystem forms when a community interacts with its non-living surroundings.",
+        levelsLabel: "Levels of living organisation",
+        placeLabel: "The place they live",
+        ecosystemLabel: "How an ecosystem forms",
+        species: {
+          term: "Species",
+          definition: "Similar organisms that can interbreed with one another.",
+        },
+        population: {
+          term: "Population",
+          definition: "All the organisms of the same species in the same habitat.",
+        },
+        community: {
+          term: "Community",
+          definition: "Several different populations living together and interacting.",
+          short: "All the living things in that area.",
+        },
+        habitat: {
+          term: "Habitat",
+          definition: "The natural dwelling place of an organism — a pond, a forest or the soil.",
+        },
+        nonLiving: {
+          term: "Non-living environment",
+          definition: "Water, air, light, temperature and soil.",
+        },
+        ecosystem: {
+          term: "Ecosystem",
+          definition: "A community together with its non-living surroundings, interacting as one unit.",
+        },
+        note: "A common mistake: listing species → population → community → habitat → ecosystem as a single ladder. A habitat is a place, not a level of organisation.",
+      },
       cards: [
         {
-          title: "1 · Species",
+          title: "Species",
           body: "A group of organisms with similar characteristics that can interbreed to produce offspring.",
         },
         {
-          title: "2 · Population",
+          title: "Population",
           body: "A group of organisms of the same species living in the same habitat. Example: one population of dragonflies in a pond.",
         },
         {
-          title: "3 · Community",
+          title: "Community",
           body: "Several different populations of organisms living together in one habitat and interacting with one another.",
         },
         {
-          title: "4 · Habitat",
+          title: "Habitat",
           body: "The natural surroundings or dwelling place of an organism. Examples: a pond, a forest, the soil.",
         },
         {
-          title: "5 · Ecosystem",
+          title: "Ecosystem",
           body: "Several communities living together in one habitat and interacting with one another, including non-living components such as water, air and soil.",
         },
       ],
@@ -394,6 +476,18 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
             challenge:
               "Heavy rainfall and abundant sunshine all year. Tall trees compete for light, and the soil is constantly damp and waterlogged.",
             imagePath: tropicalImage,
+            imageAnnotationMode: "callouts",
+            imageSize: "compact",
+            imageAlt:
+              "A monkey gripping a branch in the rainforest, beside broad leaves whose tapered tips shed drops of rainwater.",
+            imageAspect: "16 / 9",
+            imageAnnotations: [
+              { id: "hands", label: "Grasping hands", x: 36, y: 10, note: "Hands that grip branches firmly, letting the monkey move and hang high in the canopy." },
+              { id: "feet", label: "Grasping feet", x: 35, y: 56, note: "Feet that grip like hands, giving extra hold so the monkey does not fall." },
+              { id: "limbs", label: "Long limbs", x: 28, y: 25, note: "Long limbs let the monkey reach distant branches and move quickly through the trees." },
+              { id: "leaves", label: "Broad leaves", x: 80, y: 42, note: "Broad leaves capture as much sunlight as possible under the shaded forest canopy." },
+              { id: "driptip", label: "Drip tips", x: 57, y: 57, note: "The tapered leaf tip drains rainwater quickly so the leaf does not rot from standing water." },
+            ],
             organisms: [
               {
                 kind: "animal",
@@ -417,6 +511,20 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
             challenge:
               "Extremely hot days, cold nights and very little rain. Water loss is the main threat.",
             imagePath: desertImage,
+            imageAnnotationMode: "callouts",
+            imageSize: "compact",
+            imageAlt:
+              "A camel standing in the desert beside a thick-stemmed cactus whose roots spread out shallowly below the sand.",
+            imageAspect: "3 / 2",
+            imageAnnotations: [
+              { id: "hump", label: "Hump", x: 27, y: 29, note: "The hump stores fat as an energy reserve. Keeping fat in one place stops heat being trapped all over the body." },
+              { id: "eyelashes", label: "Long eyelashes", x: 50, y: 25, note: "Long eyelashes keep sand out of the eyes during sandstorms." },
+              { id: "legs", label: "Long legs", x: 30, y: 63, note: "Long legs hold the body away from the scorching hot sand." },
+              { id: "feet", label: "Broad padded feet", x: 34, y: 84, note: "Broad padded feet spread the camel's weight so it does not sink into the sand." },
+              { id: "spines", label: "Spines", x: 84, y: 30, note: "Leaves reduced to spines cut the surface area, so water loss by transpiration is very low. The spines also protect the cactus from being eaten." },
+              { id: "stem", label: "Thick water-storing stem", x: 79, y: 45, note: "The thick stem stores water, letting the cactus survive through the dry season." },
+              { id: "roots", label: "Wide shallow roots", x: 78, y: 85, note: "Wide, shallow roots soak up rainwater quickly over a large area before it evaporates." },
+            ],
             organisms: [
               {
                 kind: "animal",
@@ -440,6 +548,18 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
             challenge:
               "A long winter with very low temperatures, a short summer, frozen ground and strong winds across a treeless plain.",
             imagePath: tundraImage,
+            imageAnnotationMode: "callouts",
+            imageSize: "compact",
+            imageAlt:
+              "An Arctic fox with thick fur standing on tundra covered in low-growing plants, mosses and lichens.",
+            imageAspect: "16 / 9",
+            imageAnnotations: [
+              { id: "fur", label: "Thick fur", x: 19, y: 80, note: "Thick fur traps air and insulates the body against heat loss to the freezing surroundings." },
+              { id: "ears", label: "Small ears", x: 36, y: 52, note: "Small ears reduce the surface area, so less body heat escapes through them." },
+              { id: "body", label: "Compact body", x: 31, y: 66, note: "A compact body lowers the surface-area-to-volume ratio, making body heat easier to keep in." },
+              { id: "lowplants", label: "Low-growing plants", x: 48, y: 88, note: "Low-growing plants hugging the ground avoid strong winds and trap a little warmth near the soil surface." },
+              { id: "moss", label: "Mosses and lichens", x: 8, y: 90, note: "Mosses and lichens have no tall woody stems, so they can live on frozen ground with a very short summer." },
+            ],
             organisms: [
               {
                 kind: "animal",

@@ -30,6 +30,9 @@ import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive
 import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
+import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
+import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTermsDiagram";
+import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
 
 type Lang = "en" | "bm";
@@ -96,6 +99,19 @@ function MiniQuiz({
   );
 }
 
+const IMAGE_COPY = {
+  bm: {
+    enlarge: "Besarkan",
+    close: "Tutup",
+    hint: "Ketik mana-mana label pada rajah untuk melihat penerangannya.",
+  },
+  en: {
+    enlarge: "Enlarge",
+    close: "Close",
+    hint: "Tap any label on the diagram to see what it does.",
+  },
+} as const;
+
 export function ScienceF2InteractiveNotesBlock({
   id,
   content,
@@ -114,6 +130,7 @@ export function ScienceF2InteractiveNotesBlock({
   const { addXp } = useProgress();
   const rewarded = useRef(new Set<string>());
   const imageUrl = getNotesImageUrl(content.blogHighlight.imagePath);
+  const imageCopy = IMAGE_COPY[lang === "bm" ? "bm" : "en"];
   const awardOnce = (key: string, amount: number) => {
     if (rewarded.current.has(key)) return;
     rewarded.current.add(key);
@@ -283,7 +300,12 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.digestiveSystem.title}
             </h3>
-            <DigestiveSystemDiagram block={section.digestiveSystem} />
+            <DigestiveSystemDiagram
+              block={section.digestiveSystem}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+              hintLabel={imageCopy.hint}
+            />
           </div>
         )}
         {section.viskingExperiment && (
@@ -291,7 +313,12 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.viskingExperiment.title}
             </h3>
-            <ViskingExperimentDiagram block={section.viskingExperiment} />
+            <ViskingExperimentDiagram
+              block={section.viskingExperiment}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+              hintLabel={imageCopy.hint}
+            />
           </div>
         )}
         {section.villusDiagram && (
@@ -299,9 +326,47 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.villusDiagram.title}
             </h3>
-            <VillusDiagram block={section.villusDiagram} />
+            <VillusDiagram
+              block={section.villusDiagram}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+              hintLabel={imageCopy.hint}
+            />
           </div>
         )}
+        {section.ecologicalTerms && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.ecologicalTerms.title}
+            </h3>
+            <EcologicalTermsDiagram block={section.ecologicalTerms} />
+          </div>
+        )}
+        {section.enzymeExplorer && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.enzymeExplorer.title}
+            </h3>
+            <EnzymeExplorer block={section.enzymeExplorer} />
+          </div>
+        )}
+        {section.images?.map((image) => (
+          <AnnotatedImage
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
+            size={image.size}
+            aspect={image.aspect}
+            caption={image.caption}
+            legendLabel={image.legendLabel}
+            annotationMode={image.annotationMode ?? "labels"}
+            annotations={image.annotations}
+            imageKey={image.imageKey}
+            enlargeLabel={imageCopy.enlarge}
+            closeLabel={imageCopy.close}
+            hintLabel={imageCopy.hint}
+          />
+        ))}
         {section.adaptations && (
           <div>
             <h3 className="font-display mb-1 text-base font-bold text-foreground">
@@ -321,11 +386,17 @@ export function ScienceF2InteractiveNotesBlock({
               {section.adaptations.cases.map((item) => (
                 <TabsContent key={item.id} value={item.id} className="flex flex-col gap-3">
                   {item.imagePath && (
-                    <img
-                      src={getNotesImageUrl(item.imagePath)}
-                      alt={item.habitat}
-                      className="aspect-video w-full rounded-2xl object-cover"
-                      loading="lazy"
+                    <AnnotatedImage
+                      src={item.imagePath}
+                      alt={item.imageAlt ?? item.habitat}
+                      size={item.imageSize ?? "compact"}
+                      aspect={item.imageAspect ?? "16 / 9"}
+                      legendLabel={item.habitat}
+                      annotationMode={item.imageAnnotationMode ?? "callouts"}
+                      annotations={item.imageAnnotations ?? []}
+                      enlargeLabel={imageCopy.enlarge}
+                      closeLabel={imageCopy.close}
+                      hintLabel={imageCopy.hint}
                     />
                   )}
                   <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 p-3">

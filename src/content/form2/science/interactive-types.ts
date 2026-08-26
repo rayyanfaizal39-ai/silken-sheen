@@ -1,3 +1,5 @@
+import type { AnnotationMode } from "@/components/notes/blocks/annotation-layout";
+import type { LearningImageSize } from "@/components/notes/blocks/learning-image";
 import type { FlipCardItem, MiniQuizItem } from "./chapter-1/interactive-types";
 
 export type ScienceInteractiveCard = {
@@ -161,6 +163,16 @@ export type AdaptationCase = {
   challenge: string;
   organisms: AdaptationOrganism[];
   imagePath?: string;
+  /** Per-language alt text for `imagePath`. Falls back to the habitat name. */
+  imageAlt?: string;
+  /** Intrinsic aspect ratio of `imagePath`, e.g. "16 / 9". */
+  imageAspect?: string;
+  /** Rendered footprint of `imagePath`. */
+  imageSize?: LearningImageSize;
+  /** Localisable annotations drawn against `imagePath`. */
+  imageAnnotations?: { id: string; label: string; note?: string; x: number; y: number }[];
+  /** How those annotations are presented. Defaults to callouts. */
+  imageAnnotationMode?: AnnotationMode;
 };
 
 /** Satisfies SP 2.3.2's verb: justify WHY an adaptation matters, not just name the climate. */
@@ -193,6 +205,115 @@ export type PyramidTier = {
   icon?: string;
 };
 
+/**
+ * A reference illustration with localisable annotations. No text is baked into
+ * the artwork — `alt`, `caption` and every annotation label live here so BM and
+ * DLP share the same image file.
+ */
+export type AnnotatedImageBlock = {
+  /** Resolved asset URL (a `src/assets` import) or notes-bucket object path. */
+  src: string;
+  alt: string;
+  /** Rendered footprint. Omit to derive one from the aspect ratio. */
+  size?: LearningImageSize;
+  /** Intrinsic aspect ratio of the artwork, e.g. "3 / 2". */
+  aspect?: string;
+  caption?: string;
+  legendLabel?: string;
+  /**
+   * How the parts are named. Prefer `labels` or `callouts` so a student reads
+   * the diagram in one pass; `numbers` is a last resort for very dense artwork.
+   */
+  annotationMode?: AnnotationMode;
+  /** Key pinned inside the artwork, e.g. what each arrow colour represents. */
+  imageKey?: { color: string; label: string }[];
+  annotations: { id: string; label: string; note?: string; x: number; y: number }[];
+};
+
+/**
+ * Positions only. The label for each marker is read from the block's own data
+ * (organ / tube / pathway), so annotating an illustration never duplicates a
+ * string that already exists in chapter content.
+ */
+export type DiagramImage = {
+  src: string;
+  alt: string;
+  size?: LearningImageSize;
+  aspect?: string;
+  caption?: string;
+  legendLabel?: string;
+  /** How the annotations are presented. Defaults to callouts. */
+  annotationMode?: AnnotationMode;
+  /** Key pinned inside the artwork, e.g. what each arrow colour represents. */
+  imageKey?: { color: string; label: string }[];
+  /** Maps an existing item id in the block to a position on the artwork. */
+  points: { id: string; x: number; y: number }[];
+  /** Extra markers for parts of the artwork the block data does not already name. */
+  extra?: { id: string; label: string; note?: string; x: number; y: number }[];
+};
+
+/**
+ * One reaction an enzyme catalyses. Protease has three, on three different
+ * substrates in three different organs, so stages are modelled per reaction
+ * rather than per enzyme.
+ */
+export type EnzymeStage = {
+  /** Optional heading when an enzyme acts more than once, e.g. "In the stomach". */
+  stageLabel?: string;
+  /** Short enzyme name printed over the reaction arrow. */
+  enzymeLabel: string;
+  substrate: string;
+  product: string;
+  sourceLabel: string;
+  /** Where the enzyme is secreted. */
+  source: string;
+  siteLabel: string;
+  /** Where the enzyme acts. */
+  site: string;
+};
+
+export type EnzymeEntry = {
+  id: string;
+  name: string;
+  summary: string;
+  /** Colour used for this enzyme's tab and reaction arrows. */
+  accent: string;
+  stages: EnzymeStage[];
+  note?: string;
+};
+
+export type EnzymeExplorerBlock = {
+  title: string;
+  instruction?: string;
+  enzymes: EnzymeEntry[];
+};
+
+/** One term shown in the ecological terms relationship diagram. */
+export type EcologicalTerm = {
+  term: string;
+  definition: string;
+};
+
+/**
+ * Ecological terms, drawn as three separate relationships rather than one
+ * ladder: habitat is a place, not a level of organisation.
+ */
+export type EcologicalTermsBlock = {
+  title: string;
+  instruction?: string;
+  levelsLabel: string;
+  placeLabel: string;
+  ecosystemLabel: string;
+  species: EcologicalTerm;
+  population: EcologicalTerm;
+  /** `short` is the compact restatement used in the ecosystem equation row. */
+  community: EcologicalTerm & { short: string };
+  habitat: EcologicalTerm;
+  nonLiving: EcologicalTerm;
+  ecosystem: EcologicalTerm;
+  note?: string;
+};
+
 export type PyramidBlock = {
   title: string;
   instruction: string;
@@ -223,6 +344,8 @@ export type DigestiveSystemBlock = {
   organs: DigestiveOrgan[];
   tractLabel: string;
   accessoryLabel: string;
+  /** When present the anatomical illustration replaces the schematic drawing. */
+  image?: DiagramImage;
 };
 
 export type ViskingTube = {
@@ -240,6 +363,8 @@ export type ViskingExperimentBlock = {
   resultCorrect: string;
   resultIncorrect: string;
   note: string;
+  /** When present the apparatus illustration replaces the schematic drawing. */
+  image?: DiagramImage;
 };
 
 export type VillusPathway = {
@@ -255,6 +380,8 @@ export type VillusDiagramBlock = {
   pathways: VillusPathway[];
   wallLabel: string;
   lumenLabel: string;
+  /** When present the cross-section illustration replaces the schematic drawing. */
+  image?: DiagramImage;
 };
 
 export type ScienceInteractiveSection = {
@@ -278,6 +405,10 @@ export type ScienceInteractiveSection = {
   digestiveSystem?: DigestiveSystemBlock;
   viskingExperiment?: ViskingExperimentBlock;
   villusDiagram?: VillusDiagramBlock;
+  ecologicalTerms?: EcologicalTermsBlock;
+  enzymeExplorer?: EnzymeExplorerBlock;
+  /** Standalone annotated reference illustrations for this section. */
+  images?: AnnotatedImageBlock[];
   matcher?: {
     title: string;
     instruction: string;

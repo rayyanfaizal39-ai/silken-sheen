@@ -1,8 +1,10 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch2-ekosistem.png";
-import tropicalImage from "@/assets/notes/form2-science/chapter-2/tropical.png";
-import desertImage from "@/assets/notes/form2-science/chapter-2/desert.jpg";
-import tundraImage from "@/assets/notes/form2-science/chapter-2/tundra-land.svg";
+import tropicalImage from "@/assets/notes/form2-science/chapter-2/chapter2_tropical_adaptation.webp";
+import desertImage from "@/assets/notes/form2-science/chapter-2/chapter2_desert_adaptation.webp";
+import tundraImage from "@/assets/notes/form2-science/chapter-2/chapter2_tundra_adaptation.webp";
+import carbonOxygenCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_carbon_oxygen_cycle.webp";
+import waterCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_water_cycle.webp";
 
 export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 2,
@@ -154,6 +156,31 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.2.1",
       title: "Kitar Karbon dan Kitar Oksigen",
+      images: [
+        {
+          src: carbonOxygenCycleImage,
+          imageKey: [
+            { color: "#ef4444", label: "Anak panah merah = membebaskan karbon dioksida" },
+            { color: "#3b82f6", label: "Anak panah biru = membebaskan oksigen" },
+          ],
+          annotationMode: "hybrid",
+          size: "wide",
+          alt: "Pemandangan hutan yang menunjukkan pergerakan karbon dioksida dan oksigen antara matahari, pokok, haiwan, pengurai di dalam tanah dan unggun api.",
+          aspect: "3 / 2",
+          legendLabel: "Bahagian kitar karbon dan kitar oksigen",
+          caption: "Ketik setiap nombor untuk melihat proses yang berlaku di bahagian itu.",
+          annotations: [
+            { id: "sunlight", label: "Cahaya matahari", x: 10, y: 27, note: "Sumber tenaga untuk fotosintesis." },
+            { id: "photosynthesis", label: "Fotosintesis", x: 19, y: 47, note: "Pokok menyerap karbon dioksida dan membebaskan oksigen." },
+            { id: "carbon-dioxide", label: "Karbon dioksida", x: 50, y: 20, note: "Gas yang diserap oleh tumbuhan hijau dan dibebaskan semula oleh respirasi, penguraian dan pembakaran." },
+            { id: "oxygen", label: "Oksigen", x: 63, y: 22, note: "Dibebaskan oleh fotosintesis dan digunakan untuk respirasi." },
+            { id: "feeding", label: "Pemakanan", x: 47, y: 63, note: "Karbon berpindah daripada tumbuhan kepada haiwan melalui makanan." },
+            { id: "respiration", label: "Respirasi", x: 60, y: 52, note: "Haiwan dan tumbuhan membebaskan karbon dioksida." },
+            { id: "decomposition", label: "Penguraian", x: 64, y: 82, note: "Pengurai memecahkan sisa organisma mati dan membebaskan karbon dioksida." },
+            { id: "combustion", label: "Pembakaran", x: 88, y: 66, note: "Pembakaran bahan api membebaskan karbon dioksida ke udara." },
+          ],
+        },
+      ],
       intro:
         "Berbeza dengan tenaga, karbon dan oksigen dikitar berterusan antara organisma dengan persekitaran. Kedua-dua kitar ini saling berhubung melalui fotosintesis dan respirasi.",
       tabs: [
@@ -196,6 +223,27 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.2.2",
       title: "Kitar Air",
+      images: [
+        {
+          src: waterCycleImage,
+          annotationMode: "hybrid",
+          size: "wide",
+          alt: "Pemandangan pantai yang menunjukkan air bergerak daripada laut ke awan, turun sebagai hujan, mengalir di permukaan, meresap ke dalam tanah dan diserap oleh akar pokok.",
+          aspect: "16 / 9",
+          legendLabel: "Proses dalam kitar air",
+          caption: "Ketik setiap nombor untuk melihat proses yang berlaku di bahagian itu.",
+          annotations: [
+            { id: "evaporation", label: "Penyejatan", x: 15, y: 56, note: "Haba matahari menukarkan air laut kepada wap air." },
+            { id: "condensation", label: "Kondensasi", x: 29, y: 30, note: "Wap air menyejuk di udara tinggi dan membentuk awan." },
+            { id: "precipitation", label: "Hujan", x: 50, y: 38, note: "Titisan air dalam awan menjadi cukup berat lalu jatuh sebagai hujan." },
+            { id: "runoff", label: "Larian permukaan", x: 52, y: 71, note: "Air hujan mengalir di atas permukaan tanah kembali ke sungai dan laut." },
+            { id: "infiltration", label: "Resapan", x: 91, y: 66, note: "Sebahagian air hujan meresap masuk ke dalam tanah." },
+            { id: "groundwater", label: "Air bawah tanah", x: 44, y: 93, note: "Air tersimpan di dalam lapisan tanah dan batuan." },
+            { id: "root-uptake", label: "Penyerapan oleh akar", x: 80, y: 52, note: "Akar menyerap air dari dalam tanah." },
+            { id: "transpiration", label: "Transpirasi", x: 80, y: 12, note: "Air keluar sebagai wap melalui daun." },
+          ],
+        },
+      ],
       intro:
         "Air bergerak berterusan antara Bumi dengan atmosfera. Benda hidup bukan sekadar menggunakan air — ia turut membantu memacu dan mengawal kitar air itu sendiri.",
       tabs: [
@@ -321,26 +369,60 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.3.1",
       title: "Saling Bersandaran dan Istilah Ekologi",
       intro:
-        "Sebelum mengkaji interaksi, kenali lima istilah asas ekologi. Setiap satu merangkumi yang sebelumnya, daripada satu jenis organisma sehingga keseluruhan ekosistem.",
+        "Sebelum mengkaji interaksi, kenali lima istilah asas ekologi. Spesies, populasi dan komuniti ialah aras organisasi hidupan; habitat pula ialah tempat, bukan aras.",
+      ecologicalTerms: {
+        title: "Bagaimana istilah ini berkaitan",
+        instruction:
+          "Perhatikan bahawa habitat bukan aras seterusnya selepas komuniti. Habitat ialah tempat, manakala ekosistem terbentuk apabila komuniti berinteraksi dengan persekitaran bukan hidupnya.",
+        levelsLabel: "Aras organisasi hidupan",
+        placeLabel: "Tempat tinggal",
+        ecosystemLabel: "Bagaimana ekosistem terbentuk",
+        species: {
+          term: "Spesies",
+          definition: "Organisma serupa yang boleh saling membiak.",
+        },
+        population: {
+          term: "Populasi",
+          definition: "Semua organisma daripada spesies yang sama di habitat yang sama.",
+        },
+        community: {
+          term: "Komuniti",
+          definition: "Beberapa populasi berbeza yang hidup bersama dan saling berinteraksi.",
+          short: "Semua benda hidup di kawasan itu.",
+        },
+        habitat: {
+          term: "Habitat",
+          definition: "Tempat tinggal semula jadi sesuatu organisma — contohnya kolam, hutan atau tanah.",
+        },
+        nonLiving: {
+          term: "Persekitaran bukan hidup",
+          definition: "Air, udara, cahaya, suhu dan tanah.",
+        },
+        ecosystem: {
+          term: "Ekosistem",
+          definition: "Komuniti bersama persekitaran bukan hidupnya, saling berinteraksi sebagai satu unit.",
+        },
+        note: "Kesilapan lazim: menyusun spesies → populasi → komuniti → habitat → ekosistem sebagai satu tangga. Habitat ialah tempat, bukan aras organisasi.",
+      },
       cards: [
         {
-          title: "1 · Spesies",
+          title: "Spesies",
           body: "Sekumpulan organisma yang mempunyai ciri-ciri serupa dan boleh saling membiak untuk menghasilkan anak.",
         },
         {
-          title: "2 · Populasi",
+          title: "Populasi",
           body: "Sekumpulan organisma daripada spesies yang sama dan hidup di habitat yang sama. Contoh: satu populasi pepatung di kolam.",
         },
         {
-          title: "3 · Komuniti",
+          title: "Komuniti",
           body: "Beberapa populasi organisma yang berbeza, hidup bersama dalam satu habitat dan saling berinteraksi.",
         },
         {
-          title: "4 · Habitat",
+          title: "Habitat",
           body: "Persekitaran atau tempat tinggal semula jadi bagi sesuatu organisma. Contoh: kolam, hutan, tanah.",
         },
         {
-          title: "5 · Ekosistem",
+          title: "Ekosistem",
           body: "Beberapa komuniti yang tinggal bersama dalam satu habitat dan saling berinteraksi, termasuk komponen bukan hidup seperti air, udara dan tanah.",
         },
       ],
@@ -394,6 +476,18 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
             challenge:
               "Hujan lebat dan cahaya matahari berlimpah sepanjang tahun. Pokok tinggi berebut cahaya, tanah cepat lembap dan tepu air.",
             imagePath: tropicalImage,
+            imageAnnotationMode: "callouts",
+            imageSize: "compact",
+            imageAlt:
+              "Seekor monyet berpaut pada dahan di dalam hutan hujan, dengan daun lebar berhujung tirus yang menyalirkan titisan air.",
+            imageAspect: "16 / 9",
+            imageAnnotations: [
+              { id: "hands", label: "Tangan mencengkam", x: 36, y: 10, note: "Tangan yang boleh mencengkam dahan dengan kuat, membolehkan monyet bergerak dan bergantung di kanopi tinggi." },
+              { id: "feet", label: "Kaki mencengkam", x: 35, y: 56, note: "Kaki yang turut mencengkam seperti tangan, memberi cengkaman tambahan supaya monyet tidak jatuh." },
+              { id: "limbs", label: "Anggota panjang", x: 28, y: 25, note: "Anggota badan yang panjang membolehkan monyet menjangkau dahan yang jauh dan bergerak pantas di atas pokok." },
+              { id: "leaves", label: "Daun lebar", x: 80, y: 42, note: "Daun yang lebar menangkap cahaya matahari sebanyak mungkin di bawah kanopi hutan yang teduh." },
+              { id: "driptip", label: "Hujung titis", x: 57, y: 57, note: "Hujung daun yang tirus menyalirkan air hujan dengan cepat supaya daun tidak reput akibat air bertakung." },
+            ],
             organisms: [
               {
                 kind: "animal",
@@ -417,6 +511,20 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
             challenge:
               "Siang yang panas melampau, malam yang sejuk, dan hujan yang sangat sedikit. Kehilangan air adalah ancaman utama.",
             imagePath: desertImage,
+            imageAnnotationMode: "callouts",
+            imageSize: "compact",
+            imageAlt:
+              "Seekor unta berdiri di padang pasir di sebelah kaktus berbatang tebal yang akarnya meluas secara cetek di bawah permukaan tanah.",
+            imageAspect: "3 / 2",
+            imageAnnotations: [
+              { id: "hump", label: "Bonggol", x: 27, y: 29, note: "Bonggol menyimpan lemak sebagai simpanan tenaga. Lemak tertumpu di satu tempat supaya haba tidak terperangkap di seluruh badan." },
+              { id: "eyelashes", label: "Bulu mata panjang", x: 50, y: 25, note: "Bulu mata yang panjang menghalang pasir daripada masuk ke mata semasa ribut pasir." },
+              { id: "legs", label: "Kaki panjang", x: 30, y: 63, note: "Kaki yang panjang menjauhkan badan daripada pasir yang panas membahang." },
+              { id: "feet", label: "Tapak kaki lebar", x: 34, y: 84, note: "Tapak kaki yang lebar menyebarkan berat badan supaya unta tidak terbenam di dalam pasir." },
+              { id: "spines", label: "Duri", x: 84, y: 30, note: "Daun yang berubah menjadi duri mengurangkan luas permukaan, jadi kehilangan air melalui transpirasi menjadi sangat rendah. Duri juga melindungi kaktus daripada dimakan." },
+              { id: "stem", label: "Batang tebal", x: 79, y: 45, note: "Batang yang tebal menyimpan air, membolehkan kaktus bertahan sepanjang musim kering." },
+              { id: "roots", label: "Akar cetek yang meluas", x: 78, y: 85, note: "Akar yang cetek dan meluas menyerap air hujan dengan cepat di kawasan luas sebelum air itu tersejat." },
+            ],
             organisms: [
               {
                 kind: "animal",
@@ -440,6 +548,18 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
             challenge:
               "Musim sejuk yang panjang dan suhu amat rendah, musim panas yang singkat, tanah beku dan angin kencang di dataran tanpa pokok.",
             imagePath: tundraImage,
+            imageAnnotationMode: "callouts",
+            imageSize: "compact",
+            imageAlt:
+              "Seekor rubah Artik berbulu tebal berdiri di dataran tundra yang dipenuhi tumbuhan rendah, lumut dan liken.",
+            imageAspect: "16 / 9",
+            imageAnnotations: [
+              { id: "fur", label: "Bulu tebal", x: 19, y: 80, note: "Bulu yang tebal memerangkap udara dan menebat haba badan daripada hilang ke persekitaran yang sejuk." },
+              { id: "ears", label: "Telinga kecil", x: 36, y: 52, note: "Telinga yang kecil mengurangkan luas permukaan, jadi kurang haba badan hilang melalui telinga." },
+              { id: "body", label: "Badan padat", x: 31, y: 66, note: "Badan yang padat mengurangkan nisbah luas permukaan kepada isi padu, jadi haba badan lebih mudah dikekalkan." },
+              { id: "lowplants", label: "Tumbuhan rendah", x: 48, y: 88, note: "Tumbuhan yang tumbuh rendah dan rapat ke tanah mengelakkan angin kencang dan memerangkap sedikit haba berhampiran permukaan tanah." },
+              { id: "moss", label: "Lumut dan liken", x: 8, y: 90, note: "Lumut dan liken tidak berbatang kayu tinggi, jadi ia boleh hidup di atas tanah beku dengan musim panas yang sangat singkat." },
+            ],
             organisms: [
               {
                 kind: "animal",

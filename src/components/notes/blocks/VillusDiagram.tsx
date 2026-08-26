@@ -1,4 +1,5 @@
 import type { VillusDiagramBlock } from "@/content/form2/science/interactive-types";
+import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
 
 /**
  * Cross-section of one villus: the blood-capillary route (glucose, amino
@@ -6,11 +7,57 @@ import type { VillusDiagramBlock } from "@/content/form2/science/interactive-typ
  * own arrow out of the finger-shaped projection, matching Rajah 3.16. Small
  * enough to sit under a single villus card, not a full-page figure.
  */
-export function VillusDiagram({ block }: { block: VillusDiagramBlock }) {
+export function VillusDiagram({
+  block,
+  enlargeLabel,
+  closeLabel,
+  hintLabel,
+}: {
+  block: VillusDiagramBlock;
+  enlargeLabel?: string;
+  closeLabel?: string;
+  hintLabel?: string;
+}) {
+  const image = block.image;
+  const imageAnnotations: ImageAnnotation[] = image
+    ? [
+        ...image.points.flatMap((point) => {
+          const pathway = block.pathways.find((pw) => pw.id === point.id);
+          return pathway
+            ? [
+                {
+                  id: pathway.id,
+                  label: pathway.label,
+                  note: `${pathway.cargo} → ${pathway.destination}`,
+                  x: point.x,
+                  y: point.y,
+                },
+              ]
+            : [];
+        }),
+        ...(image.extra ?? []),
+      ]
+    : [];
+
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
       <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">{block.instruction}</p>
 
+      {image ? (
+        <AnnotatedImage
+          src={image.src}
+          alt={image.alt}
+          size={image.size ?? "compact"}
+          aspect={image.aspect ?? "4 / 3"}
+          caption={image.caption}
+          legendLabel={image.legendLabel ?? block.title}
+          annotationMode={image.annotationMode ?? "callouts"}
+          annotations={imageAnnotations}
+          enlargeLabel={enlargeLabel}
+          closeLabel={closeLabel}
+          hintLabel={hintLabel}
+        />
+      ) : (
       <div className="overflow-x-auto">
         <svg
           viewBox="0 0 260 150"
@@ -109,6 +156,7 @@ export function VillusDiagram({ block }: { block: VillusDiagramBlock }) {
           ))}
         </svg>
       </div>
+      )}
 
       <div className="mt-2 grid gap-2 sm:grid-cols-2">
         {block.pathways.map((pathway) => (

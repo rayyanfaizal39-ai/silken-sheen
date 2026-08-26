@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { DigestiveSystemBlock } from "@/content/form2/science/interactive-types";
+import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
 
 /**
  * A schematic (not anatomical) diagram of the human digestive system: the
@@ -12,7 +13,17 @@ import type { DigestiveSystemBlock } from "@/content/form2/science/interactive-t
  * so the same component serves BM and DLP content without any text baked
  * into an image.
  */
-export function DigestiveSystemDiagram({ block }: { block: DigestiveSystemBlock }) {
+export function DigestiveSystemDiagram({
+  block,
+  enlargeLabel,
+  closeLabel,
+  hintLabel,
+}: {
+  block: DigestiveSystemBlock;
+  enlargeLabel?: string;
+  closeLabel?: string;
+  hintLabel?: string;
+}) {
   const [active, setActive] = useState<string | null>(null);
   const tract = useMemo(() => block.organs.filter((o) => o.kind === "tract"), [block.organs]);
   const accessory = useMemo(
@@ -42,6 +53,39 @@ export function DigestiveSystemDiagram({ block }: { block: DigestiveSystemBlock 
   };
 
   const selectedOrgan = block.organs.find((o) => o.id === active) ?? null;
+
+  // When an anatomical illustration is supplied it replaces the schematic
+  // drawing entirely — the organ list below stays exactly as authored, so no
+  // teaching text is lost and the two never appear together.
+  if (block.image) {
+    const annotations: ImageAnnotation[] = [
+      ...block.image.points.flatMap((point) => {
+        const organ = block.organs.find((o) => o.id === point.id);
+        return organ ? [{ id: organ.id, label: organ.label, note: organ.note, x: point.x, y: point.y }] : [];
+      }),
+      ...(block.image.extra ?? []),
+    ];
+    return (
+      <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
+        <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+          {block.instruction}
+        </p>
+        <AnnotatedImage
+          src={block.image.src}
+          alt={block.image.alt}
+          size={block.image.size ?? "portrait"}
+          aspect={block.image.aspect ?? "3 / 4"}
+          caption={block.image.caption}
+          legendLabel={block.image.legendLabel ?? block.title}
+          annotationMode={block.image.annotationMode ?? "callouts"}
+          annotations={annotations}
+          enlargeLabel={enlargeLabel}
+          closeLabel={closeLabel}
+          hintLabel={hintLabel}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
