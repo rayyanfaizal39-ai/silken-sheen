@@ -2,6 +2,7 @@ import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan1AkuMindMap } from "@/content/bm/aku-form1-mindmap";
 import { bahasaMelayuTingkatan1AsalPadiMindMap } from "@/content/bm/asal-padi-form1-mindmap";
 import { bahasaMelayuTingkatan1KunciBahasaMindMap } from "@/content/bm/kunci-bahasa-form1-mindmap";
+import { bahasaMelayuTingkatan1HadiahMindMap } from "@/content/bm/hadiah-form1-mindmap";
 import { bahasaMelayuTingkatan1OrenMindMap } from "@/content/bm/oren-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiKomsasMindMap } from "@/content/bm/strategi-memahami-menjawab-komsas-form1-mindmap";
 
@@ -74,6 +75,20 @@ export const bahasaMelayuTingkatan1KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1KunciBahasaMindMap,
       title: "Kunci Bahasa",
+    },
+  },
+  {
+    id: "bm-f1-hadiah-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Hadiah",
+    title: "Hadiah",
+    description:
+      "Cerpen yang mengetengahkan cabaran kehidupan, kasih sayang keluarga, ketabahan dan usaha menghadapi kesusahan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1HadiahMindMap,
+      title: "Hadiah",
     },
   },
 ] as const satisfies readonly ChapterContent[];

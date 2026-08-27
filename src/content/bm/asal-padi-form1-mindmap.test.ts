@@ -56,6 +56,7 @@ describe("Bahasa Melayu Form 1 Asal Padi mind map", () => {
       "Oren",
       "Aku",
       "Kunci Bahasa",
+      "Hadiah",
     ]);
     const chapter = getChapter("bm", title, undefined, "Form 1");
     expect(chapter).toMatchObject({
@@ -81,7 +82,7 @@ describe("Bahasa Melayu Form 1 Asal Padi mind map", () => {
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
-    expect(topics).toHaveLength(5);
+    expect(topics).toHaveLength(6);
     expect(topics[index - 1]?.key).toBe("Strategi Memahami dan Menjawab KOMSAS");
     expect(topics[index + 1]?.key).toBe("Oren");
     expect(getChapter("bm", title, undefined, "Form 2")).toBeUndefined();
