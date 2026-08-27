@@ -5,6 +5,8 @@ import { bahasaMelayuTingkatan1KunciBahasaMindMap } from "@/content/bm/kunci-bah
 import { bahasaMelayuTingkatan1HadiahMindMap } from "@/content/bm/hadiah-form1-mindmap";
 import { bahasaMelayuTingkatan1OrenMindMap } from "@/content/bm/oren-form1-mindmap";
 import { bahasaMelayuTingkatan1KuihBakulLimauMandarinMindMap } from "@/content/bm/kuih-bakul-limau-mandarin-form1-mindmap";
+import { bahasaMelayuTingkatan1HadiahDramaMindMap } from "@/content/bm/hadiah-drama-form1-mindmap";
+import { bahasaMelayuTingkatan1KitaUmpamaSehelaiDaunMindMap } from "@/content/bm/kita-umpama-sehelai-daun-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiKomsasMindMap } from "@/content/bm/strategi-memahami-menjawab-komsas-form1-mindmap";
 
 export const bahasaMelayuTingkatan1KomsasRegistry = [
@@ -104,6 +106,34 @@ export const bahasaMelayuTingkatan1KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1KuihBakulLimauMandarinMindMap,
       title: "Kuih Bakul Limau Mandarin",
+    },
+  },
+  {
+    id: "bm-f1-hadiah-drama-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Hadiah — Drama",
+    title: "Hadiah",
+    description:
+      "Drama yang mengetengahkan kehidupan sebuah keluarga yang menghadapi kesusahan, kasih sayang antara ahli keluarga, ketabahan menghadapi cabaran dan bantuan yang membawa kegembiraan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1HadiahDramaMindMap,
+      title: "Hadiah",
+    },
+  },
+  {
+    id: "bm-f1-kita-umpama-sehelai-daun-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kita Umpama Sehelai Daun",
+    title: "Kita Umpama Sehelai Daun",
+    description:
+      "Sajak yang mengumpamakan kehidupan manusia seperti sehelai daun dan menyeru manusia supaya berbuat jasa, bersikap prihatin serta tidak sombong sepanjang kehidupan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1KitaUmpamaSehelaiDaunMindMap,
+      title: "Kita Umpama Sehelai Daun",
     },
   },
 ] as const satisfies readonly ChapterContent[];

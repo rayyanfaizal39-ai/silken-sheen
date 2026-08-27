@@ -23,6 +23,8 @@ const expectedTopics = [
   "Kunci Bahasa",
   title,
   "Kuih Bakul Limau Mandarin",
+  "Hadiah — Drama",
+  "Kita Umpama Sehelai Daun",
 ];
 const expectedBranches = [
   "Sinopsis",
