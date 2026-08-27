@@ -49,12 +49,13 @@ function branchText(label: string): string {
 
 describe("Bahasa Melayu Form 1 Strategi Memahami dan Menjawab KOMSAS mind map", () => {
   it("registers the strategy first in the interactive Form 1 KOMSAS registry", () => {
-    expect(bahasaMelayuTingkatan1KomsasRegistry).toHaveLength(4);
+    expect(bahasaMelayuTingkatan1KomsasRegistry).toHaveLength(5);
     expect(bahasaMelayuTingkatan1KomsasRegistry.map((topic) => topic.chapterKey)).toEqual([
       title,
       "Asal Padi",
       "Oren",
       "Aku",
+      "Kunci Bahasa",
     ]);
 
     const chapter = getChapter("bm", title, undefined, "Form 1");
@@ -84,7 +85,7 @@ describe("Bahasa Melayu Form 1 Strategi Memahami dan Menjawab KOMSAS mind map", 
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = form1Topics.findIndex((topic) => topic.key === title);
-    expect(form1Topics).toHaveLength(4);
+    expect(form1Topics).toHaveLength(5);
     expect(form1Topics[index - 1]).toBeUndefined();
     expect(form1Topics[index + 1]?.key).toBe("Asal Padi");
     expect(getChapter("bm", title, undefined, "Form 2")).toBeUndefined();

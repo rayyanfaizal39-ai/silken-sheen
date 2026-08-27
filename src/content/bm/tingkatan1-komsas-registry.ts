@@ -1,6 +1,7 @@
 import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan1AkuMindMap } from "@/content/bm/aku-form1-mindmap";
 import { bahasaMelayuTingkatan1AsalPadiMindMap } from "@/content/bm/asal-padi-form1-mindmap";
+import { bahasaMelayuTingkatan1KunciBahasaMindMap } from "@/content/bm/kunci-bahasa-form1-mindmap";
 import { bahasaMelayuTingkatan1OrenMindMap } from "@/content/bm/oren-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiKomsasMindMap } from "@/content/bm/strategi-memahami-menjawab-komsas-form1-mindmap";
 
@@ -59,6 +60,20 @@ export const bahasaMelayuTingkatan1KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1AkuMindMap,
       title: "Aku",
+    },
+  },
+  {
+    id: "bm-f1-kunci-bahasa-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kunci Bahasa",
+    title: "Kunci Bahasa",
+    description:
+      "Sajak tentang kepentingan bahasa sebagai alat komunikasi, lambang maruah, penghubung manusia dan wahana yang berkembang bersama masyarakat.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1KunciBahasaMindMap,
+      title: "Kunci Bahasa",
     },
   },
 ] as const satisfies readonly ChapterContent[];
