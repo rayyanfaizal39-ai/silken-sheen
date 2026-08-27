@@ -14,7 +14,6 @@ import {
   removePendingGeographyF3Progress,
   sanitizeRemovedGeographyF3Progress,
 } from "@/lib/removed-content-progress";
-<<<<<<< HEAD
 import {
   RANKS,
   getRank,
@@ -30,10 +29,6 @@ import {
   createXpProgressionEvent,
   publishProgressionEvent,
 } from "@/lib/progression-events";
-=======
-import { RANKS, getRank, getNextRank, getRankProgress, type SpaceRank } from "@/data/rankAssets";
-import { DEFAULT_PROFILE_AVATAR_ID, type ProfileAvatarId } from "@/data/profile-avatars";
->>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 
 export {
   RANKS,
@@ -936,16 +931,8 @@ export function useProgress() {
   const detectProgressionEvents = useCallback((prev: Progress, next: Progress) => {
     if (next.xp === prev.xp) return;
 
-<<<<<<< HEAD
-      publishProgressionEvent(createXpProgressionEvent(prev.xp, next.xp));
+    publishProgressionEvent(createXpProgressionEvent(prev.xp, next.xp));
 
-      const rankUp = getRankUpTransition(prev.xp, next.xp);
-      if (rankUp) {
-        setLastRankUp({
-          fromRank: rankUp.fromRank.id,
-          toRank: rankUp.toRank.id,
-          xpGained: next.xp - prev.xp,
-=======
     const rankUp = getRankUpTransition(prev.xp, next.xp);
     if (rankUp) {
       setLastRankUp({
@@ -964,7 +951,6 @@ export function useProgress() {
           fromStage: evolution.fromStage,
           toStage: evolution.toStage,
           companionId: companion.id,
->>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
           timestamp: Date.now(),
         });
       }

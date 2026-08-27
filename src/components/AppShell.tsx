@@ -558,13 +558,9 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
 
       <AICompanionButton />
       <CompanionTip />
-<<<<<<< HEAD
       <ProgressionCelebrationHost />
       <CompanionEvolutionModal />
-=======
-      {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
       <MissionRewardCelebration />
->>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 
       {moreOpen && (
         <div

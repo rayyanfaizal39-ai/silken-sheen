@@ -54,11 +54,10 @@ import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import {
-<<<<<<< HEAD
   completeJourneyUnlock,
   subscribeToJourneyUnlocks,
 } from "@/lib/progression-events";
-=======
+import {
   CompanionInfoPopover,
   StreakInfoPopover,
   XpInfoPopover,
@@ -75,7 +74,6 @@ import {
   type MissionSystemState,
 } from "@/lib/mission-system";
 import { getLocalDateKey } from "@/lib/local-date";
->>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 
 export const Route = createFileRoute("/dashboard")({
   // Personal, per-user stats page — not useful search-result content, and
@@ -1550,18 +1548,12 @@ function CosmicJourneyPath({
   ranks,
   currentId,
   xp,
-<<<<<<< HEAD
   celebratingRankId,
-=======
->>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 }: {
   ranks: SpaceRank[];
   currentId: string;
   xp: number;
-<<<<<<< HEAD
   celebratingRankId?: string | null;
-=======
->>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 }) {
   const BASE_SIZE = 64;
   const CURRENT_SIZE = 72;
@@ -1671,16 +1663,9 @@ function CosmicJourneyPath({
                   </div>
                   {next && (
                     <span
-<<<<<<< HEAD
                       className={`cosmic-journey-line mx-1 w-4 shrink-0 sm:w-10 ${
                         celebratingRankId === next.id ? "is-celebrating" : ""
                       }`}
-                      style={{
-                        ["--from-color" as string]: lineUnlocked ? theme.glow : "rgba(139,92,246,0.14)",
-                        ["--to-color" as string]: lineUnlocked && nextTheme ? nextTheme.glow : "rgba(139,92,246,0.08)",
-                      } as CSSProperties}
-=======
-                      className="cosmic-journey-line mx-1 w-4 shrink-0 sm:w-10"
                       style={
                         {
                           ["--from-color" as string]: lineUnlocked
@@ -1690,7 +1675,6 @@ function CosmicJourneyPath({
                             lineUnlocked && nextTheme ? nextTheme.glow : "rgba(139,92,246,0.08)",
                         } as CSSProperties
                       }
->>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
                     >
                       {lineUnlocked && <span className="cosmic-journey-line-energy" />}
                     </span>
